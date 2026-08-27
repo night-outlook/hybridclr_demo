@@ -1,8 +1,8 @@
 # M01: Unity 2022 serialized script resolution
 
-Status: native investigation and real Player validation complete. Proposed Gate 1:
-**CONDITIONAL-GO**, subject to independent acceptance recorded in
-`../M01/M01-review.md`. This is a P01 feasibility result, not production approval.
+Status: native investigation and real Player validation complete. Gate 1:
+**CONDITIONAL-GO**, independently accepted in `../M01/M01-review.md` on
+2026-08-27. This is a P01 feasibility result, not production approval.
 
 ## Scope and fixed inputs
 

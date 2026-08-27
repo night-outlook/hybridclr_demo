@@ -1,7 +1,7 @@
 # M01 feasibility acceptance report
 
-Status: implementation and validation complete; independent acceptance pending.
-Proposed Gate 1: **CONDITIONAL-GO** for the exact macOS ARM64 P01 fixture.
+Status: M01 independently accepted, 2026-08-27.
+Approved Gate 1: **CONDITIONAL-GO** for the exact macOS ARM64 P01 fixture.
 
 The first-build prefab and scene bundles create physical same-name interpreter
 components and execute `BASELINE-EXT|PATCH-P01-INTERNAL|1234`. Scene unload/reload,
@@ -129,7 +129,10 @@ Post-strip MVID/SHA differences are reported honestly, with a separate bounded
 dnlib semantic comparison against the frozen compiler snapshots. Runtime
 Assembly.ManifestModule is unsupported and is not used to fabricate MVIDs.
 
-Independent review record and local `assembly-shadow-m01-poc` tags are pending.
-The tag, if approved, identifies a conditional PoC milestone, not release-ready
-Shadow behavior. M02 entry may proceed only subject to the documented conditions
-and a separate request; this task does not implement M02.
+Independent review returned PASS for this conditional milestone and the
+substantive M00/M01 goal; see [M01-review.md](M01-review.md). The reviewed demo
+target is 283fbe409f1790c4db634e8c414b360ec95c2c89, with only this approved
+review-record closeout afterward. Local `assembly-shadow-m01-poc` tags identify
+the conditional PoC in all four repositories, not release-ready Shadow behavior.
+M02 entry may proceed only subject to the documented conditions and a separate
+request; this task does not implement M02.
