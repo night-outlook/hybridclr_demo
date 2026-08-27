@@ -36,16 +36,25 @@ The scope is M00 and M01 only. M02-M12 are not implemented or claimed complete.
 
 All repositories use local branch `codex/assembly-shadow-m01`:
 
-| Repository | Exact runtime source revision |
+| Repository | Exact source revision |
 | --- | --- |
+| demo build source | 323bbf9855a4ef1c893662ac55034d5f780f2bd7 |
 | hybridclr | 1bc69c3acc2434804e71560418df8c728a63360e |
 | hybridclr_unity | a1d2697dfa3b1c510d5bfe5cf5e513886a3af78a |
 | il2cpp_plus | 03a450c73b5c5db2ed6f87dc4f194788fd204567 |
 
-Demo build-source pin and strict install closeout: pending final source commit.
-The accepted final Player was built from the source bytes being committed;
-later pin/review metadata must not alter executable source. No commit or tag is
-pushed by this task. The prior `assembly-shadow-m00-baseline` tags remain intact.
+The final Player was built from exactly these demo source bytes; the later
+pin/review closeout changes metadata only. Two fresh installations produced
+identical receipts with SHA-256
+`867e9df9c7f7b3008daf9dbe808f56db938aab5a22c51fa631b6919a6190210f`.
+The default strict verifier passed with demoSourceVerified=true, 923 source
+files, 925 installed files, and configured native mode ON. No development
+source-check bypass is used for acceptance.
+
+Install log: `_temp/UnityExec_20260827_082602.log`, SHA-256
+`ec073219ac7095ab9e2ef6338a04a72343a37eda1997e3b98717000c30698b52`.
+No commit or tag is pushed by this task. The prior
+`assembly-shadow-m00-baseline` tags remain intact.
 
 Changed source scope relative to M00:
 

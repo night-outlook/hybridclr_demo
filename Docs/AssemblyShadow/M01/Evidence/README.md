@@ -27,8 +27,10 @@ test executions.
   positive acceptance. Their receipts retain the original Prototype.app path,
   but matching archived binaries are under `_temp/AssemblyShadow/M01-*-GameAssembly.dylib`.
 - `m01-native-symbols.txt`: final binary/dSYM UUID and offline source lookup.
-- Final exact-source installation receipt, repeatability and strict verifier
-  output are added during pin closeout before independent acceptance.
+- `m01-install-receipt.json`, `m01-install-repeatability.json`, and
+  `m01-installed-verification.json`: exact committed source pairing, two
+  identical installations, complete file inventory, and default strict demo
+  source verification. No development source-check bypass is used.
 
 Raw logs, apps, DLL/PDB/source snapshots and dSYM bundles remain local under the
 paths in the inventory and receipts; they are not checked-in binaries. The
