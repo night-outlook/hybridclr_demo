@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "transformerVersion": 1,
+  "schemaVersion": 2,
+  "transformerVersion": 2,
   "sites": [
     {
       "id": "urp-debug-ui-prefab-types",
@@ -37,7 +37,8 @@
         "UnityEngine.Rendering.DebugUI+ObjectListField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
         "UnityEngine.Rendering.DebugUI+ObjectPopupField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
       ],
-      "reason": "Player-only finite contract for the 26 exact widget AQNs serialized in com.unity.render-pipelines.core 14.0.12 DebugUICanvas.prefab. Undeclared or mutated targets are rejected before type resolution. Editor compilation is unchanged."
+      "reason": "Player-only finite contract for the 26 exact widget AQNs serialized in com.unity.render-pipelines.core 14.0.12 DebugUICanvas.prefab. Undeclared or mutated targets are rejected before type resolution. Editor compilation is unchanged.",
+      "kind": "TypeGetType"
     },
     {
       "id": "urp-serializable-enum-player",
@@ -47,7 +48,80 @@
       "originalMethodHash": "4e44328803498342f7a5ab60f066275a4d085f5ea25cbdf350a619f88f3449ff",
       "operationIndex": 6,
       "allowedTypes": [],
-      "reason": "Explicit deny-all Player contract: resolving SerializableEnum.value from a nonempty serialized type name is unsupported in this baseline. The guard rejects before resolution; this is not an unreachability claim. Editor DebugStateFlags behavior is unchanged."
+      "reason": "Explicit deny-all Player contract: resolving SerializableEnum.value from a nonempty serialized type name is unsupported in this baseline. The guard rejects before resolution; this is not an unreachability claim. Editor DebugStateFlags behavior is unchanged.",
+      "kind": "TypeGetType"
+    },
+    {
+      "id": "urp-volume-assembly-domain",
+      "assembly": "Unity.RenderPipelines.Core.Runtime",
+      "typeName": "UnityEngine.Rendering.CoreUtils",
+      "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils::GetAllAssemblyTypes()",
+      "originalMethodHash": "67cc363bbe7d6b87a08f5d10fa9113f7a92cf3e31a5163fe7073ba9ec7656a16",
+      "operationIndex": 9,
+      "allowedTypes": [
+        "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+      ],
+      "reason": "Pinned Player discovery contract: construct only the physical assemblies containing these approved noncandidate volume types. Do not enumerate AppDomain assemblies before filtering. Editor discovery is unchanged.",
+      "kind": "FiniteAssemblyList"
+    },
+    {
+      "id": "urp-volume-type-domain",
+      "assembly": "Unity.RenderPipelines.Core.Runtime",
+      "typeName": "UnityEngine.Rendering.CoreUtils/<>c",
+      "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils/<>c::<GetAllAssemblyTypes>b__87_0(System.Reflection.Assembly)",
+      "originalMethodHash": "d5ac6c4b0327643de25a14fc498ffd65c1bca8e7c52644a938f7e93eb95a9d8a",
+      "operationIndex": 6,
+      "allowedTypes": [
+        "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+      ],
+      "reason": "Pinned Player discovery contract: accept only the approved physical assembly receiver and return the exact 17 noncandidate volume types without calling Assembly.GetTypes. Unknown receivers fail before enumeration.",
+      "kind": "FiniteAssemblyTypes"
+    },
+    {
+      "id": "m00-normal-hot-update-image",
+      "assembly": "AssemblyShadowBaseline.Aot",
+      "typeName": "AssemblyShadowBaseline.BaselineBootstrap",
+      "methodSignature": "System.Void AssemblyShadowBaseline.BaselineBootstrap::Start()",
+      "originalMethodHash": "5f6005b4130594f1c951bd8aba50f784b27976027977e8108ff6662170b87c22",
+      "operationIndex": 28,
+      "allowedTypes": [],
+      "reason": "The M00 ordinary hot-update loader may load only this exact image. Clone and SHA-256-check bytes before Assembly.Load. Capture immutable image bytes and prove current NormalHotUpdate semantics; this is not a Shadow candidate or a general byte-load waiver.",
+      "kind": "FixedAssemblyBytes",
+      "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
     }
   ]
 }

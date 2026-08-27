@@ -203,6 +203,59 @@ def _text(value):
 
 REFLECTION_DEFINE_PREFIX = "ASSEMBLY_SHADOW_REFLECTION_BINDINGS_"
 RETARGETING_FACADE_IDENTITY = "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
+M02_FIXED_IMAGE_SHA256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+M02_FIXED_IMAGE_PATH = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+M02_REFLECTION_SITE_IDS = frozenset({
+    "urp-debug-ui-prefab-types", "urp-serializable-enum-player",
+    "urp-volume-assembly-domain", "urp-volume-type-domain", "m00-normal-hot-update-image",
+})
+M02_CANVAS_ALLOWED_TYPES = frozenset({
+    "UnityEngine.Rendering.DebugUI+Value, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+BoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+IntField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+UIntField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+FloatField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+EnumField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Button, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Foldout, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+ColorField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Vector2Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Vector3Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Vector4Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+VBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+HBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Container, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+BitField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+HistoryBoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+HistoryEnumField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Table, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+Table+Row, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+MessageBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+ProgressBarValue, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+ValueTuple, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+ObjectField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+ObjectListField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.DebugUI+ObjectPopupField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+})
+M02_VOLUME_ALLOWED_TYPES = frozenset({
+    "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+})
 
 
 def _reflection_hash_add(buffer, value):
@@ -233,6 +286,9 @@ def _reflection_canonical_hash(configuration, path):
         _reflection_hash_add(data, len(allowed))
         for value in sorted(allowed):
             _reflection_hash_add(data, value)
+        if configuration.get("schemaVersion") == 2:
+            for field in ("kind", "imageSha256", "providerAssemblyIdentity", "imagePath"):
+                _reflection_hash_add(data, site.get(field))
     return hashlib.sha256(data).hexdigest()
 
 
@@ -254,14 +310,24 @@ def _reflection_provider(value, path):
     return parts[1]
 
 
+def _reflection_full_identity(value, path):
+    _need(isinstance(value, str) and value.strip(), path, "full assembly identity is required")
+    parts = [part.strip() for part in value.split(",")]
+    _need(len(parts) == 4 and value == ", ".join(parts), path, "full assembly identity syntax is invalid")
+    _reflection_provider("Binding.Anchor, " + value, path)
+    return value
+
+
 def _reflection_parse(path: Path, raw: bytes):
     try:
         configuration = json.loads(raw.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as error:
         raise VerificationError(f"{path}: invalid reflection binding configuration: {error}") from error
     _need(isinstance(configuration, dict), path, "reflection binding configuration must be an object")
-    _need(configuration.get("schemaVersion") == 1 and configuration.get("transformerVersion") == 1,
-         path, "reflection binding configuration schema/transformer version must be 1")
+    schema = configuration.get("schemaVersion")
+    transformer = configuration.get("transformerVersion")
+    _need((schema == 1 and transformer == 1) or (schema == 2 and transformer == 2),
+         path, "reflection binding configuration schema/transformer versions must match 1 or 2")
     sites = configuration.get("sites")
     _need(isinstance(sites, list) and 0 < len(sites) <= 4096, path,
          "reflection binding configuration sites must be a bounded non-empty array")
@@ -285,20 +351,58 @@ def _reflection_parse(path: Path, raw: bytes):
         method_key = assembly + "\n" + site["typeName"] + "\n" + site["methodSignature"]
         _need(method_key not in methods, site_path, "duplicate reflection binding method site")
         methods.add(method_key)
+        kind = site.get("kind") or "TypeGetType"
+        _need((schema == 1 and kind == "TypeGetType") or
+              (schema == 2 and kind in ("TypeGetType", "FiniteAssemblyList", "FiniteAssemblyTypes", "FixedAssemblyBytes")),
+             site_path, "reflection binding acquisition kind is invalid")
         allowed = site.get("allowedTypes")
         _need(isinstance(allowed, list) and len(allowed) <= 4096, site_path, "allowedTypes must be a bounded array")
+        if schema == 2:
+            _need(site_id in M02_REFLECTION_SITE_IDS, site_path, "schema-2 reflection binding site id is not part of the M02 contract")
+            if site_id == "urp-debug-ui-prefab-types":
+                _need(kind == "TypeGetType" and set(allowed) == M02_CANVAS_ALLOWED_TYPES, site_path,
+                     "schema-2 canvas site does not declare the exact 26 configured AQNs")
+            elif site_id in ("urp-volume-assembly-domain", "urp-volume-type-domain"):
+                _need(kind in ("FiniteAssemblyList", "FiniteAssemblyTypes") and set(allowed) == M02_VOLUME_ALLOWED_TYPES, site_path,
+                     "schema-2 volume site does not declare the exact 17 Universal.Runtime AQNs")
+            elif site_id == "urp-serializable-enum-player":
+                _need(kind == "TypeGetType" and allowed == [], site_path,
+                     "schema-2 serializable-enum site must deny all types")
         seen_allowed = set(); providers = []
         for allowed_index, value in enumerate(allowed):
             allowed_path = f"{site_path}.allowedTypes[{allowed_index}]"
             _need(value not in seen_allowed, allowed_path, "duplicate allowed type")
             seen_allowed.add(value)
-            providers.append(_canonical_assembly_name(_reflection_provider(value, allowed_path)))
+            provider = _reflection_provider(value, allowed_path)
+            if kind in ("FiniteAssemblyList", "FiniteAssemblyTypes"):
+                _reflection_full_identity(value[value.index(",") + 2:], allowed_path)
+            providers.append(_canonical_assembly_name(provider))
+        image_sha = site.get("imageSha256")
+        provider_identity = site.get("providerAssemblyIdentity")
+        image_path = site.get("imagePath")
+        if kind == "FixedAssemblyBytes":
+            _need(not allowed, site_path, "FixedAssemblyBytes must have an empty allowedTypes array")
+            _hash64(image_sha, site_path, "imageSha256")
+            _reflection_full_identity(provider_identity, site_path)
+            _need(isinstance(image_path, str) and image_path and not Path(image_path).is_absolute() and "\\" not in image_path and ":" not in image_path and
+                  all(part not in ("", ".", "..") for part in image_path.split("/")), site_path, "imagePath is not a safe relative path")
+            _need(site_id == "m00-normal-hot-update-image" and image_sha == M02_FIXED_IMAGE_SHA256 and
+                  image_path == M02_FIXED_IMAGE_PATH and
+                  provider_identity == "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                 site_path, "fixed image site does not match the pinned M00 normal hot-update contract")
+            providers = [_canonical_assembly_name(provider_identity.split(",", 1)[0])]
+        else:
+            _need(image_sha in (None, "") and provider_identity in (None, "") and image_path in (None, ""), site_path,
+                 "non-fixed reflection binding site cannot claim image evidence")
         declarations.append({
             "id": site_id, "consumer": assembly, "typeName": site["typeName"],
             "methodSignature": site["methodSignature"], "originalMethodHash": site["originalMethodHash"],
             "operationIndex": operation, "allowedTypes": sorted(allowed), "reason": site["reason"],
-            "providers": sorted(set(providers)),
+            "providers": sorted(set(providers)), "kind": kind if schema == 2 else None,
+            "imageSha256": image_sha, "providerAssemblyIdentity": provider_identity, "imagePath": image_path,
         })
+    if schema == 2:
+        _need(ids == M02_REFLECTION_SITE_IDS, path, "schema-2 reflection binding configuration must contain exactly the five M02 sites")
     return {
         "rawSha256": hashlib.sha256(raw).hexdigest(),
         "canonicalHash": _reflection_canonical_hash(configuration, path),
@@ -473,7 +577,21 @@ def _reflection_snapshot(root: Path, receipt: dict, path: Path, require_linked=F
     _need(not any(item.is_symlink() for item in entries), directory,
          "ReflectionBindings contains a symlinked entry")
     files = [item for item in entries if item.is_file()]
-    expected_files = {config_path.resolve()}
+    raw = config_path.read_bytes()
+    _need(hashlib.sha256(raw).hexdigest() == expected, config_path,
+         "reflection binding configuration SHA differs from control define")
+    reflection = _reflection_parse(config_path, raw)
+    fixed_paths = []
+    for site in reflection["configuration"].get("sites", []):
+        if (site.get("kind") or "TypeGetType") != "FixedAssemblyBytes":
+            continue
+        image = directory / "Images" / (site["imageSha256"] + ".dll.bytes")
+        _need(image.is_file() and not image.is_symlink(), image,
+             "fixed assembly image evidence is missing or symlinked")
+        _need(digest(image) == site["imageSha256"], image,
+             "fixed assembly image SHA differs from configuration")
+        fixed_paths.append(image.resolve())
+    expected_files = {config_path.resolve(), *fixed_paths}
     if require_linked:
         expected_files.update({
             (directory / "LinkedRetargeting" / "evidence.json").resolve(),
@@ -481,10 +599,6 @@ def _reflection_snapshot(root: Path, receipt: dict, path: Path, require_linked=F
         })
     _need({item.resolve() for item in files} == expected_files, directory,
          "ReflectionBindings contains undeclared or missing evidence files")
-    raw = config_path.read_bytes()
-    _need(hashlib.sha256(raw).hexdigest() == expected, config_path,
-         "reflection binding configuration SHA differs from control define")
-    reflection = _reflection_parse(config_path, raw)
     assemblies = receipt.get("assemblies")
     _need(isinstance(assemblies, list), path, "assemblies must be an array for reflection binding provenance")
     for declaration in reflection["declarations"]:
@@ -528,6 +642,17 @@ def _reflection_manifest(manifest: dict, reflection, path: Path):
     _need(canonical == reflection["canonicalHash"], path, "reflectionBindingConfigurationHash differs from canonical configuration")
     _need(isinstance(declarations, list) and declarations == reflection["declarations"], path,
          "reflectionBindings declaration projection differs from frozen configuration")
+    if isinstance(manifest.get("assemblies"), list) and isinstance(manifest.get("dependencyGraph"), list):
+        known = {_canonical_assembly_name(item.get("name")) for item in manifest["assemblies"] if isinstance(item, dict)}
+        graph = {(_canonical_assembly_name(item.get("consumer")), _canonical_assembly_name(item.get("provider")))
+                 for item in manifest["dependencyGraph"] if isinstance(item, dict)}
+        for declaration in declarations:
+            consumer = _canonical_assembly_name(declaration["consumer"])
+            for provider in declaration.get("providers") or []:
+                provider = _canonical_assembly_name(provider)
+                _need(provider in known, path, f"reflection binding provider is absent from manifest assembly graph: {provider}")
+                _need((consumer, provider) in graph or consumer == provider, path,
+                     f"reflection binding provider edge is absent from manifest dependency graph: {consumer} -> {provider}")
 
 
 def _reflection_copy(root: Path, reflection, path: Path):
@@ -542,15 +667,22 @@ def _reflection_copy(root: Path, reflection, path: Path):
     entries = list(directory.rglob("*"))
     _need(not any(item.is_symlink() for item in entries), directory,
          "artifact ReflectionBindings contains a symlinked entry")
-    files = [item for item in entries if item.is_file()]
-    _need(len(files) == 1 and files[0].resolve() == config_path.resolve(), directory,
-         "artifact ReflectionBindings must contain only configuration.json")
     raw = config_path.read_bytes()
     _need(hashlib.sha256(raw).hexdigest() == reflection["rawSha256"], config_path,
          "artifact reflection configuration SHA differs from compiled configuration")
     parsed = _reflection_parse(config_path, raw)
     _need(parsed["canonicalHash"] == reflection["canonicalHash"] and parsed["declarations"] == reflection["declarations"], config_path,
          "artifact reflection configuration differs from compiled configuration")
+    expected_files = {config_path.resolve()}
+    for site in parsed["configuration"].get("sites", []):
+        if (site.get("kind") or "TypeGetType") != "FixedAssemblyBytes":
+            continue
+        image = directory / "Images" / (site["imageSha256"] + ".dll.bytes")
+        _need(image.is_file() and not image.is_symlink() and digest(image) == site["imageSha256"], image,
+             "artifact fixed assembly image evidence is missing or stale")
+        expected_files.add(image.resolve())
+    _need({item.resolve() for item in entries if item.is_file()} == expected_files, directory,
+         "artifact ReflectionBindings contains undeclared or missing evidence files")
 
 
 def _verify_reflection_probe(path: Path, receipt: dict, reflection):
@@ -558,7 +690,8 @@ def _verify_reflection_probe(path: Path, receipt: dict, reflection):
     _need(isinstance(reflection, dict), path, "reflection probe requires verified frozen reflection configuration")
     probe = _json(path)
     _need(isinstance(probe, dict), path, "reflection probe result must be an object")
-    _need(probe.get("schemaVersion") == 1 and probe.get("milestone") == "M02" and
+    probe_schema = probe.get("schemaVersion")
+    _need(probe_schema in (1, 2) and probe.get("milestone") == "M02" and
           probe.get("mode") == "M02ReflectionBindings", path,
          "reflection probe schema, milestone or mode is invalid")
     _need(probe.get("result") == "Passed" and probe.get("il2cpp") is True, path,
@@ -602,6 +735,35 @@ def _verify_reflection_probe(path: Path, receipt: dict, reflection):
     for field, site in (("canvasGuard", canvas), ("enumGuard", enum)):
         expected_guard = guard_prefix + reflection["canonicalHash"] + "_" + hashlib.sha256(site["id"].encode("utf-8")).hexdigest()
         _need(probe[field] == expected_guard, path, f"{field} does not identify the frozen site/configuration")
+    if probe_schema == 2:
+        site_map = {site.get("id"): site for site in sites if isinstance(site, dict)}
+        expected_ids = {"urp-debug-ui-prefab-types", "urp-serializable-enum-player", "urp-volume-assembly-domain",
+                        "urp-volume-type-domain", "m00-normal-hot-update-image"}
+        _need(set(site_map) == expected_ids, path, "schema-2 reflection probe configuration sites are incomplete")
+        finite_assembly = site_map["urp-volume-assembly-domain"]
+        finite_types = site_map["urp-volume-type-domain"]
+        fixed_image = site_map["m00-normal-hot-update-image"]
+        _need(finite_assembly.get("kind") == "FiniteAssemblyList" and finite_types.get("kind") == "FiniteAssemblyTypes" and
+              isinstance(finite_assembly.get("allowedTypes"), list) and len(finite_assembly["allowedTypes"]) == 17 and
+              finite_assembly["allowedTypes"] == finite_types.get("allowedTypes") and
+              fixed_image.get("kind") == "FixedAssemblyBytes" and fixed_image.get("allowedTypes") == [], path,
+             "schema-2 finite/image acquisition domains do not match the frozen configuration")
+        _need(probe.get("finiteAssemblyGuard") == guard_prefix + reflection["canonicalHash"] + "_" + hashlib.sha256(finite_assembly["id"].encode("utf-8")).hexdigest() and
+              probe.get("finiteTypesGuard") == guard_prefix + reflection["canonicalHash"] + "_" + hashlib.sha256(finite_types["id"].encode("utf-8")).hexdigest() and
+              probe.get("fixedImageGuard") == guard_prefix + reflection["canonicalHash"] + "_" + hashlib.sha256(fixed_image["id"].encode("utf-8")).hexdigest(), path,
+             "schema-2 finite/image guard identities are invalid")
+        _need(probe.get("discoveryAllowedTypes") == sorted(finite_types["allowedTypes"]) and
+              probe.get("discoveryAssemblyNames") == ["Unity.RenderPipelines.Universal.Runtime"] and
+              probe.get("discoveryDeniedBeforeEnumeration") is True, path,
+             "schema-2 discovery evidence does not cover the exact finite domain")
+        _hash64(fixed_image.get("imageSha256"), path, "fixedImage.imageSha256")
+        _need(probe.get("fixedImageSha256") == fixed_image["imageSha256"] and
+              probe.get("fixedImageLoadedAssembly") == fixed_image.get("providerAssemblyIdentity") and
+              probe.get("fixedImageLoadedMarker") == "M00-HOTUPDATE-OK" and
+              probe.get("fixedImageTamperRejected") is True and probe.get("fixedImageNullRejected") is True and
+              probe.get("fixedImageCallerBytesUnchanged") is True and
+              probe.get("volumeManagerMatchesContract") is True, path,
+             "schema-2 fixed-image acceptance evidence is incomplete")
     allowed = probe.get("allowed")
     expected_allowed = []
     for value in sorted(canvas["allowedTypes"]):
@@ -642,7 +804,11 @@ def _verify_reflection_probe(path: Path, receipt: dict, reflection):
             _need(isinstance(item.get("input"), str) and item["input"], item_path,
                  "serializable-enum-deny-all input must be a non-empty assembly-qualified name")
             _need(item.get("inputWasNull") is False, item_path, "serializable-enum-deny-all input cannot be null")
-    return {"result": "Passed", "allowed": len(allowed), "denied": len(denied), "assemblyResolveEvents": 0}
+    result = {"result": "Passed", "allowed": len(allowed), "denied": len(denied), "assemblyResolveEvents": 0}
+    if probe_schema == 2:
+        result["discoveryAllowedTypes"] = len(probe["discoveryAllowedTypes"])
+        result["fixedImageSha256"] = probe["fixedImageSha256"]
+    return result
 
 
 def _verify_source_pins(pins, path, expected=None):
@@ -1111,6 +1277,53 @@ def _verify_bundles(m01_root: Path, manifest: dict, path: Path):
     _need(current == old, path, "M02 baseline bundle hashes differ from frozen M01 bundle files/manifest")
 
 
+def _verify_builtin_source(resource_root: Path, source: dict, path: Path, unity_version: str):
+    snapshot = _relative(resource_root, source.get("snapshotPath"), path, "snapshotPath")
+    proof = _json(snapshot)
+    _need(proof.get("schemaVersion") == 1 and proof.get("unityVersion") == unity_version and
+          proof.get("virtualPath") == source.get("path") and proof.get("guid") == source.get("guid") and
+          isinstance(proof.get("guid"), str) and proof["guid"], snapshot, "builtin resource proof identity is invalid")
+    _hash64(proof.get("backingSha256"), snapshot, "backingSha256")
+    backing = _relative(resource_root, proof.get("backingPath"), snapshot, "backingPath")
+    _need(digest(backing) == proof["backingSha256"], backing, "builtin backing bytes SHA differs from proof")
+    modules = proof.get("modules")
+    _need(isinstance(modules, list) and modules, snapshot, "builtin module proof is missing")
+    module_names = set(); module_paths = set()
+    for index, module in enumerate(modules):
+        module_path = f"{snapshot}.modules[{index}]"
+        _need(isinstance(module, dict), module_path, "builtin module proof must be an object")
+        name = _string(module.get("assemblyName"), module_path, "assemblyName")
+        _need(name not in module_names and (name == "UnityEngine" or name.startswith("UnityEngine.") or name == "UnityEditor" or name.startswith("UnityEditor.")),
+             module_path, "builtin module must be a unique Unity installation module")
+        module_names.add(name)
+        _hash64(module.get("sha256"), module_path, "sha256")
+        _need(module.get("path") == "BuiltinProof/Modules/" + module["sha256"] + "/" + name + ".dll", module_path,
+             "builtin module path is not bound to its SHA and assembly name")
+        physical = _relative(resource_root, module["path"], module_path, "path")
+        _need(digest(physical) == module["sha256"], physical, "builtin module bytes SHA differs from proof")
+        module_paths.add(physical.resolve())
+    _need([item.get("assemblyName") for item in modules] == sorted(item.get("assemblyName") for item in modules), snapshot,
+         "builtin modules are not in canonical ordinal order")
+    objects = proof.get("objects")
+    _need(isinstance(objects, list) and objects, snapshot, "builtin object proof is missing")
+    local_ids = set(); type_ids = set()
+    for index, obj in enumerate(objects):
+        object_path = f"{snapshot}.objects[{index}]"
+        _need(isinstance(obj, dict), object_path, "builtin object proof must be an object")
+        _need(obj.get("persistent") is True and obj.get("guid") == proof["guid"] and
+              isinstance(obj.get("localId"), int) and not isinstance(obj.get("localId"), bool) and obj["localId"] != 0 and
+              obj["localId"] not in local_ids, object_path, "builtin object identity is missing or duplicated")
+        local_ids.add(obj["localId"])
+        assembly_name = _string(obj.get("assemblyName"), object_path, "assemblyName")
+        type_name = _string(obj.get("typeName"), object_path, "typeName")
+        _need(assembly_name in module_names, object_path, "builtin object type has no captured engine module")
+        _need(assembly_name + ":" + type_name not in type_ids, object_path, "builtin object type identity is duplicated")
+        type_ids.add(assembly_name + ":" + type_name)
+        _hash64(obj.get("serializedSha256"), object_path, "serializedSha256")
+    _need([item.get("localId") for item in objects] == sorted(item.get("localId") for item in objects), snapshot,
+         "builtin objects are not in canonical local-id order")
+
+
 def _verify_resource_baseline(root: Path, manifest: dict, path: Path, m01_root: Path):
     resource_root = _relative_dir(root, manifest.get("resourceBaselinePath"), path, "resourceBaselinePath")
     receipt_path = resource_root / "resource-build-receipt.json"
@@ -1175,6 +1388,8 @@ def _verify_resource_baseline(root: Path, manifest: dict, path: Path, m01_root: 
         if source.get("metaSnapshotPath"):
             meta = _relative(resource_root, source["metaSnapshotPath"], source_path, "metaSnapshotPath")
             _need(digest(meta) == source.get("metaSha256"), source_path, "resource meta SHA differs from snapshot bytes")
+        if source.get("builtin") is True:
+            _verify_builtin_source(resource_root, source, source_path, manifest["unityVersion"])
     compiler_root = _relative_dir(resource_root, receipt["compilerSnapshotPath"], receipt_path, "compilerSnapshotPath")
     compiler_receipt = _json(compiler_root / "assembly-snapshot.json")
     _need(compiler_receipt.get("snapshotHash") == receipt["compilerSnapshotHash"], receipt_path,

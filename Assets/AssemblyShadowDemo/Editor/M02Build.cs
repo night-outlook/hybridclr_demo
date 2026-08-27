@@ -117,11 +117,14 @@ namespace AssemblyShadowDemo.Editor
             string snapshot = AssemblySnapshot.Compile(Path.GetFullPath("_temp/AssemblyShadow/M02CompilerPreflight-" + Guid.NewGuid().ToString("N")),
                 target, settings.architecture, pins, policy, new string[0]);
             Debug.Log("[AssemblyShadow M02] Compiler preflight snapshot: " + snapshot);
-            using (var set = DnlibAssemblyLoader.Load(Path.Combine(snapshot, "Assemblies"), new[] { Path.Combine(snapshot, "References") }, policy.assemblies))
+            var receipt = AssemblySnapshot.ReadAndVerify(snapshot, false);
+            var framework = TargetFrameworkReferenceVerifier.Verify(snapshot, receipt);
+            using (var set = DnlibAssemblyLoader.Load(Path.Combine(snapshot, "Assemblies"), new[] { Path.Combine(snapshot, "References") }, policy.assemblies,
+                targetFrameworkReferences: framework))
             {
                 foreach (string reference in set.DeferredFacadeReferences)
                     Debug.LogWarning("[AssemblyShadow M02] Unused optional framework forwarder (not resolved): " + reference);
-                ShadowAssemblyPolicyValidator.ValidateCompiled(set, policy, DateTime.UtcNow).ThrowIfInvalid();
+                ShadowReflectionBindingEvidence.ValidateCompiled(set, policy, snapshot, receipt, false).ThrowIfInvalid();
             }
             Debug.Log("[AssemblyShadow M02] Fresh target compiler metadata and compiled policy validated (not a Player baseline).");
         }

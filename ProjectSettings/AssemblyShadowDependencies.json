@@ -6,7 +6,14 @@
       "provider": "AssemblyShadowBaseline.HotUpdate",
       "kind": "ReflectionString",
       "callSite": "AssemblyShadowBaseline.BaselineBootstrap::Start",
-      "evidence": "The M00 regression reads AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes, loads those bytes, checks the resulting simple name, and invokes AssemblyShadowBaseline.HotUpdate.Entry. This ordinary hot-update dependency is not a Shadow candidate."
+      "evidence": "The M00 regression invokes AssemblyShadowBaseline.HotUpdate.Entry after its exact configured byte-image guard verifies SHA-256 before Assembly.Load. This edge declares the entry dependency; it does not authorize an unguarded byte load."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "kind": "ReflectionString",
+      "callSite": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",
+      "evidence": "The M02 guard probe resolves the literal ordinary-hot-update entry only after the verified fixed-image guard loads the declared image, and checks physical assembly identity before invoking Run."
     }
   ],
   "resourceDependencies": [],

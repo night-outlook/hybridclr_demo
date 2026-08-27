@@ -8,11 +8,11 @@ import xml.etree.ElementTree as ET
 import re
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from m02_results import (CASE_IDS, CANDIDATES, NUNIT_SUITES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
+from m02_results import (CASE_IDS, CANDIDATES, M02_CANVAS_ALLOWED_TYPES, NUNIT_SUITES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
                          _retargeting_profile_hash,
                          _resource_abi_hash, _resource_source_set_hash, _runtime_abi_hash,
                          _snapshot_files, _snapshot_hash, _snapshot_linked_hash, _verify_linked_player,
-                         _verify_reflection_probe, verify)
+                         _verify_builtin_source, _verify_reflection_probe, verify)
 from shadow_tools import VerificationError
 
 
@@ -137,6 +137,102 @@ class M02EvidenceTests(unittest.TestCase):
         receipt["linkedPlayerReceiptHash"] = _snapshot_linked_hash(linked)
         (snapshot / "LinkedPlayer" / "linked-player-receipt.json").write_text(json.dumps(linked))
         return snapshot, receipt, config_path, evidence_path
+
+    def reflection_schema2_fixture(self, root):
+        snapshot = root / "Snapshot"
+        (snapshot / "Assemblies").mkdir(parents=True)
+        dll = snapshot / "Assemblies" / "Consumer.dll"
+        dll.write_bytes(b"consumer-schema2")
+        finite = [
+            "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        ]
+        image = (Path(__file__).resolve().parents[3] / "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes").read_bytes()
+        image_sha = hashlib.sha256(image).hexdigest()
+        config = {"schemaVersion": 2, "transformerVersion": 2, "sites": [
+            {"id": "urp-debug-ui-prefab-types", "assembly": "Consumer", "typeName": "Demo.Canvas", "methodSignature": "M1", "originalMethodHash": "a" * 64, "operationIndex": 0, "allowedTypes": sorted(M02_CANVAS_ALLOWED_TYPES), "reason": "canvas", "kind": "TypeGetType"},
+            {"id": "urp-serializable-enum-player", "assembly": "Consumer", "typeName": "Demo.Enum", "methodSignature": "M2", "originalMethodHash": "b" * 64, "operationIndex": 0, "allowedTypes": [], "reason": "enum", "kind": "TypeGetType"},
+            {"id": "urp-volume-assembly-domain", "assembly": "Consumer", "typeName": "Demo.Volume", "methodSignature": "M3", "originalMethodHash": "c" * 64, "operationIndex": 0, "allowedTypes": finite, "reason": "volume assembly", "kind": "FiniteAssemblyList"},
+            {"id": "urp-volume-type-domain", "assembly": "Consumer", "typeName": "Demo.Volume", "methodSignature": "M4", "originalMethodHash": "d" * 64, "operationIndex": 0, "allowedTypes": finite, "reason": "volume type", "kind": "FiniteAssemblyTypes"},
+            {"id": "m00-normal-hot-update-image", "assembly": "Consumer", "typeName": "Demo.Image", "methodSignature": "M5", "originalMethodHash": "e" * 64, "operationIndex": 0, "allowedTypes": [], "reason": "fixed image", "kind": "FixedAssemblyBytes", "imageSha256": image_sha, "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"},
+        ]}
+        config_path = snapshot / "ReflectionBindings" / "configuration.json"
+        config_path.parent.mkdir(parents=True)
+        config_path.write_text(json.dumps(config, separators=(",", ":")))
+        image_path = snapshot / "ReflectionBindings" / "Images" / (image_sha + ".dll.bytes")
+        image_path.parent.mkdir()
+        image_path.write_bytes(image)
+        receipt = {"schemaVersion": 1, "kind": "CompilePlayerScripts", "extraScriptingDefines": ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)],
+                   "assemblies": [{"name": "Consumer", "path": "Assemblies/Consumer.dll", "sha256": sha(dll)}]}
+        return snapshot, config, receipt, config_path, image_path
+
+    def reflection_schema2_probe_fixture(self, root):
+        snapshot, config, receipt, config_path, image_path = self.reflection_schema2_fixture(root)
+        reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+        output = root / "Player.app"
+        staged = output / "Contents" / "Resources" / "Data" / "StreamingAssets" / "AssemblyShadow" / "M02" / "reflection-bindings.json"
+        staged.parent.mkdir(parents=True)
+        staged.write_bytes(config_path.read_bytes())
+        receipt.update({"unityVersion": "2022.3.62f2", "buildGuid": "player-guid", "playerOutput": str(output)})
+        sites = {site["id"]: site for site in config["sites"]}
+        configuration_hash = reflection["canonicalHash"]
+        guard = lambda site_id: "__AssemblyShadowReflectionBinding_" + configuration_hash + "_" + hashlib.sha256(site_id.encode()).hexdigest()
+        canvas = sites["urp-debug-ui-prefab-types"]
+        enum = sites["urp-serializable-enum-player"]
+        allowed = [{"input": value, "type": value.split(",")[0], "assembly": value.split(",")[1].strip()}
+                   for value in sorted(canvas["allowedTypes"])]
+        candidate = "AssemblyA.Implementation.Internal.VersionedPrefabComponent, AssemblyA.Implementation.Internal"
+        denied_inputs = {
+            "candidate": candidate,
+            "generic-provider-escape": "System.Collections.Generic.List`1[[" + candidate + "]], mscorlib",
+            "null": None,
+            "unqualified": "UnityEngine.Rendering.DebugUI+Value",
+            "unknown": "AssemblyShadowUnknown.Type, AssemblyShadowUnknown",
+            "mutated-string": canvas["allowedTypes"][0] + " ",
+            "runtime-prefab-mutation": candidate,
+            "serializable-enum-deny-all": "System.DayOfWeek, mscorlib",
+        }
+        denied = []
+        for name, value in denied_inputs.items():
+            site_id = enum["id"] if name == "serializable-enum-deny-all" else canvas["id"]
+            denied.append({"name": name, "input": value, "inputWasNull": value is None, "denied": True,
+                           "exceptionType": "System.InvalidOperationException",
+                           "message": "AssemblyShadow reflection denied; configuration=" + configuration_hash + "; site=" + site_id,
+                           "assemblyResolveEvents": 0})
+        probe = {"schemaVersion": 2, "milestone": "M02", "mode": "M02ReflectionBindings", "result": "Passed", "il2cpp": True,
+                 "unityVersion": receipt["unityVersion"], "platform": "OSXPlayer", "buildGuid": receipt["buildGuid"],
+                 "playerDataPath": str(output / "Contents"), "configurationSha256": reflection["rawSha256"],
+                 "configurationHash": configuration_hash,
+                 "canvasGuard": guard(canvas["id"]), "enumGuard": guard(enum["id"]),
+                 "finiteAssemblyGuard": guard(sites["urp-volume-assembly-domain"]["id"]),
+                 "finiteTypesGuard": guard(sites["urp-volume-type-domain"]["id"]),
+                 "fixedImageGuard": guard(sites["m00-normal-hot-update-image"]["id"]),
+                 "discoveryAllowedTypes": sorted(sites["urp-volume-type-domain"]["allowedTypes"]),
+                 "discoveryAssemblyNames": ["Unity.RenderPipelines.Universal.Runtime"],
+                 "discoveryDeniedBeforeEnumeration": True, "volumeManagerMatchesContract": True,
+                 "fixedImageSha256": sites["m00-normal-hot-update-image"]["imageSha256"],
+                 "fixedImageLoadedAssembly": sites["m00-normal-hot-update-image"]["providerAssemblyIdentity"],
+                 "fixedImageLoadedMarker": "M00-HOTUPDATE-OK", "fixedImageTamperRejected": True,
+                 "fixedImageNullRejected": True, "fixedImageCallerBytesUnchanged": True,
+                 "allowed": allowed, "denied": denied, "error": ""}
+        probe_path = root / "reflection-result-schema2.json"
+        probe_path.write_text(json.dumps(probe))
+        return probe_path, receipt, reflection, probe
 
     def fixture(self, root):
         run = root / "run"
@@ -361,6 +457,103 @@ class M02EvidenceTests(unittest.TestCase):
             with self.assertRaises(VerificationError) as error:
                 _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
             self.assertIn("non-concrete", str(error.exception))
+
+    def test_reflection_schema2_image_and_finite_domains_pass(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, _, image_path = self.reflection_schema2_fixture(Path(folder))
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertEqual(reflection["canonicalHash"], _reflection_parse(snapshot / "ReflectionBindings/configuration.json", (snapshot / "ReflectionBindings/configuration.json").read_bytes())["canonicalHash"])
+            self.assertEqual(len(reflection["configuration"]["sites"]), 5)
+            fixed = next(item for item in reflection["declarations"] if item["id"] == "m00-normal-hot-update-image")
+            self.assertEqual(fixed["kind"], "FixedAssemblyBytes")
+            self.assertEqual(fixed["providers"], ["assemblyshadowbaseline.hotupdate"])
+            self.assertTrue(image_path.is_file())
+
+    def test_reflection_schema2_image_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, _, receipt, _, image_path = self.reflection_schema2_fixture(Path(folder))
+            image_path.write_bytes(b"tampered-image")
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertIn("fixed assembly image SHA", str(error.exception))
+
+    def test_reflection_schema2_finite_domain_substitution_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path, _ = self.reflection_schema2_fixture(Path(folder))
+            config["sites"][2]["allowedTypes"][0] = config["sites"][2]["allowedTypes"][0].replace("Bloom", "Exposure")
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertIn("exact 17", str(error.exception))
+
+    def test_reflection_schema2_probe_acceptance_passes(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, _ = self.reflection_schema2_probe_fixture(Path(folder))
+            result = _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertEqual(result["result"], "Passed")
+            self.assertEqual(result["discoveryAllowedTypes"], 17)
+            self.assertEqual(result["fixedImageSha256"], "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27")
+
+    def test_reflection_schema2_probe_contract_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, probe = self.reflection_schema2_probe_fixture(Path(folder))
+            probe["volumeManagerMatchesContract"] = False
+            probe_path.write_text(json.dumps(probe))
+            with self.assertRaises(VerificationError) as error:
+                _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertIn("fixed-image acceptance evidence", str(error.exception))
+
+    def builtin_source_fixture(self, root):
+        resource_root = root / "ResourceInputs"
+        resource_root.mkdir()
+        backing = resource_root / "BuiltinProof" / "Resources" / "backing" / "builtin.asset"
+        backing.parent.mkdir(parents=True)
+        backing.write_bytes(b"builtin backing")
+        module = resource_root / "BuiltinProof" / "Modules" / "pending" / "UnityEngine.dll"
+        module.parent.mkdir(parents=True)
+        module.write_bytes(b"UnityEngine module bytes")
+        module_sha = sha(module)
+        final_module = resource_root / "BuiltinProof" / "Modules" / module_sha / "UnityEngine.dll"
+        final_module.parent.mkdir(parents=True)
+        final_module.write_bytes(module.read_bytes())
+        module = final_module
+        proof = {
+            "schemaVersion": 1, "unityVersion": "2022.3.62f2", "virtualPath": "Library/builtin.asset", "guid": "builtin-guid",
+            "backingPath": "BuiltinProof/Resources/backing/builtin.asset", "backingSha256": sha(backing),
+            "modules": [{"assemblyName": "UnityEngine", "path": "BuiltinProof/Modules/" + module_sha + "/UnityEngine.dll", "sha256": module_sha}],
+            "objects": [{"name": "Builtin Material", "typeName": "UnityEngine.Material", "assemblyName": "UnityEngine",
+                         "guid": "builtin-guid", "localId": 1, "persistent": True, "serializedSha256": "a" * 64}],
+        }
+        proof_path = resource_root / "Sources" / "builtin-proof.json"
+        proof_path.parent.mkdir()
+        proof_path.write_text(json.dumps(proof, separators=(",", ":")))
+        source = {"path": "Library/builtin.asset", "snapshotPath": "Sources/builtin-proof.json", "sha256": sha(proof_path), "guid": "builtin-guid", "builtin": True}
+        return resource_root, source, proof_path, proof
+
+    def test_builtin_source_nested_proof_passes(self):
+        with tempfile.TemporaryDirectory() as folder:
+            resource_root, source, proof_path, _ = self.builtin_source_fixture(Path(folder))
+            _verify_builtin_source(resource_root, source, proof_path, "2022.3.62f2")
+
+    def test_builtin_source_object_identity_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            resource_root, source, proof_path, proof = self.builtin_source_fixture(Path(folder))
+            proof["objects"].append(dict(proof["objects"][0], localId=1, name="duplicate"))
+            proof_path.write_text(json.dumps(proof, separators=(",", ":")))
+            source["sha256"] = sha(proof_path)
+            with self.assertRaises(VerificationError) as error:
+                _verify_builtin_source(resource_root, source, proof_path, "2022.3.62f2")
+            self.assertIn("duplicated", str(error.exception))
+
+    def test_builtin_source_nested_module_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            resource_root, source, proof_path, proof = self.builtin_source_fixture(Path(folder))
+            module_path = resource_root / proof["modules"][0]["path"]
+            module_path.write_bytes(b"tampered engine module")
+            with self.assertRaises(VerificationError) as error:
+                _verify_builtin_source(resource_root, source, proof_path, "2022.3.62f2")
+            self.assertIn("module bytes SHA", str(error.exception))
 
     def test_reflection_probe_acceptance_passes(self):
         with tempfile.TemporaryDirectory() as folder:

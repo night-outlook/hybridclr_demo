@@ -29,6 +29,7 @@ namespace AssemblyShadowDemo.Editor
             Require(original.schemaVersion == 1 && original.baselineBuildId == M01Paths.BaselineBuildId && original.unityVersion == Application.unityVersion &&
                 original.target == target.ToString() && original.architecture == architecture && audit.verified, "M01 identity/source audit mismatch.");
             var player = AssemblySnapshot.ReadAndVerify(playerInputSnapshot, true);
+            var framework = TargetFrameworkReferenceVerifier.Verify(playerInputSnapshot, player);
             Require(player.unityVersion == original.unityVersion && player.target == original.target && player.architecture == original.architecture, "Player target differs from original M01.");
             Require(!Directory.Exists(outputDirectory) && !File.Exists(outputDirectory), "Resource import destination is immutable: " + outputDirectory);
             string temporary = Path.GetFullPath(outputDirectory) + ".building-" + Guid.NewGuid().ToString("N");
@@ -79,7 +80,8 @@ namespace AssemblyShadowDemo.Editor
                 "M01 importer only proves the five original business assemblies; new candidates require new resources.");
             ResourceAbiDescriptor abi;
             ShadowResourceScript[] scripts;
-            using (var set = DnlibAssemblyLoader.Load(metadata, new[] { Path.Combine(temporary, "CompilerInputs/Assemblies"), Path.Combine(temporary, "CompilerInputs/References") }, policy.assemblies))
+            using (var set = DnlibAssemblyLoader.Load(metadata, new[] { Path.Combine(temporary, "CompilerInputs/Assemblies"), Path.Combine(temporary, "CompilerInputs/References") }, policy.assemblies,
+                targetFrameworkReferences: framework))
             {
                 abi = UnitySerializedTypeAnalyzer.Analyze(set, candidates);
                 scripts = ScriptIdentities(set, sources, temporary);
@@ -110,7 +112,8 @@ namespace AssemblyShadowDemo.Editor
             Json(temporary, ShadowResourceBaseline.ReceiptName, receipt);
             File.WriteAllText(Path.Combine(temporary, "manifest.sha256"), ShadowHash.File(Path.Combine(temporary, ShadowResourceBaseline.ReceiptName)) + "\n", new UTF8Encoding(false));
             var verified = ShadowResourceBaseline.ReadAndVerify(temporary, target, architecture);
-            using (var current = DnlibAssemblyLoader.Load(Path.Combine(playerInputSnapshot, "Assemblies"), new[] { Path.Combine(playerInputSnapshot, "References") }, policy.assemblies))
+            using (var current = DnlibAssemblyLoader.Load(Path.Combine(playerInputSnapshot, "Assemblies"), new[] { Path.Combine(playerInputSnapshot, "References") }, policy.assemblies,
+                targetFrameworkReferences: framework))
                 ShadowResourceBaseline.RequirePlayerAbi(verified, UnitySerializedTypeAnalyzer.Analyze(current, candidates));
             // Re-check original anchors/assets after all compiler and index work, before publishing.
             Require(ShadowHash.File(manifestPath) == OriginalManifestSha && ShadowHash.File(AuditPath) == OriginalAuditSha, "Original proof changed during import.");

@@ -43,6 +43,12 @@ transaction/type/execution/Unity integration work remains M03–M07.
 - Compiler reference DLLs come from the target Player compiler's explicit
   reference paths. Patch closure DLLs are copied from a single captured compile
   snapshot; missing, injected or modified DLLs fail validation.
+  Resolution checks full assembly identity. A framework version exception needs
+  an immutable proof matching the captured reference's identity and bytes to the
+  pinned installation's active-target compiler framework catalog. Primary inputs,
+  incompatible tokens/cultures/content types, recorded source-path labels and
+  runtime-facade profiles cannot confer that exception. Validation therefore
+  requires the matching Unity installation; offline catalog replay is not claimed.
 - The original `M01-Baseline-v1` bundles and assembly snapshots are never
   rebuilt or replaced. M02 gets a separate manifest and Player input snapshot.
 - A resource-build receipt binds bundle bytes, compiler inputs, serialized ABI,
@@ -67,7 +73,7 @@ transaction/type/execution/Unity integration work remains M03–M07.
 
 ## Finite reflection contracts
 
-Two data-driven URP Core calls cannot be accepted as ordinary static dependencies.
+Five managed acquisition sites require explicit bounded Player contracts.
 `ProjectSettings/AssemblyShadowReflectionBindings.json` therefore defines an
 explicit Player-only contract for each exact assembly, type, method fingerprint,
 instruction and overload. This is a documented extension of the M02 implicit
@@ -79,6 +85,20 @@ dependency policy, not a reflection-scanner exemption:
 - `SerializableEnum.value` has an explicit deny-all Player contract for nonempty
   type strings. Such use is unsupported in this baseline and throws before type
   resolution; no claim of unreachability is made. Its Editor behavior is retained.
+- The two `CoreUtils.GetAllAssemblyTypes` discovery sites construct a finite
+  assembly list and return finite types without calling `GetAssemblies` or
+  `GetTypes`. The sealed target contains exactly 17 concrete transitive
+  `VolumeComponent` descendants, all in Universal RP; its only compiled discovery
+  caller is `VolumeManager`. The Player probe checks the actual caller and manager
+  output and uses a receiver with an observable `GetTypes` override to test denial
+  before enumeration. This is a pinned contract, not support for arbitrary future
+  volume types or general pre-use protection.
+- The ordinary M00 byte loader clones its input and checks a configured SHA-256
+  before `Assembly.Load`. Snapshots retain that exact image and verify its full
+  assembly identity and complete semantic equality to the current
+  `NormalHotUpdate` compiler input. A harmless MVID/raw-hash difference does not
+  substitute a different shipped image. Generic call-site prose cannot authorize
+  an unguarded byte load or unbounded type enumeration.
 - A private same-type guard performs exact ordinal comparisons, then calls the
   original `Type.GetType(string)` overload with a constant allowed target. Other
   strings fail before lookup. The normal scanner still sees those real providers;
@@ -97,13 +117,22 @@ dependency policy, not a reflection-scanner exemption:
   forwarder map, runtime module SHA/MVIDs, consumer input/linked SHA, and per-site
   method/guard hashes. Its file SHA is bound by linked receipt schema 2 and then
   the Player snapshot hash. Schema 1 remains the no-binding receipt format.
+  Binding configuration/transformer version 2 adds acquisition kinds and fixed
+  image identities; version-1 canonical hash encoding remains unchanged.
 
-The fixed Bootstrap probe uses only framework type tokens. Its dedicated
+The fixed Bootstrap probe uses framework and ordinary M00 AOT type tokens, never
+Shadow candidate tokens. Its dedicated
 `M02ReflectionBindings` mode exercises all 26 permitted names, six denied strings,
 an actual mutated canvas prefab field through `Rebuild`, and the real deny-all enum
 getter. Zero resolver events are supporting observations; the linked IL template
 is the proof that rejection precedes lookup. This is not a substitute for the
 M03–M05 transaction and first-use guards.
+
+The schema-2 probe also checks the complete volume-discovery domain, a rejected
+receiver before its enumeration override runs, and normal hot-update execution
+after fixed-image verification. Tampered/null images must fail before loading and
+caller-owned bytes must remain unchanged. The Shadow-OFF ordinary M00 regression
+continues to use its unmodified upstream load path.
 
 ## Reproduction entrypoints
 
@@ -128,16 +157,23 @@ or a passing synthetic fixture alone is not milestone acceptance. macOS ARM64
 is the available validated platform inherited from M00/M01; no Windows or
 Android result may be inferred from it.
 
-The current integration passed 181/181 Unity Editor tests with no skips
-(`_temp/AssemblyShadow/EditorTests-e161bc478d42484a8387a5a123c1a8aa/results.xml`).
-This includes 155 package tooling tests, 23 CodeGen tests, and three demo tests:
-the existing M01 validation plus the real 26-name prefab comparison and unchanged
-Editor enum behavior. It is not yet a successful guarded M02 Player build or a
-passed milestone. The initial diagnostic build also exposed that Unity's
+The current consolidated source passed 260/260 Unity Editor tests with no skips
+(`_temp/AssemblyShadow/EditorTests-42d7408422d34cfa8d83d635ea39411e/results.xml`).
+This includes full-identity/provenance regressions, schema-2 acquisition guards,
+fixed-image evidence, unproven callback state, policy-path handling, actual
+builtin-resource capture, the real 26-name prefab comparison, and unchanged
+Editor enum behavior. These results do not establish the new native Player or
+complete T02 integration. The initial diagnostic build also exposed that Unity's
 `BuildReport.summary.result` is not final inside `OnPostprocessBuild`; capture now
 observes callbacks and seals only after `BuildPipeline.BuildPlayer` returns a
-matching successful report. The Python artifact verifier suite also passed all
-69 tests. Neither suite substitutes for the pending real Player acceptance.
+matching successful report. The last guarded Player at package `9ef3c4e` sealed
+its Player inputs and passed reflection, old-bundle Baseline, and old-bundle P01
+probes, but its resource import then failed on the engine-owned GUISkin. The
+subsequent repair captures builtin backing bytes, defining installed modules and
+every object identity; that repair is covered by the current Unity suite but still
+requires the complete import/build run. No earlier binary proves the current
+schema-2 guards. The updated Python artifact suite passes 77 tests, including
+schema-2 projection and nested builtin-proof tamper cases.
 
 The first guarded Player attempt exposed Unity forwarding the same control
 define twice. Identical controls are now idempotent; distinct or malformed

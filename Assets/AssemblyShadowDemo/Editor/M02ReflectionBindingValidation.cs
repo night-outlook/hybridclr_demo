@@ -17,8 +17,8 @@ namespace AssemblyShadowDemo.Editor
         private const string EnumType = "UnityEngine.Rendering.SerializableEnum";
         private const string GuardPrefix = "__AssemblyShadowReflectionBinding_";
 
-        [Serializable] private sealed class Configuration { public Site[] sites; }
-        [Serializable] private sealed class Site { public string id; public string[] allowedTypes; }
+        [Serializable] private sealed class Configuration { public int schemaVersion, transformerVersion; public Site[] sites; }
+        [Serializable] private sealed class Site { public string id, kind, imagePath; public string[] allowedTypes; }
 
         public static void ValidateProjectAssets()
         {
@@ -27,10 +27,28 @@ namespace AssemblyShadowDemo.Editor
             // serialized strings, including Unity YAML whitespace folding.
             ShadowReflectionBindingEvidence.CompilationDefines(new string[0]);
             var configuration = JsonUtility.FromJson<Configuration>(Encoding.UTF8.GetString(File.ReadAllBytes(ConfigurationPath)));
-            Require(configuration != null && configuration.sites != null && configuration.sites.Length == 2, "Expected two binding contracts.");
+            Require(configuration != null && configuration.schemaVersion == 2 && configuration.transformerVersion == 2 &&
+                configuration.sites != null && configuration.sites.Length == 5, "Expected five version-2 binding contracts.");
             var canvas = configuration.sites.Single(site => site.id == "urp-debug-ui-prefab-types");
             var enumSite = configuration.sites.Single(site => site.id == "urp-serializable-enum-player");
+            var assemblySite = configuration.sites.Single(site => site.id == "urp-volume-assembly-domain");
+            var typesSite = configuration.sites.Single(site => site.id == "urp-volume-type-domain");
+            var imageSite = configuration.sites.Single(site => site.id == "m00-normal-hot-update-image");
+            Require(canvas.kind == "TypeGetType" && enumSite.kind == "TypeGetType", "Type lookup contract kinds changed.");
             Require(enumSite.allowedTypes != null && enumSite.allowedTypes.Length == 0, "SerializableEnum Player contract must be explicitly deny-all.");
+            Require(assemblySite.kind == "FiniteAssemblyList" && typesSite.kind == "FiniteAssemblyTypes" &&
+                assemblySite.allowedTypes != null && assemblySite.allowedTypes.Length == 17 &&
+                assemblySite.allowedTypes.Distinct(StringComparer.Ordinal).Count() == 17 &&
+                typesSite.allowedTypes != null && assemblySite.allowedTypes.OrderBy(value => value, StringComparer.Ordinal)
+                    .SequenceEqual(typesSite.allowedTypes.OrderBy(value => value, StringComparer.Ordinal), StringComparer.Ordinal),
+                "Both volume-discovery guards must declare the same 17 exact target types.");
+            Require(assemblySite.allowedTypes.All(value => value.StartsWith("UnityEngine.Rendering.Universal.", StringComparison.Ordinal) &&
+                value.EndsWith(", Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null", StringComparison.Ordinal)),
+                "The pinned noncandidate volume-discovery provider changed.");
+            Require(imageSite.kind == "FixedAssemblyBytes" && imageSite.allowedTypes != null && imageSite.allowedTypes.Length == 0 &&
+                imageSite.imagePath == "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "The ordinary hot-update image must be the exact staged M00 input.");
+            ShadowReflectionBindingEvidence.ValidateProjectImages();
             var component = CanvasComponent();
             var serialized = new SerializedObject(component);
             SerializedProperty prefabs = serialized.FindProperty("prefabs");
@@ -46,7 +64,9 @@ namespace AssemblyShadowDemo.Editor
         {
             Type canvas = CanvasComponent().GetType();
             Type serializableEnum = canvas.Assembly.GetType(EnumType, true);
-            foreach (Type type in new[] { canvas, serializableEnum })
+            Type coreUtils = canvas.Assembly.GetType("UnityEngine.Rendering.CoreUtils", true);
+            Type discoveryLambda = coreUtils.GetNestedType("<>c", BindingFlags.NonPublic);
+            foreach (Type type in new[] { canvas, serializableEnum, coreUtils, discoveryLambda }.Where(value => value != null))
                 Require(!type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
                     .Any(method => method.Name.StartsWith(GuardPrefix, StringComparison.Ordinal)), "Player guards leaked into the Editor domain.");
             object value = Activator.CreateInstance(serializableEnum, new object[] { typeof(DayOfWeek) });

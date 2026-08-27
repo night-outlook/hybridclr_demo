@@ -32,6 +32,10 @@ namespace AssemblyShadowDemo
             public string assembly;
             public string typeName;
             public string[] allowedTypes;
+            public string kind;
+            public string imageSha256;
+            public string providerAssemblyIdentity;
+            public string imagePath;
         }
 
         [Serializable] public sealed class AllowedResult
@@ -54,7 +58,7 @@ namespace AssemblyShadowDemo
 
         [Serializable] public sealed class ProbeResult
         {
-            public int schemaVersion = 1;
+            public int schemaVersion = 2;
             public string milestone = "M02";
             public string mode = Mode;
             public string result = "Failed";
@@ -67,6 +71,19 @@ namespace AssemblyShadowDemo
             public string configurationHash;
             public string canvasGuard;
             public string enumGuard;
+            public string finiteAssemblyGuard;
+            public string finiteTypesGuard;
+            public string fixedImageGuard;
+            public string[] discoveryAllowedTypes;
+            public string[] discoveryAssemblyNames;
+            public bool discoveryDeniedBeforeEnumeration;
+            public bool volumeManagerMatchesContract;
+            public string fixedImageSha256;
+            public string fixedImageLoadedAssembly;
+            public string fixedImageLoadedMarker;
+            public bool fixedImageTamperRejected;
+            public bool fixedImageNullRejected;
+            public bool fixedImageCallerBytesUnchanged;
             public AllowedResult[] allowed = new AllowedResult[0];
             public DeniedResult[] denied = new DeniedResult[0];
             public string error;
@@ -104,15 +121,15 @@ namespace AssemblyShadowDemo
             byte[] bytes = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, StagedConfiguration));
             result.configurationSha256 = ShadowPatchFileProvider.Hash(bytes);
             var configuration = JsonUtility.FromJson<Configuration>(Encoding.UTF8.GetString(bytes));
-            Require(configuration != null && configuration.schemaVersion == 1 && configuration.transformerVersion == 1 &&
-                configuration.sites != null && configuration.sites.Length == 2, "Unexpected finite binding fixture.");
+            Require(configuration != null && configuration.schemaVersion == 2 && configuration.transformerVersion == 2 &&
+                configuration.sites != null && configuration.sites.Length == 5, "Unexpected finite binding fixture.");
             Site canvasSite = configuration.sites.Single(site => site.id == "urp-debug-ui-prefab-types");
             Site enumSite = configuration.sites.Single(site => site.id == "urp-serializable-enum-player");
             Require(canvasSite.allowedTypes != null && canvasSite.allowedTypes.Length == 26 &&
                 canvasSite.allowedTypes.Distinct(StringComparer.Ordinal).Count() == 26 &&
                 enumSite.allowedTypes != null && enumSite.allowedTypes.Length == 0, "Unexpected finite domains.");
-            MethodInfo canvasGuard = FindGuard(typeof(DebugUIHandlerCanvas), canvasSite);
-            MethodInfo enumGuard = FindGuard(typeof(SerializableEnum), enumSite);
+            MethodInfo canvasGuard = FindGuard(typeof(DebugUIHandlerCanvas), canvasSite, typeof(Type), typeof(string));
+            MethodInfo enumGuard = FindGuard(typeof(SerializableEnum), enumSite, typeof(Type), typeof(string));
             result.canvasGuard = canvasGuard.Name;
             result.enumGuard = enumGuard.Name;
             result.configurationHash = canvasGuard.Name.Substring(GuardPrefix.Length, 64);
@@ -172,18 +189,105 @@ namespace AssemblyShadowDemo
                 AppDomain.CurrentDomain.AssemblyResolve -= observeResolve;
                 if (mutationObject != null) UnityEngine.Object.Destroy(mutationObject);
             }
+            ProbeDiscovery(result, configuration);
+            ProbeFixedImage(result, configuration);
         }
 
-        private static MethodInfo FindGuard(Type owner, Site site)
+        private static void ProbeDiscovery(ProbeResult result, Configuration configuration)
         {
-            Require(owner.FullName == site.typeName && owner.Assembly.GetName().Name == site.assembly, "Wrong guard consumer.");
+            Site assembliesSite = configuration.sites.Single(site => site.id == "urp-volume-assembly-domain");
+            Site typesSite = configuration.sites.Single(site => site.id == "urp-volume-type-domain");
+            Require(assembliesSite.kind == "FiniteAssemblyList" && typesSite.kind == "FiniteAssemblyTypes" &&
+                assembliesSite.allowedTypes.Length == 17 && assembliesSite.allowedTypes.OrderBy(value => value, StringComparer.Ordinal)
+                    .SequenceEqual(typesSite.allowedTypes.OrderBy(value => value, StringComparer.Ordinal)), "Unexpected volume discovery contract.");
+            MethodInfo assemblyGuard = FindGuard(typeof(CoreUtils), assembliesSite, typeof(Assembly[]), typeof(AppDomain));
+            Type lambda = typeof(CoreUtils).GetNestedType("<>c", BindingFlags.NonPublic);
+            Require(lambda != null, "The pinned CoreUtils discovery lambda was stripped.");
+            MethodInfo typesGuard = FindGuard(lambda, typesSite, typeof(Type[]), typeof(Assembly));
+            Require(assemblyGuard.Name.Substring(GuardPrefix.Length, 64) == result.configurationHash &&
+                typesGuard.Name.Substring(GuardPrefix.Length, 64) == result.configurationHash, "Mixed discovery configurations.");
+            result.finiteAssemblyGuard = assemblyGuard.Name;
+            result.finiteTypesGuard = typesGuard.Name;
+            var assemblies = (Assembly[])assemblyGuard.Invoke(null, new object[] { AppDomain.CurrentDomain });
+            result.discoveryAssemblyNames = assemblies.Select(value => value.GetName().Name).OrderBy(value => value, StringComparer.Ordinal).ToArray();
+            Require(result.discoveryAssemblyNames.SequenceEqual(new[] { "Unity.RenderPipelines.Universal.Runtime" }), "Discovery enumerated an undeclared assembly.");
+            var direct = (Type[])typesGuard.Invoke(null, new object[] { assemblies[0] });
+            string[] expected = typesSite.allowedTypes.OrderBy(value => value, StringComparer.Ordinal).ToArray();
+            Require(direct.Select(type => type.AssemblyQualifiedName).OrderBy(value => value, StringComparer.Ordinal).SequenceEqual(expected),
+                "Finite type guard changed its approved types.");
+            var witness = new EnumerationWitness();
+            RequireDenied(() => typesGuard.Invoke(null, new object[] { witness }), typesSite.id, result.configurationHash);
+            RequireDenied(() => typesGuard.Invoke(null, new object[] { null }), typesSite.id, result.configurationHash);
+            result.discoveryDeniedBeforeEnumeration = witness.enumerationCalls == 0;
+            Require(result.discoveryDeniedBeforeEnumeration, "A rejected receiver was enumerated before rejection.");
+            // Exercise the original caller and VolumeManager as well as the guards.
+            // A post-GetTypes filter is not sufficient to pass this contract.
+            result.discoveryAllowedTypes = CoreUtils.GetAllAssemblyTypes().Select(type => type.AssemblyQualifiedName)
+                .OrderBy(value => value, StringComparer.Ordinal).ToArray();
+            Require(result.discoveryAllowedTypes.SequenceEqual(expected), "Actual CoreUtils discovery differs from its finite contract.");
+            result.volumeManagerMatchesContract = VolumeManager.instance.baseComponentTypeArray.Select(type => type.AssemblyQualifiedName)
+                .OrderBy(value => value, StringComparer.Ordinal).SequenceEqual(expected);
+            Require(result.volumeManagerMatchesContract, "VolumeManager lost an approved component type.");
+        }
+
+        private static void ProbeFixedImage(ProbeResult result, Configuration configuration)
+        {
+            Site site = configuration.sites.Single(value => value.id == "m00-normal-hot-update-image");
+            Require(site.kind == "FixedAssemblyBytes" && site.allowedTypes.Length == 0, "Unexpected fixed-image contract.");
+            MethodInfo guard = FindGuard(typeof(AssemblyShadowBaseline.BaselineBootstrap), site, typeof(Assembly), typeof(byte[]));
+            result.fixedImageGuard = guard.Name;
+            Require(guard.Name.Substring(GuardPrefix.Length, 64) == result.configurationHash, "Mixed fixed-image configuration.");
+            byte[] image = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath,
+                "AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"));
+            result.fixedImageSha256 = ShadowPatchFileProvider.Hash(image);
+            Require(result.fixedImageSha256 == site.imageSha256, "Staged normal hot-update bytes differ from the fixed contract.");
+            byte[] altered = (byte[])image.Clone();
+            altered[altered.Length / 2] ^= 1;
+            RequireDenied(() => guard.Invoke(null, new object[] { altered }), site.id, result.configurationHash);
+            result.fixedImageTamperRejected = true;
+            RequireDenied(() => guard.Invoke(null, new object[] { null }), site.id, result.configurationHash);
+            result.fixedImageNullRejected = true;
+            var loaded = (Assembly)guard.Invoke(null, new object[] { image });
+            result.fixedImageLoadedAssembly = loaded.FullName;
+            Require(loaded.FullName == site.providerAssemblyIdentity, "Fixed image loaded the wrong physical assembly.");
+            // A literal ordinary-hot-update entry is declared in the dependency
+            // policy. No Shadow candidate type or token is introduced here.
+            Type entry = Type.GetType("AssemblyShadowBaseline.HotUpdate.Entry, AssemblyShadowBaseline.HotUpdate", true);
+            Require(entry.Assembly == loaded, "Normal hot-update entry resolved to a different assembly.");
+            result.fixedImageLoadedMarker = (string)entry.GetMethod("Run", BindingFlags.Public | BindingFlags.Static).Invoke(null, null);
+            Require(result.fixedImageLoadedMarker == "M00-HOTUPDATE-OK", "The fixed normal hot-update method did not execute.");
+            result.fixedImageCallerBytesUnchanged = ShadowPatchFileProvider.Hash(image) == result.fixedImageSha256;
+            Require(result.fixedImageCallerBytesUnchanged, "The guard modified caller-owned image bytes.");
+        }
+
+        [UnityEngine.Scripting.Preserve]
+        private sealed class EnumerationWitness : Assembly
+        {
+            public int enumerationCalls;
+            public override Type[] GetTypes() { ++enumerationCalls; return new Type[0]; }
+        }
+
+        private static void RequireDenied(Action action, string site, string configurationHash)
+        {
+            Exception failure = null;
+            try { action(); }
+            catch (TargetInvocationException error) { failure = error.InnerException; }
+            catch (Exception error) { failure = error; }
+            Require(failure is InvalidOperationException && failure.Message ==
+                "AssemblyShadow reflection denied; configuration=" + configurationHash + "; site=" + site,
+                "An undeclared acquisition escaped its guard: " + site);
+        }
+
+        private static MethodInfo FindGuard(Type owner, Site site, Type returnType, Type parameterType)
+        {
+            Require(owner.FullName == site.typeName.Replace('/', '+') && owner.Assembly.GetName().Name == site.assembly, "Wrong guard consumer.");
             var guards = owner.GetMethods(BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly)
                 .Where(method => method.Name.StartsWith(GuardPrefix, StringComparison.Ordinal)).ToArray();
             Require(guards.Length == 1, "Expected exactly one emitted guard on " + owner.FullName);
             var guard = guards[0];
             string suffix = "_" + ShadowPatchFileProvider.Hash(Encoding.UTF8.GetBytes(site.id));
-            Require(guard.IsPrivate && guard.ReturnType == typeof(Type) && guard.GetParameters().Length == 1 &&
-                guard.GetParameters()[0].ParameterType == typeof(string) && guard.Name.Length == GuardPrefix.Length + 129 &&
+            Require(guard.IsPrivate && guard.ReturnType == returnType && guard.GetParameters().Length == 1 &&
+                guard.GetParameters()[0].ParameterType == parameterType && guard.Name.Length == GuardPrefix.Length + 129 &&
                 guard.Name.EndsWith(suffix, StringComparison.Ordinal), "Unexpected guard identity or signature.");
             return guard;
         }
