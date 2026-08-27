@@ -1,7 +1,9 @@
 # M00 baseline acceptance report
 
-Status: final exact-source, clean-cache ARM64 Player passed. Independent review
-and baseline tags are pending. M01 has not started.
+Status: M00 accepted. Final exact-source, clean-cache ARM64 Player passed;
+independent review returned PASS. Local baseline tags identify this closeout
+and the exact paired runtime/package/native revisions. M01 starts only after
+the four tag targets are audited.
 
 ## Requirements and evidence
 
@@ -14,7 +16,7 @@ and baseline tags are pending. M01 has not started.
 | 00.5 ordinary HybridCLR IL2CPP Player | Final clean-cache ARM64 run Passed; M00-HOTUPDATE-OK, AOT Prefab/Scene/reflection/SO passed |
 | 00.6 native observability and repeatable install | Two identical 921-source-file receipts; Debug native build; dSYM and source-line symbol lookup |
 | 00.7 native feature default OFF | Header and actual compiler flag OFF; preprocessor OFF/ON accepted, value 2 rejected; Editor switch tests passed |
-| 00.8 branches, commits, tags and independent review | M00 branches/implementation commits exist; final tag/review pending |
+| 00.8 branches, commits, tags and independent review | Independent PASS in M00-review.md; local assembly-shadow-m00-baseline tags |
 
 ## Validation
 
@@ -106,6 +108,7 @@ Generate/All duration or a production performance measurement.
 
 ## Gate boundary
 
-Do not start M01 until the exact demo source is pinned, final clean-cache ARM64
-Player validation is archived, and an independent M00 review accepts the code
-and evidence. The M00 tag is created only for the accepted boundary.
+The exact demo source is pinned, final clean-cache ARM64 Player validation is
+archived, and independent review accepted the code/evidence at demo commit
+738fdf0cbaeb1c0f75ae7b55c5ef82c77b42b1ec. This closeout changes only review
+metadata. The M00 tag is created only for the accepted boundary.
