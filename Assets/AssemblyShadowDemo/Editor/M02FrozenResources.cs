@@ -29,6 +29,9 @@ namespace AssemblyShadowDemo.Editor
             Require(original.schemaVersion == 1 && original.baselineBuildId == M01Paths.BaselineBuildId && original.unityVersion == Application.unityVersion &&
                 original.target == target.ToString() && original.architecture == architecture && audit.verified, "M01 identity/source audit mismatch.");
             var player = AssemblySnapshot.ReadAndVerify(playerInputSnapshot, true);
+            // Archived compiler inputs retain their bytes, but only this verified
+            // Player receipt can prove which assemblies were actually filtered.
+            policy = ShadowFilteredInputPolicy.Apply(policy, player);
             var framework = TargetFrameworkReferenceVerifier.Verify(playerInputSnapshot, player);
             Require(player.unityVersion == original.unityVersion && player.target == original.target && player.architecture == original.architecture, "Player target differs from original M01.");
             Require(!Directory.Exists(outputDirectory) && !File.Exists(outputDirectory), "Resource import destination is immutable: " + outputDirectory);
