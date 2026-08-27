@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "runtimeDependencies": [
+    {
+      "consumer": "AssemblyShadowBaseline.Aot",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "kind": "ReflectionString",
+      "callSite": "AssemblyShadowBaseline.BaselineBootstrap::Start",
+      "evidence": "The M00 regression reads AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes, loads those bytes, checks the resulting simple name, and invokes AssemblyShadowBaseline.HotUpdate.Entry. This ordinary hot-update dependency is not a Shadow candidate."
+    }
+  ],
+  "resourceDependencies": [],
+  "bootstrapEntrypoints": [
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.ShadowBootstrap::Run",
+      "reason": "M01 negative timing probe, before activation; no compile-time business reference."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeReflection",
+      "reason": "Post-activation opaque object/string reflection entry."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeComponent",
+      "reason": "Post-activation resource identity probe; stable Unity Component boundary."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeComponent",
+      "target": "VersionedPrefabComponent",
+      "reason": "Exact Unity GetComponent(string) PoC probe; no other short type name is approved."
+    }
+  ]
+}

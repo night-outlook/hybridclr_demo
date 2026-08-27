@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c14e203429481982777ebcc6a7eaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableAssemblyShadow: 1
+  shadowAssemblyDefinitions: []
+  shadowAssemblyNames:
+  - AssemblyA.Contracts
+  - AssemblyA.Implementation.Extensibility
+  - AssemblyA.Implementation.Internal
+  - AssemblyShadowDemo.ContractsConsumer
+  - AssemblyShadowDemo.ExtensibilityConsumer
+  bootstrapAssemblyDefinitions: []
+  bootstrapAssemblyNames:
+  - AssemblyShadowDemo.Bootstrap
+  patchOutputRoot: HybridCLRData/AssemblyShadow/Patches
+  baselineOutputRoot: HybridCLRData/AssemblyShadow/Baselines
+  baselineManifestPath: 
+  buildId: M02-Baseline
+  currentCompileOutput: 
+  playerInputSnapshot: 
+  resourceBuildMapPath: ProjectSettings/AssemblyShadowResources.json
+  resourceBaselinePath: 
+  patchId: P01
+  targetReferenceDirectories: []
+  architecture: arm64
+  sourcePinFile: ProjectSettings/AssemblyShadowSourcePins.json
+  precompiledAssemblyNames: []
+  precompiledAssemblyCapabilities:
+  - name: Newtonsoft.Json
+    classification: 0
+    isShadowCapable: 0
+    isBootstrap: 0
+    isPrecompiled: 0
+    capabilityDeclared: 0
+  - name: Unity.Burst.Unsafe
+    classification: 0
+    isShadowCapable: 0
+    isBootstrap: 0
+    isPrecompiled: 0
+    capabilityDeclared: 0
+  - name: Unity.Collections.LowLevel.ILSupport
+    classification: 0
+    isShadowCapable: 0
+    isBootstrap: 0
+    isPrecompiled: 0
+    capabilityDeclared: 0
+  - name: nunit.framework
+    classification: 0
+    isShadowCapable: 0
+    isBootstrap: 0
+    isPrecompiled: 0
+    capabilityDeclared: 0
+  - name: Unity.VisualScripting.Antlr3.Runtime
+    classification: 0
+    isShadowCapable: 0
+    isBootstrap: 0
+    isPrecompiled: 0
+    capabilityDeclared: 0
+  explicitDependencyConfig: {fileID: 0}
+  extensibilityWhitelist: {fileID: 0}
+  explicitDependencyConfigPath: ProjectSettings/AssemblyShadowDependencies.json
+  extensibilityWhitelistPath: ProjectSettings/AssemblyShadowExtensibilityWhitelist.json
+  allowedInternalEditorAssemblies:
+  - AssemblyShadowDemo.Editor
+  - AssemblyShadowDemo.EditorTests
+  enforceResourceAbi: 1
+  rejectUnknownReflectionDependencies: 1
+  includePdbInDevelopmentPatch: 1

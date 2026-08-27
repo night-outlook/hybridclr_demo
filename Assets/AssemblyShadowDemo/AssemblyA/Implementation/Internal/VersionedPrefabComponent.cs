@@ -8,6 +8,9 @@ namespace AssemblyA.Implementation.Internal
     {
         [SerializeField] private DemoValue value;
         [SerializeField] private VersionedScriptableObject dataReference;
+#if ASSEMBLY_SHADOW_P05
+        [SerializeField] private int addedSerializedField = 42;
+#endif
 
         public string GetVersionText()
         {

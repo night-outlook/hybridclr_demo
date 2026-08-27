@@ -8,7 +8,11 @@ namespace AssemblyA.Implementation.Extensibility
 
         public virtual string GetBaseVersion()
         {
+#if ASSEMBLY_SHADOW_P02
+            return "PATCH-P02-EXT";
+#else
             return "BASELINE-EXT";
+#endif
         }
 
         public int ReadBaseSerializedValue()
