@@ -210,7 +210,7 @@ class M02EvidenceTests(unittest.TestCase):
         denied = []
         for name, value in denied_inputs.items():
             site_id = enum["id"] if name == "serializable-enum-deny-all" else canvas["id"]
-            denied.append({"name": name, "input": value, "inputWasNull": value is None, "denied": True,
+            denied.append({"name": name, "input": "" if value is None else value, "inputWasNull": value is None, "denied": True,
                            "exceptionType": "System.InvalidOperationException",
                            "message": "AssemblyShadow reflection denied; configuration=" + configuration_hash + "; site=" + site_id,
                            "assemblyResolveEvents": 0})
@@ -508,6 +508,15 @@ class M02EvidenceTests(unittest.TestCase):
             with self.assertRaises(VerificationError) as error:
                 _verify_reflection_probe(probe_path, receipt, reflection)
             self.assertIn("fixed-image acceptance evidence", str(error.exception))
+
+    def test_reflection_schema2_probe_null_marker_cannot_hide_value(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, probe = self.reflection_schema2_probe_fixture(Path(folder))
+            probe["denied"][2]["input"] = "forged-nonempty-value"
+            probe_path.write_text(json.dumps(probe))
+            with self.assertRaises(VerificationError) as error:
+                _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertIn("null input", str(error.exception))
 
     def builtin_source_fixture(self, root):
         resource_root = root / "ResourceInputs"

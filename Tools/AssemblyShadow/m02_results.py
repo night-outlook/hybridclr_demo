@@ -797,9 +797,17 @@ def _verify_reflection_probe(path: Path, receipt: dict, reflection):
         _need(item["message"] == "AssemblyShadow reflection denied; configuration=" + reflection["canonicalHash"] + "; site=" + site_id,
              item_path, "denied result has an unexpected guard message")
         if name in expected_inputs:
-            _need(item.get("input") == expected_inputs[name], item_path, "denied vector input differs from the exact probe contract")
-            _need(item.get("inputWasNull") is (expected_inputs[name] is None), item_path,
-                 "denied vector null-input marker is inconsistent")
+            expected_input = expected_inputs[name]
+            if expected_input is None:
+                # Unity JsonUtility materializes a null string field as the
+                # empty string on readback. The explicit marker remains the
+                # authoritative null distinction; non-empty values are not
+                # accepted as an equivalent representation.
+                _need(item.get("input") in (None, "") and item.get("inputWasNull") is True, item_path,
+                     "denied vector null input must be empty/null with inputWasNull=true")
+            else:
+                _need(item.get("input") == expected_input and item.get("inputWasNull") is False, item_path,
+                     "denied vector input or null-input marker differs from the exact probe contract")
         else:
             _need(isinstance(item.get("input"), str) and item["input"], item_path,
                  "serializable-enum-deny-all input must be a non-empty assembly-qualified name")
