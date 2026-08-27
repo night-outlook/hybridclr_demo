@@ -29,6 +29,11 @@ namespace AssemblyShadowDemo
 
         private IEnumerator Start()
         {
+            if (ShadowPatchFileProvider.Argument("-shadowMode", "P01") == M02ReflectionBindingProbe.Mode)
+            {
+                Application.Quit(M02ReflectionBindingProbe.RunAndWrite());
+                yield break;
+            }
             result = new ShadowDemoResult
             {
                 mode = ShadowPatchFileProvider.Argument("-shadowMode", "P01"),

@@ -1,0 +1,8 @@
+<linker>
+  <!-- Keep the exact framework call sites available for linked IL verification
+       and the real Player probe. No business candidate or guard is exempted. -->
+  <assembly fullname="Unity.RenderPipelines.Core.Runtime">
+    <type fullname="UnityEngine.Rendering.UI.DebugUIHandlerCanvas" preserve="all" />
+    <type fullname="UnityEngine.Rendering.SerializableEnum" preserve="all" />
+  </assembly>
+</linker>

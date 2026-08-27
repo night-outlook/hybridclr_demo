@@ -68,12 +68,28 @@ namespace AssemblyShadowDemo.Editor
             string frozen = M01Paths.BaselineRoot(target);
             BuildBaselineBundles.VerifyExisting(frozen);
             M01BuildSupport.StageBaselineArtifacts(frozen, Path.Combine(Application.streamingAssetsPath, "AssemblyShadow/M01"));
+            M02ReflectionBindingValidation.StageConfiguration();
             PrebuildCommand.GenerateAll();
             string snapshot = Path.GetFullPath("_temp/AssemblyShadow/M02PlayerInputs-" + Guid.NewGuid().ToString("N"));
             var pins = ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture);
             string buildId = AssemblyShadowBuildCommands.Argument("-shadowBaselineId", settings.buildId + "-" + ShadowHash.Text(pins.RuntimeAbiHash() + ":" + pins.demo.revision).Substring(0, 16));
-            ShadowPlayerInputCapture.Begin(snapshot, buildId, target, settings.architecture, pins, Candidates);
-            try { BaselineBuild.BuildPlayer("M02", M01Paths.BootstrapScene, "Builds/AssemblyShadow/M02/Baseline.app"); }
+            string[] compilationDefines = ShadowReflectionBindingEvidence.CompilationDefines(new string[0]);
+            ShadowPlayerInputCapture.Begin(snapshot, buildId, target, settings.architecture, pins, Candidates, compilationDefines);
+            try
+            {
+                string output = AssemblyShadowBuildCommands.Argument("-shadowBuildOutput", "Builds/AssemblyShadow/M02/Baseline.app");
+                if (target == BuildTarget.StandaloneWindows64 && output.EndsWith(".app", StringComparison.Ordinal))
+                    output = output.Substring(0, output.Length - 4) + ".exe";
+                Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output)));
+                var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+                {
+                    scenes = new[] { M01Paths.BootstrapScene }, locationPathName = output,
+                    target = target, targetGroup = BuildTargetGroup.Standalone,
+                    options = BuildOptions.Development | BuildOptions.DetailedBuildReport,
+                    extraScriptingDefines = compilationDefines,
+                });
+                ShadowPlayerInputCapture.CompleteSuccessfulBuild(report);
+            }
             finally { ShadowPlayerInputCapture.End(); }
             var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
             foreach (string name in new[] { "AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility", "AssemblyA.Implementation.Internal" })

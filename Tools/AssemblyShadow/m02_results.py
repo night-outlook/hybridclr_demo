@@ -200,6 +200,450 @@ def _text(value):
     return "" if value is None else str(value)
 
 
+REFLECTION_DEFINE_PREFIX = "ASSEMBLY_SHADOW_REFLECTION_BINDINGS_"
+RETARGETING_FACADE_IDENTITY = "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
+
+
+def _reflection_hash_add(buffer, value):
+    """Append one ReflectionBindingConfiguration.BindingHash field."""
+    if value is None:
+        buffer.extend((-1).to_bytes(4, "little", signed=True))
+        return
+    encoded = str(value).encode("utf-8")
+    buffer.extend(len(encoded).to_bytes(4, "little", signed=True))
+    buffer.extend(encoded)
+
+
+def _reflection_canonical_hash(configuration, path):
+    sites = configuration.get("sites")
+    _need(isinstance(sites, list), path, "sites must be an array")
+    data = bytearray()
+    _reflection_hash_add(data, "assembly-shadow-reflection-configuration:1")
+    _reflection_hash_add(data, configuration.get("schemaVersion"))
+    _reflection_hash_add(data, configuration.get("transformerVersion"))
+    _reflection_hash_add(data, len(sites))
+    for site in sorted(sites, key=lambda item: item.get("id", "")):
+        for field in ("id", "assembly", "typeName", "methodSignature", "originalMethodHash"):
+            _reflection_hash_add(data, site.get(field))
+        _reflection_hash_add(data, site.get("operationIndex"))
+        _reflection_hash_add(data, site.get("reason"))
+        allowed = site.get("allowedTypes")
+        _need(isinstance(allowed, list), path, "allowedTypes must be an array")
+        _reflection_hash_add(data, len(allowed))
+        for value in sorted(allowed):
+            _reflection_hash_add(data, value)
+    return hashlib.sha256(data).hexdigest()
+
+
+def _reflection_provider(value, path):
+    _need(isinstance(value, str) and value and len(value) <= 4096, path,
+         "allowedTypes entries must be bounded exact assembly-qualified names")
+    parts = [part.strip() for part in value.split(",")]
+    _need(len(parts) in (2, 5) and value == ", ".join(parts), path,
+         "allowedTypes entries must use exact assembly-qualified syntax")
+    _need(re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*(?:\+[A-Za-z_][A-Za-z0-9_]*)*", parts[0]) is not None,
+         path, "allowedTypes contains a non-concrete or malformed type")
+    _need(re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.-]*", parts[1]) is not None and not parts[1].lower().endswith(".dll"),
+         path, "allowedTypes contains a malformed assembly name")
+    if len(parts) == 5:
+        _need(re.fullmatch(r"Version=[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+", parts[2]) is not None and
+              re.fullmatch(r"Culture=(?:neutral|[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*)", parts[3]) is not None and
+              re.fullmatch(r"PublicKeyToken=(?:null|[0-9a-f]{16})", parts[4]) is not None,
+              path, "allowedTypes contains a malformed assembly identity")
+    return parts[1]
+
+
+def _reflection_parse(path: Path, raw: bytes):
+    try:
+        configuration = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise VerificationError(f"{path}: invalid reflection binding configuration: {error}") from error
+    _need(isinstance(configuration, dict), path, "reflection binding configuration must be an object")
+    _need(configuration.get("schemaVersion") == 1 and configuration.get("transformerVersion") == 1,
+         path, "reflection binding configuration schema/transformer version must be 1")
+    sites = configuration.get("sites")
+    _need(isinstance(sites, list) and 0 < len(sites) <= 4096, path,
+         "reflection binding configuration sites must be a bounded non-empty array")
+    ids = set(); methods = set(); declarations = []
+    for index, site in enumerate(sites):
+        site_path = f"{path}.sites[{index}]"
+        _need(isinstance(site, dict), site_path, "reflection binding site must be an object")
+        site_id = site.get("id"); assembly = site.get("assembly")
+        _need(isinstance(site_id, str) and re.fullmatch(r"[A-Za-z0-9_.-]{1,128}", site_id or ""), site_path,
+             "site id is invalid")
+        _need(site_id not in ids, site_path, "duplicate reflection binding site id")
+        ids.add(site_id)
+        _need(isinstance(assembly, str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.-]*", assembly or "") is not None and
+              not assembly.lower().endswith(".dll"), site_path, "site assembly is invalid")
+        for field in ("typeName", "methodSignature", "reason"):
+            _need(isinstance(site.get(field), str) and site[field].strip(), site_path, f"{field} is required")
+        _hash64(site.get("originalMethodHash"), site_path, "originalMethodHash")
+        operation = site.get("operationIndex")
+        _need(isinstance(operation, int) and not isinstance(operation, bool) and operation >= 0, site_path,
+             "operationIndex must be a non-negative integer")
+        method_key = assembly + "\n" + site["typeName"] + "\n" + site["methodSignature"]
+        _need(method_key not in methods, site_path, "duplicate reflection binding method site")
+        methods.add(method_key)
+        allowed = site.get("allowedTypes")
+        _need(isinstance(allowed, list) and len(allowed) <= 4096, site_path, "allowedTypes must be a bounded array")
+        seen_allowed = set(); providers = []
+        for allowed_index, value in enumerate(allowed):
+            allowed_path = f"{site_path}.allowedTypes[{allowed_index}]"
+            _need(value not in seen_allowed, allowed_path, "duplicate allowed type")
+            seen_allowed.add(value)
+            providers.append(_canonical_assembly_name(_reflection_provider(value, allowed_path)))
+        declarations.append({
+            "id": site_id, "consumer": assembly, "typeName": site["typeName"],
+            "methodSignature": site["methodSignature"], "originalMethodHash": site["originalMethodHash"],
+            "operationIndex": operation, "allowedTypes": sorted(allowed), "reason": site["reason"],
+            "providers": sorted(set(providers)),
+        })
+    return {
+        "rawSha256": hashlib.sha256(raw).hexdigest(),
+        "canonicalHash": _reflection_canonical_hash(configuration, path),
+        "declarations": sorted(declarations, key=lambda item: item["id"]),
+        "configuration": configuration,
+    }
+
+
+def _reflection_control(defines, path):
+    _need(isinstance(defines, list), path, "extraScriptingDefines must be an array")
+    # ReflectionBindingDefines.TryGetEnabledHash intentionally disables the
+    # contract for editor-only compilation, even if a stale control token is
+    # present in the serialized define list.
+    if "UNITY_EDITOR" in defines:
+        return None
+    controls = []
+    for index, value in enumerate(defines):
+        define_path = f"{path}.extraScriptingDefines[{index}]"
+        _need(isinstance(value, str), define_path, "compiler define must be a string")
+        if value.startswith(REFLECTION_DEFINE_PREFIX):
+            _need(re.fullmatch(re.escape(REFLECTION_DEFINE_PREFIX) + r"[0-9a-f]{64}", value) is not None,
+                 define_path, "reflection binding control define must contain a lowercase raw SHA-256")
+            controls.append(value[len(REFLECTION_DEFINE_PREFIX):])
+    _need(len(controls) <= 1, path, "exactly one reflection binding control define is allowed")
+    return controls[0] if controls else None
+
+
+def _reflection_user_defines(defines, path):
+    _reflection_control(defines, path)
+    return [value for value in defines if not value.startswith(REFLECTION_DEFINE_PREFIX)]
+
+
+def _retargeting_profile_hash(proof, path):
+    forwarders = proof.get("forwarders")
+    runtime = proof.get("runtimeFrameworkModules")
+    _need(isinstance(forwarders, list) and isinstance(runtime, list), path,
+         "retargeting forwarders and runtimeFrameworkModules must be arrays")
+    data = bytearray()
+    _reflection_hash_add(data, "assembly-shadow-reflection-retargeting-profile:1")
+    _reflection_hash_add(data, proof.get("mappingPolicyVersion"))
+    _reflection_hash_add(data, proof.get("facadeSha256"))
+    _reflection_hash_add(data, proof.get("sourceAssemblyIdentity"))
+    _reflection_hash_add(data, len(forwarders))
+    for item in sorted(forwarders, key=lambda value: value.get("typeFullName", "")):
+        _reflection_hash_add(data, item.get("typeFullName")); _reflection_hash_add(data, item.get("destinationAssemblyIdentity"))
+    _reflection_hash_add(data, len(runtime))
+    for item in sorted(runtime, key=lambda value: value.get("assemblyIdentity", "")):
+        _reflection_hash_add(data, item.get("assemblyIdentity")); _reflection_hash_add(data, item.get("sha256")); _reflection_hash_add(data, item.get("mvid"))
+    return hashlib.sha256(data).hexdigest()
+
+
+def _verify_linked_reflection_evidence(root: Path, receipt: dict, reflection: dict, path: Path):
+    directory = root / "ReflectionBindings" / "LinkedRetargeting"
+    evidence_path = directory / "evidence.json"
+    facade_path = directory / "netstandard.dll.bytes"
+    _need(directory.is_dir() and not directory.is_symlink(), directory, "linked reflection retargeting directory is missing or symlinked")
+    _need(evidence_path.is_file() and not evidence_path.is_symlink() and facade_path.is_file() and not facade_path.is_symlink(), directory,
+         "linked reflection evidence requires evidence.json and netstandard.dll.bytes")
+    entries = list(directory.rglob("*"))
+    _need(not any(item.is_symlink() for item in entries), directory, "linked reflection evidence contains a symlinked entry")
+    _need({item.resolve() for item in entries if item.is_file()} == {evidence_path.resolve(), facade_path.resolve()}, directory,
+         "linked reflection retargeting directory must contain exactly its two proof files")
+    proof = _json(evidence_path)
+    _need(proof.get("schemaVersion") == 1 and proof.get("mappingPolicyVersion") == 1, evidence_path,
+         "linked reflection evidence schema/mappingPolicyVersion must be 1")
+    for field in ("unityVersion", "target", "architecture", "buildGuid", "il2cppDotNetProfile", "configurationSha256", "configurationHash",
+                  "facadeSourcePath", "facadePath", "facadeSha256", "sourceAssemblyIdentity", "profileHash"):
+        _string(proof.get(field), evidence_path, field)
+    _need(proof["unityVersion"] == receipt.get("unityVersion") and proof["target"] == receipt.get("target") and
+          proof["architecture"] == receipt.get("architecture") and proof["buildGuid"] == receipt.get("buildGuid"), evidence_path,
+         "linked reflection evidence identity differs from Player receipt")
+    _need(proof["configurationSha256"] == reflection["rawSha256"] and proof["configurationHash"] == reflection["canonicalHash"], evidence_path,
+         "linked reflection evidence configuration identity differs from frozen configuration")
+    _need(re.fullmatch(r"unityaot-[A-Za-z0-9-]+", proof["il2cppDotNetProfile"]) is not None,
+         evidence_path, "il2cppDotNetProfile is not a permitted target-aware IL2CPP profile")
+    _need(Path(proof["facadeSourcePath"]).is_absolute() and proof["facadePath"] == "ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes",
+         evidence_path, "linked reflection facade path/source identity is invalid")
+    facade_source = Path(proof["facadeSourcePath"])
+    _need(facade_source.parent.name == "Facades" and facade_source.parent.parent.name == proof["il2cppDotNetProfile"], evidence_path,
+         "facadeSourcePath does not belong to the recorded IL2CPP profile")
+    _need(proof["sourceAssemblyIdentity"] == RETARGETING_FACADE_IDENTITY, evidence_path,
+         "sourceAssemblyIdentity is not the pinned netstandard facade identity")
+    _hash64(proof["facadeSha256"], evidence_path, "facadeSha256")
+    _need(digest(facade_path) == proof["facadeSha256"], facade_path, "linked reflection facade SHA differs from evidence")
+    forwarders = proof.get("forwarders"); runtime = proof.get("runtimeFrameworkModules"); sites = proof.get("sites")
+    _need(isinstance(forwarders, list) and isinstance(runtime, list) and isinstance(sites, list), evidence_path,
+         "linked reflection evidence arrays are missing")
+    seen_types = set()
+    for index, item in enumerate(forwarders):
+        item_path = f"{evidence_path}.forwarders[{index}]"
+        _need(isinstance(item, dict), item_path, "forwarder must be an object")
+        type_name = _string(item.get("typeFullName"), item_path, "typeFullName")
+        destination = _string(item.get("destinationAssemblyIdentity"), item_path, "destinationAssemblyIdentity")
+        _need(type_name not in seen_types, item_path, "duplicate retargeting forwarder type")
+        seen_types.add(type_name)
+        _need("\n" not in destination, item_path, "destinationAssemblyIdentity is invalid")
+    _need([item.get("typeFullName") for item in forwarders] == sorted(item.get("typeFullName") for item in forwarders),
+         evidence_path, "forwarders are not in canonical ordinal order")
+    _need(proof["profileHash"] == _retargeting_profile_hash(proof, evidence_path), evidence_path,
+         "profileHash differs from canonical retargeting profile")
+    linked = receipt.get("linkedPlayerReceipt")
+    _need(isinstance(linked, dict), evidence_path, "linked Player receipt is missing")
+    _need(linked.get("reflectionBindingEvidenceHash") == digest(evidence_path), evidence_path,
+         "linked Player reflectionBindingEvidenceHash differs from evidence.json")
+    linked_by_path = {}
+    for index, item in enumerate(linked.get("assemblies") or []):
+        if isinstance(item, dict):
+            linked_by_path["LinkedPlayer/" + item.get("path", "")] = item
+    seen_runtime = set()
+    for index, item in enumerate(runtime):
+        item_path = f"{evidence_path}.runtimeFrameworkModules[{index}]"
+        _need(isinstance(item, dict), item_path, "runtime framework module must be an object")
+        for field in ("assemblyIdentity", "path", "sha256", "mvid"):
+            _string(item.get(field), item_path, field)
+        _hash64(item["sha256"], item_path, "sha256")
+        _need(item["path"].startswith("LinkedPlayer/Assemblies/") and ".." not in Path(item["path"]).parts,
+             item_path, "runtime framework module path must be under LinkedPlayer")
+        linked_item = linked_by_path.get(item["path"])
+        _need(linked_item is not None and item["sha256"] == linked_item.get("sha256") and item["mvid"] == linked_item.get("mvid"),
+             item_path, "runtime framework module does not match LinkedPlayer receipt")
+        _need(item["assemblyIdentity"] not in seen_runtime, item_path, "duplicate runtime framework module")
+        seen_runtime.add(item["assemblyIdentity"])
+    _need([item.get("assemblyIdentity") for item in runtime] == sorted(item.get("assemblyIdentity") for item in runtime),
+         evidence_path, "runtime framework modules are not in canonical ordinal order")
+    expected_sites = {site["id"]: site for site in reflection["configuration"].get("sites", [])}
+    _need(len(sites) == len(expected_sites), evidence_path, "linked reflection site proof count differs from configuration")
+    linked_by_name = {_canonical_assembly_name(item.get("name")): item for item in linked.get("assemblies", []) if isinstance(item, dict)}
+    input_by_name = {_canonical_assembly_name(item.get("name")): item for item in receipt.get("assemblies", []) if isinstance(item, dict)}
+    seen_sites = set()
+    for index, item in enumerate(sites):
+        item_path = f"{evidence_path}.sites[{index}]"
+        _need(isinstance(item, dict), item_path, "linked reflection site must be an object")
+        site_id = _string(item.get("id"), item_path, "id")
+        _need(site_id in expected_sites and site_id not in seen_sites, item_path, "linked reflection site is missing or duplicated")
+        seen_sites.add(site_id)
+        config_site = expected_sites[site_id]
+        consumer = _canonical_assembly_name(config_site["assembly"])
+        compiled = input_by_name.get(consumer); linked_item = linked_by_name.get(consumer)
+        _need(compiled is not None and linked_item is not None, item_path, "linked reflection site consumer is absent")
+        _need(item.get("consumer") == config_site["assembly"] and item.get("methodSignature") == config_site["methodSignature"] and
+              item.get("operationIndex") == config_site["operationIndex"], item_path,
+             "linked reflection site identity differs from configuration")
+        _need(item.get("compiledPath") == compiled.get("path") and item.get("compiledSha256") == compiled.get("sha256") and
+              item.get("linkedPath") == "LinkedPlayer/" + linked_item.get("path") and item.get("linkedSha256") == linked_item.get("sha256"), item_path,
+             "linked reflection site paths or SHA differ from captured inputs")
+        guard = "__AssemblyShadowReflectionBinding_" + reflection["canonicalHash"] + "_" + hashlib.sha256(site_id.encode("utf-8")).hexdigest()
+        _need(item.get("guardMethod") == guard, item_path, "linked reflection guard identity differs from configuration")
+        for field in ("compiledMethodHash", "linkedMethodHash", "compiledGuardHash", "linkedGuardHash"):
+            _hash64(item.get(field), item_path, field)
+    _need([item.get("id") for item in sites] == sorted(item.get("id") for item in sites), evidence_path,
+         "linked reflection sites are not in canonical ordinal order")
+    _need(seen_sites == set(expected_sites), evidence_path, "linked reflection site proof is incomplete")
+    return proof
+
+
+def _reflection_snapshot(root: Path, receipt: dict, path: Path, require_linked=False):
+    expected = _reflection_control(receipt.get("extraScriptingDefines", []), path)
+    directory = root / "ReflectionBindings"
+    if expected is None:
+        _need(not directory.exists() and not directory.is_symlink(), path,
+             "snapshot without a reflection binding control define cannot contain ReflectionBindings evidence")
+        linked = receipt.get("linkedPlayerReceipt")
+        _need(not isinstance(linked, dict) or (linked.get("schemaVersion") != 2 and linked.get("reflectionBindingEvidenceHash") in (None, "")), path,
+             "snapshot without a reflection binding control define cannot claim linked binding evidence")
+        return None
+    _need(directory.is_dir() and not directory.is_symlink(), directory,
+         "ReflectionBindings evidence directory is missing or symlinked")
+    config_path = directory / "configuration.json"
+    _need(config_path.is_file() and not config_path.is_symlink(), config_path,
+         "reflection binding configuration is missing or symlinked")
+    entries = list(directory.rglob("*"))
+    _need(not any(item.is_symlink() for item in entries), directory,
+         "ReflectionBindings contains a symlinked entry")
+    files = [item for item in entries if item.is_file()]
+    expected_files = {config_path.resolve()}
+    if require_linked:
+        expected_files.update({
+            (directory / "LinkedRetargeting" / "evidence.json").resolve(),
+            (directory / "LinkedRetargeting" / "netstandard.dll.bytes").resolve(),
+        })
+    _need({item.resolve() for item in files} == expected_files, directory,
+         "ReflectionBindings contains undeclared or missing evidence files")
+    raw = config_path.read_bytes()
+    _need(hashlib.sha256(raw).hexdigest() == expected, config_path,
+         "reflection binding configuration SHA differs from control define")
+    reflection = _reflection_parse(config_path, raw)
+    assemblies = receipt.get("assemblies")
+    _need(isinstance(assemblies, list), path, "assemblies must be an array for reflection binding provenance")
+    for declaration in reflection["declarations"]:
+        consumer = _canonical_assembly_name(declaration["consumer"])
+        matching = [entry for entry in assemblies if isinstance(entry, dict) and _canonical_assembly_name(entry.get("name")) == consumer]
+        _need(len(matching) == 1, path, f"reflection binding consumer is not exactly one unfiltered compiler input: {declaration['consumer']}")
+        if require_linked:
+            linked = receipt.get("linkedPlayerReceipt")
+            _need(isinstance(linked, dict), path, f"linked Player evidence is missing for reflection binding consumer: {declaration['consumer']}")
+            linked_receipt_path = root / "LinkedPlayer" / "linked-player-receipt.json"
+            _need(linked_receipt_path.is_file() and not linked_receipt_path.is_symlink(), linked_receipt_path,
+                 "linked Player receipt is missing or symlinked for reflection binding evidence")
+            _need(_normal(_json(linked_receipt_path)) == _normal(linked), linked_receipt_path,
+                 "linked Player receipt differs from the embedded snapshot receipt")
+            _need(receipt.get("linkedPlayerReceiptHash") == _snapshot_linked_hash(linked), path,
+                 "linkedPlayerReceiptHash differs from the linked Player receipt")
+            linked_entries = [entry for entry in (linked.get("assemblies") or [])
+                              if isinstance(entry, dict) and _canonical_assembly_name(entry.get("name")) == consumer]
+            _need(len(linked_entries) == 1, path,
+                 f"linked Player evidence is missing reflection binding consumer: {declaration['consumer']}")
+            linked_entry_path = f"{path}.linkedPlayerReceipt.assemblies[{linked_entries.index(linked_entries[0])}]"
+            linked_path = _relative(root / "LinkedPlayer", linked_entries[0].get("path"), linked_entry_path, "path")
+            _need(linked_path.is_file() and not linked_path.is_symlink(), linked_path,
+                 "linked reflection binding consumer file is missing or symlinked")
+            _need(hashlib.sha256(linked_path.read_bytes()).hexdigest() == linked_entries[0].get("sha256"), linked_path,
+                 "linked reflection binding consumer SHA differs from linked receipt")
+    if require_linked:
+        _verify_linked_reflection_evidence(root, receipt, reflection, path)
+    return reflection
+
+
+def _reflection_manifest(manifest: dict, reflection, path: Path):
+    raw = manifest.get("reflectionBindingConfigurationSha256")
+    canonical = manifest.get("reflectionBindingConfigurationHash")
+    declarations = manifest.get("reflectionBindings")
+    if reflection is None:
+        _need(raw in (None, "") and canonical in (None, "") and declarations in (None, []), path,
+             "manifest contains reflection binding claims without a verified configuration")
+        return
+    _need(raw == reflection["rawSha256"], path, "reflectionBindingConfigurationSha256 differs from frozen configuration")
+    _need(canonical == reflection["canonicalHash"], path, "reflectionBindingConfigurationHash differs from canonical configuration")
+    _need(isinstance(declarations, list) and declarations == reflection["declarations"], path,
+         "reflectionBindings declaration projection differs from frozen configuration")
+
+
+def _reflection_copy(root: Path, reflection, path: Path):
+    directory = root / "ReflectionBindings"
+    if reflection is None:
+        _need(not directory.exists() and not directory.is_symlink(), path,
+             "artifact contains ReflectionBindings without a verified configuration")
+        return
+    _need(directory.is_dir() and not directory.is_symlink(), directory, "artifact ReflectionBindings directory is missing")
+    config_path = directory / "configuration.json"
+    _need(config_path.is_file() and not config_path.is_symlink(), config_path, "artifact reflection configuration is missing")
+    entries = list(directory.rglob("*"))
+    _need(not any(item.is_symlink() for item in entries), directory,
+         "artifact ReflectionBindings contains a symlinked entry")
+    files = [item for item in entries if item.is_file()]
+    _need(len(files) == 1 and files[0].resolve() == config_path.resolve(), directory,
+         "artifact ReflectionBindings must contain only configuration.json")
+    raw = config_path.read_bytes()
+    _need(hashlib.sha256(raw).hexdigest() == reflection["rawSha256"], config_path,
+         "artifact reflection configuration SHA differs from compiled configuration")
+    parsed = _reflection_parse(config_path, raw)
+    _need(parsed["canonicalHash"] == reflection["canonicalHash"] and parsed["declarations"] == reflection["declarations"], config_path,
+         "artifact reflection configuration differs from compiled configuration")
+
+
+def _verify_reflection_probe(path: Path, receipt: dict, reflection):
+    """Verify the executable M02 reflection acceptance probe against frozen evidence."""
+    _need(isinstance(reflection, dict), path, "reflection probe requires verified frozen reflection configuration")
+    probe = _json(path)
+    _need(isinstance(probe, dict), path, "reflection probe result must be an object")
+    _need(probe.get("schemaVersion") == 1 and probe.get("milestone") == "M02" and
+          probe.get("mode") == "M02ReflectionBindings", path,
+         "reflection probe schema, milestone or mode is invalid")
+    _need(probe.get("result") == "Passed" and probe.get("il2cpp") is True, path,
+         "reflection probe must be a passed IL2CPP Player result")
+    _need(probe.get("error") in (None, ""), path, "passed reflection probe must not contain an error")
+    for field in ("unityVersion", "platform", "buildGuid", "playerDataPath", "configurationSha256", "configurationHash",
+                  "canvasGuard", "enumGuard"):
+        _string(probe.get(field), path, field)
+    _need(probe["unityVersion"] == receipt.get("unityVersion"), path,
+         "reflection probe Unity version differs from Player snapshot")
+    _need(probe["platform"] == "OSXPlayer", path, "reflection probe platform must be OSXPlayer")
+    _need(probe["buildGuid"] == receipt.get("buildGuid"), path,
+         "reflection probe buildGuid differs from Player snapshot")
+    _need(probe["configurationSha256"] == reflection.get("rawSha256") and
+          probe["configurationHash"] == reflection.get("canonicalHash"), path,
+         "reflection probe configuration hashes differ from frozen Player configuration")
+    output_value = _string(receipt.get("playerOutput"), path, "Player snapshot playerOutput")
+    output = Path(output_value)
+    _need(output.is_absolute() and output.exists() and not output.is_symlink(), path,
+         "Player snapshot playerOutput is missing or symlinked")
+    expected_data = output / "Contents" if output.suffix.lower() == ".app" else output
+    _need(Path(probe["playerDataPath"]).is_absolute() and
+          Path(probe["playerDataPath"]).resolve() == expected_data.resolve(), path,
+         "reflection probe playerDataPath does not identify the captured Player output")
+    staged = []
+    for candidate in output.rglob("reflection-bindings.json"):
+        if candidate.is_file() and not candidate.is_symlink():
+            parts = candidate.relative_to(output).parts
+            if len(parts) >= 4 and parts[-4:] == ("StreamingAssets", "AssemblyShadow", "M02", "reflection-bindings.json"):
+                staged.append(candidate)
+    _need(len(staged) == 1 and digest(staged[0]) == reflection.get("rawSha256"), path,
+         "staged Player reflection configuration is missing, duplicated or stale")
+    configuration = reflection.get("configuration") or {}
+    sites = configuration.get("sites") or []
+    canvas = next((site for site in sites if isinstance(site, dict) and site.get("id") == "urp-debug-ui-prefab-types"), None)
+    enum = next((site for site in sites if isinstance(site, dict) and site.get("id") == "urp-serializable-enum-player"), None)
+    _need(isinstance(canvas, dict) and isinstance(canvas.get("allowedTypes"), list) and len(canvas["allowedTypes"]) == 26 and
+          isinstance(enum, dict) and enum.get("allowedTypes") == [], path,
+         "reflection probe finite domains do not match the frozen configuration")
+    guard_prefix = "__AssemblyShadowReflectionBinding_"
+    for field, site in (("canvasGuard", canvas), ("enumGuard", enum)):
+        expected_guard = guard_prefix + reflection["canonicalHash"] + "_" + hashlib.sha256(site["id"].encode("utf-8")).hexdigest()
+        _need(probe[field] == expected_guard, path, f"{field} does not identify the frozen site/configuration")
+    allowed = probe.get("allowed")
+    expected_allowed = []
+    for value in sorted(canvas["allowedTypes"]):
+        parts = [part.strip() for part in value.split(",")]
+        expected_allowed.append({"input": value, "type": parts[0], "assembly": parts[1]})
+    _need(isinstance(allowed, list) and allowed == expected_allowed, path,
+         "reflection probe allowed results do not cover the exact 26 configured AQNs")
+    expected_names = ["candidate", "generic-provider-escape", "null", "unqualified", "unknown", "mutated-string",
+                      "runtime-prefab-mutation", "serializable-enum-deny-all"]
+    denied = probe.get("denied")
+    _need(isinstance(denied, list) and [item.get("name") for item in denied if isinstance(item, dict)] == expected_names,
+         path, "reflection probe denied results must contain the exact eight vectors")
+    candidate = "AssemblyA.Implementation.Internal.VersionedPrefabComponent, AssemblyA.Implementation.Internal"
+    expected_inputs = {
+        "candidate": candidate,
+        "generic-provider-escape": "System.Collections.Generic.List`1[[" + candidate + "]], mscorlib",
+        "null": None,
+        "unqualified": "UnityEngine.Rendering.DebugUI+Value",
+        "unknown": "AssemblyShadowUnknown.Type, AssemblyShadowUnknown",
+        "mutated-string": canvas["allowedTypes"][0] + " ",
+        "runtime-prefab-mutation": candidate,
+    }
+    for index, item in enumerate(denied):
+        item_path = f"{path}.denied[{index}]"
+        _need(isinstance(item, dict), item_path, "denied result must be an object")
+        name = item.get("name")
+        _need(item.get("denied") is True and item.get("exceptionType") == "System.InvalidOperationException" and
+              item.get("assemblyResolveEvents") == 0 and isinstance(item.get("message"), str), item_path,
+             "denied result does not prove the expected guarded exception")
+        site_id = "urp-serializable-enum-player" if name == "serializable-enum-deny-all" else "urp-debug-ui-prefab-types"
+        _need(item["message"] == "AssemblyShadow reflection denied; configuration=" + reflection["canonicalHash"] + "; site=" + site_id,
+             item_path, "denied result has an unexpected guard message")
+        if name in expected_inputs:
+            _need(item.get("input") == expected_inputs[name], item_path, "denied vector input differs from the exact probe contract")
+            _need(item.get("inputWasNull") is (expected_inputs[name] is None), item_path,
+                 "denied vector null-input marker is inconsistent")
+        else:
+            _need(isinstance(item.get("input"), str) and item["input"], item_path,
+                 "serializable-enum-deny-all input must be a non-empty assembly-qualified name")
+            _need(item.get("inputWasNull") is False, item_path, "serializable-enum-deny-all input cannot be null")
+    return {"result": "Passed", "allowed": len(allowed), "denied": len(denied), "assemblyResolveEvents": 0}
+
+
 def _verify_source_pins(pins, path, expected=None):
     """Validate the complete source-pin DTO, including demo provenance.
 
@@ -316,6 +760,8 @@ def _linked_claim_absent(receipt):
     for field in ("buildGuid", "nativeLibrarySha256", "target", "architecture", "sourceDirectory"):
         if linked.get(field) not in (None, ""):
             return False
+    if linked.get("reflectionBindingEvidenceHash") not in (None, ""):
+        return False
     for field in ("protectedAssemblies", "assemblies"):
         values = linked.get(field)
         if values is not None and (not isinstance(values, list) or len(values) != 0):
@@ -340,7 +786,7 @@ def _verify_linked_player(snapshot: Path, receipt: dict, descriptors: dict, path
     linked_root = snapshot / "LinkedPlayer"
     linked_path = linked_root / "linked-player-receipt.json"
     linked = _json(linked_path)
-    _need(linked.get("schemaVersion") == 1, linked_path, "linked player receipt schemaVersion must be 1")
+    _need(linked.get("schemaVersion") in (1, 2), linked_path, "linked player receipt schemaVersion must be 1 or 2")
     for field in ("buildGuid", "nativeLibrarySha256", "target", "architecture", "sourceDirectory"):
         _string(linked.get(field), linked_path, field)
     _need(Path(linked["sourceDirectory"]).is_absolute(), linked_path, "sourceDirectory must be absolute")
@@ -348,6 +794,14 @@ def _verify_linked_player(snapshot: Path, receipt: dict, descriptors: dict, path
           linked.get("nativeLibrarySha256") == receipt.get("nativeLibrarySha256") and
           linked.get("target") == receipt.get("target") and linked.get("architecture") == receipt.get("architecture"),
           linked_path, "linked Player evidence identity differs from the Player receipt")
+    binding_enabled = _reflection_control(receipt.get("extraScriptingDefines", []), path) is not None
+    if binding_enabled:
+        _need(linked.get("schemaVersion") == 2, linked_path,
+             "reflection-bound Player requires linked receipt schemaVersion 2")
+        _hash64(linked.get("reflectionBindingEvidenceHash"), linked_path, "reflectionBindingEvidenceHash")
+    else:
+        _need(linked.get("schemaVersion") == 1 and linked.get("reflectionBindingEvidenceHash") in (None, ""), linked_path,
+             "schema 1 linked Player evidence cannot claim reflection-binding proof")
     _hash64(linked["nativeLibrarySha256"], linked_path, "nativeLibrarySha256")
     _need(receipt.get("linkedPlayerReceiptHash") == _hash64(receipt.get("linkedPlayerReceiptHash"), path, "linkedPlayerReceiptHash"),
           path, "linkedPlayerReceiptHash is missing")
@@ -420,8 +874,11 @@ def _verify_linked_player(snapshot: Path, receipt: dict, descriptors: dict, path
 
 
 def _snapshot_linked_hash(linked):
-    text = ["assembly-shadow-linked-player:1\n"]
+    schema = linked.get("schemaVersion", 1)
+    text = ["assembly-shadow-linked-player:" + _text(schema) + "\n"]
     text.extend(_text(linked.get(field)) + "\n" for field in ("schemaVersion", "buildGuid", "nativeLibrarySha256", "target", "architecture", "sourceDirectory"))
+    if schema == 2:
+        text.append("reflection-bindings:" + _text(linked.get("reflectionBindingEvidenceHash")) + "\n")
     for name in sorted(linked.get("protectedAssemblies") or []):
         text.append("protected:" + _text(name) + "\n")
     for item in sorted(linked.get("assemblies") or [], key=lambda value: value.get("path", "") if isinstance(value, dict) else ""):
@@ -566,6 +1023,7 @@ def _verify_player_snapshot(root: Path, manifest: dict, descriptors: dict, path:
     _need(receipt["snapshotHash"] == manifest["playerInputSnapshotHash"], receipt_path,
          "snapshotHash differs from baseline manifest")
     linked, linked_names = _verify_linked_player(snapshot, receipt, descriptors, receipt_path)
+    reflection = _reflection_snapshot(snapshot, receipt, receipt_path, require_linked=True)
     by_name, _ = _snapshot_files(receipt, snapshot, receipt_path)
     aot = {entry["name"] for entry in receipt.get("assemblies", [])}
     filtered = {entry["name"] for entry in receipt.get("filteredAssemblies", [])}
@@ -623,7 +1081,7 @@ def _verify_player_snapshot(root: Path, manifest: dict, descriptors: dict, path:
         expected = _relative(root, descriptor.get("filePath"), path, f"assemblies[{name}].filePath")
         _need(digest(expected) == by_name[name].get("sha256") == descriptor.get("sha256"), path,
              f"manifest descriptor bytes differ from captured receipt: {name}")
-    return receipt, snapshot, by_name
+    return receipt, snapshot, by_name, reflection
 
 
 def _verify_bundles(m01_root: Path, manifest: dict, path: Path):
@@ -722,9 +1180,14 @@ def _verify_resource_baseline(root: Path, manifest: dict, path: Path, m01_root: 
          "resource compiler snapshot hash differs from receipt")
     _need(_snapshot_hash(compiler_receipt, compiler_root, compiler_root / "assembly-snapshot.json") == compiler_receipt.get("snapshotHash"),
          compiler_root / "assembly-snapshot.json", "resource compiler snapshot proof hash is invalid")
+    compiler_reflection = _reflection_snapshot(
+        compiler_root, compiler_receipt, compiler_root / "assembly-snapshot.json",
+        require_linked=compiler_receipt.get("kind") == "PlayerBuildInputs")
+    _reflection_manifest(manifest, compiler_reflection, receipt_path)
     if receipt["provenance"] == "CompilePlayerScriptsAndBuildAssetBundles":
+        defines = compiler_receipt.get("extraScriptingDefines")
         _need(receipt.get("compilerSnapshotIsPlayer") is False and compiler_receipt.get("kind") == "CompilePlayerScripts" and
-              compiler_receipt.get("extraScriptingDefines") == [], receipt_path,
+              _reflection_user_defines(defines, compiler_root / "assembly-snapshot.json") == [], receipt_path,
              "fresh resource build must use an empty-define compile snapshot")
     else:
         _need(receipt.get("compilerSnapshotIsPlayer") is True, receipt_path, "M01 resource import must retain Player compiler proof")
@@ -861,10 +1324,11 @@ def _verify_compile_snapshot(run: Path, patch_root: Path, patch: dict, baseline:
              (field != "target" or source_receipt.get(field) == TARGET),
              source_receipt_path, f"compile snapshot {field} differs from baseline")
     _pins(baseline, source_receipt, source_receipt_path)
+    reflection = _reflection_snapshot(source_root, source_receipt, source_receipt_path, require_linked=False)
     by_name, _ = _snapshot_files(source_receipt, source_root, source_receipt_path)
     _need(_snapshot_hash(source_receipt, source_root, source_receipt_path) == source_receipt.get("snapshotHash"),
          source_receipt_path, "snapshotHash does not match the complete compile receipt")
-    return {entry["name"]: entry for entry in source_receipt.get("assemblies", [])}
+    return {entry["name"]: entry for entry in source_receipt.get("assemblies", [])}, reflection
 
 
 def _verify_patch(patch_path: Path, run: Path, baseline: dict, descriptors: dict, baseline_edges, expected_root,
@@ -909,7 +1373,16 @@ def _verify_patch(patch_path: Path, run: Path, baseline: dict, descriptors: dict
     _need(_closure(all_edges, {expected_root}, set(descriptors), patch_path) == expected_closure, patch_path,
          "reverse closure from current+baseline dependency edges differs from patch closure")
     _verify_topological(patch.get("loadOrder"), expected_closure, all_edges, patch_path)
-    receipt_entries = _verify_compile_snapshot(run, patch_root, patch, baseline, patch_path, patch_id)
+    receipt_entries, reflection = _verify_compile_snapshot(run, patch_root, patch, baseline, patch_path, patch_id)
+    _reflection_manifest(patch, reflection, patch_path)
+    baseline_has_reflection = baseline.get("reflectionBindingConfigurationHash") not in (None, "")
+    _need((reflection is not None) == baseline_has_reflection, patch_path,
+         "patch reflection binding control/evidence presence differs from the baseline contract")
+    if reflection is not None:
+        baseline_canonical = baseline.get("reflectionBindingConfigurationHash")
+        _need(reflection["canonicalHash"] == baseline_canonical, patch_path,
+             "patch reflection binding configuration differs from the baseline contract")
+    _reflection_copy(patch_root, reflection, patch_path)
     closure = patch.get("closure")
     for index, entry in enumerate(closure):
         entry_path = f"{patch_path}.closure[{index}]"
@@ -977,13 +1450,19 @@ def _verify_nunit(path: Path):
     return {"testCases": len(test_cases), "suitesCovered": list(NUNIT_SUITES)}
 
 
-def verify(editor_result: Path, nunit_results: Path, m01_baseline_root: Path):
+def verify(editor_result: Path, nunit_results: Path, m01_baseline_root: Path, reflection_result: Path | None = None):
     report, run, baseline_path, artifacts = _verify_editor_report(editor_result)
     baseline_root = _root(baseline_path.parent, "baseline artifact root")
     baseline = _json(baseline_path)
     descriptors = _verify_sidecar_manifest(baseline_root, baseline, baseline_path)
     baseline["_actualSha256"] = digest(baseline_path)
-    receipt, _, _ = _verify_player_snapshot(baseline_root, baseline, descriptors, baseline_path)
+    receipt, _, _, baseline_reflection = _verify_player_snapshot(baseline_root, baseline, descriptors, baseline_path)
+    _reflection_manifest(baseline, baseline_reflection, baseline_path)
+    reflection_probe = None
+    if reflection_result is not None:
+        _need(baseline_reflection is not None, reflection_result,
+             "reflection probe acceptance requires a frozen reflection binding configuration")
+        reflection_probe = _verify_reflection_probe(reflection_result, receipt, baseline_reflection)
     _pins(baseline, receipt, baseline_path)
     m01_root = _root(m01_baseline_root, "--m01-baseline-root")
     _verify_resource_baseline(baseline_root, baseline, baseline_path, m01_root)
@@ -1028,6 +1507,7 @@ def verify(editor_result: Path, nunit_results: Path, m01_baseline_root: Path):
         "patches": {name: {"changedRoots": patch["changedRoots"], "closure": patch["loadOrder"], "dllOnly": patch["dllOnly"]}
                     for name, patch in patches.items()},
         "nunit": nunit,
+        **({"reflectionProbe": reflection_probe} if reflection_probe is not None else {}),
         "evidence": "SHA-256 bytes, Unity AssemblyShadow manifest/snapshot metadata, and NUnit test evidence",
     }
 
@@ -1037,10 +1517,13 @@ def main(argv=None):
     parser.add_argument("--editor-result", type=Path, required=True)
     parser.add_argument("--nunit-results", type=Path, required=True)
     parser.add_argument("--m01-baseline-root", type=Path, required=True)
+    parser.add_argument("--reflection-result", type=Path,
+                        help="Optional IL2CPP Player reflection-binding acceptance probe JSON")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     try:
-        result = verify(args.editor_result.resolve(), args.nunit_results.resolve(), args.m01_baseline_root.resolve())
+        reflection_result = args.reflection_result.resolve() if args.reflection_result else None
+        result = verify(args.editor_result.resolve(), args.nunit_results.resolve(), args.m01_baseline_root.resolve(), reflection_result)
         output = json.dumps(result, indent=2) + "\n"
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)

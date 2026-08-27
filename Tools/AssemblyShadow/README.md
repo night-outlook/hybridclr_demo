@@ -90,6 +90,32 @@ Gate approval additionally requires the native-path investigation, a real
 macro-OFF ordinary Player regression, and independent review. The prototype is
 not the M03-M07 production transaction, usage guard, or cache system.
 
+## M02 reproduction (integration in progress)
+
+M02 acceptance is not yet recorded. Use the source pairing and detailed evidence
+in `Docs/AssemblyShadow/M02/M02-report.md`; do not treat a checkpoint as a milestone.
+
+1. Run `AssemblyShadowDemo.Editor.M02Build.Configure` through the shared Unity
+   method helper.
+2. Run `Invoke-ShadowEditorTests.ps1 -TestFilter 'HybridCLR.Editor.AssemblyShadow.Tests;AssemblyShadowDemo.EditorTests'`.
+3. Verify the pinned installation with `BaselineBuild.InstallRepeatability` and
+   `verify-installed-runtime.py --expect-shadow on`.
+4. Run `AssemblyShadowDemo.Editor.M02Build.BuildPlayerBaseline`. It stages the
+   finite reflection configuration and reuses the immutable M01 bundles; it never
+   replaces them. The resulting Player input snapshot includes actual linked DLLs
+   and a separately verified type-forwarding/guard proof.
+5. Run that Player with `-shadowMode M02ReflectionBindings`, a unique absolute
+   `-shadowBindingResult` path, and `-batchmode -nographics -logFile <absolute.log>`.
+6. Run `AssemblyShadowDemo.Editor.M02EditorValidation.Validate` for the real
+   P01/P02/P03/P05 compiler, closure, ABI and repeatability cases.
+7. Run `verify-m02-results.py` with the Editor, NUnit and `--reflection-result`
+   evidence. Independent review and a milestone tag remain required.
+
+The `SerializableEnum` Player contract is intentionally deny-all for nonempty
+serialized type names. Editor usage remains unchanged. The canvas contract admits
+only its 26 pinned widget names; changing this fixed AOT contract requires a new
+Player baseline. These bounded guards do not establish the later native gates.
+
 ## Recoverable native-cache rebuild
 
 clean-il2cpp-cache.sh is a dry-run unless --apply is passed; PowerShell uses

@@ -5,9 +5,14 @@ import sys
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
+import re
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from m02_results import CANDIDATES, NUNIT_SUITES, _resource_abi_hash, _resource_source_set_hash, _runtime_abi_hash, _snapshot_files, _snapshot_hash, _snapshot_linked_hash, _verify_linked_player, verify
+from m02_results import (CANDIDATES, NUNIT_SUITES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
+                         _retargeting_profile_hash,
+                         _resource_abi_hash, _resource_source_set_hash, _runtime_abi_hash,
+                         _snapshot_files, _snapshot_hash, _snapshot_linked_hash, _verify_linked_player,
+                         _verify_reflection_probe, verify)
 from shadow_tools import VerificationError
 
 
@@ -16,6 +21,123 @@ def sha(path):
 
 
 class M02EvidenceTests(unittest.TestCase):
+    def reflection_fixture(self, root):
+        snapshot = root / "Snapshot"
+        (snapshot / "Assemblies").mkdir(parents=True)
+        dll = snapshot / "Assemblies" / "Consumer.dll"
+        dll.write_bytes(b"consumer")
+        config = {
+            "schemaVersion": 1,
+            "transformerVersion": 1,
+            "sites": [{
+                "id": "site-1", "assembly": "Consumer", "typeName": "Demo.Type",
+                "methodSignature": "System.Void Demo.Type::Method()", "originalMethodHash": "a" * 64,
+                "operationIndex": 0, "allowedTypes": [], "reason": "finite target contract",
+            }],
+        }
+        config_path = snapshot / "ReflectionBindings" / "configuration.json"
+        config_path.parent.mkdir()
+        config_path.write_text(json.dumps(config, separators=(",", ":")))
+        receipt = {
+            "schemaVersion": 1, "kind": "CompilePlayerScripts", "extraScriptingDefines": [],
+            "assemblies": [{"name": "Consumer", "path": "Assemblies/Consumer.dll", "sha256": sha(dll)}],
+        }
+        return snapshot, config, receipt, config_path
+
+    def reflection_probe_fixture(self, root):
+        output = root / "Player.app"
+        staged = output / "Contents" / "Resources" / "Data" / "StreamingAssets" / "AssemblyShadow" / "M02" / "reflection-bindings.json"
+        staged.parent.mkdir(parents=True)
+        allowed = [f"Demo.Type{index:02d}, Provider{index:02d}" for index in range(26)]
+        config = {
+            "schemaVersion": 1, "transformerVersion": 1,
+            "sites": [
+                {"id": "urp-debug-ui-prefab-types", "assembly": "DebugUI", "typeName": "Demo.Canvas",
+                 "methodSignature": "System.Void Demo.Canvas::Rebuild()", "originalMethodHash": "a" * 64,
+                 "operationIndex": 0, "allowedTypes": allowed, "reason": "finite canvas types"},
+                {"id": "urp-serializable-enum-player", "assembly": "Serializable", "typeName": "Demo.Enum",
+                 "methodSignature": "System.Void Demo.Enum::Read()", "originalMethodHash": "b" * 64,
+                 "operationIndex": 0, "allowedTypes": [], "reason": "deny all enum reflection"},
+            ],
+        }
+        staged.write_text(json.dumps(config, separators=(",", ":")))
+        reflection = _reflection_parse(staged, staged.read_bytes())
+        receipt = {"unityVersion": "2022.3.62f2", "buildGuid": "player-guid",
+                   "playerOutput": str(output)}
+        configuration_hash = reflection["canonicalHash"]
+        candidate = "AssemblyA.Implementation.Internal.VersionedPrefabComponent, AssemblyA.Implementation.Internal"
+        denied_inputs = {
+            "candidate": candidate,
+            "generic-provider-escape": "System.Collections.Generic.List`1[[" + candidate + "]], mscorlib",
+            "null": None, "unqualified": "UnityEngine.Rendering.DebugUI+Value",
+            "unknown": "AssemblyShadowUnknown.Type, AssemblyShadowUnknown",
+            "mutated-string": allowed[0] + " ", "runtime-prefab-mutation": candidate,
+            "serializable-enum-deny-all": "System.DayOfWeek, mscorlib",
+        }
+        denied = []
+        for name, value in denied_inputs.items():
+            site = "urp-serializable-enum-player" if name == "serializable-enum-deny-all" else "urp-debug-ui-prefab-types"
+            denied.append({"name": name, "input": value, "inputWasNull": value is None, "denied": True,
+                           "exceptionType": "System.InvalidOperationException",
+                           "message": "AssemblyShadow reflection denied; configuration=" + configuration_hash + "; site=" + site,
+                           "assemblyResolveEvents": 0})
+        probe = {"schemaVersion": 1, "milestone": "M02", "mode": "M02ReflectionBindings", "result": "Passed", "il2cpp": True,
+                 "unityVersion": receipt["unityVersion"], "platform": "OSXPlayer", "buildGuid": receipt["buildGuid"],
+                 "playerDataPath": str(output / "Contents"), "configurationSha256": reflection["rawSha256"],
+                 "configurationHash": configuration_hash,
+                 "canvasGuard": "__AssemblyShadowReflectionBinding_" + configuration_hash + "_" + hashlib.sha256(config["sites"][0]["id"].encode()).hexdigest(),
+                 "enumGuard": "__AssemblyShadowReflectionBinding_" + configuration_hash + "_" + hashlib.sha256(config["sites"][1]["id"].encode()).hexdigest(),
+                 "allowed": [{"input": value, "type": value.split(",")[0], "assembly": value.split(",")[1].strip()} for value in sorted(allowed)],
+                 "denied": denied, "error": ""}
+        probe_path = root / "reflection-result.json"
+        probe_path.write_text(json.dumps(probe))
+        return probe_path, receipt, reflection, probe
+
+    def linked_reflection_fixture(self, root):
+        snapshot, config, receipt, config_path = self.reflection_fixture(root)
+        receipt["kind"] = "PlayerBuildInputs"
+        receipt.update({"unityVersion": "2022.3.62f2", "target": "StandaloneOSX", "architecture": "arm64", "buildGuid": "guid"})
+        receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+        linked_root = snapshot / "LinkedPlayer" / "Assemblies"
+        linked_root.mkdir(parents=True)
+        linked_dll = linked_root / "consumer.dll"
+        linked_dll.write_bytes(b"linked-consumer")
+        linked = {
+            "schemaVersion": 2, "buildGuid": "guid", "nativeLibrarySha256": "a" * 64,
+            "target": "StandaloneOSX", "architecture": "arm64", "sourceDirectory": str(root / "linked-source"),
+            "reflectionBindingEvidenceHash": "", "protectedAssemblies": [],
+            "assemblies": [{"name": "consumer", "path": "Assemblies/consumer.dll", "sha256": sha(linked_dll),
+                            "mvid": "00000000-0000-0000-0000-000000000001", "pdbPath": "", "pdbSha256": ""}],
+        }
+        receipt["linkedPlayerReceipt"] = linked
+        evidence_root = snapshot / "ReflectionBindings" / "LinkedRetargeting"
+        evidence_root.mkdir(parents=True)
+        facade = evidence_root / "netstandard.dll.bytes"
+        facade.write_bytes(b"facade-bytes")
+        proof = {
+            "schemaVersion": 1, "mappingPolicyVersion": 1, "unityVersion": "2022.3.62f2",
+            "target": "StandaloneOSX", "architecture": "arm64", "buildGuid": "guid", "il2cppDotNetProfile": "unityaot-macos",
+            "configurationSha256": sha(config_path), "configurationHash": _reflection_parse(config_path, config_path.read_bytes())["canonicalHash"],
+            "facadeSourcePath": "/editor/MonoBleedingEdge/lib/mono/unityaot-macos/Facades/netstandard.dll",
+            "facadePath": "ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes", "facadeSha256": sha(facade),
+            "sourceAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+            "profileHash": "", "forwarders": [], "runtimeFrameworkModules": [], "sites": [],
+        }
+        proof["sites"] = [{
+            "id": "site-1", "consumer": "Consumer", "compiledPath": "Assemblies/Consumer.dll", "compiledSha256": receipt["assemblies"][0]["sha256"],
+            "linkedPath": "LinkedPlayer/Assemblies/consumer.dll", "linkedSha256": sha(linked_dll),
+            "methodSignature": config["sites"][0]["methodSignature"], "guardMethod": "__AssemblyShadowReflectionBinding_" + proof["configurationHash"] + "_" + hashlib.sha256(b"site-1").hexdigest(),
+            "operationIndex": 0, "compiledMethodHash": "a" * 64, "linkedMethodHash": "b" * 64,
+            "compiledGuardHash": "c" * 64, "linkedGuardHash": "d" * 64,
+        }]
+        proof["profileHash"] = _retargeting_profile_hash(proof, evidence_root / "evidence.json")
+        evidence_path = evidence_root / "evidence.json"
+        evidence_path.write_text(json.dumps(proof))
+        linked["reflectionBindingEvidenceHash"] = sha(evidence_path)
+        receipt["linkedPlayerReceiptHash"] = _snapshot_linked_hash(linked)
+        (snapshot / "LinkedPlayer" / "linked-player-receipt.json").write_text(json.dumps(linked))
+        return snapshot, receipt, config_path, evidence_path
+
     def fixture(self, root):
         run = root / "run"
         baseline_root = root / "m02-baseline"
@@ -185,6 +307,108 @@ class M02EvidenceTests(unittest.TestCase):
             result = verify(editor, nunit, m01)
             self.assertTrue(result["resultPassed"])
             self.assertEqual(set(result["patches"]), {"P01", "P02", "P03", "P05"})
+
+    def test_reflection_configuration_projects_canonical_contract(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path = self.reflection_fixture(Path(folder))
+            control = "ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)
+            receipt["extraScriptingDefines"] = [control]
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertEqual(reflection["rawSha256"], sha(config_path))
+            self.assertEqual(reflection["declarations"][0]["allowedTypes"], [])
+            self.assertEqual(reflection["declarations"][0]["providers"], [])
+            self.assertRegex(reflection["canonicalHash"], r"^[0-9a-f]{64}$")
+
+    def test_reflection_configuration_projects_sorted_concrete_providers(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path = self.reflection_fixture(Path(folder))
+            config["sites"][0]["allowedTypes"] = ["Zed.Value, Zed.Provider", "System.String, mscorlib"]
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertEqual(reflection["declarations"][0]["allowedTypes"], ["System.String, mscorlib", "Zed.Value, Zed.Provider"])
+            self.assertEqual(reflection["declarations"][0]["providers"], ["mscorlib", "zed.provider"])
+
+    def test_reflection_nonconcrete_provider_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path = self.reflection_fixture(Path(folder))
+            config["sites"][0]["allowedTypes"] = ["System.String[], mscorlib"]
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertIn("non-concrete", str(error.exception))
+
+    def test_reflection_probe_acceptance_passes(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, _ = self.reflection_probe_fixture(Path(folder))
+            result = _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertEqual(result, {"result": "Passed", "allowed": 26, "denied": 8, "assemblyResolveEvents": 0})
+
+    def test_reflection_probe_guid_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, probe = self.reflection_probe_fixture(Path(folder))
+            probe["buildGuid"] = "other-guid"
+            probe_path.write_text(json.dumps(probe))
+            with self.assertRaises(VerificationError) as error:
+                _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertIn("buildGuid", str(error.exception))
+
+    def test_reflection_probe_staged_config_omission_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, _ = self.reflection_probe_fixture(Path(folder))
+            staged = Path(receipt["playerOutput"]) / "Contents" / "Resources" / "Data" / "StreamingAssets" / "AssemblyShadow" / "M02" / "reflection-bindings.json"
+            staged.unlink()
+            with self.assertRaises(VerificationError) as error:
+                _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertIn("staged Player reflection configuration", str(error.exception))
+
+    def test_reflection_probe_domain_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            probe_path, receipt, reflection, probe = self.reflection_probe_fixture(Path(folder))
+            probe["allowed"] = probe["allowed"][:-1]
+            probe_path.write_text(json.dumps(probe))
+            with self.assertRaises(VerificationError) as error:
+                _verify_reflection_probe(probe_path, receipt, reflection)
+            self.assertIn("exact 26 configured AQNs", str(error.exception))
+
+    def test_reflection_stale_control_hash_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, _, receipt, config_path = self.reflection_fixture(Path(folder))
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + "b" * 64]
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertIn("differs from control define", str(error.exception))
+
+    def test_reflection_directory_without_control_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, _, receipt, _ = self.reflection_fixture(Path(folder))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertIn("cannot contain ReflectionBindings evidence", str(error.exception))
+
+    def test_reflection_control_without_configuration_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, _, receipt, config_path = self.reflection_fixture(Path(folder))
+            config_path.unlink()
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + "a" * 64]
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertIn("configuration is missing", str(error.exception))
+
+    def test_reflection_manifest_projection_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, _, receipt, config_path = self.reflection_fixture(Path(folder))
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            manifest = {
+                "reflectionBindingConfigurationSha256": reflection["rawSha256"],
+                "reflectionBindingConfigurationHash": reflection["canonicalHash"],
+                "reflectionBindings": [dict(reflection["declarations"][0], reason="tampered")],
+            }
+            with self.assertRaises(VerificationError) as error:
+                _reflection_manifest(manifest, reflection, Path(folder) / "baseline-manifest.json")
+            self.assertIn("declaration projection", str(error.exception))
 
     def test_tampering_compile_snapshot_fails(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -377,6 +601,47 @@ class M02EvidenceTests(unittest.TestCase):
             with self.assertRaises(VerificationError) as error:
                 verify(editor, nunit, m01)
             self.assertIn("compiler snapshot cannot claim linked Player evidence", str(error.exception))
+
+    def test_linked_schema2_proof_claim_requires_binding_configuration(self):
+        with tempfile.TemporaryDirectory() as folder:
+            editor, _, _ = self.fixture(Path(folder))
+            del editor
+            snapshot = Path(folder) / "m02-baseline" / "PlayerInputs"
+            receipt_path = snapshot / "assembly-snapshot.json"
+            receipt = json.loads(receipt_path.read_text())
+            linked = receipt["linkedPlayerReceipt"]
+            linked["schemaVersion"] = 2
+            linked["reflectionBindingEvidenceHash"] = "a" * 64
+            receipt["linkedPlayerReceiptHash"] = _snapshot_linked_hash(linked)
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, receipt_path, require_linked=False)
+            self.assertIn("cannot claim linked binding evidence", str(error.exception))
+
+    def test_linked_binding_configuration_requires_three_file_player_evidence(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, _, receipt, config_path = self.reflection_fixture(Path(folder))
+            receipt["kind"] = "PlayerBuildInputs"
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+            receipt["linkedPlayerReceipt"] = {"schemaVersion": 2, "assemblies": []}
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json", require_linked=True)
+            self.assertIn("undeclared or missing evidence files", str(error.exception))
+
+    def test_linked_binding_evidence_profile_and_sites_pass(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, receipt, _, _ = self.linked_reflection_fixture(Path(folder))
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json", require_linked=True)
+            self.assertEqual(reflection["configuration"]["schemaVersion"], 1)
+
+    def test_linked_binding_evidence_tamper_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, receipt, _, evidence_path = self.linked_reflection_fixture(Path(folder))
+            proof = json.loads(evidence_path.read_text())
+            proof["profileHash"] = "e" * 64
+            evidence_path.write_text(json.dumps(proof))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json", require_linked=True)
+            self.assertIn("profileHash", str(error.exception))
 
     def test_tampering_frozen_resource_bundle_fails(self):
         with tempfile.TemporaryDirectory() as folder:

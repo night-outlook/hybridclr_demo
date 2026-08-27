@@ -223,6 +223,7 @@ namespace AssemblyShadowDemo.Editor
             }
             Json(root, "CompilerInputs/" + AssemblySnapshot.ReceiptName, receipt);
             ShadowLinkedPlayerEvidence.Copy(source, Path.Combine(root, "CompilerInputs"), receipt);
+            ShadowReflectionBindingEvidence.Copy(source, Path.Combine(root, "CompilerInputs"), receipt);
         }
         private static void Copy(string source, string root, string relative, string hash)
         { Require(ShadowHash.File(source) == hash, "Proof input hash mismatch: " + source); string path = ShadowHash.SafeChild(root, relative); Directory.CreateDirectory(Path.GetDirectoryName(path)); File.Copy(source, path, false); Require(ShadowHash.File(path) == hash, "Copied proof hash mismatch: " + relative); }

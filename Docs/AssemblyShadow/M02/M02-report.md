@@ -53,7 +53,9 @@ transaction/type/execution/Unity integration work remains M03–M07.
   the frozen resource ABI must match the actual captured Player ABI; live asset
   metadata cannot certify independently supplied old bundle bytes.
   Fresh resource metadata contains exactly the declared candidates, byte-matched
-  to the same empty-define compiler snapshot. Other compiler inputs remain
+  to the same empty-user-define compiler snapshot. A generated, hash-bound
+  reflection control define is included when the finite contracts are enabled.
+  Other compiler inputs remain
   explicit resolver references, not additional resource ABI roots.
 - A removed explicit dependency cannot erase a frozen baseline consumer.
   Normal HybridCLR hot-update assemblies remain distinct from AOT candidates.
@@ -63,18 +65,61 @@ transaction/type/execution/Unity integration work remains M03–M07.
 - Same input snapshots must produce byte-identical manifests. Fresh compiles
   may legitimately have different MVIDs/PDBs while preserving semantic hashes.
 
+## Finite reflection contracts
+
+Two data-driven URP Core calls cannot be accepted as ordinary static dependencies.
+`ProjectSettings/AssemblyShadowReflectionBindings.json` therefore defines an
+explicit Player-only contract for each exact assembly, type, method fingerprint,
+instruction and overload. This is a documented extension of the M02 implicit
+dependency policy, not a reflection-scanner exemption:
+
+- `DebugUIHandlerCanvas.Rebuild` permits exactly the 26 assembly-qualified widget
+  names in the pinned URP `DebugUICanvas.prefab`. An Editor test compares actual
+  `SerializedObject` strings, including Unity's YAML whitespace handling.
+- `SerializableEnum.value` has an explicit deny-all Player contract for nonempty
+  type strings. Such use is unsupported in this baseline and throws before type
+  resolution; no claim of unreachability is made. Its Editor behavior is retained.
+- A private same-type guard performs exact ordinal comparisons, then calls the
+  original `Type.GetType(string)` overload with a constant allowed target. Other
+  strings fail before lookup. The normal scanner still sees those real providers;
+  same-assembly targets do not create self-edges and external providers retain
+  normal reverse-closure restrictions.
+- Unity discovers the Editor-only `Unity.HybridCLR.AssemblyShadow.CodeGen`
+  postprocessor by its required naming convention. No package source is rewritten.
+  A raw configuration SHA in the compiler define invalidates stale cached outputs.
+  The Editor and compilations without that control define are unmodified.
+- Compiler snapshots retain strict original-method and full guard verification.
+  Linked proof separately accounts for Unity's per-type framework forwarding,
+  using captured runtime `netstandard` facade bytes and the actual linked framework
+  definitions. It never ignores assembly scopes or rewrites literal AQNs. The
+  entire protected method and guard must still match, including branches and EH.
+- The linked proof records the target-aware IL2CPP profile, facade SHA, complete
+  forwarder map, runtime module SHA/MVIDs, consumer input/linked SHA, and per-site
+  method/guard hashes. Its file SHA is bound by linked receipt schema 2 and then
+  the Player snapshot hash. Schema 1 remains the no-binding receipt format.
+
+The fixed Bootstrap probe uses only framework type tokens. Its dedicated
+`M02ReflectionBindings` mode exercises all 26 permitted names, six denied strings,
+an actual mutated canvas prefab field through `Rebuild`, and the real deny-all enum
+getter. Zero resolver events are supporting observations; the linked IL template
+is the proof that rejection precedes lookup. This is not a substitute for the
+M03–M05 transaction and first-use guards.
+
 ## Reproduction entrypoints
 
 Use the isolated `hybridclr_demo_shadow` project and shared unity-debug routing;
 preserve any pre-existing Editor in the original checkout.
 
 1. `AssemblyShadowDemo.Editor.M02Build.Configure`
-2. `Tools/AssemblyShadow/Invoke-ShadowEditorTests.ps1`
+2. `Tools/AssemblyShadow/Invoke-ShadowEditorTests.ps1 -TestFilter 'HybridCLR.Editor.AssemblyShadow.Tests;AssemblyShadowDemo.EditorTests'`
 3. `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`
 4. `AssemblyShadowDemo.Editor.M02Build.BuildPlayerBaseline`
-5. `AssemblyShadowDemo.Editor.M02EditorValidation.Validate`
-6. `Tools/AssemblyShadow/verify-m02-results.py` with the actual Editor and NUnit
-   results, frozen M01 baseline, and a selected evidence output path.
+5. Run the resulting Player with `-batchmode -nographics -shadowMode M02ReflectionBindings`,
+   a distinct absolute `-shadowBindingResult` path and `-logFile` path. Require
+   process exit zero and `result=Passed`.
+6. `AssemblyShadowDemo.Editor.M02EditorValidation.Validate`
+7. `Tools/AssemblyShadow/verify-m02-results.py` with the actual Editor and NUnit
+   results, `--reflection-result`, frozen M01 baseline, and an evidence output path.
 
 ## Evidence, review and limitations
 
@@ -83,9 +128,13 @@ or a passing synthetic fixture alone is not milestone acceptance. macOS ARM64
 is the available validated platform inherited from M00/M01; no Windows or
 Android result may be inferred from it.
 
-The current build-source checkpoint passed 146/146 Unity Editor tests with no
-skips (`_temp/AssemblyShadow/EditorTests-63a522a02e574405ba48d70c720e3ab7/results.xml`).
-This includes real JsonUtility round trips, linked-evidence tampering, exact
-snapshot sections, facade resolution and resource/compiler provenance. It is
-not yet a successful M02 Player build or a passed milestone. Two URP Core
-data-driven reflection sites still require a sound bounded dependency policy.
+The current integration passed 180/180 Unity Editor tests with no skips
+(`_temp/AssemblyShadow/EditorTests-879488208404414d9da1c92cc402f6a3/results.xml`).
+This includes 155 package tooling tests, 22 CodeGen tests, and three demo tests:
+the existing M01 validation plus the real 26-name prefab comparison and unchanged
+Editor enum behavior. It is not yet a successful guarded M02 Player build or a
+passed milestone. The initial diagnostic build also exposed that Unity's
+`BuildReport.summary.result` is not final inside `OnPostprocessBuild`; capture now
+observes callbacks and seals only after `BuildPipeline.BuildPlayer` returns a
+matching successful report. The Python artifact verifier suite also passed all
+67 tests. Neither suite substitutes for the pending real Player acceptance.
