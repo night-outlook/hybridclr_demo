@@ -1,6 +1,8 @@
 import hashlib
 import json
+import os
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import unittest
@@ -8,11 +10,12 @@ import xml.etree.ElementTree as ET
 import re
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from m02_results import (CASE_IDS, CANDIDATES, M02_CANVAS_ALLOWED_TYPES, NUNIT_SUITES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
+from m02_results import (CASE_IDS, CANDIDATES, M02_CANVAS_ALLOWED_TYPES, NUNIT_SUITES, NUNIT_MIN_CASES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
                          _retargeting_profile_hash,
                          _resource_abi_hash, _resource_source_set_hash, _runtime_abi_hash,
                          _snapshot_files, _snapshot_hash, _snapshot_linked_hash, _verify_linked_player,
-                         _verify_builtin_source, _verify_reflection_probe, verify)
+                         _verify_builtin_source, _verify_player_snapshot, _verify_reflection_probe,
+                         _verify_resource_baseline, _verify_nunit, verify)
 from shadow_tools import VerificationError
 
 
@@ -388,7 +391,9 @@ class M02EvidenceTests(unittest.TestCase):
                   "cases": [{"id": item, "passed": True} for item in sorted(CASE_IDS)],
                   "artifacts": artifacts}
         editor = root / "editor.json"; editor.write_text(json.dumps(report))
-        suites = "".join('<test-suite fullname="{0}"><test-case result="Passed" name="{0}.ok"/></test-suite>'.format(name) for name in NUNIT_SUITES)
+        suites = "".join('<test-suite fullname="{0}">{1}</test-suite>'.format(name,
+            "".join('<test-case result="Passed" name="{0}.case{1}"/>'.format(name, index)
+                    for index in range(NUNIT_MIN_CASES.get(name, 1)))) for name in NUNIT_SUITES)
         nunit = root / "nunit.xml"; nunit.write_text('<test-run result="Passed" failed="0">' + suites + '</test-run>')
         # Correct baseline hash after all manifest writes.
         for patch in (run / "P01" / "patch-manifest.json", run / "P02" / "patch-manifest.json", run / "P03" / "patch-manifest.json", run / "P05" / "patch-manifest.json"):
@@ -404,8 +409,25 @@ class M02EvidenceTests(unittest.TestCase):
             self.assertTrue(result["resultPassed"])
             self.assertEqual(set(result["patches"]), {"P01", "P02", "P03", "P05"})
 
+    def test_nunit_requires_structural_and_dependency_fixture_cases(self):
+        for name, minimum in NUNIT_MIN_CASES.items():
+            for mode in ("missing", "incomplete"):
+                with self.subTest(fixture=name, mode=mode), tempfile.TemporaryDirectory() as folder:
+                    _, nunit, _ = self.fixture(Path(folder))
+                    root = ET.parse(nunit).getroot()
+                    suite = next(node for node in root if node.get("fullname") == name)
+                    if mode == "missing":
+                        root.remove(suite)
+                    else:
+                        self.assertEqual(len(suite), minimum)
+                        suite.remove(list(suite)[-1])
+                    ET.ElementTree(root).write(nunit)
+                    with self.assertRaises(VerificationError) as error:
+                        _verify_nunit(nunit)
+                    self.assertIn(name, str(error.exception))
+
     def test_linked_evidence_validation_cases_are_required_and_passing(self):
-        for case_id in ("M02-LinkedEvidenceRoundTrip", "M02-LinkedEvidenceFacadeTamper", "M02-LinkedEvidenceReboundTamper"):
+        for case_id in ("M02-LinkedEvidenceRoundTrip", "M02-LinkedEvidenceFacadeTamper", "M02-LinkedEvidenceReboundTamper", "M02-StructuralPatchEditorDomain"):
             with self.subTest(case_id=case_id), tempfile.TemporaryDirectory() as folder:
                 editor, nunit, m01 = self.fixture(Path(folder))
                 report = json.loads(editor.read_text())
@@ -417,7 +439,7 @@ class M02EvidenceTests(unittest.TestCase):
             with self.subTest(mode=mode), tempfile.TemporaryDirectory() as folder:
                 editor, nunit, m01 = self.fixture(Path(folder))
                 report = json.loads(editor.read_text())
-                target = "M02-LinkedEvidenceFacadeTamper"
+                target = "M02-StructuralPatchEditorDomain"
                 if mode == "omit":
                     report["cases"] = [case for case in report["cases"] if case["id"] != target]
                 else:
@@ -426,6 +448,31 @@ class M02EvidenceTests(unittest.TestCase):
                 with self.assertRaises(VerificationError) as error:
                     verify(editor, nunit, m01)
                 self.assertTrue(str(error.exception))
+
+    def test_linker_excluded_role_preserves_case_and_projects_buildfiltered(self):
+        with tempfile.TemporaryDirectory() as folder:
+            editor, _, _ = self.fixture(Path(folder))
+            baseline_root = (Path(folder) / "m02-baseline").resolve()
+            snapshot = baseline_root / "PlayerInputs"
+            receipt_path = snapshot / "assembly-snapshot.json"
+            receipt = json.loads(receipt_path.read_text())
+            extra = snapshot / "Assemblies" / "MCPForUnity.Runtime.dll"
+            extra.write_bytes(b"MCP extra input")
+            receipt["assemblies"].append({"name": "MCPForUnity.Runtime", "path": "Assemblies/MCPForUnity.Runtime.dll", "sha256": sha(extra)})
+            receipt["linkerExcludedAssemblies"] = ["mcpforunity.runtime"]
+            receipt["linkerExcludedAssemblyCapabilities"] = [{"name": "MCPForUnity.Runtime", "classification": 0,
+                "isPrecompiled": False, "isShadowCapable": False, "isBootstrap": False, "capabilityDeclared": False}]
+            descriptors = {}
+            for sidecar in (baseline_root / "assemblies").glob("*.json"):
+                item = json.loads(sidecar.read_text())
+                descriptors[item["name"]] = item
+            descriptors["MCPForUnity.Runtime"] = {"name": "MCPForUnity.Runtime", "classification": 5,
+                "isPrecompiled": False, "isShadowCapable": False, "isBootstrap": False, "capabilityDeclared": False}
+            from m02_results import _verify_linked_player
+            _verify_linked_player(snapshot, receipt, descriptors, receipt_path)
+            receipt["linkerExcludedAssemblyCapabilities"][0]["classification"] = 5
+            with self.assertRaises(VerificationError):
+                _verify_linked_player(snapshot, receipt, descriptors, receipt_path)
 
     def test_reflection_configuration_projects_canonical_contract(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -537,7 +584,9 @@ class M02EvidenceTests(unittest.TestCase):
             "backingPath": "BuiltinProof/Resources/backing/builtin.asset", "backingSha256": sha(backing),
             "modules": [{"assemblyName": "UnityEngine", "path": "BuiltinProof/Modules/" + module_sha + "/UnityEngine.dll", "sha256": module_sha}],
             "objects": [{"name": "Builtin Material", "typeName": "UnityEngine.Material", "assemblyName": "UnityEngine",
-                         "guid": "builtin-guid", "localId": 1, "persistent": True, "serializedSha256": "a" * 64}],
+                         "guid": "builtin-guid", "localId": 1, "persistent": True, "serializedSha256": "a" * 64},
+                        {"name": "Builtin Material Copy", "typeName": "UnityEngine.Material", "assemblyName": "UnityEngine",
+                         "guid": "builtin-guid", "localId": 2, "persistent": True, "serializedSha256": "b" * 64}],
         }
         proof_path = resource_root / "Sources" / "builtin-proof.json"
         proof_path.parent.mkdir()
@@ -733,6 +782,69 @@ class M02EvidenceTests(unittest.TestCase):
                 verify(editor, nunit, m01)
             self.assertIn("filteredAssemblyCapabilities[0]", str(error.exception))
 
+    def test_filtered_original_role_projects_to_buildfiltered_with_canonical_identity(self):
+        with tempfile.TemporaryDirectory() as folder:
+            editor, _, _ = self.fixture(Path(folder))
+            del editor
+            baseline_root = (Path(folder) / "m02-baseline").resolve()
+            snapshot = baseline_root / "PlayerInputs"
+            receipt_path = snapshot / "assembly-snapshot.json"
+            receipt = json.loads(receipt_path.read_text())
+            filtered = snapshot / "Assemblies" / "Filtered" / "MCPForUnity.Runtime.dll"
+            filtered.parent.mkdir(parents=True)
+            filtered.write_bytes(b"filtered callback input")
+            receipt["filteredAssemblies"] = [{"name": "MCPForUnity.Runtime", "path": "Assemblies/Filtered/MCPForUnity.Runtime.dll",
+                                               "sha256": sha(filtered)}]
+            receipt["filteredAssemblyCapabilities"] = [{"name": "MCPForUnity.Runtime", "classification": 0,
+                "isPrecompiled": False, "isShadowCapable": False, "isBootstrap": False, "capabilityDeclared": False}]
+            receipt["snapshotHash"] = _snapshot_hash(receipt, snapshot, receipt_path)
+            receipt_path.write_text(json.dumps(receipt))
+            descriptors = {}
+            for sidecar in (baseline_root / "assemblies").glob("*.json"):
+                item = json.loads(sidecar.read_text())
+                descriptors[item["name"]] = item
+            descriptors["MCPForUnity.Runtime"] = {"name": "MCPForUnity.Runtime", "classification": 5,
+                "isPrecompiled": False, "isShadowCapable": False, "isBootstrap": False, "capabilityDeclared": False,
+                "sha256": sha(filtered), "filePath": "PlayerInputs/Assemblies/Filtered/MCPForUnity.Runtime.dll"}
+            manifest = json.loads((baseline_root / "baseline-manifest.json").read_text())
+            manifest["playerInputSnapshotHash"] = receipt["snapshotHash"]
+            _verify_player_snapshot(baseline_root, manifest, descriptors, baseline_root / "baseline-manifest.json")
+
+    def test_filtered_role_canonical_duplicate_or_flag_tamper_fails(self):
+        for mode in ("duplicate", "flag"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as folder:
+                editor, _, _ = self.fixture(Path(folder))
+                del editor
+                baseline_root = (Path(folder) / "m02-baseline").resolve()
+                snapshot = baseline_root / "PlayerInputs"
+                receipt_path = snapshot / "assembly-snapshot.json"
+                receipt = json.loads(receipt_path.read_text())
+                filtered = snapshot / "Assemblies" / "Filtered" / "MCPForUnity.Runtime.dll"
+                filtered.parent.mkdir(parents=True)
+                filtered.write_bytes(b"filtered callback input")
+                receipt["filteredAssemblies"] = [{"name": "MCPForUnity.Runtime", "path": "Assemblies/Filtered/MCPForUnity.Runtime.dll",
+                                                   "sha256": sha(filtered)}]
+                role = {"name": "MCPForUnity.Runtime", "classification": 0,
+                        "isPrecompiled": False, "isShadowCapable": False, "isBootstrap": False, "capabilityDeclared": False}
+                receipt["filteredAssemblyCapabilities"] = [role]
+                if mode == "duplicate":
+                    receipt["filteredAssemblyCapabilities"].append(dict(role, name="mcpforunity.runtime"))
+                else:
+                    receipt["filteredAssemblyCapabilities"][0]["isBootstrap"] = True
+                receipt["snapshotHash"] = _snapshot_hash(receipt, snapshot, receipt_path)
+                receipt_path.write_text(json.dumps(receipt))
+                descriptors = {}
+                for sidecar in (baseline_root / "assemblies").glob("*.json"):
+                    item = json.loads(sidecar.read_text())
+                    descriptors[item["name"]] = item
+                descriptors["MCPForUnity.Runtime"] = {"name": "MCPForUnity.Runtime", "classification": 5,
+                    "isPrecompiled": False, "isShadowCapable": False, "isBootstrap": False, "capabilityDeclared": False,
+                    "sha256": sha(filtered), "filePath": "PlayerInputs/Assemblies/Filtered/MCPForUnity.Runtime.dll"}
+                manifest = json.loads((baseline_root / "baseline-manifest.json").read_text())
+                with self.assertRaises(VerificationError) as error:
+                    _verify_player_snapshot(baseline_root, manifest, descriptors, baseline_root / "baseline-manifest.json")
+                self.assertTrue(str(error.exception))
+
     def test_tampering_demo_source_pin_fails(self):
         with tempfile.TemporaryDirectory() as folder:
             editor, nunit, m01 = self.fixture(Path(folder))
@@ -743,6 +855,143 @@ class M02EvidenceTests(unittest.TestCase):
             with self.assertRaises(VerificationError) as error:
                 verify(editor, nunit, m01)
             self.assertIn("source pins differ from baseline provenance", str(error.exception))
+
+    def test_rehashed_resource_compiler_demo_pin_fails_against_baseline(self):
+        with tempfile.TemporaryDirectory() as folder:
+            editor, _, m01 = self.fixture(Path(folder))
+            del editor
+            baseline_root = (Path(folder) / "m02-baseline").resolve()
+            baseline_path = baseline_root / "baseline-manifest.json"
+            manifest = json.loads(baseline_path.read_text())
+            resource_root = baseline_root / "ResourceInputs"
+            compiler_root = resource_root / "CompilerInputs"
+            compiler_path = compiler_root / "assembly-snapshot.json"
+            compiler = json.loads(compiler_path.read_text())
+            compiler["sourcePins"]["demo"]["revision"] = "5" * 40
+            compiler["snapshotHash"] = _snapshot_hash(compiler, compiler_root, compiler_path)
+            compiler_path.write_text(json.dumps(compiler))
+            resource_path = resource_root / "resource-build-receipt.json"
+            resource = json.loads(resource_path.read_text())
+            resource["compilerSnapshotHash"] = compiler["snapshotHash"]
+            resource_path.write_text(json.dumps(resource))
+            manifest["resourceBuildReceiptHash"] = sha(resource_path)
+            with self.assertRaises(VerificationError) as error:
+                _verify_resource_baseline(baseline_root, manifest, baseline_path, m01)
+            self.assertIn("source pins differ from baseline provenance", str(error.exception))
+
+    def _actual_historical_roots(self):
+        repo = Path(__file__).resolve().parents[3]
+        suffix = "StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3"
+        return (repo / "HybridCLRData/AssemblyShadow/Baselines" / suffix,
+                repo / "HybridCLRData/AssemblyShadow/ResourceBaselines" / suffix,
+                repo / "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1")
+
+    def _copied_historical_resource(self, folder):
+        baseline_root, resource_root, m01_root = self._actual_historical_roots()
+        copied_root = (Path(folder) / "M02").resolve()
+        shutil.copytree(resource_root, copied_root / "ResourceInputs")
+        baseline_path = copied_root / "baseline-manifest.json"
+        manifest = json.loads((baseline_root / "baseline-manifest.json").read_text())
+        baseline_path.write_text(json.dumps(manifest))
+        return copied_root, copied_root / "ResourceInputs", baseline_path, manifest, m01_root
+
+    def _rewrite_copied_resource_receipt(self, resource_root, manifest, receipt):
+        receipt_path = resource_root / "resource-build-receipt.json"
+        receipt_path.write_text(json.dumps(receipt))
+        receipt_sha = sha(receipt_path)
+        (resource_root / "manifest.sha256").write_text(receipt_sha + "\n")
+        manifest["resourceBuildReceiptHash"] = receipt_sha
+
+    def test_historical_import_accepts_missing_current_source_pin_inventory(self):
+        baseline_root, resource_root, m01_root = self._actual_historical_roots()
+        baseline_path = baseline_root / "baseline-manifest.json"
+        self.assertTrue(baseline_path.is_file() and resource_root.is_dir() and m01_root.is_dir())
+        manifest = json.loads(baseline_path.read_text())
+        receipt = json.loads((resource_root / "resource-build-receipt.json").read_text())
+        self.assertFalse(any(item.get("path") == "ProjectSettings/AssemblyShadowSourcePins.json"
+                             for item in receipt.get("sources", [])))
+        self.assertEqual(_verify_resource_baseline(baseline_root, manifest, baseline_path, m01_root)["provenance"],
+                         "M01AuditedFrozenSourceReconstruction")
+
+    def test_historical_manifest_mismatch_fails_against_embedded_proof(self):
+        baseline_root, resource_root, m01_root = self._actual_historical_roots()
+        baseline_path = baseline_root / "baseline-manifest.json"
+        manifest = json.loads(baseline_path.read_text())
+        with tempfile.TemporaryDirectory() as folder:
+            frozen = Path(folder) / "M01"
+            shutil.copytree(m01_root, frozen)
+            frozen_manifest = frozen / "baseline-manifest.json"
+            os.chmod(frozen_manifest, 0o644)
+            data = json.loads(frozen_manifest.read_text())
+            data["assemblies"][0]["sha256"] = "0" * 64
+            frozen_manifest.write_text(json.dumps(data))
+            with self.assertRaises(VerificationError) as error:
+                _verify_resource_baseline(baseline_root, manifest, baseline_path, frozen)
+            self.assertIn("provided frozen M01 manifest", str(error.exception))
+
+    def test_historical_audit_mismatch_fails_against_embedded_proof(self):
+        baseline_root, resource_root, m01_root = self._actual_historical_roots()
+        baseline_path = baseline_root / "baseline-manifest.json"
+        manifest = json.loads(baseline_path.read_text())
+        with tempfile.TemporaryDirectory() as folder:
+            frozen = Path(folder) / "M01"
+            shutil.copytree(m01_root, frozen)
+            source_audit = resource_root / "Original" / "source-audit.json"
+            external_audit = frozen / "source-audit.json"
+            external_audit.write_bytes(source_audit.read_bytes())
+            os.chmod(external_audit, 0o644)
+            data = json.loads(external_audit.read_text())
+            data["verified"] = False
+            external_audit.write_text(json.dumps(data))
+            with self.assertRaises(VerificationError) as error:
+                _verify_resource_baseline(baseline_root, manifest, baseline_path, frozen)
+            self.assertIn("provided frozen M01 source audit", str(error.exception))
+
+    def test_rehashed_historical_reconstruction_proof_bytes_fail(self):
+        with tempfile.TemporaryDirectory() as folder:
+            baseline_root, resource_root, baseline_path, manifest, m01_root = self._copied_historical_resource(folder)
+            receipt_path = resource_root / "resource-build-receipt.json"
+            receipt = json.loads(receipt_path.read_text())
+            proof = next(item for item in receipt["reconstructionProof"] if item["path"].endswith(".rsp"))
+            proof_path = resource_root / proof["path"]
+            os.chmod(proof_path, 0o644)
+            proof_path.write_bytes(b"tampered reconstruction command")
+            self._rewrite_copied_resource_receipt(resource_root, manifest, receipt)
+            with self.assertRaises(VerificationError) as error:
+                _verify_resource_baseline(baseline_root, manifest, baseline_path, m01_root)
+            self.assertIn("reconstruction proof SHA-256", str(error.exception))
+
+    def test_rehashed_historical_metadata_substitution_fails(self):
+        with tempfile.TemporaryDirectory() as folder:
+            baseline_root, resource_root, baseline_path, manifest, m01_root = self._copied_historical_resource(folder)
+            receipt_path = resource_root / "resource-build-receipt.json"
+            receipt = json.loads(receipt_path.read_text())
+            target = next(item for item in receipt["metadataAssemblies"] if item["path"].endswith("AssemblyA.Implementation.Internal.dll"))
+            source = resource_root / "ResourceAssemblies" / "AssemblyA.Contracts.dll"
+            destination = resource_root / target["path"]
+            os.chmod(destination, 0o644)
+            destination.write_bytes(source.read_bytes())
+            target["sha256"] = sha(destination)
+            self._rewrite_copied_resource_receipt(resource_root, manifest, receipt)
+            with self.assertRaises(VerificationError) as error:
+                _verify_resource_baseline(baseline_root, manifest, baseline_path, m01_root)
+            self.assertIn("historical assembly must match exactly one metadata assembly proof", str(error.exception))
+
+    def test_rehashed_historical_source_capture_fails_against_audit(self):
+        with tempfile.TemporaryDirectory() as folder:
+            baseline_root, resource_root, baseline_path, manifest, m01_root = self._copied_historical_resource(folder)
+            receipt_path = resource_root / "resource-build-receipt.json"
+            receipt = json.loads(receipt_path.read_text())
+            source = next(item for item in receipt["sources"] if item["path"].endswith("DemoValue.cs"))
+            source_file = resource_root / source["snapshotPath"]
+            os.chmod(source_file, 0o644)
+            source_file.write_bytes(b"tampered historical source")
+            source["sha256"] = sha(source_file)
+            receipt["sourceSetHash"] = _resource_source_set_hash(receipt["sources"])
+            self._rewrite_copied_resource_receipt(resource_root, manifest, receipt)
+            with self.assertRaises(VerificationError) as error:
+                _verify_resource_baseline(baseline_root, manifest, baseline_path, m01_root)
+            self.assertIn("historical source audit entry differs from captured resource source proof", str(error.exception))
 
     def test_tampering_linked_player_bytes_fails(self):
         with tempfile.TemporaryDirectory() as folder:

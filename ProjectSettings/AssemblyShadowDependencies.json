@@ -2,6 +2,12 @@
   "schemaVersion": 1,
   "runtimeDependencies": [
     {
+      "consumer": "AssemblyA.Implementation.Extensibility",
+      "provider": "AssemblyA.Contracts",
+      "kind": "ModuleContract",
+      "evidence": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Extensibility/AssemblyA.Implementation.Extensibility.asmdef declares Contracts as the module contract. The current base class uses no Contracts type token, so C# omits the AssemblyRef. This explicit coordinated-upgrade dependency preserves the Contracts -> Extensibility -> Internal/ExtensibilityConsumer closure required by design section 1.2 without changing the frozen M01 business DLLs."
+    },
+    {
       "consumer": "AssemblyShadowBaseline.Aot",
       "provider": "AssemblyShadowBaseline.HotUpdate",
       "kind": "ReflectionString",

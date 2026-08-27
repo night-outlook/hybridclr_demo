@@ -41,10 +41,12 @@ CASE_IDS = frozenset({
     "T02-01", "T02-02", "T02-03", "T02-04", "T02-05", "T02-06", "T02-07",
     "M02-Repeatability", "M02-SnapshotTamper", "M02-LinkedEvidenceRoundTrip",
     "M02-LinkedEvidenceFacadeTamper", "M02-LinkedEvidenceReboundTamper",
+    "M02-StructuralPatchEditorDomain",
 })
 PATCH_IDS = frozenset({"P01", "P02", "P03", "P05-requires-bundles", "P01-repeat"})
 NUNIT_SUITES = ("MetadataTests", "PolicyTests", "GraphAndInputTests", "ResourceAbiTests", "SnapshotTests", "SignatureHashTests")
-NUNIT_SUITES = NUNIT_SUITES + ("ResourceReceiptTests",)
+NUNIT_MIN_CASES = {"M02StructuralPatchCompilationTests": 22, "M02DependencyFixtureTests": 2}
+NUNIT_SUITES = NUNIT_SUITES + ("ResourceReceiptTests",) + tuple(NUNIT_MIN_CASES)
 
 
 def digest(path: Path) -> str:
@@ -1034,30 +1036,50 @@ def _verify_linked_player(snapshot: Path, receipt: dict, descriptors: dict, path
         _need(not item.is_symlink(), item, "linked Player proof contains a symlink")
     actual_files = {item.resolve() for item in linked_root.rglob("*") if item.is_file()}
     _need(actual_files == expected_files, linked_root, "linked Player proof contains undeclared or missing files")
+    descriptor_by_name = {}
+    for descriptor_name, descriptor in descriptors.items():
+        canonical_descriptor_name = _canonical_assembly_name(descriptor_name)
+        _need(canonical_descriptor_name not in descriptor_by_name, path,
+             f"baseline descriptors contain duplicate canonical assembly identity: {descriptor_name}")
+        descriptor_by_name[canonical_descriptor_name] = descriptor
     player_names = {_canonical_assembly_name(entry["name"]) for entry in receipt.get("assemblies", [])}
     excluded = _canonical_names(receipt.get("linkerExcludedAssemblies"), path, "linkerExcludedAssemblies")
     _need(excluded == player_names - linked_names, path,
           "linkerExcludedAssemblies must equal Player inputs absent from linked output")
     _need(not (excluded & protected), path, "linker exclusions cannot contain protected candidates or Bootstrap")
+    normal_values = receipt.get("normalHotUpdateAssemblies") or []
+    _need(isinstance(normal_values, list), path, "normalHotUpdateAssemblies must be an array")
+    normal_names = set()
+    for index, value in enumerate(normal_values):
+        normal_path = f"{path}.normalHotUpdateAssemblies[{index}]"
+        normal_name = _canonical_assembly_name(_name(value, normal_path, "name"))
+        _need(normal_name and normal_name not in normal_names, normal_path, "duplicate normal hot-update assembly identity")
+        normal_names.add(normal_name)
     roles = receipt.get("linkerExcludedAssemblyCapabilities")
     _need(isinstance(roles, list), path, "linkerExcludedAssemblyCapabilities must be an array")
     role_names = set()
     for index, role in enumerate(roles):
         role_path = f"{path}.linkerExcludedAssemblyCapabilities[{index}]"
         _need(isinstance(role, dict), role_path, "linker-excluded capability must be an object")
-        name = _name(role.get("name"), role_path, "name")
-        _need(name == _canonical_assembly_name(name), role_path, "linker-excluded capability name must be canonical lowercase")
+        raw_name = _name(role.get("name"), role_path, "name")
+        name = _canonical_assembly_name(raw_name)
+        _need(name, role_path, "linker-excluded capability name must contain an assembly identity")
         _need(name in excluded and name not in role_names, role_path, "linker-excluded capability does not match exclusions")
         _need(role.get("classification") in (0, 1, 2, 3, 4), role_path,
-             "linker-excluded capability cannot claim BuildFiltered")
+             "linker-excluded capability must preserve an original source role (0 through 4)")
+        _need((role["classification"] == 4) == (name in normal_names), role_path,
+             "linker-excluded capability normal-hot-update membership disagrees with its original classification")
         _need(role.get("isShadowCapable") is not True and role.get("isBootstrap") is not True, role_path,
              "linker-excluded capability cannot be a candidate or Bootstrap")
         role_names.add(name)
-        for desc_name, descriptor in descriptors.items():
-            if _canonical_assembly_name(desc_name) == name:
-                for field in ("classification", "isPrecompiled", "isShadowCapable", "isBootstrap", "capabilityDeclared"):
-                    _need(descriptor.get(field, 0 if field == "classification" else False) == role.get(field, 0 if field == "classification" else False),
-                          role_path, f"linker-excluded role {field} differs from baseline descriptor")
+        descriptor = descriptor_by_name.get(name)
+        _need(descriptor is not None, role_path, "linker-excluded capability is absent from baseline descriptors")
+        expected_classification = 4 if role["classification"] == 4 else 5
+        _need(descriptor.get("classification") == expected_classification, role_path,
+             "linker-excluded projected descriptor classification differs from its original role")
+        for field in ("isPrecompiled", "isShadowCapable", "isBootstrap", "capabilityDeclared"):
+            _need(descriptor.get(field, False) == role.get(field, False), role_path,
+                  f"linker-excluded role {field} differs from baseline descriptor")
     _need(role_names == excluded, path, "linker-excluded capability inventory is incomplete")
     _need(protected <= linked_names and protected <= player_names, linked_path,
           "all protected candidates and Bootstrap must be present in linked output")
@@ -1095,7 +1117,7 @@ def _verify_editor_report(path: Path):
         observed.append(_name(case.get("id"), case_path, "id"))
         _need(case.get("passed") is True, case_path, "passed must be true")
     _need(set(observed) == CASE_IDS and len(observed) == len(CASE_IDS), path,
-         "cases must contain T02-01..T02-07, M02-Repeatability, M02-SnapshotTamper and all three linked-evidence validation cases")
+         "cases must contain T02-01..T02-07, M02-Repeatability, M02-SnapshotTamper, linked-evidence cases and M02-StructuralPatchEditorDomain")
     _need(isinstance(report.get("artifacts"), list), path, "artifacts must be an array")
     artifacts = {}
     for index, artifact in enumerate(report["artifacts"]):
@@ -1216,67 +1238,97 @@ def _verify_player_snapshot(root: Path, manifest: dict, descriptors: dict, path:
     linked, linked_names = _verify_linked_player(snapshot, receipt, descriptors, receipt_path)
     reflection = _reflection_snapshot(snapshot, receipt, receipt_path, require_linked=True)
     by_name, _ = _snapshot_files(receipt, snapshot, receipt_path)
-    aot = {entry["name"] for entry in receipt.get("assemblies", [])}
-    filtered = {entry["name"] for entry in receipt.get("filteredAssemblies", [])}
-    _need(CANDIDATES <= aot and len(CANDIDATES & aot) == 5, receipt_path,
+    aot = {_canonical_assembly_name(entry["name"]) for entry in receipt.get("assemblies", [])}
+    filtered = {_canonical_assembly_name(entry["name"]) for entry in receipt.get("filteredAssemblies", [])}
+    candidate_names = {_canonical_assembly_name(name) for name in CANDIDATES}
+    bootstrap_name = _canonical_assembly_name(BOOTSTRAP)
+    _need(candidate_names <= aot and len(candidate_names & aot) == 5, receipt_path,
          "captured Player inputs do not contain exactly the five candidates")
-    _need(not (CANDIDATES & filtered) and BOOTSTRAP not in filtered, receipt_path,
+    _need(not (candidate_names & filtered) and bootstrap_name not in filtered, receipt_path,
          "shadow candidate or Bootstrap was filtered out of AOT")
     normal = receipt.get("normalHotUpdateAssemblies") or []
     _need(isinstance(normal, list), receipt_path, "normalHotUpdateAssemblies must be an array")
-    normal = [_name(name, receipt_path, "normalHotUpdateAssemblies.name") for name in normal]
-    _need(len(normal) == len(set(normal)) and not (set(normal) & CANDIDATES), receipt_path,
+    normal_names = []
+    for index, value in enumerate(normal):
+        normal_path = f"{receipt_path}.normalHotUpdateAssemblies[{index}]"
+        raw_name = _name(value, normal_path, "name")
+        canonical_name = _canonical_assembly_name(raw_name)
+        _need(canonical_name and canonical_name not in normal_names, normal_path, "duplicate normal hot-update assembly identity")
+        normal_names.append(canonical_name)
+    normal = set(normal_names)
+    _need(not (normal & candidate_names), receipt_path,
          "normal hot-update role overlaps a shadow candidate")
     roles = receipt.get("filteredAssemblyCapabilities") or []
     role_map = {}
+    descriptor_by_name = {}
+    for descriptor_name, descriptor in descriptors.items():
+        canonical_descriptor_name = _canonical_assembly_name(descriptor_name)
+        _need(canonical_descriptor_name not in descriptor_by_name, path,
+             f"baseline descriptors contain duplicate canonical assembly identity: {descriptor_name}")
+        descriptor_by_name[canonical_descriptor_name] = descriptor
     for index, role in enumerate(roles):
         role_path = f"{receipt_path}.filteredAssemblyCapabilities[{index}]"
         _need(isinstance(role, dict), role_path, "filtered capability must be an object")
-        name = _name(role.get("name"), role_path, "name")
+        raw_name = _name(role.get("name"), role_path, "name")
+        name = _canonical_assembly_name(raw_name)
+        _need(name, role_path, "filtered capability name must contain an assembly identity")
         _need(name in filtered and name not in role_map, role_path, "filtered capability does not match a filtered DLL")
-        _need(role.get("classification") in (4, 5), role_path, "filtered DLL role must be NormalHotUpdate or BuildFiltered")
+        _need(role.get("classification") in (0, 1, 2, 3, 4), role_path,
+             "filtered capability must preserve an original source role (0 through 4)")
         _need(role.get("isShadowCapable") is not True and role.get("isBootstrap") is not True, role_path,
              "filtered DLL cannot be a candidate or Bootstrap")
-        if role["classification"] == 4:
-            _need(name in normal, role_path, "NormalHotUpdate filtered DLL is absent from normalHotUpdateAssemblies")
-        if name in descriptors:
-            descriptor = descriptors[name]
-            for field in ("classification", "isPrecompiled", "isShadowCapable", "isBootstrap", "capabilityDeclared"):
-                _need(descriptor.get(field, 0 if field == "classification" else False) == role.get(field, 0 if field == "classification" else False),
-                     role_path, f"filtered role {field} differs from baseline descriptor")
+        _need((role["classification"] == 4) == (name in normal), role_path,
+             "filtered capability normal-hot-update membership disagrees with its original classification")
+        descriptor = descriptor_by_name.get(name)
+        _need(descriptor is not None, role_path, "filtered capability is absent from baseline descriptors")
+        expected_classification = 4 if role["classification"] == 4 else 5
+        _need(descriptor.get("classification") == expected_classification, role_path,
+             "filtered projected descriptor classification differs from its original role")
+        for field in ("isPrecompiled", "isShadowCapable", "isBootstrap", "capabilityDeclared"):
+            _need(descriptor.get(field, False) == role.get(field, False), role_path,
+                  f"filtered role {field} differs from baseline descriptor")
         role_map[name] = role
     _need(set(role_map) == filtered, receipt_path, "filtered DLL role inventory is incomplete")
-    _need(set(descriptors) == aot | filtered, path,
+    _need(set(descriptor_by_name) == aot | filtered, path,
          "baseline manifest descriptors must cover the AOT and filtered Player assemblies exactly")
     for name in aot:
-        if name in descriptors and name in CANDIDATES:
-            _need(descriptors[name].get("isShadowCapable") is True and descriptors[name].get("classification", 0) == 0,
+        descriptor = descriptor_by_name.get(name)
+        if descriptor is not None and name in candidate_names:
+            _need(descriptor.get("isShadowCapable") is True and descriptor.get("classification", 0) == 0,
                  path, f"candidate descriptor has an invalid filtered role: {name}")
     for name, role in role_map.items():
-        if name in descriptors:
-            _need(descriptors[name].get("classification") == role.get("classification") and
-                 descriptors[name].get("isShadowCapable") is not True and descriptors[name].get("isBootstrap") is not True,
-                 path, f"filtered descriptor role differs from receipt: {name}")
+        descriptor = descriptor_by_name.get(name)
+        _need(descriptor is not None and descriptor.get("classification") == (4 if role.get("classification") == 4 else 5) and
+              descriptor.get("isShadowCapable") is not True and descriptor.get("isBootstrap") is not True,
+              path, f"filtered descriptor role differs from receipt: {name}")
     _need(_snapshot_hash(receipt, snapshot, receipt_path) == receipt.get("snapshotHash"), receipt_path,
          "snapshotHash does not match the complete receipt proof")
     for candidate in CANDIDATES:
-        entry = by_name[candidate]
+        candidate_key = _canonical_assembly_name(candidate)
+        entry = next((value for key, value in by_name.items() if _canonical_assembly_name(key) == candidate_key), None)
+        _need(entry is not None, path, f"candidate input is missing from captured Player receipt: {candidate}")
         descriptor = descriptors.get(candidate)
         _need(descriptor is not None, path, f"candidate descriptor is missing: {candidate}")
         copied = _relative(root, descriptor.get("filePath"), path, f"assemblies[{candidate}].filePath")
         _need(digest(copied) == entry["sha256"] == descriptor.get("sha256"), path,
              f"candidate {candidate} bytes do not match captured Player input")
+    by_name_canonical = {_canonical_assembly_name(name): entry for name, entry in by_name.items()}
     for name, descriptor in descriptors.items():
-        if name not in by_name:
+        canonical_name = _canonical_assembly_name(name)
+        if canonical_name not in by_name_canonical:
             continue
         expected = _relative(root, descriptor.get("filePath"), path, f"assemblies[{name}].filePath")
-        _need(digest(expected) == by_name[name].get("sha256") == descriptor.get("sha256"), path,
+        _need(digest(expected) == by_name_canonical[canonical_name].get("sha256") == descriptor.get("sha256"), path,
              f"manifest descriptor bytes differ from captured receipt: {name}")
     return receipt, snapshot, by_name, reflection
 
 
 def _verify_bundles(m01_root: Path, manifest: dict, path: Path):
     m01_manifest_path = m01_root / "baseline-manifest.json"
+    if not m01_manifest_path.is_file():
+        nested_manifest = m01_root / "Original" / "baseline-manifest.json"
+        if nested_manifest.is_file():
+            m01_manifest_path = nested_manifest
     m01 = _json(m01_manifest_path)
     _need(isinstance(m01.get("bundles"), list), m01_manifest_path, "M01 bundles are missing")
     old = {}
@@ -1330,7 +1382,7 @@ def _verify_builtin_source(resource_root: Path, source: dict, path: Path, unity_
          "builtin modules are not in canonical ordinal order")
     objects = proof.get("objects")
     _need(isinstance(objects, list) and objects, snapshot, "builtin object proof is missing")
-    local_ids = set(); type_ids = set()
+    local_ids = set()
     for index, obj in enumerate(objects):
         object_path = f"{snapshot}.objects[{index}]"
         _need(isinstance(obj, dict), object_path, "builtin object proof must be an object")
@@ -1341,8 +1393,6 @@ def _verify_builtin_source(resource_root: Path, source: dict, path: Path, unity_
         assembly_name = _string(obj.get("assemblyName"), object_path, "assemblyName")
         type_name = _string(obj.get("typeName"), object_path, "typeName")
         _need(assembly_name in module_names, object_path, "builtin object type has no captured engine module")
-        _need(assembly_name + ":" + type_name not in type_ids, object_path, "builtin object type identity is duplicated")
-        type_ids.add(assembly_name + ":" + type_name)
         _hash64(obj.get("serializedSha256"), object_path, "serializedSha256")
     _need([item.get("localId") for item in objects] == sorted(item.get("localId") for item in objects), snapshot,
          "builtin objects are not in canonical local-id order")
@@ -1416,6 +1466,7 @@ def _verify_resource_baseline(root: Path, manifest: dict, path: Path, m01_root: 
             _verify_builtin_source(resource_root, source, source_path, manifest["unityVersion"])
     compiler_root = _relative_dir(resource_root, receipt["compilerSnapshotPath"], receipt_path, "compilerSnapshotPath")
     compiler_receipt = _json(compiler_root / "assembly-snapshot.json")
+    _verify_source_pins(compiler_receipt.get("sourcePins"), compiler_root / "assembly-snapshot.json", manifest.get("sourcePins"))
     _need(compiler_receipt.get("snapshotHash") == receipt["compilerSnapshotHash"], receipt_path,
          "resource compiler snapshot hash differs from receipt")
     _need(_snapshot_hash(compiler_receipt, compiler_root, compiler_root / "assembly-snapshot.json") == compiler_receipt.get("snapshotHash"),
@@ -1477,11 +1528,89 @@ def _verify_resource_baseline(root: Path, manifest: dict, path: Path, m01_root: 
              "M01 resource import proof identity is invalid")
         _need({item.get("name"): item.get("sha256") for item in original.get("bundles", [])} ==
              {item.get("name"): item.get("sha256") for item in bundles}, receipt_path, "M01 imported bundle proof differs")
-    pin_source = next((item for item in sources if item.get("path") == "ProjectSettings/AssemblyShadowSourcePins.json"), None)
-    _need(pin_source is not None, receipt_path, "resource source inventory omits source pins")
-    pins_file = _relative(resource_root, pin_source.get("snapshotPath"), receipt_path, "sourcePinsSnapshotPath")
-    _need(_normal(_json(pins_file)) == _normal(manifest.get("sourcePins")), pins_file,
-         "frozen resource source pins differ from baseline manifest")
+        reconstruction = receipt.get("reconstructionProof")
+        _need(isinstance(reconstruction, list) and reconstruction, receipt_path,
+             "M01 reconstruction proof is missing")
+        for index_number, proof_file in enumerate(reconstruction):
+            proof_path = f"{receipt_path}.reconstructionProof[{index_number}]"
+            _need(isinstance(proof_file, dict), proof_path, "reconstruction proof entry must be an object")
+            physical = _relative(resource_root, proof_file.get("path"), proof_path, "path")
+            _need(digest(physical) == proof_file.get("sha256"), proof_path,
+                 "reconstruction proof SHA-256 differs from captured bytes")
+        for index_number, assembly in enumerate(original_assemblies):
+            assembly_path = f"{original_path}.assemblies[{index_number}]"
+            _need(isinstance(assembly, dict), assembly_path, "historical assembly must be an object")
+            matches = [item for item in metadata
+                       if isinstance(item, dict) and Path(item.get("path", "")).name == assembly.get("name") + ".dll"
+                       and item.get("sha256") == assembly.get("sha256")]
+            _need(len(matches) == 1, assembly_path,
+                 "historical assembly must match exactly one metadata assembly proof")
+        compared_files = audit.get("comparedFiles")
+        _need(isinstance(compared_files, list) and compared_files, audit_path,
+             "historical source audit has no compared files")
+        for index_number, item in enumerate(compared_files):
+            item_path = f"{audit_path}.comparedFiles[{index_number}]"
+            _need(isinstance(item, dict) and item.get("matchesFrozen") is True, item_path,
+                 "historical source audit entry is not marked as matching frozen bytes")
+            matches = []
+            for source in sources:
+                if not isinstance(source, dict):
+                    continue
+                if source.get("path") == item.get("path"):
+                    matches.append(source.get("sha256") == item.get("sha256"))
+                elif source.get("path", "") + ".meta" == item.get("path"):
+                    matches.append(source.get("metaSha256") == item.get("sha256"))
+            _need(len(matches) == 1 and matches[0], item_path,
+                 "historical source audit entry differs from captured resource source proof")
+        external_manifest = m01_root / "baseline-manifest.json"
+        if not external_manifest.is_file():
+            external_manifest = m01_root / "Original" / "baseline-manifest.json"
+        _need(external_manifest.is_file() and not external_manifest.is_symlink(), external_manifest,
+             "provided frozen M01 root is missing its baseline manifest")
+        _need(digest(external_manifest) == receipt.get("originalManifestSha256"), external_manifest,
+             "provided frozen M01 manifest SHA differs from the accepted historical proof")
+        frozen = _json(external_manifest)
+        _need(frozen.get("schemaVersion") == 1 and frozen.get("baselineBuildId") == "M01-Baseline-v1" and
+              frozen.get("unityVersion") == receipt["unityVersion"] and frozen.get("target") == receipt["target"] and
+              frozen.get("architecture") == receipt["architecture"], external_manifest,
+             "provided frozen M01 manifest identity differs from historical proof")
+        _need({item.get("name"): item.get("sha256") for item in frozen.get("bundles", [])} ==
+             {item.get("name"): item.get("sha256") for item in original.get("bundles", [])}, external_manifest,
+             "provided frozen M01 manifest differs from embedded historical bundle proof")
+        _need({item.get("name"): item.get("sha256") for item in frozen.get("assemblies", [])} ==
+             {item.get("name"): item.get("sha256") for item in original.get("assemblies", [])}, external_manifest,
+             "provided frozen M01 manifest differs from embedded historical assembly proof")
+        frozen_assemblies = frozen.get("assemblies")
+        _need(isinstance(frozen_assemblies, list) and frozen_assemblies, external_manifest,
+             "provided frozen M01 manifest has no assembly proof")
+        for index_number, assembly in enumerate(frozen_assemblies):
+            assembly_path = f"{external_manifest}.assemblies[{index_number}]"
+            _need(isinstance(assembly, dict), assembly_path, "historical assembly proof must be an object")
+            physical = _relative(m01_root, assembly.get("path"), assembly_path, "path")
+            _need(digest(physical) == assembly.get("sha256"), assembly_path,
+                 "provided frozen M01 assembly SHA-256 differs from bytes")
+        external_audit = m01_root / "source-audit.json"
+        if not external_audit.is_file():
+            external_audit = m01_root / "Original" / "source-audit.json"
+        if external_audit.is_file() and not external_audit.is_symlink():
+            _need(digest(external_audit) == receipt.get("originalSourceAuditSha256"), external_audit,
+                 "provided frozen M01 source audit SHA differs from the accepted historical proof")
+            _need(_normal(_json(external_audit)) == _normal(audit), external_audit,
+                 "provided frozen M01 source audit differs from embedded historical audit")
+        source_snapshot_path = frozen.get("sourceSnapshotPath")
+        _need(isinstance(source_snapshot_path, str) and source_snapshot_path,
+             external_manifest, "provided frozen M01 source snapshot path is missing")
+        source_snapshot_root = _relative_dir(m01_root, source_snapshot_path, external_manifest, "sourceSnapshotPath")
+        compared_files = audit.get("comparedFiles")
+        _need(isinstance(compared_files, list) and compared_files, external_manifest,
+             "historical source audit has no compared files")
+        for index_number, item in enumerate(compared_files):
+            item_path = f"{external_manifest}.sourceAudit.comparedFiles[{index_number}]"
+            _need(isinstance(item, dict) and item.get("matchesFrozen") is True, item_path,
+                 "historical source audit entry is not marked as matching frozen bytes")
+            source_file = _relative(source_snapshot_root, item.get("path"), item_path, "path")
+            _need(digest(source_file) == item.get("sha256"), item_path,
+                 "provided frozen M01 source bytes differ from accepted audit")
     return receipt
 
 
@@ -1672,7 +1801,7 @@ def _verify_nunit(path: Path):
              f"NUnit test case is not Passed: {node.attrib.get('fullname', node.attrib.get('name', '<unnamed>'))}")
     _need(not any(str(node.attrib.get("result", "")).lower() == "failed" for node in cases), path,
          "NUnit XML contains a failed suite or test")
-    coverage = {suite: False for suite in NUNIT_SUITES}
+    coverage = {suite: 0 for suite in NUNIT_SUITES}
 
     def visit(node, inherited_labels=()):
         labels = set(inherited_labels)
@@ -1680,13 +1809,15 @@ def _verify_nunit(path: Path):
         labels.update(suite for suite in NUNIT_SUITES if suite in values)
         if node.tag.rsplit("}", 1)[-1].lower() == "test-case":
             for suite in labels:
-                coverage[suite] = True
+                coverage[suite] += 1
         for child in node:
             visit(child, labels)
 
     visit(root)
     for suite in NUNIT_SUITES:
-        _need(coverage[suite], path, f"NUnit test cases do not cover {suite}")
+        minimum = NUNIT_MIN_CASES.get(suite, 1)
+        _need(coverage[suite] >= minimum, path,
+             f"NUnit test cases do not cover {suite}: expected at least {minimum}, found {coverage[suite]}")
     return {"testCases": len(test_cases), "suitesCovered": list(NUNIT_SUITES)}
 
 

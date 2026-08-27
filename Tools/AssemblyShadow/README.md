@@ -106,8 +106,15 @@ in `Docs/AssemblyShadow/M02/M02-report.md`; do not treat a checkpoint as a miles
    and a separately verified type-forwarding/guard proof.
 5. Run that Player with `-shadowMode M02ReflectionBindings`, a unique absolute
    `-shadowBindingResult` path, and `-batchmode -nographics -logFile <absolute.log>`.
-6. Run `AssemblyShadowDemo.Editor.M02EditorValidation.Validate` for the real
-   P01/P02/P03/P05 compiler, closure, ABI and repeatability cases.
+6. Run `Tools/AssemblyShadow/Invoke-M02EditorValidation.ps1` for the real
+   P01/P02/P03/P05 compiler, closure, ABI and repeatability cases. The wrapper
+   uses separate guarded Editor processes to compile P05 with its serialized
+   field present in the Editor domain, restores the exact original scripting
+   defines in `finally`, and then validates all cases in a fresh baseline
+   domain. A guarded, hash-bound restore also preserves the original settings
+   file bytes; unrelated settings changes are never overwritten. Do not call
+   `M02EditorValidation.Validate` directly without the
+   wrapper's run-bound P05 snapshot.
 7. Run `verify-m02-results.py` with the Editor, NUnit and `--reflection-result`
    evidence. Independent review and a milestone tag remain required.
 

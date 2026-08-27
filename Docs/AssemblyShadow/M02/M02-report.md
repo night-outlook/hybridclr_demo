@@ -76,11 +76,28 @@ transaction/type/execution/Unity integration work remains M03–M07.
   explicit resolver references, not additional resource ABI roots.
 - A removed explicit dependency cannot erase a frozen baseline consumer.
   Normal HybridCLR hot-update assemblies remain distinct from AOT candidates.
+- Extensibility's asmdef declares Contracts, but its frozen base class uses no
+  Contracts type token and therefore emits no compiled `AssemblyRef` to it.
+  An explicit `ModuleContract` edge preserves the coordinated module upgrade
+  boundary from design section 1.2. This is a declared dependency, not a claimed
+  reflection call or a fabricated compiler reference. P03 consequently includes
+  all five candidates while the immutable M01 business DLLs remain unchanged.
 - Unsigned manifests are explicitly labelled unsigned. P05 can emit a
   resource-rebuild requirement, not a falsely deployable DLL-only package.
   Building and exercising matching replacement bundles is part of M07.
 - Same input snapshots must produce byte-identical manifests. Fresh compiles
   may legitimately have different MVIDs/PDBs while preserving semantic hashes.
+- The P05 fixture adds a real serialized field. Unity requires its loaded Editor
+  layout to match the Player layout, so the validation wrapper compiles P05 in
+  a separate Editor process with the P05 scripting define. It records the exact
+  original defines before changing them, restores them in a `finally` phase,
+  and runs P01/P02/P03 validation in a fresh baseline Editor domain. The P05
+  snapshot is bound to this run, source pins and baseline. DLLs left behind by
+  a failed `CompilePlayerScripts` result are not accepted as a snapshot.
+  After Unity exits, the wrapper also restores the exact original settings-file
+  bytes. That write requires a hash-bound receipt proving only the recorded
+  target's define entry or empty-map representation changed; unrelated or
+  concurrent edits are rejected. The final process verifies this byte roundtrip.
 
 ## Finite reflection contracts
 
@@ -161,7 +178,8 @@ preserve any pre-existing Editor in the original checkout.
 5. Run the resulting Player with `-batchmode -nographics -shadowMode M02ReflectionBindings`,
    a distinct absolute `-shadowBindingResult` path and `-logFile` path. Require
    process exit zero and `result=Passed`.
-6. `AssemblyShadowDemo.Editor.M02EditorValidation.Validate`
+6. `Tools/AssemblyShadow/Invoke-M02EditorValidation.ps1` (owns the P05 Editor
+   define/domain roundtrip and then calls `M02EditorValidation.Validate`).
 7. `Tools/AssemblyShadow/verify-m02-results.py` with the actual Editor and NUnit
    results, `--reflection-result`, frozen M01 baseline, and an evidence output path.
 
@@ -172,26 +190,27 @@ or a passing synthetic fixture alone is not milestone acceptance. macOS ARM64
 is the available validated platform inherited from M00/M01; no Windows or
 Android result may be inferred from it.
 
-The current consolidated source passed 295/295 Unity Editor tests with no skips
-(`_temp/AssemblyShadow/EditorTests-5e2e90b2513747749e6e9be790b29053/results.xml`).
+The current consolidated source passed 319/319 Unity Editor tests with no skips
+(`_temp/AssemblyShadow/EditorTests-8da6a38f5fb444f697f49479624ec158/results.xml`).
 This includes full-identity/provenance regressions, schema-2 acquisition guards,
 fixed-image evidence, unproven callback state, policy-path handling, actual
 builtin-resource capture, the real 26-name prefab comparison, linked-reference
-proofs, exact ordinary-hot-update entry approvals, and unchanged Editor enum
-behavior. These results do not establish the new native Player or
-complete T02 integration. The initial diagnostic build also exposed that Unity's
+proofs, exact ordinary-hot-update entry approvals, unchanged Editor enum
+behavior, 22 structural-workflow cases and the two module-dependency regressions.
+The Python artifact suite passes 93 tests and requires those new NUnit fixtures.
+These results do not establish complete T02 integration. The initial
+diagnostic build also exposed that Unity's
 `BuildReport.summary.result` is not final inside `OnPostprocessBuild`; capture now
 observes callbacks and seals only after `BuildPipeline.BuildPlayer` returns a
-matching successful report. The diagnostic Player at package `28f37921` sealed
-its inputs and frozen-resource receipt, and passed the schema-2 reflection,
-old-bundle Baseline, and old-bundle P01 probes. Its final manifest exposed the
-field-MemberRef fingerprint and compiler-only reference issues fixed in the
-current sources. A read-only replay now verifies all five guards, twenty runtime
-consumers and the complete compiled policy with zero diagnostics; it uses a
-temporary JSON serialization substitute and is not acceptance evidence. A clean
-pinned build, full T02 run and OFF regression are still required. The Python
-artifact suite passes 82 tests, including actual Unity nullable-field projection
-and nested builtin-proof tamper cases.
+matching successful report. The clean Player at package `6d603459` and demo
+`0e813ee1` completed its build and generated baseline
+`M02-Baseline-36ca3c767e2bc9c3`. Its reflection, old-bundle Baseline and old-bundle
+P01 probes all passed. The T02 run passed the linked-evidence cases but stopped
+at P05 because the loaded Editor type lacked the Player's added serialized
+field. The separate-domain workflow above addresses that requirement.
+Independent review also identified verifier mismatches for captured versus
+projected roles, same-type builtin objects and historical source provenance.
+A new pinned Player, complete T02 run, OFF regression and review remain required.
 
 The first guarded Player attempt exposed Unity forwarding the same control
 define twice. Identical controls are now idempotent; distinct or malformed

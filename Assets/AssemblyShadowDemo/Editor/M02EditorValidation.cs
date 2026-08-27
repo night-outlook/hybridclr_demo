@@ -20,8 +20,7 @@ namespace AssemblyShadowDemo.Editor
         {
             var report = new ValidationReport { schemaVersion = 1, unityVersion = Application.unityVersion, target = EditorUserBuildSettings.activeBuildTarget.ToString() };
             var cases = new List<CaseResult>();
-            string run = Path.GetFullPath("_temp/AssemblyShadow/M02Validation-" + Guid.NewGuid().ToString("N"));
-            Directory.CreateDirectory(run);
+            string run = M02StructuralPatchCompilation.GetValidationRunDirectory();
             report.runDirectory = run;
             try
             {
@@ -41,7 +40,9 @@ namespace AssemblyShadowDemo.Editor
                 var snapshots = new Dictionary<string, string>();
                 var patches = new Dictionary<string, ShadowPatchManifest>();
                 var patchPaths = new List<Artifact>();
-                foreach (string patch in new[] { "P01", "P02", "P03", "P05" })
+                RunCase(cases, "M02-StructuralPatchEditorDomain", () =>
+                    snapshots.Add("P05", M02StructuralPatchCompilation.ReadPreparedSnapshot(run)));
+                foreach (string patch in new[] { "P01", "P02", "P03" })
                 {
                     string snapshot = AssemblySnapshot.Compile(Path.Combine(run, patch + "-compile"), target, settings.architecture, pins, policy, new[] { "ASSEMBLY_SHADOW_" + patch });
                     snapshots.Add(patch, snapshot);
