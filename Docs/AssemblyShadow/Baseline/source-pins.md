@@ -32,7 +32,7 @@ the tag-to-main diff contains no runtime changes.
 The original demo at `/Users/ah/GitHub/hybridclr/hybridclr_demo` and its already-open
 Unity Editor are preserved. Its three pre-existing changes were snapshotted in
 backup branch `codex/assembly-shadow-preexisting-20260827`, commit
-a74182b (the full object ID is available through git rev-parse). This snapshot
+a74182b8ea52c805b24615ae31669e3cc06fc87d. This snapshot
 did not change the original index or working files.
 
 Implementation and unattended Unity builds use the clean worktree

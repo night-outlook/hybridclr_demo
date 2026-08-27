@@ -1,0 +1,8 @@
+(lldb) target modules add Builds/AssemblyShadow/M00/Baseline.app/Contents/Frameworks/GameAssembly.dylib
+(lldb) target symbols add _temp/AssemblyShadow/M00-clean-arm64-GameAssembly.dylib.dSYM
+symbol file '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M00-clean-arm64-GameAssembly.dylib.dSYM/Contents/Resources/DWARF/GameAssembly.dylib' has been added to 'Builds/AssemblyShadow/M00/Baseline.app/Contents/Frameworks/GameAssembly.dylib'
+(lldb) image lookup -r -n hybridclr::metadata::Assembly::LoadFromBytes
+1 match found in Builds/AssemblyShadow/M00/Baseline.app/Contents/Frameworks/GameAssembly.dylib:
+        Address: GameAssembly.dylib[0x000000000076666c] (GameAssembly.dylib.__TEXT.__text + 7757100)
+        Summary: GameAssembly.dylib`hybridclr::metadata::Assembly::LoadFromBytes(void const*, unsigned long long, void const*, unsigned long long) at Assembly.cpp:101
+(lldb) session save /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-final-native-symbols.txt

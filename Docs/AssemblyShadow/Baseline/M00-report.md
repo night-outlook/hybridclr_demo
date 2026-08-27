@@ -1,7 +1,7 @@
 # M00 baseline acceptance report
 
-Status: baseline Player passed; final pinned ARM64/cache rebuild and independent
-review are still pending. M01 has not started.
+Status: final exact-source, clean-cache ARM64 Player passed. Independent review
+and baseline tags are pending. M01 has not started.
 
 ## Requirements and evidence
 
@@ -9,14 +9,14 @@ review are still pending. M01 has not started.
 | --- | --- |
 | 00.1 current four-repository inventory and dirty-state preservation | source-pins.md; original demo unchanged; exact backup branch snapshot |
 | 00.2 independent il2cpp_plus source of truth | night-outlook fork, upstream v2022-8.14.0 pin, ASSEMBLY_SHADOW_FORK.md |
-| 00.3 full SHA pairing | ProjectSettings/AssemblyShadowSourcePins.json; final demo build-source pin pending |
+| 00.3 full SHA pairing | ProjectSettings/AssemblyShadowSourcePins.json; demo build source 2c886877c9e19bbb8f10aa8efeb0786903d73193 |
 | 00.4 installer decision | ADR-0001, opt-in pinned local source composition |
-| 00.5 ordinary HybridCLR IL2CPP Player | Initial real ARM64 run Passed; M00-HOTUPDATE-OK, AOT Prefab/Scene/reflection/SO passed |
+| 00.5 ordinary HybridCLR IL2CPP Player | Final clean-cache ARM64 run Passed; M00-HOTUPDATE-OK, AOT Prefab/Scene/reflection/SO passed |
 | 00.6 native observability and repeatable install | Two identical 921-source-file receipts; Debug native build; dSYM and source-line symbol lookup |
 | 00.7 native feature default OFF | Header and actual compiler flag OFF; preprocessor OFF/ON accepted, value 2 rejected; Editor switch tests passed |
 | 00.8 branches, commits, tags and independent review | M00 branches/implementation commits exist; final tag/review pending |
 
-## Validation so far
+## Validation
 
 - Unity 2022.3.62f2 compiled the project and opt-in package installer.
 - Repeated installation produced identical receipts. Immutable source files are
@@ -34,6 +34,28 @@ review are still pending. M01 has not started.
   drift, ignored Unity code, symlinks and recoverable cache handling.
 - LLDB resolved the generated ARM64 GameAssembly symbol for
   hybridclr::metadata::Assembly::LoadFromBytes to Assembly.cpp:101.
+- The final installer receipt has SHA-256
+  6fc57ec95603270398878d1958ad7e06740ebcd3cc558af33d94e64828d0138b.
+  The strict verifier passed before and after the final build, including demo
+  source verification (no development skip).
+- Library/Bee was moved to the recorded recoverable cache backup before the
+  final build; Library/Il2cppBuildCache did not exist. The new build completed,
+  and `file` confirmed GameAssembly.dylib is ARM64-only, not universal.
+- Final build and Player processes exited zero. Unity's BuildReport reported
+  zero errors/warnings; native clang warnings and headless shader diagnostics
+  remain in the full local logs and are not hidden by that summary count.
+
+The accepted machine-generated evidence is under `Evidence/`: installation
+receipt and repeatability, Editor tests, cache manifest, final build and Player
+results, and native symbol lookup. `m00-verification.json` is a manually recorded
+summary of commands actually run, not an additional test execution.
+
+Raw local logs are retained at `_temp/UnityExec_20260827_040634.log` and
+`_temp/AssemblyShadow/m00-player.log`; their hashes are recorded in the evidence.
+The native artifact is
+`Builds/AssemblyShadow/M00/Baseline.app/Contents/Frameworks/GameAssembly.dylib`.
+Its symbols are `_temp/AssemblyShadow/M00-clean-arm64-GameAssembly.dylib.dSYM`.
+Native intermediate objects are under Library/Bee/artifacts/MacStandalonePlayerBuildProgram.
 
 ## Findings and deviations
 
@@ -50,17 +72,37 @@ review are still pending. M01 has not started.
    cause. Only the task-owned stalled Git process was terminated.
 5. Initial Unity macOS output was universal despite PlayerSettings.SetArchitecture.
    The build now sets OSXStandalone.UserBuildSettings.architecture explicitly;
-   the final accepted build must be ARM64 and verified as such.
+   the final accepted build is verified ARM64-only.
 6. This host has Command Line Tools, not full Xcode. The real native compile and
    Player run succeeded. Windows and Android are not validated.
 7. A live LLDB launch stalled while macOS SecurityAgent was active. The
    task-owned probe and debugserver were stopped; no machine authorization was
    changed. Offline symbol/source-line lookup succeeded. M01 must retain
    symbol-backed in-process native traces and report any debug-access limits.
-8. Initial Player shutdown emitted Unity's allocator-after-shutdown diagnostic.
+8. Initial and final Player shutdown emitted Unity's allocator-after-shutdown diagnostic.
    It occurred with unmodified HybridCLR runtime and Shadow OFF; there was no
    crash or failed test. It is recorded, not suppressed or called a clean
    whole-engine shutdown.
+9. Headless runs use the Null graphics device, which reports unsupported URP
+   shaders. Rendering is outside this runtime baseline; no visual validation is
+   claimed. Unity serialized new defaults into UniversalRP.asset during the
+   isolated worktree build. That baseline migration is committed; the original
+   demo's dirty Renderer2D.asset was not touched.
+
+## Reproduction
+
+Follow Tools/AssemblyShadow/README.md. The final Player invocation was:
+
+```sh
+/usr/bin/arch -arm64 Builds/AssemblyShadow/M00/Baseline.app/Contents/MacOS/AssemblyShadowBaseline \
+  -batchmode -nographics \
+  -logFile /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-player.log \
+  -shadowResultPath /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-player.json
+```
+
+The clean rebuild includes Generate/All and a native Debug build. Its final
+BuildPlayer phase took 35.21 seconds; this is not the whole Editor startup and
+Generate/All duration or a production performance measurement.
 
 ## Gate boundary
 

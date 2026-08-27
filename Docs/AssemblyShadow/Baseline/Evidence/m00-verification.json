@@ -1,0 +1,34 @@
+{
+  "recordType": "manual-summary-of-observed-tool-results",
+  "observedOn": "2026-08-27",
+  "demoBuildSource": "2c886877c9e19bbb8f10aa8efeb0786903d73193",
+  "strictVerifier": {
+    "command": "python3 Tools/AssemblyShadow/verify-installed-runtime.py",
+    "exitCodeBeforeBuild": 0,
+    "exitCodeAfterBuild": 0,
+    "demoSourceVerified": true,
+    "sourceFiles": 921,
+    "installedFiles": 923,
+    "configuredShadowMode": "off"
+  },
+  "toolTests": {
+    "command": "python3 -m unittest discover -s Tools/AssemblyShadow/tests -v",
+    "exitCode": 0,
+    "tests": 21,
+    "durationSeconds": 17.028
+  },
+  "nativePreprocessor": {
+    "defaultValue": 0,
+    "explicitOnValue": 1,
+    "invalidValueTwoExitCode": 1
+  },
+  "playerExitCode": 0,
+  "gameAssemblyArchitecture": "arm64",
+  "gameAssemblySha256": "6394bc2c8027d0dd4e1334b22d1dcaf9f8a8896eb231f02c934edd5bd8baddef",
+  "buildLog": "_temp/UnityExec_20260827_040634.log",
+  "buildLogSha256": "3147eb22553c306d74af4d50ccb9711ac080da71d4aef5ccb9d696861d87e438",
+  "playerLog": "_temp/AssemblyShadow/m00-player.log",
+  "playerLogSha256": "cf8a979deba32400205eacfb4170e63d84a0050ef2a2b70332afad43e02145c7",
+  "liveDebuggerLaunchValidated": false,
+  "offlineNativeSymbolLookupValidated": true
+}
