@@ -1,0 +1,259 @@
+{
+    "milestone": "M01",
+    "mode": "PreUseReflection",
+    "result": "Passed",
+    "gate": "NEGATIVE-TIMING-OBSERVED",
+    "gateNotes": "",
+    "il2cpp": true,
+    "unityVersion": "2022.3.62f2",
+    "platform": "OSXPlayer",
+    "baselineBuildId": "M01-Baseline-v1",
+    "baselineManifestSha256": "e0125ed2b59177fb8577dab0498325a4a489404d3147b7bb857f442a9464928d",
+    "baselineBundleSha256": [
+        {
+            "name": "business-scene.bundle",
+            "path": "Bundles/business-scene.bundle",
+            "sha256": "f4e0106dff4cc822a66a8b13557336023742b010182065a8da633cc5feac2486"
+        },
+        {
+            "name": "versioned-prefab.bundle",
+            "path": "Bundles/versioned-prefab.bundle",
+            "sha256": "985a762b8db78f128aea520571d79a553e0f7e37d9a7cd897e50366e70bcd98a"
+        },
+        {
+            "name": "versioned-data.bundle",
+            "path": "Bundles/versioned-data.bundle",
+            "sha256": "7f93e66e3537d7b3634ff725e35c20dffaec172d2424cee789ff959ef0d72935"
+        }
+    ],
+    "patchDllSha256": "d8df67c0b817977987c33cb97d1911fca08da9fef02325b804985ac72186e291",
+    "baselineMvid": "d8de3f12-ebd6-442a-9631-0611025de8e9",
+    "patchMvid": "b1032359-f7de-4c8c-9995-20e9455266e0",
+    "originalBundlesUnchanged": true,
+    "nativeFeatureEnabled": true,
+    "reflection": {
+        "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "moduleMvid": "",
+        "moduleMvidSupported": false,
+        "moduleMvidNote": "IL2CPP does not support Assembly.ManifestModule; use the build-time DLL evidence.",
+        "isDynamic": false,
+        "typeAssemblyIdentity": true,
+        "sameNameAssemblyCount": 2,
+        "result": "PATCH-P01-INTERNAL",
+        "assembly": {
+            "assembly": "0x123ab71f0",
+            "image": "0x123ab7250",
+            "name": "AssemblyA.Implementation.Internal",
+            "isInterpreter": true,
+            "matchesShadow": true
+        },
+        "instance": {
+            "object": "0x11830ad80",
+            "class": "0x123ab74a0",
+            "type": "AssemblyA.Implementation.Internal.InternalEntry",
+            "instanceSize": 16,
+            "physicalAssembly": {
+                "assembly": "0x123ab71f0",
+                "image": "0x123ab7250",
+                "name": "AssemblyA.Implementation.Internal",
+                "isInterpreter": true,
+                "matchesShadow": true
+            }
+        },
+        "passed": true
+    },
+    "prefab": {
+        "phase": "prefab",
+        "componentAssembly": "AssemblyA.Implementation.Internal",
+        "missingScript": false,
+        "getComponentByName": true,
+        "getComponentByNameFound": true,
+        "byNameNativeObject": {
+            "object": "0x11c667440",
+            "class": "0x123abcdc0",
+            "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+            "instanceSize": 56,
+            "physicalAssembly": {
+                "assembly": "0x123ab71f0",
+                "image": "0x123ab7250",
+                "name": "AssemblyA.Implementation.Internal",
+                "isInterpreter": true,
+                "matchesShadow": true
+            }
+        },
+        "getComponentByType": true,
+        "serializedValue": 1234,
+        "baseSerializedValue": 7,
+        "result": "BASELINE-EXT|PATCH-P01-INTERNAL|1234",
+        "nativeObject": {
+            "object": "0x11c667440",
+            "class": "0x123abcdc0",
+            "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+            "instanceSize": 56,
+            "physicalAssembly": {
+                "assembly": "0x123ab71f0",
+                "image": "0x123ab7250",
+                "name": "AssemblyA.Implementation.Internal",
+                "isInterpreter": true,
+                "matchesShadow": true
+            }
+        },
+        "dataReference": true,
+        "passed": true,
+        "error": ""
+    },
+    "scriptableObject": {
+        "serializedValue": 5678,
+        "result": "BASELINE-DATA",
+        "nativeObject": {
+            "object": "0x11c67cf30",
+            "class": "0x123d1d9d0",
+            "type": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+            "instanceSize": 32,
+            "physicalAssembly": {
+                "assembly": "0x123ab71f0",
+                "image": "0x123ab7250",
+                "name": "AssemblyA.Implementation.Internal",
+                "isInterpreter": true,
+                "matchesShadow": true
+            }
+        },
+        "passed": true
+    },
+    "scene": {
+        "firstLoad": {
+            "phase": "scene-first",
+            "componentAssembly": "AssemblyA.Implementation.Internal",
+            "missingScript": false,
+            "getComponentByName": true,
+            "getComponentByNameFound": true,
+            "byNameNativeObject": {
+                "object": "0x11c6a2f80",
+                "class": "0x123abcdc0",
+                "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "instanceSize": 56,
+                "physicalAssembly": {
+                    "assembly": "0x123ab71f0",
+                    "image": "0x123ab7250",
+                    "name": "AssemblyA.Implementation.Internal",
+                    "isInterpreter": true,
+                    "matchesShadow": true
+                }
+            },
+            "getComponentByType": true,
+            "serializedValue": 1234,
+            "baseSerializedValue": 7,
+            "result": "BASELINE-EXT|PATCH-P01-INTERNAL|1234",
+            "nativeObject": {
+                "object": "0x11c6a2f80",
+                "class": "0x123abcdc0",
+                "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "instanceSize": 56,
+                "physicalAssembly": {
+                    "assembly": "0x123ab71f0",
+                    "image": "0x123ab7250",
+                    "name": "AssemblyA.Implementation.Internal",
+                    "isInterpreter": true,
+                    "matchesShadow": true
+                }
+            },
+            "dataReference": true,
+            "passed": true,
+            "error": ""
+        },
+        "reload": {
+            "phase": "scene-reload",
+            "componentAssembly": "AssemblyA.Implementation.Internal",
+            "missingScript": false,
+            "getComponentByName": true,
+            "getComponentByNameFound": true,
+            "byNameNativeObject": {
+                "object": "0x11c6a2c00",
+                "class": "0x123abcdc0",
+                "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "instanceSize": 56,
+                "physicalAssembly": {
+                    "assembly": "0x123ab71f0",
+                    "image": "0x123ab7250",
+                    "name": "AssemblyA.Implementation.Internal",
+                    "isInterpreter": true,
+                    "matchesShadow": true
+                }
+            },
+            "getComponentByType": true,
+            "serializedValue": 1234,
+            "baseSerializedValue": 7,
+            "result": "BASELINE-EXT|PATCH-P01-INTERNAL|1234",
+            "nativeObject": {
+                "object": "0x11c6a2c00",
+                "class": "0x123abcdc0",
+                "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                "instanceSize": 56,
+                "physicalAssembly": {
+                    "assembly": "0x123ab71f0",
+                    "image": "0x123ab7250",
+                    "name": "AssemblyA.Implementation.Internal",
+                    "isInterpreter": true,
+                    "matchesShadow": true
+                }
+            },
+            "dataReference": true,
+            "passed": true,
+            "error": ""
+        },
+        "derivedConsumerAot": true,
+        "derivedConsumerResult": "BASELINE-EXT",
+        "passed": true
+    },
+    "assemblyResolution": {
+        "assemblyLoad": "shadow",
+        "assemblyGetType": "shadow",
+        "monoScriptGetClass": "UnityEditor-only API; native resource-resolution evidence is recorded separately",
+        "objectNew": "shadow",
+        "resourceNativeTraceObserved": true
+    },
+    "baselineUsesBeforeActivate": [
+        {
+            "kind": "PreUseReflection",
+            "type": "AssemblyA.Implementation.Internal.InternalEntry",
+            "assemblyBefore": {
+                "assembly": "0x113c1a088",
+                "image": "0x113c18c48",
+                "name": "AssemblyA.Implementation.Internal",
+                "isInterpreter": false,
+                "matchesShadow": false
+            },
+            "objectBefore": {
+                "object": "",
+                "class": "",
+                "type": "",
+                "instanceSize": 0,
+                "physicalAssembly": {
+                    "assembly": "",
+                    "image": "",
+                    "name": "",
+                    "isInterpreter": false,
+                    "matchesShadow": false
+                }
+            },
+            "objectAfterActivate": {
+                "object": "",
+                "class": "",
+                "type": "",
+                "instanceSize": 0,
+                "physicalAssembly": {
+                    "assembly": "",
+                    "image": "",
+                    "name": "",
+                    "isInterpreter": false,
+                    "matchesShadow": false
+                }
+            },
+            "resultAfterActivate": ""
+        }
+    ],
+    "nativeDiagnosticsPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-reflection-final-native-diagnostics.json",
+    "nativeDiagnosticsSha256": "ddecbe92495a9d957a200129e57a8a4501f0f893eaca189f8cdf6c1bf1d9d8e3",
+    "persistentResultPath": "/Users/ah/Library/Application Support/AssemblyShadowLab/AssemblyShadowBaseline/AssemblyShadowTests/m01-result.json",
+    "error": ""
+}

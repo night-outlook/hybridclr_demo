@@ -34,6 +34,62 @@ complete pinned demo source, including ignored stray C# and asmdef files.
 --skip-demo-source is for intermediate development inspection only and cannot
 establish milestone acceptance.
 
+## M01 reproduction
+
+Use the exact M01 pairing and the isolated project, then run these static methods
+through `.agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1`:
+
+1. `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`
+2. `AssemblyShadowDemo.Editor.BuildBaselineBundles.Build`
+3. `AssemblyShadowDemo.Editor.CompilePatchDlls.Build`
+4. `AssemblyShadowDemo.Editor.BuildBaselinePlayer.Build`
+5. `AssemblyShadowDemo.Editor.M01EditorValidation.Validate`
+
+Use a 2400-second timeout for Player builds. The first bundle build freezes
+`BaselineArtifacts/<target>/M01-Baseline-v1`. Subsequent invocations verify/reuse
+that directory; they must not rebuild or replace its bundles. P01 is compiled
+separately into `PatchArtifacts/P01`. Runtime staging contains only the baseline
+manifest, bundles, catalog, and P01 bytes, not source or AOT DLL snapshots.
+
+Run `Builds/AssemblyShadow/M01/Prototype.app/Contents/MacOS/AssemblyShadowBaseline`
+on macOS ARM64 with `-batchmode -nographics`. Use `-shadowMode` to select, in
+order, `Baseline`, `PreUseType`, `PreUseReflection`, `PreUsePrefab`, `PreUseScene`,
+and finally `P01`. Give every run a distinct absolute `-shadowResultPath` and
+`-logFile` path. The writer also updates
+`PersistentDataPath/AssemblyShadowTests/m01-result.json`; P01 last leaves the
+positive gate result there. Do not run these processes concurrently against
+the same persistent result path.
+
+Baseline and P01 must exit zero and pass every assertion. Timing-negative runs
+may exit one when retained baseline resources fail the intentionally shadow-only
+assertions; they must still finish and record genuine AOT pre-use, activation,
+and post-activation observations. A failed harness or missing output is not a
+successful negative test.
+
+Verify the recorded runs against real artifacts:
+
+```sh
+python3 Tools/AssemblyShadow/verify-m01-results.py \
+  --baseline-root BaselineArtifacts/StandaloneOSX/M01-Baseline-v1 \
+  --baseline-result <baseline-result.json> --patch-result <p01-result.json> \
+  --patch-dll PatchArtifacts/P01/AssemblyA.Implementation.Internal.dll \
+  --player-assemblies _temp/AssemblyShadow/m01-player-assemblies.json \
+  --negative-result <preuse-type.json> --negative-result <preuse-reflection.json> \
+  --negative-result <preuse-prefab.json> --negative-result <preuse-scene.json> \
+  --output <verification.json>
+python3 Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow on
+```
+
+The build receipt captures the actual post-strip AOT DLLs and native library
+hash. Linker MVID changes are recorded, while dnlib checks preserved semantics.
+The pinned IL2CPP does not support Assembly.ManifestModule; runtime MVIDs are
+not fabricated. Physical native object/assembly pointers and resource-allocation
+stacks, not managed assembly names alone, establish shadow provenance.
+
+Gate approval additionally requires the native-path investigation, a real
+macro-OFF ordinary Player regression, and independent review. The prototype is
+not the M03-M07 production transaction, usage guard, or cache system.
+
 ## Recoverable native-cache rebuild
 
 clean-il2cpp-cache.sh is a dry-run unless --apply is passed; PowerShell uses

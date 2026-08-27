@@ -1,0 +1,74 @@
+{
+    "schemaVersion": 1,
+    "baselineBuildId": "M01-Baseline-v1",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "sourceSnapshotPath": "AssemblySnapshot/Source",
+    "bundles": [
+        {
+            "name": "business-scene.bundle",
+            "path": "Bundles/business-scene.bundle",
+            "sha256": "f4e0106dff4cc822a66a8b13557336023742b010182065a8da633cc5feac2486"
+        },
+        {
+            "name": "versioned-prefab.bundle",
+            "path": "Bundles/versioned-prefab.bundle",
+            "sha256": "985a762b8db78f128aea520571d79a553e0f7e37d9a7cd897e50366e70bcd98a"
+        },
+        {
+            "name": "versioned-data.bundle",
+            "path": "Bundles/versioned-data.bundle",
+            "sha256": "7f93e66e3537d7b3634ff725e35c20dffaec172d2424cee789ff959ef0d72935"
+        }
+    ],
+    "assemblies": [
+        {
+            "name": "AssemblyA.Contracts",
+            "path": "AssemblySnapshot/AssemblyA.Contracts.dll",
+            "sha256": "d4a89e6734502d009718b14ca98202b0c8ebac77af6d4486ff5441d3ebc8ac0d",
+            "mvid": "0d03b740-d408-4106-b5c7-323f7afd042f",
+            "pdbPath": "AssemblySnapshot/AssemblyA.Contracts.pdb",
+            "pdbSha256": "09f31df600d0b8229366b3097b4e1667d46f910bf1aded333d3f46152712d4b9"
+        },
+        {
+            "name": "AssemblyA.Implementation.Extensibility",
+            "path": "AssemblySnapshot/AssemblyA.Implementation.Extensibility.dll",
+            "sha256": "319d4455aaad6ba1d7ed1cb5d51e305f48aefc692bcd10bfba27186facc25722",
+            "mvid": "820d2458-46d0-4045-ae00-29570bc1a87a",
+            "pdbPath": "AssemblySnapshot/AssemblyA.Implementation.Extensibility.pdb",
+            "pdbSha256": "b245a839064df29b2f9d7138f82dd7619bb9dd51626c7c6ce181447d654f2148"
+        },
+        {
+            "name": "AssemblyA.Implementation.Internal",
+            "path": "AssemblySnapshot/AssemblyA.Implementation.Internal.dll",
+            "sha256": "469c49aaebf79995e701826d7cc2fafe2bd668b478b29e66a459fe7625b5547b",
+            "mvid": "d8de3f12-ebd6-442a-9631-0611025de8e9",
+            "pdbPath": "AssemblySnapshot/AssemblyA.Implementation.Internal.pdb",
+            "pdbSha256": "2f3874e948acde993e91fc026460a9c9bde87e7628daaa1987de4707f002665d"
+        }
+    ],
+    "assets": [
+        {
+            "kind": "scene",
+            "path": "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+            "assetGuid": "58e0b30e09bb44a0cb69f123cf349603",
+            "scriptGuid": "",
+            "serializedNumber": 0
+        },
+        {
+            "kind": "prefab",
+            "path": "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+            "assetGuid": "02e5d7d8b38404288b1f7292f963dcc2",
+            "scriptGuid": "b853187e0c1364aef9a899bb0bf9567c",
+            "serializedNumber": 1234
+        },
+        {
+            "kind": "scriptableObject",
+            "path": "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset",
+            "assetGuid": "d86dbac5efba44fccaa2239e6103cf43",
+            "scriptGuid": "3d14898b1ea664b0e8953edf03eacb41",
+            "serializedNumber": 5678
+        }
+    ]
+}

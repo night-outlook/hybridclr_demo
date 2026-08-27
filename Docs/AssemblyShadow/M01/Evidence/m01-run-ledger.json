@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M01",
+  "recordKind": "Main-agent ledger of actual tool-observed exits; not a separate test execution",
+  "date": "2026-08-27",
+  "projectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+  "unityVersion": "2022.3.62f2",
+  "target": "StandaloneOSX",
+  "architecture": "arm64",
+  "gameAssemblySha256": "1d6e8e14de063594da475a7cf8c64f0fe1639b55506f4c95f40a6afab58e6ea7",
+  "baseInvocation": "/usr/bin/arch -arm64 Builds/AssemblyShadow/M01/Prototype.app/Contents/MacOS/AssemblyShadowBaseline -batchmode -nographics -shadowMode <mode> -shadowResultPath <resultPath> -logFile <logPath>",
+  "runs": [
+    {
+      "mode": "Baseline",
+      "exitCode": 0,
+      "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-baseline-final.json",
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-baseline-final.log"
+    },
+    {
+      "mode": "PreUseType",
+      "exitCode": 0,
+      "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-type-final.json",
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-type-final.log"
+    },
+    {
+      "mode": "PreUseReflection",
+      "exitCode": 0,
+      "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-reflection-final.json",
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-reflection-final.log"
+    },
+    {
+      "mode": "PreUsePrefab",
+      "exitCode": 1,
+      "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-prefab-final.json",
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-prefab-final.log"
+    },
+    {
+      "mode": "PreUseScene",
+      "exitCode": 1,
+      "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-scene-final.json",
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-preuse-scene-final.log"
+    },
+    {
+      "mode": "P01",
+      "exitCode": 0,
+      "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-p01-final.json",
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-p01-final.log"
+    }
+  ],
+  "negativeExitMeaning": "PreUsePrefab and PreUseScene exit 1 after complete observations because pre-created AOT resources fail intentionally shadow-only probes; the verifier requires the unchanged physical old-object witnesses.",
+  "nativeOff": {
+    "exitCode": 0,
+    "mode": "ordinary M00 regression",
+    "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-native-off.json",
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m01-native-off.log",
+    "outputPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M01/NativeOffRegression.app"
+  },
+  "toolTests": {
+    "command": "python3 -m unittest discover -s Tools/AssemblyShadow/tests -v",
+    "exitCode": 0,
+    "passed": 34,
+    "durationSeconds": 14.466
+  },
+  "editorValidation": {
+    "entrypoint": "AssemblyShadowDemo.Editor.M01EditorValidation.Validate",
+    "exitCode": 0,
+    "passed": 5,
+    "unityTestRunnerExecuted": false,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260827_055024.log"
+  },
+  "persistentResult": {
+    "path": "/Users/ah/Library/Application Support/AssemblyShadowLab/AssemblyShadowBaseline/AssemblyShadowTests/m01-result.json",
+    "sha256": "79881992707a885029ccd8d5043e13e35719039fba307518c79bdd98b97be66e",
+    "matchesFinalP01": true
+  }
+}

@@ -1,0 +1,32 @@
+Actual offline commands; no process was launched or attached.
+
+$ xcrun dwarfdump --uuid Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib _temp/AssemblyShadow/M01-final-GameAssembly.dylib.dSYM
+UUID: 37AA5842-07E5-4517-BE9C-1C42C5A065FE (arm64) Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib
+UUID: 37AA5842-07E5-4517-BE9C-1C42C5A065FE (arm64) _temp/AssemblyShadow/M01-final-GameAssembly.dylib.dSYM/Contents/Resources/DWARF/GameAssembly.dylib
+
+$ xcrun lldb --batch -o 'target create Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib' -o 'target symbols add _temp/AssemblyShadow/M01-final-GameAssembly.dylib.dSYM' -o 'image lookup -a 0x68b020' -o 'image lookup -a 0xa0a4a8' -o 'image lookup -a 0x9f79e0' -o 'image lookup -n il2cpp_class_from_name' -o 'image lookup -n il2cpp_object_new' -o 'image lookup -n il2cpp::vm::AssemblyShadowPrototype::ResolveUnityComparisonTarget'
+(lldb) target create Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib
+Current executable set to '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib' (arm64).
+(lldb) target symbols add _temp/AssemblyShadow/M01-final-GameAssembly.dylib.dSYM
+symbol file '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M01-final-GameAssembly.dylib.dSYM/Contents/Resources/DWARF/GameAssembly.dylib' has been added to '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib'
+(lldb) image lookup -a 0x68b020
+      Address: GameAssembly.dylib[0x000000000068b020] (GameAssembly.dylib.__TEXT.__text + 6858304)
+      Summary: GameAssembly.dylib`il2cpp::vm::Object::New(Il2CppClass*) + 32 at Object.cpp:269:33
+(lldb) image lookup -a 0xa0a4a8
+      Address: GameAssembly.dylib[0x0000000000a0a4a8] (GameAssembly.dylib.__TEXT.__text + 10525384)
+      Summary: GameAssembly.dylib`::il2cpp_class_is_subclass_of(Il2CppClass *, Il2CppClass *, bool) + 180 at il2cpp-api.cpp:278:5
+(lldb) image lookup -a 0x9f79e0
+      Address: GameAssembly.dylib[0x00000000009f79e0] (GameAssembly.dylib.__TEXT.__text + 10448896)
+      Summary: GameAssembly.dylib`il2cpp::vm::Image::ClassFromName(Il2CppImage const*, char const*, char const*) + 260 at Image.cpp:259:20
+(lldb) image lookup -n il2cpp_class_from_name
+1 match found in /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib:
+        Address: GameAssembly.dylib[0x0000000000a0a518] (GameAssembly.dylib.__TEXT.__text + 10525496)
+        Summary: GameAssembly.dylib`::il2cpp_class_from_name(const Il2CppImage *, const char *, const char *) at il2cpp-api.cpp:296
+(lldb) image lookup -n il2cpp_object_new
+1 match found in /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib:
+        Address: GameAssembly.dylib[0x0000000000a0c024] (GameAssembly.dylib.__TEXT.__text + 10532420)
+        Summary: GameAssembly.dylib`::il2cpp_object_new(const Il2CppClass *) at il2cpp-api.cpp:1082
+(lldb) image lookup -n il2cpp::vm::AssemblyShadowPrototype::ResolveUnityComparisonTarget
+1 match found in /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M01/Prototype.app/Contents/Frameworks/GameAssembly.dylib:
+        Address: GameAssembly.dylib[0x00000000006dc584] (GameAssembly.dylib.__TEXT.__text + 7191460)
+        Summary: GameAssembly.dylib`il2cpp::vm::AssemblyShadowPrototype::ResolveUnityComparisonTarget(Il2CppClass const*, Il2CppClass*) at AssemblyShadowPrototype.cpp:206

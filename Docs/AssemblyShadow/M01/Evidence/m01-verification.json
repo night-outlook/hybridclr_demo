@@ -1,0 +1,191 @@
+{
+  "verified": true,
+  "gate": "CONDITIONAL-GO",
+  "baselineBuildId": "M01-Baseline-v1",
+  "bundleCount": 3,
+  "patchDllSha256": "d8df67c0b817977987c33cb97d1911fca08da9fef02325b804985ac72186e291",
+  "gameAssemblySha256": "1d6e8e14de063594da475a7cf8c64f0fe1639b55506f4c95f40a6afab58e6ea7",
+  "runtimeMvidSupported": false,
+  "aotInputMvidsRecorded": true,
+  "aotInputSemanticsVerified": true,
+  "nativeEventCount": 141,
+  "negativeTimingObservations": [
+    {
+      "mode": "PreUseType",
+      "result": "Passed",
+      "uses": [
+        {
+          "kind": "PreUseType",
+          "type": "AssemblyA.Implementation.Internal.InternalEntry",
+          "assemblyBefore": {
+            "assembly": "0x11881a088",
+            "image": "0x118818c48",
+            "name": "AssemblyA.Implementation.Internal",
+            "isInterpreter": false,
+            "matchesShadow": false
+          },
+          "objectBefore": {
+            "object": "",
+            "class": "",
+            "type": "",
+            "instanceSize": 0,
+            "physicalAssembly": {
+              "assembly": "",
+              "image": "",
+              "name": "",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "objectAfterActivate": {
+            "object": "",
+            "class": "",
+            "type": "",
+            "instanceSize": 0,
+            "physicalAssembly": {
+              "assembly": "",
+              "image": "",
+              "name": "",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "resultAfterActivate": ""
+        }
+      ]
+    },
+    {
+      "mode": "PreUseReflection",
+      "result": "Passed",
+      "uses": [
+        {
+          "kind": "PreUseReflection",
+          "type": "AssemblyA.Implementation.Internal.InternalEntry",
+          "assemblyBefore": {
+            "assembly": "0x113c1a088",
+            "image": "0x113c18c48",
+            "name": "AssemblyA.Implementation.Internal",
+            "isInterpreter": false,
+            "matchesShadow": false
+          },
+          "objectBefore": {
+            "object": "",
+            "class": "",
+            "type": "",
+            "instanceSize": 0,
+            "physicalAssembly": {
+              "assembly": "",
+              "image": "",
+              "name": "",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "objectAfterActivate": {
+            "object": "",
+            "class": "",
+            "type": "",
+            "instanceSize": 0,
+            "physicalAssembly": {
+              "assembly": "",
+              "image": "",
+              "name": "",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "resultAfterActivate": ""
+        }
+      ]
+    },
+    {
+      "mode": "PreUsePrefab",
+      "result": "Failed",
+      "uses": [
+        {
+          "kind": "PreUsePrefab",
+          "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+          "assemblyBefore": {
+            "assembly": "",
+            "image": "",
+            "name": "",
+            "isInterpreter": false,
+            "matchesShadow": false
+          },
+          "objectBefore": {
+            "object": "0x1127e77c0",
+            "class": "0x127681ac0",
+            "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+            "instanceSize": 56,
+            "physicalAssembly": {
+              "assembly": "0x117c1a088",
+              "image": "0x117c18c48",
+              "name": "AssemblyA.Implementation.Internal",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "objectAfterActivate": {
+            "object": "0x1127e77c0",
+            "class": "0x127681ac0",
+            "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+            "instanceSize": 56,
+            "physicalAssembly": {
+              "assembly": "0x117c1a088",
+              "image": "0x117c18c48",
+              "name": "AssemblyA.Implementation.Internal",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "resultAfterActivate": "BASELINE-EXT|BASELINE-INTERNAL|1234"
+        }
+      ]
+    },
+    {
+      "mode": "PreUseScene",
+      "result": "Failed",
+      "uses": [
+        {
+          "kind": "PreUseScene",
+          "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+          "assemblyBefore": {
+            "assembly": "",
+            "image": "",
+            "name": "",
+            "isInterpreter": false,
+            "matchesShadow": false
+          },
+          "objectBefore": {
+            "object": "0x110f27600",
+            "class": "0x125641ac0",
+            "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+            "instanceSize": 56,
+            "physicalAssembly": {
+              "assembly": "0x11601a088",
+              "image": "0x116018c48",
+              "name": "AssemblyA.Implementation.Internal",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "objectAfterActivate": {
+            "object": "0x110f27600",
+            "class": "0x125641ac0",
+            "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+            "instanceSize": 56,
+            "physicalAssembly": {
+              "assembly": "0x11601a088",
+              "image": "0x116018c48",
+              "name": "AssemblyA.Implementation.Internal",
+              "isInterpreter": false,
+              "matchesShadow": false
+            }
+          },
+          "resultAfterActivate": "BASELINE-EXT|BASELINE-INTERNAL|1234"
+        }
+      ]
+    }
+  ],
+  "scope": "macOS ARM64 IL2CPP P01 only; final gate also requires independent native-path review"
+}
