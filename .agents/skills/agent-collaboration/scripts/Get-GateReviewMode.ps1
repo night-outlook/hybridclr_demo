@@ -1,8 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$WorkingCopyRoot,
-    [string]$SvnExecutable,
-    [string]$ResolverPath,
+    [string]$RepositoryRoot,
     [Alias("MainAgentModel")]
     [string]$EffectiveMainAgentModel,
     [switch]$FightHeroSkillDevelopment
@@ -10,26 +8,6 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
-
-function Find-SvnUserConfigResolver {
-    param([Parameter(Mandatory = $true)][string]$StartPath)
-
-    $directory = [System.IO.DirectoryInfo][System.IO.Path]::GetFullPath($StartPath)
-    while ($null -ne $directory) {
-        $candidate = [System.IO.Path]::Combine(
-            $directory.FullName,
-            ".agents",
-            "scripts",
-            "Resolve-SvnUserConfig.ps1"
-        )
-        if (Test-Path -LiteralPath $candidate -PathType Leaf) {
-            return $candidate
-        }
-        $directory = $directory.Parent
-    }
-
-    throw "Cannot find the shared SVN user config resolver."
-}
 
 function Get-OptionalPropertyValue {
     param(
@@ -45,6 +23,18 @@ function Get-OptionalPropertyValue {
         return $null
     }
     return $property.Value
+}
+
+function Get-GitRepositoryRoot {
+    param([Parameter(Mandatory = $true)][string]$StartPath)
+
+    $resolvedStartPath = [System.IO.Path]::GetFullPath($StartPath)
+    $gitRoot = (& git -C $resolvedStartPath rev-parse --show-toplevel 2>$null | Select-Object -First 1)
+    if ($LASTEXITCODE -eq 0 -and -not [string]::IsNullOrWhiteSpace($gitRoot)) {
+        return $gitRoot.Trim()
+    }
+
+    return $resolvedStartPath
 }
 
 function Get-ValidatedMainAgentModelFamily {
@@ -67,26 +57,15 @@ function Get-ValidatedMainAgentModelFamily {
 }
 
 try {
-    if ([string]::IsNullOrWhiteSpace($ResolverPath)) {
-        $searchRoot = if ([string]::IsNullOrWhiteSpace($WorkingCopyRoot)) {
-            (Get-Location).Path
-        }
-        else {
-            $WorkingCopyRoot
-        }
-        $ResolverPath = Find-SvnUserConfigResolver -StartPath $searchRoot
+    $startPath = if ([string]::IsNullOrWhiteSpace($RepositoryRoot)) {
+        (Get-Location).Path
     }
-
-    $resolverParameters = @{}
-    if (-not [string]::IsNullOrWhiteSpace($WorkingCopyRoot)) {
-        $resolverParameters.WorkingCopyRoot = $WorkingCopyRoot
+    else {
+        $RepositoryRoot
     }
-    if (-not [string]::IsNullOrWhiteSpace($SvnExecutable)) {
-        $resolverParameters.SvnExecutable = $SvnExecutable
-    }
-
-    $resolved = & $ResolverPath @resolverParameters -WarningAction SilentlyContinue
-    $rootConfig = Get-OptionalPropertyValue -Object $resolved -Name "Config"
+    $repositoryRoot = Get-GitRepositoryRoot -StartPath $startPath
+    $configPath = [System.IO.Path]::Combine($repositoryRoot, ".agents", "config", "config.json")
+    $rootConfig = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json
     $config = Get-OptionalPropertyValue -Object $rootConfig -Name "agent_collaboration"
     $requireSolMainAgent = Get-OptionalPropertyValue -Object $config -Name "require_sol_main_agent_for_gate_review"
 }
