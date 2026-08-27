@@ -40,6 +40,17 @@ transaction/type/execution/Unity integration work remains M03–M07.
   build GUID and native binary hash. Linker exclusions are derived only from
   that verified output; the pre-strip compiler inputs remain intact.
   No Editor-domain DLL is substituted for a target compiler or Player input.
+- A compiler AssemblyRef to a linker-excluded provider is not silently erased.
+  A separate set-bound proof may exempt only its raw runtime-membership checks
+  when the sealed linked consumer contains no such reference. The consumer must
+  be an unprotected fixed AOT assembly with the same full identity and complete
+  metadata/IL fingerprint as the frozen compiler input; current and frozen bytes
+  are independently checked. Harmless MVID differences are allowed, but changed
+  IL, attributes, references or identity are not. The provider must retain its
+  exact captured compiler bytes and authenticated linker-excluded role. Candidate,
+  Bootstrap, normal-hot-update and callback-filtered consumers are ineligible.
+  Explicit and reflection dependencies remain subject to all original checks.
+  Proof reuse rechecks the loaded set, roles, descriptors and bound files.
 - Compiler reference DLLs come from the target Player compiler's explicit
   reference paths. Patch closure DLLs are copied from a single captured compile
   snapshot; missing, injected or modified DLLs fail validation.
@@ -134,6 +145,10 @@ after fixed-image verification. Tampered/null images must fail before loading an
 caller-owned bytes must remain unchanged. The Shadow-OFF ordinary M00 regression
 continues to use its unmodified upstream load path.
 
+The fixed-image probe has an exact Bootstrap entry approval for the ordinary
+hot-update entry type and callsite. Its explicit runtime dependency remains in
+the graph; the entry approval does not authorize an unguarded managed load.
+
 ## Reproduction entrypoints
 
 Use the isolated `hybridclr_demo_shadow` project and shared unity-debug routing;
@@ -157,23 +172,26 @@ or a passing synthetic fixture alone is not milestone acceptance. macOS ARM64
 is the available validated platform inherited from M00/M01; no Windows or
 Android result may be inferred from it.
 
-The current consolidated source passed 260/260 Unity Editor tests with no skips
-(`_temp/AssemblyShadow/EditorTests-42d7408422d34cfa8d83d635ea39411e/results.xml`).
+The current consolidated source passed 295/295 Unity Editor tests with no skips
+(`_temp/AssemblyShadow/EditorTests-5e2e90b2513747749e6e9be790b29053/results.xml`).
 This includes full-identity/provenance regressions, schema-2 acquisition guards,
 fixed-image evidence, unproven callback state, policy-path handling, actual
-builtin-resource capture, the real 26-name prefab comparison, and unchanged
-Editor enum behavior. These results do not establish the new native Player or
+builtin-resource capture, the real 26-name prefab comparison, linked-reference
+proofs, exact ordinary-hot-update entry approvals, and unchanged Editor enum
+behavior. These results do not establish the new native Player or
 complete T02 integration. The initial diagnostic build also exposed that Unity's
 `BuildReport.summary.result` is not final inside `OnPostprocessBuild`; capture now
 observes callbacks and seals only after `BuildPipeline.BuildPlayer` returns a
-matching successful report. The last guarded Player at package `9ef3c4e` sealed
-its Player inputs and passed reflection, old-bundle Baseline, and old-bundle P01
-probes, but its resource import then failed on the engine-owned GUISkin. The
-subsequent repair captures builtin backing bytes, defining installed modules and
-every object identity; that repair is covered by the current Unity suite but still
-requires the complete import/build run. No earlier binary proves the current
-schema-2 guards. The updated Python artifact suite passes 77 tests, including
-schema-2 projection and nested builtin-proof tamper cases.
+matching successful report. The diagnostic Player at package `28f37921` sealed
+its inputs and frozen-resource receipt, and passed the schema-2 reflection,
+old-bundle Baseline, and old-bundle P01 probes. Its final manifest exposed the
+field-MemberRef fingerprint and compiler-only reference issues fixed in the
+current sources. A read-only replay now verifies all five guards, twenty runtime
+consumers and the complete compiled policy with zero diagnostics; it uses a
+temporary JSON serialization substitute and is not acceptance evidence. A clean
+pinned build, full T02 run and OFF regression are still required. The Python
+artifact suite passes 82 tests, including actual Unity nullable-field projection
+and nested builtin-proof tamper cases.
 
 The first guarded Player attempt exposed Unity forwarding the same control
 define twice. Identical controls are now idempotent; distinct or malformed

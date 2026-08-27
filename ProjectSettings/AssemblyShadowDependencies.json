@@ -20,6 +20,13 @@
   "bootstrapEntrypoints": [
     {
       "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+      "method": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",
+      "reason": "Exact ordinary-hot-update entry used only after the fixed-image guard verifies and loads the configured bytes; this approval does not authorize any managed acquisition or shadow activation."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
       "provider": "AssemblyA.Implementation.Internal",
       "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
       "method": "AssemblyShadowDemo.ShadowBootstrap::Run",

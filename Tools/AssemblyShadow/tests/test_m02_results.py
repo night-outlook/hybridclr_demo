@@ -640,6 +640,47 @@ class M02EvidenceTests(unittest.TestCase):
                 _reflection_manifest(manifest, reflection, Path(folder) / "baseline-manifest.json")
             self.assertIn("declaration projection", str(error.exception))
 
+    def test_reflection_manifest_accepts_jsonutility_empty_nullable_fields(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path, _ = self.reflection_schema2_fixture(Path(folder))
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            declarations = [dict(item) for item in reflection["declarations"]]
+            for declaration in declarations:
+                if declaration["kind"] != "FixedAssemblyBytes":
+                    declaration["imageSha256"] = ""
+                    declaration["providerAssemblyIdentity"] = ""
+                    declaration["imagePath"] = ""
+            manifest = {"reflectionBindingConfigurationSha256": reflection["rawSha256"],
+                        "reflectionBindingConfigurationHash": reflection["canonicalHash"],
+                        "reflectionBindings": declarations}
+            _reflection_manifest(manifest, reflection, Path(folder) / "baseline-manifest.json")
+
+    def test_reflection_manifest_rejects_injected_nonempty_nullable_claim(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path, _ = self.reflection_schema2_fixture(Path(folder))
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            declarations = [dict(item) for item in reflection["declarations"]]
+            target = next(item for item in declarations if item["kind"] != "FixedAssemblyBytes")
+            target["imagePath"] = "ReflectionBindings/Images/injected.dll.bytes"
+            manifest = {"reflectionBindingConfigurationSha256": reflection["rawSha256"],
+                        "reflectionBindingConfigurationHash": reflection["canonicalHash"],
+                        "reflectionBindings": declarations}
+            with self.assertRaises(VerificationError) as error:
+                _reflection_manifest(manifest, reflection, Path(folder) / "baseline-manifest.json")
+            self.assertIn("declaration projection", str(error.exception))
+
+    def test_reflection_manifest_accepts_schema1_jsonutility_empty_kind(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path = self.reflection_fixture(Path(folder))
+            receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            declaration = dict(reflection["declarations"][0], kind="", imageSha256="",
+                               providerAssemblyIdentity="", imagePath="")
+            manifest = {"reflectionBindingConfigurationSha256": reflection["rawSha256"],
+                        "reflectionBindingConfigurationHash": reflection["canonicalHash"],
+                        "reflectionBindings": [declaration]}
+            _reflection_manifest(manifest, reflection, Path(folder) / "baseline-manifest.json")
+
     def test_tampering_compile_snapshot_fails(self):
         with tempfile.TemporaryDirectory() as folder:
             editor, nunit, m01 = self.fixture(Path(folder))

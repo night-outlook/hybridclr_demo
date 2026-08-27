@@ -640,7 +640,23 @@ def _reflection_manifest(manifest: dict, reflection, path: Path):
         return
     _need(raw == reflection["rawSha256"], path, "reflectionBindingConfigurationSha256 differs from frozen configuration")
     _need(canonical == reflection["canonicalHash"], path, "reflectionBindingConfigurationHash differs from canonical configuration")
-    _need(isinstance(declarations, list) and declarations == reflection["declarations"], path,
+    _need(isinstance(declarations, list), path, "reflectionBindings declaration projection must be an array")
+    expected_declarations = reflection["declarations"]
+    _need(len(declarations) == len(expected_declarations), path,
+         "reflectionBindings declaration projection count differs from frozen configuration")
+    normalized_declarations = []
+    for index, (actual, expected) in enumerate(zip(declarations, expected_declarations)):
+        declaration_path = f"{path}.reflectionBindings[{index}]"
+        _need(isinstance(actual, dict), declaration_path, "reflection binding declaration must be an object")
+        normalized = dict(actual)
+        # JsonUtility writes null public string fields as empty strings. This
+        # normalization is limited to fields whose frozen configuration has no
+        # value; meaningful fixed-image claims remain exact and non-empty.
+        for field in ("kind", "imageSha256", "providerAssemblyIdentity", "imagePath"):
+            if normalized.get(field) == "" and expected.get(field) is None:
+                normalized[field] = None
+        normalized_declarations.append(normalized)
+    _need(normalized_declarations == expected_declarations, path,
          "reflectionBindings declaration projection differs from frozen configuration")
     if isinstance(manifest.get("assemblies"), list) and isinstance(manifest.get("dependencyGraph"), list):
         known = {_canonical_assembly_name(item.get("name")) for item in manifest["assemblies"] if isinstance(item, dict)}
