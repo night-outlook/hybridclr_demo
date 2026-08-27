@@ -1,0 +1,74 @@
+{
+  "milestone": "M02",
+  "resultPassed": true,
+  "unityVersion": "2022.3.62f2",
+  "target": "StandaloneOSX",
+  "baselineManifestSha256": "f080b8e4eb1b91d055faf2f09ef624f9e649251a691df39fb1e903e91afae0cd",
+  "patches": {
+    "P01": {
+      "changedRoots": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "closure": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "dllOnly": true
+    },
+    "P02": {
+      "changedRoots": [
+        "AssemblyA.Implementation.Extensibility"
+      ],
+      "closure": [
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+      ],
+      "dllOnly": true
+    },
+    "P03": {
+      "changedRoots": [
+        "AssemblyA.Contracts"
+      ],
+      "closure": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+      ],
+      "dllOnly": true
+    },
+    "P05": {
+      "changedRoots": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "closure": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "dllOnly": false
+    }
+  },
+  "nunit": {
+    "testCases": 319,
+    "suitesCovered": [
+      "MetadataTests",
+      "PolicyTests",
+      "GraphAndInputTests",
+      "ResourceAbiTests",
+      "SnapshotTests",
+      "SignatureHashTests",
+      "ResourceReceiptTests",
+      "M02StructuralPatchCompilationTests",
+      "M02DependencyFixtureTests"
+    ]
+  },
+  "reflectionProbe": {
+    "result": "Passed",
+    "allowed": 26,
+    "denied": 8,
+    "assemblyResolveEvents": 0,
+    "discoveryAllowedTypes": 17,
+    "fixedImageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+  },
+  "evidence": "SHA-256 bytes, Unity AssemblyShadow manifest/snapshot metadata, and NUnit test evidence"
+}

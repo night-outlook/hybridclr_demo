@@ -1,0 +1,26 @@
+diff --git a/ProjectSettings/EditorBuildSettings.asset b/ProjectSettings/EditorBuildSettings.asset
+index 1534abc..01fd967 100644
+--- a/ProjectSettings/EditorBuildSettings.asset
++++ b/ProjectSettings/EditorBuildSettings.asset
+@@ -6,6 +6,6 @@ EditorBuildSettings:
+   serializedVersion: 2
+   m_Scenes:
+   - enabled: 1
+-    path: Assets/AssemblyShadowDemo/Scenes/Bootstrap.unity
+-    guid: 961e0981b72b54f608fe18426c0dc54e
++    path: Assets/AssemblyShadowBaseline/Scenes/Baseline.unity
++    guid: 6714f5e19e54841e8acc46e79b571ced
+   m_configObjects: {}
+diff --git a/ProjectSettings/ProjectSettings.asset b/ProjectSettings/ProjectSettings.asset
+index 4be0772..382ae3c 100644
+--- a/ProjectSettings/ProjectSettings.asset
++++ b/ProjectSettings/ProjectSettings.asset
+@@ -786,7 +786,7 @@ PlayerSettings:
+   suppressCommonWarnings: 1
+   allowUnsafeCode: 0
+   useDeterministicCompilation: 1
+-  additionalIl2CppArgs: --compiler-flags="-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1"
++  additionalIl2CppArgs: --compiler-flags="-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0"
+   scriptingRuntimeVersion: 1
+   gcIncremental: 1
+   gcWBarrierValidation: 0

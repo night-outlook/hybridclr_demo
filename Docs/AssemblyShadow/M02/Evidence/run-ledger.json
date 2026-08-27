@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M02",
+  "projectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+  "sourceBoundary": {
+    "demo": "0939b0ed667abd2694e5e7dbab23b6f670a8642f",
+    "package": "6d603459e52027cd31616c71f137d29aadaf4ea2",
+    "runtime": "1bc69c3acc2434804e71560418df8c728a63360e",
+    "native": "03a450c73b5c5db2ed6f87dc4f194788fd204567"
+  },
+  "runs": [
+    {
+      "id": "install-repeatability",
+      "command": "AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability",
+      "exitCode": 0,
+      "log": "_temp/UnityExec_20260827_150238.log"
+    },
+    {
+      "id": "nunit",
+      "command": "pwsh -File Tools/AssemblyShadow/Invoke-ShadowEditorTests.ps1 -TestFilter 'HybridCLR.Editor.AssemblyShadow.Tests;AssemblyShadowDemo.EditorTests' -TimeoutSec 1200",
+      "exitCode": 0,
+      "evidence": "editor-tests.xml",
+      "passed": 319,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 25.0084049
+    },
+    {
+      "id": "player-on",
+      "command": "AssemblyShadowDemo.Editor.M02Build.BuildPlayerBaseline -shadowBuildOutput Builds/AssemblyShadow/M02/Guarded-0939b0e.app",
+      "exitCode": 0,
+      "log": "_temp/UnityExec_20260827_150324.log",
+      "finalBuildPhaseSeconds": 36.98
+    },
+    {
+      "id": "reflection-player",
+      "mode": "M02ReflectionBindings",
+      "exitCode": 0,
+      "evidence": "m02-reflection.json"
+    },
+    {
+      "id": "old-bundles-baseline",
+      "mode": "Baseline",
+      "exitCode": 0,
+      "evidence": "m02-old-bundles-baseline.json"
+    },
+    {
+      "id": "old-bundles-p01",
+      "mode": "P01",
+      "exitCode": 0,
+      "evidence": "m02-old-bundles-p01.json"
+    },
+    {
+      "id": "t02",
+      "command": "pwsh -File Tools/AssemblyShadow/Invoke-M02EditorValidation.ps1 -TimeoutSec 1200",
+      "exitCode": 0,
+      "evidence": "editor-validation.json",
+      "casesPassed": 13,
+      "logs": [
+        "_temp/UnityExec_20260827_150913.log",
+        "_temp/UnityExec_20260827_150931.log",
+        "_temp/UnityExec_20260827_150953.log",
+        "_temp/UnityExec_20260827_151004.log"
+      ]
+    },
+    {
+      "id": "artifact-verification",
+      "command": "python3 Tools/AssemblyShadow/verify-m02-results.py (captured Editor, NUnit, M01 and reflection inputs)",
+      "exitCode": 0,
+      "evidence": "verification.json",
+      "archivedInputReplayExitCode": 0
+    },
+    {
+      "id": "python-regressions",
+      "command": "python3 -m unittest discover -s Tools/AssemblyShadow/tests -v",
+      "exitCode": 0,
+      "evidence": "python-tests.log",
+      "passed": 93,
+      "durationSeconds": 17.609
+    },
+    {
+      "id": "player-off-build",
+      "command": "AssemblyShadowBaseline.Editor.BaselineBuild.Build -shadowBuildOutput Builds/AssemblyShadow/M02/NativeOff-0939b0e.app",
+      "exitCode": 0,
+      "evidence": "native-off-build.json",
+      "log": "_temp/UnityExec_20260827_152202.log"
+    },
+    {
+      "id": "off-source-check-during-override",
+      "command": "python3 Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow off --json",
+      "exitCode": 1,
+      "expectedRefusal": true,
+      "message": "Working bytes do not match pinned Git blob: ProjectSettings/EditorBuildSettings.asset",
+      "evidence": "native-off-settings.diff",
+      "resolution": "Restored pinned ON settings and reran default strict verifier; no bypass."
+    },
+    {
+      "id": "player-off-regression",
+      "exitCode": 0,
+      "evidence": "native-off-result.json",
+      "log": "_temp/AssemblyShadow/m02-native-off-0939b0e.log"
+    },
+    {
+      "id": "restore-on",
+      "command": "AssemblyShadowDemo.Editor.M02Build.Configure",
+      "exitCode": 0,
+      "log": "_temp/UnityExec_20260827_152505.log",
+      "settingsSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+      "fixedImageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    },
+    {
+      "id": "strict-restored-source",
+      "command": "python3 Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow on --json",
+      "exitCode": 0,
+      "evidence": "installed-source-verification.json"
+    }
+  ],
+  "limitations": [
+    "Automated headless macOS ARM64 execution only.",
+    "No new native/runtime source in M02.",
+    "Unsigned patches; production transaction/resolution/execution/resource gates remain later milestones."
+  ]
+}

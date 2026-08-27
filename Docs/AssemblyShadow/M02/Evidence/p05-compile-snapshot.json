@@ -1,0 +1,1907 @@
+{
+    "schemaVersion": 1,
+    "kind": "CompilePlayerScripts",
+    "snapshotHash": "de34d12d29d92e94589d4cceca3c38b5631a71f5f691a0eaedc0e19f99883db2",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "buildId": "",
+    "buildGuid": "",
+    "playerOutput": "",
+    "nativeLibraryPath": "",
+    "nativeLibrarySha256": "",
+    "playerBuildSucceeded": false,
+    "playerBuildFilterCaptured": false,
+    "playerBuildOptions": 0,
+    "normalHotUpdateAssemblies": [],
+    "extraScriptingDefines": [
+        "ASSEMBLY_SHADOW_P05",
+        "ASSEMBLY_SHADOW_REFLECTION_BINDINGS_d0e7f7c14cbe9ef23ac1478b1633772ce6e649b2719ff838e2eec5bab820ad74"
+    ],
+    "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr",
+            "revision": "1bc69c3acc2434804e71560418df8c728a63360e",
+            "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity",
+            "revision": "6d603459e52027cd31616c71f137d29aadaf4ea2",
+            "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus",
+            "revision": "03a450c73b5c5db2ed6f87dc4f194788fd204567",
+            "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo",
+            "revision": "0939b0ed667abd2694e5e7dbab23b6f670a8642f",
+            "localPath": "."
+        }
+    },
+    "assemblies": [
+        {
+            "name": "Assembly-CSharp",
+            "path": "Assemblies/Assembly-CSharp.dll",
+            "sha256": "a7b6daade1642619b38230cfafc098a7b24a9a10fe6e661ad90984a77aa1e93e",
+            "pdbPath": "Assemblies/Assembly-CSharp.pdb",
+            "pdbSha256": "b10bf4bca49edf904ca16b2f4ef446d086c27fea539440593a207dfb3577b892",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Assembly-CSharp.dll"
+        },
+        {
+            "name": "AssemblyA.Contracts",
+            "path": "Assemblies/AssemblyA.Contracts.dll",
+            "sha256": "921545749f2f695117d601b80f9fcb68729b8cbfe9e9611766385f8187f1bfb9",
+            "pdbPath": "Assemblies/AssemblyA.Contracts.pdb",
+            "pdbSha256": "65d58ca63af5f0ec6e2b88d7708804c99023ab56b93519a64506870f8a15486e",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyA.Contracts.dll"
+        },
+        {
+            "name": "AssemblyA.Implementation.Extensibility",
+            "path": "Assemblies/AssemblyA.Implementation.Extensibility.dll",
+            "sha256": "1c69a5f90fb330b7f68a3a947312e89e7159bea356f8c20d9d12a3023df50552",
+            "pdbPath": "Assemblies/AssemblyA.Implementation.Extensibility.pdb",
+            "pdbSha256": "9757c3c326600f24c8f7db3260149b8089d9a8bffa6ecf79ee54ee04c94654b8",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyA.Implementation.Extensibility.dll"
+        },
+        {
+            "name": "AssemblyA.Implementation.Internal",
+            "path": "Assemblies/AssemblyA.Implementation.Internal.dll",
+            "sha256": "2b0650bedf9efe87af1a7803320c4e97481b393c82ac303edbd290e01a761dcd",
+            "pdbPath": "Assemblies/AssemblyA.Implementation.Internal.pdb",
+            "pdbSha256": "5e80f42969a71cc79fac40662c6655ed6bddbe739105498c5d5babd24d3b935a",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyA.Implementation.Internal.dll"
+        },
+        {
+            "name": "AssemblyShadowBaseline.Aot",
+            "path": "Assemblies/AssemblyShadowBaseline.Aot.dll",
+            "sha256": "f974312ed41aa7d59678bb80dc9212d62b1e7fc41a5616435fb849e8a6e78f6f",
+            "pdbPath": "Assemblies/AssemblyShadowBaseline.Aot.pdb",
+            "pdbSha256": "ff30bd4043316dd2d703410c731bb89e872a932e8bbfa5d2ec75887ce979b152",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyShadowBaseline.Aot.dll"
+        },
+        {
+            "name": "AssemblyShadowBaseline.HotUpdate",
+            "path": "Assemblies/AssemblyShadowBaseline.HotUpdate.dll",
+            "sha256": "2639a3afc5bdf8f1ef5ebaa344cc0cbbfb90243a7679e824e2dd9e53cab89721",
+            "pdbPath": "Assemblies/AssemblyShadowBaseline.HotUpdate.pdb",
+            "pdbSha256": "630fbf48ced890cda695dbba9f054eb84e86aeec64a5ae9336639559599d29dd",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyShadowBaseline.HotUpdate.dll"
+        },
+        {
+            "name": "AssemblyShadowDemo.Bootstrap",
+            "path": "Assemblies/AssemblyShadowDemo.Bootstrap.dll",
+            "sha256": "087706091331b64849e1d173ead3af35b662da196e1494b45fa5e4eeef3e3f18",
+            "pdbPath": "Assemblies/AssemblyShadowDemo.Bootstrap.pdb",
+            "pdbSha256": "90762645b8d8151e92d813f46064664ab29035e02e61dd9158063e75f26ce12a",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyShadowDemo.Bootstrap.dll"
+        },
+        {
+            "name": "AssemblyShadowDemo.ContractsConsumer",
+            "path": "Assemblies/AssemblyShadowDemo.ContractsConsumer.dll",
+            "sha256": "c04eab88cfd4f61ef5fb15a80d533c37db9832d98c4358c96719ac0f6627c3c6",
+            "pdbPath": "Assemblies/AssemblyShadowDemo.ContractsConsumer.pdb",
+            "pdbSha256": "5693d790358c18a5d26f989894b573f2a183821f3bfc4e1fc0b861fb8fdaf97f",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyShadowDemo.ContractsConsumer.dll"
+        },
+        {
+            "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+            "path": "Assemblies/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+            "sha256": "699b9172892465ba9b5153a41762926647f50c119d1cbe8fb35eef0145ec8343",
+            "pdbPath": "Assemblies/AssemblyShadowDemo.ExtensibilityConsumer.pdb",
+            "pdbSha256": "9cbae57f7ff009d86668e961e4a032e897f0ab41f2269c89167aa2ec2e393105",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/AssemblyShadowDemo.ExtensibilityConsumer.dll"
+        },
+        {
+            "name": "HybridCLR.Runtime",
+            "path": "Assemblies/HybridCLR.Runtime.dll",
+            "sha256": "a0dfa2c7d56b57becba686d4e466cc3af4fbb3a68dab32f2b91737279bee0f1a",
+            "pdbPath": "Assemblies/HybridCLR.Runtime.pdb",
+            "pdbSha256": "e6892cce1cbce263494e8fdd252496f30f5562de72ddb9fe84288239aac505fb",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/HybridCLR.Runtime.dll"
+        },
+        {
+            "name": "MCPForUnity.Runtime",
+            "path": "Assemblies/MCPForUnity.Runtime.dll",
+            "sha256": "57237c1ac47431a1623f579aa488fb5f9f17201b518122173b02f3be67581fc2",
+            "pdbPath": "Assemblies/MCPForUnity.Runtime.pdb",
+            "pdbSha256": "c465a27d4c243e1c876263cf367caac124ad2ba2fa28947e16228d657f684e0f",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/MCPForUnity.Runtime.dll"
+        },
+        {
+            "name": "Newtonsoft.Json",
+            "path": "Assemblies/Newtonsoft.Json.dll",
+            "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f",
+            "pdbPath": "Assemblies/Newtonsoft.Json.pdb",
+            "pdbSha256": "17cbab4d4207187ed94173c0d59d7a39fabed7c9035b73634c1f02188dd60168",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime/AOT/Newtonsoft.Json.dll"
+        },
+        {
+            "name": "Unity.2D.Animation.Runtime",
+            "path": "Assemblies/Unity.2D.Animation.Runtime.dll",
+            "sha256": "41fea685f05b3e5adcf55fa16d332ff56cb357ee80f9ba4555e33989fe563e92",
+            "pdbPath": "Assemblies/Unity.2D.Animation.Runtime.pdb",
+            "pdbSha256": "e1a90e8e0c385c611c727e7a52ed644e5b7308665baa13aa1127ef867b4c1631",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.2D.Animation.Runtime.dll"
+        },
+        {
+            "name": "Unity.2D.Common.Runtime",
+            "path": "Assemblies/Unity.2D.Common.Runtime.dll",
+            "sha256": "15fc4c9fb18f1f4026972af93a9b1e4c2f13c7fdae664d9b19e7d07fec8ca092",
+            "pdbPath": "Assemblies/Unity.2D.Common.Runtime.pdb",
+            "pdbSha256": "59fe6dfc77be9bdf28eb05dc729c09cb795a218b83822941ea678f80e63bd001",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.2D.Common.Runtime.dll"
+        },
+        {
+            "name": "Unity.2D.IK.Runtime",
+            "path": "Assemblies/Unity.2D.IK.Runtime.dll",
+            "sha256": "b52a9e6a38c4931698d11babf8d8e3fd050c0cb462e0ffb1be0b040c8a8ed6da",
+            "pdbPath": "Assemblies/Unity.2D.IK.Runtime.pdb",
+            "pdbSha256": "7899e3d6b5c6dd87ffad059cae1404555a4855558329aa953cbd50b9d416103a",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.2D.IK.Runtime.dll"
+        },
+        {
+            "name": "Unity.2D.PixelPerfect",
+            "path": "Assemblies/Unity.2D.PixelPerfect.dll",
+            "sha256": "2cea90b4135c2add601652ca1d9e794d5d42ed9c06f80ad3d252a7d1c1964c89",
+            "pdbPath": "Assemblies/Unity.2D.PixelPerfect.pdb",
+            "pdbSha256": "9175a97f6b504e650959fbc108475471db6033a30ef3ae1b9d0fadb4945c4957",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.2D.PixelPerfect.dll"
+        },
+        {
+            "name": "Unity.2D.SpriteShape.Runtime",
+            "path": "Assemblies/Unity.2D.SpriteShape.Runtime.dll",
+            "sha256": "37a1f08d9f4c384d03fd9753afb5f18e9e6941ece83d5fa67edf22a62ae9fb0a",
+            "pdbPath": "Assemblies/Unity.2D.SpriteShape.Runtime.pdb",
+            "pdbSha256": "f7c8a8636472cc0ca0e3e1012360ab06f5f5897f20af78a3387c4abc1e134492",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.2D.SpriteShape.Runtime.dll"
+        },
+        {
+            "name": "Unity.2D.Tilemap.Extras",
+            "path": "Assemblies/Unity.2D.Tilemap.Extras.dll",
+            "sha256": "912eef31d6094ced42fa26fdd6b97a7fd4552c8498eb4e791ba77dfaac652e79",
+            "pdbPath": "Assemblies/Unity.2D.Tilemap.Extras.pdb",
+            "pdbSha256": "3f111d91ea18837684d1bc22f688fef166c4e46f0bbe429037abacb3aac418d8",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.2D.Tilemap.Extras.dll"
+        },
+        {
+            "name": "Unity.Burst",
+            "path": "Assemblies/Unity.Burst.dll",
+            "sha256": "43810bbff591ff20b237cc2f20f520c7281e1e35446c6fe414bc09f48aa297f8",
+            "pdbPath": "Assemblies/Unity.Burst.pdb",
+            "pdbSha256": "fc728747a3bd76b36a7808f85f3e5cb1c41f6c2d9cf8bf273f9643c24bb2be50",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.Burst.dll"
+        },
+        {
+            "name": "Unity.Burst.Unsafe",
+            "path": "Assemblies/Unity.Burst.Unsafe.dll",
+            "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/PackageCache/com.unity.burst@1.8.21/Unity.Burst.Unsafe.dll"
+        },
+        {
+            "name": "Unity.Collections",
+            "path": "Assemblies/Unity.Collections.dll",
+            "sha256": "9e086d7eca8675a51af0fea7608c0c76c00651214d82b75a551ebdbb665d53a8",
+            "pdbPath": "Assemblies/Unity.Collections.pdb",
+            "pdbSha256": "7ca259cb58ebf1dc95a44264c9c57126e610f1ff51666f11880e3ccec4144f9d",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.Collections.dll"
+        },
+        {
+            "name": "Unity.Collections.LowLevel.ILSupport",
+            "path": "Assemblies/Unity.Collections.LowLevel.ILSupport.dll",
+            "sha256": "dbd7fb37e353bf6609938be1565c14c952ff6b6a67d2e6436ae3147a084d40f1",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/PackageCache/com.unity.collections@1.2.4/Unity.Collections.LowLevel.ILSupport/Unity.Collections.LowLevel.ILSupport.dll"
+        },
+        {
+            "name": "Unity.InternalAPIEngineBridge.001",
+            "path": "Assemblies/Unity.InternalAPIEngineBridge.001.dll",
+            "sha256": "cd8a8897efe96f2d9d3ef0070d18f15c249c40f06164982435a064cbe6c302d4",
+            "pdbPath": "Assemblies/Unity.InternalAPIEngineBridge.001.pdb",
+            "pdbSha256": "6ef8233b5bba43261f44d02674fad0a45f0299cf5464e846da8c54a530e3ad93",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.InternalAPIEngineBridge.001.dll"
+        },
+        {
+            "name": "Unity.Mathematics",
+            "path": "Assemblies/Unity.Mathematics.dll",
+            "sha256": "195f5f0a7890b5d8dfa096f21f744a650534ce73b96761517d0461d7b9b053b5",
+            "pdbPath": "Assemblies/Unity.Mathematics.pdb",
+            "pdbSha256": "16637222ebf16ade185149af5a5820e795343ec6c5778da3dc3639ab54669276",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.Mathematics.dll"
+        },
+        {
+            "name": "Unity.RenderPipeline.Universal.ShaderLibrary",
+            "path": "Assemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+            "sha256": "913e6a5bf8317d2945ed5d2511fba6b5ee6c7aafc3bcfa20bc8dcf41405a32b5",
+            "pdbPath": "Assemblies/Unity.RenderPipeline.Universal.ShaderLibrary.pdb",
+            "pdbSha256": "8a29528bf51b0e4bdd6f1571461bae4be5f3463b3b9780935a14a004d72cfc09",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipeline.Universal.ShaderLibrary.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.Core.Runtime",
+            "path": "Assemblies/Unity.RenderPipelines.Core.Runtime.dll",
+            "sha256": "85aceb5e212d3194abe83690e901095ddfc2e7190350add2ff45f4bd64f00e18",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.Core.Runtime.pdb",
+            "pdbSha256": "569a4bed641fda090609febcff5f51aefe230ed38da25bc485a0330a9d650121",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.Core.Runtime.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.Core.ShaderLibrary",
+            "path": "Assemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+            "sha256": "bca28b2f813bc8379ace21414c13243e9b8ff25d32b38b2bef735ed5e6666718",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.Core.ShaderLibrary.pdb",
+            "pdbSha256": "92f72b6a3deeac2d4cd86af77cf873cdb104deb241c55db12e487cd2e66c0527",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.Core.ShaderLibrary.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary",
+            "path": "Assemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+            "sha256": "696444f56f2818887d7e31dd5dfc7b342063cfc80b09cdd0662ed713c5647c0c",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb",
+            "pdbSha256": "19fe3e5bc1c5d16e0e001195a3cf55f801aa7985d03ab44d03af54283a95c41e",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.2D.Internal",
+            "path": "Assemblies/Unity.RenderPipelines.Universal.2D.Internal.dll",
+            "sha256": "8f7bb15d1149220586d93f6afd540636e9989564facf32bf1238ccb8610fac69",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.Universal.2D.Internal.pdb",
+            "pdbSha256": "49b22ce42fdec070d145a69be208782607e5ed321d649d170eb860ba195000b1",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.Universal.2D.Internal.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Config.Runtime",
+            "path": "Assemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+            "sha256": "29f64fbbda3f052ee67ddb5172b6ab1830483a5aec58fa54e33d7da57dae78ad",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.Universal.Config.Runtime.pdb",
+            "pdbSha256": "f8397cb06af5b1be58ea03c51bc5ad77e5718fa9e0d9d4b1ff1f3c173d0f8b0d",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.Universal.Config.Runtime.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Runtime",
+            "path": "Assemblies/Unity.RenderPipelines.Universal.Runtime.dll",
+            "sha256": "3fcd91599811751af4ce9720ee77e5bedc166a497fa2f498a7ba5db717a16f6b",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.Universal.Runtime.pdb",
+            "pdbSha256": "a6d18ff6cfb1e051be62b566f6b8642f01d2707c0bd6caddaba493cea1ee54be",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.Universal.Runtime.dll"
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Shaders",
+            "path": "Assemblies/Unity.RenderPipelines.Universal.Shaders.dll",
+            "sha256": "e4352521630107ec0c62f21a5ddd9cbaca90e75600f0cb7f9aae25dd3d9d48b3",
+            "pdbPath": "Assemblies/Unity.RenderPipelines.Universal.Shaders.pdb",
+            "pdbSha256": "e5a96b10cbda9cefef307bc594b534d2eb079d36b3ad4daca6a64365db27be08",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.RenderPipelines.Universal.Shaders.dll"
+        },
+        {
+            "name": "Unity.TextMeshPro",
+            "path": "Assemblies/Unity.TextMeshPro.dll",
+            "sha256": "7affc5c8da4a6b5d03652616dbe500082ce2b6e6a2b642aacea2dfd74d3b46c5",
+            "pdbPath": "Assemblies/Unity.TextMeshPro.pdb",
+            "pdbSha256": "fb42a2b781f0d6c350075422f03a07afdbb59727cad76436f8dc4e5df2826850",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.TextMeshPro.dll"
+        },
+        {
+            "name": "Unity.Timeline",
+            "path": "Assemblies/Unity.Timeline.dll",
+            "sha256": "3c8990230a7854a565a24dd08378521a2035f36905fce611d6ab1114f9abb26d",
+            "pdbPath": "Assemblies/Unity.Timeline.pdb",
+            "pdbSha256": "dd0a4de8be2a90c22a2a7d39678a8d09adeb4f772c84eac248a59279601126b8",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.Timeline.dll"
+        },
+        {
+            "name": "Unity.VisualScripting.Antlr3.Runtime",
+            "path": "Assemblies/Unity.VisualScripting.Antlr3.Runtime.dll",
+            "sha256": "ed7ce205f66eafe39bbb5d084d42e7fe11cb4b386ff208e5d5110891be0b7b37",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+        },
+        {
+            "name": "Unity.VisualScripting.Core",
+            "path": "Assemblies/Unity.VisualScripting.Core.dll",
+            "sha256": "9f57409ea81fd2a3823c116af4c133d71fda930c036aab3a9f2d263e5e53fd45",
+            "pdbPath": "Assemblies/Unity.VisualScripting.Core.pdb",
+            "pdbSha256": "423b29f57682b387f35e3a84fff2e260007a7b08154d3b8891e4665cc4dc6799",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.VisualScripting.Core.dll"
+        },
+        {
+            "name": "Unity.VisualScripting.Flow",
+            "path": "Assemblies/Unity.VisualScripting.Flow.dll",
+            "sha256": "a9f51c04fd29df5c040e04cccf5cc52bfb7c80d6d945f91ef499f718b16efe4d",
+            "pdbPath": "Assemblies/Unity.VisualScripting.Flow.pdb",
+            "pdbSha256": "4b5f950e1e348025410f085e83db0487db329a8d170b46150be53eb9d59059b1",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.VisualScripting.Flow.dll"
+        },
+        {
+            "name": "Unity.VisualScripting.State",
+            "path": "Assemblies/Unity.VisualScripting.State.dll",
+            "sha256": "cb2c2caf5d7736183c1dcd666b06860a21066039f417f3b4a0a0d30d6bed6078",
+            "pdbPath": "Assemblies/Unity.VisualScripting.State.pdb",
+            "pdbSha256": "9eacbc8838886c1d9caa6fdca0acde44faef10f6c1c51aac7799024bf88ae1ca",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/Unity.VisualScripting.State.dll"
+        },
+        {
+            "name": "UnityEngine.TestRunner",
+            "path": "Assemblies/UnityEngine.TestRunner.dll",
+            "sha256": "563952a349f3500975081b2614b53ea192c1ae366f8ae2e68c38aa49a0954c4f",
+            "pdbPath": "Assemblies/UnityEngine.TestRunner.pdb",
+            "pdbSha256": "22149117891ad535c5d09da71560a81c24996561ab394e139d5336f2e700eeae",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/UnityEngine.TestRunner.dll"
+        },
+        {
+            "name": "UnityEngine.UI",
+            "path": "Assemblies/UnityEngine.UI.dll",
+            "sha256": "eb13904e4159cce7f7b0fbeae3a250e1a598973501f069b9694c99af49e2e8bf",
+            "pdbPath": "Assemblies/UnityEngine.UI.pdb",
+            "pdbSha256": "e63704c45ac439fcbf3edcb2bfd32d8f07574a49b603d2ba92e54ff08acfed4d",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb/P05-compile/CompilerOutput/UnityEngine.UI.dll"
+        },
+        {
+            "name": "nunit.framework",
+            "path": "Assemblies/nunit.framework.dll",
+            "sha256": "e388e140954de12970384331d1730e95b4613ef53c3326b6f8fa0fffdbc9314f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+        }
+    ],
+    "references": [
+        {
+            "name": "Microsoft.Win32.Primitives",
+            "path": "References/Microsoft.Win32.Primitives.dll",
+            "sha256": "2522cb85ef5379a4f716a035e11549b6814f4d426e758649250738358a71c85f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/Microsoft.Win32.Primitives.dll"
+        },
+        {
+            "name": "System",
+            "path": "References/System.dll",
+            "sha256": "2886c15559ef9f2f2c06389d204176ef86f74344416e680d450ac210d40656aa",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.dll"
+        },
+        {
+            "name": "System.AppContext",
+            "path": "References/System.AppContext.dll",
+            "sha256": "643ec79d998df16995c4270bf2dc8ba881796179c03fa55d343ee9c43ba074d7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.AppContext.dll"
+        },
+        {
+            "name": "System.Buffers",
+            "path": "References/System.Buffers.dll",
+            "sha256": "d0648fc3d820c8b225fe991d55d506f3210b698cc02beaf8aa31d990cd990772",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Buffers.dll"
+        },
+        {
+            "name": "System.Collections",
+            "path": "References/System.Collections.dll",
+            "sha256": "969da19309c9d0aa44d4ab9c03ad9f85a614fe0c285eaa68ee0bb5dc4dc6e47a",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.dll"
+        },
+        {
+            "name": "System.Collections.Concurrent",
+            "path": "References/System.Collections.Concurrent.dll",
+            "sha256": "c882ff60ae9e26a23d149a11aa8bcc546652e1bd2b58656a7c3b11a8f5e227a7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.Concurrent.dll"
+        },
+        {
+            "name": "System.Collections.NonGeneric",
+            "path": "References/System.Collections.NonGeneric.dll",
+            "sha256": "17221b8767355654f5c97b53a4fd8dd413f95e2faf36dd2d28ea863ca7536f4a",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.NonGeneric.dll"
+        },
+        {
+            "name": "System.Collections.Specialized",
+            "path": "References/System.Collections.Specialized.dll",
+            "sha256": "9572743bf2fa4fd7a5c5e8d2c8a9b44424f38ff67042c833789282dbe241cb88",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.Specialized.dll"
+        },
+        {
+            "name": "System.ComponentModel",
+            "path": "References/System.ComponentModel.dll",
+            "sha256": "a488ab63c97df6d45f8dc01ecdd56c4ece383fc88231869caca1a74c29ee1c12",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.dll"
+        },
+        {
+            "name": "System.ComponentModel.Composition",
+            "path": "References/System.ComponentModel.Composition.dll",
+            "sha256": "3d9e953036e19ba57ee12c1148a35e067442063c86ad9d40ff393fb289421914",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll"
+        },
+        {
+            "name": "System.ComponentModel.EventBasedAsync",
+            "path": "References/System.ComponentModel.EventBasedAsync.dll",
+            "sha256": "04a7ea907580d9d41ca1d8d67abfe81d61af8fc59125e1383a9502bfd4f9134f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.EventBasedAsync.dll"
+        },
+        {
+            "name": "System.ComponentModel.Primitives",
+            "path": "References/System.ComponentModel.Primitives.dll",
+            "sha256": "6522dfefdddfbf58ccc4f3ba6f41121e16ee5b20dd8f325c6983b4ac8c3befd8",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.Primitives.dll"
+        },
+        {
+            "name": "System.ComponentModel.TypeConverter",
+            "path": "References/System.ComponentModel.TypeConverter.dll",
+            "sha256": "399642afed43a9c150650eeb37cd407c2d14ab005e58d6f2784b726e0be72f53",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.TypeConverter.dll"
+        },
+        {
+            "name": "System.Console",
+            "path": "References/System.Console.dll",
+            "sha256": "98b2c46fda1c10418cddd36e3950058a7d188a48c482074ec77c3daca1dbad04",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Console.dll"
+        },
+        {
+            "name": "System.Core",
+            "path": "References/System.Core.dll",
+            "sha256": "83c8c06c5e59955aad7ef4acc13b63d702764f5b4e20cefb3a431cb2f75a12ed",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Core.dll"
+        },
+        {
+            "name": "System.Data",
+            "path": "References/System.Data.dll",
+            "sha256": "722b754ca36e903c69519e8906ebc0f96f14525d847f73f3b5f2ac765499715b",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Data.dll"
+        },
+        {
+            "name": "System.Data.Common",
+            "path": "References/System.Data.Common.dll",
+            "sha256": "cfbbe345a3af5c2820492779ce4c9e1d9c7e4c9e714f222a15ab524cf827af52",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Data.Common.dll"
+        },
+        {
+            "name": "System.Diagnostics.Contracts",
+            "path": "References/System.Diagnostics.Contracts.dll",
+            "sha256": "250ba880b970a355cf626e7ad60f736aab379c7ba06f68ffdebb6f2b852c25cb",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Contracts.dll"
+        },
+        {
+            "name": "System.Diagnostics.Debug",
+            "path": "References/System.Diagnostics.Debug.dll",
+            "sha256": "3964a2da6b23e89d076faf6a91cf8b2fe6d196d4dea2f954e0c5e1f570ef85b1",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Debug.dll"
+        },
+        {
+            "name": "System.Diagnostics.FileVersionInfo",
+            "path": "References/System.Diagnostics.FileVersionInfo.dll",
+            "sha256": "3f6ce9c7991ab252c5c704ff91e1c99d21b5fe99937d27132b3b56f8b981a045",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.FileVersionInfo.dll"
+        },
+        {
+            "name": "System.Diagnostics.Process",
+            "path": "References/System.Diagnostics.Process.dll",
+            "sha256": "29f7e89a609dcbcec72a4adf094a458718b23940721cebae0440ad7a0f522921",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Process.dll"
+        },
+        {
+            "name": "System.Diagnostics.StackTrace",
+            "path": "References/System.Diagnostics.StackTrace.dll",
+            "sha256": "2b91c8a72755071086c0fe4ab8019480eeabf9ae5243cbf58942761abd1013a5",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.StackTrace.dll"
+        },
+        {
+            "name": "System.Diagnostics.TextWriterTraceListener",
+            "path": "References/System.Diagnostics.TextWriterTraceListener.dll",
+            "sha256": "d85c7a6c1d9e848b69aa5a8ffb4a9755e8d84fc957ae9c455ead30fd8b688869",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.TextWriterTraceListener.dll"
+        },
+        {
+            "name": "System.Diagnostics.Tools",
+            "path": "References/System.Diagnostics.Tools.dll",
+            "sha256": "25d1dec703daa1e68dea27c6f85f4a0c55d24a56d1c597388c6c596e0ff9f856",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Tools.dll"
+        },
+        {
+            "name": "System.Diagnostics.TraceSource",
+            "path": "References/System.Diagnostics.TraceSource.dll",
+            "sha256": "10ae31d5bdd373bbca96dc83cad65a32d1e788d8f95fb1555b371026025b2643",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.TraceSource.dll"
+        },
+        {
+            "name": "System.Diagnostics.Tracing",
+            "path": "References/System.Diagnostics.Tracing.dll",
+            "sha256": "469d5ab04348ab7db62f71d757586e46692695b5c4604a26a01899baceb4b47d",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Tracing.dll"
+        },
+        {
+            "name": "System.Drawing",
+            "path": "References/System.Drawing.dll",
+            "sha256": "c9a3ea4bcb020c63a986fd72a31ce997e62a5f8d04460a32548e6fa31ae8f910",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Drawing.dll"
+        },
+        {
+            "name": "System.Drawing.Primitives",
+            "path": "References/System.Drawing.Primitives.dll",
+            "sha256": "da2afcd4237dc4f8e14f66bd9d2983143881e97c3f3c1738620438df94d030e4",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Drawing.Primitives.dll"
+        },
+        {
+            "name": "System.Dynamic.Runtime",
+            "path": "References/System.Dynamic.Runtime.dll",
+            "sha256": "f34cb31b138244d902cc4220500a60a7ffe6e5cf0874f48678145aa2f42318ea",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Dynamic.Runtime.dll"
+        },
+        {
+            "name": "System.Globalization",
+            "path": "References/System.Globalization.dll",
+            "sha256": "a8bb8be1079c4220b202bc873b7ffe39a2e306cd5280843ad5c1aed8376db2d3",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.dll"
+        },
+        {
+            "name": "System.Globalization.Calendars",
+            "path": "References/System.Globalization.Calendars.dll",
+            "sha256": "03d14391a91d831f15050cd6255cd1097f546760b46f9fd2c0479069735d264b",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.Calendars.dll"
+        },
+        {
+            "name": "System.Globalization.Extensions",
+            "path": "References/System.Globalization.Extensions.dll",
+            "sha256": "744c044a966cde69a0362d7f7eadba7f4b89e28c95cb47ab6022740d381969c0",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.Extensions.dll"
+        },
+        {
+            "name": "System.IO",
+            "path": "References/System.IO.dll",
+            "sha256": "855c8b76c1dd99ecd97f079b073eff83292b1ff90b9c5426cbe36b76c39a34d1",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.dll"
+        },
+        {
+            "name": "System.IO.Compression",
+            "path": "References/System.IO.Compression.dll",
+            "sha256": "dd36080142c15c7cf005e78e3237cd85a6d9e241b979072c0b82e0a40f6848b3",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.dll"
+        },
+        {
+            "name": "System.IO.Compression.FileSystem",
+            "path": "References/System.IO.Compression.FileSystem.dll",
+            "sha256": "2511e6d2df543140d45bf45d8df2cb34b8590db5193157e970021136c20173d6",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.IO.Compression.FileSystem.dll"
+        },
+        {
+            "name": "System.IO.Compression.ZipFile",
+            "path": "References/System.IO.Compression.ZipFile.dll",
+            "sha256": "f721f7c90e0e1a8b04a62ce570eb7f7c238db9136ac213a6c04970e94a737e82",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.ZipFile.dll"
+        },
+        {
+            "name": "System.IO.FileSystem",
+            "path": "References/System.IO.FileSystem.dll",
+            "sha256": "3e6b283d0ad07f2d3e33eb1588e0279f52e684d638fe3dcfa6441deefe799c13",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.dll"
+        },
+        {
+            "name": "System.IO.FileSystem.DriveInfo",
+            "path": "References/System.IO.FileSystem.DriveInfo.dll",
+            "sha256": "25e4ed8748fdbd9cf2fd77014d087ed9ed24dbde2e694e966a68a9d72371f51d",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll"
+        },
+        {
+            "name": "System.IO.FileSystem.Primitives",
+            "path": "References/System.IO.FileSystem.Primitives.dll",
+            "sha256": "4e96df37c5713fb21e30c767aa216e1f10878f30e4a89c6d7657b86637a62647",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Primitives.dll"
+        },
+        {
+            "name": "System.IO.FileSystem.Watcher",
+            "path": "References/System.IO.FileSystem.Watcher.dll",
+            "sha256": "c75a0339b10aedcddff7c3acc85f23bfc95c63244abc7edbaec8606b426a6556",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Watcher.dll"
+        },
+        {
+            "name": "System.IO.IsolatedStorage",
+            "path": "References/System.IO.IsolatedStorage.dll",
+            "sha256": "7b514b9dfd4ad5b514b54aa9a12f4a9cd02de97a724b21ecaefdd97c2f94b31f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.IsolatedStorage.dll"
+        },
+        {
+            "name": "System.IO.MemoryMappedFiles",
+            "path": "References/System.IO.MemoryMappedFiles.dll",
+            "sha256": "a7bcea398169e5f8b7bf01ce75d23065590db0d1a62e67df6a5b0894236e46b1",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.MemoryMappedFiles.dll"
+        },
+        {
+            "name": "System.IO.Pipes",
+            "path": "References/System.IO.Pipes.dll",
+            "sha256": "c988c381f5ed6e2e8ff84a85f71e859f47c19ac149c8ee8230dc3c315100cad4",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Pipes.dll"
+        },
+        {
+            "name": "System.IO.UnmanagedMemoryStream",
+            "path": "References/System.IO.UnmanagedMemoryStream.dll",
+            "sha256": "52df0618cf4bc35ac97150c1a999220b5e6107b7272042cdd49e2adbc41e8adf",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.IO.UnmanagedMemoryStream.dll"
+        },
+        {
+            "name": "System.Linq",
+            "path": "References/System.Linq.dll",
+            "sha256": "0f94f7b2e726b32509e628a8514c6ce5ae903d07c99f99a61933289f13756ca4",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.dll"
+        },
+        {
+            "name": "System.Linq.Expressions",
+            "path": "References/System.Linq.Expressions.dll",
+            "sha256": "1a9d4766cc13b2e27d6295d707c3af5d57f11d63f4cb4a9ffd47d9917edacd7c",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Expressions.dll"
+        },
+        {
+            "name": "System.Linq.Parallel",
+            "path": "References/System.Linq.Parallel.dll",
+            "sha256": "f6d2eba7f641721e3a41ee29000430659f0f987ec1b33fc467f715c9d186e58c",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Parallel.dll"
+        },
+        {
+            "name": "System.Linq.Queryable",
+            "path": "References/System.Linq.Queryable.dll",
+            "sha256": "6c5b11651156aedfbacacadfbe4a388062cbae74a2a43004b590990a0b941a26",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Queryable.dll"
+        },
+        {
+            "name": "System.Memory",
+            "path": "References/System.Memory.dll",
+            "sha256": "34abf197fbf191fb83e983571a6f3a6fc460fa80f32038c94d54e96966678f88",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Memory.dll"
+        },
+        {
+            "name": "System.Net",
+            "path": "References/System.Net.dll",
+            "sha256": "b99d8f30be2f3ef351b7e00b6cd6b4c09826dfc3ba334999cfbc2899d87204e8",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Net.dll"
+        },
+        {
+            "name": "System.Net.Http",
+            "path": "References/System.Net.Http.dll",
+            "sha256": "bba894cb713ef6a2f48776240ee55122c38839af88c72742294b4583f8d2a66e",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Http.dll"
+        },
+        {
+            "name": "System.Net.NameResolution",
+            "path": "References/System.Net.NameResolution.dll",
+            "sha256": "2308c9e1f674c3b854320507d41ba633802c8db7d10ec8dbb3ef9d86acca44fe",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.NameResolution.dll"
+        },
+        {
+            "name": "System.Net.NetworkInformation",
+            "path": "References/System.Net.NetworkInformation.dll",
+            "sha256": "8fb1051323d2fc34c59f8aeaa3f17cd37907eeaf7d0c274323b12b14aa7027e9",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.NetworkInformation.dll"
+        },
+        {
+            "name": "System.Net.Ping",
+            "path": "References/System.Net.Ping.dll",
+            "sha256": "a17b78f469c6622970d1eb6ee5105220235c70d2908c856de6742797c7d82c32",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Ping.dll"
+        },
+        {
+            "name": "System.Net.Primitives",
+            "path": "References/System.Net.Primitives.dll",
+            "sha256": "0a3b1ad27d640a56a55ca750861768271edd211ca1c494ae36b5184ab8e26780",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Primitives.dll"
+        },
+        {
+            "name": "System.Net.Requests",
+            "path": "References/System.Net.Requests.dll",
+            "sha256": "5f2a63d0ec2fd4ccc45ca2ba3dcfd7a4cf72931e97fd41bd36f00ca2f18dab06",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Requests.dll"
+        },
+        {
+            "name": "System.Net.Security",
+            "path": "References/System.Net.Security.dll",
+            "sha256": "ca922585b98ea8bc9b2c684dc11cf0a0946211cecec6b3f59c9c9b784a41ba56",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Security.dll"
+        },
+        {
+            "name": "System.Net.Sockets",
+            "path": "References/System.Net.Sockets.dll",
+            "sha256": "cb5996625a8ae3b82a2e06d8b27b00e6a4ad480b6dde96492e1a245583275d68",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Sockets.dll"
+        },
+        {
+            "name": "System.Net.WebHeaderCollection",
+            "path": "References/System.Net.WebHeaderCollection.dll",
+            "sha256": "edfc6c63a5f6374134bc9b25349978acbc4c2b02ae7de2fe7935e898044e6ff7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebHeaderCollection.dll"
+        },
+        {
+            "name": "System.Net.WebSockets",
+            "path": "References/System.Net.WebSockets.dll",
+            "sha256": "538827c5993417c9aba603171200b0f6f096f399e6e7178cf2028735f1b909d7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebSockets.dll"
+        },
+        {
+            "name": "System.Net.WebSockets.Client",
+            "path": "References/System.Net.WebSockets.Client.dll",
+            "sha256": "c212a3431d18b2c678daeb0d1c0a839ea0eb02fb2029ecda32b09e00aed00aa5",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebSockets.Client.dll"
+        },
+        {
+            "name": "System.Numerics",
+            "path": "References/System.Numerics.dll",
+            "sha256": "ff69f92af7abae62302e0b29e7562d3f7392bc11d95d75e587b4ca6f1ceb8cbe",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Numerics.dll"
+        },
+        {
+            "name": "System.Numerics.Vectors",
+            "path": "References/System.Numerics.Vectors.dll",
+            "sha256": "4c6ba8896ea9d26ff732d5afaccb3b13ffa4097799b10b3260bf7f64bc8b09c1",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Numerics.Vectors.dll"
+        },
+        {
+            "name": "System.ObjectModel",
+            "path": "References/System.ObjectModel.dll",
+            "sha256": "a5d377dbf15d2abe6b00a65ae81766b237354738b275c7a0e2d9466f093cbc20",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.ObjectModel.dll"
+        },
+        {
+            "name": "System.Reflection",
+            "path": "References/System.Reflection.dll",
+            "sha256": "00d69622de91ce2e2aeee6c1215debaa721a120d8f59b08e7f4a70796ecf9b3f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.dll"
+        },
+        {
+            "name": "System.Reflection.DispatchProxy",
+            "path": "References/System.Reflection.DispatchProxy.dll",
+            "sha256": "69833afb991f90cf22590b9de9aa95ac3aae9bed2b186321ff73fa5790efe08f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.DispatchProxy.dll"
+        },
+        {
+            "name": "System.Reflection.Emit",
+            "path": "References/System.Reflection.Emit.dll",
+            "sha256": "b42bfcd22d815a9ab3d2b2e8a425ecc91e50a6e2aa7e3c5cfa2d5b9b9e127c92",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.dll"
+        },
+        {
+            "name": "System.Reflection.Emit.ILGeneration",
+            "path": "References/System.Reflection.Emit.ILGeneration.dll",
+            "sha256": "125c6aaab34dec8c7799fc99074ab01a42f67e549187f50cad9da2184bd35d32",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.ILGeneration.dll"
+        },
+        {
+            "name": "System.Reflection.Emit.Lightweight",
+            "path": "References/System.Reflection.Emit.Lightweight.dll",
+            "sha256": "5e24ed2d22416fca721f54243e4cbc693e6f293904660947067ba1c0288e79fe",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.Lightweight.dll"
+        },
+        {
+            "name": "System.Reflection.Extensions",
+            "path": "References/System.Reflection.Extensions.dll",
+            "sha256": "59ec997a2dd047441fbf886691dffe2fe9eff0e549dd5d6241400aa2241c7c23",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Extensions.dll"
+        },
+        {
+            "name": "System.Reflection.Primitives",
+            "path": "References/System.Reflection.Primitives.dll",
+            "sha256": "ebfd6f084c8741e359358711ae6da4b0a06db2369be8c9defb4d6eb17bc8ee14",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Primitives.dll"
+        },
+        {
+            "name": "System.Resources.Reader",
+            "path": "References/System.Resources.Reader.dll",
+            "sha256": "f73fa653ba6ceb7e7c1d5eeb82d09c77d4101424422ec74f7313a7845cc882c6",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.Reader.dll"
+        },
+        {
+            "name": "System.Resources.ResourceManager",
+            "path": "References/System.Resources.ResourceManager.dll",
+            "sha256": "99ed45baff87bd6723ef8dac8d04d21075627141f7525a1ace95ba1dcba9a964",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.ResourceManager.dll"
+        },
+        {
+            "name": "System.Resources.Writer",
+            "path": "References/System.Resources.Writer.dll",
+            "sha256": "49e3aaa0b5e6d87c3f1d038877063582811f78ae4fb6d6a8f2cb8920f3782d26",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.Writer.dll"
+        },
+        {
+            "name": "System.Runtime",
+            "path": "References/System.Runtime.dll",
+            "sha256": "81be9e3c2938390b15445969128e65e5ff14b80193fc531bce4e9e28a368273a",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.dll"
+        },
+        {
+            "name": "System.Runtime.CompilerServices.VisualC",
+            "path": "References/System.Runtime.CompilerServices.VisualC.dll",
+            "sha256": "a75c6fa50f10ad888663ab694ca2cb45b8379070065e9d558d4c19086be9f28b",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.CompilerServices.VisualC.dll"
+        },
+        {
+            "name": "System.Runtime.Extensions",
+            "path": "References/System.Runtime.Extensions.dll",
+            "sha256": "3cb31bf3acb245a0e409b2e6160e8dfbbe7c26fbd9eeabcc8bf2bb81535cbab9",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Extensions.dll"
+        },
+        {
+            "name": "System.Runtime.Handles",
+            "path": "References/System.Runtime.Handles.dll",
+            "sha256": "aa5fc7ca286d170bfe32dd15663d508bb94e297a52797984a9aa7d8ffddf5ec5",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Handles.dll"
+        },
+        {
+            "name": "System.Runtime.InteropServices",
+            "path": "References/System.Runtime.InteropServices.dll",
+            "sha256": "7e97622025bcbda146408eecbb750345bd373ab9454fb118f11377f215f56400",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.InteropServices.dll"
+        },
+        {
+            "name": "System.Runtime.InteropServices.RuntimeInformation",
+            "path": "References/System.Runtime.InteropServices.RuntimeInformation.dll",
+            "sha256": "1ae138913f54d55cea0f40807ee363fdd1ceaf2037f4a029c1d2aca445146183",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.InteropServices.RuntimeInformation.dll"
+        },
+        {
+            "name": "System.Runtime.InteropServices.WindowsRuntime",
+            "path": "References/System.Runtime.InteropServices.WindowsRuntime.dll",
+            "sha256": "7019a99db764398275bdeb788af79e2904c7ce024539113ce92d0c77f928bbce",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
+        },
+        {
+            "name": "System.Runtime.Numerics",
+            "path": "References/System.Runtime.Numerics.dll",
+            "sha256": "e0727d00a0dda8280716df9a2019d4e53cf3da0b6339b1ad4d407ba2dd3396fd",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Numerics.dll"
+        },
+        {
+            "name": "System.Runtime.Serialization",
+            "path": "References/System.Runtime.Serialization.dll",
+            "sha256": "618f378d908436c7e143ec0ffe95ea791431a728a29815eaa1618ec5906aa05f",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Runtime.Serialization.dll"
+        },
+        {
+            "name": "System.Runtime.Serialization.Formatters",
+            "path": "References/System.Runtime.Serialization.Formatters.dll",
+            "sha256": "54c2621c4476473fe95be77a8c91a153c63d6d0cf4912683f6dbc98aae0db85a",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Formatters.dll"
+        },
+        {
+            "name": "System.Runtime.Serialization.Json",
+            "path": "References/System.Runtime.Serialization.Json.dll",
+            "sha256": "8c50999e83e5ef46a479498e2010425283b04eb674cf6e9a691f6e1ea39e3b47",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Json.dll"
+        },
+        {
+            "name": "System.Runtime.Serialization.Primitives",
+            "path": "References/System.Runtime.Serialization.Primitives.dll",
+            "sha256": "f35293ebdd0b318f02341da4bc7bb236cf0c8e14e1c7ec8e3cba9cc4db2d2aee",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll"
+        },
+        {
+            "name": "System.Runtime.Serialization.Xml",
+            "path": "References/System.Runtime.Serialization.Xml.dll",
+            "sha256": "baac69344e578e064dcc277d93bbe1082a72e5d0c21f04b137a3c343c75ef405",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Xml.dll"
+        },
+        {
+            "name": "System.Security.Claims",
+            "path": "References/System.Security.Claims.dll",
+            "sha256": "ea04a2840cede1e5ee2281442540f5df410c562cf5943277ab938abf30b386e8",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Claims.dll"
+        },
+        {
+            "name": "System.Security.Cryptography.Algorithms",
+            "path": "References/System.Security.Cryptography.Algorithms.dll",
+            "sha256": "39bd261f8befb2334ab3e720c312ead1d584408c29717f8b439371491d0946ae",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Algorithms.dll"
+        },
+        {
+            "name": "System.Security.Cryptography.Csp",
+            "path": "References/System.Security.Cryptography.Csp.dll",
+            "sha256": "30f289b46935daa1770373812ac97fe2a3d14806051ba28f900cd305967a0ef9",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Csp.dll"
+        },
+        {
+            "name": "System.Security.Cryptography.Encoding",
+            "path": "References/System.Security.Cryptography.Encoding.dll",
+            "sha256": "2327c771b6f00d194816c7e142ba054b8ee120018295c2d61289dfbf822fbbf7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Encoding.dll"
+        },
+        {
+            "name": "System.Security.Cryptography.Primitives",
+            "path": "References/System.Security.Cryptography.Primitives.dll",
+            "sha256": "4ce2892fa454e46f7d99411caab18db1595bb3650f8fcbe303851731d889f4cd",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Primitives.dll"
+        },
+        {
+            "name": "System.Security.Cryptography.X509Certificates",
+            "path": "References/System.Security.Cryptography.X509Certificates.dll",
+            "sha256": "af66cdf9b9e2ee26174a56aae0bee557edd9a7a61b27a4b99509b338cf68c4b4",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.X509Certificates.dll"
+        },
+        {
+            "name": "System.Security.Principal",
+            "path": "References/System.Security.Principal.dll",
+            "sha256": "f7edd00a5f69766356638b9c8692fa7d8ad2465239c5aeb14d9f071f3832a64b",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Principal.dll"
+        },
+        {
+            "name": "System.Security.SecureString",
+            "path": "References/System.Security.SecureString.dll",
+            "sha256": "fd85a43436a9ed3667df457c6a92721052c29405eba2232b867d3797ca72cb8b",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Security.SecureString.dll"
+        },
+        {
+            "name": "System.ServiceModel.Web",
+            "path": "References/System.ServiceModel.Web.dll",
+            "sha256": "ef71e6e462f783e8a9ae8d019c7c737256b3d1593659e9831583af4c1b3747e9",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ServiceModel.Web.dll"
+        },
+        {
+            "name": "System.Text.Encoding",
+            "path": "References/System.Text.Encoding.dll",
+            "sha256": "968665d2b5b1d7a2786b8e35d9df599ac40d45aedc86b3a2ea21ad35bf02f071",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Text.Encoding.dll"
+        },
+        {
+            "name": "System.Text.Encoding.Extensions",
+            "path": "References/System.Text.Encoding.Extensions.dll",
+            "sha256": "7d88331223deb5e7226b56fe02a2967c8770b7120d3f23a043192a2396d207d3",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Text.Encoding.Extensions.dll"
+        },
+        {
+            "name": "System.Text.RegularExpressions",
+            "path": "References/System.Text.RegularExpressions.dll",
+            "sha256": "d8839d80664bcaffafada263aded6bda805885fc8c1af0a38eb784f8786a3d2e",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Text.RegularExpressions.dll"
+        },
+        {
+            "name": "System.Threading",
+            "path": "References/System.Threading.dll",
+            "sha256": "23c49cba7193aa07fea9c840254433461601ad3b7e9d77d97c889a8b671dee62",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.dll"
+        },
+        {
+            "name": "System.Threading.Overlapped",
+            "path": "References/System.Threading.Overlapped.dll",
+            "sha256": "fb48baf7cb0693c44e907b89a8c792cb4b90de258cd9735bef67d9b4dd85e2f1",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Overlapped.dll"
+        },
+        {
+            "name": "System.Threading.Tasks",
+            "path": "References/System.Threading.Tasks.dll",
+            "sha256": "30984a07e22928be7fbea6fc3518ef0171537652402d5622497f8dd5afcb16f4",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.dll"
+        },
+        {
+            "name": "System.Threading.Tasks.Extensions",
+            "path": "References/System.Threading.Tasks.Extensions.dll",
+            "sha256": "a159ada6a533b86727178129915d53c9c7554b0e55e117fce27b8661f8366f62",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.Extensions.dll"
+        },
+        {
+            "name": "System.Threading.Tasks.Parallel",
+            "path": "References/System.Threading.Tasks.Parallel.dll",
+            "sha256": "69efa79ae26cc823964170b3a23f69c8c2346206f3c2670d8d07f60cd4c19a94",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.Parallel.dll"
+        },
+        {
+            "name": "System.Threading.Thread",
+            "path": "References/System.Threading.Thread.dll",
+            "sha256": "6822f2724465e7c973ae1f2d5a2e7a5755a816b6847498a855fe9c8d0ed69a0b",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Thread.dll"
+        },
+        {
+            "name": "System.Threading.ThreadPool",
+            "path": "References/System.Threading.ThreadPool.dll",
+            "sha256": "cdb2e88636ec5e827305d93e008e69cd205675fed0e19115a03288624769e853",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.ThreadPool.dll"
+        },
+        {
+            "name": "System.Threading.Timer",
+            "path": "References/System.Threading.Timer.dll",
+            "sha256": "e9aa691cef3ec721b26e7d0efc1a960ec7fc5661eb1921e06a0ff0afb52f41b9",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Timer.dll"
+        },
+        {
+            "name": "System.Transactions",
+            "path": "References/System.Transactions.dll",
+            "sha256": "a518484c7988530007547406cc8d14b1cde92fc26f373d49ea155cab472a6131",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Transactions.dll"
+        },
+        {
+            "name": "System.ValueTuple",
+            "path": "References/System.ValueTuple.dll",
+            "sha256": "1b0ee8e45405c0b4917327b1e44454ffffc63750b7df479a7f6ffbda2a1f92a2",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.ValueTuple.dll"
+        },
+        {
+            "name": "System.Web",
+            "path": "References/System.Web.dll",
+            "sha256": "2c1b3298574d95c3232a45a073d39dae0908e89dacfbfb42e4f44ebf06368fe4",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Web.dll"
+        },
+        {
+            "name": "System.Windows",
+            "path": "References/System.Windows.dll",
+            "sha256": "a1bc4b5483e459783cde59c72f9213d13136695ebbba1b9e6093d50d675d741d",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Windows.dll"
+        },
+        {
+            "name": "System.Xml",
+            "path": "References/System.Xml.dll",
+            "sha256": "1191d6b547783fb32061de561a9379fbe7c788518510cc22c71d3c4646dd65f5",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Xml.dll"
+        },
+        {
+            "name": "System.Xml.Linq",
+            "path": "References/System.Xml.Linq.dll",
+            "sha256": "9649dcf62b2882648a5b5de48b931b8c7080da8e8a96fc853e87801fae8d892d",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Xml.Linq.dll"
+        },
+        {
+            "name": "System.Xml.ReaderWriter",
+            "path": "References/System.Xml.ReaderWriter.dll",
+            "sha256": "ae8db24c60c075fc0cd7c30e9aecc7f7de52fa05048d1d09e3ee35653f4c54d5",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.ReaderWriter.dll"
+        },
+        {
+            "name": "System.Xml.Serialization",
+            "path": "References/System.Xml.Serialization.dll",
+            "sha256": "41738a9f79bbe5dfcf9b5d75960caa091d5b4a7cd276e7176c9d03df260737e7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.Xml.Serialization.dll"
+        },
+        {
+            "name": "System.Xml.XDocument",
+            "path": "References/System.Xml.XDocument.dll",
+            "sha256": "729c42931e8812e1a993727a0f32c832ebfc3abac2223a5a30c2a8ac1cc9964d",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XDocument.dll"
+        },
+        {
+            "name": "System.Xml.XPath",
+            "path": "References/System.Xml.XPath.dll",
+            "sha256": "ddcb1eb78a567a323b47dc18a9dd63c066000e3cdbb90a4559607dae69ab4be0",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.dll"
+        },
+        {
+            "name": "System.Xml.XPath.XDocument",
+            "path": "References/System.Xml.XPath.XDocument.dll",
+            "sha256": "857621dc44cff6ac7388d828a5a083d99f149901f2bec74993d87ef3cd541b35",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.XDocument.dll"
+        },
+        {
+            "name": "System.Xml.XmlDocument",
+            "path": "References/System.Xml.XmlDocument.dll",
+            "sha256": "e683ff6c95f117954a616d304f3b89cb273e8b00b42efef7fe99a48713800645",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlDocument.dll"
+        },
+        {
+            "name": "System.Xml.XmlSerializer",
+            "path": "References/System.Xml.XmlSerializer.dll",
+            "sha256": "6650b822e73bc40af1f242a6d96c2f25397189b8fa778d22ac6a8c5fa2ea58f7",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlSerializer.dll"
+        },
+        {
+            "name": "UnityEngine",
+            "path": "References/UnityEngine.dll",
+            "sha256": "963165524a5925a090d0e6a124fd496675765eee5b326551a88387b80940fdc1",
+            "pdbPath": "References/UnityEngine.pdb",
+            "pdbSha256": "12a80549ef4fa33016a4ece8495a502d65bbeb78925d9928056382b63b32ffc7",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.dll"
+        },
+        {
+            "name": "UnityEngine.AIModule",
+            "path": "References/UnityEngine.AIModule.dll",
+            "sha256": "3b13f71904318cd58e3cb4ecbf98df203298713a5f531ff5ea4b4e431ca49fb8",
+            "pdbPath": "References/UnityEngine.AIModule.pdb",
+            "pdbSha256": "f4156cba72f3320819dc39006c1adb1d4489d09c1f8d3feea3bde4230ae49016",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.AIModule.dll"
+        },
+        {
+            "name": "UnityEngine.ARModule",
+            "path": "References/UnityEngine.ARModule.dll",
+            "sha256": "f7e9d876645e782da29b61b76801289667945ed690f29650571c6463052e0820",
+            "pdbPath": "References/UnityEngine.ARModule.pdb",
+            "pdbSha256": "4bfb19606b91a8b2922e3b224e2a7e06487811b6eb605a272e74221cc873af83",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ARModule.dll"
+        },
+        {
+            "name": "UnityEngine.AccessibilityModule",
+            "path": "References/UnityEngine.AccessibilityModule.dll",
+            "sha256": "36ecb21f6480ec9c0d0dc2879e4640334d40b39e531988e5562950aa2a35870f",
+            "pdbPath": "References/UnityEngine.AccessibilityModule.pdb",
+            "pdbSha256": "757e4def1990e5ab11b7cdd8ee2c6689524b971c538ecb5e67aca58d9acca521",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.AccessibilityModule.dll"
+        },
+        {
+            "name": "UnityEngine.AndroidJNIModule",
+            "path": "References/UnityEngine.AndroidJNIModule.dll",
+            "sha256": "a81285e4cf475a47e40224cb7cc80547692b66dd17225ab54df47ebf77bae7c4",
+            "pdbPath": "References/UnityEngine.AndroidJNIModule.pdb",
+            "pdbSha256": "3f497f16a75ed1301252695c6fb18c2eebdaaf097856d68073f43604b06c5e13",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.AndroidJNIModule.dll"
+        },
+        {
+            "name": "UnityEngine.AnimationModule",
+            "path": "References/UnityEngine.AnimationModule.dll",
+            "sha256": "7f329fc53ba65594d97bea0b60feb9a061ad2b6310c20f948db0461321aeda2d",
+            "pdbPath": "References/UnityEngine.AnimationModule.pdb",
+            "pdbSha256": "e610a7b037b12662179375e8eb8ccfa7a8818c277461018fbda1abdf4e9d5b4a",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.AnimationModule.dll"
+        },
+        {
+            "name": "UnityEngine.AssetBundleModule",
+            "path": "References/UnityEngine.AssetBundleModule.dll",
+            "sha256": "ea8e19198b8c1ebc8cd133ee87eff3b6f68978935810465ed1942722d1eb88bf",
+            "pdbPath": "References/UnityEngine.AssetBundleModule.pdb",
+            "pdbSha256": "1a6d94230eba651ddbf5164d6bd813390c5ba4af3e0e2e3e2ce794f5512f6bf7",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.AssetBundleModule.dll"
+        },
+        {
+            "name": "UnityEngine.AudioModule",
+            "path": "References/UnityEngine.AudioModule.dll",
+            "sha256": "07991eb3b16f9712c2effa30dc289780df2e460468213a83d735469c9d8c61c0",
+            "pdbPath": "References/UnityEngine.AudioModule.pdb",
+            "pdbSha256": "81bc25687e17232e3684ee528cec74bc2b6cd8b045175011bbc363ce50f59496",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.AudioModule.dll"
+        },
+        {
+            "name": "UnityEngine.ClothModule",
+            "path": "References/UnityEngine.ClothModule.dll",
+            "sha256": "2800f87e6b2928c1ab86ec1e315c014347cb2058cb90ffb6e3a422ee26eb6f77",
+            "pdbPath": "References/UnityEngine.ClothModule.pdb",
+            "pdbSha256": "f4b15adb360bfdb1118292f53b9d69962f9244733336f5f98453aae7abf1c97a",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ClothModule.dll"
+        },
+        {
+            "name": "UnityEngine.ClusterInputModule",
+            "path": "References/UnityEngine.ClusterInputModule.dll",
+            "sha256": "6298e92b8e32cf1de32ad8630bf6cf6395bd18eee5f52cea1984b170fde87ade",
+            "pdbPath": "References/UnityEngine.ClusterInputModule.pdb",
+            "pdbSha256": "6bef5a88f1b6e9ae135e80bac680489465c257ba896f75ddf1ec2245de3ffac5",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ClusterInputModule.dll"
+        },
+        {
+            "name": "UnityEngine.ClusterRendererModule",
+            "path": "References/UnityEngine.ClusterRendererModule.dll",
+            "sha256": "5d915ebbd47c7cdcfbb8ba9cd6f4ff269b920fbf93ee176fe3d79ee52f5eb44e",
+            "pdbPath": "References/UnityEngine.ClusterRendererModule.pdb",
+            "pdbSha256": "28cbf0f28b9b941d2d8f7161ca0d9dfab9f24aa794cbed5f06e32c346fabd140",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ClusterRendererModule.dll"
+        },
+        {
+            "name": "UnityEngine.ContentLoadModule",
+            "path": "References/UnityEngine.ContentLoadModule.dll",
+            "sha256": "a13cb69f6d0fbd3dd5d3c2655b96f5d4f33e2a3a0abf89d453f7064664e91b05",
+            "pdbPath": "References/UnityEngine.ContentLoadModule.pdb",
+            "pdbSha256": "12eee36e64fa994923eeba1a469e201e5fa69dc614bfe63608b113cb583f54cf",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ContentLoadModule.dll"
+        },
+        {
+            "name": "UnityEngine.CoreModule",
+            "path": "References/UnityEngine.CoreModule.dll",
+            "sha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+            "pdbPath": "References/UnityEngine.CoreModule.pdb",
+            "pdbSha256": "014b16adac8ce3e4a7ade07571c3b0b092a42351f8c0f21bc6a251bc0ecb66b6",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.CoreModule.dll"
+        },
+        {
+            "name": "UnityEngine.CrashReportingModule",
+            "path": "References/UnityEngine.CrashReportingModule.dll",
+            "sha256": "cd28e278e77705b2b9c29fa6c92e32de52fd2598c7a8c61dd343b97403ae651a",
+            "pdbPath": "References/UnityEngine.CrashReportingModule.pdb",
+            "pdbSha256": "faa22eb133a5992f4d927899ef2a7f985d9978edbb5051143598ddef36db2a4c",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.CrashReportingModule.dll"
+        },
+        {
+            "name": "UnityEngine.DSPGraphModule",
+            "path": "References/UnityEngine.DSPGraphModule.dll",
+            "sha256": "9b1c3130177aa103bf23e9d37c58142ec14f626d2aeffa4aa7f474d1a3a324b0",
+            "pdbPath": "References/UnityEngine.DSPGraphModule.pdb",
+            "pdbSha256": "c7e93c7cb1fb5f13ef2b04eb2c597f8c87560ec5dc8fad0d4c7e7c84cfcc521a",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.DSPGraphModule.dll"
+        },
+        {
+            "name": "UnityEngine.DirectorModule",
+            "path": "References/UnityEngine.DirectorModule.dll",
+            "sha256": "61737964cd210b02a39c9862ac460b32f3d08614e36944a99f4a447b4efa51cc",
+            "pdbPath": "References/UnityEngine.DirectorModule.pdb",
+            "pdbSha256": "59c0bd2344d5c512bd17444372ed265df8613d571cdb5c3b7035b8290f521a64",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.DirectorModule.dll"
+        },
+        {
+            "name": "UnityEngine.GIModule",
+            "path": "References/UnityEngine.GIModule.dll",
+            "sha256": "0370668eda9c0f289cc3452e33336c7fcc23287f9554a81c66e94561b0dba83f",
+            "pdbPath": "References/UnityEngine.GIModule.pdb",
+            "pdbSha256": "8bc83acd5ca690cae19289c37807975f13d30954f5305a74019d8ffd864b3b92",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.GIModule.dll"
+        },
+        {
+            "name": "UnityEngine.GameCenterModule",
+            "path": "References/UnityEngine.GameCenterModule.dll",
+            "sha256": "9cc4d1aded1fb76f92870a9566eec035ab85b6d537301c0e5fd97e0d69f85711",
+            "pdbPath": "References/UnityEngine.GameCenterModule.pdb",
+            "pdbSha256": "74904a739e1cd4d68de6650607ca215a6d2c8dfeedcfc06f2c5389cbdfba4a52",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.GameCenterModule.dll"
+        },
+        {
+            "name": "UnityEngine.GridModule",
+            "path": "References/UnityEngine.GridModule.dll",
+            "sha256": "99f466e6be73809b96556d47fbdc5be45dd520c71f6ca32e43786596ed7a2d3f",
+            "pdbPath": "References/UnityEngine.GridModule.pdb",
+            "pdbSha256": "129a32fc2604be37d389a1104be645c11438a6824041e15d0325a0ff0f3366b3",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.GridModule.dll"
+        },
+        {
+            "name": "UnityEngine.HotReloadModule",
+            "path": "References/UnityEngine.HotReloadModule.dll",
+            "sha256": "c75636f3feed34c53675e2fe62e9acc71fc1455eef94528f9682803853d419b1",
+            "pdbPath": "References/UnityEngine.HotReloadModule.pdb",
+            "pdbSha256": "bf2d5fc8a143808d91563a4607e9631cf665b4b94bd3ae8f10674fd97a4f644b",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.HotReloadModule.dll"
+        },
+        {
+            "name": "UnityEngine.IMGUIModule",
+            "path": "References/UnityEngine.IMGUIModule.dll",
+            "sha256": "48e43536b2d0686233279535808327d4d41712242428f32a0d15fff70cdc9aae",
+            "pdbPath": "References/UnityEngine.IMGUIModule.pdb",
+            "pdbSha256": "59db54c3ef9bedefda2c74263031c787735243226d3f543630340689f82c7913",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.IMGUIModule.dll"
+        },
+        {
+            "name": "UnityEngine.ImageConversionModule",
+            "path": "References/UnityEngine.ImageConversionModule.dll",
+            "sha256": "46f3e81f2b81c9da1a6e76508382e51c6c3b488dc8919c7b93738b9b42221ead",
+            "pdbPath": "References/UnityEngine.ImageConversionModule.pdb",
+            "pdbSha256": "9d57370dce21299219a93d8d91f737a081cc3f6210a76727ec49be8c086ff45d",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ImageConversionModule.dll"
+        },
+        {
+            "name": "UnityEngine.InputLegacyModule",
+            "path": "References/UnityEngine.InputLegacyModule.dll",
+            "sha256": "c47bff57650504b74813461ada0933a39ae37fa2b4b41d75debebdd2a61dd2bb",
+            "pdbPath": "References/UnityEngine.InputLegacyModule.pdb",
+            "pdbSha256": "8d1036206b8a38a2ca4fe400b8e6a96a0929e73d4758e02cc77e5d2e0586355c",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.InputLegacyModule.dll"
+        },
+        {
+            "name": "UnityEngine.InputModule",
+            "path": "References/UnityEngine.InputModule.dll",
+            "sha256": "316bc8833bd53bd0b8d7dc3d0bbb53a6dfe6e9b145fc51ca64d626fc4a38c39b",
+            "pdbPath": "References/UnityEngine.InputModule.pdb",
+            "pdbSha256": "3b5f6aac24b6ef70d1f1452540939059d0f389d1e5b9cfc1d78f6e4080153b60",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.InputModule.dll"
+        },
+        {
+            "name": "UnityEngine.JSONSerializeModule",
+            "path": "References/UnityEngine.JSONSerializeModule.dll",
+            "sha256": "5ba82c29099e4165f7f99ac868469135c5d3a8a0b0be6b245ab413e019a69b0f",
+            "pdbPath": "References/UnityEngine.JSONSerializeModule.pdb",
+            "pdbSha256": "14a535a4d5766b2f44ceb3a1ba47a8559a2a83e202322a552a9db848804950fa",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.JSONSerializeModule.dll"
+        },
+        {
+            "name": "UnityEngine.LocalizationModule",
+            "path": "References/UnityEngine.LocalizationModule.dll",
+            "sha256": "d297fa26a9aab23872208cc122e35bd242109cdc1626b2d7d0fa7bec4f214439",
+            "pdbPath": "References/UnityEngine.LocalizationModule.pdb",
+            "pdbSha256": "dc8968ba96bde945c4cd5448d5b481d254d98054850508496463671e39984f0a",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.LocalizationModule.dll"
+        },
+        {
+            "name": "UnityEngine.ParticleSystemModule",
+            "path": "References/UnityEngine.ParticleSystemModule.dll",
+            "sha256": "ef6ff7ffd849fabf572d8106a808a53e40cf5a5b54ad7d525ab0f450e8046213",
+            "pdbPath": "References/UnityEngine.ParticleSystemModule.pdb",
+            "pdbSha256": "e30d74b5e7e68b90b1e4784e277298a6fd5e216e24003dcf61eb37494b34d640",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ParticleSystemModule.dll"
+        },
+        {
+            "name": "UnityEngine.PerformanceReportingModule",
+            "path": "References/UnityEngine.PerformanceReportingModule.dll",
+            "sha256": "8cf850c8970fbc879ea7a16b6a136d90e8fa9207a9ec031d1027a88d1557bc3f",
+            "pdbPath": "References/UnityEngine.PerformanceReportingModule.pdb",
+            "pdbSha256": "07762c795971d6f9bb0c3216c3c53ea1560287908e4ef08f4d86f0b29e0ec79d",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.PerformanceReportingModule.dll"
+        },
+        {
+            "name": "UnityEngine.Physics2DModule",
+            "path": "References/UnityEngine.Physics2DModule.dll",
+            "sha256": "6784b7db9aac81c4cbf3b2183d87dc1f9e4af285e8697c937c33cc19f7656fa2",
+            "pdbPath": "References/UnityEngine.Physics2DModule.pdb",
+            "pdbSha256": "f7266248dcfa9ed67108e72bcc139216a79d59bfa21b3cda26793becc500ce27",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.Physics2DModule.dll"
+        },
+        {
+            "name": "UnityEngine.PhysicsModule",
+            "path": "References/UnityEngine.PhysicsModule.dll",
+            "sha256": "71785542a58fd311700c1c7a8f0674cdf48a4a68b757f9773d053a75dd16a331",
+            "pdbPath": "References/UnityEngine.PhysicsModule.pdb",
+            "pdbSha256": "0e66e08c1ebde33cd079f6825d93bbbfb96e43e0e92bb4edc9deccb67300a092",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.PhysicsModule.dll"
+        },
+        {
+            "name": "UnityEngine.ProfilerModule",
+            "path": "References/UnityEngine.ProfilerModule.dll",
+            "sha256": "a59bba0d44854b231308777c5f03054a934a626da7d0de2d7dfd80a8d9fd4e54",
+            "pdbPath": "References/UnityEngine.ProfilerModule.pdb",
+            "pdbSha256": "e1dc002b9300916611164b65ac8c8429653cca10c233160b14a9b5044b649854",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ProfilerModule.dll"
+        },
+        {
+            "name": "UnityEngine.PropertiesModule",
+            "path": "References/UnityEngine.PropertiesModule.dll",
+            "sha256": "20dae9713ba130147b01bd1b95ba37087ea94ef6925659097ba8598973149ebc",
+            "pdbPath": "References/UnityEngine.PropertiesModule.pdb",
+            "pdbSha256": "8bb057f9034fc3d1e3a3d33dbd79e645bcf884caafa5b348a994f1709aa67c55",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.PropertiesModule.dll"
+        },
+        {
+            "name": "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule",
+            "path": "References/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+            "sha256": "f53983e826cd20be42285e3d5e7ba56b1b10672d084bc796ba6e6886bd6f35e6",
+            "pdbPath": "References/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.pdb",
+            "pdbSha256": "a2ab0fba5e8b8a3c9d788d78ee52b37e20adb4865bd9cd9d4f5ea1503eef8f65",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+        },
+        {
+            "name": "UnityEngine.ScreenCaptureModule",
+            "path": "References/UnityEngine.ScreenCaptureModule.dll",
+            "sha256": "337768a4dc45b9a809d6b83b04ffe9cae44cdb4ffba59dd10d4e35dfd6e3a0d9",
+            "pdbPath": "References/UnityEngine.ScreenCaptureModule.pdb",
+            "pdbSha256": "f63cb96344cb86a770de127b142d94c584839abb82908041cdb64dcc0c9535bc",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.ScreenCaptureModule.dll"
+        },
+        {
+            "name": "UnityEngine.SharedInternalsModule",
+            "path": "References/UnityEngine.SharedInternalsModule.dll",
+            "sha256": "51271e3212d963bd331d3185b3f2ee5c556ba83495fd4db30e439ed74e8a9986",
+            "pdbPath": "References/UnityEngine.SharedInternalsModule.pdb",
+            "pdbSha256": "b6ebdc9b43f0e05ed4bf6633ada374ce253e442f0d5b9671378f775034c3077a",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.SharedInternalsModule.dll"
+        },
+        {
+            "name": "UnityEngine.SpriteMaskModule",
+            "path": "References/UnityEngine.SpriteMaskModule.dll",
+            "sha256": "2db181751c5fc5de1f4ed9cbc90d4698d91c5a05c5fed4165f74443824bb031a",
+            "pdbPath": "References/UnityEngine.SpriteMaskModule.pdb",
+            "pdbSha256": "496ea939c707e3865e8fcb90da4e1cb9173886453ebdd2e3b9f9f6448b407903",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.SpriteMaskModule.dll"
+        },
+        {
+            "name": "UnityEngine.SpriteShapeModule",
+            "path": "References/UnityEngine.SpriteShapeModule.dll",
+            "sha256": "498d04a05997c9f1df642786ff3212bde7d2d93372e442393e4add3e718f1e40",
+            "pdbPath": "References/UnityEngine.SpriteShapeModule.pdb",
+            "pdbSha256": "282197bf6d9fa4a24a46d51e7f5f903d741e464cfa364c2c45e2fe111973af0f",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.SpriteShapeModule.dll"
+        },
+        {
+            "name": "UnityEngine.StreamingModule",
+            "path": "References/UnityEngine.StreamingModule.dll",
+            "sha256": "f21512875fa5ab06e6ed4085fe71ec596686434de9d9672a5923877eee1bbafc",
+            "pdbPath": "References/UnityEngine.StreamingModule.pdb",
+            "pdbSha256": "482386cd594f1acc6a299921a191bf39293169e0fef972e2a1c13e90926605e0",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.StreamingModule.dll"
+        },
+        {
+            "name": "UnityEngine.SubstanceModule",
+            "path": "References/UnityEngine.SubstanceModule.dll",
+            "sha256": "4c2bca7d93ce343d70764e0944bf7cf8ed234a8ada92c83c415c7f4b4c65dced",
+            "pdbPath": "References/UnityEngine.SubstanceModule.pdb",
+            "pdbSha256": "d8cde127b82d03d3aa4867bde8c42693057d28f36ffc82397d462f371110d832",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.SubstanceModule.dll"
+        },
+        {
+            "name": "UnityEngine.SubsystemsModule",
+            "path": "References/UnityEngine.SubsystemsModule.dll",
+            "sha256": "a66dd6fe2e2cc01818b880b6488748ce65dd836e982b708d9e9cdcdee2bc3386",
+            "pdbPath": "References/UnityEngine.SubsystemsModule.pdb",
+            "pdbSha256": "23d052fca2623cf86f4a5fa1d6f2f3816a17839a1ccd801d7e7c3599f587e4b2",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.SubsystemsModule.dll"
+        },
+        {
+            "name": "UnityEngine.TLSModule",
+            "path": "References/UnityEngine.TLSModule.dll",
+            "sha256": "063efd22dae9e008e7cc9136195ed71fd7e068322a9357d92a96311eddabe0f1",
+            "pdbPath": "References/UnityEngine.TLSModule.pdb",
+            "pdbSha256": "9b02c02b84991da006ad6ca20ad274be4b5f17565eec6a5fdb65051d70f0f51d",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TLSModule.dll"
+        },
+        {
+            "name": "UnityEngine.TerrainModule",
+            "path": "References/UnityEngine.TerrainModule.dll",
+            "sha256": "38542ea5752dd5476f3c43065378a6dfc4354919170f3f8b4c98b230357e1de7",
+            "pdbPath": "References/UnityEngine.TerrainModule.pdb",
+            "pdbSha256": "7fd388d8bc75de7d19a6039e5e24662a4e34245808d805b042779522fb9b88ad",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TerrainModule.dll"
+        },
+        {
+            "name": "UnityEngine.TerrainPhysicsModule",
+            "path": "References/UnityEngine.TerrainPhysicsModule.dll",
+            "sha256": "20f07c2dd98d46a1edecf82dff144fed57614769f5055f42679aacfe23674e9b",
+            "pdbPath": "References/UnityEngine.TerrainPhysicsModule.pdb",
+            "pdbSha256": "f166433f995a5c5d72164ec1a453d8d019fb6bf95eed540846e2edca971aa6ac",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TerrainPhysicsModule.dll"
+        },
+        {
+            "name": "UnityEngine.TextCoreFontEngineModule",
+            "path": "References/UnityEngine.TextCoreFontEngineModule.dll",
+            "sha256": "9a61c9f14f4150209f84605e3387c2864455d75f289db383689e9575efa66934",
+            "pdbPath": "References/UnityEngine.TextCoreFontEngineModule.pdb",
+            "pdbSha256": "77937dc9266742441a8222e93e7a826415d473fcf2ec0411a0387d12b327fadc",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TextCoreFontEngineModule.dll"
+        },
+        {
+            "name": "UnityEngine.TextCoreTextEngineModule",
+            "path": "References/UnityEngine.TextCoreTextEngineModule.dll",
+            "sha256": "59d5dda33d76e4dd3f3908691c5adf85cbb0da926f96a18f523b2d77a1ee197f",
+            "pdbPath": "References/UnityEngine.TextCoreTextEngineModule.pdb",
+            "pdbSha256": "2a919194ba99135563337f1837d1328d7a00e037a262998979e4b80b391217b9",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TextCoreTextEngineModule.dll"
+        },
+        {
+            "name": "UnityEngine.TextRenderingModule",
+            "path": "References/UnityEngine.TextRenderingModule.dll",
+            "sha256": "28af9c53bdf1e2306a660eb4af0709c0d18e3623f24c1c224777ceaaa9bffbdb",
+            "pdbPath": "References/UnityEngine.TextRenderingModule.pdb",
+            "pdbSha256": "9ee6cba202a823f3995864aefe72bf7444e0b4dc766ec7c75c7b16963771419e",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TextRenderingModule.dll"
+        },
+        {
+            "name": "UnityEngine.TilemapModule",
+            "path": "References/UnityEngine.TilemapModule.dll",
+            "sha256": "8605f1b287eac4cb3afb245a6542407356f6d7991d84bce8b85f8970e8a7da38",
+            "pdbPath": "References/UnityEngine.TilemapModule.pdb",
+            "pdbSha256": "469dec94b18a7f076feb0bae450ac9ad7754aac6f07888218cead5937d59fb81",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.TilemapModule.dll"
+        },
+        {
+            "name": "UnityEngine.UIElementsModule",
+            "path": "References/UnityEngine.UIElementsModule.dll",
+            "sha256": "2f39252006ef45d0ed6f08e6b50f58c2b86b0dc0b3518e7ab4826f11dc71cdbb",
+            "pdbPath": "References/UnityEngine.UIElementsModule.pdb",
+            "pdbSha256": "243bd8ff5fdb5e6f529fdb18be6ce8406d950b43b94c11bfcab385d7bbf10a56",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UIElementsModule.dll"
+        },
+        {
+            "name": "UnityEngine.UIModule",
+            "path": "References/UnityEngine.UIModule.dll",
+            "sha256": "7a5394fb9c047b0f492ba592dd9b3441e604d59fb8e9c1fe3e10ea1a6fa6d116",
+            "pdbPath": "References/UnityEngine.UIModule.pdb",
+            "pdbSha256": "703e32e1423674ef5e0f6a6d8a5cc54130ae7ca3a7e9e6140a4b81220357edaf",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UIModule.dll"
+        },
+        {
+            "name": "UnityEngine.UmbraModule",
+            "path": "References/UnityEngine.UmbraModule.dll",
+            "sha256": "42a720632de41182b9b18f57f51c269b90acfd8c5d08aa7b84001f93e1a4465b",
+            "pdbPath": "References/UnityEngine.UmbraModule.pdb",
+            "pdbSha256": "54a05869b82ddd24e3058b1b77d1a34188e13f6c986e7c362181f2ecc930fb09",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UmbraModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityAnalyticsCommonModule",
+            "path": "References/UnityEngine.UnityAnalyticsCommonModule.dll",
+            "sha256": "5dfb28aad35a3dc6f85c10c1754a39e7d9c7fcdeb6eec3156a3bbf9a90315131",
+            "pdbPath": "References/UnityEngine.UnityAnalyticsCommonModule.pdb",
+            "pdbSha256": "640660547e6fb919bfb3300e03d1c8399ed96c4eedec10a5c4f292781364a8d7",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityAnalyticsCommonModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityAnalyticsModule",
+            "path": "References/UnityEngine.UnityAnalyticsModule.dll",
+            "sha256": "651c2799d3dd263cd47c5d38169ac3b5f0c8e3efed5dda8cfc19795a74d7d0da",
+            "pdbPath": "References/UnityEngine.UnityAnalyticsModule.pdb",
+            "pdbSha256": "a4f0936a893cadce68285c39b50eb23555271c5a3ae0a737d8765c8d6e879d6b",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityAnalyticsModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityConnectModule",
+            "path": "References/UnityEngine.UnityConnectModule.dll",
+            "sha256": "09529ea3716686a9b5bf866a4b87ee5e05b0c38e9f02e24ee3ae29c9fec0baa5",
+            "pdbPath": "References/UnityEngine.UnityConnectModule.pdb",
+            "pdbSha256": "195159ae36d371827d82aba039cafaeee153d4a84727488cf6bd16df0e5a2b27",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityConnectModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityCurlModule",
+            "path": "References/UnityEngine.UnityCurlModule.dll",
+            "sha256": "ab3d86c9694ad593a90eae3e6da9190ae110f0f2bab54e1aa37b24a21a44065d",
+            "pdbPath": "References/UnityEngine.UnityCurlModule.pdb",
+            "pdbSha256": "5a5e2d3505c9d1bb27b87fdcc2151938ba4e220822812f89eb40f529ca01c777",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityCurlModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityTestProtocolModule",
+            "path": "References/UnityEngine.UnityTestProtocolModule.dll",
+            "sha256": "316148f948a4dca3b6af2eea3a6f5c4b6ace8fc49f53ebce2bd36138b0835024",
+            "pdbPath": "References/UnityEngine.UnityTestProtocolModule.pdb",
+            "pdbSha256": "a7656617ff0851ad0f2923a900b2c85c70f362941d60bc6f762fa5036b8dcf81",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityTestProtocolModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestAssetBundleModule",
+            "path": "References/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+            "sha256": "6d16005ca5da241390aeaf7ef89fccaaff1abfd6606239934ce811e8a6e8cefe",
+            "pdbPath": "References/UnityEngine.UnityWebRequestAssetBundleModule.pdb",
+            "pdbSha256": "c93a12939e85ef4190cc729a75ef21ce0e6f4062e829c228a06995cfb1fc1084",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestAudioModule",
+            "path": "References/UnityEngine.UnityWebRequestAudioModule.dll",
+            "sha256": "2e6f76020b501de1764ab2b586d5940ae3bceee6bf17400dd9784b024e3a6849",
+            "pdbPath": "References/UnityEngine.UnityWebRequestAudioModule.pdb",
+            "pdbSha256": "c18538bca60f1e03bbe9165194bed8584b607bb1dc9841bc9e78e08df72f327f",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityWebRequestAudioModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestModule",
+            "path": "References/UnityEngine.UnityWebRequestModule.dll",
+            "sha256": "7905002653bcd7188628afd7f5c3460087772fbde428599f7c78349ab419a979",
+            "pdbPath": "References/UnityEngine.UnityWebRequestModule.pdb",
+            "pdbSha256": "663223820a77fa9f9d8d302f379bafab9e2513939c9c598adbc6b33fe11c8882",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityWebRequestModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestTextureModule",
+            "path": "References/UnityEngine.UnityWebRequestTextureModule.dll",
+            "sha256": "06d88f9b3041d7e763dcb562038bcb82fb05f039c2a4459adefc6d31a40fbadc",
+            "pdbPath": "References/UnityEngine.UnityWebRequestTextureModule.pdb",
+            "pdbSha256": "1b4e2557dd1a82acfc8aa1f4f73912179289827b13ab8323e0435dff1facc3de",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityWebRequestTextureModule.dll"
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestWWWModule",
+            "path": "References/UnityEngine.UnityWebRequestWWWModule.dll",
+            "sha256": "3dcb326d4a9ca8453a48169cbe64cb43e418dca4a53f3b176d97067c36745b84",
+            "pdbPath": "References/UnityEngine.UnityWebRequestWWWModule.pdb",
+            "pdbSha256": "15323fa4a882a545fc864d37379d2eec46e9b717fb585f6a407d8b636e808791",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.UnityWebRequestWWWModule.dll"
+        },
+        {
+            "name": "UnityEngine.VFXModule",
+            "path": "References/UnityEngine.VFXModule.dll",
+            "sha256": "821492e4a83fcacfedd494abb2993ef2d14f8611beac6e9d717b29a4f8bd6ba2",
+            "pdbPath": "References/UnityEngine.VFXModule.pdb",
+            "pdbSha256": "6f68865994a2c26c8ae3a8b9cd90f2bae1579af03a729f878148e91a297aa719",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.VFXModule.dll"
+        },
+        {
+            "name": "UnityEngine.VRModule",
+            "path": "References/UnityEngine.VRModule.dll",
+            "sha256": "177adc59863720c82b88ae604edfdd28317f11bd0bebc8843652249546355783",
+            "pdbPath": "References/UnityEngine.VRModule.pdb",
+            "pdbSha256": "189631f5b197ad5d298865ecdad6a354086b663385676642cf8e97c01a912f0a",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.VRModule.dll"
+        },
+        {
+            "name": "UnityEngine.VehiclesModule",
+            "path": "References/UnityEngine.VehiclesModule.dll",
+            "sha256": "99cc491d16dc927fb0b0d088f5bb8bcd15a0ac6ff95b5298e7214997a368fb95",
+            "pdbPath": "References/UnityEngine.VehiclesModule.pdb",
+            "pdbSha256": "27e94e70b16e8da7af13f3aafbb223b346d04988f783ec199ebf9aa48a7a4aaf",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.VehiclesModule.dll"
+        },
+        {
+            "name": "UnityEngine.VideoModule",
+            "path": "References/UnityEngine.VideoModule.dll",
+            "sha256": "9146be477e890ab9c438b9a1f2cf6c13a03358a224ec104eb92e6f245b4bce77",
+            "pdbPath": "References/UnityEngine.VideoModule.pdb",
+            "pdbSha256": "228c7503b79e94f833517d92b2232411713a4abf1bef38c2638ceffcd2600dd8",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.VideoModule.dll"
+        },
+        {
+            "name": "UnityEngine.VirtualTexturingModule",
+            "path": "References/UnityEngine.VirtualTexturingModule.dll",
+            "sha256": "6ca32254fb788e3c2f119a6e9cc48ef3b6ea7d7aa473121ef1d4206ab57f7da0",
+            "pdbPath": "References/UnityEngine.VirtualTexturingModule.pdb",
+            "pdbSha256": "f65ab82b86901554ca9404be261164d99eeb5935c66ed9889637c8c24df3d4f0",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.VirtualTexturingModule.dll"
+        },
+        {
+            "name": "UnityEngine.WindModule",
+            "path": "References/UnityEngine.WindModule.dll",
+            "sha256": "64f6bcfaddc613e16e2788be617dd2ec3890428a2d28cd9ad3ac1909c908f0e5",
+            "pdbPath": "References/UnityEngine.WindModule.pdb",
+            "pdbSha256": "31cadcd4e86a46bf46f570ae99b2ec7a1b4dc5aae10793e07e474e620642b7e7",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.WindModule.dll"
+        },
+        {
+            "name": "UnityEngine.XRModule",
+            "path": "References/UnityEngine.XRModule.dll",
+            "sha256": "d4fdd0597386aff9f88a0c64776cb82b6749eec3f2502412d0a37bfedd7e5e71",
+            "pdbPath": "References/UnityEngine.XRModule.pdb",
+            "pdbSha256": "e64afafb5734ca1ba6ca6fab0654154f8b5c3e7babaabc6ab5c16a3e3cb6bc35",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/Variations/il2cpp/Managed/UnityEngine.XRModule.dll"
+        },
+        {
+            "name": "mscorlib",
+            "path": "References/mscorlib.dll",
+            "sha256": "fb7ac3d0534282d14c3256e66f8d273ea016055ea1307c0f70021e7a236d6c33",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll"
+        },
+        {
+            "name": "netstandard",
+            "path": "References/netstandard.dll",
+            "sha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+            "pdbPath": "",
+            "pdbSha256": "",
+            "sourcePath": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/ref/2.1.0/netstandard.dll"
+        }
+    ],
+    "filteredAssemblies": [],
+    "filteredAssemblyCapabilities": [],
+    "linkedPlayerReceipt": {
+        "schemaVersion": 1,
+        "buildGuid": "",
+        "nativeLibrarySha256": "",
+        "target": "",
+        "architecture": "",
+        "sourceDirectory": "",
+        "reflectionBindingEvidenceHash": "",
+        "protectedAssemblies": [],
+        "assemblies": []
+    },
+    "linkedPlayerReceiptHash": "",
+    "linkerExcludedAssemblies": [],
+    "linkerExcludedAssemblyCapabilities": []
+}

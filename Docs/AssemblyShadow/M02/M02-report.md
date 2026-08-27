@@ -1,7 +1,7 @@
 # M02 dependency, manifest and resource compatibility tooling
 
-Status: implementation and validation in progress. No M02 acceptance or tag is
-claimed by this draft. M01 remains an accepted CONDITIONAL-GO PoC.
+Status: implementation and required local validation completed; final independent
+acceptance review and M02 tags pending. M01 remains an accepted CONDITIONAL-GO PoC.
 
 ## Scope and acceptance
 
@@ -25,6 +25,24 @@ transaction/type/execution/Unity integration work remains M03–M07.
 | 02.10 Player baseline manifest | package Build | successful Player, input receipt and native SHA |
 | 02.11 unsigned patch manifests | package Build | single compile snapshots, P05 refusal, file/hash verification |
 | 02.12 generator input adapter | package Generation | normal hot-update union current closure only |
+
+## Source boundary and API inventory
+
+| Repository | Exact Player build source |
+| --- | --- |
+| demo | `0939b0ed667abd2694e5e7dbab23b6f670a8642f` |
+| hybridclr_unity | `6d603459e52027cd31616c71f137d29aadaf4ea2` |
+| hybridclr | `1bc69c3acc2434804e71560418df8c728a63360e` |
+| il2cpp_plus | `03a450c73b5c5db2ed6f87dc4f194788fd204567` |
+
+The demo pin-only commit is `891650bf8f1495b0f4c5c760e734c92076b8e7a6`.
+Runtime and native source are unchanged from M01. Source pins, this report,
+inventories and review/evidence closeout do not replace the executable source
+boundary above. No M02 tag or remote publication is claimed by this draft.
+
+[The source/API inventory](M02-source-and-api-inventory.md) records all 40 demo
+and 153 package changed paths at that boundary, including Unity metas, and the
+new tooling APIs, menu commands and batchmode entrypoints.
 
 ## Design boundaries
 
@@ -166,6 +184,27 @@ The fixed-image probe has an exact Bootstrap entry approval for the ordinary
 hot-update entry type and callsite. Its explicit runtime dependency remains in
 the graph; the entry approval does not authorize an unguarded managed load.
 
+## Explicit design deviations and extensions
+
+- The available execution platform is Unity 2022.3.62f2 macOS ARM64. This is the
+  inherited M00/M01 local-platform deviation, not Windows/Android evidence.
+- The finite, hash-bound reflection acquisition contracts extend M02's explicit
+  implicit-dependency policy. They are not scanner exemptions or a substitute
+  for the M03-M05 general first-use and resolution guarantees. The restrictions
+  on enum lookup and the 17-type volume domain are deliberate and recorded above.
+- The frozen M01 resource evidence is imported through source reconstruction and
+  byte/hash/ABI proof, not through rebuilding the old bundles. This preserves the
+  old-resource acceptance requirement while tying M02's Player and resource
+  descriptions to independently checked inputs.
+- A declared `ModuleContract` supplies the intended Extensibility-to-Contracts
+  upgrade dependency where the C# compiler emits no AssemblyRef. No frozen
+  business assembly was edited to force that edge.
+- The real P05 layout is compiled in an isolated Editor domain. Exact settings
+  restoration and successful target-compiler receipts are required; emitted
+  files from a failed compiler invocation are never treated as successful output.
+- M02 emits unsigned patch manifests and a generator-input adapter. Signing and
+  production startup remain M09; updating the five generators remains M06/M08.
+
 ## Reproduction entrypoints
 
 Use the isolated `hybridclr_demo_shadow` project and shared unity-debug routing;
@@ -182,13 +221,68 @@ preserve any pre-existing Editor in the original checkout.
    define/domain roundtrip and then calls `M02EditorValidation.Validate`).
 7. `Tools/AssemblyShadow/verify-m02-results.py` with the actual Editor and NUnit
    results, `--reflection-result`, frozen M01 baseline, and an evidence output path.
+8. Run the M02 Player in separate `Baseline` and `P01` processes with distinct
+   `-shadowResultPath` and `-logFile` paths; require exit zero for both.
+9. Build the ordinary M00 regression to a distinct output using
+   `AssemblyShadowBaseline.Editor.BaselineBuild.Build`; run it with a distinct
+   result/log path. This temporarily selects the M00 scene and native OFF.
+10. Restore the exact captured fixed-image bytes from the M02 Player snapshot,
+    run `M02Build.Configure`, and require the default strict installed-source
+    verifier to pass in ON mode with no build-settings diff.
 
 ## Evidence, review and limitations
 
-Pending real Unity integration runs and independent review. Static compilation
-or a passing synthetic fixture alone is not milestone acceptance. macOS ARM64
-is the available validated platform inherited from M00/M01; no Windows or
-Android result may be inferred from it.
+Real T02 integration, Player probes, native-OFF regression and complete artifact
+verification have passed. Final immutable acceptance review is pending. macOS
+ARM64 is the validated local platform inherited from M00/M01; no Windows or
+Android result may be inferred from it. These were automated headless runs;
+interactive visual/manual validation is not claimed.
+
+| Check | Actual evidence | Result |
+| --- | --- | --- |
+| Unity NUnit | `Evidence/editor-tests.xml` | 319/319 passed, zero skipped |
+| Target-compiler integration | `Evidence/editor-validation.json` | 13/13 passed: T02-01–T02-07, three linked-evidence cases, structural Editor domain, repeatability, snapshot tamper |
+| Artifact verifier | `Evidence/verification.json` | actual Player/native/bundle/manifest/source/compile receipts verified |
+| Python verifier regressions | `Evidence/python-tests.log` | 93/93 passed |
+| Native-ON reflection probe | `Evidence/m02-reflection.json` | exit 0; 26 allowed, 8 denied, 17 finite discovery types, zero denied-path resolver events; fixed-image load and rejection checks pass |
+| Original bundles, Baseline mode | `Evidence/m02-old-bundles-baseline.json` | exit 0, BASELINE-PASS |
+| Original bundles, P01 mode | `Evidence/m02-old-bundles-p01.json` | exit 0, retained M01 CONDITIONAL-GO result |
+| Repeat installation | `Evidence/installation-repeatability.json` | identical receipts; strict installed-source verification passes |
+| Native-OFF ordinary regression | `Evidence/native-off-build.json`, `Evidence/native-off-result.json` | build and Player exit 0; ordinary HybridCLR/AOT/serialization checks pass |
+| Restored ON source boundary | `Evidence/installed-source-verification.json` | default strict check passes, demoSourceVerified=true; exact original settings and fixed-image bytes restored |
+
+The final baseline is `M02-Baseline-96de80420a47cfe2`, SHA-256
+`f080b8e4eb1b91d055faf2f09ef624f9e649251a691df39fb1e903e91afae0cd`.
+Its Player build GUID is `96cf854f12144d04920eb667c3829946`; the captured
+snapshot hash is
+`dd331b1ac2010b33cdd71119bd7b478b68a241802abf55ff7e383a6d531bb140`.
+The actual ARM64 GameAssembly SHA-256 is
+`0ac827495f6371c81cfc7d5bce7bf6d84c4cbf2968ca7682c9388c764002375c`.
+The new app output is `Builds/AssemblyShadow/M02/Guarded-0939b0e.app`.
+Unity reused cached Player asset data during its script-only phase; the
+managed input, linked output and native binary receipts were captured from
+this successful build. No full clean-asset rebuild is claimed.
+
+The successful integration run directory is
+`_temp/AssemblyShadow/M02Validation-374b53367f134d229d8ccb1abb3071eb`.
+P01 has one closure member, P02 has three, P03 has all five with Contracts first,
+and P05 rejects DLL-only and requires exactly the prefab and business-scene
+bundles. The baseline and repeated P01 manifest are byte-identical for the same
+snapshots. P05's original scripting defines and complete settings-file bytes
+were restored; all three restoration receipts are archived.
+
+The OFF app is `Builds/AssemblyShadow/M02/NativeOff-0939b0e.app`, ARM64 native
+SHA-256 `805e43f0020801cab5daaa50c424feb89f7c6a4dfee3f4621259557662dd0dd6`.
+It runs the original M00 scene and an ordinary freshly compiled hot-update DLL;
+the exact two tracked configuration differences are archived in
+`Evidence/native-off-settings.diff`. A strict source check attempted during this
+intentional override correctly refused the changed scene setting. It was not
+bypassed: after `M02Build.Configure` restored the pinned ON configuration, the
+default strict verifier passed with 923 source files, 925 installed files and
+receipt SHA-256
+`243f9163413f97825d485153b797b13e8f2adfdb80c9e5d61c4920d54fe09999`.
+The fixed-image bytes were restored to SHA-256
+`9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`.
 
 The current consolidated source passed 319/319 Unity Editor tests with no skips
 (`_temp/AssemblyShadow/EditorTests-8da6a38f5fb444f697f49479624ec158/results.xml`).
@@ -198,19 +292,18 @@ builtin-resource capture, the real 26-name prefab comparison, linked-reference
 proofs, exact ordinary-hot-update entry approvals, unchanged Editor enum
 behavior, 22 structural-workflow cases and the two module-dependency regressions.
 The Python artifact suite passes 93 tests and requires those new NUnit fixtures.
-These results do not establish complete T02 integration. The initial
-diagnostic build also exposed that Unity's
+Earlier diagnostic runs exposed that Unity's
 `BuildReport.summary.result` is not final inside `OnPostprocessBuild`; capture now
 observes callbacks and seals only after `BuildPipeline.BuildPlayer` returns a
-matching successful report. The clean Player at package `6d603459` and demo
-`0e813ee1` completed its build and generated baseline
-`M02-Baseline-36ca3c767e2bc9c3`. Its reflection, old-bundle Baseline and old-bundle
-P01 probes all passed. The T02 run passed the linked-evidence cases but stopped
-at P05 because the loaded Editor type lacked the Player's added serialized
-field. The separate-domain workflow above addresses that requirement.
+matching successful report. A failed target compile also demonstrated that P05
+needs the matching loaded Editor layout; the separate-domain workflow now proves
+that requirement with real Unity execution. A subsequent diagnostic reached P03
+and exposed the missing explicit module dependency; the current five-member
+result uses the truthful `ModuleContract` declaration described above.
 Independent review also identified verifier mismatches for captured versus
 projected roles, same-type builtin objects and historical source provenance.
-A new pinned Player, complete T02 run, OFF regression and review remain required.
+The corrected verifier accepts the current full real-artifact set, and adversarial
+tests retain rejection of altered identities, roles and rehashed provenance.
 
 The first guarded Player attempt exposed Unity forwarding the same control
 define twice. Identical controls are now idempotent; distinct or malformed
@@ -219,3 +312,20 @@ schema-2 snapshot copy/read roundtrip, captured-facade byte tamper rejection,
 and a modified semantic proof rejection even after its outer receipt hashes
 have been recomputed. These cases operate on a disposable copy and restore it
 after each negative test; frozen baseline evidence is never modified.
+
+## Performance observations
+
+The final ON Player-build phase reported 36.980 seconds; the OFF build phase
+reported 27.172 seconds. These exclude generator preparation and resource-proof
+construction. Unity NUnit reported 25.008 seconds
+for 319 tests. The archived 93-test Python run took 17.609 seconds. These are
+local build/test observations, not a runtime performance or memory acceptance
+claim. M02 changes Editor tooling; runtime lookup benchmarks belong to later
+milestones. No new runtime memory benchmark is claimed here.
+
+## Next milestone entry
+
+M03 remains gated on final independent acceptance review and M02 tags. All local
+M02 execution checks have passed. M03's scope is the real private staging transaction, atomic
+publication, delayed initializers, stable error API and first-use guard; the
+M01 prototype is not treated as that implementation.
