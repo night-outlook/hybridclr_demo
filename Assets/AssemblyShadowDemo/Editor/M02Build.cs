@@ -21,6 +21,7 @@ namespace AssemblyShadowDemo.Editor
             BaselineBuild.Configure();
             BaselineBuild.SetNativeFeature(true);
             EditorUserBuildSettings.development = true;
+            EditorUserBuildSettings.buildScriptsOnly = false;
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(M01Paths.BootstrapScene, true) };
             var settings = AssemblyShadowSettings.Instance;
             settings.enableAssemblyShadow = true;
