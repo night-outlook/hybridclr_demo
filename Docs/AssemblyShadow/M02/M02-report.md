@@ -1,7 +1,7 @@
 # M02 dependency, manifest and resource compatibility tooling
 
-Status: implementation and required local validation completed; final independent
-acceptance review and M02 tags pending. M01 remains an accepted CONDITIONAL-GO PoC.
+Status: M02 independently accepted, 2026-08-27. Local milestone closeout uses
+`assembly-shadow-m02-tooling`. M01 remains an accepted CONDITIONAL-GO PoC.
 
 ## Scope and acceptance
 
@@ -38,7 +38,8 @@ transaction/type/execution/Unity integration work remains M03–M07.
 The demo pin-only commit is `891650bf8f1495b0f4c5c760e734c92076b8e7a6`.
 Runtime and native source are unchanged from M01. Source pins, this report,
 inventories and review/evidence closeout do not replace the executable source
-boundary above. No M02 tag or remote publication is claimed by this draft.
+boundary above. The local M02 tags identify the approved review-record closeout;
+no commit or tag is pushed.
 
 [The source/API inventory](M02-source-and-api-inventory.md) records all 40 demo
 and 153 package changed paths at that boundary, including Unity metas, and the
@@ -233,7 +234,8 @@ preserve any pre-existing Editor in the original checkout.
 ## Evidence, review and limitations
 
 Real T02 integration, Player probes, native-OFF regression and complete artifact
-verification have passed. Final immutable acceptance review is pending. macOS
+verification have passed. [Independent acceptance review](M02-review.md) returned
+PASS for the full M02 boundary. macOS
 ARM64 is the validated local platform inherited from M00/M01; no Windows or
 Android result may be inferred from it. These were automated headless runs;
 interactive visual/manual validation is not claimed.
@@ -325,7 +327,8 @@ milestones. No new runtime memory benchmark is claimed here.
 
 ## Next milestone entry
 
-M03 remains gated on final independent acceptance review and M02 tags. All local
-M02 execution checks have passed. M03's scope is the real private staging transaction, atomic
+M03 may proceed after the approved metadata-only closeout and four local M02 tag
+targets have been audited. All local M02 execution checks and independent review
+have passed. M03's scope is the real private staging transaction, atomic
 publication, delayed initializers, stable error API and first-use guard; the
 M01 prototype is not treated as that implementation.
