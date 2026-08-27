@@ -272,7 +272,7 @@ def _reflection_canonical_hash(configuration, path):
     sites = configuration.get("sites")
     _need(isinstance(sites, list), path, "sites must be an array")
     data = bytearray()
-    _reflection_hash_add(data, "assembly-shadow-reflection-configuration:1")
+    _reflection_hash_add(data, "assembly-shadow-reflection-configuration:" + str(configuration.get("schemaVersion")))
     _reflection_hash_add(data, configuration.get("schemaVersion"))
     _reflection_hash_add(data, configuration.get("transformerVersion"))
     _reflection_hash_add(data, len(sites))

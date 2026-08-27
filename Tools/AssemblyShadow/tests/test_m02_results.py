@@ -469,6 +469,11 @@ class M02EvidenceTests(unittest.TestCase):
             self.assertEqual(fixed["providers"], ["assemblyshadowbaseline.hotupdate"])
             self.assertTrue(image_path.is_file())
 
+    def test_reflection_schema2_project_hash_matches_csharp_golden(self):
+        project_config = Path(__file__).resolve().parents[3] / "ProjectSettings" / "AssemblyShadowReflectionBindings.json"
+        reflection = _reflection_parse(project_config, project_config.read_bytes())
+        self.assertEqual(reflection["canonicalHash"], "79ef642d19d3e5ed4866c152aa63691741b5dd1d96ead13231b0e11b75f031ad")
+
     def test_reflection_schema2_image_tamper_fails(self):
         with tempfile.TemporaryDirectory() as folder:
             snapshot, _, receipt, _, image_path = self.reflection_schema2_fixture(Path(folder))
