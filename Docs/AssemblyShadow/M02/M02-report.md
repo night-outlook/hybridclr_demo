@@ -128,13 +128,21 @@ or a passing synthetic fixture alone is not milestone acceptance. macOS ARM64
 is the available validated platform inherited from M00/M01; no Windows or
 Android result may be inferred from it.
 
-The current integration passed 180/180 Unity Editor tests with no skips
-(`_temp/AssemblyShadow/EditorTests-879488208404414d9da1c92cc402f6a3/results.xml`).
-This includes 155 package tooling tests, 22 CodeGen tests, and three demo tests:
+The current integration passed 181/181 Unity Editor tests with no skips
+(`_temp/AssemblyShadow/EditorTests-e161bc478d42484a8387a5a123c1a8aa/results.xml`).
+This includes 155 package tooling tests, 23 CodeGen tests, and three demo tests:
 the existing M01 validation plus the real 26-name prefab comparison and unchanged
 Editor enum behavior. It is not yet a successful guarded M02 Player build or a
 passed milestone. The initial diagnostic build also exposed that Unity's
 `BuildReport.summary.result` is not final inside `OnPostprocessBuild`; capture now
 observes callbacks and seals only after `BuildPipeline.BuildPlayer` returns a
 matching successful report. The Python artifact verifier suite also passed all
-67 tests. Neither suite substitutes for the pending real Player acceptance.
+69 tests. Neither suite substitutes for the pending real Player acceptance.
+
+The first guarded Player attempt exposed Unity forwarding the same control
+define twice. Identical controls are now idempotent; distinct or malformed
+controls still fail closed. The real Editor validation additionally requires a
+schema-2 snapshot copy/read roundtrip, captured-facade byte tamper rejection,
+and a modified semantic proof rejection even after its outer receipt hashes
+have been recomputed. These cases operate on a disposable copy and restore it
+after each negative test; frozen baseline evidence is never modified.

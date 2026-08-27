@@ -39,7 +39,8 @@ M01_ASSEMBLIES = frozenset({
 })
 CASE_IDS = frozenset({
     "T02-01", "T02-02", "T02-03", "T02-04", "T02-05", "T02-06", "T02-07",
-    "M02-Repeatability", "M02-SnapshotTamper",
+    "M02-Repeatability", "M02-SnapshotTamper", "M02-LinkedEvidenceRoundTrip",
+    "M02-LinkedEvidenceFacadeTamper", "M02-LinkedEvidenceReboundTamper",
 })
 PATCH_IDS = frozenset({"P01", "P02", "P03", "P05-requires-bundles", "P01-repeat"})
 NUNIT_SUITES = ("MetadataTests", "PolicyTests", "GraphAndInputTests", "ResourceAbiTests", "SnapshotTests", "SignatureHashTests")
@@ -904,7 +905,7 @@ def _verify_editor_report(path: Path):
         observed.append(_name(case.get("id"), case_path, "id"))
         _need(case.get("passed") is True, case_path, "passed must be true")
     _need(set(observed) == CASE_IDS and len(observed) == len(CASE_IDS), path,
-         "cases must contain exactly T02-01..T02-07, M02-Repeatability and M02-SnapshotTamper")
+         "cases must contain T02-01..T02-07, M02-Repeatability, M02-SnapshotTamper and all three linked-evidence validation cases")
     _need(isinstance(report.get("artifacts"), list), path, "artifacts must be an array")
     artifacts = {}
     for index, artifact in enumerate(report["artifacts"]):

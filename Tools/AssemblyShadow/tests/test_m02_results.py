@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 import re
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from m02_results import (CANDIDATES, NUNIT_SUITES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
+from m02_results import (CASE_IDS, CANDIDATES, NUNIT_SUITES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
                          _retargeting_profile_hash,
                          _resource_abi_hash, _resource_source_set_hash, _runtime_abi_hash,
                          _snapshot_files, _snapshot_hash, _snapshot_linked_hash, _verify_linked_player,
@@ -289,7 +289,7 @@ class M02EvidenceTests(unittest.TestCase):
         (run / "baseline-repeat").mkdir(); (run / "baseline-repeat" / "baseline-manifest.json").write_bytes(baseline_path.read_bytes())
         report = {"schemaVersion": 1, "result": "Passed", "unityVersion": "2022.3.62f2", "target": "StandaloneOSX", "runDirectory": str(run),
                   "baselineManifestPath": str(baseline_path), "baselineManifestSha256": sha(baseline_path),
-                  "cases": [{"id": item, "passed": True} for item in sorted({"T02-01", "T02-02", "T02-03", "T02-04", "T02-05", "T02-06", "T02-07", "M02-Repeatability", "M02-SnapshotTamper"})],
+                  "cases": [{"id": item, "passed": True} for item in sorted(CASE_IDS)],
                   "artifacts": artifacts}
         editor = root / "editor.json"; editor.write_text(json.dumps(report))
         suites = "".join('<test-suite fullname="{0}"><test-case result="Passed" name="{0}.ok"/></test-suite>'.format(name) for name in NUNIT_SUITES)
@@ -307,6 +307,29 @@ class M02EvidenceTests(unittest.TestCase):
             result = verify(editor, nunit, m01)
             self.assertTrue(result["resultPassed"])
             self.assertEqual(set(result["patches"]), {"P01", "P02", "P03", "P05"})
+
+    def test_linked_evidence_validation_cases_are_required_and_passing(self):
+        for case_id in ("M02-LinkedEvidenceRoundTrip", "M02-LinkedEvidenceFacadeTamper", "M02-LinkedEvidenceReboundTamper"):
+            with self.subTest(case_id=case_id), tempfile.TemporaryDirectory() as folder:
+                editor, nunit, m01 = self.fixture(Path(folder))
+                report = json.loads(editor.read_text())
+                self.assertTrue(next(case for case in report["cases"] if case["id"] == case_id)["passed"])
+                self.assertTrue(verify(editor, nunit, m01)["resultPassed"])
+
+    def test_linked_evidence_validation_case_omission_or_failure_fails(self):
+        for mode in ("omit", "fail"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as folder:
+                editor, nunit, m01 = self.fixture(Path(folder))
+                report = json.loads(editor.read_text())
+                target = "M02-LinkedEvidenceFacadeTamper"
+                if mode == "omit":
+                    report["cases"] = [case for case in report["cases"] if case["id"] != target]
+                else:
+                    next(case for case in report["cases"] if case["id"] == target)["passed"] = False
+                editor.write_text(json.dumps(report))
+                with self.assertRaises(VerificationError) as error:
+                    verify(editor, nunit, m01)
+                self.assertTrue(str(error.exception))
 
     def test_reflection_configuration_projects_canonical_contract(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -34,6 +34,10 @@ namespace AssemblyShadowDemo.Editor
                 Require(File.Exists(baselinePath), "Build the M02 Player baseline first.");
                 report.baselineManifestPath = Path.GetFullPath(baselinePath);
                 report.baselineManifestSha256 = ShadowHash.File(baselinePath);
+                string linkedCopy = Path.Combine(run, "linked-evidence-roundtrip");
+                RunCase(cases, "M02-LinkedEvidenceRoundTrip", () => CopyLinkedSnapshot(session.playerInputSnapshot, linkedCopy));
+                RunCase(cases, "M02-LinkedEvidenceFacadeTamper", () => ValidateFacadeTamper(linkedCopy));
+                RunCase(cases, "M02-LinkedEvidenceReboundTamper", () => ValidateReboundProofTamper(linkedCopy));
                 var snapshots = new Dictionary<string, string>();
                 var patches = new Dictionary<string, ShadowPatchManifest>();
                 var patchPaths = new List<Artifact>();
@@ -147,6 +151,77 @@ namespace AssemblyShadowDemo.Editor
             } };
             var result = ShadowAssemblyPolicyValidator.ValidateBeforeCompile(policy, target, root);
             Require(!result.IsValid && result.Errors.Any(e => e.Contains("Internal") && e.Contains("Bad.External")), "Illegal external Internal reference was not rejected before invoking the compiler.");
+        }
+
+        private static void CopyLinkedSnapshot(string source, string destination)
+        {
+            source = Path.GetFullPath(source).TrimEnd(Path.DirectorySeparatorChar);
+            var receipt = AssemblySnapshot.ReadAndVerify(source, true);
+            Require(receipt.linkedPlayerReceipt.schemaVersion == 2, "The M02 Player must carry linked reflection evidence.");
+            Require(!Directory.Exists(destination), "Linked roundtrip requires a new destination.");
+            Directory.CreateDirectory(destination);
+            foreach (string file in Directory.GetFiles(source, "*", SearchOption.AllDirectories))
+            {
+                string relative = file.Substring(source.Length + 1).Replace('\\', '/');
+                if (relative.StartsWith(ShadowLinkedPlayerEvidence.DirectoryName + "/", StringComparison.Ordinal) ||
+                    relative.StartsWith(ShadowReflectionBindingEvidence.DirectoryName + "/", StringComparison.Ordinal)) continue;
+                string target = ShadowHash.SafeChild(destination, relative);
+                Directory.CreateDirectory(Path.GetDirectoryName(target));
+                File.Copy(file, target, false);
+            }
+            ShadowLinkedPlayerEvidence.Copy(source, destination, receipt);
+            ShadowReflectionBindingEvidence.Copy(source, destination, receipt);
+            var copied = AssemblySnapshot.ReadAndVerify(destination, true);
+            Require(copied.snapshotHash == receipt.snapshotHash, "Linked snapshot changed during copy.");
+        }
+
+        private static void ValidateFacadeTamper(string root)
+        {
+            string path = ShadowHash.SafeChild(root, ShadowReflectionBindingLinkedEvidence.FacadePath);
+            byte[] original = File.ReadAllBytes(path);
+            try
+            {
+                byte[] changed = (byte[])original.Clone();
+                changed[changed.Length - 1] ^= 1;
+                File.WriteAllBytes(path, changed);
+                ExpectFailure(() => AssemblySnapshot.ReadAndVerify(root, true), "RetargetingFacadeHashMismatch");
+            }
+            finally { File.WriteAllBytes(path, original); }
+            AssemblySnapshot.ReadAndVerify(root, true);
+        }
+
+        private static void ValidateReboundProofTamper(string root)
+        {
+            var snapshot = AssemblySnapshot.ReadAndVerify(root, true);
+            string proofPath = ShadowHash.SafeChild(root, ShadowReflectionBindingLinkedEvidence.ReceiptPath);
+            string snapshotPath = Path.Combine(root, AssemblySnapshot.ReceiptName);
+            string linkedPath = Path.Combine(root, ShadowLinkedPlayerEvidence.DirectoryName, ShadowLinkedPlayerEvidence.ReceiptName);
+            byte[] originalProof = File.ReadAllBytes(proofPath);
+            byte[] originalSnapshot = File.ReadAllBytes(snapshotPath);
+            byte[] originalLinked = File.ReadAllBytes(linkedPath);
+            try
+            {
+                var proof = JsonUtility.FromJson<ReflectionBindingLinkedReceipt>(File.ReadAllText(proofPath));
+                Require(proof.sites != null && proof.sites.Length > 0, "Linked proof has no protected sites.");
+                string hash = proof.sites[0].compiledMethodHash;
+                proof.sites[0].compiledMethodHash = (hash[0] == '0' ? "1" : "0") + hash.Substring(1);
+                File.WriteAllText(proofPath, JsonUtility.ToJson(proof, true));
+                // Rebind the outer receipts deliberately: fresh IL/profile
+                // derivation, not merely a stale outer hash, must reject this.
+                snapshot.linkedPlayerReceipt.reflectionBindingEvidenceHash = ShadowHash.File(proofPath);
+                snapshot.linkedPlayerReceiptHash = ShadowLinkedPlayerEvidence.ComputeHash(snapshot.linkedPlayerReceipt);
+                snapshot.snapshotHash = AssemblySnapshot.ComputeHash(snapshot);
+                File.WriteAllText(linkedPath, JsonUtility.ToJson(snapshot.linkedPlayerReceipt, true));
+                File.WriteAllText(snapshotPath, JsonUtility.ToJson(snapshot, true));
+                ExpectFailure(() => AssemblySnapshot.ReadAndVerify(root, true), "ReflectionBindingLinkedEvidenceChanged");
+            }
+            finally
+            {
+                File.WriteAllBytes(proofPath, originalProof);
+                File.WriteAllBytes(snapshotPath, originalSnapshot);
+                File.WriteAllBytes(linkedPath, originalLinked);
+            }
+            AssemblySnapshot.ReadAndVerify(root, true);
         }
 
         private static ShadowBuildException ExpectFailure(Action action, string code)
