@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "scope": "bounded-public-image-native-source-correction-only",
+  "runtimeAcceptance": false,
+  "verdict": "PASS",
+  "reviewer": "m03_transaction_review_gpt56sol_high_1",
+  "reviewerExecutedCode": false,
+  "nativeBase": "8ceb7e40abe458dce5343bedaf250333ef9433a1",
+  "nativeTarget": "50194392f08815354b6f230f6d0ddd3ec5f9b0f3",
+  "demoBase": "7c0263e4537c6a5114c867b2eb9d010245156a7a",
+  "demoTarget": "204d4610f7333a86583bb0f98e3983875a2bca04",
+  "checks": [
+    "Exact stable-public-image and active-metadata separation",
+    "Physical getters, guards, OFF/private/ordinary and FailedAfterCommit preserved",
+    "No mapping-time allocation or lock",
+    "Both supplied receipt hashes, all 1113 native input hashes and all seven diagnostic input hashes verified",
+    "187/32 identity, 34 syntax, 162 zero-exit commands observed in receipt",
+    "18 actual DemoValue admissions fail with index -1 and registered-image mismatch"
+  ],
+  "limits": [
+    "Controlled physical getter and constructed snapshot fixture",
+    "Recorded HEAD predates correction; exact source hashes bind evidence",
+    "Fresh v6 Player serialization and regression proof pending"
+  ]
+}

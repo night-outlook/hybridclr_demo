@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "runtimeAcceptance": false,
+  "scope": "v6-bootstrap-ABI-source-addendum",
+  "verdict": "PASS",
+  "reviewer": "m02_integrity_review_gpt56sol_high_1",
+  "reviewerExecutedCode": false,
+  "base": "204d4610f7333a86583bb0f98e3983875a2bca04",
+  "target": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+  "exactChanges": {
+    "files": 1,
+    "added": 1,
+    "removed": 1,
+    "path": "Assets/AssemblyShadowDemo/Scenes/M05Bootstrap.unity"
+  },
+  "baselineBuildId": "M05-Baseline-v6",
+  "runtimeAbiHash": "f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5",
+  "sceneSha256": "25742376cb1e1c5eefc5cf9d84b18fea997cae8872b6244cb4fc806f859d51d6",
+  "configureLog": "_temp/UnityExec_20260828_064455.log",
+  "configureLogSha256": "28e8184023ecbf849d3b12ba5eec880d3ddcb76a74e022d384ee53f6474dbcfe",
+  "checks": [
+    "Exact one-line scene ABI change",
+    "Baseline ID and scene/runner GUIDs unchanged",
+    "Independent ABI recomputation matches",
+    "Scene and successful Configure log hashes match"
+  ],
+  "limits": [
+    "Metadata pin update was uncommitted during review",
+    "No M05 runtime acceptance"
+  ]
+}

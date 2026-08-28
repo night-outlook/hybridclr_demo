@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "kind": "FinalNativeAndInstalledSourceValidation",
+  "runtimeAcceptance": false,
+  "recordedUtc": "2026-08-28T15:22:36.304Z",
+  "frozenDemoBuildRevision": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+  "offlineVerifierRevision": "6f0123839ba1fe01e18c29858b15fefc1cc7b12c",
+  "metadataRevision": "f880c33f89050f2396e55a9ce8d4d838d3eb6091",
+  "runs": [
+    {
+      "record": "m05FinalM04NativeReadyRun",
+      "cmd": "env PYTHONDONTWRITEBYTECODE=1 python3 Tools/AssemblyShadow/run-m04-native-tests.py --output /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m04-native-tests-ready.json",
+      "startedUtc": "2026-08-28T15:13:18.000Z",
+      "outputs": [
+        {
+          "chunk_id": "97d6d4",
+          "wall_time_seconds": 1.002583666,
+          "session_id": 64763,
+          "original_token_count": 0,
+          "output": ""
+        },
+        {
+          "chunk_id": "4dff69",
+          "wall_time_seconds": 0.000003459,
+          "exit_code": 0,
+          "original_token_count": 63,
+          "output": "{\"success\": true, \"checks\": 53, \"syntaxChecks\": 22, \"lookupCount\": 1000000, \"lookupAllocations\": 0, \"error\": null, \"receipt\": \"/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m04-native-tests-ready.json\"}\n"
+        }
+      ],
+      "finishedUtc": "2026-08-28T15:14:30.098Z"
+    },
+    {
+      "record": "m05FinalM05NativeRun",
+      "cmd": "env PYTHONDONTWRITEBYTECODE=1 python3 Tools/AssemblyShadow/run-m05-native-tests.py --output /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m05-native-tests.json",
+      "startedUtc": "2026-08-28T15:14:44.365Z",
+      "outputs": [
+        {
+          "chunk_id": "26a8eb",
+          "wall_time_seconds": 1.000625292,
+          "session_id": 83814,
+          "original_token_count": 0,
+          "output": ""
+        },
+        {
+          "chunk_id": "31e36f",
+          "wall_time_seconds": 0.000002667,
+          "exit_code": 0,
+          "original_token_count": 46,
+          "output": "{\"success\": true, \"syntaxChecks\": 34, \"error\": null, \"receipt\": \"/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m05-native-tests.json\"}\n"
+        }
+      ],
+      "finishedUtc": "2026-08-28T15:19:51.038Z"
+    },
+    {
+      "record": "m05FinalM03NativeRun",
+      "cmd": "env PYTHONDONTWRITEBYTECODE=1 python3 Tools/AssemblyShadow/run-m03-native-tests.py --output /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m03-native-tests.json",
+      "startedUtc": "2026-08-28T15:14:44.365Z",
+      "outputs": [
+        {
+          "chunk_id": "0e3ff7",
+          "wall_time_seconds": 1.002052291,
+          "session_id": 30098,
+          "original_token_count": 0,
+          "output": ""
+        },
+        {
+          "chunk_id": "e14691",
+          "wall_time_seconds": 7.5e-7,
+          "exit_code": 0,
+          "original_token_count": 76,
+          "output": "{\"success\": true, \"identityChecks\": 23027, \"nameChecks\": 30, \"facadeChecks\": 25, \"facadeLookupChecks\": 15, \"disabledApiChecks\": 27, \"dependencyCount\": 1005, \"error\": null, \"receipt\": \"/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m03-native-tests.json\"}\n"
+        }
+      ],
+      "finishedUtc": "2026-08-28T15:19:51.038Z"
+    },
+    {
+      "record": "m05FinalVisibilityRun",
+      "cmd": "env PYTHONDONTWRITEBYTECODE=1 python3 Tools/AssemblyShadow/run-m03-visibility-tests.py --output /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/visibility-native-tests.json",
+      "startedUtc": "2026-08-28T15:14:44.365Z",
+      "outputs": [
+        {
+          "chunk_id": "b4515a",
+          "wall_time_seconds": 1.00248675,
+          "session_id": 98137,
+          "original_token_count": 0,
+          "output": ""
+        },
+        {
+          "chunk_id": "65a054",
+          "wall_time_seconds": 0.000001375,
+          "exit_code": 0,
+          "original_token_count": 67,
+          "output": "{\"success\": true, \"visibilityChecks\": 18674, \"scenarios\": {\"abort\": 6262, \"commit\": 12412}, \"dependencyCount\": 987, \"error\": null, \"receipt\": \"/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/visibility-native-tests.json\"}\n"
+        }
+      ],
+      "finishedUtc": "2026-08-28T15:19:51.039Z"
+    }
+  ],
+  "strictInstalledSourceCheck": {
+    "cmd": "env PYTHONDONTWRITEBYTECODE=1 python3 Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow on --json",
+    "startedUtc": "2026-08-28T15:20:32.687Z",
+    "outputs": [
+      {
+        "chunk_id": "441e65",
+        "wall_time_seconds": 1.002650667,
+        "session_id": 13232,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "chunk_id": "e82f28",
+        "wall_time_seconds": 0.000002375,
+        "exit_code": 0,
+        "original_token_count": 66,
+        "output": "{\n  \"unityVersion\": \"2022.3.62f2\",\n  \"target\": \"StandaloneOSX\",\n  \"sourceFiles\": 940,\n  \"installedFiles\": 942,\n  \"demoSourceVerified\": true,\n  \"configuredShadowMode\": \"on\",\n  \"receiptSha256\": \"d943c2051ac8573a10cfa95b16dd0e2bff28893b45766cdbd1e29f40b3f0410e\"\n}\n"
+      }
+    ],
+    "finishedUtc": "2026-08-28T15:20:49.140Z"
+  },
+  "generatedDefinitions": {
+    "initialNativeCheckFailurePath": "_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m04-native-tests.json",
+    "initialNativeCheckFailure": "Generated Unity ABI differs from pinned version",
+    "reason": "Repeat installation restores ungenerated templates. The existing narrow Il2CppDef generator was run before rerunning the native suites.",
+    "command": "pwsh -NoProfile -File .agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1 HybridCLR.Editor.Commands.Il2CppDefGeneratorCommand.GenerateIl2CppDef -TimeoutSec 600",
+    "exitCode": 0,
+    "startedUtc": "2026-08-28T15:10:52.217Z",
+    "finishedUtc": "2026-08-28T15:12:54.926Z",
+    "logPath": "_temp/UnityExec_20260828_081052.log",
+    "logSha256": "2506507b3c75feba28373589df0ddf77cee841325a4acbb0d29749a6b6dde111",
+    "preGenerationSha256Output": "1c9f0bb0394da0c67d8de873cf74faac314d57d78c360b4bcdf925920037b205  HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/UnityVersion.h\n4a53713a9fa20c7810872599fc1f90c0a927e79ecbc1a1b69ab1a90cf8192b28  HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/AssemblyManifest.cpp\n1b43eb67421b318995b1dc9aeb357500278addc1f29f3bbcafe62a98560c668c  HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/MethodBridge.cpp\n21ff4a6aabf9e962c439c0508dd64f3a6c1a42337c79e872eb02f46b6f89160a  HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/libil2cpp-version.txt\n",
+    "after": {
+      "UnityVersion_h": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff",
+      "AssemblyManifest_cpp": "d9bb597edb16903eaeba9d73d67a391ff16208b11a5c509ef0f0300bbc8f3712",
+      "MethodBridge_cpp": "1b43eb67421b318995b1dc9aeb357500278addc1f29f3bbcafe62a98560c668c",
+      "libil2cpp-version_txt": "21ff4a6aabf9e962c439c0508dd64f3a6c1a42337c79e872eb02f46b6f89160a"
+    },
+    "scope": "Only existing generated definitions; no full Prebuild, Player build, snapshot or fixture regeneration."
+  },
+  "limits": [
+    "Command capture times are orchestration observations; individual receipts retain their own start/end timestamps.",
+    "Native harnesses use disclosed adapters and are not substitutes for actual Player cases.",
+    "The M04 one-million-lookup benchmark ran in isolation before the three remaining native suites ran concurrently.",
+    "This record supports, but does not itself grant, M05 acceptance."
+  ]
+}

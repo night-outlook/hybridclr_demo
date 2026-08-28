@@ -1,0 +1,1533 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M05",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6/baseline-manifest.json",
+    "baselineManifestSha256": "adde5a69362a79e7e51358bab6c65b89e0405ae90ea293753fb40b857e7c3f8d",
+    "baselineBuildId": "M05-Baseline-v6",
+    "runtimeAbiHash": "f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5",
+    "baselineInputSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124",
+    "baselineInputSnapshotHash": "d3596b4e4cf39506e537ae5d45f905cd58d91785dc1bfa7d00a3a85d638eb3da",
+    "candidateNames": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "closureLoadOrder": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "stableAotNames": [
+        "assemblyshadowdemo.bootstrap",
+        "mscorlib",
+        "system",
+        "system.core",
+        "system.xml",
+        "unityengine",
+        "unityengine.aimodule",
+        "unityengine.androidjnimodule",
+        "unityengine.animationmodule",
+        "unityengine.assetbundlemodule",
+        "unityengine.audiomodule",
+        "unityengine.coremodule",
+        "unityengine.directormodule",
+        "unityengine.gamecentermodule",
+        "unityengine.gridmodule",
+        "unityengine.imguimodule",
+        "unityengine.inputlegacymodule",
+        "unityengine.inputmodule",
+        "unityengine.jsonserializemodule",
+        "unityengine.particlesystemmodule",
+        "unityengine.physics2dmodule",
+        "unityengine.physicsmodule",
+        "unityengine.propertiesmodule",
+        "unityengine.sharedinternalsmodule",
+        "unityengine.spritemaskmodule",
+        "unityengine.spriteshapemodule",
+        "unityengine.subsystemsmodule",
+        "unityengine.terrainmodule",
+        "unityengine.textcorefontenginemodule",
+        "unityengine.textcoretextenginemodule",
+        "unityengine.textrenderingmodule",
+        "unityengine.tilemapmodule",
+        "unityengine.uielementsmodule",
+        "unityengine.uimodule",
+        "unityengine.unityanalyticsmodule",
+        "unityengine.unitywebrequestmodule",
+        "unityengine.vfxmodule",
+        "unityengine.videomodule",
+        "unityengine.vrmodule",
+        "unityengine.xrmodule"
+    ],
+    "stableAotProvenanceHash": "d26da76cf38e38b3956045ca996a6e25f03430ccd9917757774f952d611a1669",
+    "stableAotProvenance": "framework=99dce36b1daca97a5cfdae46f572567706a47a5936e3a13a3da0d90eeb92594b\ncompiler-libraries=5ef61ba6d41980290b2bafb39c84b412b9a1edb9d296b1bc36147f824c3065f9\nlinked-player=8498e2f16a434d8de1c1925eef7315d53af0ce5e6b807e81bf8b4859b0e5b119\nbootstrap-policy=assemblyshadowdemo.bootstrap\nphysical=assemblyshadowdemo.bootstrap,mscorlib,system,system.core,system.xml,unityengine,unityengine.aimodule,unityengine.androidjnimodule,unityengine.animationmodule,unityengine.assetbundlemodule,unityengine.audiomodule,unityengine.coremodule,unityengine.directormodule,unityengine.gamecentermodule,unityengine.gridmodule,unityengine.imguimodule,unityengine.inputlegacymodule,unityengine.inputmodule,unityengine.jsonserializemodule,unityengine.particlesystemmodule,unityengine.physics2dmodule,unityengine.physicsmodule,unityengine.propertiesmodule,unityengine.sharedinternalsmodule,unityengine.spritemaskmodule,unityengine.spriteshapemodule,unityengine.subsystemsmodule,unityengine.terrainmodule,unityengine.textcorefontenginemodule,unityengine.textcoretextenginemodule,unityengine.textrenderingmodule,unityengine.tilemapmodule,unityengine.uielementsmodule,unityengine.uimodule,unityengine.unityanalyticsmodule,unityengine.unitywebrequestmodule,unityengine.vfxmodule,unityengine.videomodule,unityengine.vrmodule,unityengine.xrmodule",
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "defines": [
+                "ASSEMBLY_SHADOW_M03_INITIALIZERS",
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M04",
+                "ASSEMBLY_SHADOW_M05"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P01-compile/Snapshot",
+            "compileSnapshotHash": "d84abb8c9d72ae2c5b1bad56f675188f8c1dbd2a183e6133b443afedb425b3a5",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P01",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P01/patch-manifest.json",
+            "patchManifestSha256": "22b12893b279a316b576ba9bb2735782189409c705556c4cf193f4667bcf14c5",
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "stableAotNames": [
+                "assemblyshadowdemo.bootstrap",
+                "mscorlib",
+                "system",
+                "system.core",
+                "system.xml",
+                "unityengine",
+                "unityengine.aimodule",
+                "unityengine.androidjnimodule",
+                "unityengine.animationmodule",
+                "unityengine.assetbundlemodule",
+                "unityengine.audiomodule",
+                "unityengine.coremodule",
+                "unityengine.directormodule",
+                "unityengine.gamecentermodule",
+                "unityengine.gridmodule",
+                "unityengine.imguimodule",
+                "unityengine.inputlegacymodule",
+                "unityengine.inputmodule",
+                "unityengine.jsonserializemodule",
+                "unityengine.particlesystemmodule",
+                "unityengine.physics2dmodule",
+                "unityengine.physicsmodule",
+                "unityengine.propertiesmodule",
+                "unityengine.sharedinternalsmodule",
+                "unityengine.spritemaskmodule",
+                "unityengine.spriteshapemodule",
+                "unityengine.subsystemsmodule",
+                "unityengine.terrainmodule",
+                "unityengine.textcorefontenginemodule",
+                "unityengine.textcoretextenginemodule",
+                "unityengine.textrenderingmodule",
+                "unityengine.tilemapmodule",
+                "unityengine.uielementsmodule",
+                "unityengine.uimodule",
+                "unityengine.unityanalyticsmodule",
+                "unityengine.unitywebrequestmodule",
+                "unityengine.vfxmodule",
+                "unityengine.videomodule",
+                "unityengine.vrmodule",
+                "unityengine.xrmodule"
+            ],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "9a34d608-65d1-471c-988e-aaef988a48ce",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P01/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "c55cdedd37a937aa927d6f44e30c64aabdb9592f5cfce7e78485cece2d6f0ae3",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "typeInventories": [
+                {
+                    "assemblyName": "AssemblyA.Implementation.Internal",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "InternalEntry",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M03ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M03ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalPayload",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalPayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalGeneric`1",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalGeneric`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalOuter",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalOuter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalGenericOuter`1",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalGenericOuter`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalInterfacePayload",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalInterfacePayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedPrefabComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedScriptableObject",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalOuter+Inner",
+                            "namespaceName": "",
+                            "name": "Inner",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05InternalOuter"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalGenericOuter`1+Inner`1",
+                            "namespaceName": "",
+                            "name": "Inner`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05InternalGenericOuter`1"
+                            ],
+                            "genericArity": 2,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=544",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=544",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=831",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=831",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "patchId": "P03",
+            "defines": [
+                "ASSEMBLY_SHADOW_M03_INITIALIZERS",
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M04",
+                "ASSEMBLY_SHADOW_M05",
+                "ASSEMBLY_SHADOW_M03_P03",
+                "ASSEMBLY_SHADOW_P03",
+                "ASSEMBLY_SHADOW_M04_P03",
+                "ASSEMBLY_SHADOW_M05_P03"
+            ],
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03-compile/Snapshot",
+            "compileSnapshotHash": "85d2509845e42fb2304130d8d28be6f9a06c106691ee2868f0abe725dd70af23",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03/patch-manifest.json",
+            "patchManifestSha256": "32b19d159aef2507ec6a24009f1750969fde4c46b95de1811b74a60bd30ecaa1",
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "stableAotNames": [
+                "assemblyshadowdemo.bootstrap",
+                "mscorlib",
+                "system",
+                "system.core",
+                "system.xml",
+                "unityengine",
+                "unityengine.aimodule",
+                "unityengine.androidjnimodule",
+                "unityengine.animationmodule",
+                "unityengine.assetbundlemodule",
+                "unityengine.audiomodule",
+                "unityengine.coremodule",
+                "unityengine.directormodule",
+                "unityengine.gamecentermodule",
+                "unityengine.gridmodule",
+                "unityengine.imguimodule",
+                "unityengine.inputlegacymodule",
+                "unityengine.inputmodule",
+                "unityengine.jsonserializemodule",
+                "unityengine.particlesystemmodule",
+                "unityengine.physics2dmodule",
+                "unityengine.physicsmodule",
+                "unityengine.propertiesmodule",
+                "unityengine.sharedinternalsmodule",
+                "unityengine.spritemaskmodule",
+                "unityengine.spriteshapemodule",
+                "unityengine.subsystemsmodule",
+                "unityengine.terrainmodule",
+                "unityengine.textcorefontenginemodule",
+                "unityengine.textcoretextenginemodule",
+                "unityengine.textrenderingmodule",
+                "unityengine.tilemapmodule",
+                "unityengine.uielementsmodule",
+                "unityengine.uimodule",
+                "unityengine.unityanalyticsmodule",
+                "unityengine.unitywebrequestmodule",
+                "unityengine.vfxmodule",
+                "unityengine.videomodule",
+                "unityengine.vrmodule",
+                "unityengine.xrmodule"
+            ],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Contracts",
+                    "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "24389f4a-6d95-4e59-81a9-f36127909a1f",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03/DLLs/AssemblyA.Contracts.dll",
+                    "sha256": "30f50101527d62a1634a34bef089321a107a76c4af22d74c251cd78ffcb2e3b1",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Extensibility",
+                    "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "b418e1e8-bef3-4cd9-b80d-28e82d9d3f31",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03/DLLs/AssemblyA.Implementation.Extensibility.dll",
+                    "sha256": "ffe865f9682069eb03f57832fa411f64c32eded2acea5d32cc890bf2892fbadf",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "46df1f27-0e0d-4f3d-a0f1-b25b90aa7e6a",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "7c7ad98da97fba4cb19325b229071f79a19f8b24943639b9251fb5635c27cdd4",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ContractsConsumer",
+                    "fullName": "AssemblyShadowDemo.ContractsConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "74ffc0b6-0d3a-4259-b0f9-094070bce230",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03/DLLs/AssemblyShadowDemo.ContractsConsumer.dll",
+                    "sha256": "05fe3bc17dc877256242999b1d6b82cbe626c39e91c6ffa4804912e1dc8aef5f",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "fullName": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "98580963-8777-4f49-b721-afba0a1a6ca3",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/P03/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+                    "sha256": "d6d32e1810b6acb9feb68d04f069f523fd7f37de5acf1d86d6073265cee540bb",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "typeInventories": [
+                {
+                    "assemblyName": "AssemblyA.Contracts",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "AssemblyAContractVersion",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.DemoValue",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "DemoValue",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.IVersionTextProvider",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "IVersionTextProvider",
+                            "kind": "interface",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M03ModuleInitializer",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M03ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.IM05ContractPayload",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "IM05ContractPayload",
+                            "kind": "interface",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M05ContractPayload",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M05ContractPayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M05ContractGeneric`1",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M05ContractGeneric`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M05ContractOuter",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M05ContractOuter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M05ContractOuter+Inner",
+                            "namespaceName": "",
+                            "name": "Inner",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05ContractOuter"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=451",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=451",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=552",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=552",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyA.Implementation.Extensibility",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M03ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M03ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "VersionedComponentBase",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M05ExtensibilityPayload",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M05ExtensibilityPayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M05ExtensibilityGeneric`1",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M05ExtensibilityGeneric`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M05ExtensibilityOuter",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M05ExtensibilityOuter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M03Fixtures.M03Pair`1",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility.M03Fixtures",
+                            "name": "M03Pair`1",
+                            "kind": "valuetype",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M03Fixtures.M03Holder",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility.M03Fixtures",
+                            "name": "M03Holder",
+                            "kind": "valuetype",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M03Fixtures.M03PrivateValue",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility.M03Fixtures",
+                            "name": "M03PrivateValue",
+                            "kind": "valuetype",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M05ExtensibilityOuter+Inner",
+                            "namespaceName": "",
+                            "name": "Inner",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05ExtensibilityOuter"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=475",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=475",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=794",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=794",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyA.Implementation.Internal",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "InternalEntry",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M03ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M03ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalPayload",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalPayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalGeneric`1",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalGeneric`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalOuter",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalOuter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalGenericOuter`1",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalGenericOuter`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalInterfacePayload",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M05InternalInterfacePayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedPrefabComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedScriptableObject",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M03Fixtures.M03VisibilityConsumer",
+                            "namespaceName": "AssemblyA.Implementation.Internal.M03Fixtures",
+                            "name": "M03VisibilityConsumer",
+                            "kind": "valuetype",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalOuter+Inner",
+                            "namespaceName": "",
+                            "name": "Inner",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05InternalOuter"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M05InternalGenericOuter`1+Inner`1",
+                            "namespaceName": "",
+                            "name": "Inner`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05InternalGenericOuter`1"
+                            ],
+                            "genericArity": 2,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=637",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=637",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=903",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=903",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyShadowDemo.ContractsConsumer",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ContractsConsumer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M03ModuleInitializer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M03ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ContractsConsumerPayload",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M05ContractsConsumerPayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ContractsConsumerGeneric`1",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M05ContractsConsumerGeneric`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ContractsConsumerOuter",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M05ContractsConsumerOuter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ContractsConsumerOuter+Inner",
+                            "namespaceName": "",
+                            "name": "Inner",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05ContractsConsumerOuter"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=331",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=331",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=516",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=516",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "DerivedExternalComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M03ModuleInitializer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M03ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ExtensibilityConsumerPayload",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M05ExtensibilityConsumerPayload",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ExtensibilityConsumerGeneric`1",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M05ExtensibilityConsumerGeneric`1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 1,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ExtensibilityConsumerOuter",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "M05ExtensibilityConsumerOuter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.M05ExtensibilityConsumerOuter+Inner",
+                            "namespaceName": "",
+                            "name": "Inner",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M05ExtensibilityConsumerOuter"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=354",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=354",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=553",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=553",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "rejectedFixtures": [
+        {
+            "fixtureId": "LayoutMismatch",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/LayoutMismatch-compile/Snapshot",
+            "compileSnapshotHash": "3d3da64a0371007a3c7975778eda573aa3dbd0c76191da65b854e015ce18fb81",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: business-scene.bundle, versioned-data.bundle, versioned-prefab.bundle. assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent:callback external runtime behavior cannot be proven: System.Console, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51:WriteLine:Default:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:varargs:; assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent:callback unproven instance state requires review: AssemblyA.Implementation.Internal.VersionedPrefabComponent, AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null:m05BadLayoutField:2:I4;92:System.Int32, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;; interfaces changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent; serialization callback body compatibility cannot be proven statically.; serialization callback contract changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent; serialization callback implementation changed or is unproven: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+            "dllPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/LayoutMismatch-compile/Snapshot/Assemblies/AssemblyA.Implementation.Internal.dll",
+            "dllSha256": "59695b028bdfdd24e5dcef4a5bd95b039eced3d37bc16a162a20a5fe71839c3b",
+            "defines": [
+                "ASSEMBLY_SHADOW_M03_INITIALIZERS",
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M04",
+                "ASSEMBLY_SHADOW_M05",
+                "ASSEMBLY_SHADOW_M05_LAYOUT_MISMATCH"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "assemblyIdentity": {
+                "name": "AssemblyA.Implementation.Internal",
+                "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "version": "0.0.0.0",
+                "culture": "",
+                "publicKeyToken": "",
+                "mvid": "adbcc094-009b-4b3f-9d1b-9078fa85c527",
+                "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/LayoutMismatch-compile/Snapshot/Assemblies/AssemblyA.Implementation.Internal.dll",
+                "sha256": "59695b028bdfdd24e5dcef4a5bd95b039eced3d37bc16a162a20a5fe71839c3b",
+                "referenceIdentities": [
+                    {
+                        "referenceIndex": 0,
+                        "name": "netstandard",
+                        "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                        "version": "2.1.0.0",
+                        "culture": "",
+                        "publicKeyToken": "cc7b13ffcd2ddd51"
+                    },
+                    {
+                        "referenceIndex": 1,
+                        "name": "AssemblyA.Contracts",
+                        "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 2,
+                        "name": "AssemblyA.Implementation.Extensibility",
+                        "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 3,
+                        "name": "UnityEngine.CoreModule",
+                        "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    }
+                ]
+            },
+            "typeInventory": {
+                "assemblyName": "AssemblyA.Implementation.Internal",
+                "types": [
+                    {
+                        "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                        "namespaceName": "",
+                        "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                        "namespaceName": "System.Runtime.CompilerServices",
+                        "name": "ModuleInitializerAttribute",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "InternalEntry",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M03ModuleInitializer",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M03ModuleInitializer",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalPayload",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M05InternalPayload",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalGeneric`1",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M05InternalGeneric`1",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 1,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalOuter",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M05InternalOuter",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalGenericOuter`1",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M05InternalGenericOuter`1",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 1,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalInterfacePayload",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M05InternalInterfacePayload",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "VersionedPrefabComponent",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "VersionedScriptableObject",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "<PrivateImplementationDetails>",
+                        "namespaceName": "",
+                        "name": "<PrivateImplementationDetails>",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                        "namespaceName": "",
+                        "name": "MonoScriptData",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalOuter+Inner",
+                        "namespaceName": "",
+                        "name": "Inner",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M05InternalOuter"
+                        ],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M05InternalGenericOuter`1+Inner`1",
+                        "namespaceName": "",
+                        "name": "Inner`1",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M05InternalGenericOuter`1"
+                        ],
+                        "genericArity": 2,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=544",
+                        "namespaceName": "",
+                        "name": "__StaticArrayInitTypeSize=544",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "<PrivateImplementationDetails>"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=894",
+                        "namespaceName": "",
+                        "name": "__StaticArrayInitTypeSize=894",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "<PrivateImplementationDetails>"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    }
+                ]
+            }
+        }
+    ]
+}

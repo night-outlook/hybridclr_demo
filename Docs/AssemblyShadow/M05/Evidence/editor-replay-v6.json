@@ -1,0 +1,92 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M05",
+    "result": "Passed",
+    "comparisonPolicy": "compiler-linked-policy-resource-type-world:1",
+    "fixtureManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/m05-fixtures.json",
+    "fixtureManifestSha256": "11f5e31780c006ec541517c39689cea9bd5428e3e0e120e04fddf59f51344af7",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6/baseline-manifest.json",
+    "baselineManifestSha256": "adde5a69362a79e7e51358bab6c65b89e0405ae90ea293753fb40b857e7c3f8d",
+    "playerBuildReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/m05-player-build.json",
+    "playerBuildReceiptSha256": "d960401e063612b752f469195672cd7491e9627d6cf323ed85159abe91159ad9",
+    "baselineInputSnapshotHash": "d3596b4e4cf39506e537ae5d45f905cd58d91785dc1bfa7d00a3a85d638eb3da",
+    "baselineBuildId": "M05-Baseline-v6",
+    "playerBuildGuid": "7e4831c71c1b4cb69bbc68ad889bc7a8",
+    "nativeLibrarySha256": "6a4fb969a3d649345db5bf0c56a600f55c9b6a48cc3936b8b8f58be6488da948",
+    "linkedPlayerReceiptHash": "8498e2f16a434d8de1c1925eef7315d53af0ce5e6b807e81bf8b4859b0e5b119",
+    "runtimeAbiHash": "f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "stableAotProvenanceHash": "d26da76cf38e38b3956045ca996a6e25f03430ccd9917757774f952d611a1669",
+    "typeProofPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/m05-type-proof.json",
+    "typeProofSha256": "ed3482554c8555b5db44a613e67a5f134dbf4b77b2fb36fe4cdd61fbe9202157",
+    "replayScratchPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Replay-ae998653de9041faadebeb2b34121092",
+    "validatorSourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr",
+            "revision": "7f0da36e1a978abfd22c2c195ecb2741588a5d69",
+            "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity",
+            "revision": "b132981fa72f8259efde8e8319029b8812858bcf",
+            "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus",
+            "revision": "50194392f08815354b6f230f6d0ddd3ec5f9b0f3",
+            "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo",
+            "revision": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+            "localPath": "."
+        }
+    },
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "patchManifestSha256": "22b12893b279a316b576ba9bb2735782189409c705556c4cf193f4667bcf14c5",
+            "compileSnapshotHash": "d84abb8c9d72ae2c5b1bad56f675188f8c1dbd2a183e6133b443afedb425b3a5",
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ]
+        },
+        {
+            "patchId": "P03",
+            "patchManifestSha256": "32b19d159aef2507ec6a24009f1750969fde4c46b95de1811b74a60bd30ecaa1",
+            "compileSnapshotHash": "85d2509845e42fb2304130d8d28be6f9a06c106691ee2868f0abe725dd70af23",
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ]
+        }
+    ],
+    "rejectedFixtures": [
+        {
+            "fixtureId": "LayoutMismatch",
+            "compileSnapshotHash": "3d3da64a0371007a3c7975778eda573aa3dbd0c76191da65b854e015ce18fb81",
+            "dllSha256": "59695b028bdfdd24e5dcef4a5bd95b039eced3d37bc16a162a20a5fe71839c3b",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: business-scene.bundle, versioned-data.bundle, versioned-prefab.bundle. assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent:callback external runtime behavior cannot be proven: System.Console, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51:WriteLine:Default:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:varargs:; assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent:callback unproven instance state requires review: AssemblyA.Implementation.Internal.VersionedPrefabComponent, AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null:m05BadLayoutField:2:I4;92:System.Int32, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;; interfaces changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent; serialization callback body compatibility cannot be proven statically.; serialization callback contract changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent; serialization callback implementation changed or is unproven: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent"
+        }
+    ]
+}

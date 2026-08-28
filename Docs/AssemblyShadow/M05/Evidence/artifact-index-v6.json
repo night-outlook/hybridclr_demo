@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "kind": "LosslessEvidenceRetention",
+  "runtimeAcceptance": false,
+  "recordedUtc": "2026-08-28T15:25:53.896667+00:00",
+  "baselineBuildId": "M05-Baseline-v6",
+  "demoExecutableSourceCommit": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+  "offlineVerifierRevision": "6f0123839ba1fe01e18c29858b15fefc1cc7b12c",
+  "archiveIndexPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/player-results-v6-09a15e6.index.json",
+  "archiveIndexSha256": "96c8af44cdc77cd8ec2ebc8cf5743a7c1ad31a42b27fedf133448d5e28a7560b",
+  "archiveSha256": "1b8b6ba57995f7ba7f39357a82f9100f13d972e01d465a1eb89548c8f207dd79",
+  "copiedArtifacts": [
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6/baseline-manifest.json",
+      "name": "baseline-manifest-v6.json",
+      "category": "frozen-build",
+      "size": 1998430,
+      "sha256": "adde5a69362a79e7e51358bab6c65b89e0405ae90ea293753fb40b857e7c3f8d",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/baseline-manifest-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/m05-fixtures.json",
+      "name": "fixture-manifest-v6.json",
+      "category": "frozen-build",
+      "size": 80671,
+      "sha256": "11f5e31780c006ec541517c39689cea9bd5428e3e0e120e04fddf59f51344af7",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/fixture-manifest-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/m05-editor-replay.json",
+      "name": "editor-replay-v6.json",
+      "category": "editor-proof",
+      "size": 6269,
+      "sha256": "f39178e5a1ff7986faa62e1113f4bb20b9eaec06dfd1f40d3f0eefb53e5f984c",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/editor-replay-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/m05-player-build.json",
+      "name": "native-on-build-v6.json",
+      "category": "frozen-build",
+      "size": 180101,
+      "sha256": "d960401e063612b752f469195672cd7491e9627d6cf323ed85159abe91159ad9",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-on-build-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/m05-type-proof.json",
+      "name": "native-on-type-proof-v6.json",
+      "category": "frozen-build",
+      "size": 2341401,
+      "sha256": "ed3482554c8555b5db44a613e67a5f134dbf4b77b2fb36fe4cdd61fbe9202157",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-on-type-proof-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/assembly-snapshot.json",
+      "name": "native-on-assembly-snapshot-v6.json",
+      "category": "frozen-build",
+      "size": 152064,
+      "sha256": "8fa35440171fc819df525a768849092bda19e52ac0a4210fd5604294caf3350d",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-on-assembly-snapshot-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/LinkedPlayer/linked-player-receipt.json",
+      "name": "native-on-linked-player-receipt-v6.json",
+      "category": "frozen-build",
+      "size": 26737,
+      "sha256": "8b0bb4f4193831da0080e393cef1401160bc92c69a8c140e69c998d23c878b71",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-on-linked-player-receipt-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/m05-placeholder-AssemblyManifest.cpp",
+      "name": "native-on-placeholder-v6.cpp",
+      "category": "frozen-build",
+      "size": 203,
+      "sha256": "d9bb597edb16903eaeba9d73d67a391ff16208b11a5c509ef0f0300bbc8f3712",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-on-placeholder-v6.cpp"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-e2dfc5d856e74e439891f92930601711/m05-player-build.json",
+      "name": "native-off-build-v6.json",
+      "category": "frozen-build",
+      "size": 180132,
+      "sha256": "b08d5d60fc71f6ac60cff54f25ab3093fe21291edc14fab4c3d73dd24d900052",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-off-build-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-e2dfc5d856e74e439891f92930601711/m05-type-proof.json",
+      "name": "native-off-type-proof-v6.json",
+      "category": "frozen-build",
+      "size": 2341401,
+      "sha256": "f109b3a1783fae25071244d025471255d6f799cd5cbdd688e26537f2cfbe021e",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-off-type-proof-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-e2dfc5d856e74e439891f92930601711/assembly-snapshot.json",
+      "name": "native-off-assembly-snapshot-v6.json",
+      "category": "frozen-build",
+      "size": 152084,
+      "sha256": "ba90d5e1cf5af4efd37d9d59bfa7d6fad6185e0228684b01eee1b2c89e372ab9",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-off-assembly-snapshot-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-e2dfc5d856e74e439891f92930601711/LinkedPlayer/linked-player-receipt.json",
+      "name": "native-off-linked-player-receipt-v6.json",
+      "category": "frozen-build",
+      "size": 26737,
+      "sha256": "0888fd9d0937985280e6bcdc084f1324f0ca85be605b83f4014a26bbc3a62589",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-off-linked-player-receipt-v6.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-e2dfc5d856e74e439891f92930601711/m05-placeholder-AssemblyManifest.cpp",
+      "name": "native-off-placeholder-v6.cpp",
+      "category": "frozen-build",
+      "size": 203,
+      "sha256": "d9bb597edb16903eaeba9d73d67a391ff16208b11a5c509ef0f0300bbc8f3712",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/native-off-placeholder-v6.cpp"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/EditorTests-10f9de99885d4bec8f700a946d9cd553/results.xml",
+      "name": "editor-tests-v6.xml",
+      "category": "editor-proof",
+      "size": 432102,
+      "sha256": "8c5302d4f1ff60fc39f7c130bd74e10f4714ea1d70e21d30d7cc723712e095da",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/editor-tests-v6.xml"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/EditorTests-10f9de99885d4bec8f700a946d9cd553/unity.log",
+      "name": "editor-tests-v6.unity.log",
+      "category": "editor-proof",
+      "size": 258680,
+      "sha256": "7c490d014f819dcc6f204cb70099d7ad0c2ea9af53c00f0c16ae4dde46fdcbf3",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/editor-tests-v6.unity.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/corrective-validation.json",
+      "name": "corrective-validation.json",
+      "category": "verification-and-provenance",
+      "size": 9189,
+      "sha256": "e287f3780d9d0780c24e2cf1931bc59745d79a6735b4614afe68da86e5d982cc",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/corrective-validation.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/m05-verification.json",
+      "name": "m05-verification.json",
+      "category": "verification-and-provenance",
+      "size": 4258,
+      "sha256": "7aca87b2977329347cbba33a9f98085152e3c91edcd663b5082d2dbce62f7be5",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/m05-verification.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/final-native-validation.json",
+      "name": "final-native-validation.json",
+      "category": "verification-and-provenance",
+      "size": 7945,
+      "sha256": "89270becdb5495f5d29bb18b18ac4b2c5fb4c66d321f181c08e52da2a362417f",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/final-native-validation.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/source-equivalence-before-install.json",
+      "name": "source-equivalence-before-install.json",
+      "category": "verification-and-provenance",
+      "size": 17627,
+      "sha256": "4eb7ae99df7cd4af474f7bd455bba77f97afab184c5d09e602be57dca4213353",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-equivalence-before-install.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/source-equivalence-after-install.json",
+      "name": "source-equivalence-after-install.json",
+      "category": "verification-and-provenance",
+      "size": 17627,
+      "sha256": "7d955ad7e2489dcd0395899e4d2edbd82556953be69e778a992ec8798cb052b8",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-equivalence-after-install.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/source-equivalence-final.json",
+      "name": "source-equivalence-final.json",
+      "category": "verification-and-provenance",
+      "size": 17627,
+      "sha256": "b42e7369ec8fe889ecc9add292cb63bd643ed4e094ba993b37db51c3f6d9d9dd",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-equivalence-final.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/tooling-install-validation.json",
+      "name": "tooling-install-validation.json",
+      "category": "verification-and-provenance",
+      "size": 19171,
+      "sha256": "ff78d06c5b22025f4a6116cb6f2305f9cd532dde4b38f558fc644ad2b5a589de",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/tooling-install-validation.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/preservation-review.json",
+      "name": "preservation-review.json",
+      "category": "verification-and-provenance",
+      "size": 1399,
+      "sha256": "e64b3a1b67d1a8d1d98b33556ee5ccbbcc58683c59a3b61a5310dab134c06840",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/preservation-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/frozen-build-install-receipt.json",
+      "name": "frozen-build-install-receipt.json",
+      "category": "verification-and-provenance",
+      "size": 190673,
+      "sha256": "3e5e1d402dd53681a0908b0f0b17eaa084534c9b3f3f4b27f872c4f1f9269ac5",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/frozen-build-install-receipt.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/frozen-build-install-repeatability.json",
+      "name": "frozen-build-install-repeatability.json",
+      "category": "verification-and-provenance",
+      "size": 141,
+      "sha256": "22eb3c39d7b3a648384d92ff55f63f4197c7e23a23e45f27bd055da002b18532",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/frozen-build-install-repeatability.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-install-receipt.json",
+      "name": "tooling-install-receipt.json",
+      "category": "current-tooling-only",
+      "size": 190673,
+      "sha256": "d943c2051ac8573a10cfa95b16dd0e2bff28893b45766cdbd1e29f40b3f0410e",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/tooling-install-receipt.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-install-repeatability.json",
+      "name": "tooling-install-repeatability.json",
+      "category": "current-tooling-only",
+      "size": 141,
+      "sha256": "eccabb728e40eaebe63a1914b5c02378ec986233b6145ee4f1ae9c4954d51e47",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/tooling-install-repeatability.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/ProjectSettings/AssemblyShadowSourcePins.json",
+      "name": "current-tooling-source-pins.json",
+      "category": "current-tooling-only",
+      "size": 809,
+      "sha256": "776f5aaa3d3e98f3f646bd49dd318044b83b30784f75381f86cb6d2416bb2926",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/current-tooling-source-pins.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/ProjectSettings/AssemblyShadowRawTypeAdmissions.json",
+      "name": "raw-type-admission-configuration.json",
+      "category": "frozen-build",
+      "size": 22794,
+      "sha256": "d47806dc47b699aa3fb0ece4f285a158e4677e4b40c9ae23fb448929a7bed8a8",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/raw-type-admission-configuration.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m05-native-tests.json",
+      "name": "m05-native-tests.json",
+      "category": "final-native-proof",
+      "size": 791926,
+      "sha256": "32a2a85b034dfe32eeacd583d0b89c9c46dc011a0b0a8d9fd5c22c5de897dacc",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/m05-native-tests.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m03-native-tests.json",
+      "name": "m03-native-tests.json",
+      "category": "final-native-proof",
+      "size": 275862,
+      "sha256": "2d5689b2f75e7e11d49227471a91ed6c8d0fbd66c176758da59013f9b33722c6",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/m03-native-tests.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/visibility-native-tests.json",
+      "name": "visibility-native-tests.json",
+      "category": "final-native-proof",
+      "size": 233295,
+      "sha256": "146a5a6df74a7861e1bf0d5654999993769c950cfc3fe72ddaa6f493ffadb842",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/visibility-native-tests.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m04-native-tests-ready.json",
+      "name": "m04-native-tests-ready.json",
+      "category": "final-native-proof",
+      "size": 506888,
+      "sha256": "1fed202596f8db4d153df725620721c2f750aadf3e216afa433b40266794bcc2",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/m04-native-tests-ready.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05FinalNative-FOgff7G2/m04-native-tests.json",
+      "name": "history/m04-native-ungenerated-header-failure.json",
+      "category": "preserved-failure",
+      "size": 273,
+      "sha256": "3c62a57834b0971aaf45659aa7292f9c14fe5bbb4e764ce80897b886410483d2",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/history/m04-native-ungenerated-header-failure.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-prebuild-validation.json",
+      "name": "v6-prebuild-validation.json",
+      "category": "build-and-replay-proof",
+      "size": 2649,
+      "sha256": "bf3537eadf544c669b4b93b0bc31eb9bf82a5c0a50db5546b30e465401c82b1d",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-prebuild-validation.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-on-build-complete.json",
+      "name": "v6-on-build-complete.json",
+      "category": "build-and-replay-proof",
+      "size": 2106,
+      "sha256": "a3b0e09f034e8fd61ef0576134d06ffc3469376a40caa515d0c9171c81edfc7b",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-on-build-complete.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-off-build-complete.json",
+      "name": "v6-off-build-complete.json",
+      "category": "build-and-replay-proof",
+      "size": 2030,
+      "sha256": "b54a893db61805ed605ef51ca746c89e7a8d3e8b9fc8c44776c9fff372d7ec98",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-off-build-complete.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-fixture-build-complete.json",
+      "name": "v6-fixture-build-complete.json",
+      "category": "build-and-replay-proof",
+      "size": 4712,
+      "sha256": "ae5a47cb4e11e59a56d3938efc7441f1210059d570b1ad3465b7af42164872fa",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-fixture-build-complete.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-on-input-replay.json",
+      "name": "v6-on-input-replay.json",
+      "category": "build-and-replay-proof",
+      "size": 1978,
+      "sha256": "25d2154dd6fa4d6a17a7a76159cab69a926803a7ac58a53bc0e9d60f4d0f6a00",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-on-input-replay.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-on-off-pre-runtime-replay.json",
+      "name": "v6-on-off-pre-runtime-replay.json",
+      "category": "build-and-replay-proof",
+      "size": 3549,
+      "sha256": "73f5072223796efc687f5a4ea3dd42b46987f2b30b59e490e5272391493bf425",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-on-off-pre-runtime-replay.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-editor-replay-verification.json",
+      "name": "v6-editor-replay-verification.json",
+      "category": "build-and-replay-proof",
+      "size": 1749,
+      "sha256": "6adf705cb45f928b76fad5337038e54b404b8070ef659dc7eda68c01ddb3a4bc",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/v6-editor-replay-verification.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/historical-preservation-during-v6-build.json",
+      "name": "historical-preservation-during-v6-build.json",
+      "category": "build-and-replay-proof",
+      "size": 1178,
+      "sha256": "a54fbf44ef2c1bd3b4107d8c8282d6f16efa8c4e487acc6d1f7e4b64e924eda0",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/historical-preservation-during-v6-build.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/allocation-guard-source-review.json",
+      "name": "source-reviews/allocation-guard-source-review.json",
+      "category": "bounded-source-readiness-only",
+      "size": 769,
+      "sha256": "e643339d156be54d3c3ac6ce6d63a32985ba6942a6180b681b102c3d07370281",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-reviews/allocation-guard-source-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/public-image-native-source-review.json",
+      "name": "source-reviews/public-image-native-source-review.json",
+      "category": "bounded-source-readiness-only",
+      "size": 1207,
+      "sha256": "f5e93208db5fea91e75557862f974a75f0d30e0651523cd2d01a34527b42d64a",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-reviews/public-image-native-source-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/public-image-tooling-source-review.json",
+      "name": "source-reviews/public-image-tooling-source-review.json",
+      "category": "bounded-source-readiness-only",
+      "size": 1190,
+      "sha256": "3aa64840ef21aabe902d1eb5a5972f0c6461f039235a3ed2504758b63f341606",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-reviews/public-image-tooling-source-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-scene-source-review.json",
+      "name": "source-reviews/v6-scene-source-review.json",
+      "category": "bounded-source-readiness-only",
+      "size": 1162,
+      "sha256": "dc2de106d3c9b6f3c2d6a5b3149c8e2290fcb76bb1ec9098195d1c5c052f4478",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-reviews/v6-scene-source-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-source-provenance-review.json",
+      "name": "source-reviews/v6-source-provenance-review.json",
+      "category": "bounded-source-readiness-only",
+      "size": 1782,
+      "sha256": "5da4649f7b58956af7a263844aae01acbcb8b888dd45da96ead651d674297241",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-reviews/v6-source-provenance-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/namespace-source-review.json",
+      "name": "source-reviews/namespace-source-review.json",
+      "category": "bounded-source-readiness-only",
+      "size": 1372,
+      "sha256": "efdd5c3609f33532c52fef1dc07b5d87213ebcee2d0546de276dfdef49551a51",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/source-reviews/namespace-source-review.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Integration-8IdZleUf/v6-initial-strict-diagnostic.json",
+      "name": "history/v6-initial-strict-diagnostic.json",
+      "category": "preserved-failure",
+      "size": 3563,
+      "sha256": "7076278bb9d8e6017ada0234ce16b48b1ffec4407c2507800c97229055c44c7f",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/history/v6-initial-strict-diagnostic.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05V5NestedAdmission-D0i51rDO/serialization-observations.json",
+      "name": "history/v5-nested-admission.json",
+      "category": "preserved-failure-diagnosis",
+      "size": 416077,
+      "sha256": "8052ed539d7eed46a873dbf7c3716cef82e3a5fb5a8a8813d3af8e3ce6622340",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/history/v5-nested-admission.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05V5SerializationTrace-vewuQXGD/serialization-observations.json",
+      "name": "history/v5-serialization-observations.json",
+      "category": "preserved-failure-diagnosis",
+      "size": 202025,
+      "sha256": "ce057388de89345865ac1ed41ccff5ca8371133dd6683a307522a0f19675fe6a",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/history/v5-serialization-observations.json"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_064455.log",
+      "name": "build-logs/UnityExec_20260828_064455.log",
+      "category": "guarded-unity-log",
+      "size": 91673,
+      "sha256": "28e8184023ecbf849d3b12ba5eec880d3ddcb76a74e022d384ee53f6474dbcfe",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_064455.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_064902.log",
+      "name": "build-logs/UnityExec_20260828_064902.log",
+      "category": "guarded-unity-log",
+      "size": 200638,
+      "sha256": "056d77f2674f733ee030842d588ffaebc0708727cebd16b234980ffba0ac198e",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_064902.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_065019.log",
+      "name": "build-logs/UnityExec_20260828_065019.log",
+      "category": "guarded-unity-log",
+      "size": 102985,
+      "sha256": "866461196f06da8aa2109c09938946506fa76d469e9328c26905ad82f7b28ced",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_065019.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_065201.log",
+      "name": "build-logs/UnityExec_20260828_065201.log",
+      "category": "guarded-unity-log",
+      "size": 121016,
+      "sha256": "5dfce1dbc4b4917619c21286d97a1cb0eb9e224bb0b97d190f5575e92c1bf144",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_065201.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_065948.log",
+      "name": "build-logs/UnityExec_20260828_065948.log",
+      "category": "guarded-unity-log",
+      "size": 6799109,
+      "sha256": "f571a32c3a6b5a63e55942ca71f612c4ace57a28303c010efffaba5a99210eba",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_065948.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_070612.log",
+      "name": "build-logs/UnityExec_20260828_070612.log",
+      "category": "guarded-unity-log",
+      "size": 676242,
+      "sha256": "51bf7fbe6e15e8e18eecc991f92c9ae1b9c69eb2d50e4aaefb86fe01192d3ca6",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_070612.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_072217.log",
+      "name": "build-logs/UnityExec_20260828_072217.log",
+      "category": "guarded-unity-log",
+      "size": 6806158,
+      "sha256": "486611761fabeb54e381f42ef6dcd44dcf1bd2651c85027c2de475e69ea91d8c",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_072217.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_080706.log",
+      "name": "build-logs/UnityExec_20260828_080706.log",
+      "category": "guarded-unity-log",
+      "size": 328287,
+      "sha256": "1ea6bf91fa74b43732e6ff7d79fae3aae52c17987fc820f35314d40d186e39f8",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_080706.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260828_081052.log",
+      "name": "build-logs/UnityExec_20260828_081052.log",
+      "category": "guarded-unity-log",
+      "size": 78886,
+      "sha256": "2506507b3c75feba28373589df0ddf77cee841325a4acbb0d29749a6b6dde111",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/build-logs/UnityExec_20260828_081052.log"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Execution-kxsgu5Wq/run_players.py",
+      "name": "capture-run-players.py",
+      "category": "task-local-capture-script",
+      "size": 6859,
+      "sha256": "2a653edc9422333a81510b16e1932a5034f6acaf221406f0bda41780b7ccca02",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/capture-run-players.py"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/audit_equivalence.py",
+      "name": "audit-source-equivalence.py",
+      "category": "task-local-capture-script",
+      "size": 8463,
+      "sha256": "ffbfb7d1c0a32c2663d7166e4e7c7f1978c465294291a38716883fe3754bb0f3",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/audit-source-equivalence.py"
+    },
+    {
+      "originalPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/archive_evidence.py",
+      "name": "archive-evidence.py",
+      "category": "task-local-capture-script",
+      "size": 12166,
+      "sha256": "9797124d326df6ac1083d1f0a513c4b0ee9a7d6813f341e56a2e612c7e4fb6d6",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M05/Evidence/archive-evidence.py"
+    }
+  ],
+  "allCopiedBytesMatch": true,
+  "limitation": "Byte-identical retention, not relocated acceptance inputs or a portable deployment. Canonical DLL/native/snapshot graphs remain in their original immutable local roots. Independent gates are still required."
+}

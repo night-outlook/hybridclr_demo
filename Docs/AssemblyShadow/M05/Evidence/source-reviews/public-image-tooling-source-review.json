@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "scope": "bounded-public-image-tooling-source-correction-only",
+  "runtimeAcceptance": false,
+  "verdict": "PASS",
+  "reviewer": "m02_integrity_review_gpt56sol_high_1",
+  "base": "7c0263e4537c6a5114c867b2eb9d010245156a7a",
+  "target": "204d4610f7333a86583bb0f98e3983875a2bca04",
+  "nativeBase": "8ceb7e40abe458dce5343bedaf250333ef9433a1",
+  "nativeTarget": "50194392f08815354b6f230f6d0ddd3ec5f9b0f3",
+  "reviewerExecutedCode": false,
+  "nativeReceipt": "_temp/AssemblyShadow/M05PublicImageRegression-acU8nVjR/full-native.json",
+  "nativeReceiptSha256": "f853ed52602ecb8f43982f925af2f488e13294e28c8c97c93159cfcb55b57365",
+  "checks": [
+    "Actual exported C API plus production snapshot mapping",
+    "Controlled physical getter and snapshot fixture limitations explicit",
+    "Dependencies include new test, API and headers; unchanged-hash and command/result gates",
+    "Relevant source hashes match native target despite precommit HEAD recorded",
+    "Old API copy and failed PID9002 diagnostic hashes verified"
+  ],
+  "limits": [
+    "No reviewed code executed",
+    "Full native gate and fresh Player confirmation remain separate"
+  ]
+}

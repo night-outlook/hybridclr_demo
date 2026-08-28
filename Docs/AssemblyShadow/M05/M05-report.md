@@ -1,15 +1,16 @@
 # M05 active types, reflection and cache evidence
 
-Status: M05 is not accepted. The corrected v5 ON/OFF Players, frozen baseline,
-normal/negative fixtures and independent Editor/Python input replay passed.
-All current M03-M05 native regression suites passed, and native ON is restored.
-The first v5 diagnostic Player passed both its own assertions and strict offline
-case verification. The matrix then passed T05-01 P01/P03 and stopped at T05-02
-P01 because the probe compared a nested raw metadata namespace with the
-outermost namespace exposed by reflection. The bounded correction passes
-14/14 focused Unity tests, 666/666 full Unity tests and 249/249 Python tests.
-V6 Configure passed. Fresh paired builds and the complete runtime gate remain required.
-M06 remains closed.
+Status: validation complete; M05 still awaits both independent final acceptance
+reviews. The actual v6 ON/OFF Players and all 19 fresh-process modes pass the
+complete strict verifier. The final suites pass 667 Unity Editor tests, 267
+Python tests with zero skips, and all M03-M05 native regressions. Native ON is
+restored and verified. No M06 implementation has begun.
+
+The lossless [evidence index](Evidence/artifact-index-v6.json) and
+[review record](M05-review.md) bind the frozen executable sources separately
+from the later offline-verifier correction. Earlier sections retain the
+chronological investigation history; the final acceptance-evidence section
+supersedes their earlier pending-state statements without rewriting failures.
 
 The [type contract](M05-type-contract.md) and
 [raw-query contract](M05-raw-type-admission.md) govern implementation and the
@@ -994,6 +995,73 @@ times are 1.3615831 seconds ON and 10.2126455 seconds isolated OFF. No Shadow
 API runs in the timed loop; OFF never configures Shadow. These single controlled
 measurements are not production performance or managed-allocation guarantees.
 
-M05 remains unaccepted pending the final source/evidence inventory, restored
-installation audit and both complete independent milestone reviews. No M06
-implementation has begun.
+This strict-verifier result precedes the final evidence and installation audit
+recorded below; it does not itself accept the milestone.
+
+## Final acceptance-evidence boundary
+
+The executable demo source remains `09a15e686a4e7581e362175f4aa99d6bde80de55`.
+The independently reviewed offline correction is
+`6f0123839ba1fe01e18c29858b15fefc1cc7b12c`; metadata commit
+`f880c33f89050f2396e55a9ce8d4d838d3eb6091` pins that current tooling revision.
+No Player, baseline, fixture, snapshot or recorded observation was relabeled.
+The exact Git/working-byte audit finds only four changed non-metadata Python
+paths and 1,158 unchanged other source files. All 48 watched files retain their
+recorded hashes: 11 frozen build inputs, 19 results and 18 raw diagnostic companions.
+The runtime/native/package sources and runtime ABI are unchanged.
+
+Repeated installation at the tooling pin produced identical receipt SHA-256
+`d943c2051ac8573a10cfa95b16dd0e2bff28893b45766cdbd1e29f40b3f0410e`.
+It differs from the archived build installation receipt only in the demo pin;
+all 940 source-file hashes and other receipt fields match. A final strict check
+passes 940 source and 942 installed files, current demo-source verification and
+native ON. No source-verification bypass was used.
+
+Reinstallation restores the ungenerated definition templates. The first final
+M04 native command therefore stopped at its generated-Unity-version gate; that
+failure is retained under `Evidence/history`. The existing narrow
+`Il2CppDefGeneratorCommand.GenerateIl2CppDef` regenerated only the two declared
+definition files. UnityVersion.h now declares 20220362. No full Prebuild,
+fixture/snapshot generation or Player rebuild was performed at the tooling pin.
+The final strict installation check was repeated after generation.
+
+All final native receipts bind the current pinned source and unchanged inputs:
+
+| Suite | Actual final result | Source dependencies |
+| --- | --- | --- |
+| M05 | 34 ON/OFF syntax checks; eight 62-check core runs; reflection 31/3; public image identity 187/32; 162 zero-exit commands | 1,113 |
+| M04 | 53 resolver, 24 reference identity, 22 syntax; 1,000,000 lookups, zero counted allocations; 57 zero-exit commands | 1,055 |
+| M03 | 23,027 identity, 30 name, 25 facade, 15 facade-lookup, 27 disabled API; 37 zero-exit commands | 1,005 |
+| Visibility | 18,674 checks: 6,262 abort and 12,412 commit; 14 zero-exit commands | 987 |
+
+The isolated M04 native benchmark measured 364,109 microseconds. It ran before
+the other three native suites were started concurrently. These adapter-level
+measurements are separate from the actual managed Player timings above; their
+explicit physical metadata, exception and initialization seams are not hidden.
+
+`Evidence/player-results-v6-09a15e6.tar.gz` retains all 76 original Player files:
+19 result JSON files, 18 raw-native JSON companions, 19 Unity logs, 19 console
+logs and the launch receipt. Every member name, size and SHA-256 was verified
+against the original, and the originals were rehashed after archiving. Archive
+SHA-256 is `1b8b6ba57995f7ba7f39357a82f9100f13d972e01d465a1eb89548c8f207dd79`.
+The artifact index additionally binds 63 byte-identical copied build/type/linked
+proofs, Editor XML/logs, native receipts, source-equivalence and installation
+records, selected preserved failures, source-review records and capture scripts.
+Its SHA-256 is `ed7f478e826976f9c81759c28c704eede50d80342b9f6588360f0d690d045485`.
+These copies are retention evidence, not relocated canonical acceptance inputs
+or a portable deployment package. Full DLL/native/snapshot graphs remain at
+their original immutable local paths.
+
+An independent passive preservation audit rehashed all 13 historical artifacts:
+four frozen files, three M01 bundles and six copied M04 evidence files. All
+match. The three paired source repositories remain clean at their intended
+heads. The original demo retains exactly its four pre-existing dirty path
+memberships, and the separate main audit confirms the original Editor PID 13313
+with its original start time. No original Editor was controlled; membership
+preservation is not a claim of unrelated dirty-file byte equality.
+
+Both complete independent milestone reviews remain required before M05 is
+accepted or tagged. M06 remains closed. Platform coverage is pinned macOS
+ARM64 Unity 2022.3.62f2 IL2CPP; receipts are unsigned and locally bound; unsupported
+runtime MVID, resolver-delegate overloads and production-performance claims
+remain outside this evidence boundary.

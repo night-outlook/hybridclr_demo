@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "kind": "OfflineVerifierCorrectiveValidation",
+  "runtimeAcceptance": false,
+  "frozenDemoBuildRevision": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+  "workingBaseRevision": "fab982fea73dabc5cc54cfd573e38accc064f542",
+  "sourceHashes": [
+    {
+      "path": "Tools/AssemblyShadow/m05_results.py",
+      "sha256": "7e83a6faebbd8c9e4f561dac1ce25f9b36c73345348f71db838a0b549c487c12"
+    },
+    {
+      "path": "Tools/AssemblyShadow/m05_types.py",
+      "sha256": "980c995accf049b9ad520610a15e3701b5899948e34918dbc62358d26d8b6629"
+    },
+    {
+      "path": "Tools/AssemblyShadow/tests/test_m05_results.py",
+      "sha256": "57561ac3fee1bd4e8150418ad77f4a80ba2e36da355f93c44b8c213ab20a9fbc"
+    },
+    {
+      "path": "Tools/AssemblyShadow/tests/test_m05_type_keys.py",
+      "sha256": "399d89e8e968990d65874981e49ebbaca53762136dd23a830cdaa093e78074dd"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowRawTypeAdmissions.json",
+      "sha256": "d47806dc47b699aa3fb0ece4f285a158e4677e4b40c9ae23fb448929a7bed8a8"
+    }
+  ],
+  "focused": {
+    "chunk_id": "c52a9c",
+    "wall_time_seconds": 0.390037084,
+    "exit_code": 0,
+    "original_token_count": 35,
+    "output": ".......................................\n----------------------------------------------------------------------\nRan 39 tests in 0.380s\n\nOK\n"
+  },
+  "fullPython": {
+    "cmd": "env PYTHONDONTWRITEBYTECODE=1 M05_REAL_COMPILER_ROOT=/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05RawAdmissionCompiler-ee5b8e164fff435a97a3adbed455788d/Assemblies M05_RAW_CONFIGURATION=/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/ProjectSettings/AssemblyShadowRawTypeAdmissions.json python3 -m unittest discover -s Tools/AssemblyShadow/tests",
+    "startedUtc": "2026-08-28T14:58:12.913Z",
+    "outputs": [
+      {
+        "chunk_id": "f8f365",
+        "wall_time_seconds": 1.003141625,
+        "session_id": 22701,
+        "original_token_count": 8,
+        "output": "............................."
+      },
+      {
+        "chunk_id": "45679f",
+        "wall_time_seconds": 0.00000375,
+        "exit_code": 0,
+        "original_token_count": 85,
+        "output": "..............................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 267 tests in 30.197s\n\nOK\n"
+      }
+    ],
+    "finishedUtc": "2026-08-28T14:58:47.995Z"
+  },
+  "strictVerification": {
+    "cmd": "env PYTHONDONTWRITEBYTECODE=1 python3 Tools/AssemblyShadow/verify-m05-results.py --fixture-manifest /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2/m05-fixtures.json --result-dir /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05V6Execution-FlFy78z1/Players/Results --on-build /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124/m05-player-build.json --off-build /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05PlayerInputs-e2dfc5d856e74e439891f92930601711/m05-player-build.json --m01-baseline-root /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/BaselineArtifacts/StandaloneOSX/M01-Baseline-v1 --output /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/m05-verification.json",
+    "firstYieldUtc": "2026-08-28T14:57:43.727Z",
+    "finishedUtc": "2026-08-28T14:58:47.996Z",
+    "outputs": [
+      {
+        "chunk_id": "23a9df",
+        "wall_time_seconds": 1.001374375,
+        "session_id": 28927,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "chunk_id": "6c425d",
+        "wall_time_seconds": 5.002785791,
+        "session_id": 28927,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "chunk_id": "7238e0",
+        "wall_time_seconds": 0.000001333,
+        "exit_code": 0,
+        "original_token_count": 1065,
+        "output": "{\n  \"milestone\": \"M05\",\n  \"resultPassed\": true,\n  \"diagnosticOnly\": false,\n  \"missingModes\": [],\n  \"baselineBuildId\": \"M05-Baseline-v6\",\n  \"runtimeAbiHash\": \"f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5\",\n  \"modes\": [\n    {\n      \"mode\": \"T05-01-P01\",\n      \"processId\": 18206,\n      \"passed\": true,\n      \"resultSha256\": \"5b978393a3e710a5eaa308a5242bc8db2d1a21771a1509c80a65a7f4ad9b62be\"\n    },\n    {\n      \"mode\": \"T05-01-P03\",\n      \"processId\": 18218,\n      \"passed\": true,\n      \"resultSha256\": \"0983ff3e30b226336b8fcffe46072b6f5f4d33f77467021bc9a37148e3e9d45c\"\n    },\n    {\n      \"mode\": \"T05-02-P01\",\n      \"processId\": 18232,\n      \"passed\": true,\n      \"resultSha256\": \"dc33fc503752f8b1948dee4bd1893401cd2738d8d1c84033646eb6e64f99dedd\"\n    },\n    {\n      \"mode\": \"T05-02-P03\",\n      \"processId\": 18243,\n      \"passed\": true,\n      \"resultSha256\": \"08243e6d0b528628596f70070e9bde2fda73d02b9baf64f3626ade34131cb733\"\n    },\n    {\n      \"mode\": \"T05-03-P01\",\n      \"processId\": 18248,\n      \"passed\": true,\n      \"resultSha256\": \"78ea0083fae8a19abbfb3a359f6cdef01412496f88e549a5baac2734be9cc947\"\n    },\n    {\n      \"mode\": \"T05-03-P03\",\n      \"processId\": 18253,\n      \"passed\": true,\n      \"resultSha256\": \"891dd2dc96cbb7301e211f862c71359082178ece904459b27996fb8d9c55d160\"\n    },\n    {\n      \"mode\": \"T05-04-EarlyType\",\n      \"processId\": 18261,\n      \"passed\": true,\n      \"resultSha256\": \"25de4ff3e261651842eacb863bae0303a3393782281f8b9cd82a8abae8653b55\"\n    },\n    {\n      \"mode\": \"T05-05-P01\",\n      \"processId\": 18269,\n      \"passed\": true,\n      \"resultSha256\": \"ad2ddb77a358167fbf4f7c362131e7fc4242fe316bc71c9d1dac7af6fb2e11b2\"\n    },\n    {\n      \"mode\": \"T05-05-P03\",\n      \"processId\": 18275,\n      \"passed\": true,\n      \"resultSha256\": \"14c898b87496075072db03a0aaf977c5522c75f7eaa30ece206f5ef67b1a68e7\"\n    },\n    {\n      \"mode\": \"T05-06-P01\",\n      \"processId\": 18282,\n      \"passed\": true,\n      \"resultSha256\": \"fb02d0029c99aa177d41f4aa12f2a4628080d48f32514f19df5552a5bf7627d0\"\n    },\n    {\n      \"mode\": \"T05-07-P03\",\n      \"processId\": 18290,\n      \"passed\": true,\n      \"resultSha256\": \"b2109cea24ae622bb0be0194cfe4c29e65c50724d02870e167c0bf4f37690a0e\"\n    },\n    {\n      \"mode\": \"T05-08-P01\",\n      \"processId\": 18294,\n      \"passed\": true,\n      \"resultSha256\": \"27355eb0c8d0e732579dbe2ffa17fd82bfbbbfddee30e813337083a2c54bca68\"\n    },\n    {\n      \"mode\": \"T05-08-P03\",\n      \"processId\": 18299,\n      \"passed\": true,\n      \"resultSha256\": \"377db274f419f43cdc0398e436da26e0ba45d02ff2d4f80ba50df3de627f6a07\"\n    },\n    {\n      \"mode\": \"T05-09-LayoutMismatch\",\n      \"processId\": 18307,\n      \"passed\": true,\n      \"resultSha256\": \"beb92c8b8c0b25bf24b0298bebed8e789aca1ac9df50581fa843440f9366043c\"\n    },\n    {\n      \"mode\": \"T05-10-P01\",\n      \"processId\": 18312,\n      \"passed\": true,\n      \"resultSha256\": \"44749fb11b0e98e5aa0f8b614c8fdce5e1242cd6c0b84fd7a068a23af80ae644\"\n    },\n    {\n      \"mode\": \"T05-10-P03\",\n      \"processId\": 18322,\n      \"passed\": true,\n      \"resultSha256\": \"931a8ef78451990c2476adc4232a33be273d1d0e5b803a63ad1564d5ba0b3359\"\n    },\n    {\n      \"mode\": \"T05-11-FeatureOff\",\n      \"processId\": 18331,\n      \"passed\": true,\n      \"resultSha256\": \"7b7d37b0a654cd2a23cd1fa0c7748278e5376d19d926b9025d0d20426aea0fe5\"\n    },\n    {\n      \"mode\": \"T05-12-BenchmarkOn\",\n      \"processId\": 18337,\n      \"passed\": true,\n      \"resultSha256\": \"d9e4ce0584ff41c54e8e4b02d58649b8a74bbf6145059f0bbe4c51665fbb993a\"\n    },\n    {\n      \"mode\": \"T05-13-BenchmarkOff\",\n      \"processId\": 18344,\n      \"passed\": true,\n      \"resultSha256\": \"c0c3e0a1cc509eb384e29a46126d2a4f5088a2c2c9e0f1ce3bc91a5bf9b439ea\"\n    }\n  ],\n  \"moduleMvidObservationPolicy\": \"unavailable-pinned-il2cpp-use-byte-bound-build-and-native-diagnostics\",\n  \"evidence\": \"Byte-bound PE type/assembly identities, selected managed wrapper IL and exact compiled/linked raw-type query fingerprints and literal chains; actual captured facade forwarding and native format-31 assembly identities; compiler/linker/resource and Editor replay; exact real-process observations. Unsigned evidence is not authentication. Editor owns complete semantic/resource policy and installed compiler-catalog membership; no native type-table or runtime MVID claim.\"\n}\n"
+      }
+    ]
+  },
+  "limitations": [
+    "The strict verifier revision is not the frozen v6 executable source revision.",
+    "No Unity, Player, DLL, native, snapshot or historical result bytes were rebuilt or rewritten by this correction.",
+    "Final M05 acceptance still requires immutable source/evidence commits and both independent milestone reviews."
+  ]
+}

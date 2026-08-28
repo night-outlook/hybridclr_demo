@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "scope": "bounded-guard-source-correction-only",
+  "runtimeAcceptance": false,
+  "verdict": "PASS",
+  "reviewer": "m02_integrity_review_gpt56sol_high_1",
+  "base": "4e5c8722efda441a0e53eafff94d32904a574d99",
+  "target": "7c0263e4537c6a5114c867b2eb9d010245156a7a",
+  "reviewerExecutedCode": false,
+  "checks": [
+    "Actual failed T05-09 field-layout detail remains bound to raw evidence and not relabeled",
+    "Exact managed/offline guard reason, component, site, code and lifecycle retained",
+    "Positive/adversarial regressions and 15/667 Editor XML hashes inspected"
+  ],
+  "limits": [
+    "Python 251/251 is main-owned execution evidence",
+    "Fresh corrected Player and full M05 acceptance remain pending"
+  ]
+}

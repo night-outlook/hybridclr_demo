@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "kind": "IndependentHistoricalPreservationReview",
+  "reviewer": "m04_demo_evidence_gpt56luna_medium_1",
+  "verdict": "PASS",
+  "runtimeAcceptance": false,
+  "recordedUtc": "2026-08-28T15:22:36.305Z",
+  "evidence": "Main-agent transcription of the independent passive read-only audit; not a new execution by the reviewer.",
+  "historicalAuditSha256": "f9baaac4835def56da6507349b21a25294fe50eb25156a554a98af4faac295c8",
+  "matchingFrozenFiles": 4,
+  "matchingM01Bundles": 3,
+  "matchingCopiedM04Evidence": 6,
+  "totalMatching": 13,
+  "missing": 0,
+  "mismatched": 0,
+  "cleanPairedHeads": {
+    "hybridclr": "7f0da36e1a978abfd22c2c195ecb2741588a5d69",
+    "il2cppPlus": "50194392f08815354b6f230f6d0ddd3ec5f9b0f3",
+    "hybridclrUnity": "b132981fa72f8259efde8e8319029b8812858bcf"
+  },
+  "originalCheckoutStatusMembership": [
+    " M Assets/Settings/Renderer2D.asset",
+    "?? .DS_Store",
+    "?? Assets/Editor.meta",
+    "?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store"
+  ],
+  "processControl": "No Unity/Editor process was controlled.",
+  "mainAgentSeparateEvidence": "source-equivalence-final.json independently records the 48 frozen input/result hashes and exact PID 13313/start identity.",
+  "limits": "Membership preservation is not a claim of unrelated dirty-file byte equality. This is preservation only, not M05 acceptance."
+}

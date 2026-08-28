@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "scope": "Bounded namespace corrective source readiness; not Player or milestone acceptance",
+  "runtimeAcceptance": false,
+  "verdict": "PASS",
+  "reviewer": "/root/m02_integrity_review_gpt56sol_high_1",
+  "baseCommit": "83c1e5e8c85323d06da7aa782f168c22cf1d61a0",
+  "targetCommit": "4e5c8722efda441a0e53eafff94d32904a574d99",
+  "passiveOnly": true,
+  "reviewerExecutedReviewedCode": false,
+  "evidence": "_temp/AssemblyShadow/M05Integration-8IdZleUf/namespace-source-validation.json",
+  "observed": [
+    "Exactly seven changed files and clean worktree at review",
+    "Pinned native namespace projection matched",
+    "Raw TypeDef namespaces retained; nonempty nested raw namespaces rejected",
+    "Enumeration recorded before validation",
+    "Probe and test source hashes matched",
+    "Red 13/14 and green14/14 XML matched",
+    "Full Unity666/666; zero failures/skips/inconclusive",
+    "Historical failure and Configure hashes matched",
+    "Scene/settings changed only v6 baseline identity; ABI/schema unchanged"
+  ],
+  "limitations": [
+    "Python results supplied, not independently executed",
+    "Fresh corrected Player and full final gates remain required",
+    "M05 unaccepted; M06 closed"
+  ],
+  "reviewText": "No actionable findings in 83c1e5e8 to 4e5c8722. PASS bounded corrective source readiness only."
+}

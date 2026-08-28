@@ -1,0 +1,126 @@
+{
+  "milestone": "M05",
+  "resultPassed": true,
+  "diagnosticOnly": false,
+  "missingModes": [],
+  "baselineBuildId": "M05-Baseline-v6",
+  "runtimeAbiHash": "f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5",
+  "modes": [
+    {
+      "mode": "T05-01-P01",
+      "processId": 18206,
+      "passed": true,
+      "resultSha256": "5b978393a3e710a5eaa308a5242bc8db2d1a21771a1509c80a65a7f4ad9b62be"
+    },
+    {
+      "mode": "T05-01-P03",
+      "processId": 18218,
+      "passed": true,
+      "resultSha256": "0983ff3e30b226336b8fcffe46072b6f5f4d33f77467021bc9a37148e3e9d45c"
+    },
+    {
+      "mode": "T05-02-P01",
+      "processId": 18232,
+      "passed": true,
+      "resultSha256": "dc33fc503752f8b1948dee4bd1893401cd2738d8d1c84033646eb6e64f99dedd"
+    },
+    {
+      "mode": "T05-02-P03",
+      "processId": 18243,
+      "passed": true,
+      "resultSha256": "08243e6d0b528628596f70070e9bde2fda73d02b9baf64f3626ade34131cb733"
+    },
+    {
+      "mode": "T05-03-P01",
+      "processId": 18248,
+      "passed": true,
+      "resultSha256": "78ea0083fae8a19abbfb3a359f6cdef01412496f88e549a5baac2734be9cc947"
+    },
+    {
+      "mode": "T05-03-P03",
+      "processId": 18253,
+      "passed": true,
+      "resultSha256": "891dd2dc96cbb7301e211f862c71359082178ece904459b27996fb8d9c55d160"
+    },
+    {
+      "mode": "T05-04-EarlyType",
+      "processId": 18261,
+      "passed": true,
+      "resultSha256": "25de4ff3e261651842eacb863bae0303a3393782281f8b9cd82a8abae8653b55"
+    },
+    {
+      "mode": "T05-05-P01",
+      "processId": 18269,
+      "passed": true,
+      "resultSha256": "ad2ddb77a358167fbf4f7c362131e7fc4242fe316bc71c9d1dac7af6fb2e11b2"
+    },
+    {
+      "mode": "T05-05-P03",
+      "processId": 18275,
+      "passed": true,
+      "resultSha256": "14c898b87496075072db03a0aaf977c5522c75f7eaa30ece206f5ef67b1a68e7"
+    },
+    {
+      "mode": "T05-06-P01",
+      "processId": 18282,
+      "passed": true,
+      "resultSha256": "fb02d0029c99aa177d41f4aa12f2a4628080d48f32514f19df5552a5bf7627d0"
+    },
+    {
+      "mode": "T05-07-P03",
+      "processId": 18290,
+      "passed": true,
+      "resultSha256": "b2109cea24ae622bb0be0194cfe4c29e65c50724d02870e167c0bf4f37690a0e"
+    },
+    {
+      "mode": "T05-08-P01",
+      "processId": 18294,
+      "passed": true,
+      "resultSha256": "27355eb0c8d0e732579dbe2ffa17fd82bfbbbfddee30e813337083a2c54bca68"
+    },
+    {
+      "mode": "T05-08-P03",
+      "processId": 18299,
+      "passed": true,
+      "resultSha256": "377db274f419f43cdc0398e436da26e0ba45d02ff2d4f80ba50df3de627f6a07"
+    },
+    {
+      "mode": "T05-09-LayoutMismatch",
+      "processId": 18307,
+      "passed": true,
+      "resultSha256": "beb92c8b8c0b25bf24b0298bebed8e789aca1ac9df50581fa843440f9366043c"
+    },
+    {
+      "mode": "T05-10-P01",
+      "processId": 18312,
+      "passed": true,
+      "resultSha256": "44749fb11b0e98e5aa0f8b614c8fdce5e1242cd6c0b84fd7a068a23af80ae644"
+    },
+    {
+      "mode": "T05-10-P03",
+      "processId": 18322,
+      "passed": true,
+      "resultSha256": "931a8ef78451990c2476adc4232a33be273d1d0e5b803a63ad1564d5ba0b3359"
+    },
+    {
+      "mode": "T05-11-FeatureOff",
+      "processId": 18331,
+      "passed": true,
+      "resultSha256": "7b7d37b0a654cd2a23cd1fa0c7748278e5376d19d926b9025d0d20426aea0fe5"
+    },
+    {
+      "mode": "T05-12-BenchmarkOn",
+      "processId": 18337,
+      "passed": true,
+      "resultSha256": "d9e4ce0584ff41c54e8e4b02d58649b8a74bbf6145059f0bbe4c51665fbb993a"
+    },
+    {
+      "mode": "T05-13-BenchmarkOff",
+      "processId": 18344,
+      "passed": true,
+      "resultSha256": "c0c3e0a1cc509eb384e29a46126d2a4f5088a2c2c9e0f1ce3bc91a5bf9b439ea"
+    }
+  ],
+  "moduleMvidObservationPolicy": "unavailable-pinned-il2cpp-use-byte-bound-build-and-native-diagnostics",
+  "evidence": "Byte-bound PE type/assembly identities, selected managed wrapper IL and exact compiled/linked raw-type query fingerprints and literal chains; actual captured facade forwarding and native format-31 assembly identities; compiler/linker/resource and Editor replay; exact real-process observations. Unsigned evidence is not authentication. Editor owns complete semantic/resource policy and installed compiler-catalog membership; no native type-table or runtime MVID claim."
+}

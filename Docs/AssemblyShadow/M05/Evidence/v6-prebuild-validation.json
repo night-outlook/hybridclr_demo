@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "baselineBuildId": "M05-Baseline-v6",
+  "runtimeAcceptance": false,
+  "result": "Passed",
+  "demoExecutablePin": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+  "demoMetadataHead": "fab982fea73dabc5cc54cfd573e38accc064f542",
+  "runtimeAbiHash": "f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5",
+  "compilerGeneration": {
+    "log": "_temp/UnityExec_20260828_064902.log",
+    "logSha256": "056d77f2674f733ee030842d588ffaebc0708727cebd16b234980ffba0ac198e",
+    "preservedCompilerRoot": "_temp/AssemblyShadow/M05RawAdmissionCompiler-ee5b8e164fff435a97a3adbed455788d/Assemblies",
+    "rawDeclarations": 25,
+    "rawConfigurationSha256": "d47806dc47b699aa3fb0ece4f285a158e4677e4b40c9ae23fb448929a7bed8a8"
+  },
+  "compilerPreflight": {
+    "log": "_temp/UnityExec_20260828_065201.log",
+    "logSha256": "5dfce1dbc4b4917619c21286d97a1cb0eb9e224bb0b97d190f5575e92c1bf144",
+    "snapshot": "_temp/AssemblyShadow/M05CompilerPreflight-ad8ca32f580a4c53bd5ec50e105b36cf/Snapshot"
+  },
+  "repeatInstall": {
+    "log": "_temp/UnityExec_20260828_065019.log",
+    "logSha256": "866461196f06da8aa2109c09938946506fa76d469e9328c26905ad82f7b28ced",
+    "identicalReceiptSha256": "3e5e1d402dd53681a0908b0f0b17eaa084534c9b3f3f4b27f872c4f1f9269ac5"
+  },
+  "installedSourceVerification": {
+    "sourceFiles": 940,
+    "installedFiles": 942,
+    "demoSourceVerified": true,
+    "configuredShadowMode": "on",
+    "receiptSha256": "3e5e1d402dd53681a0908b0f0b17eaa084534c9b3f3f4b27f872c4f1f9269ac5"
+  },
+  "python": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 M05_REAL_COMPILER_ROOT=<preservedCompilerRoot> M05_RAW_CONFIGURATION=<absolute-config> python3 -m unittest discover -s Tools/AssemblyShadow/tests",
+    "total": 251,
+    "skipped": 0,
+    "durationSeconds": 32.529,
+    "exitCode": 0
+  },
+  "editor": {
+    "xml": "_temp/AssemblyShadow/EditorTests-10f9de99885d4bec8f700a946d9cd553/results.xml",
+    "xmlSha256": "8c5302d4f1ff60fc39f7c130bd74e10f4714ea1d70e21d30d7cc723712e095da",
+    "logSha256": "7c490d014f819dcc6f204cb70099d7ad0c2ea9af53c00f0c16ae4dde46fdcbf3",
+    "total": 667,
+    "passed": 667,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "durationSeconds": 83.932416,
+    "exitCode": 0
+  },
+  "prebuildChecks": {
+    "demoWorkingTreeClean": true,
+    "baselineDirectoryAbsent": true,
+    "onAppAbsent": true,
+    "offAppAbsent": true,
+    "originalEditorPid": 13313,
+    "originalEditorStart": "Thu Aug 27 01:46:54 2026",
+    "originalEditorPreserved": true
+  },
+  "limits": [
+    "Compiler/source/Editor proof only; v6 Players, fixtures and runtime matrix still pending"
+  ]
+}

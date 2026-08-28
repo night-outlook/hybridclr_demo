@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "runtimeAcceptance": false,
+  "scope": "v6-source-pins-and-inventory",
+  "verdict": "PASS",
+  "reviewer": "m04_evidence_verifier_gpt56sol_high_1",
+  "reviewerExecutedCode": false,
+  "executableDemoPin": "09a15e686a4e7581e362175f4aa99d6bde80de55",
+  "metadataCommit": "fab982fea73dabc5cc54cfd573e38accc064f542",
+  "baselineBuildId": "M05-Baseline-v6",
+  "runtimeAbiHash": "f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5",
+  "repositories": [
+    {
+      "name": "runtime",
+      "added": 0,
+      "modified": 2,
+      "deleted": 0,
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "name": "native",
+      "added": 4,
+      "modified": 16,
+      "deleted": 0,
+      "insertions": 1242,
+      "deletions": 34
+    },
+    {
+      "name": "package",
+      "added": 24,
+      "modified": 6,
+      "deleted": 0,
+      "insertions": 3982,
+      "deletions": 10
+    },
+    {
+      "name": "demo",
+      "added": 52,
+      "modified": 10,
+      "deleted": 0,
+      "insertions": 12357,
+      "deletions": 15
+    }
+  ],
+  "checks": [
+    "Metadata commit contains exactly the declared four files after executable demo pin",
+    "All four repositories clean and pins match intended revisions",
+    "Every inventory path, status, per-file numstat and total matches Git from accepted M04 tags",
+    "ABI independently recomputes to scene value",
+    "Scene hash matches report; baseline ID and scene/runner GUIDs unchanged",
+    "Archived corrective PASS records bind stated commits"
+  ],
+  "limits": [
+    "Passive read-only source provenance review",
+    "No project code, tests, Unity, Players or debugger executed",
+    "No changing compiler outputs inspected",
+    "No v6 build or M05 runtime acceptance"
+  ]
+}
