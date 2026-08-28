@@ -1,6 +1,8 @@
 # M04 Assembly and AssemblyRef acceptance contract
 
-Status: implementation/integration in progress; no M04 acceptance claimed.
+Status: accepted after complete v2 validation and both independent final reviews.
+The requirements below retain the pre-implementation contract. The exact source,
+evidence boundary and M05 entry decision are recorded in [M04-review.md](M04-review.md).
 
 ## Entry boundary
 

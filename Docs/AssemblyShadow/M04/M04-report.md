@@ -1,9 +1,11 @@
 # M04 active Assembly and AssemblyRef resolution
 
-Status: the corrected v2 ten-process IL2CPP matrix, complete strict verifier,
-Editor/Python/native checks and restoration audit pass. Final independent
-milestone reviews remain pending; M04 is not yet accepted or tagged.
-M03 is accepted and locally tagged. No M05 entry is claimed here.
+Status: M04 accepted. The corrected v2 ten-process IL2CPP matrix, complete strict
+verifier, Editor/Python/native checks and restoration audit pass. Both independent
+final milestone reviews returned PASS at evidence commit
+`1e6eeeba2adec5685ad3216343a7bdce9d82fd65`.
+The local four-repository closeout tag is `assembly-shadow-m04-resolution`.
+M05 may begin after the final metadata/tag audit; M05-M07 are not yet accepted.
 
 The [acceptance contract](M04-assembly-contract.md) records the immutable M03
 bases, required behavior, validation matrix, source/artifact boundaries and known
@@ -12,7 +14,9 @@ integration risks before implementation. The governing plan is
 
 This record binds executable source pins, changed files and APIs, actual Player
 and tooling evidence, benchmarks, ordinary OFF regression/restoration and limits.
-The [review record](M04-review.md) controls the final M05 entry decision.
+The [review record](M04-review.md) records both final verdicts and the M05 entry
+decision. This closeout changes documentation only, not reviewed source or
+artifact bytes.
 
 ## Source-readiness boundary (not milestone acceptance)
 
@@ -285,9 +289,10 @@ Its existing Unity Editor PID 13313 is still running; it was not adopted or stop
 - Patch `baselineMvid` belongs to the frozen **prelink** baseline descriptor.
   Linked Player identities are a separate domain and may have different MVIDs.
   Cross-build GUID equality is not a semantic-equivalence requirement.
-- The pinned managed name-load wrapper throws on a native miss without
-  dispatching `AssemblyResolve`. Native missing-name checks and pinned wrapper
-  IL will document this boundary. A known-name callback-noninvocation Player
+- The pinned managed name-load wrapper IL throws on a native miss without a
+  managed `AssemblyResolve` dispatch. Native missing-name checks and the linked
+  wrapper capture record the separate native boundary; bodyless icalls do not
+  prove native callback behavior by themselves. A known-name callback-noninvocation Player
   probe is not a direct managed missing-name observation or fallback proof;
   no unknown-alias policy waiver is introduced.
 - Executing-assembly witnesses are patch-only methods on existing, finite
