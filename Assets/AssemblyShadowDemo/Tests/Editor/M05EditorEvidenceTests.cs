@@ -17,6 +17,49 @@ namespace AssemblyShadowDemo.EditorTests
 {
     public sealed class M05EditorEvidenceTests
     {
+        [Test] public void RawCompilerCaptureRetainsOnlyReturnedInputsAfterProducerCleanup()
+        {
+            string root = Temp();
+            try
+            {
+                string output = Path.Combine(root, "CompilerOutput"), captured = Path.Combine(root, "Assemblies");
+                Directory.CreateDirectory(output);
+                string dll = Path.Combine(output, "Returned.dll"), pdb = Path.ChangeExtension(dll, ".pdb");
+                File.WriteAllBytes(dll, new byte[] { 1, 2, 3 }); File.WriteAllBytes(pdb, new byte[] { 4, 5 });
+                File.WriteAllBytes(Path.Combine(output, "NotReturned.dll"), new byte[] { 6 });
+                string dllHash = ShadowHash.File(dll), pdbHash = ShadowHash.File(pdb);
+                var paths = (string[])Invoke(typeof(M05RawTypeAdmissionBuild), "CaptureCompilerOutputs", output, captured, new[] { dll });
+                Directory.Delete(output, true);
+                CollectionAssert.AreEqual(new[] { Path.Combine(captured, "Returned.dll") }, paths);
+                CollectionAssert.AreEquivalent(new[] { "Returned.dll", "Returned.pdb" }, Directory.GetFiles(captured).Select(Path.GetFileName));
+                Assert.AreEqual(dllHash, ShadowHash.File(paths[0]));
+                Assert.AreEqual(pdbHash, ShadowHash.File(Path.ChangeExtension(paths[0], ".pdb")));
+            }
+            finally { Directory.Delete(root, true); }
+        }
+
+        [Test] public void RawCompilerCaptureRejectsOverwriteEscapeAndProducerOwnedDestination()
+        {
+            string root = Temp();
+            try
+            {
+                string output = Path.Combine(root, "CompilerOutput"), captured = Path.Combine(root, "Assemblies");
+                Directory.CreateDirectory(output); Directory.CreateDirectory(captured);
+                string dll = Path.Combine(output, "Returned.dll"), outside = Path.Combine(root, "Outside.dll");
+                File.WriteAllText(dll, "returned"); File.WriteAllText(outside, "outside");
+                string marker = Path.Combine(captured, "preserve"); File.WriteAllText(marker, "unchanged");
+                AssertCode("RawAdmissionCompilerCaptureExists", () => Invoke(typeof(M05RawTypeAdmissionBuild), "CaptureCompilerOutputs", output, captured, new[] { dll }));
+                Assert.AreEqual("unchanged", File.ReadAllText(marker));
+                string fresh = Path.Combine(root, "Fresh");
+                AssertCode("RawAdmissionCompilerOutputEscaped", () => Invoke(typeof(M05RawTypeAdmissionBuild), "CaptureCompilerOutputs", output, fresh, new[] { outside }));
+                Assert.IsFalse(Directory.Exists(fresh));
+                AssertCode("RawAdmissionCompilerCaptureLifetime", () => Invoke(typeof(M05RawTypeAdmissionBuild), "CaptureCompilerOutputs", output, Path.Combine(output, "Snapshot"), new[] { dll }));
+                AssertCode("RawAdmissionCompilerCaptureNames", () => Invoke(typeof(M05RawTypeAdmissionBuild), "CaptureCompilerOutputs", output, fresh, new[] { dll, dll }));
+                Assert.IsFalse(Directory.Exists(fresh));
+            }
+            finally { Directory.Delete(root, true); }
+        }
+
         [Test] public void InventoryUsesActualTypeDefOrderNestingArityKindAndExportVisibility()
         {
             using (var fixture = new TypeFixture())

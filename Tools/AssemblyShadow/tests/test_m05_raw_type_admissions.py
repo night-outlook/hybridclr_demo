@@ -26,7 +26,9 @@ def raw_pe(name, types, *, references=(), type_refs=(), member_refs=(), user_str
     def blob(data):p=len(blobs);blobs.extend(length(len(data))+data);return p
     string_tokens={}
     for text in user_strings:
-        data=text.encode("utf-16-le")+b"\0";string_tokens[text]=0x70000000|len(us);us.extend(length(len(data))+data)
+        encoded=text.encode("utf-16-le",errors="surrogatepass")
+        special=any(encoded[i+1] or encoded[i] in (*range(1,9),*range(14,32),39,45,127) for i in range(0,len(encoded),2))
+        data=encoded+bytes([int(special)]);string_tokens[text]=0x70000000|len(us);us.extend(length(len(data))+data)
     token=bytes.fromhex("b77a5c561934e089")
     version=version or ((4,0,0,0) if core else (1,0,0,0))
     own_token=token if core else b""
@@ -387,6 +389,42 @@ class CapturedForwarderTests(unittest.TestCase):
         self.assertNotEqual(original,proof.method_hash(1,lambda name,assembly:"Other, Version=4.0.0.0, Culture=neutral, PublicKeyToken=null"))
 
 
+class UserStringCodeUnitTests(unittest.TestCase):
+    def fixture(self,text):
+        return raw_pe("StringCarrier",[dict(name="Carrier",methods=[dict(name="Literal",signature=b"\x00\x00\x0e",
+            body=lambda tokens:b"\x72"+struct.pack("<I",tokens[text])+b"\x2a")])],user_strings=[text])
+
+    def test_actual_user_strings_roundtrip_isolated_surrogates_and_pairs(self):
+        for text in ("\ud800","\udfff","left\ud800middle\udc00right","\ud83d\ude00","\U0001f600"):
+            with self.subTest(code_units=ascii(text)):
+                proof=v.ImportModule(self.fixture(text),"actual CLI string")
+                self.assertEqual(v.boundary_instructions(proof,1),[(0x72,0x70000001),(0x2a,None)])
+                actual=proof.user_string(0x70000001)
+                self.assertEqual(actual.encode("utf-16-le",errors="surrogatepass"),text.encode("utf-16-le",errors="surrogatepass"))
+                self.assertNotIn("\ufffd",actual)
+
+    def test_ordinary_scalars_empty_and_embedded_null_are_unchanged(self):
+        for text in ("","AssemblyA.Contracts","\u00e9\u4e2d\U0001f600","left\0right"):
+            self.assertEqual(v.ImportModule(self.fixture(text),"actual CLI string").user_string(0x70000001),text)
+
+    def test_actual_user_string_malformed_length_bounds_and_terminal_fail(self):
+        raw=self.fixture("X");proof=v.ImportModule(raw,"actual CLI string");heap=proof.tables.streams["#US"]
+        self.assertEqual(raw.count(heap),1);start=raw.index(heap)
+        # Zero/even lengths, overrun, invalid compressed prefix, and an invalid
+        # terminal remain errors even with lossless code-unit decoding.
+        for relative,value in ((1,0),(1,2),(1,5),(1,0xff),(len(heap)-1,2)):
+            changed=bytearray(raw);changed[start+relative]=value
+            with self.assertRaises(VerificationError):v.ImportModule(bytes(changed),"mutated CLI string").user_string(0x70000001)
+        for token in (0x71000001,0x70000000|len(heap),0x70ffffff):
+            with self.assertRaises(VerificationError):proof.user_string(token)
+
+    def test_identifier_heap_utf8_validation_is_not_weakened(self):
+        raw=self.fixture("\ud800");proof=v.ImportModule(raw,"actual CLI string")
+        heap=proof.tables.streams["#Strings"];start=raw.index(heap);index=proof.tables.row(2,2)[1]
+        changed=bytearray(raw);changed[start+index]=0xff
+        with self.assertRaisesRegex(VerificationError,"UTF-8 CLI string"):v.ImportModule(bytes(changed),"invalid identifier")
+
+
 class ProviderExportBoundaryTests(unittest.TestCase):
     TYPE_ARRAY=b"\x1d\x12\x19"
     def fixture(self,**kwargs):
@@ -412,6 +450,13 @@ class ProviderExportBoundaryTests(unittest.TestCase):
                         v.HELPER_TYPE+", AssemblyShadowDemo.Bootstrap, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"):
             root,snapshot,config=self.fixture();self.external(root,snapshot,literal=literal)
             with self.assertRaisesRegex(VerificationError,"non-consumer"):self.verify(root,snapshot,config)
+
+    def test_surrogate_user_strings_do_not_skip_exact_broker_literal_checks(self):
+        root,snapshot,config=self.fixture()
+        data=raw_pe("Outside",[dict(name="Use")],user_strings=["\ud800",v.HELPER_TYPE,"\udc00"])
+        path=root/"Assemblies/Outside.dll";path.write_bytes(data)
+        snapshot["assemblies"].append(dict(name="Outside",path="Assemblies/Outside.dll",sha256=hashlib.sha256(data).hexdigest()))
+        with self.assertRaisesRegex(VerificationError,"exact selector reflection literal"):self.verify(root,snapshot,config)
 
     def test_filtered_runtime_and_linked_phase_inventory_get_the_same_gate(self):
         root,snapshot,config=self.fixture();self.external(root,snapshot,section="filteredAssemblies")

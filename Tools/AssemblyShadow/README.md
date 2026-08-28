@@ -246,9 +246,14 @@ gates pass and the complete pairing is tagged.
    installed source pairing with `verify-installed-runtime.py --expect-shadow on`.
 3. Run `Invoke-ShadowEditorTests.ps1` with the package/demo filter above and
    `python3 -m unittest discover -s Tools/AssemblyShadow/tests -q`. Set
-   `M05_REAL_COMPILER_ROOT` to the exact fresh compiler directory logged by
+   `M05_REAL_COMPILER_ROOT` to the preserved `Assemblies` directory logged by
    Generate, and `M05_RAW_CONFIGURATION` to the absolute raw-admission config
-   path, so the real-DLL boundary smoke runs rather than being skipped. Keep
+   path, so the real-DLL boundary smoke runs rather than being skipped. Generate
+   hash-checks copies of exactly the DLLs returned by the compiler (and their
+   PDBs). Unity's next compiler run may remove its sibling `CompilerOutput`
+   directory; do not use that producer-owned directory for later replay. The
+   general preflight snapshot also includes precompiled inputs, so it is not
+   the same direct-compiler smoke inventory. Keep
    the full historical suite enabled and require zero skips. The new type-info
    API intentionally extends the original nine operations; all ten retain the
    non-simulating Editor contract.

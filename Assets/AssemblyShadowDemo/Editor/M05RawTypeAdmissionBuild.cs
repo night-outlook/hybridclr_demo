@@ -35,17 +35,20 @@ namespace AssemblyShadowDemo.Editor
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
             ShadowHash.Require(target == BuildTarget.StandaloneOSX, "RawAdmissionCompilerTarget", "M05 requires the pinned StandaloneOSX Player compiler.");
             string directory = Path.GetFullPath("_temp/AssemblyShadow/M05RawAdmissionCompiler-" + Guid.NewGuid().ToString("N"));
-            Directory.CreateDirectory(directory);
+            string compilerOutput = Path.Combine(directory, "CompilerOutput");
+            Directory.CreateDirectory(compilerOutput);
             var compilation = PlayerBuildInterface.CompilePlayerScripts(new ScriptCompilationSettings
             {
                 group = BuildPipeline.GetBuildTargetGroup(target), target = target,
                 options = ScriptCompilationOptions.DevelopmentBuild,
                 extraScriptingDefines = ShadowReflectionBindingEvidence.CompilationDefines(new string[0]),
-            }, directory);
+            }, compilerOutput);
             ShadowHash.Require(compilation.assemblies != null && compilation.assemblies.Count > 0, "RawAdmissionCompileFailed", directory);
-            string prefix = directory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
-            var paths = compilation.assemblies.Select(path => File.Exists(path) ? Path.GetFullPath(path) : Path.GetFullPath(Path.Combine(directory, path))).ToArray();
-            ShadowHash.Require(paths.All(path => path.StartsWith(prefix, StringComparison.Ordinal)), "RawAdmissionCompilerOutputEscaped", directory);
+            var emitted = compilation.assemblies.Select(path => File.Exists(path) ? Path.GetFullPath(path) : Path.GetFullPath(Path.Combine(compilerOutput, path))).ToArray();
+            // Bee owns direct compiler outputs and may remove them on the next
+            // compilation. Keep the exact returned DLL set outside that directory.
+            string preserved = Path.Combine(directory, "Assemblies");
+            var paths = CaptureCompilerOutputs(compilerOutput, preserved, emitted);
             var byName = paths.ToDictionary(Path.GetFileNameWithoutExtension, StringComparer.Ordinal);
             var modules = new Dictionary<string, ModuleDefMD>(StringComparer.Ordinal);
             try
@@ -78,10 +81,43 @@ namespace AssemblyShadowDemo.Editor
                     using (var output = new FileStream(destination, FileMode.CreateNew, FileAccess.Write, FileShare.None))
                         output.Write(bytes, 0, bytes.Length);
                 }
-                Debug.Log("[AssemblyShadow M05] Declared 25 raw-query sites from " + directory + "; configuration SHA-256 " +
+                Debug.Log("[AssemblyShadow M05] Declared 25 raw-query sites from " + preserved + "; configuration SHA-256 " +
                     ShadowHash.File(destination) + ". Actual Player/patch byte and role verification remains required.");
             }
             finally { foreach (var module in modules.Values) module.Dispose(); }
+        }
+
+        internal static string[] CaptureCompilerOutputs(string compilerOutput, string destination, string[] emitted)
+        {
+            string sourceRoot = Path.GetFullPath(compilerOutput).TrimEnd(Path.DirectorySeparatorChar);
+            string prefix = sourceRoot + Path.DirectorySeparatorChar;
+            string capturedRoot = Path.GetFullPath(destination).TrimEnd(Path.DirectorySeparatorChar);
+            ShadowHash.Require(capturedRoot != sourceRoot && !capturedRoot.StartsWith(prefix, StringComparison.Ordinal),
+                "RawAdmissionCompilerCaptureLifetime", "Captured inputs must be outside the producer-owned compiler directory.");
+            ShadowHash.Require(!Directory.Exists(capturedRoot) && !File.Exists(capturedRoot), "RawAdmissionCompilerCaptureExists", capturedRoot);
+            ShadowHash.Require(emitted != null && emitted.Length > 0, "RawAdmissionCompilerInputMissing", compilerOutput);
+            var paths = emitted.Select(Path.GetFullPath).ToArray();
+            ShadowHash.Require(paths.All(path => path.StartsWith(prefix, StringComparison.Ordinal) && File.Exists(path) &&
+                string.Equals(Path.GetExtension(path), ".dll", StringComparison.OrdinalIgnoreCase)), "RawAdmissionCompilerOutputEscaped", compilerOutput);
+            ShadowHash.Require(paths.Select(Path.GetFileName).Distinct(StringComparer.OrdinalIgnoreCase).Count() == paths.Length,
+                "RawAdmissionCompilerCaptureNames", "Returned compiler DLL names must be unique.");
+            Directory.CreateDirectory(capturedRoot);
+            return paths.Select(path =>
+            {
+                string captured = Path.Combine(capturedRoot, Path.GetFileName(path));
+                CopyCompilerFile(path, captured);
+                string pdb = Path.ChangeExtension(path, ".pdb");
+                if (File.Exists(pdb)) CopyCompilerFile(pdb, Path.ChangeExtension(captured, ".pdb"));
+                return captured;
+            }).ToArray();
+        }
+
+        private static void CopyCompilerFile(string source, string destination)
+        {
+            string expected = ShadowHash.File(source);
+            File.Copy(source, destination, false);
+            ShadowHash.Require(ShadowHash.File(destination) == expected && ShadowHash.File(source) == expected,
+                "RawAdmissionCompilerCaptureBytes", source);
         }
 
         internal static RawTypeAdmissionConfiguration Derive(IReadOnlyDictionary<string, ModuleDefMD> modules)

@@ -127,7 +127,11 @@ class RawMethodProof(MethodProof):
         require(token>>24==0x70,f"{self.label}: invalid raw-helper user string token")
         raw=self.tables.blob(token&0xffffff,"#US")
         require(len(raw)%2==1 and raw[-1] in (0,1),f"{self.label}: invalid user string")
-        try:return raw[:-1].decode("utf-16-le",errors="strict")
+        # CLI strings are UTF-16 code-unit sequences, not necessarily Unicode
+        # scalar sequences (e.g. regex ranges containing isolated surrogates).
+        # Preserve their exact bytes; never replace/drop a unit before matching
+        # a provider literal. Identifier #Strings decoding remains strict UTF-8.
+        try:return raw[:-1].decode("utf-16-le",errors="surrogatepass")
         except UnicodeError as error:raise VerificationError(f"{self.label}: malformed user string") from error
 
     def body(self,rid):

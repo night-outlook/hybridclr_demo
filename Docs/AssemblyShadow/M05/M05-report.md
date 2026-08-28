@@ -69,7 +69,7 @@ Results XML SHA-256 is
 The full Python suite passed 210/210 in 28.768 seconds. These results precede
 the following newly added regressions and must be rerun after their fix.
 
-## Raw-admission dependency correction (corrected source awaiting re-review)
+## Raw-admission dependency correction (package source readiness passed)
 
 Independent review of package `7d37b38e66f57ecacca1b7e322cdd005c06911fc`
 returned FAIL for a confirmed provider-broker gap. An emitted outside runtime
@@ -207,6 +207,76 @@ This remains an independently stricter M05 evidence specialization, not generic
 package-policy parity or a whole-program/native proof. Fresh selected
 containers crossing unproved call/return/field/address boundaries fail closed.
 Actual linked Player verification remains required; neither suite accepts M05.
+
+## Pinned preparation and compiler-input lifetime
+
+Initial M05 setup committed the isolated scene and settings at demo source
+`4ee799ff05353de0339a5d5e6bc83887a5c2929a`, with metadata pin commit
+`9ff0c72a9972cec1aeb57106cfd88d41dabc4c96`. The runtime ABI hash is
+`403d77eab1c45c2b3b2a52cbfc17d26c19b77ecf25f26774da1efa58358b8a41`.
+The repeated pinned installation produced identical receipt SHA-256
+`6f99c1ad911a6fa1471600d1c91ccdbeeab175a41fc3172973e1df8d32861b5b`.
+Full installed-source verification passed with 940 source files, 942 installed
+files, demo inputs verified and native ON. Earlier M04 receipts/settings are
+preserved under `_temp/AssemblyShadow/M05PreInstall-jHTYjllU`; the initial M05
+record is under `_temp/AssemblyShadow/M05Integration-8IdZleUf`.
+
+Fresh declaration generation in `_temp/UnityExec_20260828_012812.log` confirmed
+the unchanged 25 sites and configuration hash. The following preflight passed
+in `_temp/UnityExec_20260828_012858.log`, with its immutable snapshot at
+`_temp/AssemblyShadow/M05CompilerPreflight-c10b1ab52c0e45a383cb420d23dd6639/Snapshot`.
+The configured full Editor suite then passed 642/642, zero skips, under
+`_temp/AssemblyShadow/EditorTests-ab67f7e684524ec799680258e7ac2c8a`, XML SHA-256
+`889118a5496d3f02b94bc4ba6e9b49e9cf23bb11afd01387e0fda243f6067c02`.
+
+The first fresh Python replay failed because its direct compiler directory
+had disappeared: preflight log line 523 records Bee deleting 80 prior artifact
+files. A unique directory name did not give those producer-owned files an
+independent lifetime. The corrected generator compiles into `CompilerOutput`
+and hash-checks copies of exactly the returned DLLs and their present PDBs into
+a sibling `Assemblies` directory before deriving declarations. It rejects
+overwrite, out-of-root inputs, duplicate output names and a capture directory
+inside producer ownership. It neither invents a runtime role nor filters by a
+library name. Two focused Editor regressions cover retention and those guards.
+
+The corrected full Editor suite passed 644/644, zero failures/skips, under
+`_temp/AssemblyShadow/EditorTests-d4ba75bcec9440bda5d2930b4522dc23`, XML SHA-256
+`9ba51c7d570df1d4b6e7cc7ce2a5895a7256408f52b36eb8bbbaa64da8d28353`.
+Two real consecutive Generate runs are recorded in
+`_temp/UnityExec_20260828_014025.log` and `_temp/UnityExec_20260828_014141.log`.
+The latter explicitly deletes the first run's producer artifacts. All 36
+preserved DLLs and 36 PDBs remain byte-identical; hashes and paths are in
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/compiler-output-lifetime.json`.
+The preserved direct-compiler root is
+`_temp/AssemblyShadow/M05RawAdmissionCompiler-955e889bd4c1442eaf694f53ff6a0ff3/Assemblies`.
+
+An attempted replay against all preflight snapshot assemblies also exposed a
+distinct decoder bug. That broader snapshot contains five precompiled inputs
+in addition to the 36 direct compiler outputs. Captured NUnit token
+`0x7000379d` contains an XML-filter regex with isolated surrogate code units;
+strict Unicode-scalar decoding rejected its valid CLI string payload. .NET
+strings preserve 16-bit code units rather than requiring every unit to be an
+independent scalar. [Microsoft's encoding documentation](https://learn.microsoft.com/en-us/dotnet/standard/base-types/character-encoding-introduction)
+explains that distinction. The correction uses lossless `surrogatepass` only
+for `#US`; token, bounds, length and terminal validation, strict identifier
+UTF-8 decoding and exact finite provider checks remain unchanged. No NUnit
+waiver, skipped entry or string replacement was added.
+
+Five added actual-byte regressions cover legal code units and malformed
+structures. The writer passed 52 focused and 242 full Python tests with zero
+skips against the broader 41-DLL snapshot, and successfully replayed its actual
+compiled raw proof with 189 captured references. That broader check is static
+decoder evidence, not runtime membership proof. The main independently passed
+242/242 in 32.185 seconds, zero skips, against the preserved exact 36-DLL set
+while the second Unity compilation retired the original producer outputs.
+The generator/source-test hashes are
+`ccb7bad42fe66c61c963c66f791706e15a9efe37495c9f765a6490d0ca66b3ed` and
+`f2585af75724ee37fc61625e476466e10e20ed07f984d522347ab98711869aa9`;
+the Python verifier/test hashes are
+`64481cf0de76abfec9e0fa64851dce7478a2e778d4f2a6eb2ea600ee1bfcdd49` and
+`82d250ac09fc450cd3bad770479527e927f9da70798a5b5de86f6a90ef8cc2b7`.
+These corrections require an updated demo source pin and a bounded independent
+corrective review before Player validation resumes.
 
 ## Preserved resource boundary
 
