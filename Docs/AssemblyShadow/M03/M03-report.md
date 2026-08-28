@@ -5,6 +5,19 @@ T03-01 transaction failed reference resolution. A bounded facade/compiler-librar
 repair is being validated for a fresh v2 baseline. No M03 milestone tag or
 permission to enter M04 is claimed here.
 
+## V2 build-source pairing
+
+| Repository | Exact source commit |
+| --- | --- |
+| hybridclr | `fd60cb21a4d0d4c204848c3477d2a30ffd155710` |
+| il2cpp_plus | `0486098099e7e80176401267538499e611b181f2` |
+| hybridclr_unity | `460eb5d65923e092d3c8acc7eb912c2942aea645` |
+| demo | `ea49e1d11e30c65417dadc0f903ef7606b63776e` |
+
+Baseline ID: `M03-Baseline-v2`. Runtime ABI hash:
+`c9236ac7b6d2a1b32551ca60266199df3acaf11265b488cb2d7a609f6a2f6bfb`.
+This source pairing is ready for installation/build, not accepted runtime evidence.
+
 ## First diagnostic build source checkpoints
 
 | Repository | M03 source checkpoint |
