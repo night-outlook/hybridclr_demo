@@ -146,8 +146,35 @@ remaining ownership issue: a helper can publish an empty local container
 before it receives selected values, and that publication is not propagated
 back to its caller. This is a source-derived finding, not a newly executed
 reproduction by the reviewer. Mutable-argument publication must be summarized
-independently of whether selected values are already present. The focused
-correction and a fresh independent source verdict remain pending.
+independently of whether selected values are already present.
+
+The writer then reproduced that finding against the previous implementation:
+144 existing tests passed and one new assertion failed because policy remained
+valid. The actual outside DLL references only mscorlib, so the incoming
+Bootstrap reference rule does not mask this publication channel.
+Corrective package commit `90852d8a59fa14b501cf1c6f1cc38e9d4655ee86`
+changes only the same two files. It independently carries publication,
+argument contents, return aliases and reachable container ownership across
+calls. Tests include helper chains, receivers, constructors, related inputs,
+returned/global/wrapper aliases and bodyless calls, with positive private-local
+and proven read-only cases retained. Unknown mutable calls and recursive
+effects without a proof remain conservative; no schema or hash domain changed.
+
+The pinned aggregate and focused suite passed 147/147; the same-source compiler
+diagnostic passed all 25 admissions across 36 modules in 2,997 milliseconds.
+The main guarded Unity rerun passed 642/642, zero failures/skips, under
+`_temp/AssemblyShadow/EditorTests-c138f55f230c44fd8abe39e44843e2ca`.
+Results XML SHA-256 is
+`0a9e8258031f1fa6411e4fda344db7b9fb66f55622356e90e2527e6a1a572680`.
+The propagation and policy-test source hashes are respectively
+`6dc9c09bb18da0e186dbf0e9f246097c2192d58d0fd66c81aae73a928df7b146`
+and `3af77be2ca0c2db5b5a4b151aadd8487ac4987285702aa2d417b9449c1b8edf3`.
+The independent read-only re-review returned PASS for that exact package
+revision. It checked the two-file delta, clean package state, both source
+hashes, the actual XML hash and all 29 raw-admission policy tests. No reviewed
+code was executed during that gate. Both native/runtime and package source
+readiness boundaries now permit fresh installation/build validation; neither
+verdict accepts M05 runtime behavior or permits progression to M06.
 
 Demo implementation commit `531389393fe9684bc0267e592f4da6ae3184c65d`
 contains the frozen probes, tools and configuration, not a Player or milestone
