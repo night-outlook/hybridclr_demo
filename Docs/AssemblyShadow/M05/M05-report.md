@@ -1,9 +1,10 @@
 # M05 active types, reflection and cache evidence
 
-Status: M05 is not accepted. The first native-ON Player and its baseline build
-passed, but independent linked-output replay exposed verifier defects that
-must be corrected before acceptance. No fixture replay, complete runtime
-matrix or final milestone gate is claimed. M06 remains closed.
+Status: M05 is not accepted. The v2 native-ON Player/baseline and independent
+linked-output replay passed. The generic-literal fixture-policy defect now has
+a committed correction with 661 passing Unity tests; independent corrective
+source review and a fresh v3 pairing remain pending. No fixture replay,
+complete runtime matrix or final milestone gate is claimed. M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
 [raw-query contract](M05-raw-type-admission.md) govern implementation and the
@@ -355,6 +356,108 @@ fresh identity retains exact four-repository provenance across the eventual
 ON/OFF and fixture receipts; the v1 artifacts remain unchanged. The v2 scene
 and setting were configured by the guarded Unity method in
 `_temp/UnityExec_20260828_020853.log` with the unchanged runtime ABI hash.
+
+## Reviewed v2 build and first fixture-policy rejection
+
+The source pairing pinned demo `2b7635339795d80dc2c77c8d3903256abc1c0fd3`
+and retained runtime/native/package revisions listed above. Fresh declaration
+generation passed in `_temp/UnityExec_20260828_021820.log`; all 25 sites retain
+the same configuration hash. Its preserved direct compiler outputs are
+`_temp/AssemblyShadow/M05RawAdmissionCompiler-66babb4880844875ae84b993f3e8e01e/Assemblies`.
+A targeted real-compiler smoke passed through unittest discovery (one test,
+2.555 seconds); an initial module-style invocation had only an import-path
+failure and was not test evidence. Repeat installation in
+`_temp/UnityExec_20260828_021849.log` produced identical receipts with hash
+`e5d9ceff6e684a23a6d3599d3ec225e05c6143c8d08d7a43abf82a7d456db618`.
+Full source verification passed. Fresh compiler preflight passed in
+`_temp/UnityExec_20260828_021952.log`.
+
+The complete native-ON v2 build passed in
+`_temp/UnityExec_20260828_022113.log`, including the frozen M01 semantic and
+resource checks. Snapshot
+`_temp/AssemblyShadow/M05PlayerInputs-01b834c51222430a9f12ba98f5b76c5f`
+has hash `315efc52db994f8be332e6d5d8c966c392d84ee03a7b24c57a9d1e470b8a400c`,
+build GUID `69c6ece7d0f04910a6a16471f7c2f00e`, and native library hash
+`169f8d947c3c1c0be1dd348b0c52e2a7f2432a2c15ec8d11d2ef5c572be4c0a4`.
+The Player receipt, type proof and baseline-manifest hashes are respectively
+`84e1583bad5b6408388111c13f0e036255fa533ca319311c5554b6dafcc18bae`,
+`d1bf8ea4fb6b550327773d15a7af27e70ae64b675c04cc11fde99655dacf5704`,
+and `36654f3b0013016689c93f037cdb6ca39dd82b41c51ab69b5d72cce110487a8f`.
+Independent raw/type/native replay passed 25 sites, 60 linked assemblies,
+5,865 TypeDefs and six method witnesses. The record is
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/v2-on-linked-replay.json`.
+
+`M05Build.BuildFixtures` failed in `_temp/UnityExec_20260828_022715.log`.
+Its immutable P01 compilation is under
+`_temp/AssemblyShadow/M05Fixtures-6e5d8c12ae31415eb572d2c0507c5cba/P01-compile/Snapshot`.
+The actual policy rejected operation 19 of
+`InternalEntry.GetM05TypeNameForms` as UnboundedManagedAcquisition and
+UnknownReflectionDependency. The rejected source call is the required literal
+`M05InternalGeneric` closed over `System.Int32` via Type.GetType(string,bool),
+not a dynamic name. No admitted P01 artifact was emitted. Read-only inspection
+of the actual DLL confirms `ldstr`, `ldc.i4.1`, then the lookup at IL operations
+17-19; constant-stack analysis is sound. The scanner instead splits the type
+at the generic argument's first comma and then compares a constructed generic
+name with a TypeDef name. Fixing only the comma boundary is insufficient.
+
+The corrective scope is a strict, bounded literal syntax tree and closed
+captured-metadata resolution for each generic definition and argument. The
+actual `mscorlib` reference facade forwards `System.Int32` to captured
+`netstandard`; neither a host-framework fallback nor dnlib's primitive-scope
+normalization is evidence of that original literal identity. All components
+must resolve before any acquisition evidence is admitted. Business forwarding
+and terminal providers retain their actual-reference or declared-edge checks;
+authenticated compiler Reference providers are resolution evidence, not
+invented business edges. Exact Bootstrap approval must retain each distinct
+component type, including multiple arguments from the same provider.
+
+Corrective source/test review and fresh matched builds remain pending. No
+bypass, method/name waiver, replacement typeof query or altered captured bytes
+is permitted by this result. The general compiler preflight still cannot claim
+linked Player membership or runtime policy acceptance.
+
+## Generic-literal correction and local validation
+
+Package commit `b132981fa72f8259efde8e8319029b8812858bcf` changes only the
+scanner, minimal Reference-role declaration check, new bounded resolver and
+new test source, with the two new paired metas. The original literal remains
+the approval target; all generic-definition, argument and forwarding-provider
+evidence is emitted atomically. Deduplication includes the component type.
+Runtime, NormalHotUpdate and BuildFiltered providers cannot take the compiler
+Reference exemption. No graph edge, assembly identity or runtime observation
+is synthesized.
+
+The new grammar supports closed, explicitly assembly-qualified generic
+arguments and nested names. Generic string queries with ignoreCase overloads
+(even false), resolver callbacks, arrays, pointers, byrefs, escapes or
+unqualified arguments remain rejected. This restriction concerns literal
+admission, not M05's separately tested native composite-type reconstruction.
+Historical simple-name resolution is otherwise unchanged, except that
+resolver-delegate overloads cannot be authorized by a literal alone.
+
+Main reran the pinned Mono aggregate and focused harness: 147 existing tests
+and 17 new tests passed. New actual-byte synthetic cases include all 15
+plain/nested/generic forms across the five real candidate names. A separate
+replay of the captured failed P01 DLL finds five dependency components and
+zero unknown acquisitions at `InternalEntry.GetM05TypeNameForms`, retaining
+Internal, `mscorlib` and `netstandard` provenance. Full command output is
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/generic-literal-focused.log`,
+SHA-256 `7048b21af118f7627c978d717e22b5a0aba230a1c046e112e7c0cb3a2f55e487`.
+
+The fresh guarded Unity package/demo run passed 661/661, with zero failures,
+inconclusive cases or skips, including all 17 new cases. XML:
+`_temp/AssemblyShadow/EditorTests-007a1078a51c4a2c83ecdffad0e98797/results.xml`,
+SHA-256 `24ef8e3a9d4628cd6c7db06c65637ecad513cda4f0d61dd4b3b9a50fe1c61c36`.
+The full Python regression suite also passed 249/249 without skips using the
+preserved v2 direct-compiler inventory. None of these results admits an old
+fixture or accepts a Player runtime case. Package commit identity participates
+in the ABI hash, so v1/v2 artifacts stay immutable and fresh matched v3
+ON/OFF/fixture evidence is required.
+
+Guarded Configure passed in `_temp/UnityExec_20260828_025949.log`, selecting
+`M05-Baseline-v3` and the package-corrected ABI hash
+`2e3761532b293f033677580292a0654129bcf8699e88bc5f11b7da8c1a6e7353`.
+The scene's runner GUID and all other serialized values remain unchanged.
 
 ## Preserved resource boundary
 
