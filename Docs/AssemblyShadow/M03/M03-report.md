@@ -1,8 +1,8 @@
 # M03 native transaction and staging
 
-Status: implementation is in place and pre-build verification is in progress;
-real Player acceptance is pending. No M03 milestone tag or permission to enter
-M04 is claimed here.
+Status: source checkpoints and pre-build verification are complete; real Player
+acceptance is pending. No M03 milestone tag or permission to enter M04 is claimed
+here.
 
 ## Source checkpoints
 
@@ -11,7 +11,7 @@ M04 is claimed here.
 | hybridclr | `69168bb1f192ef16261a7822de82d52150fb691a` |
 | il2cpp_plus | `740912bbfcf3e26155f157e7ba0f36d660546ef3` |
 | hybridclr_unity | `460eb5d65923e092d3c8acc7eb912c2942aea645` |
-| demo | pending final verifier tests and source pin |
+| demo | `a71ce08c561a86781ed4f90b2b7281bc2653a1e8` |
 
 The [transaction contract](M03-transaction-contract.md) describes the API, states,
 locking, lifetime, publication, diagnostic schema, build identity and deviations.
