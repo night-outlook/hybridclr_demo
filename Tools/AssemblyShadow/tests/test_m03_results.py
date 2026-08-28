@@ -52,7 +52,7 @@ class SyntheticSuite:
             "runtimeAbiHash": self.abi, "sourcePins": self.pins,
             "unityVersion": self.pins["unityVersion"], "target": "StandaloneOSX", "architecture": "arm64",
             "shadowCandidates": list(verifier.CANDIDATES), "bootstrapAssemblies": ["AssemblyShadowDemo.Bootstrap"],
-            "bootstrapAbiHash": sha(b"bootstrap-abi"), "resourceAbiHash": sha(b"resource-abi"),
+            "bootstrapAbiHash": sha(b"bootstrap-abi"), "resourceAbiHash": "sha256:" + sha(b"resource-abi"),
             "playerInputSnapshotHash": self.on[1]["snapshotHash"], "playerBuildGuid": self.on[1]["buildGuid"],
             "nativeLibrarySha256": self.on[1]["nativeLibrarySha256"],
             "assemblies": [{"name": name, "mvid": uid("baseline/" + name)} for name in verifier.CANDIDATES],
@@ -92,18 +92,18 @@ class SyntheticSuite:
                              "patchDirectory": str(patch_root), "patchManifest": str(patch_path),
                              "patchManifestSha256": verifier.digest(patch_path), "closureLoadOrder": order,
                              "stableAotNames": self.stable})
-        provenance = "framework=" + sha(b"verified framework") + "\nlinked-player=" + self.on[1]["linkedPlayerReceiptHash"] + "\nbootstrap-policy=assemblyshadowdemo.bootstrap\nphysical=" + ",".join(self.stable)
+        provenance = "framework=" + sha(b"verified framework") + "\ncompiler-libraries=" + sha(b"verified compiler library bytes and identities") + "\nlinked-player=" + self.on[1]["linkedPlayerReceiptHash"] + "\nbootstrap-policy=assemblyshadowdemo.bootstrap\nphysical=" + ",".join(self.stable)
         self.manifest = {"schemaVersion": 1, "milestone": "M03", "baselineBuildId": self.build_id,
                          "runtimeAbiHash": self.abi, "unityVersion": self.pins["unityVersion"], "target": "StandaloneOSX", "architecture": "arm64",
                          "baselineManifestPath": str(self.baseline_path), "baselineManifestSha256": verifier.digest(self.baseline_path),
                          "baselineInputSnapshot": str(self.on[0]), "baselineInputSnapshotHash": self.on[1]["snapshotHash"],
                          "candidateNames": list(verifier.CANDIDATES), "closureLoadOrder": list(verifier.CANDIDATES),
                          "stableAotNames": self.stable, "stableAotProvenance": provenance,
-                         "stableAotProvenanceHash": sha(("m03-stable-aot:1\n" + provenance).encode()), "fixtures": fixtures}
+                         "stableAotProvenanceHash": sha(("m03-stable-aot:2\n" + provenance).encode()), "fixtures": fixtures}
         write_json(self.fixture_path, self.manifest)
         self.replay_path = self.fixture_path.with_name("m03-editor-replay.json")
         replay = {key: self.manifest[key] for key in ("baselineManifestPath", "baselineManifestSha256", "baselineInputSnapshotHash", "baselineBuildId", "runtimeAbiHash", "unityVersion", "target", "architecture", "stableAotProvenanceHash")}
-        replay.update(schemaVersion=1, milestone="M03", result="Passed", comparisonPolicy="compiler-linked-policy-graph-resource-abi:1",
+        replay.update(schemaVersion=1, milestone="M03", result="Passed", comparisonPolicy="compiler-linked-policy-graph-resource-abi:2",
                       fixtureManifestPath=str(self.fixture_path), fixtureManifestSha256=verifier.digest(self.fixture_path),
                       playerBuildGuid=self.baseline["playerBuildGuid"], nativeLibrarySha256=self.baseline["nativeLibrarySha256"],
                       linkedPlayerReceiptHash=self.on[1]["linkedPlayerReceiptHash"], validatorSourcePins=self.pins,
@@ -383,6 +383,70 @@ class M03WholeSuiteTests(unittest.TestCase):
         value = json.loads(path.read_text()); value["fixtureManifestSha256"] = "f" * 64; write_json(path, value)
         self.rejects("Editor replay fixtureManifestSha256 binding differs")
 
+    def rewrite_provenance(self, lines, domain="m03-stable-aot:2\n", rehash=True):
+        value = copy.deepcopy(self.suite.manifest)
+        value["stableAotProvenance"] = "\n".join(lines)
+        if rehash:
+            value["stableAotProvenanceHash"] = sha((domain + value["stableAotProvenance"]).encode())
+        write_json(self.suite.fixture_path, value)
+
+    def test_v2_provenance_and_replay_bind_complete_compiler_evidence(self):
+        manifest = self.suite.manifest
+        lines = manifest["stableAotProvenance"].split("\n")
+        self.assertEqual(["framework", "compiler-libraries", "linked-player", "bootstrap-policy", "physical"],
+                         [line.split("=", 1)[0] for line in lines])
+        self.assertEqual("compiler-libraries=" + sha(b"verified compiler library bytes and identities"), lines[1])
+        self.assertEqual(sha(("m03-stable-aot:2\n" + manifest["stableAotProvenance"]).encode()), manifest["stableAotProvenanceHash"])
+        replay = json.loads(self.suite.replay_path.read_text())
+        self.assertEqual("compiler-linked-policy-graph-resource-abi:2", replay["comparisonPolicy"])
+        self.assertEqual(manifest["stableAotProvenanceHash"], replay["stableAotProvenanceHash"])
+        self.assertTrue(self.suite.verify()["resultPassed"])
+
+    def test_missing_compiler_library_line_rejected_even_with_rehashed_provenance(self):
+        lines = self.suite.manifest["stableAotProvenance"].split("\n")
+        lines.pop(1)
+        self.rewrite_provenance(lines)
+        self.rejects("stable AOT provenance must have five ordered v2 fields")
+
+    def test_malformed_compiler_library_hash_rejected_even_with_rehashed_provenance(self):
+        lines = self.suite.manifest["stableAotProvenance"].split("\n")
+        lines[1] = "compiler-libraries=" + "F" * 64
+        self.rewrite_provenance(lines)
+        self.rejects("compiler-libraries provenance hash must be a lowercase SHA-256")
+
+    def test_stale_compiler_library_line_rejected_at_provenance_hash(self):
+        lines = self.suite.manifest["stableAotProvenance"].split("\n")
+        lines[1] = "compiler-libraries=" + "f" * 64
+        self.rewrite_provenance(lines, rehash=False)
+        self.rejects("stable AOT provenance hash is stale")
+
+    def test_rehashed_compiler_library_tamper_rejected_by_editor_replay_binding(self):
+        lines = self.suite.manifest["stableAotProvenance"].split("\n")
+        lines[1] = "compiler-libraries=" + "f" * 64
+        self.rewrite_provenance(lines)
+        # Update the outer manifest digest so the compiler-provenance binding,
+        # not an unrelated stale-file check, must reject the altered evidence.
+        replay = json.loads(self.suite.replay_path.read_text())
+        replay["fixtureManifestSha256"] = verifier.digest(self.suite.fixture_path)
+        write_json(self.suite.replay_path, replay)
+        self.rejects("Editor replay stableAotProvenanceHash binding differs")
+
+    def test_compiler_library_line_order_is_not_interchangeable(self):
+        lines = self.suite.manifest["stableAotProvenance"].split("\n")
+        lines[0], lines[1] = lines[1], lines[0]
+        self.rewrite_provenance(lines)
+        self.rejects("stable AOT provenance must have five ordered v2 fields")
+
+    def test_v1_provenance_hash_domain_rejected_with_otherwise_v2_fields(self):
+        self.rewrite_provenance(self.suite.manifest["stableAotProvenance"].split("\n"), domain="m03-stable-aot:1\n")
+        self.rejects("stable AOT provenance hash is stale")
+
+    def test_v1_editor_replay_policy_rejected_with_otherwise_v2_evidence(self):
+        replay = json.loads(self.suite.replay_path.read_text())
+        replay["comparisonPolicy"] = "compiler-linked-policy-graph-resource-abi:1"
+        write_json(self.suite.replay_path, replay)
+        self.rejects("Editor replay schema/policy/result differs")
+
     def test_wrong_patch_dll_rejected_at_bytes(self):
         fixture = self.suite.manifest["fixtures"][0]
         entry = self.suite.patch_docs["P01"]["closure"][0]
@@ -454,7 +518,39 @@ class M03WholeSuiteTests(unittest.TestCase):
             with self.subTest(field=field):
                 value = copy.deepcopy(original); value.pop(field); write_json(path, value)
                 path.with_name("manifest.sha256").write_text(verifier.digest(path))
-                with self.assertRaisesRegex(VerificationError, field + " must be a lowercase SHA-256"):
+                with self.assertRaisesRegex(VerificationError, field + " must be sha256:"):
+                    verifier._verify_patch("P01", fixtures["P01"], manifest, baseline)
+
+    def test_resource_abi_wire_format_is_exact_and_distinct_from_file_hashes(self):
+        actual = self.suite.baseline["resourceAbiHash"]
+        self.assertTrue(actual.startswith("sha256:"))
+        self.assertEqual(actual, verifier._resource_abi_hash(actual, "baseline", "resourceAbiHash"))
+        invalid = (None, actual[7:], actual.upper(), "sha512:" + actual[7:], "sha256:" + "a" * 63,
+                   "sha256:" + "a" * 65, "sha256:" + "g" * 64, " " + actual, actual + "\n")
+        for value in invalid:
+            with self.subTest(value=value), self.assertRaisesRegex(VerificationError, "resourceAbiHash must be sha256:"):
+                verifier._resource_abi_hash(value, "baseline", "resourceAbiHash")
+        with self.assertRaisesRegex(VerificationError, "bootstrapAbiHash must be a lowercase SHA-256"):
+            verifier._hash(actual, "baseline", "bootstrapAbiHash")
+
+    def test_bare_baseline_resource_hash_rejected_after_manifest_hash_binding(self):
+        baseline = copy.deepcopy(self.suite.baseline)
+        baseline["resourceAbiHash"] = baseline["resourceAbiHash"][7:]
+        write_json(self.suite.baseline_path, baseline)
+        manifest = copy.deepcopy(self.suite.manifest)
+        manifest["baselineManifestSha256"] = verifier.digest(self.suite.baseline_path)
+        write_json(self.suite.fixture_path, manifest)
+        self.rejects("resourceAbiHash must be sha256:")
+
+    def test_valid_prefixed_patch_resource_hash_still_must_match_baseline(self):
+        manifest, baseline, _, fixtures = verifier._verify_inputs(self.suite.fixture_path, None, None)
+        path = fixtures["P01"][2]
+        original = json.loads(path.read_text())
+        for field in ("resourceAbiHash", "baselineResourceAbiHash"):
+            with self.subTest(field=field):
+                value = copy.deepcopy(original); value[field] = "sha256:" + "f" * 64; write_json(path, value)
+                path.with_name("manifest.sha256").write_text(verifier.digest(path))
+                with self.assertRaisesRegex(VerificationError, field + " changed"):
                     verifier._verify_patch("P01", fixtures["P01"], manifest, baseline)
 
     def test_wrong_operation_name_rejected_at_operation_contract(self):

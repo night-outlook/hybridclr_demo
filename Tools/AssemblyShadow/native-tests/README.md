@@ -11,6 +11,8 @@ from `ProjectSettings/AssemblyShadowSourcePins.json`; override them with
 `--demo-root`, `--native-root` (HybridCLR), and `--runtime-root` (il2cpp_plus).
 `--installed-root` identifies the pinned installed `il2cpp/libil2cpp` directory,
 used read-only for external headers and generated Unity-version definitions.
+`--baselib` overrides the pinned Unity editor's macOS `baselib.a`, whose path and
+hash are recorded; the default follows the source-pinned Hub editor version.
 No Unity launch, installation, source mutation, or build-cache cleanup occurs.
 Only the runner's unique temporary build directory is removed automatically.
 
@@ -21,6 +23,22 @@ or replace them. The original three fixtures produce 23,027 parser checks;
 the exact count depends on their physical metadata sizes. Thirty additional
 name checks compare `NameIndex` normalization/Unicode folding against the real
 `VmStringUtils` implementation and character tables.
+
+Facade checks exercise the actual native logical-facade eligibility and declaring-
+assembly authorization helpers, plus the real TLS resolver bridge. They cover
+approved/absent providers, candidate/physical-name precedence, missing closure
+members, rejection of types forwarded to candidate or unapproved assemblies,
+nested resolver scopes, and provider-vector retention after scope teardown.
+These are policy/TLS unit checks with plain native assembly/class records, not a
+mocked transaction or evidence that a real IL2CPP type lookup succeeded.
+
+Thirteen additional checks execute the production facade search and VM
+defining-image lookup, using raw-metadata/diagnostic-counter adapters and real
+baselib locking. A control lookup demonstrates that an approved forwarder can
+materialize/trace a candidate type. The corrected lookup, outside staging TLS,
+must reject that handle before either hook, reach a later approved provider,
+and leave unrelated definitions unmaterialized. No transaction/state emulator
+is used; live Player proof of the real baseline-use state remains required.
 
 The parser checks cover real DLL identity/MVID/references, successive truncated
 prefixes, invalid PE signatures/offsets, 6,000 deterministic byte mutations,
@@ -36,8 +54,9 @@ the recorded file hashes identify the tested worktree state.
 This is not M03 runtime acceptance: it does not initialize Unity/IL2CPP, test
 transaction state/publication/concurrency/initializers, validate a real PDB/DLL
 debug identity pair, or perform full IL semantic verification. The harness
-includes the real private parser implementation; its only VM adapter is
-`Memory::Free`. Unused VM paths are dead-stripped and linked with macOS
+includes the real private parser and VM image-lookup implementations, with the
+explicit allocator/raw-metadata/diagnostic adapters described above.
+Unused VM paths are dead-stripped and linked with macOS
 `dynamic_lookup`; accidentally reaching an unresolved VM symbol fails the test.
 Installed-header provenance is recorded, not claimed as a full installed-runtime
 verification. Use the separate installed-runtime verifier for that boundary.

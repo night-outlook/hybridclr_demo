@@ -106,6 +106,8 @@ def execute(args, receipt):
                               version_header.read_text(), re.M))
     require(int(defines.get("HYBRIDCLR_UNITY_VERSION", "0")) == expected_version, "Generated Unity header differs from source pins")
     require(defines.get("HYBRIDCLR_UNITY_2022") == "1", "This harness currently verifies the Unity 2022 native ABI")
+    baselib = required_path(args.baselib or Path("/Applications/Unity/Hub/Editor") / pins["unityVersion"] /
+                           "Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/baselib.a")
     compiler_name = shutil.which(args.compiler)
     require(compiler_name is not None, f"Compiler not found: {args.compiler}")
     compiler = required_path(compiler_name)
@@ -115,6 +117,7 @@ def execute(args, receipt):
                    toolchainEnvironment={name: os.environ.get(name) for name in
                                          ("DEVELOPER_DIR", "SDKROOT", "MACOSX_DEPLOYMENT_TARGET", "CPATH", "CPLUS_INCLUDE_PATH")},
                    compiler={"path": str(compiler), "sha256": sha256(compiler), "version": compiler_version},
+                   baselib={"path": str(baselib), "sha256": sha256(baselib)},
                    repositories={"demo": repository_info(demo, entries["demo"]["revision"]),
                                  "hybridclr": repository_info(native, entries["hybridclr"]["revision"]),
                                  "il2cppPlus": repository_info(runtime, entries["il2cppPlus"]["revision"])},
@@ -124,10 +127,12 @@ def execute(args, receipt):
                        "unityVersionHeader": str(version_header), "unityVersionHeaderSha256": sha256(version_header),
                        "unityDefines": defines, "fullInstalledRuntimeVerification": False})
     harness = required_path(demo / "Tools/AssemblyShadow/native-tests/m03_staging_identity.cpp")
-    sources = [harness] + [required_path(native / "hybridclr/metadata" / name) for name in
-                          ("RawImage.cpp", "RawImageBase.cpp", "PDBImage.cpp", "MetadataUtil.cpp")]
+    lookup_adapter = required_path(demo / "Tools/AssemblyShadow/native-tests/m03_facade_lookup_adapters.cpp")
+    sources = [harness, lookup_adapter] + [required_path(native / "hybridclr/metadata" / name) for name in
+                          ("RawImage.cpp", "RawImageBase.cpp", "PDBImage.cpp", "MetadataUtil.cpp",
+                           "Image.cpp", "AssemblyShadowBridge.cpp")]
     sources += [required_path(runtime / "libil2cpp" / name) for name in
-                ("vm-utils/VmStringUtils.cpp", "char-conversions.cpp")]
+                ("vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "vm/Image.cpp")]
     fixtures = [required_path(value) for value in args.dll] if args.dll else [
         required_path(demo / "HybridCLRData/HotUpdateDlls/StandaloneOSX" / (name + ".dll"))
         for name in ("AssemblyA.Contracts", "AssemblyA.Implementation.Internal", "AssemblyA.Implementation.Extensibility")]
@@ -142,10 +147,10 @@ def execute(args, receipt):
     flags += [f"-D{name}={value}" for name, value in sorted(defines.items())]
     for switch, directory in zip(("-I", "-I", "-isystem", "-isystem", "-iquote", "-I"), include_directories):
         flags += [switch, str(directory)]
-    receipt["linkBoundary"] = "Real parser/VM folding; only Memory::Free allocator adapter; unused VM paths dead-stripped with dynamic_lookup; no transaction/runtime execution"
+    receipt["linkBoundary"] = "Real parser/VM folding/facade policy/TLS and VM image lookup; raw-metadata and diagnostic-counter fixture adapters plus Memory::Free; real baselib; unused VM paths dead-stripped with dynamic_lookup; no transaction/state emulation"
     with tempfile.TemporaryDirectory(prefix="assembly-shadow-m03-native-") as temp:
         temporary = Path(temp)
-        all_dependencies = {pins_path, install_receipt_path, version_header, compiler, Path(__file__).resolve(), *fixtures}
+        all_dependencies = {pins_path, install_receipt_path, version_header, compiler, baselib, Path(__file__).resolve(), *fixtures}
         for source in sources:
             output = run_command([compiler, *flags, "-M", "-MT", "m03", source], native, receipt, "dependencies")
             all_dependencies.update(dependencies(output, native))
@@ -159,15 +164,20 @@ def execute(args, receipt):
             objects.append(obj)
         executable = temporary / "m03-native-tests"
         run_command([compiler, "-fsanitize=address", "-Wl,-dead_strip", "-Wl,-undefined,dynamic_lookup",
-                     *objects, "-o", executable], native, receipt, "link")
+                     *objects, baselib, "-o", executable], native, receipt, "link")
         output = run_command([executable, *fixtures], native, receipt, "tests")
         summary = re.search(r"^native_identity_checks=(\d+) name_checks=(\d+) PASS$", output, re.M)
+        facade_summary = re.search(r"^native_facade_checks=(\d+) PASS$", output, re.M)
+        lookup_summary = re.search(r"^native_facade_lookup_checks=(\d+) PASS$", output, re.M)
         require(summary is not None, "Native test success/count marker is missing")
+        require(facade_summary is not None and int(facade_summary[1]) >= 25, "Native facade policy coverage is missing")
+        require(lookup_summary is not None and int(lookup_summary[1]) >= 13, "Native facade lookup coverage is missing")
         require(int(summary[1]) > 6000 and int(summary[2]) >= 30, "Native test coverage is incomplete")
         after = {path: sha256(path) for path in before}
         changed = [str(path) for path in before if before[path] != after[path]]
         require(not changed, "Inputs changed during validation: " + ", ".join(changed))
-        receipt.update(identityChecks=int(summary[1]), nameChecks=int(summary[2]),
+        receipt.update(identityChecks=int(summary[1]), nameChecks=int(summary[2]), facadeChecks=int(facade_summary[1]),
+                       facadeLookupChecks=int(lookup_summary[1]),
                        executableSha256=sha256(executable), dependencyCount=len(before),
                        sourceFileHashes=[{"path": str(path), "sha256": digest} for path, digest in before.items()],
                        fixtureFiles=[{"path": str(path), "sha256": before[path]} for path in fixtures],
@@ -182,6 +192,7 @@ def main():
     parser.add_argument("--installed-root", type=Path, help="Pinned installed il2cpp/libil2cpp directory (read-only)")
     parser.add_argument("--pins", type=Path, help="Source-pins JSON; defaults to demo ProjectSettings")
     parser.add_argument("--compiler", default="clang++")
+    parser.add_argument("--baselib", type=Path, help="Pinned Unity macOS baselib.a; defaults to the Hub editor version from source pins")
     parser.add_argument("--dll", action="append", type=Path, help="Real DLL fixture; repeat to override three default fixtures")
     parser.add_argument("--output", type=Path, help="Write a new JSON receipt; existing files are never overwritten")
     args = parser.parse_args()
@@ -201,7 +212,7 @@ def main():
         try:
             with args.output.open("x", encoding="utf-8") as stream:
                 stream.write(encoded)
-            print(json.dumps({key: receipt.get(key) for key in ("success", "identityChecks", "nameChecks", "dependencyCount", "error")}
+            print(json.dumps({key: receipt.get(key) for key in ("success", "identityChecks", "nameChecks", "facadeChecks", "facadeLookupChecks", "dependencyCount", "error")}
                              | {"receipt": str(args.output.resolve())}))
         except OSError as error:
             print(encoded, end="")

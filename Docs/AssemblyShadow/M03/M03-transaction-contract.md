@@ -18,13 +18,36 @@ execution-mode and diagnostic queries are safe on other threads.
 
 `ConfigureCandidates(baselineBuildId, candidateNames, stableAotNames)` extends the
 suggested API with an explicit stable-external allowlist. The trusted Bootstrap
-derives it from verified target framework references and the fixed Bootstrap
-policy, not arbitrary assembly-name prefixes. Native registration verifies every
+derives it from verified target framework references, byte-identical installed
+Player compiler libraries and the fixed Bootstrap policy, not arbitrary
+assembly-name prefixes. Native registration verifies every
 entry against physical AOT metadata, excludes candidates from the external list,
 and never accepts an ordinary interpreter assembly as a stable external.
 Manifest authenticity is not claimed here; signing remains M09 scope.
 The allowlist is intersected with the actual linked Player assembly receipt;
 compiler-only facades are not physical AOT providers.
+
+Compiler-library evidence is separate from framework identity-unification
+evidence. Its production verifier obtains the active Player compiler reference
+list from Unity, rejects links below the installed Editor root, and matches full
+assembly identity and SHA-256 against captured input/reference DLLs. A receipt's
+sourcePath, an installed file absent from that compiler list, and arbitrary
+Bootstrap dependencies grant no authority. The stable-AOT v2 provenance binds
+the framework proof, compiler-library proof, linked Player receipt, Bootstrap
+policy and final physical names; the independent Editor replay recomputes both
+compiler authorities.
+
+An absent logical `netstandard` reference is not fabricated as an assembly.
+Private staging binds it to the intersection of the existing finite upstream
+framework-provider list and explicitly approved physical stable AOT assemblies.
+Candidate and physical-name checks take precedence. Each staged image retains
+that provider vector through lazy post-commit resolution. Raw type-handle
+ownership is checked before any class materialization or usage trace; a
+forwarder cannot touch an unauthorized candidate while being rejected. Optional
+missing providers are skipped without widening to the ordinary global registry.
+Physical AssemblyRef reflection coverage remains part of M04.
+The defining-image ownership check scans at most that provider's typeCount raw
+handles; performance optimization is not claimed by these correctness tests.
 
 `BeginTransaction(patchId, expectedBaselineBuildId, closureLoadOrder, abiVersion)`
 receives the verified manifest's exact provider-before-consumer order. That order

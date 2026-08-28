@@ -186,6 +186,7 @@ namespace AssemblyShadowDemo.Editor
         internal static StableAotProvenance DeriveStableAotNames(string snapshotRoot, AssemblySnapshotReceipt receipt, ShadowPolicyConfiguration policy)
         {
             var framework = TargetFrameworkReferenceVerifier.Verify(snapshotRoot, receipt);
+            var libraries = M03CompilerLibraryVerifier.Verify(snapshotRoot, receipt, framework);
             var candidateSet = new HashSet<string>(M02Build.Candidates.Select(AssemblyIdentityUtil.CanonicalName), StringComparer.OrdinalIgnoreCase);
             // Only linked bytes prove physical AOT membership. Compiler-only
             // facade references and arbitrary Bootstrap dependencies are not an
@@ -193,13 +194,13 @@ namespace AssemblyShadowDemo.Editor
             ShadowLinkedPlayerEvidence.ReadAndVerify(snapshotRoot, receipt);
             var physicalByCanonical = receipt.linkedPlayerReceipt.assemblies
                 .ToDictionary(item => AssemblyIdentityUtil.CanonicalName(item.name), item => item.name, StringComparer.OrdinalIgnoreCase);
-            var frameworkNames = new HashSet<string>(framework.Providers.Select(ProviderName), StringComparer.OrdinalIgnoreCase);
+            var compilerNames = new HashSet<string>(framework.Providers.Concat(libraries.Providers).Select(ProviderName), StringComparer.OrdinalIgnoreCase);
             var bootstrapNames = new HashSet<string>((policy.assemblies ?? new AssemblyCapability[0]).Where(item => item != null && item.isBootstrap)
                 .Select(item => AssemblyIdentityUtil.CanonicalName(item.name)), StringComparer.OrdinalIgnoreCase);
             Require(bootstrapNames.Count > 0, "M03 policy has no fixed Bootstrap assembly.");
 
             var required = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (string name in frameworkNames)
+            foreach (string name in compilerNames)
             {
                 string physicalName;
                 if (physicalByCanonical.TryGetValue(name, out physicalName) && !candidateSet.Contains(name)) required.Add(physicalName);
@@ -215,13 +216,14 @@ namespace AssemblyShadowDemo.Editor
 
             string[] names = required.OrderBy(item => item, StringComparer.Ordinal).ToArray();
             Require(names.Length > 0, "Verified Bootstrap has no physical stable AOT dependencies.");
-            string provenance = "framework=" + framework.ProvenanceHash + "\nlinked-player=" + receipt.linkedPlayerReceiptHash + "\nbootstrap-policy=" +
+            string provenance = "framework=" + framework.ProvenanceHash + "\ncompiler-libraries=" + libraries.ProvenanceHash +
+                "\nlinked-player=" + receipt.linkedPlayerReceiptHash + "\nbootstrap-policy=" +
                 string.Join(",", bootstrapNames.OrderBy(item => item, StringComparer.Ordinal).ToArray()) + "\nphysical=" +
                 string.Join(",", names);
             return new StableAotProvenance {
                 names = names,
                 provenance = provenance,
-                provenanceHash = ShadowHash.Text("m03-stable-aot:1\n" + provenance),
+                provenanceHash = ShadowHash.Text("m03-stable-aot:2\n" + provenance),
             };
         }
 

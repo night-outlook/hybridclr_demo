@@ -9,10 +9,13 @@
 #include "vm/AssemblyShadowName.h"
 
 // The borrowed parser releases ownership before RawImageBase destruction.
-// This allocator adapter is the only VM stub; all parser/folding code is real.
+// Parser/folding code is real. The separate lookup fixture supplies raw-metadata
+// and diagnostic-counter adapters for the production VM image lookup path.
 namespace il2cpp { namespace utils {
 void Memory::Free(void* pointer) { std::free(pointer); }
 }}
+
+size_t CheckActualFacadeLookup();
 
 namespace {
 using namespace hybridclr::metadata;
@@ -157,6 +160,89 @@ size_t CheckNames()
     Require(index.Find("C:\\patches\\ALPHA.DLL, Version=1.2.3.4") == 1, "Normalized NameIndex lookup failed");
     return checks + 1;
 }
+
+struct FacadePolicyInput
+{
+    bool candidateName;
+    bool physicalName;
+    std::vector<const Il2CppAssembly*> approvedProviders;
+};
+
+bool ResolveTestFacade(const char* name, std::vector<const Il2CppAssembly*>& result, void* context)
+{
+    const auto& input = *static_cast<FacadePolicyInput*>(context);
+    if (!Image::CanUseLogicalNetStandardFacade(name, input.candidateName, input.physicalName, input.approvedProviders.size()))
+        return false;
+    result = input.approvedProviders;
+    return true;
+}
+
+const Il2CppAssembly* ResolveMissingPhysical(const char*, void*) { return nullptr; }
+
+size_t CheckFacadePolicy()
+{
+    size_t checks = 0;
+    for (const char* name : { "netstandard", "NETSTANDARD" })
+    {
+        Require(Image::CanUseLogicalNetStandardFacade(name, false, false, 1), "Approved absent logical facade was rejected");
+        Require(!Image::CanUseLogicalNetStandardFacade(name, true, false, 1), "Candidate facade name bypassed closure policy");
+        Require(!Image::CanUseLogicalNetStandardFacade(name, false, true, 1), "Physical facade name bypassed allowlist policy");
+        Require(!Image::CanUseLogicalNetStandardFacade(name, false, false, 0), "Facade without approved providers was accepted");
+        checks += 4;
+    }
+    for (const char* name : { static_cast<const char*>(nullptr), "", "Missing.Closure.Member", "System", "UnityEngine.CoreModule" })
+    {
+        Require(!Image::CanUseLogicalNetStandardFacade(name, false, false, 1), "Unknown/physical reference was treated as a facade");
+        ++checks;
+    }
+    Il2CppAssembly approved = {}, candidateBaseline = {}, unapproved = {};
+    Il2CppImage approvedImage = {}, candidateImage = {}, unapprovedImage = {};
+    approved.image = &approvedImage; approvedImage.assembly = &approved;
+    candidateBaseline.image = &candidateImage; candidateImage.assembly = &candidateBaseline;
+    unapproved.image = &unapprovedImage; unapprovedImage.assembly = &unapproved;
+    Il2CppClass declaredByApproved = {}, forwardedToCandidate = {}, forwardedToUnapproved = {};
+    declaredByApproved.image = &approvedImage;
+    forwardedToCandidate.image = &candidateImage;
+    forwardedToUnapproved.image = &unapprovedImage;
+    std::vector<const Il2CppAssembly*> providers{ &approved };
+    Require(Image::IsApprovedFacadeType(&declaredByApproved, providers), "Approved provider type was rejected");
+    Require(!Image::IsApprovedFacadeType(&forwardedToCandidate, providers), "Facade accepted a type forwarded to a candidate baseline");
+    Require(!Image::IsApprovedFacadeType(&forwardedToUnapproved, providers), "Facade accepted a type forwarded to unapproved AOT");
+    Require(!Image::IsApprovedFacadeType(nullptr, providers), "Absent facade type was accepted");
+    checks += 4;
+    std::vector<StagedAssembly*> images;
+    std::vector<const Il2CppAssembly*> retained;
+    FacadePolicyInput input{ false, false, providers };
+    Require(!AssemblyShadowBridge::TryResolveFacadeForCurrentThread("netstandard", retained), "Facade resolver escaped its TLS scope");
+    ++checks;
+    {
+        ScopedStagingResolver scope(images, ResolveMissingPhysical, &input, ResolveTestFacade);
+        Require(AssemblyShadowBridge::TryResolveFacadeForCurrentThread("netstandard", retained) && retained == providers,
+            "TLS facade resolver did not return its approved providers");
+        ++checks;
+        const Il2CppAssembly* missing = &candidateBaseline;
+        Require(AssemblyShadowBridge::TryResolveForCurrentThread("Missing.Closure.Member", missing) && !missing,
+            "Missing closure lookup did not remain owned and rejected by strict TLS resolver");
+        ++checks;
+        std::vector<const Il2CppAssembly*> ignored;
+        Require(!AssemblyShadowBridge::TryResolveFacadeForCurrentThread("Missing.Closure.Member", ignored),
+            "Missing closure member fell through to logical facade resolution");
+        ++checks;
+        {
+            ScopedStagingResolver nested(images, ResolveMissingPhysical, &input);
+            Require(!AssemblyShadowBridge::TryResolveFacadeForCurrentThread("netstandard", ignored), "Nested scope inherited unauthorized facade policy");
+            ++checks;
+        }
+        Require(AssemblyShadowBridge::TryResolveFacadeForCurrentThread("netstandard", ignored) && ignored == providers,
+            "Outer TLS facade policy was not restored");
+        ++checks;
+    }
+    Require(retained == providers, "Retained facade provider identities did not survive TLS teardown");
+    ++checks;
+    std::vector<const Il2CppAssembly*> ignored;
+    Require(!AssemblyShadowBridge::TryResolveFacadeForCurrentThread("netstandard", ignored), "Facade policy leaked after TLS teardown");
+    return checks + 1;
+}
 }
 
 int main(int argc, char** argv)
@@ -168,6 +254,8 @@ int main(int argc, char** argv)
         for (int arg = 1; arg < argc; ++arg) identityChecks += CheckDll(argv[arg]);
         identityChecks += CheckMutations(argv[1]) + CheckPortablePdb();
         size_t nameChecks = CheckNames();
+        std::cout << "native_facade_checks=" << CheckFacadePolicy() << " PASS\n";
+        std::cout << "native_facade_lookup_checks=" << CheckActualFacadeLookup() << " PASS\n";
         std::cout << "native_identity_checks=" << identityChecks << " name_checks=" << nameChecks << " PASS\n";
         return 0;
     }

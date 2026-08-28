@@ -1,10 +1,11 @@
 # M03 native transaction and staging
 
-Status: source checkpoints and pre-build verification are complete; real Player
-acceptance is pending. No M03 milestone tag or permission to enter M04 is claimed
-here.
+Status: the first native-ON baseline and Editor replay passed, but its real
+T03-01 transaction failed reference resolution. A bounded facade/compiler-library
+repair is being validated for a fresh v2 baseline. No M03 milestone tag or
+permission to enter M04 is claimed here.
 
-## Source checkpoints
+## First diagnostic build source checkpoints
 
 | Repository | M03 source checkpoint |
 | --- | --- |
@@ -75,13 +76,82 @@ paired-source audit and an independent milestone review are also still required.
   shuffled staging, and case-varied physical assembly names.
 - Twenty modified native translation units passed syntax-only checks with the
   feature ON and OFF. This does not establish Unity's full native build/link ABI.
-- Earlier focused ASan checks passed 23,027 parser assertions and 30 actual VM
+- Final pinned ASan checks passed 23,027 parser assertions and 30 actual VM
   name-folding checks, plus 18,674 private-visibility assertions and five cached
-  class-enumeration structural checks. Final pinned receipts remain to be captured.
+  class-enumeration structural checks. Receipts are
+  `_temp/AssemblyShadow/m03-native-regression-a71ce08.json` (974 dependencies) and
+  `_temp/AssemblyShadow/m03-visibility-regression-a71ce08.json` (985 dependencies).
 - The M01 manifest still hashes to
   `e0125ed2b59177fb8577dab0498325a4a489404d3147b7bb857f442a9464928d`;
   accepted M02 native SHA remains
   `0ac827495f6371c81cfc7d5bce7bf6d84c4cbf2968ca7682c9388c764002375c`.
+
+## Native-ON baseline build
+
+The two pinned installations produced identical receipt SHA
+`d1622f5d82e3d22c18dcd258cfeee510264147afe401792c4469266a60bc0469`.
+Strict installed-runtime verification passed with 935 source and 937 installed
+files, including the complete pinned demo build source. The real Unity method
+then completed successfully in `_temp/UnityExec_20260827_170727.log`, including
+the fresh baseline manifest, frozen M01 business semantics and resource reuse.
+
+- Player: `Builds/AssemblyShadow/M03/M03-Baseline-v1.app`.
+- Build GUID: `e454ba32269e424bbf25bc254b06968d`.
+- Native SHA: `64759be6983519da9fbda314484b9e592b845b6d508e2ede9f9bd07bc3506204`.
+- Input snapshot: `_temp/AssemblyShadow/M03PlayerInputs-ba6d2672d8ec4704b3a206b058431597`.
+- Snapshot hash: `e7d450626c1e5bfe50eefe99eb05a194e485de36dbe8dfabfdd6576f6b82b32b`.
+- Baseline manifest: `HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M03-Baseline-v1/baseline-manifest.json`.
+- Manifest SHA: `341e29a964f4d5a68bfa09fc0d9b8c7232222b05a99a29153f94bb9a06b22237`.
+
+An independent bounded source/integrity review of demo `a71ce08c` returned PASS
+after inspecting the compiler/replay/build bindings and adversarial tests. This
+is not the final M03 milestone review; no runtime cases are accepted by that
+source-only verdict.
+
+## First live transaction and integration repair
+
+The three v1 patch fixtures and independent Editor replay completed successfully
+in `_temp/UnityExec_20260827_171123.log`. The fixture root is
+`_temp/AssemblyShadow/M03Fixtures-00bbe514eecb43f1b5821e55df7805c8`;
+its replay receipt SHA is
+`eb528fc89f693125667e82084aab39200f1a34ded874ad1c01769dcac9ca03cf`.
+The actual native-ON Player then failed T03-01 at Validate with
+`ReferenceResolutionFailed`, after successful Configure/Begin/Stage. The result
+is `_temp/AssemblyShadow/M03PlayerResults-a71ce08-Nc8p4u/m03-T03-01.json`
+(SHA `e1cc81fbb0b2aa6fbb94b7db78c5ff917e6e9f7a6af84958f97dc5ee057ace85`).
+This failed run is retained, not counted as an accepted runtime case.
+
+The source assumed every AssemblyRef required a physical assembly, while Unity's
+compiled patch references the absent logical `netstandard` facade. The stable
+allowlist also omitted linked `UnityEngine.CoreModule` because framework proof
+deliberately covers only installed system-reference directories. The repair
+retains that framework boundary, adds separately byte/identity-bound installed
+compiler-library proof, and provides a constrained private facade resolver.
+It also captures native diagnostics after a failed assertion instead of leaving
+the prior successful Stage snapshot as the apparent final state.
+
+The v2 verifier has 40 passing focused tests and 133 passing tooling tests,
+including eight new proof-format/binding regressions. Native facade checks pass
+25 policy/TLS assertions and 13 actual-lookup checks in addition to 23,027 parser
+and 30 name checks under ASan. Fresh real Player acceptance and the final
+independent gate remain pending.
+
+Fresh Editor verification passed 346/346 tests with zero skips at
+`_temp/AssemblyShadow/EditorTests-c28758696cc54f9cbdb60362441dad2b/results.xml`,
+including eight executable compiler-library provenance tests. The independent
+demo source re-review passed this corrected diff; the first compile's dnlib/
+System.IO `FileAttributes` ambiguity was corrected before that test run. Native
+re-review identified a preauthorization lookup side effect. It was corrected by
+checking raw defining-image ownership before materialization/tracing, and the
+independent native re-review then passed. The executable lookup regression
+includes an unsafe control, zero candidate hooks on the corrected path, and a
+later approved provider outside staging TLS. It uses documented metadata/counter
+adapters, not a simulated claim of transaction-state correctness.
+
+The corrected native source commits are `fd60cb21a4d0d4c204848c3477d2a30ffd155710`
+(HybridCLR) and `0486098099e7e80176401267538499e611b181f2` (IL2CPP). The managed
+package remains `460eb5d65923e092d3c8acc7eb912c2942aea645`. These bounded source
+reviews permit a fresh v2 build, not milestone acceptance.
 
 ## Limits and next gate
 

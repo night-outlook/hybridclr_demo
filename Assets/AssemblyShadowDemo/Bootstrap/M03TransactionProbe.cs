@@ -51,6 +51,20 @@ namespace AssemblyShadowDemo
             {
                 result.error = error.ToString();
                 Debug.LogException(error);
+                // The failing assertion may precede the normal post-operation
+                // snapshot. Retain the actual native failure, not the last
+                // successful Stage snapshot. Never replace the original error.
+                if (result.il2cpp)
+                {
+                    try
+                    {
+                        AssemblyShadowState state;
+                        result.stateCode = AssemblyShadowRuntime.GetState(out state).ToString();
+                        result.state = state.ToString();
+                        Capture(result, "failure");
+                    }
+                    catch (Exception diagnosticError) { result.error += "\nFailure diagnostics: " + diagnosticError; }
+                }
             }
             string output = Path.GetFullPath(ShadowPatchFileProvider.Argument("-shadowResultPath",
                 Path.Combine(Application.persistentDataPath, "AssemblyShadowTests/m03-" + mode + ".json")));
@@ -482,7 +496,7 @@ namespace AssemblyShadowDemo
             Require(manifest.closureLoadOrder != null && manifest.closureLoadOrder.SequenceEqual(Candidates), "Fixture provider order changed.");
             Require(manifest.stableAotNames != null && manifest.stableAotNames.Length > 0 && manifest.stableAotNames.Distinct(StringComparer.OrdinalIgnoreCase).Count() == manifest.stableAotNames.Length &&
                 !manifest.stableAotNames.Intersect(Candidates, StringComparer.OrdinalIgnoreCase).Any() && manifest.stableAotNames.SequenceEqual(manifest.stableAotNames.OrderBy(n => n, StringComparer.Ordinal)), "Stable AOT allowlist is invalid.");
-            Require(manifest.stableAotProvenanceHash == HashText("m03-stable-aot:1\n" + manifest.stableAotProvenance) && manifest.stableAotProvenance.EndsWith("\nphysical=" + string.Join(",", manifest.stableAotNames), StringComparison.Ordinal), "Stable AOT provenance hash/names differ.");
+            Require(manifest.stableAotProvenanceHash == HashText("m03-stable-aot:2\n" + manifest.stableAotProvenance) && manifest.stableAotProvenance.EndsWith("\nphysical=" + string.Join(",", manifest.stableAotNames), StringComparison.Ordinal), "Stable AOT provenance hash/names differ.");
             RequireHash(manifest.baselineManifestPath, manifest.baselineManifestSha256);
             var baseline = JsonUtility.FromJson<BaselineManifest>(File.ReadAllText(manifest.baselineManifestPath));
             Require(baseline != null && baseline.schemaVersion == 1 && baseline.semanticHashSchema == 1 && baseline.baselineBuildId == expectedBaseline && baseline.runtimeAbiHash == expectedAbi && baseline.playerInputSnapshotHash == manifest.baselineInputSnapshotHash, "Baseline manifest identity mismatch.");

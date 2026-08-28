@@ -50,6 +50,8 @@ STATE_CODES = {
 }
 HASH_RE = re.compile(r"[0-9a-f]{64}\Z")
 GUID_RE = re.compile(r"[0-9a-f]{32}\Z")
+STABLE_AOT_HASH_DOMAIN = "m03-stable-aot:2\n"
+EDITOR_REPLAY_POLICY = "compiler-linked-policy-graph-resource-abi:2"
 SUCCESS_MODES = {"T03-01", "T03-02", "T03-07", "T03-12", "T03-13", "T03-14"}
 ABORT_MODES = {"T03-03", "T03-04", "T03-05", "T03-10", "T03-11", "T03-15"}
 SHUFFLED_MODES = {"T03-02", "T03-07", "T03-12"}
@@ -74,6 +76,14 @@ def _s(value, path, field):
 def _hash(value, path, field):
     require(isinstance(value, str) and HASH_RE.fullmatch(value) is not None,
             f"{path}: {field} must be a lowercase SHA-256")
+    return value
+
+
+def _resource_abi_hash(value, path, field):
+    # ResourceAbiHasher.Compute identifies its algorithm; file/bootstrap hashes
+    # deliberately retain their distinct, unprefixed SHA-256 wire format.
+    require(isinstance(value, str) and value.startswith("sha256:") and HASH_RE.fullmatch(value[7:]) is not None,
+            f"{path}: {field} must be sha256: followed by 64 lowercase hex characters")
     return value
 
 
@@ -214,7 +224,7 @@ def _verify_inputs(manifest_path: Path, baseline_manifest_path: Path | None, bas
             f"{manifest_path}: stableAotNames must be sorted, non-empty and exclude candidates")
     _hash(manifest.get("stableAotProvenanceHash"), manifest_path, "stableAotProvenanceHash")
     provenance = _s(manifest.get("stableAotProvenance"), manifest_path, "stableAotProvenance")
-    require(manifest["stableAotProvenanceHash"] == hashlib.sha256(("m03-stable-aot:1\n" + provenance).encode()).hexdigest(),
+    require(manifest["stableAotProvenanceHash"] == hashlib.sha256((STABLE_AOT_HASH_DOMAIN + provenance).encode()).hexdigest(),
             f"{manifest_path}: stable AOT provenance hash is stale")
     baseline_path = baseline_manifest_path or _absolute(manifest.get("baselineManifestPath"), manifest_path, "baselineManifestPath")
     baseline_path = _absolute(str(baseline_path), manifest_path, "baselineManifestPath")
@@ -226,8 +236,8 @@ def _verify_inputs(manifest_path: Path, baseline_manifest_path: Path | None, bas
         require(baseline.get(field) == manifest.get(field), f"{baseline_path}: {field} differs from fixture manifest")
     _verify_source_pins(baseline.get("sourcePins"), baseline_path)
     _name_set(baseline.get("shadowCandidates"), CANDIDATES, baseline_path, "shadowCandidates")
-    for field in ("bootstrapAbiHash", "resourceAbiHash"):
-        _hash(baseline.get(field), baseline_path, field)
+    _hash(baseline.get("bootstrapAbiHash"), baseline_path, "bootstrapAbiHash")
+    _resource_abi_hash(baseline.get("resourceAbiHash"), baseline_path, "resourceAbiHash")
     require(_runtime_abi_hash(baseline["sourcePins"], baseline_path) == abi, f"{baseline_path}: runtime ABI mismatch")
     snapshot_value = baseline_snapshot_path or manifest.get("baselineInputSnapshot")
     snapshot_root = _absolute(str(snapshot_value), manifest_path, "baselineInputSnapshot", directory=True)
@@ -238,11 +248,16 @@ def _verify_inputs(manifest_path: Path, baseline_manifest_path: Path | None, bas
     linked_names = {a["name"].casefold() for a in receipt["linkedPlayerReceipt"]["assemblies"]}
     require(set(_fold(stable)) <= linked_names, f"{manifest_path}: stable AOT allowlist contains an unlinked assembly")
     provenance_lines = provenance.split("\n")
-    require(len(provenance_lines) == 4 and provenance_lines[0].startswith("framework=") and
-            HASH_RE.fullmatch(provenance_lines[0][10:]) and
-            provenance_lines[1] == "linked-player=" + receipt["linkedPlayerReceiptHash"] and
-            provenance_lines[2] == "bootstrap-policy=" + ",".join(sorted(_fold(_names(baseline.get("bootstrapAssemblies"), baseline_path, "bootstrapAssemblies")))) and
-            provenance_lines[3] == "physical=" + ",".join(stable),
+    require([line.partition("=")[0] for line in provenance_lines] ==
+            ["framework", "compiler-libraries", "linked-player", "bootstrap-policy", "physical"],
+            f"{manifest_path}: stable AOT provenance must have five ordered v2 fields")
+    _hash(provenance_lines[0].partition("=")[2], manifest_path, "framework provenance hash")
+    # The independently bound v2 Editor replay proves compiler-library bytes,
+    # identities and installed-catalog membership; this is not an ABI waiver.
+    _hash(provenance_lines[1].partition("=")[2], manifest_path, "compiler-libraries provenance hash")
+    require(provenance_lines[2] == "linked-player=" + receipt["linkedPlayerReceiptHash"] and
+            provenance_lines[3] == "bootstrap-policy=" + ",".join(sorted(_fold(_names(baseline.get("bootstrapAssemblies"), baseline_path, "bootstrapAssemblies")))) and
+            provenance_lines[4] == "physical=" + ",".join(stable),
             f"{manifest_path}: stable AOT provenance does not bind linked Player/bootstrap/names")
     require(isinstance(manifest.get("fixtures"), list) and len(manifest["fixtures"]) == 3,
             f"{manifest_path}: M03 manifest must contain exactly three fixtures")
@@ -372,7 +387,8 @@ def _verify_patch(patch_id, item, manifest, baseline):
         require(digest(pdb_file) == entry["pdbSha256"] == source.get("pdbSha256") == digest(source_pdb),
                 f"{ep}: PDB hash differs from bytes/snapshot")
     for field, baseline_field in (("bootstrapAbiHash", "bootstrapAbiHash"), ("resourceAbiHash", "resourceAbiHash"), ("baselineResourceAbiHash", "resourceAbiHash")):
-        require(_hash(patch.get(field), patch_path, field) == baseline.get(baseline_field), f"{patch_path}: {field} changed")
+        validate = _resource_abi_hash if baseline_field == "resourceAbiHash" else _hash
+        require(validate(patch.get(field), patch_path, field) == baseline.get(baseline_field), f"{patch_path}: {field} changed")
     expected_dlls = {(patch_root / entry["dll"]).resolve() for entry in closure}
     require(expected_dlls == {p.resolve() for p in patch_root.rglob("*.dll")}, f"{patch_path}: undeclared or missing patch DLL")
     return patch
@@ -839,7 +855,7 @@ def _verify_replay(path, manifest, baseline, fixtures):
     path = _absolute(str(path), path, "editorReplayReceipt")
     replay = _obj(path)
     require(replay.get("schemaVersion") == 1 and replay.get("milestone") == "M03" and replay.get("result") == "Passed" and
-            replay.get("comparisonPolicy") == "compiler-linked-policy-graph-resource-abi:1", f"{path}: Editor replay schema/policy/result differs")
+            replay.get("comparisonPolicy") == EDITOR_REPLAY_POLICY, f"{path}: Editor replay schema/policy/result differs")
     bindings = {field: manifest[field] for field in ("baselineManifestPath", "baselineManifestSha256", "baselineInputSnapshotHash", "baselineBuildId",
                                                     "runtimeAbiHash", "unityVersion", "target", "architecture", "stableAotProvenanceHash")}
     bindings.update(fixtureManifestPath=manifest["_path"], fixtureManifestSha256=digest(Path(manifest["_path"])),

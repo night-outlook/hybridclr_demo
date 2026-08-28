@@ -13,7 +13,7 @@ namespace AssemblyShadowDemo.Editor
     /// <summary>Replays compiler/linker proof without recompiling or rewriting any artifact.</summary>
     public static class M03EditorValidation
     {
-        public const string ComparisonPolicy = "compiler-linked-policy-graph-resource-abi:1";
+        public const string ComparisonPolicy = "compiler-linked-policy-graph-resource-abi:2";
 
         /// <summary>Batchmode entry point; replay is read-only apart from a new evidence receipt.</summary>
         public static void Validate()
@@ -73,7 +73,7 @@ namespace AssemblyShadowDemo.Editor
             Require(manifest.closureLoadOrder != null && manifest.closureLoadOrder.SequenceEqual(M03Build.ProviderFirstOrder), "M03 closure order is not provider-first.");
             Require(manifest.stableAotNames != null && manifest.stableAotNames.Length > 0 && manifest.stableAotNames.SequenceEqual(manifest.stableAotNames.OrderBy(item => item, StringComparer.Ordinal)),
                 "Stable AOT names must be non-empty and deterministic.");
-            Require(manifest.stableAotProvenanceHash == ShadowHash.Text("m03-stable-aot:1\n" + manifest.stableAotProvenance), "Stable AOT provenance hash mismatch.");
+            Require(manifest.stableAotProvenanceHash == ShadowHash.Text("m03-stable-aot:2\n" + manifest.stableAotProvenance), "Stable AOT provenance hash mismatch.");
             Require(manifest.fixtures != null && manifest.fixtures.Length == 3, "M03 requires P01, P03, and initializer-throw fixtures.");
             RequireSet(manifest.fixtures.Select(f => f.patchId), new[] { "P01", "P03", "P03-InitializerThrow" }, "Fixture identities");
             VerifyHash(manifest.baselineManifestPath, manifest.baselineManifestSha256);
@@ -162,10 +162,11 @@ namespace AssemblyShadowDemo.Editor
         private static void VerifyStableAot(M03Build.M03FixtureManifest manifest, AssemblySnapshotReceipt player, ShadowPolicyConfiguration policy)
         {
             var framework = TargetFrameworkReferenceVerifier.Verify(manifest.baselineInputSnapshot, player);
+            var libraries = M03CompilerLibraryVerifier.Verify(manifest.baselineInputSnapshot, player, framework);
             var physical = player.linkedPlayerReceipt.assemblies.ToDictionary(a => AssemblyIdentityUtil.CanonicalName(a.name), a => a.name, StringComparer.OrdinalIgnoreCase);
             var candidates = new HashSet<string>(manifest.candidateNames.Select(AssemblyIdentityUtil.CanonicalName), StringComparer.OrdinalIgnoreCase);
             var expected = new HashSet<string>(StringComparer.Ordinal);
-            foreach (string provider in framework.Providers)
+            foreach (string provider in framework.Providers.Concat(libraries.Providers))
             {
                 string identity = provider.Split(new[] { " | " }, StringSplitOptions.None)[0];
                 string name = AssemblyIdentityUtil.CanonicalName(new System.Reflection.AssemblyName(identity).Name);
@@ -181,8 +182,9 @@ namespace AssemblyShadowDemo.Editor
                 expected.Add(physical[name]);
             }
             RequireSet(manifest.stableAotNames, expected, "Replayed stable physical AOT allowlist");
-            string provenance = "framework=" + framework.ProvenanceHash + "\nlinked-player=" + player.linkedPlayerReceiptHash + "\nbootstrap-policy=" + string.Join(",", bootstrap) + "\nphysical=" + string.Join(",", expected.OrderBy(n => n, StringComparer.Ordinal));
-            Require(manifest.stableAotProvenance == provenance && manifest.stableAotProvenanceHash == ShadowHash.Text("m03-stable-aot:1\n" + provenance), "Stable AOT provenance does not replay from compiler/linker bytes.");
+            string provenance = "framework=" + framework.ProvenanceHash + "\ncompiler-libraries=" + libraries.ProvenanceHash +
+                "\nlinked-player=" + player.linkedPlayerReceiptHash + "\nbootstrap-policy=" + string.Join(",", bootstrap) + "\nphysical=" + string.Join(",", expected.OrderBy(n => n, StringComparer.Ordinal));
+            Require(manifest.stableAotProvenance == provenance && manifest.stableAotProvenanceHash == ShadowHash.Text("m03-stable-aot:2\n" + provenance), "Stable AOT provenance does not replay from compiler/linker bytes.");
         }
 
         private static string BootstrapHash(IEnumerable<AssemblyDescriptor> descriptors)

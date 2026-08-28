@@ -143,6 +143,10 @@ and `verify-installed-runtime.py --expect-shadow on`. The M03 methods are in
    linked-reference, reflection-policy, graph and resource-ABI proof. It writes
    `m03-fixtures.json` and `m03-editor-replay.json` under one fresh
    `_temp/AssemblyShadow/M03Fixtures-*` root. The replay receipt is not a signature.
+   Stable-AOT provenance v2 independently binds installed target compiler
+   libraries as well as framework references; neither names nor receipt
+   `sourcePath` values authorize a provider. Earlier v1 fixtures are diagnostic
+   evidence and are intentionally rejected by the v2 acceptance verifier.
 3. Launch one native-ON Player process per mode: T03-01 through T03-15 except
    T03-09, plus T03-08-Fallback immediately after T03-08. Pass `-batchmode -nographics`,
    `-shadowMode <mode>`, `-shadowFixtureManifest <absolute-m03-fixtures.json>`,
@@ -164,7 +168,7 @@ and `verify-installed-runtime.py --expect-shadow on`. The M03 methods are in
 `M03EditorValidation.Validate` can replay existing fixtures without recompiling;
 pass `-shadowFixtureManifest` and a new `-shadowValidationReceipt` path. Existing
 receipts are refused. The native ASan runners in `native-tests/README.md` provide
-focused parser/visibility evidence only, not a substitute for real transactions.
+focused parser/facade-policy/visibility evidence only, not a substitute for real transactions.
 Full logical Assembly/Type/Unity resolution remains M04-M07 scope.
 
 ## Recoverable native-cache rebuild
