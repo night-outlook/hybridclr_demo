@@ -1,10 +1,11 @@
 # M05 active types, reflection and cache evidence
 
-Status: validation complete; M05 still awaits both independent final acceptance
-reviews. The actual v6 ON/OFF Players and all 19 fresh-process modes pass the
+Status: PASS. Both independent final M05 reviews accepted the complete boundary
+without actionable findings. The actual v6 ON/OFF Players and all 19 fresh-process modes pass the
 complete strict verifier. The final suites pass 667 Unity Editor tests, 267
 Python tests with zero skips, and all M03-M05 native regressions. Native ON is
-restored and verified. No M06 implementation has begun.
+restored and verified. Local tag `assembly-shadow-m05-types` follows the
+documentation-only closeout; M06 starts only after the main tag audit.
 
 The lossless [evidence index](Evidence/artifact-index-v6.json) and
 [review record](M05-review.md) bind the frozen executable sources separately
@@ -1060,8 +1061,18 @@ memberships, and the separate main audit confirms the original Editor PID 13313
 with its original start time. No original Editor was controlled; membership
 preservation is not a claim of unrelated dirty-file byte equality.
 
-Both complete independent milestone reviews remain required before M05 is
-accepted or tagged. M06 remains closed. Platform coverage is pinned macOS
+Both complete independent milestone reviews passed evidence commit
+`7136ed91be8b95a0c43ba597e97547f9a2bfaf22`. The native/runtime reviewer checked
+4,160 native dependency entries, both actual native libraries/metadata and all
+high-risk Player boundaries. The managed/tooling reviewer additionally checked
+1,896 DLL/PDB receipt entries and all 69 committed evidence blobs. Both verified
+the 76 archive members, 63 copied originals, exact source inventories and
+frozen/live pin separation; neither executed repository code during the passive
+gate. The [review record](M05-review.md) records both PASS verdicts and their
+scope. Only documentation/status and authorized local tags follow this reviewed
+boundary, with a main-agent exact-delta/source/artifact audit.
+
+M06 and M07 remain unaccepted. Platform coverage is pinned macOS
 ARM64 Unity 2022.3.62f2 IL2CPP; receipts are unsigned and locally bound; unsupported
 runtime MVID, resolver-delegate overloads and production-performance claims
 remain outside this evidence boundary.

@@ -1,6 +1,9 @@
 # M05 Type, reflection and cache acceptance contract
 
-Status: declared before implementation. M05 is not accepted.
+Status: PASS. Both complete independent M05 reviews accepted the declared
+boundary at evidence commit `7136ed91be8b95a0c43ba597e97547f9a2bfaf22`.
+The local milestone tag is `assembly-shadow-m05-types`, applied after the
+documentation-only closeout and audited before M06 starts. See [review record](M05-review.md).
 
 ## Entry and ownership boundary
 
