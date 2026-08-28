@@ -83,6 +83,31 @@ not normalized away. This does not change byte-level inventory schemas or the
 unchanged Editor/Python proof of unrelated linked assemblies. Failed enumeration
 validation retains the actual observed names.
 
+## Public image identity and physical metadata
+
+Unity's startup assembly registry uses image-pointer identity. After an active
+replacement, exported image identities therefore remain the originally
+registered baseline images, while metadata operations resolve those identities
+to the committed active image. This is an explicit logical C-API boundary,
+not a change to physical VM ownership or the managed diagnostics schema.
+
+| Exported operation | Committed shadow behavior |
+| --- | --- |
+| `il2cpp_class_get_image`, `il2cpp_assembly_get_image` | Stable startup-registered image identity |
+| `il2cpp_image_get_assembly` | Active logical assembly |
+| `il2cpp_image_get_class_count`, `il2cpp_image_get_class` | Active type table and physical row order, including added types |
+| Name lookup / existing logical image enumeration | Continue resolving active metadata |
+
+`ResolvePublicImageIdentity` uses only the immutable published reverse mapping
+and the exact published image pointer. Null, prepublication, nonshadow, private,
+and same-name unregistered images retain their identities. The mapping remains
+stable after FailedAfterCommit. The existing `ResolveImage` direction stays
+baseline-to-active. Raw VM getters, metadata handles/index APIs, actual
+`klass->image`/`assembly->image` fields and physical diagnostics remain unchanged.
+No class is initialized and no baseline first-use evidence is fabricated by
+this identity query. OFF retains the original exported behavior. A stable
+image alias never exempts actual baseline execution or allocation from guards.
+
 ## Type-resolution diagnostic API
 
 Add `AssemblyShadowRuntime.GetTypeResolutionInfo(Type type, out string json)`

@@ -55,7 +55,7 @@ def execute(args, receipt):
                               ("-I", external / "xxHash")]:
         flags += [switch, str(path(directory, True))]
     production = [runtime / "libil2cpp" / name for name in
-                  ("vm/AssemblyShadow.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/AssemblyShadowTypeResolver.cpp",
+                  ("il2cpp-api.cpp", "vm/AssemblyShadow.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/AssemblyShadowTypeResolver.cpp",
                    "vm/AssemblyShadowDiagnostics.cpp", "vm/Class.cpp", "vm/Image.cpp", "vm/Object.cpp",
                    "vm/Array.cpp", "vm/Runtime.cpp", "vm/Reflection.cpp", "vm/Type.cpp", "vm/Field.cpp",
                    "icalls/mscorlib/System.Reflection/RuntimeAssembly.cpp", "icalls/mscorlib/System/Object.cpp",
@@ -73,19 +73,22 @@ def execute(args, receipt):
                     "vm/Type.cpp", "os/FastReaderReaderWriterLock.cpp", "gc/WriteBarrier.cpp",
                     "metadata/Il2CppTypeHash.cpp", "metadata/Il2CppTypeCompare.cpp")]
     reflection += [native / "hybridclr/AssemblyShadowRuntimeApi.cpp"]
+    image_identity = [demo / "Tools/AssemblyShadow/native-tests/m05_image_identity.cpp",
+                      runtime / "libil2cpp/il2cpp-api.cpp"]
     receipt.update(sourcePins=pins, installedHeaderProvenance={"root": str(installed), "receipt": install,
                    "header": str(header), "fullInstalledRuntimeVerification": False},
                    repositories={"hybridclr": helper.repository_info(native, entries["hybridclr"]["revision"]),
                                  "il2cppPlus": helper.repository_info(runtime, entries["il2cppPlus"]["revision"])},
                    coreBoundary="Actual TypeKey/resolver/guard/transaction diagnostic/TLS code. Controlled physical metadata and upstream generic/array/pointer interner adapters, managed exception adapter, immutable active snapshot. No class initialization, object reinterpretation, Player or full transaction acceptance.",
-                   reflectionBoundary="Actual Reflection.cpp cache/member code included once; actual RuntimeAssembly/System.Object/Type/runtime API adapter linked. Controlled core/GC/object/string and unrelated resource-lock adapters. Not full VM acceptance.")
+                   reflectionBoundary="Actual Reflection.cpp cache/member code included once; actual RuntimeAssembly/System.Object/Type/runtime API adapter linked. Controlled core/GC/object/string and unrelated resource-lock adapters. Not full VM acceptance.",
+                   imageIdentityBoundary="Actual exported C API and published-snapshot image mapping. Controlled physical VM getters and class rows; snapshot fixture, not transaction/Unity registry/Player acceptance.")
     run([compiler, "--version"], demo, receipt, "compiler-version")
     with tempfile.TemporaryDirectory(prefix="assembly-shadow-m05-native-") as temp:
         temporary = Path(temp)
         dependencies = {Path(__file__).resolve(), helper_path.resolve(), pins_path, install_path, header, compiler, baselib}
         for mode in (1, 0):
             mode_flags = [f.replace("HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1", f"HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW={mode}") for f in flags]
-            for source in sorted(set(core + reflection + production)):
+            for source in sorted(set(core + reflection + image_identity + production)):
                 output = run([compiler, *mode_flags, "-M", "-MT", "m05", source], native, receipt, "dependencies")
                 dependencies.update(helper.dependencies(output, native))
         before = {p: helper.sha256(p) for p in sorted(dependencies)}
@@ -139,8 +142,26 @@ def execute(args, receipt):
             match = re.search(r"^m05_reflection_checks=(\d+) feature=(\d) PASS$", output, re.M)
             require(match is not None and int(match[2]) == mode and int(match[1]) >= (31 if mode else 3), "Reflection coverage incomplete")
             reflection_summaries.append({"feature": mode, "checks": int(match[1]), "executableSha256": helper.sha256(executable)})
+        image_identity_summaries = []
+        for mode in (1, 0):
+            mode_flags = [f.replace("HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1", f"HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW={mode}") for f in flags]
+            objects = []
+            for index, source in enumerate(image_identity):
+                obj = temporary / f"image-identity-{mode}-{index}.o"
+                run([compiler, *mode_flags, "-c", source, "-o", obj], native, receipt, "compile-image-identity")
+                objects.append(obj)
+            executable = temporary / f"m05-image-identity-{mode}"
+            run([compiler, "-fsanitize=address", "-Wl,-dead_strip", "-Wl,-undefined,dynamic_lookup",
+                 *objects, baselib, "-o", executable], native, receipt, "link-image-identity")
+            output = run([executable], native, receipt, "tests")
+            match = re.search(r"^m05_image_identity_checks=(\d+) feature=(\d) PASS$", output, re.M)
+            require(match is not None and int(match[2]) == mode and int(match[1]) >= (150 if mode else 30),
+                    "Public image identity coverage incomplete")
+            image_identity_summaries.append({"feature": mode, "checks": int(match[1]),
+                                             "executableSha256": helper.sha256(executable)})
         require(all(helper.sha256(p) == digest for p, digest in before.items()), "Input changed during checks")
         receipt.update(success=True, coreTests=summaries, reflectionTests=reflection_summaries,
+                       imageIdentityTests=image_identity_summaries,
                        syntaxChecks=2 * len(production), inputsUnchanged=True,
                        sourceFileHashes=[{"path": str(p), "sha256": digest} for p, digest in before.items()])
 

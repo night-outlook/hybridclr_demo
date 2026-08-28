@@ -846,6 +846,52 @@ It records no target expressions/data writes, no observation errors and
 unchanged watched inputs. These diagnostics do not accept M05, and v6 remains
 unfrozen until the resource failure is resolved.
 
+## P03 nested-object image-registration diagnosis
+
+A further owned v5 Player (PID 9002) identifies the exact rejection. All 18
+observed `CanTransferTypeAsNestedObject` calls for DemoValue reach Unity's
+assembly-image registry after their Serializable, abstract and interface
+checks pass. The returned active image pointer is `0x11ea689d0`; the same
+logical Contracts assembly is registered at index 83 with original pointer
+`0x10ea18f30`. `MonoManager::GetAssemblyIndexFromImage` compares pointers,
+returns -1, and nested-object admission returns false. The addresses are
+process-local observations, not persistent identities or matching criteria.
+This explains both the missing allocation and why P01, which keeps AOT
+Contracts, passes. The record is
+`_temp/AssemblyShadow/M05V5NestedAdmission-D0i51rDO/serialization-observations.json`,
+SHA-256 `8052ed539d7eed46a873dbf7c3716cef82e3a5fb5a8a8813d3af8e3ce6622340`.
+It retains the full observed registered-image inventory, unchanged watched
+input hashes and zero observation errors. Its failed Player result remains
+unaltered. A preceding debugger launch with a truncated command line never
+reached the case and is not counted as runtime evidence.
+
+The scoped correction introduces stable identity only at the exported C-API
+boundary, using the published active-to-baseline mapping. Assembly and class
+image getters agree; image-to-assembly returns the active assembly, and indexed
+class count/lookup resolve the active image. Raw VM ownership and metadata
+operations stay physical. Private/nonshadow images and feature OFF are
+unchanged. The coherent contract avoids a class-image-only fix that would
+leave contradictory assembly round trips or baseline indexed enumeration.
+
+The focused native regression links the actual C exports and actual snapshot
+mapping, with explicit physical-getter/class-row adapters. Against the old
+export implementation it fails `assembly public image remains registered`;
+against the correction it passes 187 ON checks. It covers prepublication,
+same-name private/alternate images, active added-type rows, public round trips,
+raw getter preservation, no initialization/use-state mutation, and stable
+identity through Committing/Committed/FailedAfterCommit. It does not simulate
+Unity acceptance. The full native suite passed with 34 ON/OFF production syntax
+checks, eight 62-check ASan core cases, reflection 31/3 checks, and public-image
+identity 187/32 checks. All 162 commands exited zero and all 1,113 watched
+inputs were unchanged. Receipt:
+`_temp/AssemblyShadow/M05PublicImageRegression-acU8nVjR/full-native.json`,
+SHA-256 `f853ed52602ecb8f43982f925af2f488e13294e28c8c97c93159cfcb55b57365`.
+It binds the exact corrected source hashes before their native commit
+`50194392f08815354b6f230f6d0ddd3ec5f9b0f3`; its recorded old HEAD/pins are not
+misrepresented as containing that correction. The raw physical-getter adapters
+and uninitialized snapshot fixture remain explicit limitations. Fresh pinned
+Player confirmation is required before the milestone can be accepted.
+
 ## Preserved resource boundary
 
 The frozen M01 manifest remains SHA-256
