@@ -32,9 +32,9 @@ ASCII path-name handling. The author ran 71 focused checks and a pinned
 netstandard compiler-profile loader proof; the reviewer inspected that evidence
 without rerunning the file-writing harness.
 
-The integrated Unity Editor suite passed 532/532 tests with zero failures or
-skips, including 39 M04-named cases. Raw XML and the fresh Editor log are in
-`_temp/AssemblyShadow/EditorTests-e1ad91c6364447baa21a040f911c6b59`.
+The integrated Unity Editor suite passed 533/533 tests with zero failures or
+skips, including 40 M04-named cases. Raw XML and the fresh Editor log are in
+`_temp/AssemblyShadow/EditorTests-5d34445f94154db0a882dc53daa0b707`.
 The main agent also ran all 152 Python tests successfully (27.405 seconds).
 The separate managed/tooling source-readiness reviewer inspected the probes,
 build/replay/schema helpers, shared M03 extractions, policy and Python evidence
@@ -42,6 +42,14 @@ contracts, independently checked the Editor XML and literal-load policy groups,
 and found no actionable issue. This PASS is bounded source readiness only;
 actual ON/OFF Player identity, enumeration, regression and benchmark evidence
 remains required before M04 acceptance or M05 entry.
+
+The first fresh compiler preflight rejected a duplicate Bootstrap-to-ordinary
+runtime dependency before any Player build. Runtime dependencies are unique
+consumer/provider graph edges; exact Bootstrap call-site approvals are a
+separate table. The redundant M04 edge was removed while retaining the existing
+M02 edge and all exact M02/M04 entrypoint approvals. A new Editor test validates
+the actual project precompile policy and those approvals; the 533-test rerun
+above includes it. The failing log is `_temp/UnityExec_20260827_203301.log`.
 
 ## Explicit evidence boundaries
 

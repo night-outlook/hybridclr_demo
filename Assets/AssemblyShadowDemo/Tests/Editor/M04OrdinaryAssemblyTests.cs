@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using AssemblyShadowDemo.Editor;
 using dnlib.DotNet;
+using HybridCLR.Editor.AssemblyShadow;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -16,6 +18,32 @@ namespace AssemblyShadowDemo.EditorTests
         private const string ConfigurationHash = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
         private const string Denial = "AssemblyShadow reflection denied; configuration=" + ConfigurationHash +
             "; site=m00-normal-hot-update-image";
+
+        [Test]
+        public void CurrentProjectPolicyKeepsOneEdgeAndExactOrdinaryEntrypoints()
+        {
+            var target = EditorUserBuildSettings.activeBuildTarget;
+            var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
+            ShadowAssemblyPolicyValidator.ValidateBeforeCompile(policy, target).ThrowIfInvalid();
+
+            // Runtime dependencies are graph edges, not per-call-site approvals.
+            // Both milestones share one edge; Bootstrap approvals remain exact.
+            const string consumer = "AssemblyShadowDemo.Bootstrap";
+            const string provider = "AssemblyShadowBaseline.HotUpdate";
+            Assert.AreEqual(1, policy.dependencies.runtimeDependencies.Count(edge =>
+                edge.consumer == consumer && edge.provider == provider));
+            foreach (string method in new[] {
+                "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",
+                ProbeName + "::Run",
+                ProbeName + "::ProbeKnownNameCallback",
+            })
+            {
+                var approval = policy.dependencies.bootstrapEntrypoints.Single(entry =>
+                    entry.consumer == consumer && entry.provider == provider && entry.method == method);
+                Assert.AreEqual(provider + ".Entry", approval.typeName);
+                Assert.IsNotEmpty(approval.reason);
+            }
+        }
 
         [Test]
         public void OrdinaryResultPreservesExplicitFalseAndZeroJsonMembers()

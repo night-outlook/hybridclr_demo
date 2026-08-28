@@ -20,13 +20,6 @@
       "kind": "ReflectionString",
       "callSite": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",
       "evidence": "The M02 guard probe resolves the literal ordinary-hot-update entry only after the verified fixed-image guard loads the declared image, and checks physical assembly identity before invoking Run."
-    },
-    {
-      "consumer": "AssemblyShadowDemo.Bootstrap",
-      "provider": "AssemblyShadowBaseline.HotUpdate",
-      "kind": "ReflectionString",
-      "callSite": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::Run",
-      "evidence": "The M04 ordinary regression invokes the literal M00 Entry only after the existing fixed-image guard verifies the configured SHA-256 and loads those exact bytes. Name lookup before loading observes only the generated token-zero placeholder; this dependency does not authorize raw-byte or file acquisition."
     }
   ],
   "resourceDependencies": [],
