@@ -102,6 +102,12 @@ of Bee. Existing DLL-only policy must reject callback state requiring review;
 the runtime must independently reject the changed native layout. Production
 compiler/policy code and normal fixture admission remain unchanged.
 
+The runtime probe's private baseline reader distinguishes tagged resource
+semantic hashes (`sha256:<64 lowercase hex>`) from bare byte/Bootstrap/runtime
+ABI hashes. Editor regressions serialize the production manifest DTOs and
+resource hasher into that reader, including malformed format, hash-domain,
+identity and candidate-order negatives. No public API or evidence schema changes.
+
 ## Build and runtime entrypoints
 
 Within `AssemblyShadowDemo.Editor`:

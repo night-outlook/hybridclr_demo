@@ -1,13 +1,13 @@
 # M05 active types, reflection and cache evidence
 
-Status: M05 is not accepted. The v3 native-ON Player/baseline, independent
-linked-output replay and normal P01/P03 builds passed. Unity rejected the
-original negative fixture's serialized schema before producing a usable
-compiler snapshot. The corrected callback-state fixture passes the real Player
-compiler regression and all 662 Unity / 249 Python tests. Independent corrective
-source review passed; the reviewed v4 pairing is pinned for fresh builds.
-No complete fixture replay, runtime matrix or final milestone gate is claimed.
-M06 remains closed.
+Status: M05 is not accepted. Both v4 Players, the frozen baseline, complete
+normal/negative fixtures and independent Editor/Python input replay passed.
+The first actual Player stopped before Shadow APIs because its probe confused
+the tagged resource semantic hash with a bare byte hash. The bounded correction
+passes the new writer-to-runtime regression and all 664 Unity / 249 Python
+tests; a reviewed fresh v5 source pairing/build is next. The remaining 18
+Player cases were not launched.
+No runtime matrix or final milestone gate is claimed. M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
 [raw-query contract](M05-raw-type-admission.md) govern implementation and the
@@ -555,6 +555,90 @@ reviewer. This permits the pinned v4 pairing to be installed and built; actual
 resource-policy and native bad-byte rejection remain pending. This metadata-only
 follow-up pins that reviewed source and updates its complete file inventory.
 Fresh v4 ON/OFF/fixture/runtime evidence remains necessary; v3 stays immutable.
+
+## V4 complete builds, fixtures and first actual Player failure
+
+The reviewed v4 pairing generated the same 25 raw-query declarations, passed
+the 249-test Python suite with zero skips, and installed repeatably. Full
+installed verification covered 940 source files and 942 installed files,
+including demo source verification and native ON.
+
+The ON build passed in `_temp/UnityExec_20260828_034315.log` and the OFF build
+passed in `_temp/UnityExec_20260828_040552.log`. Their input roots are
+`_temp/AssemblyShadow/M05PlayerInputs-63a72f74e8684f11a958559dde564c7d` and
+`_temp/AssemblyShadow/M05PlayerInputs-70bba662329f47d588fa0165d432214d`.
+The ON/OFF receipt hashes are respectively
+`ad56d89673aa894e14fe1eca05bd6af964dd0fff62e1d03206e228ce6b8efb79` and
+`444ca4e0241671564965920a61b6883bbc4a920d00f07d6db57191d1ecd77865`.
+They bind distinct actual build GUIDs and native library hashes. Both linked
+proofs independently replayed 60 assemblies, 5,865 TypeDefs, six module-method
+witnesses and native metadata 31. The frozen baseline manifest hash is
+`8e2edef6424bf55585f3adf9e7223de833f397f89271db976a9cd9ef434f21f6`.
+Native ON restoration after the OFF build was verified against installed bytes.
+
+The full fixture run and Editor rebuild replay passed in
+`_temp/UnityExec_20260828_034948.log`, rooted at
+`_temp/AssemblyShadow/M05Fixtures-97d0f4eb505b40259dc63fc3ffb8ba7b`.
+The fixture manifest hash is
+`624c2a18b00a9d0660249fd9036100baaf7ca28bed67b2a41cc697c3dcde42f6`;
+the Editor replay receipt hash is
+`04b4aedff329acbb2594acf1e02e0e451fd3d67bf5fb0c41df60e28a43e7d4a2`.
+All 11 P01 and 19 P03 artifact files matched fresh rebuilds byte-for-byte.
+The actual rejected layout DLL hash is
+`59695b028bdfdd24e5dcef4a5bd95b039eced3d37bc16a162a20a5fe71839c3b`.
+The unchanged builder rejected its callback-state uncertainty with external
+`ResourceRebuildRequired`, repeated the same error/message on replay, and
+produced no admitted or `.building-*` patch output. This establishes tooling
+rejection of real compiler bytes, not the required native allocation failure.
+
+Independent Python checks passed both complete Player receipts, frozen
+resources, normal/negative compiler snapshots and the Editor replay. The
+combined record is
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/v4-on-off-pre-runtime-replay.json`.
+Historical preservation matched 13 immutable file hashes; three separate
+current-repository cleanliness checks also passed. Those are not claims that
+current M05 source revisions equal the accepted M04 revisions.
+
+The serial fresh-process runtime driver then stopped at `T05-01-P01`, PID
+93655, exit 1, after 4.311 seconds. Its directory is
+`_temp/AssemblyShadow/M05V4Execution-Nt2DM1Q7/Players`. Result hash:
+`4837fed3376c49241da06f6d20d3fef7dc2797aa53847d17693524f86e454ef3`;
+Unity log hash:
+`38aa321a8ceb6d006c31deebd2dec5bc47cab5273272a86606f29afc51fd0b99`.
+The failed result contains no stage, check, state or native-diagnostic evidence.
+Every bound driver input hash remained unchanged; the other 18 cases were not
+launched. The archive record is
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/v4-first-runtime-failure.json`.
+
+The direct cause is `IsHash(baseline.resourceAbiHash)`: `IsHash` accepts exactly
+64 lowercase hex characters, while the unchanged production
+`ResourceAbiHasher.Compute` emits `sha256:<64 lowercase hex>`. The baseline,
+scene, fixture and receipt identities match. An independent passive audit found
+no further concrete mismatch in the remaining v4 pre-Shadow input checks.
+
+The correction isolates the baseline reader, validates only resource hashes
+with their exact tagged format, preserves raw byte/Bootstrap/runtime ABI hash
+rules, and separates identity/hash/candidate diagnostics. Its test serializes
+the production baseline/fixture DTOs and invokes the actual runtime reader.
+Against the old predicate, 10/12 tests passed and two failed: the valid tagged
+hash was rejected and an invalid untagged hash was accepted. Red XML hash:
+`dd535682fb90fbc4472b87069f0666ae22446d21d07f333d0c8311a8d63692f3`.
+The corrected focused run passed 12/12 with zero skips, XML hash
+`f3970cae6abb9caa6613ed722962219407a17c0562bf989a80bb1b817ae12e52`.
+It also rejects malformed/case-changed/tag-swapped hashes and mutated identity
+or candidate-order fields. No frozen artifact, hash domain, native code or
+package policy is changed. Fresh paired v5 evidence is still required.
+
+The full guarded Unity run passed 664/664, zero failures/skips/inconclusive,
+in 90.468 seconds at
+`_temp/AssemblyShadow/EditorTests-c0e5d1b570c44f099627d2ae7a125867/results.xml`.
+Its XML hash is
+`479cca8f0dfc2e689e7dab254f16a44cb05ef2fda5b9c57e3f7a8d13982e0f46`.
+The full Python suite passed 249/249 in 34.050 seconds, zero skips, using the
+preserved v4 direct-compiler inventory. Configure passed in
+`_temp/UnityExec_20260828_042334.log`, selecting `M05-Baseline-v5` with the
+unchanged runtime ABI hash. This is corrective source validation, not runtime
+acceptance or permission to begin M06.
 
 ## Preserved resource boundary
 

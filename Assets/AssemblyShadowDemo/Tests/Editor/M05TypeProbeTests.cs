@@ -2,7 +2,10 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using AssemblyShadowDemo.Editor;
+using HybridCLR.Editor.AssemblyShadow;
 using NUnit.Framework;
+using UnityEngine;
 using UnityEngine.Scripting;
 
 namespace AssemblyShadowDemo.EditorTests
@@ -66,6 +69,49 @@ namespace AssemblyShadowDemo.EditorTests
             Type fixture = probe.GetNestedType("Fixture", BindingFlags.Public);
             Assert.IsNotNull(fixture.GetField("patch", BindingFlags.NonPublic | BindingFlags.Instance));
             StringAssert.Contains("FromJson<PatchManifest>", File.ReadAllText(ProbeSource));
+        }
+
+        [Test]
+        public void BaselineWriterResourceHashRoundTripsThroughRuntimeGuard()
+        {
+            // Use the production writer DTO and hasher: file hashes and resource
+            // semantic hashes deliberately have different transport formats.
+            ShadowBaselineManifest baseline = BaselineForRuntimeGuard();
+            object actual = ReadRuntimeBaseline(baseline, RuntimeFixture(baseline));
+            Assert.AreEqual(baseline.resourceAbiHash, actual.GetType().GetField("resourceAbiHash").GetValue(actual));
+            Assert.IsTrue((bool)InvokePrivate("IsHash", baseline.bootstrapAbiHash));
+            Assert.IsFalse((bool)InvokePrivate("IsHash", baseline.resourceAbiHash), "Raw byte hashes must not start accepting tagged semantic hashes.");
+        }
+
+        [Test]
+        public void BaselineRuntimeGuardRejectsHashDomainAndIdentityMutations()
+        {
+            ShadowBaselineManifest good = BaselineForRuntimeGuard();
+            object fixture = RuntimeFixture(good);
+            string digest = good.resourceAbiHash.Substring("sha256:".Length);
+            foreach (string invalid in new[] { null, "", digest, "SHA256:" + digest, "sha256:" + digest.ToUpperInvariant(),
+                "sha512:" + digest, "sha256:" + digest.Substring(1), "sha256:" + digest + "0", "sha256:" + new string('g', 64), " sha256:" + digest })
+            {
+                ShadowBaselineManifest changed = BaselineForRuntimeGuard();
+                changed.resourceAbiHash = invalid;
+                AssertRuntimeBaselineRejected(changed, fixture);
+            }
+            foreach (string fieldName in new[] { "schemaVersion", "semanticHashSchema", "baselineBuildId", "runtimeAbiHash", "unityVersion", "target", "architecture", "playerInputSnapshotHash", "bootstrapAbiHash" })
+            {
+                ShadowBaselineManifest changed = BaselineForRuntimeGuard();
+                FieldInfo field = typeof(ShadowBaselineManifest).GetField(fieldName);
+                field.SetValue(changed, field.FieldType == typeof(int) ? (object)99 : "tampered");
+                AssertRuntimeBaselineRejected(changed, fixture);
+            }
+            ShadowBaselineManifest taggedBootstrap = BaselineForRuntimeGuard();
+            taggedBootstrap.bootstrapAbiHash = taggedBootstrap.resourceAbiHash;
+            AssertRuntimeBaselineRejected(taggedBootstrap, fixture);
+            foreach (string[] candidates in new[] { null, good.shadowCandidates.Reverse().ToArray(), good.shadowCandidates.Skip(1).ToArray(), good.shadowCandidates.Concat(new[] { good.shadowCandidates[0] }).ToArray() })
+            {
+                ShadowBaselineManifest changed = BaselineForRuntimeGuard();
+                changed.shadowCandidates = candidates;
+                AssertRuntimeBaselineRejected(changed, fixture);
+            }
         }
 
         [Test]
@@ -184,6 +230,39 @@ namespace AssemblyShadowDemo.EditorTests
                 StringAssert.Contains(token, source);
             foreach (string method in new[] { "GetTypes", "GetDefinedTypes", "GetExportedTypes", "GetModuleTypes", "GetModuleType" })
                 StringAssert.Contains("M05BoundTypeQueries." + method + "(name)", source);
+        }
+
+        private static ShadowBaselineManifest BaselineForRuntimeGuard()
+        {
+            return new ShadowBaselineManifest {
+                baselineBuildId = "M05-Baseline-GuardRegression", runtimeAbiHash = new string('a', 64),
+                unityVersion = "2022.3.62f2", target = "StandaloneOSX", architecture = "arm64",
+                playerInputSnapshotHash = new string('b', 64), bootstrapAbiHash = new string('c', 64),
+                resourceAbiHash = ResourceAbiHasher.Compute(new ResourceAbiDescriptor()),
+                shadowCandidates = M05Build.ProviderFirstOrder.OrderBy(name => name, StringComparer.Ordinal).ToArray(),
+            };
+        }
+
+        private static object RuntimeFixture(ShadowBaselineManifest baseline)
+        {
+            var fixture = new M05Build.M05FixtureManifest {
+                baselineBuildId = baseline.baselineBuildId, runtimeAbiHash = baseline.runtimeAbiHash,
+                unityVersion = baseline.unityVersion, target = baseline.target, architecture = baseline.architecture,
+                baselineInputSnapshotHash = baseline.playerInputSnapshotHash,
+            };
+            Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M05TypeProbe", true);
+            return JsonUtility.FromJson(JsonUtility.ToJson(fixture), probe.GetNestedType("FixtureManifest", BindingFlags.Public));
+        }
+
+        private static object ReadRuntimeBaseline(ShadowBaselineManifest baseline, object fixture)
+        {
+            return InvokePrivate("ReadBaselineManifest", JsonUtility.ToJson(baseline), fixture, "M05-Baseline-GuardRegression", new string('a', 64));
+        }
+
+        private static void AssertRuntimeBaselineRejected(ShadowBaselineManifest baseline, object fixture)
+        {
+            TargetInvocationException error = Assert.Throws<TargetInvocationException>(() => ReadRuntimeBaseline(baseline, fixture));
+            Assert.IsInstanceOf<InvalidOperationException>(error.InnerException);
         }
 
         private static object InvokePrivate(string name, params object[] arguments)

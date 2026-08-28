@@ -171,10 +171,7 @@ namespace AssemblyShadowDemo
             Require(!string.IsNullOrEmpty(manifest.stableAotProvenance) && manifest.stableAotProvenanceHash == Hash(Encoding.UTF8.GetBytes("m05-stable-aot:1\n" + manifest.stableAotProvenance)) &&
                 manifest.stableAotProvenance.EndsWith("\nphysical=" + string.Join(",", manifest.stableAotNames), StringComparison.Ordinal), "M05 stable AOT provenance mismatch.");
             ValidateByteFile(manifest.baselineManifestPath, manifest.baselineManifestSha256);
-            BaselineManifest baseline = JsonUtility.FromJson<BaselineManifest>(File.ReadAllText(manifest.baselineManifestPath));
-            Require(baseline != null && baseline.schemaVersion == 1 && baseline.semanticHashSchema == 1 && baseline.baselineBuildId == expectedBaseline && baseline.runtimeAbiHash == expectedAbi &&
-                baseline.playerInputSnapshotHash == manifest.baselineInputSnapshotHash && baseline.unityVersion == manifest.unityVersion && baseline.target == manifest.target && baseline.architecture == manifest.architecture &&
-                IsHash(baseline.bootstrapAbiHash) && IsHash(baseline.resourceAbiHash) && baseline.shadowCandidates != null && baseline.shadowCandidates.SequenceEqual(Candidates.OrderBy(name => name, StringComparer.Ordinal)), "M05 frozen baseline identity/ABI mismatch.");
+            BaselineManifest baseline = ReadBaselineManifest(File.ReadAllText(manifest.baselineManifestPath), manifest, expectedBaseline, expectedAbi);
             SnapshotReceipt baselineInputs = ValidateSnapshot(manifest.baselineInputSnapshot, manifest.baselineInputSnapshotHash, manifest, true);
             SnapshotReceipt playerInputs = ValidateSnapshot(player.inputSnapshot, player.inputSnapshotHash, manifest, true);
             Require(playerInputs.rawAdmissionHash == baselineInputs.rawAdmissionHash, "M05 Player raw-type admission configuration differs from the frozen baseline.");
@@ -224,6 +221,18 @@ namespace AssemblyShadowDemo
                     "M05 rejected fixture bytes/identity/inventory differ.");
             }
             return new Input { manifestPath = manifestPath, playerReceiptPath = receiptPath, manifest = manifest, player = player, typeProof = proof, mscorlib = mscorlib };
+        }
+
+        private static BaselineManifest ReadBaselineManifest(string json, FixtureManifest manifest, string expectedBaseline, string expectedAbi)
+        {
+            BaselineManifest baseline = JsonUtility.FromJson<BaselineManifest>(json);
+            Require(baseline != null && baseline.schemaVersion == 1 && baseline.semanticHashSchema == 1 && baseline.baselineBuildId == expectedBaseline && baseline.runtimeAbiHash == expectedAbi &&
+                baseline.playerInputSnapshotHash == manifest.baselineInputSnapshotHash && baseline.unityVersion == manifest.unityVersion && baseline.target == manifest.target && baseline.architecture == manifest.architecture,
+                "M05 frozen baseline identity mismatch.");
+            Require(IsHash(baseline.bootstrapAbiHash), "M05 frozen Bootstrap ABI hash format mismatch.");
+            Require(IsResourceAbiHash(baseline.resourceAbiHash), "M05 frozen resource ABI hash must use sha256:<64 lowercase hex>.");
+            Require(baseline.shadowCandidates != null && baseline.shadowCandidates.SequenceEqual(Candidates.OrderBy(name => name, StringComparer.Ordinal)), "M05 frozen baseline candidate order mismatch.");
+            return baseline;
         }
 
         private static void ValidateMetadata(PlayerBuildReceipt player)
@@ -886,6 +895,13 @@ namespace AssemblyShadowDemo
 #endif
         }
         private static bool IsHash(string value) { return value != null && value.Length == 64 && value.All(c => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')); }
+        private static bool IsResourceAbiHash(string value)
+        {
+            // ResourceAbiHasher emits a tagged semantic hash. Byte, Bootstrap
+            // and runtime ABI hashes retain their separate bare-hex contract.
+            const string prefix = "sha256:";
+            return value != null && value.StartsWith(prefix, StringComparison.Ordinal) && IsHash(value.Substring(prefix.Length));
+        }
         private static string HashFile(string path)
         {
             using (var sha = SHA256.Create())
