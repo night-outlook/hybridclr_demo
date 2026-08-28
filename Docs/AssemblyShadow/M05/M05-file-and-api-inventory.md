@@ -16,6 +16,30 @@ commits are deliberately outside these counts. All repositories use
 There are no deleted source paths in these ranges. Added Unity source/scene
 assets have paired meta files. No historical M00-M04 evidence is rewritten.
 
+## Separate offline verifier revision
+
+The v6 executable pairing above remains frozen. A later offline-only correction
+is recorded separately at demo `6f0123839ba1fe01e18c29858b15fefc1cc7b12c`, based
+on metadata commit `fab982fea73dabc5cc54cfd573e38accc064f542`. Its six-path
+delta is 549 added / 20 removed lines: four Python verifier/test files
+(one added, three modified), plus additions to this milestone's contract/report.
+The supplemental per-file delta is `offlineVerifier` in the JSON inventory.
+
+`m05_results.py` separates actual first-use classification from typed proof and
+binds resource field annotations to active DLL metadata and exact operations.
+`m05_types.py` parses explicit zero array bounds and root-only, byte-authorized
+field annotations; `MethodProof.reflection_fields` preserves declaration order,
+flags and full signature assembly identity. `test_m05_type_keys.py` is new;
+`test_m05_results.py` adds the independent phase/resource adversarial gates.
+No public managed/native API or result schema changed.
+
+The live source pin/installation receipt advances to the verifier revision so
+the normal strict current-tree check remains meaningful. This does not alter
+the v6 Player, baseline, fixture or snapshot pins: those retain demo `09a15e...`.
+Runtime/native/package commits and runtime ABI are unchanged. An explicit
+tooling-only Git/source-equivalence audit binds the two identities; evidence
+and closeout metadata commits remain outside both implementation counts.
+
 ## Managed and native API boundary
 
 The package adds exactly one public operation in
