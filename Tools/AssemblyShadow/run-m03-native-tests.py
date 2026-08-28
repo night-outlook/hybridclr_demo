@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build/run the real M03 parser under ASan without modifying installed trees."""
+"""Run M03 parser/facade and disabled-API ASan tests without modifying installed trees."""
 from __future__ import annotations
 
 import argparse
@@ -133,6 +133,10 @@ def execute(args, receipt):
                            "Image.cpp", "AssemblyShadowBridge.cpp")]
     sources += [required_path(runtime / "libil2cpp" / name) for name in
                 ("vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "vm/Image.cpp")]
+    runtime_adapter = required_path(native / "hybridclr/AssemblyShadowRuntimeApi.cpp")
+    disabled_sources = [required_path(demo / "Tools/AssemblyShadow/native-tests/m03_disabled_api.cpp"),
+                        runtime_adapter, required_path(runtime / "libil2cpp/vm/AssemblyShadow.cpp"),
+                        required_path(runtime / "libil2cpp/vm/AssemblyShadowDiagnostics.cpp")]
     fixtures = [required_path(value) for value in args.dll] if args.dll else [
         required_path(demo / "HybridCLRData/HotUpdateDlls/StandaloneOSX" / (name + ".dll"))
         for name in ("AssemblyA.Contracts", "AssemblyA.Implementation.Internal", "AssemblyA.Implementation.Extensibility")]
@@ -147,12 +151,18 @@ def execute(args, receipt):
     flags += [f"-D{name}={value}" for name, value in sorted(defines.items())]
     for switch, directory in zip(("-I", "-I", "-isystem", "-isystem", "-iquote", "-I"), include_directories):
         flags += [switch, str(directory)]
+    disabled_flags = [flag.replace("-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1",
+                                   "-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0") for flag in flags]
     receipt["linkBoundary"] = "Real parser/VM folding/facade policy/TLS and VM image lookup; raw-metadata and diagnostic-counter fixture adapters plus Memory::Free; real baselib; unused VM paths dead-stripped with dynamic_lookup; no transaction/state emulation"
+    receipt["disabledApiBoundary"] = "Separate macro-OFF executable links actual runtime adapter, native core and serializer; only String::New is substituted for allocation/output/exception checks; no JSON or native API stubs; ON adapter syntax also checked"
     with tempfile.TemporaryDirectory(prefix="assembly-shadow-m03-native-") as temp:
         temporary = Path(temp)
         all_dependencies = {pins_path, install_receipt_path, version_header, compiler, baselib, Path(__file__).resolve(), *fixtures}
         for source in sources:
             output = run_command([compiler, *flags, "-M", "-MT", "m03", source], native, receipt, "dependencies")
+            all_dependencies.update(dependencies(output, native))
+        for source, source_flags in [(source, disabled_flags) for source in disabled_sources] + [(runtime_adapter, flags)]:
+            output = run_command([compiler, *source_flags, "-M", "-MT", "m03-disabled", source], native, receipt, "dependencies")
             all_dependencies.update(dependencies(output, native))
         # Hash the actual transitive dependency set, including SDK/system
         # headers. This covers installed external headers even with -isystem.
@@ -173,11 +183,36 @@ def execute(args, receipt):
         require(facade_summary is not None and int(facade_summary[1]) >= 25, "Native facade policy coverage is missing")
         require(lookup_summary is not None and int(lookup_summary[1]) >= 13, "Native facade lookup coverage is missing")
         require(int(summary[1]) > 6000 and int(summary[2]) >= 30, "Native test coverage is incomplete")
+        disabled_objects = []
+        for index, source in enumerate(disabled_sources):
+            obj = temporary / f"disabled-{index}.o"
+            run_command([compiler, *disabled_flags, "-c", source, "-o", obj], native, receipt, "compile-disabled")
+            disabled_objects.append(obj)
+        run_command([compiler, *flags, "-fsyntax-only", runtime_adapter], native, receipt, "syntax-adapter-on")
+        disabled_executable = temporary / "m03-disabled-api-tests"
+        run_command([compiler, "-fsanitize=address", "-Wl,-dead_strip", "-Wl,-undefined,dynamic_lookup",
+                     *disabled_objects, "-o", disabled_executable], native, receipt, "link-disabled")
+        disabled_output = run_command([disabled_executable], native, receipt, "tests")
+        disabled_summary = re.search(r"^native_disabled_api_checks=(\d+) PASS$", disabled_output, re.M)
+        disabled_json = re.search(r"^native_disabled_api_json=(.+)$", disabled_output, re.M)
+        require(disabled_summary is not None and int(disabled_summary[1]) >= 27, "Disabled API coverage is missing")
+        require(disabled_json is not None, "Disabled native JSON was not returned")
+        disabled_snapshot = json.loads(disabled_json[1])
+        require(disabled_snapshot.get("schemaVersion") == 1 and disabled_snapshot.get("enabled") is False and
+                disabled_snapshot.get("state") == "Disabled" and disabled_snapshot.get("stateCode") == 0 and
+                disabled_snapshot.get("lastError") == 1, "Disabled native snapshot identity is invalid")
+        require(all(key in disabled_snapshot for key in
+                    ("runtimeAbiVersion", "detail", "baselineBuildId", "patchId", "generation", "expected", "staged",
+                     "retainedBytes", "closureLoadOrder", "stableAotNames", "commitOrder", "assemblies", "events",
+                     "baselineUses", "enumerationGeneration", "ordinaryAssemblies", "classEnumerationGeneration",
+                     "ordinaryClasses")), "Disabled native snapshot is incomplete")
         after = {path: sha256(path) for path in before}
         changed = [str(path) for path in before if before[path] != after[path]]
         require(not changed, "Inputs changed during validation: " + ", ".join(changed))
         receipt.update(identityChecks=int(summary[1]), nameChecks=int(summary[2]), facadeChecks=int(facade_summary[1]),
                        facadeLookupChecks=int(lookup_summary[1]),
+                       disabledApiChecks=int(disabled_summary[1]), disabledApiDiagnostics=disabled_snapshot,
+                       disabledApiExecutableSha256=sha256(disabled_executable),
                        executableSha256=sha256(executable), dependencyCount=len(before),
                        sourceFileHashes=[{"path": str(path), "sha256": digest} for path, digest in before.items()],
                        fixtureFiles=[{"path": str(path), "sha256": before[path]} for path in fixtures],
@@ -212,7 +247,7 @@ def main():
         try:
             with args.output.open("x", encoding="utf-8") as stream:
                 stream.write(encoded)
-            print(json.dumps({key: receipt.get(key) for key in ("success", "identityChecks", "nameChecks", "facadeChecks", "facadeLookupChecks", "dependencyCount", "error")}
+            print(json.dumps({key: receipt.get(key) for key in ("success", "identityChecks", "nameChecks", "facadeChecks", "facadeLookupChecks", "disabledApiChecks", "dependencyCount", "error")}
                              | {"receipt": str(args.output.resolve())}))
         except OSError as error:
             print(encoded, end="")

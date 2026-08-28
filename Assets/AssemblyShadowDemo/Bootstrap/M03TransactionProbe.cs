@@ -100,6 +100,7 @@ namespace AssemblyShadowDemo
             result.executionMode = mode.ToString();
             result.diagnosticsCode = Expect(result, "diagnostics", AssemblyShadowRuntime.GetDiagnosticsJson(out json), AssemblyShadowErrorCode.FeatureDisabled);
             result.nativeDiagnosticsJson = json;
+            result.snapshots.Add(new Snapshot { point = "disabled", diagnostics = RequireDisabledDiagnostics(json) });
             Expect(result, "configure-valid-off", AssemblyShadowRuntime.ConfigureCandidates(result.baselineBuildId, Candidates, new string[0]), AssemblyShadowErrorCode.FeatureDisabled);
             Expect(result, "stage-empty-off", AssemblyShadowRuntime.StageAssembly(new byte[0], new byte[] { 1 }), AssemblyShadowErrorCode.FeatureDisabled);
             Require(state == AssemblyShadowState.Disabled && mode == AssemblyExecutionMode.AotBaseline, "OFF out values changed.");
@@ -219,7 +220,7 @@ namespace AssemblyShadowDemo
                 RequireState(result, "validated", AssemblyShadowState.Validated);
                 result.stateAtValidate = "Validated";
                 Require(validated.assemblies.Length == closure.Length && validated.assemblies.All(a => a.skeletonBuilt && a.runtimeMetadataInitialized), "Validation did not initialize the full closure.");
-                Require(validated.events.Where(e => e.kind == "metadata-begin").All(e => e.stagedCount == closure.Length), "Metadata began before all skeletons existed.");
+                Require(validated.events.Where(e => e.kind == "metadata-begin").All(e => e.stagedCount == (ulong)closure.Length), "Metadata began before all skeletons existed.");
                 if (mode == "T03-15")
                 {
                     // Validate creates real generic/array metadata; Abort must keep it private too.
@@ -381,11 +382,42 @@ namespace AssemblyShadowDemo
             return diagnostics;
         }
 
-        private static AssemblyShadowDiagnostics ParseDiagnostics(string json)
+        private static AssemblyShadowDiagnostics ParseDiagnostics(string json, bool expectedEnabled = true)
         {
             AssemblyShadowDiagnostics result = AssemblyShadowDiagnostics.Parse(json);
-            Require(result.schemaVersion == 1 && result.enabled && result.runtimeAbiVersion == 1 && result.assemblies != null && result.events != null && result.ordinaryAssemblies != null && result.ordinaryClasses != null && result.baselineUses != null, "Incomplete native diagnostic schema.");
+            RequireDiagnosticSchema(result, expectedEnabled);
+            return result;
+        }
+
+        private static void RequireDiagnosticSchema(AssemblyShadowDiagnostics result, bool expectedEnabled)
+        {
+            Require(result.schemaVersion == 1 && result.enabled == expectedEnabled && result.runtimeAbiVersion == 1 && result.assemblies != null && result.events != null && result.ordinaryAssemblies != null && result.ordinaryClasses != null && result.baselineUses != null, "Incomplete native diagnostic schema.");
             Require(Enum.IsDefined(typeof(AssemblyShadowState), result.stateCode) && ((AssemblyShadowState)result.stateCode).ToString() == result.state, "State enum/string ABI mismatch.");
+        }
+
+        private static AssemblyShadowDiagnostics RequireDisabledDiagnostics(string json)
+        {
+            // Overwrite deliberately invalid sentinels. FromJson's zero/false
+            // defaults would otherwise invent valid OFF values for absent keys.
+            // Missing strings/arrays remain null and are also rejected below.
+            var result = new AssemblyShadowDiagnostics {
+                schemaVersion = -1, enabled = true, runtimeAbiVersion = -1, stateCode = -1, lastError = -1,
+                generation = ulong.MaxValue, expected = ulong.MaxValue, staged = ulong.MaxValue,
+                retainedBytes = ulong.MaxValue, enumerationGeneration = ulong.MaxValue, classEnumerationGeneration = ulong.MaxValue
+            };
+            JsonUtility.FromJsonOverwrite(json, result);
+            RequireDiagnosticSchema(result, false);
+            Require(result.stateCode == (int)AssemblyShadowState.Disabled && result.lastError == (int)AssemblyShadowErrorCode.FeatureDisabled,
+                "OFF diagnostics changed the state/error contract.");
+            Require(result.generation == 0 && result.enumerationGeneration == 0 && result.classEnumerationGeneration == 0 &&
+                result.expected == 0 && result.staged == 0 && result.retainedBytes == 0, "OFF diagnostics contain transaction counters.");
+            Require(result.assemblies.Length == 0 && result.events.Length == 0 && result.baselineUses.Length == 0 &&
+                result.ordinaryAssemblies.Length == 0 && result.ordinaryClasses.Length == 0 &&
+                result.closureLoadOrder != null && result.closureLoadOrder.Length == 0 &&
+                result.stableAotNames != null && result.stableAotNames.Length == 0 &&
+                result.commitOrder != null && result.commitOrder.Length == 0, "OFF diagnostics contain transaction residue or missing arrays.");
+            Require(result.detail == string.Empty && result.baselineBuildId == string.Empty && result.patchId == string.Empty,
+                "OFF diagnostics contain transaction identity or missing strings.");
             return result;
         }
 
@@ -665,7 +697,7 @@ namespace AssemblyShadowDemo
             }
             private void Run()
             {
-                long lastGeneration = 0, lastEnumeration = 0;
+                ulong lastGeneration = 0, lastEnumeration = 0;
                 while (!stop)
                 {
                     try
@@ -701,13 +733,13 @@ namespace AssemblyShadowDemo
         [Serializable] private sealed class PatchAssembly { public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; }
         [Serializable] private sealed class FixtureManifest { public int schemaVersion; public string milestone, baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, baselineManifestPath, baselineManifestSha256, baselineInputSnapshotHash, stableAotProvenance, stableAotProvenanceHash; public string[] candidateNames, closureLoadOrder, stableAotNames; public Fixture[] fixtures; }
         [Serializable] private sealed class Fixture { public string patchId, patchDirectory, patchManifest, patchManifestSha256, compileSnapshotHash; public string[] closureLoadOrder, stableAotNames; }
-        [Serializable] private sealed class FallbackMarker { public int schemaVersion, processId; public string baselineBuildId, runtimeAbiHash, baselineManifestSha256, patchId, patchManifestSha256, compileSnapshotHash, failure, state; public long generation; public bool businessStarted; }
+        [Serializable] private sealed class FallbackMarker { public int schemaVersion, processId; public string baselineBuildId, runtimeAbiHash, baselineManifestSha256, patchId, patchManifestSha256, compileSnapshotHash, failure, state; public ulong generation; public bool businessStarted; }
         [Serializable] private sealed class Check { public string operation, actual, expected; public int actualCode, expectedCode; }
         [Serializable] private sealed class StageResult { public string name, code, dllSha256, pdbSha256; }
-        [Serializable] private sealed class InitializerEvent { public string name, state, stateCode, diagnosticsCode; public long generation; }
+        [Serializable] private sealed class InitializerEvent { public string name, state, stateCode, diagnosticsCode; public ulong generation; }
         [Serializable] private sealed class PhysicalAssembly { public string name; public bool isInterpreter, matchesShadow; }
         [Serializable] private sealed class Snapshot { public string point; public AssemblyShadowDiagnostics diagnostics; }
-        [Serializable] private sealed class StressSample { public long generation, enumerationGeneration; public int shadowCount; }
+        [Serializable] private sealed class StressSample { public ulong generation, enumerationGeneration; public int shadowCount; }
         [Serializable] private sealed class ProbeResult
         {
             public int schemaVersion, processId; public string milestone, mode, result, error; public bool il2cpp;

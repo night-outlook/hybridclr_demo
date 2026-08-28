@@ -143,6 +143,59 @@ namespace AssemblyShadowDemo.EditorTests
             VerifyFields(probe.GetNestedType("Fixture", BindingFlags.NonPublic), typeof(AssemblyShadowDemo.Editor.M03Build.M03Fixture));
         }
 
+        [TestCase("FallbackMarker", "generation")]
+        [TestCase("InitializerEvent", "generation")]
+        [TestCase("StressSample", "generation")]
+        [TestCase("StressSample", "enumerationGeneration")]
+        public void ProbeDiagnosticCountersRetainTheFullUnsignedNativeRange(string container, string fieldName)
+        {
+            Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M03TransactionProbe", true);
+            Type mirror = probe.GetNestedType(container, BindingFlags.NonPublic);
+            Assert.IsNotNull(mirror);
+            FieldInfo field = mirror.GetField(fieldName);
+            Assert.IsNotNull(field);
+            Assert.AreEqual(typeof(ulong), field.FieldType, container + "." + fieldName);
+            object value = Activator.CreateInstance(mirror, true);
+            field.SetValue(value, ulong.MaxValue);
+            string json = UnityEngine.JsonUtility.ToJson(value);
+            StringAssert.Contains("\"" + fieldName + "\":18446744073709551615", json);
+            object parsed = UnityEngine.JsonUtility.FromJson(json, mirror);
+            Assert.AreEqual(ulong.MaxValue, field.GetValue(parsed));
+        }
+
+        [Test]
+        public void FeatureDisabledProbeRequiresCompleteNativeDiagnostics()
+        {
+            Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M03TransactionProbe", true);
+            MethodInfo validate = probe.GetMethod("RequireDisabledDiagnostics", BindingFlags.NonPublic | BindingFlags.Static);
+            Assert.IsNotNull(validate);
+            const string complete = "{\"schemaVersion\":1,\"enabled\":false,\"runtimeAbiVersion\":1,\"state\":\"Disabled\",\"stateCode\":0," +
+                "\"lastError\":1,\"detail\":\"\",\"baselineBuildId\":\"\",\"patchId\":\"\",\"generation\":0,\"expected\":0,\"staged\":0," +
+                "\"retainedBytes\":0,\"enumerationGeneration\":0,\"classEnumerationGeneration\":0,\"assemblies\":[],\"events\":[]," +
+                "\"baselineUses\":[],\"ordinaryAssemblies\":[],\"ordinaryClasses\":[],\"closureLoadOrder\":[],\"stableAotNames\":[],\"commitOrder\":[]}";
+            Assert.DoesNotThrow(() => validate.Invoke(null, new object[] { complete }));
+            foreach (string invalid in new[] {
+                "{\"enabled\":false}", complete.Replace("\"lastError\":1", "\"lastError\":0"),
+                complete.Replace("\"generation\":0", "\"generation\":1"),
+                complete.Replace("\"stableAotNames\":[]", "\"stableAotNames\":[\"mscorlib\"]"),
+                complete.Replace("\"closureLoadOrder\":[],", ""), complete.Replace("\"detail\":\"\",", "") })
+            {
+                var error = Assert.Throws<TargetInvocationException>(() => validate.Invoke(null, new object[] { invalid }));
+                Assert.IsInstanceOf<InvalidOperationException>(error.InnerException);
+            }
+            // This independent OFF fixture has only scalar/empty-array members,
+            // so split its top-level tokens without a DTO roundtrip/defaulting.
+            string[] members = complete.Substring(1, complete.Length - 2).Split(',');
+            foreach (FieldInfo field in RuntimeType("AssemblyShadowDiagnostics").GetFields(BindingFlags.Public | BindingFlags.Instance))
+            {
+                string[] remaining = members.Where(member => !member.StartsWith("\"" + field.Name + "\":", StringComparison.Ordinal)).ToArray();
+                Assert.AreEqual(members.Length - 1, remaining.Length, "OFF fixture must explicitly cover " + field.Name);
+                string missing = "{" + string.Join(",", remaining) + "}";
+                var error = Assert.Throws<TargetInvocationException>(() => validate.Invoke(null, new object[] { missing }), field.Name);
+                Assert.IsInstanceOf<InvalidOperationException>(error.InnerException, field.Name);
+            }
+        }
+
         [Test]
         public void EditorValidationReplaysCompilationAndLinkedProof()
         {

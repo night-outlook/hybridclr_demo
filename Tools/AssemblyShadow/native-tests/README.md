@@ -40,6 +40,16 @@ must reject that handle before either hook, reach a later approved provider,
 and leave unrelated definitions unmaterialized. No transaction/state emulator
 is used; live Player proof of the real baseline-use state remains required.
 
+The same runner builds a separate feature-OFF executable from the actual
+`AssemblyShadowRuntimeApi.cpp`, native `AssemblyShadow.cpp`, and diagnostic
+serializer. Its 27 checks cover all nine disabled operations, poisoned/null
+arguments, initialized outputs, exact native-to-managed JSON forwarding, and
+both standard/nonstandard allocation exceptions. Only `String::New` is replaced
+to capture its input and inject failures; the native APIs and serializer are
+not mocked. The runner parses the returned full schema-1 snapshot, records it
+as `disabledApiDiagnostics`, and also syntax-checks the feature-ON adapter.
+This does not substitute for the real disabled Player T03-09 result.
+
 The parser checks cover real DLL identity/MVID/references, successive truncated
 prefixes, invalid PE signatures/offsets, 6,000 deterministic byte mutations,
 and a synthetic portable PDB with invalid/truncated variants. AddressSanitizer
