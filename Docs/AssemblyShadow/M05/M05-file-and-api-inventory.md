@@ -11,7 +11,7 @@ commits are deliberately outside these counts. All repositories use
 | hybridclr | `7f0da36e1a978abfd22c2c195ecb2741588a5d69` | 0 / 2 / 0 | 30 / 0 |
 | il2cpp_plus | `8ceb7e40abe458dce5343bedaf250333ef9433a1` | 4 / 15 / 0 | 1200 / 34 |
 | hybridclr_unity | `90852d8a59fa14b501cf1c6f1cc38e9d4655ee86` | 20 / 6 / 0 | 3282 / 8 |
-| demo | `006a5554ebb7bf2b24cfbdaac33cb18bc9926fce` | 49 / 10 / 0 | 10145 / 15 |
+| demo | `2b7635339795d80dc2c77c8d3903256abc1c0fd3` | 51 / 10 / 0 | 11152 / 15 |
 
 There are no deleted source paths in these ranges. Added Unity source/scene
 assets have paired meta files. No historical M00-M04 evidence is rewritten.
@@ -76,7 +76,9 @@ and available PDBs outside Bee's producer directory, validates copy hashes and
 then derives/verifies the declaration. Direct compiler outputs are distinct
 from the broader precompiled inputs in a general snapshot. Python's `#US`
 decoder preserves legal UTF-16 code units while retaining structural and exact
-provider checks; strict identifier decoding is unchanged.
+provider checks; strict identifier decoding is unchanged. Linked transport keys
+are canonicalized without changing actual assembly identities, and type
+inventory reflection names retain each nested TypeDef namespace/name segment.
 
 New demo Editor proof surfaces are M05TypeInventoryProof,
 M05TypeSchemaVerifier and M05EditorValidation. Offline proof is implemented in

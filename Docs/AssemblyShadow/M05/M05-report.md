@@ -344,7 +344,13 @@ The main combined replay passed raw compiled/linked proof, all type inventories
 and witnesses, and actual native metadata in 6.577 seconds. Its bounded record
 is `_temp/AssemblyShadow/M05Integration-8IdZleUf/v1-linked-corrective-replay.json`;
 this is static byte-bound evidence, not a Player runtime result. The corrective
-source gate must pass before the fresh v2 pairing is installed and built. This
+source gate returned PASS for committed demo
+`2b7635339795d80dc2c77c8d3903256abc1c0fd3`. The independent reviewer inspected
+the exact four source/test hashes, 644-test XML, unchanged v1 proof/receipt,
+all 60 linked DLL hashes, the 5,865-type inventory and six IL witnesses. It did
+not execute reviewed code; Python counts remain supplied main evidence.
+This permits the fresh v2 pairing to be installed and built, not M05 runtime
+acceptance. The source pin now names that reviewed implementation revision. This
 fresh identity retains exact four-repository provenance across the eventual
 ON/OFF and fixture receipts; the v1 artifacts remain unchanged. The v2 scene
 and setting were configured by the guarded Unity method in
