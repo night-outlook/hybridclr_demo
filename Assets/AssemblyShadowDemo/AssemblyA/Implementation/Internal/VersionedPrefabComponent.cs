@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AssemblyA.Implementation.Internal
 {
-    public sealed class VersionedPrefabComponent : VersionedComponentBase, IVersionTextProvider
+    public sealed partial class VersionedPrefabComponent : VersionedComponentBase, IVersionTextProvider
     {
         [SerializeField] private DemoValue value;
         [SerializeField] private VersionedScriptableObject dataReference;

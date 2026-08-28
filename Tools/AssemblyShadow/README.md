@@ -228,6 +228,63 @@ Genuine managed missing-name callback dispatch is not claimed: the pinned wrappe
 throws without invoking `AssemblyResolve`. Native miss checks plus actual wrapper
 IL document that behavior; the Player separately checks known-name noninvocation.
 
+## M05 type, reflection and cache evidence
+
+M05 acceptance is pending. Follow `Docs/AssemblyShadow/M05/M05-type-contract.md`
+and its separate raw-query admission contract. Passing Editor tests or compiler
+preflight is not Player acceptance. Do not start M06 until both independent M05
+gates pass and the complete pairing is tagged.
+
+1. Commit and pin the intended runtime, native, package and demo source pairing.
+   Use a new `M05-Baseline-*` identity and output paths. Through the shared Unity
+   method helper, run `AssemblyShadowDemo.Editor.M05RawTypeAdmissionBuild.Generate`
+   to derive or verify the 25 declarations from a fresh Player compilation.
+   A changed declaration requires source review; the helper never overwrites it.
+2. Run `AssemblyShadowDemo.Editor.M05Build.Configure`, the pinned
+   `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`, and
+   `AssemblyShadowDemo.Editor.M05Build.ValidateCompilerInputs`. Verify the
+   installed source pairing with `verify-installed-runtime.py --expect-shadow on`.
+3. Run `Invoke-ShadowEditorTests.ps1` with the package/demo filter above and
+   `python3 -m unittest discover -s Tools/AssemblyShadow/tests -q`. Set
+   `M05_REAL_COMPILER_ROOT` to the exact fresh compiler directory logged by
+   Generate, and `M05_RAW_CONFIGURATION` to the absolute raw-admission config
+   path, so the real-DLL boundary smoke runs rather than being skipped. Keep
+   the full historical suite enabled and require zero skips. The new type-info
+   API intentionally extends the original nine operations; all ten retain the
+   non-simulating Editor contract.
+4. Run `M05Build.BuildPlayerBaseline`, then `M05Build.BuildFixtures`, in
+   `AssemblyShadowDemo.Editor`. These capture fresh compiler/linked/type/native
+   evidence, preserve the exact M01 resources, and produce P01/P03 plus a
+   separately rejected LayoutMismatch fixture. `m05-editor-replay.json` must
+   come from the real independent patch/resource-policy rebuild, not a label.
+5. Run `M05Build.BuildFeatureDisabledPlayer` for a distinct OFF binary. It
+   restores the native ON setting in `finally`; verify the restored setting.
+6. Launch 19 fresh processes: P01 and P03 variants of T05-01, T05-02, T05-03,
+   T05-05, T05-08 and T05-10; `T05-04-EarlyType`, `T05-06-P01`, `T05-07-P03`,
+   `T05-09-LayoutMismatch`, `T05-11-FeatureOff`, `T05-12-BenchmarkOn` and
+   `T05-13-BenchmarkOff`. Only T05-11 and T05-13 use the OFF binary.
+   Pass `-shadowM05Mode <exact-mode>`,
+   `-shadowM05Fixtures <absolute-m05-fixtures.json>`,
+   `-shadowM05PlayerReceipt <matching-input-snapshot>/m05-player-build.json`,
+   `-shadowM05Result <new-result-path>`, `-batchmode -nographics`, and a unique
+   absolute `-logFile`. Expected-rejection cases must also emit Passed and exit
+   zero after observing their actual native failure state.
+7. Run `verify-m05-results.py --fixture-manifest <m05-fixtures.json>
+   --result-dir <unique-dir> --on-build <on-snapshot>/m05-player-build.json
+   --off-build <off-snapshot>/m05-player-build.json
+   --m01-baseline-root BaselineArtifacts/StandaloneOSX/M01-Baseline-v1
+   --output <new-verification.json>`. Do not use `--allow-incomplete` for
+   acceptance. Retain native checks, exact input/resource audits, raw outputs
+   and timings, then obtain both independent milestone verdicts.
+
+The benchmark has 1,000 warmups and 100,000 timed literal type lookups; it is
+not an allocation-free or production-performance claim. Resource cases await
+the actual prefab/scene load, unload and reload. Runtime module MVID remains
+unavailable; type/assembly evidence must not manufacture runtime GUIDs from
+the expected DLL inventory. `M05EditorValidation.Validate` can replay an
+existing fixture manifest through `-shadowFixtureManifest` and a fresh
+`-shadowValidationReceipt` output.
+
 ## Recoverable native-cache rebuild
 
 clean-il2cpp-cache.sh is a dry-run unless --apply is passed; PowerShell uses

@@ -386,6 +386,123 @@
       "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
       "method": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::ProbeKnownNameCallback",
       "reason": "M04 observes callback noninvocation for this already-loaded ordinary name only. It does not claim or authorize a genuine missing-name or callback-return load."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+      "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+      "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+      "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+      "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M05TypeProbe::WitnessOwner",
+      "reason": "M05 resolves this exact baseline-known owner after commit to obtain opaque patch witnesses; no patch-only type name is admitted in Bootstrap."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+      "target": "AssemblyA.Contracts",
+      "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+      "target": "AssemblyA.Implementation.Extensibility",
+      "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+      "target": "AssemblyA.Implementation.Internal",
+      "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+      "target": "AssemblyShadowDemo.ContractsConsumer",
+      "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M05TypeProbe::LoadAssembly",
+      "target": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "reason": "M05 literal Assembly identity comparison; raw type enumeration has its own separate byte-verified admission."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.M05TypeProbe::RunEarlyType",
+      "reason": "Isolated M05 negative process deliberately exposes this baseline Type after validation; commit must reject BaselineAlreadyUsed with actual first-use evidence."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.M05TypeProbe::RunLayoutMismatch",
+      "reason": "Isolated M05 defense-in-depth process queries this active Type after commit and requires actual allocation rejection for the verified bad-layout bytes."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M05TypeProbe::RunBenchmark",
+      "reason": "Exact constant-name M05 type lookup benchmark after commit or in a separate native-OFF process; no other name or managed acquisition is authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedComponentType",
+      "reason": "M05 compares the actual frozen-resource component Type with this literal baseline-known name only after commit."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+      "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedDataType",
+      "reason": "M05 compares the actual frozen-resource data Type with this literal baseline-known name only after commit."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.DemoValue",
+      "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedValueType",
+      "reason": "M05 compares the frozen serialized value's actual Type with this exact name, requiring AOT Contracts for P01 and shadow Contracts for P03."
     }
   ]
 }

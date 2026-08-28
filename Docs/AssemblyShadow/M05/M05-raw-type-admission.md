@@ -60,6 +60,40 @@ there is no public verified flag or method-name waiver. Ordinary dependency
 edges still apply to non-Bootstrap consumers. Other acquisitions in the same
 method retain their existing checks.
 
+Admission also binds provider selection at the helper boundary. A Bootstrap
+helper cannot broker its finite providers to another runtime assembly while
+leaving that recipient out of their reverse closure. Exact requirements
+propagate through static and Bootstrap forwarding calls and actual finite
+reflection/declared paths; each non-Bootstrap selector recipient must have the
+truthful provider dependencies required by the normal graph. Callable selector
+exposure through method tokens, delegates (including forwarding lambdas), or
+virtual/interface registration must be attributed to its recipient or rejected.
+Bootstrap itself remains outside the patch closure and receives no manufactured
+Bootstrap-to-candidate graph edge.
+
+The static boundary conservatively projects those finite providers across
+actual incoming AssemblyRefs to a selector-bearing Bootstrap assembly,
+including transitive incoming Bootstrap references. A non-Bootstrap caller
+therefore needs truthful direct provider dependencies even when its particular
+reference appears unrelated to a selector. This deliberate over-approximation
+closes field/signature/composite metadata routes without guessing which
+reflection operation will eventually expose the selector. It does not project
+providers onto Bootstrap's outgoing diagnostic or framework references.
+
+Return types alone do not define selector outputs. Actual selected-value writes
+through caller-owned mutable containers, byrefs/indirect stores or custom
+delegate Invoke parameters must be attributed or rejected. Unproved writes to
+caller/global/unknown locations fail closed; fresh local materialization and
+read-only opaque inputs remain distinct. Composite token checks inspect their
+components rather than only a generic outer definition.
+
+This boundary is about selecting a named provider and exporting reflection
+handles or a callable selector. It does not reject already-selected `Type`
+values passed to pinned diagnostics, scalar/DTO observations, ordinary iterator
+scheduling or completion callbacks. Those paths do not gain authority to select
+a provider. Proof is derived from actual method bodies and AssemblyRefs; a
+declared edge alone cannot invent a selector or a missing compiled dependency.
+
 The demo isolates twenty-five sites in five preserved finite-switch methods
 of `M05BoundTypeQueries`. Each method has one arm per candidate. Each returns
 the actual raw API result directly. Materialization, inventory comparison and

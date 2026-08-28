@@ -87,11 +87,17 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
-        public void AllNineOperationsReturnErrorCodesAndEditorNeverSimulatesSuccess()
+        public void AllDeclaredOperationsReturnErrorCodesAndEditorNeverSimulatesSuccess()
         {
             Type api = RuntimeType("AssemblyShadowRuntime");
             MethodInfo[] methods = api.GetMethods(BindingFlags.Public | BindingFlags.Static);
-            Assert.AreEqual(9, methods.Length);
+            // Preserve all nine M03 operations and explicitly admit M05's
+            // separate type-info query; unexpected APIs or overloads still fail.
+            CollectionAssert.AreEquivalent(new[] {
+                "ConfigureCandidates", "BeginTransaction", "StageAssembly", "ValidateTransaction",
+                "CommitTransaction", "AbortTransaction", "GetState", "GetAssemblyExecutionMode",
+                "GetDiagnosticsJson", "GetTypeResolutionInfo"
+            }, methods.Select(method => method.Name).ToArray());
             foreach (MethodInfo method in methods)
             {
                 Assert.AreEqual(RuntimeType("AssemblyShadowErrorCode"), method.ReturnType, method.Name);

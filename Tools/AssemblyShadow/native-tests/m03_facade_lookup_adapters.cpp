@@ -1,6 +1,7 @@
 // Execute the production metadata::Image -> vm::Image lookup path against
-// controlled raw metadata records. These adapters count materialization and
-// diagnostic hooks; they do not emulate an AssemblyShadow transaction/state.
+// controlled raw metadata records. These adapters count materialization,
+// diagnostic hooks and identity-only image/class resolution; they do not
+// emulate an AssemblyShadow transaction/state or prove active type mapping.
 #include <stdexcept>
 #include <vector>
 #include "hybridclr/metadata/Image.h"
@@ -30,6 +31,7 @@ Il2CppClass* s_candidateClass;
 size_t s_candidateTraces;
 size_t s_approvedTraces;
 size_t s_imageRedirects;
+size_t s_classRedirects;
 
 void Check(bool condition, const char* message)
 {
@@ -84,6 +86,11 @@ const Il2CppImage* AssemblyShadow::ResolveImage(const Il2CppImage* image)
     ++s_imageRedirects;
     return image;
 }
+Il2CppClass* AssemblyShadow::ResolveClass(Il2CppClass* klass)
+{
+    ++s_classRedirects;
+    return klass;
+}
 Il2CppClass* Class::FromName(const Il2CppImage* image, const char* namespaze, const char* name)
 {
     return Image::ClassFromName(image, namespaze, name);
@@ -112,15 +119,16 @@ size_t CheckActualFacadeLookup()
     s_images = { { &forwarderImage, { &unrelated }, { &candidate } },
                  { &approvedImage, { &approved }, {} }, { &candidateImage, { &candidate }, {} } };
     s_candidateClass = &candidateClass;
-    s_candidateTraces = s_approvedTraces = s_imageRedirects = 0;
+    s_candidateTraces = s_approvedTraces = s_imageRedirects = s_classRedirects = 0;
     // Positive control: the previous general lookup actually traverses the
     // forwarder and reaches both candidate materialization and its usage hook.
     Check(il2cpp::vm::Image::ClassFromName(&forwarderImage, "FacadeFixture", "Target") == &candidateClass,
         "Forwarded fixture does not reproduce the unsafe lookup");
     Check(candidate.materializations == 1 && s_candidateTraces == 1,
         "Unsafe lookup control did not reach the instrumented candidate hooks");
+    Check(s_classRedirects == 1, "General name lookup did not pass through class resolution exactly once");
     candidate.materializations = 0;
-    s_candidateTraces = s_approvedTraces = s_imageRedirects = 0;
+    s_candidateTraces = s_approvedTraces = s_imageRedirects = s_classRedirects = 0;
     std::vector<const Il2CppAssembly*> onlyForwarder{ &forwarderAssembly };
     Check(Image::FindApprovedFacadeType(onlyForwarder, "FacadeFixture", "Target") == nullptr,
         "Unauthorized forwarded handle was materialized/accepted");
@@ -135,6 +143,7 @@ size_t CheckActualFacadeLookup()
         "Approved definition was not materialized/traced exactly once");
     Check(unrelated.materializations == 0, "Ownership scan materialized unrelated definitions");
     Check(s_imageRedirects == 0, "Physical defining-image lookup invoked global image redirection");
+    Check(s_classRedirects == 0, "Physical defining-image lookup invoked global class redirection");
     Check(Image::FindApprovedFacadeType(orderedProviders, "FacadeFixture", "Missing") == nullptr,
         "Missing facade type unexpectedly resolved");
     Check(candidate.materializations == 0 && s_candidateTraces == 0 && approved.materializations == 1,
@@ -142,5 +151,5 @@ size_t CheckActualFacadeLookup()
     Check(!AssemblyShadowBridge::IsStaging(), "Lookup test changed staging TLS state");
     s_images.clear();
     s_candidateClass = nullptr;
-    return 13;
+    return 15;
 }
