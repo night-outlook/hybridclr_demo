@@ -115,6 +115,48 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
+        public void CompilerTypeInventoryRoundTripsThroughRuntimeReflectionProjection()
+        {
+            Type[] actual;
+            M05TypeInventory inventory = CompilerTypeInventory(out actual);
+            Assert.IsTrue(actual.Any(type => type.IsNested && !string.IsNullOrEmpty(type.Namespace)));
+            Assert.IsTrue(actual.Any(type => type.IsNested && string.IsNullOrEmpty(type.Namespace)));
+            Assert.IsTrue(actual.Any(type => type.IsNested && type.IsGenericType && type.GetGenericArguments().Length > 1));
+            Assert.IsTrue(inventory.types.Where(type => type.nestingPath.Length > 0).All(type => type.namespaceName == ""),
+                "The real C# compiler keeps nested TypeDef namespaces empty; reflection projects the outer namespace.");
+            InvokePrivate("ValidateTypeInventory", RuntimeTypeFixture(inventory), inventory.assemblyName, actual);
+        }
+
+        [Test]
+        public void RuntimeTypeInventoryRejectsMetadataAndOrderMutations()
+        {
+            Type[] actual;
+            M05TypeInventory inventory = CompilerTypeInventory(out actual);
+            int nested = Array.FindIndex(inventory.types, type => type.nestingPath.Length > 0 && type.genericArity > 1);
+            Assert.GreaterOrEqual(nested, 0);
+            foreach (string fieldName in new[] { "fullName", "namespaceName", "name", "nestingPath", "genericArity", "kind", "isExported" })
+            {
+                M05TypeInventory changed = JsonUtility.FromJson<M05TypeInventory>(JsonUtility.ToJson(inventory));
+                FieldInfo field = typeof(M05TypeDefinition).GetField(fieldName);
+                object value = field.FieldType == typeof(int) ? (object)999 : field.FieldType == typeof(bool) ? !(bool)field.GetValue(changed.types[nested]) :
+                    field.FieldType == typeof(string[]) ? (object)new[] { "wrong-owner" } : "tampered";
+                field.SetValue(changed.types[nested], value);
+                AssertRejected("ValidateTypeInventory", RuntimeTypeFixture(changed), inventory.assemblyName, actual);
+            }
+            foreach (bool truncate in new[] { false, true })
+            {
+                Type[] changed = truncate ? actual.Take(actual.Length - 1).ToArray() : actual.Reverse().ToArray();
+                AssertRejected("ValidateTypeInventory", RuntimeTypeFixture(inventory), inventory.assemblyName, changed);
+            }
+            M05TypeInventory missingOwner = JsonUtility.FromJson<M05TypeInventory>(JsonUtility.ToJson(inventory));
+            int owner = Array.FindIndex(actual, type => type == typeof(M05TypeProbeTests));
+            Assert.GreaterOrEqual(owner, 0);
+            missingOwner.types = missingOwner.types.Where((type, index) => index != owner).ToArray();
+            Type[] withoutOwner = actual.Where((type, index) => index != owner).ToArray();
+            AssertRejected("ValidateTypeInventory", RuntimeTypeFixture(missingOwner), inventory.assemblyName, withoutOwner);
+        }
+
+        [Test]
         public void BenchmarkUsesFixedLiteralTypeGetTypeWithoutWitnessInvocationInMeasuredLoop()
         {
             string source = File.ReadAllText(ProbeSource);
@@ -232,6 +274,32 @@ namespace AssemblyShadowDemo.EditorTests
                 StringAssert.Contains("M05BoundTypeQueries." + method + "(name)", source);
         }
 
+        // Nested generic metadata rows retain all outer generic parameters.
+        // These are Editor-only compiler witnesses, never Player business types.
+        public sealed class InventoryOuter<T>
+        {
+            public sealed class Inner<U> { public sealed class Leaf { } }
+        }
+
+        private static M05TypeInventory CompilerTypeInventory(out Type[] actual)
+        {
+            Assembly assembly = typeof(M05TypeProbeTests).Assembly;
+            string path = Path.GetFullPath(assembly.Location);
+            M05TypeInventory inventory = M05TypeInventoryProof.ReadFile(path, ShadowHash.File(path), assembly.GetName().Name);
+            // The pinned IL2CPP Image::GetTypes traverses physical TypeDef order.
+            // MetadataToken is used only in this Editor regression, never Player evidence.
+            actual = assembly.GetTypes().OrderBy(type => type.MetadataToken).ToArray();
+            CollectionAssert.AreEqual(inventory.types.Select(type => type.fullName), actual.Select(type => type.FullName));
+            return inventory;
+        }
+
+        private static object RuntimeTypeFixture(M05TypeInventory inventory)
+        {
+            var fixture = new M05Build.M05Fixture { typeInventories = new[] { inventory } };
+            Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M05TypeProbe", true);
+            return JsonUtility.FromJson(JsonUtility.ToJson(fixture), probe.GetNestedType("Fixture", BindingFlags.Public));
+        }
+
         private static ShadowBaselineManifest BaselineForRuntimeGuard()
         {
             return new ShadowBaselineManifest {
@@ -290,4 +358,10 @@ namespace AssemblyShadowDemo.EditorTests
             }
         }
     }
+}
+
+// Covers the empty outermost namespace independently from the namespaced test class.
+public sealed class M05GlobalTypeInventoryWitness
+{
+    public sealed class Inner { }
 }

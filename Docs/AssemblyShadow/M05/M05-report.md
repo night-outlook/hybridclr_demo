@@ -1,13 +1,15 @@
 # M05 active types, reflection and cache evidence
 
-Status: M05 is not accepted. Both v4 Players, the frozen baseline, complete
+Status: M05 is not accepted. The corrected v5 ON/OFF Players, frozen baseline,
 normal/negative fixtures and independent Editor/Python input replay passed.
-The first actual Player stopped before Shadow APIs because its probe confused
-the tagged resource semantic hash with a bare byte hash. The bounded correction
-passes the new writer-to-runtime regression and all 664 Unity / 249 Python
-tests; independent source review passed and the v5 pairing is pinned for fresh
-builds. The remaining 18 Player cases were not launched.
-No runtime matrix or final milestone gate is claimed. M06 remains closed.
+All current M03-M05 native regression suites passed, and native ON is restored.
+The first v5 diagnostic Player passed both its own assertions and strict offline
+case verification. The matrix then passed T05-01 P01/P03 and stopped at T05-02
+P01 because the probe compared a nested raw metadata namespace with the
+outermost namespace exposed by reflection. The bounded correction passes
+14/14 focused Unity tests, 666/666 full Unity tests and 249/249 Python tests.
+V6 Configure passed. Fresh paired builds and the complete runtime gate remain required.
+M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
 [raw-query contract](M05-raw-type-admission.md) govern implementation and the
@@ -647,6 +649,141 @@ checking the actual source, original v4 failure, red/green/full XML hashes and
 v5 Configure log. No reviewed code was executed by the reviewer. This
 metadata-only follow-up pins that exact source and updates its inventory;
 fresh v5 build/fixture/runtime evidence and final acceptance remain pending.
+
+## V5 closed inputs and current native regressions
+
+The executable demo source remains
+`32fc4893919e5fa786654de5b9bbf8927d77f95d`, pinned by metadata-only commit
+`83c1e5e8c85323d06da7aa782f168c22cf1d61a0`. The runtime, native and package
+revisions are unchanged from their reviewed pairing. Fresh declaration
+generation retained all 25 sites and their exact configuration bytes. The full
+Python suite passed 249/249 with zero skips using the preserved v5 compiler
+inventory, in 34.465 seconds. Repeat installation and full installed-source
+verification passed with 940 source files, 942 installed files, demo inputs
+verified and native ON.
+
+The ON build passed in `_temp/UnityExec_20260828_042946.log`; the OFF build
+passed in `_temp/UnityExec_20260828_045206.log`. Their immutable input roots are
+`_temp/AssemblyShadow/M05PlayerInputs-c0fa56e09ac142018abb75af3ea0d59a` and
+`_temp/AssemblyShadow/M05PlayerInputs-6850265a2c42482c93e65cf7d6749245`.
+ON/OFF receipt hashes are respectively
+`294110d1ee891930e3cd16ff833858955fdbd64dcc2dcbf14c77c08eadb3660b` and
+`64b86205d2cd026ec93dce2ce9ba0067dd1a252f8e885cc800ecb6ca76bbc945`.
+The actual build GUIDs are `091573d555174182b1d3a50e9a475e34` and
+`b16cb166f41340b58a1e882577a77592`; their native library hashes are
+`d25e5393238825600e476a2d24530d05882b83d0cacfa37ccb7c3002368cfe56` and
+`13d88ca1e436230acef1f7f617744cfa3f993bdf78aa219332c9ebcff3bc9c26`.
+Both complete linked proofs passed independent replay. Native metadata remains
+format 31; identical metadata bytes between ON/OFF are not misrepresented as
+distinct type worlds. The frozen v5 baseline manifest hash is
+`f83db1301939921d6986fcb87b8895a842d2cab8893e70f481eef5864b1f6b39`.
+
+Fixture production and the full Editor rebuild replay passed in
+`_temp/UnityExec_20260828_043559.log`, rooted at
+`_temp/AssemblyShadow/M05Fixtures-c48196edf64b4e1388d1045cd0f60c27`.
+Fixture manifest hash:
+`a2058a37269c82fd87523015e88cece348ca89f4954e1daa7dfe607ee45b3455`.
+Editor replay receipt hash:
+`207274a74b934922190213a7b32a21f30a71d561dc98ec2c910b40039b9805a0`.
+Both complete patch artifact trees match fresh rebuilds. The same genuine
+layout-negative DLL remains rejected with `ResourceRebuildRequired`, the exact
+error message is repeated, and no admitted patch output is created. Complete
+independent ON/OFF, baseline, fixture and replay checks passed with their
+watched input hashes unchanged. The record is
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/v5-on-off-pre-runtime-replay.json`.
+After the OFF build, installed-source verification again passed with native
+ON restored and install receipt hash
+`a612d7da9726de5563041665a62f265d4a96ab968fb687b1cba62ee811544aa3`.
+
+Current paired native regressions are retained under
+`_temp/AssemblyShadow/M05FinalNative-5yZD6k4H`:
+
+| Receipt | Observed result | SHA-256 |
+| --- | --- | --- |
+| `m05-native-tests.json` | 32 ON/OFF syntax checks; eight 62-check ASan scenarios; reflection 31/3; disabled type-info 2; all 148 commands exit zero; 1,094 unchanged inputs | `bc8836b2da19d15c1d6379ddfa26d48e095d2dbf5edf2d25c14915ea733c43cb` |
+| `m03-native-tests.json` | Identity 23,027; names 30; facades 25; facade lookup 15; disabled API 27; 1,005 unchanged inputs | `9692cc5013a44c9971073c508cfb7b6383f05f4038f665cf3dfeaee93e1acab3` |
+| `visibility-native-tests.json` | 18,674 checks across abort/commit; 987 unchanged inputs | `4faafd01dbe0998b8b1cc3f29288c99d6327c41e5ec607985e5af0ac78ee94b1` |
+| `m04-native-tests.json` | 53 resolver and 24 reference-identity checks; 22 ON/OFF syntax checks; 1,000,000 lookups, zero counted allocations, 367,477 microseconds | `3136076a3bf71754b1afa9143709439712c8085612fab1e11a8db30e705687f8` |
+
+The M04 timing run followed the other native suites without competing task
+builds. It is a controlled harness observation, not production performance.
+Runtime/native HEADs match configured pins. The M03 receipts truthfully record
+demo HEAD differing from its executable pin by the metadata-only pin commit;
+full installed-demo input verification remains separate. The controlled native
+adapters retain their source-readiness limitations described above.
+
+## V5 actual Player execution
+
+The one diagnostic `T05-01-P01` process (PID 316) passed in 36.762 seconds,
+committed P01, and passed strict `verify_case` over independently verified
+inputs. Its result hash is
+`e686ea25d8706de8cb602af696dc5de1c0400a11ef9d2690a5492ce702ca82fd`;
+raw native diagnostics hash is
+`8836ea268130be5fb0de281d45212f62d7fb84face9021516e05bb5b8b90e62b`.
+The Player executable, native library, metadata, type proof and input receipts
+were unchanged before/after execution. This verifies the resource-hash reader
+correction in a real Player. It ran while the independent Editor fixture replay
+was finishing and is not a benchmark or complete-matrix substitute. Evidence:
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/v5-functional-smoke-replay.json`.
+
+The fresh-process matrix under
+`_temp/AssemblyShadow/M05V5Execution-PueDzWN0/Players` stopped after three
+processes. T05-01-P01 (PID 3234) and T05-01-P03 (PID 3243) passed their Player
+assertions. T05-02-P01 (PID 3293) exited 1 after 33.766 seconds; the other 16
+cases were not launched. The launch receipt records unchanged bound input
+hashes and has SHA-256
+`965a1ed3781a196d38022e7cf8729c266c09a135b516ac2638841d7385018f2d`.
+The failed result hash is
+`67cf42a156965e48549a683d1cf9e1186dd620b428cb20556311713101929d77`;
+its raw native diagnostics hash is
+`989dce9564381ca6ea15fa7ba19ab4ef5e49df84d93bae175504307530a251ea`.
+Commit succeeded and the failure snapshot remains Committed with native
+lastError 0. This is a probe inventory assertion, not a native transaction
+failure. All original inputs/results and the copied failure evidence are retained.
+
+The failing index 13 is `M05InternalOuter+Inner`: its raw nested TypeDef
+namespace is empty, while pinned `RuntimeType::get_Namespace` walks to the
+outermost declaring type and returns `AssemblyA.Implementation.Internal`.
+The preceding generated nested type has an empty outer namespace and therefore
+passed. `Image::GetTypes` still traverses physical TypeDef order; no enumeration
+sorting or native fix is indicated. An independent passive provenance review
+also passed the v5 receipts, both type proofs, patch/replay artifact trees,
+baseline and frozen-resource bindings. That verdict does not accept the runtime.
+
+The correction projects the reflected namespace from the inventory's exact
+top-level declaring definition. Raw namespace fields are not rewritten, all
+other fields and physical order remain exact, missing/duplicate owners fail,
+and a nonempty nested raw namespace is explicitly diagnosed as unsupported by
+this pinned reflection projection. Raw GetTypes names are captured before
+validation so a future assertion retains the observed enumeration.
+The unchanged byte-level Editor/Python proof still retains all raw metadata,
+including nested namespaces in unrelated linked assemblies.
+
+The regression reads the real compiled Editor test assembly through the
+production inventory writer and passes actual Type handles through the runtime
+probe, covering namespaced/global/nested-generic definitions. With the old
+predicate it passed 13/14 and failed the inventory round trip (red XML hash
+`ac4ae5e6991238255ff6c7d7ce23d4067ceccdf6fdd90dac26f0b0e38df1969a`).
+The corrected run passed 14/14, zero skips (green XML hash
+`a38335d09b7a40ee03a57c55e136afa96ebeb256410e0b16317d3e0913541f46`).
+Mutation checks retain rejection of every metadata field, missing declaring
+owners, reordered rows and count changes. Full Python passed 249/249, zero
+skips, in 34.351 seconds against the preserved v5 compiler inventory.
+The full guarded Unity suite passed 666/666 with zero failed/skipped or
+inconclusive cases in 89.397 seconds. XML:
+`_temp/AssemblyShadow/EditorTests-5d5ef5be12c24f94a0756156dfae7e30/results.xml`,
+SHA-256 `81b2324482d7fa2524ab64516e963aa6e21cd46db6d7d7d0e018e32262932fc2`.
+Configure passed in `_temp/UnityExec_20260828_051300.log`, selecting the new
+unused `M05-Baseline-v6` identity with the unchanged runtime ABI hash.
+Probe and regression source hashes are respectively
+`df5bb8ae0a85d45ace09f8f25fb06ce6286dd2f6a713ff1c9ddedbe4d6b32403` and
+`7e76ea8eff66a8f859ecdf1bd6c92d8b23466f16504f43213ce2b8a85e455bab`.
+A freshly pinned build pair, complete runtime replay and both independent
+final gates remain required. The remaining non-enumeration/nonbenchmark modes
+are being exercised separately against the unchanged v5 binaries as diagnostics,
+not as a substitute for v6 acceptance.
+Resolver-delegate overloads remain intentionally unsupported by policy; this
+matrix does not claim their runtime coverage.
 
 ## Preserved resource boundary
 

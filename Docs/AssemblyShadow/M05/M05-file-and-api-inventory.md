@@ -108,6 +108,13 @@ ABI hashes. Editor regressions serialize the production manifest DTOs and
 resource hasher into that reader, including malformed format, hash-domain,
 identity and candidate-order negatives. No public API or evidence schema changes.
 
+The probe keeps raw TypeDef namespace fields separate from the outermost
+declaring namespace returned by `Type.Namespace`. Its compiled-assembly
+round-trip regression covers namespaced/global/nested-generic types plus field,
+owner, count and order mutations. Nonempty nested raw namespaces are diagnosed
+as unsupported by the pinned reflection projection, not erased from the
+byte-level proof. Raw enumeration names are retained before validation failure.
+
 ## Build and runtime entrypoints
 
 Within `AssemblyShadowDemo.Editor`:

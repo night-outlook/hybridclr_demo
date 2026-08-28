@@ -72,6 +72,17 @@ declared in [M05-raw-type-admission.md](M05-raw-type-admission.md). They leave
 the observed API calls intact; they do not replace enumeration with expected
 type handles or assert that a runtime transaction has committed.
 
+Type inventories retain raw `TypeDef.Namespace`, including empty namespaces
+on C# nested definitions. The runtime probe compares `Type.Namespace` against
+the exact outermost declaring definition, as required by the pinned IL2CPP
+reflection implementation. The declaring row must exist in the same verified
+inventory; other metadata fields and raw enumeration order remain exact.
+The pinned reflection path does not expose a nested definition's own nonempty
+namespace independently, so that form is diagnosed as unsupported by the probe,
+not normalized away. This does not change byte-level inventory schemas or the
+unchanged Editor/Python proof of unrelated linked assemblies. Failed enumeration
+validation retains the actual observed names.
+
 ## Type-resolution diagnostic API
 
 Add `AssemblyShadowRuntime.GetTypeResolutionInfo(Type type, out string json)`

@@ -546,8 +546,8 @@ namespace AssemblyShadowDemo
             foreach (string name in fixture.closureLoadOrder)
             {
                 Type[] types = M05BoundTypeQueries.GetTypes(name);
-                ValidateTypeInventory(fixture, name, types);
                 AddEnumeration(result, "Assembly.GetTypes", name, types);
+                ValidateTypeInventory(fixture, name, types);
                 AddEnumeration(result, "Assembly.DefinedTypes", name, M05BoundTypeQueries.GetDefinedTypes(name).Select(item => item.AsType()).ToArray());
                 AddEnumeration(result, "Assembly.ExportedTypes", name, M05BoundTypeQueries.GetExportedTypes(name).ToArray());
                 AddEnumeration(result, "Module.GetTypes", name, M05BoundTypeQueries.GetModuleTypes(name));
@@ -564,14 +564,32 @@ namespace AssemblyShadowDemo
             TypeInventory expected = fixture.typeInventories.Single(item => item.assemblyName == assemblyName);
             Require(expected.types != null && actualTypes != null && expected.types.Length == actualTypes.Length,
                 "M05 type inventory count mismatch: " + assemblyName);
+            Require(expected.types.All(type => type != null && !string.IsNullOrEmpty(type.fullName) &&
+                type.namespaceName != null && type.nestingPath != null) && actualTypes.All(type => type != null) &&
+                expected.types.Select(type => type.fullName).Distinct(StringComparer.Ordinal).Count() == expected.types.Length,
+                "M05 type inventory contains missing or duplicate definitions: " + assemblyName);
+            var definitions = expected.types.ToDictionary(type => type.fullName, StringComparer.Ordinal);
             for (int index = 0; index < actualTypes.Length; ++index)
             {
                 Type actual = actualTypes[index]; TypeDefinition claim = expected.types[index];
-                Require(claim != null && claim.fullName == actual.FullName && claim.namespaceName == (actual.Namespace ?? "") &&
+                Type outermost = actual;
+                while (outermost.DeclaringType != null) outermost = outermost.DeclaringType;
+                TypeDefinition owner;
+                Require(definitions.TryGetValue(outermost.FullName, out owner) && owner.nestingPath.Length == 0,
+                    "M05 type inventory has no top-level declaring definition: " + assemblyName + " / " + actual.FullName);
+                // The inventory preserves raw TypeDef.Namespace. Pinned IL2CPP
+                // Type.Namespace projects the outermost declaring namespace.
+                // A nested row's own nonempty namespace is not independently
+                // observable on this path; do not silently normalize it away.
+                Require(!actual.IsNested || claim.namespaceName.Length == 0,
+                    "M05 nested TypeDef namespace is unsupported by the pinned reflection projection: " + claim.fullName);
+                string reflectedNamespace = owner.namespaceName;
+                Require(claim.fullName == actual.FullName && reflectedNamespace == (actual.Namespace ?? "") &&
                     claim.name == actual.Name && claim.genericArity == (actual.IsGenericType ? actual.GetGenericArguments().Length : 0) &&
                     claim.kind == TypeKind(actual) && claim.isExported == IsExported(actual) &&
-                    (claim.nestingPath ?? new string[0]).SequenceEqual(NestingPath(actual)),
-                    "M05 type inventory mismatch: " + assemblyName + " index " + index);
+                    claim.nestingPath.SequenceEqual(NestingPath(actual)),
+                    "M05 type inventory mismatch: " + assemblyName + " index " + index + "; expected " + claim.fullName +
+                    " namespace='" + reflectedNamespace + "'; observed " + actual.FullName + " namespace='" + (actual.Namespace ?? "") + "'");
             }
         }
 
