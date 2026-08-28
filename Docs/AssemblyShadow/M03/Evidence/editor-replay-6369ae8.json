@@ -1,0 +1,97 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M03",
+    "result": "Passed",
+    "comparisonPolicy": "compiler-linked-policy-graph-resource-abi:2",
+    "fixtureManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M03Fixtures-4d6223afaa79405a8f32b28552215355/m03-fixtures.json",
+    "fixtureManifestSha256": "31b0c2c99bc919295aadf3e56bbec8a8b34f98af7b68276ea961703971fcd85c",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M03-Baseline-v4/baseline-manifest.json",
+    "baselineManifestSha256": "c3b05cba7e31abb5898b4420b3bb79170508b4e8f062f8a71282653a06844eed",
+    "baselineInputSnapshotHash": "bd5697b7c5e3e6a4576fcd73edf8fd5e4dc2a51c5c5373f7417b146e85328bd1",
+    "baselineBuildId": "M03-Baseline-v4",
+    "playerBuildGuid": "e32dce5cae124b7991d05a21d4a162b1",
+    "nativeLibrarySha256": "20ffcc8ed4b8c03d76becf67112b82e4df0721cf8390ff866ffb59583d632781",
+    "linkedPlayerReceiptHash": "10e23e0cf2c971affd6d7a3fb7315267914cfae12cc5243ce77fa7da4f6cb8c4",
+    "runtimeAbiHash": "3ba82486b7cd561eadb4fe2dfc34690019d1402fe77a5d33d174b5a377a42be3",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "stableAotProvenanceHash": "719f09e016f9776a108c76dfe19420360cfc26e423830e2f589d772d66d02af8",
+    "validatorSourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr",
+            "revision": "0eca86aca3ca8e3b6f2b131ec0f2679f92deefe9",
+            "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity",
+            "revision": "0c9302ffa2f420b30774423d4da8305214a78784",
+            "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus",
+            "revision": "0486098099e7e80176401267538499e611b181f2",
+            "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo",
+            "revision": "6369ae8e32b8458c3b7c4180c99e47d15d5a63b3",
+            "localPath": "."
+        }
+    },
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "patchManifestSha256": "531992eb24bfd2a1f409a0630871e85065a639bf0486207d62ebc97d2e9e5a41",
+            "compileSnapshotHash": "2192075033e0865df3896e911db9cfcca946281faff259562ddd32f245478429",
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ]
+        },
+        {
+            "patchId": "P03",
+            "patchManifestSha256": "f16bca61cb1e2fe5b5df8b2778a7c2f93e4205d9d5a84bead96aa1092afd4c09",
+            "compileSnapshotHash": "4f3c720821465c60deee85e309cc5cd2c81d6cff14d5e74a82b57b5b2b5f88b6",
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ]
+        },
+        {
+            "patchId": "P03-InitializerThrow",
+            "patchManifestSha256": "a74f398136374e9b2efb3bfc86ceb567c593532b686f99b2a1fc82f9f1ee76ef",
+            "compileSnapshotHash": "e6aae629da4e1fe6c70425ff926c889fedc88e2b03a50d46565138d9c1feac0c",
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ]
+        }
+    ]
+}

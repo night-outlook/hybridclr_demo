@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M03",
+  "kind": "OrdinaryHybridClrOffRegression",
+  "resultPassed": true,
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "0eca86aca3ca8e3b6f2b131ec0f2679f92deefe9",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "0c9302ffa2f420b30774423d4da8305214a78784",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "0486098099e7e80176401267538499e611b181f2",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "6369ae8e32b8458c3b7c4180c99e47d15d5a63b3",
+      "localPath": "."
+    }
+  },
+  "playerOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M03/M03-OrdinaryOff-6369ae8.app",
+  "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M03/M03-OrdinaryOff-6369ae8.app/Contents/Frameworks/GameAssembly.dylib",
+  "nativeLibrarySha256": "d099023186ea46f83fa93d2dafa553a4048f15f886b20d1c1ba30c2cc3d27572",
+  "buildReceipt": "ordinary-off-build-6369ae8.json",
+  "buildReceiptSha256": "9c735c874715003ac514beb4d49fa9c789d6e3f347fc842b6f3f5c19d215b356",
+  "resultReceipt": "ordinary-off-result-6369ae8.json",
+  "resultReceiptSha256": "fb73653d4ea159ea7eee1b3f3a93b44d81258d7ef61ae4fec15537d7bc7075bb",
+  "launchEvidence": "Parent-owned process launch and observed exit",
+  "processId": 8130,
+  "processExitCode": 0,
+  "hotUpdateDlls": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/HotUpdateDlls/StandaloneOSX/AssemblyShadowBaseline.HotUpdate.dll",
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M03/M03-OrdinaryOff-6369ae8.app/Contents/Resources/Data/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    }
+  ],
+  "restoredFiles": [
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+      "matchesBeforeRegression": true
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "3071bd0677b9b38921b795ec82ee6a895609d84fd1aebd6b0ac35db4a9b802df",
+      "matchesBeforeRegression": true
+    },
+    {
+      "path": "ProjectSettings/HybridCLRSettings.asset",
+      "sha256": "30e04cba084beddfad2d23e9321bb2c581f9987c8a35f3bd29ff38c950f7d5c7",
+      "matchesBeforeRegression": true
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowSettings.asset",
+      "sha256": "3a7bee2211f13a55f1ff1ea4d37ab0ccae33cd75332ddb9e44c3a8978d6ec378",
+      "matchesBeforeRegression": true
+    },
+    {
+      "path": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "matchesBeforeRegression": true
+    },
+    {
+      "path": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes.meta",
+      "sha256": "b8d1b882e36c51f9b4c165de490619893620bd81a5d58f9aa3d80e495c892872",
+      "matchesBeforeRegression": true
+    },
+    {
+      "path": "_temp/AssemblyShadow/m00-build.json",
+      "sha256": "1826ff48d2bb101f7f556aeb81ee4013e7912f0980d0b1f440d5b526db89967d",
+      "matchesBeforeRegression": true
+    }
+  ],
+  "sourceRestoreLog": "_temp/UnityExec_20260827_190814.log"
+}

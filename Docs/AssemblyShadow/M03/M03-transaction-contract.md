@@ -1,6 +1,7 @@
 # M03 transaction implementation contract
 
-Status: implementation in progress; no M03 acceptance claimed.
+Status: v4 implementation and required validation complete; independent final
+M03 review pending. This contract does not itself claim milestone acceptance.
 
 ## Boundary
 
@@ -96,7 +97,7 @@ completion freezes the state as Committed. An initializer exception produces
 FailedAfterCommit and an error that Bootstrap must treat as fatal for business
 startup; it never permits in-process baseline fallback or Abort.
 
-## Acceptance still required
+## Acceptance contract
 
 Native diagnostic schema 1 contains `enabled`, `runtimeAbiVersion`, string `state`,
 integer `stateCode`, `lastError`, `detail`, `baselineBuildId`, `patchId`, `generation`,
@@ -108,6 +109,18 @@ and `stagedCount`; metadata-begin events record the full skeleton count.
 `baselineUses` contains `name`, `kind`, `detail`, `type`, `thread`, and `timestamp`.
 These counters supplement actual managed observations; they do not replace tests
 that enumerate assemblies or observe real module-initializer side effects.
+All managed diagnostic DTO fields and their type constructors are explicitly
+preserved for Unity's linker. Type-level preservation alone does not preserve
+unused fields. M03 build capture and independent Editor replay compare the
+complete reachable DTO field schema in the exact prelink and linked DLLs;
+missing fields cannot be defaulted or reconstructed from a later snapshot.
+Native `uint64_t` and ARM64 `size_t` diagnostic scalars map to managed `ulong`,
+not signed `long`: six root counters, three event counters, and baseline-use
+thread/timestamp. JsonUtility tests cover exact numeric tokens across the
+32-bit, floating-point-exactness, signed-64 and unsigned-64 boundaries. The
+native-OFF adapter must forward the complete disabled schema from the native
+serializer, including FeatureDisabled and empty transaction arrays; a legacy
+`{"enabled":false}` stub is not valid schema-1 evidence.
 `ordinaryAssemblies` rows (`name`, `isInterpreter`) are captured through the
 ordinary native assembly registry with their own coherent `enumerationGeneration`.
 That generation can be newer than the transaction-status snapshot if commit
