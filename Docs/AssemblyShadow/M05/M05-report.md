@@ -5,8 +5,8 @@ normal/negative fixtures and independent Editor/Python input replay passed.
 The first actual Player stopped before Shadow APIs because its probe confused
 the tagged resource semantic hash with a bare byte hash. The bounded correction
 passes the new writer-to-runtime regression and all 664 Unity / 249 Python
-tests; a reviewed fresh v5 source pairing/build is next. The remaining 18
-Player cases were not launched.
+tests; independent source review passed and the v5 pairing is pinned for fresh
+builds. The remaining 18 Player cases were not launched.
 No runtime matrix or final milestone gate is claimed. M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
@@ -639,6 +639,14 @@ preserved v4 direct-compiler inventory. Configure passed in
 `_temp/UnityExec_20260828_042334.log`, selecting `M05-Baseline-v5` with the
 unchanged runtime ABI hash. This is corrective source validation, not runtime
 acceptance or permission to begin M06.
+
+The corrective source commit is
+`32fc4893919e5fa786654de5b9bbf8927d77f95d`. Independent passive review of
+`7a127d965738eb3f71a66c96c792e46bccc205e8` through that revision returned PASS,
+checking the actual source, original v4 failure, red/green/full XML hashes and
+v5 Configure log. No reviewed code was executed by the reviewer. This
+metadata-only follow-up pins that exact source and updates its inventory;
+fresh v5 build/fixture/runtime evidence and final acceptance remain pending.
 
 ## Preserved resource boundary
 

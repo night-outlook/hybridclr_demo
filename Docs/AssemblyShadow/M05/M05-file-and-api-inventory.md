@@ -11,7 +11,7 @@ commits are deliberately outside these counts. All repositories use
 | hybridclr | `7f0da36e1a978abfd22c2c195ecb2741588a5d69` | 0 / 2 / 0 | 30 / 0 |
 | il2cpp_plus | `8ceb7e40abe458dce5343bedaf250333ef9433a1` | 4 / 15 / 0 | 1200 / 34 |
 | hybridclr_unity | `b132981fa72f8259efde8e8319029b8812858bcf` | 24 / 6 / 0 | 3982 / 10 |
-| demo | `d3d1f23b11cce6c966298a03b035f71382bedbb1` | 51 / 10 / 0 | 11469 / 15 |
+| demo | `32fc4893919e5fa786654de5b9bbf8927d77f95d` | 51 / 10 / 0 | 11669 / 15 |
 
 There are no deleted source paths in these ranges. Added Unity source/scene
 assets have paired meta files. No historical M00-M04 evidence is rewritten.
