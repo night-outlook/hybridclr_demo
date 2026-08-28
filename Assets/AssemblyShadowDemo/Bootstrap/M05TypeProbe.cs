@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Globalization;
 using HybridCLR;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -462,7 +463,48 @@ namespace AssemblyShadowDemo
             Capture(result, "allocation-failure");
             AssemblyShadowDiagnostics diagnostics = result.snapshots.Last().diagnostics;
             result.checks.Add(new Check { name = "allocation-guard", actual = diagnostics.lastError.ToString(), expected = ((int)AssemblyShadowErrorCode.ResourceAbiMismatch).ToString(), actualCode = diagnostics.lastError, expectedCode = (int)AssemblyShadowErrorCode.ResourceAbiMismatch });
-            Require(diagnostics.lastError == (int)AssemblyShadowErrorCode.ResourceAbiMismatch && diagnostics.detail != null && diagnostics.detail.Contains("ShadowLayoutMismatch"), "M05 layout mismatch diagnostic was not the native allocation guard.");
+            Require(diagnostics.lastError == (int)AssemblyShadowErrorCode.ResourceAbiMismatch && IsPreciseAllocationGuardDetail(diagnostics.detail), "M05 layout mismatch diagnostic was not the native allocation guard.");
+        }
+
+        private static bool IsPreciseAllocationGuardDetail(string detail)
+        {
+            const string site = " Site=Object::NewAllocSpecific";
+            string typeKey = "type(" + TypeKeyPart(Internal.ToLowerInvariant()) + "/" +
+                             TypeKeyPart("AssemblyA.Implementation.Internal") + "/" +
+                             TypeKeyPart("VersionedPrefabComponent") + "@0)";
+            string fieldGuard = "ShadowFieldLayoutMismatch " + typeKey + site;
+            if (detail == fieldGuard) return true;
+
+            string sizePrefix = "ShadowLayoutMismatch " + typeKey + site + " BaselineSize=";
+            if (detail == null || !detail.StartsWith(sizePrefix, StringComparison.Ordinal)) return false;
+            string sizes = detail.Substring(sizePrefix.Length);
+            const string activeMarker = " ActiveSize=";
+            int separator = sizes.IndexOf(activeMarker, StringComparison.Ordinal);
+            if (separator <= 0 || separator + activeMarker.Length >= sizes.Length) return false;
+            uint baselineSize, activeSize;
+            if (!TryBoundedPositiveUInt(sizes.Substring(0, separator), out baselineSize) ||
+                !TryBoundedPositiveUInt(sizes.Substring(separator + activeMarker.Length), out activeSize)) return false;
+            return baselineSize != activeSize;
+        }
+
+        private static string TypeKeyPart(string value)
+        {
+            return Encoding.UTF8.GetByteCount(value).ToString(CultureInfo.InvariantCulture) + ":" + value;
+        }
+
+        private static bool TryBoundedPositiveUInt(string value, out uint parsed)
+        {
+            parsed = 0;
+            if (string.IsNullOrEmpty(value)) return false;
+            if (value.Length > 1 && value[0] == '0') return false;
+            foreach (char character in value)
+            {
+                if (character < '0' || character > '9') return false;
+                uint digit = (uint)(character - '0');
+                if (parsed > (uint.MaxValue - digit) / 10U) return false;
+                parsed = parsed * 10U + digit;
+            }
+            return parsed != 0;
         }
 
         private static void RunFeatureOff(Result result, Input input)

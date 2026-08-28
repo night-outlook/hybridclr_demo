@@ -537,6 +537,40 @@ class NativePhaseTests(unittest.TestCase):
             bad=copy.deepcopy(result);mutate(bad)
             with self.assertRaises(VerificationError):self.check(bad,fixture)
 
+    def test_field_guard_passes_full_allocation_failure_phase(self):
+        result,fixture=self.result("layout")
+        key = type_key(v.INTERNAL, [("AssemblyA.Implementation.Internal", "VersionedPrefabComponent", 0)])
+        result["snapshots"][-1]["diagnostics"]["detail"] = "ShadowFieldLayoutMismatch " + key + " Site=Object::NewAllocSpecific"
+        self.check(result,fixture)
+        for mutate in (
+            lambda r:r["snapshots"][-1]["diagnostics"].update(lastError=15),
+            lambda r:r["snapshots"][-1]["diagnostics"].update(detail="ShadowFieldLayoutMismatch " + key + " Site=Object::Other"),
+            lambda r:r["snapshots"][-1]["diagnostics"].update(detail="ShadowFieldLayoutMismatch " + key.replace("VersionedPrefabComponent", "OtherComponent") + " Site=Object::NewAllocSpecific"),
+            lambda r:r["snapshots"][-1]["diagnostics"].update(detail="ShadowFieldLayoutMismatch " + key + " Site=Object::NewAllocSpecific\n"),
+        ):
+            bad=copy.deepcopy(result);mutate(bad)
+            with self.assertRaises(VerificationError):self.check(bad,fixture)
+
+    def test_layout_field_guard_matches_actual_detail_and_rejects_near_misses(self):
+        key = type_key(v.INTERNAL, [("AssemblyA.Implementation.Internal", "VersionedPrefabComponent", 0)])
+        field = "ShadowFieldLayoutMismatch " + key + " Site=Object::NewAllocSpecific"
+        self.assertTrue(v._precise_allocation_guard(field))
+        self.assertTrue(v._precise_allocation_guard(
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=32 ActiveSize=40"))
+        for detail in (
+            "ShadowFieldLayoutMismatch " + key + " Site=Object::Other",
+            field + " BaselineSize=32 ActiveSize=40",
+            "ShadowFieldLayoutMismatch " + key.replace("VersionedPrefabComponent", "OtherComponent") + " Site=Object::NewAllocSpecific",
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=32 ActiveSize=32",
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=032 ActiveSize=32",
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=032 ActiveSize=40",
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=0 ActiveSize=40",
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=4294967296 ActiveSize=40",
+            "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=10000000000 ActiveSize=40",
+            "ResourceAbiMismatch " + key + " Site=Object::NewAllocSpecific",
+        ):
+            self.assertFalse(v._precise_allocation_guard(detail), detail)
+
     def test_ordered_check_values_are_not_self_authorizing(self):
         rows=[dict(name="commit",actual="BaselineAlreadyUsed",expected="BaselineAlreadyUsed",actualCode=15,expectedCode=15)]
         v.verify_checks(rows,[("commit","BaselineAlreadyUsed",15)],"check")

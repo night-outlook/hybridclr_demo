@@ -785,6 +785,67 @@ not as a substitute for v6 acceptance.
 Resolver-delegate overloads remain intentionally unsupported by policy; this
 matrix does not claim their runtime coverage.
 
+## V5 remaining diagnostics and allocation-guard correction
+
+Separate fresh-process diagnostic sweeps exercised the remaining nonbenchmark
+modes against the unchanged v5 inputs. Eleven additional cases passed their
+Player assertions: T05-03-P01/P03, T05-04-EarlyType, T05-05-P01/P03,
+T05-06-P01, T05-07-P03, T05-08-P01, T05-10-P01/P03 and T05-11-FeatureOff.
+The P01 resource case completed actual old SO/prefab/scene loading and reload.
+These launch-driver checks are not a complete strict-verifier acceptance run.
+The three launch receipts are retained under
+`M05V5RemainingDiagnostic-XEFiFxyP/Players`,
+`M05V5TailDiagnostic-Qr2YMDj8/Players` and
+`M05V5FinalModesDiagnostic-xe8zEebl/Players`, all beneath
+`_temp/AssemblyShadow`. Their SHA-256 values are respectively
+`9da49e825b23c6255fc062eebe3e4402acec9ff7c0525274ade107c30a19442e`,
+`9d69d205b37a6c4fc8d4b6d43a713b43ce6113f11980f6b21ee571c5375ed6fb`
+and `3c2b6395649090b41c7ad3e8b4cae6d408b4eb866f1935b179af63ccf8b55ac4`.
+Their watched inputs were unchanged.
+
+T05-09 (PID 5734) exposed a probe/verifier assumption, not a missing native
+guard. Stage/Validate/Commit succeeded; allocation threw, no object was returned,
+and native state became FailedAfterCommit with lastError 16. The exact detail
+was `ShadowFieldLayoutMismatch` for the byte-bound
+`VersionedPrefabComponent` type key at `Object::NewAllocSpecific`. The old
+managed check only accepted `ShadowLayoutMismatch`, and the old Python check
+also required unequal total sizes. The correction accepts either exact native
+field-layout reason or the existing precise size reason. Both still require
+the exact type/site/code/lifecycle; malformed or unrelated diagnostics fail.
+The failed v5 result is preserved, not relabeled as passing.
+
+Focused Editor tests passed 15/15; full guarded Editor tests passed 667/667,
+zero failed/skipped/inconclusive, in 87.019 seconds. The respective XML roots
+are `EditorTests-c725bc5c8b604b028ae1ac2c82c87a9a` and
+`EditorTests-1a1591088764420d8faf24df46f62e6a` beneath `_temp/AssemblyShadow`;
+XML SHA-256 values are
+`38fcb8f76f76da125bf0c0a02eee5ce3f2a937e95481a308b277a9cf4eb09e99` and
+`eb5ecfebf04cc56c00b438391b3ab5dedb8033df57b1c249b68f7ab91277116f`.
+The full Python suite passed 251/251 in 33.740 seconds using the preserved
+v5 compiler inventory and unchanged raw-admission configuration. The focused
+allocation regression proves the old verifier rejects the actual field reason;
+positive and adversarial phase/helper tests cover the corrected policy.
+
+T05-08-P03 (PID 5529) remains a genuine resource failure: the active component
+is instantiated, but the old serialized `DemoValue` reference is null. Its
+result hash is
+`a4a6f74efe5eea0739b6c9c5a3f57b3c5334c53088e3db34d83629c0a3d69541`.
+Read-only debugger observations of fresh owned v5 Players show `dataReference`
+correctly points to the active ScriptableObject, while the `value` slot is zero.
+The actual resource window makes no `Type::IsEqualToType` call, and never
+allocates or enumerates `DemoValue`; that proposed equality cause is excluded.
+In PID 8556, all nine field-serialization decisions for `value` and all nine for
+`dataReference` succeed, including their SerializeField check. The active
+DemoValue class has the expected Serializable flags (`0x102101`). This excludes
+field admission, attribute routing and those class flags, and narrows the fault
+to later nested-object command admission before allocation. The byte-bound
+observation record is
+`_temp/AssemblyShadow/M05V5SerializationTrace-vewuQXGD/serialization-observations.json`,
+SHA-256 `ce057388de89345865ac1ed41ccff5ca8371133dd6683a307522a0f19675fe6a`.
+It records no target expressions/data writes, no observation errors and
+unchanged watched inputs. These diagnostics do not accept M05, and v6 remains
+unfrozen until the resource failure is resolved.
+
 ## Preserved resource boundary
 
 The frozen M01 manifest remains SHA-256

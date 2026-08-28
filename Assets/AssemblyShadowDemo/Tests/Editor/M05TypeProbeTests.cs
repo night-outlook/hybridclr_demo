@@ -174,6 +174,36 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
+        public void LayoutGuardAcceptsNativeFieldDetailAndOnlyBoundedSizeDetail()
+        {
+            Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M05TypeProbe", true);
+            MethodInfo method = probe.GetMethod("IsPreciseAllocationGuardDetail", BindingFlags.NonPublic | BindingFlags.Static);
+            Assert.IsNotNull(method);
+            Func<string, bool> accepts = detail => (bool)method.Invoke(null, new object[] { detail });
+            string key = "type(33:assemblya.implementation.internal/33:AssemblyA.Implementation.Internal/24:VersionedPrefabComponent@0)";
+            string field = "ShadowFieldLayoutMismatch " + key + " Site=Object::NewAllocSpecific";
+            Assert.IsTrue(accepts(field));
+            Assert.IsTrue(accepts("ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=32 ActiveSize=40"));
+            Assert.IsTrue(accepts("ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=4294967295 ActiveSize=1"));
+            foreach (string detail in new[] {
+                null,
+                "",
+                "ShadowFieldLayoutMismatch " + key + " Site=Object::Other",
+                "shadowFieldLayoutMismatch " + key + " Site=Object::NewAllocSpecific",
+                "ShadowFieldLayoutMismatch " + key + " Site=Object::NewAllocSpecific\n",
+                field + " BaselineSize=32 ActiveSize=40",
+                "ShadowFieldLayoutMismatch " + key.Replace("VersionedPrefabComponent", "OtherComponent") + " Site=Object::NewAllocSpecific",
+                "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=32 ActiveSize=32",
+                "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=032 ActiveSize=32",
+                "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=032 ActiveSize=40",
+                "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=0 ActiveSize=40",
+                "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=4294967296 ActiveSize=40",
+                "ShadowLayoutMismatch " + key + " Site=Object::NewAllocSpecific BaselineSize=10000000000 ActiveSize=40",
+                "ResourceAbiMismatch " + key + " Site=Object::NewAllocSpecific"
+            }) Assert.IsFalse(accepts(detail), detail);
+        }
+
+        [Test]
         public void WitnessesRemainGuardedAndPrefabLayoutChangeIsTheOnlyExistingSourceEdit()
         {
             string[] witnesses = {

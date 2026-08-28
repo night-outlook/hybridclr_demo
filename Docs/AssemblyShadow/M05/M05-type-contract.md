@@ -154,6 +154,17 @@ not an admitted deployment patch or a waiver of resource ABI validation. Normal
 fixtures must pass the complete build policy before activation. Verify the
 guard against actual bad bytes, not only a label or synthetic result.
 
+The allocation failure must name the exact component type key and
+`Site=Object::NewAllocSpecific`, report `ResourceAbiMismatch` (16), leave the
+transaction `FailedAfterCommit`, and follow an actual throwing allocation with
+no returned object. Two precise native reasons satisfy this boundary:
+`ShadowFieldLayoutMismatch` for incompatible declared fields, or
+`ShadowLayoutMismatch` with canonical positive, unequal uint32 baseline/active
+sizes. A field-layout rejection does not need unequal total instance sizes.
+Wrong type, site, code, reason, extra text, equal sizes, noncanonical numbers or
+overflow fail closed. The managed probe and offline phase verifier apply the
+same rules; neither treats a generic exception as guard evidence.
+
 The pinned compiler also compares Editor and Player serialized field schemas.
 An added serialized field is rejected before `CompilePlayerScripts` returns
 assemblies and cannot supply the runtime negative test. The negative fixture

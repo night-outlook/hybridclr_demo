@@ -38,6 +38,24 @@ REQUIRED_MODES = frozenset([f"T05-{n:02d}-{p}" for n in (1, 2, 3, 5, 8, 10) for 
                            ["T05-04-EarlyType", "T05-06-P01", "T05-07-P03", "T05-09-LayoutMismatch",
                             "T05-11-FeatureOff", "T05-12-BenchmarkOn", "T05-13-BenchmarkOff"])
 OFF_MODES = {"T05-11-FeatureOff", "T05-13-BenchmarkOff"}
+
+
+def _precise_allocation_guard(detail):
+    namespace, leaf = RESOURCE_COMPONENT.rsplit(".", 1)
+    part = lambda text: str(len(text.encode("utf-8"))) + ":" + text
+    key = "type(" + part(INTERNAL.casefold()) + "/" + part(namespace) + "/" + part(leaf) + "@0)"
+    site = " Site=Object::NewAllocSpecific"
+    if detail == "ShadowFieldLayoutMismatch " + key + site:
+        return True
+    match = re.fullmatch(re.escape("ShadowLayoutMismatch " + key + site) +
+                         r" BaselineSize=([0-9]+) ActiveSize=([0-9]+)", detail or "")
+    if match is None:
+        return False
+    if any(len(value) > 10 or (len(value) > 1 and value[0] == "0") for value in match.groups()):
+        return False
+    baseline_size, active_size = int(match[1]), int(match[2])
+    return (0 < baseline_size < 1 << 32 and 0 < active_size < 1 << 32 and
+            baseline_size != active_size)
 NEGATIVE_MODES = {"T05-04-EarlyType", "T05-09-LayoutMismatch"}
 RESULT_FIELDS = "schemaVersion processId milestone mode result error unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash il2cpp fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 typeProofPath typeProofSha256 patchId patchManifestPath patchManifestSha256 compileSnapshotHash rawDiagnosticsPath rawDiagnosticsSha256 moduleMvidObservationPolicy businessMarker configure begin stage validate commit abort stateCode state diagnosticsCode executionModeCode executionMode allocationException nativeDiagnosticsJson stageOrder checks snapshots actualLogicalAssemblies assemblyObservations typeObservations typeResolutionObservations typeEnumerations memberObservations identityObservations assignabilityObservations loadObservations sceneObservations stageResults benchmark ordinary"
 RESULT_ARRAYS = "stageOrder checks snapshots actualLogicalAssemblies assemblyObservations typeObservations typeResolutionObservations typeEnumerations memberObservations identityObservations assignabilityObservations loadObservations sceneObservations stageResults"
@@ -586,12 +604,8 @@ def verify_phases(result, manifest, player, closure, staged_identities, path):
             _exact([event["name"] for event in d["events"] if event["kind"] == kind], closure if published else [], path, "actual " + kind)
         require(sum(event["kind"] == "active-published" for event in d["events"]) == int(published), f"{path}.{phase}: premature/duplicate publication")
         if phase == "allocation-failure":
-            namespace,leaf=RESOURCE_COMPONENT.rsplit(".",1)
-            part=lambda text:str(len(text.encode("utf-8")))+":"+text
-            key="type("+part(INTERNAL.casefold())+"/"+part(namespace)+"/"+part(leaf)+"@0)"
-            match=re.fullmatch(re.escape("ShadowLayoutMismatch "+key+" Site=Object::NewAllocSpecific")+r" BaselineSize=([0-9]+) ActiveSize=([0-9]+)",d["detail"])
-            require(match is not None and 0<int(match[1])<1<<32 and 0<int(match[2])<1<<32 and match[1]!=match[2],
-                    f"{path}: layout failure is not the precise byte-bound component/allocation site/size guard")
+            require(_precise_allocation_guard(d["detail"]),
+                    f"{path}: layout failure is not the precise byte-bound component/allocation site/guard")
         else: require(d["detail"] == "", f"{path}.{phase}: unexpected native failure detail")
     require(result["stateCode"] == "Success" and result["state"] == snapshots[-1]["diagnostics"]["state"] and
             result["diagnosticsCode"] == "Success", f"{path}: final queried state/diagnostics code differs")
