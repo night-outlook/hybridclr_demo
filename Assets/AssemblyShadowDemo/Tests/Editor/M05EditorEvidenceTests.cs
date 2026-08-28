@@ -8,7 +8,9 @@ using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using HybridCLR.Editor.AssemblyShadow;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEditor.Build;
+using UnityEditor.Build.Player;
 using FieldAttributes = dnlib.DotNet.FieldAttributes;
 using MethodAttributes = dnlib.DotNet.MethodAttributes;
 using TypeAttributes = dnlib.DotNet.TypeAttributes;
@@ -17,6 +19,57 @@ namespace AssemblyShadowDemo.EditorTests
 {
     public sealed class M05EditorEvidenceTests
     {
+        [Test] public void LayoutFixtureUsesPublicPlayerCompilerWithUnchangedSerializedFields()
+        {
+            // This is a compiler regression, not a deployable patch or runtime
+            // result. Preserve returned bytes independently of Bee's lifetime.
+            string root = Path.GetFullPath("_temp/AssemblyShadow/M05LayoutCompilerRegression-" + Guid.NewGuid().ToString("N"));
+            string output = Path.Combine(root, "CompilerOutput");
+            Directory.CreateDirectory(output);
+            var target = EditorUserBuildSettings.activeBuildTarget;
+            string[] defines = ((string[])Invoke(typeof(M05Build), "ExpectedDefines", "P01"))
+                .Concat(new[] { "ASSEMBLY_SHADOW_M05_LAYOUT_MISMATCH" }).ToArray();
+            var settings = new ScriptCompilationSettings {
+                group = BuildPipeline.GetBuildTargetGroup(target), target = target,
+                options = ScriptCompilationOptions.DevelopmentBuild,
+                extraScriptingDefines = ShadowReflectionBindingEvidence.CompilationDefines(defines),
+            };
+            var compilation = PlayerBuildInterface.CompilePlayerScripts(settings, output);
+            Assert.IsNotNull(compilation.assemblies);
+            Assert.Greater(compilation.assemblies.Count, 0, "Unity must accept the Player TypeDB; failed compiler output is not fixture provenance.");
+            string[] emitted = compilation.assemblies.Select(path => File.Exists(path) ? Path.GetFullPath(path) : Path.GetFullPath(Path.Combine(output, path))).ToArray();
+            var captured = (string[])Invoke(typeof(M05RawTypeAdmissionBuild), "CaptureCompilerOutputs", output, Path.Combine(root, "Assemblies"), emitted);
+            string candidate = captured.Single(path => Path.GetFileName(path) == "AssemblyA.Implementation.Internal.dll");
+            using (var before = ModuleDefMD.Load(Assembly.Load("AssemblyA.Implementation.Internal").Location))
+            using (var after = ModuleDefMD.Load(candidate))
+            {
+                const string name = "AssemblyA.Implementation.Internal.VersionedPrefabComponent";
+                var baseline = before.Find(name, false);
+                var changed = after.Find(name, false);
+                Assert.IsNotNull(baseline); Assert.IsNotNull(changed);
+                var added = changed.Fields.Single(field => field.Name == "m05BadLayoutField");
+                Assert.IsTrue(added.IsPrivate && !added.IsStatic && added.IsNotSerialized);
+                Assert.AreEqual("System.Int32", added.FieldType.FullName);
+                Assert.IsFalse(added.CustomAttributes.Any(attribute => attribute.TypeFullName == "UnityEngine.SerializeField"));
+                Assert.AreEqual(baseline.Fields.Count + 1, changed.Fields.Count);
+                foreach (var field in baseline.Fields)
+                {
+                    var actual = changed.Fields.Single(item => item.Name == field.Name);
+                    Assert.AreEqual(field.FieldType.FullName, actual.FieldType.FullName);
+                    Assert.AreEqual(field.Attributes, actual.Attributes);
+                    CollectionAssert.AreEqual(field.CustomAttributes.Select(item => item.TypeFullName), actual.CustomAttributes.Select(item => item.TypeFullName));
+                }
+                Assert.IsTrue(changed.Interfaces.Any(item => item.Interface.FullName == "UnityEngine.ISerializationCallbackReceiver"));
+                foreach (string callback in new[] { "OnBeforeSerialize", "OnAfterDeserialize" })
+                {
+                    var method = changed.Methods.Single(item => item.Name == callback);
+                    Assert.IsTrue(method.IsPublic && !method.IsStatic && method.HasBody);
+                    Assert.IsTrue(method.Body.Instructions.Any(instruction => instruction.Operand is IField && ((IField)instruction.Operand).FullName == added.FullName));
+                }
+            }
+            UnityEngine.Debug.Log("[AssemblyShadow M05] Public Player compiler accepted callback-state layout fixture: " + candidate + " SHA256=" + ShadowHash.File(candidate));
+        }
+
         [Test] public void RawCompilerCaptureRetainsOnlyReturnedInputsAfterProducerCleanup()
         {
             string root = Temp();

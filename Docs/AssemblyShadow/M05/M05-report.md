@@ -1,10 +1,13 @@
 # M05 active types, reflection and cache evidence
 
-Status: M05 is not accepted. The v2 native-ON Player/baseline and independent
-linked-output replay passed. The generic-literal fixture-policy defect now has
-a committed correction with 661 passing Unity tests and independent corrective
-source review PASS; fresh v3 installation/build remains pending. No fixture replay,
-complete runtime matrix or final milestone gate is claimed. M06 remains closed.
+Status: M05 is not accepted. The v3 native-ON Player/baseline, independent
+linked-output replay and normal P01/P03 builds passed. Unity rejected the
+original negative fixture's serialized schema before producing a usable
+compiler snapshot. The corrected callback-state fixture passes the real Player
+compiler regression and all 662 Unity / 249 Python tests. Fresh v4 source
+review, pairing and builds are pending.
+No complete fixture replay, runtime matrix or final milestone gate is claimed.
+M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
 [raw-query contract](M05-raw-type-admission.md) govern implementation and the
@@ -469,6 +472,81 @@ executing reviewed code. No actionable finding remained. This permits the
 fresh v3 source pairing to be installed and built, not runtime acceptance.
 The source pin now identifies that exact reviewed demo revision; this report
 and inventory refresh is a later metadata-only commit.
+
+## V3 build and negative-fixture compiler boundary
+
+Fresh v3 declaration generation passed in `_temp/UnityExec_20260828_030518.log`.
+The preserved direct compiler root is
+`_temp/AssemblyShadow/M05RawAdmissionCompiler-7b0fbb2c340b4812a17046c5c2bc906d/Assemblies`.
+All 25 sites retain the same configuration hash. The real-compiler smoke and
+full 249-test Python suite passed, with zero skips. Repeat installation in
+`_temp/UnityExec_20260828_030559.log` produced identical receipt hash
+`8eaade52a789baf0905cb0e2b49b1d168e4cd9b01c20cb9e061d3b3df8e2ed48`.
+Full installed verification passed for 940 source files and 942 installed
+files, including demo source and native ON. Preflight passed in
+`_temp/UnityExec_20260828_030728.log`.
+
+The native-ON build passed in `_temp/UnityExec_20260828_030825.log`, including
+the immutable M01 semantic/resource checks. Snapshot
+`_temp/AssemblyShadow/M05PlayerInputs-8284e1028e47432387bd8172a40148ed`
+has hash `ea13a119f62973b9fc099d7901087c8180e5e12c38070d093387803d992588c5`,
+build GUID `b40a3586fbf5496eb278ab2979fedffe`, and actual native library hash
+`3ac89b5ccd52a15cc7baa65173f3075fb1540d4e779cc9bedd5d01e54391eabc`.
+The Player receipt, type proof and baseline manifest hashes are respectively
+`9ad7b7ed163899b341e562dce689930eeaed63df6a929c994f4b8421a9df4b21`,
+`ebcec8ae4f97d08039f58509c2926117720975c0781cf2aea6c0c9c6ec71160d`,
+and `0dc224d0798bbe05ee7aa8e6ab33c878624ebd35e4b8f14036f6863e5b399e01`.
+The independent replay again passed 25 admissions, 60 linked assemblies,
+5,865 TypeDefs, six method witnesses and native metadata 31, with inputs
+unchanged. Its record is
+`_temp/AssemblyShadow/M05Integration-8IdZleUf/v3-on-linked-replay.json`.
+
+The next fixture run, `_temp/UnityExec_20260828_031532.log`, completed P01 and
+P03 under `_temp/AssemblyShadow/M05Fixtures-10593064976440438a94cbc598f125af`.
+Their manifest hashes are
+`a2cc281d84ead22092d71987b2af3912207e0c6cbeeff4e5acc3a383a3e194d1` and
+`fda07e5c36718a8feda63b58807858d479d7110d9563032234e3eb4ff88f0d49`.
+It then failed on LayoutMismatch: Unity found the extra serialized
+`m05BadLayoutField`, rejected Editor/Player schema parity and returned no
+accepted Player assemblies. C# emission alone is not a compiler snapshot.
+There is no top-level fixture manifest/replay and no runtime acceptance.
+The failure log hash is
+`10d6487fff6f6de42f6facba83d6ab6f7b71af99d07a7f20a40c678386f857b8`.
+
+Pinned API inspection found no supported skip-TypeDB flag. Rather than invoking
+an internal API or relabeling independent compiler output, the corrected
+test-only fixture keeps the existing serialized schema, adds nonserialized
+instance state and consumes it in serialization callbacks. Existing resource
+tooling must reject that callback state as `UnknownRequiresReview` (external
+DLL-only error `ResourceRebuildRequired`); this is not a hard serialized-field
+diff claim. The actual extra instance field still requires an independent
+native allocation failure. Neither production compiler nor policy code changed.
+
+A new regression invokes the real public `CompilePlayerScripts`, requires
+nonempty successful output, preserves its returned DLL/PDB bytes outside Bee's
+producer directory and inspects the actual fields, attributes and callback IL.
+The focused guarded run passed one test with zero failures/skips at
+`_temp/AssemblyShadow/EditorTests-72eea618dd7d49a8ade8bb7d2aac4596/results.xml`.
+Its XML hash is
+`0189de0bb186a5f9bffe788d5593f2e0c5b6e2001259a1d3bc79eb5bf6b33da7`.
+The added field/callbacks remain absent from baseline, P01 and P03 builds unless
+the separate layout-mismatch define is present.
+
+The subsequent full guarded Unity run passed 662/662, zero failed/skipped or
+inconclusive cases, in 84.721 seconds. XML:
+`_temp/AssemblyShadow/EditorTests-5d7892f3ca644847a6e65e45ec7b5677/results.xml`,
+SHA-256 `a2dd0c9af4bea52ac6144cc5bc8a933df5aaceaee975c191f12a7b2bc62a6ecf`.
+The full Python suite passed 249/249 in 32.829 seconds, zero skips, using the
+preserved v3 compiler inputs. Witness and test source hashes are respectively
+`35a7c0ce8821c751e53453211233706ebc00c75b9d7efc3d2f442fc12967ebee` and
+`9fb723bddfe922f834e90d2105c9a4f9fb4baa1978f269d9ce4721336416422f`.
+Configure passed in `_temp/UnityExec_20260828_033628.log`, selecting
+`M05-Baseline-v4` with the unchanged runtime ABI hash. Only the baseline ID and
+two nonsemantic empty-value whitespace lines changed in the scene; the latter
+were restored before source freeze.
+
+These are source/compiler checks only. Committed source review and fresh v4
+ON/OFF/fixture/runtime evidence remain necessary; v3 artifacts stay immutable.
 
 ## Preserved resource boundary
 

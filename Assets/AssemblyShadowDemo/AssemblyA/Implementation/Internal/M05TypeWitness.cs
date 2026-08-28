@@ -84,9 +84,16 @@ namespace AssemblyA.Implementation.Internal
 #if ASSEMBLY_SHADOW_M05 && ASSEMBLY_SHADOW_M05_LAYOUT_MISMATCH
 namespace AssemblyA.Implementation.Internal
 {
-    public sealed partial class VersionedPrefabComponent
+    public sealed partial class VersionedPrefabComponent : ISerializationCallbackReceiver
     {
-        [SerializeField] private int m05BadLayoutField = 99;
+        // Keep Unity's Editor/Player serialized schema identical so the public
+        // compiler can emit this test-only DLL. The native instance layout still
+        // changes, and callback access to unproven nonserialized state must be
+        // rejected by the normal DLL-only resource policy before deployment.
+        [NonSerialized] private int m05BadLayoutField = 99;
+
+        public void OnBeforeSerialize() { ++m05BadLayoutField; }
+        public void OnAfterDeserialize() { m05BadLayoutField = 99; }
     }
 }
 #endif

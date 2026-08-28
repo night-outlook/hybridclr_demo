@@ -143,6 +143,19 @@ not an admitted deployment patch or a waiver of resource ABI validation. Normal
 fixtures must pass the complete build policy before activation. Verify the
 guard against actual bad bytes, not only a label or synthetic result.
 
+The pinned compiler also compares Editor and Player serialized field schemas.
+An added serialized field is rejected before `CompilePlayerScripts` returns
+assemblies and cannot supply the runtime negative test. The negative fixture
+therefore adds one private nonserialized Int32 consumed by guarded serialization
+callbacks. Its ordinary serialized fields stay unchanged, but its native
+instance layout changes. The existing resource policy classifies the callback
+state as `UnknownRequiresReview` and rejects DLL-only output with the external
+`ResourceRebuildRequired` code. This is fail-closed callback-state evidence, not
+a claim of a hard serialized-field diff. The separate runtime allocation must
+still fail on the actual layout. The public Player compiler, source snapshots,
+normal patch builder and all policy checks remain unchanged; no internal
+compiler bypass, standalone-DLL relabeling or fabricated snapshot is permitted.
+
 ## Unity evidence and integration risks
 
 M01 proves selected native symbols and actual asset/object identities, but does
