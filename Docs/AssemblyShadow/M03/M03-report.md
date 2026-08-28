@@ -1,14 +1,11 @@
 # M03 native transaction and staging
 
-Status: v4 diagnostic-contract corrections are committed and independently
-reviewed. The paired installation, native-ON baseline and native regressions pass;
-fresh fixtures/replay and the complete 16-mode Player matrix also pass.
-V3's 16 processes exited zero, but strict evidence checks exposed unsigned
-diagnostic overflow and an incomplete native-OFF adapter response; v3 is not
-accepted. Ordinary HybridCLR OFF regression and exact restoration also pass;
-the final independent milestone review remains pending.
-Earlier integration failures are retained below as diagnostic evidence.
-No M03 milestone tag or permission to enter M04 is claimed here.
+Status: M03 v4 accepted on 2026-08-27. The complete 16-mode real Player matrix,
+Editor/tooling/native checks, ordinary HybridCLR OFF regression, exact restoration
+and both independent full milestone reviews pass. M04 entry is approved.
+The [review record](M03-review.md) fixes the reviewed boundary and limitations.
+Local tag: `assembly-shadow-m03-transaction` in all four repositories; no push.
+Earlier v1-v3 failures remain diagnostic history, not accepted runtime evidence.
 
 ## V4 executable source and correction validation
 
@@ -107,9 +104,9 @@ longer invents missing fields.
 `verify-m03-results.py` passed all sixteen required modes, bound to the exact
 ON/OFF build GUIDs, native libraries, immutable input snapshots, patch bytes,
 baseline and Editor replay. The [verification receipt](Evidence/verification-6369ae8.json)
-is a complete transaction-matrix result, not yet the whole milestone verdict:
-ordinary HybridCLR OFF regression and restored-source audit subsequently passed,
-while final independent review is pending. No verifier expectation was weakened.
+is the complete transaction-matrix result. Ordinary HybridCLR OFF regression,
+restored-source audit and both independent full reviews subsequently passed,
+completing the M03 acceptance boundary. No verifier expectation was weakened.
 
 ## Ordinary HybridCLR OFF regression and restoration
 
@@ -376,9 +373,9 @@ immutable validation receipt. `Tools/AssemblyShadow/README.md` records commands.
 The verifier must require all modes, bind results to actual Player build GUIDs,
 native SHA, fixture/baseline/patch snapshots and Editor replay, and reject
 tampering. Passing synthetic verifier tests cannot establish runtime acceptance.
-Ordinary HybridCLR OFF regression, restored-ON installation verification and the
-paired-source audit have passed for v4 as recorded above. The independent
-milestone review remains the final required acceptance step.
+Ordinary HybridCLR OFF regression, restored-ON installation verification,
+paired-source audit and both independent milestone reviews have passed for v4
+as recorded above and in the linked review record.
 
 ## V1 pre-build evidence (historical)
 
@@ -481,4 +478,6 @@ evidence. No Windows or Android result is inferred from macOS ARM64.
 The v4 real Player matrix, native/Editor/tooling tests and ordinary OFF regression
 pass. The retained-byte observations above are not total-memory or runtime
 performance-budget measurements; those broader benchmarks remain M11 scope.
-An independent full M03 verdict is still pending, so M04 entry is not yet approved.
+Both independent full M03 reviews returned PASS. M04 entry is approved; it must
+establish active Assembly/AssemblyRef consistency without weakening these
+transaction, frozen-resource, source-provenance or native-OFF guarantees.

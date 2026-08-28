@@ -1,7 +1,7 @@
 # M03 transaction implementation contract
 
-Status: v4 implementation and required validation complete; independent final
-M03 review pending. This contract does not itself claim milestone acceptance.
+Status: v4 implementation and required validation complete; both independent
+full M03 reviews passed. See `M03-review.md` for the immutable acceptance boundary.
 
 ## Boundary
 

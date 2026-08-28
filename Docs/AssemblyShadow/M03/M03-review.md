@@ -2,17 +2,67 @@
 
 ## Final milestone verdict
 
-Pending. No final M03 PASS or permission to enter M04 is recorded yet. The
-reviewed source corrections below do not replace real Player acceptance.
+PASS for M03 on 2026-08-27. Both independent reviewers returned PASS for their
+complete assigned milestone boundaries, with no actionable findings. M04 entry
+is approved; neither M04-M07 nor the full project is accepted by this verdict.
 
-The immutable executable-source boundary for the next review is:
+The reviewed immutable executable-source boundary is:
 
 - HybridCLR: `assembly-shadow-m02-tooling` through `0eca86aca3ca8e3b6f2b131ec0f2679f92deefe9`.
 - IL2CPP: `assembly-shadow-m02-tooling` through `0486098099e7e80176401267538499e611b181f2`.
 - Package: `assembly-shadow-m02-tooling` through `0c9302ffa2f420b30774423d4da8305214a78784`.
 - Demo: `assembly-shadow-m02-tooling` through `6369ae8e32b8458c3b7c4180c99e47d15d5a63b3`.
 
-Later pin/report/evidence-only commits do not alter that executable source.
+The complete demo evidence/metadata target was
+`da22b3692a3ffb2fe0f3b69fce843c6a2e5cc3a0`. Later pin/report/evidence-only commits
+do not alter the executable source. This closeout changes only review/status
+documentation. The local four-repository milestone tag is
+`assembly-shadow-m03-transaction`; the demo tag includes this closeout record.
+
+### Full native/runtime review
+
+Reviewer: `m03_transaction_review_gpt56sol_high_1`, independent and read-only.
+Verdict: PASS. The review covered the complete M02-to-M03 runtime/native ranges,
+not just the last OFF correction. It verified private staging and retained-byte
+lifetime, terminal-state sealing, missing-closure rejection, raw-owner facade
+authorization, reserved atomic publication, lock ordering, initializer timing
+and FailedAfterCommit, recursive private visibility, minimum Usage Guard,
+InternalCall exception/marshaling/OFF behavior, prototype retirement, and no
+added fields in upstream ABI structures.
+
+The reviewer independently reran the strict verifier against the original v4
+artifacts: all 16 modes passed. It inspected randomized staging, generation-one
+initializer/publication observations, exact failure/retry behavior, separate
+fallback, private generic and AOT Nullable visibility, ordinary OFF evidence,
+and the native ASan receipts. Receipt inspection is not a new ASan/Unity run.
+
+### Full managed/tooling/evidence review
+
+Reviewer: `m02_integrity_review_gpt56sol_high_1`, independent and read-only.
+Verdict: PASS for the complete package/demo boundary through the metadata target
+above. The reviewer independently reran all 16 strict Player cases and restored-ON
+source verification, checked exact UInt64 and all 23 OFF fields, matched all 49
+archive files to original bytes, and verified frozen-resource/ordinary-OFF
+provenance and all seven restored files. It inspected the 493/493 Editor XML and
+the archived 133/133 Python output. The requested standalone Python receipt was
+added at the expanded metadata target; executable sources remained unchanged.
+
+### Main-agent integration audit and limits
+
+All four repository trees were clean at the reviewed boundary. Exact changed-path
+inventories match Git (runtime 16, native 24, package 14, demo 77). Installed source
+verification passes with 935 source/937 installed files, native ON and verified
+demo source. The original checkout retains its four known dirty paths, its
+pre-existing Editor PID 13313 remains running, and no shadow Editor is running.
+Frozen M01 manifest/source-audit, accepted M02 native library, and fixed M00 DLL
+hashes match their pre-M03 values. No push or PR is part of this acceptance.
+
+Evidence is pinned Unity 2022.3.62f2 macOS ARM64, with bounded concurrency stress,
+not exhaustive race detection. Receipts are local unsigned evidence and depend
+on retained external artifact trees. Abort retains private metadata for process
+lifetime. Full logical resolution, reflection, execution and Unity coverage
+remain M04-M07; full memory-snapshot side-effect freedom, hostile full-IL
+validation, and platform/performance matrices are not claimed.
 
 ## Bounded native correction review
 
