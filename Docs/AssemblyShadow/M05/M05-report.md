@@ -2,8 +2,8 @@
 
 Status: M05 is not accepted. The v2 native-ON Player/baseline and independent
 linked-output replay passed. The generic-literal fixture-policy defect now has
-a committed correction with 661 passing Unity tests; independent corrective
-source review and a fresh v3 pairing remain pending. No fixture replay,
+a committed correction with 661 passing Unity tests and independent corrective
+source review PASS; fresh v3 installation/build remains pending. No fixture replay,
 complete runtime matrix or final milestone gate is claimed. M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
@@ -458,6 +458,17 @@ Guarded Configure passed in `_temp/UnityExec_20260828_025949.log`, selecting
 `M05-Baseline-v3` and the package-corrected ABI hash
 `2e3761532b293f033677580292a0654129bcf8699e88bc5f11b7da8c1a6e7353`.
 The scene's runner GUID and all other serialized values remain unchanged.
+
+The independent corrective source reviewer returned PASS for package
+`90852d8a59fa14b501cf1c6f1cc38e9d4655ee86` to
+`b132981fa72f8259efde8e8319029b8812858bcf`, and demo
+`b4a493488f3af39b033911421ac5aed313cf1c6a` to
+`d19222f70d9b255f397656a11b2ee35dd882629a`. It inspected the committed code,
+source hashes, focused log, actual 661-test XML and Configure output without
+executing reviewed code. No actionable finding remained. This permits the
+fresh v3 source pairing to be installed and built, not runtime acceptance.
+The source pin now identifies that exact reviewed demo revision; this report
+and inventory refresh is a later metadata-only commit.
 
 ## Preserved resource boundary
 

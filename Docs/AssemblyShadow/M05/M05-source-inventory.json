@@ -166,7 +166,7 @@
       "name": "hybridclr_unity",
       "path": "/Users/ah/GitHub/hybridclr/hybridclr_unity",
       "base": "deee300670730fbc4d864e82fa70e7b022581afe",
-      "target": "90852d8a59fa14b501cf1c6f1cc38e9d4655ee86",
+      "target": "b132981fa72f8259efde8e8319029b8812858bcf",
       "files": [
         {
           "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionConfiguration.cs",
@@ -249,14 +249,26 @@
         {
           "path": "Editor/AssemblyShadow/Validation/ReflectionDependencyScanner.cs",
           "status": "M",
-          "added": 22,
-          "removed": 2
+          "added": 59,
+          "removed": 3
+        },
+        {
+          "path": "Editor/AssemblyShadow/Validation/ReflectionTypeLiteralResolver.cs",
+          "status": "A",
+          "added": 248,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Validation/ReflectionTypeLiteralResolver.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
         },
         {
           "path": "Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs",
           "status": "M",
-          "added": 38,
-          "removed": 3
+          "added": 43,
+          "removed": 4
         },
         {
           "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs",
@@ -301,6 +313,18 @@
           "removed": 0
         },
         {
+          "path": "Tests/Editor/AssemblyShadow/M05TypeLiteralAcquisitionTests.cs",
+          "status": "A",
+          "added": 406,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/M05TypeLiteralAcquisitionTests.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
           "path": "Tests/Editor/AssemblyShadow/RawTypeAdmissionPolicyTests.cs",
           "status": "A",
           "added": 768,
@@ -326,19 +350,19 @@
         }
       ],
       "counts": {
-        "files": 26,
-        "addedFiles": 20,
+        "files": 30,
+        "addedFiles": 24,
         "modifiedFiles": 6,
         "deletedFiles": 0,
-        "linesAdded": 3282,
-        "linesRemoved": 8
+        "linesAdded": 3982,
+        "linesRemoved": 10
       }
     },
     {
       "name": "demo",
       "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
       "base": "3abeb0bd10c26b24a536fd18a25a79d4f97eb30b",
-      "target": "2b7635339795d80dc2c77c8d3903256abc1c0fd3",
+      "target": "d19222f70d9b255f397656a11b2ee35dd882629a",
       "files": [
         {
           "path": "Assets/AssemblyShadowDemo/AssemblyA/Contracts/M05TypeWitness.cs",
@@ -583,7 +607,7 @@
         {
           "path": "Docs/AssemblyShadow/M05/M05-file-and-api-inventory.md",
           "status": "A",
-          "added": 117,
+          "added": 119,
           "removed": 0
         },
         {
@@ -595,13 +619,13 @@
         {
           "path": "Docs/AssemblyShadow/M05/M05-report.md",
           "status": "A",
-          "added": 363,
+          "added": 472,
           "removed": 0
         },
         {
           "path": "Docs/AssemblyShadow/M05/M05-source-inventory.json",
           "status": "A",
-          "added": 708,
+          "added": 720,
           "removed": 0
         },
         {
@@ -712,7 +736,7 @@
         "addedFiles": 51,
         "modifiedFiles": 10,
         "deletedFiles": 0,
-        "linesAdded": 11152,
+        "linesAdded": 11275,
         "linesRemoved": 15
       }
     }
