@@ -11,7 +11,7 @@ commits are deliberately outside these counts. All repositories use
 | hybridclr | `7f0da36e1a978abfd22c2c195ecb2741588a5d69` | 0 / 2 / 0 | 30 / 0 |
 | il2cpp_plus | `8ceb7e40abe458dce5343bedaf250333ef9433a1` | 4 / 15 / 0 | 1200 / 34 |
 | hybridclr_unity | `b132981fa72f8259efde8e8319029b8812858bcf` | 24 / 6 / 0 | 3982 / 10 |
-| demo | `d19222f70d9b255f397656a11b2ee35dd882629a` | 51 / 10 / 0 | 11275 / 15 |
+| demo | `d3d1f23b11cce6c966298a03b035f71382bedbb1` | 51 / 10 / 0 | 11469 / 15 |
 
 There are no deleted source paths in these ranges. Added Unity source/scene
 assets have paired meta files. No historical M00-M04 evidence is rewritten.
@@ -94,6 +94,13 @@ m05_raw_type_admissions.py, m05_types.py and m05_results.py, with the strict
 verify-m05-results.py entrypoint. The existing M03 facade-lookup test adapter
 adds only the required identity-class seam and two assertions; production
 native behavior is not emulated by that adapter.
+
+The guarded negative layout fixture uses a private nonserialized Int32 and
+serialization callbacks, with unchanged ordinary serialized fields. Its real
+public Player-compiler regression preserves returned DLL/PDB bytes independently
+of Bee. Existing DLL-only policy must reject callback state requiring review;
+the runtime must independently reject the changed native layout. Production
+compiler/policy code and normal fixture admission remain unchanged.
 
 ## Build and runtime entrypoints
 

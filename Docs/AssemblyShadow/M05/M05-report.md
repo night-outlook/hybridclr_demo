@@ -4,8 +4,8 @@ Status: M05 is not accepted. The v3 native-ON Player/baseline, independent
 linked-output replay and normal P01/P03 builds passed. Unity rejected the
 original negative fixture's serialized schema before producing a usable
 compiler snapshot. The corrected callback-state fixture passes the real Player
-compiler regression and all 662 Unity / 249 Python tests. Fresh v4 source
-review, pairing and builds are pending.
+compiler regression and all 662 Unity / 249 Python tests. Independent corrective
+source review passed; the reviewed v4 pairing is pinned for fresh builds.
 No complete fixture replay, runtime matrix or final milestone gate is claimed.
 M06 remains closed.
 
@@ -545,8 +545,16 @@ Configure passed in `_temp/UnityExec_20260828_033628.log`, selecting
 two nonsemantic empty-value whitespace lines changed in the scene; the latter
 were restored before source freeze.
 
-These are source/compiler checks only. Committed source review and fresh v4
-ON/OFF/fixture/runtime evidence remain necessary; v3 artifacts stay immutable.
+The correction is committed at demo
+`d3d1f23b11cce6c966298a03b035f71382bedbb1`. Independent passive source
+review returned PASS for `dbbdc9c3e1908cb198f544aa7e51b1e0c9912fea` through that
+revision. The reviewer checked the exact six-file scope, guards, compiler
+regression, unchanged resource policy, XML/source/DLL hashes, original v3
+failure and v4 Configure log. No reviewed code or tests were executed by the
+reviewer. This permits the pinned v4 pairing to be installed and built; actual
+resource-policy and native bad-byte rejection remain pending. This metadata-only
+follow-up pins that reviewed source and updates its complete file inventory.
+Fresh v4 ON/OFF/fixture/runtime evidence remains necessary; v3 stays immutable.
 
 ## Preserved resource boundary
 
