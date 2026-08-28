@@ -892,6 +892,30 @@ misrepresented as containing that correction. The raw physical-getter adapters
 and uninitialized snapshot fixture remain explicit limitations. Fresh pinned
 Player confirmation is required before the milestone can be accepted.
 
+## V6 source pairing prepared
+
+The corrected executable sources are pinned at runtime
+`7f0da36e1a978abfd22c2c195ecb2741588a5d69`, native
+`50194392f08815354b6f230f6d0ddd3ec5f9b0f3`, package
+`b132981fa72f8259efde8e8319029b8812858bcf`, and demo
+`09a15e686a4e7581e362175f4aa99d6bde80de55`. Exact per-file counts were
+recomputed from the accepted M04 bases; this pin/inventory/report update is
+metadata-only and deliberately outside that executable-source pairing.
+Bounded independent native and tooling/evidence source reviews both passed.
+The allocation-guard correction and subsequent one-line ABI binding also
+passed their separate bounded source reviews. None accepts the runtime.
+
+Fresh guarded Configure succeeded in `_temp/UnityExec_20260828_064455.log`
+(SHA-256 `28e8184023ecbf849d3b12ba5eec880d3ddcb76a74e022d384ee53f6474dbcfe`).
+The v6 scene preserves its baseline ID and scene/runner GUIDs, and embeds ABI
+`f93c4af2a1fe719f10ff56c5554a10fc7660df9284a23c3286fedced146016e5`,
+independently recomputed from the exact runtime/native/package pins.
+Scene SHA-256 is
+`25742376cb1e1c5eefc5cf9d84b18fea997cae8872b6244cb4fc806f859d51d6`.
+The full Python suite passed again, 251/251 in 30.445 seconds. The v6 baseline
+and ON/OFF application roots were absent at preparation. Fresh generation,
+installation, build/fixture replay and all Player gates remain pending.
+
 ## Preserved resource boundary
 
 The frozen M01 manifest remains SHA-256

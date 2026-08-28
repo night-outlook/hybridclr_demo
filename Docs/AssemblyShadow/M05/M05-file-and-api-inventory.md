@@ -9,9 +9,9 @@ commits are deliberately outside these counts. All repositories use
 | Repository | M05 implementation commit | Added / modified / deleted files | Added / removed lines |
 | --- | --- | --- | --- |
 | hybridclr | `7f0da36e1a978abfd22c2c195ecb2741588a5d69` | 0 / 2 / 0 | 30 / 0 |
-| il2cpp_plus | `8ceb7e40abe458dce5343bedaf250333ef9433a1` | 4 / 15 / 0 | 1200 / 34 |
+| il2cpp_plus | `50194392f08815354b6f230f6d0ddd3ec5f9b0f3` | 4 / 16 / 0 | 1242 / 34 |
 | hybridclr_unity | `b132981fa72f8259efde8e8319029b8812858bcf` | 24 / 6 / 0 | 3982 / 10 |
-| demo | `32fc4893919e5fa786654de5b9bbf8927d77f95d` | 51 / 10 / 0 | 11669 / 15 |
+| demo | `09a15e686a4e7581e362175f4aa99d6bde80de55` | 52 / 10 / 0 | 12357 / 15 |
 
 There are no deleted source paths in these ranges. Added Unity source/scene
 assets have paired meta files. No historical M00-M04 evidence is rewritten.
@@ -56,6 +56,14 @@ allocation, field/member reflection and the pinned RuntimeAssembly module
 surface. Definition keys use logical assembly/name/nesting/arity rather than
 metadata tokens or transient addresses. Already-created objects are not
 reinterpreted, and unsupported module MVID observations remain unavailable.
+
+The internal `ResolvePublicImageIdentity` addition uses the exact immutable
+active-to-baseline mapping. Five C exports now keep class/assembly image identity
+stable while image-to-assembly and indexed class metadata resolve active.
+Physical VM getters, metadata ownership, diagnostics and feature OFF retain
+their behavior. `m05_image_identity.cpp` links the actual exports and snapshot
+mapping with explicitly controlled physical-getter/class-row adapters; the
+native runner binds those dependencies and exercises both feature modes.
 
 ## Raw-query admission and evidence tooling
 
@@ -114,6 +122,12 @@ round-trip regression covers namespaced/global/nested-generic types plus field,
 owner, count and order mutations. Nonempty nested raw namespaces are diagnosed
 as unsupported by the pinned reflection projection, not erased from the
 byte-level proof. Raw enumeration names are retained before validation failure.
+
+The negative allocation probe/verifier accepts either the exact native
+field-layout reason or the exact unequal-size reason, retaining byte-bound
+type/site, code 16, throwing allocation/no object and FailedAfterCommit evidence.
+Malformed, unrelated or noncanonical diagnostics fail. The v6 Bootstrap embeds
+the runtime ABI derived from the corrected native pin; no old Player is relabeled.
 
 ## Build and runtime entrypoints
 
