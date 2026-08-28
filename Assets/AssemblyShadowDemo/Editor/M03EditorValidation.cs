@@ -82,6 +82,7 @@ namespace AssemblyShadowDemo.Editor
             RequireSet(baseline.shadowCandidates, manifest.candidateNames, "Baseline candidates");
             Require(baseline.sourcePins.RuntimeAbiHash() == manifest.runtimeAbiHash && baseline.unityVersion == manifest.unityVersion && baseline.target == manifest.target && baseline.architecture == manifest.architecture, "Baseline source/target ABI mismatch.");
             var player = AssemblySnapshot.ReadAndVerify(manifest.baselineInputSnapshot, true);
+            M03DiagnosticSchemaVerifier.Verify(manifest.baselineInputSnapshot, player);
             Require(player.snapshotHash == manifest.baselineInputSnapshotHash && player.snapshotHash == baseline.playerInputSnapshotHash && player.buildId == baseline.baselineBuildId && player.buildGuid == baseline.playerBuildGuid && player.nativeLibrarySha256 == baseline.nativeLibrarySha256, "Captured Player identity mismatch.");
             ShadowSourcePins.RequireSameBuildSources(player.sourcePins, baseline.sourcePins);
             VerifyHash(player.nativeLibraryPath, player.nativeLibrarySha256);

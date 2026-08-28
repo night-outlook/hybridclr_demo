@@ -299,6 +299,7 @@ namespace AssemblyShadowDemo.Editor
             }
             finally { ShadowPlayerInputCapture.End(); }
             var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
+            M03DiagnosticSchemaVerifier.Verify(snapshot, captured);
             File.WriteAllText(Path.Combine(snapshot, "m03-player-build.json"), JsonUtility.ToJson(new M03PlayerBuildReceipt {
                 schemaVersion = 1, milestone = "M03", variant = nativeEnabled ? "NativeOn" : "NativeOff",
                 baselineBuildId = settings.buildId, runtimeAbiHash = pins.RuntimeAbiHash(),
