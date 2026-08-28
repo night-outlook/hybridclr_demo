@@ -1,6 +1,6 @@
 namespace AssemblyA.Contracts
 {
-    public static class AssemblyAContractVersion
+    public static partial class AssemblyAContractVersion
     {
         public const string Value = "M01";
 #if ASSEMBLY_SHADOW_P03

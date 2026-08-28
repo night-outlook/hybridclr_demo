@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AssemblyShadowDemo.Consumers
 {
-    public sealed class DerivedExternalComponent : VersionedComponentBase
+    public sealed partial class DerivedExternalComponent : VersionedComponentBase
     {
         public string GetDerivedText()
         {

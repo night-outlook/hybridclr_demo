@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AssemblyA.Implementation.Extensibility
 {
-    public abstract class VersionedComponentBase : MonoBehaviour
+    public abstract partial class VersionedComponentBase : MonoBehaviour
     {
         [SerializeField] private int baseSerializedValue = 7;
 

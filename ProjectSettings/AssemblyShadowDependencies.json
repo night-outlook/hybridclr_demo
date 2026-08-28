@@ -20,6 +20,13 @@
       "kind": "ReflectionString",
       "callSite": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",
       "evidence": "The M02 guard probe resolves the literal ordinary-hot-update entry only after the verified fixed-image guard loads the declared image, and checks physical assembly identity before invoking Run."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "kind": "ReflectionString",
+      "callSite": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::Run",
+      "evidence": "The M04 ordinary regression invokes the literal M00 Entry only after the existing fixed-image guard verifies the configured SHA-256 and loads those exact bytes. Name lookup before loading observes only the generated token-zero placeholder; this dependency does not authorize raw-byte or file acquisition."
     }
   ],
   "resourceDependencies": [],
@@ -74,6 +81,318 @@
       "method": "AssemblyShadowDemo.ShadowBootstrap::ProbeComponent",
       "target": "VersionedPrefabComponent",
       "reason": "Exact Unity GetComponent(string) PoC probe; no other short type name is approved."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Contracts"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Contracts.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "assemblya.contracts"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Contracts"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA/AssemblyA.Contracts.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA\\AssemblyA.Contracts.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+      "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Implementation.Extensibility"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Implementation.Extensibility.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "assemblya.implementation.extensibility"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Implementation.Extensibility"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA/AssemblyA.Implementation.Extensibility.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA\\AssemblyA.Implementation.Extensibility.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+      "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Implementation.Internal"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Implementation.Internal.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "assemblya.implementation.internal"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA.Implementation.Internal"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA/AssemblyA.Implementation.Internal.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyA\\AssemblyA.Implementation.Internal.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+      "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyShadowDemo.ContractsConsumer"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyShadowDemo.ContractsConsumer.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "assemblyshadowdemo.contractsconsumer"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyShadowDemo.ContractsConsumer"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "Consumers/AssemblyShadowDemo.ContractsConsumer.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "Consumers\\AssemblyShadowDemo.ContractsConsumer.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+      "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSimple",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyShadowDemo.ExtensibilityConsumer"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadSuffixVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyShadowDemo.ExtensibilityConsumer.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadCaseVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "assemblyshadowdemo.extensibilityconsumer"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadByAssemblyName",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "AssemblyShadowDemo.ExtensibilityConsumer"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "Consumers/AssemblyShadowDemo.ExtensibilityConsumer.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadBackslashPathVariant",
+      "reason": "M04 finite literal name-identity witness after commit, or an isolated native-OFF benchmark. This approves only this exact input and does not authorize file/byte loading or unknown names.",
+      "target": "Consumers\\AssemblyShadowDemo.ExtensibilityConsumer.dll"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::GetWitnessType",
+      "reason": "M04 resolves this existing baseline-known type after commit and invokes its patch-only opaque executing-assembly witness. The baseline type inventory remains finite and verified."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadInternalLiteral",
+      "reason": "M04 controlled constant-name benchmark after commit or in a separate native-OFF process; no pre-commit baseline handle in positive cases.",
+      "target": "AssemblyA.Implementation.Internal"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.AssemblyAContractVersion",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::LoadContractsLiteral",
+      "reason": "M04 isolated staged-visibility negative case deliberately acquires baseline Contracts and must reject commit with BaselineAlreadyUsed.",
+      "target": "AssemblyA.Contracts"
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M04ReferenceProbe::CaptureAssemblyIdentity",
+      "reason": "M04 invokes the exact InternalEntry marker only after a successful transaction and checks actual patch identity."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+      "method": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::Run",
+      "reason": "M04 ordinary loading regression resolves only the fixed M00 image name and literal entry. Actual byte loading remains behind the existing verified fixed-image guard; this declaration adds no image-acquisition authorization."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+      "method": "AssemblyShadowDemo.M04OrdinaryAssemblyProbe::ProbeKnownNameCallback",
+      "reason": "M04 observes callback noninvocation for this already-loaded ordinary name only. It does not claim or authorize a genuine missing-name or callback-return load."
     }
   ]
 }

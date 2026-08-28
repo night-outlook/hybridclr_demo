@@ -43,38 +43,7 @@ namespace AssemblyShadowDemo.Editor
                 AssemblyIdentityUtil.CanonicalName(input.Assembly.Name) == RuntimeAssembly &&
                 input.Assembly.FullName == linked.Assembly.FullName, "M03DiagnosticRuntimeIdentity",
                 "Diagnostic inputs must identify the same HybridCLR.Runtime assembly.");
-            var pending = new Queue<string>();
-            var visited = new HashSet<string>(StringComparer.Ordinal);
-            pending.Enqueue(RootType);
-            while (pending.Count != 0)
-            {
-                string name = pending.Dequeue();
-                if (!visited.Add(name)) continue;
-                TypeDef before = input.Find(name, false), after = linked.Find(name, false);
-                ShadowHash.Require(before != null && after != null && before.IsSerializable && after.IsSerializable,
-                    "M03DiagnosticSchemaMismatch", "Missing or non-serializable diagnostic type: " + name);
-                FieldDef[] fields = before.Fields.Where(field => field.IsPublic && !field.IsStatic).ToArray();
-                FieldDef[] actual = after.Fields.Where(field => field.IsPublic && !field.IsStatic).ToArray();
-                ShadowHash.Require(fields.Length > 0 && fields.Length == actual.Length,
-                    "M03DiagnosticSchemaMismatch", "Diagnostic field count changed after linking: " + name);
-                foreach (FieldDef field in fields)
-                {
-                    FieldDef[] matches = actual.Where(candidate => candidate.Name == field.Name).ToArray();
-                    ShadowHash.Require(matches.Length == 1 && matches[0].Attributes == field.Attributes &&
-                        new SigComparer().Equals(field.FieldType, matches[0].FieldType), "M03DiagnosticSchemaMismatch",
-                        "Diagnostic field missing or changed after linking: " + name + "." + field.Name);
-                    // Follow the schema graph so newly added nested DTOs cannot
-                    // silently escape the preservation check. Never resolve
-                    // external types through the Editor's assembly resolver.
-                    TypeSig element = field.FieldType;
-                    while (element is SZArraySig) element = element.Next;
-                    if (element.IsPrimitive || element.ElementType == ElementType.String) continue;
-                    TypeDef child = input.Find(element.FullName, false);
-                    ShadowHash.Require(child != null, "M03DiagnosticSchemaUnsupported",
-                        "Diagnostic DTO fields must be primitive, string, or local serializable DTOs: " + field.FullName);
-                    pending.Enqueue(child.FullName);
-                }
-            }
+            ShadowDiagnosticSchemaProof.Verify(input, linked, new[] { RootType }, "M03Diagnostic");
         }
     }
 }

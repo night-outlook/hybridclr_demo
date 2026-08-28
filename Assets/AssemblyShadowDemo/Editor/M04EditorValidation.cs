@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using HybridCLR.Editor.AssemblyShadow;
+using AssemblyShadowBaseline.Editor;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
@@ -11,30 +12,30 @@ using UnityEngine;
 namespace AssemblyShadowDemo.Editor
 {
     /// <summary>Replays compiler/linker proof without recompiling or rewriting any artifact.</summary>
-    public static class M03EditorValidation
+    public static class M04EditorValidation
     {
-        public const string ComparisonPolicy = "compiler-linked-policy-graph-resource-abi:2";
+        public const string ComparisonPolicy = "compiler-linked-policy-graph-resource-abi-assembly-identity:1";
 
         /// <summary>Batchmode entry point; replay is read-only apart from a new evidence receipt.</summary>
         public static void Validate()
         {
             string manifest = AssemblyShadowBuildCommands.Argument("-shadowFixtureManifest", "");
-            Require(!string.IsNullOrEmpty(manifest), "Pass -shadowFixtureManifest to replay M03 fixture evidence.");
+            Require(!string.IsNullOrEmpty(manifest), "Pass -shadowFixtureManifest to replay M04 fixture evidence.");
             string receipt = AssemblyShadowBuildCommands.Argument("-shadowValidationReceipt", "");
-            Debug.Log("[AssemblyShadow M03] Independent Editor replay: " + ValidateAndWriteReceipt(manifest, receipt));
+            Debug.Log("[AssemblyShadow M04] Independent Editor replay: " + ValidateAndWriteReceipt(manifest, receipt));
         }
 
         public static string ValidateAndWriteReceipt(string manifestPath, string receiptPath = null)
         {
             manifestPath = Path.GetFullPath(manifestPath);
             receiptPath = Path.GetFullPath(string.IsNullOrEmpty(receiptPath)
-                ? Path.Combine(Path.GetDirectoryName(manifestPath), "m03-editor-replay.json") : receiptPath);
-            Require(!File.Exists(receiptPath) && !Directory.Exists(receiptPath), "M03 replay receipt already exists: " + receiptPath);
-            Require(File.Exists(manifestPath), "M03 fixture manifest is missing: " + manifestPath);
+                ? Path.Combine(Path.GetDirectoryName(manifestPath), "m04-editor-replay.json") : receiptPath);
+            Require(!File.Exists(receiptPath) && !Directory.Exists(receiptPath), "M04 replay receipt already exists: " + receiptPath);
+            Require(File.Exists(manifestPath), "M04 fixture manifest is missing: " + manifestPath);
             string before = ShadowHash.File(manifestPath);
             ValidateFixtures(manifestPath);
-            Require(ShadowHash.File(manifestPath) == before, "M03 fixture manifest changed during replay.");
-            var manifest = JsonUtility.FromJson<M03Build.M03FixtureManifest>(File.ReadAllText(manifestPath));
+            Require(ShadowHash.File(manifestPath) == before, "M04 fixture manifest changed during replay.");
+            var manifest = M04JsonEvidence.Read<M04Build.M04FixtureManifest>(File.ReadAllText(manifestPath));
             var baseline = JsonUtility.FromJson<ShadowBaselineManifest>(File.ReadAllText(manifest.baselineManifestPath));
             var player = AssemblySnapshot.ReadAndVerify(manifest.baselineInputSnapshot, true);
             var pins = ShadowSourcePins.Read(AssemblyShadowSettings.Instance.sourcePinFile,
@@ -42,8 +43,10 @@ namespace AssemblyShadowDemo.Editor
             ShadowSourcePins.RequireSameBuildSources(pins, baseline.sourcePins);
             Require(Application.unityVersion == manifest.unityVersion, "Editor replay Unity version differs from the captured Player.");
             var receipt = new FixtureReplayReceipt {
-                schemaVersion = 1, milestone = "M03", result = "Passed", comparisonPolicy = ComparisonPolicy,
+                schemaVersion = 1, milestone = "M04", result = "Passed", comparisonPolicy = ComparisonPolicy,
                 fixtureManifestPath = manifestPath, fixtureManifestSha256 = before,
+                playerBuildReceiptPath = Path.GetFullPath(Path.Combine(manifest.baselineInputSnapshot, "m04-player-build.json")),
+                playerBuildReceiptSha256 = ShadowHash.File(Path.Combine(manifest.baselineInputSnapshot, "m04-player-build.json")),
                 baselineManifestPath = Path.GetFullPath(manifest.baselineManifestPath), baselineManifestSha256 = manifest.baselineManifestSha256,
                 baselineInputSnapshotHash = player.snapshotHash, baselineBuildId = baseline.baselineBuildId,
                 playerBuildGuid = player.buildGuid, nativeLibrarySha256 = player.nativeLibrarySha256,
@@ -66,23 +69,26 @@ namespace AssemblyShadowDemo.Editor
 
         public static void ValidateFixtures(string manifestPath)
         {
-            Require(File.Exists(manifestPath), "M03 fixture manifest is missing: " + manifestPath);
-            var manifest = JsonUtility.FromJson<M03Build.M03FixtureManifest>(File.ReadAllText(manifestPath));
-            Require(manifest != null && manifest.schemaVersion == 1 && manifest.milestone == "M03", "M03 fixture manifest schema mismatch.");
-            Require(manifest.candidateNames != null && manifest.candidateNames.SequenceEqual(M02Build.Candidates), "M03 candidate identity drifted from M02.");
-            Require(manifest.closureLoadOrder != null && manifest.closureLoadOrder.SequenceEqual(M03Build.ProviderFirstOrder), "M03 closure order is not provider-first.");
+            Require(File.Exists(manifestPath), "M04 fixture manifest is missing: " + manifestPath);
+            var manifest = M04JsonEvidence.Read<M04Build.M04FixtureManifest>(File.ReadAllText(manifestPath));
+            Require(manifest != null && manifest.schemaVersion == 1 && manifest.milestone == "M04", "M04 fixture manifest schema mismatch.");
+            Require(manifest.baselineBuildId != null && manifest.baselineBuildId.StartsWith("M04-Baseline-", StringComparison.Ordinal),
+                "M04 fixtures cannot bind an older milestone baseline.");
+            Require(manifest.candidateNames != null && manifest.candidateNames.SequenceEqual(M02Build.Candidates), "M04 candidate identity drifted from M02.");
+            Require(manifest.closureLoadOrder != null && manifest.closureLoadOrder.SequenceEqual(M04Build.ProviderFirstOrder), "M04 closure order is not provider-first.");
             Require(manifest.stableAotNames != null && manifest.stableAotNames.Length > 0 && manifest.stableAotNames.SequenceEqual(manifest.stableAotNames.OrderBy(item => item, StringComparer.Ordinal)),
                 "Stable AOT names must be non-empty and deterministic.");
-            Require(manifest.stableAotProvenanceHash == ShadowHash.Text("m03-stable-aot:2\n" + manifest.stableAotProvenance), "Stable AOT provenance hash mismatch.");
-            Require(manifest.fixtures != null && manifest.fixtures.Length == 3, "M03 requires P01, P03, and initializer-throw fixtures.");
-            RequireSet(manifest.fixtures.Select(f => f.patchId), new[] { "P01", "P03", "P03-InitializerThrow" }, "Fixture identities");
+            Require(manifest.stableAotProvenanceHash == ShadowHash.Text(M04Build.StableAotHashDomain + manifest.stableAotProvenance), "Stable AOT provenance hash mismatch.");
+            Require(manifest.fixtures != null && manifest.fixtures.Length == 2, "M04 requires exactly P01 and P03 fixtures.");
+            RequireSet(manifest.fixtures.Select(f => f.patchId), new[] { "P01", "P03" }, "Fixture identities");
             VerifyHash(manifest.baselineManifestPath, manifest.baselineManifestSha256);
             var baseline = JsonUtility.FromJson<ShadowBaselineManifest>(File.ReadAllText(manifest.baselineManifestPath));
             Require(baseline != null && baseline.schemaVersion == 1 && baseline.semanticHashSchema == 1 && baseline.baselineBuildId == manifest.baselineBuildId && baseline.runtimeAbiHash == manifest.runtimeAbiHash, "Fixture/baseline identity mismatch.");
             RequireSet(baseline.shadowCandidates, manifest.candidateNames, "Baseline candidates");
             Require(baseline.sourcePins.RuntimeAbiHash() == manifest.runtimeAbiHash && baseline.unityVersion == manifest.unityVersion && baseline.target == manifest.target && baseline.architecture == manifest.architecture, "Baseline source/target ABI mismatch.");
             var player = AssemblySnapshot.ReadAndVerify(manifest.baselineInputSnapshot, true);
-            M03DiagnosticSchemaVerifier.Verify(manifest.baselineInputSnapshot, player);
+            M04DiagnosticSchemaVerifier.Verify(manifest.baselineInputSnapshot, player);
+            ValidatePlayerReceipt(Path.Combine(manifest.baselineInputSnapshot, "m04-player-build.json"), manifest.baselineInputSnapshot, true);
             Require(player.snapshotHash == manifest.baselineInputSnapshotHash && player.snapshotHash == baseline.playerInputSnapshotHash && player.buildId == baseline.baselineBuildId && player.buildGuid == baseline.playerBuildGuid && player.nativeLibrarySha256 == baseline.nativeLibrarySha256, "Captured Player identity mismatch.");
             ShadowSourcePins.RequireSameBuildSources(player.sourcePins, baseline.sourcePins);
             VerifyHash(player.nativeLibraryPath, player.nativeLibrarySha256);
@@ -91,6 +97,7 @@ namespace AssemblyShadowDemo.Editor
             Require(frozenPlayer.snapshotHash == player.snapshotHash && frozenPlayer.linkedPlayerReceiptHash == player.linkedPlayerReceiptHash, "Frozen and original linked Player proof differ.");
             BuildTarget target;
             Require(Enum.TryParse(manifest.target, out target), "Unknown fixture build target.");
+            VerifyFrozenResources(manifest, baseline, player, target);
             var sourcePolicy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
             VerifyStableAot(manifest, player, sourcePolicy);
             var baselinePolicy = ShadowFilteredInputPolicy.Apply(sourcePolicy, player);
@@ -101,22 +108,24 @@ namespace AssemblyShadowDemo.Editor
                 ShadowReflectionBindingEvidence.ValidateCompiled(baselineSet, baselinePolicy, manifest.baselineInputSnapshot, player, true, linked).ThrowIfInvalid();
                 Require(BootstrapHash(baselineSet.Assemblies.Values) == baseline.bootstrapAbiHash, "Baseline Bootstrap semantic proof changed.");
             }
-            foreach (M03Build.M03Fixture fixture in manifest.fixtures)
+            foreach (M04Build.M04Fixture fixture in manifest.fixtures)
             {
+                Require(fixture.patchManifest == Path.GetFullPath(Path.Combine(fixture.patchDirectory, "patch-manifest.json")),
+                    "Patch manifest must be inside its immutable fixture directory.");
                 VerifyHash(fixture.patchManifest, fixture.patchManifestSha256);
                 Require(Directory.Exists(fixture.compileSnapshot), "Fixture compiler snapshot is missing: " + fixture.patchId);
                 AssemblySnapshotReceipt receipt = AssemblySnapshot.ReadAndVerify(fixture.compileSnapshot, false);
                 Require(receipt.snapshotHash == fixture.compileSnapshotHash, "Fixture compiler snapshot changed: " + fixture.patchId);
                 Require(fixture.stableAotNames.SequenceEqual(manifest.stableAotNames), "Fixture stable AOT provenance differs from manifest.");
                 RequireSet(ShadowReflectionBindingEvidence.UserDefines(receipt.extraScriptingDefines), fixture.defines, "Compiler define evidence");
-                Require(fixture.defines.Contains(M03Build.InitializerDefine) && fixture.defines.Contains("ASSEMBLY_SHADOW_P01"), "Fixture must compile actual initializers and patched business marker.");
-                Require(fixture.defines.Contains(M03Build.InitializerThrowDefine) == (fixture.patchId == "P03-InitializerThrow"), "Throw define is not isolated to the failure fixture.");
-                Require(fixture.defines.Contains(M03Build.P03InitializerDefine) == (fixture.patchId != "P01"), "Five-assembly initializer define mismatch.");
+                RequireSet(fixture.defines, M04Build.ExpectedDefines(fixture.patchId), "Exact M04 compiler defines");
+                RequireSet(fixture.changedRoots, M04Build.ExpectedChangedRoots(fixture.patchId), "Truthful M04 changed roots");
                 ShadowSourcePins.RequireCompatible(baseline.sourcePins, receipt.sourcePins);
                 var patch = JsonUtility.FromJson<ShadowPatchManifest>(File.ReadAllText(fixture.patchManifest));
                 Require(patch != null && patch.schemaVersion == 1 && patch.semanticHashSchema == 1 && patch.patchId == fixture.patchId && patch.baselineBuildId == baseline.baselineBuildId && patch.baselineManifestSha256 == manifest.baselineManifestSha256 && patch.runtimeAbiHash == baseline.runtimeAbiHash, "Patch/baseline binding mismatch.");
                 Require(patch.compileSnapshotHash == receipt.snapshotHash && patch.unityVersion == receipt.unityVersion && patch.target == receipt.target && patch.architecture == receipt.architecture && patch.unityVersion == baseline.unityVersion && patch.target == baseline.target && patch.architecture == baseline.architecture, "Patch compile/target mismatch.");
                 ShadowSourcePins.RequireCompatible(patch.sourcePins, receipt.sourcePins);
+                M04AssemblyIdentityProof.Verify(fixture.assemblyIdentities, M04AssemblyIdentityProof.ReadPatch(fixture.patchDirectory, patch));
                 var policy = ShadowFilteredInputPolicy.ApplyPatch(sourcePolicy, player, baseline.shadowCandidates, baseline.bootstrapAssemblies);
                 using (var set = Load(fixture.compileSnapshot, receipt, policy))
                 {
@@ -144,7 +153,7 @@ namespace AssemblyShadowDemo.Editor
                         artifactDlls.Add(Path.GetFullPath(dll));
                         Require(assembly.sha256 == file.sha256 && assembly.sha256 == descriptor.sha256 && assembly.semanticHash == descriptor.semanticHash && assembly.mvid == descriptor.mvid && assembly.baselineMvid == baseline.assemblies.Single(a => a.name == assembly.name).mvid, "Patch identity differs from actual compiler bytes: " + assembly.name);
                         RequireSet(assembly.references, descriptor.references, "Actual AssemblyRefs: " + assembly.name);
-                        Require(!string.IsNullOrEmpty(assembly.pdb) && !string.IsNullOrEmpty(file.pdbPath), "M03 symbol retry fixture requires compiler PDBs.");
+                        Require(!string.IsNullOrEmpty(assembly.pdb) && !string.IsNullOrEmpty(file.pdbPath), "M04 symbol retry fixture requires compiler PDBs.");
                         VerifyHash(ShadowHash.SafeChild(fixture.patchDirectory, assembly.pdb), assembly.pdbSha256);
                         Require(assembly.pdbSha256 == file.pdbSha256, "Patch PDB differs from compiler output.");
                     }
@@ -153,37 +162,59 @@ namespace AssemblyShadowDemo.Editor
             }
         }
 
+        public static void ValidatePlayerReceipt(string receiptPath, string snapshotRoot, bool nativeEnabled)
+        {
+            snapshotRoot = Path.GetFullPath(snapshotRoot);
+            Require(File.Exists(receiptPath), "M04 Player build receipt is missing.");
+            var claimed = M04JsonEvidence.Read<M04Build.M04PlayerBuildReceipt>(File.ReadAllText(receiptPath));
+            var actual = AssemblySnapshot.ReadAndVerify(snapshotRoot, true);
+            Require(claimed != null && claimed.schemaVersion == 1 && claimed.milestone == "M04" &&
+                claimed.variant == (nativeEnabled ? "NativeOn" : "NativeOff") &&
+                claimed.nativeArguments == "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=" + (nativeEnabled ? "1" : "0") + "\"",
+                "M04 Player schema or exact native compiler mode mismatch.");
+            Require(claimed.baselineBuildId == actual.buildId && claimed.runtimeAbiHash == actual.sourcePins.RuntimeAbiHash() &&
+                claimed.unityVersion == actual.unityVersion && claimed.target == actual.target && claimed.architecture == actual.architecture &&
+                claimed.buildGuid == actual.buildGuid && claimed.playerOutput == actual.playerOutput &&
+                claimed.inputSnapshot == snapshotRoot && claimed.inputSnapshotHash == actual.snapshotHash &&
+                claimed.nativeLibraryPath == actual.nativeLibraryPath && claimed.nativeLibrarySha256 == actual.nativeLibrarySha256,
+                "M04 Player receipt does not bind its captured executable and input snapshot.");
+            VerifyHash(actual.nativeLibraryPath, actual.nativeLibrarySha256);
+            M04AssemblyIdentityProof.Verify(claimed.assemblyIdentities, M04AssemblyIdentityProof.ReadLinked(snapshotRoot, actual));
+            M04PlaceholderManifestProof.Verify(snapshotRoot, claimed);
+            M04DiagnosticSchemaVerifier.Verify(snapshotRoot, actual);
+        }
+
+        private static void VerifyFrozenResources(M04Build.M04FixtureManifest manifest, ShadowBaselineManifest baseline,
+            AssemblySnapshotReceipt player, BuildTarget target)
+        {
+            string frozen = M01Paths.BaselineRoot(target);
+            BuildBaselineBundles.VerifyExisting(frozen);
+            foreach (string name in new[] { "AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility", "AssemblyA.Implementation.Internal" })
+            {
+                var input = player.assemblies.Single(item => item.name == name);
+                CompilePatchDlls.VerifySemanticEquivalence(Path.Combine(frozen, "AssemblySnapshot/" + name + ".dll"),
+                    ShadowHash.SafeChild(manifest.baselineInputSnapshot, input.path));
+            }
+            string resourceRoot = ShadowHash.SafeChild(Path.GetDirectoryName(manifest.baselineManifestPath), baseline.resourceBaselinePath);
+            var resource = ShadowResourceBaseline.ReadAndVerify(resourceRoot, target, manifest.architecture);
+            Require(ShadowHash.File(Path.Combine(resourceRoot, ShadowResourceBaseline.ReceiptName)) == baseline.resourceBuildReceiptHash &&
+                resource.Receipt.provenance == ShadowResourceBaseline.M01Provenance &&
+                resource.Receipt.resourceAbiHash == baseline.resourceAbiHash && resource.Receipt.resourceIndexHash == baseline.resourceIndexHash &&
+                resource.Receipt.compilerSnapshotHash == player.snapshotHash,
+                "Frozen M01 resource evidence is not bound to this M04 Player.");
+        }
+
         private static CompiledAssemblySet Load(string root, AssemblySnapshotReceipt receipt, ShadowPolicyConfiguration policy)
         {
             return ShadowFixtureProof.Load(root, receipt, policy);
         }
 
-        private static void VerifyStableAot(M03Build.M03FixtureManifest manifest, AssemblySnapshotReceipt player, ShadowPolicyConfiguration policy)
+        private static void VerifyStableAot(M04Build.M04FixtureManifest manifest, AssemblySnapshotReceipt player, ShadowPolicyConfiguration policy)
         {
-            var framework = TargetFrameworkReferenceVerifier.Verify(manifest.baselineInputSnapshot, player);
-            var libraries = M03CompilerLibraryVerifier.Verify(manifest.baselineInputSnapshot, player, framework);
-            var physical = player.linkedPlayerReceipt.assemblies.ToDictionary(a => AssemblyIdentityUtil.CanonicalName(a.name), a => a.name, StringComparer.OrdinalIgnoreCase);
-            var candidates = new HashSet<string>(manifest.candidateNames.Select(AssemblyIdentityUtil.CanonicalName), StringComparer.OrdinalIgnoreCase);
-            var expected = new HashSet<string>(StringComparer.Ordinal);
-            foreach (string provider in framework.Providers.Concat(libraries.Providers))
-            {
-                string identity = provider.Split(new[] { " | " }, StringSplitOptions.None)[0];
-                string name = AssemblyIdentityUtil.CanonicalName(new System.Reflection.AssemblyName(identity).Name);
-                string actual;
-                if (!candidates.Contains(name) && physical.TryGetValue(name, out actual)) expected.Add(actual);
-            }
-            var bootstrap = policy.assemblies.Where(a => a.isBootstrap).Select(a => AssemblyIdentityUtil.CanonicalName(a.name)).OrderBy(n => n, StringComparer.Ordinal).ToArray();
-            Require(bootstrap.Length > 0, "Fixed Bootstrap provenance is absent.");
-            foreach (string name in bootstrap)
-            {
-                string actual;
-                Require(!candidates.Contains(name) && physical.TryGetValue(name, out actual), "Fixed Bootstrap lacks linked physical AOT proof: " + name);
-                expected.Add(physical[name]);
-            }
-            RequireSet(manifest.stableAotNames, expected, "Replayed stable physical AOT allowlist");
-            string provenance = "framework=" + framework.ProvenanceHash + "\ncompiler-libraries=" + libraries.ProvenanceHash +
-                "\nlinked-player=" + player.linkedPlayerReceiptHash + "\nbootstrap-policy=" + string.Join(",", bootstrap) + "\nphysical=" + string.Join(",", expected.OrderBy(n => n, StringComparer.Ordinal));
-            Require(manifest.stableAotProvenance == provenance && manifest.stableAotProvenanceHash == ShadowHash.Text("m03-stable-aot:2\n" + provenance), "Stable AOT provenance does not replay from compiler/linker bytes.");
+            // Recompute from immutable compiler/linker evidence; manifest values never authorize providers.
+            var derived = ShadowFixtureProof.DeriveStableAotNames(manifest.baselineInputSnapshot, player, policy, M04Build.StableAotHashDomain);
+            Require(manifest.stableAotNames.SequenceEqual(derived.names) && manifest.stableAotProvenance == derived.provenance &&
+                manifest.stableAotProvenanceHash == derived.provenanceHash, "Stable AOT authorization does not replay from compiler/linker bytes.");
         }
 
         private static string BootstrapHash(IEnumerable<AssemblyDescriptor> descriptors)
@@ -210,6 +241,7 @@ namespace AssemblyShadowDemo.Editor
             public int schemaVersion;
             public string milestone, result, comparisonPolicy;
             public string fixtureManifestPath, fixtureManifestSha256, baselineManifestPath, baselineManifestSha256;
+            public string playerBuildReceiptPath, playerBuildReceiptSha256;
             public string baselineInputSnapshotHash, baselineBuildId, playerBuildGuid, nativeLibrarySha256, linkedPlayerReceiptHash;
             public string runtimeAbiHash, unityVersion, target, architecture, stableAotProvenanceHash;
             public ShadowSourcePins validatorSourcePins;

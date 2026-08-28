@@ -125,7 +125,11 @@ serialized type names. Editor usage remains unchanged. The canvas contract admit
 only its 26 pinned widget names; changing this fixed AOT contract requires a new
 Player baseline. These bounded guards do not establish the later native gates.
 
-## M03 reproduction (acceptance pending)
+## M03 reproduction (accepted)
+
+M03 is accepted at the paired `assembly-shadow-m03-transaction` tags. The exact
+v4 source pairing, raw evidence and independent reviews are recorded under
+`Docs/AssemblyShadow/M03`; later sources are not a byte-identical reproduction.
 
 Use the M03 source pairing in the isolated shadow checkout. Do not replace M01
 bundles or treat Editor tests as transaction acceptance. Through the shared Unity
@@ -170,6 +174,53 @@ pass `-shadowFixtureManifest` and a new `-shadowValidationReceipt` path. Existin
 receipts are refused. The native ASan runners in `native-tests/README.md` provide
 focused parser/facade-policy/visibility evidence only, not a substitute for real transactions.
 Full logical Assembly/Type/Unity resolution remains M04-M07 scope.
+
+## M04 reproduction (acceptance pending)
+
+M04 adds active Assembly/name/reference resolution, logical enumeration and
+declared-reference identity. Complete type/reflection/cache behavior remains
+M05 scope. Use a fresh M04 baseline ID and the exact committed four-repository
+pairing; never rebuild frozen M01 bundles or overwrite earlier Player evidence.
+
+1. Through the shared Unity method helper, run
+   `AssemblyShadowDemo.Editor.M04Build.Configure`,
+   `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability`, and
+   `AssemblyShadowDemo.Editor.M04Build.ValidateCompilerInputs`.
+   Verify the installed pairing with `verify-installed-runtime.py --expect-shadow on`.
+2. Run `Invoke-ShadowEditorTests.ps1` with the same package/demo filter above.
+   Compiler preflight alone does not prove linked Player policy or runtime behavior.
+3. Run `M04Build.BuildPlayerBaseline` and `M04Build.BuildFixtures` in
+   `AssemblyShadowDemo.Editor`. Each writes a new immutable snapshot. Fixtures
+   contain exactly P01/P03 and a separate `m04-editor-replay.json` proof.
+4. Run `M04Build.BuildFeatureDisabledPlayer` for a separate native-OFF binary;
+   the helper restores the ON compiler setting afterward.
+5. Launch a fresh ON Player for each of T04-01 through T04-07 and
+   T04-09-BenchmarkOn. Launch fresh OFF processes for T04-08 and
+   T04-10-BenchmarkOff. Pass `-shadowM04Mode <mode>`,
+   `-shadowFixtureManifest <absolute-m04-fixtures.json>`,
+   `-shadowPlayerBuild <matching-input-snapshot>/m04-player-build.json`,
+   `-shadowM04Result <unique-dir>/m04-<mode>.json`, `-batchmode -nographics`
+   and a unique absolute `-logFile`. All processes, including expected-rejection
+   cases, must exit zero and emit Passed with real observations.
+6. Run `verify-m04-results.py --fixture-manifest <m04-fixtures.json>
+   --result-dir <unique-dir> --on-build <on-snapshot>/m04-player-build.json
+   --off-build <off-snapshot>/m04-player-build.json
+   --m01-baseline-root BaselineArtifacts/StandaloneOSX/M01-Baseline-v1
+   --output <new-verification.json>`.
+7. Retain the ON/OFF million-lookup measurements, ordinary loading/placeholder/
+   supplementary metadata evidence, focused native checks, restored installation
+   verification and full independent milestone review before tagging M04.
+
+The linked Player receipt captures actual DLL and AssemblyRef identities and the
+generated placeholder manifest used by native compilation. The pinned runtime
+cannot read module MVIDs: availability is explicitly false in Player observations;
+GUID proof comes from captured DLL bytes and native staged-image diagnostics.
+`M04EditorValidation.Validate` replays existing fixtures without recompiling;
+pass `-shadowFixtureManifest` and a fresh `-shadowValidationReceipt` path.
+
+Genuine managed missing-name callback dispatch is not claimed: the pinned wrapper
+throws without invoking `AssemblyResolve`. Native miss checks plus actual wrapper
+IL document that behavior; the Player separately checks known-name noninvocation.
 
 ## Recoverable native-cache rebuild
 

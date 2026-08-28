@@ -2,7 +2,7 @@ using AssemblyA.Contracts;
 
 namespace AssemblyShadowDemo.Consumers
 {
-    public static class ContractsConsumer
+    public static partial class ContractsConsumer
     {
         public static string ReadContractVersion()
         {

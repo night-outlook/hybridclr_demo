@@ -5,6 +5,11 @@
     <type fullname="System.Console">
       <method signature="System.Void WriteLine(System.String)" />
     </type>
+    <!-- M04 executing-assembly witnesses live only in patch DLLs. Preserve
+         their exact AOT API without retaining unrelated reflection surfaces. -->
+    <type fullname="System.Reflection.Assembly">
+      <method signature="System.Reflection.Assembly GetExecutingAssembly()" />
+    </type>
   </assembly>
   <!-- Keep the exact framework call sites available for linked IL verification
        and the real Player probe. No business candidate or guard is exempted. -->

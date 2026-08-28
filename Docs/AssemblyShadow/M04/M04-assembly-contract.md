@@ -1,6 +1,6 @@
 # M04 Assembly and AssemblyRef acceptance contract
 
-Status: planned implementation; no M04 acceptance claimed.
+Status: implementation/integration in progress; no M04 acceptance claimed.
 
 ## Entry boundary
 

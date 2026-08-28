@@ -1,6 +1,6 @@
 namespace AssemblyA.Implementation.Internal
 {
-    public sealed class InternalEntry
+    public sealed partial class InternalEntry
     {
         public string GetMarker()
         {
