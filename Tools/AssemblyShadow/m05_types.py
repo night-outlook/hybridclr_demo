@@ -450,6 +450,21 @@ class MethodProof:
                 result.append(dict(name=self.tables.string(name), type=field_type, flags=flags))
         return result
 
+    def reflection_fields(self, full_name):
+        """Declared Field rows with reflected names and full signature-owner identities."""
+        matches = [rid for rid, name in self.reflection_names.items() if name == full_name]
+        require(len(matches) == 1, f"{self.label}: missing/ambiguous reflected field owner: {full_name}")
+        result = []
+        for rid, owner in self.field_owners.items():
+            if owner != matches[0]: continue
+            flags, name, blob = self.tables.row(4, rid)
+            signature = Signature(self.tables.blob(blob), self.label)
+            require(signature.byte() == 6, f"{self.label}: invalid reflected field signature")
+            field_type, assembly = self.reflection_type(signature)
+            require(signature.position == len(signature.data), f"{self.label}: trailing reflected field signature")
+            result.append(dict(name=self.tables.string(name), type=field_type, assembly=assembly, flags=flags))
+        return result
+
     def reflection_members(self, full_name):
         """Canonical declared signatures, not metadata-token logical keys."""
         matches = [rid for rid, name in self.reflection_names.items() if name == full_name]
@@ -596,9 +611,23 @@ class TypeKeyReader:
     Length prefixes count UTF-8 bytes, not Python characters. Supported Player
     matrix shapes are definitions, generics, arrays, pointers and qualifiers.
     An unbound name or unsupported shape is an error, never a baseline fallback.
+
+    raw_key/data retain the exact diagnostic spelling, including accepted array
+    descriptors and field attributes; the returned mapping projects CLR names.
+    field_annotations must be supplied by the caller from verified active field
+    bytes, not inferred from a key or from a result's mode/name alone.
     """
-    def __init__(self, text, inventories, identities, closure=(), label="typeKey"):
+    def __init__(self, text, inventories, identities, closure=(), label="typeKey", field_annotations=()):
         require(type(text) is str and 0 < len(text) <= 1_000_000, f"{label}: missing/oversized native type key")
+        require(isinstance(field_annotations, (tuple, list, set, frozenset)) and len(field_annotations) <= 4096,
+                f"{label}: invalid/oversized field annotations")
+        for annotation in field_annotations:
+            require(type(annotation) is tuple and len(annotation) == 3 and
+                    all(type(value) is str and value for value in annotation[:2]) and
+                    type(annotation[2]) is int and 0 <= annotation[2] <= 65535,
+                    f"{label}: field annotation requires exact assembly/type/UInt16 flags")
+        self.field_annotations = frozenset(field_annotations)
+        self.raw_key = text
         self.data, self.at = text.encode("utf-8"), 0
         self.inventories, self.identities = inventories, identities
         self.names = {name.casefold(): name for name in inventories}
@@ -633,6 +662,18 @@ class TypeKeyReader:
         result = reader.shape(depth + 1)
         require(reader.at == len(reader.data), f"{self.label}: trailing composite key bytes")
         return result
+
+    def dimension_list(self, terminator, rank, signed=False):
+        values = []
+        while not self.starts(terminator):
+            require(len(values) < rank, f"{self.label}: array descriptor count exceeds rank")
+            negative = signed and self.starts("-")
+            if negative: self.take("-")
+            value = self.number(2147483648 if negative else 2147483647)
+            require(not negative or value != 0, f"{self.label}: noncanonical negative zero array bound")
+            values.append(-value if negative else value)
+            self.take(",")
+        return values
 
     def definition(self):
         self.take("type("); assembly = self.part()
@@ -681,14 +722,26 @@ class TypeKeyReader:
         if self.starts("array("):
             self.take("array("); rank = self.number(32); self.take(","); result = self.nested_part(depth)
             require(rank > 0, f"{self.label}: invalid array rank")
-            # Managed MakeArrayType matrix uses unsized/unbounded rank arrays.
-            self.take(",sizes=bounds=)")
+            self.take(",sizes="); sizes = self.dimension_list("bounds=", rank)
+            self.take("bounds="); bounds = self.dimension_list(")", rank, signed=True); self.take(")")
+            # Pinned metadata may explicitly encode zero lower bounds. Sized or
+            # nonzero/partially bounded arrays are outside this managed matrix.
+            require(not sizes and (not bounds or len(bounds) == rank and all(value == 0 for value in bounds)),
+                    f"{self.label}: unsupported managed array descriptors")
             result.update(fullName=result["fullName"] + ("[*]" if rank == 1 else "[" + "," * (rank - 1) + "]"),
                           kind="class", genericArity=0, genericDefinition="", genericArguments=[], elementShape="array-rank-" + str(rank))
             return result
         if self.starts("qualified("):
+            require(depth == 0, f"{self.label}: nested diagnostic qualifiers are unsupported")
             self.take("qualified(")
-            attrs = self.number(65535); self.take(","); mods = self.number(63); self.take(","); byref = self.number(1); self.take(","); pinned = self.number(1); self.take(",")
+            attrs = self.number(65535); self.take(","); mods = self.number(31); self.take(","); byref = self.number(1); self.take(","); pinned = self.number(1); self.take(",")
+            if attrs:
+                require(mods == byref == pinned == 0 and self.starts("type("),
+                        f"{self.label}: unsupported field diagnostic qualifiers")
+                result = self.definition(); self.take(")")
+                require((result["assemblyName"], result["fullName"], attrs) in self.field_annotations,
+                        f"{self.label}: unbound field diagnostic attributes")
+                return result
             result = self.shape(depth + 1); self.take(")")
             require(attrs == mods == pinned == 0 and byref == 1, f"{self.label}: unsupported managed diagnostic qualifiers")
             result.update(fullName=result["fullName"] + "&", kind="class", genericArity=0, genericDefinition="", genericArguments=[], elementShape="byref")

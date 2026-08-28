@@ -190,6 +190,45 @@ Wrong type, site, code, reason, extra text, equal sizes, noncanonical numbers or
 overflow fail closed. The managed probe and offline phase verifier apply the
 same rules; neither treats a generic exception as guard evidence.
 
+### Pinned native diagnostic spelling and separate proofs
+
+The native first-use recorder retains one first event per assembly; it does
+not replace that event when a later type exposure supplies a class. In the
+early-use case, `Image::FromTypeNameParseInfo` records Internal assembly access
+before resolving the component. The offline gate requires that exact
+AssemblyReflection site, an empty type field, a canonical positive uint64
+sequence and positive thread/time values, after the clean Validated snapshot.
+The separate repeated Type.GetType observation still proves the exact linked
+baseline component, raw/typed diagnostic agreement and AOT identity. The
+matching load witness and Commit=BaselineAlreadyUsed/Abort=Success are required.
+Aborted diagnostics retain the precise private-metadata/sealed-process notice;
+it is not an unexpected error or permission to retry the transaction.
+
+Native ARRAY keys may spell zero lower bounds explicitly. The current managed
+matrix accepts empty sizes and either no lower bounds or exactly rank-count
+zero lower bounds, with bounded canonical numbers. Sized, nonzero, partial or
+over-rank descriptors are rejected. Rank-one ARRAY remains `[*]`, not SZARRAY
+`[]`; accepted descriptors stay in the original raw diagnostic key.
+
+Il2CppType.attrs contains field/parameter metadata flags, not a managed type
+suffix. The pinned reflection Type cache can retain the type pointer first
+exposed by a field lookup while comparing types independently of those flags.
+The resource probe reads `dataReference` and `value` before observing their
+objects' types. The verifier admits a nonzero root annotation only when the
+exact active component DLL bytes supply the corresponding declared instance
+field, full type/assembly signature and uint16 flags, and only for the matching
+data/value resource observation. It does not whitelist private visibility as
+a universal type annotation. Unsupported modifiers, pinned/nested qualifiers,
+wrong scopes and unbound annotations still fail. Pure byref remains a distinct
+shape. Raw native keys and JSON are never rewritten for acceptance.
+
+Offline verifier/test corrections are recorded separately from the frozen v6
+executable source pin. They do not relabel an old Player as rebuilt, alter its
+input snapshots or replace real-process observations. Any updated live tooling
+pin/installation receipt must explicitly coexist with, not overwrite, the
+frozen build provenance. Runtime ABI/native source equality and the exact
+tooling-only delta must be reviewed independently.
+
 The pinned compiler also compares Editor and Player serialized field schemas.
 An added serialized field is rejected before `CompilePlayerScripts` returns
 assemblies and cannot supply the runtime negative test. The negative fixture

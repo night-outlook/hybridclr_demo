@@ -37,7 +37,7 @@ def make_type_pe(types, name="Types", reference_assembly="mscorlib", nested=None
         for interface in t.get("interfaces",[]):rows[9].append(struct.pack("<HH",index,interface))
         for n in range(t.get("arity", 0)):
             rows[42].append(struct.pack("<HHHH", n, 0, index * 2, string("T" + str(n))))
-        for f in t.get("fields", []): rows[4].append(struct.pack("<HHH", 6, string(f["name"]), blob(f.get("signature", b"\x06\x08"))))
+        for f in t.get("fields", []): rows[4].append(struct.pack("<HHH", f.get("flags", 6), string(f["name"]), blob(f.get("signature", b"\x06\x08"))))
         for m in t.get("methods", []):
             body = m.get("body")
             rva = 0 if body is None else 0x2100 + len(bodies)
@@ -376,6 +376,51 @@ class NativeTypeInfoTests(unittest.TestCase):
 
 
 class ResourceAndBenchmarkTests(unittest.TestCase):
+    def test_cached_field_annotations_require_actual_bytes_scope_and_operation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp).resolve();dll=root/(v.INTERNAL+".dll")
+            component=dict(name="VersionedPrefabComponent",namespace="AssemblyA.Implementation.Internal",fields=[
+                dict(name="dataReference",flags=1,signature=b"\x06\x12\x0c"),
+                dict(name="value",flags=1,signature=b"\x06\x12\x11")])
+            data=dict(name="VersionedScriptableObject",namespace="AssemblyA.Implementation.Internal")
+            def write(types):
+                dll.write_bytes(make_type_pe(types,name=v.INTERNAL,reference_assembly=v.CANDIDATES[0],
+                    extra_refs=(("DemoValue","AssemblyA.Contracts"),)))
+                identity=read_identity(dll)
+                identity.update(path=str(dll),sha256=v.digest(dll))
+                return {v.INTERNAL:identity,v.CANDIDATES[0]:identity["referenceIdentities"][0]}
+            identities=write([component,data])
+            annotations=v.resource_field_annotations(identities,"actual fields")
+            expected={"resource:"+phase+":"+label:((owner,type_name,1),)
+                      for phase in ("prefab","scene-first","scene-reload")
+                      for label,owner,type_name in (("data",v.INTERNAL,v.RESOURCE_DATA),("value",v.CANDIDATES[0],v.RESOURCE_VALUE))}
+            self.assertEqual(annotations,expected)
+            inventory=read_type_inventory_bytes(dll.read_bytes())
+            inventories={v.INTERNAL:inventory["types"]}
+            key="qualified(1,0,0,0,"+type_key(v.INTERNAL,[("AssemblyA.Implementation.Internal","VersionedScriptableObject",0)])+")"
+            info=type_info(v.INTERNAL,key)
+            row=dict(operation="resource:prefab:data",requested=v.RESOURCE_DATA,rawJson=json.dumps(info),info=info,sameType=True)
+            actual=v.verify_type_resolution(row,inventories,identities,{v.INTERNAL},"annotated resource",annotations[row["operation"]])
+            self.assertEqual(actual["fullName"],v.RESOURCE_DATA)
+            for operation in ("name-form","resource:prefab:component","resource:prefab:value","resource:prefab-asset:data"):
+                bad=dict(row,operation=operation)
+                with self.assertRaises(VerificationError):
+                    v.verify_type_resolution(bad,inventories,identities,{v.INTERNAL},"unbound operation",annotations.get(operation,()))
+            bad=copy.deepcopy(row);bad["info"]["typeKey"]=bad["info"]["typeKey"].replace("qualified(1,","qualified(6,",1)
+            bad["rawJson"]=json.dumps(bad["info"])
+            with self.assertRaises(VerificationError):
+                v.verify_type_resolution(bad,inventories,identities,{v.INTERNAL},"wrong field flags",annotations[row["operation"]])
+            bad_identities=copy.deepcopy(identities);bad_identities[v.CANDIDATES[0]]["fullName"]="Wrong, Version=4.0.0.0, Culture=neutral, PublicKeyToken=null"
+            with self.assertRaises(VerificationError):v.resource_field_annotations(bad_identities,"wrong field assembly scope")
+            dll.write_bytes(dll.read_bytes()+b"changed")
+            with self.assertRaises(VerificationError):v.resource_field_annotations(identities,"changed component bytes")
+            for mutate in (lambda t:t[0]["fields"].pop(),
+                           lambda t:t[0]["fields"].append(copy.deepcopy(t[0]["fields"][0])),
+                           lambda t:t[0]["fields"][0].update(signature=b"\x06\x08"),
+                           lambda t:t[0]["fields"][1].update(flags=0x11)):
+                types=copy.deepcopy([component,data]);mutate(types)
+                with self.assertRaises(VerificationError):v.resource_field_annotations(write(types),"rebound invalid field")
+
     def test_resources_require_original_bytes_three_phases_values_and_real_reload_ids(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp).resolve(); original = root / "Original"; output = root / "Player.app"
@@ -487,8 +532,17 @@ class NativePhaseTests(unittest.TestCase):
         if early:
             final = result["snapshots"][-1]
             final["phase"] = "aborted"
-            final["diagnostics"]["baselineUses"] = [dict(name=v.INTERNAL,kind="TypeReflection",type=v.RESOURCE_COMPONENT,
-                detail="Type.GetType FirstUseSequence=1",thread=(1<<64)-1,timestamp=(1<<64)-1)]
+            # Shape recorded by the pinned v6 Player. First use is retained per
+            # assembly, so the image lookup wins over its later typed lookup.
+            final["diagnostics"].update(
+                detail="Private metadata retained; a second transaction is forbidden.",
+                baselineUses=[
+                    dict(name=v.CANDIDATES[0],kind="TypeReflection",type="AssemblyA.Contracts.IVersionTextProvider",
+                         detail="Class::FromIl2CppType FirstUseSequence=3",thread=(1<<64)-1,timestamp=(1<<64)-1),
+                    dict(name=v.CANDIDATES[1],kind="ClassInit",type="AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                         detail="Class::InitLocked FirstUseSequence=2",thread=(1<<64)-1,timestamp=(1<<64)-2),
+                    dict(name=v.INTERNAL,kind="AssemblyReflection",type="",
+                         detail="Image::FromTypeNameParseInfo FirstUseSequence=1",thread=(1<<64)-1,timestamp=(1<<64)-3)])
         if kind == "layout":
             result["patchId"] = "LayoutMismatch"; result["state"] = "FailedAfterCommit"
             for row in result["snapshots"][1:]:row["diagnostics"]["patchId"] = "LayoutMismatch"
@@ -520,12 +574,67 @@ class NativePhaseTests(unittest.TestCase):
     def test_early_type_use_only_after_actual_validation(self):
         result,fixture=self.result("early");self.check(result,fixture)
         for mutate in (lambda r:r["snapshots"][-1]["diagnostics"].update(baselineUses=[]),
-                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][0].update(kind="AssemblyReflection"),
-                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][0].update(type=""),
-                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][0].update(detail="unbound sequence"),
+                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"].pop(),
+                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][-1].update(kind="TypeReflection"),
+                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][-1].update(type=v.RESOURCE_COMPONENT),
+                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][-1].update(detail="Type.GetType FirstUseSequence=1"),
+                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][-1].update(thread=0),
+                       lambda r:r["snapshots"][-1]["diagnostics"]["baselineUses"][-1].update(timestamp=0),
+                       lambda r:r["snapshots"][-1]["diagnostics"].update(detail=""),
+                       lambda r:r["snapshots"][-1]["diagnostics"].update(detail="Private metadata retained; a second transaction is forbidden.\n"),
+                       lambda r:r["snapshots"][2]["diagnostics"].update(detail=r["snapshots"][-1]["diagnostics"]["detail"]),
                        lambda r:r["snapshots"][2]["diagnostics"].update(baselineUses=copy.deepcopy(r["snapshots"][-1]["diagnostics"]["baselineUses"]))):
             bad=copy.deepcopy(result);mutate(bad)
             with self.assertRaises(VerificationError):self.check(bad,fixture)
+
+    def test_early_lookup_sequence_is_canonical_positive_uint64(self):
+        result,fixture=self.result("early")
+        prefix="Image::FromTypeNameParseInfo FirstUseSequence="
+        result["snapshots"][-1]["diagnostics"]["baselineUses"][-1]["detail"]=prefix+str((1<<64)-1)
+        self.check(result,fixture)
+        for sequence in ("", "0", "-1", "+1", "01", "1.0", "１", str(1<<64), "9"*100, "1 extra", "1\n"):
+            bad=copy.deepcopy(result)
+            bad["snapshots"][-1]["diagnostics"]["baselineUses"][-1]["detail"]=prefix+sequence
+            with self.subTest(sequence=sequence),self.assertRaises(VerificationError):self.check(bad,fixture)
+
+    def test_early_assembly_use_does_not_replace_typed_and_load_proof(self):
+        namespace,leaf=v.RESOURCE_COMPONENT.rsplit(".",1)
+        inventory=read_type_inventory_bytes(make_type_pe([dict(name=leaf,namespace=namespace)],name=v.INTERNAL))
+        inventories={v.INTERNAL:inventory["types"]}
+        identities={v.INTERNAL:dict(fullName=v.INTERNAL+", Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")}
+        info=type_info(v.INTERNAL,type_key(v.INTERNAL,[(namespace,leaf,0)]),False)
+        observation=dict(operation="early-baseline-type",requested=v.RESOURCE_COMPONENT,rawJson=json.dumps(info),info=info,sameType=True)
+        result={key:[] for key in v.RESULT_ARRAYS.split()}
+        result.update(allocationException="",typeResolutionObservations=[observation],loadObservations=[
+            dict(requested=v.RESOURCE_COMPONENT+", "+v.INTERNAL,overload="early-baseline",typeName=v.RESOURCE_COMPONENT,
+                 assemblyName=v.INTERNAL,sameAssembly=False,sameType=True)])
+        def check(candidate):
+            # These are the two independent gates called by verify_case after
+            # the phase gate; neither a kind label nor a check flag substitutes.
+            for row in candidate["typeResolutionObservations"]:
+                v.verify_type_resolution(row,inventories,identities,(),"early typed proof")
+            v.verify_early_type_observations(candidate,"early witnesses")
+        check(result)
+        mutations=(lambda r:r.update(typeResolutionObservations=[]),
+                   lambda r:r["typeResolutionObservations"].append(copy.deepcopy(r["typeResolutionObservations"][0])),
+                   lambda r:r["typeResolutionObservations"][0].update(operation="assembly-lookup"),
+                   lambda r:r["typeResolutionObservations"][0].update(requested="Other"),
+                   lambda r:r["typeResolutionObservations"][0].update(sameType=False),
+                   lambda r:r["typeResolutionObservations"][0].update(rawJson="{}"),
+                   lambda r:r.update(loadObservations=[]),
+                   lambda r:r["loadObservations"][0].update(typeName="Other"),
+                   lambda r:r["loadObservations"][0].update(assemblyName=v.CANDIDATES[0]),
+                   lambda r:r["loadObservations"][0].update(sameType=False),
+                   lambda r:r["loadObservations"][0].update(overload="Assembly.Load"))
+        for mutate in mutations:
+            bad=copy.deepcopy(result);mutate(bad)
+            with self.assertRaises(VerificationError):check(bad)
+        for change in (dict(typeKey=type_key(v.INTERNAL,[(namespace,"Other",0)])),
+                       dict(logicalAssembly=v.CANDIDATES[0]),dict(isActive=False),dict(containsShadowTypes=True),
+                       dict(executionModeCode=1,executionMode="InterpreterShadow",physicalImageKind="Interpreter")):
+            bad=copy.deepcopy(result);row=bad["typeResolutionObservations"][0]
+            row["info"].update(change);row["rawJson"]=json.dumps(row["info"])
+            with self.assertRaises(VerificationError):check(bad)
 
     def test_layout_rejection_is_allocation_after_successful_commit(self):
         result,fixture=self.result("layout");self.check(result,fixture)

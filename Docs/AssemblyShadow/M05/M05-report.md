@@ -927,3 +927,73 @@ and `7f93e66e3537d7b3634ff725e35c20dffaec172d2424cee789ff959ef0d72935`.
 Runtime M05 resource identity, serialized values, reference equality and actual
 scene reload still require the fresh Player cases. No historical M00–M04
 artifact is replaced by this working record.
+
+## V6 runtime results and offline diagnostic-contract correction
+
+The prepared v6 build pair completed actual fresh Unity/IL2CPP builds and all
+19 required fresh-process cases. The frozen executable source remains the
+four-repository v6 pairing above, including demo `09a15e686a4e7581e362175f4aa99d6bde80de55`.
+The ON and OFF build GUIDs are respectively `7e4831c71c1b4cb69bbc68ad889bc7a8`
+and `d2495d667dd8475e930d83510b48a57e`. Their input roots are
+`M05PlayerInputs-97d90c0db2c74f71b59e69b5e7191124` and
+`M05PlayerInputs-e2dfc5d856e74e439891f92930601711` beneath `_temp/AssemblyShadow`.
+Fixtures and the complete Editor policy/resource replay are preserved under
+`M05Fixtures-71857c4c1550462ab50b27cb2d4ab1d2` in the same directory.
+The Editor replay rebuilt complete P01/P03 output trees from captured immutable
+compiler snapshots; it was not a second compiler invocation. Negative resource
+policy still rejected the actual LayoutMismatch DLL.
+
+The final prebuild guarded Editor suite passed 667/667 with no failed, skipped
+or inconclusive cases. All 19 actual Player cases exited zero and passed their
+own assertions under `M05V6Execution-FlFy78z1/Players`; the launch receipt
+reports unchanged watched inputs. Both P01 and P03 loaded the frozen old
+prefab/scene resources, including an actual scene unload/reload, with values
+1234/7/5678, matching reference identity and active component/data/value types.
+Thus v6 supplies the real P03 confirmation missing from the earlier v5 image
+registration diagnosis. The v5 failures are preserved as failures.
+
+The initial strict offline run rejected five otherwise passing Player results
+in three parser/proof domains. Its diagnostic record is retained at
+`M05Integration-8IdZleUf/v6-initial-strict-diagnostic.json`. Investigation found:
+
+- T05-04: one first-use record is retained per assembly. The image lookup is
+  recorded before the typed component lookup; the separate actual typed/load
+  witnesses were already present. The synthetic test had invented a typed
+  first-use record. Aborted state also correctly retains the native sealing
+  notice rather than an empty detail string.
+- T05-05-P01/P03: native rank-two ARRAY keys contain explicit zero lower bounds;
+  the offline parser had assumed those lists were always empty.
+- T05-08-P01/P03: reflected field type pointers can retain field attributes in
+  the Type cache. These attrs are not byref suffixes. The corrected gate binds
+  permitted annotations to the actual active DLL field flags/full signatures
+  and exact resource data/value operation, never to an unconditional attrs=1
+  allowance. The precise first cache insertion is inferred from the pinned
+  source and observations, not claimed as a new debugger trace.
+
+The correction changes only offline Python verifier/tests and documentation;
+no runtime, package, Unity asset, DLL, Player, snapshot or recorded observation
+was changed. New regressions cover the real native shapes plus malformed
+sequences/bounds/qualifiers, missing typed/load proof, incorrect operation/type/
+assembly/field bindings, raw JSON disagreement and modified component bytes.
+All 267 Python tests passed in 30.197 seconds with zero skips using the
+preserved v6 raw compiler inventory. The focused M05 result suite passed 39/39.
+
+The corrected complete strict CLI passes all 19 original v6 results, with
+`diagnosticOnly=false` and no missing modes. Receipt:
+`_temp/AssemblyShadow/M05OfflineVerifier-q5F4xoSu/m05-verification.json`,
+SHA-256 `7aca87b2977329347cbba33a9f98085152e3c91edcd663b5082d2dbce62f7be5`.
+Its separate source-hash/command/output record is `corrective-validation.json`
+in that directory, SHA-256
+`e287f3780d9d0780c24e2cf1931bc59745d79a6735b4614afe68da86e5d982cc`.
+This is a new verifier revision applied to unchanged real-process evidence,
+not a new executable build or a substitute for the required independent gates.
+
+Each actual type-lookup benchmark used 1,000 warmups and 100,000 timed literal
+lookups, checksum 100,000 and unchanged final Type identity. Recorded elapsed
+times are 1.3615831 seconds ON and 10.2126455 seconds isolated OFF. No Shadow
+API runs in the timed loop; OFF never configures Shadow. These single controlled
+measurements are not production performance or managed-allocation guarantees.
+
+M05 remains unaccepted pending the final source/evidence inventory, restored
+installation audit and both complete independent milestone reviews. No M06
+implementation has begun.

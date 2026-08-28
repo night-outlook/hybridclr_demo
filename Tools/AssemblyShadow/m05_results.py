@@ -371,7 +371,7 @@ def verify_type_info(value, path):
     return info
 
 
-def verify_type_resolution(row, inventories, identities, closure, path):
+def verify_type_resolution(row, inventories, identities, closure, path, field_annotations=()):
     _fields(row, "operation requested rawJson info sameType", path)
     _strings(row, path, "operation requested rawJson")
     require(row["operation"] and row["requested"] and row["rawJson"] and _bool(row["sameType"], path), f"{path}: missing actual type-resolution observation")
@@ -380,7 +380,7 @@ def verify_type_resolution(row, inventories, identities, closure, path):
     except (ValueError, TypeError) as error: raise VerificationError(f"{path}: invalid/duplicate raw type-info JSON") from error
     verify_type_info(raw, path)
     require(_same(raw, info), f"{path}: raw and typed type-resolution diagnostics differ")
-    actual = TypeKeyReader(info["typeKey"], inventories, identities, closure, path).read()
+    actual = TypeKeyReader(info["typeKey"], inventories, identities, closure, path, field_annotations=field_annotations).read()
     owner = actual["assemblyName"]
     require(info["logicalAssembly"] == owner and row["requested"] == actual["fullName"] and info["isActive"] and
             info["containsShadowTypes"] == actual["containsShadowTypes"] and
@@ -437,6 +437,30 @@ RESOURCE_COMPONENT = "AssemblyA.Implementation.Internal.VersionedPrefabComponent
 RESOURCE_DATA = "AssemblyA.Implementation.Internal.VersionedScriptableObject"
 RESOURCE_VALUE = "AssemblyA.Contracts.DemoValue"
 RESOURCE_MARKER = "BASELINE-EXT|PATCH-P01-INTERNAL|1234"
+
+
+def resource_field_annotations(identities, path):
+    """Bind cached reflection annotations to the actual observed resource fields.
+
+    The pinned reflection cache ignores Il2CppType.attrs when matching a Type
+    object. Reading these fields can therefore retain their field flags on the
+    later data/value GetType diagnostics. Those flags are not a managed type
+    suffix, nor authority to accept arbitrary qualified keys in other modes.
+    """
+    identity = identities[INTERNAL]
+    dll = _bound_file(identity["path"], identity["sha256"], path, "resource component DLL")
+    fields = MethodProof(dll.read_bytes(), dll).reflection_fields(RESOURCE_COMPONENT)
+    annotations = {}
+    for label, field_name, owner, type_name in (("data", "dataReference", INTERNAL, RESOURCE_DATA),
+                                               ("value", "value", CANDIDATES[0], RESOURCE_VALUE)):
+        matches = [field for field in fields if field["name"] == field_name]
+        require(len(matches) == 1, f"{path}: missing/ambiguous actual resource field: {field_name}")
+        field = matches[0]
+        require(field["type"] == type_name and field["assembly"] == identities[owner]["fullName"] and
+                not field["flags"] & 0x10, f"{path}: resource field type/scope/instance binding differs: {field_name}")
+        for phase in ("prefab", "scene-first", "scene-reload"):
+            annotations["resource:" + phase + ":" + label] = ((owner, type_name, field["flags"]),)
+    return annotations
 
 
 def verify_resources(result, manifest, player, path):
@@ -594,9 +618,16 @@ def verify_phases(result, manifest, player, closure, staged_identities, path):
         require(not closure_uses if phase != "aborted" else bool(closure_uses), f"{path}.{phase}: unexpected/missing baseline first-use")
         if phase == "aborted":
             uses = [use for use in closure_uses if use["name"] == INTERNAL]
-            require(len(uses) == 1 and uses[0]["kind"] == "TypeReflection" and uses[0]["type"] == RESOURCE_COMPONENT and
-                    re.search(r" FirstUseSequence=[1-9][0-9]*$", uses[0]["detail"]) and uses[0]["thread"] > 0 and uses[0]["timestamp"] > 0,
-                    f"{path}: early rejection lacks actual typed first-use observation")
+            require(len(uses) == 1, f"{path}: early rejection lacks the Internal first-use observation")
+            use = uses[0]
+            # The native recorder retains only the first use of each assembly.
+            # FromTypeNameParseInfo traces its image before resolving the class;
+            # the actual typed lookup is bound separately below, not invented
+            # as a replacement for this assembly-level first-use record.
+            sequence = re.fullmatch(r"Image::FromTypeNameParseInfo FirstUseSequence=([1-9][0-9]{0,19})", use["detail"])
+            require(use["kind"] == "AssemblyReflection" and use["type"] == "" and sequence is not None and
+                    int(sequence[1]) < 1 << 64 and use["thread"] > 0 and use["timestamp"] > 0,
+                    f"{path}: early rejection lacks the pinned assembly-lookup first-use observation")
         for kind in ("metadata-begin", "metadata-ready"):
             _exact([event["name"] for event in d["events"] if event["kind"] == kind],
                    [] if initial or staged else closure, path, "actual " + kind)
@@ -606,6 +637,9 @@ def verify_phases(result, manifest, player, closure, staged_identities, path):
         if phase == "allocation-failure":
             require(_precise_allocation_guard(d["detail"]),
                     f"{path}: layout failure is not the precise byte-bound component/allocation site/guard")
+        elif phase == "aborted":
+            require(d["detail"] == "Private metadata retained; a second transaction is forbidden.",
+                    f"{path}: abort does not retain/seal the private metadata")
         else: require(d["detail"] == "", f"{path}.{phase}: unexpected native failure detail")
     require(result["stateCode"] == "Success" and result["state"] == snapshots[-1]["diagnostics"]["state"] and
             result["diagnosticsCode"] == "Success", f"{path}: final queried state/diagnostics code differs")
@@ -625,6 +659,20 @@ def _empty(result, fields, path):
     for key in fields.split():
         expected = [] if key in RESULT_ARRAYS.split() else ""
         require(result[key] == expected, f"{path}: unexpected observation/activity: {key}")
+
+
+def verify_early_type_observations(result, path):
+    """Typed proof is independent of the per-assembly first-use classification.
+
+    verify_case also verifies each row's raw native JSON, active baseline type
+    key, repeated handle, and byte-bound linked type inventory before this gate.
+    """
+    _empty(result,"assemblyObservations actualLogicalAssemblies typeObservations typeEnumerations memberObservations identityObservations assignabilityObservations sceneObservations allocationException",path)
+    _exact([(row["operation"],row["requested"]) for row in result["typeResolutionObservations"]],
+           [("early-baseline-type",RESOURCE_COMPONENT)],path,"early baseline type exposure")
+    expected_load=[dict(requested=RESOURCE_COMPONENT + ", " + INTERNAL,overload="early-baseline",typeName=RESOURCE_COMPONENT,
+                        assemblyName=INTERNAL,sameAssembly=False,sameType=True)]
+    require(_same(result["loadObservations"],expected_load),f"{path}: early actual Type.GetType witness differs")
 
 
 def inactive_benchmark(value, path):
@@ -834,17 +882,16 @@ def verify_case(path, manifest, baseline, fixtures, player, player_path):
         if not early:
             identities.update(staged)
             active_types.update({row["assemblyName"]:row["types"] for row in ([bad["typeInventory"]] if layout else fixture["typeInventories"])})
+        field_annotations = resource_field_annotations(identities,path) if mode.startswith("T05-08-") else {}
         actual_types, previous_counters = [], None
         for row in result["typeResolutionObservations"]:
-            actual_types.append(verify_type_resolution(row,active_types,identities,active_closure,path))
+            actual_types.append(verify_type_resolution(row,active_types,identities,active_closure,path,
+                                                       field_annotations.get(row["operation"],())))
             counters = [row["info"][key] for key in TYPE_INFO_COUNTERS]
             require(previous_counters is None or all(a <= b for a,b in zip(previous_counters,counters)), f"{path}: native type counters regressed")
             previous_counters = counters
         if early:
-            _empty(result,"assemblyObservations actualLogicalAssemblies typeObservations typeEnumerations memberObservations identityObservations assignabilityObservations sceneObservations allocationException",path)
-            _exact([(row["operation"],row["requested"]) for row in result["typeResolutionObservations"]],[("early-baseline-type",RESOURCE_COMPONENT)],path,"early baseline type exposure")
-            expected_load=[dict(requested=RESOURCE_COMPONENT + ", " + INTERNAL,overload="early-baseline",typeName=RESOURCE_COMPONENT,assemblyName=INTERNAL,sameAssembly=False,sameType=True)]
-            require(_same(result["loadObservations"],expected_load),f"{path}: early actual Type.GetType witness differs")
+            verify_early_type_observations(result,path)
         elif layout:
             _empty(result,"assemblyObservations actualLogicalAssemblies typeObservations typeResolutionObservations typeEnumerations memberObservations identityObservations assignabilityObservations loadObservations sceneObservations",path)
             require(result["allocationException"],f"{path}: missing actual thrown allocation exception")
