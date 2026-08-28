@@ -193,8 +193,8 @@ boundaries are in `M03-transaction-contract.md`.
 ## Additional review and evidence metadata
 
 The final review boundary also includes the two new metadata documents below
-and 21 evidence files. Together with the 53 executable-boundary paths above,
-these make 76 changed demo paths relative to `assembly-shadow-m02-tooling`.
+and 22 evidence files. Together with the 53 executable-boundary paths above,
+these make 77 changed demo paths relative to `assembly-shadow-m02-tooling`.
 The report and transaction contract were already counted in those 53 paths;
 their later status/evidence edits do not add paths. These additions do not change
 the source pins, Player bytes, fixtures, or verifier implementation.
@@ -220,6 +220,7 @@ A	Docs/AssemblyShadow/M03/Evidence/ordinary-off-result-6369ae8.json
 A	Docs/AssemblyShadow/M03/Evidence/ordinary-off-verification-6369ae8.json
 A	Docs/AssemblyShadow/M03/Evidence/player-results-6369ae8.index.json
 A	Docs/AssemblyShadow/M03/Evidence/player-results-6369ae8.tar.gz
+A	Docs/AssemblyShadow/M03/Evidence/python-tests-6369ae8.json
 A	Docs/AssemblyShadow/M03/Evidence/verification-6369ae8.json
 A	Docs/AssemblyShadow/M03/Evidence/visibility-regression-6369ae8.json
 A	Docs/AssemblyShadow/M03/Evidence/visibility-regression-b20145a.json

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M03",
+  "purpose": "Direct host-observed unchanged Python tooling regression; local evidence, not signed attestation.",
+  "command": "python3 -B -m unittest discover -s Tools/AssemblyShadow/tests -q",
+  "workingDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+  "pythonVersion": "Python 3.14.6",
+  "demoExecutableSource": "6369ae8e32b8458c3b7c4180c99e47d15d5a63b3",
+  "demoCheckoutAtRun": "697027c592af4f228eef979028bc8197da0c815c",
+  "toolingMatchesExecutableSource": true,
+  "sourceComparisonCommand": "git diff --exit-code 6369ae8e32b8458c3b7c4180c99e47d15d5a63b3 HEAD -- Tools/AssemblyShadow",
+  "cleanWorktreeBeforeReceipt": true,
+  "exitCode": 0,
+  "testCount": 133,
+  "elapsedSeconds": 26.952,
+  "passed": true,
+  "output": "----------------------------------------------------------------------\nRan 133 tests in 26.952s\n\nOK\n"
+}

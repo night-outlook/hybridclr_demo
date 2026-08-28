@@ -29,8 +29,11 @@ Fresh pinned Editor tests passed 493/493 with no skipped tests, including
 field-removal negatives and four Bootstrap counter mirrors. The archived
 [test XML](Evidence/editor-tests-6369ae8.xml) hashes to
 `5ec842a7ed77d71d93631bbe4902eac4956f3240b4322416343a965b660049e0`.
-The unchanged strict Python suite passed 133/133. The native OFF adapter/core/
-serializer test passed 27 checks, in addition to existing ASan coverage.
+The unchanged strict Python suite passed 133/133. A final clean-checkout rerun
+retains its exact command, output and zero exit status in the
+[Python test receipt](Evidence/python-tests-6369ae8.json): 133 tests in 26.952
+seconds. The native OFF adapter/core/serializer test passed 27 checks, in
+addition to existing ASan coverage.
 The [bounded reviews](M03-review.md) returned PASS after closing the missing-field
 defaulting P2; neither review substitutes for fresh v4 Player acceptance.
 
