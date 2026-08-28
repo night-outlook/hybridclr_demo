@@ -563,6 +563,39 @@ class ProviderExportBoundaryTests(unittest.TestCase):
                 root,snapshot,config=self.fixture(extra_types=[dict(name="LocalLeak",methods=[method,opaque],fields=[dict(name="Export",signature=b"\x06\x1d\x1c")])])
                 with self.assertRaisesRegex(VerificationError,"container escapes local ownership"):self.verify(root,snapshot,config)
 
+    def test_helper_publishes_empty_local_before_selected_write(self):
+        # Unlike the opaque-call regression above, the callee really stores
+        # the still-empty caller allocation into a public static field.
+        # Publication must not depend on contents already being selected.
+        caller=dict(name="FillAfterPublish",signature=b"\x00\x01\x01\x0e",locals=b"\x07\x01\x1d\x1c",
+                    body=b"\x17\x8d\x01\0\0\x01\x0a\x06\x28\x07\0\0\x06"
+                         b"\x06\x16\x02\x28\x01\0\0\x06\xa2\x2a")
+        publish=dict(name="PublishEmpty",signature=b"\x00\x01\x01\x1d\x1c",body=b"\x02\x80\x01\0\0\x04\x2a")
+        root,snapshot,config=self.fixture(extra_types=[dict(name="Publisher",methods=[caller,publish],
+            fields=[dict(name="Published",signature=b"\x06\x1d\x1c")])])
+        with self.assertRaisesRegex(VerificationError,"container escapes local ownership \\(method 6\\)"):self.verify(root,snapshot,config)
+
+    def test_helper_published_return_alias_cannot_regain_local_ownership(self):
+        for load,diagnostic in ((b"\x06","container escapes local ownership"),(b"\x07","selected handle array store")):
+            caller=dict(name="FillReturnedAlias",signature=b"\x00\x01\x01\x0e",locals=b"\x07\x02\x1d\x1c\x1d\x1c",
+                        body=b"\x17\x8d\x01\0\0\x01\x0a\x06\x28\x07\0\0\x06\x0b"+
+                             load+b"\x16\x02\x28\x01\0\0\x06\xa2\x2a")
+            publish=dict(name="PublishAndReturn",signature=b"\x00\x01\x1d\x1c\x1d\x1c",
+                         body=b"\x02\x25\x80\x01\0\0\x04\x2a")
+            root,snapshot,config=self.fixture(extra_types=[dict(name="Publisher",methods=[caller,publish],
+                fields=[dict(name="Published",signature=b"\x06\x1d\x1c")])])
+            with self.assertRaisesRegex(VerificationError,diagnostic):self.verify(root,snapshot,config)
+
+    def test_constructor_publishes_empty_local_before_selected_write(self):
+        constructor=dict(name=".ctor",flags=0x1886,signature=b"\x20\x01\x01\x1d\x1c",
+                         body=b"\x02\x28\x08\0\0\x0a\x03\x80\x01\0\0\x04\x2a")
+        caller=dict(name="FillAfterConstruction",signature=b"\x00\x01\x01\x0e",locals=b"\x07\x01\x1d\x1c",
+                    body=b"\x17\x8d\x01\0\0\x01\x0a\x06\x73\x06\0\0\x06\x26"
+                         b"\x06\x16\x02\x28\x01\0\0\x06\xa2\x2a")
+        root,snapshot,config=self.fixture(extra_types=[dict(name="PublishingConstructor",extends=5,methods=[constructor,caller],
+            fields=[dict(name="Published",signature=b"\x06\x1d\x1c")])],extra_members=[(1,".ctor",b"\x20\x00\x01")])
+        with self.assertRaisesRegex(VerificationError,"container escapes local ownership \\(method 7\\)"):self.verify(root,snapshot,config)
+
     def test_nested_local_container_ownership_is_transitive(self):
         allocate=b"\x17\x8d\x01\0\0\x01\x0a\x17\x8d\x01\0\0\x01\x0b"
         nest=b"\x07\x16\x06\xa2"

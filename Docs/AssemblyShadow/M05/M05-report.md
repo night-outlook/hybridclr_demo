@@ -139,8 +139,24 @@ passed 25 admissions across 36 modules. The main guarded Editor rerun passed
 `_temp/AssemblyShadow/EditorTests-99db8b5897684bf9b6f8f44de0c3a435`.
 Results XML SHA-256 is
 `c322f272f01917831619226ba7708f3f2110304d5f3ca04d2334205d249591f1`.
-Independent immutable source re-review is pending; no Player acceptance is
-implied by these source/tooling results.
+The first re-review attempt was interrupted by a tool-side restriction and
+produced no verdict. A narrower read-only review of the committed code and
+existing results closed the preceding findings but returned FAIL for one
+remaining ownership issue: a helper can publish an empty local container
+before it receives selected values, and that publication is not propagated
+back to its caller. This is a source-derived finding, not a newly executed
+reproduction by the reviewer. Mutable-argument publication must be summarized
+independently of whether selected values are already present. The focused
+correction and a fresh independent source verdict remain pending.
+
+Demo implementation commit `531389393fe9684bc0267e592f4da6ae3184c65d`
+contains the frozen probes, tools and configuration, not a Player or milestone
+acceptance. Before that commit, only eight new meta files' empty-value spaces
+and one Editor source's extra EOF blank line were tidied after the 639-test run.
+The raw configuration retains its exact CRLF bytes and hash; the staged
+whitespace check explicitly recognizes CRLF rather than normalizing that
+hash-bound input. No GUID, runtime source or compiled method body changed in
+that whitespace-only integration adjustment.
 
 The first independent offline selector correction passed 223 tests. It already
 rejected the original caller-array and custom-callback outputs, but had a
@@ -152,6 +168,14 @@ entire suite with the explicit real compiler/configuration environment:
 234/234 passed in 33.690 seconds, zero skips. The verifier and test file hashes
 are respectively `3ba5f6ffbcb7653a077b46aca3da13cd95506ef239fc4c5ffa5775d5db50a0f4`
 and `276183e1cf5a5ec12c8c6d31331deb1816bf7c015f6207b60ebce59baedf2682`.
+The ownership follow-up required no Python implementation change: fresh arrays
+already lose local ownership when passed across an unproved call, even before
+they contain selected values. Three added actual-byte tests cover a publishing
+helper, returned aliases and a publishing constructor. The main expanded rerun
+passed 237/237 in 32.668 seconds, zero skips, including the real compiler smoke.
+The new test-file hash is
+`3fe758398b4b7c2c40405e6d872aa1d77bcff74de32c7cb27c8a27bfb2286880`;
+the implementation hash is unchanged.
 This remains an independently stricter M05 evidence specialization, not generic
 package-policy parity or a whole-program/native proof. Fresh selected
 containers crossing unproved call/return/field/address boundaries fail closed.
