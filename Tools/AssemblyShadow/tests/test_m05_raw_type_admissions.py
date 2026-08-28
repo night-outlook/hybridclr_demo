@@ -445,6 +445,43 @@ class ProviderExportBoundaryTests(unittest.TestCase):
         path=root/"Assemblies/Unexplained.Consumer.dll";path.write_bytes(data)
         snapshot[section].append(dict(name="Unexplained.Consumer",path="Assemblies/Unexplained.Consumer.dll",sha256=hashlib.sha256(data).hexdigest()))
 
+    def linked_rows(self,root,snapshot):
+        # Real linked receipts transport lowercase filenames without rewriting
+        # the case-preserving Assembly identity inside the captured DLL bytes.
+        directory=root/"LinkedPlayer/Assemblies";directory.mkdir(parents=True)
+        rows=[]
+        for section in ("assemblies","filteredAssemblies","references"):
+            for row in snapshot[section]:
+                name=row["name"].lower();path=directory/(name+".dll");data=(root/row["path"]).read_bytes();path.write_bytes(data)
+                rows.append(dict(name=name,path=path.relative_to(root).as_posix(),sha256=row["sha256"]))
+        return rows
+
+    def test_lowercase_linked_transport_preserves_identity_and_consumer_self_reference(self):
+        root,snapshot,config=self.fixture(extra_refs=[(4,"AssemblyShadowDemo","M05BoundTypeQueries")])
+        rows=self.linked_rows(root,snapshot);catalog=v.Catalog(root,rows)
+        brokers=v.verify_provider_boundary(catalog,config["sites"],[row["name"] for row in rows])
+        identity="AssemblyShadowDemo.Bootstrap, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+        self.assertEqual(set(brokers),{identity})
+        self.assertEqual(catalog("assemblyshadowdemo.bootstrap").identity["fullName"],identity)
+
+    def test_lowercase_linked_transport_still_rejects_external_helper_import(self):
+        root,snapshot,config=self.fixture();self.external(root,snapshot)
+        rows=self.linked_rows(root,snapshot)
+        with self.assertRaisesRegex(VerificationError,"non-consumer imports a selector"):
+            v.verify_provider_boundary(v.Catalog(root,rows),config["sites"],[row["name"] for row in rows])
+
+    def test_lowercase_linked_transport_rejects_wrong_identity_hash_and_case_collision(self):
+        for mutation in ("identity","hash","collision"):
+            root,snapshot,config=self.fixture();rows=self.linked_rows(root,snapshot)
+            row=next(row for row in rows if row["name"]=="assemblya.contracts")
+            if mutation=="identity":
+                data=raw_pe("Different.Provider",[dict(name="Payload")]);(root/row["path"]).write_bytes(data)
+                row["sha256"]=hashlib.sha256(data).hexdigest()
+            elif mutation=="hash":row["sha256"]="0"*64
+            else:rows.append(dict(row,name="AssemblyA.Contracts"))
+            with self.assertRaisesRegex(VerificationError,{"identity":"import module identity differs","hash":"import module bytes changed","collision":"duplicate raw admission module"}[mutation]):
+                v.verify_provider_boundary(v.Catalog(root,rows),config["sites"],[row["name"] for row in rows])
+
     def test_actual_external_helper_typeref_and_exact_reflection_literal_fail(self):
         for literal in (None,v.HELPER_TYPE,v.HELPER_TYPE+", AssemblyShadowDemo.Bootstrap",
                         v.HELPER_TYPE+", AssemblyShadowDemo.Bootstrap, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"):

@@ -923,11 +923,16 @@ class ProviderBoundary:
             symbols={(proof.type_names[proof.method_owners[rid]],proof.tables.string(proof.tables.row(6,rid)[3])) for rid in selected}
             symbols|={(proof.type_names[proof.field_owners[field]],proof.tables.string(proof.tables.row(4,field)[1])) for field in fields}
             brokers[proof.identity["fullName"]]=(names,symbols)
-        for name in self.runtime_names-self.consumers:
+        # Linked receipts use canonical lowercase transport names while DLL
+        # metadata retains its original spelling. Normalize only catalog/role
+        # keys, exactly as Catalog does; full metadata identities stay exact.
+        consumer_keys={name.casefold() for name in self.consumers}
+        for name in self.runtime_names:
+            if name.casefold() in consumer_keys:continue
             row=self.catalog.files[name.casefold()];path=_rel(self.catalog.root,row["path"],self.catalog.root,"import module")
             data=path.read_bytes();require(hashlib.sha256(data).hexdigest()==row["sha256"],f"{path}: import module bytes changed")
             proof=ImportModule(data,path)
-            require(proof.identity["name"]==name,f"{path}: import module identity differs")
+            require(proof.identity["name"].casefold()==name.casefold(),f"{path}: import module identity differs")
             for rid in range(1,proof.tables.counts[1]+1):
                 identity,declaring=self.type_ref(proof,1,rid)
                 consumer_scope=next((key for key in brokers if key.split(", ")[0]==identity.split(", ")[0]),None)

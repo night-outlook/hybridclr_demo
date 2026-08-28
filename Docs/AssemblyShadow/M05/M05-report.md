@@ -1,9 +1,9 @@
 # M05 active types, reflection and cache evidence
 
-Status: M05 is not accepted. Source/tooling validation is in progress; no M05
-Player, fixture replay, complete runtime matrix or final milestone gate is
-claimed. M06 remains closed. This working record must be completed with the
-actual immutable executable pairing and runtime evidence before acceptance.
+Status: M05 is not accepted. The first native-ON Player and its baseline build
+passed, but independent linked-output replay exposed verifier defects that
+must be corrected before acceptance. No fixture replay, complete runtime
+matrix or final milestone gate is claimed. M06 remains closed.
 
 The [type contract](M05-type-contract.md) and
 [raw-query contract](M05-raw-type-admission.md) govern implementation and the
@@ -281,6 +281,74 @@ hashes, unchanged configuration, 644-test XML and all 72 preserved-file hashes
 after the observed producer cleanup. Python counts remain supplied test
 evidence at that gate. This permits repinning and build validation only;
 no M05 Player or milestone acceptance is claimed.
+
+## First actual native-ON Player and linked-output replay
+
+The reviewed installation was repeated successfully in
+`_temp/UnityExec_20260828_014832.log`; both receipts have SHA-256
+`be1eeb52602e4870cbfd3e3f28d957da57f9edfd6517bf58bae2e051b06a5d9c`.
+Full installed-source verification passed with 940 source files, 942 installed
+files, demo source verified and native ON. The exact demo executable source
+pin was `006a5554ebb7bf2b24cfbdaac33cb18bc9926fce`.
+
+`M05Build.BuildPlayerBaseline` completed successfully in
+`_temp/UnityExec_20260828_015441.log`, including semantic equality of the three
+frozen M01 business DLLs and unchanged resource bytes. The immutable v1 input
+snapshot is `_temp/AssemblyShadow/M05PlayerInputs-505c7d6cccfb4cdeb3f00c6cd2313d69`.
+Its hash is `00c9b5ecdb42165cfd8c4d341aa96d24fcbfc0e1aac1e9a6dc0cdfdc0cf6fc50`,
+build GUID `3d7ba625c3af454e853affd32fd992d7`, and actual GameAssembly SHA-256
+`db0036a0cf229b63d6f8856737e0cff4a7a6a48581d3e42b8363143b04f1305c`.
+The Player receipt and type-proof hashes are respectively
+`48c2ce8764fd49a1ab731fbda45d8650cce189f90a51063b9a79c066b392fc5e` and
+`58212c21291ec9b4cead9534b98b280ccca44fc6d579ecb876ee5f7d88c36884`.
+The baseline manifest hash is
+`e1feac039c1a7643d891fce61840a662b25b9267d951dc65d62ae534f5a086af`.
+Receipts are also preserved under `_temp/AssemblyShadow/M05Integration-8IdZleUf`.
+
+Independent replay then exposed a transport-name bug: the historical linked
+snapshot schema intentionally uses lowercase file/name keys, while actual
+Assembly.Name retains its metadata spelling. All 60 linked DLL hashes and
+MVIDs match the receipt; 59 names differ only by case. The new raw-boundary
+reader incorrectly compared those two representations exactly, and used a
+case-sensitive consumer membership set. The correction must normalize only
+lookup/membership keys, retaining actual full identities, exact hashes,
+canonical paths and collision rejection. Three added PE-byte regressions cover
+the lowercase linked transport representation, consumer self-reference and
+continued rejection of outside imports, wrong identities/hashes and canonical
+collisions. The corrected raw replay passes all 25 sites over 38 compiled
+inputs and 60 linked DLLs.
+
+The type-inventory disagreement involved eight of 5,865 TypeDefs: generated
+nested types in Unity.2D.Animation.Runtime (rows 64-65) and Unity.Collections
+(rows 62-63 and 65-68) retain nonempty nested Namespace entries. The Python
+reader had dropped those segments, while pinned dnlib correctly retains each
+declaring and nested namespace/name pair in ReflectionFullName. The general
+per-segment correction matches all 60 actual DLLs, including six linked method
+witnesses and the runtime DTO. Four new PE-byte regressions cover mixed-depth
+namespaces, escaping, distinct siblings, exact order and tampering; three
+generated PE graphs with ten TypeDefs also match the pinned dnlib reader.
+No C# or captured artifact change is required for either reader correction.
+
+The raw-reader/source-test SHA-256 values are
+`67712657e5e360b546d457cd6c5eb9d313cac8760947bc717e7a714b3c816319` and
+`2362364957394d718c92716575c404563b8369701dc0296c068ccd3aca6342d1`.
+The type-reader/source-test values are
+`1f18a2bc26a572870acf7630485ed7a2736883430fd313a9b585f1391c897440` and
+`c1aa4c9fffff0088ed0e3fbb5482c92150263bdcb7183a6d74fd1be5ad3e5fdf`.
+Both writers are frozen. Main integration passed 249 Python tests in 32.835
+seconds with zero skips, and fresh Unity Editor validation passed 644/644 with
+zero failures/skips. The XML is
+`_temp/AssemblyShadow/EditorTests-b9adf28722414be698a43cff2c35e449/results.xml`,
+SHA-256 `8ff8f5d24fd12e99bfa138015bb4f3bbf5d48239fa01f307c54bd40d149611fa`.
+The main combined replay passed raw compiled/linked proof, all type inventories
+and witnesses, and actual native metadata in 6.577 seconds. Its bounded record
+is `_temp/AssemblyShadow/M05Integration-8IdZleUf/v1-linked-corrective-replay.json`;
+this is static byte-bound evidence, not a Player runtime result. The corrective
+source gate must pass before the fresh v2 pairing is installed and built. This
+fresh identity retains exact four-repository provenance across the eventual
+ON/OFF and fixture receipts; the v1 artifacts remain unchanged. The v2 scene
+and setting were configured by the guarded Unity method in
+`_temp/UnityExec_20260828_020853.log` with the unchanged runtime ABI hash.
 
 ## Preserved resource boundary
 

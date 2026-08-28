@@ -166,8 +166,10 @@ class CliTables:
             kind = kind_of(rid)
             if rid == 1: continue
             chain = chains[rid]
-            outer = chain[0] if chain else rid
-            full_name = (reflection_escape(namespaces[outer]) + "." if namespaces[outer] else "") + "+".join(reflection_escape(names[n]) for n in (*chain, rid))
+            # dnlib ReflectionFullName retains each TypeDef's own namespace,
+            # including nonempty namespaces on generated nested definitions.
+            full_name = "+".join((reflection_escape(namespaces[n]) + "." if namespaces[n] else "") +
+                                 reflection_escape(names[n]) for n in (*chain, rid))
             require(full_name not in seen, f"{self.label}: duplicate logical type definition")
             seen.add(full_name)
             exported = all((definitions[n][0] & 7) == (2 if n in parents else 1) for n in (*chain, rid))

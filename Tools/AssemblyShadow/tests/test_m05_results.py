@@ -72,6 +72,11 @@ def make_type_pe(types, name="Types", reference_assembly="mscorlib", nested=None
     section = 0x98 + 224
     struct.pack_into("<I", pe, section + 8, len(pe) - 512)
     struct.pack_into("<I", pe, section + 16, len(pe) - 512)
+    # Keep the fixture loadable by the independent pinned dnlib reader too:
+    # its RVA translation requires real PE alignment/image-size fields.
+    struct.pack_into("<III", pe, 0x98 + 28, 0x400000, 0x2000, 0x200)
+    struct.pack_into("<I", pe, 0x98 + 56, (0x2000 + len(pe) - 512 + 0x1fff) & ~0x1fff)
+    struct.pack_into("<I", pe, 512 + 16, 1)  # COMIMAGE_FLAGS_ILONLY
     assert len(bodies) < 256
     pe[768:768 + len(bodies)] = bodies
     return bytes(pe)
@@ -106,6 +111,48 @@ class TypeMetadataTests(unittest.TestCase):
         self.assertEqual(rows[1], dict(fullName="Example.ZOuter`1+Inner`1", namespaceName="", name="Inner`1", nestingPath=["ZOuter`1"], genericArity=2, kind="class", isExported=True))
         self.assertFalse(rows[3]["isExported"])
         self.assertEqual([r["kind"] for r in rows[-3:]], ["interface", "valuetype", "enum"])
+
+    def test_each_nested_typedef_namespace_matches_pinned_dnlib_reflection_name(self):
+        # These are actual PE/NestedClass rows, not compiler-shaped assumptions:
+        # generated nested TypeDefs can retain a nonempty Namespace heap entry.
+        data = make_type_pe([
+            dict(name="Outer`1", arity=1),
+            dict(name="Inner`1", namespace="Inner.Scope", flags=2, parent=2, arity=2),
+            dict(name="PlainLeaf", namespace="", flags=2, parent=3, arity=2),
+            dict(name="DeepLeaf", namespace="Leaf.Scope", flags=2, parent=4, arity=2),
+        ])
+        rows = read_type_inventory_bytes(data)["types"]
+        self.assertEqual([row["fullName"] for row in rows], [
+            "Example.Outer`1", "Example.Outer`1+Inner.Scope.Inner`1",
+            "Example.Outer`1+Inner.Scope.Inner`1+PlainLeaf",
+            "Example.Outer`1+Inner.Scope.Inner`1+PlainLeaf+Leaf.Scope.DeepLeaf",
+        ])
+        self.assertEqual([row["namespaceName"] for row in rows], ["Example", "Inner.Scope", "", "Leaf.Scope"])
+        self.assertEqual([row["name"] for row in rows], ["Outer`1", "Inner`1", "PlainLeaf", "DeepLeaf"])
+        self.assertEqual([row["nestingPath"] for row in rows], [[], ["Outer`1"], ["Outer`1", "Inner`1"], ["Outer`1", "Inner`1", "PlainLeaf"]])
+        self.assertEqual([row["genericArity"] for row in rows], [1, 2, 2, 2])
+        self.assertTrue(all(row["kind"] == "class" and row["isExported"] for row in rows))
+
+    def test_nested_namespace_and_name_escaping_matches_pinned_dnlib(self):
+        rows = read_type_inventory_bytes(make_type_pe([
+            dict(name="Outer+Name", namespace="Out+Space"),
+            dict(name="Inner+Name", namespace="In+Space", flags=2, parent=2),
+            dict(name="Leaf[Name]", namespace="Leaf,Space", flags=2, parent=3),
+        ]))["types"]
+        # Cross-checked against the repository's pinned dnlib ReflectionFullName.
+        self.assertEqual(rows[-1]["fullName"], r"Out\+Space.Outer\+Name+In\+Space.Inner\+Name+Leaf\,Space.Leaf\[Name\]")
+        self.assertEqual(rows[-1]["namespaceName"], "Leaf,Space")
+        self.assertEqual(rows[-1]["name"], "Leaf[Name]")
+        self.assertEqual(rows[-1]["nestingPath"], ["Outer+Name", "Inner+Name"])
+
+    def test_nested_siblings_are_distinct_by_actual_namespace_without_sorting(self):
+        types = [dict(name="Outer"), dict(name="Same", namespace="Z.Scope", flags=2, parent=2),
+                 dict(name="Same", namespace="A.Scope", flags=2, parent=2)]
+        rows = read_type_inventory_bytes(make_type_pe(types))["types"]
+        self.assertEqual([row["fullName"] for row in rows], ["Example.Outer", "Example.Outer+Z.Scope.Same", "Example.Outer+A.Scope.Same"])
+        types[-1]["namespace"] = "Z.Scope"
+        with self.assertRaisesRegex(VerificationError, "duplicate logical type definition"):
+            read_type_inventory_bytes(make_type_pe(types))
 
     def test_arity_is_metadata_not_name_suffix_and_fake_corlib_base_is_class(self):
         self.assertEqual(read_type_inventory_bytes(make_type_pe([dict(name="Name`7", arity=2)]))["types"][0]["genericArity"], 2)
@@ -176,6 +223,25 @@ class MethodByteProofTests(unittest.TestCase):
 
 
 class TypeInventoryEvidenceTests(unittest.TestCase):
+    def test_nested_namespace_claims_and_rehashed_namespace_byte_changes_fail(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp).resolve() / "Types.dll"
+            types = [dict(name="Outer"), dict(name="Inner", namespace="Nested.Scope", flags=2, parent=2)]
+            path.write_bytes(make_type_pe(types))
+            identity = read_identity(path)
+            claimed = read_type_inventory(path)
+            self.assertEqual(claimed["types"][1]["fullName"], "Example.Outer+Nested.Scope.Inner")
+            v.verify_type_inventories([claimed], [identity], "nested namespace fixture")
+            for fields in (dict(fullName="Example.Outer+Inner"), dict(namespaceName="")):
+                changed = copy.deepcopy(claimed); changed["types"][1].update(fields)
+                with self.assertRaisesRegex(VerificationError, "type inventory differs"):
+                    v.verify_type_inventories([changed], [identity], "dropped nested namespace")
+            types[-1]["namespace"] = "Changed.Scope"
+            path.write_bytes(make_type_pe(types))
+            # Even rebinding the identity/hash cannot preserve a stale type claim.
+            with self.assertRaisesRegex(VerificationError, "type inventory differs"):
+                v.verify_type_inventories([claimed], [read_identity(path)], "rehashed namespace mutation")
+
     def test_type_inventory_exact_schema_and_rehashed_claims_fail(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp).resolve() / "Types.dll"; path.write_bytes(make_type_pe([dict(name="Outer", arity=1), dict(name="Inner", namespace="", flags=2, parent=2)]))
