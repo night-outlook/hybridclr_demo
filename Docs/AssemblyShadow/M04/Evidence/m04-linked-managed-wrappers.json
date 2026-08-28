@@ -1,0 +1,1509 @@
+{
+  "schemaVersion": 1,
+  "kind": "M04LinkedManagedLoadWrapperIL",
+  "assemblyPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04PlayerInputs-cf7696ee331f4102bde378fa962a7562/LinkedPlayer/Assemblies/mscorlib.dll",
+  "assemblySha256": "e403877906585fddb1f98cb9e50c75fc82d7a07eb895ab7e881bcd8347f5b6ec",
+  "assemblyFullName": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+  "assemblyMvid": "bfcea4c5-aef3-4326-baae-7912947968aa",
+  "playerBuildReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04PlayerInputs-cf7696ee331f4102bde378fa962a7562/m04-player-build.json",
+  "playerBuildReceiptSha256": "5f200209024ab500eb1fe1c6382cfacc2890e9a4458def0603a081af2fed08b5",
+  "buildGuid": "12372d8657f445c6ba73b995019f463c",
+  "nativeLibrarySha256": "93d6cf202503c593c5d4e2c91d545c7def6f8ba4611e0aa66a4e54fb1cb954a7",
+  "methods": [
+    {
+      "signature": "System.Reflection.Assembly System.Reflection.Assembly::LoadFrom(System.String,System.Boolean,System.Threading.StackCrawlMark&)",
+      "metadataToken": 100670628,
+      "implementation": "InternalCall",
+      "hasBody": false,
+      "instructions": [],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.Reflection.Assembly::LoadFrom(System.String,System.Security.Policy.Evidence)",
+      "metadataToken": 100670629,
+      "implementation": "NoInlining",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldc.i4.1",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "stloc.0",
+          "operand": ""
+        },
+        {
+          "offset": 2,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 3,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 4,
+          "opcode": "ldloca.s",
+          "operand": "V_0"
+        },
+        {
+          "offset": 6,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.Reflection.Assembly::LoadFrom(System.String,System.Boolean,System.Threading.StackCrawlMark&)"
+        },
+        {
+          "offset": 11,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.Reflection.Assembly::Load(System.String)",
+      "metadataToken": 100670630,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "call",
+          "operand": "System.AppDomain System.AppDomain::get_CurrentDomain()"
+        },
+        {
+          "offset": 5,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 6,
+          "opcode": "callvirt",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.String)"
+        },
+        {
+          "offset": 11,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.Reflection.Assembly::Load(System.Reflection.AssemblyName)",
+      "metadataToken": 100670631,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "call",
+          "operand": "System.AppDomain System.AppDomain::get_CurrentDomain()"
+        },
+        {
+          "offset": 5,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 6,
+          "opcode": "callvirt",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.Reflection.AssemblyName)"
+        },
+        {
+          "offset": 11,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.Reflection.Assembly::Load(System.Byte[])",
+      "metadataToken": 100670632,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "call",
+          "operand": "System.AppDomain System.AppDomain::get_CurrentDomain()"
+        },
+        {
+          "offset": 5,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 6,
+          "opcode": "callvirt",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.Byte[])"
+        },
+        {
+          "offset": 11,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly[] System.AppDomain::GetAssemblies(System.Boolean)",
+      "metadataToken": 100666411,
+      "implementation": "InternalCall",
+      "hasBody": false,
+      "instructions": [],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly[] System.AppDomain::GetAssemblies()",
+      "metadataToken": 100666412,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 2,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly[] System.AppDomain::GetAssemblies(System.Boolean)"
+        },
+        {
+          "offset": 7,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::LoadAssembly(System.String,System.Security.Policy.Evidence,System.Boolean,System.Threading.StackCrawlMark&)",
+      "metadataToken": 100666415,
+      "implementation": "InternalCall",
+      "hasBody": false,
+      "instructions": [],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.Reflection.AssemblyName)",
+      "metadataToken": 100666416,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 2,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 3,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.Reflection.AssemblyName,System.Security.Policy.Evidence)"
+        },
+        {
+          "offset": 8,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.Reflection.AssemblyName,System.Security.Policy.Evidence)",
+      "metadataToken": 100666417,
+      "implementation": "NoInlining",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "brtrue.s",
+          "operand": "IL_000E: ldarg.1"
+        },
+        {
+          "offset": 3,
+          "opcode": "ldstr",
+          "operand": "assemblyRef"
+        },
+        {
+          "offset": 8,
+          "opcode": "newobj",
+          "operand": "System.Void System.ArgumentNullException::.ctor(System.String)"
+        },
+        {
+          "offset": 13,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 14,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 15,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 20,
+          "opcode": "brfalse.s",
+          "operand": "IL_0023: ldarg.1"
+        },
+        {
+          "offset": 22,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 23,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 28,
+          "opcode": "callvirt",
+          "operand": "System.Int32 System.String::get_Length()"
+        },
+        {
+          "offset": 33,
+          "opcode": "brtrue.s",
+          "operand": "IL_004D: ldc.i4.1"
+        },
+        {
+          "offset": 35,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 36,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_CodeBase()"
+        },
+        {
+          "offset": 41,
+          "opcode": "brfalse.s",
+          "operand": "IL_0038: ldstr \"assemblyRef.Name cannot be empty.\""
+        },
+        {
+          "offset": 43,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 44,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_CodeBase()"
+        },
+        {
+          "offset": 49,
+          "opcode": "ldarg.2",
+          "operand": ""
+        },
+        {
+          "offset": 50,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.Reflection.Assembly::LoadFrom(System.String,System.Security.Policy.Evidence)"
+        },
+        {
+          "offset": 55,
+          "opcode": "ret",
+          "operand": ""
+        },
+        {
+          "offset": 56,
+          "opcode": "ldstr",
+          "operand": "assemblyRef.Name cannot be empty."
+        },
+        {
+          "offset": 61,
+          "opcode": "call",
+          "operand": "System.String Locale::GetText(System.String)"
+        },
+        {
+          "offset": 66,
+          "opcode": "ldstr",
+          "operand": "assemblyRef"
+        },
+        {
+          "offset": 71,
+          "opcode": "newobj",
+          "operand": "System.Void System.ArgumentException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 76,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 77,
+          "opcode": "ldc.i4.1",
+          "operand": ""
+        },
+        {
+          "offset": 78,
+          "opcode": "stloc.0",
+          "operand": ""
+        },
+        {
+          "offset": 79,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 80,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 81,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_FullName()"
+        },
+        {
+          "offset": 86,
+          "opcode": "ldarg.2",
+          "operand": ""
+        },
+        {
+          "offset": 87,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 88,
+          "opcode": "ldloca.s",
+          "operand": "V_0"
+        },
+        {
+          "offset": 90,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::LoadAssembly(System.String,System.Security.Policy.Evidence,System.Boolean,System.Threading.StackCrawlMark&)"
+        },
+        {
+          "offset": 95,
+          "opcode": "stloc.1",
+          "operand": ""
+        },
+        {
+          "offset": 96,
+          "opcode": "ldloc.1",
+          "operand": ""
+        },
+        {
+          "offset": 97,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 98,
+          "opcode": "call",
+          "operand": "System.Boolean System.Reflection.Assembly::op_Inequality(System.Reflection.Assembly,System.Reflection.Assembly)"
+        },
+        {
+          "offset": 103,
+          "opcode": "brfalse.s",
+          "operand": "IL_006B: ldarg.1"
+        },
+        {
+          "offset": 105,
+          "opcode": "ldloc.1",
+          "operand": ""
+        },
+        {
+          "offset": 106,
+          "opcode": "ret",
+          "operand": ""
+        },
+        {
+          "offset": 107,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 108,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_CodeBase()"
+        },
+        {
+          "offset": 113,
+          "opcode": "brtrue.s",
+          "operand": "IL_0080: ldarg.1"
+        },
+        {
+          "offset": 115,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 116,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 117,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 122,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 127,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 128,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 129,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_CodeBase()"
+        },
+        {
+          "offset": 134,
+          "opcode": "stloc.2",
+          "operand": ""
+        },
+        {
+          "offset": 135,
+          "opcode": "ldloc.2",
+          "operand": ""
+        },
+        {
+          "offset": 136,
+          "opcode": "ldstr",
+          "operand": "file://"
+        },
+        {
+          "offset": 141,
+          "opcode": "ldc.i4.5",
+          "operand": ""
+        },
+        {
+          "offset": 142,
+          "opcode": "callvirt",
+          "operand": "System.Boolean System.String::StartsWith(System.String,System.StringComparison)"
+        },
+        {
+          "offset": 147,
+          "opcode": "brfalse.s",
+          "operand": "IL_00A1: nop"
+        },
+        {
+          "offset": 149,
+          "opcode": "ldloc.2",
+          "operand": ""
+        },
+        {
+          "offset": 150,
+          "opcode": "newobj",
+          "operand": "System.Void Mono.Security.Uri::.ctor(System.String)"
+        },
+        {
+          "offset": 155,
+          "opcode": "call",
+          "operand": "System.String Mono.Security.Uri::get_LocalPath()"
+        },
+        {
+          "offset": 160,
+          "opcode": "stloc.2",
+          "operand": ""
+        },
+        {
+          "offset": 161,
+          "opcode": "nop",
+          "operand": ""
+        },
+        {
+          "offset": 162,
+          "opcode": "ldloc.2",
+          "operand": ""
+        },
+        {
+          "offset": 163,
+          "opcode": "ldarg.2",
+          "operand": ""
+        },
+        {
+          "offset": 164,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.Reflection.Assembly::LoadFrom(System.String,System.Security.Policy.Evidence)"
+        },
+        {
+          "offset": 169,
+          "opcode": "stloc.1",
+          "operand": ""
+        },
+        {
+          "offset": 170,
+          "opcode": "leave.s",
+          "operand": "IL_00BA: ldloc.1"
+        },
+        {
+          "offset": 172,
+          "opcode": "pop",
+          "operand": ""
+        },
+        {
+          "offset": 173,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 174,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 175,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 180,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 185,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 186,
+          "opcode": "ldloc.1",
+          "operand": ""
+        },
+        {
+          "offset": 187,
+          "opcode": "callvirt",
+          "operand": "System.Reflection.AssemblyName System.Reflection.Assembly::GetName()"
+        },
+        {
+          "offset": 192,
+          "opcode": "stloc.3",
+          "operand": ""
+        },
+        {
+          "offset": 193,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 194,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 199,
+          "opcode": "ldloc.3",
+          "operand": ""
+        },
+        {
+          "offset": 200,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 205,
+          "opcode": "call",
+          "operand": "System.Boolean System.String::op_Inequality(System.String,System.String)"
+        },
+        {
+          "offset": 210,
+          "opcode": "brfalse.s",
+          "operand": "IL_00E1: ldarg.1"
+        },
+        {
+          "offset": 212,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 213,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 214,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 219,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 224,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 225,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 226,
+          "opcode": "callvirt",
+          "operand": "System.Version System.Reflection.AssemblyName::get_Version()"
+        },
+        {
+          "offset": 231,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 232,
+          "opcode": "call",
+          "operand": "System.Boolean System.Version::op_Inequality(System.Version,System.Version)"
+        },
+        {
+          "offset": 237,
+          "opcode": "brfalse.s",
+          "operand": "IL_0125: ldarg.1"
+        },
+        {
+          "offset": 239,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 240,
+          "opcode": "callvirt",
+          "operand": "System.Version System.Reflection.AssemblyName::get_Version()"
+        },
+        {
+          "offset": 245,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 246,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 247,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 248,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 249,
+          "opcode": "newobj",
+          "operand": "System.Void System.Version::.ctor(System.Int32,System.Int32,System.Int32,System.Int32)"
+        },
+        {
+          "offset": 254,
+          "opcode": "call",
+          "operand": "System.Boolean System.Version::op_Inequality(System.Version,System.Version)"
+        },
+        {
+          "offset": 259,
+          "opcode": "brfalse.s",
+          "operand": "IL_0125: ldarg.1"
+        },
+        {
+          "offset": 261,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 262,
+          "opcode": "callvirt",
+          "operand": "System.Version System.Reflection.AssemblyName::get_Version()"
+        },
+        {
+          "offset": 267,
+          "opcode": "ldloc.3",
+          "operand": ""
+        },
+        {
+          "offset": 268,
+          "opcode": "callvirt",
+          "operand": "System.Version System.Reflection.AssemblyName::get_Version()"
+        },
+        {
+          "offset": 273,
+          "opcode": "call",
+          "operand": "System.Boolean System.Version::op_Inequality(System.Version,System.Version)"
+        },
+        {
+          "offset": 278,
+          "opcode": "brfalse.s",
+          "operand": "IL_0125: ldarg.1"
+        },
+        {
+          "offset": 280,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 281,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 282,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 287,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 292,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 293,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 294,
+          "opcode": "callvirt",
+          "operand": "System.Globalization.CultureInfo System.Reflection.AssemblyName::get_CultureInfo()"
+        },
+        {
+          "offset": 299,
+          "opcode": "brfalse.s",
+          "operand": "IL_0148: ldarg.1"
+        },
+        {
+          "offset": 301,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 302,
+          "opcode": "callvirt",
+          "operand": "System.Globalization.CultureInfo System.Reflection.AssemblyName::get_CultureInfo()"
+        },
+        {
+          "offset": 307,
+          "opcode": "ldloc.3",
+          "operand": ""
+        },
+        {
+          "offset": 308,
+          "opcode": "callvirt",
+          "operand": "System.Boolean System.Object::Equals(System.Object)"
+        },
+        {
+          "offset": 313,
+          "opcode": "brfalse.s",
+          "operand": "IL_0148: ldarg.1"
+        },
+        {
+          "offset": 315,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 316,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 317,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 322,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 327,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 328,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 329,
+          "opcode": "callvirt",
+          "operand": "System.Byte[] System.Reflection.AssemblyName::GetPublicKeyToken()"
+        },
+        {
+          "offset": 334,
+          "opcode": "stloc.s",
+          "operand": "V_4"
+        },
+        {
+          "offset": 336,
+          "opcode": "ldloc.s",
+          "operand": "V_4"
+        },
+        {
+          "offset": 338,
+          "opcode": "brfalse.s",
+          "operand": "IL_01AA: ldloc.1"
+        },
+        {
+          "offset": 340,
+          "opcode": "ldloc.s",
+          "operand": "V_4"
+        },
+        {
+          "offset": 342,
+          "opcode": "ldlen",
+          "operand": ""
+        },
+        {
+          "offset": 343,
+          "opcode": "brfalse.s",
+          "operand": "IL_01AA: ldloc.1"
+        },
+        {
+          "offset": 345,
+          "opcode": "ldloc.3",
+          "operand": ""
+        },
+        {
+          "offset": 346,
+          "opcode": "callvirt",
+          "operand": "System.Byte[] System.Reflection.AssemblyName::GetPublicKeyToken()"
+        },
+        {
+          "offset": 351,
+          "opcode": "stloc.s",
+          "operand": "V_5"
+        },
+        {
+          "offset": 353,
+          "opcode": "ldloc.s",
+          "operand": "V_5"
+        },
+        {
+          "offset": 355,
+          "opcode": "brfalse.s",
+          "operand": "IL_016F: ldnull"
+        },
+        {
+          "offset": 357,
+          "opcode": "ldloc.s",
+          "operand": "V_4"
+        },
+        {
+          "offset": 359,
+          "opcode": "ldlen",
+          "operand": ""
+        },
+        {
+          "offset": 360,
+          "opcode": "conv.i4",
+          "operand": ""
+        },
+        {
+          "offset": 361,
+          "opcode": "ldloc.s",
+          "operand": "V_5"
+        },
+        {
+          "offset": 363,
+          "opcode": "ldlen",
+          "operand": ""
+        },
+        {
+          "offset": 364,
+          "opcode": "conv.i4",
+          "operand": ""
+        },
+        {
+          "offset": 365,
+          "opcode": "beq.s",
+          "operand": "IL_017C: ldloc.s V_4"
+        },
+        {
+          "offset": 367,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 368,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 369,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 374,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 379,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 380,
+          "opcode": "ldloc.s",
+          "operand": "V_4"
+        },
+        {
+          "offset": 382,
+          "opcode": "ldlen",
+          "operand": ""
+        },
+        {
+          "offset": 383,
+          "opcode": "conv.i4",
+          "operand": ""
+        },
+        {
+          "offset": 384,
+          "opcode": "ldc.i4.1",
+          "operand": ""
+        },
+        {
+          "offset": 385,
+          "opcode": "sub",
+          "operand": ""
+        },
+        {
+          "offset": 386,
+          "opcode": "stloc.s",
+          "operand": "V_6"
+        },
+        {
+          "offset": 388,
+          "opcode": "br.s",
+          "operand": "IL_01A5: ldloc.s V_6"
+        },
+        {
+          "offset": 390,
+          "opcode": "ldloc.s",
+          "operand": "V_5"
+        },
+        {
+          "offset": 392,
+          "opcode": "ldloc.s",
+          "operand": "V_6"
+        },
+        {
+          "offset": 394,
+          "opcode": "ldelem.u1",
+          "operand": ""
+        },
+        {
+          "offset": 395,
+          "opcode": "ldloc.s",
+          "operand": "V_4"
+        },
+        {
+          "offset": 397,
+          "opcode": "ldloc.s",
+          "operand": "V_6"
+        },
+        {
+          "offset": 399,
+          "opcode": "ldelem.u1",
+          "operand": ""
+        },
+        {
+          "offset": 400,
+          "opcode": "beq.s",
+          "operand": "IL_019F: ldloc.s V_6"
+        },
+        {
+          "offset": 402,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 403,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 404,
+          "opcode": "callvirt",
+          "operand": "System.String System.Reflection.AssemblyName::get_Name()"
+        },
+        {
+          "offset": 409,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 414,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 415,
+          "opcode": "ldloc.s",
+          "operand": "V_6"
+        },
+        {
+          "offset": 417,
+          "opcode": "ldc.i4.1",
+          "operand": ""
+        },
+        {
+          "offset": 418,
+          "opcode": "sub",
+          "operand": ""
+        },
+        {
+          "offset": 419,
+          "opcode": "stloc.s",
+          "operand": "V_6"
+        },
+        {
+          "offset": 421,
+          "opcode": "ldloc.s",
+          "operand": "V_6"
+        },
+        {
+          "offset": 423,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 424,
+          "opcode": "bge.s",
+          "operand": "IL_0186: ldloc.s V_5"
+        },
+        {
+          "offset": 426,
+          "opcode": "ldloc.1",
+          "operand": ""
+        },
+        {
+          "offset": 427,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": [
+        {
+          "handlerType": "Catch",
+          "catchType": "System.Object",
+          "tryStart": "IL_00A2: ldloc.2",
+          "tryEnd": "IL_00AC: pop",
+          "handlerStart": "IL_00AC: pop",
+          "handlerEnd": "IL_00BA: ldloc.1",
+          "filterStart": ""
+        }
+      ]
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.String)",
+      "metadataToken": 100666418,
+      "implementation": "NoInlining",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldc.i4.1",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "stloc.0",
+          "operand": ""
+        },
+        {
+          "offset": 2,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 3,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 4,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 5,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 6,
+          "opcode": "ldloca.s",
+          "operand": "V_0"
+        },
+        {
+          "offset": 8,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.String,System.Security.Policy.Evidence,System.Boolean,System.Threading.StackCrawlMark&)"
+        },
+        {
+          "offset": 13,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.String,System.Security.Policy.Evidence,System.Boolean,System.Threading.StackCrawlMark&)",
+      "metadataToken": 100666419,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "brtrue.s",
+          "operand": "IL_000E: ldarg.1"
+        },
+        {
+          "offset": 3,
+          "opcode": "ldstr",
+          "operand": "assemblyString"
+        },
+        {
+          "offset": 8,
+          "opcode": "newobj",
+          "operand": "System.Void System.ArgumentNullException::.ctor(System.String)"
+        },
+        {
+          "offset": 13,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 14,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 15,
+          "opcode": "callvirt",
+          "operand": "System.Int32 System.String::get_Length()"
+        },
+        {
+          "offset": 20,
+          "opcode": "brtrue.s",
+          "operand": "IL_0021: ldarg.0"
+        },
+        {
+          "offset": 22,
+          "opcode": "ldstr",
+          "operand": "assemblyString cannot have zero length"
+        },
+        {
+          "offset": 27,
+          "opcode": "newobj",
+          "operand": "System.Void System.ArgumentException::.ctor(System.String)"
+        },
+        {
+          "offset": 32,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 33,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 34,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 35,
+          "opcode": "ldarg.2",
+          "operand": ""
+        },
+        {
+          "offset": 36,
+          "opcode": "ldarg.3",
+          "operand": ""
+        },
+        {
+          "offset": 37,
+          "opcode": "ldarg.s",
+          "operand": "stackMark"
+        },
+        {
+          "offset": 39,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::LoadAssembly(System.String,System.Security.Policy.Evidence,System.Boolean,System.Threading.StackCrawlMark&)"
+        },
+        {
+          "offset": 44,
+          "opcode": "dup",
+          "operand": ""
+        },
+        {
+          "offset": 45,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 46,
+          "opcode": "call",
+          "operand": "System.Boolean System.Reflection.Assembly::op_Equality(System.Reflection.Assembly,System.Reflection.Assembly)"
+        },
+        {
+          "offset": 51,
+          "opcode": "brfalse.s",
+          "operand": "IL_003D: ret"
+        },
+        {
+          "offset": 53,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 54,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 55,
+          "opcode": "newobj",
+          "operand": "System.Void System.IO.FileNotFoundException::.ctor(System.String,System.String)"
+        },
+        {
+          "offset": 60,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 61,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.Byte[])",
+      "metadataToken": 100666420,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 2,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 3,
+          "opcode": "ldnull",
+          "operand": ""
+        },
+        {
+          "offset": 4,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.Byte[],System.Byte[],System.Security.Policy.Evidence)"
+        },
+        {
+          "offset": 9,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::LoadAssemblyRaw(System.Byte[],System.Byte[],System.Security.Policy.Evidence,System.Boolean)",
+      "metadataToken": 100666421,
+      "implementation": "InternalCall",
+      "hasBody": false,
+      "instructions": [],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.Byte[],System.Byte[],System.Security.Policy.Evidence)",
+      "metadataToken": 100666422,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 2,
+          "opcode": "ldarg.2",
+          "operand": ""
+        },
+        {
+          "offset": 3,
+          "opcode": "ldarg.3",
+          "operand": ""
+        },
+        {
+          "offset": 4,
+          "opcode": "ldc.i4.0",
+          "operand": ""
+        },
+        {
+          "offset": 5,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::Load(System.Byte[],System.Byte[],System.Security.Policy.Evidence,System.Boolean)"
+        },
+        {
+          "offset": 10,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    },
+    {
+      "signature": "System.Reflection.Assembly System.AppDomain::Load(System.Byte[],System.Byte[],System.Security.Policy.Evidence,System.Boolean)",
+      "metadataToken": 100666423,
+      "implementation": "IL",
+      "hasBody": true,
+      "instructions": [
+        {
+          "offset": 0,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 1,
+          "opcode": "brtrue.s",
+          "operand": "IL_000E: ldarg.0"
+        },
+        {
+          "offset": 3,
+          "opcode": "ldstr",
+          "operand": "rawAssembly"
+        },
+        {
+          "offset": 8,
+          "opcode": "newobj",
+          "operand": "System.Void System.ArgumentNullException::.ctor(System.String)"
+        },
+        {
+          "offset": 13,
+          "opcode": "throw",
+          "operand": ""
+        },
+        {
+          "offset": 14,
+          "opcode": "ldarg.0",
+          "operand": ""
+        },
+        {
+          "offset": 15,
+          "opcode": "ldarg.1",
+          "operand": ""
+        },
+        {
+          "offset": 16,
+          "opcode": "ldarg.2",
+          "operand": ""
+        },
+        {
+          "offset": 17,
+          "opcode": "ldarg.3",
+          "operand": ""
+        },
+        {
+          "offset": 18,
+          "opcode": "ldarg.s",
+          "operand": "refonly"
+        },
+        {
+          "offset": 20,
+          "opcode": "call",
+          "operand": "System.Reflection.Assembly System.AppDomain::LoadAssemblyRaw(System.Byte[],System.Byte[],System.Security.Policy.Evidence,System.Boolean)"
+        },
+        {
+          "offset": 25,
+          "opcode": "dup",
+          "operand": ""
+        },
+        {
+          "offset": 26,
+          "opcode": "ldc.i4.1",
+          "operand": ""
+        },
+        {
+          "offset": 27,
+          "opcode": "callvirt",
+          "operand": "System.Void System.Reflection.Assembly::set_FromByteArray(System.Boolean)"
+        },
+        {
+          "offset": 32,
+          "opcode": "ret",
+          "operand": ""
+        }
+      ],
+      "exceptionHandlers": []
+    }
+  ]
+}

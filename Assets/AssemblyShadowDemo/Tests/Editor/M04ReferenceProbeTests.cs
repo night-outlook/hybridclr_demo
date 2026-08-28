@@ -14,17 +14,21 @@ namespace AssemblyShadowDemo.EditorTests
         public void RuntimeDtoNamesAndRequiredFieldsArePublicAndPreserved()
         {
             Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M04ReferenceProbe", true);
-            foreach (string name in new[] { "Result", "FixtureManifest", "PlayerBuildReceipt", "Fixture", "AssemblyIdentity", "ReferenceIdentity" })
+            foreach (string name in new[] { "Result", "FixtureManifest", "PlayerBuildReceipt", "Fixture", "AssemblyIdentity", "ReferenceIdentity", "NativeAssemblyIdentity" })
             {
                 Type nested = probe.GetNestedType(name, BindingFlags.Public);
                 Assert.IsNotNull(nested, name);
                 Assert.IsNotNull(nested.GetCustomAttributes(typeof(PreserveAttribute), false).SingleOrDefault(), name + " must be preserved.");
+                foreach (FieldInfo field in nested.GetFields(BindingFlags.Public | BindingFlags.Instance))
+                    Assert.IsNotNull(field.GetCustomAttributes(typeof(PreserveAttribute), false).SingleOrDefault(), name + "." + field.Name + " must be preserved.");
             }
             AssertFields(probe, "AssemblyIdentity", new[] { "name", "fullName", "version", "culture", "publicKeyToken", "mvid", "path", "sha256", "referenceIdentities" });
             AssertFields(probe, "ReferenceIdentity", new[] { "referenceIndex", "name", "fullName", "version", "culture", "publicKeyToken" });
-            AssertFields(probe, "PlayerBuildReceipt", new[] { "schemaVersion", "milestone", "baselineBuildId", "runtimeAbiHash", "buildGuid", "assemblyIdentities" });
+            AssertFields(probe, "PlayerBuildReceipt", new[] { "schemaVersion", "milestone", "baselineBuildId", "runtimeAbiHash", "buildGuid", "assemblyIdentities", "nativeMetadataPath", "nativeMetadataSha256", "nativeMetadataVersion", "nativeAssemblyIdentities", "nativeGeneratedAssemblyNames" });
+            AssertFields(probe, "NativeAssemblyIdentity", new[] { "assemblyIndex", "imageIndex", "token", "imageName", "name", "fullName", "version", "culture", "publicKeyToken" });
             AssertFields(probe, "FixtureManifest", new[] { "schemaVersion", "milestone", "baselineBuildId", "runtimeAbiHash", "candidateNames", "fixtures" });
             Assert.AreEqual(typeof(int), probe.GetNestedType("ReferenceIdentity", BindingFlags.Public).GetField("referenceIndex").FieldType);
+            Assert.AreEqual(typeof(uint), probe.GetNestedType("NativeAssemblyIdentity", BindingFlags.Public).GetField("token").FieldType);
         }
 
         [Test]
@@ -85,10 +89,30 @@ namespace AssemblyShadowDemo.EditorTests
             Assert.IsFalse(source.Contains("static readonly Assembly"));
         }
 
+        [Test]
+        public void NativeMetadataReceiptIsByteAndPlayerPathBound()
+        {
+            string source = File.ReadAllText("Assets/AssemblyShadowDemo/Bootstrap/M04ReferenceProbe.cs");
+            StringAssert.Contains("ValidateNativeMetadataReceipt", source);
+            StringAssert.Contains("nativeMetadataVersion == 31", source);
+            StringAssert.Contains("HashFile(metadataPath)", source);
+            StringAssert.Contains("Directory.GetFiles(Application.dataPath", source);
+            StringAssert.Contains("SearchOption.AllDirectories", source);
+            StringAssert.Contains("nativeAssemblyIdentities.Length > 0", source);
+            StringAssert.Contains("nativeGeneratedAssemblyNames.Length > 0", source);
+            Assert.IsFalse(source.Contains("ModuleVersionId"));
+            Assert.IsFalse(source.Contains("Resources/Data/il2cpp_data/Metadata"));
+        }
+
         private static void AssertFields(Type probe, string typeName, string[] required)
         {
             Type type = probe.GetNestedType(typeName, BindingFlags.Public);
-            foreach (string field in required) Assert.IsNotNull(type.GetField(field, BindingFlags.Public | BindingFlags.Instance), typeName + "." + field);
+            foreach (string field in required)
+            {
+                FieldInfo info = type.GetField(field, BindingFlags.Public | BindingFlags.Instance);
+                Assert.IsNotNull(info, typeName + "." + field);
+                Assert.IsNotNull(info.GetCustomAttributes(typeof(PreserveAttribute), false).SingleOrDefault(), typeName + "." + field + " must be preserved.");
+            }
         }
     }
 }

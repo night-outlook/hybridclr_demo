@@ -179,7 +179,9 @@ namespace AssemblyShadowDemo.Editor
                 claimed.nativeLibraryPath == actual.nativeLibraryPath && claimed.nativeLibrarySha256 == actual.nativeLibrarySha256,
                 "M04 Player receipt does not bind its captured executable and input snapshot.");
             VerifyHash(actual.nativeLibraryPath, actual.nativeLibrarySha256);
-            M04AssemblyIdentityProof.Verify(claimed.assemblyIdentities, M04AssemblyIdentityProof.ReadLinked(snapshotRoot, actual));
+            var linkedIdentities = M04AssemblyIdentityProof.ReadLinked(snapshotRoot, actual);
+            M04AssemblyIdentityProof.Verify(claimed.assemblyIdentities, linkedIdentities);
+            M04NativeMetadataProof.Verify(claimed, linkedIdentities);
             M04PlaceholderManifestProof.Verify(snapshotRoot, claimed);
             M04DiagnosticSchemaVerifier.Verify(snapshotRoot, actual);
         }

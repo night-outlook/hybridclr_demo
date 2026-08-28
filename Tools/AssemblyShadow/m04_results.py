@@ -14,7 +14,8 @@ import re
 import sys
 
 from shadow_tools import VerificationError, require, read_json, unique_object
-from m04_metadata import read_identity
+from m04_metadata import (read_identity, read_native_metadata, find_native_metadata,
+                          NATIVE_METADATA_VERSION, NATIVE_ASSEMBLY_FIELDS)
 from m03_results import (CANDIDATES, INTERNAL, PROVIDER_ORDER, ERROR_CODES, STATE_CODES,
                          digest, _absolute, _rel, _s, _hash, _guid, _integer, _same,
                          _names, _exact, _name_set, _name_order, _resource_abi_hash,
@@ -35,7 +36,7 @@ OFF_MODES = {"T04-08", "T04-10-BenchmarkOff"}
 SUCCESS_MODES = {"T04-01", "T04-02", "T04-06", "T04-07", "T04-09-BenchmarkOn"}
 FIXTURE_FIELDS = "patchId defines changedRoots compileSnapshot compileSnapshotHash patchDirectory patchManifest patchManifestSha256 closureLoadOrder stableAotNames assemblyIdentities"
 MANIFEST_FIELDS = "schemaVersion milestone unityVersion target architecture baselineManifestPath baselineManifestSha256 baselineBuildId runtimeAbiHash baselineInputSnapshot baselineInputSnapshotHash candidateNames closureLoadOrder stableAotNames stableAotProvenanceHash stableAotProvenance fixtures"
-PLAYER_FIELDS = "schemaVersion milestone variant baselineBuildId runtimeAbiHash unityVersion target architecture buildGuid playerOutput inputSnapshot inputSnapshotHash nativeLibraryPath nativeLibrarySha256 nativeArguments assemblyIdentities placeholderManifestPath placeholderManifestSha256 placeholderAssemblyNames"
+PLAYER_FIELDS = "schemaVersion milestone variant baselineBuildId runtimeAbiHash unityVersion target architecture buildGuid playerOutput inputSnapshot inputSnapshotHash nativeLibraryPath nativeLibrarySha256 nativeArguments assemblyIdentities placeholderManifestPath placeholderManifestSha256 placeholderAssemblyNames nativeMetadataPath nativeMetadataSha256 nativeMetadataVersion nativeAssemblyIdentities nativeGeneratedAssemblyNames"
 IDENTITY_FIELDS = "name fullName version culture publicKeyToken mvid path sha256 referenceIdentities"
 REF_FIELDS = "referenceIndex name fullName version culture publicKeyToken"
 REPLAY_FIELDS = "schemaVersion milestone result comparisonPolicy fixtureManifestPath fixtureManifestSha256 baselineManifestPath baselineManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 baselineInputSnapshotHash baselineBuildId playerBuildGuid nativeLibrarySha256 linkedPlayerReceiptHash runtimeAbiHash unityVersion target architecture stableAotProvenanceHash validatorSourcePins fixtures"
@@ -119,6 +120,44 @@ def parse_placeholders(data, path="placeholder manifest"):
     return _names(names, path, "placeholder names")
 
 
+def _verify_native_metadata(player, path):
+    """Native-generated identities are derived from actual Player metadata.
+
+    This is a separate physical identity domain, not a waiver for unknown names
+    and not a synthetic DLL/MVID. Linked names must retain exact PE identity.
+    """
+    output = _absolute(player["playerOutput"], path, "playerOutput", directory=True)
+    metadata = _absolute(player["nativeMetadataPath"], path, "nativeMetadataPath")
+    require(player["playerOutput"] == str(output.resolve()) and player["nativeMetadataPath"] == str(metadata.resolve()),
+            f"{path}: aliased Player/native metadata path")
+    require(metadata == find_native_metadata(output),
+            f"{path}: native metadata is not the executed Player's unique metadata file")
+    expected_hash = _hash(player["nativeMetadataSha256"], path, "nativeMetadataSha256")
+    require(type(player["nativeMetadataVersion"]) is int and player["nativeMetadataVersion"] == NATIVE_METADATA_VERSION,
+            f"{path}: unsupported native metadata format/version")
+    actual = read_native_metadata(metadata)
+    require(actual["nativeMetadataSha256"] == expected_hash, f"{path}: native metadata SHA differs from actual Player bytes")
+    rows = _array(player["nativeAssemblyIdentities"], path)
+    for index, row in enumerate(rows):
+        rp = f"{path}.nativeAssemblyIdentities[{index}]"
+        _fields(row, NATIVE_ASSEMBLY_FIELDS, rp)
+        for field in ("assemblyIndex", "imageIndex"):
+            require(type(row[field]) is int and 0 <= row[field] < 1 << 31, f"{rp}: invalid {field}")
+        require(type(row["token"]) is int and 0 <= row["token"] < 1 << 32, f"{rp}: token must be UInt32")
+        _strings(row, rp, "imageName name fullName version culture publicKeyToken")
+    require(_same(rows, actual["nativeAssemblyIdentities"]), f"{path}: native Assembly/Image identities differ from actual Player metadata")
+    native = {row["name"]: row for row in rows}
+    linked_rows = _array(player["assemblyIdentities"], path)
+    linked_names = _names([row["name"] for row in linked_rows], path, "linked identity names")
+    for row in linked_rows:
+        require(row["name"] in native and all(row[key] == native[row["name"]][key]
+                for key in ("name", "fullName", "version", "culture", "publicKeyToken")),
+                f"{path}: linked DLL identity disagrees with native metadata: {row['name']}")
+    generated = sorted(set(native) - set(linked_names))
+    _exact(player["nativeGeneratedAssemblyNames"], generated, path, "native-generated assembly inventory")
+    return native
+
+
 def _verify_player_build_receipt(path, manifest, baseline, variant):
     path = _absolute(str(path), path, "playerBuildReceipt")
     r = _obj(path, PLAYER_FIELDS)
@@ -151,6 +190,7 @@ def _verify_player_build_receipt(path, manifest, baseline, variant):
     for linked in snapshot["linkedPlayerReceipt"]["assemblies"]:
         parsed = next(value for name, value in identities.items() if name.casefold() == linked["name"].casefold())
         require(parsed["mvid"] == linked["mvid"], f"{path}: linked receipt MVID differs from DLL")
+    _verify_native_metadata(r, path)
     placeholders = root / "m04-placeholder-AssemblyManifest.cpp"
     require(r["placeholderManifestPath"] == str(placeholders) and digest(placeholders) == r["placeholderManifestSha256"],
             f"{path}: placeholder snapshot binding differs")
@@ -466,6 +506,19 @@ def _verify_phases(result, manifest, patch, expected, stages, path):
         initial = phase == "initial"
         members, stable = ([], []) if initial else (expected, manifest["stableAotNames"])
         _verify_diag_invariants(d, members, stable, path, patch=patch)
+        native_rows = sorted(manifest["_onBuild"]["nativeAssemblyIdentities"], key=lambda a: a["assemblyIndex"])
+        physical = [(a["name"].casefold(), False) for a in native_rows]
+        if mode == "T04-02" and phase == "final":
+            ordinary = _fields(result["ordinary"], ORDINARY_FIELDS, f"{path}.ordinary")
+            # Startup registered the token-zero placeholder after the native
+            # inventory, before any shadows. Filling that SAME object makes
+            # its existing slot visible; RegisterInterpreterAssembly only
+            # invalidates enumeration and never appends it a second time.
+            physical.append((ordinary["placeholderName"].casefold(), True))
+        if d["generation"] == 1:
+            physical += [(name.casefold(), True) for name in expected]
+        require([(a["name"].casefold(), a["isInterpreter"]) for a in d["ordinaryAssemblies"]] == physical,
+                f"{path}.{phase}: physical Assembly order/inventory differs from native metadata and actual publication")
         require(d["baselineBuildId"] == ("" if initial else manifest["baselineBuildId"]) and d["patchId"] == ("" if initial else patch["patchId"]),
                 f"{path}.{phase}: native transaction identity differs")
         require(_same(d["events"][:len(previous_events)], previous_events), f"{path}.{phase}: native event history rewritten")
@@ -568,7 +621,8 @@ def verify_case(path, manifest, baseline, fixtures, player, player_path):
     nonstrings = set(array_fields.split()) | {"schemaVersion", "processId", "il2cpp", "benchmark", "ordinary"}
     for field in set(RESULT_FIELDS.split()) - nonstrings:
         require(type(result[field]) is str, f"{path}.{field}: missing string evidence")
-    identities = {a["name"]: a for a in player["assemblyIdentities"]}
+    identities = _verify_native_metadata(player, player_path)
+    identities.update({a["name"]: a for a in player["assemblyIdentities"]})
     if mode in OFF_MODES:
         for field in "patchId patchManifestPath patchManifestSha256 compileSnapshotHash".split():
             require(result[field] == "", f"{path}: OFF process claims patch activity")
@@ -682,7 +736,7 @@ def verify_results(result_dir, manifest, baseline, fixtures, on, off, on_path, o
     require({p.name for p in root.glob("m04-*-native-diagnostics.json")} == expected_raw, f"{root}: missing/extra raw native diagnostics files")
     return dict(milestone="M04", resultPassed=True, baselineBuildId=manifest["baselineBuildId"], runtimeAbiHash=manifest["runtimeAbiHash"], modes=results,
                 moduleMvidObservationPolicy=MVID_POLICY,
-                evidence="Byte-bound PE identities, compiler/linker/resources, Editor replay and exact real-process observations. Unsigned evidence is not authentication; Editor owns semantic/IL and installed-catalog proof; no unsupported runtime module MVID claim.")
+                evidence="Byte-bound PE and native format-31 Assembly/Image identities, compiler/linker/resources, Editor replay and exact real-process observations. Unsigned evidence is not authentication; Editor owns semantic/IL and installed-catalog proof; no unsupported runtime module MVID claim.")
 
 
 def main(argv=None):

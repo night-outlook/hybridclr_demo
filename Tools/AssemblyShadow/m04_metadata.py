@@ -1,12 +1,14 @@
-"""Bounded, dependency-free ECMA-335 Assembly/AssemblyRef identity reader.
+"""Bounded, dependency-free managed and native assembly identity readers.
 
 This is intentionally not an IL verifier or a replacement for the Editor's
 semantic/Unity ABI proof. It independently binds identity claims to PE bytes.
-Only ordinary CLI metadata tables (0..44) are accepted; no execution occurs.
+PE parsing accepts ordinary CLI metadata tables (0..44). Native parsing accepts
+only the pinned IL2CPP global-metadata format 31. Neither executes input bytes.
 """
 from __future__ import annotations
 
 import hashlib
+import os
 from pathlib import Path
 import uuid
 
@@ -221,3 +223,180 @@ def read_identity(path: Path) -> dict:
     require(path.stat().st_size <= 512 * 1024 * 1024, f"{path}: oversized DLL")
     data = path.read_bytes()
     return dict(read_identity_bytes(data, path), path=str(path.absolute()), sha256=hashlib.sha256(data).hexdigest())
+
+
+NATIVE_METADATA_VERSION = 31
+NATIVE_METADATA_RELATIVE_PATH = "Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat"
+NATIVE_ASSEMBLY_FIELDS = "assemblyIndex imageIndex token imageName name fullName version culture publicKeyToken"
+
+
+class NativeMetadataReader(Reader):
+    def fail(self, message):
+        raise VerificationError(f"{self.label}: IL2CPP format-31 metadata: {message}")
+
+    def signed32(self, offset):
+        return int.from_bytes(self.block(offset, 4), "little", signed=True)
+
+
+def read_native_metadata_bytes(data: bytes, label="<native metadata bytes>") -> dict:
+    """Read the real native Assembly and Image tables, not compiler DLL names.
+
+    Layout is the pinned GlobalMetadataFileInternals.h: 256-byte header,
+    string pair at 24, Image pair at 168 (40-byte rows), Assembly pair at 176
+    (64-byte rows), referenced-assembly pair at 192 (signed 32-bit indices).
+    Strings/indices and relevant image/ref ranges are checked before use.
+    Native token formatting deliberately follows AssemblyNameToString's first
+    byte sentinel; it is not PE's absent-vs-eight-zero-byte token convention.
+    """
+    r = NativeMetadataReader(data, label)
+    if len(data) > 512 * 1024 * 1024: r.fail("oversized metadata file")
+    r.block(0, 256)
+    if r.number(0, 4) != 0xFAB11BAF: r.fail("invalid metadata magic")
+    if r.signed32(4) != NATIVE_METADATA_VERSION: r.fail("unsupported metadata version (requires 31)")
+
+    regions = {}
+    for header in range(8, 256, 8):
+        offset, size = r.signed32(header), r.signed32(header + 4)
+        if offset < 0 or size < 0 or (size and offset < 256):
+            r.fail("negative region or region overlaps header")
+        r.block(offset, size)
+        regions[header] = (offset, size)
+    end = 256
+    for start, size in sorted((offset, size) for offset, size in regions.values() if size):
+        if start < end: r.fail("overlapping metadata table/string regions")
+        end = start + size
+
+    def table(header, stride, maximum=10_000_000):
+        offset, size = regions[header]
+        if size % stride or size // stride > maximum: r.fail("invalid table byte size/stride/count")
+        return offset, size // stride
+
+    strings_offset, strings_size = regions[24]
+    if not strings_size: r.fail("missing metadata string heap")
+    heap = r.block(strings_offset, strings_size)
+
+    def string(index, decode=True):
+        if index < 0 or index >= strings_size: r.fail("string index outside metadata heap")
+        last = heap.find(b"\0", index)
+        if last < 0: r.fail("unterminated metadata string")
+        if not decode: return heap[index:last]
+        try: return heap[index:last].decode("utf-8", errors="strict")
+        except UnicodeDecodeError: r.fail("invalid UTF-8 identity string")
+
+    images_offset, image_count = table(168, 40, 65536)
+    assemblies_offset, assembly_count = table(176, 64, 65536)
+    refs_offset, ref_count = table(192, 4)
+    _, type_count = table(160, 88)
+    _, method_count = table(48, 36)  # format 31 includes returnParameterToken
+    _, exported_count = table(248, 4)
+    _, attribute_count = table(208, 8)
+    if not image_count or image_count != assembly_count: r.fail("requires one image per assembly")
+    reference_indices = [r.signed32(refs_offset + index * 4) for index in range(ref_count)]
+    if any(index < 0 or index >= assembly_count for index in reference_indices):
+        r.fail("referenced assembly index outside assembly table")
+
+    def index_range(start, count, limit, kind):
+        if count < 0 or start < -1 or count and start < 0 or (start >= 0 and start + count > limit):
+            r.fail(kind + " range outside target table")
+
+    images = []
+    for image_index in range(image_count):
+        p = images_offset + image_index * 40
+        image_name = string(r.signed32(p))
+        if not image_name or image_name != image_name.strip() or any(c in image_name for c in "\\/\r\n\0"):
+            r.fail("invalid image name")
+        assembly_index = r.signed32(p + 4)
+        if not 0 <= assembly_index < assembly_count: r.fail("image assembly index outside table")
+        index_range(r.signed32(p + 8), r.number(p + 12, 4), type_count, "image type")
+        index_range(r.signed32(p + 16), r.number(p + 20, 4), exported_count, "image exported type")
+        entry = r.signed32(p + 24)
+        if entry != -1 and not 0 <= entry < method_count: r.fail("image entrypoint index outside method table")
+        index_range(r.signed32(p + 32), r.number(p + 36, 4), attribute_count, "image custom attribute")
+        images.append((assembly_index, image_name))
+
+    identities, seen_names, seen_images = [], set(), set()
+    ref_ranges = []
+    for assembly_index in range(assembly_count):
+        p = assemblies_offset + assembly_index * 64
+        image_index, token = r.signed32(p), r.number(p + 4, 4)
+        if not 0 <= image_index < image_count or image_index in seen_images:
+            r.fail("missing/duplicate/out-of-range assembly image index")
+        seen_images.add(image_index)
+        reverse_index, image_name = images[image_index]
+        if reverse_index != assembly_index: r.fail("assembly/image reverse identity mismatch")
+        if token & 0xff000000 != 0x20000000: r.fail("invalid Assembly metadata token")
+        start, count = r.signed32(p + 8), r.signed32(p + 12)
+        index_range(start, count, ref_count, "assembly reference")
+        if count: ref_ranges.append((start, start + count))
+        name, culture = string(r.signed32(p + 16)), string(r.signed32(p + 20))
+        # publicKeyIndex names binary key bytes in the string heap; do not
+        # reinterpret it as UTF-8 or recompute the already-materialized token.
+        string(r.signed32(p + 24), decode=False)
+        if not name or name != name.strip() or any(c in name for c in ",=\\/\r\n\0"):
+            r.fail("invalid assembly simple name")
+        if any(c in culture for c in ",=\r\n\0"): r.fail("invalid assembly culture")
+        if name.casefold() in seen_names: r.fail("duplicate canonical assembly name")
+        seen_names.add(name.casefold())
+        if image_name not in (name, name + ".dll", name + ".exe"): r.fail("image name does not match assembly name")
+        if r.signed32(p + 32) < 0: r.fail("negative public key hash length")
+        flags = r.number(p + 36, 4)
+        components = [r.signed32(p + offset) for offset in (40, 44, 48, 52)]
+        if any(value < 0 or value > 65535 for value in components): r.fail("invalid assembly version component")
+        version = ".".join(str(value) for value in components)
+        raw_token = r.block(p + 56, 8)
+        public_key_token = raw_token.hex() if raw_token[0] else ""
+        full_name = f"{name}, Version={version}, Culture={culture or 'neutral'}, PublicKeyToken={public_key_token or 'null'}"
+        if flags & 0x100: full_name += ", Retargetable=Yes"
+        if name == "WindowsRuntimeMetadata": full_name += ", ContentType=WindowsRuntime"
+        identities.append(dict(assemblyIndex=assembly_index, imageIndex=image_index, token=token,
+                               imageName=image_name, name=name, fullName=full_name, version=version,
+                               culture=culture, publicKeyToken=public_key_token))
+    # Each physical Assembly owns one contiguous reference slice. A forged
+    # overlapping/orphan slice is not an alternative interpretation of bytes.
+    end = 0
+    for start, stop in sorted(ref_ranges):
+        if start != end: r.fail("overlapping/orphan assembly reference range")
+        end = stop
+    if end != ref_count: r.fail("unowned referenced assembly rows")
+    return dict(nativeMetadataVersion=NATIVE_METADATA_VERSION,
+                nativeAssemblyIdentities=sorted(identities, key=lambda row: row["name"]))
+
+
+def read_native_metadata(path: Path) -> dict:
+    path = Path(path)
+    require(path.is_file() and not path.is_symlink(), f"{path}: missing or symlinked native metadata")
+    for parent in path.parents:
+        require(not parent.is_symlink(), f"{path}: symlinked native metadata parent")
+    require(path.stat().st_size <= 512 * 1024 * 1024, f"{path}: oversized native metadata")
+    data = path.read_bytes()
+    return dict(read_native_metadata_bytes(data, path), nativeMetadataPath=str(path.absolute()),
+                nativeMetadataSha256=hashlib.sha256(data).hexdigest())
+
+
+def find_native_metadata(player_output: Path) -> Path:
+    """Discover the one actual metadata file, without guessing its layout.
+
+    Match the producer's recursive Player inventory, but never follow directory
+    symlinks or accept a metadata symlink. The traversal is explicitly bounded.
+    """
+    root = Path(player_output)
+    require(root.is_absolute() and root.is_dir(), f"{root}: missing absolute Player directory")
+    for component in (root, *root.parents):
+        require(not component.is_symlink(), f"{root}: symlinked Player directory")
+    require(root == root.resolve(), f"{root}: aliased Player directory")
+    pending, matches, count = [root], [], 0
+    while pending:
+        directory = pending.pop()
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                count += 1
+                require(count <= 1_000_000, f"{root}: oversized Player metadata discovery")
+                if entry.is_dir():
+                    require(not entry.is_symlink(), f"{entry.path}: symlinked Player discovery directory")
+                    pending.append(Path(entry.path))
+                elif entry.name == "global-metadata.dat":
+                    require(entry.is_file() and not entry.is_symlink(), f"{entry.path}: missing/symlinked native metadata")
+                    matches.append(Path(entry.path))
+    require(len(matches) == 1 and matches[0].is_relative_to(root),
+            f"{root}: requires exactly one actual global-metadata.dat inside Player output")
+    return matches[0]

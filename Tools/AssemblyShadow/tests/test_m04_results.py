@@ -12,7 +12,8 @@ import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import m04_results as v
-from m04_metadata import read_identity, read_identity_bytes
+from m04_metadata import (read_identity, read_identity_bytes, read_native_metadata,
+                          read_native_metadata_bytes, NATIVE_METADATA_RELATIVE_PATH)
 from shadow_tools import VerificationError
 import m02_results as generic
 
@@ -66,6 +67,36 @@ def make_pe(name="Example", refs=(), key=b"", flags=0, culture="", version=(1, 2
     struct.pack_into("<IHHII", pe, 512, 72, 2, 5, 0x2200, len(metadata))
     pe[1024:] = metadata
     return bytes(pe)
+
+
+def make_native_metadata(assemblies):
+    """Small format-31 table fixture; native-only names are arbitrary data."""
+    heap = bytearray(b"\0")
+    def string(value):
+        index = len(heap); heap.extend(value.encode() + b"\0"); return index
+    images = [b""] * len(assemblies)
+    rows, refs = [], []
+    for index, entry in enumerate(assemblies):
+        name = entry["name"]
+        image_index = entry.get("imageIndex", index)
+        image_name = entry.get("imageName", name + ".dll")
+        images[image_index] = struct.pack("<iiiIiIiIiI", string(image_name), index, -1, 0, -1, 0, -1, 1, 0, 0)
+        references = entry.get("references", [])
+        start = len(refs) if references else -1
+        refs.extend(references)
+        version = [int(n) for n in entry.get("version", "0.0.0.0").split(".")]
+        token = entry.get("rawToken", bytes.fromhex(entry.get("publicKeyToken", "")) or bytes(8))
+        rows.append(struct.pack("<iIiiiiiIiIiiii8s", image_index, entry.get("token", 0x20000001), start, len(references),
+                                string(name), string(entry.get("culture", "")), string(""), 0x8004, 0,
+                                entry.get("flags", 0), *version, token))
+    parts = [(24, bytes(heap)), (168, b"".join(images)), (176, b"".join(rows)),
+             (192, b"".join(struct.pack("<i", n) for n in refs))]
+    data = bytearray(256)
+    struct.pack_into("<II", data, 0, 0xFAB11BAF, 31)
+    for header, part in parts:
+        struct.pack_into("<ii", data, header, len(data), len(part))
+        data.extend(part)
+    return bytes(data)
 
 
 def diagnostic(enabled=True):
@@ -137,6 +168,136 @@ class MetadataTests(unittest.TestCase):
             path = Path(tmp).resolve() / "real.dll"; path.write_bytes(make_pe())
             link = Path(tmp).resolve() / "link.dll"; link.symlink_to(path)
             with self.assertRaises(VerificationError): read_identity(link)
+
+
+class NativeMetadataTests(unittest.TestCase):
+    def test_native_only_domain_table_indices_and_identity_format(self):
+        data = make_native_metadata([
+            dict(name="Zeta", imageIndex=1, version="1.2.3.4", culture="fr", rawToken=bytes.fromhex("a102030405060708"), flags=0x100, references=[1]),
+            dict(name="NotNamedGenerated", imageIndex=0, imageName="NotNamedGenerated", token=0x20000000),
+        ])
+        parsed = read_native_metadata_bytes(data)
+        self.assertEqual(parsed["nativeMetadataVersion"], 31)
+        rows = parsed["nativeAssemblyIdentities"]
+        self.assertEqual([row["name"] for row in rows], ["NotNamedGenerated", "Zeta"])
+        self.assertEqual((rows[0]["assemblyIndex"], rows[0]["imageIndex"]), (1, 0))
+        self.assertEqual(rows[1]["fullName"], "Zeta, Version=1.2.3.4, Culture=fr, PublicKeyToken=a102030405060708, Retargetable=Yes")
+        self.assertNotIn("mvid", rows[0])
+
+    def test_native_token_first_byte_sentinel_is_not_pe_semantics(self):
+        raw = bytes.fromhex("0002030405060708")
+        native = read_native_metadata_bytes(make_native_metadata([dict(name="Token", rawToken=raw)]))["nativeAssemblyIdentities"][0]
+        pe = read_identity_bytes(make_pe(name="Token", key=raw))
+        self.assertEqual(native["publicKeyToken"], "")
+        self.assertTrue(native["fullName"].endswith("PublicKeyToken=null"))
+        self.assertEqual(pe["publicKeyToken"], "0002030405060708")
+        win = read_native_metadata_bytes(make_native_metadata([dict(name="WindowsRuntimeMetadata")]))["nativeAssemblyIdentities"][0]
+        self.assertTrue(win["fullName"].endswith(", ContentType=WindowsRuntime"))
+        ordinary = read_native_metadata_bytes(make_native_metadata([dict(name="Ordinary", flags=0x200)]))["nativeAssemblyIdentities"][0]
+        self.assertNotIn("ContentType", ordinary["fullName"])
+
+    def test_bad_magic_format_header_stride_overlap_and_truncation_fail(self):
+        valid = make_native_metadata([dict(name="A", references=[1]), dict(name="B")])
+        for data in (b"", valid[:255], valid[:-1]):
+            with self.assertRaises(VerificationError): read_native_metadata_bytes(data)
+        edits = [(0, 0), (4, 29), (4, 30), (4, 32), (24, 255), (28, -1),
+                 (172, 41), (180, 65), (196, 3), (176, 256), (192, 0x7fffffff)]
+        for offset, value in edits:
+            changed = bytearray(valid); struct.pack_into("<i", changed, offset, value)
+            with self.subTest(offset=offset, value=value):
+                with self.assertRaises(VerificationError): read_native_metadata_bytes(bytes(changed))
+
+    def test_native_string_indices_reverse_images_and_reference_ranges_fail(self):
+        valid = make_native_metadata([dict(name="A", references=[1]), dict(name="B", references=[0])])
+        image_start = struct.unpack_from("<i", valid, 168)[0]
+        assembly_start = struct.unpack_from("<i", valid, 176)[0]
+        ref_start = struct.unpack_from("<i", valid, 192)[0]
+        edits = [(image_start + 4, 1), (assembly_start, 1), (assembly_start, 2), (assembly_start + 4, 0),
+                 (assembly_start + 16, -1), (assembly_start + 20, 0x7fffffff), (assembly_start + 24, -1),
+                 (assembly_start + 8, -2), (assembly_start + 8, 2), (assembly_start + 12, -1),
+                 (assembly_start + 64 + 8, 0), (ref_start, -1), (ref_start, 2),
+                 (assembly_start + 40, -1), (assembly_start + 40, 65536),
+                 (image_start + 8, -2), (image_start + 12, 1), (image_start + 20, 1),
+                 (image_start + 24, 0), (image_start + 36, 1)]
+        for offset, value in edits:
+            changed = bytearray(valid); struct.pack_into("<i", changed, offset, value)
+            with self.subTest(offset=offset, value=value):
+                with self.assertRaises(VerificationError): read_native_metadata_bytes(bytes(changed))
+        duplicate = make_native_metadata([dict(name="A"), dict(name="a")])
+        with self.assertRaises(VerificationError): read_native_metadata_bytes(duplicate)
+        wrong_image = make_native_metadata([dict(name="A", imageName="B.dll")])
+        with self.assertRaises(VerificationError): read_native_metadata_bytes(wrong_image)
+
+    def test_native_receipt_exact_schema_rows_and_rehash_attacks(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp).resolve() / "Player.app"
+            path = output / NATIVE_METADATA_RELATIVE_PATH; path.parent.mkdir(parents=True)
+            path.write_bytes(make_native_metadata([dict(name="Linked", version="1.2.3.4"), dict(name="RuntimeOnly")]))
+            linked = read_identity_bytes(make_pe(name="Linked"))
+            player = dict(playerOutput=str(output), assemblyIdentities=[linked], **read_native_metadata(path), nativeGeneratedAssemblyNames=["RuntimeOnly"])
+            v._verify_native_metadata(player, "receipt")
+            mutations = [lambda p: p.update(nativeMetadataVersion=True), lambda p: p.update(nativeMetadataVersion=29),
+                         lambda p: p.update(nativeMetadataSha256="0" * 64), lambda p: p.update(nativeGeneratedAssemblyNames=[]),
+                         lambda p: p.update(nativeGeneratedAssemblyNames=["RuntimeOnly", "Unbound"]),
+                         lambda p: p["nativeAssemblyIdentities"].reverse(),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(assemblyIndex=True),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(imageIndex=1),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(token=1 << 32),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(token=-1),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(token=True),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(mvid="invented"),
+                         lambda p: p["nativeAssemblyIdentities"][0].pop("culture"),
+                         lambda p: p["nativeAssemblyIdentities"][0].update(version="9.0.0.0"),
+                         lambda p: p["assemblyIdentities"][0].update(fullName="fabricated Linked")]
+            for mutate in mutations:
+                bad = copy.deepcopy(player); mutate(bad)
+                with self.assertRaises(VerificationError): v._verify_native_metadata(bad, "rehashable receipt claims")
+            # Hashing malformed changed metadata never makes its tables valid.
+            data = bytearray(path.read_bytes()); struct.pack_into("<i", data, 176, 0x7fffffff); path.write_bytes(data)
+            bad = copy.deepcopy(player); bad["nativeMetadataSha256"] = v.digest(path)
+            with self.assertRaises(VerificationError): v._verify_native_metadata(bad, "rehashed corrupt metadata")
+            # Rehashing a structurally valid changed linked identity still must
+            # agree with the independently verified linked PE inventory.
+            path.write_bytes(make_native_metadata([dict(name="Linked", version="9.0.0.0"), dict(name="RuntimeOnly")]))
+            bad = copy.deepcopy(player); bad.update(read_native_metadata(path))
+            with self.assertRaisesRegex(VerificationError, "linked DLL identity disagrees"):
+                v._verify_native_metadata(bad, "rehashed linked mismatch")
+
+    def test_native_path_must_belong_to_correct_player_and_not_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            metadata = root / "One.app" / NATIVE_METADATA_RELATIVE_PATH; metadata.parent.mkdir(parents=True)
+            metadata.write_bytes(make_native_metadata([dict(name="RuntimeOnly")]))
+            player = dict(playerOutput=str(root / "One.app"), assemblyIdentities=[], nativeGeneratedAssemblyNames=["RuntimeOnly"], **read_native_metadata(metadata))
+            v._verify_native_metadata(player, "good")
+            (root / "Two.app").mkdir()
+            player["playerOutput"] = str(root / "Two.app")
+            with self.assertRaises(VerificationError): v._verify_native_metadata(player, "other Player")
+            link = root / "link.dat"; link.symlink_to(metadata)
+            with self.assertRaises(VerificationError): read_native_metadata(link)
+
+    def test_native_discovery_uses_unique_actual_location_and_rejects_aliases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            output = root / "Player.app"
+            metadata = output / "actual-layout/global-metadata.dat"; metadata.parent.mkdir(parents=True)
+            data = make_native_metadata([dict(name="RuntimeOnly")]); metadata.write_bytes(data)
+            player = dict(playerOutput=str(output), assemblyIdentities=[], nativeGeneratedAssemblyNames=["RuntimeOnly"], **read_native_metadata(metadata))
+            v._verify_native_metadata(player, "discovered layout")
+            for alias in (str(metadata.parent) + "/../actual-layout/global-metadata.dat", str(metadata.parent) + "/./global-metadata.dat"):
+                bad = copy.deepcopy(player); bad["nativeMetadataPath"] = alias
+                with self.assertRaises(VerificationError): v._verify_native_metadata(bad, "aliased path")
+            outside = root / "global-metadata.dat"; outside.write_bytes(data)
+            bad = copy.deepcopy(player); bad.update(read_native_metadata(outside))
+            with self.assertRaises(VerificationError): v._verify_native_metadata(bad, "outside Player")
+            duplicate = output / "global-metadata.dat"; duplicate.write_bytes(data)
+            with self.assertRaisesRegex(VerificationError, "exactly one"):
+                v._verify_native_metadata(player, "duplicate metadata")
+            duplicate.unlink(); duplicate.symlink_to(metadata)
+            with self.assertRaises(VerificationError): v._verify_native_metadata(player, "metadata symlink")
+            duplicate.unlink()
+            (output / "linked-directory").symlink_to(metadata.parent, target_is_directory=True)
+            with self.assertRaises(VerificationError): v._verify_native_metadata(player, "directory symlink")
 
 
 class StrictEvidenceTests(unittest.TestCase):
@@ -281,6 +442,9 @@ class SyntheticRuntimeSuite:
             player = dict(baselineBuildId=self.manifest["baselineBuildId"], runtimeAbiHash=self.manifest["runtimeAbiHash"],
                           unityVersion="2022.3.62f2", buildGuid=label * 16, playerOutput=str(output), inputSnapshot=str(snap),
                           assemblyIdentities=identities, placeholderAssemblyNames=["AssemblyShadowBaseline.HotUpdate"])
+            metadata = output / NATIVE_METADATA_RELATIVE_PATH; metadata.parent.mkdir(parents=True)
+            metadata.write_bytes(make_native_metadata(identities + [dict(name="ArbitraryNativeGenerated", imageName="ArbitraryNativeGenerated", token=0x20000000)]))
+            player.update(read_native_metadata(metadata), nativeGeneratedAssemblyNames=["ArbitraryNativeGenerated"])
             self.players[label] = player
             self.player_paths[label] = snap / "m04-player-build.json"
             self.player_paths[label].write_text(json.dumps(player))
@@ -359,7 +523,8 @@ class SyntheticRuntimeSuite:
                  fixtureManifestPath=str(self.fixture_path), fixtureManifestSha256=v.digest(self.fixture_path), playerBuildReceiptPath=str(self.player_paths[label]),
                  playerBuildReceiptSha256=v.digest(self.player_paths[label]), businessMarker="M04-REFERENCE-PROBE", ordinary=None, benchmark=None)
         for key in ("baselineBuildId", "runtimeAbiHash", "unityVersion", "buildGuid"): r[key] = player[key]
-        identities = {a["name"]: a for a in player["assemblyIdentities"]}
+        identities = {a["name"]: a for a in sorted(player["nativeAssemblyIdentities"], key=lambda a: a["assemblyIndex"])}
+        identities.update({a["name"]: a for a in player["assemblyIdentities"]})
         def check(name, code="Success"):
             r["checks"].append(dict(name=name, actual=code, expected=code, actualCode=v.ERROR_CODES[code], expectedCode=v.ERROR_CODES[code]))
         def observation(name, closure, logical=True):
@@ -430,8 +595,8 @@ class SyntheticRuntimeSuite:
             event("initializer-begin", a["name"]); event("initializer-complete", a["name"])
         snapshot("committed")
         identities.update({a["name"]: a for a in f["assemblyIdentities"]})
-        r["assemblyObservations"] = [observation(n, set(expected)) for n in identities]
-        if mode != "T04-09-BenchmarkOn": r["actualLogicalAssemblies"] = copy.deepcopy(r["assemblyObservations"])
+        r["assemblyObservations"] = [observation(n, set(expected)) for n in (*v.CANDIDATES, "mscorlib", "UnityEngine.CoreModule")]
+        if mode != "T04-09-BenchmarkOn": r["actualLogicalAssemblies"] = [observation(n, set(expected)) for n in identities]
         if mode in ("T04-02", "T04-06", "T04-07"):
             for name in v.PROVIDER_ORDER:
                 prefix = "AssemblyA" if name.startswith("AssemblyA.") else "Consumers"
@@ -441,7 +606,10 @@ class SyntheticRuntimeSuite:
                     r["loadObservations"].append(dict(requested=requested, overload=overload, assemblyName=name, sameAssembly=True))
                 r["refRows"].extend(dict(assemblyName=name, **ref) for ref in identities[name]["referenceIdentities"])
                 r["executingWitnesses"].append(dict(assemblyName=name, executingAssemblyName=name, sameAssembly=True))
-        if mode == "T04-02": r["ordinary"] = self.ordinary(player)
+        if mode == "T04-02":
+            r["ordinary"] = self.ordinary(player)
+            d["ordinaryAssemblies"].insert(len(player["nativeAssemblyIdentities"]),
+                                           dict(name=r["ordinary"]["placeholderName"], isInterpreter=True))
         if mode == "T04-09-BenchmarkOn": r["benchmark"] = self.benchmark(identities[v.INTERNAL], True)
         snapshot("final")
         return r
@@ -473,6 +641,17 @@ class RuntimeModeTests(unittest.TestCase):
         self.assertTrue(result["resultPassed"])
         self.assertEqual({r["mode"] for r in result["modes"]}, v.REQUIRED_MODES)
 
+    def test_filled_placeholder_preserves_physical_slot_before_shadow_rows(self):
+        result = self.suite.documents["T04-02"]
+        native_count = len(self.suite.players["on"]["nativeAssemblyIdentities"])
+        initial = result["snapshots"][0]["diagnostics"]["ordinaryAssemblies"]
+        final = result["snapshots"][-1]["diagnostics"]["ordinaryAssemblies"]
+        self.assertEqual(len(initial), native_count)
+        self.assertEqual(final, initial + [dict(name=result["ordinary"]["placeholderName"], isInterpreter=True)] +
+                         [dict(name=name, isInterpreter=True) for name in v.PROVIDER_ORDER])
+        self.assertEqual([a["name"] for a in result["actualLogicalAssemblies"]], [a["name"] for a in initial])
+        self.suite.verify()
+
     def test_adversarial_rehashed_runtime_observations(self):
         self.suite.verify()
         mutations = [
@@ -480,10 +659,13 @@ class RuntimeModeTests(unittest.TestCase):
             ("T04-01", lambda r: r["assemblyObservations"][0].update(mvidAvailable=True, mvid=str(uuid.uuid4()))),
             ("T04-01", lambda r: r["actualLogicalAssemblies"].reverse()),
             ("T04-01", lambda r: r["actualLogicalAssemblies"].append(copy.deepcopy(r["actualLogicalAssemblies"][0]))),
+            ("T04-01", lambda r: r["actualLogicalAssemblies"][-1].update(name="UnboundNativeGenerated")),
             ("T04-02", lambda r: r["refRows"][0].update(publicKeyToken="")),
             ("T04-02", lambda r: r["refRows"].reverse()),
             ("T04-02", lambda r: r["ordinary"].update(knownNameResolveEvents=1)),
             ("T04-02", lambda r: r["ordinary"].update(supplementaryRepeatCode=0)),
+            ("T04-02", lambda r: r["snapshots"][-1]["diagnostics"]["ordinaryAssemblies"].append(
+                r["snapshots"][-1]["diagnostics"]["ordinaryAssemblies"].pop(len(self.suite.players["on"]["nativeAssemblyIdentities"])))),
             ("T04-03", lambda r: r["snapshots"][-1]["diagnostics"].update(baselineUses=[])),
             ("T04-03", lambda r: r.update(commit="Success")),
             ("T04-04", lambda r: r["snapshots"][2]["diagnostics"]["assemblies"][2].update(runtimeMetadataInitialized=True)),

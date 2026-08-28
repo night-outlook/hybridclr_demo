@@ -269,6 +269,8 @@ namespace AssemblyShadowDemo.Editor
             var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
             M04DiagnosticSchemaVerifier.Verify(snapshot, captured);
             string placeholderPath = M04PlaceholderManifestProof.WriteSnapshot(snapshot, placeholders);
+            var linkedIdentities = M04AssemblyIdentityProof.ReadLinked(snapshot, captured);
+            var nativeMetadata = M04NativeMetadataProof.ReadPlayer(captured.playerOutput, linkedIdentities);
             M04AssemblyIdentityProof.WriteNewJson(Path.Combine(snapshot, "m04-player-build.json"), new M04PlayerBuildReceipt {
                 schemaVersion = 1, milestone = "M04", variant = nativeEnabled ? "NativeOn" : "NativeOff",
                 baselineBuildId = settings.buildId, runtimeAbiHash = pins.RuntimeAbiHash(),
@@ -277,9 +279,12 @@ namespace AssemblyShadowDemo.Editor
                 inputSnapshot = snapshot, inputSnapshotHash = captured.snapshotHash,
                 nativeLibraryPath = captured.nativeLibraryPath, nativeLibrarySha256 = captured.nativeLibrarySha256,
                 nativeArguments = nativeArguments,
-                assemblyIdentities = M04AssemblyIdentityProof.ReadLinked(snapshot, captured),
+                assemblyIdentities = linkedIdentities,
                 placeholderManifestPath = placeholderPath, placeholderManifestSha256 = placeholders.sha256,
                 placeholderAssemblyNames = placeholders.names,
+                nativeMetadataPath = nativeMetadata.path, nativeMetadataSha256 = nativeMetadata.sha256,
+                nativeMetadataVersion = nativeMetadata.version, nativeAssemblyIdentities = nativeMetadata.assemblies,
+                nativeGeneratedAssemblyNames = nativeMetadata.generatedAssemblyNames,
             });
             return snapshot;
         }
@@ -315,6 +320,10 @@ namespace AssemblyShadowDemo.Editor
             public M04AssemblyIdentity[] assemblyIdentities;
             public string placeholderManifestPath, placeholderManifestSha256;
             public string[] placeholderAssemblyNames;
+            public string nativeMetadataPath, nativeMetadataSha256;
+            public int nativeMetadataVersion;
+            public M04NativeAssemblyIdentity[] nativeAssemblyIdentities;
+            public string[] nativeGeneratedAssemblyNames;
         }
 
         [Serializable] public sealed class M04Fixture

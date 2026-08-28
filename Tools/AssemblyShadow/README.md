@@ -211,10 +211,16 @@ pairing; never rebuild frozen M01 bundles or overwrite earlier Player evidence.
    supplementary metadata evidence, focused native checks, restored installation
    verification and full independent milestone review before tagging M04.
 
-The linked Player receipt captures actual DLL and AssemblyRef identities and the
-generated placeholder manifest used by native compilation. The pinned runtime
-cannot read module MVIDs: availability is explicitly false in Player observations;
-GUID proof comes from captured DLL bytes and native staged-image diagnostics.
+The linked Player receipt captures actual DLL and AssemblyRef identities, the
+generated placeholder manifest, and the unique actual Player
+`global-metadata.dat` path/hash/version with its native Assembly/Image inventory.
+The pinned format is 31. C# and Python independently replay native identities;
+generated assembly names are derived from native-minus-linked inventories, not
+whitelisted. The runtime checks metadata belongs to its own Player data path.
+Initial v1 receipts lack this domain and are diagnostic history, not accepted
+M04 evidence. The pinned runtime cannot read module MVIDs: availability is
+explicitly false in Player observations; GUID proof comes from captured DLL
+bytes and native staged-image diagnostics, never the native metadata inventory.
 `M04EditorValidation.Validate` replays existing fixtures without recompiling;
 pass `-shadowFixtureManifest` and a fresh `-shadowValidationReceipt` path.
 

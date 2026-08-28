@@ -41,6 +41,12 @@ namespace AssemblyShadowDemo.Editor
                 Require(value.Type == JTokenType.Integer && int.TryParse(value.ToString(), out parsed), "Expected integer: " + path);
                 return;
             }
+            if (type == typeof(uint))
+            {
+                uint parsed;
+                Require(value.Type == JTokenType.Integer && uint.TryParse(value.ToString(), out parsed), "Expected unsigned integer: " + path);
+                return;
+            }
             if (type.IsArray)
             {
                 var array = value as JArray;

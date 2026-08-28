@@ -410,6 +410,7 @@ namespace AssemblyShadowDemo
             Require(player != null && player.schemaVersion == 1 && player.milestone == "M04", "M04 Player receipt schema mismatch.");
             Require(manifest.baselineBuildId == expectedBaseline && manifest.runtimeAbiHash == expectedAbi, "Fixture does not match Player-embedded baseline/ABI.");
             Require(player.baselineBuildId == expectedBaseline && player.runtimeAbiHash == expectedAbi && player.buildGuid == Application.buildGUID, "Player receipt identity mismatch.");
+            ValidateNativeMetadataReceipt(player);
             Require(!string.IsNullOrEmpty(manifest.baselineManifestPath) && HashFile(manifest.baselineManifestPath) == manifest.baselineManifestSha256, "Baseline manifest hash mismatch.");
             BaselineManifest baseline = JsonUtility.FromJson<BaselineManifest>(File.ReadAllText(manifest.baselineManifestPath));
             Require(baseline != null && baseline.assemblies != null && baseline.baselineBuildId == expectedBaseline, "Baseline manifest identity evidence is incomplete.");
@@ -428,6 +429,27 @@ namespace AssemblyShadowDemo
                 ValidateFixtureArtifacts(fixture, manifest, player, baseline);
             }
             return new Input { manifestPath = manifestPath, playerReceiptPath = playerPath, manifest = manifest, player = player, baseline = baseline, MscorlibPath = mscorlib.path, MscorlibSha256 = mscorlib.sha256, MscorlibFullName = mscorlib.fullName, MscorlibMvid = mscorlib.mvid };
+        }
+
+        private static void ValidateNativeMetadataReceipt(PlayerBuildReceipt player)
+        {
+            Require(!string.IsNullOrEmpty(player.nativeMetadataPath) && Path.IsPathRooted(player.nativeMetadataPath), "Native metadata path must be absolute.");
+            string metadataPath = Path.GetFullPath(player.nativeMetadataPath);
+            Require(File.Exists(metadataPath) && string.Equals(Path.GetFileName(metadataPath), "global-metadata.dat", StringComparison.Ordinal), "Native global metadata file is missing.");
+            Require(IsHash(player.nativeMetadataSha256) && HashFile(metadataPath) == player.nativeMetadataSha256, "Native metadata hash mismatch.");
+            Require(player.nativeMetadataVersion == 31, "Unsupported native metadata version; expected Unity 2022.3 metadata v31.");
+            string[] metadataFiles = Directory.GetFiles(Application.dataPath, "global-metadata.dat", SearchOption.AllDirectories)
+                .Select(Path.GetFullPath).ToArray();
+            Require(metadataFiles.Length == 1 && string.Equals(metadataFiles[0], metadataPath, StringComparison.Ordinal), "Native metadata path is not the unique file under the executed Player data path.");
+            Require(player.nativeAssemblyIdentities != null && player.nativeAssemblyIdentities.Length > 0, "Native assembly inventory is empty.");
+            foreach (NativeAssemblyIdentity identity in player.nativeAssemblyIdentities)
+            {
+                Require(identity != null && identity.assemblyIndex >= 0 && identity.imageIndex >= 0 &&
+                    !string.IsNullOrEmpty(identity.imageName) && !string.IsNullOrEmpty(identity.name) &&
+                    !string.IsNullOrEmpty(identity.fullName), "Native assembly inventory contains an incomplete identity.");
+            }
+            Require(player.nativeGeneratedAssemblyNames != null && player.nativeGeneratedAssemblyNames.Length > 0 &&
+                player.nativeGeneratedAssemblyNames.All(name => !string.IsNullOrEmpty(name)), "Native generated assembly inventory is empty.");
         }
 
         private static void ValidateFixtureArtifacts(Fixture fixture, FixtureManifest manifest, PlayerBuildReceipt player, BaselineManifest baseline)
@@ -691,8 +713,16 @@ namespace AssemblyShadowDemo
         }
         [Serializable, Preserve] public sealed class PlayerBuildReceipt
         {
-            [Preserve] public int schemaVersion; [Preserve] public string milestone, variant, baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, buildGuid, playerOutput, inputSnapshot, inputSnapshotHash, nativeLibraryPath, nativeLibrarySha256, nativeArguments, placeholderManifestPath, placeholderManifestSha256; [Preserve] public string[] placeholderAssemblyNames;
-            [Preserve] public AssemblyIdentity[] assemblyIdentities;
+            [Preserve] public int schemaVersion; [Preserve] public string milestone, variant, baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, buildGuid, playerOutput, inputSnapshot, inputSnapshotHash, nativeLibraryPath, nativeLibrarySha256, nativeArguments, placeholderManifestPath, placeholderManifestSha256, nativeMetadataPath, nativeMetadataSha256; [Preserve] public int nativeMetadataVersion; [Preserve] public string[] placeholderAssemblyNames, nativeGeneratedAssemblyNames;
+            [Preserve] public AssemblyIdentity[] assemblyIdentities; [Preserve] public NativeAssemblyIdentity[] nativeAssemblyIdentities;
+        }
+        [Serializable, Preserve] public sealed class NativeAssemblyIdentity
+        {
+            [Preserve] public int assemblyIndex;
+            [Preserve] public int imageIndex;
+            [Preserve] public uint token;
+            [Preserve] public string imageName;
+            [Preserve] public string name, fullName, version, culture, publicKeyToken;
         }
         [Serializable, Preserve] public sealed class Fixture
         {
