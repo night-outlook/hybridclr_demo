@@ -90,10 +90,11 @@ Gate approval additionally requires the native-path investigation, a real
 macro-OFF ordinary Player regression, and independent review. The prototype is
 not the M03-M07 production transaction, usage guard, or cache system.
 
-## M02 reproduction (integration in progress)
+## M02 reproduction (accepted)
 
-M02 acceptance is not yet recorded. Use the source pairing and detailed evidence
-in `Docs/AssemblyShadow/M02/M02-report.md`; do not treat a checkpoint as a milestone.
+M02 is accepted at the paired `assembly-shadow-m02-tooling` tags. Use the source
+pairing and evidence in `Docs/AssemblyShadow/M02/M02-report.md`; later M03 sources
+are not a byte-identical reproduction of the M02 Player.
 
 1. Run `AssemblyShadowDemo.Editor.M02Build.Configure` through the shared Unity
    method helper.
@@ -116,12 +117,55 @@ in `Docs/AssemblyShadow/M02/M02-report.md`; do not treat a checkpoint as a miles
    `M02EditorValidation.Validate` directly without the
    wrapper's run-bound P05 snapshot.
 7. Run `verify-m02-results.py` with the Editor, NUnit and `--reflection-result`
-   evidence. Independent review and a milestone tag remain required.
+   evidence. The accepted independent review and paired tags are recorded in the
+   M02 report and review record.
 
 The `SerializableEnum` Player contract is intentionally deny-all for nonempty
 serialized type names. Editor usage remains unchanged. The canvas contract admits
 only its 26 pinned widget names; changing this fixed AOT contract requires a new
 Player baseline. These bounded guards do not establish the later native gates.
+
+## M03 reproduction (acceptance pending)
+
+Use the M03 source pairing in the isolated shadow checkout. Do not replace M01
+bundles or treat Editor tests as transaction acceptance. Through the shared Unity
+method helper, run `M03Build.Configure`, the pinned `BaselineBuild.InstallRepeatability`,
+and `verify-installed-runtime.py --expect-shadow on`. The M03 methods are in
+`AssemblyShadowDemo.Editor`; the installer is in `AssemblyShadowBaseline.Editor`.
+
+1. Run `M03Build.BuildPlayerBaseline` with a 2400-second timeout. It uses the
+   dedicated M03 bootstrap scene and captures a new linked Player/input snapshot,
+   while checking the three frozen M01 business DLLs remain semantically equal.
+   The default baseline ID is `M03-Baseline-v1`; existing output/baseline roots are
+   refused. `-shadowBaselineId` and `-shadowBuildOutput` select explicit new roots.
+2. Run `M03Build.BuildFixtures`. This builds actual P01, P03 and throwing-initializer
+   patches with the target compiler, then independently replays their compiler,
+   linked-reference, reflection-policy, graph and resource-ABI proof. It writes
+   `m03-fixtures.json` and `m03-editor-replay.json` under one fresh
+   `_temp/AssemblyShadow/M03Fixtures-*` root. The replay receipt is not a signature.
+3. Launch one native-ON Player process per mode: T03-01 through T03-15 except
+   T03-09, plus T03-08-Fallback immediately after T03-08. Pass `-batchmode -nographics`,
+   `-shadowMode <mode>`, `-shadowFixtureManifest <absolute-m03-fixtures.json>`,
+   `-shadowResultPath <unique-result-dir>/m03-<mode>.json` and a distinct `-logFile`.
+   Give the failure/fallback pair the same unique `-shadowFallbackMarker` path.
+   Every process must exit zero and report Passed, including expected-rejection
+   modes; missing output or a harness exception is not a successful negative test.
+4. Run `M03Build.BuildFeatureDisabledPlayer` for a separate native-OFF Player,
+   then run T03-09 from that binary. All nine APIs must return FeatureDisabled,
+   including invalid-input calls, and initialize query outputs safely. The build
+   helper restores the ON setting afterward. Also retain an ordinary HybridCLR
+   OFF regression and strict restored-ON installation verification.
+5. Verify the complete mode set with `verify-m03-results.py --fixture-manifest
+   <m03-fixtures.json> --result-dir <unique-result-dir> --on-build
+   <on-input-snapshot>/m03-player-build.json --off-build
+   <off-input-snapshot>/m03-player-build.json --output <new-verification.json>`.
+   The build GUID in each result must match the corresponding captured binary.
+
+`M03EditorValidation.Validate` can replay existing fixtures without recompiling;
+pass `-shadowFixtureManifest` and a new `-shadowValidationReceipt` path. Existing
+receipts are refused. The native ASan runners in `native-tests/README.md` provide
+focused parser/visibility evidence only, not a substitute for real transactions.
+Full logical Assembly/Type/Unity resolution remains M04-M07 scope.
 
 ## Recoverable native-cache rebuild
 

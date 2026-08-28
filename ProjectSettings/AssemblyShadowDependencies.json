@@ -26,6 +26,21 @@
   "bootstrapEntrypoints": [
     {
       "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M03TransactionProbe::InvokeBusiness",
+      "reason": "Exact InternalEntry invocation after physical-image identity checks: committed shadow or verified fresh-process baseline fallback."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M03TransactionProbe::RunTransaction",
+      "target": "AssemblyA.Implementation.Internal",
+      "reason": "Isolated T03-10 negative test acquires baseline Internal and requires BaselineAlreadyUsed; no business invocation."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
       "provider": "AssemblyShadowBaseline.HotUpdate",
       "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
       "method": "AssemblyShadowDemo.M02ReflectionBindingProbe::ProbeFixedImage",

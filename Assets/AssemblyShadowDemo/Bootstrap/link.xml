@@ -1,4 +1,11 @@
 <linker>
+  <!-- M03 module initializers are compiled only into external patch DLLs.
+       Keep their exact stable AOT logging target in the baseline Player. -->
+  <assembly fullname="mscorlib">
+    <type fullname="System.Console">
+      <method signature="System.Void WriteLine(System.String)" />
+    </type>
+  </assembly>
   <!-- Keep the exact framework call sites available for linked IL verification
        and the real Player probe. No business candidate or guard is exempted. -->
   <assembly fullname="Unity.RenderPipelines.Core.Runtime">
