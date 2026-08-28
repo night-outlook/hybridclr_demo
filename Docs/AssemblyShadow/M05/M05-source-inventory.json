@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M05",
+  "scope": "Immutable implementation pairing; later metadata-only evidence commits are not included",
+  "runtimeAcceptance": false,
+  "repositories": [
+    {
+      "name": "hybridclr",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr",
+      "base": "39eca7a2cc9c8e414f29701629da268e4e213e09",
+      "target": "7f0da36e1a978abfd22c2c195ecb2741588a5d69",
+      "files": [
+        {
+          "path": "hybridclr/AssemblyShadowRuntimeApi.cpp",
+          "status": "M",
+          "added": 29,
+          "removed": 0
+        },
+        {
+          "path": "hybridclr/AssemblyShadowRuntimeApi.h",
+          "status": "M",
+          "added": 1,
+          "removed": 0
+        }
+      ],
+      "counts": {
+        "files": 2,
+        "addedFiles": 0,
+        "modifiedFiles": 2,
+        "deletedFiles": 0,
+        "linesAdded": 30,
+        "linesRemoved": 0
+      }
+    },
+    {
+      "name": "il2cpp_plus",
+      "path": "/Users/ah/GitHub/hybridclr/il2cpp_plus",
+      "base": "229f9450c0ebe2293da2bffbfc35f160f18c69de",
+      "target": "8ceb7e40abe458dce5343bedaf250333ef9433a1",
+      "files": [
+        {
+          "path": "libil2cpp/icalls/mscorlib/System.Reflection/RuntimeAssembly.cpp",
+          "status": "M",
+          "added": 10,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/icalls/mscorlib/System/Object.cpp",
+          "status": "M",
+          "added": 5,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/icalls/mscorlib/System/RuntimeType.cpp",
+          "status": "M",
+          "added": 12,
+          "removed": 1
+        },
+        {
+          "path": "libil2cpp/vm/Array.cpp",
+          "status": "M",
+          "added": 13,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "status": "M",
+          "added": 111,
+          "removed": 24
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadow.h",
+          "status": "M",
+          "added": 12,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+          "status": "M",
+          "added": 1,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+          "status": "A",
+          "added": 187,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadowTypeKey.h",
+          "status": "A",
+          "added": 55,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+          "status": "A",
+          "added": 532,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadowTypeResolver.h",
+          "status": "A",
+          "added": 22,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/AssemblyShadowTypes.h",
+          "status": "M",
+          "added": 1,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/Class.cpp",
+          "status": "M",
+          "added": 92,
+          "removed": 2
+        },
+        {
+          "path": "libil2cpp/vm/Field.cpp",
+          "status": "M",
+          "added": 25,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/Image.cpp",
+          "status": "M",
+          "added": 12,
+          "removed": 0
+        },
+        {
+          "path": "libil2cpp/vm/Object.cpp",
+          "status": "M",
+          "added": 33,
+          "removed": 4
+        },
+        {
+          "path": "libil2cpp/vm/Reflection.cpp",
+          "status": "M",
+          "added": 61,
+          "removed": 2
+        },
+        {
+          "path": "libil2cpp/vm/Runtime.cpp",
+          "status": "M",
+          "added": 9,
+          "removed": 1
+        },
+        {
+          "path": "libil2cpp/vm/Type.cpp",
+          "status": "M",
+          "added": 7,
+          "removed": 0
+        }
+      ],
+      "counts": {
+        "files": 19,
+        "addedFiles": 4,
+        "modifiedFiles": 15,
+        "deletedFiles": 0,
+        "linesAdded": 1200,
+        "linesRemoved": 34
+      }
+    },
+    {
+      "name": "hybridclr_unity",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_unity",
+      "base": "deee300670730fbc4d864e82fa70e7b022581afe",
+      "target": "90852d8a59fa14b501cf1c6f1cc38e9d4655ee86",
+      "files": [
+        {
+          "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionConfiguration.cs",
+          "status": "A",
+          "added": 128,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionConfiguration.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionJson.cs",
+          "status": "A",
+          "added": 104,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionJson.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionVerifier.cs",
+          "status": "A",
+          "added": 299,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow.CodeGen/RawTypeAdmissionVerifier.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Build/AssemblySnapshot.cs",
+          "status": "M",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Build/ShadowLinkedPlayerEvidence.cs",
+          "status": "M",
+          "added": 1,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs",
+          "status": "A",
+          "added": 274,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Build/ShadowReflectionBindingEvidence.cs",
+          "status": "M",
+          "added": 5,
+          "removed": 3
+        },
+        {
+          "path": "Editor/AssemblyShadow/Validation/RawTypeAdmissionPropagation.cs",
+          "status": "A",
+          "added": 650,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Validation/RawTypeAdmissionPropagation.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Editor/AssemblyShadow/Validation/ReflectionDependencyScanner.cs",
+          "status": "M",
+          "added": 22,
+          "removed": 2
+        },
+        {
+          "path": "Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs",
+          "status": "M",
+          "added": 38,
+          "removed": 3
+        },
+        {
+          "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs",
+          "status": "M",
+          "added": 16,
+          "removed": 0
+        },
+        {
+          "path": "Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs",
+          "status": "A",
+          "added": 253,
+          "removed": 0
+        },
+        {
+          "path": "Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/CodeGen/RawTypeAdmissionTests.cs",
+          "status": "A",
+          "added": 316,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/CodeGen/RawTypeAdmissionTests.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/M05RuntimeApiTests.cs",
+          "status": "A",
+          "added": 205,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/M05RuntimeApiTests.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/RawTypeAdmissionPolicyTests.cs",
+          "status": "A",
+          "added": 768,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/RawTypeAdmissionPolicyTests.cs.meta",
+          "status": "A",
+          "added": 2,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/ShadowRawTypeAdmissionEvidenceTests.cs",
+          "status": "A",
+          "added": 163,
+          "removed": 0
+        },
+        {
+          "path": "Tests/Editor/AssemblyShadow/ShadowRawTypeAdmissionEvidenceTests.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        }
+      ],
+      "counts": {
+        "files": 26,
+        "addedFiles": 20,
+        "modifiedFiles": 6,
+        "deletedFiles": 0,
+        "linesAdded": 3282,
+        "linesRemoved": 8
+      }
+    },
+    {
+      "name": "demo",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+      "base": "3abeb0bd10c26b24a536fd18a25a79d4f97eb30b",
+      "target": "006a5554ebb7bf2b24cfbdaac33cb18bc9926fce",
+      "files": [
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Contracts/M05TypeWitness.cs",
+          "status": "A",
+          "added": 59,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Contracts/M05TypeWitness.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Extensibility/M05TypeWitness.cs",
+          "status": "A",
+          "added": 40,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Extensibility/M05TypeWitness.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/M05TypeWitness.cs",
+          "status": "A",
+          "added": 92,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/M05TypeWitness.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/VersionedPrefabComponent.cs",
+          "status": "M",
+          "added": 1,
+          "removed": 1
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BootstrapRunner.cs",
+          "status": "A",
+          "added": 50,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BootstrapRunner.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BoundTypeQueries.cs",
+          "status": "A",
+          "added": 84,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BoundTypeQueries.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05ResourceProbe.cs",
+          "status": "A",
+          "added": 316,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05ResourceProbe.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs",
+          "status": "A",
+          "added": 1043,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/link.xml",
+          "status": "M",
+          "added": 13,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Consumers/ContractsConsumer/M05TypeWitness.cs",
+          "status": "A",
+          "added": 45,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Consumers/ContractsConsumer/M05TypeWitness.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Consumers/ExtensibilityConsumer/M05TypeWitness.cs",
+          "status": "A",
+          "added": 52,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Consumers/ExtensibilityConsumer/M05TypeWitness.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/AssemblyShadowDemo.Editor.asmdef",
+          "status": "M",
+          "added": 1,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05Build.cs",
+          "status": "A",
+          "added": 436,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05Build.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05EditorValidation.cs",
+          "status": "A",
+          "added": 244,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05EditorValidation.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05RawTypeAdmissionBuild.cs",
+          "status": "A",
+          "added": 197,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05RawTypeAdmissionBuild.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05TypeInventoryProof.cs",
+          "status": "A",
+          "added": 99,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05TypeInventoryProof.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05TypeSchemaVerifier.cs",
+          "status": "A",
+          "added": 301,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/M05TypeSchemaVerifier.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Scenes/M05Bootstrap.unity",
+          "status": "A",
+          "added": 175,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Scenes/M05Bootstrap.unity.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M03TransactionTests.cs",
+          "status": "M",
+          "added": 8,
+          "removed": 2
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M05EditorEvidenceTests.cs",
+          "status": "A",
+          "added": 482,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M05EditorEvidenceTests.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M05ResourceProbeTests.cs",
+          "status": "A",
+          "added": 123,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M05ResourceProbeTests.cs.meta",
+          "status": "A",
+          "added": 7,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M05TypeProbeTests.cs",
+          "status": "A",
+          "added": 214,
+          "removed": 0
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M05TypeProbeTests.cs.meta",
+          "status": "A",
+          "added": 11,
+          "removed": 0
+        },
+        {
+          "path": "Docs/AssemblyShadow/M05/M05-raw-type-admission.md",
+          "status": "A",
+          "added": 133,
+          "removed": 0
+        },
+        {
+          "path": "Docs/AssemblyShadow/M05/M05-report.md",
+          "status": "A",
+          "added": 291,
+          "removed": 0
+        },
+        {
+          "path": "Docs/AssemblyShadow/M05/M05-type-contract.md",
+          "status": "A",
+          "added": 168,
+          "removed": 0
+        },
+        {
+          "path": "ProjectSettings/AssemblyShadowDependencies.json",
+          "status": "M",
+          "added": 117,
+          "removed": 0
+        },
+        {
+          "path": "ProjectSettings/AssemblyShadowRawTypeAdmissions.json",
+          "status": "A",
+          "added": 356,
+          "removed": 0
+        },
+        {
+          "path": "ProjectSettings/AssemblyShadowSettings.asset",
+          "status": "M",
+          "added": 1,
+          "removed": 1
+        },
+        {
+          "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+          "status": "M",
+          "added": 4,
+          "removed": 4
+        },
+        {
+          "path": "ProjectSettings/EditorBuildSettings.asset",
+          "status": "M",
+          "added": 2,
+          "removed": 2
+        },
+        {
+          "path": "Tools/AssemblyShadow/README.md",
+          "status": "M",
+          "added": 62,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/m05_raw_type_admissions.py",
+          "status": "A",
+          "added": 1075,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/m05_results.py",
+          "status": "A",
+          "added": 912,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/m05_types.py",
+          "status": "A",
+          "added": 699,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/native-tests/m03_facade_lookup_adapters.cpp",
+          "status": "M",
+          "added": 14,
+          "removed": 5
+        },
+        {
+          "path": "Tools/AssemblyShadow/native-tests/m05_reflection.cpp",
+          "status": "A",
+          "added": 225,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/native-tests/m05_types.cpp",
+          "status": "A",
+          "added": 364,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/run-m05-native-tests.py",
+          "status": "A",
+          "added": 177,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_m05_raw_type_admissions.py",
+          "status": "A",
+          "added": 728,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_m05_results.py",
+          "status": "A",
+          "added": 578,
+          "removed": 0
+        },
+        {
+          "path": "Tools/AssemblyShadow/verify-m05-results.py",
+          "status": "A",
+          "added": 6,
+          "removed": 0
+        }
+      ],
+      "counts": {
+        "files": 59,
+        "addedFiles": 49,
+        "modifiedFiles": 10,
+        "deletedFiles": 0,
+        "linesAdded": 10145,
+        "linesRemoved": 15
+      }
+    }
+  ]
+}

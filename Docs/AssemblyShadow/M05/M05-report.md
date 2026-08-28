@@ -275,8 +275,12 @@ The generator/source-test hashes are
 the Python verifier/test hashes are
 `64481cf0de76abfec9e0fa64851dce7478a2e778d4f2a6eb2ea600ee1bfcdd49` and
 `82d250ac09fc450cd3bad770479527e927f9da70798a5b5de86f6a90ef8cc2b7`.
-These corrections require an updated demo source pin and a bounded independent
-corrective review before Player validation resumes.
+The independent read-only corrective review returned PASS at demo commit
+`006a5554ebb7bf2b24cfbdaac33cb18bc9926fce`. It verified the exact source/test
+hashes, unchanged configuration, 644-test XML and all 72 preserved-file hashes
+after the observed producer cleanup. Python counts remain supplied test
+evidence at that gate. This permits repinning and build validation only;
+no M05 Player or milestone acceptance is claimed.
 
 ## Preserved resource boundary
 
