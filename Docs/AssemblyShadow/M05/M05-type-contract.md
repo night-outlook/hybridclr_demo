@@ -67,6 +67,11 @@ No historical M00-M04 snapshot, receipt, observation or resource is rewritten.
     authorize arbitrary dynamic names, file/byte loaders, AssemblyName aliases
     or unverified providers. Preserve M03/M04 schema and proof domains.
 
+The separate raw-query admission and its byte-bound compiler/linker proof are
+declared in [M05-raw-type-admission.md](M05-raw-type-admission.md). They leave
+the observed API calls intact; they do not replace enumeration with expected
+type handles or assert that a runtime transaction has committed.
+
 ## Type-resolution diagnostic API
 
 Add `AssemblyShadowRuntime.GetTypeResolutionInfo(Type type, out string json)`
