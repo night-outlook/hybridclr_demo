@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "kind": "FailFastPlayerBatchEvidence",
+  "milestone": "M04",
+  "baselineBuildId": "M04-Baseline-v2",
+  "resultDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Results-3118db3-j7q6Mw66",
+  "functional": {
+    "command": "for m04_case in T04-01 T04-02 T04-03 T04-04 T04-05 T04-06 T04-07\ndo\n  '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M04/M04-Baseline-v2.app/Contents/MacOS/AssemblyShadowBaseline' -batchmode -nographics -shadowM04Mode \"$m04_case\" -shadowFixtureManifest '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Fixtures-0ba4a1a6c6744698831b60465f409b3e/m04-fixtures.json' -shadowPlayerBuild '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04PlayerInputs-b7510196acb241f2ab40a72906a34c7c/m04-player-build.json' -shadowM04Result '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Results-3118db3-j7q6Mw66/m04-'\"$m04_case\"'.json' -logFile '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Results-3118db3-j7q6Mw66/m04-'\"$m04_case\"'.log'\n  m04_case_exit=$?\n  printf '{\"mode\":\"%s\",\"exitCode\":%s}\\n' \"$m04_case\" \"$m04_case_exit\"\n  if [ \"$m04_case_exit\" -ne 0 ]; then exit \"$m04_case_exit\"; fi\ndone",
+    "exitCode": 0,
+    "modes": [
+      "T04-01",
+      "T04-02",
+      "T04-03",
+      "T04-04",
+      "T04-05",
+      "T04-06",
+      "T04-07"
+    ]
+  },
+  "remaining": {
+    "command": "for m04_case in T04-08 T04-09-BenchmarkOn T04-10-BenchmarkOff\ndo\n  if [ \"$m04_case\" = T04-09-BenchmarkOn ]; then\n    m04_player='/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M04/M04-Baseline-v2.app/Contents/MacOS/AssemblyShadowBaseline'\n    m04_receipt='/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04PlayerInputs-b7510196acb241f2ab40a72906a34c7c/m04-player-build.json'\n  else\n    m04_player='/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Builds/AssemblyShadow/M04/M04-Baseline-v2-NativeOff.app/Contents/MacOS/AssemblyShadowBaseline'\n    m04_receipt='/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04PlayerInputs-d148e78a25924dc1a62ccf791c03b4f4/m04-player-build.json'\n  fi\n  \"$m04_player\" -batchmode -nographics -shadowM04Mode \"$m04_case\" -shadowFixtureManifest '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Fixtures-0ba4a1a6c6744698831b60465f409b3e/m04-fixtures.json' -shadowPlayerBuild \"$m04_receipt\" -shadowM04Result '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Results-3118db3-j7q6Mw66/m04-'\"$m04_case\"'.json' -logFile '/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Results-3118db3-j7q6Mw66/m04-'\"$m04_case\"'.log'\n  m04_case_exit=$?\n  printf '{\"mode\":\"%s\",\"exitCode\":%s}\\n' \"$m04_case\" \"$m04_case_exit\"\n  if [ \"$m04_case_exit\" -ne 0 ]; then exit \"$m04_case_exit\"; fi\ndone",
+    "exitCode": 0,
+    "modes": [
+      "T04-08",
+      "T04-09-BenchmarkOn",
+      "T04-10-BenchmarkOff"
+    ]
+  },
+  "boundary": "Each literal mode loop exits immediately on a nonzero Player exit. Aggregate zero proves each selected process returned zero. Fresh per-process IDs, actual observations and hashes are checked independently by the full verifier. Benchmarks ran after all builds, tests and native harnesses completed; the original user Editor remained open and untouched."
+}

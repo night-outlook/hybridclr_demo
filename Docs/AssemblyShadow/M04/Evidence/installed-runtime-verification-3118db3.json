@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "kind": "CommandEvidence",
+  "milestone": "M04",
+  "executableDemoCommit": "3118db3f406bdbeeacaf75737d26a89414029007",
+  "pinCommit": "e1a0d48af6a2be136e6ff777e3628b91b1715d26",
+  "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+  "command": "python3 -B Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow on",
+  "exitCode": 0,
+  "stdout": "[PASS] Unity version\n[PASS] hybridclr source revision\n[PASS] il2cpp_plus source revision\n[PASS] Package revision\n[PASS] Target platform\n[PASS] HybridCLR installed\n[PASS] Shadow native default OFF; configured mode ON\n[PASS] Demo build-source revision\n{\n  \"unityVersion\": \"2022.3.62f2\",\n  \"target\": \"StandaloneOSX\",\n  \"sourceFiles\": 936,\n  \"installedFiles\": 938,\n  \"demoSourceVerified\": true,\n  \"configuredShadowMode\": \"on\",\n  \"receiptSha256\": \"981d412763130de2b80caaed44bd141b10068455de20308e4cf90e94b4c31955\"\n}\n"
+}

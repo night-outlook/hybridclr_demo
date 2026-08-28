@@ -1,0 +1,80 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M04",
+    "result": "Passed",
+    "comparisonPolicy": "compiler-linked-policy-graph-resource-abi-assembly-identity:1",
+    "fixtureManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04Fixtures-0ba4a1a6c6744698831b60465f409b3e/m04-fixtures.json",
+    "fixtureManifestSha256": "423be48408cae6249dedb43c0c60d243a29063f2efee39f1fc73a8f4e2001ef3",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M04-Baseline-v2/baseline-manifest.json",
+    "baselineManifestSha256": "351cc29070cd81bc341432dd88d6ad687ff260952c5625aaf49d1e9cdfe3b6d5",
+    "playerBuildReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M04PlayerInputs-b7510196acb241f2ab40a72906a34c7c/m04-player-build.json",
+    "playerBuildReceiptSha256": "42c7d6b3047fa3ba4820bba30a48aff729100ab496bb0fedb32a86a468eb80c6",
+    "baselineInputSnapshotHash": "e42a91c890ee1a2f0638d1b213c8aa3880d2024e37abba708f7a13f04740d098",
+    "baselineBuildId": "M04-Baseline-v2",
+    "playerBuildGuid": "e613f9d84abb417aa01bb4f4a5268624",
+    "nativeLibrarySha256": "723490e3b2acf6de5999efd4c72f9aaff6aa8490f77605f7b10e458e5309d0e7",
+    "linkedPlayerReceiptHash": "e22e250b781b6b46bd55f1ba39d2ed3026ea36c4008405e85f7e6853007c945a",
+    "runtimeAbiHash": "12f9d7bb4b846f5438ab8fed37a93d92c45d42b945e16a208a4a27277cadd00d",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "stableAotProvenanceHash": "1c97eda55d5ecc53ed2f3fca4494cb52024d565a37ce49e936252e69904d4d36",
+    "validatorSourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr",
+            "revision": "39eca7a2cc9c8e414f29701629da268e4e213e09",
+            "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity",
+            "revision": "deee300670730fbc4d864e82fa70e7b022581afe",
+            "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus",
+            "revision": "229f9450c0ebe2293da2bffbfc35f160f18c69de",
+            "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo",
+            "revision": "3118db3f406bdbeeacaf75737d26a89414029007",
+            "localPath": "."
+        }
+    },
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "patchManifestSha256": "71c81e4ba853f8591744614ad8159c0e986a6aeaf8be19f363566b01916c304d",
+            "compileSnapshotHash": "ace6c57fe66dd5f335da78f1ac7255bcd54ba61cc2f5e904e9ef96203069c01e",
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ]
+        },
+        {
+            "patchId": "P03",
+            "patchManifestSha256": "e35277503f58b88deb15ef60386f7e17dce0e9b217cbbcca3f41d391a9204157",
+            "compileSnapshotHash": "600276a79908449e1ce3013236cea76a898ba1cfc77765bd1395fae2376a3a84",
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ]
+        }
+    ]
+}

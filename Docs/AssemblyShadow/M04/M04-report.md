@@ -1,18 +1,18 @@
 # M04 active Assembly and AssemblyRef resolution
 
-Status: all ten initial v1 IL2CPP Player modes passed, but the strict offline
-gate exposed a native-generated assembly evidence gap. The evidence-model
-correction and a fresh v2 validation are in progress; M04 is not accepted.
-M03 is accepted and locally tagged. No M04 tag or M05 entry is claimed here.
+Status: the corrected v2 ten-process IL2CPP matrix, complete strict verifier,
+Editor/Python/native checks and restoration audit pass. Final independent
+milestone reviews remain pending; M04 is not yet accepted or tagged.
+M03 is accepted and locally tagged. No M05 entry is claimed here.
 
 The [acceptance contract](M04-assembly-contract.md) records the immutable M03
 bases, required behavior, validation matrix, source/artifact boundaries and known
 integration risks before implementation. The governing plan is
 `Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-04-assembly-reference-resolution.md`.
 
-Final delivery will record exact executable source pins, changed files and APIs,
-native/Editor/tooling and actual Player results, raw benchmark data, ordinary OFF
-regression/restoration, deviations, independent review and the M05 entry decision.
+This record binds executable source pins, changed files and APIs, actual Player
+and tooling evidence, benchmarks, ordinary OFF regression/restoration and limits.
+The [review record](M04-review.md) controls the final M05 entry decision.
 
 ## Source-readiness boundary (not milestone acceptance)
 
@@ -39,9 +39,9 @@ The main agent also reran all 152 Python tests successfully (28.052 seconds).
 The separate managed/tooling source-readiness reviewer inspected the probes,
 build/replay/schema helpers, shared M03 extractions, policy and Python evidence
 contracts, independently checked the Editor XML and literal-load policy groups,
-and found no actionable issue. This PASS is bounded source readiness only;
+and found no actionable issue. That PASS was bounded source readiness only;
 actual ON/OFF Player identity, enumeration, regression and benchmark evidence
-remains required before M04 acceptance or M05 entry.
+remained required at that point, before M04 acceptance or M05 entry.
 
 The first fresh compiler preflight rejected a duplicate Bootstrap-to-ordinary
 runtime dependency before any Player build. Runtime dependencies are unique
@@ -112,11 +112,166 @@ assembly is derived at table/image index 60 with token 536870912. An in-memory
 projection of only the five new receipt fields allows all ten unchanged v1
 observations to pass the corrected verifier. This is diagnostic logic validation
 only: old receipts remain unchanged and correctly fail the new exact schema.
-Actual emitted v2 receipts and fresh v2 Player observations are still required.
+At that source-readiness point, actual emitted v2 receipts and fresh v2 Player
+observations were still required; the following sections record that later run.
 
 Guarded Configure generated the distinct `M04-Baseline-v2` scene/settings in
 `_temp/UnityExec_20260827_211440.log`; it reuses the unchanged runtime ABI and
 does not modify frozen M00/M01 artifacts.
+
+The corrected executable demo pin is
+`3118db3f406bdbeeacaf75737d26a89414029007`; metadata-only commit
+`e1a0d48af6a2be136e6ff777e3628b91b1715d26` records it. Runtime, native and
+package pins remain the source-readiness pairing above. The
+[file/API inventory](M04-file-and-api-inventory.md) records all four exact
+source ranges. An independent bounded review inspected this correction,
+rechecked the actual metadata, old-schema rejection and Editor XML, and returned
+PASS for source readiness only.
+
+## V2 native-ON build and focused regressions
+
+Repeatable installation passed in `_temp/UnityExec_20260827_211754.log`.
+Strict installed/source verification confirms 936 source files, 938 installed
+files, the demo build-source pin and configured native ON. Installation receipt
+SHA: `981d412763130de2b80caaed44bd141b10068455de20308e4cf90e94b4c31955`.
+Fresh compiler preflight passed in `_temp/UnityExec_20260827_211913.log`, under
+`_temp/AssemblyShadow/M04CompilerPreflight-bb39d0bc378f469390b087befd29119d/Snapshot`.
+
+The ON Player build passed in `_temp/UnityExec_20260827_212039.log`, including
+unchanged frozen M01 business semantics and bundles:
+
+- Player: `Builds/AssemblyShadow/M04/M04-Baseline-v2.app`.
+- Build GUID: `e613f9d84abb417aa01bb4f4a5268624`.
+- Native SHA: `723490e3b2acf6de5999efd4c72f9aaff6aa8490f77605f7b10e458e5309d0e7`.
+- Input snapshot: `_temp/AssemblyShadow/M04PlayerInputs-b7510196acb241f2ab40a72906a34c7c`.
+- Snapshot hash: `e42a91c890ee1a2f0638d1b213c8aa3880d2024e37abba708f7a13f04740d098`.
+- Player receipt SHA: `42c7d6b3047fa3ba4820bba30a48aff729100ab496bb0fedb32a86a468eb80c6`.
+- Baseline manifest SHA: `351cc29070cd81bc341432dd88d6ad687ff260952c5625aaf49d1e9cdfe3b6d5`.
+- Actual metadata SHA: `4b5ff9b113b0fac45fb6f58c24df3f8a8d0af3821861a477b8ce1ae74e3b65d3`.
+
+The emitted receipt contains all five new fields and 61 native identities,
+including the derived native-only assembly; all 60 linked DLL identities agree.
+This inventory does not authorize additional stable-AOT providers for patches.
+
+Fresh [M04 native checks](Evidence/native-regression-3118db3.json) passed 53
+resolver, 24 declared-reference identity and 22 ON/OFF syntax checks, plus one
+million active lookups with zero allocations (369,289 microseconds under ASan).
+The preserved [M03 native suite](Evidence/preserved-m03-native-regression-3118db3.json)
+passed 23,027 identity, 30 name, 25 facade, 13 lookup and 27 disabled-API checks.
+The [visibility suite](Evidence/preserved-m03-visibility-3118db3.json) passed
+18,674 checks. All three receipts confirm unchanged transitive input hashes.
+These are focused native checks with the disclosed adapters, not a substitute
+for the v2 managed Player matrix or its ON/OFF performance measurements.
+
+The actual v2 linked `mscorlib.dll` wrapper
+[capture](Evidence/linked-managed-wrappers-3118db3.json) binds 16 methods and
+269 IL instructions to SHA
+`5656c3f3da4c976c31604a19795409b4ea5b26a86f191449303cfa06ce53dfb2`,
+MVID `53a1b952-b096-47be-9876-e55ed2a0d85e`, and the ON Player receipt.
+Those instruction streams are unchanged from the inspected v1 wrappers even
+though the linked DLL bytes differ. The exact read-only
+[capture command](Evidence/capture-linked-managed-wrappers-3118db3.ps1) is retained.
+
+## V2 complete Player matrix and OFF regression
+
+Fixture compilation and independent Editor replay passed in
+`_temp/UnityExec_20260827_212527.log`. The fixture root is
+`_temp/AssemblyShadow/M04Fixtures-0ba4a1a6c6744698831b60465f409b3e`.
+The archived [fixture manifest](Evidence/fixture-manifest-3118db3.json) hashes to
+`423be48408cae6249dedb43c0c60d243a29063f2efee39f1fc73a8f4e2001ef3`;
+the [Editor replay](Evidence/editor-replay-3118db3.json) hashes to
+`9b5783634713e31db3a717eeda96bfa9fcde1d05c9446edfeea0152863505f38`.
+Stable-AOT provenance hash:
+`1c97eda55d5ecc53ed2f3fca4494cb52024d565a37ce49e936252e69904d4d36`.
+
+The separate OFF Player completed in `_temp/UnityExec_20260827_213326.log`:
+
+- Player: `Builds/AssemblyShadow/M04/M04-Baseline-v2-NativeOff.app`.
+- Build GUID: `84d73ef888ed4f84b114c1e317a059f1`.
+- Native SHA: `85e32caaa29a4f799ebbcd873b7aa97f59d838f5c151ba3287b9d687bd50c62b`.
+- Snapshot: `_temp/AssemblyShadow/M04PlayerInputs-d148e78a25924dc1a62ccf791c03b4f4`.
+- Snapshot hash: `efbbb35eeb4a93406c130056bf0a72f921a6b8c11c388b9b94c6ffff53ae2e7f`.
+- [OFF receipt](Evidence/native-off-build-3118db3.json) SHA: `73d60147e3ee67c45763af412e6bb6925e09a133e6dfa6c475efc2a6ef1b8248`.
+
+ON and OFF metadata bytes have the same verified SHA recorded above; their
+native libraries, build GUIDs, output directories and input snapshots are
+distinct. The build helper restored native ON after producing the OFF binary.
+
+All ten fresh processes under
+`_temp/AssemblyShadow/M04Results-3118db3-j7q6Mw66` exited zero and emitted Passed.
+The [launch record](Evidence/player-launches-3118db3.json) retains the exact
+fail-fast commands. The [complete verifier](Evidence/verification-3118db3.json)
+passes all ten modes against actual emitted receipts, native metadata, linked
+DLLs, baseline, patch bytes and Editor replay; its
+[command/output](Evidence/verification-command-3118db3.json) is retained.
+No in-memory receipt augmentation or expectation waiver is used for v2.
+
+P01 exposes only Internal as interpreter; P03 resolves all five closure members
+consistently through name variants, Type-to-Assembly identity, raw logical
+enumeration and executing-assembly witnesses. Staged ordinary queries remain
+baseline and prevent a later commit; missing closure and external-consumer
+violations reject without baseline fallback. Declared reference versions/tokens
+match patch compiler bytes, including the nonphysical netstandard facade.
+
+T04-08 verifies all nine APIs return FeatureDisabled in the OFF binary. Its
+ordinary loader fills the pre-existing placeholder, keeps its object identity,
+exposes exactly one dynamic assembly and changes logical count from 61 to 62.
+The fixed M00 marker is `M00-HOTUPDATE-OK`; null/tampered input is rejected and
+caller bytes remain unchanged. Duplicate loading raises
+`System.ExecutionEngineException` with `reloading placeholder assembly is not supported!`.
+Known-name resolve callback count is zero with the same returned Assembly;
+supplementary metadata returns 0 initially, 5 on repeat and 6 for invalid mode.
+These are actual observations, not inferred from the native-OFF API stubs.
+
+The million-lookup measurements use 1,000 warmups and a 10,000,000 Hz stopwatch:
+
+| Process | Elapsed ticks | Seconds |
+| --- | ---: | ---: |
+| T04-09 committed ON | 42,434,048 | 4.2434048 |
+| T04-10 isolated OFF, no Shadow API calls | 944,263,226 | 94.4263226 |
+| T04-08 OFF after ordinary compatibility checks | 959,584,846 | 95.9584846 |
+
+Each checksum is 1,000,000 and final Assembly identity is unchanged. Builds,
+Editor/Python tests and native harnesses had finished before these measurements;
+the original user Editor remained open. These single controlled name-load runs
+are not game-frame or production performance claims, and the native resolver's
+zero-allocation result is not a managed Player GC-allocation measurement.
+
+## Final validation, archive and scope
+
+After both builds, fresh Editor tests again passed 542/542 (49 M04 cases, no
+failures/skips). The [archived XML](Evidence/editor-tests-3118db3.xml) SHA is
+`774967405d527b360af3476c3c27410f64a99528a3d44be7c6c3c17805082751`;
+its original root is `_temp/AssemblyShadow/EditorTests-b6385d3280994c9982f033dab7db29f0`.
+The final [Python rerun](Evidence/python-tests-3118db3.json) passed 160/160 in
+30.021 seconds. [Restored installation verification](Evidence/installed-runtime-verification-3118db3.json)
+passed with native ON and unchanged install receipt SHA `981d412763130de2b80caaed44bd141b10068455de20308e4cf90e94b4c31955`.
+
+The [lossless v2 archive](Evidence/player-results-3118db3.tar.gz) contains all
+29 original result, raw-native and log files. Its
+[index](Evidence/player-results-3118db3.index.json) verifies every byte against
+the original run directory. Archive SHA:
+`d9f104b41486c3a7012aea15602dcc217f1b53d4251be4b4f7072f50752755ca`.
+The six copied build/baseline/fixture/replay/XML artifacts match their original
+bytes exactly. Original absolute artifact paths are retained; this is not a
+portable copy of the complete Player/compiler/bundle trees or a signed attestation.
+The [artifact/scope audit](Evidence/artifact-and-scope-audit-3118db3.json) records
+those comparisons, four frozen hashes and the retained repository boundaries.
+
+The frozen M01 baseline manifest remains SHA
+`e0125ed2b59177fb8577dab0498325a4a489404d3147b7bb857f442a9464928d`,
+and its original source-asset audit receipt remains SHA
+`4fe92ddfb66134efbef3f34fbd695abe262611c326196627c8b743b32f4785cc`.
+Fixed M00 staged DLL bytes remain SHA
+`9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`.
+The ON build separately verified frozen M01 DLL semantics and reused bundles.
+The native/runtime/package worktrees are clean. Demo changes after the source
+pin are confined to this M04 documentation/evidence directory.
+
+The original demo checkout retains only its four pre-existing dirty paths:
+`Assets/Settings/Renderer2D.asset`, `.DS_Store`, `Assets/Editor.meta`, and
+`Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store`.
+Its existing Unity Editor PID 13313 is still running; it was not adopted or stopped.
 
 ## Explicit evidence boundaries
 
