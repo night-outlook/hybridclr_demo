@@ -123,7 +123,7 @@ namespace AssemblyShadowDemo.EditorTests
             using (var fixture = new WarmupFixture(mutation))
                 Assert.Throws<ShadowBuildException>(() => Call(typeof(M06Build), "Warmup", fixture.Inputs, M06Build.ProviderFirstOrder), mutation);
         }
-        [Test] public void CompiledStartupCaptureRequiresFullByteBoundPolicyBeforeImportedAssetCapture()
+        [Test] public void CompiledStartupCaptureRequiresByteBoundCompilerPolicyBeforeImportedAssetCapture()
         {
             using (var module = ModuleDefMD.Load(typeof(M06GenerationBuild).Assembly.Location))
             {
@@ -131,11 +131,9 @@ namespace AssemblyShadowDemo.EditorTests
                 var instructions = method.Body.Instructions.Where(instruction => instruction.OpCode.Code != Code.Nop).ToArray();
                 int gate = Array.FindIndex(instructions, instruction => {
                     var called = instruction.Operand as IMethod;
-                    return called != null && called.DeclaringType.FullName == typeof(ShadowReflectionBindingEvidence).FullName && called.Name == "ValidateCompiled";
+                    return called != null && called.DeclaringType.FullName == typeof(ShadowReflectionBindingEvidence).FullName && called.Name == "ValidateCompilerSnapshot";
                 });
-                Assert.GreaterOrEqual(gate, 2, "The full captured reflection/raw/policy gate must be called.");
-                Assert.AreEqual(Code.Ldc_I4_0, instructions[gate - 2].OpCode.Code, "Generation uses compiler-input evidence, not a claimed linked receipt.");
-                Assert.AreEqual(Code.Ldnull, instructions[gate - 1].OpCode.Code);
+                Assert.GreaterOrEqual(gate, 0, "The byte-bound compiler reflection/raw/policy gate must be called.");
                 Assert.AreEqual("ThrowIfInvalid", ((IMethod)instructions[gate + 1].Operand).Name.String);
                 int imported = Array.FindIndex(instructions, instruction => {
                     var called = instruction.Operand as IMethod;

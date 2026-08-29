@@ -229,7 +229,11 @@ namespace AssemblyShadowDemo.Editor
             Type runner = M01BuildSupport.FindType("AssemblyShadowDemo.Bootstrap", "AssemblyShadowDemo.M06BootstrapRunner");
             using (var set = ShadowFixtureProof.Load(snapshot, receipt, policy))
             {
-                ShadowReflectionBindingEvidence.ValidateCompiled(set, policy, snapshot, receipt, false).ThrowIfInvalid();
+                // Compiler inventories precede Unity's authoritative Player
+                // filter/linker receipt. Validate the complete connected shadow
+                // graph now; the baseline builder later runs strict validation
+                // over every assembly proven to enter the linked Player.
+                ShadowReflectionBindingEvidence.ValidateCompilerSnapshot(set, policy, snapshot, receipt).ThrowIfInvalid();
                 var actual = ShadowExecutionPolicy.CaptureCurrentEditor(policy, runner, set);
                 M06Build.Require(actual.IsValid, "Execution startup policy rejected: " + string.Join("; ", actual.Diagnostics));
                 var result = new M06ExecutionPolicyProof { compileSnapshotHash = receipt.snapshotHash,
