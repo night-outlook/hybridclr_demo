@@ -503,6 +503,81 @@
       "typeName": "AssemblyA.Contracts.DemoValue",
       "method": "AssemblyShadowDemo.M05ResourceProbe::ExpectedValueType",
       "reason": "M05 compares the frozen serialized value's actual Type with this exact name, requiring AOT Contracts for P01 and shadow Contracts for P03."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+      "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+      "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+      "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+      "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::WitnessType",
+      "reason": "M06 resolves this exact baseline-known execution witness only after commit, or in the separate baseline-recovery process; no arbitrary type selector or preload is admitted."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Contracts",
+      "typeName": "AssemblyA.Contracts.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+      "target": "AssemblyA.Contracts",
+      "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Extensibility",
+      "typeName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+      "target": "AssemblyA.Implementation.Extensibility",
+      "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+      "target": "AssemblyA.Implementation.Internal",
+      "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ContractsConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+      "target": "AssemblyShadowDemo.ContractsConsumer",
+      "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
+      "target": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized."
     }
   ]
 }

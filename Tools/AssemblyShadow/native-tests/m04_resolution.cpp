@@ -59,6 +59,10 @@ const Il2CppAssembly* PrivateLookup(const char* name, void* context)
 
 namespace il2cpp { namespace utils { void Memory::Free(void* p) { std::free(p); } }}
 namespace il2cpp { namespace vm {
+// M06 Configure indexes physical TypeDefs. This Assembly-only fixture has no
+// TypeDefs; any attempted lookup is outside its declared metadata boundary.
+Il2CppMetadataTypeHandle MetadataCache::GetAssemblyTypeHandle(const Il2CppImage*, AssemblyTypeIndex)
+{ throw std::runtime_error("M04 fixture has no physical type definitions"); }
 const Il2CppAssembly* MetadataCache::GetAotAssemblyByNamePhysical(const char* name)
 {
     for (const Il2CppAssembly* assembly : physicalTables)

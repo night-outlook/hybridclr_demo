@@ -77,9 +77,9 @@ namespace AssemblyShadowDemo.EditorTests
                 "Success", "FeatureDisabled", "InvalidState", "InvalidArgument", "CandidateNotRegistered", "DuplicateAssemblyName",
                 "BaselineAssemblyNotFound", "BaselineBuildMismatch", "AssemblyNameMismatch", "BadImage", "UnsupportedAssembly",
                 "ClosureMemberMissing", "UnexpectedClosureMember", "ReferenceResolutionFailed", "ReferenceEscapesClosure",
-                "BaselineAlreadyUsed", "ResourceAbiMismatch", "RuntimeAbiMismatch", "AlreadyCommitted", "ModuleInitializerFailed", "InternalError"
+                "BaselineAlreadyUsed", "ResourceAbiMismatch", "RuntimeAbiMismatch", "AlreadyCommitted", "ModuleInitializerFailed", "InternalError", "BaselineMethodExecution"
             }, Enum.GetNames(errorCode));
-            CollectionAssert.AreEqual(Enumerable.Range(0, 21).ToArray(), Enum.GetValues(errorCode).Cast<object>().Select(Convert.ToInt32).ToArray());
+            CollectionAssert.AreEqual(Enumerable.Range(0, 22).ToArray(), Enum.GetValues(errorCode).Cast<object>().Select(Convert.ToInt32).ToArray());
             CollectionAssert.AreEqual(new[] { "Disabled", "CandidatesRegistered", "Staging", "Staged", "Validated", "Committing", "Committed", "Aborted", "Failed", "FailedAfterCommit" }, Enum.GetNames(state));
             CollectionAssert.AreEqual(Enumerable.Range(0, 10).ToArray(), Enum.GetValues(state).Cast<object>().Select(Convert.ToInt32).ToArray());
             Assert.AreEqual(0, Convert.ToInt32(Enum.Parse(executionMode, "AotBaseline")));
@@ -92,11 +92,11 @@ namespace AssemblyShadowDemo.EditorTests
             Type api = RuntimeType("AssemblyShadowRuntime");
             MethodInfo[] methods = api.GetMethods(BindingFlags.Public | BindingFlags.Static);
             // Preserve all nine M03 operations and explicitly admit M05's
-            // separate type-info query; unexpected APIs or overloads still fail.
+            // type-info and M06 execution queries; unexpected APIs or overloads still fail.
             CollectionAssert.AreEquivalent(new[] {
                 "ConfigureCandidates", "BeginTransaction", "StageAssembly", "ValidateTransaction",
                 "CommitTransaction", "AbortTransaction", "GetState", "GetAssemblyExecutionMode",
-                "GetDiagnosticsJson", "GetTypeResolutionInfo"
+                "GetDiagnosticsJson", "GetTypeResolutionInfo", "GetExecutionDiagnosticsJson"
             }, methods.Select(method => method.Name).ToArray());
             foreach (MethodInfo method in methods)
             {

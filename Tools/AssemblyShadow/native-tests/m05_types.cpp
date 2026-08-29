@@ -91,6 +91,20 @@ void AddField(Il2CppClass* klass, const char* name, const Il2CppType* type, uint
 }
 
 namespace il2cpp { namespace vm {
+#if !defined(ASSEMBLY_SHADOW_M06_RAW_METADATA_FIXTURE)
+// M05 uses class-shaped synthetic handles, not raw TypeDef rows. Keep the new
+// execution-diagnostics-only dependencies explicit and fail closed if reached.
+// The M06 fixture supplies its own actual raw-row adapters instead.
+baselib::ReentrantLock g_MetadataLock;
+std::pair<const char*, const char*> GlobalMetadata::GetTypeNamespaceAndName(Il2CppMetadataTypeHandle)
+{ throw std::runtime_error("M05 fixture does not model raw execution TypeDefs"); }
+Il2CppMetadataGenericContainerHandle GlobalMetadata::GetGenericContainerFromIndex(GenericContainerIndex)
+{ throw std::runtime_error("M05 fixture does not model raw execution generic containers"); }
+uint32_t GlobalMetadata::GetGenericContainerCount(Il2CppMetadataGenericContainerHandle)
+{ throw std::runtime_error("M05 fixture does not model raw execution generic containers"); }
+const Il2CppType* GlobalMetadata::GetIl2CppTypeFromIndex(TypeIndex)
+{ throw std::runtime_error("M05 fixture does not model raw execution type indices"); }
+#endif
 const Il2CppAssembly* MetadataCache::GetAotAssemblyByNamePhysical(const char* name)
 {
     for (auto assembly : assemblies)

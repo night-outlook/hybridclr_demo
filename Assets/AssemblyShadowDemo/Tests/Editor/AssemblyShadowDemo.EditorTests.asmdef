@@ -1,6 +1,18 @@
 {
   "name": "AssemblyShadowDemo.EditorTests",
-  "references": ["AssemblyShadowDemo.Editor", "HybridCLR.Editor", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+  "references": [
+    "AssemblyShadowDemo.Editor",
+    "AssemblyShadowDemo.Bootstrap",
+    "HybridCLR.Editor",
+    "HybridCLR.Runtime",
+    "AssemblyA.Contracts",
+    "AssemblyA.Implementation.Extensibility",
+    "AssemblyA.Implementation.Internal",
+    "AssemblyShadowDemo.ContractsConsumer",
+    "AssemblyShadowDemo.ExtensibilityConsumer",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner"
+  ],
   "includePlatforms": ["Editor"],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
