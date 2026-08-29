@@ -22,11 +22,13 @@ namespace AssemblyShadowDemo.EditorTests
             MonoScript runnerScript = MonoImporter.GetAllRuntimeMonoScripts().Single(script => script != null && script.GetClass() == runner);
             int runnerOrder = MonoImporter.GetExecutionOrder(runnerScript);
             Assert.AreEqual(-32000, runnerOrder);
-            const string callbackPath = "Assets/AssemblyShadowDemo/Tests/Editor/M06EarlyStartupProbe.cs";
+            const string callbackPath = "Assets/AssemblyShadowDemo/Tests/Runtime/M06EarlyStartupProbe.cs";
             MonoScript callback = AssetDatabase.LoadAssetAtPath<MonoScript>(callbackPath);
             Assert.IsNotNull(callback);
-            Assert.AreEqual(typeof(M06EarlyStartupProbe), callback.GetClass());
-            Assert.IsTrue(callback.GetClass().Assembly.GetReferencedAssemblies().Any(assembly => assembly.Name == "AssemblyA.Contracts"), "Use the actual imported test assembly, not a fabricated dependency descriptor.");
+            Type callbackType = callback.GetClass();
+            Assert.IsNotNull(callbackType);
+            Assert.AreEqual("AssemblyShadowDemo.M06EarlyStartupProbe", callbackType.FullName);
+            Assert.IsTrue(callbackType.Assembly.GetReferencedAssemblies().Any(assembly => assembly.Name == "AssemblyA.Contracts"), "Use the actual imported runtime test assembly, not a fabricated dependency descriptor.");
             int originalOrder = MonoImporter.GetExecutionOrder(callback), injectedOrder = originalOrder;
             string metadata = Path.GetFullPath(callbackPath + ".meta"), sourceHash = ShadowHash.File(callbackPath);
             byte[] originalMetadata = File.ReadAllBytes(metadata);
@@ -45,10 +47,12 @@ namespace AssemblyShadowDemo.EditorTests
             string sceneHash = "", sceneMetaHash = "";
             try
             {
-                temporary = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                Assert.IsTrue(AssetDatabase.CopyAsset(AssemblyShadowDemo.Editor.M06Build.BootstrapScene, asset),
+                    "Could not create a test-owned copy of the configured M06 bootstrap scene.");
+                AssetDatabase.ImportAsset(asset, ImportAssetOptions.ForceSynchronousImport);
+                temporary = EditorSceneManager.OpenScene(asset, UnityEditor.SceneManagement.OpenSceneMode.Additive);
                 Assert.IsTrue(SceneManager.SetActiveScene(temporary));
-                new GameObject("M06 Bootstrap order witness").AddComponent(runner);
-                new GameObject("M06 actual candidate-dependent callback").AddComponent<M06EarlyStartupProbe>();
+                Assert.IsNotNull(new GameObject("M06 actual candidate-dependent callback").AddComponent(callbackType));
                 Assert.IsTrue(EditorSceneManager.SaveScene(temporary, asset));
                 AssetDatabase.ImportAsset(asset, ImportAssetOptions.ForceSynchronousImport);
                 sceneHash = ShadowHash.File(asset); sceneMetaHash = ShadowHash.File(asset + ".meta");
@@ -68,7 +72,7 @@ namespace AssemblyShadowDemo.EditorTests
                     // is the evidence. Ties are unsafe because ordering is not fixed.
                     Assert.AreEqual(early, injectedOrder <= runnerOrder);
                     var inventory = ShadowExecutionPolicy.CaptureCurrentEditor(policy, runner);
-                    var observed = inventory.Scripts.Single(script => script.TypeName == typeof(M06EarlyStartupProbe).FullName);
+                    var observed = inventory.Scripts.Single(script => script.TypeName == callbackType.FullName);
                     string phase = requested < runnerOrder ? "before" : early ? "tied" : "after";
                     WriteNew(Path.Combine(evidence, phase + ".json"), JsonUtility.ToJson(new OrderEvidence {
                         phase = phase, requestedOrder = requested, actualOrder = injectedOrder, bootstrapOrder = inventory.BootstrapExecutionOrder,

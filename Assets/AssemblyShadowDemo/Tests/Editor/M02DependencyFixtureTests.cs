@@ -15,40 +15,29 @@ namespace AssemblyShadowDemo.EditorTests
         private const string DefinitionPath = "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Extensibility/AssemblyA.Implementation.Extensibility.asmdef";
 
         [Test]
-        public void DeclaredModuleContractRetainsCompleteP03Closure()
+        public void ActualAssemblyReferenceRetainsCompleteP03Closure()
         {
-            var configuration = ReadModuleContract();
             var definitions = FixtureDescriptors();
-            var graph = new AssemblyReferenceGraph(definitions, configuration);
+            var graph = new AssemblyReferenceGraph(definitions);
             CollectionAssert.AreEquivalent(new[] { Internal }, graph.ReverseClosure(new[] { Internal }));
             CollectionAssert.AreEquivalent(new[] { Extensibility, Internal, "AssemblyShadowDemo.ExtensibilityConsumer" }, graph.ReverseClosure(new[] { Extensibility }));
             CollectionAssert.AreEquivalent(AssemblyShadowDemo.Editor.M02Build.Candidates, graph.ReverseClosure(new[] { Contracts }));
             Assert.AreEqual(Contracts, graph.LoadOrder(AssemblyShadowDemo.Editor.M02Build.Candidates)[0]);
 
-            var withoutDeclaration = new AssemblyReferenceGraph(definitions);
-            CollectionAssert.AreEquivalent(new[] { Contracts, Internal, "AssemblyShadowDemo.ContractsConsumer" }, withoutDeclaration.ReverseClosure(new[] { Contracts }));
             var frozenEdges = new AssemblyReferenceGraph(definitions, requiredBaselineEdges: graph.Edges);
             CollectionAssert.AreEquivalent(AssemblyShadowDemo.Editor.M02Build.Candidates, frozenEdges.ReverseClosure(new[] { Contracts }));
         }
 
         [Test]
-        public void ModuleContractIsDeclaredRatherThanInventedAsAnAssemblyReference()
+        public void ModuleContractUsesAssemblyReferenceWithoutDuplicateDeclaration()
         {
             var definition = JsonUtility.FromJson<Definition>(File.ReadAllText(DefinitionPath));
             CollectionAssert.Contains(definition.references, Contracts);
-            var declaration = ReadModuleContract().runtimeDependencies.Single();
-            Assert.AreEqual("ModuleContract", declaration.kind);
-            StringAssert.Contains(DefinitionPath, declaration.evidence);
-            Assert.IsFalse(FixtureDescriptors().Single(item => item.name == Extensibility).references.Contains(Contracts),
-                "If the fixture starts emitting a real AssemblyRef, replace the now-duplicate explicit dependency deliberately.");
-        }
-
-        private static ShadowDependencyConfiguration ReadModuleContract()
-        {
+            Assert.IsTrue(FixtureDescriptors().Single(item => item.name == Extensibility).references.Contains(Contracts),
+                "The compiled Extensibility witness must retain its real Contracts AssemblyRef.");
             var configuration = JsonUtility.FromJson<ShadowDependencyConfiguration>(File.ReadAllText("ProjectSettings/AssemblyShadowDependencies.json"));
-            var declarations = configuration.runtimeDependencies.Where(edge => edge.consumer == Extensibility && edge.provider == Contracts).ToArray();
-            Assert.AreEqual(1, declarations.Length, "The demo's no-token module dependency must be explicit and unique.");
-            return new ShadowDependencyConfiguration { runtimeDependencies = declarations };
+            Assert.IsFalse(configuration.runtimeDependencies.Any(edge => edge.consumer == Extensibility && edge.provider == Contracts),
+                "A real AssemblyRef and an explicit runtime dependency would describe the same edge twice.");
         }
 
         private static AssemblyDescriptor[] FixtureDescriptors()

@@ -14,6 +14,7 @@ namespace AssemblyShadowDemo.Editor
     public static class M06Build
     {
         public const string BootstrapScene = "Assets/AssemblyShadowDemo/Scenes/M06Bootstrap.unity";
+        public const string BootstrapRunnerScript = "Assets/AssemblyShadowDemo/Bootstrap/M06BootstrapRunner.cs";
         public const string StableAotHashDomain = "m06-stable-aot:1\n";
         public const string PlayerReceiptName = "m06-player-build.json", FixtureManifestName = "m06-fixtures.json", PlaceholderName = "m06-placeholder-AssemblyManifest.cpp";
         public static readonly string[] ProviderFirstOrder = M03Build.ProviderFirstOrder.ToArray();
@@ -41,8 +42,17 @@ namespace AssemblyShadowDemo.Editor
             settings.playerInputSnapshot = ""; settings.baselineManifestPath = ""; settings.resourceBaselinePath = ""; AssemblyShadowSettings.Save();
             var pins = ShadowSourcePins.Read(settings.sourcePinFile, EditorUserBuildSettings.activeBuildTarget, settings.architecture);
             EnsureScene(id, pins.RuntimeAbiHash());
+            RequireBootstrapExecutionOrder();
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(BootstrapScene, true) };
             AssemblyShadowSettings.Save(); AssetDatabase.SaveAssets();
+        }
+        private static void RequireBootstrapExecutionOrder()
+        {
+            var script = AssetDatabase.LoadAssetAtPath<MonoScript>(BootstrapRunnerScript);
+            Require(script != null && script.GetClass() != null && script.GetClass().FullName == "AssemblyShadowDemo.M06BootstrapRunner",
+                "M06 bootstrap runner script is not imported at its pinned path.");
+            Require(MonoImporter.GetExecutionOrder(script) == -32000,
+                "M06 bootstrap runner must have effective MonoImporter execution order -32000.");
         }
         public static void ValidateCompilerInputs()
         {
