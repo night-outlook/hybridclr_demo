@@ -560,7 +560,7 @@ def verify_player(path,context,native_enabled,development):
     root=canonical(player['inputSnapshot'],path,'inputSnapshot',True);exact(path,root/'m06-player-build.json',path)
     snapshot=prior._verify_snapshot(root,manifest['baselineBuildId'],manifest['runtimeAbiHash'],baseline,path,native_enabled)
     for key,source in (('inputSnapshotHash','snapshotHash'),('buildGuid','buildGuid'),('playerOutput','playerOutput'),('nativeLibraryPath','nativeLibraryPath'),('nativeLibrarySha256','nativeLibrarySha256'),('buildOptions','playerBuildOptions')):exact(player[key],snapshot[source],path)
-    exact(player['buildOptions'],536870912|(1 if development else 0),path)
+    exact(player['buildOptions'],536870912|128|(1 if development else 0),path)
     output=canonical(player['playerOutput'],path,'playerOutput',True);library=bound(player['nativeLibraryPath'],player['nativeLibrarySha256'],path,'nativeLibraryPath');require(library.is_relative_to(output),f"{path}: native binary outside Player")
     prior._snapshot_files(snapshot,root,path);prior._verify_linked_player(root,snapshot,{a['name']:a for a in baseline['assemblies']},path);prior._reflection_snapshot(root,snapshot,path,require_linked=True);raw.verify_snapshot(root,snapshot,require_linked=True)
     exact(raw.control_hash(snapshot['extraScriptingDefines'],path),raw.control_hash(context['snapshot']['extraScriptingDefines'],path),path)

@@ -34,7 +34,7 @@ namespace AssemblyShadowDemo.EditorTests
             var release = (BuildOptions)Call(typeof(M06Build), "PlayerOptions", false);
             Assert.IsTrue((development & BuildOptions.Development) != 0); Assert.IsFalse((release & BuildOptions.Development) != 0);
             Assert.AreEqual(development & ~BuildOptions.Development, release);
-            Assert.AreEqual(BuildOptions.DetailedBuildReport, release);
+            Assert.AreEqual(BuildOptions.CleanBuildCache | BuildOptions.DetailedBuildReport, release);
         }
         [Test] public void ReleaseNativeConfigurationOverridesInheritedDebugAfterM02Setup()
         {
@@ -195,6 +195,8 @@ namespace AssemblyShadowDemo.EditorTests
             Assert.IsFalse(build.Contains("VerifySemanticEquivalence")); Assert.IsFalse(generation.Contains("GenerateStripedAOTDlls("));
             Assert.IsFalse(build.Contains("ShadowBuildSession"), "M06 must not reuse or overwrite the M05 session.");
             Assert.IsTrue(build.Contains("BuildWithWarmup")); Assert.IsTrue(build.Contains("CompileWithOptions"));
+            Assert.IsTrue(build.Contains("SetPlayerExportProject(target, false)"), "Actual Players must override stale native-project export state.");
+            Assert.IsTrue(build.Contains("EditorUserBuildSettings.buildScriptsOnly = false"), "Actual Players must override stale scripts-only state.");
         }
         private static object Call(Type type, string name, params object[] arguments)
         {

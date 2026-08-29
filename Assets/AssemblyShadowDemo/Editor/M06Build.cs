@@ -92,7 +92,7 @@ namespace AssemblyShadowDemo.Editor
                 BaselineBuild.SetNativeFeature(nativeEnabled); AssetDatabase.SaveAssets();
                 snapshot = CapturePlayer(output, nativeEnabled, development, generationPath, generation);
                 Require(ShadowHash.File(generationPath) == generationHash, "Generation proof changed during Player build.");
-                M06GenerationBuild.VerifyInstalled(generation, true);
+                M06GenerationBuild.VerifyInstalledFiles(generation, true);
             }
             finally { BaselineBuild.SetNativeFeature(true); AssetDatabase.SaveAssets(); }
             if (nativeEnabled)
@@ -127,18 +127,33 @@ namespace AssemblyShadowDemo.Editor
             M06GenerationBuild.RequireSameStartup(selectedStartup, startup);
             string[] defines = ShadowReflectionBindingEvidence.CompilationDefines(new string[0]);
             var placeholders = M04PlaceholderManifestProof.CaptureBeforeBuild();
-            M06GenerationBuild.VerifyInstalled(generation, true);
-            ShadowPlayerInputCapture.Begin(snapshot, settings.buildId, target, settings.architecture, pins, M02Build.Candidates, defines, development);
             BuildOptions options = PlayerOptions(development);
+            bool oldScriptsOnly = EditorUserBuildSettings.buildScriptsOnly;
+            bool oldExportProject = PlayerExportProject(target);
+            bool captureStarted = false;
             try
             {
+                // Strip-only generation intentionally exports a native project.
+                // A prior interrupted Editor must not leak that persistent route
+                // into the evidence Player, which requires a built native binary.
+                EditorUserBuildSettings.buildScriptsOnly = false;
+                SetPlayerExportProject(target, false);
+                Require(!EditorUserBuildSettings.buildScriptsOnly && !PlayerExportProject(target), "M06 Player must be a built application, not a scripts-only/exported native project.");
+                M06GenerationBuild.VerifyInstalledFiles(generation, true);
+                ShadowPlayerInputCapture.Begin(snapshot, settings.buildId, target, settings.architecture, pins, M02Build.Candidates, defines, development);
+                captureStarted = true;
                 Directory.CreateDirectory(Path.GetDirectoryName(output));
                 var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = new[] { BootstrapScene }, locationPathName = output,
                     target = target, targetGroup = BuildTargetGroup.Standalone, options = options, extraScriptingDefines = defines });
                 ShadowPlayerInputCapture.CompleteSuccessfulBuild(report);
             }
-            finally { ShadowPlayerInputCapture.End(); }
-            M06GenerationBuild.VerifyInstalled(generation, true);
+            finally
+            {
+                if (captureStarted) ShadowPlayerInputCapture.End();
+                SetPlayerExportProject(target, oldExportProject);
+                EditorUserBuildSettings.buildScriptsOnly = oldScriptsOnly;
+            }
+            M06GenerationBuild.VerifyInstalledFiles(generation, true);
             var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
             Require((((BuildOptions)captured.playerBuildOptions & BuildOptions.Development) != 0) == development, "Actual Player development flag differs.");
             RequireBaselineCompilerMatches(generation, snapshot, captured);
@@ -287,7 +302,24 @@ namespace AssemblyShadowDemo.Editor
         }
         internal static string[] ExpectedChangedRoots(string id)
         { ExpectedDefines(id); return id == "P03" ? ProviderFirstOrder.ToArray() : id == "P02" ? new[] { "AssemblyA.Implementation.Extensibility", "AssemblyA.Implementation.Internal", "AssemblyShadowDemo.ExtensibilityConsumer" } : new[] { "AssemblyA.Implementation.Internal" }; }
-        internal static BuildOptions PlayerOptions(bool development) { return BuildOptions.DetailedBuildReport | (development ? BuildOptions.Development : BuildOptions.None); }
+        internal static BuildOptions PlayerOptions(bool development) { return BuildOptions.CleanBuildCache | BuildOptions.DetailedBuildReport | (development ? BuildOptions.Development : BuildOptions.None); }
+        private static bool PlayerExportProject(BuildTarget target)
+        {
+#if UNITY_EDITOR_OSX
+            if (target == BuildTarget.StandaloneOSX) return UnityEditor.OSXStandalone.UserBuildSettings.createXcodeProject;
+#elif UNITY_EDITOR_WIN
+            if (target == BuildTarget.StandaloneWindows64) return UnityEditor.WindowsStandalone.UserBuildSettings.createSolution;
+#endif
+            return false;
+        }
+        private static void SetPlayerExportProject(BuildTarget target, bool value)
+        {
+#if UNITY_EDITOR_OSX
+            if (target == BuildTarget.StandaloneOSX) UnityEditor.OSXStandalone.UserBuildSettings.createXcodeProject = value;
+#elif UNITY_EDITOR_WIN
+            if (target == BuildTarget.StandaloneWindows64) UnityEditor.WindowsStandalone.UserBuildSettings.createSolution = value;
+#endif
+        }
         internal static string NativeArguments(bool enabled) { return "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=" + (enabled ? "1" : "0") + "\""; }
         internal static Il2CppCompilerConfiguration NativeConfiguration(bool development) { return development ? Il2CppCompilerConfiguration.Debug : Il2CppCompilerConfiguration.Release; }
         internal static string GenerationArgument() { string path = AssemblyShadowBuildCommands.Argument("-shadowM06Generation", ""); Require(!string.IsNullOrWhiteSpace(path), "Pass the exact -shadowM06Generation proof path."); return Path.GetFullPath(path); }

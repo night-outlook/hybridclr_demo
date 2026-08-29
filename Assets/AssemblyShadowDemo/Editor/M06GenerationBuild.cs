@@ -47,7 +47,7 @@ namespace AssemblyShadowDemo.Editor
                 }).ToArray();
                 var plan = ShadowGenerationPlan.Create(Path.Combine(directory, "Plan"), snapshot, policy, roots, ordinary);
                 var link = LinkGeneratorCommand.GenerateLinkXml(plan, Path.Combine(directory, "Generated/link.xml"));
-                InstallOne("Link", OutputPath(link), link.Receipt.outputSha256);
+                InstallOne("Link", OutputPath(link), link.OutputSha256);
                 Il2CppDefGeneratorCommand.GenerateIl2CppDef();
                 var strip = StripFresh(Path.Combine(directory, "StripProject"), development);
                 string stripped = Path.GetFullPath(SettingsUtil.GetAssembliesPostIl2CppStripDir(target));
@@ -68,7 +68,7 @@ namespace AssemblyShadowDemo.Editor
                     linkReceiptPath = link.ReceiptPath, linkReceiptSha256 = ShadowHash.File(link.ReceiptPath),
                     bridgeReceiptPath = bridge.ReceiptPath, bridgeReceiptSha256 = ShadowHash.File(bridge.ReceiptPath),
                     aotReceiptPath = generic.ReceiptPath, aotReceiptSha256 = ShadowHash.File(generic.ReceiptPath),
-                    requiredAotMetadataNames = RequiredMetadataNames(generic.Receipt, plan.Closure) });
+                    requiredAotMetadataNames = RequiredMetadataNamesFromOutput(generic, plan.Closure) });
             }
             proof.plans = plans.ToArray(); proof.baselineCompileSnapshot = plans[0].compileSnapshot; proof.baselineCompileSnapshotHash = plans[0].compileSnapshotHash;
             RequireCoverage(proof);
@@ -80,7 +80,7 @@ namespace AssemblyShadowDemo.Editor
                 ShadowGenerationOutput.ReadAndVerify(selectedRow.linkReceiptPath, selected),
                 ShadowGenerationOutput.ReadAndVerify(selectedRow.bridgeReceiptPath, selected, selectedAot),
                 ShadowGenerationOutput.ReadAndVerify(selectedRow.aotReceiptPath, selected, selectedAot) })
-                outputs.Add(new M06InstalledOutput { role = value.Receipt.stage, sourcePath = OutputPath(value), destinationPath = Slot(value.Receipt.stage), sha256 = value.Receipt.outputSha256 });
+                outputs.Add(new M06InstalledOutput { role = value.Stage, sourcePath = OutputPath(value), destinationPath = Slot(value.Stage), sha256 = value.OutputSha256 });
             // These ordinary placeholder/header inputs are generated explicitly;
             // GenerateAll is never called after selecting the P03 output.
             Il2CppDefGeneratorCommand.GenerateIl2CppDef();
@@ -110,6 +110,8 @@ namespace AssemblyShadowDemo.Editor
             target = (BuildTarget)Enum.Parse(typeof(BuildTarget), proof.target);
             if (requireInstalled) RequireCurrentSelection(proof);
             M06Build.RequireSet(proof.plans.Select(row => row.planId), new[] { "Ordinary", "P01", "P02", "P03", "InitializerFailure" }, "Generation plan set");
+            var bridges = new Dictionary<string, ShadowGenerationOutput>(StringComparer.Ordinal);
+            Dictionary<string, ShadowGenerationOutput> selectedOutputs = null;
             foreach (var row in proof.plans)
             {
                 var plan = ReadPlan(proof, row.planId); var receipt = AssemblySnapshot.ReadAndVerify(row.compileSnapshot, false);
@@ -142,17 +144,19 @@ namespace AssemblyShadowDemo.Editor
                 Guid stripGuid;
                 M06Build.Require(Guid.TryParse(row.stripBuildGuid, out stripGuid) && stripGuid != Guid.Empty && Path.IsPathRooted(row.stripOutput) && Path.IsPathRooted(row.stripSourceDirectory) &&
                     Path.IsPathRooted(aot.Receipt.sourceDirectory), "Actual strip-build identity/source binding differs.");
-                foreach (string receiptPath in new[] { row.linkReceiptPath, row.bridgeReceiptPath, row.aotReceiptPath })
-                    ShadowGenerationOutput.ReadAndVerify(receiptPath, plan, receiptPath == row.linkReceiptPath ? null : aot);
-                M06Build.VerifyHash(row.linkReceiptPath, row.linkReceiptSha256); M06Build.VerifyHash(row.bridgeReceiptPath, row.bridgeReceiptSha256); M06Build.VerifyHash(row.aotReceiptPath, row.aotReceiptSha256);
+                var link = ShadowGenerationOutput.ReadAndVerify(row.linkReceiptPath, plan);
                 var bridge = ShadowGenerationOutput.ReadAndVerify(row.bridgeReceiptPath, plan, aot);
-                M06Build.Require(bridge.Receipt.development == proof.developmentBuild && (((BuildOptions)row.stripBuildOptions & BuildOptions.Development) != 0) == proof.developmentBuild, "Generation development mode differs.");
                 var generic = ShadowGenerationOutput.ReadAndVerify(row.aotReceiptPath, plan, aot);
-                M06Build.Require(row.requiredAotMetadataNames.SequenceEqual(RequiredMetadataNames(generic.Receipt, plan.Closure)), "Required AOT metadata does not match actual collector output.");
+                bridges.Add(row.planId, bridge);
+                if (row.planId == proof.selectedPlanId)
+                    selectedOutputs = new[] { link, bridge, generic }.ToDictionary(output => output.Stage, StringComparer.Ordinal);
+                M06Build.VerifyHash(row.linkReceiptPath, row.linkReceiptSha256); M06Build.VerifyHash(row.bridgeReceiptPath, row.bridgeReceiptSha256); M06Build.VerifyHash(row.aotReceiptPath, row.aotReceiptSha256);
+                M06Build.Require(bridge.Development == proof.developmentBuild && (((BuildOptions)row.stripBuildOptions & BuildOptions.Development) != 0) == proof.developmentBuild, "Generation development mode differs.");
+                M06Build.Require(row.requiredAotMetadataNames.SequenceEqual(RequiredMetadataNamesFromOutput(generic, plan.Closure)), "Required AOT metadata does not match actual collector output.");
             }
             var ordinary = proof.plans.Single(row => row.planId == "Ordinary");
             M06Build.Require(proof.baselineCompileSnapshot == ordinary.compileSnapshot && proof.baselineCompileSnapshotHash == ordinary.compileSnapshotHash, "Baseline/ordinary snapshot mismatch.");
-            RequireCoverage(proof); VerifyInstalled(proof, requireInstalled); return proof;
+            RequireCoverage(bridges); VerifyInstalled(proof, requireInstalled, selectedOutputs); return proof;
         }
 
         internal static VerifiedGenerationPlan ReadPlan(M06GenerationProof proof, string id)
@@ -167,6 +171,10 @@ namespace AssemblyShadowDemo.Editor
             var outputs = proof.plans.ToDictionary(row => row.planId, row => {
                 var plan = ReadPlan(proof, row.planId); return ShadowGenerationOutput.ReadAndVerify(row.bridgeReceiptPath, plan, ReadAot(plan, row));
             }, StringComparer.Ordinal);
+            RequireCoverage(outputs);
+        }
+        private static void RequireCoverage(IDictionary<string, ShadowGenerationOutput> outputs)
+        {
             ShadowGenerationOutput.RequireCoverage(outputs["P03"], outputs["Ordinary"], outputs["P01"], outputs["P02"], outputs["InitializerFailure"]);
         }
         internal static string[] RequiredMetadataNames(ShadowGenerationOutputReceipt receipt, IEnumerable<string> closure)
@@ -180,24 +188,47 @@ namespace AssemblyShadowDemo.Editor
             M06Build.Require(names.Distinct(StringComparer.Ordinal).Count() == names.Length, "Duplicate AOT collector assembly names.");
             return names.Where(name => !excluded.Contains(AssemblyIdentityUtil.CanonicalName(name))).OrderBy(name => name, StringComparer.Ordinal).ToArray();
         }
+        private static string[] RequiredMetadataNamesFromOutput(ShadowGenerationOutput output, IEnumerable<string> closure)
+        {
+            M06Build.Require(output != null && output.Stage == "AotGenericReference", "Actual AOT collector output is required.");
+            var receipt = new ShadowGenerationOutputReceipt { stage = output.Stage, emittedAssemblyNames = output.EmittedAssemblyNames };
+            return RequiredMetadataNames(receipt, closure);
+        }
         internal static void VerifyInstalled(M06GenerationProof proof, bool installed)
         {
-            M06Build.RequireSet(proof.installedOutputs.Select(slot => slot.role), new[] { "Link", "MethodBridge", "AotGenericReference", "AssemblyManifest", "UnityVersion" }, "Selected generator slots");
             var row = proof.plans.Single(item => item.planId == "P03"); var plan = ReadPlan(proof, "P03"); var aot = ReadAot(plan, row);
+            var outputs = new[] {
+                ShadowGenerationOutput.ReadAndVerify(row.linkReceiptPath, plan),
+                ShadowGenerationOutput.ReadAndVerify(row.bridgeReceiptPath, plan, aot),
+                ShadowGenerationOutput.ReadAndVerify(row.aotReceiptPath, plan, aot),
+            }.ToDictionary(output => output.Stage, StringComparer.Ordinal);
+            VerifyInstalled(proof, installed, outputs);
+        }
+        private static void VerifyInstalled(M06GenerationProof proof, bool installed, IDictionary<string, ShadowGenerationOutput> outputs)
+        {
+            VerifyInstalledFiles(proof, installed);
             foreach (var item in proof.installedOutputs)
             {
-                M06Build.Require(Path.IsPathRooted(item.destinationPath) && (!installed || item.destinationPath == Slot(item.role)), "Generator destination is not its actual default slot."); M06Build.VerifyHash(item.sourcePath, item.sha256);
                 if (new[] { "Link", "MethodBridge", "AotGenericReference" }.Contains(item.role))
                 {
-                    string evidence = item.role == "Link" ? row.linkReceiptPath : item.role == "MethodBridge" ? row.bridgeReceiptPath : row.aotReceiptPath;
-                    var output = ShadowGenerationOutput.ReadAndVerify(evidence, plan, item.role == "Link" ? null : aot);
-                    M06Build.Require(item.sourcePath == OutputPath(output) && item.sha256 == output.Receipt.outputSha256, "Default slot does not bind selected P03 output.");
+                    ShadowGenerationOutput output;
+                    M06Build.Require(outputs != null && outputs.TryGetValue(item.role, out output) && item.sourcePath == OutputPath(output) && item.sha256 == output.OutputSha256,
+                        "Default slot does not bind selected P03 output.");
                 }
+            }
+        }
+        internal static void VerifyInstalledFiles(M06GenerationProof proof, bool installed)
+        {
+            M06Build.RequireSet(proof.installedOutputs.Select(slot => slot.role), new[] { "Link", "MethodBridge", "AotGenericReference", "AssemblyManifest", "UnityVersion" }, "Selected generator slots");
+            foreach (var item in proof.installedOutputs)
+            {
+                M06Build.Require(Path.IsPathRooted(item.destinationPath) && (!installed || item.destinationPath == Slot(item.role)), "Generator destination is not its actual default slot.");
+                M06Build.VerifyHash(item.sourcePath, item.sha256);
                 if (installed) M06Build.VerifyHash(item.destinationPath, item.sha256);
             }
         }
         private static string OutputPath(ShadowGenerationOutput output)
-        { return ShadowHash.SafeChild(Path.GetDirectoryName(output.ReceiptPath), output.Receipt.outputPath); }
+        { return ShadowHash.SafeChild(Path.GetDirectoryName(output.ReceiptPath), output.OutputPath); }
         private static string Slot(string role)
         {
             switch (role)
