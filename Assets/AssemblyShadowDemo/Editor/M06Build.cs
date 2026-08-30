@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using AssemblyShadowBaseline.Editor;
 using HybridCLR.Editor.AssemblyShadow;
 using UnityEditor;
@@ -23,6 +24,9 @@ namespace AssemblyShadowDemo.Editor
         public static void BuildPlayerBaseline() { BuildPlayer(true, true); }
         public static void BuildReleasePlayerBaseline() { BuildPlayer(true, false); }
         public static void BuildFeatureDisabledPlayer() { BuildPlayer(false, RequestedDevelopment()); }
+        public static void ResumePlayerBaselineCapture() { ResumePlayer(true, true); }
+        public static void ResumeReleasePlayerBaselineCapture() { ResumePlayer(true, false); }
+        public static void ResumeFeatureDisabledPlayerCapture() { ResumePlayer(false, RequestedDevelopment()); }
 
         internal static bool RequestedDevelopment()
         {
@@ -95,24 +99,85 @@ namespace AssemblyShadowDemo.Editor
                 M06GenerationBuild.VerifyInstalledFiles(generation, true);
             }
             finally { BaselineBuild.SetNativeFeature(true); AssetDatabase.SaveAssets(); }
-            if (nativeEnabled)
-            {
-                string resources = M02FrozenResources.Import(frozen, snapshot, Path.Combine("HybridCLRData/AssemblyShadow/ResourceBaselines", target.ToString(), settings.buildId), target, settings.architecture, policy);
-                // Real resource ABI validation permits new nonserialized M06
-                // execution types; M01 DLL semantic equality is not asserted.
-                var baseline = ShadowBaselineManifestBuilder.Build(new ShadowBaselineBuildRequest {
-                    playerInputSnapshot = snapshot, resourceBaselinePath = resources, outputDirectory = Path.Combine(settings.baselineOutputRoot, target.ToString(), settings.buildId),
-                    buildId = settings.buildId, target = target, architecture = settings.architecture, sourcePins = generation.sourcePins, policy = policy,
-                    resources = JsonUtility.FromJson<ShadowResourceBuildMap>(File.ReadAllText(settings.resourceBuildMapPath)) });
-                string baselinePath = Path.GetFullPath(Path.Combine(settings.baselineOutputRoot, target.ToString(), settings.buildId, "baseline-manifest.json"));
-                // A generation-specific immutable selection never reads or
-                // replaces the historical M05 UserSettings build session.
-                M04AssemblyIdentityProof.WriteNewJson(Path.Combine(Path.GetDirectoryName(generationPath), "m06-baseline-selection.json"), new M06BaselineSelection {
-                    playerInputSnapshot = snapshot, baselineBuildId = baseline.baselineBuildId, resourceBaselinePath = resources,
-                    baselineManifestPath = baselinePath, baselineManifestSha256 = ShadowHash.File(baselinePath), playerBuildReceiptSha256 = ShadowHash.File(Path.Combine(snapshot, PlayerReceiptName)),
-                    generationProofPath = generationPath, generationProofSha256 = generationHash, developmentBuild = development });
-            }
+            if (nativeEnabled) FinalizeBaseline(snapshot, generation, generationPath, generationHash, development, policy);
             Debug.Log("[AssemblyShadow M06] Actual Player receipt: " + Path.Combine(snapshot, PlayerReceiptName));
+        }
+
+        private static void ResumePlayer(bool nativeEnabled, bool development)
+        {
+            ConfigureMode(development);
+            string generationPath = GenerationArgument(), generationHash = ShadowHash.File(generationPath);
+            var generation = M04JsonEvidence.Read<M06GenerationProof>(File.ReadAllText(generationPath));
+            Require(generation.schemaVersion == 1 && generation.milestone == "M06" && generation.baselineBuildId == AssemblyShadowSettings.Instance.buildId &&
+                generation.developmentBuild == development, "Interrupted Player and selected generation differ.");
+            M06GenerationBuild.RequireCurrentSelection(generation); M06GenerationBuild.VerifyInstalledFiles(generation, true);
+
+            string snapshotArgument = AssemblyShadowBuildCommands.Argument("-shadowPlayerSnapshot", "");
+            string outputArgument = AssemblyShadowBuildCommands.Argument("-shadowBuildOutput", "");
+            string logArgument = AssemblyShadowBuildCommands.Argument("-shadowM06InterruptedBuildLog", "");
+            Require(!string.IsNullOrWhiteSpace(snapshotArgument) && Path.IsPathRooted(snapshotArgument), "Pass the exact absolute interrupted -shadowPlayerSnapshot.");
+            Require(!string.IsNullOrWhiteSpace(outputArgument) && Path.IsPathRooted(outputArgument), "Pass the exact absolute interrupted -shadowBuildOutput.");
+            Require(!string.IsNullOrWhiteSpace(logArgument) && Path.IsPathRooted(logArgument), "Pass the exact absolute -shadowM06InterruptedBuildLog.");
+            string snapshot = Path.GetFullPath(snapshotArgument), output = Path.GetFullPath(outputArgument), logPath = Path.GetFullPath(logArgument);
+            var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
+            Require(captured.buildId == generation.baselineBuildId && captured.playerOutput == output &&
+                (((BuildOptions)captured.playerBuildOptions & BuildOptions.Development) != 0) == development,
+                "Interrupted Player snapshot/output/mode differs.");
+            string logHash = VerifyInterruptedBuildLog(logPath, captured, nativeEnabled, development);
+
+            var settings = AssemblyShadowSettings.Instance; var target = EditorUserBuildSettings.activeBuildTarget;
+            var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
+            ShadowAssemblyPolicyValidator.ValidateBeforeCompile(policy, target).ThrowIfInvalid();
+            if (nativeEnabled) Require(!Directory.Exists(Path.Combine(settings.baselineOutputRoot, target.ToString(), settings.buildId)), "Interrupted baseline output already exists.");
+            var baselineCompile = AssemblySnapshot.ReadAndVerify(generation.baselineCompileSnapshot, false);
+            var startup = M06GenerationBuild.CaptureExecutionPolicy(generation.baselineCompileSnapshot, baselineCompile, policy);
+            var selectedStartup = M04JsonEvidence.Read<M06ExecutionPolicyProof>(File.ReadAllText(generation.plans.Single(row => row.planId == "Ordinary").executionPolicyPath));
+            M06GenerationBuild.RequireSameStartup(selectedStartup, startup);
+            var placeholders = M04PlaceholderManifestProof.CaptureBeforeBuild();
+            try
+            {
+                BaselineBuild.SetNativeFeature(nativeEnabled); AssetDatabase.SaveAssets();
+                snapshot = FinalizePlayerCapture(snapshot, nativeEnabled, development, generationPath, generation, placeholders, selectedStartup, true);
+                VerifyHash(generationPath, generationHash); VerifyHash(logPath, logHash); M06GenerationBuild.VerifyInstalledFiles(generation, true);
+            }
+            finally { BaselineBuild.SetNativeFeature(true); AssetDatabase.SaveAssets(); }
+            if (nativeEnabled) FinalizeBaseline(snapshot, generation, generationPath, generationHash, development, policy);
+            Debug.Log("[AssemblyShadow M06] Resumed actual Player receipt: " + Path.Combine(snapshot, PlayerReceiptName));
+        }
+
+        private static string VerifyInterruptedBuildLog(string path, AssemblySnapshotReceipt captured, bool nativeEnabled, bool development)
+        {
+            Require(File.Exists(path), "Interrupted Unity build log is missing.");
+            byte[] bytes = File.ReadAllBytes(path); string hash = ShadowHash.Bytes(bytes);
+            string text = new UTF8Encoding(false, true).GetString(bytes);
+            string flag = "--compiler-flags=-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=" + (nativeEnabled ? "1" : "0");
+            string entrypoint = nativeEnabled ? (development ? "BuildPlayerBaseline" : "BuildReleasePlayerBaseline") : "BuildFeatureDisabledPlayer";
+            Require(text.Contains("Build Finished, Result: Success.") && text.Contains(flag) &&
+                text.Contains("AssemblyShadowDemo.Editor.M06Build:" + entrypoint) &&
+                text.Contains("[AssemblyShadow] Sealed Player input snapshot " + captured.snapshotHash + " for native " + captured.nativeLibrarySha256),
+                "Interrupted Unity log does not prove this exact successful Player/native configuration/snapshot.");
+            return hash;
+        }
+
+        private static void FinalizeBaseline(string snapshot, M06GenerationProof generation, string generationPath, string generationHash,
+            bool development, ShadowPolicyConfiguration policy)
+        {
+            var settings = AssemblyShadowSettings.Instance; var target = EditorUserBuildSettings.activeBuildTarget;
+            string frozen = M01Paths.BaselineRoot(target); BuildBaselineBundles.VerifyExisting(frozen);
+            string resources = M02FrozenResources.Import(frozen, snapshot, Path.Combine("HybridCLRData/AssemblyShadow/ResourceBaselines", target.ToString(), settings.buildId), target, settings.architecture, policy);
+            // Real resource ABI validation permits new nonserialized M06
+            // execution types; M01 DLL semantic equality is not asserted.
+            var baseline = ShadowBaselineManifestBuilder.Build(new ShadowBaselineBuildRequest {
+                playerInputSnapshot = snapshot, resourceBaselinePath = resources, outputDirectory = Path.Combine(settings.baselineOutputRoot, target.ToString(), settings.buildId),
+                buildId = settings.buildId, target = target, architecture = settings.architecture, sourcePins = generation.sourcePins, policy = policy,
+                resources = JsonUtility.FromJson<ShadowResourceBuildMap>(File.ReadAllText(settings.resourceBuildMapPath)) });
+            string baselinePath = Path.GetFullPath(Path.Combine(settings.baselineOutputRoot, target.ToString(), settings.buildId, "baseline-manifest.json"));
+            // A generation-specific immutable selection never reads or
+            // replaces the historical M05 UserSettings build session.
+            M04AssemblyIdentityProof.WriteNewJson(Path.Combine(Path.GetDirectoryName(generationPath), "m06-baseline-selection.json"), new M06BaselineSelection {
+                playerInputSnapshot = snapshot, baselineBuildId = baseline.baselineBuildId, resourceBaselinePath = resources,
+                baselineManifestPath = baselinePath, baselineManifestSha256 = ShadowHash.File(baselinePath), playerBuildReceiptSha256 = ShadowHash.File(Path.Combine(snapshot, PlayerReceiptName)),
+                generationProofPath = generationPath, generationProofSha256 = generationHash, developmentBuild = development });
         }
         private static string CapturePlayer(string output, bool nativeEnabled, bool development, string generationPath, M06GenerationProof generation)
         {
@@ -153,13 +218,40 @@ namespace AssemblyShadowDemo.Editor
                 SetPlayerExportProject(target, oldExportProject);
                 EditorUserBuildSettings.buildScriptsOnly = oldScriptsOnly;
             }
+            return FinalizePlayerCapture(snapshot, nativeEnabled, development, generationPath, generation, placeholders, selectedStartup, false);
+        }
+
+        private static string FinalizePlayerCapture(string snapshot, bool nativeEnabled, bool development, string generationPath,
+            M06GenerationProof generation, M04PlaceholderManifestProof.CapturedManifest placeholders,
+            M06ExecutionPolicyProof selectedStartup, bool replayExistingProofs)
+        {
             M06GenerationBuild.VerifyInstalledFiles(generation, true);
+            var settings = AssemblyShadowSettings.Instance; var target = EditorUserBuildSettings.activeBuildTarget;
+            var pins = ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture);
+            string arguments = NativeArguments(nativeEnabled); Require(PlayerSettings.GetAdditionalIl2CppArgs() == arguments, "Native feature compiler arguments differ.");
             var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
             Require((((BuildOptions)captured.playerBuildOptions & BuildOptions.Development) != 0) == development, "Actual Player development flag differs.");
+            Require(captured.buildId == generation.baselineBuildId && captured.target == generation.target && captured.architecture == generation.architecture,
+                "Actual Player identity differs from selected generation.");
             RequireBaselineCompilerMatches(generation, snapshot, captured);
             var linked = M04AssemblyIdentityProof.ReadLinked(snapshot, captured);
-            var proofs = M06ExecutionSchemaVerifier.WriteProofs(snapshot, captured, linked, generationPath);
+            string typePath = Path.Combine(snapshot, M06ExecutionSchemaVerifier.TypeProofName);
+            string executionPath = Path.Combine(snapshot, M06ExecutionSchemaVerifier.ExecutionProofName);
+            bool hasType = File.Exists(typePath), hasExecution = File.Exists(executionPath);
+            Require(hasType == hasExecution && hasType == replayExistingProofs,
+                replayExistingProofs ? "Interrupted capture requires both immutable proof companions." : "New capture proof companions already exist.");
+            M06ExecutionProofPaths proofs;
+            if (replayExistingProofs)
+            {
+                proofs = new M06ExecutionProofPaths { typeProofPath = typePath, typeProofSha256 = ShadowHash.File(typePath),
+                    executionProofPath = executionPath, executionProofSha256 = ShadowHash.File(executionPath) };
+                M06ExecutionSchemaVerifier.VerifyProofs(snapshot, captured, linked, generationPath, proofs.typeProofPath, proofs.typeProofSha256,
+                    proofs.executionProofPath, proofs.executionProofSha256);
+            }
+            else proofs = M06ExecutionSchemaVerifier.WriteProofs(snapshot, captured, linked, generationPath);
             string placeholderPath = Path.Combine(snapshot, PlaceholderName);
+            Require(!File.Exists(placeholderPath) && !File.Exists(Path.Combine(snapshot, "m06-execution-policy.json")) && !File.Exists(Path.Combine(snapshot, PlayerReceiptName)),
+                "Player receipt companions are immutable and must not be partially finalized.");
             Require(ShadowHash.File(placeholders.sourcePath) == placeholders.sha256, "Placeholder manifest changed during Player build.");
             using (var file = new FileStream(placeholderPath, FileMode.CreateNew, FileAccess.Write, FileShare.None)) file.Write(placeholders.bytes, 0, placeholders.bytes.Length);
             M04AssemblyIdentityProof.WriteNewJson(Path.Combine(snapshot, "m06-execution-policy.json"), selectedStartup);

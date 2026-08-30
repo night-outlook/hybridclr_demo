@@ -187,6 +187,41 @@ namespace AssemblyShadowDemo.EditorTests
             M04JsonEvidence.ValidateSchema<M06GenerationPlanProof>(plan); plan = plan.Replace("\"compilerModeSha256\":\"\",", "");
             Assert.Throws<ShadowBuildException>(() => M04JsonEvidence.ValidateSchema<M06GenerationPlanProof>(plan));
         }
+        [Test] public void InterruptedPlayerResumeIsBoundToExistingProofsAndNeverRebuilds()
+        {
+            foreach (string name in new[] { "ResumePlayerBaselineCapture", "ResumeReleasePlayerBaselineCapture", "ResumeFeatureDisabledPlayerCapture" })
+                Assert.IsNotNull(typeof(M06Build).GetMethod(name, BindingFlags.Public | BindingFlags.Static));
+            using (var module = ModuleDefMD.Load(typeof(M06Build).Assembly.Location))
+            {
+                var type = module.Find(typeof(M06Build).FullName, false);
+                var resume = type.Methods.Single(method => method.Name == "ResumePlayer");
+                var finalize = type.Methods.Single(method => method.Name == "FinalizePlayerCapture");
+                Func<MethodDef, IMethod[]> calls = method => method.Body.Instructions.Select(instruction => instruction.Operand as IMethod).Where(methodCall => methodCall != null).ToArray();
+                Assert.IsFalse(calls(resume).Any(method => method.DeclaringType.FullName == typeof(BuildPipeline).FullName && method.Name == "BuildPlayer"));
+                Assert.IsTrue(calls(resume).Any(method => method.DeclaringType.FullName == typeof(M06Build).FullName && method.Name == "VerifyInterruptedBuildLog"));
+                Assert.IsTrue(calls(resume).Any(method => method.DeclaringType.FullName == typeof(M06Build).FullName && method.Name == "FinalizePlayerCapture"));
+                Assert.IsTrue(calls(finalize).Any(method => method.DeclaringType.FullName == typeof(M06ExecutionSchemaVerifier).FullName && method.Name == "VerifyProofs"));
+                Assert.IsTrue(calls(finalize).Any(method => method.DeclaringType.FullName == typeof(M06ExecutionSchemaVerifier).FullName && method.Name == "WriteProofs"));
+            }
+            string source = File.ReadAllText("Assets/AssemblyShadowDemo/Editor/M06Build.cs");
+            foreach (string argument in new[] { "-shadowPlayerSnapshot", "-shadowBuildOutput", "-shadowM06InterruptedBuildLog" }) StringAssert.Contains(argument, source);
+        }
+        [Test] public void InterruptedBuildLogMustBindConfigurationSnapshotAndNativeHash()
+        {
+            string path = Path.Combine(Path.GetTempPath(), "M06InterruptedBuild-" + Guid.NewGuid().ToString("N") + ".log");
+            var captured = new AssemblySnapshotReceipt { snapshotHash = new string('a', 64), nativeLibrarySha256 = new string('b', 64) };
+            string valid = "Build Finished, Result: Success.\n--compiler-flags=-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1\n" +
+                "AssemblyShadowDemo.Editor.M06Build:BuildPlayerBaseline\n[AssemblyShadow] Sealed Player input snapshot " + captured.snapshotHash + " for native " + captured.nativeLibrarySha256;
+            try
+            {
+                File.WriteAllText(path, valid); Assert.AreEqual(ShadowHash.File(path), Call(typeof(M06Build), "VerifyInterruptedBuildLog", path, captured, true, true));
+                File.WriteAllText(path, valid.Replace("ASSEMBLY_SHADOW=1", "ASSEMBLY_SHADOW=0"));
+                Assert.Throws<BuildFailedException>(() => Call(typeof(M06Build), "VerifyInterruptedBuildLog", path, captured, true, true));
+                File.WriteAllText(path, valid.Replace(captured.nativeLibrarySha256, new string('c', 64)));
+                Assert.Throws<BuildFailedException>(() => Call(typeof(M06Build), "VerifyInterruptedBuildLog", path, captured, true, true));
+            }
+            finally { if (File.Exists(path)) File.Delete(path); }
+        }
         [Test] public void BuilderSourceDoesNotInvokeLegacyGenerationOrM01WholeDllEquality()
         {
             string build = File.ReadAllText("Assets/AssemblyShadowDemo/Editor/M06Build.cs");
