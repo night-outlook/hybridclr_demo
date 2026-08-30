@@ -252,6 +252,20 @@ namespace AssemblyShadowDemo.EditorTests
             Assert.Throws<InvalidOperationException>(() => ValidateShape(json.Replace("\"isStatic\":true,", ""), type));
         }
 
+        [Test] public void WarmupPrimitiveResolutionAllowsOnlyTheActiveDeclaredOrResolvedProvider()
+        {
+            Assembly owner = typeof(M06ExecutionProbe).Assembly;
+            string declared = owner.GetReferencedAssemblies().Single(reference => reference.Name == "netstandard").FullName;
+            Type identity = typeof(M06ExecutionProbe).GetNestedType("WarmupTypeIdentity", BindingFlags.NonPublic);
+            object value = Activator.CreateInstance(identity); identity.GetField("assembly").SetValue(value, declared); identity.GetField("type").SetValue(value, "System.Int32");
+            Assert.AreEqual(typeof(int), Invoke("ResolveWarmupType", value, owner));
+            identity.GetField("assembly").SetValue(value, typeof(int).Assembly.FullName); Assert.AreEqual(typeof(int), Invoke("ResolveWarmupType", value, owner));
+            identity.GetField("assembly").SetValue(value, declared.Replace("Version=2.1.0.0", "Version=9.0.0.0"));
+            Assert.Throws<InvalidOperationException>(() => Invoke("ResolveWarmupType", value, owner));
+            identity.GetField("assembly").SetValue(value, declared); identity.GetField("type").SetValue(value, "System.DateTime");
+            Assert.Throws<InvalidOperationException>(() => Invoke("ResolveWarmupType", value, owner));
+        }
+
         [Test] public void ByteVerificationRejectsChangedFileAndEscapingPath()
         {
             string directory = Path.Combine(Path.GetTempPath(), "M06ProofTest-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(directory);

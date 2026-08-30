@@ -356,23 +356,30 @@ namespace AssemblyShadowDemo
             if (expectedArity != 0)
             {
                 Require(entry.genericArguments != null && entry.genericArguments.Length == 1, "M06 generic warmup argument is missing.");
-                method = method.MakeGenericMethod(ResolveWarmupType(entry.genericArguments[0]));
+                method = method.MakeGenericMethod(ResolveWarmupType(entry.genericArguments[0], declaring.Assembly));
             }
-            Require(method.ReturnType == ResolveWarmupType(entry.returnType), "M06 warmup return signature differs from the verified manifest.");
+            Require(method.ReturnType == ResolveWarmupType(entry.returnType, declaring.Assembly), "M06 warmup return signature differs from the verified manifest.");
             ParameterInfo[] parameters = method.GetParameters();
             Require(entry.parameterTypes != null && entry.parameterTypes.Length == parameters.Length, "M06 warmup parameter signature differs from the verified manifest.");
             for (int index = 0; index < parameters.Length; ++index)
-                Require(parameters[index].ParameterType == ResolveWarmupType(entry.parameterTypes[index]), "M06 warmup parameter signature differs from the verified manifest.");
+                Require(parameters[index].ParameterType == ResolveWarmupType(entry.parameterTypes[index], declaring.Assembly), "M06 warmup parameter signature differs from the verified manifest.");
             return method;
         }
 
-        private static Type ResolveWarmupType(WarmupTypeIdentity identity)
+        private static Type ResolveWarmupType(WarmupTypeIdentity identity, Assembly declaringAssembly)
         {
-            Require(identity != null && !string.IsNullOrEmpty(identity.assembly) && !string.IsNullOrEmpty(identity.type), "M06 warmup type identity is incomplete.");
-            if (identity.type == "System.Int32") { Require(identity.assembly == typeof(int).Assembly.FullName, "M06 warmup Int32 assembly identity differs."); return typeof(int); }
-            if (identity.type == "System.String") { Require(identity.assembly == typeof(string).Assembly.FullName, "M06 warmup String assembly identity differs."); return typeof(string); }
-            if (identity.type == "System.String[]") { Require(identity.assembly == typeof(string[]).Assembly.FullName, "M06 warmup String[] assembly identity differs."); return typeof(string[]); }
-            throw new InvalidOperationException("M06 warmup type identity is not in the finite primitive set: " + identity.type);
+            Require(identity != null && declaringAssembly != null && !string.IsNullOrEmpty(identity.assembly) && !string.IsNullOrEmpty(identity.type), "M06 warmup type identity is incomplete.");
+            Type resolved;
+            if (identity.type == "System.Int32") resolved = typeof(int);
+            else if (identity.type == "System.String") resolved = typeof(string);
+            else if (identity.type == "System.String[]") resolved = typeof(string[]);
+            else throw new InvalidOperationException("M06 warmup type identity is not in the finite primitive set: " + identity.type);
+            // Unity compiles against netstandard but IL2CPP retargets these CLI
+            // primitives to mscorlib. Accept only the exact declared reference
+            // captured on this active shadow assembly, or the resolved provider.
+            Require(identity.assembly == resolved.Assembly.FullName || declaringAssembly.GetReferencedAssemblies().Any(reference => reference.FullName == identity.assembly),
+                "M06 warmup compiler/runtime primitive provider is not bound to the active declaring assembly: " + identity.assembly);
+            return resolved;
         }
 
         private static string InvokeWarmupMethod(MethodInfo method)

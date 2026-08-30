@@ -123,6 +123,27 @@ namespace AssemblyShadowDemo.EditorTests
             using (var fixture = new WarmupFixture(mutation))
                 Assert.Throws<ShadowBuildException>(() => Call(typeof(M06Build), "Warmup", fixture.Inputs, M06Build.ProviderFirstOrder), mutation);
         }
+        [Test] public void WarmupRetainsTheCapturedCompilerProviderInsteadOfAssumingRuntimeMscorlib()
+        {
+            using (var fixture = new WarmupFixture(null, true))
+            {
+                var plan = (ShadowWarmupPlan)Call(typeof(M06Build), "Warmup", fixture.Inputs, new[] { M06Build.ProviderFirstOrder[0] });
+                Assert.AreNotEqual(fixture.CoreIdentity, fixture.CompilerCoreIdentity);
+                Assert.IsTrue(plan.methods.SelectMany(entry => entry.genericArguments.Concat(entry.parameterTypes).Concat(new[] { entry.returnType }))
+                    .All(identity => identity.assembly == fixture.CompilerCoreIdentity));
+            }
+        }
+        [Test] public void FixtureWarmupsFailFastBeforeTheExpensivePlayerReceiptReplay()
+        {
+            using (var module = ModuleDefMD.Load(typeof(M06Build).Assembly.Location))
+            {
+                var method = module.Find(typeof(M06Build).FullName, false).Methods.Single(value => value.Name == "BuildFixtures");
+                var calls = method.Body.Instructions.Select(instruction => instruction.Operand).OfType<IMethod>().ToArray();
+                int preflight = Array.FindIndex(calls, call => call.DeclaringType.FullName == typeof(M06Build).FullName && call.Name == "PreflightFixtureWarmups");
+                int playerReplay = Array.FindIndex(calls, call => call.DeclaringType.FullName == typeof(M06EditorValidation).FullName && call.Name == "ValidatePlayerReceipt");
+                Assert.GreaterOrEqual(preflight, 0); Assert.Greater(playerReplay, preflight);
+            }
+        }
         [Test] public void CompiledStartupCaptureRequiresByteBoundCompilerPolicyBeforeImportedAssetCapture()
         {
             using (var module = ModuleDefMD.Load(typeof(M06GenerationBuild).Assembly.Location))
@@ -243,13 +264,27 @@ namespace AssemblyShadowDemo.EditorTests
             private readonly string root = Path.Combine(Path.GetTempPath(), "M06BuilderWarmup-" + Guid.NewGuid().ToString("N"));
             internal readonly CompiledAssemblySet Inputs;
             internal string CoreIdentity { get { return Inputs.GetModule("mscorlib").Assembly.FullName; } }
-            internal WarmupFixture(string mutation = null)
+            internal string CompilerCoreIdentity { get { return Inputs.GetModule(compilerFacade ? "netstandard" : "mscorlib").Assembly.FullName; } }
+            private readonly bool compilerFacade;
+            internal WarmupFixture(string mutation = null, bool compilerFacade = false)
             {
+                this.compilerFacade = compilerFacade;
                 string source = Path.Combine(root, "Inputs"), references = Path.Combine(root, "References");
                 Directory.CreateDirectory(source); Directory.CreateDirectory(references);
                 File.Copy(typeof(object).Assembly.Location, Path.Combine(references, "mscorlib.dll"));
+                string compilerCore = typeof(object).Assembly.FullName;
+                if (compilerFacade)
+                {
+                    using (var facade = new ModuleDefUser("netstandard.dll", Guid.NewGuid(), new AssemblyRefUser(new AssemblyNameInfo(typeof(object).Assembly.FullName))) { Kind = ModuleKind.Dll })
+                    {
+                        new AssemblyDefUser("netstandard", new Version(2, 1, 0, 0)).Modules.Add(facade);
+                        foreach (string name in new[] { "Object", "Int32", "String" })
+                            facade.Types.Add(new TypeDefUser("System", name, null) { Attributes = dnlib.DotNet.TypeAttributes.Public });
+                        facade.Write(Path.Combine(references, "netstandard.dll")); compilerCore = facade.Assembly.FullName;
+                    }
+                }
                 foreach (string assembly in M06Build.ProviderFirstOrder)
-                using (var module = new ModuleDefUser(assembly + ".dll", Guid.NewGuid(), new AssemblyRefUser(new AssemblyNameInfo(typeof(object).Assembly.FullName))) { Kind = ModuleKind.Dll })
+                using (var module = new ModuleDefUser(assembly + ".dll", Guid.NewGuid(), new AssemblyRefUser(new AssemblyNameInfo(compilerCore))) { Kind = ModuleKind.Dll })
                 {
                     new AssemblyDefUser(assembly, new Version(1, 0, 0, 0)).Modules.Add(module);
                     string witness = (string)Call(typeof(M06Build), "Witness", assembly); int split = witness.LastIndexOf('.');

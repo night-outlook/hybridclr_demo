@@ -27,6 +27,15 @@ namespace AssemblyShadowDemo.Editor
         public static void ResumePlayerBaselineCapture() { ResumePlayer(true, true); }
         public static void ResumeReleasePlayerBaselineCapture() { ResumePlayer(true, false); }
         public static void ResumeFeatureDisabledPlayerCapture() { ResumePlayer(false, RequestedDevelopment()); }
+        public static void ValidateFixtureWarmups()
+        {
+            bool development = RequestedDevelopment(); ConfigureMode(development);
+            string generationPath = GenerationArgument(); var generation = M06GenerationBuild.ReadAndVerify(generationPath, false);
+            M06GenerationBuild.RequireCurrentSelection(generation);
+            Require(generation.developmentBuild == development, "Warmup preflight and selected generator compilation modes differ.");
+            PreflightFixtureWarmups(generation, AssemblyShadowSettingsUtil.CreatePolicyConfiguration(EditorUserBuildSettings.activeBuildTarget));
+            Debug.Log("[AssemblyShadow M06] Fixture warmup metadata preflight passed: " + generationPath);
+        }
 
         internal static bool RequestedDevelopment()
         {
@@ -281,11 +290,15 @@ namespace AssemblyShadowDemo.Editor
             ConfigureMode(RequestedDevelopment()); string generationPath = GenerationArgument(); var generation = M06GenerationBuild.ReadAndVerify(generationPath, false);
             M06GenerationBuild.RequireCurrentSelection(generation);
             var settings = AssemblyShadowSettings.Instance; var target = EditorUserBuildSettings.activeBuildTarget;
+            var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
             string selectionPath = Path.Combine(Path.GetDirectoryName(generationPath), "m06-baseline-selection.json");
             Require(File.Exists(selectionPath), "The selected generation has no actual M06 baseline selection.");
             var session = M04JsonEvidence.Read<M06BaselineSelection>(File.ReadAllText(selectionPath));
             Require(session.schemaVersion == 1 && session.milestone == "M06" && session.baselineBuildId == generation.baselineBuildId &&
                 session.generationProofPath == generationPath && session.generationProofSha256 == ShadowHash.File(generationPath) && session.developmentBuild == generation.developmentBuild, "M06 baseline selection differs.");
+            // The Player receipt replay is intentionally expensive. Resolve every
+            // declared warmup target against the immutable compiler bytes first.
+            PreflightFixtureWarmups(generation, policy);
             string baselinePath = Path.GetFullPath(AssemblyShadowBuildCommands.Argument("-shadowM06Baseline", session.baselineManifestPath ?? ""));
             Require(File.Exists(baselinePath), "Build this M06 Player baseline first.");
             Require(baselinePath == session.baselineManifestPath, "Explicit baseline differs from the selected actual generation baseline."); VerifyHash(baselinePath, session.baselineManifestSha256);
@@ -295,7 +308,7 @@ namespace AssemblyShadowDemo.Editor
             Require(snapshot == session.playerInputSnapshot, "Explicit Player snapshot differs from the selected actual generation baseline."); VerifyHash(Path.Combine(snapshot, PlayerReceiptName), session.playerBuildReceiptSha256);
             var player = M06EditorValidation.ValidatePlayerReceipt(Path.Combine(snapshot, PlayerReceiptName), snapshot, true);
             Require(player.generationProofPath == generationPath && player.generationProofSha256 == ShadowHash.File(generationPath) && player.developmentBuild == generation.developmentBuild, "Baseline/generation mode differs.");
-            var captured = AssemblySnapshot.ReadAndVerify(snapshot, true); var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
+            var captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
             var stable = ShadowFixtureProof.DeriveStableAotNames(snapshot, captured, policy, StableAotHashDomain);
             string root = NewRoot("M06Fixtures-");
             var all = new[] { "P01", "P02", "P03", "InitializerFailure" }.Select(id => BuildFixture(root, id, baselinePath, generation, policy, stable.names)).ToArray();
@@ -323,6 +336,19 @@ namespace AssemblyShadowDemo.Editor
                 closureLoadOrder = patch.patch.loadOrder, stableAotNames = stable.ToArray(), requiredAotMetadataNames = row.requiredAotMetadataNames.ToArray(),
                 assemblyIdentities = identities, typeInventories = M05TypeInventoryProof.ReadIdentities(identities) };
         }
+        internal static void PreflightFixtureWarmups(M06GenerationProof generation, ShadowPolicyConfiguration policy)
+        {
+            Require(generation != null && policy != null, "M06 warmup preflight requires verified generation and policy inputs.");
+            foreach (string id in new[] { "P01", "P02", "P03", "InitializerFailure" })
+            {
+                Debug.Log("[AssemblyShadow M06] Fixture warmup preflight begin: " + id);
+                var row = generation.plans.Single(item => item.planId == id);
+                var plan = M06GenerationBuild.ReadPlan(generation, id);
+                var captured = AssemblySnapshot.ReadAndVerify(row.compileSnapshot, false);
+                using (var set = ShadowFixtureProof.Load(row.compileSnapshot, captured, policy)) Warmup(set, plan.LoadOrder);
+                Debug.Log("[AssemblyShadow M06] Fixture warmup preflight passed: " + id);
+            }
+        }
         internal static ShadowPatchBuildRequest PatchRequest(string baseline, M06GenerationPlanProof plan, string output, M06GenerationProof generation, ShadowPolicyConfiguration policy)
         { return new ShadowPatchBuildRequest { baselineManifestPath = baseline, currentCompileSnapshot = plan.compileSnapshot, outputDirectory = output, patchId = plan.planId,
             target = (BuildTarget)Enum.Parse(typeof(BuildTarget), generation.target), architecture = generation.architecture, sourcePins = generation.sourcePins, policy = policy,
@@ -330,24 +356,41 @@ namespace AssemblyShadowDemo.Editor
         internal static ShadowWarmupPlan Warmup(CompiledAssemblySet inputs, IEnumerable<string> closure)
         {
             var types = new List<ShadowWarmupTypeEntry>(); var methods = new List<ShadowWarmupMethodEntry>();
-            string core = inputs.GetModule("mscorlib").Assembly.FullName;
             foreach (string assembly in closure)
             {
                 string type = Witness(assembly); types.Add(new ShadowWarmupTypeEntry { assembly = assembly, type = type });
-                for (int index = 0; index < 3; ++index)
-                {
-                    string name = index == 0 ? "WarmupValue" : "WarmupEcho";
-                    string argument = index == 2 ? "System.String" : "System.Int32";
-                    var identity = new ShadowWarmupTypeIdentity { assembly = core, type = argument };
-                    methods.Add(new ShadowWarmupMethodEntry { assembly = assembly, declaringType = type, name = name, isStatic = true, genericArity = name == "WarmupEcho" ? 1 : 0,
-                        genericArguments = name == "WarmupEcho" ? new[] { identity } : new ShadowWarmupTypeIdentity[0], returnType = identity, parameterTypes = new[] { identity } });
-                }
+                var integer = CompilerCorlibIdentity(inputs, assembly, "System.Int32");
+                var text = CompilerCorlibIdentity(inputs, assembly, "System.String");
+                methods.Add(Method(assembly, type, "WarmupValue", 0, null, integer));
+                methods.Add(Method(assembly, type, "WarmupEcho", 1, integer, integer));
+                methods.Add(Method(assembly, type, "WarmupEcho", 1, text, text));
                 methods.Add(new ShadowWarmupMethodEntry { assembly = assembly, declaringType = type, name = "Run", isStatic = true, genericArity = 0,
-                    genericArguments = new ShadowWarmupTypeIdentity[0], returnType = new ShadowWarmupTypeIdentity { assembly = core, type = "System.String[]" },
-                    parameterTypes = new[] { new ShadowWarmupTypeIdentity { assembly = core, type = "System.String" } } });
+                    genericArguments = new ShadowWarmupTypeIdentity[0], returnType = Identity(text.assembly, "System.String[]"),
+                    parameterTypes = new[] { Identity(text.assembly, text.type) } });
             }
             return ShadowWarmupValidator.ValidateAndClone(new ShadowWarmupPlan { types = types.ToArray(), methods = methods.ToArray() }, inputs, closure);
         }
+        private static ShadowWarmupMethodEntry Method(string assembly, string type, string name, int arity,
+            ShadowWarmupTypeIdentity generic, ShadowWarmupTypeIdentity signature)
+        {
+            return new ShadowWarmupMethodEntry { assembly = assembly, declaringType = type, name = name, isStatic = true, genericArity = arity,
+                genericArguments = generic == null ? new ShadowWarmupTypeIdentity[0] : new[] { Identity(generic.assembly, generic.type) },
+                returnType = Identity(signature.assembly, signature.type), parameterTypes = new[] { Identity(signature.assembly, signature.type) } };
+        }
+        private static ShadowWarmupTypeIdentity CompilerCorlibIdentity(CompiledAssemblySet inputs, string owner, string type)
+        {
+            var module = inputs.GetModule(owner);
+            dnlib.DotNet.ITypeDefOrRef reference;
+            if (type == "System.Int32") reference = module.CorLibTypes.Int32.TypeDefOrRef;
+            else if (type == "System.String") reference = module.CorLibTypes.String.TypeDefOrRef;
+            else throw new BuildFailedException("M06 warmup compiler type is outside the finite primitive set: " + type);
+            var resolved = inputs.ResolveType(reference);
+            Require(resolved != null && resolved.Module != null && resolved.Module.Assembly != null && resolved.ReflectionFullName == type,
+                "M06 warmup compiler signature type did not resolve in the captured reference set: " + owner + " -> " + type);
+            return Identity(resolved.Module.Assembly.FullName, resolved.ReflectionFullName);
+        }
+        private static ShadowWarmupTypeIdentity Identity(string assembly, string type)
+        { return new ShadowWarmupTypeIdentity { assembly = assembly, type = type }; }
         internal static void RequireBaselineCompilerMatches(M06GenerationProof generation, string playerRoot, AssemblySnapshotReceipt player)
         {
             var compiled = AssemblySnapshot.ReadAndVerify(generation.baselineCompileSnapshot, false);

@@ -627,13 +627,28 @@ namespace AssemblyShadowDemo
             foreach (var type in fixture.warmup.types)
             {
                 Require(type.type == WitnessName(type.assembly), "M06 warmup type is not the finite witness.");
+                var owner = fixture.assemblyIdentities.Single(identity => identity != null && identity.name == type.assembly);
                 var methods = fixture.warmup.methods.Where(row => row.assembly == type.assembly).ToArray();
                 RequireSet(methods.Select(row => row.name + "|" + row.returnType.type), new[] { "WarmupValue|System.Int32", "WarmupEcho|System.Int32", "WarmupEcho|System.String", "Run|System.String[]" }, "warmup literal methods");
-                foreach (var method in methods) Require(method.declaringType == type.type && method.isStatic && method.genericArity == (method.name == "WarmupEcho" ? 1 : 0) &&
-                    method.genericArguments != null && method.genericArguments.Length == method.genericArity && method.parameterTypes != null && method.parameterTypes.Length == 1 &&
-                    method.returnType.assembly == typeof(int).Assembly.FullName && method.parameterTypes[0].assembly == method.returnType.assembly && method.parameterTypes[0].type == (method.name == "Run" ? "System.String" : method.returnType.type) &&
-                    (method.genericArity == 0 || method.genericArguments[0].assembly == method.returnType.assembly && method.genericArguments[0].type == method.returnType.type), "M06 warmup structured signature differs.");
+                foreach (var method in methods)
+                {
+                    Require(method.declaringType == type.type && method.isStatic && method.genericArity == (method.name == "WarmupEcho" ? 1 : 0) &&
+                        method.genericArguments != null && method.genericArguments.Length == method.genericArity && method.parameterTypes != null && method.parameterTypes.Length == 1 &&
+                        method.parameterTypes[0].assembly == method.returnType.assembly && method.parameterTypes[0].type == (method.name == "Run" ? "System.String" : method.returnType.type) &&
+                        (method.genericArity == 0 || method.genericArguments[0].assembly == method.returnType.assembly && method.genericArguments[0].type == method.returnType.type), "M06 warmup structured signature differs.");
+                    RequireWarmupCompilerIdentity(owner, method.returnType);
+                    RequireWarmupCompilerIdentity(owner, method.parameterTypes[0]);
+                    foreach (var argument in method.genericArguments) RequireWarmupCompilerIdentity(owner, argument);
+                }
             }
+        }
+
+        private static void RequireWarmupCompilerIdentity(M04ReferenceProbe.AssemblyIdentity owner, WarmupTypeIdentity identity)
+        {
+            Require(owner != null && owner.referenceIdentities != null && identity != null && !string.IsNullOrEmpty(identity.assembly) &&
+                (identity.type == "System.Int32" || identity.type == "System.String" || identity.type == "System.String[]") &&
+                owner.referenceIdentities.Any(reference => reference != null && reference.fullName == identity.assembly),
+                "M06 warmup signature identity is not an exact compiler reference of its captured owner.");
         }
 
         private static void VerifyBytes(string path, string expectedHash, string label)
