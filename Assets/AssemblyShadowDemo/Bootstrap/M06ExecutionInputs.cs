@@ -103,8 +103,7 @@ namespace AssemblyShadowDemo
             Require(player.variant == (requestedMode == "T06-11-FeatureOff" ? "NativeOff" : "NativeOn") &&
                 player.developmentBuild == (requestedMode != "T06-13-ReleaseNoPdb"), "M06 mode requires its genuine native/development Player build.");
             Require(player.buildGuid == Application.buildGUID && !string.IsNullOrEmpty(player.buildGuid), "M06 Player build GUID mismatch.");
-            // Pinned Unity 2022.3 BuildOptions.DetailedBuildReport = 1 << 29; Development = 1.
-            Require(player.buildOptions == (536870912 | (player.developmentBuild ? 1 : 0)), "M06 actual Player build options differ from the declared build workflow.");
+            Require(player.buildOptions == ExpectedPlayerBuildOptions(player.developmentBuild), "M06 actual Player build options differ from the declared build workflow.");
             Require(Debug.isDebugBuild == player.developmentBuild, "M06 Player debug-build flag differs from the captured build mode.");
             Require(IsHash(player.nativeLibrarySha256) && IsHash(player.nativeMetadataSha256), "M06 native Player hashes are incomplete.");
             VerifyBytes(player.nativeLibraryPath, player.nativeLibrarySha256, "native library");
@@ -146,6 +145,13 @@ namespace AssemblyShadowDemo
                         input.identity.sha256 == linked.sha256 && Absolute(input.identity.path) == Absolute(input.path) && input.sha256 == linked.sha256,
                         "M06 supplementary metadata input is not the same verified linked Player identity: " + input.assemblyName);
                 }
+        }
+
+        private static int ExpectedPlayerBuildOptions(bool development)
+        {
+            // Pinned Unity 2022.3: DetailedBuildReport = 1 << 29,
+            // CleanBuildCache = 1 << 7, and Development = 1.
+            return 536870912 | 128 | (development ? 1 : 0);
         }
 
         private static void LoadPatchManifest(Fixture fixture, string baselineManifestSha256, string expectedBaselineBuildId, string expectedRuntimeAbiHash)

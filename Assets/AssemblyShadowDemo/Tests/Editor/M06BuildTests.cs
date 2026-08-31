@@ -35,6 +35,8 @@ namespace AssemblyShadowDemo.EditorTests
             Assert.IsTrue((development & BuildOptions.Development) != 0); Assert.IsFalse((release & BuildOptions.Development) != 0);
             Assert.AreEqual(development & ~BuildOptions.Development, release);
             Assert.AreEqual(BuildOptions.CleanBuildCache | BuildOptions.DetailedBuildReport, release);
+            Assert.AreEqual((int)development, (int)Call(typeof(M06ExecutionProbe), "ExpectedPlayerBuildOptions", true));
+            Assert.AreEqual((int)release, (int)Call(typeof(M06ExecutionProbe), "ExpectedPlayerBuildOptions", false));
         }
         [Test] public void ReleaseNativeConfigurationOverridesInheritedDebugAfterM02Setup()
         {
