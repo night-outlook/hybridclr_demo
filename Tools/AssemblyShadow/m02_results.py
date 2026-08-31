@@ -288,9 +288,17 @@ def _reflection_canonical_hash(configuration, path):
         _reflection_hash_add(data, len(allowed))
         for value in sorted(allowed):
             _reflection_hash_add(data, value)
-        if configuration.get("schemaVersion") == 2:
+        if configuration.get("schemaVersion") >= 2:
             for field in ("kind", "imageSha256", "providerAssemblyIdentity", "imagePath"):
                 _reflection_hash_add(data, site.get(field))
+        if configuration.get("schemaVersion") == 3:
+            variants = site.get("additionalMethodVariants")
+            _need(isinstance(variants, list), path, "schema-3 additionalMethodVariants must be an array")
+            variants = sorted(variants, key=lambda item: item.get("originalMethodHash", ""))
+            _reflection_hash_add(data, len(variants))
+            for variant in variants:
+                _reflection_hash_add(data, variant.get("originalMethodHash"))
+                _reflection_hash_add(data, variant.get("operationIndex"))
     return hashlib.sha256(data).hexdigest()
 
 
@@ -328,8 +336,9 @@ def _reflection_parse(path: Path, raw: bytes):
     _need(isinstance(configuration, dict), path, "reflection binding configuration must be an object")
     schema = configuration.get("schemaVersion")
     transformer = configuration.get("transformerVersion")
-    _need((schema == 1 and transformer == 1) or (schema == 2 and transformer == 2),
-         path, "reflection binding configuration schema/transformer versions must match 1 or 2")
+    _need((schema == 1 and transformer == 1) or (schema == 2 and transformer == 2) or
+          (schema == 3 and transformer == 3),
+         path, "reflection binding configuration schema/transformer versions must match 1, 2 or 3")
     sites = configuration.get("sites")
     _need(isinstance(sites, list) and 0 < len(sites) <= 4096, path,
          "reflection binding configuration sites must be a bounded non-empty array")
@@ -350,17 +359,36 @@ def _reflection_parse(path: Path, raw: bytes):
         operation = site.get("operationIndex")
         _need(isinstance(operation, int) and not isinstance(operation, bool) and operation >= 0, site_path,
              "operationIndex must be a non-negative integer")
+        variants = site.get("additionalMethodVariants")
+        if schema < 3:
+            _need(variants in (None, []), site_path,
+                 "additionalMethodVariants requires reflection binding schema 3")
+        else:
+            _need(isinstance(variants, list) and 0 < len(variants) <= 15, site_path,
+                 "schema-3 additionalMethodVariants must contain one to fifteen entries")
+            variant_hashes = {site["originalMethodHash"]}
+            for variant_index, variant in enumerate(variants):
+                variant_path = f"{site_path}.additionalMethodVariants[{variant_index}]"
+                _need(isinstance(variant, dict), variant_path, "method variant must be an object")
+                variant_hash = variant.get("originalMethodHash")
+                _hash64(variant_hash, variant_path, "originalMethodHash")
+                variant_operation = variant.get("operationIndex")
+                _need(isinstance(variant_operation, int) and not isinstance(variant_operation, bool) and variant_operation >= 0,
+                     variant_path, "operationIndex must be a non-negative integer")
+                _need(variant_hash not in variant_hashes, variant_path,
+                     "method variant hashes must be unique within a site")
+                variant_hashes.add(variant_hash)
         method_key = assembly + "\n" + site["typeName"] + "\n" + site["methodSignature"]
         _need(method_key not in methods, site_path, "duplicate reflection binding method site")
         methods.add(method_key)
         kind = site.get("kind") or "TypeGetType"
         _need((schema == 1 and kind == "TypeGetType") or
-              (schema == 2 and kind in ("TypeGetType", "FiniteAssemblyList", "FiniteAssemblyTypes", "FixedAssemblyBytes")),
+              (schema >= 2 and kind in ("TypeGetType", "FiniteAssemblyList", "FiniteAssemblyTypes", "FixedAssemblyBytes")),
              site_path, "reflection binding acquisition kind is invalid")
         allowed = site.get("allowedTypes")
         _need(isinstance(allowed, list) and len(allowed) <= 4096, site_path, "allowedTypes must be a bounded array")
-        if schema == 2:
-            _need(site_id in M02_REFLECTION_SITE_IDS, site_path, "schema-2 reflection binding site id is not part of the M02 contract")
+        if schema >= 2:
+            _need(site_id in M02_REFLECTION_SITE_IDS, site_path, "reflection binding site id is not part of the M02 contract")
             if site_id == "urp-debug-ui-prefab-types":
                 _need(kind == "TypeGetType" and set(allowed) == M02_CANVAS_ALLOWED_TYPES, site_path,
                      "schema-2 canvas site does not declare the exact 26 configured AQNs")
@@ -400,11 +428,11 @@ def _reflection_parse(path: Path, raw: bytes):
             "id": site_id, "consumer": assembly, "typeName": site["typeName"],
             "methodSignature": site["methodSignature"], "originalMethodHash": site["originalMethodHash"],
             "operationIndex": operation, "allowedTypes": sorted(allowed), "reason": site["reason"],
-            "providers": sorted(set(providers)), "kind": kind if schema == 2 else None,
+            "providers": sorted(set(providers)), "kind": kind if schema >= 2 else None,
             "imageSha256": image_sha, "providerAssemblyIdentity": provider_identity, "imagePath": image_path,
         })
-    if schema == 2:
-        _need(ids == M02_REFLECTION_SITE_IDS, path, "schema-2 reflection binding configuration must contain exactly the five M02 sites")
+    if schema >= 2:
+        _need(ids == M02_REFLECTION_SITE_IDS, path, "reflection binding configuration must contain exactly the five M02 sites")
     return {
         "rawSha256": hashlib.sha256(raw).hexdigest(),
         "canonicalHash": _reflection_canonical_hash(configuration, path),

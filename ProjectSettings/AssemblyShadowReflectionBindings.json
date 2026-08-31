@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "transformerVersion": 2,
+  "schemaVersion": 3,
+  "transformerVersion": 3,
   "sites": [
     {
       "id": "urp-debug-ui-prefab-types",
@@ -9,6 +9,12 @@
       "methodSignature": "System.Void UnityEngine.Rendering.UI.DebugUIHandlerCanvas::Rebuild()",
       "originalMethodHash": "be097bb7538ab7754fee35637f7b3f1f83452213f7869063a1a927701655ec13",
       "operationIndex": 17,
+      "additionalMethodVariants": [
+        {
+          "originalMethodHash": "0441baa52d8996ccbc7165ab73b9c67c658ab87df268e5538a94cf4a6ce17526",
+          "operationIndex": 13
+        }
+      ],
       "allowedTypes": [
         "UnityEngine.Rendering.DebugUI+Value, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
         "UnityEngine.Rendering.DebugUI+BoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -47,6 +53,12 @@
       "methodSignature": "System.Enum UnityEngine.Rendering.SerializableEnum::get_value()",
       "originalMethodHash": "4e44328803498342f7a5ab60f066275a4d085f5ea25cbdf350a619f88f3449ff",
       "operationIndex": 6,
+      "additionalMethodVariants": [
+        {
+          "originalMethodHash": "0b9fc88e79dc7c90d9ed77ca1ff99d8d00dffe4c82ff7b0264541bda38f69035",
+          "operationIndex": 6
+        }
+      ],
       "allowedTypes": [],
       "reason": "Explicit deny-all Player contract: resolving SerializableEnum.value from a nonempty serialized type name is unsupported in this baseline. The guard rejects before resolution; this is not an unreachability claim. Editor DebugStateFlags behavior is unchanged.",
       "kind": "TypeGetType"
@@ -58,6 +70,12 @@
       "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils::GetAllAssemblyTypes()",
       "originalMethodHash": "67cc363bbe7d6b87a08f5d10fa9113f7a92cf3e31a5163fe7073ba9ec7656a16",
       "operationIndex": 9,
+      "additionalMethodVariants": [
+        {
+          "originalMethodHash": "1e939b46400f6dfab282ba911869252631c6db29e88e8479e2a26a963c671ccf",
+          "operationIndex": 3
+        }
+      ],
       "allowedTypes": [
         "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
         "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -87,6 +105,12 @@
       "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils/<>c::<GetAllAssemblyTypes>b__87_0(System.Reflection.Assembly)",
       "originalMethodHash": "d5ac6c4b0327643de25a14fc498ffd65c1bca8e7c52644a938f7e93eb95a9d8a",
       "operationIndex": 6,
+      "additionalMethodVariants": [
+        {
+          "originalMethodHash": "009422d4b2d04a3fe34886cbacdb3003846cde6c8f28d56b1da94a5f3fc83f82",
+          "operationIndex": 4
+        }
+      ],
       "allowedTypes": [
         "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
         "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -116,6 +140,12 @@
       "methodSignature": "System.Void AssemblyShadowBaseline.BaselineBootstrap::Start()",
       "originalMethodHash": "5f6005b4130594f1c951bd8aba50f784b27976027977e8108ff6662170b87c22",
       "operationIndex": 28,
+      "additionalMethodVariants": [
+        {
+          "originalMethodHash": "27b4708dcf832f298f02c6939e548a06d0e34de908bf76743eebb0e80e22ed75",
+          "operationIndex": 23
+        }
+      ],
       "allowedTypes": [],
       "reason": "The M00 ordinary hot-update loader may load only this exact image. Clone and SHA-256-check bytes before Assembly.Load. Capture immutable image bytes and prove current NormalHotUpdate semantics; this is not a Shadow candidate or a general byte-load waiver.",
       "kind": "FixedAssemblyBytes",

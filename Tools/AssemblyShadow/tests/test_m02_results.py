@@ -237,6 +237,19 @@ class M02EvidenceTests(unittest.TestCase):
         probe_path.write_text(json.dumps(probe))
         return probe_path, receipt, reflection, probe
 
+    def reflection_schema3_fixture(self, root):
+        snapshot, config, receipt, config_path, image_path = self.reflection_schema2_fixture(root)
+        config["schemaVersion"] = 3
+        config["transformerVersion"] = 3
+        for index, site in enumerate(config["sites"]):
+            site["additionalMethodVariants"] = [{
+                "originalMethodHash": hashlib.sha256(("release-" + site["id"]).encode()).hexdigest(),
+                "operationIndex": site["operationIndex"] + index + 1,
+            }]
+        config_path.write_text(json.dumps(config, separators=(",", ":")))
+        receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+        return snapshot, config, receipt, config_path, image_path
+
     def fixture(self, root):
         run = root / "run"
         baseline_root = root / "m02-baseline"
@@ -516,10 +529,46 @@ class M02EvidenceTests(unittest.TestCase):
             self.assertEqual(fixed["providers"], ["assemblyshadowbaseline.hotupdate"])
             self.assertTrue(image_path.is_file())
 
-    def test_reflection_schema2_project_hash_matches_csharp_golden(self):
+    def test_reflection_schema3_project_hash_matches_csharp_golden(self):
         project_config = Path(__file__).resolve().parents[3] / "ProjectSettings" / "AssemblyShadowReflectionBindings.json"
         reflection = _reflection_parse(project_config, project_config.read_bytes())
-        self.assertEqual(reflection["canonicalHash"], "79ef642d19d3e5ed4866c152aa63691741b5dd1d96ead13231b0e11b75f031ad")
+        self.assertEqual(reflection["canonicalHash"], "53f9613de0da3e56d8cd3f91625a73fdb50f157fe83a8e0381dcd2fef18b5548")
+
+    def test_reflection_schema3_accepts_known_variants_and_hashes_every_field(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, config, receipt, config_path, _ = self.reflection_schema3_fixture(Path(folder))
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json")
+            self.assertEqual(reflection["configuration"]["schemaVersion"], 3)
+            original = reflection["canonicalHash"]
+            config["sites"][0]["additionalMethodVariants"].append({
+                "originalMethodHash": hashlib.sha256(b"second-release-shape").hexdigest(),
+                "operationIndex": 97,
+            })
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with_second = _reflection_parse(config_path, config_path.read_bytes())["canonicalHash"]
+            self.assertNotEqual(original, with_second)
+            config["sites"][0]["additionalMethodVariants"].reverse()
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            self.assertEqual(with_second, _reflection_parse(config_path, config_path.read_bytes())["canonicalHash"])
+            config["sites"][0]["additionalMethodVariants"][0]["operationIndex"] += 1
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            changed = _reflection_parse(config_path, config_path.read_bytes())
+            self.assertNotEqual(with_second, changed["canonicalHash"])
+
+    def test_reflection_schema3_rejects_duplicate_or_missing_variants(self):
+        with tempfile.TemporaryDirectory() as folder:
+            _, config, _, config_path, _ = self.reflection_schema3_fixture(Path(folder))
+            config["sites"][0]["additionalMethodVariants"][0]["originalMethodHash"] = config["sites"][0]["originalMethodHash"]
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_parse(config_path, config_path.read_bytes())
+            self.assertIn("unique", str(error.exception))
+
+            config["sites"][0]["additionalMethodVariants"] = []
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_parse(config_path, config_path.read_bytes())
+            self.assertIn("one to fifteen", str(error.exception))
 
     def test_reflection_schema2_image_tamper_fails(self):
         with tempfile.TemporaryDirectory() as folder:

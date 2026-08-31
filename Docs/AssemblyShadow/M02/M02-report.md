@@ -165,7 +165,11 @@ dependency policy, not a reflection-scanner exemption:
   method/guard hashes. Its file SHA is bound by linked receipt schema 2 and then
   the Player snapshot hash. Schema 1 remains the no-binding receipt format.
   Binding configuration/transformer version 2 adds acquisition kinds and fixed
-  image identities; version-1 canonical hash encoding remains unchanged.
+  image identities. Version 3 adds an explicit bounded list of additional
+  full-method hash/operation-index compiler shapes so Development and Release
+  output can be admitted independently without weakening exact overload,
+  single-acquisition, guard-body, linked-method, or unknown-shape rejection.
+  Version-1 and version-2 canonical hash encodings remain unchanged.
 
 The fixed Bootstrap probe uses framework and ordinary M00 AOT type tokens, never
 Shadow candidate tokens. Its dedicated

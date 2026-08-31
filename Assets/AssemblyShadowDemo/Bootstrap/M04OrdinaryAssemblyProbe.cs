@@ -107,7 +107,7 @@ namespace AssemblyShadowDemo
             byte[] configurationBytes = File.ReadAllBytes(result.configurationPath);
             result.configurationSha256 = ShadowPatchFileProvider.Hash(configurationBytes);
             var configuration = JsonUtility.FromJson<Configuration>(Encoding.UTF8.GetString(configurationBytes));
-            Require(configuration != null && configuration.schemaVersion == 2 && configuration.transformerVersion == 2 &&
+            Require(configuration != null && configuration.schemaVersion == 3 && configuration.transformerVersion == 3 &&
                 configuration.sites != null, "The captured finite reflection configuration is missing.");
             Site[] matching = configuration.sites.Where(value => value != null && value.id == FixedSite).ToArray();
             Require(matching.Length == 1, "The fixed ordinary-image contract is missing or ambiguous.");

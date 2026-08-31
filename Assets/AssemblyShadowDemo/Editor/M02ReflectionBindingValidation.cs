@@ -27,8 +27,8 @@ namespace AssemblyShadowDemo.Editor
             // serialized strings, including Unity YAML whitespace folding.
             ShadowReflectionBindingEvidence.CompilationDefines(new string[0]);
             var configuration = JsonUtility.FromJson<Configuration>(Encoding.UTF8.GetString(File.ReadAllBytes(ConfigurationPath)));
-            Require(configuration != null && configuration.schemaVersion == 2 && configuration.transformerVersion == 2 &&
-                configuration.sites != null && configuration.sites.Length == 5, "Expected five version-2 binding contracts.");
+            Require(configuration != null && configuration.schemaVersion == 3 && configuration.transformerVersion == 3 &&
+                configuration.sites != null && configuration.sites.Length == 5, "Expected five version-3 binding contracts.");
             var canvas = configuration.sites.Single(site => site.id == "urp-debug-ui-prefab-types");
             var enumSite = configuration.sites.Single(site => site.id == "urp-serializable-enum-player");
             var assemblySite = configuration.sites.Single(site => site.id == "urp-volume-assembly-domain");
