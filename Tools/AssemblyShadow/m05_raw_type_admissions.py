@@ -18,8 +18,12 @@ from m05_types import MethodProof, CliTables, Signature, IL_OPS
 from m04_metadata import Reader, TABLES, CODED, _metadata, read_identity_bytes
 
 POLICY="assembly-shadow-raw-type-admission:1"
+POLICY_V2="assembly-shadow-raw-type-admission:2"
 PREFIX="ASSEMBLY_SHADOW_RAW_TYPE_ADMISSION_"
 SITE_FIELDS="id consumerAssembly declaringType methodSignature methodHash operationIndex operationSignature providerAssemblyIdentity typeName throwOnError ignoreCase reason"
+SITE_FIELDS_V2="compilerVariants consumerAssembly declaringType id ignoreCase methodSignature operationSignature providerAssemblyIdentity reason throwOnError typeName"
+VARIANT_FIELDS="compilerMode methodHash operationIndex"
+COMPILER_MODES=("Development","Release")
 OPERATIONS={
     "System.Type[] System.Reflection.Assembly::GetTypes()":"Assembly.GetTypes",
     "System.Collections.Generic.IEnumerable`1<System.Reflection.TypeInfo> System.Reflection.Assembly::get_DefinedTypes()":"Assembly.get_DefinedTypes",
@@ -54,17 +58,26 @@ def parse_configuration(raw,path="raw admission configuration"):
     try:
         value=json.loads(raw.decode("utf-8",errors="strict"),object_pairs_hook=unique_object)
         _fields(value,"schemaVersion policy sites",path)
-        require(type(value["schemaVersion"]) is int and value["schemaVersion"]==1 and value["policy"]==POLICY and
+        schema=value["schemaVersion"]
+        require(type(schema) is int and ((schema==1 and value["policy"]==POLICY) or (schema==2 and value["policy"]==POLICY_V2)) and
                 type(value["sites"]) is list and 0<len(value["sites"])<=4096,f"{path}: invalid raw admission domain/schema/site count")
         ids,operations,methods=set(),set(),{}
         for site in value["sites"]:
-            _fields(site,SITE_FIELDS,path)
-            for key in SITE_FIELDS.split():
-                if key not in ("operationIndex","throwOnError","ignoreCase"):_text(site[key],path,key=="typeName")
+            _fields(site,SITE_FIELDS if schema==1 else SITE_FIELDS_V2,path)
+            text_fields=("id","consumerAssembly","declaringType","methodSignature","operationSignature","providerAssemblyIdentity","typeName","reason")
+            for key in text_fields:_text(site[key],path,key=="typeName")
             require(re.fullmatch(r"[A-Za-z0-9_.-]{1,128}",site["id"]) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.-]*",site["consumerAssembly"]) and
                     not site["consumerAssembly"].lower().endswith(".dll"),f"{path}: invalid admission id/consumer")
-            require(re.fullmatch(r"[0-9a-f]{64}",site["methodHash"]) and type(site["operationIndex"]) is int and 0<=site["operationIndex"]<1<<31,
-                    f"{path}: invalid actual method hash/instruction index")
+            variants=[dict(compilerMode="Legacy",methodHash=site["methodHash"],operationIndex=site["operationIndex"])] if schema==1 else site["compilerVariants"]
+            require(type(variants) is list and len(variants)==(1 if schema==1 else 2),f"{path}: invalid compiler variant count")
+            modes=set()
+            for variant in variants:
+                if schema==2:_fields(variant,VARIANT_FIELDS,path)
+                require(type(variant) is dict and type(variant["compilerMode"]) is str and variant["compilerMode"] not in modes and
+                        re.fullmatch(r"[0-9a-f]{64}",variant["methodHash"]) and type(variant["operationIndex"]) is int and
+                        0<=variant["operationIndex"]<1<<31,f"{path}: invalid actual compiler method hash/instruction index")
+                modes.add(variant["compilerMode"])
+            require(modes==({"Legacy"} if schema==1 else set(COMPILER_MODES)),f"{path}: incomplete/unknown compiler mode inventory")
             require(type(site["throwOnError"]) is bool and type(site["ignoreCase"]) is bool,f"{path}: missing Boolean admission flags")
             provider=_reflection_full_identity(site["providerAssemblyIdentity"],path)
             version=provider.split(", ")[1][8:].split(".")
@@ -75,15 +88,26 @@ def parse_configuration(raw,path="raw admission configuration"):
                 require(site["throwOnError"] and not site["ignoreCase"],f"{path}: unsupported Module.GetType flags")
             else:require(site["typeName"]=="" and not site["throwOnError"] and not site["ignoreCase"],f"{path}: enumeration cannot claim a type/filter")
             method=(site["consumerAssembly"].lower(),site["declaringType"],site["methodSignature"])
-            operation=(*method,site["operationIndex"])
-            require(site["id"] not in ids and operation not in operations and (method not in methods or methods[method]==site["methodHash"]),
-                    f"{path}: duplicate/inconsistent raw admission identity")
-            ids.add(site["id"]);operations.add(operation);methods[method]=site["methodHash"]
+            profile=tuple(sorted(((variant["compilerMode"],variant["methodHash"]) for variant in variants),key=lambda row:ordinal(row[0])))
+            require(site["id"] not in ids and (method not in methods or methods[method]==profile),f"{path}: duplicate/inconsistent raw admission identity")
+            for variant in variants:
+                operation=(*method,variant["compilerMode"],variant["operationIndex"])
+                require(operation not in operations,f"{path}: duplicate raw admission operation")
+                operations.add(operation)
+            ids.add(site["id"]);methods[method]=profile
         require([site["id"] for site in value["sites"]]==sorted(ids,key=ordinal),f"{path}: raw admission sites must retain ordinal id order")
-        canonical=BindingHash(POLICY)
-        for item in (1,POLICY,len(value["sites"])):canonical.add(item)
+        canonical=BindingHash(value["policy"])
+        for item in (schema,value["policy"],len(value["sites"])):canonical.add(item)
         for site in value["sites"]:
-            for key in SITE_FIELDS.split():canonical.add(site[key])
+            for key in ("id","consumerAssembly","declaringType","methodSignature"):canonical.add(site[key])
+            if schema==1:
+                canonical.add(site["methodHash"]);canonical.add(site["operationIndex"])
+            else:
+                variants=sorted(site["compilerVariants"],key=lambda variant:ordinal(variant["compilerMode"]))
+                canonical.add(len(variants))
+                for variant in variants:
+                    canonical.add(variant["compilerMode"]);canonical.add(variant["methodHash"]);canonical.add(variant["operationIndex"])
+            for key in ("operationSignature","providerAssemblyIdentity","typeName","throwOnError","ignoreCase","reason"):canonical.add(site[key])
         return dict(configuration=value,configurationSha256=hashlib.sha256(raw).hexdigest(),configurationHash=canonical.finish())
     except (UnicodeError,ValueError,TypeError,KeyError) as error:
         raise VerificationError(f"{path}: invalid raw admission JSON/encoding: {error}") from error
@@ -1000,6 +1024,33 @@ def captured_profile(root,snapshot,linked):
     return receipt["profileHash"],scope
 
 
+def compiler_mode(root,snapshot,configuration):
+    if configuration["schemaVersion"]==1:return None
+    if snapshot["kind"]=="PlayerBuildInputs":
+        require(type(snapshot["playerBuildSucceeded"]) is bool and snapshot["playerBuildSucceeded"] and
+                type(snapshot["playerBuildOptions"]) is int,f"{root}: schema-2 raw admission requires a completed Player receipt")
+        return "Development" if snapshot["playerBuildOptions"]&1 else "Release"
+    require(snapshot["kind"]=="CompilePlayerScripts",f"{root}: schema-2 raw admission has no compiler-mode provenance")
+    path=root/"compiler-mode.json"
+    receipt=_obj(path,"schemaVersion kind developmentBuild compilerOptions unityVersion target architecture snapshotHash snapshotReceiptSha256 extraScriptingDefines")
+    require(receipt["schemaVersion"]==1 and receipt["kind"]=="CompilePlayerScriptsMode" and
+            type(receipt["developmentBuild"]) is bool and receipt["compilerOptions"]==(1 if receipt["developmentBuild"] else 0) and
+            receipt["unityVersion"]==snapshot["unityVersion"] and receipt["target"]==snapshot["target"] and
+            receipt["architecture"]==snapshot["architecture"] and receipt["snapshotHash"]==snapshot["snapshotHash"] and
+            receipt["snapshotReceiptSha256"]==hashlib.sha256((root/"assembly-snapshot.json").read_bytes()).hexdigest() and
+            receipt["extraScriptingDefines"]==snapshot["extraScriptingDefines"],f"{path}: compiler mode is not bound to this exact snapshot")
+    return "Development" if receipt["developmentBuild"] else "Release"
+
+
+def selected_site(site,schema,mode,actual_hash,path):
+    variants=[dict(compilerMode="Legacy",methodHash=site["methodHash"],operationIndex=site["operationIndex"])] if schema==1 else site["compilerVariants"]
+    matches=[variant for variant in variants if variant["compilerMode"]==(mode or "Legacy")]
+    require(len(matches)==1 and matches[0]["methodHash"]==actual_hash,
+            f"{path}: configured {mode or 'Legacy'} raw method hash differs from actual compiler IL")
+    result=dict(site);result["methodHash"]=matches[0]["methodHash"];result["operationIndex"]=matches[0]["operationIndex"]
+    return result
+
+
 def verify_snapshot(root,snapshot,require_linked=False):
     """Exact M05 raw proof over snapshot bytes; caller also verifies old policy."""
     root=_absolute(str(root),root,"raw snapshot",directory=True)
@@ -1014,6 +1065,8 @@ def verify_snapshot(root,snapshot,require_linked=False):
     parsed=parse_configuration((directory/"configuration.json").read_bytes(),directory)
     require(parsed["configurationSha256"]==expected_hash,f"{root}: raw admission control differs from actual config bytes")
     sites=parsed["configuration"]["sites"]
+    schema=parsed["configuration"]["schemaVersion"]
+    mode=compiler_mode(root,snapshot,parsed["configuration"])
     compiled=Catalog(root,[row for section in ("assemblies","filteredAssemblies","references") for row in snapshot[section]])
     # Finite M05 admission, not the package's broader reusable configuration API.
     consumers={site["consumerAssembly"] for site in sites};declaring={site["declaringType"] for site in sites}
@@ -1035,7 +1088,7 @@ def verify_snapshot(root,snapshot,require_linked=False):
         linked=Catalog(root,[dict(row,path="LinkedPlayer/"+row["path"]) for row in snapshot["linkedPlayerReceipt"]["assemblies"]])
         profile_hash,scope=captured_profile(root,snapshot,linked)
         phases.append(("Linked",linked,scope,profile_hash))
-    compiled_hashes={}
+    compiled_hashes={};selected_sites={}
     for phase,catalog,scope,profile_hash in phases:
         grouped={}
         for site in sites:grouped.setdefault((site["consumerAssembly"],site["declaringType"],site["methodSignature"]),[]).append(site)
@@ -1044,9 +1097,11 @@ def verify_snapshot(root,snapshot,require_linked=False):
             module=catalog(consumer);rid=find_method(module,declaring,signature)
             actual_hash=module.method_hash(rid)
             if phase=="Compiled":
-                require(all(site["methodHash"]==actual_hash for site in group),f"{root}: configured raw method hash differs from actual compiler IL")
+                group=[selected_site(site,schema,mode,actual_hash,root) for site in group]
+                selected_sites.update((site["id"],site) for site in group)
                 compiled_hashes[(consumer,signature)]=(module,rid)
             else:
+                group=[selected_sites[site["id"]] for site in group]
                 original,source_rid=compiled_hashes[(consumer,signature)]
                 require(original.identity["fullName"]==module.identity["fullName"] and original.method_hash(source_rid,scope)==actual_hash,
                         f"{root}: linked raw method differs beyond captured per-type retargeting")
@@ -1056,17 +1111,18 @@ def verify_snapshot(root,snapshot,require_linked=False):
         verify_provider_boundary(catalog,sites,runtime_names)
         rows=[]
         for site in sites:
+            selected=selected_sites[site["id"]]
             consumer=catalog(site["consumerAssembly"]);provider=catalog(site["providerAssemblyIdentity"].split(", ")[0])
             cf=catalog.files[consumer.identity["name"].casefold()];pf=catalog.files[provider.identity["name"].casefold()]
             row=dict(id=site["id"],consumerAssemblyIdentity=consumer.identity["fullName"],consumerPath=cf["path"],consumerSha256=cf["sha256"],
                      providerAssemblyIdentity=provider.identity["fullName"],providerPath=pf["path"],providerSha256=pf["sha256"],providerInventoryHash=type_inventory_hash(provider),
-                     declaringType=site["declaringType"],methodSignature=site["methodSignature"],operationIndex=site["operationIndex"],
+                     declaringType=site["declaringType"],methodSignature=site["methodSignature"],operationIndex=selected["operationIndex"],
                      operationSignature=site["operationSignature"],kind=OPERATIONS[site["operationSignature"]],typeName=site["typeName"],
-                     throwOnError=site["throwOnError"],ignoreCase=site["ignoreCase"],compiledMethodHash=site["methodHash"],
+                     throwOnError=site["throwOnError"],ignoreCase=site["ignoreCase"],compiledMethodHash=selected["methodHash"],
                      linkedMethodHash=hashes[(site["consumerAssembly"],site["methodSignature"])] if phase=="Linked" else "",
                      compiledConsumerSha256=compiled.files[site["consumerAssembly"].casefold()]["sha256"])
             rows.append(row)
-        expected=dict(schemaVersion=1,policy=POLICY,phase=phase,configurationSha256=parsed["configurationSha256"],configurationHash=parsed["configurationHash"],
+        expected=dict(schemaVersion=1,policy=parsed["configuration"]["policy"],phase=phase,configurationSha256=parsed["configurationSha256"],configurationHash=parsed["configurationHash"],
                       unityVersion=snapshot["unityVersion"],target=snapshot["target"],architecture=snapshot["architecture"],
                       buildGuid=snapshot["buildGuid"] if phase=="Linked" else "",linkedPlayerReceiptHash=snapshot["linkedPlayerReceiptHash"] if phase=="Linked" else "",
                       profileHash=profile_hash,sites=rows)

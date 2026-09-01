@@ -34,20 +34,48 @@ namespace AssemblyShadowDemo.Editor
         {
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
             ShadowHash.Require(target == BuildTarget.StandaloneOSX, "RawAdmissionCompilerTarget", "M05 requires the pinned StandaloneOSX Player compiler.");
-            string directory = Path.GetFullPath("_temp/AssemblyShadow/M05RawAdmissionCompiler-" + Guid.NewGuid().ToString("N"));
+            string developmentInputs, releaseInputs;
+            var development = CompileAndDerive(target, ScriptCompilationOptions.DevelopmentBuild,
+                RawTypeAdmissionConfiguration.DevelopmentCompilerMode, out developmentInputs);
+            var release = CompileAndDerive(target, ScriptCompilationOptions.None,
+                RawTypeAdmissionConfiguration.ReleaseCompilerMode, out releaseInputs);
+            var configuration = CombineCompilerModes(development, release);
+            string destination = Path.GetFullPath(RawTypeAdmissionConfiguration.ProjectRelativePath);
+            if (File.Exists(destination))
+            {
+                var existing = RawTypeAdmissionConfiguration.Parse(File.ReadAllBytes(destination));
+                ShadowHash.Require(existing.ComputeHash() == configuration.ComputeHash(), "RawAdmissionDeclarationChanged",
+                    "The existing declaration is immutable for this baseline; inspect the changed compiler bytes before declaring a new one.");
+            }
+            else
+            {
+                byte[] bytes = Serialize(configuration);
+                ShadowHash.Require(RawTypeAdmissionConfiguration.Parse(bytes).ComputeHash() == configuration.ComputeHash(),
+                    "RawAdmissionDeclarationSerialization", "Serialized configuration changed its exact declaration.");
+                using (var output = new FileStream(destination, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+                    output.Write(bytes, 0, bytes.Length);
+            }
+            Debug.Log("[AssemblyShadow M05] Declared 25 raw-query sites for exact Development and Release compiler bytes from " +
+                developmentInputs + " and " + releaseInputs + "; configuration SHA-256 " + ShadowHash.File(destination) +
+                ". Actual Player/patch byte, compiler-mode and role verification remains required.");
+        }
+
+        private static RawTypeAdmissionConfiguration CompileAndDerive(BuildTarget target, ScriptCompilationOptions options,
+            string compilerMode, out string preserved)
+        {
+            string directory = Path.GetFullPath("_temp/AssemblyShadow/M05RawAdmissionCompiler-" + compilerMode + "-" + Guid.NewGuid().ToString("N"));
             string compilerOutput = Path.Combine(directory, "CompilerOutput");
             Directory.CreateDirectory(compilerOutput);
             var compilation = PlayerBuildInterface.CompilePlayerScripts(new ScriptCompilationSettings
             {
-                group = BuildPipeline.GetBuildTargetGroup(target), target = target,
-                options = ScriptCompilationOptions.DevelopmentBuild,
+                group = BuildPipeline.GetBuildTargetGroup(target), target = target, options = options,
                 extraScriptingDefines = ShadowReflectionBindingEvidence.CompilationDefines(new string[0]),
             }, compilerOutput);
             ShadowHash.Require(compilation.assemblies != null && compilation.assemblies.Count > 0, "RawAdmissionCompileFailed", directory);
             var emitted = compilation.assemblies.Select(path => File.Exists(path) ? Path.GetFullPath(path) : Path.GetFullPath(Path.Combine(compilerOutput, path))).ToArray();
             // Bee owns direct compiler outputs and may remove them on the next
             // compilation. Keep the exact returned DLL set outside that directory.
-            string preserved = Path.Combine(directory, "Assemblies");
+            preserved = Path.Combine(directory, "Assemblies");
             var paths = CaptureCompilerOutputs(compilerOutput, preserved, emitted);
             var byName = paths.ToDictionary(Path.GetFileNameWithoutExtension, StringComparer.Ordinal);
             var modules = new Dictionary<string, ModuleDefMD>(StringComparer.Ordinal);
@@ -65,26 +93,43 @@ namespace AssemblyShadowDemo.Editor
                 ShadowHash.Require(framework.Length == 1, "RawAdmissionCompilerFrameworkAmbiguous",
                     "Expected one actual target-compiler reference for " + corlib + ", found " + framework.Length + ".");
                 modules.Add(corlib, ModuleDefMD.Load(File.ReadAllBytes(framework[0])));
-                var configuration = Derive(modules);
-                string destination = Path.GetFullPath(RawTypeAdmissionConfiguration.ProjectRelativePath);
-                if (File.Exists(destination))
-                {
-                    var existing = RawTypeAdmissionConfiguration.Parse(File.ReadAllBytes(destination));
-                    ShadowHash.Require(existing.ComputeHash() == configuration.ComputeHash(), "RawAdmissionDeclarationChanged",
-                        "The existing declaration is immutable for this baseline; inspect the changed compiler bytes before declaring a new one.");
-                }
-                else
-                {
-                    byte[] bytes = Serialize(configuration);
-                    ShadowHash.Require(RawTypeAdmissionConfiguration.Parse(bytes).ComputeHash() == configuration.ComputeHash(),
-                        "RawAdmissionDeclarationSerialization", "Serialized configuration changed its exact declaration.");
-                    using (var output = new FileStream(destination, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-                        output.Write(bytes, 0, bytes.Length);
-                }
-                Debug.Log("[AssemblyShadow M05] Declared 25 raw-query sites from " + preserved + "; configuration SHA-256 " +
-                    ShadowHash.File(destination) + ". Actual Player/patch byte and role verification remains required.");
+                return Derive(modules);
             }
             finally { foreach (var module in modules.Values) module.Dispose(); }
+        }
+
+        internal static RawTypeAdmissionConfiguration CombineCompilerModes(RawTypeAdmissionConfiguration development,
+            RawTypeAdmissionConfiguration release)
+        {
+            development.Validate(); release.Validate();
+            ShadowHash.Require(development.schemaVersion == 1 && release.schemaVersion == 1 &&
+                development.sites.Length == release.sites.Length, "RawAdmissionCompilerVariants", "Two complete schema-1 derivations are required.");
+            var releaseById = release.sites.ToDictionary(site => site.id, StringComparer.Ordinal);
+            foreach (var site in development.sites)
+            {
+                RawTypeAdmissionSite other;
+                ShadowHash.Require(releaseById.TryGetValue(site.id, out other) && SameDeclaration(site, other),
+                    "RawAdmissionCompilerVariants", site.id + ": Development and Release declarations differ beyond method bytes/index.");
+                site.compilerVariants = new[]
+                {
+                    new RawTypeAdmissionMethodVariant { compilerMode = RawTypeAdmissionConfiguration.DevelopmentCompilerMode,
+                        methodHash = site.methodHash, operationIndex = site.operationIndex.Value },
+                    new RawTypeAdmissionMethodVariant { compilerMode = RawTypeAdmissionConfiguration.ReleaseCompilerMode,
+                        methodHash = other.methodHash, operationIndex = other.operationIndex.Value },
+                };
+                site.methodHash = null; site.operationIndex = null;
+            }
+            development.schemaVersion = 2; development.policy = RawTypeAdmissionConfiguration.PolicyV2;
+            development.Validate();
+            return development;
+        }
+
+        private static bool SameDeclaration(RawTypeAdmissionSite first, RawTypeAdmissionSite second)
+        {
+            return first.consumerAssembly == second.consumerAssembly && first.declaringType == second.declaringType &&
+                first.methodSignature == second.methodSignature && first.operationSignature == second.operationSignature &&
+                first.providerAssemblyIdentity == second.providerAssemblyIdentity && first.typeName == second.typeName &&
+                first.throwOnError == second.throwOnError && first.ignoreCase == second.ignoreCase && first.reason == second.reason;
         }
 
         internal static string[] CaptureCompilerOutputs(string compilerOutput, string destination, string[] emitted)

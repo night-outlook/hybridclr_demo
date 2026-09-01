@@ -182,6 +182,15 @@ def configuration():
     return dict(schemaVersion=1,policy=v.POLICY,sites=[site])
 
 
+def configuration_v2():
+    value=configuration();site=value["sites"][0]
+    development_hash=site.pop("methodHash");development_index=site.pop("operationIndex")
+    site["compilerVariants"]=[dict(compilerMode="Development",methodHash=development_hash,operationIndex=development_index),
+                              dict(compilerMode="Release",methodHash="b"*64,operationIndex=development_index+3)]
+    value.update(schemaVersion=2,policy=v.POLICY_V2)
+    return value
+
+
 class ConfigurationTests(unittest.TestCase):
     def test_raw_bytes_and_canonical_configuration_are_distinct_domains(self):
         raw=json.dumps(configuration()).encode();compact=json.dumps(configuration(),separators=(",",":")).encode()
@@ -213,6 +222,21 @@ class ConfigurationTests(unittest.TestCase):
         for update in (dict(typeName="T[]"),dict(typeName=""),dict(ignoreCase=True),dict(throwOnError=False)):
             bad=copy.deepcopy(value);bad["sites"][0].update(update)
             with self.assertRaises(VerificationError):v.parse_configuration(json.dumps(bad).encode())
+
+    def test_schema_two_requires_exact_named_compiler_variants_and_binds_hash(self):
+        value=configuration_v2();parsed=v.parse_configuration(json.dumps(value).encode())
+        self.assertEqual(parsed["configuration"]["schemaVersion"],2)
+        self.assertEqual(v.selected_site(value["sites"][0],2,"Development","a"*64,"site")["operationIndex"],2)
+        self.assertEqual(v.selected_site(value["sites"][0],2,"Release","b"*64,"site")["operationIndex"],5)
+        for mutate in (
+                lambda x:x["sites"][0]["compilerVariants"].pop(),
+                lambda x:x["sites"][0]["compilerVariants"][1].update(compilerMode="Development"),
+                lambda x:x["sites"][0]["compilerVariants"][1].update(compilerMode="Unknown"),
+                lambda x:x["sites"][0]["compilerVariants"][1].update(methodHash="bad"),
+                lambda x:x["sites"][0].update(methodHash="a"*64)):
+            bad=copy.deepcopy(value);mutate(bad)
+            with self.assertRaises(VerificationError):v.parse_configuration(json.dumps(bad).encode())
+        with self.assertRaises(VerificationError):v.selected_site(value["sites"][0],2,"Development","b"*64,"site")
 
     def test_inventory_hash_reads_actual_flags_nesting_arity_and_base(self):
         base=[dict(name="Owner",arity=1),dict(name="Inner",namespace="",flags=2,parent=2)]
