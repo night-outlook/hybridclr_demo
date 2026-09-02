@@ -207,6 +207,10 @@ REFLECTION_DEFINE_PREFIX = "ASSEMBLY_SHADOW_REFLECTION_BINDINGS_"
 RETARGETING_FACADE_IDENTITY = "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"
 M02_FIXED_IMAGE_SHA256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
 M02_FIXED_IMAGE_PATH = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+M02_FIXED_PROVIDER_SEMANTIC_VARIANTS = {
+    "Development": "23342d2a88e2eff9e8179522609398e9899e404e58518d1291a73335cea48177",
+    "Release": "20ef1a9e1c1023cb760a817b11c8baa6c070556aa0d4dbb96389c41e02080f72",
+}
 M02_REFLECTION_SITE_IDS = frozenset({
     "urp-debug-ui-prefab-types", "urp-serializable-enum-player",
     "urp-volume-assembly-domain", "urp-volume-type-domain", "m00-normal-hot-update-image",
@@ -291,14 +295,22 @@ def _reflection_canonical_hash(configuration, path):
         if configuration.get("schemaVersion") >= 2:
             for field in ("kind", "imageSha256", "providerAssemblyIdentity", "imagePath"):
                 _reflection_hash_add(data, site.get(field))
-        if configuration.get("schemaVersion") == 3:
+        if configuration.get("schemaVersion") >= 3:
             variants = site.get("additionalMethodVariants")
-            _need(isinstance(variants, list), path, "schema-3 additionalMethodVariants must be an array")
+            _need(isinstance(variants, list), path, "schema-3+ additionalMethodVariants must be an array")
             variants = sorted(variants, key=lambda item: item.get("originalMethodHash", ""))
             _reflection_hash_add(data, len(variants))
             for variant in variants:
                 _reflection_hash_add(data, variant.get("originalMethodHash"))
                 _reflection_hash_add(data, variant.get("operationIndex"))
+        if configuration.get("schemaVersion") >= 4:
+            variants = site.get("providerSemanticVariants") or []
+            _need(isinstance(variants, list), path, "schema-4 providerSemanticVariants must be an array")
+            variants = sorted(variants, key=lambda item: item.get("compilerMode", ""))
+            _reflection_hash_add(data, len(variants))
+            for variant in variants:
+                _reflection_hash_add(data, variant.get("compilerMode"))
+                _reflection_hash_add(data, variant.get("semanticHash"))
     return hashlib.sha256(data).hexdigest()
 
 
@@ -337,8 +349,8 @@ def _reflection_parse(path: Path, raw: bytes):
     schema = configuration.get("schemaVersion")
     transformer = configuration.get("transformerVersion")
     _need((schema == 1 and transformer == 1) or (schema == 2 and transformer == 2) or
-          (schema == 3 and transformer == 3),
-         path, "reflection binding configuration schema/transformer versions must match 1, 2 or 3")
+          (schema == 3 and transformer == 3) or (schema == 4 and transformer == 4),
+         path, "reflection binding configuration schema/transformer versions must match 1 through 4")
     sites = configuration.get("sites")
     _need(isinstance(sites, list) and 0 < len(sites) <= 4096, path,
          "reflection binding configuration sites must be a bounded non-empty array")
@@ -365,7 +377,7 @@ def _reflection_parse(path: Path, raw: bytes):
                  "additionalMethodVariants requires reflection binding schema 3")
         else:
             _need(isinstance(variants, list) and 0 < len(variants) <= 15, site_path,
-                 "schema-3 additionalMethodVariants must contain one to fifteen entries")
+                 "schema-3+ additionalMethodVariants must contain one to fifteen entries")
             variant_hashes = {site["originalMethodHash"]}
             for variant_index, variant in enumerate(variants):
                 variant_path = f"{site_path}.additionalMethodVariants[{variant_index}]"
@@ -410,6 +422,7 @@ def _reflection_parse(path: Path, raw: bytes):
         image_sha = site.get("imageSha256")
         provider_identity = site.get("providerAssemblyIdentity")
         image_path = site.get("imagePath")
+        provider_variants = site.get("providerSemanticVariants")
         if kind == "FixedAssemblyBytes":
             _need(not allowed, site_path, "FixedAssemblyBytes must have an empty allowedTypes array")
             _hash64(image_sha, site_path, "imageSha256")
@@ -420,10 +433,29 @@ def _reflection_parse(path: Path, raw: bytes):
                   image_path == M02_FIXED_IMAGE_PATH and
                   provider_identity == "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                  site_path, "fixed image site does not match the pinned M00 normal hot-update contract")
+            if schema < 4:
+                _need(provider_variants in (None, []), site_path,
+                      "providerSemanticVariants requires reflection binding schema 4")
+            else:
+                _need(isinstance(provider_variants, list) and len(provider_variants) == 2, site_path,
+                      "schema-4 fixed image requires Development and Release provider semantic variants")
+                semantic_by_mode = {}
+                for variant_index, variant in enumerate(provider_variants):
+                    variant_path = f"{site_path}.providerSemanticVariants[{variant_index}]"
+                    _need(isinstance(variant, dict), variant_path, "provider semantic variant must be an object")
+                    mode = variant.get("compilerMode")
+                    _need(mode in ("Development", "Release") and mode not in semantic_by_mode, variant_path,
+                          "provider semantic variants require unique Development/Release modes")
+                    _hash64(variant.get("semanticHash"), variant_path, "semanticHash")
+                    semantic_by_mode[mode] = variant["semanticHash"]
+                _need(semantic_by_mode == M02_FIXED_PROVIDER_SEMANTIC_VARIANTS, site_path,
+                      "fixed image provider semantic variants differ from the pinned compiler modes")
             providers = [_canonical_assembly_name(provider_identity.split(",", 1)[0])]
         else:
             _need(image_sha in (None, "") and provider_identity in (None, "") and image_path in (None, ""), site_path,
                  "non-fixed reflection binding site cannot claim image evidence")
+            _need(provider_variants in (None, []), site_path,
+                  "non-fixed reflection binding site cannot claim provider semantic variants")
         declarations.append({
             "id": site_id, "consumer": assembly, "typeName": site["typeName"],
             "methodSignature": site["methodSignature"], "originalMethodHash": site["originalMethodHash"],

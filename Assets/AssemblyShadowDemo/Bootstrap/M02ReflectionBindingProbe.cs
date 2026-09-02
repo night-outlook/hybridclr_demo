@@ -121,7 +121,7 @@ namespace AssemblyShadowDemo
             byte[] bytes = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath, StagedConfiguration));
             result.configurationSha256 = ShadowPatchFileProvider.Hash(bytes);
             var configuration = JsonUtility.FromJson<Configuration>(Encoding.UTF8.GetString(bytes));
-            Require(configuration != null && configuration.schemaVersion == 3 && configuration.transformerVersion == 3 &&
+            Require(configuration != null && configuration.schemaVersion == 4 && configuration.transformerVersion == 4 &&
                 configuration.sites != null && configuration.sites.Length == 5, "Unexpected finite binding fixture.");
             Site canvasSite = configuration.sites.Single(site => site.id == "urp-debug-ui-prefab-types");
             Site enumSite = configuration.sites.Single(site => site.id == "urp-serializable-enum-player");

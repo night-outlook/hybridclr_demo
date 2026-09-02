@@ -10,7 +10,8 @@ import xml.etree.ElementTree as ET
 import re
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from m02_results import (CASE_IDS, CANDIDATES, M02_CANVAS_ALLOWED_TYPES, NUNIT_SUITES, NUNIT_MIN_CASES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
+from m02_results import (CASE_IDS, CANDIDATES, M02_CANVAS_ALLOWED_TYPES, M02_FIXED_PROVIDER_SEMANTIC_VARIANTS,
+                         NUNIT_SUITES, NUNIT_MIN_CASES, _reflection_manifest, _reflection_parse, _reflection_snapshot,
                          _retargeting_profile_hash,
                          _resource_abi_hash, _resource_source_set_hash, _runtime_abi_hash,
                          _snapshot_files, _snapshot_hash, _snapshot_linked_hash, _verify_linked_player,
@@ -246,6 +247,19 @@ class M02EvidenceTests(unittest.TestCase):
                 "originalMethodHash": hashlib.sha256(("release-" + site["id"]).encode()).hexdigest(),
                 "operationIndex": site["operationIndex"] + index + 1,
             }]
+        config_path.write_text(json.dumps(config, separators=(",", ":")))
+        receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
+        return snapshot, config, receipt, config_path, image_path
+
+    def reflection_schema4_fixture(self, root):
+        snapshot, config, receipt, config_path, image_path = self.reflection_schema3_fixture(root)
+        config["schemaVersion"] = 4
+        config["transformerVersion"] = 4
+        fixed = next(site for site in config["sites"] if site["id"] == "m00-normal-hot-update-image")
+        fixed["providerSemanticVariants"] = [
+            {"compilerMode": mode, "semanticHash": semantic_hash}
+            for mode, semantic_hash in sorted(M02_FIXED_PROVIDER_SEMANTIC_VARIANTS.items())
+        ]
         config_path.write_text(json.dumps(config, separators=(",", ":")))
         receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
         return snapshot, config, receipt, config_path, image_path
@@ -529,10 +543,11 @@ class M02EvidenceTests(unittest.TestCase):
             self.assertEqual(fixed["providers"], ["assemblyshadowbaseline.hotupdate"])
             self.assertTrue(image_path.is_file())
 
-    def test_reflection_schema3_project_hash_matches_csharp_golden(self):
+    def test_reflection_schema4_project_hash_matches_csharp_golden(self):
         project_config = Path(__file__).resolve().parents[3] / "ProjectSettings" / "AssemblyShadowReflectionBindings.json"
         reflection = _reflection_parse(project_config, project_config.read_bytes())
-        self.assertEqual(reflection["canonicalHash"], "53f9613de0da3e56d8cd3f91625a73fdb50f157fe83a8e0381dcd2fef18b5548")
+        self.assertEqual(reflection["configuration"]["schemaVersion"], 4)
+        self.assertEqual(reflection["canonicalHash"], "8c0484a0f98a110d3ebcc26351803003676ae95a2a219511c52d47c1dde7a2f3")
 
     def test_reflection_schema3_accepts_known_variants_and_hashes_every_field(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -569,6 +584,51 @@ class M02EvidenceTests(unittest.TestCase):
             with self.assertRaises(VerificationError) as error:
                 _reflection_parse(config_path, config_path.read_bytes())
             self.assertIn("one to fifteen", str(error.exception))
+
+    def test_reflection_schema4_provider_variants_are_canonical_and_complete(self):
+        with tempfile.TemporaryDirectory() as folder:
+            _, config, _, config_path, _ = self.reflection_schema4_fixture(Path(folder))
+            original = _reflection_parse(config_path, config_path.read_bytes())["canonicalHash"]
+            fixed = next(site for site in config["sites"] if site["id"] == "m00-normal-hot-update-image")
+            fixed["providerSemanticVariants"].reverse()
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            self.assertEqual(original, _reflection_parse(config_path, config_path.read_bytes())["canonicalHash"])
+
+            fixed["providerSemanticVariants"][0]["semanticHash"] = "f" * 64
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_parse(config_path, config_path.read_bytes())
+            self.assertIn("pinned compiler modes", str(error.exception))
+
+    def test_reflection_schema4_rejects_missing_duplicate_and_nonfixed_provider_variants(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            _, config, _, config_path, _ = self.reflection_schema4_fixture(root / "missing")
+            fixed = next(site for site in config["sites"] if site["id"] == "m00-normal-hot-update-image")
+            fixed["providerSemanticVariants"] = fixed["providerSemanticVariants"][:1]
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_parse(config_path, config_path.read_bytes())
+            self.assertIn("Development and Release", str(error.exception))
+
+            _, config, _, config_path, _ = self.reflection_schema4_fixture(root / "duplicate")
+            fixed = next(site for site in config["sites"] if site["id"] == "m00-normal-hot-update-image")
+            fixed["providerSemanticVariants"][1]["compilerMode"] = "Development"
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_parse(config_path, config_path.read_bytes())
+            self.assertIn("unique Development/Release", str(error.exception))
+
+            _, config, _, config_path, _ = self.reflection_schema4_fixture(root / "nonfixed")
+            nonfixed = next(site for site in config["sites"] if site["id"] != "m00-normal-hot-update-image")
+            nonfixed["providerSemanticVariants"] = [
+                {"compilerMode": "Development", "semanticHash": "a" * 64},
+                {"compilerMode": "Release", "semanticHash": "b" * 64},
+            ]
+            config_path.write_text(json.dumps(config, separators=(",", ":")))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_parse(config_path, config_path.read_bytes())
+            self.assertIn("non-fixed", str(error.exception))
 
     def test_reflection_schema2_image_tamper_fails(self):
         with tempfile.TemporaryDirectory() as folder:
