@@ -208,8 +208,8 @@ RETARGETING_FACADE_IDENTITY = "netstandard, Version=2.1.0.0, Culture=neutral, Pu
 M02_FIXED_IMAGE_SHA256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
 M02_FIXED_IMAGE_PATH = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
 M02_FIXED_PROVIDER_SEMANTIC_VARIANTS = {
-    "Development": "23342d2a88e2eff9e8179522609398e9899e404e58518d1291a73335cea48177",
-    "Release": "20ef1a9e1c1023cb760a817b11c8baa6c070556aa0d4dbb96389c41e02080f72",
+    "Development": "7af4cf568c2c6bccebd58e780846f22826472629ca972e5abfcd02a8ba636369",
+    "Release": "e34d8fe97ff909d878e91a081565fd7afaee5d1672da091eb58aadbb0289d022",
 }
 M02_REFLECTION_SITE_IDS = frozenset({
     "urp-debug-ui-prefab-types", "urp-serializable-enum-player",
