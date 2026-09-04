@@ -97,8 +97,13 @@ class M02EvidenceTests(unittest.TestCase):
         probe_path.write_text(json.dumps(probe))
         return probe_path, receipt, reflection, probe
 
-    def linked_reflection_fixture(self, root):
-        snapshot, config, receipt, config_path = self.reflection_fixture(root)
+    def linked_reflection_fixture(self, root, compiler_variant="canonical"):
+        if compiler_variant == "canonical":
+            snapshot, config, receipt, config_path = self.reflection_fixture(root)
+        elif compiler_variant == "additional":
+            snapshot, config, receipt, config_path, _ = self.reflection_schema4_fixture(root)
+        else:
+            raise ValueError("Unknown reflection compiler variant: " + compiler_variant)
         receipt["kind"] = "PlayerBuildInputs"
         receipt.update({"unityVersion": "2022.3.62f2", "target": "StandaloneOSX", "architecture": "arm64", "buildGuid": "guid"})
         receipt["extraScriptingDefines"] = ["ASSEMBLY_SHADOW_REFLECTION_BINDINGS_" + sha(config_path)]
@@ -127,13 +132,18 @@ class M02EvidenceTests(unittest.TestCase):
             "sourceAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
             "profileHash": "", "forwarders": [], "runtimeFrameworkModules": [], "sites": [],
         }
-        proof["sites"] = [{
-            "id": "site-1", "consumer": "Consumer", "compiledPath": "Assemblies/Consumer.dll", "compiledSha256": receipt["assemblies"][0]["sha256"],
-            "linkedPath": "LinkedPlayer/Assemblies/consumer.dll", "linkedSha256": sha(linked_dll),
-            "methodSignature": config["sites"][0]["methodSignature"], "guardMethod": "__AssemblyShadowReflectionBinding_" + proof["configurationHash"] + "_" + hashlib.sha256(b"site-1").hexdigest(),
-            "operationIndex": 0, "compiledMethodHash": "a" * 64, "linkedMethodHash": "b" * 64,
-            "compiledGuardHash": "c" * 64, "linkedGuardHash": "d" * 64,
-        }]
+        proof["sites"] = []
+        for site in sorted(config["sites"], key=lambda item: item["id"]):
+            operation = site["operationIndex"]
+            if compiler_variant == "additional":
+                operation = site["additionalMethodVariants"][0]["operationIndex"]
+            proof["sites"].append({
+                "id": site["id"], "consumer": site["assembly"], "compiledPath": "Assemblies/Consumer.dll", "compiledSha256": receipt["assemblies"][0]["sha256"],
+                "linkedPath": "LinkedPlayer/Assemblies/consumer.dll", "linkedSha256": sha(linked_dll),
+                "methodSignature": site["methodSignature"], "guardMethod": "__AssemblyShadowReflectionBinding_" + proof["configurationHash"] + "_" + hashlib.sha256(site["id"].encode()).hexdigest(),
+                "operationIndex": operation, "compiledMethodHash": "a" * 64, "linkedMethodHash": "b" * 64,
+                "compiledGuardHash": "c" * 64, "linkedGuardHash": "d" * 64,
+            })
         proof["profileHash"] = _retargeting_profile_hash(proof, evidence_root / "evidence.json")
         evidence_path = evidence_root / "evidence.json"
         evidence_path.write_text(json.dumps(proof))
@@ -1261,6 +1271,25 @@ class M02EvidenceTests(unittest.TestCase):
             snapshot, receipt, _, _ = self.linked_reflection_fixture(Path(folder))
             reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json", require_linked=True)
             self.assertEqual(reflection["configuration"]["schemaVersion"], 1)
+
+    def test_linked_binding_evidence_accepts_schema4_additional_method_variants(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, receipt, _, _ = self.linked_reflection_fixture(Path(folder), "additional")
+            reflection = _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json", require_linked=True)
+            self.assertEqual(reflection["configuration"]["schemaVersion"], 4)
+
+    def test_linked_binding_evidence_rejects_unknown_variant_index(self):
+        with tempfile.TemporaryDirectory() as folder:
+            snapshot, receipt, _, evidence_path = self.linked_reflection_fixture(Path(folder), "additional")
+            proof = json.loads(evidence_path.read_text())
+            proof["sites"][0]["operationIndex"] = 999
+            evidence_path.write_text(json.dumps(proof))
+            receipt["linkedPlayerReceipt"]["reflectionBindingEvidenceHash"] = sha(evidence_path)
+            receipt["linkedPlayerReceiptHash"] = _snapshot_linked_hash(receipt["linkedPlayerReceipt"])
+            (snapshot / "LinkedPlayer" / "linked-player-receipt.json").write_text(json.dumps(receipt["linkedPlayerReceipt"]))
+            with self.assertRaises(VerificationError) as error:
+                _reflection_snapshot(snapshot, receipt, snapshot / "assembly-snapshot.json", require_linked=True)
+            self.assertIn("not a configured compiler variant", str(error.exception))
 
     def test_linked_binding_evidence_tamper_fails(self):
         with tempfile.TemporaryDirectory() as folder:

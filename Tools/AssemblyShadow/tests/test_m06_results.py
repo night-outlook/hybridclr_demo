@@ -40,6 +40,33 @@ class M06ResultTests(unittest.TestCase):
         self.assertEqual(len(gate.API_NAMES),11);self.assertEqual(len(gate.ERROR_NAMES),22)
         self.assertEqual(gate.ERROR_NAMES[21],'BaselineMethodExecution')
 
+    def test_exact_dto_primitive_inventory_includes_native_metadata_token(self):
+        self.assertEqual(gate.DTO_PRIMITIVES,frozenset(('System.Int32','System.UInt32','System.UInt64',
+                                                       'System.Int64','System.Boolean','System.String')))
+
+    def test_feature_off_projection_ignores_only_native_identity(self):
+        linked=dict(schemaVersion=2,buildGuid='on-guid',nativeLibrarySha256='1'*64,target='StandaloneOSX',architecture='arm64',
+                    sourceDirectory='/managed/linked',reflectionBindingEvidenceHash='2'*64,protectedAssemblies=['Bootstrap'],
+                    assemblies=[dict(name='Business',path='Business.dll',sha256='3'*64,mvid='mvid',pdbPath='Business.pdb',pdbSha256='4'*64)])
+        on=dict(schemaVersion=1,kind='PlayerBuildInputs',snapshotHash='5'*64,unityVersion='2022.3.62f2',target='StandaloneOSX',architecture='arm64',
+                buildId='M06-Baseline-v7',buildGuid='on-guid',playerOutput='/players/on',nativeLibraryPath='/players/on/GameAssembly.dylib',
+                nativeLibrarySha256='1'*64,playerBuildSucceeded=True,playerBuildFilterCaptured=True,playerBuildOptions=129,
+                normalHotUpdateAssemblies=['Business'],extraScriptingDefines=['PINNED'],sourcePins=dict(schemaVersion=1),
+                assemblies=[dict(name='Business',path='Assemblies/Business.dll',sha256='6'*64,pdbPath='Symbols/Business.pdb',pdbSha256='7'*64,sourcePath='/compiler/Business.dll')],
+                references=[],filteredAssemblies=[],filteredAssemblyCapabilities=[],linkedPlayerReceipt=linked,linkedPlayerReceiptHash='8'*64,
+                linkerExcludedAssemblies=[],linkerExcludedAssemblyCapabilities=[])
+        off=copy.deepcopy(on)
+        off.update(snapshotHash='9'*64,buildGuid='off-guid',playerOutput='/players/off',nativeLibraryPath='/players/off/GameAssembly.dylib',
+                   nativeLibrarySha256='a'*64,linkedPlayerReceiptHash='b'*64)
+        off['linkedPlayerReceipt'].update(buildGuid='off-guid',nativeLibrarySha256='a'*64,reflectionBindingEvidenceHash='c'*64)
+        self.assertEqual(gate.managed_player_inputs(on,'on'),gate.managed_player_inputs(off,'off'))
+        off['assemblies'][0]['sha256']='d'*64
+        self.assertNotEqual(gate.managed_player_inputs(on,'on'),gate.managed_player_inputs(off,'off'))
+
+    def test_native_syntax_gate_covers_global_metadata_scope(self):
+        source=(Path(__file__).resolve().parents[1]/'run-m06-native-tests.py').read_text()
+        self.assertIn('"vm/GlobalMetadata.cpp"',source)
+
     def test_valid_actual_counter_shape(self):
         self.assertEqual(gate.verify_execution_diagnostic(diagnostic(),'test',True),diagnostic())
 
@@ -112,6 +139,14 @@ class M06ResultTests(unittest.TestCase):
         row['hasInitializationException']=True
         with self.assertRaises(VerificationError):gate.verify_execution_diagnostic(value,'exception-without-start',True)
 
+    def test_global_module_type_key_is_exact_and_owner_bound(self):
+        self.assertEqual(gate.global_module_type_key(gate.INTERNAL),
+                         'type(33:assemblya.implementation.internal/0:/8:<Module>@0)')
+        self.assertNotEqual(gate.global_module_type_key(gate.INTERNAL),
+                            'type(33:assemblya.implementation.internal/0:/8:<module>@0)')
+        self.assertNotEqual(gate.global_module_type_key(gate.CONTRACTS),
+                            gate.global_module_type_key(gate.INTERNAL))
+
     def test_json_duplicate_unknown_numeric_constants_reject(self):
         for text in ('{"value":0,"value":1}','{"value":NaN}','{"value":Infinity}'):
             with self.assertRaises(VerificationError):gate.json_text(text,'json')
@@ -128,6 +163,19 @@ class M06ResultTests(unittest.TestCase):
         value['enabled']=True
         self.assertNotEqual(one,gate.canonical_hash(value,'planHash','assembly-shadow-generation-plan:1'))
 
+    def test_generation_source_pdb_normalizes_release_and_development_pairs(self):
+        self.assertEqual(gate.generation_source_pdb(dict(pdbPath='',pdbSha256=''),'release'),(None,None))
+        self.assertEqual(gate.generation_source_pdb(dict(pdbPath='Symbols/Test.pdb',pdbSha256='a'*64),'development'),
+                         ('Snapshot/Symbols/Test.pdb','a'*64))
+        for value in (dict(pdbPath='Symbols/Test.pdb',pdbSha256=''),dict(pdbPath='',pdbSha256='a'*64)):
+            with self.assertRaises(VerificationError):gate.generation_source_pdb(value,'mismatch')
+
+    def test_patch_reference_names_compare_canonically_without_collisions(self):
+        self.assertEqual(gate.canonical_names(['AssemblyA.Contracts','netstandard'],'references'),
+                         ['assemblya.contracts','netstandard'])
+        with self.assertRaises(VerificationError):
+            gate.canonical_names(['AssemblyA.Contracts','assemblya.contracts'],'references')
+
     def test_canonical_generation_json_rejects_whitespace(self):
         with tempfile.TemporaryDirectory(prefix='m06-json-') as directory:
             path=Path(directory)/'generation.json';value=dict(schemaVersion=1,planHash=None)
@@ -135,6 +183,16 @@ class M06ResultTests(unittest.TestCase):
             gate.read_canonical(path,'schemaVersion planHash','planHash','test:1')
             path.write_text(json.dumps(value,indent=2))
             with self.assertRaises(VerificationError):gate.read_canonical(path,'schemaVersion planHash','planHash','test:1')
+
+    def test_replay_receipt_path_supports_default_and_explicit_independent_receipts(self):
+        with tempfile.TemporaryDirectory(prefix='m06-replay-path-') as directory:
+            root=Path(directory).resolve();manifest=root/'m06-fixtures.json';manifest.write_text('{}')
+            default=root/'m06-editor-replay.json';default.write_text('{}')
+            explicit=root/'m06-editor-replay-independent.json';explicit.write_text('{}')
+            context=dict(path=manifest)
+            self.assertEqual(gate.replay_receipt_path(context),default)
+            self.assertEqual(gate.replay_receipt_path(context,explicit),explicit)
+            with self.assertRaises(VerificationError):gate.replay_receipt_path(context,Path('relative.json'))
 
     def test_capacity_coverage_is_structural_not_key_name(self):
         selected=dict(target='StandaloneOSX',architecture='arm64',development=False,templateSha256='a')
@@ -166,14 +224,27 @@ class M06ResultTests(unittest.TestCase):
         for method,type_,arity in (('WarmupValue','System.Int32',0),('WarmupEcho','System.Int32',1),('WarmupEcho','System.String',1),('Run','System.String',0)):
             arg=dict(assembly=core,type=type_);methods.append(dict(assembly=name,declaringType=owner,name=method,isStatic=True,genericArity=arity,genericArguments=[arg] if arity else [],returnType=dict(assembly=core,type='System.String[]') if method=='Run' else arg,parameterTypes=[arg]))
         value=dict(types=[dict(assembly=name,type=owner)],methods=methods)
-        gate.verify_warmup(value,[name],core,'warmup')
+        gate.verify_warmup(value,[name],{name:core},'warmup')
         for mutation in ('missing','false-static','wrong-owner','wrong-return'):
             bad=copy.deepcopy(value)
             if mutation=='missing':bad['methods'].pop()
             elif mutation=='false-static':bad['methods'][0]['isStatic']=False
             elif mutation=='wrong-owner':bad['methods'][0]['assembly']=gate.CONTRACTS
             else:bad['methods'][0]['returnType']['type']='System.Int64'
-            with self.assertRaises(VerificationError):gate.verify_warmup(bad,[name],core,'warmup-tamper')
+            with self.assertRaises(VerificationError):gate.verify_warmup(bad,[name],{name:core},'warmup-tamper')
+
+    def test_warmup_uses_each_byte_bound_compiler_corlib_provider(self):
+        mscorlib='mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'
+        netstandard='netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+        providers={name.casefold():dict(fullName=full) for name,full in (('mscorlib',mscorlib),('netstandard',netstandard))}
+        identity=dict(referenceIdentities=[dict(name='netstandard',fullName=netstandard)])
+        self.assertEqual(gate.compiler_core_identity(identity,providers,'compiler-core'),netstandard)
+        identity['referenceIdentities']=[dict(name='mscorlib',fullName=mscorlib)]
+        self.assertEqual(gate.compiler_core_identity(identity,providers,'compiler-core'),mscorlib)
+        identity['referenceIdentities'].append(dict(name='netstandard',fullName=netstandard))
+        with self.assertRaises(VerificationError):gate.compiler_core_identity(identity,providers,'ambiguous-core')
+        identity['referenceIdentities']=[dict(name='netstandard',fullName=netstandard.replace('2.1.0.0','9.0.0.0'))]
+        with self.assertRaises(VerificationError):gate.compiler_core_identity(identity,providers,'changed-core')
 
     def test_normal_and_negative_fixture_roots_are_explicit(self):
         self.assertEqual(gate.order_for('P01'),[gate.INTERNAL]);self.assertEqual(len(gate.order_for('P02')),3);self.assertEqual(len(gate.order_for('P03')),5)

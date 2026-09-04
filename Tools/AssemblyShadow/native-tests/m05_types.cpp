@@ -225,6 +225,10 @@ int main(int argc, char** argv)
         auto oldKind = baseline.Type("Kind"), newKind = active.Type("Kind", 0, nullptr, true);
         auto oldArity = baseline.Type("Arity`1", 1); active.Type("Arity`1", 2);
         auto newAdded = active.Type("Added");
+        auto oldNativeReference = baseline.Type("NativeReference"), newNativeReference = active.Type("NativeReference");
+        oldNativeReference->native_size = sizeof(void*);
+        auto oldNativeValue = baseline.Type("NativeValue", 0, nullptr, true), newNativeValue = active.Type("NativeValue", 0, nullptr, true);
+        oldNativeValue->native_size = sizeof(int32_t); newNativeValue->native_size = sizeof(int64_t);
         auto oldBad = baseline.Type("BadLayout"), newBad = active.Type("BadLayout");
         newBad->instance_size = 40;
         auto oldField = baseline.Type("BadField"), newField = active.Type("BadField");
@@ -315,6 +319,10 @@ int main(int argc, char** argv)
         Check(AssemblyShadow::GetTypeResolutionInfo(&newDto->byval_arg, info) == AssemblyShadowError::Success && info.find("\"isActive\":true") != std::string::npos, "active query");
         std::printf("m05_active_type_info=%s\n", info.c_str());
         Check(AssemblyShadow::GetTypeResolutionInfo(&newAdded->byval_arg, info) == AssemblyShadowError::Success && info.find("\"baselinePointerAvailable\":false") != std::string::npos, "new type does not fabricate baseline pointer");
+        Check(AssemblyShadowTypeResolver::ResolveAllocation(oldNativeReference, "reference-native-size") == newNativeReference,
+            "reference marshaling native size is not managed allocation layout");
+        Failure([&] { AssemblyShadowTypeResolver::ResolveAllocation(oldNativeValue, "value-native-size"); },
+            AssemblyShadowError::ResourceAbiMismatch, "ShadowLayoutMismatch");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(oldDto, "old-allocation") == newDto, "compatible baseline allocation remap");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newDto, "active-allocation") == newDto, "compatible active allocation raw counterpart proof");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newAdded, "added-allocation") == newAdded, "patch-added type legal");

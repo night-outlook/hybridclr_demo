@@ -114,7 +114,7 @@ def execute(args, receipt):
     core += [native / "hybridclr/metadata" / name for name in ("AssemblyShadowBridge.cpp", "Image.cpp")]
     syntax = [runtime / "libil2cpp" / name for name in
               ("vm/AssemblyShadow.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/AssemblyShadowDiagnostics.cpp",
-               "vm/Runtime.cpp", "codegen/il2cpp-codegen.h")]
+               "vm/Runtime.cpp", "vm/GlobalMetadata.cpp", "codegen/il2cpp-codegen.h")]
     syntax += [native / "hybridclr" / name for name in
                ("AssemblyShadowRuntimeApi.cpp", "interpreter/InterpreterModule.cpp", "interpreter/Interpreter_Execute.cpp")]
     syntax.append(fixture)

@@ -216,6 +216,25 @@ namespace AssemblyShadowDemo.EditorTests
             value.commitOrder = new string[0]; value.staged = 1; Assert.Throws<InvalidOperationException>(() => Invoke("ValidateDisabledDiagnostics", value));
         }
 
+        [Test] public void FeatureOffRequiresEqualManagedInputsAndDistinctNativeBuilds()
+        {
+            object baseline = FeatureOffSnapshot("on", 'a', 'b', 'c');
+            object disabled = FeatureOffSnapshot("off", 'd', 'e', 'f');
+            Invoke("RequireFeatureOffSnapshotPair", baseline, disabled);
+
+            SetField(disabled, "nativeLibrarySha256", GetField(baseline, "nativeLibrarySha256"));
+            Assert.Throws<InvalidOperationException>(() => Invoke("RequireFeatureOffSnapshotPair", baseline, disabled));
+
+            disabled = FeatureOffSnapshot("off", 'd', 'e', 'f');
+            Array files = (Array)GetField(disabled, "assemblies");
+            SetField(files.GetValue(0), "sha256", new string('9', 64));
+            Assert.Throws<InvalidOperationException>(() => Invoke("RequireFeatureOffSnapshotPair", baseline, disabled));
+
+            string source = File.ReadAllText(InputsSource);
+            StringAssert.Contains("baselineSnapshot.linkedPlayerReceiptHash", source);
+            StringAssert.Contains("typeProof.compileSnapshotHash == player.inputSnapshotHash", source);
+        }
+
         [Test] public void StartupProofBindsArchivedBytesCompilerAndActualBootstrapRole()
         {
             string directory = Path.Combine(Path.GetTempPath(), "M06StartupTest-" + Guid.NewGuid().ToString("N")); Directory.CreateDirectory(directory);
@@ -416,6 +435,45 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         private static IEnumerator Suspended(Action onDispose) { try { yield return null; } finally { onDispose(); } }
+        private static object FeatureOffSnapshot(string variant, char snapshotHash, char nativeHash, char linkedHash)
+        {
+            Type owner = typeof(M06ExecutionProbe);
+            Type snapshotType = owner.GetNestedType("SnapshotReceipt", BindingFlags.NonPublic);
+            Type fileType = owner.GetNestedType("SnapshotFile", BindingFlags.NonPublic);
+            Type capabilityType = owner.GetNestedType("SnapshotCapability", BindingFlags.NonPublic);
+            object snapshot = Activator.CreateInstance(snapshotType, true);
+            object file = Activator.CreateInstance(fileType, true);
+            SetField(file, "name", "Business"); SetField(file, "path", "Assemblies/Business.dll");
+            SetField(file, "sha256", new string('1', 64)); SetField(file, "pdbPath", "Symbols/Business.pdb");
+            SetField(file, "pdbSha256", new string('2', 64)); SetField(file, "sourcePath", "/compiler/Business.dll");
+            Array files = Array.CreateInstance(fileType, 1); files.SetValue(file, 0);
+            Array noFiles = Array.CreateInstance(fileType, 0), noCapabilities = Array.CreateInstance(capabilityType, 0);
+            var pins = new M06ExecutionProbe.SourcePins { schemaVersion = 1, unityVersion = "2022.3.62f2", target = "StandaloneOSX", architecture = "arm64",
+                hybridclr = Pin("hybridclr"), hybridclrUnity = Pin("hybridclr-unity"), il2cppPlus = Pin("il2cpp-plus"), demo = Pin("demo") };
+            var linked = new M06ExecutionProbe.LinkedPlayerReceipt { schemaVersion = 2, buildGuid = variant + "-guid", nativeLibrarySha256 = new string(nativeHash, 64),
+                target = "StandaloneOSX", architecture = "arm64", sourceDirectory = "/compiler/linked", reflectionBindingEvidenceHash = new string(linkedHash, 64),
+                protectedAssemblies = new[] { "AssemblyShadowDemo.Bootstrap" }, assemblies = new[] { new M06ExecutionProbe.LinkedPlayerFile {
+                    name = "Business", path = "Business.dll", sha256 = new string('3', 64), mvid = "mvid", pdbPath = "Business.pdb", pdbSha256 = new string('4', 64) } } };
+            SetField(snapshot, "schemaVersion", 1); SetField(snapshot, "playerBuildOptions", 536871041);
+            SetField(snapshot, "kind", "PlayerBuildInputs"); SetField(snapshot, "snapshotHash", new string(snapshotHash, 64));
+            SetField(snapshot, "unityVersion", "2022.3.62f2"); SetField(snapshot, "target", "StandaloneOSX"); SetField(snapshot, "architecture", "arm64");
+            SetField(snapshot, "buildId", "M06-Baseline-v7"); SetField(snapshot, "buildGuid", variant + "-guid");
+            SetField(snapshot, "playerOutput", Path.Combine(Path.GetTempPath(), "m06-" + variant + ".app"));
+            SetField(snapshot, "nativeLibraryPath", Path.Combine(Path.GetTempPath(), "m06-" + variant + ".app", "GameAssembly.dylib"));
+            SetField(snapshot, "nativeLibrarySha256", new string(nativeHash, 64)); SetField(snapshot, "playerBuildSucceeded", true); SetField(snapshot, "playerBuildFilterCaptured", true);
+            SetField(snapshot, "normalHotUpdateAssemblies", new[] { "Business" }); SetField(snapshot, "extraScriptingDefines", new[] { "PINNED" });
+            SetField(snapshot, "assemblies", files); SetField(snapshot, "references", noFiles); SetField(snapshot, "filteredAssemblies", noFiles);
+            SetField(snapshot, "filteredAssemblyCapabilities", noCapabilities); SetField(snapshot, "linkerExcludedAssemblies", new string[0]);
+            SetField(snapshot, "linkerExcludedAssemblyCapabilities", noCapabilities); SetField(snapshot, "sourcePins", pins);
+            SetField(snapshot, "linkedPlayerReceipt", linked); SetField(snapshot, "linkedPlayerReceiptHash", new string(linkedHash, 64));
+            return snapshot;
+        }
+        private static M06ExecutionProbe.RepositoryPin Pin(string name)
+        { return new M06ExecutionProbe.RepositoryPin { url = "https://example.invalid/" + name, revision = "revision", localPath = "../" + name }; }
+        private static object GetField(object value, string name)
+        { return value.GetType().GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(value); }
+        private static void SetField(object value, string name, object fieldValue)
+        { value.GetType().GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).SetValue(value, fieldValue); }
         private static void ValidateShape(string json, Type type)
         {
             Type readerType = typeof(M06ExecutionProbe).GetNestedType("ProofJsonReader", BindingFlags.NonPublic);

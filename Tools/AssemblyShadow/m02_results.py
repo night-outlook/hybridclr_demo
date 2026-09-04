@@ -340,6 +340,15 @@ def _reflection_full_identity(value, path):
     return value
 
 
+def _reflection_method_variants(site):
+    variants = [{
+        "originalMethodHash": site.get("originalMethodHash"),
+        "operationIndex": site.get("operationIndex"),
+    }]
+    variants.extend(site.get("additionalMethodVariants") or [])
+    return variants
+
+
 def _reflection_parse(path: Path, raw: bytes):
     try:
         configuration = json.loads(raw.decode("utf-8"))
@@ -604,9 +613,11 @@ def _verify_linked_reflection_evidence(root: Path, receipt: dict, reflection: di
         consumer = _canonical_assembly_name(config_site["assembly"])
         compiled = input_by_name.get(consumer); linked_item = linked_by_name.get(consumer)
         _need(compiled is not None and linked_item is not None, item_path, "linked reflection site consumer is absent")
-        _need(item.get("consumer") == config_site["assembly"] and item.get("methodSignature") == config_site["methodSignature"] and
-              item.get("operationIndex") == config_site["operationIndex"], item_path,
-             "linked reflection site identity differs from configuration")
+        _need(item.get("consumer") == config_site["assembly"] and item.get("methodSignature") == config_site["methodSignature"],
+             item_path, "linked reflection site identity differs from configuration")
+        operation_indices = {variant.get("operationIndex") for variant in _reflection_method_variants(config_site)}
+        _need(item.get("operationIndex") in operation_indices, item_path,
+             "linked reflection operation is not a configured compiler variant")
         _need(item.get("compiledPath") == compiled.get("path") and item.get("compiledSha256") == compiled.get("sha256") and
               item.get("linkedPath") == "LinkedPlayer/" + linked_item.get("path") and item.get("linkedSha256") == linked_item.get("sha256"), item_path,
              "linked reflection site paths or SHA differ from captured inputs")

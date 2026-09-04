@@ -215,12 +215,29 @@ namespace AssemblyShadowDemo
         private static void ValidateProofGraph(Input input)
         {
             var manifest = input.manifest; var player = input.player;
+            bool featureOff = Argument("-shadowM06Mode", "T06-01-New-P01") == "T06-11-FeatureOff";
             Require(manifest.unityVersion == player.unityVersion && manifest.target == player.target && manifest.architecture == player.architecture &&
-                manifest.baselineInputSnapshotHash == player.inputSnapshotHash && Absolute(manifest.baselineInputSnapshot) == Absolute(player.inputSnapshot) &&
                 Absolute(manifest.generationProofPath) == Absolute(player.generationProofPath) && manifest.generationProofSha256 == player.generationProofSha256,
                 "M06 fixture/Player source-generation binding differs.");
-            SnapshotReceipt snapshot = JsonUtility.FromJson<SnapshotReceipt>(File.ReadAllText(Path.Combine(player.inputSnapshot, "assembly-snapshot.json")));
-            LinkedPlayerReceipt linked = ReadJson<LinkedPlayerReceipt>(File.ReadAllText(Path.Combine(player.inputSnapshot, "LinkedPlayer/linked-player-receipt.json")));
+            SnapshotReceipt snapshot = ReadAndVerifyPlayerSnapshot(player.inputSnapshot, player.inputSnapshotHash, "executed Player");
+            SnapshotReceipt baselineSnapshot;
+            if (featureOff)
+            {
+                Require(manifest.baselineInputSnapshotHash != player.inputSnapshotHash &&
+                    Absolute(manifest.baselineInputSnapshot) != Absolute(player.inputSnapshot),
+                    "M06 FeatureOff requires distinct native-ON baseline and native-OFF Player snapshots.");
+                baselineSnapshot = ReadAndVerifyPlayerSnapshot(manifest.baselineInputSnapshot, manifest.baselineInputSnapshotHash, "native-ON baseline Player");
+                RequireFeatureOffSnapshotPair(baselineSnapshot, snapshot);
+            }
+            else
+            {
+                Require(manifest.baselineInputSnapshotHash == player.inputSnapshotHash &&
+                    Absolute(manifest.baselineInputSnapshot) == Absolute(player.inputSnapshot),
+                    "M06 native-ON fixture/Player snapshot binding differs.");
+                baselineSnapshot = snapshot;
+            }
+            LinkedPlayerReceipt linked = snapshot.linkedPlayerReceipt;
+            LinkedPlayerReceipt baselineLinked = baselineSnapshot.linkedPlayerReceipt;
             Require(snapshot.linkedPlayerReceipt != null && IsHash(snapshot.linkedPlayerReceiptHash) && LinkedReceiptHash(linked) == snapshot.linkedPlayerReceiptHash &&
                 LinkedReceiptHash(snapshot.linkedPlayerReceipt) == snapshot.linkedPlayerReceiptHash && linked.buildGuid == player.buildGuid &&
                 linked.nativeLibrarySha256 == player.nativeLibrarySha256 && linked.target == player.target && linked.architecture == player.architecture,
@@ -237,11 +254,13 @@ namespace AssemblyShadowDemo
             RequireSet(manifest.closureLoadOrder, Candidates, "manifest closure");
             Require(manifest.stableAotNames != null && manifest.stableAotNames.Length > 0 &&
                 manifest.stableAotNames.SequenceEqual(manifest.stableAotNames.OrderBy(name => name, StringComparer.Ordinal)) &&
-                !manifest.stableAotNames.Intersect(Candidates).Any() && manifest.stableAotNames.All(name => linked.assemblies.Any(row => CanonicalName(row.name) == CanonicalName(name))),
+                !manifest.stableAotNames.Intersect(Candidates).Any() &&
+                manifest.stableAotNames.All(name => baselineLinked.assemblies.Any(row => CanonicalName(row.name) == CanonicalName(name))) &&
+                manifest.stableAotNames.All(name => linked.assemblies.Any(row => CanonicalName(row.name) == CanonicalName(name))),
                 "M06 stable AOT names are not actual same-build linked providers.");
             RequireSet(manifest.stableAotNames, manifest.stableAotNames.Distinct(), "stable AOT uniqueness");
             Require(manifest.stableAotProvenanceHash == Hash(Encoding.UTF8.GetBytes("m06-stable-aot:1\n" + manifest.stableAotProvenance)) &&
-                manifest.stableAotProvenance.Contains("\nlinked-player=" + snapshot.linkedPlayerReceiptHash + "\n") &&
+                manifest.stableAotProvenance.Contains("\nlinked-player=" + baselineSnapshot.linkedPlayerReceiptHash + "\n") &&
                 manifest.stableAotProvenance.EndsWith("\nphysical=" + string.Join(",", manifest.stableAotNames), StringComparison.Ordinal), "M06 stable AOT provenance differs.");
             TypeProof typeProof = ReadJson<TypeProof>(File.ReadAllText(player.typeProofPath));
             Require(typeProof.schemaVersion == 1 && typeProof.milestone == "M06" && typeProof.policy == "active-execution-types:1" &&
@@ -665,28 +684,140 @@ namespace AssemblyShadowDemo
 
         private static void ValidatePlayerSnapshot(PlayerBuildReceipt player)
         {
-            string root = Absolute(player.inputSnapshot);
+            SnapshotReceipt snapshot = ReadAndVerifyPlayerSnapshot(player.inputSnapshot, player.inputSnapshotHash, "executed Player");
+            Require(snapshot.buildGuid == player.buildGuid && snapshot.playerBuildOptions == player.buildOptions &&
+                Absolute(snapshot.playerOutput) == Absolute(player.playerOutput) && Absolute(snapshot.nativeLibraryPath) == Absolute(player.nativeLibraryPath) &&
+                snapshot.nativeLibrarySha256 == player.nativeLibrarySha256,
+                "M06 Player assembly snapshot identity differs from the executed Player receipt.");
+        }
+
+        private static SnapshotReceipt ReadAndVerifyPlayerSnapshot(string snapshotRoot, string expectedHash, string label)
+        {
+            string root = Absolute(snapshotRoot);
             string receiptPath = Path.Combine(root, "assembly-snapshot.json");
-            Require(File.Exists(receiptPath), "M06 Player assembly snapshot receipt is missing.");
+            Require(Directory.Exists(root) && File.Exists(receiptPath), "M06 " + label + " assembly snapshot receipt is missing.");
             SnapshotReceipt snapshot = JsonUtility.FromJson<SnapshotReceipt>(File.ReadAllText(receiptPath));
-            Require(snapshot != null && snapshot.schemaVersion == 1 && snapshot.kind == "PlayerBuildInputs" && snapshot.snapshotHash == player.inputSnapshotHash &&
-                snapshot.playerBuildSucceeded && snapshot.playerBuildFilterCaptured && snapshot.buildGuid == player.buildGuid &&
-                snapshot.playerBuildOptions == player.buildOptions && Path.GetFullPath(snapshot.nativeLibraryPath) == Path.GetFullPath(player.nativeLibraryPath) &&
-                snapshot.nativeLibrarySha256 == player.nativeLibrarySha256 && snapshot.assemblies != null && snapshot.assemblies.Length > 0,
-                "M06 Player assembly snapshot identity is incomplete.");
+            Require(snapshot != null && snapshot.schemaVersion == 1 && snapshot.kind == "PlayerBuildInputs" && snapshot.snapshotHash == expectedHash &&
+                IsHash(snapshot.snapshotHash) && snapshot.playerBuildSucceeded && snapshot.playerBuildFilterCaptured && !string.IsNullOrEmpty(snapshot.buildId) &&
+                !string.IsNullOrEmpty(snapshot.buildGuid) && !string.IsNullOrEmpty(snapshot.unityVersion) && !string.IsNullOrEmpty(snapshot.target) &&
+                !string.IsNullOrEmpty(snapshot.architecture) && snapshot.sourcePins != null && snapshot.assemblies != null && snapshot.assemblies.Length > 0 &&
+                snapshot.references != null && snapshot.filteredAssemblies != null && snapshot.filteredAssemblyCapabilities != null &&
+                snapshot.normalHotUpdateAssemblies != null && snapshot.extraScriptingDefines != null && snapshot.linkerExcludedAssemblies != null &&
+                snapshot.linkerExcludedAssemblyCapabilities != null && IsHash(snapshot.nativeLibrarySha256) &&
+                Directory.Exists(Absolute(snapshot.playerOutput)) && File.Exists(Absolute(snapshot.nativeLibraryPath)) &&
+                Absolute(snapshot.nativeLibraryPath).StartsWith(Absolute(snapshot.playerOutput).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar, StringComparison.Ordinal),
+                "M06 " + label + " assembly snapshot identity is incomplete.");
+            VerifyBytes(snapshot.nativeLibraryPath, snapshot.nativeLibrarySha256, label + " native library");
+            Require(snapshot.assemblies.All(file => file != null) && snapshot.references.All(file => file != null) && snapshot.filteredAssemblies.All(file => file != null),
+                "M06 " + label + " assembly snapshot contains a null file identity.");
+            RequireCanonicalSet(snapshot.assemblies.Select(file => file.name), snapshot.assemblies.Select(file => file.name).Distinct(), label + " compiler assembly names");
+            RequireCanonicalSet(snapshot.references.Select(file => file.name), snapshot.references.Select(file => file.name).Distinct(), label + " compiler reference names");
+            RequireCanonicalSet(snapshot.filteredAssemblies.Select(file => file.name), snapshot.filteredAssemblies.Select(file => file.name).Distinct(), label + " filtered assembly names");
             foreach (SnapshotFile file in (snapshot.assemblies ?? new SnapshotFile[0]).Concat(snapshot.references ?? new SnapshotFile[0]).Concat(snapshot.filteredAssemblies ?? new SnapshotFile[0]))
             {
-                Require(file != null && !string.IsNullOrEmpty(file.name) && IsHash(file.sha256), "M06 Player assembly snapshot file identity is incomplete.");
-                VerifyBytes(ConfinedSnapshotPath(root, file.path), file.sha256, "Player snapshot " + file.name);
+                Require(file != null && !string.IsNullOrEmpty(file.name) && !string.IsNullOrEmpty(file.sourcePath) && Path.IsPathRooted(file.sourcePath) && IsHash(file.sha256),
+                    "M06 " + label + " assembly snapshot file identity is incomplete.");
+                VerifyBytes(ConfinedSnapshotPath(root, file.path), file.sha256, label + " snapshot " + file.name);
                 if (!string.IsNullOrEmpty(file.pdbPath))
                 {
-                    Require(IsHash(file.pdbSha256), "M06 Player snapshot PDB hash is missing: " + file.name);
-                    VerifyBytes(ConfinedSnapshotPath(root, file.pdbPath), file.pdbSha256, "Player snapshot PDB " + file.name);
+                    Require(IsHash(file.pdbSha256), "M06 " + label + " snapshot PDB hash is missing: " + file.name);
+                    VerifyBytes(ConfinedSnapshotPath(root, file.pdbPath), file.pdbSha256, label + " snapshot PDB " + file.name);
                 }
-                else Require(string.IsNullOrEmpty(file.pdbSha256), "M06 Player snapshot has an unbound PDB hash: " + file.name);
+                else Require(string.IsNullOrEmpty(file.pdbSha256), "M06 " + label + " snapshot has an unbound PDB hash: " + file.name);
             }
+            Require(snapshot.filteredAssemblyCapabilities.All(row => row != null && !string.IsNullOrEmpty(row.name)) &&
+                snapshot.linkerExcludedAssemblyCapabilities.All(row => row != null && !string.IsNullOrEmpty(row.name)),
+                "M06 " + label + " assembly snapshot contains a null or unnamed capability.");
+            RequireCanonicalSet(snapshot.filteredAssemblyCapabilities.Select(row => row.name), snapshot.filteredAssemblies.Select(row => row.name), label + " filtered capabilities");
+            RequireCanonicalSet(snapshot.linkerExcludedAssemblyCapabilities.Select(row => row.name), snapshot.linkerExcludedAssemblies, label + " linker-excluded capabilities");
             ValidateSnapshotControl(root, snapshot.extraScriptingDefines, "ASSEMBLY_SHADOW_REFLECTION_BINDINGS_", "ReflectionBindings/configuration.json");
             ValidateSnapshotControl(root, snapshot.extraScriptingDefines, "ASSEMBLY_SHADOW_RAW_TYPE_ADMISSION_", "RawTypeAdmissions/configuration.json");
+            string linkedRoot = Path.Combine(root, "LinkedPlayer");
+            string linkedPath = Path.Combine(linkedRoot, "linked-player-receipt.json");
+            Require(File.Exists(linkedPath), "M06 " + label + " linked Player receipt is missing.");
+            LinkedPlayerReceipt linked = ReadJson<LinkedPlayerReceipt>(File.ReadAllText(linkedPath));
+            Require(snapshot.linkedPlayerReceipt != null && IsHash(snapshot.linkedPlayerReceiptHash) &&
+                LinkedReceiptHash(snapshot.linkedPlayerReceipt) == snapshot.linkedPlayerReceiptHash && LinkedReceiptHash(linked) == snapshot.linkedPlayerReceiptHash &&
+                linked.buildGuid == snapshot.buildGuid && linked.nativeLibrarySha256 == snapshot.nativeLibrarySha256 &&
+                linked.target == snapshot.target && linked.architecture == snapshot.architecture && linked.protectedAssemblies != null && linked.assemblies != null &&
+                (linked.schemaVersion != 2 || IsHash(linked.reflectionBindingEvidenceHash)), "M06 " + label + " linked Player binding differs.");
+            RequireCanonicalSet(linked.assemblies.Select(row => row.name), linked.assemblies.Select(row => row.name).Distinct(), label + " linked assembly names");
+            foreach (LinkedPlayerFile file in linked.assemblies)
+            {
+                Require(file != null && !string.IsNullOrEmpty(file.name) && !string.IsNullOrEmpty(file.mvid) && IsHash(file.sha256),
+                    "M06 " + label + " linked assembly identity is incomplete.");
+                VerifyBytes(ConfinedSnapshotPath(linkedRoot, file.path), file.sha256, label + " linked DLL " + file.name);
+                if (!string.IsNullOrEmpty(file.pdbPath))
+                {
+                    Require(IsHash(file.pdbSha256), "M06 " + label + " linked PDB hash is missing: " + file.name);
+                    VerifyBytes(ConfinedSnapshotPath(linkedRoot, file.pdbPath), file.pdbSha256, label + " linked PDB " + file.name);
+                }
+                else Require(string.IsNullOrEmpty(file.pdbSha256), "M06 " + label + " linked assembly has an unbound PDB hash: " + file.name);
+            }
+            snapshot.linkedPlayerReceipt = linked;
+            return snapshot;
+        }
+
+        private static void RequireFeatureOffSnapshotPair(SnapshotReceipt baseline, SnapshotReceipt disabled)
+        {
+            Require(baseline != null && disabled != null && baseline.snapshotHash != disabled.snapshotHash &&
+                baseline.buildGuid != disabled.buildGuid && Absolute(baseline.playerOutput) != Absolute(disabled.playerOutput) &&
+                Absolute(baseline.nativeLibraryPath) != Absolute(disabled.nativeLibraryPath) && baseline.nativeLibrarySha256 != disabled.nativeLibrarySha256 &&
+                baseline.linkedPlayerReceiptHash != disabled.linkedPlayerReceiptHash,
+                "M06 FeatureOff must execute a distinct native-OFF build, not a relabeled native-ON Player.");
+            Require(baseline.kind == disabled.kind && baseline.buildId == disabled.buildId && baseline.unityVersion == disabled.unityVersion &&
+                baseline.target == disabled.target && baseline.architecture == disabled.architecture && baseline.playerBuildOptions == disabled.playerBuildOptions &&
+                JsonUtility.ToJson(baseline.sourcePins) == JsonUtility.ToJson(disabled.sourcePins) &&
+                baseline.normalHotUpdateAssemblies.SequenceEqual(disabled.normalHotUpdateAssemblies) &&
+                baseline.extraScriptingDefines.SequenceEqual(disabled.extraScriptingDefines) &&
+                baseline.linkerExcludedAssemblies.SequenceEqual(disabled.linkerExcludedAssemblies),
+                "M06 FeatureOff native-ON/OFF builds do not share the same pinned managed compilation inputs.");
+            RequireSameSnapshotFiles(baseline.assemblies, disabled.assemblies, "compiler assemblies");
+            RequireSameSnapshotFiles(baseline.references, disabled.references, "compiler references");
+            RequireSameSnapshotFiles(baseline.filteredAssemblies, disabled.filteredAssemblies, "filtered assemblies");
+            RequireSameSnapshotCapabilities(baseline.filteredAssemblyCapabilities, disabled.filteredAssemblyCapabilities, "filtered assembly capabilities");
+            RequireSameSnapshotCapabilities(baseline.linkerExcludedAssemblyCapabilities, disabled.linkerExcludedAssemblyCapabilities, "linker-excluded capabilities");
+            RequireSameLinkedManagedInputs(baseline.linkedPlayerReceipt, disabled.linkedPlayerReceipt);
+        }
+
+        private static void RequireSameSnapshotFiles(SnapshotFile[] baseline, SnapshotFile[] disabled, string label)
+        {
+            Require(baseline != null && disabled != null && baseline.Length == disabled.Length, "M06 FeatureOff " + label + " count differs.");
+            for (int index = 0; index < baseline.Length; ++index)
+            {
+                SnapshotFile left = baseline[index], right = disabled[index];
+                Require(left != null && right != null && left.name == right.name && left.path == right.path && left.sha256 == right.sha256 &&
+                    left.pdbPath == right.pdbPath && left.pdbSha256 == right.pdbSha256 && left.sourcePath == right.sourcePath,
+                    "M06 FeatureOff " + label + " differ at index " + index.ToString(CultureInfo.InvariantCulture) + ".");
+            }
+        }
+
+        private static void RequireSameSnapshotCapabilities(SnapshotCapability[] baseline, SnapshotCapability[] disabled, string label)
+        {
+            Require(baseline != null && disabled != null && baseline.Length == disabled.Length, "M06 FeatureOff " + label + " count differs.");
+            for (int index = 0; index < baseline.Length; ++index)
+            {
+                SnapshotCapability left = baseline[index], right = disabled[index];
+                Require(left != null && right != null && left.name == right.name && left.classification == right.classification &&
+                    left.isShadowCapable == right.isShadowCapable && left.isBootstrap == right.isBootstrap && left.isPrecompiled == right.isPrecompiled &&
+                    left.capabilityDeclared == right.capabilityDeclared,
+                    "M06 FeatureOff " + label + " differ at index " + index.ToString(CultureInfo.InvariantCulture) + ".");
+            }
+        }
+
+        private static void RequireSameLinkedManagedInputs(LinkedPlayerReceipt baseline, LinkedPlayerReceipt disabled)
+        {
+            Require(baseline != null && disabled != null && baseline.schemaVersion == disabled.schemaVersion && baseline.target == disabled.target &&
+                baseline.architecture == disabled.architecture && baseline.sourceDirectory == disabled.sourceDirectory &&
+                baseline.protectedAssemblies.SequenceEqual(disabled.protectedAssemblies) && baseline.assemblies.Length == disabled.assemblies.Length,
+                "M06 FeatureOff linked managed inventory header differs.");
+            for (int index = 0; index < baseline.assemblies.Length; ++index)
+            {
+                LinkedPlayerFile left = baseline.assemblies[index], right = disabled.assemblies[index];
+                Require(left != null && right != null && left.name == right.name && left.path == right.path && left.sha256 == right.sha256 &&
+                    left.mvid == right.mvid && left.pdbPath == right.pdbPath && left.pdbSha256 == right.pdbSha256,
+                    "M06 FeatureOff linked managed assembly inventory differs at index " + index.ToString(CultureInfo.InvariantCulture) + ".");
+            }
         }
 
         private static void ValidateSnapshotControl(string root, string[] defines, string prefix, string relativePath)
@@ -950,17 +1081,26 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] private sealed class SnapshotReceipt
         {
             [Preserve] public int schemaVersion, playerBuildOptions;
-            [Preserve] public string kind, snapshotHash, unityVersion, target, architecture, buildGuid, nativeLibraryPath, nativeLibrarySha256;
+            [Preserve] public string kind, snapshotHash, unityVersion, target, architecture, buildId, buildGuid, playerOutput, nativeLibraryPath, nativeLibrarySha256;
             [Preserve] public bool playerBuildSucceeded, playerBuildFilterCaptured;
-            [Preserve] public string[] extraScriptingDefines;
+            [Preserve] public string[] normalHotUpdateAssemblies, extraScriptingDefines;
             [Preserve] public SnapshotFile[] assemblies, references, filteredAssemblies;
+            [Preserve] public SnapshotCapability[] filteredAssemblyCapabilities;
             [Preserve] public string linkedPlayerReceiptHash;
             [Preserve] public LinkedPlayerReceipt linkedPlayerReceipt;
+            [Preserve] public string[] linkerExcludedAssemblies;
+            [Preserve] public SnapshotCapability[] linkerExcludedAssemblyCapabilities;
             [Preserve] public SourcePins sourcePins;
         }
         [Serializable, Preserve] private sealed class SnapshotFile
         {
-            [Preserve] public string name, path, sha256, pdbPath, pdbSha256;
+            [Preserve] public string name, path, sha256, pdbPath, pdbSha256, sourcePath;
+        }
+        [Serializable, Preserve] private sealed class SnapshotCapability
+        {
+            [Preserve] public string name;
+            [Preserve] public int classification;
+            [Preserve] public bool isShadowCapable, isBootstrap, isPrecompiled, capabilityDeclared;
         }
     }
 }

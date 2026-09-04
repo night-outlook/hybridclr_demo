@@ -41,6 +41,7 @@ IMAGE_FIELDS="name assemblyIdentity mvid path sha256 pdbPath pdbSha256 sourcePat
 OUTPUT_FIELDS="schemaVersion kind planHash aotInventoryHash stage target architecture templateSha256 outputPath outputSha256 outputHash development maxIterations nativePointerDispatchHasMethodInfo reversePInvokeGuardPolicy collectorRoots collectorTypes collectorMethods reverseMethods nativeCallSignatures aotTypes aotMethods emittedAssemblyNames resolverCatalog managedToNative nativeToManaged adjustThunks reversePInvoke calli structMappings"
 AOT_FIELDS="schemaVersion kind planHash target architecture sourceDirectory inventoryHash excludedSelectedNames images"
 ABI_KINDS="managedToNative nativeToManaged adjustThunks reversePInvoke calli structMappings".split()
+DTO_PRIMITIVES=frozenset("System.Int32 System.UInt32 System.UInt64 System.Int64 System.Boolean System.String".split())
 EXECUTION_FIELDS="schemaVersion milestone policy compileSnapshotHash linkedPlayerReceiptHash nativeLibrarySha256 buildGuid generationProofPath generationProofSha256 typeProofPath typeProofSha256 developmentBuild apiSignatures errorCodes schemaTypes images"
 EXECUTION_IMAGE_FIELDS="role planId compileSnapshotHash planHash pdbPath pdbSha256 pdbAvailable identity methods"
 METHOD_FIELDS="declaringType name signature metadataToken genericArity methodFlags implementationFlags maxStack isStatic hasBody initLocals returnType parameterTypes genericParameterNames locals instructions exceptionHandlers sequencePoints"
@@ -90,6 +91,12 @@ def obj(path,shape=None):
 
 def names(value,path):
     rows=array(value,path);require(all(type(n) is str and n for n in rows) and len(set(rows))==len(rows),f"{path}: missing/duplicate names")
+    return rows
+
+
+def canonical_names(value,path):
+    rows=[name.casefold() for name in names(value,path)]
+    require(len(rows)==len(set(rows)),f"{path}: case-insensitive duplicate names")
     return rows
 
 
@@ -197,6 +204,12 @@ def verify_generation_image(image,root,path):
     return image
 
 
+def generation_source_pdb(source,path):
+    pdb_path=source.get('pdbPath');pdb_sha=source.get('pdbSha256')
+    require(bool(pdb_path)==bool(pdb_sha),f"{path}: compiler PDB path/hash availability differs")
+    return ('Snapshot/'+pdb_path,pdb_sha) if pdb_path else (None,None)
+
+
 def verify_abi_coverage(selected,required,path):
     for key in ('target','architecture','development','templateSha256'):exact(required[key],selected[key],f"{path}.{key}")
     for kind in ABI_KINDS:
@@ -299,7 +312,8 @@ def verify_generation(path,baseline,development):
                 # Full ordinary semantic equivalence is independently replayed
                 # by the byte-bound Editor generation verifier.
             else:
-                for field,value in dict(role='Compiler' if key in compiled else 'Reference',path='Snapshot/'+source['path'],sourcePath=source['sourcePath'],sha256=source['sha256'],pdbSha256=source['pdbSha256'],pdbPath='Snapshot/'+source['pdbPath'] if source['pdbPath'] else None).items():exact(image[field],value,path)
+                pdb_path,pdb_sha=generation_source_pdb(source,path)
+                for field,value in dict(role='Compiler' if key in compiled else 'Reference',path='Snapshot/'+source['path'],sourcePath=source['sourcePath'],sha256=source['sha256'],pdbSha256=pdb_sha,pdbPath=pdb_path).items():exact(image[field],value,path)
         for image in plan['images']:
             expected=copy.deepcopy(catalog[image['name'].casefold()]);expected['role']='Ordinary' if image['name'].casefold() in plan['ordinaryAssemblies'] else 'Shadow';exact(image,expected,path)
         startup=bound(row['executionPolicyPath'],row['executionPolicySha256'],path,'executionPolicyPath');verify_startup(startup,snapshot)
@@ -345,11 +359,23 @@ def witness(name):
             'AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness' if name==EXTENSIBILITY_CONSUMER else name+'.M06ExecutionWitness')
 
 
-def verify_warmup(value,closure,core,path):
+def compiler_core_identity(identity,providers,path):
+    choices=[row for row in identity['referenceIdentities']
+             if row['name'].casefold() in ('mscorlib','netstandard')]
+    require(len(choices)==1,f"{path}: ambiguous/missing actual compiler corlib identity")
+    core=choices[0];key=core['name'].casefold()
+    require(key in providers,f"{path}: compiler corlib is absent from the verified compiler snapshot")
+    exact(core['fullName'],providers[key]['fullName'],path)
+    return core['fullName']
+
+
+def verify_warmup(value,closure,cores,path):
     fields(value,'types methods',path)
     exact(value['types'],[dict(assembly=n,type=witness(n)) for n in closure],path)
     expected=[]
     for name in closure:
+        require(name in cores,f"{path}: missing byte-bound compiler corlib for {name}")
+        core=cores[name]
         for method,type_,arity in (('WarmupValue','System.Int32',0),('WarmupEcho','System.Int32',1),('WarmupEcho','System.String',1),('Run','System.String',0)):
             arg=dict(assembly=core,type=type_)
             expected.append(dict(assembly=name,declaringType=witness(name),name=method,isStatic=True,genericArity=arity,genericArguments=[arg] if arity else [],returnType=dict(assembly=core,type='System.String[]') if method=='Run' else arg,parameterTypes=[arg]))
@@ -374,13 +400,14 @@ def verify_patch(fixture,manifest,baseline,plan_tuple,path):
     exact(patch['resourceBundlesRequired'],[],path)
     source={i['name']:i for i in snapshot['assemblies']};base={i['name']:i for i in baseline['assemblies']}
     exact(sorted(names([i['name'] for i in patch['closure']],path)),sorted(order_for(pid)),path)
-    dlls=[]
+    dlls=[];identities={}
     for item in patch['closure']:
         fields(item,'name dll sha256 semanticHash mvid baselineMvid pdb pdbSha256 references',path);name=item['name'];dll=prior._rel(root,item['dll'],path,'patch DLL');dlls.append(dll)
-        actual=prior.read_identity(dll)
+        actual=prior.read_identity(dll);identities[name]=actual
         for key in ('name','sha256','mvid'):exact(item[key],actual[key],path)
         exact(item['sha256'],source[name]['sha256'],path);exact(item['baselineMvid'],base[name]['mvid'],path)
-        exact(sorted(item['references']),sorted(r['name'] for r in actual['referenceIdentities']),path)
+        exact(sorted(canonical_names(item['references'],path)),
+              sorted(canonical_names([r['name'] for r in actual['referenceIdentities']],path)),path)
         if manifest['developmentBuild']:
             pdb=prior._rel(root,item['pdb'],path,'patch PDB');exact(digest(pdb),item['pdbSha256'],path);exact(item['pdbSha256'],source[name]['pdbSha256'],path)
         else:require(item['pdb'] in ('',None) and item['pdbSha256'] in ('',None),f"{path}: release patch deploys PDB")
@@ -391,8 +418,14 @@ def verify_patch(fixture,manifest,baseline,plan_tuple,path):
     exact(closure,set(patch['loadOrder']),path);prior._verify_topological(patch['loadOrder'],closure,edges,path)
     reflection=prior._reflection_snapshot(Path(fixture['compileSnapshot']),snapshot,path);prior._reflection_manifest(patch,reflection,path)
     exact(types._artifact_tree(root/'RawTypeAdmissions'),types._artifact_tree(Path(fixture['compileSnapshot'])/'RawTypeAdmissions'),path)
-    core=prior.read_identity(prior._rel(Path(fixture['compileSnapshot']),next(i for i in snapshot['references']+snapshot['assemblies'] if i['name']=='mscorlib')['path'],path,'core DLL'))['fullName']
-    verify_warmup(envelope['warmup'],patch['loadOrder'],core,path)
+    snapshot_root=Path(fixture['compileSnapshot']);providers={}
+    for row in snapshot['references']+snapshot['assemblies']:
+        key=row['name'].casefold()
+        if key in ('mscorlib','netstandard'):
+            require(key not in providers,f"{path}: duplicate compiler corlib provider")
+            providers[key]=prior.read_identity(prior._rel(snapshot_root,row['path'],path,'compiler corlib DLL'))
+    cores={name:compiler_core_identity(identities[name],providers,path) for name in patch['loadOrder']}
+    verify_warmup(envelope['warmup'],patch['loadOrder'],cores,path)
     return dict(fixture=fixture,patch=patch,warmup=envelope['warmup'],root=root,snapshot=snapshot)
 
 
@@ -486,7 +519,7 @@ def verify_schema_rows(rows,modules,resolver,path):
                 target=child.assembly.partition(',')[0]
                 if (side,target) in modules:
                     exact(child.assembly,modules[side,target].identity['fullName'],path);pending.append((target,child.full))
-                else:require(child.full in ('System.Int32','System.UInt64','System.Int64','System.Boolean','System.String'),f"{path}: unsupported DTO primitive/owner {child.full}")
+                else:require(child.full in DTO_PRIMITIVES,f"{path}: unsupported DTO primitive/owner {child.full}")
         exact({(r['assemblyName'],r['typeName']) for r in actual_rows if r['side']==side},required,path)
     resolver.verify_unchanged()
     return actual_rows
@@ -573,6 +606,28 @@ def verify_player(path,context,native_enabled,development):
         actual=next(i for i in player['assemblyIdentities'] if i['name']==row['assemblyName']);exact(row['identity'],actual,path)
     proof,images=verify_execution_proof(player,snapshot,context,path)
     return dict(player=player,path=path,snapshot=snapshot,proof=proof,images=images)
+
+
+def managed_player_inputs(snapshot,path):
+    """Project a Player snapshot onto the byte-bound managed build inputs.
+
+    Native-ON and native-OFF builds must differ in their native identity, while
+    this projection must remain exactly equal. Native build GUIDs, outputs,
+    binary hashes and linked reflection receipts are deliberately excluded.
+    """
+    root_keys=("schemaVersion","kind","unityVersion","target","architecture","buildId",
+               "playerBuildSucceeded","playerBuildFilterCaptured","playerBuildOptions",
+               "normalHotUpdateAssemblies","extraScriptingDefines","sourcePins","assemblies",
+               "references","filteredAssemblies","filteredAssemblyCapabilities",
+               "linkerExcludedAssemblies","linkerExcludedAssemblyCapabilities")
+    linked_keys=("schemaVersion","target","architecture","sourceDirectory","protectedAssemblies","assemblies")
+    require(type(snapshot) is dict and all(key in snapshot for key in root_keys) and
+            type(snapshot.get("linkedPlayerReceipt")) is dict and
+            all(key in snapshot["linkedPlayerReceipt"] for key in linked_keys),
+            f"{path}: incomplete managed Player input projection")
+    projection={key:copy.deepcopy(snapshot[key]) for key in root_keys}
+    projection["linkedPlayerReceipt"]={key:copy.deepcopy(snapshot["linkedPlayerReceipt"][key]) for key in linked_keys}
+    return projection
 
 
 def values_map(values,path):
@@ -885,6 +940,11 @@ def active_images(build,pid):
     return {name:build['images'][('GenerationPlan',pid,name) if name in closure else ('LinkedPlayer','',name)] for name in CANDIDATES}
 
 
+def global_module_type_key(name):
+    def part(value):return str(len(value.encode('utf-8')))+':'+value
+    return 'type('+part(name.casefold())+'/'+part('')+'/'+part('<Module>')+'@0)'
+
+
 def verify_class_keys(execution,identities,closure,path):
     """Decode observed physical class keys only against already-bound DLLs.
 
@@ -899,11 +959,17 @@ def verify_class_keys(execution,identities,closure,path):
                 value=types.read_type_inventory(identities[name]['path'])['types'];self[name]=value
             return value
     inventories=Inventories.fromkeys(identities);seen={}
+    module_keys={global_module_type_key(name):name for name in identities}
     for snapshot in execution:
         for row in snapshot['classes']:
             name=row['logicalAssembly'];require(name in CANDIDATES,f"{path}: observation owner is not a registered candidate")
             key=row['typeKey']
-            if key not in seen:seen[key]=types.TypeKeyReader(key,inventories,identities,closure,path).read()
+            if key not in seen:
+                module_name=module_keys.get(key)
+                if module_name is not None:
+                    inventories[module_name] # Reopen actual bytes and require their ECMA global Module TypeDef.
+                    seen[key]=dict(assemblyName=module_name)
+                else:seen[key]=types.TypeKeyReader(key,inventories,identities,closure,path).read()
             shape=seen[key];exact(shape['assemblyName'],name,path);exact(row['isActive'],True,path)
             shadow=snapshot['generation']>0 and name in closure
             exact(row['executionModeCode'],int(shadow),path)
@@ -1106,8 +1172,13 @@ def verify_case(path,context,build):
     return result
 
 
-def verify_replay(context,build):
-    path=context['path'].parent/'m06-editor-replay.json';receipt=obj(path,REPLAY_FIELDS);manifest=context['manifest'];player=build['player']
+def replay_receipt_path(context,receipt_path=None):
+    selected=context['path'].parent/'m06-editor-replay.json' if receipt_path is None else Path(receipt_path)
+    return canonical(str(selected),context['path'],'editorReplayReceipt')
+
+
+def verify_replay(context,build,receipt_path=None):
+    path=replay_receipt_path(context,receipt_path);receipt=obj(path,REPLAY_FIELDS);manifest=context['manifest'];player=build['player']
     exact(receipt['schemaVersion'],1,path);exact(receipt['milestone'],'M06',path);exact(receipt['result'],'Passed',path);exact(receipt['comparisonPolicy'],'compiler-linked-resource-generation-warmup:1',path)
     for key in ('baselineManifestPath','baselineManifestSha256','baselineInputSnapshotHash','baselineBuildId','generationProofPath','generationProofSha256','developmentBuild'):exact(receipt[key],manifest[key],path)
     for key,value in dict(fixtureManifestPath=str(context['path']),fixtureManifestSha256=digest(context['path']),playerBuildReceiptPath=str(build['path']),playerBuildReceiptSha256=digest(build['path']),playerBuildGuid=player['buildGuid'],nativeLibrarySha256=player['nativeLibrarySha256'],linkedPlayerReceiptHash=build['snapshot']['linkedPlayerReceiptHash']).items():exact(receipt[key],value,path)
@@ -1132,6 +1203,9 @@ def verify_suite(fixture_manifest,on_build,off_build,release_fixture_manifest,re
     development=verify_inputs(fixture_manifest,m01_baseline_root,True);release=verify_inputs(release_fixture_manifest,m01_baseline_root,False)
     on=verify_player(on_build,development,True,True);off=verify_player(off_build,development,False,True);released=verify_player(release_build,release,True,False)
     require(len({b['player']['buildGuid'] for b in (on,off,released)})==3 and len({b['player']['nativeLibrarySha256'] for b in (on,off,released)})==3,f"{results}: ON/OFF/release are not three actual builds")
+    for key in ('snapshotHash','buildGuid','playerOutput','nativeLibraryPath','nativeLibrarySha256','linkedPlayerReceiptHash'):
+        exact(on['snapshot'][key]!=off['snapshot'][key],True,f"{results}: native ON/OFF {key}")
+    exact(managed_player_inputs(on['snapshot'],on['path']),managed_player_inputs(off['snapshot'],off['path']),f"{results}: native ON/OFF managed inputs")
     require(development['manifest']['baselineBuildId']!=release['manifest']['baselineBuildId'] and development['path']!=release['path'],f"{results}: release baseline was relabeled")
     replays=[verify_replay(development,on),verify_replay(release,released)]
     result_root=canonical(str(results),results,'results',True);found={};pids=set();files=[]
