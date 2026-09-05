@@ -29,6 +29,7 @@ il2cpp::vm::AssemblyVector assemblies;
 std::unordered_map<const Il2CppImage*, std::vector<Il2CppClass*>> imageTypes;
 std::unordered_map<const Il2CppClass*, std::vector<Il2CppMetadataFieldInfo>> fields;
 std::unordered_map<const Il2CppClass*, std::vector<uint32_t>> offsets;
+std::unordered_map<const Il2CppClass*, std::vector<const Il2CppType*>> interfaces;
 std::unordered_map<const Il2CppClass*, std::vector<const MethodInfo*>> methods;
 std::unordered_map<std::string, Il2CppClass*> interned;
 std::map<std::vector<const Il2CppType*>, const Il2CppGenericInst*> genericInstances;
@@ -85,10 +86,16 @@ Il2CppClass* Generic(Il2CppClass* definition, std::initializer_list<const Il2Cpp
     return MetadataCache::GetGenericInstanceType(definition, arguments.data(), static_cast<uint32_t>(arguments.size()));
 }
 const Il2CppAssembly* PrivateLookup(const char*, void* context) { return static_cast<Il2CppAssembly*>(context); }
-void AddField(Il2CppClass* klass, const char* name, const Il2CppType* type, uint32_t offset)
+void AddField(Il2CppClass* klass, const char* name, const Il2CppType* type, uint32_t offset,
+    uint16_t attributes = FIELD_ATTRIBUTE_PRIVATE)
 {
-    Il2CppMetadataFieldInfo field = {}; field.name = name; field.type = type;
+    Il2CppType* declared = new Il2CppType(*type); declared->attrs = attributes;
+    Il2CppMetadataFieldInfo field = {}; field.name = name; field.type = declared;
     fields[klass].push_back(field); offsets[klass].push_back(offset); klass->field_count++;
+}
+void AddInterface(Il2CppClass* klass, const Il2CppType* type)
+{
+    interfaces[klass].push_back(type); klass->interfaces_count++;
 }
 MethodInfo* AddMethod(Il2CppClass* klass, const char* name, const Il2CppType* returnType,
     std::initializer_list<const Il2CppType*> parameterTypes, uint32_t token, uint32_t genericArity = 0)
@@ -163,6 +170,8 @@ const MethodInfo* MetadataCache::GetParameterDeclaringMethod(Il2CppMetadataGener
 Il2CppGenericParameterInfo MetadataCache::GetGenericParameterInfo(Il2CppMetadataGenericParameterHandle handle)
 { Il2CppGenericParameterInfo info = {}; info.num = reinterpret_cast<const Parameter*>(handle)->num; return info; }
 Il2CppMetadataFieldInfo MetadataCache::GetFieldInfo(const Il2CppClass* klass, TypeFieldIndex index) { return fields.at(klass).at(index); }
+const Il2CppType* MetadataCache::GetInterfaceFromOffset(const Il2CppClass* klass, TypeInterfaceIndex index)
+{ return interfaces.at(klass).at(index); }
 Il2CppMetadataMethodInfo MetadataCache::GetMethodInfo(const Il2CppClass* klass, TypeMethodIndex index)
 {
     const MethodInfo* method = methods.at(klass).at(index);
@@ -282,6 +291,7 @@ int main(int argc, char** argv)
         il2cpp_defaults.int32_class = stable.Type("Int32", 0, nullptr, true, "System");
         il2cpp_defaults.string_class = stable.Type("String", 0, nullptr, false, "System");
         il2cpp_defaults.void_class = stable.Type("Void", 0, nullptr, true, "System");
+        Il2CppType int32Field = {}; int32Field.type = IL2CPP_TYPE_I4;
         auto oldDto = baseline.Type("Dto"), newDto = active.Type("Dto");
         auto oldGeneric = baseline.Type("Box`1", 1), newGeneric = active.Type("Box`1", 1);
         auto oldOuter = baseline.Type("Outer`1", 1), newOuter = active.Type("Outer`1", 1);
@@ -301,6 +311,21 @@ int main(int argc, char** argv)
         AddField(oldField, "Value", &il2cpp_defaults.int32_class->byval_arg, 16);
         AddField(newField, "Value", &il2cpp_defaults.int32_class->byval_arg, 16);
         AddField(newField, "ExtraSerializedField", &il2cpp_defaults.int32_class->byval_arg, 20);
+        auto oldNonSerialized = baseline.Type("NonSerializedGrowth"), newNonSerialized = active.Type("NonSerializedGrowth");
+        newNonSerialized->instance_size = 40;
+        AddField(newNonSerialized, "runtimeOnly", &int32Field, 32,
+            FIELD_ATTRIBUTE_PRIVATE | FIELD_ATTRIBUTE_NOT_SERIALIZED);
+        auto oldPublicNonSerialized = baseline.Type("PublicNonSerializedGrowth"), newPublicNonSerialized = active.Type("PublicNonSerializedGrowth");
+        newPublicNonSerialized->instance_size = 40;
+        AddField(newPublicNonSerialized, "runtimeOnly", &int32Field, 32,
+            FIELD_ATTRIBUTE_PUBLIC | FIELD_ATTRIBUTE_NOT_SERIALIZED);
+        auto oldReferenceNonSerialized = baseline.Type("ReferenceNonSerializedGrowth"), newReferenceNonSerialized = active.Type("ReferenceNonSerializedGrowth");
+        newReferenceNonSerialized->instance_size = 40;
+        AddField(newReferenceNonSerialized, "runtimeOnly", &il2cpp_defaults.string_class->byval_arg, 32,
+            FIELD_ATTRIBUTE_PRIVATE | FIELD_ATTRIBUTE_NOT_SERIALIZED);
+        auto contract = stable.Type("IContract", 0, nullptr, false, "Tests"); contract->flags |= TYPE_ATTRIBUTE_INTERFACE;
+        auto oldInterfaceChange = baseline.Type("InterfaceChange"), newInterfaceChange = active.Type("InterfaceChange");
+        AddInterface(newInterfaceChange, &contract->byval_arg);
         auto list = stable.Type("List`1", 1, nullptr, false, "System.Collections.Generic");
         auto dictionary = stable.Type("Dictionary`2", 2, nullptr, false, "System.Collections.Generic");
         auto untouched = unchanged.Type("Stable");
@@ -425,6 +450,14 @@ int main(int argc, char** argv)
         Check(AssemblyShadowTypeResolver::ResolveAllocation(oldDto, "old-allocation") == newDto, "compatible baseline allocation remap");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newDto, "active-allocation") == newDto, "compatible active allocation raw counterpart proof");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newAdded, "added-allocation") == newAdded, "patch-added type legal");
+        Check(AssemblyShadowTypeResolver::ResolveAllocation(newNonSerialized, "nonserialized-growth") == newNonSerialized,
+            "private appended nonserialized primitive storage is legal for post-commit allocation");
+        Failure([&] { AssemblyShadowTypeResolver::ResolveAllocation(newPublicNonSerialized, "public-nonserialized-growth"); },
+            AssemblyShadowError::ResourceAbiMismatch, "ShadowFieldLayoutMismatch");
+        Failure([&] { AssemblyShadowTypeResolver::ResolveAllocation(newReferenceNonSerialized, "reference-nonserialized-growth"); },
+            AssemblyShadowError::ResourceAbiMismatch, "ShadowFieldLayoutMismatch");
+        Failure([&] { AssemblyShadowTypeResolver::ResolveAllocation(newInterfaceChange, "interface-change"); },
+            AssemblyShadowError::ResourceAbiMismatch, "ShadowInterfaceLayoutMismatch");
         size_t beforeInflation = inflationCalls;
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newBoxDto, "active-generic") == newBoxDto && inflationCalls == beforeInflation, "active generic contract avoids old baseline inflation");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newList, "active-aot-generic") == newList, "active List argument contract legal");
