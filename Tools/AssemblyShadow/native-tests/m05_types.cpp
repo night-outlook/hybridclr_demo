@@ -315,6 +315,9 @@ int main(int argc, char** argv)
         newNonSerialized->instance_size = 40;
         AddField(newNonSerialized, "runtimeOnly", &int32Field, 32,
             FIELD_ATTRIBUTE_PRIVATE | FIELD_ATTRIBUTE_NOT_SERIALIZED);
+        baseline.Type("SerializedPrivateGrowth"); auto newSerializedPrivate = active.Type("SerializedPrivateGrowth");
+        newSerializedPrivate->instance_size = 40;
+        AddField(newSerializedPrivate, "resourceValue", &int32Field, 32, FIELD_ATTRIBUTE_PRIVATE);
         auto oldPublicNonSerialized = baseline.Type("PublicNonSerializedGrowth"), newPublicNonSerialized = active.Type("PublicNonSerializedGrowth");
         newPublicNonSerialized->instance_size = 40;
         AddField(newPublicNonSerialized, "runtimeOnly", &int32Field, 32,
@@ -452,6 +455,8 @@ int main(int argc, char** argv)
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newAdded, "added-allocation") == newAdded, "patch-added type legal");
         Check(AssemblyShadowTypeResolver::ResolveAllocation(newNonSerialized, "nonserialized-growth") == newNonSerialized,
             "private appended nonserialized primitive storage is legal for post-commit allocation");
+        Check(AssemblyShadowTypeResolver::ResolveAllocation(newSerializedPrivate, "serialized-private-growth") == newSerializedPrivate,
+            "private appended serialized primitive storage is physically legal after resource authorization");
         Failure([&] { AssemblyShadowTypeResolver::ResolveAllocation(newPublicNonSerialized, "public-nonserialized-growth"); },
             AssemblyShadowError::ResourceAbiMismatch, "ShadowFieldLayoutMismatch");
         Failure([&] { AssemblyShadowTypeResolver::ResolveAllocation(newReferenceNonSerialized, "reference-nonserialized-growth"); },
