@@ -290,6 +290,82 @@ the expected DLL inventory. `M05EditorValidation.Validate` can replay an
 existing fixture manifest through `-shadowFixtureManifest` and a fresh
 `-shadowValidationReceipt` output.
 
+## M06 execution semantics
+
+M06 acceptance is defined by `Docs/AssemblyShadow/M06/M06-execution-contract.md`.
+It is a Development plus Release proof, not a relabelled M05 transaction run.
+Use separate fresh `M06-Baseline-*` and `M06-Baseline-Release-*` identities.
+The required order in each compilation mode is:
+
+1. `M06Build.PrepareGenerationInputs`, followed by the recorded plan-aware
+   HybridCLR generators and `M06GenerationBuild.FinalizeGeneration`.
+2. `M06Build.ValidateCompilerInputs` and `M06Build.ValidateFixtureWarmups`.
+3. `M06Build.BuildPlayerBaseline` (or `BuildReleasePlayerBaseline`) with the
+   exact immutable `-shadowM06Generation` receipt.
+4. Development additionally runs `M06Build.BuildFeatureDisabledPlayer`.
+5. `M06Build.BuildFixtures` and `M06EditorValidation.Validate` in each mode.
+6. Launch the complete 28-mode inventory in distinct processes and run
+   `verify-m06-results.py` without an incomplete override.
+
+Every Player receipt binds the actual compiler configuration, linked managed
+inputs, native metadata, type proof, execution proof and generation evidence.
+The Release case must be a real non-Development/no-PDB Player. Keep the original
+generation and artifact roots immutable; interrupted native builds may only be
+resumed through the explicit hash-bound resume entrypoints.
+
+## M07 Unity resources and APIs
+
+M07 freezes seven resource bundles and proves prefab, ScriptableObject,
+SerializeReference, scene, MonoScript, Unity message, generic/Type API and cache
+paths against P01-P05. Passing compilation or resource ABI comparison alone is
+not acceptance. The Player bootstrap scene remains free of business references,
+and transaction Commit must finish before any business bundle or scene load.
+
+Run the guarded build workflow from a closed isolated project:
+
+```powershell
+pwsh Tools/AssemblyShadow/Invoke-M07Build.ps1 `
+  -ProjectPath <absolute-isolated-demo> `
+  -BaselineId M07-Baseline-v1 `
+  -BuildTarget StandaloneOSX
+```
+
+The workflow uses fresh Unity processes for compiler preflight, baseline
+resources, native-ON Player, native-OFF Player, P05 prepare/compile/restore and
+final replay. It holds one workflow lock and restores the exact original
+`ProjectSettings.asset` bytes after P05. The output
+`m07-build-workflow.json` identifies the two Player receipts, fixture manifest
+and independent Editor replay receipt. Never call the structural compile alone:
+the wrapper's recovery state and byte restore are part of the proof.
+
+Launch all 14 cases in fresh processes using the exact paths from that receipt:
+
+```sh
+python3 Tools/AssemblyShadow/run-m07-players.py \
+  --project-root <absolute-isolated-demo> \
+  --fixture-manifest <m07-fixtures.json> \
+  --on-build <native-on-m07-player-build.json> \
+  --off-build <native-off-m07-player-build.json> \
+  --replay-receipt <m07-editor-replay.json> \
+  --output-root <new-absolute-_temp/AssemblyShadow/M07Players-directory>
+
+python3 Tools/AssemblyShadow/verify-m07-results.py \
+  --fixture-manifest <m07-fixtures.json> \
+  --result-dir <M07Players-directory/Results> \
+  --on-build <native-on-m07-player-build.json> \
+  --off-build <native-off-m07-player-build.json> \
+  --replay-receipt <m07-editor-replay.json> \
+  --output <new-verification.json>
+```
+
+Only T07-14 uses the native-OFF Player. P05 is an atomic DLL plus rebuilt
+resource-catalog case; P05-DllOnly, class rename and SerializeReference concrete
+type rename must be rejected before publication. The Player receipt binds the
+original resource build root, while the baseline manifest binds its immutable
+copy. Both C# replay and Python acceptance compare the receipt hash and ordered
+bundle name/SHA inventory; absolute path equality is deliberately not required.
+`--allow-incomplete` is diagnostic only and can never establish Gate 3B.
+
 ## Recoverable native-cache rebuild
 
 clean-il2cpp-cache.sh is a dry-run unless --apply is passed; PowerShell uses
