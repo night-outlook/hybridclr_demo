@@ -29,7 +29,9 @@ il2cpp::vm::AssemblyVector assemblies;
 std::unordered_map<const Il2CppImage*, std::vector<Il2CppClass*>> imageTypes;
 std::unordered_map<const Il2CppClass*, std::vector<Il2CppMetadataFieldInfo>> fields;
 std::unordered_map<const Il2CppClass*, std::vector<uint32_t>> offsets;
+std::unordered_map<const Il2CppClass*, std::vector<const MethodInfo*>> methods;
 std::unordered_map<std::string, Il2CppClass*> interned;
+std::map<std::vector<const Il2CppType*>, const Il2CppGenericInst*> genericInstances;
 void Check(bool condition, const char* detail)
 {
     ++checks;
@@ -88,6 +90,29 @@ void AddField(Il2CppClass* klass, const char* name, const Il2CppType* type, uint
     Il2CppMetadataFieldInfo field = {}; field.name = name; field.type = type;
     fields[klass].push_back(field); offsets[klass].push_back(offset); klass->field_count++;
 }
+MethodInfo* AddMethod(Il2CppClass* klass, const char* name, const Il2CppType* returnType,
+    std::initializer_list<const Il2CppType*> parameterTypes, uint32_t token, uint32_t genericArity = 0)
+{
+    MethodInfo* method = new MethodInfo();
+    method->klass = klass; method->name = name; method->return_type = returnType; method->token = token;
+    method->flags = METHOD_ATTRIBUTE_PUBLIC; method->slot = kInvalidIl2CppMethodSlot;
+    method->parameters_count = static_cast<uint8_t>(parameterTypes.size());
+    if (method->parameters_count)
+    {
+        const Il2CppType** parameters = new const Il2CppType*[method->parameters_count];
+        size_t index = 0;
+        for (const Il2CppType* parameter : parameterTypes) parameters[index++] = parameter;
+        method->parameters = parameters;
+    }
+    method->methodMetadataHandle = reinterpret_cast<Il2CppMetadataMethodDefinitionHandle>(method);
+    if (genericArity)
+    {
+        method->is_generic = true;
+        method->genericContainerHandle = reinterpret_cast<Il2CppMetadataGenericContainerHandle>(static_cast<uintptr_t>(genericArity));
+    }
+    methods[klass].push_back(method); klass->method_count++;
+    return method;
+}
 }
 
 namespace il2cpp { namespace vm {
@@ -138,7 +163,32 @@ const MethodInfo* MetadataCache::GetParameterDeclaringMethod(Il2CppMetadataGener
 Il2CppGenericParameterInfo MetadataCache::GetGenericParameterInfo(Il2CppMetadataGenericParameterHandle handle)
 { Il2CppGenericParameterInfo info = {}; info.num = reinterpret_cast<const Parameter*>(handle)->num; return info; }
 Il2CppMetadataFieldInfo MetadataCache::GetFieldInfo(const Il2CppClass* klass, TypeFieldIndex index) { return fields.at(klass).at(index); }
+Il2CppMetadataMethodInfo MetadataCache::GetMethodInfo(const Il2CppClass* klass, TypeMethodIndex index)
+{
+    const MethodInfo* method = methods.at(klass).at(index);
+    return {method->methodMetadataHandle, method->name, method->return_type, method->token,
+        method->flags, method->iflags, method->slot, method->parameters_count};
+}
+const MethodInfo* MetadataCache::GetMethodInfoFromMethodHandle(Il2CppMetadataMethodDefinitionHandle handle)
+{ return reinterpret_cast<const MethodInfo*>(handle); }
 uint32_t GlobalMetadata::GetFieldOffset(const Il2CppClass* klass, int32_t index, FieldInfo*) { return offsets.at(klass).at(index); }
+const Il2CppGenericInst* MetadataCache::GetGenericInst(const Il2CppType* const* types, uint32_t count)
+{
+    if (count && !types) throw std::runtime_error("Missing generic arguments");
+    std::vector<const Il2CppType*> key(types, types + count);
+    auto found = genericInstances.find(key);
+    if (found != genericInstances.end()) return found->second;
+    Il2CppGenericInst* instance = new Il2CppGenericInst();
+    instance->type_argc = count;
+    if (count)
+    {
+        const Il2CppType** arguments = new const Il2CppType*[count];
+        for (uint32_t index = 0; index < count; ++index) arguments[index] = types[index];
+        instance->type_argv = arguments;
+    }
+    genericInstances.emplace(std::move(key), instance);
+    return instance;
+}
 Il2CppClass* MetadataCache::GetGenericInstanceType(Il2CppClass* definition, const Il2CppType** arguments, uint32_t count)
 {
     std::string key = std::to_string(reinterpret_cast<uintptr_t>(definition));
@@ -205,6 +255,22 @@ void AssemblyShadowVisibility::CollectOrdinaryClasses(std::vector<Il2CppClass*>&
 bool AssemblyShadowVisibility::ClassUsesStagedMetadata(const Il2CppClass*) { return false; }
 }}
 
+namespace il2cpp { namespace metadata {
+const MethodInfo* GenericMethod::GetMethod(const MethodInfo* definition, const Il2CppGenericInst* classInst,
+    const Il2CppGenericInst* methodInst)
+{
+    Il2CppGenericMethod* generic = new Il2CppGenericMethod();
+    generic->methodDefinition = definition; generic->context.class_inst = classInst; generic->context.method_inst = methodInst;
+    MethodInfo* method = new MethodInfo(*definition);
+    method->is_inflated = true; method->is_generic = methodInst == nullptr && definition->is_generic;
+    method->genericMethod = generic;
+    if (classInst)
+        method->klass = il2cpp::vm::MetadataCache::GetGenericInstanceType(definition->klass,
+            classInst->type_argv, classInst->type_argc);
+    return method;
+}
+}}
+
 int main(int argc, char** argv)
 {
     using namespace il2cpp::vm;
@@ -238,6 +304,19 @@ int main(int argc, char** argv)
         auto list = stable.Type("List`1", 1, nullptr, false, "System.Collections.Generic");
         auto dictionary = stable.Type("Dictionary`2", 2, nullptr, false, "System.Collections.Generic");
         auto untouched = unchanged.Type("Stable");
+        auto oldAmbiguous = baseline.Type("Ambiguous"), newAmbiguous = active.Type("Ambiguous");
+        MethodInfo* oldRun = AddMethod(oldDto, "Run", &il2cpp_defaults.int32_class->byval_arg,
+            {&oldDto->byval_arg}, 0x06000019);
+        MethodInfo* newRun = AddMethod(newDto, "Run", &il2cpp_defaults.int32_class->byval_arg,
+            {&newDto->byval_arg}, 0x06000384);
+        MethodInfo* oldRemovedMethod = AddMethod(oldDto, "Removed", &il2cpp_defaults.void_class->byval_arg, {}, 0x06000020);
+        MethodInfo* oldAmbiguousMethod = AddMethod(oldAmbiguous, "Duplicate", &il2cpp_defaults.void_class->byval_arg, {}, 0x06000021);
+        AddMethod(newAmbiguous, "Duplicate", &il2cpp_defaults.void_class->byval_arg, {}, 0x06000400);
+        AddMethod(newAmbiguous, "Duplicate", &il2cpp_defaults.void_class->byval_arg, {}, 0x06000401);
+        MethodInfo* oldGenericMethod = AddMethod(oldGeneric, "GenericWork", &il2cpp_defaults.int32_class->byval_arg,
+            {}, 0x06000022, 1);
+        MethodInfo* newGenericMethod = AddMethod(newGeneric, "GenericWork", &il2cpp_defaults.int32_class->byval_arg,
+            {}, 0x06000402, 1);
         Check(AssemblyShadowTypeKey::Make(oldDto) == AssemblyShadowTypeKey::Make(newDto), "stable key ignores physical identity and assembly case");
         baseline.assembly.aname.major = 97; active.assembly.aname.major = 1; oldDto->token = 19; newDto->token = 900;
         Check(AssemblyShadowTypeKey::Make(oldDto) == AssemblyShadowTypeKey::Make(newDto), "stable key ignores token/version");
@@ -266,6 +345,26 @@ int main(int argc, char** argv)
         Check(AssemblyShadow::ResolveClassDefinition(oldDto) == newDto, "lazy definition remap");
         Check(AssemblyShadow::ResolveClassDefinition(oldDto) == newDto, "definition cache hit");
         Check(AssemblyShadow::ResolveClassDefinition(oldNested) == newNested, "nested remap");
+        Check(AssemblyShadow::ResolveReflectionMethod(oldRun) == newRun, "reflection method remaps by structural signature");
+        Check(AssemblyShadow::ResolveReflectionMethod(oldRun) == newRun, "reflection method remap cache stable");
+        Check(AssemblyShadow::ResolveReflectionMethod(newRun) == newRun, "active reflection method identity preserved");
+        Check(oldRun->token != newRun->token, "reflection method proof uses shifted tokens");
+        Failure([&] { AssemblyShadowTypeResolver::ResolveReflectionMethod(oldRemovedMethod); },
+            AssemblyShadowError::ReferenceResolutionFailed, "ShadowMethodNotFound");
+        Failure([&] { AssemblyShadowTypeResolver::ResolveReflectionMethod(oldAmbiguousMethod); },
+            AssemblyShadowError::ReferenceResolutionFailed, "ShadowAmbiguousMethodDefinition");
+        const Il2CppType* oldArguments[] = {&oldDto->byval_arg};
+        Il2CppGenericInst oldInstance = {1, oldArguments};
+        Il2CppGenericMethod oldInflation = {}; oldInflation.methodDefinition = oldGenericMethod;
+        oldInflation.context.class_inst = &oldInstance; oldInflation.context.method_inst = &oldInstance;
+        MethodInfo oldInflated = *oldGenericMethod; oldInflated.klass = Generic(oldGeneric, {&oldDto->byval_arg});
+        oldInflated.is_generic = false; oldInflated.is_inflated = true; oldInflated.genericMethod = &oldInflation;
+        const MethodInfo* newInflated = AssemblyShadowTypeResolver::ResolveReflectionMethod(&oldInflated);
+        Check(newInflated->genericMethod->methodDefinition == newGenericMethod &&
+            newInflated->genericMethod->context.class_inst->type_argv[0] == &newDto->byval_arg &&
+            newInflated->genericMethod->context.method_inst->type_argv[0] == &newDto->byval_arg,
+            "inflated reflection method rebuilds active generic contexts");
+        Check(newInflated->klass == Generic(newGeneric, {&newDto->byval_arg}), "inflated reflection declaring class is active");
         Check(AssemblyShadow::ResolveType(&newDto->byval_arg) == &newDto->byval_arg, "active identity preserved");
         Check(AssemblyShadow::ResolveType(&untouched->byval_arg) == &untouched->byval_arg, "unchanged candidate fast path");
         Failure([&] { AssemblyShadowTypeResolver::ResolveDefinition(missing); }, AssemblyShadowError::ReferenceResolutionFailed, "ShadowTypeNotFound");

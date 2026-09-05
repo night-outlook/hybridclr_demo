@@ -26,6 +26,7 @@ std::string s_lastString;
 Il2CppAssembly s_baselineAssembly = {}, s_activeAssembly = {}, s_stableAssembly = {};
 Il2CppImage s_baselineImage = {}, s_activeImage = {}, s_stableImage = {};
 Il2CppClass s_baselineClass = {}, s_activeClass = {}, s_stableClass = {}, s_reflectionClass = {};
+MethodInfo s_baselineMethod = {}, s_activeMethod = {}, s_unmappedBaselineMethod = {};
 Il2CppException s_exception = {};
 
 void Check(bool condition, const char* detail)
@@ -97,6 +98,14 @@ const Il2CppType* AssemblyShadow::ResolveType(const Il2CppType* type)
     if (type == &s_baselineClass.byval_arg) return &s_activeClass.byval_arg;
     if (type == &s_baselineClass.this_arg) return &s_activeClass.this_arg;
     return type;
+}
+Il2CppClass* AssemblyShadow::ResolveClass(Il2CppClass* klass)
+{
+    return klass == &s_baselineClass ? &s_activeClass : klass;
+}
+const MethodInfo* AssemblyShadow::ResolveReflectionMethod(const MethodInfo* method)
+{
+    return method == &s_baselineMethod ? &s_activeMethod : method;
 }
 void AssemblyShadow::RequireActiveClass(Il2CppClass* klass, BaselineUseKind, const char*)
 {
@@ -193,12 +202,18 @@ int main()
         Rejected([&] { Reflection::GetFieldObject(&s_activeClass, &field); }, "Field cache bypassed stale signature guard");
         field.type = &s_stableClass.byval_arg;
         Rejected([&] { Reflection::GetFieldObject(&s_baselineClass, &field); }, "Field reflected-owner guard missing");
-        MethodInfo method = {}; method.klass = &s_activeClass; method.name = "Invoke"; method.return_type = &s_stableClass.byval_arg;
-        Il2CppReflectionMethod* reflectedMethod = Reflection::GetMethodObject(&method, &s_activeClass);
-        Check(reflectedMethod == Reflection::GetMethodObject(&method, &s_activeClass), "Active method cache identity changed");
-        method.klass = &s_baselineClass;
-        Rejected([&] { Reflection::GetMethodObject(&method, &s_activeClass); }, "Method owner guard missing");
-        Rejected([&] { Reflection::GetParamObjects(&method, &s_activeClass); }, "Zero-parameter path bypassed owner guard");
+        s_activeMethod.klass = &s_activeClass; s_activeMethod.name = "Invoke"; s_activeMethod.return_type = &s_stableClass.byval_arg;
+        s_activeMethod.token = 900;
+        s_baselineMethod.klass = &s_baselineClass; s_baselineMethod.name = "Invoke"; s_baselineMethod.return_type = &s_stableClass.byval_arg;
+        s_baselineMethod.token = 19;
+        Il2CppReflectionMethod* reflectedMethod = Reflection::GetMethodObject(&s_activeMethod, &s_activeClass);
+        Check(reflectedMethod == Reflection::GetMethodObject(&s_activeMethod, &s_activeClass), "Active method cache identity changed");
+        Check(Reflection::GetMethodObject(&s_baselineMethod, &s_baselineClass) == reflectedMethod && reflectedMethod->method == &s_activeMethod,
+            "Baseline stack-frame method did not converge on active reflection identity");
+        s_unmappedBaselineMethod.klass = &s_baselineClass; s_unmappedBaselineMethod.name = "Missing";
+        s_unmappedBaselineMethod.return_type = &s_stableClass.byval_arg;
+        Rejected([&] { Reflection::GetMethodObject(&s_unmappedBaselineMethod, &s_activeClass); }, "Unmapped baseline method owner guard missing");
+        Rejected([&] { Reflection::GetParamObjects(&s_unmappedBaselineMethod, &s_activeClass); }, "Zero-parameter path bypassed owner guard");
         PropertyInfo property = {}; property.parent = &s_baselineClass;
         Rejected([&] { Reflection::GetPropertyObject(&s_activeClass, &property); }, "Property owner guard missing");
         EventInfo event = {}; event.parent = &s_baselineClass;
