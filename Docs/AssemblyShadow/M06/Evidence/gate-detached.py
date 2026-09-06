@@ -42,6 +42,7 @@ POST_EXECUTION_VERIFIER_FILES = {
 }
 HISTORICAL_TEST_INPUTS = (
     "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+    "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1",
     "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
     "HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
 )
