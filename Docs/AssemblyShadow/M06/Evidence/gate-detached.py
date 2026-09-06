@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import tarfile
 from pathlib import Path
@@ -39,6 +40,11 @@ POST_EXECUTION_VERIFIER_FILES = {
     "Tools/AssemblyShadow/m06_results.py",
     "Tools/AssemblyShadow/tests/test_m06_results.py",
 }
+HISTORICAL_TEST_INPUTS = (
+    "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+    "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+    "HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+)
 
 
 def require(value: object, message: str) -> None:
@@ -104,6 +110,34 @@ def write_json_new(path: Path, value: object) -> None:
     with path.open("x", encoding="utf-8") as stream:
         json.dump(value, stream, indent=2, sort_keys=True)
         stream.write("\n")
+
+
+def file_inventory(path: Path) -> list[dict]:
+    items = [path] if path.is_file() else sorted(path.rglob("*"))
+    require(items and all(not item.is_symlink() for item in items), "Historical test input is empty or symlinked: " + str(path))
+    paths = [item for item in items if item.is_file()]
+    require(paths, "Historical test input contains no regular files: " + str(path))
+    base = path.parent if path.is_file() else path
+    return [{"name": item.relative_to(base).as_posix(), "size": item.stat().st_size, "sha256": sha256(item)} for item in paths]
+
+
+def seed_historical_test_inputs(review: Path, live: Path) -> list[dict]:
+    rows = []
+    for relative in HISTORICAL_TEST_INPUTS:
+        source = live / relative
+        destination = review / relative
+        require((source.is_file() or source.is_dir()) and not source.is_symlink(), "Missing/nonregular historical test input: " + str(source))
+        require(not destination.exists() and not destination.is_symlink(), "Detached historical test destination already exists: " + str(destination))
+        source_inventory = file_inventory(source)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if source.is_dir():
+            shutil.copytree(source, destination)
+        else:
+            shutil.copy2(source, destination)
+        require(file_inventory(destination) == source_inventory, "Detached historical test input differs after copy: " + relative)
+        rows.append({"relativePath": relative, "sourcePath": str(source), "destinationPath": str(destination),
+                     "fileCount": len(source_inventory), "files": source_inventory})
+    return rows
 
 
 def validate_git_tree(review: Path, evidence: Path, evidence_commit: str) -> dict:
@@ -231,6 +265,7 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
     for row in closeout["nativeReceipts"]:
         require(sha256(Path(row["path"])) == row["sha256"] and read_json(Path(row["path"])).get("success") is True, "Recorded native suite failed/changed")
 
+    historical_test_inputs = seed_historical_test_inputs(review, live)
     compiler_root = live / "_temp/AssemblyShadow/M05RawAdmissionCompiler-955e889bd4c1442eaf694f53ff6a0ff3/Assemblies"
     require(len(list(compiler_root.glob("*.dll"))) == 36, "Detached Python gate lacks the preserved real compiler")
     python = run(
@@ -332,6 +367,7 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
         "artifactIndexSha256": sha256(index_path),
         "retention": retention,
         "sourceInventory": source,
+        "historicalTestInputs": historical_test_inputs,
         "recordedSuites": {
             "pythonTests": int(closeout_match.group(1)),
             "editorTests": int(editor["total"]),
