@@ -1,8 +1,8 @@
 # M06 file and API inventory
 
-Status: executable-source inventory is frozen. Runtime acceptance remains
-pending until the retained 28-process evidence, both full gates and local tags
-are complete. The exact machine-readable delta is
+Status: accepted locally. The executable-source inventory is frozen, the
+retained 28-process evidence and both full gates passed, and the four local
+annotated tags were audited. The exact machine-readable delta is
 [M06-source-inventory.json](M06-source-inventory.json).
 
 ## Immutable executable source boundary

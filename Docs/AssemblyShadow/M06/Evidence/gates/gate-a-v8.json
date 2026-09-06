@@ -1,0 +1,101 @@
+{
+  "archives": {
+    "archiveCount": 5,
+    "compressedBytes": 33066641,
+    "memberCount": 549
+  },
+  "artifactIndexPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Docs/AssemblyShadow/M06/Evidence/artifact-index-v8.json",
+  "artifactIndexSha256": "df3b6971385cece762dd54d589d70c2748e54916d539357ef420fe817a7651ff",
+  "checkedUtc": "2026-09-06T23:29:26.874243+00:00",
+  "copies": {
+    "copyBytes": 44565631,
+    "copyCount": 53
+  },
+  "demoStatus": [
+    " M Assets/AssemblyShadowDemo/Scenes/M06Bootstrap.unity",
+    " M Assets/HybridCLRGenerate/AOTGenericReferences.cs",
+    " M Assets/HybridCLRGenerate/link.xml",
+    " M ProjectSettings/AssemblyShadowSettings.asset",
+    " M ProjectSettings/ProjectSettings.asset"
+  ],
+  "evidenceCommit": "5877f949304f11fa316eb96dbc9910fbb8a13ad7",
+  "gate": "A-current-source-artifacts-and-recorded-suites",
+  "gitEvidence": {
+    "commit": "5877f949304f11fa316eb96dbc9910fbb8a13ad7",
+    "files": 67
+  },
+  "installedSourceVerification": {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/verify-installed-runtime.py",
+      "--project",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+      "--skip-demo-source",
+      "--expect-shadow",
+      "on",
+      "--json"
+    ],
+    "completedUtc": "2026-09-06T23:29:26.728696+00:00",
+    "exitCode": 0,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06GateA-final-v8-retry4/installed-source-verification.log",
+    "logSha256": "b8ebcd97d7077fd1ceb4804da098710eada538e5cd53a51026cd3b9245286483",
+    "startedUtc": "2026-09-06T23:29:25.860046+00:00"
+  },
+  "limitation": "Independent deterministic process gate, not an independent human or LLM review. Recorded Unity/native suites are passively revalidated; the strict M06 verifier and installed-source verifier are rerun.",
+  "milestone": "M06",
+  "originalEditor": "",
+  "originalEditorState": "AbsentAtGate",
+  "originalStatus": [
+    " M Assets/Settings/Renderer2D.asset",
+    "?? .DS_Store",
+    "?? .agents/.DS_Store",
+    "?? .codex/.DS_Store",
+    "?? Assets/Editor.meta",
+    "?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store"
+  ],
+  "recordedSuites": {
+    "editorTests": 874,
+    "nativeSuites": 5,
+    "pythonTests": 337
+  },
+  "result": "PASS",
+  "reviewMode": "deterministic-current-checkout-process",
+  "schemaVersion": 1,
+  "sourceInventory": {
+    "postExecutableMetadataFiles": 74,
+    "postExecutionVerifierFiles": [
+      "Tools/AssemblyShadow/m06_results.py",
+      "Tools/AssemblyShadow/tests/test_m06_results.py"
+    ],
+    "repositories": 4
+  },
+  "strictReplay": {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/verify-m06-results.py",
+      "--fixture-manifest",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-d2d7a7fee8464070a71b94ee1c6ae362/m06-fixtures.json",
+      "--on-build",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06PlayerInputs-c93706fc8db048a3b593539ea4c68477/m06-player-build.json",
+      "--off-build",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06PlayerInputs-96867fc6d6374461ab31e7ab837cbfba/m06-player-build.json",
+      "--release-fixture-manifest",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/m06-fixtures.json",
+      "--release-build",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06PlayerInputs-3b218ff927b74a278ebf59f4d0ddcdc9/m06-player-build.json",
+      "--results",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Results-final-v8/Results",
+      "--m01-baseline-root",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/BaselineArtifacts/StandaloneOSX/M01-Baseline-v1",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06GateA-final-v8-retry4/strict-replay.json"
+    ],
+    "completedUtc": "2026-09-06T23:29:25.859482+00:00",
+    "exitCode": 0,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06GateA-final-v8-retry4/strict-replay.log",
+    "logSha256": "6997b9bc33e279aee4df19b3c7a1db7587807c476716686e2a70bb561c4e09e6",
+    "receiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06GateA-final-v8-retry4/strict-replay.json",
+    "receiptSha256": "6997b9bc33e279aee4df19b3c7a1db7587807c476716686e2a70bb561c4e09e6",
+    "startedUtc": "2026-09-06T23:25:49.033219+00:00"
+  }
+}

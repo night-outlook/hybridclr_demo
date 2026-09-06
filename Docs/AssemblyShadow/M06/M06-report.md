@@ -1,10 +1,9 @@
 # M06 execution semantics evidence report
 
-Status: the final v8 Development/Release artifacts, 28 fresh Player cases,
-strict runtime verifier, and post-Player closeout are complete. Five lossless
-archives and 53 selected copies are sealed in `Evidence/artifact-index-v8.json`.
-The two deterministic commit gates and local tag audit remain before final M06
-acceptance; M07 integration remains closed until those gates pass.
+Status: accepted locally. The final v8 Development/Release artifacts, 28 fresh
+Player cases, strict runtime verifier, post-Player closeout, five lossless
+archives, two deterministic commit gates and four-repository tag audit all
+passed. No repository was pushed and no pull request was created.
 
 ## Scope and source identity
 
@@ -249,10 +248,22 @@ selected copies. The archives cover all 28 Player results/logs, both fixture and
 replay trees, both five-plan generation proofs, all three Player input proofs,
 and the complete resumed closeout logs/receipts.
 
-Runtime and closeout acceptance inputs are now complete. Remaining work is
-limited to committing the retained evidence, Gate A current-checkout replay,
-Gate B clean detached-commit replay, retaining both gate receipts, and the exact
-post-closeout/local four-repository tag audit.
+Gate A ran from the current checkout at evidence commit
+`5877f949304f11fa316eb96dbc9910fbb8a13ad7`; its retained receipt is
+`Evidence/gates/gate-a-v8.json`, SHA-256
+`000dc5936e46f05352f3d9eb10490ac307ad34f307a500fa296abf8eaafb23b8`.
+Gate B ran from a separate clean detached worktree at the same commit; its
+retained receipt is `Evidence/gates/gate-b-v8.json`, SHA-256
+`17d2e3815fa71809692c12884c0eb55efc0f7eafd5b59bb60262780ad4a543fd`.
+It reran all 337 Python tests and the strict 28-case verifier from committed
+source. The four ignored historical test-fixture roots were copied into the
+disposable worktree with 1,646 per-file hashes recorded in the receipt.
+
+Both gates report `PASS`, bind the same evidence commit and strict receipt, and
+preserve the five expected live Unity-generated modifications. Local annotated
+tag `assembly-shadow-m06-execution` identifies the accepted demo, runtime,
+native and package commits; the post-tag audit verifies each exact target and
+repository status.
 
 The two gates are independent deterministic implementations/processes, not
 independent human or LLM reviewers. Gate A reruns the strict and installed-source
