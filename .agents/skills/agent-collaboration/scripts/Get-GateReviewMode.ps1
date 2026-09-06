@@ -3,7 +3,8 @@ param(
     [string]$RepositoryRoot,
     [Alias("MainAgentModel")]
     [string]$EffectiveMainAgentModel,
-    [switch]$FightHeroSkillDevelopment
+    [switch]$FightHeroSkillDevelopment,
+    [switch]$ReviewerModel
 )
 
 Set-StrictMode -Version Latest
@@ -43,17 +44,25 @@ function Get-ValidatedMainAgentModelFamily {
     $matchedFamilies = @()
     if ($Model -is [string] -and -not [string]::IsNullOrWhiteSpace($Model)) {
         $matchedFamilies = @(
-            [regex]::Matches($Model, "(?i)(?<![a-z])(luna|terra|sol)(?![a-z])") |
+            [regex]::Matches($Model, "(?i)(?<![a-z])(luna|terra|sol|astra)(?![a-z])") |
                 ForEach-Object { $_.Groups[1].Value.ToLowerInvariant() } |
                 Select-Object -Unique
         )
     }
 
     if ($matchedFamilies.Count -ne 1) {
-        Write-Error -Message "Expected exactly one Luna, Terra, or Sol family; verify the effective main-agent model and retry once." -ErrorId "InvalidMainAgentModel" -Category InvalidArgument -TargetObject $Model -ErrorAction Stop
+        Write-Error -Message "Expected exactly one Luna, Terra, Sol, or Astra family; verify the effective main-agent model and retry once." -ErrorId "InvalidMainAgentModel" -Category InvalidArgument -TargetObject $Model -ErrorAction Stop
     }
 
     return $matchedFamilies[0]
+}
+
+# Resolve only after a non-Off gate mode. This query never changes gate enablement.
+if ($ReviewerModel) {
+    $family = Get-ValidatedMainAgentModelFamily -Model $EffectiveMainAgentModel
+    if ($family -eq "sol") { return "gpt-5.6-sol" }
+    # Preserve the Astra default for Luna/Terra when the family restriction is off.
+    return "gpt-6-astra"
 }
 
 try {
@@ -67,15 +76,19 @@ try {
     $configPath = [System.IO.Path]::Combine($repositoryRoot, ".agents", "config", "config.json")
     $rootConfig = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json
     $config = Get-OptionalPropertyValue -Object $rootConfig -Name "agent_collaboration"
-    $requireSolMainAgent = Get-OptionalPropertyValue -Object $config -Name "require_sol_main_agent_for_gate_review"
+    $requireSolOrAstraMainAgent = Get-OptionalPropertyValue -Object $config -Name "require_sol_or_astra_main_agent_for_gate_review"
+    # The new key wins by presence, including explicit false.
+    if ($null -ne $config -and $null -eq $config.PSObject.Properties["require_sol_or_astra_main_agent_for_gate_review"]) {
+        $requireSolOrAstraMainAgent = Get-OptionalPropertyValue -Object $config -Name "require_astra_main_agent_for_gate_review"
+    }
 }
 catch {
     return "Off"
 }
 
-if ($requireSolMainAgent -is [bool] -and $requireSolMainAgent) {
+if ($requireSolOrAstraMainAgent -is [bool] -and $requireSolOrAstraMainAgent) {
     $mainAgentModelFamily = Get-ValidatedMainAgentModelFamily -Model $EffectiveMainAgentModel
-    if ($mainAgentModelFamily -ne "sol") {
+    if ($mainAgentModelFamily -notin @("sol", "astra")) {
         return "Off"
     }
 }

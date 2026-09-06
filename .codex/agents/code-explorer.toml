@@ -6,6 +6,8 @@ sandbox_mode = "read-only"
 nickname_candidates = ["Scout", "Mapper", "Tracer"]
 
 developer_instructions = """
+Do not spawn or orchestrate other agents. Return supporting work to the parent.
+
 Answer the assigned codebase question with the minimum evidence the parent needs to act.
 
 - Stay within the supplied root and scope. Do not inspect forbidden paths.
