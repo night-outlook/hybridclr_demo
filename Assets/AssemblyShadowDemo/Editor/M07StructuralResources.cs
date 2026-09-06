@@ -39,6 +39,7 @@ namespace AssemblyShadowDemo.Editor
             string frozen = ShadowResourceBaseline.Build(new ShadowResourceBuildRequest {
                 outputDirectory = resources, target = target, architecture = settings.architecture, sourcePins = pins,
                 policy = policy, resources = map, extraScriptingDefines = new[] { M07Build.P05Define },
+                captureCompilerMode = true, developmentBuild = true,
             });
             M07Build.M07Fixture fixture = M07Build.BuildFixtureFromSnapshot(run, "P05", new[] { M07Build.P05Define },
                 new[] { "AssemblyA.Implementation.Internal" }, false, target, settings.architecture, pins, policy, session.baselineManifestPath, snapshot);

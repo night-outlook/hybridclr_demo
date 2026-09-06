@@ -74,6 +74,7 @@ namespace AssemblyShadowDemo.Editor
                 outputDirectory = output, target = target, architecture = settings.architecture,
                 sourcePins = ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture),
                 policy = policy, resources = map, extraScriptingDefines = new string[0],
+                captureCompilerMode = true, developmentBuild = true,
             });
             VerifiedShadowResourceBaseline verified = ShadowResourceBaseline.ReadAndVerify(frozen, target, settings.architecture);
             Require(verified.Receipt.bundles.Select(item => item.name).SequenceEqual(BundleNames), "M07 baseline must contain exactly the seven canonical bundles.");
@@ -90,8 +91,8 @@ namespace AssemblyShadowDemo.Editor
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
             var pins = ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture);
-            string snapshot = AssemblySnapshot.Compile(Path.GetFullPath("_temp/AssemblyShadow/M07CompilerPreflight-" + Guid.NewGuid().ToString("N")),
-                target, settings.architecture, pins, policy, new string[0]);
+            string snapshot = AssemblySnapshot.CompileWithOptions(Path.GetFullPath("_temp/AssemblyShadow/M07CompilerPreflight-" + Guid.NewGuid().ToString("N")),
+                target, settings.architecture, pins, policy, new string[0], true);
             AssemblySnapshotReceipt receipt = AssemblySnapshot.ReadAndVerify(snapshot, false);
             TargetFrameworkReferenceVerifier.Verify(snapshot, receipt);
             Debug.Log("[AssemblyShadow M07] Fresh baseline-domain target compiler snapshot: " + snapshot);
@@ -152,7 +153,7 @@ namespace AssemblyShadowDemo.Editor
         internal static M07Fixture BuildFixture(string root, string patchId, string[] defines, string[] explicitRoots, bool dllOnly,
             BuildTarget target, string architecture, ShadowSourcePins pins, ShadowPolicyConfiguration policy, string baselineManifest)
         {
-            string snapshot = AssemblySnapshot.Compile(Path.Combine(root, patchId + "-compile"), target, architecture, pins, policy, defines);
+            string snapshot = AssemblySnapshot.CompileWithOptions(Path.Combine(root, patchId + "-compile"), target, architecture, pins, policy, defines, true);
             return BuildFixtureFromSnapshot(root, patchId, defines, explicitRoots, dllOnly, target, architecture, pins, policy, baselineManifest, snapshot);
         }
 
@@ -182,7 +183,7 @@ namespace AssemblyShadowDemo.Editor
         internal static M07RejectedFixture BuildRejected(string root, string patchId, string[] defines, string[] roots,
             BuildTarget target, string architecture, ShadowSourcePins pins, ShadowPolicyConfiguration policy, string baselineManifest)
         {
-            string snapshot = AssemblySnapshot.Compile(Path.Combine(root, patchId + "-compile"), target, architecture, pins, policy, defines);
+            string snapshot = AssemblySnapshot.CompileWithOptions(Path.Combine(root, patchId + "-compile"), target, architecture, pins, policy, defines, true);
             string output = Path.Combine(root, patchId + "-must-not-exist");
             ShadowBuildException rejection = null;
             try

@@ -91,8 +91,8 @@ namespace AssemblyShadowDemo.Editor
             var settings = AssemblyShadowSettings.Instance;
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
-            string snapshot = AssemblySnapshot.Compile(Path.Combine(run, "P05-compile"), target, settings.architecture,
-                state.sourcePins, policy, new[] { PatchDefine });
+            string snapshot = AssemblySnapshot.CompileWithOptions(Path.Combine(run, "P05-compile"), target, settings.architecture,
+                state.sourcePins, policy, new[] { PatchDefine }, true);
             Require(Path.GetFullPath(snapshot) == Path.GetFullPath(Path.Combine(run, SnapshotPath)), "StructuralSnapshotPath", snapshot);
             var receipt = AssemblySnapshot.ReadAndVerify(snapshot, false);
             RequireSnapshot(state, receipt);
