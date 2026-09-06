@@ -246,6 +246,30 @@ class M06ResultTests(unittest.TestCase):
         identity['referenceIdentities']=[dict(name='netstandard',fullName=netstandard.replace('2.1.0.0','9.0.0.0'))]
         with self.assertRaises(VerificationError):gate.compiler_core_identity(identity,providers,'changed-core')
 
+    def test_runtime_warmup_observation_uses_exact_linked_corlib_after_retargeting(self):
+        mscorlib='mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'
+        netstandard='netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+        identity=dict(assembly=netstandard,type='System.Int32')
+        build=dict(player=dict(assemblyIdentities=[dict(name='mscorlib',fullName=mscorlib)]))
+        self.assertEqual(gate.runtime_warmup_aqn(identity,build,'runtime-core'),'System.Int32, '+mscorlib)
+        for rows in ([],[dict(name='mscorlib',fullName=mscorlib),dict(name='MSCorLib',fullName=mscorlib)]):
+            bad=dict(player=dict(assemblyIdentities=rows))
+            with self.assertRaises(VerificationError):gate.runtime_warmup_aqn(identity,bad,'runtime-core-tamper')
+        with self.assertRaises(VerificationError):
+            gate.runtime_warmup_aqn(dict(assembly='System.Private.CoreLib, Version=8.0.0.0',type='System.Int32'),build,'unsupported-core')
+
+    def test_business_generic_type_is_bound_to_exact_contracts_identity(self):
+        contracts=gate.CONTRACTS+', Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'
+        contracts_image=dict(identity=dict(fullName=contracts,referenceIdentities=[]))
+        internal_image=dict(identity=dict(fullName=gate.INTERNAL+', Version=0.0.0.0',referenceIdentities=[dict(name=gate.CONTRACTS,fullName=contracts)]))
+        self.assertEqual(gate.business_generic_type(gate.CONTRACTS,contracts_image,'generic'),
+                         gate.witness(gate.CONTRACTS)+'+GenericBox`1[[AssemblyA.Contracts.DemoValue, '+contracts+']]')
+        self.assertEqual(gate.business_generic_type(gate.INTERNAL,internal_image,'generic'),
+                         gate.witness(gate.INTERNAL)+'+Pair`1[[AssemblyA.Contracts.DemoValue, '+contracts+']]')
+        for references in ([],[dict(name=gate.CONTRACTS,fullName=contracts),dict(name=gate.CONTRACTS.lower(),fullName=contracts)]):
+            bad=dict(identity=dict(fullName=gate.INTERNAL+', Version=0.0.0.0',referenceIdentities=references))
+            with self.assertRaises(VerificationError):gate.business_generic_type(gate.INTERNAL,bad,'generic-tamper')
+
     def test_normal_and_negative_fixture_roots_are_explicit(self):
         self.assertEqual(gate.order_for('P01'),[gate.INTERNAL]);self.assertEqual(len(gate.order_for('P02')),3);self.assertEqual(len(gate.order_for('P03')),5)
         self.assertIn('ASSEMBLY_SHADOW_M06_INITIALIZER_THROW',gate.expected_defines('InitializerFailure'))

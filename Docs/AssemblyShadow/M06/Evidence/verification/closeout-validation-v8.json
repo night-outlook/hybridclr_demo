@@ -1,0 +1,276 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "Tools/AssemblyShadow/tests",
+        "-q"
+      ],
+      "durationSeconds": 47.67349028587341,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/python-tests.log",
+      "logSha256": "f7a5abbea4e95d225b6f9c4cd9c6d5b903c0eb68724341e6fde01caab92757df",
+      "name": "python-tests",
+      "recoveredAfterCloseoutInterruption": true,
+      "testCount": 337,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/run-m03-native-tests.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m03-native-tests.json"
+      ],
+      "durationSeconds": 18.96007013320923,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m03-native.log",
+      "logSha256": "2ef2c67e17b02481893583e21b28e01c2e62e3c07ed54369b53d7c8fab8a9fcc",
+      "name": "m03-native",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/run-m03-visibility-tests.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/visibility-native-tests.json"
+      ],
+      "durationSeconds": 4.323913812637329,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/visibility-native.log",
+      "logSha256": "e7778c469716ac3a739fdf450751a5b923b2758196857670303af94e49aa034b",
+      "name": "visibility-native",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/run-m04-native-tests.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m04-native-tests.json"
+      ],
+      "durationSeconds": 29.278454303741455,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m04-native.log",
+      "logSha256": "52caff3ab4db8e16712a07d5e1c232cac940e30f833d0a358424778b96842d0b",
+      "name": "m04-native",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/run-m05-native-tests.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m05-native-tests.json"
+      ],
+      "durationSeconds": 71.2097179889679,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m05-native.log",
+      "logSha256": "e1f9563c8655948ef75613d643533cf24dbae673e696a99512e30e8c22f8dd44",
+      "name": "m05-native",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/run-m06-native-tests.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m06-native-tests.json"
+      ],
+      "durationSeconds": 49.85386633872986,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m06-native.log",
+      "logSha256": "7da4c0252107b7573e148795f6afb5cf6aa1301566954ba292adc3828d4abf3d",
+      "name": "m06-native",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/microsoft/powershell/7/pwsh",
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/.agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1",
+        "-Method",
+        "AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability",
+        "-ProjectPath",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+        "-BuildTarget",
+        "StandaloneOSX",
+        "-TimeoutSec",
+        "3600"
+      ],
+      "durationSeconds": 21.21779441833496,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/install-repeatability.log",
+      "logSha256": "6fa27acad0fa5f2ee1d03d8405e258562d3d432217ebcfea3a148fad9d68e4c0",
+      "name": "install-repeatability",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/UnityExec_20260906_155344.log",
+          "sha256": "8fb093ddb838a8dab6228fad2f20ad94adbc39bcab91fb1f88a44407c3e9905c"
+        }
+      ]
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/verify-installed-runtime.py",
+        "--project",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+        "--skip-demo-source",
+        "--expect-shadow",
+        "on",
+        "--json"
+      ],
+      "durationSeconds": 0.809579610824585,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8-retry2/installed-source-before-editor.log",
+      "logSha256": "b8ebcd97d7077fd1ceb4804da098710eada538e5cd53a51026cd3b9245286483",
+      "name": "installed-source-before-editor",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/microsoft/powershell/7/pwsh",
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/Invoke-ShadowEditorTests.ps1",
+        "-TestFilter",
+        "HybridCLR.Editor.AssemblyShadow.Tests;AssemblyShadowDemo.EditorTests",
+        "-TimeoutSec",
+        "3600"
+      ],
+      "durationSeconds": 112.12612509727478,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8-retry2/editor-tests-wrapper.log",
+      "logSha256": "aed37c8f164a43dcd0f750b8da2a6b343af46ca3ff8be82762ebb3b5cdb7e98c",
+      "name": "editor-tests-wrapper",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Tools/AssemblyShadow/verify-installed-runtime.py",
+        "--project",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow",
+        "--skip-demo-source",
+        "--expect-shadow",
+        "on",
+        "--json"
+      ],
+      "durationSeconds": 0.8264000415802002,
+      "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8-retry2/installed-source-final.log",
+      "logSha256": "b8ebcd97d7077fd1ceb4804da098710eada538e5cd53a51026cd3b9245286483",
+      "name": "installed-source-final",
+      "recoveredAfterCloseoutInterruption": true,
+      "unityLogs": []
+    }
+  ],
+  "demoStatus": [
+    " M Assets/AssemblyShadowDemo/Scenes/M06Bootstrap.unity",
+    " M Assets/HybridCLRGenerate/AOTGenericReferences.cs",
+    " M Assets/HybridCLRGenerate/link.xml",
+    " M Docs/AssemblyShadow/M06/Evidence/archive-evidence.py",
+    " M Docs/AssemblyShadow/M06/Evidence/gate-current.py",
+    " M Docs/AssemblyShadow/M06/Evidence/gate-detached.py",
+    " M Docs/AssemblyShadow/M06/M06-file-and-api-inventory.md",
+    " M Docs/AssemblyShadow/M06/M06-report.md",
+    " M Docs/AssemblyShadow/M06/M06-source-inventory.json",
+    " M Docs/AssemblyShadow/M06/generate-source-inventory.py",
+    " M ProjectSettings/AssemblyShadowSettings.asset",
+    " M ProjectSettings/ProjectSettings.asset",
+    " M Tools/AssemblyShadow/m06_results.py",
+    " M Tools/AssemblyShadow/tests/test_m06_results.py",
+    "?? Docs/AssemblyShadow/M06/Evidence/__pycache__/"
+  ],
+  "editor": {
+    "failed": "0",
+    "inconclusive": "0",
+    "passed": "874",
+    "result": "Passed",
+    "resultsPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/EditorTests-a05e5bf965204111b2a000f765b7c27d/results.xml",
+    "resultsSha256": "503cfe5c6fdff0e01abe8f4affedc0b1a0274ffd90a844f28e4e049d2c938e7a",
+    "root": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/EditorTests-a05e5bf965204111b2a000f765b7c27d",
+    "skipped": "0",
+    "total": "874",
+    "unityLogPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/EditorTests-a05e5bf965204111b2a000f765b7c27d/unity.log",
+    "unityLogSha256": "8857be962803896d02232676e9bcceade22ad3775f4d19ab27a494a4180ff9f8"
+  },
+  "installReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-install-receipt.json",
+    "sha256": "f1b96d9bf841102cc97a91b263389a680e14551ddf712d4eda85a8318639d874"
+  },
+  "installRepeatability": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m00-install-repeatability.json",
+    "sha256": "6f9727b2d6bc10afec53c749fb60756d2c3322247f5bf5c7ed78b26a88ea9597"
+  },
+  "kind": "PostPlayerCloseoutValidation",
+  "milestone": "M06",
+  "nativeReceipts": [
+    {
+      "name": "m03",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m03-native-tests.json",
+      "sha256": "a3fb8668a861d17c288f574c3c88a2cdb8650dab711f8131da56719013126295"
+    },
+    {
+      "name": "visibility",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/visibility-native-tests.json",
+      "sha256": "615c84162713878907a2dd508feeaae2f5c460b6919b47402b321f34e23d2fec"
+    },
+    {
+      "name": "m04",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m04-native-tests.json",
+      "sha256": "9125815dcb0780c0475455142878dc0dff2d21d0534a23ecc0123df6650aad8e"
+    },
+    {
+      "name": "m05",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m05-native-tests.json",
+      "sha256": "561d39ac337492223940f38539f826d64c42f51bcd52ce49a293ed56fc7d7b36"
+    },
+    {
+      "name": "m06",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/m06-native-tests.json",
+      "sha256": "016e1ea4871ab6b19e55e8975838906fde753abaeab6b298dcd4aed2f7dcee5f"
+    }
+  ],
+  "originalEditor": "",
+  "originalEditorState": "AbsentAtCloseout",
+  "originalStatus": [
+    " M Assets/Settings/Renderer2D.asset",
+    "?? .DS_Store",
+    "?? .agents/.DS_Store",
+    "?? .codex/.DS_Store",
+    "?? Assets/Editor.meta",
+    "?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store"
+  ],
+  "python": {
+    "command": [
+      "/usr/local/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Tools/AssemblyShadow/tests",
+      "-q"
+    ],
+    "durationSeconds": 47.67349028587341,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06CloseoutValidation-v8/python-tests.log",
+    "logSha256": "f7a5abbea4e95d225b6f9c4cd9c6d5b903c0eb68724341e6fde01caab92757df",
+    "name": "python-tests",
+    "recoveredAfterCloseoutInterruption": true,
+    "testCount": 337,
+    "unityLogs": []
+  },
+  "result": "Passed",
+  "schemaVersion": 1,
+  "upstreamStatePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/m06-v8-continuation.json",
+  "upstreamStateSha256": "edc6b1e2709259ff3247e6481f377bc63c4072bd8397f2a5ba7925744e201eec"
+}

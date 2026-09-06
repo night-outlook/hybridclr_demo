@@ -8,19 +8,20 @@ import datetime as dt
 import gzip
 import hashlib
 import json
+import re
 import stat
 import shutil
 import tarfile
 from pathlib import Path, PurePosixPath
 
 
-DEMO_EXECUTABLE_REVISION = "88b4f9145430f9993eb49c1e6854e377ce7ea345"
-DEMO_PIN_REVISION = "9cac0c9d8ba03e30cf2b084278c0c2c1b1676f54"
+DEMO_EXECUTABLE_REVISION = "e1ab1ca512dfd12642c333094d884808ff757fc9"
+DEMO_PIN_REVISION = "1311e7c5fb9da4769260529bb561661aa335b198"
 RUNTIME_REVISION = "a19db144751f4f016769b90e61a80b8c27578678"
-NATIVE_REVISION = "6613a02feaf7774b14fb1b57d20a72812bde0434"
+NATIVE_REVISION = "5b12ee96e574999d0eb82a6200d95a5b63c7fcfc"
 PACKAGE_REVISION = "8d2e811fb37f4427ea15321369c883a61975a57d"
-DEVELOPMENT_BASELINE = "M06-Baseline-v7"
-RELEASE_BASELINE = "M06-Baseline-Release-v7"
+DEVELOPMENT_BASELINE = "M06-Baseline-v8"
+RELEASE_BASELINE = "M06-Baseline-Release-v8"
 PLAN_IDS = ("Ordinary", "P01", "P02", "P03", "InitializerFailure")
 MODES = tuple(
     [
@@ -364,35 +365,41 @@ def main(project: Path) -> None:
     destination = project / "Docs/AssemblyShadow/M06/Evidence"
     require(destination.is_dir() and not destination.is_symlink(), "M06 Evidence directory is missing/aliased")
     expected_outputs = (
-        "player-results-v7.tar.gz",
-        "fixtures-v7.tar.gz",
-        "generation-proofs-v7.tar.gz",
-        "player-input-proofs-v7.tar.gz",
-        "closeout-validation-v7.tar.gz",
-        "artifact-index-v7.json",
+        "player-results-v8.tar.gz",
+        "fixtures-v8.tar.gz",
+        "generation-proofs-v8.tar.gz",
+        "player-input-proofs-v8.tar.gz",
+        "closeout-validation-v8.tar.gz",
+        "artifact-index-v8.json",
     )
     require(not any((destination / name).exists() for name in expected_outputs), "M06 retention output already exists")
 
     temporary = project / "_temp/AssemblyShadow"
-    development_generation_path = canonical_file(project, temporary / "M06Generation-6376dac0b694491d909315b135b8c3a9/m06-generation.json")
-    release_generation_path = canonical_file(project, temporary / "M06Generation-ade540d4ee4e4d9d9bd3c85073830d17/m06-generation.json")
-    development_fixture_path = canonical_file(project, temporary / "M06Fixtures-88145bf85f4a4de887232554027d108a/m06-fixtures.json")
-    development_on_path = canonical_file(project, temporary / "M06PlayerInputs-d0443d0087b846a18b4cbf525887e6c9/m06-player-build.json")
-    development_off_path = canonical_file(project, temporary / "M06PlayerInputs-b0ac61d48df24880a94434c49f71c985/m06-player-build.json")
-    release_player_path = canonical_file(project, temporary / "M06PlayerInputs-4c2ea626ceba4ee2866a2d0bb9748ecf/m06-player-build.json")
-    player_root = canonical_directory(project, temporary / "M06Results-final-20260904-2006")
-    strict_path = canonical_file(project, temporary / "m06-final-verification-20260904-2006.json")
-    continuation_path = canonical_file(project, temporary / "m06-release-continuation-20260904-2006.json")
-    closeout_path = canonical_file(project, temporary / "m06-closeout-validation-20260904-2006.json")
+    continuation_path = canonical_file(project, temporary / "m06-v8-continuation.json")
+    continuation = read_json(continuation_path)
+    require(continuation.get("result") == "Passed", "M06 v8 continuation did not pass")
+
+    def continued(path_field: str, hash_field: str) -> Path:
+        path = canonical_file(project, Path(continuation[path_field]))
+        require(sha256(path) == continuation[hash_field], "Continuation-bound input changed: " + path_field)
+        return path
+
+    development_generation_path = continued("developmentGeneration", "developmentGenerationSha256")
+    release_generation_path = continued("releaseGeneration", "releaseGenerationSha256")
+    development_fixture_path = continued("developmentFixtureManifest", "developmentFixtureManifestSha256")
+    development_on_path = continued("developmentOn", "developmentOnSha256")
+    development_off_path = continued("developmentOff", "developmentOffSha256")
+    release_player_path = continued("releasePlayer", "releasePlayerSha256")
+    player_root = canonical_directory(project, Path(continuation["resultRoot"]))
+    strict_path = continued("strictReceipt", "strictReceiptSha256")
+    closeout_path = canonical_file(project, temporary / "m06-closeout-validation-v8.json")
 
     _, development_generation_root = validate_generation(development_generation_path, DEVELOPMENT_BASELINE, True)
     _, release_generation_root = validate_generation(release_generation_path, RELEASE_BASELINE, False)
     development_fixture, development_replay = validate_fixture(
         development_fixture_path, DEVELOPMENT_BASELINE, True, development_generation_path
     )
-    continuation = read_json(continuation_path)
-    require(continuation.get("result") == "Passed", "Release continuation did not pass")
-    release_fixture_path = canonical_file(project, Path(continuation["releaseFixtureManifest"]))
+    release_fixture_path = continued("releaseFixtureManifest", "releaseFixtureManifestSha256")
     require(sha256(release_fixture_path) == continuation.get("releaseFixtureManifestSha256"), "Release fixture changed")
     release_fixture, release_replay = validate_fixture(release_fixture_path, RELEASE_BASELINE, False, release_generation_path)
     require(str(release_replay) == continuation.get("releaseReplay") and sha256(release_replay) == continuation.get("releaseReplaySha256"), "Release replay changed")
@@ -422,7 +429,17 @@ def main(project: Path) -> None:
     require(closeout.get("schemaVersion") == 1 and closeout.get("milestone") == "M06" and closeout.get("result") == "Passed", "Closeout validation did not pass")
     require(closeout.get("upstreamStatePath") == str(continuation_path) and closeout.get("upstreamStateSha256") == sha256(continuation_path), "Closeout upstream mismatch")
     closeout_root = canonical_directory(project, Path(closeout["python"]["logPath"]).parent)
-    require(closeout_root.name == "M06CloseoutValidation-20260904-2006", "Wrong closeout root")
+    require(closeout_root.name == "M06CloseoutValidation-v8", "Wrong closeout root")
+    closeout_roots = sorted(
+        {
+            canonical_directory(project, Path(row["logPath"]).parent)
+            for row in closeout.get("commands", [])
+        }
+    )
+    require(closeout_root in closeout_roots and all(
+        root.parent == temporary and re.fullmatch(r"M06CloseoutValidation-v8(?:-retry[1-9][0-9]*)?", root.name)
+        for root in closeout_roots
+    ), "Closeout command logs escaped the bounded retry roots")
     require(int(closeout["python"].get("testCount", 0)) > 0, "No Python tests recorded")
     editor = closeout.get("editor", {})
     require(
@@ -442,18 +459,21 @@ def main(project: Path) -> None:
         "releaseBaselineBuildId": RELEASE_BASELINE,
     }
     archives = []
-    archives.append(archive_entries(destination, "player-results-v7.tar.gz", collect_tree(player_root, "Players", "actual-player-evidence"), context))
+    archives.append(archive_entries(destination, "player-results-v8.tar.gz", collect_tree(player_root, "Players", "actual-player-evidence"), context))
     fixture_entries = collect_tree(development_fixture_path.parent, "Development", "fixture-and-replay")
     fixture_entries += collect_tree(release_fixture_path.parent, "Release", "fixture-and-replay")
-    archives.append(archive_entries(destination, "fixtures-v7.tar.gz", fixture_entries, context))
+    archives.append(archive_entries(destination, "fixtures-v8.tar.gz", fixture_entries, context))
     generation_entries = generation_paths(development_generation_root, "Development")
     generation_entries += generation_paths(release_generation_root, "Release")
-    archives.append(archive_entries(destination, "generation-proofs-v7.tar.gz", generation_entries, context))
+    archives.append(archive_entries(destination, "generation-proofs-v8.tar.gz", generation_entries, context))
     player_entries = player_input_paths(development_on_root, "Development-NativeOn")
     player_entries += player_input_paths(development_off_root, "Development-NativeOff")
     player_entries += player_input_paths(release_player_root, "Release-NativeOn")
-    archives.append(archive_entries(destination, "player-input-proofs-v7.tar.gz", player_entries, context))
-    archives.append(archive_entries(destination, "closeout-validation-v7.tar.gz", collect_tree(closeout_root, "Closeout", "fresh-full-suite-evidence"), context))
+    archives.append(archive_entries(destination, "player-input-proofs-v8.tar.gz", player_entries, context))
+    closeout_entries = []
+    for root in closeout_roots:
+        closeout_entries += collect_tree(root, "Closeout/" + root.name, "fresh-full-suite-evidence")
+    archives.append(archive_entries(destination, "closeout-validation-v8.tar.gz", closeout_entries, context))
 
     copies: list[dict] = []
 
@@ -461,72 +481,70 @@ def main(project: Path) -> None:
         source = canonical_file(project, source)
         copies.append(file_entry(source, name, category))
 
-    add(Path(development_fixture["baselineManifestPath"]), "baselines/development-baseline-manifest-v7.json", "frozen-build")
-    add(Path(release_fixture["baselineManifestPath"]), "baselines/release-baseline-manifest-v7.json", "frozen-build")
-    add(development_generation_path, "generation/development-generation-v7.json", "generation-proof")
-    add(release_generation_path, "generation/release-generation-v7.json", "generation-proof")
-    add(development_fixture_path, "fixtures/development-fixtures-v7.json", "fixture-proof")
-    add(development_replay, "fixtures/development-editor-replay-v7.json", "independent-editor-replay")
-    add(release_fixture_path, "fixtures/release-fixtures-v7.json", "fixture-proof")
-    add(release_replay, "fixtures/release-editor-replay-v7.json", "independent-editor-replay")
-    add(development_on_path, "players/development-native-on-build-v7.json", "actual-player-build")
-    add(development_off_path, "players/development-native-off-build-v7.json", "actual-player-build")
-    add(release_player_path, "players/release-native-on-build-v7.json", "actual-player-build")
-    add(strict_path, "verification/m06-strict-28-case-v7.json", "strict-runtime-verification")
-    add(continuation_path, "verification/release-continuation-v7.json", "guarded-continuation")
-    add(closeout_path, "verification/closeout-validation-v7.json", "fresh-full-suite-verification")
-    add(Path(closeout["installReceipt"]["path"]), "verification/install-receipt-v7.json", "pinned-installation")
-    add(Path(closeout["installRepeatability"]["path"]), "verification/install-repeatability-v7.json", "pinned-installation")
-    add(Path(editor["resultsPath"]), "verification/editor-tests-v7.xml", "fresh-editor-suite")
-    add(Path(editor["unityLogPath"]), "verification/editor-tests-v7.unity.log", "fresh-editor-suite")
-    add(Path(closeout["python"]["logPath"]), "verification/python-tests-v7.log", "fresh-python-suite")
+    add(Path(development_fixture["baselineManifestPath"]), "baselines/development-baseline-manifest-v8.json", "frozen-build")
+    add(Path(release_fixture["baselineManifestPath"]), "baselines/release-baseline-manifest-v8.json", "frozen-build")
+    add(development_generation_path, "generation/development-generation-v8.json", "generation-proof")
+    add(release_generation_path, "generation/release-generation-v8.json", "generation-proof")
+    add(development_fixture_path, "fixtures/development-fixtures-v8.json", "fixture-proof")
+    add(development_replay, "fixtures/development-editor-replay-v8.json", "independent-editor-replay")
+    add(release_fixture_path, "fixtures/release-fixtures-v8.json", "fixture-proof")
+    add(release_replay, "fixtures/release-editor-replay-v8.json", "independent-editor-replay")
+    add(development_on_path, "players/development-native-on-build-v8.json", "actual-player-build")
+    add(development_off_path, "players/development-native-off-build-v8.json", "actual-player-build")
+    add(release_player_path, "players/release-native-on-build-v8.json", "actual-player-build")
+    add(strict_path, "verification/m06-strict-28-case-v8.json", "strict-runtime-verification")
+    add(continuation_path, "verification/release-continuation-v8.json", "guarded-continuation")
+    add(closeout_path, "verification/closeout-validation-v8.json", "fresh-full-suite-verification")
+    add(Path(closeout["installReceipt"]["path"]), "verification/install-receipt-v8.json", "pinned-installation")
+    add(Path(closeout["installRepeatability"]["path"]), "verification/install-repeatability-v8.json", "pinned-installation")
+    add(Path(editor["resultsPath"]), "verification/editor-tests-v8.xml", "fresh-editor-suite")
+    add(Path(editor["unityLogPath"]), "verification/editor-tests-v8.unity.log", "fresh-editor-suite")
+    add(Path(closeout["python"]["logPath"]), "verification/python-tests-v8.log", "fresh-python-suite")
     for row in closeout.get("nativeReceipts", []):
         require(row.get("name") in {"m03", "visibility", "m04", "m05", "m06"}, "Unknown native suite")
         source = Path(row["path"])
         require(sha256(source) == row.get("sha256"), "Native receipt changed")
-        add(source, "verification/native/" + row["name"] + "-native-tests-v7.json", "fresh-native-suite")
+        add(source, "verification/native/" + row["name"] + "-native-tests-v8.json", "fresh-native-suite")
     add(project / "ProjectSettings/AssemblyShadowSourcePins.json", "source/current-source-pins.json", "source-identity")
     add(project / "ProjectSettings/AssemblyShadowRawTypeAdmissions.json", "source/raw-type-admission-configuration.json", "source-policy")
 
-    for name in (
-        "UnityExec_20260903_191337.log",
-        "UnityExec_20260903_215848.log",
-        "UnityExec_20260904_015215.log",
-        "UnityExec_20260904_053528.log",
-        "UnityExec_20260904_091317.log",
-        "UnityExec_20260904_124359.log",
-        "UnityExec_20260904_151429.log",
-        "UnityExec_20260904_184014.log",
-        "UnityExec_20260904_200641.log",
-    ):
+    # These three phases precede the guarded continuation receipt. Every later
+    # wrapper and Unity log is discovered from that receipt instead of relying
+    # on a timestamp or generated GUID.
+    for name in ("UnityExec_20260905_055525.log", "UnityExec_20260905_083358.log", "UnityExec_20260905_122312.log"):
         add(project / "_temp" / name, "build-logs/" + name, "guarded-unity-build-log")
+    for row in continuation.get("commands", []):
+        require(type(row) is dict and row.get("name"), "Malformed continuation command evidence")
+        for field, prefix, category in (
+            ("logPath", "task-local/continuation-", "task-local-orchestration"),
+            ("unityLogPath", "build-logs/", "guarded-unity-build-log"),
+        ):
+            value = row.get(field)
+            if value:
+                source = Path(value)
+                target = prefix + (source.name if field == "unityLogPath" else row["name"] + ".log")
+                add(source, target, category)
+    for row in closeout.get("commands", []):
+        require(type(row) is dict and row.get("name"), "Malformed closeout command evidence")
+        for unity_log in row.get("unityLogs", []):
+            source = Path(unity_log["path"])
+            require(sha256(source) == unity_log["sha256"], "Closeout Unity log changed")
+            add(source, "build-logs/" + source.name, "guarded-unity-build-log")
     for name in (
-        "Run-M06ReleaseFixtures-20260904.ps1",
-        "Run-M06ReleaseReplay-20260904.ps1",
-        "continue-m06-after-release-fixtures-20260904.py",
-        "continue-m06-closeout-validation-20260904.py",
+        "Run-M06DevelopmentFixtures-v8.ps1",
+        "Run-M06DevelopmentGeneration-v8.ps1",
+        "Run-M06DevelopmentNativeOff-v8.ps1",
+        "Run-M06DevelopmentPlayer-v8.ps1",
+        "Run-M06EditorReplay-v8.ps1",
+        "Run-M06ReleaseFixtures-v8.ps1",
+        "Run-M06ReleaseGeneration-v8.ps1",
+        "Run-M06ReleasePlayer-v8.ps1",
+        "continue-m06-v8.py",
+        "closeout-m06-v8.py",
     ):
         add(project / "_temp" / name, "task-local/" + name, "task-local-orchestration")
-    for name in (
-        "m06-capture-run-players.py",
-        "m06-final-player-capture-20260904-2006.log",
-        "m06-final-strict-verifier-20260904-2006.log",
-        "m06-release-continuation-20260904-2006.json",
-        "m06-closeout-validation-20260904-2006.json",
-    ):
+    for name in ("m06-capture-run-players.py", "m06-v8-continuation.json", "m06-closeout-validation-v8.json"):
         add(temporary / name, "task-local/" + name, "task-local-orchestration")
-    optional = (
-        project / "_temp/M06ReleaseFixtures-launchd-20260904b.out.log",
-        project / "_temp/M06ReleaseFixtures-launchd-20260904b.err.log",
-        project / "_temp/M06ReleaseContinuation-launchd-20260904.out.log",
-        project / "_temp/M06ReleaseContinuation-launchd-20260904.err.log",
-        project / "_temp/M06CloseoutValidation-launchd-20260904.out.log",
-        project / "_temp/M06CloseoutValidation-launchd-20260904.err.log",
-        temporary / "m06-release-replay-wrapper-20260904-2006.log",
-    )
-    for source in optional:
-        if source.is_file():
-            add(source, "task-local/" + source.name, "task-local-orchestration")
 
     copies = copy_artifacts(destination, copies)
     script_path = Path(__file__).resolve(strict=True)
@@ -550,7 +568,7 @@ def main(project: Path) -> None:
             "The generation archives retain complete plan/output receipts and generated outputs but intentionally exclude reproducible multi-gigabyte compiler/IL2CPP workspaces. Independent full gates are still required."
         ),
     }
-    index_path = destination / "artifact-index-v7.json"
+    index_path = destination / "artifact-index-v8.json"
     write_json_new(index_path, index)
     print(
         json.dumps(

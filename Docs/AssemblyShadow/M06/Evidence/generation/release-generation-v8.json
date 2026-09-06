@@ -1,0 +1,271 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M06",
+    "policy": "compile-only-generator-provenance:1",
+    "baselineBuildId": "M06-Baseline-Release-v8",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "baselineCompileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Compile/Snapshot",
+    "baselineCompileSnapshotHash": "01247b20ca55c3ab85eba7dc673e33e0b0c6bbc18132c15ddf26ec1ef43630fa",
+    "selectedPlanId": "P03",
+    "developmentBuild": false,
+    "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr",
+            "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+            "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity",
+            "revision": "8d2e811fb37f4427ea15321369c883a61975a57d",
+            "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus",
+            "revision": "5b12ee96e574999d0eb82a6200d95a5b63c7fcfc",
+            "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo",
+            "revision": "e1ab1ca512dfd12642c333094d884808ff757fc9",
+            "localPath": "."
+        }
+    },
+    "plans": [
+        {
+            "planId": "Ordinary",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Compile/Snapshot",
+            "compileSnapshotHash": "01247b20ca55c3ab85eba7dc673e33e0b0c6bbc18132c15ddf26ec1ef43630fa",
+            "planPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Plan/generation-plan.json",
+            "planSha256": "35419fc79689119e0b65f671bd9939e037da85e9a30338ed875e062dbc5f9e80",
+            "planHash": "0cf0a2207259d15298456da9f0e5b62493014e2ee70ed5dd6108694b497238cf",
+            "compilerModePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Compile/Snapshot/compiler-mode.json",
+            "compilerModeSha256": "7c0d4025180d97f1169ddec53a657fae8223142262c3752949d4e3f26a34388c",
+            "executionPolicyPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/execution-policy.json",
+            "executionPolicySha256": "ba34032b3a3db3cf9169263cc2b1297019ea3395ad637b3a97a101848dc9b1d2",
+            "aotInputPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/AotInputs/generation-aot-inputs.json",
+            "aotInputSha256": "24e4249b2da3fa6d564a677b7044d0994c5259f5020ade14d0ce8c864fd6b2d0",
+            "aotInventoryHash": "4dd5295734348eb6d2da94801e4c50e413d882afdd782a1b30ac8f5c05a5b379",
+            "stripBuildGuid": "28ff9a5b347f4c34b5e3d0dfac5be2a9",
+            "stripOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/StripProject",
+            "stripSourceDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/ManagedStripped",
+            "stripBuildOptions": 536871040,
+            "linkReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Generated/link.xml.generation.json",
+            "linkReceiptSha256": "9132090369494427a0e4fcd811f17696504e4aaf2fd9563cb477052ebe58efde",
+            "bridgeReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Generated/MethodBridge.cpp.generation.json",
+            "bridgeReceiptSha256": "fe4dce89f7c7bcfa0921888fb4a6dfacf0cbda4799f8a84790145c7472aeca32",
+            "aotReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Ordinary/Generated/AOTGenericReferences.cs.generation.json",
+            "aotReceiptSha256": "730a7d1631adac90eb8d7f452b549da0b9d805452a4b3c68b372694cb86ff0a1",
+            "defines": [],
+            "changedRoots": [],
+            "closureLoadOrder": [],
+            "requiredAotMetadataNames": []
+        },
+        {
+            "planId": "P01",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Compile/Snapshot",
+            "compileSnapshotHash": "b16833de41e0ace1d7a91ef59e64aaeb9409c3c515adac939df29e2ab508bb4a",
+            "planPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Plan/generation-plan.json",
+            "planSha256": "fdc07e484a6784f6619b9f81325c677abf31d77624380dbb5dbf07cb6dec5101",
+            "planHash": "c1104de41fb9a36615779e52394dfdfa1c34669eb72d84ffccaa0e90dd72984d",
+            "compilerModePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Compile/Snapshot/compiler-mode.json",
+            "compilerModeSha256": "b143a5c0431c1a8cef811dd3ca894f3a45a1c1652c9121f48c407831e90e5064",
+            "executionPolicyPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/execution-policy.json",
+            "executionPolicySha256": "988c0cf890744152f6936130f70adcf318fcb193c5587b7ded778b43d31d1120",
+            "aotInputPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/AotInputs/generation-aot-inputs.json",
+            "aotInputSha256": "9b6dabf8509d849023cab76c1a844da36e57154778f2d8a656a3c04dd9cfe385",
+            "aotInventoryHash": "8e62f78433ee9baad804dbdc90589d10dc5d00b26d59d30f86f4e0609927334c",
+            "stripBuildGuid": "4149e3acc0c446978d3c2999df08e3a0",
+            "stripOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/StripProject",
+            "stripSourceDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/ManagedStripped",
+            "stripBuildOptions": 536871040,
+            "linkReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Generated/link.xml.generation.json",
+            "linkReceiptSha256": "c401ec72da2e911a22e8334ee3569832954a435f640ec462d80d35d0f5e92f0e",
+            "bridgeReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Generated/MethodBridge.cpp.generation.json",
+            "bridgeReceiptSha256": "2a6f783f9b54f435862bed0e222996ccf9dee3ec9bb7ad2a9a0ffbd41f649abb",
+            "aotReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Generated/AOTGenericReferences.cs.generation.json",
+            "aotReceiptSha256": "867e99dbe6943c1ef6df141d0a8e4f435cd444642fc9624ef66c77d67b0a5d3a",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ]
+        },
+        {
+            "planId": "P02",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Compile/Snapshot",
+            "compileSnapshotHash": "9ce6bba34605f16151d01f000129de523a8e8d2484a7620863a6b550d91b075d",
+            "planPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Plan/generation-plan.json",
+            "planSha256": "98060661643e0165a9326d06b6599747b7631788c3d5aae7c297a53acca2bf37",
+            "planHash": "bcfe5c61216bddb9c9a972dd4d6fc82cb9547de338d0359a0d5dba51da62a67e",
+            "compilerModePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Compile/Snapshot/compiler-mode.json",
+            "compilerModeSha256": "02e4bb901bda594db092265e7e045ea23c9da06daef4b569f55833223f7e4396",
+            "executionPolicyPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/execution-policy.json",
+            "executionPolicySha256": "146394c9b3933aed41efdfb8380f295011b1d9943fbc4061f348363ddc37c45e",
+            "aotInputPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/AotInputs/generation-aot-inputs.json",
+            "aotInputSha256": "0e4725247f01dd7b98889da329c6a3d5cb14343d93be5c87d0a5c3997bf55cf3",
+            "aotInventoryHash": "3599d026eb45783710f7f5583ab6971efe50f3822942040f65014eef1a40070b",
+            "stripBuildGuid": "417277d5b56e4803b13a547b311e49ff",
+            "stripOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/StripProject",
+            "stripSourceDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/ManagedStripped",
+            "stripBuildOptions": 536871040,
+            "linkReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Generated/link.xml.generation.json",
+            "linkReceiptSha256": "7cb8e308c5dd0183005c16928c03d1cc92b88df8bebcbac6eed3f9ced65d73a9",
+            "bridgeReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Generated/MethodBridge.cpp.generation.json",
+            "bridgeReceiptSha256": "390210bf908d807bdd8710455eddb355b6d70b2ec7c425800589b1d143ae0210",
+            "aotReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Generated/AOTGenericReferences.cs.generation.json",
+            "aotReceiptSha256": "0e17f12e37d1257d5e9410939bb75d100760f3eebad09f4d5f65aac95dd19ab6",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06",
+                "ASSEMBLY_SHADOW_P02",
+                "ASSEMBLY_SHADOW_M06_P02"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ]
+        },
+        {
+            "planId": "P03",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Compile/Snapshot",
+            "compileSnapshotHash": "253eea3b69ce39f47db568c3d992688ccca773eb48225b44914a9c3994d84321",
+            "planPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Plan/generation-plan.json",
+            "planSha256": "62b53ee42b2e5b3ccf11739b49b14d1405534cf0e6b7460f6e7a1b33b410bd98",
+            "planHash": "39c0c9bf62463aee2533e82bdaffe2f70d813849823516483c0b623a15400acc",
+            "compilerModePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Compile/Snapshot/compiler-mode.json",
+            "compilerModeSha256": "bc87e3dbf5812f5701f339277f1f4d955d8567dc715f60bd1d1378793bd55d3c",
+            "executionPolicyPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/execution-policy.json",
+            "executionPolicySha256": "144a44b98ec0cb543366032ac83626d3fb31c693aaf28938cb8d04d40473f5e5",
+            "aotInputPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/AotInputs/generation-aot-inputs.json",
+            "aotInputSha256": "b303e07ebe38b950ad583bfbb29060badfa02f2d8ccb51742b2037b65834e7b0",
+            "aotInventoryHash": "6051066b3ea1c252e832372b7edeab0733839a9048045d769380b2502c88747d",
+            "stripBuildGuid": "79f1ba8e99464b5faa7ddf0f9a0993ae",
+            "stripOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/StripProject",
+            "stripSourceDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/ManagedStripped",
+            "stripBuildOptions": 536871040,
+            "linkReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Generated/link.xml.generation.json",
+            "linkReceiptSha256": "917ae7cfbf017bfbe56a72624a6ab7c3496403383142832ed4ae7d4c8d188daf",
+            "bridgeReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Generated/MethodBridge.cpp.generation.json",
+            "bridgeReceiptSha256": "efd6a21664839789d1a5de7d4a6e45f6a9b01d99e30f67311693cf551993ef27",
+            "aotReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Generated/AOTGenericReferences.cs.generation.json",
+            "aotReceiptSha256": "33086c24dcb545014212978c8166c999cadd870bdf483d367af084a85742349d",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06",
+                "ASSEMBLY_SHADOW_P03",
+                "ASSEMBLY_SHADOW_M06_P03"
+            ],
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ]
+        },
+        {
+            "planId": "InitializerFailure",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Compile/Snapshot",
+            "compileSnapshotHash": "e18afc46f0496bab3ebfd64a4ed79a817fbbd890c4ad17e4d0c56c406c70c39f",
+            "planPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Plan/generation-plan.json",
+            "planSha256": "7bd055e2c9ef29346edefe1f41d8519a47056711f1b324181a612b9b2091a459",
+            "planHash": "b0f998fb5f0492fa27123332c1565477653b69d4c8f8480a2159f54ba50c3168",
+            "compilerModePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Compile/Snapshot/compiler-mode.json",
+            "compilerModeSha256": "84eee0ea9ad1584bb14e9c4134cad05d32e429516e6dddbb7f11c93bd783ee54",
+            "executionPolicyPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/execution-policy.json",
+            "executionPolicySha256": "d2aa0d28cc67f4faf18e430e4bf66143b090732b5c17b8a978c59f1964489195",
+            "aotInputPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/AotInputs/generation-aot-inputs.json",
+            "aotInputSha256": "b6cbaf32c226c0bda4e344beab4f14ee519a2ba49cf664387f461683a281f358",
+            "aotInventoryHash": "4d27fd5694506523c6aa8dc3117ae7558a9458e45fa9d0c36b9d88030cb14dfb",
+            "stripBuildGuid": "02d5faf02cb046c6b49d010a0952bb0c",
+            "stripOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/StripProject",
+            "stripSourceDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/Bee/artifacts/MacStandalonePlayerBuildProgram/ManagedStripped",
+            "stripBuildOptions": 536871040,
+            "linkReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Generated/link.xml.generation.json",
+            "linkReceiptSha256": "73e75189f1d5417aa44e5a6d867d88d1720f6941b81e2ead25ef96b9c10aaf6a",
+            "bridgeReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Generated/MethodBridge.cpp.generation.json",
+            "bridgeReceiptSha256": "fede86a6035c98e731ee3209968e6fb818201b21cdb098ffefd7febe542ed37d",
+            "aotReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Generated/AOTGenericReferences.cs.generation.json",
+            "aotReceiptSha256": "5c32fc297d2cb4a29a70f4cc575aa48bb612f74fc99c9fc689f392618d7aacd9",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06",
+                "ASSEMBLY_SHADOW_M06_INITIALIZER_THROW"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ]
+        }
+    ],
+    "installedOutputs": [
+        {
+            "role": "Link",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Generated/link.xml",
+            "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Assets/HybridCLRGenerate/link.xml",
+            "sha256": "bfd8060b70fa884fd84c6d826f7dbfa42cc9807f9e767492d0edb30431c5823c"
+        },
+        {
+            "role": "MethodBridge",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Generated/MethodBridge.cpp",
+            "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/MethodBridge.cpp",
+            "sha256": "398480b19455196afb7b840f9010daae42ae5fa97aabef5ec46ffad04cf48aca"
+        },
+        {
+            "role": "AotGenericReference",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Generated/AOTGenericReferences.cs",
+            "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Assets/HybridCLRGenerate/AOTGenericReferences.cs",
+            "sha256": "698d35943941125a877856d7930836c42105622e0fb92dabccb0d18cfbf4ef07"
+        },
+        {
+            "role": "AssemblyManifest",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Common/AssemblyManifest.cpp",
+            "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/AssemblyManifest.cpp",
+            "sha256": "d9bb597edb16903eaeba9d73d67a391ff16208b11a5c509ef0f0300bbc8f3712"
+        },
+        {
+            "role": "UnityVersion",
+            "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/Common/UnityVersion.h",
+            "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/UnityVersion.h",
+            "sha256": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff"
+        }
+    ]
+}

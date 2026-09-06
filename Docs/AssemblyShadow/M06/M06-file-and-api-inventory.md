@@ -10,11 +10,11 @@ are complete. The exact machine-readable delta is
 | Repository | M05 tag base | M06 executable source | Files | Added/removed lines |
 | --- | --- | --- | ---: | ---: |
 | hybridclr | `7f0da36e1a978abfd22c2c195ecb2741588a5d69` | `a19db144751f4f016769b90e61a80b8c27578678` | 4 modified | +280/-1 |
-| il2cpp_plus | `50194392f08815354b6f230f6d0ddd3ec5f9b0f3` | `6613a02feaf7774b14fb1b57d20a72812bde0434` | 10 modified | +550/-7 |
+| il2cpp_plus | `50194392f08815354b6f230f6d0ddd3ec5f9b0f3` | `5b12ee96e574999d0eb82a6200d95a5b63c7fcfc` | 12 modified | +663/-7 |
 | hybridclr_unity | `b132981fa72f8259efde8e8319029b8812858bcf` | `8d2e811fb37f4427ea15321369c883a61975a57d` | 64 | +4,790/-157 |
-| demo | `71f35b9cd80f92c52a9c6abc6aa4677ecbea48e3` | `88b4f9145430f9993eb49c1e6854e377ce7ea345` | 85 | +11,871/-462 |
+| demo | `71f35b9cd80f92c52a9c6abc6aa4677ecbea48e3` | `e1ab1ca512dfd12642c333094d884808ff757fc9` | 93 | +14,835/-468 |
 
-Demo commit `9cac0c9d8ba03e30cf2b084278c0c2c1b1676f54`
+Demo commit `1311e7c5fb9da4769260529bb561661aa335b198`
 changes only `ProjectSettings/AssemblyShadowSourcePins.json`, pinning the exact
 runtime/native/package/demo executable revisions above. Evidence and closeout
 commits are not represented as inputs that produced a Player.
@@ -23,9 +23,10 @@ commits are not represented as inputs that produced a Player.
 
 The runtime bridge changes four files: the managed icall declaration and
 registration, interpreter execution guards, and interpreter transformation
-observations. The native runtime changes ten files around code-generated invoke
-guards, transaction/execution diagnostics, type keys/resolution, metadata class
-materialization and `Runtime::Invoke`.
+observations. The native runtime changes twelve files around code-generated
+invoke guards, transaction/execution diagnostics, type keys/resolution,
+metadata class materialization, reflected method canonicalization and
+`Runtime::Invoke`.
 
 `AssemblyShadow::AssertMethodIsActive(const MethodInfo*, const char*) noexcept`
 rejects physical baseline candidate methods before supported execution paths.

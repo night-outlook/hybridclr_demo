@@ -21,7 +21,7 @@ REPOSITORIES = (
         "il2cpp_plus",
         Path("/Users/ah/GitHub/hybridclr/il2cpp_plus"),
         "50194392f08815354b6f230f6d0ddd3ec5f9b0f3",
-        "6613a02feaf7774b14fb1b57d20a72812bde0434",
+        "5b12ee96e574999d0eb82a6200d95a5b63c7fcfc",
     ),
     (
         "hybridclr_unity",
@@ -33,10 +33,10 @@ REPOSITORIES = (
         "demo",
         Path("/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow"),
         "71f35b9cd80f92c52a9c6abc6aa4677ecbea48e3",
-        "88b4f9145430f9993eb49c1e6854e377ce7ea345",
+        "e1ab1ca512dfd12642c333094d884808ff757fc9",
     ),
 )
-DEMO_PIN_REVISION = "9cac0c9d8ba03e30cf2b084278c0c2c1b1676f54"
+DEMO_PIN_REVISION = "1311e7c5fb9da4769260529bb561661aa335b198"
 
 
 def require(value: object, message: str) -> None:
@@ -93,7 +93,7 @@ def main(project: Path) -> None:
     project = project.resolve(strict=True)
     require(project == REPOSITORIES[-1][1], "Inventory is bound to the isolated demo checkout")
     destination = project / "Docs/AssemblyShadow/M06/M06-source-inventory.json"
-    require(not destination.exists() and not destination.is_symlink(), "Inventory output already exists")
+    require(not destination.is_symlink(), "Inventory output cannot be a symlink")
     repositories = []
     for name, path, base, target in REPOSITORIES:
         require(path.resolve(strict=True) == path and path.is_dir(), "Missing/aliased repository: " + str(path))
@@ -134,7 +134,7 @@ def main(project: Path) -> None:
             "counts": pin_counts,
         },
     }
-    with destination.open("x", encoding="utf-8") as stream:
+    with destination.open("w", encoding="utf-8") as stream:
         json.dump(value, stream, indent=2)
         stream.write("\n")
     print(

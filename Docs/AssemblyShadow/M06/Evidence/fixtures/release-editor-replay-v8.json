@@ -1,0 +1,109 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M06",
+    "result": "Passed",
+    "comparisonPolicy": "compiler-linked-resource-generation-warmup:1",
+    "fixtureManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/m06-fixtures.json",
+    "fixtureManifestSha256": "21d1b632199c25cfa71a22e1aa11251584367a7c82ac0a92e757a24883d3769c",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M06-Baseline-Release-v8/baseline-manifest.json",
+    "baselineManifestSha256": "142982be322ae093326e72018c07b1aa32f0cb8db5c10633ab7f314fc6129884",
+    "playerBuildReceiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06PlayerInputs-3b218ff927b74a278ebf59f4d0ddcdc9/m06-player-build.json",
+    "playerBuildReceiptSha256": "54b7c46a19f7446a4289f408d02dc50bf9096ebcd66e3fb242695bb8423a5738",
+    "generationProofPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/m06-generation.json",
+    "generationProofSha256": "21baab4511c50e2b3b5b4de8a909e49eab15b182acf6ce7992d989d0d703a95d",
+    "baselineInputSnapshotHash": "a1714c13b15e6475da46dd9e0b40fe4fab80d37df4a716e38b74ab10aa8ea16f",
+    "baselineBuildId": "M06-Baseline-Release-v8",
+    "playerBuildGuid": "164cc1a5274940babe2de8dbbbe1b070",
+    "nativeLibrarySha256": "4265ffc3125554aaaeb230fd062ae91741a143ddbf65fbb7edc6191adf1f1fcf",
+    "linkedPlayerReceiptHash": "d8ee25f60234a78ccf640169794f9c6b58612f6e31071ed118d73470c200d683",
+    "replayScratchPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Replay-d34ac61b3a2a4150975cfa935bb919ba",
+    "developmentBuild": false,
+    "validatorSourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr",
+            "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+            "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity",
+            "revision": "8d2e811fb37f4427ea15321369c883a61975a57d",
+            "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus",
+            "revision": "5b12ee96e574999d0eb82a6200d95a5b63c7fcfc",
+            "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo",
+            "revision": "e1ab1ca512dfd12642c333094d884808ff757fc9",
+            "localPath": "."
+        }
+    },
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "patchManifestSha256": "88c75be24246807397726dd71b9cf3088c5f65b691dcd5d3add03c07fa5db69b",
+            "compileSnapshotHash": "b16833de41e0ace1d7a91ef59e64aaeb9409c3c515adac939df29e2ab508bb4a",
+            "generationPlanSha256": "fdc07e484a6784f6619b9f81325c677abf31d77624380dbb5dbf07cb6dec5101",
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ]
+        },
+        {
+            "patchId": "P02",
+            "patchManifestSha256": "d1e270f1a32778d5feead3a9a1ac4bc23eaff80763047d06fce05acf8c22ac38",
+            "compileSnapshotHash": "9ce6bba34605f16151d01f000129de523a8e8d2484a7620863a6b550d91b075d",
+            "generationPlanSha256": "98060661643e0165a9326d06b6599747b7631788c3d5aae7c297a53acca2bf37",
+            "changedRoots": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ]
+        },
+        {
+            "patchId": "P03",
+            "patchManifestSha256": "f9c544b7e469fdd181e2dd15ab3c73bdc89df65024bf7dd88b2f834d82c33fe9",
+            "compileSnapshotHash": "253eea3b69ce39f47db568c3d992688ccca773eb48225b44914a9c3994d84321",
+            "generationPlanSha256": "62b53ee42b2e5b3ccf11739b49b14d1405534cf0e6b7460f6e7a1b33b410bd98",
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ]
+        },
+        {
+            "patchId": "InitializerFailure",
+            "patchManifestSha256": "f7f8728e673ae1e1416076c1d63d6e25de52c3c889e1284d599bfdaed0973afd",
+            "compileSnapshotHash": "e18afc46f0496bab3ebfd64a4ed79a817fbbd890c4ad17e4d0c56c406c70c39f",
+            "generationPlanSha256": "7bd055e2c9ef29346edefe1f41d8519a47056711f1b324181a612b9b2091a459",
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ]
+        }
+    ]
+}

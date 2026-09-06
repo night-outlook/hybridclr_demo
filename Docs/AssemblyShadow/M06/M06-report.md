@@ -1,9 +1,10 @@
 # M06 execution semantics evidence report
 
-Status: pending the final Release fixtures, 28 fresh Player cases, post-Player
-closeout validation, two deterministic full gates and local tag audit. The
-source/build facts below are frozen evidence, but they do not yet accept M06.
-M07 implementation remains closed.
+Status: the final v8 Development/Release artifacts, 28 fresh Player cases,
+strict runtime verifier, and post-Player closeout are complete. Five lossless
+archives and 53 selected copies are sealed in `Evidence/artifact-index-v8.json`.
+The two deterministic commit gates and local tag audit remain before final M06
+acceptance; M07 integration remains closed until those gates pass.
 
 ## Scope and source identity
 
@@ -18,11 +19,11 @@ The immutable executable revisions are:
 | Repository | Revision |
 | --- | --- |
 | hybridclr | `a19db144751f4f016769b90e61a80b8c27578678` |
-| il2cpp_plus | `6613a02feaf7774b14fb1b57d20a72812bde0434` |
+| il2cpp_plus | `5b12ee96e574999d0eb82a6200d95a5b63c7fcfc` |
 | hybridclr_unity | `8d2e811fb37f4427ea15321369c883a61975a57d` |
-| demo | `88b4f9145430f9993eb49c1e6854e377ce7ea345` |
+| demo | `e1ab1ca512dfd12642c333094d884808ff757fc9` |
 
-Demo metadata commit `9cac0c9d8ba03e30cf2b084278c0c2c1b1676f54`
+Demo metadata commit `1311e7c5fb9da4769260529bb561661aa335b198`
 pins those exact revisions and changes no executable input. The complete M05-tag
 delta is recorded in [M06-source-inventory.json](M06-source-inventory.json); the
 human-readable boundary is [M06-file-and-api-inventory.md](M06-file-and-api-inventory.md).
@@ -57,6 +58,10 @@ The final native correction had two direct causes:
   outside the Shadow metadata scope. The corrected function opens an
   `AssemblyShadowTypeMetadataScope`, retaining the active physical image through
   class creation. A native regression test exercises this path.
+- Reflected `MethodInfo` objects could still carry a baseline declaring-class
+  method after the logical type had been remapped. The final native correction
+  canonicalizes reflected methods through the active shadow type before invoke,
+  and the demo regression sources exercise the same-name method path.
 
 Both changes are inside the exact pinned native revision above.
 
@@ -76,21 +81,23 @@ Player-side generator overwrite cannot be mistaken for the recorded inputs.
 
 Development generation proof:
 
-- path: `_temp/AssemblyShadow/M06Generation-6376dac0b694491d909315b135b8c3a9/m06-generation.json`
-- SHA-256: `92d41e395f77eeb7c38b62545dc8d0cf945d69ffa66303f04106925f00a28f84`
-- baseline: `M06-Baseline-v7`
+- path: `_temp/AssemblyShadow/M06Generation-121a2a74c5f844b2b09b0f3e49e24eef/m06-generation.json`
+- SHA-256: `1227c19d072c959f8d29d30922348668ffcbe7bc596f444595e4f20224fddefb`
+- baseline: `M06-Baseline-v8`
 - mode: Development
 - selected plan: P03
 - ordinary baseline compile snapshot:
-  `de0ac176d6f3174cba110afabfed707d3cd645696935002bbead47240d9d6db1`
+  `3d2f3441d18a80bda68d2ea54813058364b04ad04ff0aee8e280da2dfefd8548`
 
 Release generation proof:
 
-- path: `_temp/AssemblyShadow/M06Generation-ade540d4ee4e4d9d9bd3c85073830d17/m06-generation.json`
-- SHA-256: `f8aef74cc15320c64924b6639d47774e5bb244e50f20957d2c4f14a48af6eddb`
-- baseline: `M06-Baseline-Release-v7`
+- path: `_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/m06-generation.json`
+- SHA-256: `21baab4511c50e2b3b5b4de8a909e49eab15b182acf6ce7992d989d0d703a95d`
+- baseline: `M06-Baseline-Release-v8`
 - mode: Release
 - selected plan: P03
+- ordinary baseline compile snapshot:
+  `01247b20ca55c3ab85eba7dc673e33e0b0c6bbc18132c15ddf26ec1ef43630fa`
 
 The retained generation archives include all plan/output receipts and generated
 Link/bridge/AOT-generic bytes. They intentionally exclude the reproducible
@@ -100,41 +107,41 @@ graphs stay at immutable local paths and remain covered by receipt hashes.
 ## Development Player pair
 
 The genuine native-ON Development Player is
-`Builds/AssemblyShadow/M06/M06-Baseline-v7.app`. Its input snapshot is
-`_temp/AssemblyShadow/M06PlayerInputs-d0443d0087b846a18b4cbf525887e6c9`.
+`Builds/AssemblyShadow/M06/M06-Baseline-v8.app`. Its input snapshot is
+`_temp/AssemblyShadow/M06PlayerInputs-c93706fc8db048a3b593539ea4c68477`.
 
 - input snapshot hash:
-  `f776efd7981d46facd2a294dd079c5a4e3ea3ea0fe371d0c29df19c6899c6b69`
+  `4b53c4bd41b7187761cb0d08cee6ea5223778efb151d0dc5818a78f66e815560`
 - GameAssembly SHA-256:
-  `989884edb0cedc3d1158cffdafe0c658800b7af7994f95b433020f1e5b2de0fd`
+  `ee0c3686ff10dec63ed6d596597adc00127181f92fd28570af9f99b31290909c`
 - type-proof SHA-256:
-  `0400f57d99788be1022a313e7621078b1861a3300f599494fe0f463a08b259bf`
+  `bbf7c3e44c0f08fcfa005875c11628a38c73efe923bac105c7c47d473d91c951`
 - execution-proof SHA-256:
-  `94c44e69db6558775af2b3a089fc41e7639dcd4f0e581126dd5c8ea4bb84651e`
+  `465b6de5f5ac2f6e05a4ef4b241a49b08fd8732302272dc694da82034ecac451`
 - Player-receipt SHA-256:
-  `55a11ef3bf2b8709f48646f3a31b645ae8937fc404f8f1c2610f34e4a695fda9`
+  `4c129fefa5fc6a3238b2c0b7fe4d40c8a4f485abff18d91e24da831cb0964904`
 - baseline-manifest SHA-256:
-  `9e02097d14d6b2b5c71d2517feafd6b277081329352d3654a3c998752c00fe72`
+  `5397351f29c3144f063427bbb543bdc5e92652296d743fe6f9de1477ed6c013a`
 - runtime ABI:
-  `82e67fdd1134e105c4e4da4012cc9405ef7b4a561dab10260b400b0a25ab8ef2`
+  `efa86c4633e2d2f08c1effad4de334076d821c6ca653b7732bd605449f66c3f8`
 - resource ABI:
   `sha256:255458bf49ed437c208aa8acf2b139825ff0cbb11d70e4a45d1d1459cd7d7973`
 
 The genuine native-OFF Development Player is
-`Builds/AssemblyShadow/M06/M06-Baseline-v7-NativeOff.app`. Its input snapshot is
-`_temp/AssemblyShadow/M06PlayerInputs-b0ac61d48df24880a94434c49f71c985`.
+`Builds/AssemblyShadow/M06/M06-Baseline-v8-NativeOff.app`. Its input snapshot is
+`_temp/AssemblyShadow/M06PlayerInputs-96867fc6d6374461ab31e7ab837cbfba`.
 
 - input snapshot hash:
-  `70e0f79840d0b646decc09c6cc1d8a21325858a0299f6cb9c1ea36b0e7eb50b0`
+  `5ba489b37f34039276b22f792cfbf089ae25008740b88ca2251f8e3f8e4e37fd`
 - GameAssembly SHA-256:
-  `607178772810e0838cac98d411118cc097fd6b339e961d3fe91675c1de417a40`
+  `cb7fa21b45690f5e1dee8c38239e6812f8f4e152fcc12cac3d4990585998cc33`
 - type-proof SHA-256:
-  `8265030c34f700adc0da62a80fe9cc1f126d75fd259f3d09bd69587d5e14a03f`
+  `0fb842c723e6e5535bd6e19878993926739b6070b48df5f262dc7546bf1cfa81`
 - execution-proof SHA-256:
-  `cbf4ebfe5a9c7bb6e1783dc5003badf65bc56dc360545e507be5a288e6ad9f6f`
+  `f3001bfa6fb5ff901cb04fbf6decb7467574f8c452c1837a01440e84c0337600`
 - Player-receipt SHA-256:
-  `58748960e9aac53c33cac7567b0f9eb9de7473da590829ba228de91250f5afa1`
-- build GUID: `2bcfbe459176400fb67f9188f58cc887`
+  `ae8decb53f92ae119319d792a803fd647bf1f1cb746dc29dfb65b03be3b3ab36`
+- build GUID: `361d20d31a4f406aa5234fd3b0acc620`
 
 The ON and OFF builds have distinct GUIDs, executables, native libraries,
 metadata/snapshot graphs and native identities. Their managed assembly
@@ -145,12 +152,12 @@ managed names appeared in both snapshots.
 ## Development fixtures and replay
 
 The Development fixture root is
-`_temp/AssemblyShadow/M06Fixtures-88145bf85f4a4de887232554027d108a`.
+`_temp/AssemblyShadow/M06Fixtures-d2d7a7fee8464070a71b94ee1c6ae362`.
 
 - fixture-manifest SHA-256:
-  `f222d5c4c2d0aa1f3ad48547270465f46ead58aecd9d706d1bdfe136430aa685`
+  `21a9d2aa2f4b9caef4f9df9d426ee41fd351de430ecad8e1ac6fbead34151a4b`
 - independent replay SHA-256:
-  `6e2eaaaa1e05e63a16d13e0db5f19846f3061da9e47f5ebbeb1767ea6a04191b`
+  `8cf77178cd4e79ac03ddbfa20c283dfb390a5013449f55ed4d71fa987f57da84`
 - patch file counts: P01 11, P02 15, P03 19, InitializerFailure 11
 
 The replay uses a separate scratch root, recompiles and compares every fixture
@@ -161,66 +168,91 @@ the same call stack that publishes the fixture manifest.
 ## Release Player and no-PDB provenance
 
 The genuine Release Player is
-`Builds/AssemblyShadow/M06/M06-Baseline-Release-v7.app`. Its input snapshot is
-`_temp/AssemblyShadow/M06PlayerInputs-4c2ea626ceba4ee2866a2d0bb9748ecf`.
+`Builds/AssemblyShadow/M06/M06-Baseline-Release-v8.app`. Its input snapshot is
+`_temp/AssemblyShadow/M06PlayerInputs-3b218ff927b74a278ebf59f4d0ddcdc9`.
 
 - input snapshot hash:
-  `4afb7d3fb57d5c5eedaabb94aab37843fa7b68d99f2ca352cc5464f2a1558752`
+  `a1714c13b15e6475da46dd9e0b40fe4fab80d37df4a716e38b74ab10aa8ea16f`
 - GameAssembly SHA-256:
-  `cb6a1d8bc50cf4ec4de709b02a1860a0338ed0dd5e9701a48fe7b856512a8811`
-- build GUID: `5ec3affbf8c44efe8a13d489a27c41d7`
+  `4265ffc3125554aaaeb230fd062ae91741a143ddbf65fbb7edc6191adf1f1fcf`
+- build GUID: `164cc1a5274940babe2de8dbbbe1b070`
 - type-proof SHA-256:
-  `02a651ad46bdeb5df853c0b519d373e3c5c2a93f83915304a094501fbf0275a8`
+  `6fb35b8d3df398ad06e641dc94d3c5ba89dfb63fbb809e7d1a97f6ffee3cb000`
 - execution-proof SHA-256:
-  `edfa47a1f72eee38606353903222df15c9904b101b02b3b126b4583a7728e71c`
+  `e38ecf7a3c96d77a3d847ae2d060ed6a222c6f07820d9c51b2811e1a5e6d53fa`
 - Player-receipt SHA-256:
-  `ba0b76e26bd1765776e6bfc9caa5a73c4bf08845bfa4acdef2228f67f22c3397`
+  `54b7c46a19f7446a4289f408d02dc50bf9096ebcd66e3fb242695bb8423a5738`
 - baseline-manifest SHA-256:
-  `ef364faba2dc012c481d8784cf5e3792245cef46747145dba633543c071a3e7b`
+  `142982be322ae093326e72018c07b1aa32f0cb8db5c10633ab7f314fc6129884`
 
 The Release generation/Player is not a relabeled Development build. Its fixture
-and independent replay remain pending at the time of this draft. The final
-T06-13 process must bind this exact no-PDB graph and correlate type/method token
-evidence without claiming runtime ModuleVersionId support.
+root is `_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f`:
+fixture-manifest SHA-256
+`21d1b632199c25cfa71a22e1aa11251584367a7c82ac0a92e757a24883d3769c`
+and independent replay SHA-256
+`fb0a87cd48bc2fa2306b841ab48b81ee26d24bda835ac92a07619c29806db357`.
+The Release fixture contains no PDBs (P01/P02/P03/InitializerFailure file counts
+10/12/14/10). T06-13 binds this exact no-PDB graph and correlates byte-level
+type/method token evidence without claiming runtime ModuleVersionId support.
 
-## Static, Editor, Python and native evidence before final closeout
+## Final runtime, Editor, Python and native evidence
 
-The combined Unity Editor suite passed 874/874 with no failed, skipped or
+The final launch receipt at
+`_temp/AssemblyShadow/M06Results-final-v8/player-launches.json` has SHA-256
+`abc4b5811143e11d2141b9dee2fbdff31d6b7dea392730559b75352488f94c21`.
+It records all 28 requested modes, 28 distinct operating-system process IDs,
+zero timeouts/failures and unchanged input hashes. The separate strict receipt
+`_temp/AssemblyShadow/m06-final-verification-v8.json` has SHA-256
+`6997b9bc33e279aee4df19b3c7a1db7587807c476716686e2a70bb561c4e09e6`
+and `result=Passed`, `caseCount=28`.
+
+The final combined Unity Editor suite passed 874/874 with no failed, skipped or
 inconclusive cases. The preserved XML is
-`_temp/AssemblyShadow/EditorTests-1bcd5d94bc974a4bb5d5c66b8a8ab34b/results.xml`.
+`_temp/AssemblyShadow/EditorTests-a05e5bf965204111b2a000f765b7c27d/results.xml`
+(SHA-256 `503cfe5c6fdff0e01abe8f4affedc0b1a0274ffd90a844f28e4e049d2c938e7a`).
 
-The full Python suite passed 335 tests with one intentional skip when the real
-M05 compiler environment was not supplied. Final closeout is configured with
-the preserved 36-DLL compiler root and exact raw-admission configuration; it
-must rerun without skips before acceptance.
+The full Python suite passed 337 tests with the preserved 36-DLL M05 compiler
+root and exact raw-admission configuration; there were no skips. Fresh native
+receipts passed for M03 parser/runtime, visibility, M04, M05 and M06. The M06
+receipt records 824 checks, 20 translation-unit syntax checks and 1,080
+dependencies; M05 records 34 syntax checks.
 
-The corrected M06 native runner passed 824 checks, including 20 translation-
-unit syntax checks and 1,080 recorded dependencies. Its receipt is
-`_temp/AssemblyShadow/m06-native-featureoff-fix-20260904020543.json`. The
-corrected M05 native layout runner also passed with 34 syntax checks at
-`_temp/AssemblyShadow/m05-native-layout-fix-20260904020658.json`.
+Pinned installation repeatability passed. The final install receipt SHA-256 is
+`f1b96d9bf841102cc97a91b263389a680e14551ddf712d4eda85a8318639d874`;
+the repeatability receipt SHA-256 is
+`6f9727b2d6bc10afec53c749fb60756d2c3322247f5bf5c7ed78b26a88ea9597`.
+Installed-source verification passed before and after the Editor suite for 940
+pinned native source files and 942 installed files with native mode ON. Demo
+identity is instead enforced by the frozen executable revision, exact source
+inventory and exact dirty-path gate because Unity intentionally regenerated
+five tracked build outputs after the Player builds.
 
-Pinned installation repeatability passed, with install receipt SHA-256
-`03f5e092f8eaca77124c68fc0319d5e116af51da81e88d9b6c12207bd28ec7ff`.
-A clean detached source verification checked 940 source files and 942 installed
-files, current demo-source identity and native mode ON. Final closeout will
-repeat installation, all M03/visibility/M04/M05/M06 native suites, the full
-Editor suite, full unskipped Python suite and installed-source verification.
+The closeout receipt is `_temp/AssemblyShadow/m06-closeout-validation-v8.json`,
+SHA-256 `068253e762f558666259316968a78ad574690cf1eef924557423eb45197ff91e`.
+The previously observed original-checkout Editor PID 13313 was absent by final
+closeout; it was never adopted, stopped or replaced by this workflow, and the
+original checkout's exact working status remains preserved.
 
-## Final runtime and gate boundary
+Two post-execution verifier corrections were required by real IL2CPP evidence:
+compiler `netstandard` primitive signatures retarget to the exact linked
+`mscorlib` identity at runtime, and module warmup returns its exact closed
+generic type rather than only `generic.value=4`. These changes affect only
+`m06_results.py` and its tests, are explicitly classified as post-execution
+verification tooling, and are not represented as Player-producing source.
 
-Pending. Acceptance requires all of the following from the frozen artifacts:
+## Retained evidence and remaining gate boundary
 
-- a genuine Release fixture manifest and independent replay;
-- 28 complete actual Player modes, 28 distinct operating-system process IDs,
-  zero timeouts/exits, unchanged input hashes and every raw diagnostic/log;
-- a separate strict verifier receipt with `result=Passed`, `caseCount=28`;
-- fresh unskipped full Python, full Editor, five native suites, repeat install
-  and installed-source verification with native ON restored;
-- deterministic lossless evidence archives and byte-identical selected copies;
-- committed evidence, Gate A current-checkout PASS and Gate B clean detached-
-  commit PASS;
-- exact post-closeout audit and matching local annotated four-repository tag.
+`Evidence/artifact-index-v8.json` has SHA-256
+`df3b6971385cece762dd54d589d70c2748e54916d539357ef420fe817a7651ff`.
+It seals five deterministic archives containing 549 files and 53 byte-identical
+selected copies. The archives cover all 28 Player results/logs, both fixture and
+replay trees, both five-plan generation proofs, all three Player input proofs,
+and the complete resumed closeout logs/receipts.
+
+Runtime and closeout acceptance inputs are now complete. Remaining work is
+limited to committing the retained evidence, Gate A current-checkout replay,
+Gate B clean detached-commit replay, retaining both gate receipts, and the exact
+post-closeout/local four-repository tag audit.
 
 The two gates are independent deterministic implementations/processes, not
 independent human or LLM reviewers. Gate A reruns the strict and installed-source

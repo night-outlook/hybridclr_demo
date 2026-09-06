@@ -359,6 +359,19 @@ def witness(name):
             'AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness' if name==EXTENSIBILITY_CONSUMER else name+'.M06ExecutionWitness')
 
 
+def business_generic_type(name,image,path):
+    require(name in CANDIDATES,f"{path}: generic type owner is not a registered candidate")
+    identity=image['identity']
+    if name==CONTRACTS:
+        contracts_identity=identity['fullName']
+    else:
+        rows=[row for row in identity['referenceIdentities'] if row['name'].casefold()==CONTRACTS.casefold()]
+        require(len(rows)==1,f"{path}: missing/ambiguous exact Contracts reference for generic type")
+        contracts_identity=rows[0]['fullName']
+    nested='GenericBox' if name==CONTRACTS else 'Pair'
+    return witness(name)+'+'+nested+'`1[[AssemblyA.Contracts.DemoValue, '+contracts_identity+']]'
+
+
 def compiler_core_identity(identity,providers,path):
     choices=[row for row in identity['referenceIdentities']
              if row['name'].casefold() in ('mscorlib','netstandard')]
@@ -367,6 +380,24 @@ def compiler_core_identity(identity,providers,path):
     require(key in providers,f"{path}: compiler corlib is absent from the verified compiler snapshot")
     exact(core['fullName'],providers[key]['fullName'],path)
     return core['fullName']
+
+
+def runtime_warmup_aqn(identity,build,path):
+    """Bind a declared compiler primitive to its exact runtime provider.
+
+    The schema-2 warmup manifest intentionally preserves the compiler's
+    byte-bound corlib reference. Unity 2022 IL2CPP can retarget that declared
+    netstandard signature to the linked mscorlib implementation, and the
+    runtime observation records Type.AssemblyQualifiedName after retargeting.
+    Keep both proofs: verify_warmup validates the compiler identity, while this
+    function requires the exact linked runtime identity from the Player receipt.
+    """
+    fields(identity,'assembly type',path)
+    require(identity['assembly'].partition(',')[0].casefold() in ('mscorlib','netstandard'),
+            f"{path}: warmup primitive has an unsupported compiler provider")
+    rows=[row for row in build['player']['assemblyIdentities'] if row['name'].casefold()=='mscorlib']
+    require(len(rows)==1,f"{path}: missing/ambiguous exact linked runtime corlib identity")
+    return identity['type']+', '+rows[0]['fullName']
 
 
 def verify_warmup(value,closure,cores,path):
@@ -700,10 +731,7 @@ def verify_business(values,name,phase,image,path,invocation=0,first=None,provide
         expected.update({'invocation.count':'2','handler.first':'2','handler.second':'1','event.beforeRemove':'2','event.afterRemove':'2','event.removed':'True'})
     elif phase=='generics':
         expected.update({'generic.value':'4','method':marker,'nullable':'4','boxed':'4','generic.method':'6','array':'2','ref':str((generation if name==INTERNAL else 0)+6),'out':str((generation if name==INTERNAL else 0)+7)})
-        nested='GenericBox' if name==CONTRACTS else 'Pair'
-        owner=witness(name)
-        identity=image['identity']['fullName'] if name==CONTRACTS else next(r['fullName'] for r in image['identity']['referenceIdentities'] if r['name']==CONTRACTS)
-        expected['generic.type']=owner+'+'+nested+'`1[[AssemblyA.Contracts.DemoValue, '+identity+']]'
+        expected['generic.type']=business_generic_type(name,image,path)
         if name==INTERNAL:expected['struct']=str(generation+4)
     elif phase=='async':
         expected={'cancel':'TaskCanceledException','async.throw':marker+':async','iterator.begin':'true','iterator.moveNext':'True','iterator.value':str(generation),'iterator.finally':'true','iterator.disposed':'true','async':'sync-boundary','marker':marker}
@@ -1091,7 +1119,7 @@ def verify_warmup_observations(result,item,build,path):
             methods=[m for m in image['methods'] if m['metadataToken']==row['metadataToken']]
             require(len(methods)==1 and methods[0]['name']==row['name'] and methods[0]['genericArity']==row['genericArity'] and methods[0]['declaringType']==row['declaringType'],f"{path}: warmup method not in selected patch")
             if row['phase']=='prejit':
-                qualify=lambda v:v['type']+', '+v['assembly']
+                qualify=lambda v:runtime_warmup_aqn(v,build,path)
                 exact(row['genericArguments'],[qualify(v) for v in entry['genericArguments']],path)
                 exact(row['returnType'],qualify(entry['returnType']),path);exact(row['parameterTypes'],[qualify(v) for v in entry['parameterTypes']],path)
                 returned='True'
@@ -1107,7 +1135,7 @@ def verify_warmup_observations(result,item,build,path):
             values=values_map(row['returnedValues'],path);fields(values,'phase warmup echo new dispatch generic',path)
             exact(values['phase'],'warmup',path);exact(values['echo'],'warmup',path);exact(values['warmup'],str(physical_marker(image,path)[1]+7),path)
             marker=physical_marker(image,path)[0]
-            exact(values['new'],'marker='+marker,path);exact(values['generic'],'generic.value=4',path)
+            exact(values['new'],'marker='+marker,path);exact(values['generic'],'generic.type='+business_generic_type(row['assemblyName'],image,path),path)
             exact(values['dispatch'],'virtual='+marker+(':virtual' if row['assemblyName'] in (CONTRACTS,CONTRACTS_CONSUMER) else ':sealed'),path)
             exact(row['actualReturn'],';'.join(row['returnedValues']),path)
 

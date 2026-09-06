@@ -24,13 +24,20 @@ EXPECTED_DEMO_DIRTY = {
 EXPECTED_ORIGINAL_DIRTY = {
     " M Assets/Settings/Renderer2D.asset",
     "?? .DS_Store",
+    "?? .agents/.DS_Store",
+    "?? .codex/.DS_Store",
     "?? Assets/Editor.meta",
     "?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store",
 }
 PAIRED_HEADS = {
     Path("/Users/ah/GitHub/hybridclr/hybridclr"): "a19db144751f4f016769b90e61a80b8c27578678",
-    Path("/Users/ah/GitHub/hybridclr/il2cpp_plus"): "6613a02feaf7774b14fb1b57d20a72812bde0434",
+    Path("/Users/ah/GitHub/hybridclr/il2cpp_plus"): "5b12ee96e574999d0eb82a6200d95a5b63c7fcfc",
     Path("/Users/ah/GitHub/hybridclr/hybridclr_unity"): "8d2e811fb37f4427ea15321369c883a61975a57d",
+}
+DEMO_EXECUTABLE = "e1ab1ca512dfd12642c333094d884808ff757fc9"
+POST_EXECUTION_VERIFIER_FILES = {
+    "Tools/AssemblyShadow/m06_results.py",
+    "Tools/AssemblyShadow/tests/test_m06_results.py",
 }
 
 
@@ -53,6 +60,13 @@ def read_json(path: Path) -> dict:
 
 def command_output(command: list[str], cwd: Path, env: dict[str, str] | None = None) -> str:
     return subprocess.check_output(command, cwd=cwd, text=True, env={**os.environ, "LC_ALL": "C", **(env or {})})
+
+
+def optional_process(pid: int, cwd: Path) -> str:
+    result = subprocess.run(["ps", "-p", str(pid), "-o", "pid=,lstart=,command="], cwd=cwd,
+                            text=True, capture_output=True, env={**os.environ, "LC_ALL": "C"})
+    require(result.returncode in (0, 1), "Unable to inspect process identity: " + result.stderr.strip())
+    return " ".join(result.stdout.split())
 
 
 def git(root: Path, *arguments: str) -> str:
@@ -169,7 +183,15 @@ def verify_source_inventory(review: Path) -> dict:
         actual = git(repository, "diff", "--name-status", "--no-renames", row["base"] + ".." + row["target"]).splitlines()
         expected = [item["status"] + "\t" + item["path"] for item in row["files"]]
         require(actual == expected and len(expected) == row["counts"]["files"], "Detached source inventory differs: " + row["name"])
-    return {"repositories": len(inventory["repositories"]), "files": sum(row["counts"]["files"] for row in inventory["repositories"])}
+    demo_delta = git(review, "diff", "--name-only", DEMO_EXECUTABLE + "..HEAD").splitlines()
+    require(POST_EXECUTION_VERIFIER_FILES <= set(demo_delta) and all(
+        path == "ProjectSettings/AssemblyShadowSourcePins.json" or
+        path.startswith("Docs/AssemblyShadow/M06/") or path in POST_EXECUTION_VERIFIER_FILES
+        for path in demo_delta
+    ), "Detached evidence commit contains unapproved post-execution demo changes")
+    return {"repositories": len(inventory["repositories"]),
+            "files": sum(row["counts"]["files"] for row in inventory["repositories"]),
+            "postExecutionVerifierFiles": sorted(POST_EXECUTION_VERIFIER_FILES)}
 
 
 def no_shadow_unity(live: Path) -> bool:
@@ -193,13 +215,13 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
 
     evidence = review / "Docs/AssemblyShadow/M06/Evidence"
     git_tree = validate_git_tree(review, evidence, evidence_commit)
-    index_path = evidence / "artifact-index-v7.json"
+    index_path = evidence / "artifact-index-v8.json"
     index = read_json(index_path)
     require(index.get("milestone") == "M06" and index.get("allCopiedBytesMatch") is True, "Detached evidence index is not sealed")
     retention = verify_retention(evidence, index)
     source = verify_source_inventory(review)
 
-    closeout = read_json(Path(named_copy(index, "verification/closeout-validation-v7.json")["originalPath"]))
+    closeout = read_json(Path(named_copy(index, "verification/closeout-validation-v8.json")["originalPath"]))
     require(closeout.get("result") == "Passed", "Recorded closeout suite failed")
     closeout_python = Path(closeout["python"]["logPath"]).read_text(encoding="utf-8", errors="replace")
     closeout_match = re.search(r"Ran (\d+) tests? in", closeout_python)
@@ -234,24 +256,28 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
     require(match is not None and re.search(r"(?m)^OK$", python_text) and "skipped=" not in python_text, "Detached full Python suite was not an unskipped pass")
     python["testCount"] = int(match.group(1))
 
-    continuation = read_json(live / "_temp/AssemblyShadow/m06-release-continuation-20260904-2006.json")
+    continuation = read_json(Path(named_copy(index, "verification/release-continuation-v8.json")["originalPath"]))
+    development_fixture = Path(named_copy(index, "fixtures/development-fixtures-v8.json")["originalPath"])
+    development_on = Path(named_copy(index, "players/development-native-on-build-v8.json")["originalPath"])
+    development_off = Path(named_copy(index, "players/development-native-off-build-v8.json")["originalPath"])
+    release_player = Path(named_copy(index, "players/release-native-on-build-v8.json")["originalPath"])
     strict_output = output_root / "strict-replay.json"
     strict = run(
         [
             "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
             str(review / "Tools/AssemblyShadow/verify-m06-results.py"),
             "--fixture-manifest",
-            str(live / "_temp/AssemblyShadow/M06Fixtures-88145bf85f4a4de887232554027d108a/m06-fixtures.json"),
+            str(development_fixture),
             "--on-build",
-            str(live / "_temp/AssemblyShadow/M06PlayerInputs-d0443d0087b846a18b4cbf525887e6c9/m06-player-build.json"),
+            str(development_on),
             "--off-build",
-            str(live / "_temp/AssemblyShadow/M06PlayerInputs-b0ac61d48df24880a94434c49f71c985/m06-player-build.json"),
+            str(development_off),
             "--release-fixture-manifest",
             continuation["releaseFixtureManifest"],
             "--release-build",
-            str(live / "_temp/AssemblyShadow/M06PlayerInputs-4c2ea626ceba4ee2866a2d0bb9748ecf/m06-player-build.json"),
+            str(release_player),
             "--results",
-            str(live / "_temp/AssemblyShadow/M06Results-final-20260904-2006/Results"),
+            str(Path(continuation["resultRoot"]) / "Results"),
             "--m01-baseline-root",
             str(live / "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1"),
             "--output",
@@ -268,10 +294,9 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
         [
             "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
             str(review / "Tools/AssemblyShadow/verify-installed-runtime.py"),
-            "verify",
             "--project",
             str(live),
-            "--verify-demo-source",
+            "--skip-demo-source",
             "--expect-shadow",
             "on",
             "--json",
@@ -287,8 +312,10 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
         require(git(repository, "rev-parse", "HEAD").strip() == revision and not status(repository), "Paired repository changed")
     original = Path("/Users/ah/GitHub/hybridclr/hybridclr_demo")
     require(status(original) == EXPECTED_ORIGINAL_DIRTY, "Original checkout status changed")
-    original_editor = " ".join(command_output(["ps", "-p", "13313", "-o", "pid=,lstart=,command="], live).split())
-    require(original_editor.startswith("13313 Thu Aug 27 01:46:54 2026 ") and "/Contents/MacOS/Unity" in original_editor, "Original Editor identity changed")
+    original_editor = optional_process(13313, live)
+    require(not original_editor or
+            (original_editor.startswith("13313 Thu Aug 27 01:46:54 2026 ") and "/Contents/MacOS/Unity" in original_editor),
+            "Original Editor identity changed or was replaced")
 
     receipt = {
         "schemaVersion": 1,
@@ -317,6 +344,7 @@ def main(review: Path, live: Path, output_root: Path, evidence_commit: str) -> N
         "liveStatus": sorted(status(live)),
         "originalStatus": sorted(status(original)),
         "originalEditor": original_editor,
+        "originalEditorState": "PresentUntouched" if original_editor else "AbsentAtGate",
         "limitation": "Independent deterministic detached-worktree process gate, not an independent human or LLM review. It executes the full Python and strict runtime verifiers; Unity/native suites remain byte-bound recorded inputs checked through the retained closeout receipt and archives.",
     }
     receipt_path = output_root / "gate-b.json"

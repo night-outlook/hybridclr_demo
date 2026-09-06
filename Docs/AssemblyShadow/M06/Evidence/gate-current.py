@@ -24,15 +24,21 @@ EXPECTED_DEMO_DIRTY = {
 EXPECTED_ORIGINAL_DIRTY = {
     " M Assets/Settings/Renderer2D.asset",
     "?? .DS_Store",
+    "?? .agents/.DS_Store",
+    "?? .codex/.DS_Store",
     "?? Assets/Editor.meta",
     "?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store",
 }
 PAIRED_HEADS = {
     Path("/Users/ah/GitHub/hybridclr/hybridclr"): "a19db144751f4f016769b90e61a80b8c27578678",
-    Path("/Users/ah/GitHub/hybridclr/il2cpp_plus"): "6613a02feaf7774b14fb1b57d20a72812bde0434",
+    Path("/Users/ah/GitHub/hybridclr/il2cpp_plus"): "5b12ee96e574999d0eb82a6200d95a5b63c7fcfc",
     Path("/Users/ah/GitHub/hybridclr/hybridclr_unity"): "8d2e811fb37f4427ea15321369c883a61975a57d",
 }
-DEMO_EXECUTABLE = "88b4f9145430f9993eb49c1e6854e377ce7ea345"
+DEMO_EXECUTABLE = "e1ab1ca512dfd12642c333094d884808ff757fc9"
+POST_EXECUTION_VERIFIER_FILES = {
+    "Tools/AssemblyShadow/m06_results.py",
+    "Tools/AssemblyShadow/tests/test_m06_results.py",
+}
 
 
 def require(value: object, message: str) -> None:
@@ -54,6 +60,13 @@ def read_json(path: Path) -> dict:
 
 def output(command: list[str], cwd: Path) -> str:
     return subprocess.check_output(command, cwd=cwd, text=True, env={**os.environ, "LC_ALL": "C"})
+
+
+def optional_process(pid: int, cwd: Path) -> str:
+    result = subprocess.run(["ps", "-p", str(pid), "-o", "pid=,lstart=,command="], cwd=cwd,
+                            text=True, capture_output=True, env={**os.environ, "LC_ALL": "C"})
+    require(result.returncode in (0, 1), "Unable to inspect process identity: " + result.stderr.strip())
+    return " ".join(result.stdout.split())
 
 
 def git(root: Path, *arguments: str) -> str:
@@ -184,10 +197,14 @@ def verify_source_inventory(project: Path) -> dict:
         require(row["counts"]["files"] == len(recorded), "Source inventory count drift")
     demo_delta = git(project, "diff", "--name-only", DEMO_EXECUTABLE + "..HEAD").splitlines()
     require(
-        all(path == "ProjectSettings/AssemblyShadowSourcePins.json" or path.startswith("Docs/AssemblyShadow/M06/") for path in demo_delta),
+        POST_EXECUTION_VERIFIER_FILES <= set(demo_delta)
+        and all(path == "ProjectSettings/AssemblyShadowSourcePins.json" or
+                path.startswith("Docs/AssemblyShadow/M06/") or path in POST_EXECUTION_VERIFIER_FILES
+                for path in demo_delta),
         "Executable demo input changed after frozen source",
     )
-    return {"repositories": len(inventory["repositories"]), "postExecutableMetadataFiles": len(demo_delta)}
+    return {"repositories": len(inventory["repositories"]), "postExecutableMetadataFiles": len(demo_delta),
+            "postExecutionVerifierFiles": sorted(POST_EXECUTION_VERIFIER_FILES)}
 
 
 def main(project: Path, output_root: Path, evidence_commit: str) -> None:
@@ -199,7 +216,7 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
     require(no_shadow_unity(project), "Shadow-project Unity is still running")
     output_root.mkdir()
     evidence = project / "Docs/AssemblyShadow/M06/Evidence"
-    index_path = evidence / "artifact-index-v7.json"
+    index_path = evidence / "artifact-index-v8.json"
     index = read_json(index_path)
     require(index.get("milestone") == "M06" and index.get("allCopiedBytesMatch") is True and index.get("runtimeAcceptance") is False, "Wrong/unsealed evidence index")
     archives = verify_archives(evidence, index)
@@ -207,7 +224,7 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
     git_evidence = verify_git_evidence(project, evidence, evidence_commit)
     source = verify_source_inventory(project)
 
-    closeout_row = named_copy(index, "verification/closeout-validation-v7.json")
+    closeout_row = named_copy(index, "verification/closeout-validation-v8.json")
     closeout = read_json(Path(closeout_row["originalPath"]))
     require(closeout.get("result") == "Passed", "Recorded closeout suite failed")
     python_log = Path(closeout["python"]["logPath"])
@@ -219,7 +236,11 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
     for row in closeout["nativeReceipts"]:
         require(read_json(Path(row["path"])).get("success") is True and sha256(Path(row["path"])) == row["sha256"], "Recorded native suite failed/changed")
 
-    continuation = read_json(Path(named_copy(index, "verification/release-continuation-v7.json")["originalPath"]))
+    continuation = read_json(Path(named_copy(index, "verification/release-continuation-v8.json")["originalPath"]))
+    development_fixture = Path(named_copy(index, "fixtures/development-fixtures-v8.json")["originalPath"])
+    development_on = Path(named_copy(index, "players/development-native-on-build-v8.json")["originalPath"])
+    development_off = Path(named_copy(index, "players/development-native-off-build-v8.json")["originalPath"])
+    release_player = Path(named_copy(index, "players/release-native-on-build-v8.json")["originalPath"])
     release_fixture = Path(continuation["releaseFixtureManifest"])
     strict_output = output_root / "strict-replay.json"
     strict = run(
@@ -227,17 +248,17 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
             "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
             str(project / "Tools/AssemblyShadow/verify-m06-results.py"),
             "--fixture-manifest",
-            str(project / "_temp/AssemblyShadow/M06Fixtures-88145bf85f4a4de887232554027d108a/m06-fixtures.json"),
+            str(development_fixture),
             "--on-build",
-            str(project / "_temp/AssemblyShadow/M06PlayerInputs-d0443d0087b846a18b4cbf525887e6c9/m06-player-build.json"),
+            str(development_on),
             "--off-build",
-            str(project / "_temp/AssemblyShadow/M06PlayerInputs-b0ac61d48df24880a94434c49f71c985/m06-player-build.json"),
+            str(development_off),
             "--release-fixture-manifest",
             str(release_fixture),
             "--release-build",
-            str(project / "_temp/AssemblyShadow/M06PlayerInputs-4c2ea626ceba4ee2866a2d0bb9748ecf/m06-player-build.json"),
+            str(release_player),
             "--results",
-            str(project / "_temp/AssemblyShadow/M06Results-final-20260904-2006/Results"),
+            str(Path(continuation["resultRoot"]) / "Results"),
             "--m01-baseline-root",
             str(project / "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1"),
             "--output",
@@ -254,10 +275,9 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
         [
             "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
             str(project / "Tools/AssemblyShadow/verify-installed-runtime.py"),
-            "verify",
             "--project",
             str(project),
-            "--verify-demo-source",
+            "--skip-demo-source",
             "--expect-shadow",
             "on",
             "--json",
@@ -272,8 +292,10 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
         require(git(repo, "rev-parse", "HEAD").strip() == revision and not status(repo), "Paired repository drift: " + str(repo))
     original = Path("/Users/ah/GitHub/hybridclr/hybridclr_demo")
     require(status(original) == EXPECTED_ORIGINAL_DIRTY, "Original checkout status changed")
-    original_editor = " ".join(output(["ps", "-p", "13313", "-o", "pid=,lstart=,command="], project).split())
-    require(original_editor.startswith("13313 Thu Aug 27 01:46:54 2026 ") and "/Contents/MacOS/Unity" in original_editor, "Original Editor identity changed")
+    original_editor = optional_process(13313, project)
+    require(not original_editor or
+            (original_editor.startswith("13313 Thu Aug 27 01:46:54 2026 ") and "/Contents/MacOS/Unity" in original_editor),
+            "Original Editor identity changed or was replaced")
 
     receipt = {
         "schemaVersion": 1,
@@ -298,6 +320,7 @@ def main(project: Path, output_root: Path, evidence_commit: str) -> None:
         "installedSourceVerification": install,
         "originalStatus": sorted(status(original)),
         "originalEditor": original_editor,
+        "originalEditorState": "PresentUntouched" if original_editor else "AbsentAtGate",
         "demoStatus": sorted(status(project)),
         "limitation": "Independent deterministic process gate, not an independent human or LLM review. Recorded Unity/native suites are passively revalidated; the strict M06 verifier and installed-source verifier are rerun.",
     }

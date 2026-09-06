@@ -1,0 +1,3265 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M06",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M06-Baseline-Release-v8/baseline-manifest.json",
+    "baselineManifestSha256": "142982be322ae093326e72018c07b1aa32f0cb8db5c10633ab7f314fc6129884",
+    "baselineBuildId": "M06-Baseline-Release-v8",
+    "runtimeAbiHash": "efa86c4633e2d2f08c1effad4de334076d821c6ca653b7732bd605449f66c3f8",
+    "baselineInputSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06PlayerInputs-3b218ff927b74a278ebf59f4d0ddcdc9",
+    "baselineInputSnapshotHash": "a1714c13b15e6475da46dd9e0b40fe4fab80d37df4a716e38b74ab10aa8ea16f",
+    "stableAotProvenanceHash": "8351ead411cb557ca80f4d50b25f17c77a041429d927b6960371506263324b32",
+    "stableAotProvenance": "framework=aa4dc1b2ed7214d7266906c0d34970ec97ee7adf1acb1bcc5f74786122549bc6\ncompiler-libraries=9695dba0e0992fc8892976f5b49c020446f26c561a9ad7c279ed40820a5019ea\nlinked-player=d8ee25f60234a78ccf640169794f9c6b58612f6e31071ed118d73470c200d683\nbootstrap-policy=assemblyshadowdemo.bootstrap\nphysical=assemblyshadowdemo.bootstrap,mscorlib,system,system.core,system.xml,unityengine,unityengine.aimodule,unityengine.androidjnimodule,unityengine.animationmodule,unityengine.assetbundlemodule,unityengine.audiomodule,unityengine.coremodule,unityengine.directormodule,unityengine.gamecentermodule,unityengine.gridmodule,unityengine.imguimodule,unityengine.inputlegacymodule,unityengine.inputmodule,unityengine.jsonserializemodule,unityengine.particlesystemmodule,unityengine.physics2dmodule,unityengine.physicsmodule,unityengine.propertiesmodule,unityengine.sharedinternalsmodule,unityengine.spritemaskmodule,unityengine.spriteshapemodule,unityengine.subsystemsmodule,unityengine.terrainmodule,unityengine.textcorefontenginemodule,unityengine.textcoretextenginemodule,unityengine.textrenderingmodule,unityengine.tilemapmodule,unityengine.uielementsmodule,unityengine.uimodule,unityengine.unityanalyticsmodule,unityengine.unitywebrequestmodule,unityengine.vfxmodule,unityengine.videomodule,unityengine.vrmodule,unityengine.xrmodule",
+    "generationProofPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/m06-generation.json",
+    "generationProofSha256": "21baab4511c50e2b3b5b4de8a909e49eab15b182acf6ce7992d989d0d703a95d",
+    "developmentBuild": false,
+    "candidateNames": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "closureLoadOrder": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "stableAotNames": [
+        "assemblyshadowdemo.bootstrap",
+        "mscorlib",
+        "system",
+        "system.core",
+        "system.xml",
+        "unityengine",
+        "unityengine.aimodule",
+        "unityengine.androidjnimodule",
+        "unityengine.animationmodule",
+        "unityengine.assetbundlemodule",
+        "unityengine.audiomodule",
+        "unityengine.coremodule",
+        "unityengine.directormodule",
+        "unityengine.gamecentermodule",
+        "unityengine.gridmodule",
+        "unityengine.imguimodule",
+        "unityengine.inputlegacymodule",
+        "unityengine.inputmodule",
+        "unityengine.jsonserializemodule",
+        "unityengine.particlesystemmodule",
+        "unityengine.physics2dmodule",
+        "unityengine.physicsmodule",
+        "unityengine.propertiesmodule",
+        "unityengine.sharedinternalsmodule",
+        "unityengine.spritemaskmodule",
+        "unityengine.spriteshapemodule",
+        "unityengine.subsystemsmodule",
+        "unityengine.terrainmodule",
+        "unityengine.textcorefontenginemodule",
+        "unityengine.textcoretextenginemodule",
+        "unityengine.textrenderingmodule",
+        "unityengine.tilemapmodule",
+        "unityengine.uielementsmodule",
+        "unityengine.uimodule",
+        "unityengine.unityanalyticsmodule",
+        "unityengine.unitywebrequestmodule",
+        "unityengine.vfxmodule",
+        "unityengine.videomodule",
+        "unityengine.vrmodule",
+        "unityengine.xrmodule"
+    ],
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Compile/Snapshot",
+            "compileSnapshotHash": "b16833de41e0ace1d7a91ef59e64aaeb9409c3c515adac939df29e2ab508bb4a",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P01",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P01/patch-manifest.json",
+            "patchManifestSha256": "88c75be24246807397726dd71b9cf3088c5f65b691dcd5d3add03c07fa5db69b",
+            "variant": "ReleaseNoPdb",
+            "generationPlanPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P01/Plan/generation-plan.json",
+            "generationPlanSha256": "fdc07e484a6784f6619b9f81325c677abf31d77624380dbb5dbf07cb6dec5101",
+            "developmentBuild": false,
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "stableAotNames": [
+                "assemblyshadowdemo.bootstrap",
+                "mscorlib",
+                "system",
+                "system.core",
+                "system.xml",
+                "unityengine",
+                "unityengine.aimodule",
+                "unityengine.androidjnimodule",
+                "unityengine.animationmodule",
+                "unityengine.assetbundlemodule",
+                "unityengine.audiomodule",
+                "unityengine.coremodule",
+                "unityengine.directormodule",
+                "unityengine.gamecentermodule",
+                "unityengine.gridmodule",
+                "unityengine.imguimodule",
+                "unityengine.inputlegacymodule",
+                "unityengine.inputmodule",
+                "unityengine.jsonserializemodule",
+                "unityengine.particlesystemmodule",
+                "unityengine.physics2dmodule",
+                "unityengine.physicsmodule",
+                "unityengine.propertiesmodule",
+                "unityengine.sharedinternalsmodule",
+                "unityengine.spritemaskmodule",
+                "unityengine.spriteshapemodule",
+                "unityengine.subsystemsmodule",
+                "unityengine.terrainmodule",
+                "unityengine.textcorefontenginemodule",
+                "unityengine.textcoretextenginemodule",
+                "unityengine.textrenderingmodule",
+                "unityengine.tilemapmodule",
+                "unityengine.uielementsmodule",
+                "unityengine.uimodule",
+                "unityengine.unityanalyticsmodule",
+                "unityengine.unitywebrequestmodule",
+                "unityengine.vfxmodule",
+                "unityengine.videomodule",
+                "unityengine.vrmodule",
+                "unityengine.xrmodule"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "5e97f387-7879-4e86-b464-4066b4809854",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P01/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "da9fc79b2db3dee41609e0847dfa13f671d730da62172cb01988a575f7453b44",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "typeInventories": [
+                {
+                    "assemblyName": "AssemblyA.Implementation.Internal",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "InternalEntry",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedPrefabComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedScriptableObject",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode",
+                            "namespaceName": "",
+                            "name": "M06InternalNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SealedNode",
+                            "namespaceName": "",
+                            "name": "SealedNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SmallStruct",
+                            "namespaceName": "",
+                            "name": "SmallStruct",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<CancelledAsync>d__36",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__36",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<Iterate>d__38",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__38",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<ThrowAsync>d__37",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__37",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=461",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=461",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=863",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=863",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "patchId": "P02",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Compile/Snapshot",
+            "compileSnapshotHash": "9ce6bba34605f16151d01f000129de523a8e8d2484a7620863a6b550d91b075d",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P02",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P02/patch-manifest.json",
+            "patchManifestSha256": "d1e270f1a32778d5feead3a9a1ac4bc23eaff80763047d06fce05acf8c22ac38",
+            "variant": "ReleaseNoPdb",
+            "generationPlanPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P02/Plan/generation-plan.json",
+            "generationPlanSha256": "98060661643e0165a9326d06b6599747b7631788c3d5aae7c297a53acca2bf37",
+            "developmentBuild": false,
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06",
+                "ASSEMBLY_SHADOW_P02",
+                "ASSEMBLY_SHADOW_M06_P02"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "stableAotNames": [
+                "assemblyshadowdemo.bootstrap",
+                "mscorlib",
+                "system",
+                "system.core",
+                "system.xml",
+                "unityengine",
+                "unityengine.aimodule",
+                "unityengine.androidjnimodule",
+                "unityengine.animationmodule",
+                "unityengine.assetbundlemodule",
+                "unityengine.audiomodule",
+                "unityengine.coremodule",
+                "unityengine.directormodule",
+                "unityengine.gamecentermodule",
+                "unityengine.gridmodule",
+                "unityengine.imguimodule",
+                "unityengine.inputlegacymodule",
+                "unityengine.inputmodule",
+                "unityengine.jsonserializemodule",
+                "unityengine.particlesystemmodule",
+                "unityengine.physics2dmodule",
+                "unityengine.physicsmodule",
+                "unityengine.propertiesmodule",
+                "unityengine.sharedinternalsmodule",
+                "unityengine.spritemaskmodule",
+                "unityengine.spriteshapemodule",
+                "unityengine.subsystemsmodule",
+                "unityengine.terrainmodule",
+                "unityengine.textcorefontenginemodule",
+                "unityengine.textcoretextenginemodule",
+                "unityengine.textrenderingmodule",
+                "unityengine.tilemapmodule",
+                "unityengine.uielementsmodule",
+                "unityengine.uimodule",
+                "unityengine.unityanalyticsmodule",
+                "unityengine.unitywebrequestmodule",
+                "unityengine.vfxmodule",
+                "unityengine.videomodule",
+                "unityengine.vrmodule",
+                "unityengine.xrmodule"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Extensibility",
+                    "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "5843073a-9fbe-412e-8499-e580ca663af9",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P02/DLLs/AssemblyA.Implementation.Extensibility.dll",
+                    "sha256": "945757752c4613a57223eba597f36ff580d9c172b57742ad81d2e59b4da4cb79",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "4389540e-3584-4759-8d63-1d33dde4bbf3",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P02/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "f05e7bb64a3b590fbe4b7454f7b6baeddbff9d379e6e64299dc6627d7f757597",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "fullName": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "81cfa1f4-aab9-4449-b207-ce6c560157c4",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P02/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+                    "sha256": "6d6d0ef74edba00a638637691acc6909bc554b0641527383563320a6bb1482f4",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "typeInventories": [
+                {
+                    "assemblyName": "AssemblyA.Implementation.Extensibility",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionBase",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M06ExecutionBase",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "VersionedComponentBase",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+ExtNode",
+                            "namespaceName": "",
+                            "name": "ExtNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+SealedNode",
+                            "namespaceName": "",
+                            "name": "SealedNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<CancelledAsync>d__34",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__34",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<Iterate>d__36",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__36",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<ThrowAsync>d__35",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__35",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=292",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=292",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=772",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=772",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyA.Implementation.Internal",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "InternalEntry",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedPrefabComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedScriptableObject",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode",
+                            "namespaceName": "",
+                            "name": "M06InternalNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SealedNode",
+                            "namespaceName": "",
+                            "name": "SealedNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SmallStruct",
+                            "namespaceName": "",
+                            "name": "SmallStruct",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<CancelledAsync>d__36",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__36",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<Iterate>d__38",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__38",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<ThrowAsync>d__37",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__37",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=461",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=461",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=863",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=863",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "DerivedExternalComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ExtensibilityM06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityConsumerM06ModuleInitializer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ExtensibilityConsumerM06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+ExtensibleNode",
+                            "namespaceName": "",
+                            "name": "ExtensibleNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+ConsumerNode",
+                            "namespaceName": "",
+                            "name": "ConsumerNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<>c__DisplayClass28_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass28_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<CancelledAsync>d__37",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__37",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<Iterate>d__39",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__39",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<ThrowAsync>d__38",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__38",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=273",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=273",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=745",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=745",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "patchId": "P03",
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Compile/Snapshot",
+            "compileSnapshotHash": "253eea3b69ce39f47db568c3d992688ccca773eb48225b44914a9c3994d84321",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03/patch-manifest.json",
+            "patchManifestSha256": "f9c544b7e469fdd181e2dd15ab3c73bdc89df65024bf7dd88b2f834d82c33fe9",
+            "variant": "ReleaseNoPdb",
+            "generationPlanPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/P03/Plan/generation-plan.json",
+            "generationPlanSha256": "62b53ee42b2e5b3ccf11739b49b14d1405534cf0e6b7460f6e7a1b33b410bd98",
+            "developmentBuild": false,
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M06",
+                "ASSEMBLY_SHADOW_P03",
+                "ASSEMBLY_SHADOW_M06_P03"
+            ],
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "stableAotNames": [
+                "assemblyshadowdemo.bootstrap",
+                "mscorlib",
+                "system",
+                "system.core",
+                "system.xml",
+                "unityengine",
+                "unityengine.aimodule",
+                "unityengine.androidjnimodule",
+                "unityengine.animationmodule",
+                "unityengine.assetbundlemodule",
+                "unityengine.audiomodule",
+                "unityengine.coremodule",
+                "unityengine.directormodule",
+                "unityengine.gamecentermodule",
+                "unityengine.gridmodule",
+                "unityengine.imguimodule",
+                "unityengine.inputlegacymodule",
+                "unityengine.inputmodule",
+                "unityengine.jsonserializemodule",
+                "unityengine.particlesystemmodule",
+                "unityengine.physics2dmodule",
+                "unityengine.physicsmodule",
+                "unityengine.propertiesmodule",
+                "unityengine.sharedinternalsmodule",
+                "unityengine.spritemaskmodule",
+                "unityengine.spriteshapemodule",
+                "unityengine.subsystemsmodule",
+                "unityengine.terrainmodule",
+                "unityengine.textcorefontenginemodule",
+                "unityengine.textcoretextenginemodule",
+                "unityengine.textrenderingmodule",
+                "unityengine.tilemapmodule",
+                "unityengine.uielementsmodule",
+                "unityengine.uimodule",
+                "unityengine.unityanalyticsmodule",
+                "unityengine.unitywebrequestmodule",
+                "unityengine.vfxmodule",
+                "unityengine.videomodule",
+                "unityengine.vrmodule",
+                "unityengine.xrmodule"
+            ],
+            "requiredAotMetadataNames": [
+                "mscorlib"
+            ],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Contracts",
+                    "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "532899ef-6c51-4fa6-b740-4d987f9c810c",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03/DLLs/AssemblyA.Contracts.dll",
+                    "sha256": "c33c228a876bc1d34b67b5d38009cc6859bdce6c940c98af6c1c3ca99ed5f1b2",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Extensibility",
+                    "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "19d749cd-00ca-428f-a468-700c0e8f11d4",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03/DLLs/AssemblyA.Implementation.Extensibility.dll",
+                    "sha256": "d6af7d1743317f02974f9ac26c97093124a75292550c1bf4123d89c25457dbba",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "2f4d175d-83d3-4afb-87bb-5110b2cb468a",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "2a70700dfef858e5bc739d592dfa72c2b1e7b6ee064c9e1ff974a30cdd9b2f99",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ContractsConsumer",
+                    "fullName": "AssemblyShadowDemo.ContractsConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "8c849531-cc9e-4d51-b7a0-a873494e9ee5",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03/DLLs/AssemblyShadowDemo.ContractsConsumer.dll",
+                    "sha256": "216946524efaa99937a12ce853715a2ba0a97da07baebbc319bd87b43f0c1594",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "fullName": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "3d7df827-1958-4e5f-818d-bda930effb0b",
+                    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/P03/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+                    "sha256": "34050707b0b471f3da6376468dae24a38bf80a07bb19c306e8d19d30699bf9d8",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "typeInventories": [
+                {
+                    "assemblyName": "AssemblyA.Contracts",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.AssemblyAContractVersion",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "AssemblyAContractVersion",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.DemoValue",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "DemoValue",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.IVersionTextProvider",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "IVersionTextProvider",
+                            "kind": "interface",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.IM06ContractWitness",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "IM06ContractWitness",
+                            "kind": "interface",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ContractFormatter",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M06ContractFormatter",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ModuleInitializer",
+                            "namespaceName": "AssemblyA.Contracts",
+                            "name": "M06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+ContractNode",
+                            "namespaceName": "",
+                            "name": "ContractNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+DefaultNode",
+                            "namespaceName": "",
+                            "name": "DefaultNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+GenericBox`1",
+                            "namespaceName": "",
+                            "name": "GenericBox`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<CancelledAsync>d__34",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__34",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<Iterate>d__36",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__36",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Contracts.M06ExecutionWitness+<ThrowAsync>d__35",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__35",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=382",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=382",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=678",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=678",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyA.Implementation.Extensibility",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionBase",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M06ExecutionBase",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "M06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.VersionedComponentBase",
+                            "namespaceName": "AssemblyA.Implementation.Extensibility",
+                            "name": "VersionedComponentBase",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+ExtNode",
+                            "namespaceName": "",
+                            "name": "ExtNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+SealedNode",
+                            "namespaceName": "",
+                            "name": "SealedNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<CancelledAsync>d__34",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__34",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<Iterate>d__36",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__36",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Extensibility.M06ExecutionWitness+<ThrowAsync>d__35",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__35",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=292",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=292",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=772",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=772",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyA.Implementation.Internal",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "InternalEntry",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ModuleInitializer",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "M06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedPrefabComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                            "namespaceName": "AssemblyA.Implementation.Internal",
+                            "name": "VersionedScriptableObject",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode",
+                            "namespaceName": "",
+                            "name": "M06InternalNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SealedNode",
+                            "namespaceName": "",
+                            "name": "SealedNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SmallStruct",
+                            "namespaceName": "",
+                            "name": "SmallStruct",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<CancelledAsync>d__36",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__36",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<Iterate>d__38",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__38",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<ThrowAsync>d__37",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__37",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "M06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=461",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=461",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=863",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=863",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyShadowDemo.ContractsConsumer",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsConsumer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ContractsConsumer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ContractsM06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsConsumerM06ModuleInitializer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ContractsConsumerM06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+ConsumerNode",
+                            "namespaceName": "",
+                            "name": "ConsumerNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+DefaultNode",
+                            "namespaceName": "",
+                            "name": "DefaultNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<>c__DisplayClass27_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass27_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<CancelledAsync>d__36",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__36",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<Iterate>d__38",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__38",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ContractsM06ExecutionWitness+<ThrowAsync>d__37",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__37",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ContractsM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=254",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=254",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=703",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=703",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                },
+                {
+                    "assemblyName": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "types": [
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "namespaceName": "",
+                            "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                            "namespaceName": "System.Runtime.CompilerServices",
+                            "name": "ModuleInitializerAttribute",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "DerivedExternalComponent",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ExtensibilityM06ExecutionWitness",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": true
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityConsumerM06ModuleInitializer",
+                            "namespaceName": "AssemblyShadowDemo.Consumers",
+                            "name": "ExtensibilityConsumerM06ModuleInitializer",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>",
+                            "namespaceName": "",
+                            "name": "<PrivateImplementationDetails>",
+                            "kind": "class",
+                            "nestingPath": [],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                            "namespaceName": "",
+                            "name": "MonoScriptData",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+ExtensibleNode",
+                            "namespaceName": "",
+                            "name": "ExtensibleNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+ConsumerNode",
+                            "namespaceName": "",
+                            "name": "ConsumerNode",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+Pair`1",
+                            "namespaceName": "",
+                            "name": "Pair`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+GenericState`1",
+                            "namespaceName": "",
+                            "name": "GenericState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+ExplicitStaticState",
+                            "namespaceName": "",
+                            "name": "ExplicitStaticState",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+BeforeFieldInitState`1",
+                            "namespaceName": "",
+                            "name": "BeforeFieldInitState`1",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 1,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<>c__DisplayClass24_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass24_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<>c__DisplayClass28_0",
+                            "namespaceName": "",
+                            "name": "<>c__DisplayClass28_0",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<CancelledAsync>d__37",
+                            "namespaceName": "",
+                            "name": "<CancelledAsync>d__37",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<Iterate>d__39",
+                            "namespaceName": "",
+                            "name": "<Iterate>d__39",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<RunAsync>d__19",
+                            "namespaceName": "",
+                            "name": "<RunAsync>d__19",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<RunCoroutine>d__20",
+                            "namespaceName": "",
+                            "name": "<RunCoroutine>d__20",
+                            "kind": "class",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "AssemblyShadowDemo.Consumers.ExtensibilityM06ExecutionWitness+<ThrowAsync>d__38",
+                            "namespaceName": "",
+                            "name": "<ThrowAsync>d__38",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "ExtensibilityM06ExecutionWitness"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=273",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=273",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        },
+                        {
+                            "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=745",
+                            "namespaceName": "",
+                            "name": "__StaticArrayInitTypeSize=745",
+                            "kind": "valuetype",
+                            "nestingPath": [
+                                "<PrivateImplementationDetails>"
+                            ],
+                            "genericArity": 0,
+                            "isExported": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "initializerFailureFixture": {
+        "patchId": "InitializerFailure",
+        "compileSnapshot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Compile/Snapshot",
+        "compileSnapshotHash": "e18afc46f0496bab3ebfd64a4ed79a817fbbd890c4ad17e4d0c56c406c70c39f",
+        "patchDirectory": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/InitializerFailure",
+        "patchManifest": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/InitializerFailure/patch-manifest.json",
+        "patchManifestSha256": "f7f8728e673ae1e1416076c1d63d6e25de52c3c889e1284d599bfdaed0973afd",
+        "variant": "ReleaseNoPdb",
+        "generationPlanPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Generation-b451aea0e0934b46b0fab0ecfb54b889/InitializerFailure/Plan/generation-plan.json",
+        "generationPlanSha256": "7bd055e2c9ef29346edefe1f41d8519a47056711f1b324181a612b9b2091a459",
+        "developmentBuild": false,
+        "defines": [
+            "ASSEMBLY_SHADOW_P01",
+            "ASSEMBLY_SHADOW_M06",
+            "ASSEMBLY_SHADOW_M06_INITIALIZER_THROW"
+        ],
+        "changedRoots": [
+            "AssemblyA.Implementation.Internal"
+        ],
+        "closureLoadOrder": [
+            "AssemblyA.Implementation.Internal"
+        ],
+        "stableAotNames": [
+            "assemblyshadowdemo.bootstrap",
+            "mscorlib",
+            "system",
+            "system.core",
+            "system.xml",
+            "unityengine",
+            "unityengine.aimodule",
+            "unityengine.androidjnimodule",
+            "unityengine.animationmodule",
+            "unityengine.assetbundlemodule",
+            "unityengine.audiomodule",
+            "unityengine.coremodule",
+            "unityengine.directormodule",
+            "unityengine.gamecentermodule",
+            "unityengine.gridmodule",
+            "unityengine.imguimodule",
+            "unityengine.inputlegacymodule",
+            "unityengine.inputmodule",
+            "unityengine.jsonserializemodule",
+            "unityengine.particlesystemmodule",
+            "unityengine.physics2dmodule",
+            "unityengine.physicsmodule",
+            "unityengine.propertiesmodule",
+            "unityengine.sharedinternalsmodule",
+            "unityengine.spritemaskmodule",
+            "unityengine.spriteshapemodule",
+            "unityengine.subsystemsmodule",
+            "unityengine.terrainmodule",
+            "unityengine.textcorefontenginemodule",
+            "unityengine.textcoretextenginemodule",
+            "unityengine.textrenderingmodule",
+            "unityengine.tilemapmodule",
+            "unityengine.uielementsmodule",
+            "unityengine.uimodule",
+            "unityengine.unityanalyticsmodule",
+            "unityengine.unitywebrequestmodule",
+            "unityengine.vfxmodule",
+            "unityengine.videomodule",
+            "unityengine.vrmodule",
+            "unityengine.xrmodule"
+        ],
+        "requiredAotMetadataNames": [
+            "mscorlib"
+        ],
+        "assemblyIdentities": [
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "version": "0.0.0.0",
+                "culture": "",
+                "publicKeyToken": "",
+                "mvid": "11ce9899-b593-4d7b-a5df-4d8450ad215e",
+                "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/_temp/AssemblyShadow/M06Fixtures-0a71fdad264946c7a4d65a7f07ee2a0f/InitializerFailure/DLLs/AssemblyA.Implementation.Internal.dll",
+                "sha256": "7fb6b633ba2bae1da0ac6d888de2c0d2b6d4edfb958d8e5d478110223ef133c6",
+                "referenceIdentities": [
+                    {
+                        "referenceIndex": 0,
+                        "name": "netstandard",
+                        "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                        "version": "2.1.0.0",
+                        "culture": "",
+                        "publicKeyToken": "cc7b13ffcd2ddd51"
+                    },
+                    {
+                        "referenceIndex": 1,
+                        "name": "AssemblyA.Contracts",
+                        "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 2,
+                        "name": "AssemblyA.Implementation.Extensibility",
+                        "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 3,
+                        "name": "UnityEngine.CoreModule",
+                        "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    }
+                ]
+            }
+        ],
+        "typeInventories": [
+            {
+                "assemblyName": "AssemblyA.Implementation.Internal",
+                "types": [
+                    {
+                        "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                        "namespaceName": "",
+                        "name": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "System.Runtime.CompilerServices.ModuleInitializerAttribute",
+                        "namespaceName": "System.Runtime.CompilerServices",
+                        "name": "ModuleInitializerAttribute",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.InternalEntry",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "InternalEntry",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M06ExecutionWitness",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ModuleInitializer",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "M06ModuleInitializer",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "VersionedPrefabComponent",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+                        "namespaceName": "AssemblyA.Implementation.Internal",
+                        "name": "VersionedScriptableObject",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "<PrivateImplementationDetails>",
+                        "namespaceName": "",
+                        "name": "<PrivateImplementationDetails>",
+                        "kind": "class",
+                        "nestingPath": [],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1+MonoScriptData",
+                        "namespaceName": "",
+                        "name": "MonoScriptData",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "UnitySourceGeneratedAssemblyMonoScriptTypes_v1"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode",
+                        "namespaceName": "",
+                        "name": "M06InternalNode",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": true
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SealedNode",
+                        "namespaceName": "",
+                        "name": "SealedNode",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+Pair`1",
+                        "namespaceName": "",
+                        "name": "Pair`1",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 1,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+SmallStruct",
+                        "namespaceName": "",
+                        "name": "SmallStruct",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+GenericState`1",
+                        "namespaceName": "",
+                        "name": "GenericState`1",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 1,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+ExplicitStaticState",
+                        "namespaceName": "",
+                        "name": "ExplicitStaticState",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+BeforeFieldInitState`1",
+                        "namespaceName": "",
+                        "name": "BeforeFieldInitState`1",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 1,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass24_0",
+                        "namespaceName": "",
+                        "name": "<>c__DisplayClass24_0",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<>c__DisplayClass27_0",
+                        "namespaceName": "",
+                        "name": "<>c__DisplayClass27_0",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<CancelledAsync>d__36",
+                        "namespaceName": "",
+                        "name": "<CancelledAsync>d__36",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<Iterate>d__38",
+                        "namespaceName": "",
+                        "name": "<Iterate>d__38",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunAsync>d__19",
+                        "namespaceName": "",
+                        "name": "<RunAsync>d__19",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<RunCoroutine>d__20",
+                        "namespaceName": "",
+                        "name": "<RunCoroutine>d__20",
+                        "kind": "class",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "AssemblyA.Implementation.Internal.M06ExecutionWitness+<ThrowAsync>d__37",
+                        "namespaceName": "",
+                        "name": "<ThrowAsync>d__37",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "M06ExecutionWitness"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=461",
+                        "namespaceName": "",
+                        "name": "__StaticArrayInitTypeSize=461",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "<PrivateImplementationDetails>"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    },
+                    {
+                        "fullName": "<PrivateImplementationDetails>+__StaticArrayInitTypeSize=863",
+                        "namespaceName": "",
+                        "name": "__StaticArrayInitTypeSize=863",
+                        "kind": "valuetype",
+                        "nestingPath": [
+                            "<PrivateImplementationDetails>"
+                        ],
+                        "genericArity": 0,
+                        "isExported": false
+                    }
+                ]
+            }
+        ]
+    }
+}
