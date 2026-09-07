@@ -64,6 +64,9 @@ namespace AssemblyShadowDemo.EditorTests
             StringAssert.Contains("M02StructuralPatchCompilation.Restore()", structural);
             StringAssert.Contains("ReadCompiledSnapshotInStagedDomain", structural);
             StringAssert.Contains("ReadPreparedSnapshot", structural);
+            StringAssert.Contains("p05DllOnlyCompileSnapshot", structural);
+            StringAssert.Contains("new[] { M07Build.P01Define, M07Build.P05Define }", structural);
+            StringAssert.Contains("BuildRejectedFromSnapshot", build);
             StringAssert.Contains("replacementResourceReceiptSha256", structural);
             StringAssert.Contains("ResourceAbiDiffLevel.ResourceRebuildRequired", structural);
         }

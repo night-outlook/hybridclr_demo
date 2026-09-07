@@ -41,6 +41,8 @@ namespace AssemblyShadowDemo.Editor
                 policy = policy, resources = map, extraScriptingDefines = new[] { M07Build.P05Define },
                 captureCompilerMode = true, developmentBuild = true,
             });
+            string p05DllOnlySnapshot = AssemblySnapshot.CompileWithOptions(Path.Combine(run, "P05-DllOnly-compile"),
+                target, settings.architecture, pins, policy, new[] { M07Build.P01Define, M07Build.P05Define }, true);
             M07Build.M07Fixture fixture = M07Build.BuildFixtureFromSnapshot(run, "P05", new[] { M07Build.P05Define },
                 new[] { "AssemblyA.Implementation.Internal" }, false, target, settings.architecture, pins, policy, session.baselineManifestPath, snapshot);
             VerifiedShadowResourceBaseline replacement = ShadowResourceBaseline.ReadAndVerify(frozen, target, settings.architecture);
@@ -57,6 +59,7 @@ namespace AssemblyShadowDemo.Editor
                 schemaVersion = 1, milestone = "M07", baselineBuildId = baseline.baselineBuildId,
                 baselineManifestPath = Path.GetFullPath(session.baselineManifestPath),
                 baselineManifestSha256 = ShadowHash.File(session.baselineManifestPath), fixture = fixture,
+                p05DllOnlyCompileSnapshot = Path.GetFullPath(p05DllOnlySnapshot),
             });
             Debug.Log("[AssemblyShadow M07] P05 DLL/resource pair compiled in one guarded Editor domain: " + run);
         }
@@ -80,7 +83,7 @@ namespace AssemblyShadowDemo.Editor
             Require(receipt.fixture.patchManifestSha256 == ShadowHash.File(receipt.fixture.patchManifest) &&
                 receipt.fixture.replacementResourceReceiptSha256 == ShadowHash.File(receipt.fixture.replacementResourceReceiptPath),
                 "M07 P05 patch or resource receipt changed before publication.");
-            M07Build.M07FixtureManifest manifest = M07Build.BuildFixtureManifest(run, receipt.fixture);
+            M07Build.M07FixtureManifest manifest = M07Build.BuildFixtureManifest(run, receipt.fixture, receipt.p05DllOnlyCompileSnapshot);
             string path = M07Build.WriteFixtureManifest(run, manifest);
             string replay = M07EditorValidation.ValidateAndWriteReceipt(path);
             Debug.Log("[AssemblyShadow M07] Complete fixture manifest and independent replay: " + path + " | " + replay);
@@ -91,6 +94,7 @@ namespace AssemblyShadowDemo.Editor
         {
             public int schemaVersion;
             public string milestone, baselineBuildId, baselineManifestPath, baselineManifestSha256;
+            public string p05DllOnlyCompileSnapshot;
             public M07Build.M07Fixture fixture;
         }
 

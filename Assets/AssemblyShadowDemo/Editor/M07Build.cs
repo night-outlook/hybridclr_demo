@@ -186,6 +186,15 @@ namespace AssemblyShadowDemo.Editor
             BuildTarget target, string architecture, ShadowSourcePins pins, ShadowPolicyConfiguration policy, string baselineManifest)
         {
             string snapshot = AssemblySnapshot.CompileWithOptions(Path.Combine(root, patchId + "-compile"), target, architecture, pins, policy, defines, true);
+            return BuildRejectedFromSnapshot(root, patchId, defines, roots, target, architecture, pins, policy, baselineManifest, snapshot);
+        }
+
+        internal static M07RejectedFixture BuildRejectedFromSnapshot(string root, string patchId, string[] defines, string[] roots,
+            BuildTarget target, string architecture, ShadowSourcePins pins, ShadowPolicyConfiguration policy, string baselineManifest, string snapshot)
+        {
+            AssemblySnapshotReceipt snapshotReceipt = AssemblySnapshot.ReadAndVerify(snapshot, false);
+            Require(ShadowReflectionBindingEvidence.UserDefines(snapshotReceipt.extraScriptingDefines).SequenceEqual(defines.OrderBy(value => value, StringComparer.Ordinal)),
+                "M07 rejected fixture snapshot does not contain its exact declared user defines: " + patchId);
             string output = Path.Combine(root, patchId + "-must-not-exist");
             ShadowBuildException rejection = null;
             try
@@ -204,12 +213,12 @@ namespace AssemblyShadowDemo.Editor
             Require(rejection != null && !Directory.Exists(output) && !File.Exists(output), patchId + " was not atomically rejected for DLL-only deployment.");
             return new M07RejectedFixture {
                 patchId = patchId, defines = defines, changedRoots = roots, compileSnapshot = snapshot,
-                compileSnapshotHash = AssemblySnapshot.ReadAndVerify(snapshot, false).snapshotHash,
+                compileSnapshotHash = snapshotReceipt.snapshotHash,
                 errorCode = rejection.Code, errorMessage = rejection.Message,
             };
         }
 
-        internal static M07FixtureManifest BuildFixtureManifest(string root, M07Fixture structural)
+        internal static M07FixtureManifest BuildFixtureManifest(string root, M07Fixture structural, string p05DllOnlyCompileSnapshot)
         {
             Configure();
             var settings = AssemblyShadowSettings.Instance;
@@ -230,7 +239,8 @@ namespace AssemblyShadowDemo.Editor
             Require(structural != null && structural.patchId == "P05" && !structural.dllOnly, "M07 structural P05 fixture is missing.");
             fixtures.Add(structural);
             var rejected = new[] {
-                BuildRejected(root, "P05-DllOnly", new[] { P01Define, P05Define }, new[] { "AssemblyA.Implementation.Internal" }, target, settings.architecture, pins, policy, session.baselineManifestPath),
+                BuildRejectedFromSnapshot(root, "P05-DllOnly", new[] { P01Define, P05Define }, new[] { "AssemblyA.Implementation.Internal" },
+                    target, settings.architecture, pins, policy, session.baselineManifestPath, p05DllOnlyCompileSnapshot),
                 BuildRejected(root, "P14-ClassRename", new[] { P01Define, P14Define }, new[] { "AssemblyA.Implementation.Internal" }, target, settings.architecture, pins, policy, session.baselineManifestPath),
                 BuildRejected(root, "P15-SerializeReferenceRename", new[] { P01Define, P15Define }, new[] { "AssemblyA.Implementation.Internal" }, target, settings.architecture, pins, policy, session.baselineManifestPath),
             };
