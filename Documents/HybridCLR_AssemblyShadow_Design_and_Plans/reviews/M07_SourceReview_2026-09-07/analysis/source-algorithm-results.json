@@ -1,0 +1,61 @@
+{
+  "kind": "SourceDerivedAlgorithmCalculation",
+  "repositoryTestsExecuted": false,
+  "nativeRuntimeExecuted": false,
+  "unityPlayerExecuted": false,
+  "allocatorAssumptions": "Fresh allocator; all DLLs in each row have the same byte length; no ordinary Interpreter images or prior failed allocation consumption.",
+  "allocator": [
+    {
+      "dllBytes": 1024,
+      "freshProcessHomogeneousCapacity": 338,
+      "finalCursors": [256,256,256,255]
+    },
+    {
+      "dllBytes": 1048575,
+      "freshProcessHomogeneousCapacity": 338,
+      "finalCursors": [256,256,256,255]
+    },
+    {
+      "dllBytes": 1048576,
+      "freshProcessHomogeneousCapacity": 83,
+      "finalCursors": [256,256,256,0]
+    },
+    {
+      "dllBytes": 4194303,
+      "freshProcessHomogeneousCapacity": 83,
+      "finalCursors": [256,256,256,0]
+    },
+    {
+      "dllBytes": 4194304,
+      "freshProcessHomogeneousCapacity": 19,
+      "finalCursors": [256,256,0,0]
+    },
+    {
+      "dllBytes": 16777215,
+      "freshProcessHomogeneousCapacity": 19,
+      "finalCursors": [256,256,0,0]
+    },
+    {
+      "dllBytes": 16777216,
+      "freshProcessHomogeneousCapacity": 3,
+      "finalCursors": [256,0,0,0]
+    },
+    {
+      "dllBytes": 67108863,
+      "freshProcessHomogeneousCapacity": 3,
+      "finalCursors": [256,0,0,0]
+    },
+    {
+      "dllBytes": 67108864,
+      "freshProcessHomogeneousCapacity": 0,
+      "finalCursors": [64,0,0,0]
+    }
+  ],
+  "remainingSmallImageCapacityAfter10OrdinaryAllocations": 328,
+  "graphCounterexample": {
+    "baselineOrder": ["Module.B","Module.A"],
+    "targetOrder": ["Module.A","Module.B"],
+    "currentUnionOrderError": "DependencyCycle"
+  },
+  "result": "CalculatedAndAsserted"
+}
