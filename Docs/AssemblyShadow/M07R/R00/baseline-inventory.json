@@ -81,10 +81,9 @@
       "reviewHead": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8"
     }
   ],
-  "acceptedExecutableDemo": "3aab779a3304dd9785ab14fb5fcdc73a107066f7",
   "acceptedPinOnlyCommit": "671737c082effa5094bed16b087f6da5c3c666c9",
   "integrationDemoSourcePin": "73161474f5b681b46c25424f4e72b4b757c51e66",
-  "pinExplanation": "New installation pins the actual reviewed source commit, which includes later review documentation. Existing M07 Player receipts remain bound to 3aab779 and are not rewritten. Native/package revisions unchanged.",
+  "pinExplanation": "New isolated installation pins the actual reviewed source commit73161474f5b681b46c25424f4e72b4b757c51e66, including later review documentation. The historical closeout declares demo3aab779, but actual preserved Player receipts capture demo9f322a948981341321f0eeb40cc5aa006a094bae and package8c94f178646e71c9020dc8b66cf3c38632e9cc6d. Correspondence to the later declared commits is unproven; see provenance-reconciliation.json. Existing receipts are not rewritten. Current native/package revisions are unchanged.",
   "inputs": [
     {
       "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/reviews/M07_SourceReview_2026-09-07/review.md",
@@ -151,5 +150,12 @@
     "automaticConfiguredAcceptanceGateEnabled": false,
     "stageIndependentReview": "Required by R00 plan regardless of automatic helper result"
   },
-  "originalMainDemoStatus": " M Assets/Settings/Renderer2D.asset\n?? .DS_Store\n?? .agents/.DS_Store\n?? .codex/.DS_Store\n?? Assets/Editor.meta\n?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store\n"
+  "originalMainDemoStatus": " M Assets/Settings/Renderer2D.asset\n?? .DS_Store\n?? .agents/.DS_Store\n?? .codex/.DS_Store\n?? Assets/Editor.meta\n?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/.DS_Store\n",
+  "declaredCloseoutExecutableDemo": "3aab779a3304dd9785ab14fb5fcdc73a107066f7",
+  "capturedM07PlayerSourcePins": {
+    "demo": "9f322a948981341321f0eeb40cc5aa006a094bae",
+    "hybridclrUnity": "8c94f178646e71c9020dc8b66cf3c38632e9cc6d",
+    "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+    "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8"
+  }
 }

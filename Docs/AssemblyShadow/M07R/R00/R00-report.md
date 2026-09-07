@@ -14,7 +14,7 @@ This is an execution record, not a revision of the accepted M00–M07 history. T
 
 ## Source and evidence boundaries
 
-`baseline-inventory.json` distinguishes review HEAD, accepted executable source, pin-only commit, current integration source pin, and original working-copy state. `historical-to-review-source-delta.json` records the actual Git delta.
+`baseline-inventory.json` distinguishes review HEAD, declared closeout executable source, captured Player source pins, pin-only commit, current integration source pin, and original working-copy state. `historical-to-review-source-delta.json` records the actual Git delta.
 
 Current native/package pairing:
 
@@ -33,7 +33,7 @@ The fresh M07 replay executes the existing `M07-Baseline-v6` Players. It is not 
 | Python suite | 356 passed, zero skips, with preserved real compiler DLLs and the actual raw-admission configuration. |
 | Unity Editor suite | 912 passed, zero failures/skips, Unity 2022.3.62f2, StandaloneOSX ARM64. |
 | Pinned installation | Two identical installs, 942 files; complete installed-source verification passed with Shadow ON and demo source verification enabled. |
-| Native targeted suites | All five passed. M03: 92,659 identity checks plus name/facade/OFF checks; visibility: 18,674; M04: 53 checks; M05: 716 checks; M06: 824 checks. Detailed syntax counts and adapter limits are in `validation-summary.json`. |
+| Native targeted suites | All five passed. M03: 92,659 identity checks plus name/facade/OFF checks; visibility: 18,674; M04: 53 checks; M05: 870 checks; M06: 824 checks. Detailed syntax counts and adapter limits are in `validation-summary.json`. |
 | Source algorithms | Capacity buckets and the cross-version graph pseudo-cycle recomputed. This is source-derived calculation, not native capacity/Player validation. |
 | M07 initial fresh matrix | Modes 1–12 passed. Mode 13 wrote all 21 successful checks, then exited with SIGSEGV. Runner stopped before mode 14. **Failed.** |
 | M07 strict verifier | Rejected incomplete initial process coverage. No incomplete/skip override was used. |
@@ -79,3 +79,7 @@ Production snapshots and maximum cumulative closure were not supplied. The 100/3
 R00 is **not complete**, R01 is **not allowed**, and no human gate has passed. The user's H1–H5/+1 rules remain unchanged. Stage-level agent review cannot authorize passage through any human gate.
 
 Rollback is to stop using the isolated integration worktrees and retain this failed-run evidence. No cleanup of original repositories, baseline resources, Players, or M00–M07 evidence is needed or authorized by this record.
+
+## Independent checkpoint review
+
+The first read-only review of `7316147..c1d1f1b` rejected checkpoint integrity for two P2 documentation errors: the inventory implied that the historical Player was bound to the later declared demo commit, and the report understated M05 native checks. Both were corrected: the inventory now separates captured and declared source identities, and M05 is recorded as 616 core + 35 reflection + 219 image-identity = 870 checks, plus 34 syntax checks. A focused re-review is recorded in `code-review.json`. This does not close the separate R00 acceptance gaps or authorize R01.

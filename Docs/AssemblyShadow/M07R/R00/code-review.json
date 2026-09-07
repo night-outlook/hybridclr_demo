@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "kind": "R00 stage independent code/evidence review",
+  "reviewer": "r00_review_gpt6astra_high_1",
+  "initialRange": {
+    "base": "73161474f5b681b46c25424f4e72b4b757c51e66",
+    "target": "c1d1f1ba5cc7c4441a43a6290f1cffe7315e6c20"
+  },
+  "initialCheckpointVerdict": "FAIL",
+  "milestoneReadiness": "FAIL",
+  "findings": [
+    {
+      "id": "R00-REVIEW-01",
+      "priority": "P2",
+      "file": "baseline-inventory.json",
+      "finding": "Incorrect implication that historical Player receipts bind later declared demo3aab779.",
+      "fix": "Separate captured9f322a/8c94f1 pins from declared3aab779/2180b99 pairing; preserve provenance gap.",
+      "status": "FixedPendingReReview"
+    },
+    {
+      "id": "R00-REVIEW-02",
+      "priority": "P2",
+      "file": "R00-report.md",
+      "finding": "M05native count understated as716.",
+      "fix": "Correct to870checks =616core+35reflection+219imageIdentity, plus34syntax.",
+      "status": "FixedPendingReReview"
+    }
+  ],
+  "verifiedEvidence": {
+    "archiveMembers": 118,
+    "importedSourceCopyPairs": 2679,
+    "livePlayerInputHashes": 16792,
+    "editorPassed": 912,
+    "pythonPassed": 356,
+    "completeInstalledSourceVerification": true
+  },
+  "checkpointReReview": "Pending",
+  "humanGateApproval": false,
+  "mayContinueToR01": false
+}
