@@ -10,6 +10,8 @@ namespace AssemblyA.Implementation.Internal
         [SerializeField] private M07ManagedGraphAsset graphReference;
         [SerializeField] private UnityEngine.Object serializedInterfaceObject;
         [SerializeField] private UnityEvent persistentEvent = new UnityEvent();
+        [SerializeField] private int beforeSerializeCount;
+        [SerializeField] private int afterDeserializeCount;
 
         private static int s_beforeSerializeCount;
         private static int s_afterDeserializeCount;
@@ -25,8 +27,13 @@ namespace AssemblyA.Implementation.Internal
         private static int s_pauseCount;
         private static string s_lastMarker;
 
-        public void OnBeforeSerialize() { ++s_beforeSerializeCount; }
-        public void OnAfterDeserialize() { ++s_afterDeserializeCount; }
+        public void OnBeforeSerialize() { ++beforeSerializeCount; }
+        public void OnAfterDeserialize() { ++afterDeserializeCount; }
+        public void PublishCallbackCounters()
+        {
+            s_beforeSerializeCount = beforeSerializeCount;
+            s_afterDeserializeCount = afterDeserializeCount;
+        }
         private void Awake() { ++s_awakeCount; s_lastMarker = Marker(); }
         private void OnEnable() { ++s_enableCount; s_lastMarker = Marker(); }
         private void Start() { ++s_startCount; s_lastMarker = Marker(); }

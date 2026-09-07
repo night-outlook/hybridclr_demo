@@ -210,6 +210,7 @@ namespace AssemblyShadowDemo
             Component businessSceneComponent = FindSceneComponent(business, SceneType);
             ObserveScene(result, "single", "business-scene.bundle", business, businessSceneComponent, expectedMarker, false, false, featureOff);
             Invoke(businessSceneComponent, "OnBeforeSerialize");
+            Invoke(businessSceneComponent, "PublishCallbackCounters");
             Invoke(businessSceneComponent, "InvokePersistentEvent");
             Invoke(businessSceneComponent, "InvokeStringPaths");
             businessSceneComponent.SendMessage("OnApplicationPause", true, SendMessageOptions.RequireReceiver);
@@ -352,6 +353,7 @@ namespace AssemblyShadowDemo
             string expectedMarker, bool additive, bool delayed, bool featureOff)
         {
             ObserveType(result, component.GetType(), "scene-" + phase, featureOff);
+            Invoke(component, "PublishCallbackCounters");
             string marker = InvokeStaticString(component.GetType(), "Marker");
             Require(marker == SceneMarker(expectedMarker), "M07 scene component marker differs: " + phase + ":" + marker);
             string serialized = InvokeString(component, "ReadSerializedState");
