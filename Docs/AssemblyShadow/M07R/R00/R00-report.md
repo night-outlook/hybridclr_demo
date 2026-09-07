@@ -72,7 +72,7 @@ Production snapshots and maximum cumulative closure were not supplied. The 100/3
 2. Build a new current-pairing Player following the completed provenance reconciliation; the captured contract differs. Do not rewrite old receipts to match new pins.
 3. Add and execute the requested unmodified-runtime performance observation harness: ON/no patch, P01/P03, first-call versus warm allocation/Invoke/generic timings, business readiness, and at least 10,000 successful repeated allocations. Existing M05 tests measure type lookup; M06 measures a small number of calls. Neither satisfies this requirement. Native diagnostics lack proof-build/row-scan/allocation counters; unavailable measurements must remain explicit.
 4. Replay relevant M05/M06 Player allocation, reflection, Runtime::Invoke and generic cases against the required executable boundary. Historical results remain retained, not counted as fresh R00 passes.
-5. Complete the stage's independent review and resolve its acceptance findings before R01.
+5. Resolve the remaining acceptance gaps and obtain another independent R00 readiness review before R01. The completed checkpoint review does not waive them.
 
 ## Gate and rollback
 
@@ -82,4 +82,4 @@ Rollback is to stop using the isolated integration worktrees and retain this fai
 
 ## Independent checkpoint review
 
-The first read-only review of `7316147..c1d1f1b` rejected checkpoint integrity for two P2 documentation errors: the inventory implied that the historical Player was bound to the later declared demo commit, and the report understated M05 native checks. Both were corrected: the inventory now separates captured and declared source identities, and M05 is recorded as 616 core + 35 reflection + 219 image-identity = 870 checks, plus 34 syntax checks. A focused re-review is recorded in `code-review.json`. This does not close the separate R00 acceptance gaps or authorize R01.
+The first read-only review of `7316147..c1d1f1b` rejected checkpoint integrity for two P2 documentation errors: the inventory implied that the historical Player was bound to the later declared demo commit, and the report understated M05 native checks. Both were corrected: the inventory now separates captured and declared source identities, and M05 is recorded as 616 core + 35 reflection + 219 image-identity = 870 checks, plus 34 syntax checks. The focused re-review of `c1d1f1b..867e42ae` returned **checkpoint integrity PASS**, with no actionable checkpoint findings, and separately **R00 readiness FAIL**. It confirmed the 24-file inventory and unchanged source/raw evidence. `code-review.json` records both verdicts. The separate R00 acceptance gaps remain open, and R01 is not authorized.

@@ -15,7 +15,7 @@
       "file": "baseline-inventory.json",
       "finding": "Incorrect implication that historical Player receipts bind later declared demo3aab779.",
       "fix": "Separate captured9f322a/8c94f1 pins from declared3aab779/2180b99 pairing; preserve provenance gap.",
-      "status": "FixedPendingReReview"
+      "status": "FixedAndVerified"
     },
     {
       "id": "R00-REVIEW-02",
@@ -23,7 +23,7 @@
       "file": "R00-report.md",
       "finding": "M05native count understated as716.",
       "fix": "Correct to870checks =616core+35reflection+219imageIdentity, plus34syntax.",
-      "status": "FixedPendingReReview"
+      "status": "FixedAndVerified"
     }
   ],
   "verifiedEvidence": {
@@ -34,7 +34,21 @@
     "pythonPassed": 356,
     "completeInstalledSourceVerification": true
   },
-  "checkpointReReview": "Pending",
+  "checkpointReReview": "PASS",
   "humanGateApproval": false,
-  "mayContinueToR01": false
+  "mayContinueToR01": false,
+  "reviewedTarget": "867e42ae60665137ade00afe3c90e76cb97bd31d",
+  "reReviewRange": {
+    "base": "c1d1f1ba5cc7c4441a43a6290f1cffe7315e6c20",
+    "target": "867e42ae60665137ade00afe3c90e76cb97bd31d"
+  },
+  "remainingActionableCheckpointFindings": [],
+  "milestoneBlockers": [
+    "Current-pairing Players not built",
+    "No complete clean14-mode matrix and strict verification",
+    "Required performance observations NotRun",
+    "Relevant freshM05/M06Player regressions NotRun",
+    "Shutdown failure exact lifetime ordering and cause unresolved"
+  ],
+  "finalReviewConclusion": "Checkpoint integrity PASS; R00milestone readiness FAIL; R01closed; no human gate or release approval. Source and raw evidence unchanged; previous verification remains applicable."
 }
