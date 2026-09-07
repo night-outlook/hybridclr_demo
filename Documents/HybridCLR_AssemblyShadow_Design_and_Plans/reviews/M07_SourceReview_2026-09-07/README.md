@@ -9,6 +9,7 @@
 | [review.md](review.md) | 13 项 findings，逐项区分已确认代码条件、设计/发布缺口和待验证风险 |
 | [design.revised.md](design.revised.md) | 修订后的架构提案；仍为 PROPOSED，不是已实现能力 |
 | [plans/README.md](plans/README.md) | M07R、M08–M12 与 X01 的顺序及 12 个详细阶段计划 |
+| [plans/HUMAN_REVIEW_GATES.md](plans/HUMAN_REVIEW_GATES.md) | 后续开发强制执行的 5+1 人工完整 Review Gate；到 Gate 必须暂停，不能由 agent 自审替代 |
 | [validation-matrix.md](validation-matrix.md) | 新增容量、性能、兼容、部署、恢复、平台和模块生命周期测试 |
 | [evidence-map.md](evidence-map.md) | 42 个固定提交源文件/文档的实际阅读覆盖 |
 | [source-baseline.json](source-baseline.json) | 四仓库 review HEAD、记录的 demo executable pairing 与验证边界 |
@@ -20,6 +21,12 @@
 保留已有 Stage/Validate/Commit、active mapping、Unity image 身份适配和已记录的资源 Gate。先解决 image 预算、分配热路径、native layout 与构建准入差异、物理 slot 混入逻辑方法键、跨版本并图伪环，再进入原 M08–M12。
 
 当前源码分配器的小 DLL 理论上限是 338 个 Interpreter Image，而不是可自由使用 1024 个；普通热更也消耗同一预算。该值按 fresh allocator、同尺寸且每个 DLL <1 MiB 推导，不能直接作为项目剩余容量。
+
+## 后续执行的人工 Review 规则
+
+从 R00 开始，`plans/HUMAN_REVIEW_GATES.md` 是后续开发的规范性执行规则。本地 agent 可以在同一 Gate 区间内连续实施并执行阶段内 code review；一旦到达 H1–H5 暂停点，必须整理修改、测试和证据后停止，等待人为显式发起完整 Review。人工 Review 通过前不得进入下一 milestone。
+
+M11 完成后同样必须停止；M12 作为“+1”最终独立 Release Review，只能由人为显式发起。阶段内 agent 自审、CI 或自动化验证均不能替代这些 Gate。
 
 ## 实际做过与没做过
 
