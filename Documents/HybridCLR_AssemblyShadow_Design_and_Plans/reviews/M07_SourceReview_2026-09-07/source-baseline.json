@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-09-07",
+  "branch": "codex/assembly-shadow-m07",
+  "repositories": [
+    {
+      "name": "hybridclr_demo",
+      "reviewHead": "41b047b153d2d816306fe9e0253a58b96fe72c05"
+    },
+    {
+      "name": "hybridclr",
+      "reviewHead": "a19db144751f4f016769b90e61a80b8c27578678"
+    },
+    {
+      "name": "hybridclr_unity",
+      "reviewHead": "2180b99daf39095cd76301da2bdf34ac945ee8b4"
+    },
+    {
+      "name": "il2cpp_plus",
+      "reviewHead": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8"
+    }
+  ],
+  "recordedM07ExecutableDemo": "3aab779a3304dd9785ab14fb5fcdc73a107066f7",
+  "recordedM07PinOnlyDemoCommit": "671737c082effa5094bed16b087f6da5c3c666c9",
+  "referenceConversation": {
+    "url": "https://chatgpt.com/g/g-p-6a6182f3a31c8191830a6320c510f799/c/6a8fa76a-4a7c-83ec-8e3c-fa29df975abe",
+    "fullConversationRead": false,
+    "basis": "当前项目可见上下文、仓库原设计和后续实施契约"
+  },
+  "verification": {
+    "sourceRead": true,
+    "completeRepositoryCheckout": false,
+    "repositoryTestsExecuted": false,
+    "unityCompilationExecuted": false,
+    "playerTestsExecuted": false,
+    "archiveMembersRehashed": false,
+    "sourceAlgorithmCalculationExecuted": true
+  },
+  "sources": [
+    {"id":"S01","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Documents/HybridCLR_AssemblyShadow_Design_and_Plans/design.md","readCoverage":"核心正文 1–1550；引用尾部未逐项展开","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/design.md"},
+    {"id":"S02","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M07/M07-report.md","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-report.md"},
+    {"id":"S03","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M07/M07-resource-contract.md","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-resource-contract.md"},
+    {"id":"S04","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M07/Evidence/verification/m07-strict-gate-3b-v6.json","readCoverage":"全文；只读取记录，未重放","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/Evidence/verification/m07-strict-gate-3b-v6.json"},
+    {"id":"S05","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M07/M07-source-inventory.json","readCoverage":"1–430；定向核对执行版本和差异","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-source-inventory.json"},
+    {"id":"S06","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M03/M03-report.md","readCoverage":"当前 v4 接受记录；历史部分定向阅读","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M03/M03-report.md"},
+    {"id":"S07","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M05/M05-type-contract.md","readCoverage":"1–240","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M05/M05-type-contract.md"},
+    {"id":"S08","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M05/M05-report.md","readCoverage":"1–170","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M05/M05-report.md"},
+    {"id":"S09","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Docs/AssemblyShadow/M06/M06-report.md","readCoverage":"1–200","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M06/M06-report.md"},
+    {"id":"S10","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-08-editor-build-integration.md","readCoverage":"1–310","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-08-editor-build-integration.md"},
+    {"id":"S11","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-09-bootstrap-security-rollback.md","readCoverage":"1–300","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-09-bootstrap-security-rollback.md"},
+    {"id":"S12","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-11-performance-hardening-rebase.md","readCoverage":"1–220","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-11-performance-hardening-rebase.md"},
+    {"id":"S13","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/vm/AssemblyShadow.cpp","readCoverage":"全文，1–1489","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadow.cpp"},
+    {"id":"S14","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/vm/AssemblyShadowTypeResolver.cpp","readCoverage":"全文，1–714","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"},
+    {"id":"S15","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/vm/Assembly.cpp","readCoverage":"全文","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/Assembly.cpp"},
+    {"id":"S16","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/vm/Object.cpp","readCoverage":"1–320","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/Object.cpp"},
+    {"id":"S17","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/vm/Reflection.cpp","readCoverage":"170–490","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/Reflection.cpp"},
+    {"id":"S18","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/vm/AssemblyShadowVisibility.cpp","readCoverage":"全文","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadowVisibility.cpp"},
+    {"id":"S19","repository":"il2cpp_plus","commit":"666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8","path":"libil2cpp/icalls/mscorlib/System.Reflection/Assembly.cpp","readCoverage":"全文","url":"https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/icalls/mscorlib/System.Reflection/Assembly.cpp"},
+    {"id":"S20","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/StagedAssembly.cpp","readCoverage":"全文，1–487","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/StagedAssembly.cpp"},
+    {"id":"S21","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/AssemblyShadowRuntimeApi.cpp","readCoverage":"1–275","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/AssemblyShadowRuntimeApi.cpp"},
+    {"id":"S22","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/InterpreterImage.cpp","readCoverage":"1–220","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/InterpreterImage.cpp"},
+    {"id":"S23","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/MetadataUtil.h","readCoverage":"1–150","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/MetadataUtil.h"},
+    {"id":"S24","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/Assembly.cpp","readCoverage":"1–200","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/Assembly.cpp"},
+    {"id":"S25","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/Assembly.h","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/Assembly.h"},
+    {"id":"S26","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/RawImageBase.h","readCoverage":"1–260","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/RawImageBase.h"},
+    {"id":"S27","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/metadata/RawImage.h","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/RawImage.h"},
+    {"id":"S28","repository":"hybridclr","commit":"a19db144751f4f016769b90e61a80b8c27578678","path":"hybridclr/interpreter/Interpreter_Execute.cpp","readCoverage":"1–220；只核对 guard 宏，未声称逐条 opcode 审计","url":"https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/interpreter/Interpreter_Execute.cpp"},
+    {"id":"S29","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Runtime/AssemblyShadow/AssemblyShadowRuntime.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs"},
+    {"id":"S30","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs"},
+    {"id":"S31","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"},
+    {"id":"S32","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Build/ShadowSourcePins.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowSourcePins.cs"},
+    {"id":"S33","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs","readCoverage":"1–255；编译策略入口与作用域","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs"},
+    {"id":"S34","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs","readCoverage":"全文，1–370","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs"},
+    {"id":"S35","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Serialization/UnitySerializedTypeAnalyzer.cs","readCoverage":"1–250","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Serialization/UnitySerializedTypeAnalyzer.cs"},
+    {"id":"S36","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Hashing/AssemblySemanticHasher.cs","readCoverage":"1–305","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Hashing/AssemblySemanticHasher.cs"},
+    {"id":"S37","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Generation/ShadowGenerationPlan.cs","readCoverage":"1–277；末尾响应截断，不作全文覆盖声明","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Generation/ShadowGenerationPlan.cs"},
+    {"id":"S38","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Generation/ShadowGenerationOutput.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Generation/ShadowGenerationOutput.cs"},
+    {"id":"S39","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/MethodBridge/GenerationInventory.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/MethodBridge/GenerationInventory.cs"},
+    {"id":"S40","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs","readCoverage":"1–230","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs"},
+    {"id":"S41","repository":"hybridclr_unity","commit":"2180b99daf39095cd76301da2bdf34ac945ee8b4","path":"Editor/AssemblyShadow/Build/ShadowManifests.cs","readCoverage":"全文","url":"https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowManifests.cs"},
+    {"id":"S42","repository":"hybridclr_demo","commit":"41b047b153d2d816306fe9e0253a58b96fe72c05","path":"Tools/AssemblyShadow/README.md","readCoverage":"1–120、310–末尾；核对现有执行命令","url":"https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Tools/AssemblyShadow/README.md"}
+  ]
+}
