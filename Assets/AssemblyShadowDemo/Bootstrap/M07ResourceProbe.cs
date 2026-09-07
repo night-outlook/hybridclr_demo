@@ -340,7 +340,7 @@ namespace AssemblyShadowDemo
         {
             Require(component != null, "M07 component observation is null: " + phase);
             ObserveType(result, component.GetType(), phase, featureOff);
-            string marker = InvokeString(component, "M07PatchMarker", true);
+            string marker = InvokeStaticString(component.GetType(), "M07PatchMarker");
             string combined = InvokeString(component, "GetCombinedText");
             string expectedCombined = ExpectedCombined(result.patchId);
             Require(marker == expectedMarker && combined == expectedCombined, "M07 component method dispatch differs: " + phase + ":" + marker + ":" + combined);
@@ -506,11 +506,6 @@ namespace AssemblyShadowDemo
         {
             object value = Invoke(owner, method, arguments);
             return value == null ? "" : value.ToString();
-        }
-
-        private static string InvokeString(object owner, string method, bool staticCall)
-        {
-            return staticCall ? InvokeStaticString(owner.GetType(), method) : InvokeString(owner, method, new object[0]);
         }
 
         private static string InvokeStaticString(Type type, string method)

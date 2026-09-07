@@ -108,6 +108,15 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
+        public void UnityObjectsCannotBindToABooleanReflectionHelperOverload()
+        {
+            string source = File.ReadAllText(ResourceSource);
+            StringAssert.Contains("InvokeString(external, \"RunM07GenericComponentApis\", external.gameObject)", source);
+            StringAssert.Contains("InvokeStaticString(component.GetType(), \"M07PatchMarker\")", source);
+            Assert.IsFalse(source.Contains("InvokeString(object owner, string method, bool staticCall)"));
+        }
+
+        [Test]
         public void MonoScriptEvidenceUsesOnlyThePlanPermittedPlayerFallback()
         {
             string source = File.ReadAllText(ResourceSource);
