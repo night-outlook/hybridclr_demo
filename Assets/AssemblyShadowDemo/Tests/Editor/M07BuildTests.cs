@@ -143,6 +143,8 @@ namespace AssemblyShadowDemo.EditorTests
             StringAssert.Contains("[IO.FileMode]::CreateNew", source);
             StringAssert.Contains("Test-UnityProjectRunning", source);
             StringAssert.Contains("m07-build.lock", source);
+            StringAssert.Contains("$existingPlayerReceipts", source);
+            StringAssert.Contains("$excluded.Contains($fullPath)", source);
         }
     }
 }

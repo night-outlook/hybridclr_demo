@@ -128,13 +128,17 @@ function Restore-M07OriginalSettingsBytes {
 }
 
 function Find-M07PlayerReceipt {
-    param([string]$Project, [string]$Variant, [string]$Output)
+    param([string]$Project, [string]$Variant, [string]$Output, [string[]]$ExcludedPaths = @())
+    $excluded = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    foreach ($path in $ExcludedPaths) { [void]$excluded.Add([IO.Path]::GetFullPath($path)) }
     $matches = @()
     foreach ($file in Get-ChildItem -LiteralPath (Join-Path $Project '_temp/AssemblyShadow') -Filter 'm07-player-build.json' -File -Recurse) {
+        $fullPath = [IO.Path]::GetFullPath($file.FullName)
+        if ($excluded.Contains($fullPath)) { continue }
         try { $receipt = Get-Content -Raw -LiteralPath $file.FullName | ConvertFrom-Json }
         catch { continue }
         if ($receipt.milestone -ceq 'M07' -and $receipt.variant -ceq $Variant -and
-            $receipt.baselineBuildId -ceq $BaselineId -and $receipt.playerOutput -ceq $Output) { $matches += $file.FullName }
+            $receipt.baselineBuildId -ceq $BaselineId -and $receipt.playerOutput -ceq $Output) { $matches += $fullPath }
     }
     if ($matches.Count -ne 1) { throw "Expected exactly one $Variant receipt for $Output; found $($matches.Count)." }
     return [IO.Path]::GetFullPath($matches[0])
@@ -148,6 +152,7 @@ if (-not (Get-ConfiguredUnityPath)) { throw 'Configure the pinned Unity executab
 
 $parent = Join-Path $shadowProject '_temp/AssemblyShadow'
 New-Item -ItemType Directory -Force -Path $parent | Out-Null
+$existingPlayerReceipts = @(Get-ChildItem -LiteralPath $parent -Filter 'm07-player-build.json' -File -Recurse | ForEach-Object { [IO.Path]::GetFullPath($_.FullName) })
 # M07 deliberately reuses M02StructuralPatchCompilation's crash-safe state
 # machine, whose persisted contract requires this exact directory prefix.
 $run = Join-Path $parent ('M02Validation-' + [guid]::NewGuid().ToString('N'))
@@ -191,8 +196,8 @@ try {
     if ((Get-M07BytesHash ([IO.File]::ReadAllBytes($settingsPath))) -cne (Get-M07BytesHash ([IO.File]::ReadAllBytes($backupPath)))) {
         throw 'The completed M07 workflow did not preserve the original ProjectSettings bytes.'
     }
-    $onReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOn' $onOutput
-    $offReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOff' $offOutput
+    $onReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOn' $onOutput $existingPlayerReceipts
+    $offReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOff' $offOutput $existingPlayerReceipts
     $fixtureManifest = Join-Path $run 'm07-fixtures.json'
     $replayReceipt = Join-Path $run 'm07-editor-replay.json'
     foreach ($required in @($onReceipt, $offReceipt, $fixtureManifest, $replayReceipt)) {
