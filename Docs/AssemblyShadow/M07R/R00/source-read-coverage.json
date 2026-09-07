@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Object.cpp",
+      "coverage": "complete",
+      "ranges": [
+        [
+          1,
+          452
+        ]
+      ],
+      "sha256": "f8cdb18b4e4f139fa9d58e68204ad9b0fa0999f782d4870ad6a56e8f4ab5bb15",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Runtime.cpp",
+      "coverage": "complete",
+      "ranges": [
+        [
+          1,
+          1231
+        ]
+      ],
+      "sha256": "f26a5cbe0f1e162eac49891af0cca1cff2b92b16813e9bf04e465a7e125bc9f3",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/Reflection.cpp",
+      "coverage": "complete",
+      "ranges": [
+        [
+          1,
+          877
+        ]
+      ],
+      "sha256": "7b6f27e1c21abca47be747665a95a13eb5bbd72e3c63d9a496aaff3d31428dc6",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/RawImageBase.h",
+      "coverage": "complete",
+      "ranges": [
+        [
+          1,
+          422
+        ]
+      ],
+      "sha256": "5b0426d4baaf4f45a3365fd42882509c85cd37a6096621752575d6cefc78d430",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/interpreter/Interpreter_Execute.cpp",
+      "coverage": "targeted AssemblyShadow hook and relevant execution regions",
+      "ranges": [
+        [
+          41,
+          45
+        ],
+        [
+          1679,
+          1683
+        ],
+        [
+          4733,
+          4825
+        ],
+        [
+          5633,
+          5668
+        ],
+        [
+          12515,
+          12525
+        ]
+      ],
+      "sha256": "a784afb4ead165e8a0be6c3b6bf8aff7893734ebb458cd60ccf9ed7a61f575e6",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/native-tests/m05_reflection.cpp",
+      "coverage": "complete",
+      "ranges": [
+        [
+          1,
+          240
+        ]
+      ],
+      "sha256": "e9eb5e7330be452d59a634dd74c937d3e6fabecaaa747f1429b296501c8501e6",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/native-tests/m06_execution.cpp",
+      "coverage": "complete",
+      "ranges": [
+        [
+          1,
+          335
+        ]
+      ],
+      "sha256": "97b560894c5036e33f5518e6ee4e1e3449bf4464acce38958d77d5118f037669",
+      "reviewer": "r00_perf_scope_gpt56luna_medium_1"
+    }
+  ],
+  "limits": "Not a whole-repository or whole-opcode audit. Existing native adapter tests do not execute full Object::New, Runtime::Invoke/ClassInit, or Interpreter execution; Player evidence remains required."
+}

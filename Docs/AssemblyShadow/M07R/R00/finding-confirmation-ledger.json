@@ -1,0 +1,869 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R00",
+  "findings": [
+    {
+      "id": "ASR-001",
+      "priority": "P1",
+      "classification": "algorithm",
+      "sourceFinding": {
+        "id": "ASR-001",
+        "priority": "P1",
+        "category": "已确认：容量/目标适配",
+        "title": "Interpreter Image 索引容量与细粒度程序集目标存在硬约束",
+        "sources": [
+          "S22",
+          "S23",
+          "S24",
+          "S20"
+        ],
+        "plans": [
+          "R01",
+          "R01B",
+          "M08B",
+          "X01"
+        ],
+        "location": "MetadataUtil.h 的索引常量；InterpreterImage::GetImageKindByDllLength / AllocImageIndex；普通 Assembly::Create 和 Shadow CreateStagedSkeleton。",
+        "observation": "当前并非可自由使用 1024 个 image 槽。编码分为四种 kind，步长为 64/16/4/1；大桶保留起始槽，小桶保留末尾哨兵。新进程、同尺寸 DLL、没有任何既有消耗时，小于 1 MiB 的理论总容量为 255+64+16+3=338。1–4 MiB 档为 83，4–16 MiB 为 19，16–64 MiB 为 3；恰好 64 MiB 已无法取得合适 kind。普通热更和 Shadow 都调用同一分配器。",
+        "impact": "113 个三层模块若全部进入闭包，会需要 339 个 image，即使 DLL 都很小也越过理论上限；这不是候选 AOT 程序集总数上限，而是本进程实际分配的 Interpreter Image 预算。部分失败已经消耗的索引不应假定会返还。M07 的五个候选不能覆盖该规模。",
+        "fix": "立即加入按真实 DLL 字节数和加载顺序计算的 baseline/patch 容量准入及原生剩余预算查询。若目标最大闭包超过预算，必须在正式基线发布前实施独立索引编码扩容里程碑；不能以减少程序集粒度代替原目标，也不能把修改一个常量当作完整修复。",
+        "validation": "使用原分配器的原生定向测试验证桶边界、混合尺寸、普通热更先占用和失败消耗；再以真实 Player 做代表性大闭包。交付包已执行源码算法等价复算，未执行这些原生/Player 测试。",
+        "confidence": "容量为源码推导并经 Python 算法复算；并非设备实测。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S22",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/InterpreterImage.cpp",
+          "readCoverage": "1–220",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/InterpreterImage.cpp"
+        },
+        {
+          "id": "S23",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/MetadataUtil.h",
+          "readCoverage": "1–150",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/MetadataUtil.h"
+        },
+        {
+          "id": "S24",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/Assembly.cpp",
+          "readCoverage": "1–200",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/Assembly.cpp"
+        },
+        {
+          "id": "S20",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/StagedAssembly.cpp",
+          "readCoverage": "全文，1–487",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/StagedAssembly.cpp"
+        }
+      ],
+      "responsibleMilestone": "R01",
+      "confirmationTask": "Run exact allocator boundary/mixed-order tests; measure ordinary image use and retained failed allocations; reconcile actual closure demand with capacity.",
+      "validationIds": "Q01-Q06",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "Native budget boundary tests remain R01; current source-derived small-image fresh limit338 does not establish 1000 support.",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true,
+      "evidence": [
+        "snapshot-scale.json",
+        "Evidence/source-algorithm-results.json"
+      ]
+    },
+    {
+      "id": "ASR-002",
+      "priority": "P1",
+      "classification": "source-conditional",
+      "sourceFinding": {
+        "id": "ASR-002",
+        "priority": "P1",
+        "category": "已确认：性能实现",
+        "title": "每次对象分配重复做定义查找和布局证明",
+        "sources": [
+          "S14",
+          "S16"
+        ],
+        "plans": [
+          "R02"
+        ],
+        "location": "Object::NewAllocSpecific → ResolveAllocationClass → AssemblyShadowTypeResolver::ResolveAllocation → CheckActiveComponents → FindDefinition / CheckLayout。",
+        "observation": "即使传入的已经是 active Class，ResolveAllocation 仍调用 CheckActiveComponents。它按类型名再次搜索 baseline image 的类型表，并重新构造字段布局向量、字段签名和接口集合。现有 definitions cache 只缓存 baseline→active 定义映射，不缓存 allocation admission proof。",
+        "impact": "重复 new、数组/泛型参数包含 Shadow 类型的分配以及 boxing 路径可能持续支付扫描、字符串/容器分配和布局遍历成本。这是稳态路径，不是一次性 first-call；与原 M11 的 O(1)、零额外 native allocation 目标冲突。尚未测量百分比退化，不能虚构倍数。",
+        "fix": "新增独立的不可变 ClassAdmissionCertificate，以 generation + 完整物理 Class 身份区分定义和构造泛型。首次证明后缓存；baseline 使用检查不能被缓存绕过。建立元数据 TypeKey 索引，禁止缓存命中路径再遍历整个 assembly 或构造签名。",
+        "validation": "记录同一类型 1/10/10000 次分配的 layoutProofBuildCount、typeRowsScanned 和 native allocation。首次之外应不再构建证明；多线程、泛型、数组、Unity 旧资源及被拒类型仍正确。",
+        "confidence": "调用链和重复工作已静态确认；耗时和分配字节数待原生仪表/Player 测量。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S14",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+          "readCoverage": "全文，1–714",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+        },
+        {
+          "id": "S16",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/Object.cpp",
+          "readCoverage": "1–320",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/Object.cpp"
+        }
+      ],
+      "responsibleMilestone": "R02",
+      "confirmationTask": "Measure same-type allocations 1/10/10000 with first-call and warmed proof-build/row-scan/native-allocation counts; include full constructed types.",
+      "validationIds": "P01-P04",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-003",
+      "priority": "P1",
+      "classification": "source-conditional",
+      "sourceFinding": {
+        "id": "ASR-003",
+        "priority": "P1",
+        "category": "已确认：性能边界",
+        "title": "执行保护和诊断尚未分层，无补丁不等于零成本",
+        "sources": [
+          "S13",
+          "S09",
+          "S12"
+        ],
+        "plans": [
+          "R02",
+          "M11"
+        ],
+        "location": "AssemblyShadow::AssertMethodIsActive / ObserveExecutionClass / CapturedArgumentVisitor。",
+        "observation": "AssertMethodIsActive 首先执行共享原子 methodChecks 递增；候选 class 观察使用自旋锁，候选使用记录和部分泛型上下文检查也使用 usage lock。即使没有 active snapshot，代码也不等于一个 IsActive 分支立即返回。这里指受保护的 Invoke、虚/接口、解释器、delegate 等入口；普通直接非虚 AOT 调用仍没有统一 dispatch stub。",
+        "impact": "native feature OFF、feature ON 但无补丁、ON 且提交补丁是三个不同性能状态。保留全部生产诊断可能把优化收益转移为热路径共享缓存行竞争。1024 个执行 class 观察上限另有 dropped counter，不能把有限观察当成全类型覆盖。",
+        "fix": "区分不可关闭的正确性 guard 与可采样/开发专用诊断；冻结 baseline 选择后允许经过证明的快路径。闭合泛型执行上下文可缓存授权结果，但必须保留 generation 和失败状态约束。不要直接删除运行时 guard。",
+        "validation": "同配置 AOT/feature-OFF/ON-no-patch/P01/P03 对照，覆盖多线程泛型、virtual/interface/delegate，分别验证 counters-off/on。",
+        "confidence": "代码开销来源已确认；项目级性能收益尚未复测。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S13",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "readCoverage": "全文，1–1489",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadow.cpp"
+        },
+        {
+          "id": "S09",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M06/M06-report.md",
+          "readCoverage": "1–200",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M06/M06-report.md"
+        },
+        {
+          "id": "S12",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-11-performance-hardening-rebase.md",
+          "readCoverage": "1–220",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-11-performance-hardening-rebase.md"
+        }
+      ],
+      "responsibleMilestone": "R02",
+      "confirmationTask": "Measure OFF, ON before configuration, ON/no patch, P01/P03 and diagnostic modes; preserve virtual/interface/delegate/generic safety guards.",
+      "validationIds": "P05-P06",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-004",
+      "priority": "P1",
+      "classification": "source-conditional",
+      "sourceFinding": {
+        "id": "ASR-004",
+        "priority": "P1",
+        "category": "已确认：设计能力/准入差异",
+        "title": "当前 Native Layout 契约比 Resource ABI 更窄，并可能在 Commit 后才拒绝",
+        "sources": [
+          "S14",
+          "S31",
+          "S33",
+          "S34",
+          "S35",
+          "S03"
+        ],
+        "plans": [
+          "R03",
+          "M08B"
+        ],
+        "location": "CompatibleInstanceFields / CheckLayout / CheckActiveComponents；ShadowPatchManifestBuilder.BuildCore。",
+        "observation": "native 检查应用到存在同名 baseline 的 active 类型，不只应用到 Unity 序列化类型：已有实例字段的签名/偏移、父类和接口集合受约束；只保守允许 reference type 尾部的 private primitive 新存储，value type 不能增长。纯 active-first 分配同样要检查。Editor 的 Resource ABI 和当前编译策略不是该原生布局规则的等价前置校验。",
+        "impact": "给普通纯托管业务类新增 private object/string/自定义类引用，或新增接口，可能不改变 Unity Resource ABI，却在首次分配时失败。新名字的类型可以没有 baseline，而同名旧类型受到强约束，说明这是一项真实的演进能力边界。P04 的 private primitive 成功不能推广为任意非序列化字段变化均可。",
+        "fix": "短期建立 NativeLayoutAdmissionReport，构建期明确拒绝当前不支持的变化，对无法静态确定的物理偏移在发布前进行有界验证。长期分离 PureInterpreter、Unity-bound、AOT/interop-exposed 三类准入；只有证明无旧对象/无 baseline 物理表示逃逸后，才扩展纯托管布局变化。不要全局去掉 CheckLayout。",
+        "validation": "新增 pure class private reference、字段删除/重排、private struct、interface/base change、closed generic、Unity private reference、P04/P05 的正负矩阵；断言不支持的部署不能直到业务首次使用才暴露。",
+        "confidence": "原生限制和 build entry 缺少等价准入已静态确认；具体 Unity 工程补丁流程需实际 DLL/Player 验证。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S14",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+          "readCoverage": "全文，1–714",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+        },
+        {
+          "id": "S31",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"
+        },
+        {
+          "id": "S33",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs",
+          "readCoverage": "1–255；编译策略入口与作用域",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs"
+        },
+        {
+          "id": "S34",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs",
+          "readCoverage": "全文，1–370",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs"
+        },
+        {
+          "id": "S35",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Serialization/UnitySerializedTypeAnalyzer.cs",
+          "readCoverage": "1–250",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Serialization/UnitySerializedTypeAnalyzer.cs"
+        },
+        {
+          "id": "S03",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M07/M07-resource-contract.md",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-resource-contract.md"
+        }
+      ],
+      "responsibleMilestone": "R03",
+      "confirmationTask": "Compile private primitive/reference, interface/base, value/generic and Unity-bound layout changes; compare build admission and actual native allocation.",
+      "validationIds": "E01-E04",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-005",
+      "priority": "P1",
+      "classification": "source-conditional",
+      "sourceFinding": {
+        "id": "ASR-005",
+        "priority": "P1",
+        "category": "已确认：条件性功能拒绝",
+        "title": "反射方法的逻辑身份键混入物理 slot 和实现 flags",
+        "sources": [
+          "S14",
+          "S17",
+          "S09"
+        ],
+        "plans": [
+          "R03"
+        ],
+        "location": "AssemblyShadowTypeResolver.cpp::MethodSignature / FindMethodDefinition / ResolveReflectionMethod。",
+        "observation": "MethodSignature 将 method->slot、完整 flags、iflags 拼入匹配串，并对 baseline 与 active 的字符串作严格相等比较。slot 是版本内的虚表布局值，而不是跨版本方法身份。M06 实施记录已经说明真实 stack-trace/reflection 路径可能带来 baseline MethodInfo，所以该映射不是仅供测试的死代码。",
+        "impact": "当补丁在既有 virtual 方法之前新增 virtual 方法导致 slot 改变时，旧方法的名称/参数/返回类型可保持不变，但 baseline MethodInfo→active 的映射仍会失败。该问题取决于确实经过 baseline 方法映射入口；并非声称所有普通反射调用都会失败。",
+        "fix": "把 LogicalMethodKey 与 MethodCompatibility 分开。逻辑键包含 declaring TypeKey、名称、泛型 arity、调用约定/instance-static 形状及完整参数/返回类型；slot、token、实现优化 flags 不参与逻辑键，必要兼容性另行判断。执行 guard 仍拒绝旧 AOT 方法，绝不把执行地址悄悄重定向。",
+        "validation": "真实 baseline/patch DLL 中新增前置 virtual、改变实现优化 attribute、token 重排、重载/泛型/显式接口；通过定向 native baseline MethodInfo 测试和异常 stack trace 测试验证映射，不以字符串拼接单测代替。",
+        "confidence": "导致拒绝的匹配条件已静态确认；尚未在 Player 构造此反例。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S14",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+          "readCoverage": "全文，1–714",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+        },
+        {
+          "id": "S17",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/Reflection.cpp",
+          "readCoverage": "170–490",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/Reflection.cpp"
+        },
+        {
+          "id": "S09",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M06/M06-report.md",
+          "readCoverage": "1–200",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M06/M06-report.md"
+        }
+      ],
+      "responsibleMilestone": "R03",
+      "confirmationTask": "Use real DLLs inserting virtual method before an existing method; verify changed slot/token without changed logical signature. Existing synthetic methods all use invalid slot.",
+      "validationIds": "E05-E08",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-006",
+      "priority": "P2",
+      "classification": "algorithm",
+      "sourceFinding": {
+        "id": "ASR-006",
+        "priority": "P2",
+        "category": "已确认：图算法功能拒绝",
+        "title": "安全闭包图与目标加载图混用，产生跨版本伪环",
+        "sources": [
+          "S30",
+          "S31",
+          "S13"
+        ],
+        "plans": [
+          "R03"
+        ],
+        "location": "AssemblyReferenceGraph 构造函数合并 requiredBaselineEdges；ReverseClosure 末尾调用 LoadOrder；BuildCore 再用同一 graph.LoadOrder。",
+        "observation": "baseline A→B、target B→A 各自无环，但并集包含 A↔B。并集用于保守反向闭包是合理的；用它决定当前 target 的 provider-before-consumer 加载顺序则会拒绝这个本可加载的补丁。",
+        "impact": "正常的依赖重构可能被 DependencyCycle 阻断。此发现不是建议忽略真正的 target AssemblyRef 环，也不否认保留 baseline 依赖能防止闭包漏算。",
+        "fix": "保留 G_safety=baseline∪target∪声明依赖用于闭包；另建 G_load=target 的真实装载依赖。运行时仍校验 staged DLL 的真实 AssemblyRef；真实 target 环可先保持明确不支持。模块初始化顺序与反射/资源影响边也应区分。",
+        "validation": "加入两个快照方向反转的编译字节测试；两端单独排序通过、旧并图排序失败、新安全闭包完整且 target load order 通过。包内已执行独立图算法反例复算。",
+        "confidence": "确定性的算法反例；未运行仓库原 C# 测试或 Unity 编译。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S30",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs"
+        },
+        {
+          "id": "S31",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"
+        },
+        {
+          "id": "S13",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "readCoverage": "全文，1–1489",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadow.cpp"
+        }
+      ],
+      "responsibleMilestone": "R03",
+      "confirmationTask": "Verify baseline A->B/target B->A counterexample; retain complete safety closure and reject only a real target cycle.",
+      "validationIds": "G01-G04",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "Source algorithm counterexample rerun; real compiled direction-reversal case NotRun.",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true,
+      "evidence": [
+        "Evidence/source-algorithm-results.json"
+      ]
+    },
+    {
+      "id": "ASR-007",
+      "priority": "P2",
+      "classification": "scope-gap",
+      "sourceFinding": {
+        "id": "ASR-007",
+        "priority": "P2",
+        "category": "已确认：发布架构耦合",
+        "title": "整个 Editor package 的 commit 被用作 Runtime ABI",
+        "sources": [
+          "S32",
+          "S31"
+        ],
+        "plans": [
+          "M08A"
+        ],
+        "location": "ShadowSourcePins.RuntimeAbiHash / RequireCompatible。",
+        "observation": "RuntimeAbiHash 直接纳入 hybridclrUnity.revision，因此同包仅 Editor 工具或测试的修复也会改变被部署补丁要求匹配的 Runtime ABI。当前严格版本绑定适合作为研发证据，但不能自动等价为长期二进制兼容规则。",
+        "impact": "已发布 Player 可能无法使用修复后的 patch builder，除非继续冻结旧工具或重建 Player。不能通过把新工具伪装成旧 SHA 来绕过这一限制。",
+        "fix": "区分 RuntimeContractId、Generator/MetadataEncoding ABI、ToolchainProvenanceId 与完整 BuildEvidenceId。旧 schema 保持原校验；新旧兼容必须由显式、已测试的兼容记录授权，而非简单移除 SHA 检查。",
+        "validation": "Editor-only 改动在相同 runtime contract 下可生成兼容补丁；native metadata 编码、bridge ABI 或 Runtime API 改动仍必须拒绝旧 Player。",
+        "confidence": "哈希输入和拒绝路径已确认；属于生产工具链演进改进，不否定 M07 版本证据。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S32",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowSourcePins.cs"
+        },
+        {
+          "id": "S31",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"
+        }
+      ],
+      "responsibleMilestone": "M08A",
+      "confirmationTask": "Record full Editor package commit in RuntimeAbiHash; later test explicit tool/runtime compatibility without spoofing old revisions.",
+      "validationIds": "B04-B05",
+      "disposition": "scope-decision",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-008",
+      "priority": "P1",
+      "classification": "source-conditional",
+      "sourceFinding": {
+        "id": "ASR-008",
+        "priority": "P1",
+        "category": "已确认：计划/运行时契约需要收口",
+        "title": "原 M09 的统一 Pre-commit→Abort→baseline 流程不覆盖 Failed 状态",
+        "sources": [
+          "S11",
+          "S13",
+          "S20",
+          "S29"
+        ],
+        "plans": [
+          "R01",
+          "M09"
+        ],
+        "location": "StageAssembly、ValidateTransaction、AbortTransaction、AssertMethodIsActive、RequireUserCodeAllowed。",
+        "observation": "部分 skeleton/metadata 失败会设置 Failed；AbortTransaction 只接受 Staging/Staged/Validated，不接受 Failed。原 M09 却把多类 pre-commit 失败统一接到 Abort 再继续 baseline。此外 FailedAfterCommit 是状态封存，不是全进程停止机制：一个后续本身合法的方法检查并不会仅因该状态自动拒绝。",
+        "impact": "机械执行原 M09 会错误处理 Abort 返回值，或将未经证明可恢复的状态当成安全 baseline fallback。不能把“错误路径被拒绝/事务无法重试”表述成“业务进程已自动停止”。M07 的测试 runner 遇错退出不等于通用生产协调器已实现。",
+        "fix": "新增明确的 RecoveryDisposition，联合 error/state/activeGeneration/失败阶段决定 Skip、AbortThenBaseline 或 RestartRequired；未知 native failure 默认重启。Bootstrap 负责停止业务启动，受支持业务入口增加 poison 约束，同时允许必要的固定 AOT 诊断；原生回调继续采用不跨 ABI 抛异常的 fatal 策略。",
+        "validation": "对可纠正输入拒绝、部分 skeleton 失败、Validate 失败、模块初始化异常、捕获异常后再次调用、Abort 不合法状态分别故障注入；不能把所有非 Success 归为同一个回退分支。",
+        "confidence": "状态/返回路径已确认；生产恢复协调器属于后续 M09 工作。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S11",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-09-bootstrap-security-rollback.md",
+          "readCoverage": "1–300",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-09-bootstrap-security-rollback.md"
+        },
+        {
+          "id": "S13",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "readCoverage": "全文，1–1489",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadow.cpp"
+        },
+        {
+          "id": "S20",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/StagedAssembly.cpp",
+          "readCoverage": "全文，1–487",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/StagedAssembly.cpp"
+        },
+        {
+          "id": "S29",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs"
+        }
+      ],
+      "responsibleMilestone": "R01",
+      "confirmationTask": "Enumerate native error/state/generation for correctable rejection, partial skeleton/metadata failure, failed Abort and postpublication failure; do not infer process termination.",
+      "validationIds": "S02-S06",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-009",
+      "priority": "P1",
+      "classification": "scope-gap",
+      "sourceFinding": {
+        "id": "ASR-009",
+        "priority": "P1",
+        "category": "生产缺口：原计划 M08 范围",
+        "title": "生成能力证据尚需成为每个可部署 Patch 的强制门禁",
+        "sources": [
+          "S38",
+          "S39",
+          "S31",
+          "S41",
+          "S09",
+          "S10"
+        ],
+        "plans": [
+          "M08B"
+        ],
+        "location": "ShadowGenerationOutput.RequireCoverage 已实现；ShadowPatchManifestBuilder.BuildCore 的可部署输出入口。",
+        "observation": "M06 已有 structural ABI/capacity coverage 比较，不能再说 bridge 生成完全缺失。但当前 BuildCore 没有调用该 coverage 检查，也没有把安装包内原生能力库存作为正式 patch publication 的必需输入。",
+        "impact": "为未来补丁生成了新的 C++ bridge 文件，并不能把新原生能力放入已经安装的 Player。相同 target、资源 ABI 和程序集闭包不代表新 struct/callback/calli 或 bridge capacity 一定可执行。",
+        "fix": "将 baseline 已编入的 native capability inventory 冻结进发布契约；每个 patch 生成需求，再调用现有 coverage 机制校验。区分可由补充元数据支持的泛型需求与必须预编译的 native bridge 需求；缺失后者必须拒绝或要求新安装包。",
+        "validation": "构造资源 ABI 不变但新增 native struct signature/reverse callback 容量需求的 patch，确保包发布前拒绝；已有 P01/P02/P03 继续通过。",
+        "confidence": "生成器已有实现及公开 builder 调用链已确认；这是 planned integration gap，不计作 M07 未履行的安全承诺。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S38",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Generation/ShadowGenerationOutput.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Generation/ShadowGenerationOutput.cs"
+        },
+        {
+          "id": "S39",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/MethodBridge/GenerationInventory.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/MethodBridge/GenerationInventory.cs"
+        },
+        {
+          "id": "S31",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"
+        },
+        {
+          "id": "S41",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Build/ShadowManifests.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Build/ShadowManifests.cs"
+        },
+        {
+          "id": "S09",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M06/M06-report.md",
+          "readCoverage": "1–200",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M06/M06-report.md"
+        },
+        {
+          "id": "S10",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-08-editor-build-integration.md",
+          "readCoverage": "1–310",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Documents/HybridCLR_AssemblyShadow_Design_and_Plans/plans/milestone-08-editor-build-integration.md"
+        }
+      ],
+      "responsibleMilestone": "M08B",
+      "confirmationTask": "Confirm existing RequireCoverage is not called at publication; test unchanged resource ABI with new struct/callback/native-capacity demand.",
+      "validationIds": "B01-B03",
+      "disposition": "scope-decision",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-010",
+      "priority": "P2",
+      "classification": "scope-gap",
+      "sourceFinding": {
+        "id": "ASR-010",
+        "priority": "P2",
+        "category": "已确认：未实现能力",
+        "title": "同名 Replace 与程序集 Add/Remove 不是同一能力",
+        "sources": [
+          "S30",
+          "S13",
+          "S07"
+        ],
+        "plans": [
+          "X01"
+        ],
+        "location": "DetectChangedRoots 的 AssemblyRemoved / BaselineMissing；ConfigureCandidates 的 BaselineAssemblyNotFound。",
+        "observation": "当前实现明确拒绝新增/删除 runtime assembly；候选注册必须找到物理 AOT baseline。新增类型到已有程序集与新增程序集也不能混同。Unity public image alias 依赖已有 startup-registered image。",
+        "impact": "现有 Replace 成功不能推出动态新增模块程序集可用。该限制对细粒度模块随版本增长尤其重要，但应作为独立能力评估，不追溯性地把整个 M07 Gate 判为失败。",
+        "fix": "定义 Replace/AddManaged/AddUnityTypes/Remove 四种操作、能力位和独立 Gate。AddUnityTypes 必须以真实新名称、真实新 Bundle、干净进程证明注册/恢复；不预设下载 ScriptingAssemblies.json 或 placeholder 自动解决。",
+        "validation": "新增纯托管、新 MB/SO/SerializeReference 程序集、移除仍被代码/资源引用的程序集、逻辑墓碑和回滚；目标含动态新增时 X Gate 是最终验收必需项。",
+        "confidence": "明确的代码拒绝路径；扩展方案尚未实现。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S30",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Metadata/AssemblyReferenceGraph.cs"
+        },
+        {
+          "id": "S13",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "readCoverage": "全文，1–1489",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadow.cpp"
+        },
+        {
+          "id": "S07",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M05/M05-type-contract.md",
+          "readCoverage": "1–240",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M05/M05-type-contract.md"
+        }
+      ],
+      "responsibleMilestone": "X01",
+      "confirmationTask": "Keep Replace/AddManaged/AddUnityTypes/Remove separate; identify current BaselineMissing/AssemblyRemoved/BaselineAssemblyNotFound rejection and product requirements.",
+      "validationIds": "X01-X04",
+      "disposition": "scope-decision",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-011",
+      "priority": "P1",
+      "classification": "runtime-risk",
+      "sourceFinding": {
+        "id": "ASR-011",
+        "priority": "P1",
+        "category": "待实证风险：启动边界",
+        "title": "ConfigureCandidates 之前不是原生使用监测覆盖区",
+        "sources": [
+          "S13",
+          "S34",
+          "S03"
+        ],
+        "plans": [
+          "R01",
+          "M09",
+          "M10"
+        ],
+        "location": "RecordBaselineUse 在 s_candidates 为空时返回；ConfigureCandidates 建立新 registry；ShadowExecutionPolicy 的有限启动分析。",
+        "observation": "当前 runtime 无法仅凭 firstUse 为空证明“引擎启动以来从未用过 baseline”。现有构建限制和固定 Bootstrap 时序承担了这部分安全前提。代码没有事后恢复全部早期反射对象/原生句柄历史。",
+        "impact": "第三方 SDK、native 插件、启动回调或配置变化越过该前提时可能产生不可见早期使用。尚未证明当前 M07 的实际启动路径触发了这个问题，不能将风险写成已发生的混合世界。",
+        "fix": "正式记录 pre-Configure 信任边界；优先生成嵌入的候选身份表并尽早注册观测，或用可审计启动闭包证明覆盖。新增原生/托管早用负向实验，禁止通过清空计数掩盖。",
+        "validation": "在 Configure 前创建 Type/MethodInfo、触发 .cctor、构造对象、解析 Unity script；验证可阻止提交或构建必拒，而不以 Configure 后 counter=0 作为唯一证据。",
+        "confidence": "监测起点已确认；实际项目绕过风险未运行复现。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S13",
+          "repository": "il2cpp_plus",
+          "commit": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp",
+          "readCoverage": "全文，1–1489",
+          "url": "https://github.com/night-outlook/il2cpp_plus/blob/666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8/libil2cpp/vm/AssemblyShadow.cpp"
+        },
+        {
+          "id": "S34",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs",
+          "readCoverage": "全文，1–370",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Editor/AssemblyShadow/Validation/ShadowExecutionPolicy.cs"
+        },
+        {
+          "id": "S03",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M07/M07-resource-contract.md",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-resource-contract.md"
+        }
+      ],
+      "responsibleMilestone": "R01",
+      "confirmationTask": "Exercise pre-Configure type/method acquisition, cctor, allocation and native script resolution in a real startup path; no-use counters alone are insufficient.",
+      "validationIds": "S01",
+      "disposition": "not-reproduced",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-012",
+      "priority": "P2",
+      "classification": "evidence-boundary",
+      "sourceFinding": {
+        "id": "ASR-012",
+        "priority": "P2",
+        "category": "验证边界：非代码缺陷",
+        "title": "接受记录不能扩展为全部平台、全路径及本次重跑",
+        "sources": [
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S09"
+        ],
+        "plans": [
+          "R00",
+          "M08A",
+          "M10",
+          "M12"
+        ],
+        "location": "M07 report/contract/strict Gate receipt；历史 M03–M06 不同 source pairing 的记录。",
+        "observation": "M07 明确限定 Unity 2022.3.62f2 StandaloneOSX arm64、14 个模式、unsigned local evidence。MonoScript.GetClass 允许明确标注的 fallback，不能表述为所有 Player 可直接调用该 API。历史 M06 的 Development/Release 记录不等于当前 M07 全部组合重跑。",
+        "impact": "测试数量和字节绑定提高可信度，却不能替代当前改动影响面上的 integration regression、Windows/Android 实机或大闭包性能证据。",
+        "fix": "维护 claim→source→artifact→platform→mode 的能力矩阵，按变更影响重跑；保留所有旧证据但不改写其版本。最终将真实项目切片、累积补丁和容量边界纳入 Gate。",
+        "validation": "从干净四仓库输入重新构建 required matrix，校验源、生成产物、native library 与结果一致。",
+        "confidence": "范围和记录已读取；本审查未重放原始归档或 Player。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S02",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M07/M07-report.md",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-report.md"
+        },
+        {
+          "id": "S03",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M07/M07-resource-contract.md",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-resource-contract.md"
+        },
+        {
+          "id": "S04",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M07/Evidence/verification/m07-strict-gate-3b-v6.json",
+          "readCoverage": "全文；只读取记录，未重放",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/Evidence/verification/m07-strict-gate-3b-v6.json"
+        },
+        {
+          "id": "S05",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M07/M07-source-inventory.json",
+          "readCoverage": "1–430；定向核对执行版本和差异",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M07/M07-source-inventory.json"
+        },
+        {
+          "id": "S09",
+          "repository": "hybridclr_demo",
+          "commit": "41b047b153d2d816306fe9e0253a58b96fe72c05",
+          "path": "Docs/AssemblyShadow/M06/M06-report.md",
+          "readCoverage": "1–200",
+          "url": "https://github.com/night-outlook/hybridclr_demo/blob/41b047b153d2d816306fe9e0253a58b96fe72c05/Docs/AssemblyShadow/M06/M06-report.md"
+        }
+      ],
+      "responsibleMilestone": "R00",
+      "confirmationTask": "Bind source pins, actual captured input hashes, build/native/resource identities, real process exits and current results; keep all missing checks NotRun.",
+      "validationIds": "V01-V04",
+      "disposition": "not-fixed",
+      "runtimeConfirmation": "Fresh M07 case13 wrote Passed then exitedSIGSEGV; initial matrix Failed. Independent reproductions do not erase this result.",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    },
+    {
+      "id": "ASR-013",
+      "priority": "P1",
+      "classification": "runtime-risk",
+      "sourceFinding": {
+        "id": "ASR-013",
+        "priority": "P1",
+        "category": "待验证加固项：不是已确认漏洞",
+        "title": "PE/CLI envelope 检查不是完整 metadata/IL 安全验证",
+        "sources": [
+          "S20",
+          "S26",
+          "S22",
+          "S21",
+          "S29"
+        ],
+        "plans": [
+          "M11",
+          "M09"
+        ],
+        "location": "BorrowedCheckedImage / ParseIdentity；RawImageBase 的字符串、blob 和 row getter；InitializeStagedRuntimeMetadata。",
+        "observation": "新增 parser 认真检查了 envelope、stream/table 大小及 assembly/module/reference identity，但后续仍使用含 assert-only 索引访问的既有 metadata reader。不能由 envelope fuzz 数量推导出所有 coded index、signature、方法体及深度均安全。Stage API 文档只保证返回后可复用输入，不保证调用期间并发修改数组安全。",
+        "impact": "签名不能修复合法签名但损坏/错误构建的输入；异常捕获也不等于可以捕获 native 越界或进程终止。本次没有构造完整 PE 触发崩溃，也不声称可远程利用。",
+        "fix": "在签名前离线校验，并为 native parser 增加长度/行/堆索引、递归、总字节和时间预算；使用 sanitizer fuzz 覆盖 Stage/Validate。可把 copy→validate→parse 合并为私有不可变字节流程以减少重复解析，保留调用期间不得并发修改的契约。",
+        "validation": "从合法 DLL 定向变异 TypeDef/Field/Method/Blob/coded index/EH/PDB，要求确定性拒绝、无越界、无未授权发布，区分原生 harness 与真实 Player。",
+        "confidence": "防护边界静态分析；未报告新的已证实崩溃/漏洞。"
+      },
+      "sourceLocations": [
+        {
+          "id": "S20",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/StagedAssembly.cpp",
+          "readCoverage": "全文，1–487",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/StagedAssembly.cpp"
+        },
+        {
+          "id": "S26",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/RawImageBase.h",
+          "readCoverage": "1–260",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/RawImageBase.h"
+        },
+        {
+          "id": "S22",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/metadata/InterpreterImage.cpp",
+          "readCoverage": "1–220",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/metadata/InterpreterImage.cpp"
+        },
+        {
+          "id": "S21",
+          "repository": "hybridclr",
+          "commit": "a19db144751f4f016769b90e61a80b8c27578678",
+          "path": "hybridclr/AssemblyShadowRuntimeApi.cpp",
+          "readCoverage": "1–275",
+          "url": "https://github.com/night-outlook/hybridclr/blob/a19db144751f4f016769b90e61a80b8c27578678/hybridclr/AssemblyShadowRuntimeApi.cpp"
+        },
+        {
+          "id": "S29",
+          "repository": "hybridclr_unity",
+          "commit": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs",
+          "readCoverage": "全文",
+          "url": "https://github.com/night-outlook/hybridclr_unity/blob/2180b99daf39095cd76301da2bdf34ac945ee8b4/Runtime/AssemblyShadow/AssemblyShadowRuntime.cs"
+        }
+      ],
+      "responsibleMilestone": "M11",
+      "confirmationTask": "Mutate actual metadata/IL tables, heaps, signatures, EH and PDB under sanitizer/Player checks; no confirmed exploit or native crash attributed without evidence.",
+      "validationIds": "S08-S09",
+      "disposition": "not-reproduced",
+      "runtimeConfirmation": "NotRun unless separately linked to current executed evidence",
+      "reviewOwner": "R00 source analysis / root integration",
+      "doesNotClaimPlayerReproduction": true
+    }
+  ]
+}

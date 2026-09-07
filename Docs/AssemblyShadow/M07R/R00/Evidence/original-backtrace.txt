@@ -1,0 +1,47 @@
+Thread 0: main triggered=False
+libsystem_kernel.dylib 0x189871308 __semwait_signal +8
+libsystem_c.dylib 0x18974dcc0 nanosleep +220
+libsystem_c.dylib 0x18974dbd8 usleep +68
+CoreAudio 0x11c711ad4 <unsymbolicated> +?
+CoreAudio 0x11c818520 <unsymbolicated> +?
+AudioToolboxCore 0x18c6f8b0c AudioOutputUnitStop +264
+UnityPlayer.dylib 0x107491328 FMOD::OutputCoreAudio::stopCallback(FMOD_OUTPUT_STATE*) +28
+UnityPlayer.dylib 0x107434c7c FMOD::SystemI::closeEx(bool) +268
+UnityPlayer.dylib 0x107481a78 FMOD::System::close() +32
+UnityPlayer.dylib 0x106546000 AudioManager::CloseFMOD() +916
+UnityPlayer.dylib 0x1065457e8 AudioManager::MainThreadCleanup() +132
+UnityPlayer.dylib 0x1057ea380 delete_object_internal_step1(Object*) +208
+UnityPlayer.dylib 0x1057e9a1c delete_object_internal(Object*) +28
+UnityPlayer.dylib 0x105d6b238 CleanupAllObjects() +2684
+UnityPlayer.dylib 0x105d6b534 CleanupEngine() +64
+UnityPlayer.dylib 0x105d91bfc PlayerCleanup(bool) +140
+UnityPlayer.dylib 0x106e60d88 DoQuit(bool) +36
+Foundation 0x18b1f2de4 __NSFireTimer +104
+CoreFoundation 0x189988318 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ +32
+CoreFoundation 0x189988010 __CFRunLoopDoTimer +980
+CoreFoundation 0x189987b88 __CFRunLoopDoTimers +280
+CoreFoundation 0x18996dc38 __CFRunLoopRun +1816
+CoreFoundation 0x189a401c4 _CFRunLoopRunSpecificWithOptions +532
+Foundation 0x18b1b7b44 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] +212
+Foundation 0x18b22ffe0 -[NSRunLoop(NSRunLoop) run] +64
+UnityPlayer.dylib 0x106e5fca8 -[BatchModePlayerApplication StartPlayerLoop] +44
+UnityPlayer.dylib 0x106e624e0 PlayerMain(int, char const**) +924
+dyld 0x1894f3e00 start +6992
+Thread 11: GC Finalizer triggered=True
+UnityPlayer.dylib 0x1061561f4 PhysicsModule::GetDefaultPhysicsSceneHandle() const +12
+UnityPlayer.dylib 0x105e13c38 UnityScene::~UnityScene() +56
+UnityPlayer.dylib 0x105dc8e4c LoadSceneOperation::~LoadSceneOperation() +84
+UnityPlayer.dylib 0x106172a6c AsyncOperationBindings::InternalDestroy(AsyncOperation*) +88
+GameAssembly.dylib 0x11efab2e4 AsyncOperation_InternalDestroy_mDA1735EC05E6964108BC4C301D938735B2856767 +76
+GameAssembly.dylib 0x11efab458 AsyncOperation_Finalize_m8163934A18D3DAD2BF51272AAA35EAB1C7BBDE7D +64
+GameAssembly.dylib 0x11cfe52e0 RuntimeInvoker_TrueVoid_t4861ACF8F4594C3437BB48B6E56783494B843915(void (*)(), MethodInfo const*, void*, void**, void*) +48
+GameAssembly.dylib 0x11d5f345c il2cpp::vm::Runtime::InvokeWithThrow(MethodInfo const*, void*, void**) +132
+GameAssembly.dylib 0x11d5f308c il2cpp::vm::Runtime::Invoke(MethodInfo const*, void*, void**, Il2CppException**) +380
+GameAssembly.dylib 0x11d30b90c il2cpp::gc::GarbageCollector::RunFinalizer(void*, void*) +88
+GameAssembly.dylib 0x11d1efd18 GC_invoke_finalizers +324
+GameAssembly.dylib 0x11d30a338 il2cpp::gc::GarbageCollector::InvokeFinalizers() +12
+GameAssembly.dylib 0x11d30b814 il2cpp::gc::FinalizerThread(void*) +108
+GameAssembly.dylib 0x11d653154 il2cpp::os::Thread::RunWrapper(void*) +196
+GameAssembly.dylib 0x11d656f38 il2cpp::os::ThreadImpl::ThreadStartWrapper(void*) +120
+libsystem_pthread.dylib 0x1898b1c58 _pthread_start +136
+libsystem_pthread.dylib 0x1898acc1c thread_start +8

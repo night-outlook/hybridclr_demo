@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R00",
+  "status": "NotAccepted",
+  "python": {
+    "passed": 356,
+    "failed": 0,
+    "skipped": 0
+  },
+  "editor": {
+    "passed": 912,
+    "failed": 0,
+    "skipped": 0
+  },
+  "native": [
+    {
+      "receiptPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m03-native-tests.json",
+      "sha256": "0b9611112e11c6e82f40dc92166dbad22fa3644677f68faa5873aa12e0d1aaf0",
+      "success": true,
+      "inputsUnchanged": true,
+      "counters": {
+        "identityChecks": 92659,
+        "nameChecks": 30,
+        "facadeChecks": 25,
+        "facadeLookupChecks": 15,
+        "disabledApiChecks": 27
+      }
+    },
+    {
+      "receiptPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m03-visibility-tests.json",
+      "sha256": "062a1a2ce883190e8a6378b286643f51984205bd1d70d4a7aa91da1c7150cca8",
+      "success": true,
+      "inputsUnchanged": true,
+      "counters": {
+        "visibilityChecks": 18674
+      }
+    },
+    {
+      "receiptPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m04-native-tests-provisioned.json",
+      "sha256": "9001f9ddae914f310de0933d2ffca0737546c1e7dbe1ad9f8fe20d955c13c418",
+      "success": true,
+      "inputsUnchanged": true,
+      "counters": {
+        "checks": 53,
+        "syntaxChecks": 22,
+        "lookupCount": 1000000,
+        "lookupAllocations": 0
+      }
+    },
+    {
+      "receiptPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m05-native-tests.json",
+      "sha256": "94ef1e5e4aa2fef2f9348dfd36d36550922b65ea0fa03f4b58dd80d52257046e",
+      "success": true,
+      "inputsUnchanged": true,
+      "counters": {
+        "syntaxChecks": 34,
+        "coreChecks": 616,
+        "reflectionChecks": 35,
+        "imageIdentityChecks": 219
+      }
+    },
+    {
+      "receiptPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m06-native-tests.json",
+      "sha256": "1b496fb92a38eb3c303cda87a41fe3a2535850b6cde6ccc79d58f069d0511e34",
+      "success": true,
+      "inputsUnchanged": true,
+      "counters": {
+        "checks": 824,
+        "syntaxChecks": 20
+      }
+    }
+  ],
+  "installation": {
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "sourceFiles": 940,
+    "installedFiles": 942,
+    "demoSourceVerified": true,
+    "configuredShadowMode": "on",
+    "receiptSha256": "69c00dd59f145486c92bf9d43ee8edd14ae1cc311f0909a054b41063b78ed56d"
+  },
+  "m07": {
+    "initialMatrix": "Failed",
+    "successfulCleanExitsBeforeFailure": 12,
+    "failedMode": "T07-13-P05-Rebuilt",
+    "failedProcessId": 442,
+    "failedExitCode": -11,
+    "probeResult": "Passed",
+    "subsequentP05DiagnosticRuns": 4,
+    "subsequentP05CleanExits": 4,
+    "nativeOffSeparateCleanExit": true,
+    "initialStrictVerifier": "FailedIncompleteMode14",
+    "inputFileCount": 16792,
+    "inputsUnchanged": true
+  },
+  "notRun": [
+    "R00 performance 1/10/10000 allocation/Invoke/generic and readiness baseline",
+    "Fresh relevant M05/M06 Player regressions",
+    "Fresh current-pairing R00 Players",
+    "Windows x64",
+    "Android ARM64",
+    "Runtime capacity boundary/stress tests (R01)"
+  ],
+  "gate": {
+    "R00": "NotAccepted",
+    "R01": "Closed",
+    "H1": "NotReached",
+    "mayContinueToR01": false
+  }
+}

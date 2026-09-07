@@ -1,0 +1,28 @@
+{
+  "status": "diagnosis-complete; crash-not-reproduced-under-lldb; no-fix-implemented",
+  "directIssue": "Original PID442 SIGSEGV on GC Finalizer in UnityPlayer PhysicsModule::GetDefaultPhysicsSceneHandle while destroying completed scene LoadSceneOperation. Main thread concurrently in engine cleanup / FMOD shutdown. All 21 P05 checks and receipt write completed before crash.",
+  "rootCauseAssessment": "Strong evidence of engine shutdown lifetime ordering race between native physics teardown and outstanding managed AsyncOperation finalization. Exact physics-context destruction sequence not instrumented. No proof that Assembly Shadow is necessary to trigger it.",
+  "backtrace": "original-backtrace.txt",
+  "originalCrash": "original-pid442.ips",
+  "sourceIdentity": {
+    "il2cpp": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+    "UnityPlayerUUID": "D94FF91A-61A7-3AD6-8ED2-6B0288E2A49A",
+    "GameAssemblyUUID": "E36CD6B9-9D8F-48E7-B519-029BA88184D5",
+    "GarbageCollectorCppExactlyMatchesInstalledUnity": true,
+    "RuntimeShutdownExactlyMatchesInstalledUnity": true
+  },
+  "verification": {
+    "initialVsAccepted16792HashesEqual": true,
+    "initialInputsUnchanged": true,
+    "lldbP05Replays": 4,
+    "lldbP05ExitZeroAndAll21ChecksPass": 4,
+    "lldbAslrEnabledReplays": 3,
+    "replayInputsUnchanged": true,
+    "nativeOffLaunchReceipt": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07-NativeOff-20260907T031422/m07-player-launches.json",
+    "nativeOffExitCode": 0,
+    "nativeOffInputsUnchanged": true,
+    "nativeOffMatchesAccepted": true
+  },
+  "recommendedScope": "Do not modify Assembly Shadow resolver/GC code from this evidence. First isolate shutdown ordering with minimal stock-IL2CPP async scene-load/unload reproducer and repeated P05/NativeOff launches. Durable correction belongs in engine cleanup versus AsyncOperation finalization contract; any runner pre-quit reference release/finalizer drain is only a mitigative hypothesis until tested, and is not an engine guarantee. Preserve original failed launch receipt and require process exit 0.",
+  "requiredRegression": "After any justified correction: repeated fresh P05 and NativeOff shutdowns with byte-bound inputs, explicit finalizer/physics teardown ordering evidence, all 14 fresh M07 modes and strict verifier. Four debugger passes and one NativeOff pass do not establish race absence."
+}

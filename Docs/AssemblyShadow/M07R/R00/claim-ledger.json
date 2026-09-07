@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R00",
+  "claims": [
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-PYTHON",
+      "result": "Passed",
+      "evidenceKind": "Python regression",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/python-tests-provisioned.log",
+          "sha256": "3d8ee986d89b7786a5fb27148becf25d58b20db8cf07c719c8a27e30761cd0c3",
+          "archiveMember": "execution/python-tests-provisioned.log"
+        }
+      ],
+      "replayCommands": [
+        "M05_REAL_COMPILER_ROOT=/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M05LayoutCompilerRegression-b4f55fe6eb794caf9b31256d6d44478a/Assemblies M05_RAW_CONFIGURATION=/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/ProjectSettings/AssemblyShadowRawTypeAdmissions.json python3 -m unittest discover -s Tools/AssemblyShadow/tests -v"
+      ],
+      "limits": "356 passed; no skips. Real compiler inputs are preserved older artifacts; not fresh Player compilation.",
+      "inputInventory": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/Docs/AssemblyShadow/M07R/R00/imported-fixture-index.json",
+        "sha256": "57296f9e2a8a5652b4727fd09544dceffccb06faf76b636208527a5ff2c8dc11"
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-EDITOR",
+      "result": "Passed",
+      "evidenceKind": "Unity EditMode",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/EditorTests-9fdb331f43f64c46960383d755fd2a8f/results.xml",
+          "sha256": "fec861b7b101458c14c80494f5b95161ec70db49b7632c21ca774ae44b452fe1",
+          "archiveMember": "editor/EditorTests-9fdb331f43f64c46960383d755fd2a8f/results.xml"
+        }
+      ],
+      "replayCommands": [
+        "pwsh -NoProfile -File Tools/AssemblyShadow/Invoke-ShadowEditorTests.ps1 -TestFilter 'HybridCLR.Editor.AssemblyShadow.Tests;AssemblyShadowDemo.EditorTests' -TimeoutSec 2400"
+      ],
+      "limits": "912 passed; zero skipped. Editor tests are not IL2CPP Player acceptance. Configure-generated settings/scene bytes were restored after tests.",
+      "configurationRestoration": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/task-owned-settings-restoration.json",
+        "sha256": "2399d1b50b56c4ee47e53efac050863b819ae3278ee7fe8783e108c4851193dc",
+        "archiveMember": "execution/task-owned-settings-restoration.json"
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-INSTALL",
+      "result": "Passed",
+      "evidenceKind": "Actual installed files",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/installed-source-verification.json",
+          "sha256": "c76114174b7e9da065022683afc32c4450a9775d6ca06462422aa400513b0f7e",
+          "archiveMember": "execution/installed-source-verification.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/m00-install-repeatability.json",
+          "sha256": "97d7d5a09bd93a51d641f4bd1890984198d66a81a3477c3fe48cae9db151148c",
+          "archiveMember": "installation/m00-install-repeatability.json"
+        }
+      ],
+      "replayCommands": [
+        "pwsh -NoProfile -File .agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1 -Method AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability -TimeoutSec 1200",
+        "python3 Tools/AssemblyShadow/verify-installed-runtime.py --expect-shadow on --json"
+      ],
+      "limits": "942 files, two identical installs, complete demo source verification; this does not prove a newly built Player."
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-RUN-M03-NATIVE-TESTS",
+      "result": "Passed",
+      "evidenceKind": "ASan actual-core/predicate/adapter checks",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m03-native-tests.json",
+          "sha256": "0b9611112e11c6e82f40dc92166dbad22fa3644677f68faa5873aa12e0d1aaf0",
+          "archiveMember": "execution/run-m03-native-tests.json"
+        }
+      ],
+      "replayCommands": [
+        "python3 -B Tools/AssemblyShadow/run-m03-native-tests.py --output <new-receipt> --dll <actual captured M07 PlayerInputs/Assemblies DLL; M03 supplies all three candidate DLLs>"
+      ],
+      "limits": "See native receipt for real production code, controlled adapters, all commands and transitive hashes. No full VM/Player or performance acceptance; concurrent validation load makes microtimings diagnostic.",
+      "counts": {
+        "identityChecks": 92659,
+        "nameChecks": 30,
+        "facadeChecks": 25,
+        "facadeLookupChecks": 15,
+        "disabledApiChecks": 27
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-RUN-M03-VISIBILITY-TESTS",
+      "result": "Passed",
+      "evidenceKind": "ASan actual-core/predicate/adapter checks",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m03-visibility-tests.json",
+          "sha256": "062a1a2ce883190e8a6378b286643f51984205bd1d70d4a7aa91da1c7150cca8",
+          "archiveMember": "execution/run-m03-visibility-tests.json"
+        }
+      ],
+      "replayCommands": [
+        "python3 -B Tools/AssemblyShadow/run-m03-visibility-tests.py --output <new-receipt> --generated-root /Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp"
+      ],
+      "limits": "See native receipt for real production code, controlled adapters, all commands and transitive hashes. No full VM/Player or performance acceptance; concurrent validation load makes microtimings diagnostic.",
+      "counts": {
+        "visibilityChecks": 18674
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-RUN-M04-NATIVE-TESTS",
+      "result": "Passed",
+      "evidenceKind": "ASan actual-core/predicate/adapter checks",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m04-native-tests-provisioned.json",
+          "sha256": "9001f9ddae914f310de0933d2ffca0737546c1e7dbe1ad9f8fe20d955c13c418",
+          "archiveMember": "execution/run-m04-native-tests-provisioned.json"
+        }
+      ],
+      "replayCommands": [
+        "python3 -B Tools/AssemblyShadow/run-m04-native-tests.py --output <new-receipt> --dll <actual captured M07 PlayerInputs/Assemblies DLL; M03 supplies all three candidate DLLs>"
+      ],
+      "limits": "See native receipt for real production code, controlled adapters, all commands and transitive hashes. No full VM/Player or performance acceptance; concurrent validation load makes microtimings diagnostic.",
+      "counts": {
+        "checks": 53,
+        "syntaxChecks": 22,
+        "lookupCount": 1000000,
+        "lookupAllocations": 0
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-RUN-M05-NATIVE-TESTS",
+      "result": "Passed",
+      "evidenceKind": "ASan actual-core/predicate/adapter checks",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m05-native-tests.json",
+          "sha256": "94ef1e5e4aa2fef2f9348dfd36d36550922b65ea0fa03f4b58dd80d52257046e",
+          "archiveMember": "execution/run-m05-native-tests.json"
+        }
+      ],
+      "replayCommands": [
+        "python3 -B Tools/AssemblyShadow/run-m05-native-tests.py --output <new-receipt>"
+      ],
+      "limits": "See native receipt for real production code, controlled adapters, all commands and transitive hashes. No full VM/Player or performance acceptance; concurrent validation load makes microtimings diagnostic.",
+      "counts": {
+        "syntaxChecks": 34,
+        "coreChecks": 616,
+        "reflectionChecks": 35,
+        "imageIdentityChecks": 219
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-RUN-M06-NATIVE-TESTS",
+      "result": "Passed",
+      "evidenceKind": "ASan actual-core/predicate/adapter checks",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m06-native-tests.json",
+          "sha256": "1b496fb92a38eb3c303cda87a41fe3a2535850b6cde6ccc79d58f069d0511e34",
+          "archiveMember": "execution/run-m06-native-tests.json"
+        }
+      ],
+      "replayCommands": [
+        "python3 -B Tools/AssemblyShadow/run-m06-native-tests.py --output <new-receipt>"
+      ],
+      "limits": "See native receipt for real production code, controlled adapters, all commands and transitive hashes. No full VM/Player or performance acceptance; concurrent validation load makes microtimings diagnostic.",
+      "counts": {
+        "checks": 824,
+        "syntaxChecks": 20
+      }
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-M07-INITIAL-MATRIX",
+      "result": "Failed",
+      "evidenceKind": "Fresh historical IL2CPP Players",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/m07-player-launches.json",
+          "sha256": "44116f5024c000e7c248456381ba8c253f290a5487258b7f1ce648f33b407ca0",
+          "archiveMember": "players/R00-M07Players-20260907/m07-player-launches.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/m07-initial-strict-verifier.log",
+          "sha256": "a4f9c5298cd67b24dfa02c7c034530b0d7b22d584f7cecff3652dee9f3db8443",
+          "archiveMember": "execution/m07-initial-strict-verifier.log"
+        }
+      ],
+      "replayCommands": [
+        "python3 Tools/AssemblyShadow/run-m07-players.py --project-root /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07 --fixture-manifest /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/m07-fixtures.json --on-build /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07PlayerInputs-30c933f9043545cc887466494ecef5d4/m07-player-build.json --off-build /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07PlayerInputs-b90e7402282a44108f738b5a3f718e74/m07-player-build.json --replay-receipt /Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/m07-editor-replay.json --output-root <new child of historical project _temp/AssemblyShadow>"
+      ],
+      "limits": "Mode13 exited -11 after Passed JSON; mode14 was not reached. Do not combine later success into a clean initial matrix.",
+      "capturedSourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+          "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "8c94f178646e71c9020dc8b66cf3c38632e9cc6d",
+          "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+          "url": "https://github.com/night-outlook/hybridclr_demo",
+          "revision": "9f322a948981341321f0eeb40cc5aa006a094bae",
+          "localPath": "."
+        }
+      },
+      "nativeLibraries": [
+        {
+          "variant": "NativeOn",
+          "buildGuid": "1beb5252b1344306bd26887043c75cb0",
+          "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/Builds/AssemblyShadow/M07/M07-Baseline-v6.app/Contents/Frameworks/GameAssembly.dylib",
+          "nativeLibrarySha256": "6a4f07c729c1357c1c2bd1383fde0efaa76dd605b44ece5df20566f280160a41"
+        },
+        {
+          "variant": "NativeOff",
+          "buildGuid": "e27a8f100f3f4855b1c4f05a2adc5868",
+          "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/Builds/AssemblyShadow/M07/M07-Baseline-v6-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+          "nativeLibrarySha256": "85e3c7b7293b4fcaf333eeee3d9c78e44c9c1a7e9e5ac5866d74140bd19c1bec"
+        }
+      ]
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-PERFORMANCE",
+      "result": "NotRun",
+      "evidenceKind": "Required future fresh instrumented observations",
+      "evidence": [],
+      "replayCommands": [],
+      "limits": "Existing M05 lookup benchmark and M06 small-count timings do not meet 1/10/10000 allocation/Invoke/generic/readiness baseline; no fabricated samples."
+    },
+    {
+      "unity": "2022.3.62f2",
+      "platform": "macOS",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "currentCodeShas": {
+        "hybridclr": "a19db144751f4f016769b90e61a80b8c27578678",
+        "hybridclrUnity": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "il2cppPlus": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "demo": "73161474f5b681b46c25424f4e72b4b757c51e66"
+      },
+      "claimId": "R00-M05-M06-PLAYER-REGRESSION",
+      "result": "NotRun",
+      "evidenceKind": "Required affected-path replay",
+      "evidence": [],
+      "replayCommands": [],
+      "limits": "Historical evidence remains read-only; no fresh results or new current-pairing Player claimed."
+    }
+  ]
+}

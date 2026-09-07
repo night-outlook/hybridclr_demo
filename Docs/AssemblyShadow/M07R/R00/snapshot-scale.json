@@ -1,0 +1,749 @@
+{
+  "schemaVersion": 1,
+  "basis": "Frozen M07 snapshots read and file hashes recomputed; not production sizing",
+  "baselineManifest": {
+    "name": "baseline-manifest",
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/baseline-manifest.json",
+    "bytes": 2096788,
+    "sha256": "8dea37fc8eeee8025bef58b3ec1f8ecc07cfff1f7a2c624909e0bc8011da8b6b"
+  },
+  "candidates": [
+    "AssemblyA.Contracts",
+    "AssemblyA.Implementation.Extensibility",
+    "AssemblyA.Implementation.Internal",
+    "AssemblyShadowDemo.ContractsConsumer",
+    "AssemblyShadowDemo.ExtensibilityConsumer"
+  ],
+  "candidateCount": 5,
+  "baselineAssemblies": [
+    {
+      "name": "Assembly-CSharp",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Assembly-CSharp.dll",
+      "bytes": 4608,
+      "sha256": "4fcaa942d46a99a26c0a6d34738c21285e938ff8f51de9892b5b03c54e3daa9c"
+    },
+    {
+      "name": "AssemblyA.Contracts",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyA.Contracts.dll",
+      "bytes": 25088,
+      "sha256": "e4338b33bfafd37b24b3d59445e6f8b65950142e633dace405ce6c161053f160"
+    },
+    {
+      "name": "AssemblyA.Implementation.Extensibility",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyA.Implementation.Extensibility.dll",
+      "bytes": 25088,
+      "sha256": "5581078351ec30143503d93270501d75258a15bbe05580815dec298ce35dd2f2"
+    },
+    {
+      "name": "AssemblyA.Implementation.Internal",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyA.Implementation.Internal.dll",
+      "bytes": 36352,
+      "sha256": "270e96ba1ec563cbf5d0d5e48c37776ba68593b651533fea572da7e7a7306fc4"
+    },
+    {
+      "name": "AssemblyShadowBaseline.Aot",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyShadowBaseline.Aot.dll",
+      "bytes": 11264,
+      "sha256": "34172eadee9c63e313c2920100292f5ea85ca1e29c2a6fb15cea726f77571627"
+    },
+    {
+      "name": "AssemblyShadowBaseline.HotUpdate",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Filtered/AssemblyShadowBaseline.HotUpdate.dll",
+      "bytes": 4608,
+      "sha256": "53ff12eacea353c51de40a103188f226718df46a898ee7a3a253bf009fa7e21f"
+    },
+    {
+      "name": "AssemblyShadowDemo.Bootstrap",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyShadowDemo.Bootstrap.dll",
+      "bytes": 402944,
+      "sha256": "4fd56fbf392c800fbf75504a1f2d57614ed1b3802517a5759c23cc42146bf593"
+    },
+    {
+      "name": "AssemblyShadowDemo.ContractsConsumer",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyShadowDemo.ContractsConsumer.dll",
+      "bytes": 24064,
+      "sha256": "7d8c3ca3029dda7b42a581f68ed2ea223f0807933f66be68d980e063ead5899d"
+    },
+    {
+      "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+      "bytes": 25600,
+      "sha256": "5600edaa03e31994a5a0b4c6d24fce762146fb75b62ea24008dffd6ddb7a6aff"
+    },
+    {
+      "name": "HybridCLR.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/HybridCLR.Runtime.dll",
+      "bytes": 28672,
+      "sha256": "d3570b703646be59d5fb53740784c9a018f5c534b7c0606643f25ab538b9713f"
+    },
+    {
+      "name": "MCPForUnity.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/MCPForUnity.Runtime.dll",
+      "bytes": 33280,
+      "sha256": "facce2ebfce3cd819c1a00fcd92d8d18f36ab1f7cd232b24442734901b83820c"
+    },
+    {
+      "name": "Newtonsoft.Json",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Newtonsoft.Json.dll",
+      "bytes": 691712,
+      "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f"
+    },
+    {
+      "name": "Unity.2D.Animation.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.2D.Animation.Runtime.dll",
+      "bytes": 77824,
+      "sha256": "52cb1fa105cb307599f89a09c782a0c28bf867b7bbb9a281583fd63ff5eae5d6"
+    },
+    {
+      "name": "Unity.2D.Common.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.2D.Common.Runtime.dll",
+      "bytes": 48128,
+      "sha256": "7f6936f5d8b7dba94fd218e8bc9006a9822ae38f0066276f6cba1fbdde96cab0"
+    },
+    {
+      "name": "Unity.2D.IK.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.2D.IK.Runtime.dll",
+      "bytes": 22016,
+      "sha256": "f1f931475c0e4cb50cd39a396e9bf90e4c69e52b4994469ad153dafdadf96782"
+    },
+    {
+      "name": "Unity.2D.PixelPerfect",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.2D.PixelPerfect.dll",
+      "bytes": 14336,
+      "sha256": "69294ee96d620f3217b7e71c3589e672e3b780723dd2336581afbfe315ee3064"
+    },
+    {
+      "name": "Unity.2D.SpriteShape.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.2D.SpriteShape.Runtime.dll",
+      "bytes": 118272,
+      "sha256": "c8442c5752f618ed8ba381849cb305a37c279207db5267ca27263d7b1bd08a48"
+    },
+    {
+      "name": "Unity.2D.Tilemap.Extras",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.2D.Tilemap.Extras.dll",
+      "bytes": 35840,
+      "sha256": "aceb7b909894519924d73988b647a6befaea7888dced176b4df3b4cc5ecc8b15"
+    },
+    {
+      "name": "Unity.Burst",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.Burst.dll",
+      "bytes": 348160,
+      "sha256": "54ad4980cb6706bd9a0cec0df82033e40009e8e147e0dd98729c3ba0e5f565bc"
+    },
+    {
+      "name": "Unity.Burst.Unsafe",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.Burst.Unsafe.dll",
+      "bytes": 5632,
+      "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2"
+    },
+    {
+      "name": "Unity.Collections",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.Collections.dll",
+      "bytes": 400896,
+      "sha256": "ffdd7fcab6ddf4988ffbb1d7e88f48b7fd6ebb62b88d39e81a548fe32eb32da6"
+    },
+    {
+      "name": "Unity.Collections.LowLevel.ILSupport",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.Collections.LowLevel.ILSupport.dll",
+      "bytes": 4096,
+      "sha256": "dbd7fb37e353bf6609938be1565c14c952ff6b6a67d2e6436ae3147a084d40f1"
+    },
+    {
+      "name": "Unity.InternalAPIEngineBridge.001",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.InternalAPIEngineBridge.001.dll",
+      "bytes": 6656,
+      "sha256": "e7fed1eb86639a9ed0ef7b743d8af6435c01163459bc4212fabe812e21a11d60"
+    },
+    {
+      "name": "Unity.Mathematics",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.Mathematics.dll",
+      "bytes": 873984,
+      "sha256": "5dcf9cc77d554977614fa7d4ac1d70130aa94323a324089841dfa2c5c9e7a669"
+    },
+    {
+      "name": "Unity.RenderPipeline.Universal.ShaderLibrary",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "bytes": 8192,
+      "sha256": "6b9808f96d4fcdd8b5fefd9ba9a84f3e8b907bf2bc8dda9bc1c12394b7b9eaf6"
+    },
+    {
+      "name": "Unity.RenderPipelines.Core.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.Core.Runtime.dll",
+      "bytes": 594944,
+      "sha256": "1e6f311572fc87a4a4d690a8d53330dc5fc49df3c5b059b5e00486e5eedab02c"
+    },
+    {
+      "name": "Unity.RenderPipelines.Core.ShaderLibrary",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "bytes": 4608,
+      "sha256": "95ce49c45a2419baaff2b76ae5acdac3527378f2ef8cf3d12070635c28904dd8"
+    },
+    {
+      "name": "Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "bytes": 4608,
+      "sha256": "9f5cf72b3638a211e070ff05da648d19d9fcb9520ac4d1ec089bd782071c87b1"
+    },
+    {
+      "name": "Unity.RenderPipelines.Universal.2D.Internal",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.Universal.2D.Internal.dll",
+      "bytes": 5120,
+      "sha256": "2af865a1217f075a96b966a57b2014b3120303ea0ea195def3b70be93eb86168"
+    },
+    {
+      "name": "Unity.RenderPipelines.Universal.Config.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "bytes": 5632,
+      "sha256": "39235cb4ebd2ea7661d92cb464b0b4b2244d98a80b053b0a67aa8bff0ff4e24f"
+    },
+    {
+      "name": "Unity.RenderPipelines.Universal.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.Universal.Runtime.dll",
+      "bytes": 850432,
+      "sha256": "b2ed1dc045338ccc7ff748152f40808d44cf8eb6481654b49939463a75855cfc"
+    },
+    {
+      "name": "Unity.RenderPipelines.Universal.Shaders",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.RenderPipelines.Universal.Shaders.dll",
+      "bytes": 4608,
+      "sha256": "a9e91119a3f8b72c3efd0ee543fe2caf5b782ad166b400504fdbcd1dcad93601"
+    },
+    {
+      "name": "Unity.TextMeshPro",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.TextMeshPro.dll",
+      "bytes": 436224,
+      "sha256": "cf411d791bf16244b36560d29080492f2b623d30ad1ffaad4c1d9076ae53b03f"
+    },
+    {
+      "name": "Unity.Timeline",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.Timeline.dll",
+      "bytes": 141312,
+      "sha256": "99d22e1a61f68a468a20c4b080167781613901d98a8f29b6ada296115e1b5ee9"
+    },
+    {
+      "name": "Unity.VisualScripting.Antlr3.Runtime",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.VisualScripting.Antlr3.Runtime.dll",
+      "bytes": 86016,
+      "sha256": "ed7ce205f66eafe39bbb5d084d42e7fe11cb4b386ff208e5d5110891be0b7b37"
+    },
+    {
+      "name": "Unity.VisualScripting.Core",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.VisualScripting.Core.dll",
+      "bytes": 668672,
+      "sha256": "faec5b42186d0ea3c4fa105d47d6fd361d62cdcfa7d00efe7c0b2721fec8a6cf"
+    },
+    {
+      "name": "Unity.VisualScripting.Flow",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.VisualScripting.Flow.dll",
+      "bytes": 427008,
+      "sha256": "4e8d8c116848e77962014d3947c330fa8fe351996fd936eb813899e1709c3c7e"
+    },
+    {
+      "name": "Unity.VisualScripting.State",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Unity.VisualScripting.State.dll",
+      "bytes": 33792,
+      "sha256": "152d539807541aff7c4de4b4edfa1dcf841eccd1ac03456be189e9e2caf98816"
+    },
+    {
+      "name": "UnityEngine.TestRunner",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Filtered/UnityEngine.TestRunner.dll",
+      "bytes": 144896,
+      "sha256": "116e91080a2927e2bc88d7807a19258893b2e5bb264e226aafebe740c8fc8612"
+    },
+    {
+      "name": "UnityEngine.UI",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/UnityEngine.UI.dll",
+      "bytes": 297472,
+      "sha256": "c5f546f3e3ca6b9548e66dc3a4368de7297be511dd3ff262aea4af2c28f9b4ce"
+    },
+    {
+      "name": "nunit.framework",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-v6/PlayerInputs/Assemblies/Filtered/nunit.framework.dll",
+      "bytes": 329728,
+      "sha256": "e388e140954de12970384331d1730e95b4613ef53c3326b6f8fa0fffdbc9314f"
+    }
+  ],
+  "fixtures": [
+    {
+      "patchId": "P01",
+      "changedRoots": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "closureLoadOrder": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "dlls": [
+        {
+          "name": "AssemblyA.Implementation.Internal",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P01-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+          "bytes": 36352,
+          "sha256": "ebde7ad557c2943860b82830b2483d2d0ba5c1f9f9c7d65129523df68638ebd6"
+        }
+      ]
+    },
+    {
+      "patchId": "P02",
+      "changedRoots": [
+        "AssemblyA.Implementation.Extensibility"
+      ],
+      "closureLoadOrder": [
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+      ],
+      "dlls": [
+        {
+          "name": "AssemblyA.Implementation.Extensibility",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P02-patch/DLLs/AssemblyA.Implementation.Extensibility.dll",
+          "bytes": 25600,
+          "sha256": "58573d981e12139e8e909596602f63658b39c19dbc4c783089873eb2fe80b7dd"
+        },
+        {
+          "name": "AssemblyA.Implementation.Internal",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P02-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+          "bytes": 36352,
+          "sha256": "149db100ee5f799bd45a449fd2a10dd11dac9226cd315c60b101f153aaadf129"
+        },
+        {
+          "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P02-patch/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+          "bytes": 25600,
+          "sha256": "c1abbf6b6d9db15d37790b43ef5e557ce0b7398318f56305b41bf31b72ae1924"
+        }
+      ]
+    },
+    {
+      "patchId": "P03",
+      "changedRoots": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+      ],
+      "closureLoadOrder": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+      ],
+      "dlls": [
+        {
+          "name": "AssemblyA.Contracts",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P03-patch/DLLs/AssemblyA.Contracts.dll",
+          "bytes": 25088,
+          "sha256": "0b583d038c399f06095084437be04ea4a4d5c6f54a73ff5e53d1896d060754a8"
+        },
+        {
+          "name": "AssemblyA.Implementation.Extensibility",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P03-patch/DLLs/AssemblyA.Implementation.Extensibility.dll",
+          "bytes": 25088,
+          "sha256": "0ac47230f13c1a6dbf146c91bf7bcd3b9050f38b1aa6ede99791b8d1327a8fd3"
+        },
+        {
+          "name": "AssemblyA.Implementation.Internal",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P03-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+          "bytes": 36352,
+          "sha256": "88323a1ccc9b9ff33d34f281d17c4ac4dc86a2b08bcd90928dd459dee0a8d805"
+        },
+        {
+          "name": "AssemblyShadowDemo.ContractsConsumer",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P03-patch/DLLs/AssemblyShadowDemo.ContractsConsumer.dll",
+          "bytes": 24064,
+          "sha256": "f90bde9e7c1f5ce918192208081b4a546a5d4cf05d9697d813fe35b253e22e98"
+        },
+        {
+          "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P03-patch/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+          "bytes": 25600,
+          "sha256": "aa526008f18fb05b261a7b0e306fc508a54aa21db552a36c2e8d8a8afd8635fc"
+        }
+      ]
+    },
+    {
+      "patchId": "P04",
+      "changedRoots": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "closureLoadOrder": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "dlls": [
+        {
+          "name": "AssemblyA.Implementation.Internal",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P04-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+          "bytes": 36352,
+          "sha256": "0511bc087f451cb3091aa1e1d79d1a740a2caba70238fe70090b021df637f515"
+        }
+      ]
+    },
+    {
+      "patchId": "P05",
+      "changedRoots": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "closureLoadOrder": [
+        "AssemblyA.Implementation.Internal"
+      ],
+      "dlls": [
+        {
+          "name": "AssemblyA.Implementation.Internal",
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/P05-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+          "bytes": 36352,
+          "sha256": "3aea8d1cc5060998982fcb6561de6078875b2be49b9b2b22fc32fa551b9368fc"
+        }
+      ]
+    }
+  ],
+  "maximumObservedClosure": 5,
+  "dependencyStats": [
+    {
+      "assembly": "assembly-csharp",
+      "directCount": 2,
+      "transitiveCount": 2
+    },
+    {
+      "assembly": "assemblya.contracts",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "assemblya.implementation.extensibility",
+      "directCount": 3,
+      "transitiveCount": 3
+    },
+    {
+      "assembly": "assemblya.implementation.internal",
+      "directCount": 5,
+      "transitiveCount": 5
+    },
+    {
+      "assembly": "assemblyshadowbaseline.aot",
+      "directCount": 4,
+      "transitiveCount": 4
+    },
+    {
+      "assembly": "assemblyshadowbaseline.hotupdate",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "assemblyshadowdemo.bootstrap",
+      "directCount": 7,
+      "transitiveCount": 29
+    },
+    {
+      "assembly": "assemblyshadowdemo.contractsconsumer",
+      "directCount": 2,
+      "transitiveCount": 2
+    },
+    {
+      "assembly": "assemblyshadowdemo.extensibilityconsumer",
+      "directCount": 4,
+      "transitiveCount": 4
+    },
+    {
+      "assembly": "hybridclr.runtime",
+      "directCount": 3,
+      "transitiveCount": 3
+    },
+    {
+      "assembly": "mcpforunity.runtime",
+      "directCount": 7,
+      "transitiveCount": 7
+    },
+    {
+      "assembly": "newtonsoft.json",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "nunit.framework",
+      "directCount": 4,
+      "transitiveCount": 4
+    },
+    {
+      "assembly": "unity.2d.animation.runtime",
+      "directCount": 8,
+      "transitiveCount": 11
+    },
+    {
+      "assembly": "unity.2d.common.runtime",
+      "directCount": 3,
+      "transitiveCount": 3
+    },
+    {
+      "assembly": "unity.2d.ik.runtime",
+      "directCount": 5,
+      "transitiveCount": 5
+    },
+    {
+      "assembly": "unity.2d.pixelperfect",
+      "directCount": 3,
+      "transitiveCount": 3
+    },
+    {
+      "assembly": "unity.2d.spriteshape.runtime",
+      "directCount": 7,
+      "transitiveCount": 9
+    },
+    {
+      "assembly": "unity.2d.tilemap.extras",
+      "directCount": 5,
+      "transitiveCount": 5
+    },
+    {
+      "assembly": "unity.burst",
+      "directCount": 3,
+      "transitiveCount": 4
+    },
+    {
+      "assembly": "unity.burst.unsafe",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "unity.collections",
+      "directCount": 5,
+      "transitiveCount": 7
+    },
+    {
+      "assembly": "unity.collections.lowlevel.ilsupport",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "unity.internalapienginebridge.001",
+      "directCount": 4,
+      "transitiveCount": 4
+    },
+    {
+      "assembly": "unity.mathematics",
+      "directCount": 2,
+      "transitiveCount": 2
+    },
+    {
+      "assembly": "unity.renderpipeline.universal.shaderlibrary",
+      "directCount": 3,
+      "transitiveCount": 25
+    },
+    {
+      "assembly": "unity.renderpipelines.core.runtime",
+      "directCount": 10,
+      "transitiveCount": 25
+    },
+    {
+      "assembly": "unity.renderpipelines.core.shaderlibrary",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "unity.renderpipelines.shadergraph.shadergraphlibrary",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "unity.renderpipelines.universal.2d.internal",
+      "directCount": 2,
+      "transitiveCount": 2
+    },
+    {
+      "assembly": "unity.renderpipelines.universal.config.runtime",
+      "directCount": 2,
+      "transitiveCount": 25
+    },
+    {
+      "assembly": "unity.renderpipelines.universal.runtime",
+      "directCount": 12,
+      "transitiveCount": 25
+    },
+    {
+      "assembly": "unity.renderpipelines.universal.shaders",
+      "directCount": 1,
+      "transitiveCount": 1
+    },
+    {
+      "assembly": "unity.textmeshpro",
+      "directCount": 8,
+      "transitiveCount": 14
+    },
+    {
+      "assembly": "unity.timeline",
+      "directCount": 7,
+      "transitiveCount": 7
+    },
+    {
+      "assembly": "unity.visualscripting.antlr3.runtime",
+      "directCount": 2,
+      "transitiveCount": 2
+    },
+    {
+      "assembly": "unity.visualscripting.core",
+      "directCount": 9,
+      "transitiveCount": 14
+    },
+    {
+      "assembly": "unity.visualscripting.flow",
+      "directCount": 12,
+      "transitiveCount": 20
+    },
+    {
+      "assembly": "unity.visualscripting.state",
+      "directCount": 4,
+      "transitiveCount": 21
+    },
+    {
+      "assembly": "unityengine.testrunner",
+      "directCount": 5,
+      "transitiveCount": 9
+    },
+    {
+      "assembly": "unityengine.ui",
+      "directCount": 12,
+      "transitiveCount": 12
+    }
+  ],
+  "ordinaryInterpreter": {
+    "configuredAssemblies": [
+      "AssemblyShadowBaseline.HotUpdate"
+    ],
+    "actualImageConsumption": "Visible ordinary interpreter count is zero in captured first staged snapshots. No native remaining-budget query exists; retained/hidden prior allocations are not inferred from this count.",
+    "observations": [
+      {
+        "mode": "T07-01-Prefab-P01",
+        "processId": 97846,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 1,
+        "retainedBytes": 62852,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-01-Prefab-P01.json"
+      },
+      {
+        "mode": "T07-02-Nested-P02",
+        "processId": 98683,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 3,
+        "retainedBytes": 157420,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-02-Nested-P02.json"
+      },
+      {
+        "mode": "T07-03-FullClosure-P03",
+        "processId": 99508,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 5,
+        "retainedBytes": 241296,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-03-FullClosure-P03.json"
+      },
+      {
+        "mode": "T07-04-UnityApis-P01",
+        "processId": 99919,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 1,
+        "retainedBytes": 62852,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-04-UnityApis-P01.json"
+      },
+      {
+        "mode": "T07-05-Scriptable-P03",
+        "processId": 151,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 5,
+        "retainedBytes": 241296,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-05-Scriptable-P03.json"
+      },
+      {
+        "mode": "T07-06-SceneSingle-P01",
+        "processId": 226,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 1,
+        "retainedBytes": 62852,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-06-SceneSingle-P01.json"
+      },
+      {
+        "mode": "T07-07-SceneAdditive-P03",
+        "processId": 275,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 5,
+        "retainedBytes": 241296,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-07-SceneAdditive-P03.json"
+      },
+      {
+        "mode": "T07-08-SerializeReference-P03",
+        "processId": 357,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 5,
+        "retainedBytes": 241296,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-08-SerializeReference-P03.json"
+      },
+      {
+        "mode": "T07-09-Messages-P01",
+        "processId": 383,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 1,
+        "retainedBytes": 62852,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-09-Messages-P01.json"
+      },
+      {
+        "mode": "T07-10-Cache-P03",
+        "processId": 400,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 5,
+        "retainedBytes": 241296,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-10-Cache-P03.json"
+      },
+      {
+        "mode": "T07-11-DelayedCatalog-P03",
+        "processId": 412,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 5,
+        "retainedBytes": 241296,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-11-DelayedCatalog-P03.json"
+      },
+      {
+        "mode": "T07-12-P04-NonSerialized",
+        "processId": 429,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 1,
+        "retainedBytes": 62904,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-12-P04-NonSerialized.json"
+      },
+      {
+        "mode": "T07-13-P05-Rebuilt",
+        "processId": 442,
+        "phase": "staged",
+        "ordinaryInterpreterAssemblies": [],
+        "staged": 1,
+        "retainedBytes": 62876,
+        "resultPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/R00-M07Players-20260907/Results/m07-T07-13-P05-Rebuilt.json"
+      }
+    ]
+  },
+  "productionSnapshots": "NotProvided",
+  "stressRequirements": [
+    100,
+    300,
+    1000
+  ],
+  "R01B": "RequiredIfDeclaredTargetExceedsMeasuredCurrentProfile; stress1000 exceeds the source-derived338 small-image fresh upper bound; no support claimed",
+  "releaseScope": {
+    "macOS_arm64": "R00 baseline target",
+    "Windows_x64": "NotRun; M10 required",
+    "Android_arm64": "NotRun; M10 required",
+    "Development": "M07 accepted pairing replay",
+    "Release": "NotRun for R00; historical M06 retained",
+    "AddManaged": "Undecided; X01 if required",
+    "AddUnityTypes": "Undecided; X01 if required",
+    "Remove": "Undecided; X01 if required"
+  }
+}
