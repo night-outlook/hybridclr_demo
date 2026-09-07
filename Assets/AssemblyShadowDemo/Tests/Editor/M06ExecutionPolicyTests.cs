@@ -13,8 +13,8 @@ namespace AssemblyShadowDemo.EditorTests
         [Test]
         public void ActualStartupInventoryBindsConfiguredRunnerSceneAndEffectiveImporterOrder()
         {
-            Type runner = Runner();
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(EditorUserBuildSettings.activeBuildTarget);
+            Type runner = ConfiguredRunner(policy);
             var inventory = ShadowExecutionPolicy.CaptureCurrentEditor(policy, runner);
             Assert.IsTrue(inventory.IsValid, string.Join("\n", inventory.Diagnostics));
             Assert.AreEqual(runner.Assembly.FullName, inventory.BootstrapAssemblyIdentity);
@@ -22,7 +22,6 @@ namespace AssemblyShadowDemo.EditorTests
             MonoScript script = MonoImporter.GetAllRuntimeMonoScripts().Single(item => item != null && item.GetClass() == runner);
             Assert.AreEqual(AssetDatabase.GetAssetPath(script), inventory.BootstrapScriptPath);
             Assert.AreEqual(MonoImporter.GetExecutionOrder(script), inventory.BootstrapExecutionOrder);
-            Assert.AreEqual(-32000, inventory.BootstrapExecutionOrder);
             Assert.AreEqual(EditorBuildSettings.scenes.Single(item => item.enabled).path, inventory.StartupScenePath);
             Assert.IsTrue(inventory.Scripts.Any(item => item.IsBootstrapRunner && item.Callbacks.Contains("Awake") && item.AssetPath == inventory.StartupScenePath));
             // Returned arrays cannot be used to rewrite the captured inventory.
@@ -34,7 +33,7 @@ namespace AssemblyShadowDemo.EditorTests
         public void ActualCandidatePreloadedAssetIsRejectedAndOriginalPlayerSettingsAreRestored()
         {
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(EditorUserBuildSettings.activeBuildTarget);
-            Type runner = Runner();
+            Type runner = ConfiguredRunner(policy);
             ScriptableObject candidate = AssetDatabase.FindAssets("t:VersionedScriptableObject").Select(AssetDatabase.GUIDToAssetPath)
                 .Select(AssetDatabase.LoadAssetAtPath<ScriptableObject>).FirstOrDefault(asset => asset != null && asset.GetType().Assembly.GetName().Name == "AssemblyA.Implementation.Internal");
             Assert.IsNotNull(candidate, "The actual imported candidate ScriptableObject fixture must exist.");
@@ -65,9 +64,27 @@ namespace AssemblyShadowDemo.EditorTests
             }
         }
 
-        private static Type Runner()
+        [Test]
+        public void M06RunnerRetainsItsPinnedEarliestExecutionOrder()
         {
-            return Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M06BootstrapRunner", true);
+            Type runner = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M06BootstrapRunner", true);
+            MonoScript script = MonoImporter.GetAllRuntimeMonoScripts().Single(item => item != null && item.GetClass() == runner);
+            Assert.AreEqual(-32000, MonoImporter.GetExecutionOrder(script));
+        }
+
+        private static Type ConfiguredRunner(ShadowPolicyConfiguration policy)
+        {
+            EditorBuildSettingsScene scene = EditorBuildSettings.scenes.Single(item => item.enabled);
+            var bootstrap = policy.assemblies.Where(item => item != null && item.isBootstrap && !item.isShadowCapable)
+                .Select(item => item.name).ToArray();
+            Type[] runners = AssetDatabase.GetDependencies(scene.path, true)
+                .Select(AssetDatabase.LoadAssetAtPath<MonoScript>).Where(script => script != null)
+                .Select(script => script.GetClass()).Where(type => type != null && typeof(MonoBehaviour).IsAssignableFrom(type) &&
+                    bootstrap.Contains(type.Assembly.GetName().Name, StringComparer.OrdinalIgnoreCase) &&
+                    type.GetMethod("Awake", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) != null)
+                .Distinct().ToArray();
+            Assert.AreEqual(1, runners.Length, "The configured startup scene must resolve one actual fixed-bootstrap Awake runner.");
+            return runners[0];
         }
     }
 }
