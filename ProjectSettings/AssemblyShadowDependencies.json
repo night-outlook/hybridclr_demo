@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "runtimeDependencies": [
     {
       "consumer": "AssemblyShadowBaseline.Aot",
@@ -17,6 +17,26 @@
     }
   ],
   "resourceDependencies": [],
+  "serializeReferenceDependencies": [
+    {
+      "consumer": "AssemblyA.Implementation.Internal",
+      "callSite": "AssemblyA.Implementation.Internal.M07ManagedGraphAsset::node",
+      "concreteTypes": [
+        "AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal",
+        "AssemblyA.Implementation.Internal.M07NodeB, AssemblyA.Implementation.Internal"
+      ],
+      "evidence": "M07's frozen resource compiler snapshot proves this exact complete assignable serializable concrete-type domain for the managed graph root. Any added, removed, renamed, abstracted, or moved candidate invalidates compiled policy validation."
+    },
+    {
+      "consumer": "AssemblyA.Implementation.Internal",
+      "callSite": "AssemblyA.Implementation.Internal.M07NodeA::next",
+      "concreteTypes": [
+        "AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal",
+        "AssemblyA.Implementation.Internal.M07NodeB, AssemblyA.Implementation.Internal"
+      ],
+      "evidence": "M07's frozen resource compiler snapshot proves the recursive node field has the same exact complete assignable serializable concrete-type domain. The P15 rename must therefore fail before publication."
+    }
+  ],
   "bootstrapEntrypoints": [
     {
       "consumer": "AssemblyShadowDemo.Bootstrap",
@@ -572,6 +592,76 @@
       "method": "AssemblyShadowDemo.M06ExecutionProbe::LoadWitnessAssembly",
       "target": "AssemblyShadowDemo.ExtensibilityConsumer",
       "reason": "M06 observes this literal assembly's active or unchanged-AOT identity after commit; enumeration and dynamic assembly names are not authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::RunCore",
+      "reason": "M07 creates one persistent baseline-known component by exact literal Type after the transaction and verifies its active identity across scene switches."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M07UnityPathProbe",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::RunShadowUnityApis",
+      "reason": "M07 invokes the exact literal Unity API witness only after transaction completion; the witness itself proves generic and Type-based Unity object paths."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M07ManagedGraphAsset",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the loaded managed-reference owner."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M07NodeA",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the loaded managed-reference concrete node."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M07RenameProbeComponent",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the resource rename guard component."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M07SceneOnlyComponent",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the deserialized scene component."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M07UnityPathProbe",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the Unity API witness."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the versioned prefab component."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the versioned ScriptableObject."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
+      "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
+      "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the nested cross-assembly consumer component."
     }
   ]
 }

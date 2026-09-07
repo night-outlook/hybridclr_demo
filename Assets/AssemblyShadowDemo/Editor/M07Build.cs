@@ -95,7 +95,9 @@ namespace AssemblyShadowDemo.Editor
                 target, settings.architecture, pins, policy, new string[0], true);
             AssemblySnapshotReceipt receipt = AssemblySnapshot.ReadAndVerify(snapshot, false);
             TargetFrameworkReferenceVerifier.Verify(snapshot, receipt);
-            Debug.Log("[AssemblyShadow M07] Fresh baseline-domain target compiler snapshot: " + snapshot);
+            using (CompiledAssemblySet set = ShadowFixtureProof.Load(snapshot, receipt, policy))
+                ShadowReflectionBindingEvidence.ValidateCompilerSnapshot(set, policy, snapshot, receipt).ThrowIfInvalid();
+            Debug.Log("[AssemblyShadow M07] Fresh baseline-domain target compiler snapshot and connected policy graph verified: " + snapshot);
         }
 
         public static void BuildPlayerBaseline()
