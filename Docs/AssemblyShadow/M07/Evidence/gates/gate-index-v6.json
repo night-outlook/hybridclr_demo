@@ -1,0 +1,27 @@
+{
+  "currentGateSha256": "990e1f63341d0fef84b78425c9720eea05628c18e8b56079dbd21af9b1fda3cf",
+  "detachedGateSha256": "d87b6496c641740a65838a5c69f6d942cce98301671f725a6f23ddb2a71a4e98",
+  "evidenceCommit": "8aaf30783eb9e5c0aebf96db6afe08aa81209ff8",
+  "gates": [
+    {
+      "gate": "A-current-evidence-commit-tests-strict-install-and-retention",
+      "name": "gate-a-v6.json",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/Docs/AssemblyShadow/M07/Evidence/gates/gate-a-v6.json",
+      "result": "PASS",
+      "sha256": "990e1f63341d0fef84b78425c9720eea05628c18e8b56079dbd21af9b1fda3cf"
+    },
+    {
+      "gate": "B-detached-evidence-commit-tests-strict-install-and-retention",
+      "name": "gate-b-v6.json",
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/Docs/AssemblyShadow/M07/Evidence/gates/gate-b-v6.json",
+      "result": "PASS",
+      "sha256": "d87b6496c641740a65838a5c69f6d942cce98301671f725a6f23ddb2a71a4e98"
+    }
+  ],
+  "kind": "EvidenceCommitReviewGates",
+  "limitation": "Gate B is an independent deterministic clean-detached-worktree process review, not an independent human or LLM review.",
+  "milestone": "M07",
+  "recordedUtc": "2026-09-07T06:19:17.746191+00:00",
+  "result": "PASS",
+  "schemaVersion": 1
+}

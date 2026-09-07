@@ -1,0 +1,138 @@
+{
+  "artifactIndexPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/Docs/AssemblyShadow/M07/Evidence/artifact-index-v6.json",
+  "artifactIndexSha256": "aba0d5df77706c1a25c0c300974c8ce21f791aff59735703f1229479b90341cc",
+  "checkedUtc": "2026-09-07T06:18:17.349933+00:00",
+  "evidenceCommit": "8aaf30783eb9e5c0aebf96db6afe08aa81209ff8",
+  "gate": "B-detached-evidence-commit-tests-strict-install-and-retention",
+  "gitTree": {
+    "clean": true,
+    "commit": "8aaf30783eb9e5c0aebf96db6afe08aa81209ff8",
+    "detached": true,
+    "files": 36
+  },
+  "historicalTestInputs": [
+    {
+      "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "fileCount": 1,
+      "relativePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+    },
+    {
+      "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/BaselineArtifacts/StandaloneOSX/M01-Baseline-v1",
+      "fileCount": 93,
+      "relativePath": "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1",
+      "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/BaselineArtifacts/StandaloneOSX/M01-Baseline-v1"
+    },
+    {
+      "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+      "fileCount": 1026,
+      "relativePath": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+      "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3"
+    },
+    {
+      "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+      "fileCount": 526,
+      "relativePath": "HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+      "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3"
+    },
+    {
+      "destinationPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6",
+      "fileCount": 1032,
+      "relativePath": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6",
+      "sourcePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6"
+    }
+  ],
+  "installedSourceVerification": {
+    "command": [
+      "python3",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/Tools/AssemblyShadow/verify-installed-runtime.py",
+      "--project",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07",
+      "--expect-shadow",
+      "on",
+      "--json"
+    ],
+    "completedUtc": "2026-09-07T06:18:17.320449+00:00",
+    "exitCode": 0,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07GateB-v6-20260906T2308/installed-source.log",
+    "logSha256": "c16db49b663a4c463cc22e79e5324a6ccc7368e03f231dadaf27cd7a475394d2",
+    "startedUtc": "2026-09-07T06:18:15.772963+00:00",
+    "summary": {
+      "configuredShadowMode": "on",
+      "demoSourceVerified": true,
+      "installedFiles": 942,
+      "receiptSha256": "28384261a0cb238157079bc33bd8cd4595130dbd204a6e531b7e4d58a6eb6b49",
+      "sourceFiles": 940,
+      "target": "StandaloneOSX",
+      "unityVersion": "2022.3.62f2"
+    }
+  },
+  "limitation": "Independent deterministic detached-worktree process gate, not an independent human or LLM review. It reruns all Python tests, strict Gate 3B and complete installed-source verification; Editor/native suites remain byte-bound recorded inputs checked through retained receipts and archives.",
+  "liveArtifactRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07",
+  "milestone": "M07",
+  "python": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Tools/AssemblyShadow/tests",
+      "-q"
+    ],
+    "completedUtc": "2026-09-07T06:14:45.972253+00:00",
+    "exitCode": 0,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07GateB-v6-20260906T2308/python-tests.log",
+    "logSha256": "4c2de80743c55295a2647f2f08543b564fcba2dcb3c698038c727f41eadeed8f",
+    "startedUtc": "2026-09-07T06:13:51.012744+00:00",
+    "testCount": 356
+  },
+  "recordedSuites": {
+    "editorTests": 912,
+    "nativeChecks": 824,
+    "nativeSyntaxChecks": 20,
+    "playerCases": 14,
+    "pythonTests": 356
+  },
+  "result": "PASS",
+  "retention": {
+    "archiveMembers": 8816,
+    "archives": 6,
+    "copiedArtifacts": 19
+  },
+  "reviewMode": "independent-deterministic-clean-detached-worktree-process",
+  "reviewRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307",
+  "schemaVersion": 1,
+  "sourceInventory": {
+    "files": 109,
+    "postExecutableMetadataFiles": 39,
+    "repositories": 4
+  },
+  "status": [],
+  "strictReplay": {
+    "caseCount": 14,
+    "command": [
+      "python3",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_m07_gate_b_8aaf307/Tools/AssemblyShadow/verify-m07-results.py",
+      "--fixture-manifest",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/m07-fixtures.json",
+      "--result-dir",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07Results-v6-20260906T2207/Results",
+      "--on-build",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07PlayerInputs-30c933f9043545cc887466494ecef5d4/m07-player-build.json",
+      "--off-build",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07PlayerInputs-b90e7402282a44108f738b5a3f718e74/m07-player-build.json",
+      "--replay-receipt",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M02Validation-00d060a2714443d2ba21203d5f1e9c8e/m07-editor-replay.json",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07GateB-v6-20260906T2308/m07-strict.json"
+    ],
+    "completedUtc": "2026-09-07T06:18:15.772102+00:00",
+    "exitCode": 0,
+    "logPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07GateB-v6-20260906T2308/m07-strict.log",
+    "logSha256": "c70ff3930d87e61b5e69fd03f0ba98b7d8cb18306f614a1bd584bbaa20c8da10",
+    "receiptPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07GateB-v6-20260906T2308/m07-strict.json",
+    "receiptSha256": "c70ff3930d87e61b5e69fd03f0ba98b7d8cb18306f614a1bd584bbaa20c8da10",
+    "startedUtc": "2026-09-07T06:14:45.973042+00:00"
+  }
+}

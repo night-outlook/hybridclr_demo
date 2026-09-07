@@ -1,7 +1,9 @@
 # M07 Unity resource and API acceptance contract
 
-Status: implementation and offline validation in progress; Gate 3B is not yet
-accepted.
+Status: Gate 3B accepted on 2026-09-06 for the frozen `M07-Baseline-v6`
+StandaloneOSX arm64 pairing. The exact retained receipts and deterministic
+current/detached commit reviews are recorded under `Evidence/`; the scope and
+platform limits below remain unchanged.
 
 ## Boundary and source identity
 
@@ -135,3 +137,38 @@ Editor compilation, synthetic schemas, resource build success or source review
 alone are not Player acceptance. This milestone does not claim M08 production
 build integration, M09 download/security/rollback, other platforms, arbitrary
 Addressables installations or cross-version Unity serialization compatibility.
+
+### Accepted v6 record
+
+The accepted executable pairing is demo
+`3aab779a3304dd9785ab14fb5fcdc73a107066f7`, runtime
+`a19db144751f4f016769b90e61a80b8c27578678`, native
+`666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8` and package
+`2180b99daf39095cd76301da2bdf34ac945ee8b4`. Demo commit
+`671737c082effa5094bed16b087f6da5c3c666c9` pins those executable inputs;
+later commits contain only M07 evidence and report metadata.
+
+The guarded workflow, five positive fixtures, three structural rejections,
+independent Editor reconstruction and 14 distinct Player processes all passed.
+The strict receipt reports `Gate 3B`, `diagnosticOnly=false`, no missing modes,
+runtime ABI `a41a8261e5fdbade351943b118d153c6f75e39595709b281c11c230427305015`
+and baseline resource ABI
+`sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751`.
+P05 used its separately rebuilt resource ABI
+`sha256:f99cbb1f42858874f1a1ff96cc10c7b4d273861ca7608cb83a5d667f23a96360`.
+
+The final complete suites are 912/912 Editor tests, 356/356 Python tests with
+zero skips, and 824 focused native checks plus 20 syntax checks. Pinned install
+repeatability reports 942 identical installed files, and the complete demo
+source verification (without `--skip-demo-source`) passes with native Shadow
+configured ON.
+
+Evidence commit `8aaf30783eb9e5c0aebf96db6afe08aa81209ff8` was rechecked both in the
+clean current checkout and a separate clean detached worktree. Gate A SHA-256
+is `990e1f63341d0fef84b78425c9720eea05628c18e8b56079dbd21af9b1fda3cf`;
+Gate B SHA-256 is
+`d87b6496c641740a65838a5c69f6d942cce98301671f725a6f23ddb2a71a4e98`.
+Gate B is an independent deterministic process review, not an independent
+human or LLM review. Both gates replayed the full Python and strict runtime
+verifiers, verified the installed source and audited all 8,816 retained archive
+members plus 19 direct artifacts byte-for-byte.
