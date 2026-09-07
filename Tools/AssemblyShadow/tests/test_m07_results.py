@@ -49,6 +49,9 @@ class M07ResultTests(unittest.TestCase):
         self.assertIn("businessResourceLoadStarted", gate.RESULT_FIELDS.split())
         self.assertIn("compilerDefines", gate.RESOURCE_FIELDS.split())
         self.assertIn("editorScriptingDefines", gate.RESOURCE_FIELDS.split())
+        self.assertIn("serializeReferenceDependencies", gate.DEPENDENCY_FIELDS.split())
+        self.assertEqual(gate.SERIALIZE_REFERENCE_DEP_FIELDS.split(),
+                         ["consumer", "callSite", "concreteTypes", "evidence"])
         self.assertEqual(len(gate.REPLAY_FIXTURE_FIELDS.split()), 8)
 
     def test_monoscript_player_evidence_policy_is_finite(self):
@@ -63,6 +66,12 @@ class M07ResultTests(unittest.TestCase):
         with self.assertRaises(VerificationError): gate.exact({"value": False}, {"value": 0}, "typed")
         with self.assertRaises(VerificationError): gate.integer(False, "integer")
         self.assertEqual(gate.integer((1 << 64) - 1, "uint64", 0, (1 << 64) - 1), (1 << 64) - 1)
+
+    def test_reference_names_are_case_normalized_without_aliases(self):
+        self.assertEqual(gate.canonical_names(["AssemblyA.Contracts", "netstandard"], "references"),
+                         ["assemblya.contracts", "netstandard"])
+        with self.assertRaises(VerificationError):
+            gate.canonical_names(["AssemblyA.Contracts", "assemblya.contracts"], "references")
 
     def test_json_duplicate_and_nonfinite_numbers_reject(self):
         for text in ('{"value":0,"value":1}', '{"value":NaN}', '{"value":Infinity}'):
@@ -102,11 +111,13 @@ class M07ResultTests(unittest.TestCase):
         with self.assertRaises(VerificationError):
             gate.verify_assembly_modes(dict(assemblyModes=bad), "modes", [gate.INTERNAL], False)
 
-    def test_transaction_gate_allows_only_post_commit_nonclosure_baseline_uses(self):
-        source = (Path(__file__).resolve().parents[1] / "m07_results.py").read_text()
-        self.assertIn('if index < 3:', source)
-        self.assertIn('use["name"] not in order', source)
-        self.assertIn('exact(result["baselineUseCount"], 0', source)
+    def test_transaction_gate_allows_only_monotonic_nonclosure_baseline_uses(self):
+        use = {"name": gate.CONTRACTS}
+        self.assertEqual(gate.verify_allowed_baseline_uses([use], [], [gate.INTERNAL], "uses"), [use])
+        with self.assertRaises(VerificationError):
+            gate.verify_allowed_baseline_uses([{"name": gate.INTERNAL}], [], [gate.INTERNAL], "uses")
+        with self.assertRaises(VerificationError):
+            gate.verify_allowed_baseline_uses([], [use], [gate.INTERNAL], "uses")
 
     def test_feature_off_type_rows_must_be_real_same_active_aot_types(self):
         phases = [

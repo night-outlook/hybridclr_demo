@@ -86,9 +86,10 @@ RESOURCE_PROOF_FIELDS = "path sha256"
 RESOURCE_BUNDLE_FIELDS = "name sha256 assets"
 RESOURCE_MAP_FIELDS = "schemaVersion bundleDirectory bundles"
 RESOURCE_MAP_BUNDLE_FIELDS = "name assets"
-DEPENDENCY_FIELDS = "schemaVersion runtimeDependencies resourceDependencies bootstrapEntrypoints"
+DEPENDENCY_FIELDS = "schemaVersion runtimeDependencies resourceDependencies serializeReferenceDependencies bootstrapEntrypoints"
 RUNTIME_DEP_FIELDS = "consumer provider kind evidence callSite"
 RESOURCE_DEP_FIELDS = "bundle assembly"
+SERIALIZE_REFERENCE_DEP_FIELDS = "consumer callSite concreteTypes evidence"
 BOOTSTRAP_DEP_FIELDS = "consumer provider typeName method reason callSite target"
 PATH_RESULT_FIELDS = "marker componentType componentAssembly baseType baseAssembly interfaceType interfaceAssembly getComponentGeneric getComponentType tryGetComponent getComponents getComponentInChildren getComponentInParent interfaceComponent baseComponent addComponentGeneric addComponentType createInstanceGeneric createInstanceType createInstanceString instantiateExisting serializedState messageMarker p04RuntimeValue p05SerializedValue"
 EDITOR_REPLAY_POLICY = "compiler-linked-policy-resource-abi-unity-assets:1"
@@ -120,6 +121,20 @@ def names(value, path):
     require(all(type(item) is str and item and item == item.strip() for item in rows) and len(rows) == len(set(rows)),
             f"{path}: invalid or duplicate names")
     return rows
+
+
+def canonical_names(value, path):
+    rows = [name.casefold() for name in names(value, path)]
+    require(len(rows) == len(set(rows)), f"{path}: case-insensitive duplicate names")
+    return rows
+
+
+def verify_allowed_baseline_uses(current, previous, closure, path):
+    uses = array(current, path)
+    require(all(use["name"] in CANDIDATES and use["name"] not in closure for use in uses),
+            f"{path}: selected closure or non-candidate baseline use observed")
+    require(all(use in uses for use in previous), f"{path}: baseline first-use history was removed or changed")
+    return uses
 
 
 def hash64(value, path):
@@ -357,13 +372,29 @@ def verify_resource_baseline(root, expected_abi, manifest, expected_defines):
     require(any(script["assembly"] in CANDIDATES for script in scripts), f"{receipt_path}: no candidate script reference was proven")
 
     dependencies = fields(receipt["dependencies"], DEPENDENCY_FIELDS, f"{receipt_path}.dependencies")
-    exact(dependencies["schemaVersion"], 1, f"{receipt_path}.dependencies.schemaVersion")
+    exact(dependencies["schemaVersion"], 2, f"{receipt_path}.dependencies.schemaVersion")
     for key, shape in (("runtimeDependencies", RUNTIME_DEP_FIELDS), ("resourceDependencies", RESOURCE_DEP_FIELDS),
                        ("bootstrapEntrypoints", BOOTSTRAP_DEP_FIELDS)):
         for number, row in enumerate(array(dependencies[key], f"{receipt_path}.dependencies.{key}")):
             rp = f"{receipt_path}.dependencies.{key}[{number}]"
             fields(row, shape, rp)
             strings(row, rp, shape)
+    serialize_references = []
+    for number, row in enumerate(array(dependencies["serializeReferenceDependencies"],
+                                       f"{receipt_path}.dependencies.serializeReferenceDependencies")):
+        rp = f"{receipt_path}.dependencies.serializeReferenceDependencies[{number}]"
+        fields(row, SERIALIZE_REFERENCE_DEP_FIELDS, rp)
+        strings(row, rp, "consumer callSite evidence")
+        serialize_references.append(dict(consumer=row["consumer"], callSite=row["callSite"],
+                                         concreteTypes=names(row["concreteTypes"], rp + ".concreteTypes")))
+    concrete_types = [
+        "AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal",
+        "AssemblyA.Implementation.Internal.M07NodeB, AssemblyA.Implementation.Internal",
+    ]
+    exact(serialize_references, [
+        dict(consumer=INTERNAL, callSite=INTERNAL + ".M07ManagedGraphAsset::node", concreteTypes=concrete_types),
+        dict(consumer=INTERNAL, callSite=INTERNAL + ".M07NodeA::next", concreteTypes=concrete_types),
+    ], f"{receipt_path}.dependencies.serializeReferenceDependencies")
     return dict(root=root, path=receipt_path, receipt=receipt, compiler=compiler, bundles=bundles,
                 abi=abi, index=index_value)
 
@@ -509,7 +540,9 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
     for row in closure:
         actual = identities[row["name"]]
         exact(row["mvid"], actual["mvid"], f"{patch_path}.{row['name']}.mvid")
-        exact(set(row["references"]), {item["name"] for item in actual["referenceIdentities"]},
+        exact(canonical_names(row["references"], f"{patch_path}.{row['name']}.references"),
+              sorted(canonical_names([item["name"] for item in actual["referenceIdentities"]],
+                                     f"{patch_path}.{row['name']}.referenceIdentities")),
               f"{patch_path}.{row['name']}.references")
     exact({path.resolve() for path in patch_root.rglob("*.dll")}, {path.resolve() for path in dlls},
           f"{patch_path}: DLL inventory")
@@ -824,7 +857,7 @@ def verify_transaction(result, path, manifest, patch_item):
     exact(result["stageResults"], expected_stages, f"{path}.stageResults")
     phases = ["staged", "validated-resource-precheck-complete", "committed-before-resources", "final-resource"]
     exact([row["phase"] for row in result["snapshots"]], phases, f"{path}.snapshots")
-    previous_events = []
+    previous_events, previous_uses = [], []
     final = None
     for index, row in enumerate(result["snapshots"]):
         rp = f"{path}.snapshots[{index}]"
@@ -833,12 +866,8 @@ def verify_transaction(result, path, manifest, patch_item):
         prior._verify_diag_invariants(diagnostic, order, manifest["stableAotNames"], rp, patch=patch)
         exact(diagnostic["baselineBuildId"], manifest["baselineBuildId"], rp + ".baselineBuildId")
         exact(diagnostic["patchId"], patch["patchId"], rp + ".patchId")
-        if index < 3:
-            exact(diagnostic["baselineUses"], [], rp + ".baselineUses")
-        else:
-            require(all(use["name"] in CANDIDATES and use["name"] not in order
-                        for use in diagnostic["baselineUses"]),
-                    f"{rp}.baselineUses: selected closure or non-candidate baseline use observed")
+        previous_uses = verify_allowed_baseline_uses(diagnostic["baselineUses"], previous_uses, order,
+                                                     rp + ".baselineUses")
         exact(diagnostic["events"][:len(previous_events)], previous_events, rp + ".eventPrefix")
         previous_events = diagnostic["events"]
         expected_state = "Staged" if index == 0 else "Validated" if index == 1 else "Committed"
