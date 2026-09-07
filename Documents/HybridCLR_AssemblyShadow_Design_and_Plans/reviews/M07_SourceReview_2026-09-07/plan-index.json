@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "plans": [
+    {
+      "id": "R00",
+      "file": "R00-baseline-proof-ledger.md",
+      "title": "固定基线、能力边界和证据账本",
+      "dependencies": "无；开始任何修复前",
+      "findings": [
+        "ASR-012"
+      ]
+    },
+    {
+      "id": "R01",
+      "file": "R01-metadata-budget-and-failure-contract.md",
+      "title": "Interpreter Image 预算与失败结果契约",
+      "dependencies": "R00",
+      "findings": [
+        "ASR-001",
+        "ASR-008",
+        "ASR-011"
+      ]
+    },
+    {
+      "id": "R01B",
+      "file": "R01B-metadata-index-expansion.md",
+      "title": "按实际规模扩展 metadata 索引容量",
+      "dependencies": "R01；当目标规模超过现有 profile 时必需",
+      "findings": [
+        "ASR-001"
+      ]
+    },
+    {
+      "id": "R02",
+      "file": "R02-allocation-cache-and-guards.md",
+      "title": "分配证明缓存与执行 guard 性能分层",
+      "dependencies": "R01；编码实现修改时在 R01B 后重验",
+      "findings": [
+        "ASR-002",
+        "ASR-003"
+      ]
+    },
+    {
+      "id": "R03",
+      "file": "R03-evolution-semantics.md",
+      "title": "布局准入、逻辑成员身份与跨版本图修复",
+      "dependencies": "R01、R02",
+      "findings": [
+        "ASR-004",
+        "ASR-005",
+        "ASR-006"
+      ]
+    },
+    {
+      "id": "M08A",
+      "file": "M08A-workflow-and-version-contracts.md",
+      "title": "标准工作流与 Runtime/Toolchain 身份分离",
+      "dependencies": "R03；需扩容时 R01B 已通过",
+      "findings": [
+        "ASR-007",
+        "ASR-012"
+      ]
+    },
+    {
+      "id": "M08B",
+      "file": "M08B-deployment-admission.md",
+      "title": "部署补丁的联合准入与能力库存",
+      "dependencies": "M08A",
+      "findings": [
+        "ASR-001",
+        "ASR-004",
+        "ASR-009"
+      ]
+    },
+    {
+      "id": "M09",
+      "file": "M09-bootstrap-and-recovery.md",
+      "title": "生产启动、签名、健康确认与分状态恢复",
+      "dependencies": "M08B",
+      "findings": [
+        "ASR-008",
+        "ASR-011",
+        "ASR-013"
+      ]
+    },
+    {
+      "id": "M10",
+      "file": "M10-platform-and-integration.md",
+      "title": "平台扩展与受影响历史路径集成回归",
+      "dependencies": "M09；平台 runner 准备可在 M08 阶段并行",
+      "findings": [
+        "ASR-011",
+        "ASR-012"
+      ]
+    },
+    {
+      "id": "M11",
+      "file": "M11-performance-fuzz-rebase.md",
+      "title": "全面性能、输入加固与上游升级演练",
+      "dependencies": "M10；基础容量/性能已在 M07R 完成",
+      "findings": [
+        "ASR-003",
+        "ASR-013"
+      ]
+    },
+    {
+      "id": "M12",
+      "file": "M12-release-acceptance.md",
+      "title": "发布候选与独立端到端验收",
+      "dependencies": "M11；产品要求的 X01 Gate 已合入",
+      "findings": [
+        "ASR-012"
+      ]
+    },
+    {
+      "id": "X01",
+      "file": "X01-assembly-lifecycle-capabilities.md",
+      "title": "新增/删除程序集能力；与 Replace 分离",
+      "dependencies": "R01、R03、M08B；独立 feature 分支，进入目标平台 M10 验收",
+      "findings": [
+        "ASR-001",
+        "ASR-010"
+      ]
+    }
+  ]
+}
