@@ -86,11 +86,12 @@ namespace AssemblyShadowDemo
                 RequireState(result, AssemblyShadowState.Committed, "resource-complete");
                 Capture(result, "final-resource");
                 AssemblyShadowDiagnostics final = result.snapshots.Last().diagnostics;
-                result.baselineUseCount = final.baselineUses == null ? -1 : final.baselineUses.Length;
+                result.baselineUseCount = final.baselineUses == null ? -1 : final.baselineUses.Count(use =>
+                    result.stageOrder.Contains(use.name, StringComparer.Ordinal));
                 result.nativeEventCount = final.events == null ? -1 : final.events.Length;
                 result.transactionGeneration = final.generation;
                 Require(result.baselineUseCount == 0 && result.nativeEventCount > 0 && result.transactionGeneration > 0,
-                    "M07 native resolver evidence is incomplete or contains an unexplained baseline use.");
+                    "M07 native resolver evidence is incomplete or the selected shadow closure used its AOT baseline.");
             }
             result.result = "Passed";
             int exitCode;

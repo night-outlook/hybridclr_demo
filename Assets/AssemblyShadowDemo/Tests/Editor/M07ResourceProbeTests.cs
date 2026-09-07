@@ -117,6 +117,15 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
+        public void BaselineUseGateRejectsOnlyTheSelectedShadowClosure()
+        {
+            string source = File.ReadAllText(ProbeSource);
+            StringAssert.Contains("final.baselineUses.Count(use =>", source);
+            StringAssert.Contains("result.stageOrder.Contains(use.name, StringComparer.Ordinal)", source);
+            Assert.IsFalse(source.Contains("baselineUseCount = final.baselineUses.Length"));
+        }
+
+        [Test]
         public void MonoScriptEvidenceUsesOnlyThePlanPermittedPlayerFallback()
         {
             string source = File.ReadAllText(ResourceSource);

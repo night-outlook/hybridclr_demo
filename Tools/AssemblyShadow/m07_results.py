@@ -833,7 +833,12 @@ def verify_transaction(result, path, manifest, patch_item):
         prior._verify_diag_invariants(diagnostic, order, manifest["stableAotNames"], rp, patch=patch)
         exact(diagnostic["baselineBuildId"], manifest["baselineBuildId"], rp + ".baselineBuildId")
         exact(diagnostic["patchId"], patch["patchId"], rp + ".patchId")
-        exact(diagnostic["baselineUses"], [], rp + ".baselineUses")
+        if index < 3:
+            exact(diagnostic["baselineUses"], [], rp + ".baselineUses")
+        else:
+            require(all(use["name"] in CANDIDATES and use["name"] not in order
+                        for use in diagnostic["baselineUses"]),
+                    f"{rp}.baselineUses: selected closure or non-candidate baseline use observed")
         exact(diagnostic["events"][:len(previous_events)], previous_events, rp + ".eventPrefix")
         previous_events = diagnostic["events"]
         expected_state = "Staged" if index == 0 else "Validated" if index == 1 else "Committed"

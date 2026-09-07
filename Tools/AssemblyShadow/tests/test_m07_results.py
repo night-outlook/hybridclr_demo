@@ -102,6 +102,12 @@ class M07ResultTests(unittest.TestCase):
         with self.assertRaises(VerificationError):
             gate.verify_assembly_modes(dict(assemblyModes=bad), "modes", [gate.INTERNAL], False)
 
+    def test_transaction_gate_allows_only_post_commit_nonclosure_baseline_uses(self):
+        source = (Path(__file__).resolve().parents[1] / "m07_results.py").read_text()
+        self.assertIn('if index < 3:', source)
+        self.assertIn('use["name"] not in order', source)
+        self.assertIn('exact(result["baselineUseCount"], 0', source)
+
     def test_feature_off_type_rows_must_be_real_same_active_aot_types(self):
         phases = [
             ("data-asset", gate.INTERNAL), ("prefab-asset", gate.INTERNAL), ("prefab-first", gate.INTERNAL),
