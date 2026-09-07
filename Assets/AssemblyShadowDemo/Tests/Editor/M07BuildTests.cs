@@ -116,6 +116,10 @@ namespace AssemblyShadowDemo.EditorTests
             StringAssert.Contains("[SerializeField] private int addedSerializedField", component);
             Assert.Less(component.IndexOf("[NonSerialized] private int m07RuntimeOnlyValue", StringComparison.Ordinal),
                 component.IndexOf("[SerializeField] private int addedSerializedField", StringComparison.Ordinal));
+            string consumer = File.ReadAllText("Assets/AssemblyShadowDemo/Consumers/ExtensibilityConsumer/DerivedExternalComponent.cs");
+            StringAssert.Contains("#if ASSEMBLY_SHADOW_P03", consumer);
+            foreach (string internalOnly in new[] { "ASSEMBLY_SHADOW_P01", "ASSEMBLY_SHADOW_M07_P04", "ASSEMBLY_SHADOW_P05" })
+                Assert.IsFalse(consumer.Contains(internalOnly), internalOnly + " must not change the non-closure consumer.");
         }
 
         [Test]

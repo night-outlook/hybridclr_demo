@@ -28,14 +28,8 @@ namespace AssemblyShadowDemo.Consumers
 
         public static string M07Marker()
         {
-#if ASSEMBLY_SHADOW_P05
-            return "M07-P05-CONSUMER";
-#elif ASSEMBLY_SHADOW_M07_P04
-            return "M07-P04-CONSUMER";
-#elif ASSEMBLY_SHADOW_P03
+#if ASSEMBLY_SHADOW_P03
             return "M07-P03-CONSUMER";
-#elif ASSEMBLY_SHADOW_P01
-            return "M07-P01-CONSUMER";
 #else
             return "M07-BASELINE-CONSUMER";
 #endif
