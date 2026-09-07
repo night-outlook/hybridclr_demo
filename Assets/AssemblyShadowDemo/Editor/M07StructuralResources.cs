@@ -24,7 +24,7 @@ namespace AssemblyShadowDemo.Editor
         {
             M02StructuralPatchCompilation.Compile();
             string run = M02StructuralPatchCompilation.GetValidationRunDirectory();
-            string snapshot = M02StructuralPatchCompilation.ReadPreparedSnapshot(run);
+            string snapshot = M02StructuralPatchCompilation.ReadCompiledSnapshotInStagedDomain(run);
             var settings = AssemblyShadowSettings.Instance;
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
             var pins = ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture);

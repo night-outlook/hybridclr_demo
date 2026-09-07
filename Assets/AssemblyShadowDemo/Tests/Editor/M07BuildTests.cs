@@ -38,8 +38,9 @@ namespace AssemblyShadowDemo.EditorTests
         {
             string source = File.ReadAllText(AssetsSource);
             foreach (string field in new[] { "m07SerializedInt", "m07SerializedString", "m07InlineValue", "m07InlineValues", "m07ObjectReference",
-                "m07NestedPayload", "relatedComponent", "serializedInterfaceObject", "persistentEvent", "managedReferenceValue" })
+                "m07NestedPayload", "relatedComponent", "serializedInterfaceObject", "persistentEvent" })
                 StringAssert.Contains("\"" + field + "\"", source);
+            StringAssert.Contains(".managedReferenceValue = first", source);
             StringAssert.Contains("PrefabUtility.SaveAsPrefabAsset", source);
             StringAssert.Contains("EditorSceneManager.SaveScene", source);
             StringAssert.Contains("UnityEventTools.AddPersistentListener", source);
@@ -55,12 +56,13 @@ namespace AssemblyShadowDemo.EditorTests
             string build = File.ReadAllText(BuildSource), structural = File.ReadAllText(StructuralSource);
             foreach (string id in new[] { "P01", "P02", "P03", "P04", "P05-DllOnly", "P14-ClassRename", "P15-SerializeReferenceRename" })
                 StringAssert.Contains("\"" + id + "\"", build);
-            StringAssert.Contains("fixture.patchId == \"P05\" && !structural.dllOnly", build);
+            StringAssert.Contains("structural.patchId == \"P05\" && !structural.dllOnly", build);
             StringAssert.Contains("ResourceRebuildRequired", build);
             StringAssert.Contains("new[] { M07Build.P05Define }", structural);
             StringAssert.Contains("M02StructuralPatchCompilation.Prepare()", structural);
             StringAssert.Contains("M02StructuralPatchCompilation.Compile()", structural);
             StringAssert.Contains("M02StructuralPatchCompilation.Restore()", structural);
+            StringAssert.Contains("ReadCompiledSnapshotInStagedDomain", structural);
             StringAssert.Contains("ReadPreparedSnapshot", structural);
             StringAssert.Contains("replacementResourceReceiptSha256", structural);
             StringAssert.Contains("ResourceAbiDiffLevel.ResourceRebuildRequired", structural);

@@ -152,6 +152,24 @@ namespace AssemblyShadowDemo.Editor
                 ShadowHash.File(SettingsPath()) == state.originalSettingsSha256,
                 "StructuralByteRestoreMismatch", "Original settings bytes were not restored or changed before validation.");
             ReadOriginalSettings(state);
+            return RequireCompiledSnapshot(run, state, stateSha);
+        }
+
+        internal static string ReadCompiledSnapshotInStagedDomain(string runDirectory)
+        {
+            string run = GetValidationRunDirectory();
+            Require(Path.GetFullPath(runDirectory) == run, "StructuralRunMismatch", "The requested snapshot belongs to another validation run.");
+            string stateSha;
+            DefineState state = ReadState(run, out stateSha);
+            RequireCurrentContext(state); RequireQuiescentEditor();
+            Require(CurrentDefines() == state.stagedDefines, "StructuralDefineConflict", "P05 staged defines must remain active while producing paired structural resources.");
+            RequireEditorLayout(true);
+            Require(!File.Exists(Path.Combine(run, RestoreName)), "StructuralRestoreAlreadyStarted", "Paired structural resources must be produced before restoration.");
+            return RequireCompiledSnapshot(run, state, stateSha);
+        }
+
+        private static string RequireCompiledSnapshot(string run, DefineState state, string stateSha)
+        {
             string path = Path.Combine(run, CompileName);
             Require(File.Exists(path), "StructuralCompileMissing", "P05 has no successful captured compilation.");
             var prepared = JsonUtility.FromJson<CompileReceipt>(File.ReadAllText(path));
