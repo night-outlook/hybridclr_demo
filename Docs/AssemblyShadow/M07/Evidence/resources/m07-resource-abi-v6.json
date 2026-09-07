@@ -1,0 +1,610 @@
+{
+    "schemaVersion": 2,
+    "types": [
+        {
+            "typeKey": "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+            "assembly": "assemblya.contracts",
+            "namespace": "AssemblyA.Contracts",
+            "type": "DemoValue",
+            "baseChain": "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+                    "name": "number",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "public;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+                    "name": "text",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "public;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode",
+            "assembly": "assemblya.contracts",
+            "namespace": "AssemblyA.Contracts",
+            "type": "IM07ManagedNode",
+            "baseChain": "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode",
+            "interfaces": [],
+            "fields": [],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+            "assembly": "assemblya.contracts",
+            "namespace": "AssemblyA.Contracts",
+            "type": "M07InlineValue",
+            "baseChain": "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+                    "name": "number",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "public;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+                    "name": "text",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "public;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase",
+            "assembly": "assemblya.implementation.extensibility",
+            "namespace": "AssemblyA.Implementation.Extensibility",
+            "type": "VersionedComponentBase",
+            "baseChain": "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase<unityengine.coremodule:UnityEngine:MonoBehaviour<unityengine.coremodule:UnityEngine:Behaviour<unityengine.coremodule:UnityEngine:Component<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase",
+                    "name": "baseSerializedValue",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "M07ManagedGraphAsset",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset<unityengine.coremodule:UnityEngine:ScriptableObject<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset",
+                    "name": "node",
+                    "type": "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode",
+                    "shape": "scalar",
+                    "flags": "SerializeReference",
+                    "formerNames": [],
+                    "managedReferenceMode": "SerializeReference",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB"
+            ],
+            "referencedTypeKeys": [
+                "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB"
+            ],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "M07NestedPayload",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+                    "name": "number",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "public;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+                    "name": "text",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "public;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "M07NodeA",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+            "interfaces": [
+                "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode"
+            ],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                    "name": "label",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                    "name": "next",
+                    "type": "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode",
+                    "shape": "scalar",
+                    "flags": "SerializeReference",
+                    "formerNames": [],
+                    "managedReferenceMode": "SerializeReference",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                    "name": "value",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB"
+            ],
+            "referencedTypeKeys": [
+                "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB"
+            ],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "M07NodeB",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB",
+            "interfaces": [
+                "assemblya.contracts:AssemblyA.Contracts:IM07ManagedNode"
+            ],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB",
+                    "name": "label",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB",
+                    "name": "value",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponent",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "M07RenameProbeComponent",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponent<unityengine.coremodule:UnityEngine:MonoBehaviour<unityengine.coremodule:UnityEngine:Behaviour<unityengine.coremodule:UnityEngine:Component<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponent",
+                    "name": "value",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "M07SceneOnlyComponent",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent<unityengine.coremodule:UnityEngine:MonoBehaviour<unityengine.coremodule:UnityEngine:Behaviour<unityengine.coremodule:UnityEngine:Component<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [
+                "unityengine.coremodule:UnityEngine:ISerializationCallbackReceiver"
+            ],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "afterDeserializeCount",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "beforeSerializeCount",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "dataReference",
+                    "type": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "graphReference",
+                    "type": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "persistentEvent",
+                    "type": "unityengine.coremodule:UnityEngine.Events:UnityEvent",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "sceneValue",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "name": "serializedInterfaceObject",
+                    "type": "unityengine.coremodule:UnityEngine:Object",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": true,
+            "callbackSemanticHash": "sha256:40404e13769a0e8e018a1cda8d8511760ab12f4bfb5e596ad7ef082b204c6437",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject"
+            ],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "VersionedPrefabComponent",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent<assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase<unityengine.coremodule:UnityEngine:MonoBehaviour<unityengine.coremodule:UnityEngine:Behaviour<unityengine.coremodule:UnityEngine:Component<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [
+                "assemblya.contracts:AssemblyA.Contracts:IVersionTextProvider"
+            ],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase",
+                    "name": "baseSerializedValue",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "dataReference",
+                    "type": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "m07InlineValue",
+                    "type": "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "m07InlineValues",
+                    "type": "List<assemblya.contracts:AssemblyA.Contracts:M07InlineValue>",
+                    "shape": "list",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "m07NestedPayload",
+                    "type": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "m07ObjectReference",
+                    "type": "unityengine.coremodule:UnityEngine:Object",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "m07SerializedInt",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "m07SerializedString",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "name": "value",
+                    "type": "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [
+                "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+                "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+                "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+                "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject"
+            ],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+            "assembly": "assemblya.implementation.internal",
+            "namespace": "AssemblyA.Implementation.Internal",
+            "type": "VersionedScriptableObject",
+            "baseChain": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject<unityengine.coremodule:UnityEngine:ScriptableObject<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [
+                "assemblya.contracts:AssemblyA.Contracts:IVersionTextProvider"
+            ],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+                    "name": "m07InlineValue",
+                    "type": "assemblya.contracts:AssemblyA.Contracts:M07InlineValue",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+                    "name": "m07InlineValues",
+                    "type": "List<assemblya.contracts:AssemblyA.Contracts:M07InlineValue>",
+                    "shape": "list",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+                    "name": "value",
+                    "type": "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [
+                "assemblya.contracts:AssemblyA.Contracts:DemoValue",
+                "assemblya.contracts:AssemblyA.Contracts:M07InlineValue"
+            ],
+            "unknownReasons": [],
+            "hasUnknown": false
+        },
+        {
+            "typeKey": "assemblyshadowdemo.extensibilityconsumer:AssemblyShadowDemo.Consumers:DerivedExternalComponent",
+            "assembly": "assemblyshadowdemo.extensibilityconsumer",
+            "namespace": "AssemblyShadowDemo.Consumers",
+            "type": "DerivedExternalComponent",
+            "baseChain": "assemblyshadowdemo.extensibilityconsumer:AssemblyShadowDemo.Consumers:DerivedExternalComponent<assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase<unityengine.coremodule:UnityEngine:MonoBehaviour<unityengine.coremodule:UnityEngine:Behaviour<unityengine.coremodule:UnityEngine:Component<unityengine.coremodule:UnityEngine:Object",
+            "interfaces": [],
+            "fields": [
+                {
+                    "declaringType": "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase",
+                    "name": "baseSerializedValue",
+                    "type": "System.Int32",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblyshadowdemo.extensibilityconsumer:AssemblyShadowDemo.Consumers:DerivedExternalComponent",
+                    "name": "m07SerializedLabel",
+                    "type": "System.String",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                },
+                {
+                    "declaringType": "assemblyshadowdemo.extensibilityconsumer:AssemblyShadowDemo.Consumers:DerivedExternalComponent",
+                    "name": "relatedComponent",
+                    "type": "unityengine.coremodule:UnityEngine:Component",
+                    "shape": "scalar",
+                    "flags": "SerializeField;",
+                    "formerNames": [],
+                    "managedReferenceMode": "",
+                    "unknown": false
+                }
+            ],
+            "serializationCallback": false,
+            "callbackSemanticHash": "",
+            "serializeReferenceCandidates": [],
+            "referencedTypeKeys": [
+                "assemblya.implementation.extensibility:AssemblyA.Implementation.Extensibility:VersionedComponentBase"
+            ],
+            "unknownReasons": [],
+            "hasUnknown": false
+        }
+    ],
+    "unknowns": []
+}
