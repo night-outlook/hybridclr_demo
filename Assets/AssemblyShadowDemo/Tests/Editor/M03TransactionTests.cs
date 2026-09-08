@@ -77,9 +77,10 @@ namespace AssemblyShadowDemo.EditorTests
                 "Success", "FeatureDisabled", "InvalidState", "InvalidArgument", "CandidateNotRegistered", "DuplicateAssemblyName",
                 "BaselineAssemblyNotFound", "BaselineBuildMismatch", "AssemblyNameMismatch", "BadImage", "UnsupportedAssembly",
                 "ClosureMemberMissing", "UnexpectedClosureMember", "ReferenceResolutionFailed", "ReferenceEscapesClosure",
-                "BaselineAlreadyUsed", "ResourceAbiMismatch", "RuntimeAbiMismatch", "AlreadyCommitted", "ModuleInitializerFailed", "InternalError", "BaselineMethodExecution"
+                "BaselineAlreadyUsed", "ResourceAbiMismatch", "RuntimeAbiMismatch", "AlreadyCommitted", "ModuleInitializerFailed", "InternalError", "BaselineMethodExecution",
+                "CapabilityUnavailable", "MetadataCapacityExceeded", "MetadataBudgetMismatch"
             }, Enum.GetNames(errorCode));
-            CollectionAssert.AreEqual(Enumerable.Range(0, 22).ToArray(), Enum.GetValues(errorCode).Cast<object>().Select(Convert.ToInt32).ToArray());
+            CollectionAssert.AreEqual(Enumerable.Range(0, 25).ToArray(), Enum.GetValues(errorCode).Cast<object>().Select(Convert.ToInt32).ToArray());
             CollectionAssert.AreEqual(new[] { "Disabled", "CandidatesRegistered", "Staging", "Staged", "Validated", "Committing", "Committed", "Aborted", "Failed", "FailedAfterCommit" }, Enum.GetNames(state));
             CollectionAssert.AreEqual(Enumerable.Range(0, 10).ToArray(), Enum.GetValues(state).Cast<object>().Select(Convert.ToInt32).ToArray());
             Assert.AreEqual(0, Convert.ToInt32(Enum.Parse(executionMode, "AotBaseline")));
@@ -91,12 +92,13 @@ namespace AssemblyShadowDemo.EditorTests
         {
             Type api = RuntimeType("AssemblyShadowRuntime");
             MethodInfo[] methods = api.GetMethods(BindingFlags.Public | BindingFlags.Static);
-            // Preserve all nine M03 operations and explicitly admit M05's
-            // type-info and M06 execution queries; unexpected APIs or overloads still fail.
+            // Preserve all legacy operations and explicitly admit the negotiated
+            // R01 wrappers; unexpected APIs or overloads still fail.
             CollectionAssert.AreEquivalent(new[] {
                 "ConfigureCandidates", "BeginTransaction", "StageAssembly", "ValidateTransaction",
                 "CommitTransaction", "AbortTransaction", "GetState", "GetAssemblyExecutionMode",
-                "GetDiagnosticsJson", "GetTypeResolutionInfo", "GetExecutionDiagnosticsJson"
+                "GetDiagnosticsJson", "GetTypeResolutionInfo", "GetExecutionDiagnosticsJson",
+                "GetMetadataCapacityJson", "ReserveMetadataBudget", "GetRecoveryInfoJson"
             }, methods.Select(method => method.Name).ToArray());
             foreach (MethodInfo method in methods)
             {
@@ -108,6 +110,8 @@ namespace AssemblyShadowDemo.EditorTests
             Assert.IsTrue(api.GetMethod("GetState").GetParameters()[0].IsOut);
             Assert.IsTrue(api.GetMethod("GetDiagnosticsJson").GetParameters()[0].IsOut);
             Assert.IsTrue(api.GetMethod("GetAssemblyExecutionMode").GetParameters()[1].IsOut);
+            Assert.IsTrue(api.GetMethod("GetMetadataCapacityJson").GetParameters()[1].IsOut);
+            Assert.IsTrue(api.GetMethod("GetRecoveryInfoJson").GetParameters()[0].IsOut);
         }
 
         [Test]
@@ -175,7 +179,8 @@ namespace AssemblyShadowDemo.EditorTests
             Type probe = Assembly.Load("AssemblyShadowDemo.Bootstrap").GetType("AssemblyShadowDemo.M03TransactionProbe", true);
             MethodInfo validate = probe.GetMethod("RequireDisabledDiagnostics", BindingFlags.NonPublic | BindingFlags.Static);
             Assert.IsNotNull(validate);
-            const string complete = "{\"schemaVersion\":1,\"enabled\":false,\"runtimeAbiVersion\":1,\"state\":\"Disabled\",\"stateCode\":0," +
+            const string complete = "{\"schemaVersion\":1,\"startupCandidateSchemaVersion\":0,\"startupCandidateNames\":[],\"startupObservationMode\":\"Unavailable\",\"enabled\":false," +
+                "\"metadataBudgetCapabilityVersion\":0,\"recoveryCapabilityVersion\":0,\"runtimeAbiVersion\":1,\"state\":\"Disabled\",\"stateCode\":0," +
                 "\"lastError\":1,\"detail\":\"\",\"baselineBuildId\":\"\",\"patchId\":\"\",\"generation\":0,\"expected\":0,\"staged\":0," +
                 "\"retainedBytes\":0,\"enumerationGeneration\":0,\"classEnumerationGeneration\":0,\"assemblies\":[],\"events\":[]," +
                 "\"baselineUses\":[],\"ordinaryAssemblies\":[],\"ordinaryClasses\":[],\"closureLoadOrder\":[],\"stableAotNames\":[],\"commitOrder\":[]}";

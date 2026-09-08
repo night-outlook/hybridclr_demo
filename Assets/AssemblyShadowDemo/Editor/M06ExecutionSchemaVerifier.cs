@@ -83,6 +83,9 @@ namespace AssemblyShadowDemo.Editor
         private const string Probe = "AssemblyShadowDemo.M06ExecutionProbe/";
         private const string Diagnostics = "HybridCLR.AssemblyShadowExecutionDiagnostics";
         private const string ClassInfo = "HybridCLR.AssemblyShadowExecutionClassInfo";
+        private const string MetadataCapacity = "HybridCLR.AssemblyShadowMetadataCapacity";
+        private const string MetadataAllocation = "HybridCLR.AssemblyShadowMetadataAllocation";
+        private const string RecoveryInfo = "HybridCLR.AssemblyShadowRecoveryInfo";
         private static readonly string[] Candidates = {
             "AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility", "AssemblyA.Implementation.Internal",
             "AssemblyShadowDemo.ContractsConsumer", "AssemblyShadowDemo.ExtensibilityConsumer",
@@ -98,18 +101,30 @@ namespace AssemblyShadowDemo.Editor
             Probe + "GenerationPlan", Probe + "CompilerModeProof",
             Probe + "GenerationOutput", Probe + "AotInputProof", Probe + "LinkedPlayerReceipt",
         };
-        private static readonly string[] ApiNames = {
+        private static readonly string[] LegacyApiNames = {
             "ConfigureCandidates(System.String,System.String[],System.String[])",
             "BeginTransaction(System.String,System.String,System.String[],System.Int32)",
             "StageAssembly(System.Byte[],System.Byte[])", "ValidateTransaction()", "CommitTransaction()", "AbortTransaction()",
             "GetState(HybridCLR.AssemblyShadowState&)", "GetAssemblyExecutionMode(System.String,HybridCLR.AssemblyExecutionMode&)",
             "GetDiagnosticsJson(System.String&)", "GetTypeResolutionInfo(System.Type,System.String&)", "GetExecutionDiagnosticsJson(System.String&)",
         };
+        private static readonly string[] NegotiatedApiNames = {
+            "GetMetadataCapacityJson(System.Int64[],System.String&)",
+            "ReserveMetadataBudget(System.Int64[],System.Int32)",
+            "GetRecoveryInfoJson(System.String&)",
+        };
+        private static readonly string[] NegotiatedNativeApiNames = {
+            "GetMetadataCapacityJsonInternal(System.Int64[],System.String&)",
+            "ReserveMetadataBudgetInternal(System.Int64[],System.Int32)",
+            "GetRecoveryInfoJsonInternal(System.String&)",
+        };
+        private static readonly string[] ApiNames = LegacyApiNames.Concat(NegotiatedApiNames).ToArray();
         private static readonly string[] ErrorNames = {
             "Success", "FeatureDisabled", "InvalidState", "InvalidArgument", "CandidateNotRegistered", "DuplicateAssemblyName",
             "BaselineAssemblyNotFound", "BaselineBuildMismatch", "AssemblyNameMismatch", "BadImage", "UnsupportedAssembly",
             "ClosureMemberMissing", "UnexpectedClosureMember", "ReferenceResolutionFailed", "ReferenceEscapesClosure", "BaselineAlreadyUsed",
             "ResourceAbiMismatch", "RuntimeAbiMismatch", "AlreadyCommitted", "ModuleInitializerFailed", "InternalError", "BaselineMethodExecution",
+            "CapabilityUnavailable", "MetadataCapacityExceeded", "MetadataBudgetMismatch",
         };
 
         public static M06ExecutionProofPaths WriteProofs(string snapshot, AssemblySnapshotReceipt captured,
@@ -233,21 +248,39 @@ namespace AssemblyShadowDemo.Editor
         {
             Require(input != null && linked != null && input.Assembly != null && linked.Assembly != null &&
                 input.Assembly.Name == Runtime && input.Assembly.FullName == linked.Assembly.FullName, "RuntimeIdentity", "Captured Runtime identities differ.");
-            ShadowDiagnosticSchemaProof.Verify(input, linked, new[] { Diagnostics, ClassInfo }, "M06Execution");
+            ShadowDiagnosticSchemaProof.Verify(input, linked, new[] { Diagnostics, ClassInfo, MetadataCapacity, MetadataAllocation, RecoveryInfo }, "M06Execution");
             foreach (ModuleDef module in new[] { input, linked })
             {
                 TypeDef api = module.Find("HybridCLR.AssemblyShadowRuntime", false);
                 var methods = api == null ? new MethodDef[0] : api.Methods.Where(method => method.IsPublic && !method.IsConstructor).ToArray();
-                Require(methods.Length == ApiNames.Length, "Api", "The public Assembly Shadow API must have exactly eleven operations.");
-                foreach (string name in ApiNames)
+                Require(methods.Length == ApiNames.Length, "Api", "The public Assembly Shadow API must have exactly fourteen operations.");
+                foreach (string name in LegacyApiNames)
                 {
                     var matches = methods.Where(method => method.FullName == ApiFullName(name)).ToArray();
                     Require(matches.Length == 1 && matches[0].IsStatic && matches[0].IsInternalCall && !matches[0].HasBody,
                         "Api", "Missing exact native InternalCall: " + name);
                 }
+                foreach (string name in NegotiatedApiNames)
+                {
+                    var matches = methods.Where(method => method.FullName == ApiFullName(name)).ToArray();
+                    Require(matches.Length == 1 && matches[0].IsStatic && !matches[0].IsInternalCall && matches[0].HasBody,
+                        "Api", "Missing exact managed negotiated wrapper: " + name);
+                }
+                var nativeMethods = api.Methods.Where(method => method.IsPrivate && method.IsStatic && method.IsInternalCall).ToArray();
+                Require(nativeMethods.Length == NegotiatedNativeApiNames.Length, "Api", "The private negotiated native API inventory changed.");
+                foreach (string name in NegotiatedNativeApiNames)
+                {
+                    var matches = nativeMethods.Where(method => method.FullName == ApiFullName(name)).ToArray();
+                    Require(matches.Length == 1 && !matches[0].HasBody,
+                        "Api", "Missing exact private native InternalCall: " + name);
+                }
                 foreach (string name in new[] { "GetDiagnosticsJson", "GetExecutionDiagnosticsJson" })
                     Require(methods.Single(method => method.Name == name).ParamDefs.Any(parameter => parameter.Sequence == 1 && parameter.IsOut),
                         "Api", "Diagnostic argument must remain out string: " + name);
+                Require(methods.Single(method => method.Name == "GetMetadataCapacityJson").ParamDefs.Any(parameter => parameter.Sequence == 2 && parameter.IsOut),
+                    "Api", "Metadata capacity argument must remain out string.");
+                Require(methods.Single(method => method.Name == "GetRecoveryInfoJson").ParamDefs.Any(parameter => parameter.Sequence == 1 && parameter.IsOut),
+                    "Api", "Recovery argument must remain out string.");
                 var code = module.Find("HybridCLR.AssemblyShadowErrorCode", false);
                 var values = code == null ? new FieldDef[0] : code.Fields.Where(field => field.IsLiteral).ToArray();
                 Require(code != null && code.IsEnum && values.Length == ErrorNames.Length, "ErrorCodes", "Execution error-code inventory differs.");
@@ -267,8 +300,27 @@ namespace AssemblyShadowDemo.Editor
                 foreach (string name in new[] { "logicalAssembly", "typeKey", "executionMode", "physicalImageKind", "staticStoragePointer" }) row.Add(name, "System.String");
                 foreach (string name in new[] { "isActive", "cctorStarted", "cctorFinished", "hasInitializationException", "pointerDetailsAvailable", "staticStorageAvailable" }) row.Add(name, "System.Boolean");
                 VerifyFields(module.Find(Diagnostics, false), root); VerifyFields(module.Find(ClassInfo, false), row);
+                VerifyFields(module.Find(MetadataCapacity, false), new Dictionary<string, string>(StringComparer.Ordinal) {
+                    { "schemaVersion", "System.Int32" }, { "enabled", "System.Boolean" }, { "profileVersion", "System.Int32" },
+                    { "indexBits", "System.Int32" }, { "kindBits", "System.Int32" }, { "cursors", "System.UInt32[]" },
+                    { "remainingSlots", "System.UInt32[]" }, { "requiredImages", "System.UInt32" }, { "acceptedImages", "System.UInt32" },
+                    { "firstFailingIndex", "System.Int32" }, { "firstFailingSize", "System.UInt64" }, { "failureReason", "System.String" },
+                    { "fits", "System.Boolean" }, { "allocations", MetadataAllocation + "[]" }, { "finalCursors", "System.UInt32[]" },
+                    { "ordinaryAllocatedCount", "System.UInt64" }, { "shadowAllocatedCount", "System.UInt64" }, { "reservedImageCount", "System.UInt64" },
+                });
+                VerifyFields(module.Find(MetadataAllocation, false), new Dictionary<string, string>(StringComparer.Ordinal) {
+                    { "imageIndex", "System.UInt32" }, { "kind", "System.Int32" }, { "dllSize", "System.UInt64" },
+                });
+                VerifyFields(module.Find(RecoveryInfo, false), new Dictionary<string, string>(StringComparer.Ordinal) {
+                    { "schemaVersion", "System.Int32" }, { "enabled", "System.Boolean" }, { "capabilityVersion", "System.Int32" },
+                    { "stateCode", "System.Int32" }, { "state", "System.String" }, { "published", "System.Boolean" },
+                    { "abortAllowed", "System.Boolean" }, { "dispositionCode", "System.Int32" }, { "disposition", "System.String" },
+                    { "terminalFailureCode", "System.Int32" }, { "reason", "System.String" }, { "retainedBytes", "System.UInt64" },
+                    { "baselineEligibilityRequiresStartupValidation", "System.Boolean" },
+                });
             }
             VerifyPreserve(input.Find(Diagnostics, false)); VerifyPreserve(input.Find(ClassInfo, false));
+            VerifyPreserve(input.Find(MetadataCapacity, false)); VerifyPreserve(input.Find(MetadataAllocation, false)); VerifyPreserve(input.Find(RecoveryInfo, false));
         }
 
         private static string[] VerifyBootstrap(IDictionary<string, ModuleDef> before, IDictionary<string, ModuleDef> after)
@@ -343,7 +395,8 @@ namespace AssemblyShadowDemo.Editor
             IDictionary<string, ModuleDef> linkedModules)
         {
             var pending = new Queue<TypeDef>(bootstrapRoots.Select(root => modules[Bootstrap].Find(root, false)));
-            foreach (string root in new[] { "HybridCLR.AssemblyShadowDiagnostics", "HybridCLR.AssemblyShadowTypeResolutionInfo", Diagnostics, ClassInfo })
+            foreach (string root in new[] { "HybridCLR.AssemblyShadowDiagnostics", "HybridCLR.AssemblyShadowTypeResolutionInfo", Diagnostics, ClassInfo,
+                MetadataCapacity, MetadataAllocation, RecoveryInfo })
                 pending.Enqueue(modules[Runtime].Find(root, false));
             var visited = new HashSet<string>(StringComparer.Ordinal); var result = new List<M06ExecutionSchemaType>();
             while (pending.Count != 0)

@@ -72,6 +72,20 @@ int main()
         Check(AssemblyShadowRuntimeApi::GetDiagnosticsJson(nullptr) == disabled, "OFF null diagnostics output was validated");
         Check(s_stringCalls == 0, "Null diagnostics output attempted managed allocation");
 
+        Il2CppString* capacityOutput = invalidString;
+        Check(AssemblyShadowRuntimeApi::GetMetadataCapacityJson(invalidArray, &capacityOutput) == disabled && !capacityOutput,
+            "OFF capacity query accessed arguments or fabricated a budget");
+        Check(AssemblyShadowRuntimeApi::GetMetadataCapacityJson(invalidArray, nullptr) == disabled,
+            "OFF capacity query validated a null output");
+        Check(AssemblyShadowRuntimeApi::ReserveMetadataBudget(invalidArray, -1) == disabled,
+            "OFF budget reservation accessed arguments");
+        Il2CppString* recoveryOutput = invalidString;
+        Check(AssemblyShadowRuntimeApi::GetRecoveryInfoJson(&recoveryOutput) == disabled && !recoveryOutput,
+            "OFF recovery query fabricated a disposition");
+        Check(AssemblyShadowRuntimeApi::GetRecoveryInfoJson(nullptr) == disabled,
+            "OFF recovery query validated a null output");
+        Check(s_stringCalls == 0, "OFF R01 capability queries attempted managed allocation");
+
         std::string nativeJson;
         Check(AssemblyShadow::GetDiagnosticsJson(nativeJson) == AssemblyShadowError::FeatureDisabled,
             "OFF native diagnostic result changed");

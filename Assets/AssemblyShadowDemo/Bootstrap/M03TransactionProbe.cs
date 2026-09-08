@@ -133,6 +133,7 @@ namespace AssemblyShadowDemo
             }
             RequireState(result, "begun", AssemblyShadowState.Staging);
             RequireNoImages(Capture(result, "begun"));
+            result.reserveMetadataBudget = ReserveMetadataBudget(result, patch);
             var observer = new InitObserver(result);
             TextWriter previous = Console.Out;
             ThreadStress stress = null;
@@ -319,6 +320,16 @@ namespace AssemblyShadowDemo
             result.stageResults.Add(new StageResult { name = name, code = code, dllSha256 = ShadowPatchFileProvider.Hash(dll), pdbSha256 = pdb == null ? null : ShadowPatchFileProvider.Hash(pdb) });
         }
 
+        private static string ReserveMetadataBudget(ProbeResult result, PatchInput patch)
+        {
+            AssemblyShadowErrorCode code;
+            bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
+                patch.manifest.nativeBudgetCapabilityVersion, patch.manifest.metadataEncodingProfile, patch.manifest.metadataCapacityReport,
+                patch.manifest.loadOrder, patch.manifest.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
+                name => { byte[] dll, pdb; patch.ReadAssembly(name, out dll, out pdb); return dll; }, out code);
+            return declared ? Expect(result, "reserve-metadata-budget", code) : null;
+        }
+
         private static string[] Shuffled(string[] closure, ProbeResult result)
         {
             int seed;
@@ -401,7 +412,9 @@ namespace AssemblyShadowDemo
             // defaults would otherwise invent valid OFF values for absent keys.
             // Missing strings/arrays remain null and are also rejected below.
             var result = new AssemblyShadowDiagnostics {
-                schemaVersion = -1, enabled = true, runtimeAbiVersion = -1, stateCode = -1, lastError = -1,
+                schemaVersion = -1, startupCandidateSchemaVersion = -1, startupObservationMode = null,
+                metadataBudgetCapabilityVersion = -1, recoveryCapabilityVersion = -1,
+                enabled = true, runtimeAbiVersion = -1, stateCode = -1, lastError = -1,
                 generation = ulong.MaxValue, expected = ulong.MaxValue, staged = ulong.MaxValue,
                 retainedBytes = ulong.MaxValue, enumerationGeneration = ulong.MaxValue, classEnumerationGeneration = ulong.MaxValue
             };
@@ -409,6 +422,9 @@ namespace AssemblyShadowDemo
             RequireDiagnosticSchema(result, false);
             Require(result.stateCode == (int)AssemblyShadowState.Disabled && result.lastError == (int)AssemblyShadowErrorCode.FeatureDisabled,
                 "OFF diagnostics changed the state/error contract.");
+            Require(result.startupCandidateSchemaVersion == 0 && result.startupCandidateNames != null && result.startupCandidateNames.Length == 0 &&
+                result.startupObservationMode == "Unavailable" && result.metadataBudgetCapabilityVersion == 0 && result.recoveryCapabilityVersion == 0,
+                "OFF diagnostics changed the startup or capability contract.");
             Require(result.generation == 0 && result.enumerationGeneration == 0 && result.classEnumerationGeneration == 0 &&
                 result.expected == 0 && result.staged == 0 && result.retainedBytes == 0, "OFF diagnostics contain transaction counters.");
             Require(result.assemblies.Length == 0 && result.events.Length == 0 && result.baselineUses.Length == 0 &&
@@ -729,8 +745,8 @@ namespace AssemblyShadowDemo
         [Serializable] private sealed class RepositoryPin { public string url, revision; }
         [Serializable] private sealed class SourcePins { public int schemaVersion; public string unityVersion, target, architecture; public RepositoryPin hybridclr, hybridclrUnity, il2cppPlus, demo; }
         [Serializable] private sealed class BaselineManifest { public int schemaVersion, semanticHashSchema; public string baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, playerInputSnapshotHash, bootstrapAbiHash, resourceAbiHash; public string[] shadowCandidates; public SourcePins sourcePins; }
-        [Serializable] private sealed class PatchManifest { public int schemaVersion, semanticHashSchema; public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, unityVersion, target, architecture, compileSnapshotHash, bootstrapAbiHash, baselineResourceAbiHash, resourceAbiHash, signatureAlgorithm; public bool dllOnly, unsigned; public string[] loadOrder; public PatchAssembly[] closure; public SourcePins sourcePins; }
-        [Serializable] private sealed class PatchAssembly { public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; }
+        [Serializable] private sealed class PatchManifest { public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, unityVersion, target, architecture, compileSnapshotHash, bootstrapAbiHash, baselineResourceAbiHash, resourceAbiHash, signatureAlgorithm; public bool dllOnly, unsigned; public string[] loadOrder; public PatchAssembly[] closure; public SourcePins sourcePins; public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; public ShadowPatchMetadataCapacityReport metadataCapacityReport; }
+        [Serializable] private sealed class PatchAssembly { public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; public ulong dllSize; }
         [Serializable] private sealed class FixtureManifest { public int schemaVersion; public string milestone, baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, baselineManifestPath, baselineManifestSha256, baselineInputSnapshotHash, stableAotProvenance, stableAotProvenanceHash; public string[] candidateNames, closureLoadOrder, stableAotNames; public Fixture[] fixtures; }
         [Serializable] private sealed class Fixture { public string patchId, patchDirectory, patchManifest, patchManifestSha256, compileSnapshotHash; public string[] closureLoadOrder, stableAotNames; }
         [Serializable] private sealed class FallbackMarker { public int schemaVersion, processId; public string baselineBuildId, runtimeAbiHash, baselineManifestSha256, patchId, patchManifestSha256, compileSnapshotHash, failure, state; public ulong generation; public bool businessStarted; }
@@ -747,7 +763,7 @@ namespace AssemblyShadowDemo
             public string playerBuildGuid, playerDataPath;
             public string patchId, patchManifestPath, patchManifestSha256, compileSnapshotHash, stableAotProvenanceHash;
             public bool integrityOnlyUnsigned; public string[] stableAotNames, expectedClosure, stageOrder; public int stageSeed;
-            public string configure, begin, stage, validate, commit, abort, duplicateStage, badPdbStage, stateCode, state, stateAtValidate, stateAfterCommit;
+            public string configure, begin, reserveMetadataBudget, stage, validate, commit, abort, duplicateStage, badPdbStage, stateCode, state, stateAtValidate, stateAfterCommit;
             public string executionModeCode, executionMode, diagnosticsCode, nativeDiagnosticsJson, nativeDiagnosticsPath, nativeDiagnosticsSha256;
             public List<Check> checks = new List<Check>(); public List<string> states = new List<string>(); public List<Snapshot> snapshots = new List<Snapshot>();
             public List<StageResult> stageResults = new List<StageResult>(); public List<InitializerEvent> initializerEvents = new List<InitializerEvent>();

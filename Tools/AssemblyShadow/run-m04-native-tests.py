@@ -61,6 +61,7 @@ def execute(args, receipt):
     sources = [demo / "Tools/AssemblyShadow/native-tests/m04_resolution.cpp",
                demo / "Tools/AssemblyShadow/native-tests/m04_reference_identity.cpp", runtime_sources[0], native_sources[0], native_sources[2]]
     sources += [native / "hybridclr/metadata" / name for name in ("RawImage.cpp", "RawImageBase.cpp", "MetadataUtil.cpp")]
+    sources += [native / "hybridclr/generated/AssemblyManifest.cpp"]
     sources += [runtime / "libil2cpp" / name for name in
                 ("vm/AssemblyShadowDiagnostics.cpp", "vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "utils/sha1.cpp")]
     receipt.update(sourcePins=pins, installedHeaderProvenance={"root": str(installed), "receipt": install,

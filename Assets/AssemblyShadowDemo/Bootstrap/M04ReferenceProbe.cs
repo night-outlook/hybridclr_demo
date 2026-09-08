@@ -105,6 +105,7 @@ namespace AssemblyShadowDemo
             RequireState(result, AssemblyShadowState.Staging, "staging");
 
             var toStage = missingMember ? new[] { Internal } : escapingReference ? new[] { Contracts } : closure;
+            result.reserveMetadataBudget = ReserveMetadataBudget(result, fixture, escapingReference ? toStage : closure);
             foreach (string name in toStage) Stage(result, fixture, name);
             result.stageOrder = toStage.ToArray();
             Capture(result, "staged");
@@ -371,6 +372,27 @@ namespace AssemblyShadowDemo
             if (!string.IsNullOrEmpty(assembly.pdb)) pdb = File.ReadAllBytes(Path.GetFullPath(Path.Combine(fixture.patchRoot, assembly.pdb)));
             string code = Expect(result, "stage-" + name, AssemblyShadowRuntime.StageAssembly(bytes, pdb));
             result.stageResults.Add(new StageResult { name = name, code = code, dllSha256 = Hash(bytes), pdbSha256 = pdb == null ? "" : Hash(pdb) });
+        }
+
+        private static string ReserveMetadataBudget(Result result, Fixture fixture, string[] reservationOrder)
+        {
+            int profileVersion;
+            Dictionary<string, long> verifiedSizes;
+            bool declared = ShadowPatchMetadataReservation.ValidateIfDeclared(
+                fixture.patch.nativeBudgetCapabilityVersion, fixture.patch.metadataEncodingProfile, fixture.patch.metadataCapacityReport,
+                fixture.patch.loadOrder, fixture.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
+                name => ReadVerifiedDll(fixture, name), out profileVersion, out verifiedSizes);
+            if (!declared) return null;
+            AssemblyShadowErrorCode code = ShadowPatchMetadataReservation.Reserve(profileVersion, reservationOrder, verifiedSizes);
+            return Expect(result, "reserve-metadata-budget", code);
+        }
+
+        private static byte[] ReadVerifiedDll(Fixture fixture, string name)
+        {
+            PatchAssembly assembly = fixture.patch.closure.Single(item => item.name == name);
+            byte[] bytes = File.ReadAllBytes(Path.GetFullPath(Path.Combine(fixture.patchRoot, assembly.dll)));
+            Require(Hash(bytes) == assembly.sha256, "Patch DLL hash mismatch: " + name);
+            return bytes;
         }
 
         private static Fixture SelectFixture(FixtureManifest manifest, string mode)
@@ -698,7 +720,7 @@ namespace AssemblyShadowDemo
             [Preserve] public int schemaVersion, processId; [Preserve] public string milestone, mode, result, error; [Preserve] public bool il2cpp;
             [Preserve] public string unityVersion, platform, buildGuid, playerDataPath, baselineBuildId, runtimeAbiHash;
             [Preserve] public string fixtureManifestPath, fixtureManifestSha256, playerBuildReceiptPath, playerBuildReceiptSha256;
-            [Preserve] public string patchId, patchManifestPath, patchManifestSha256, compileSnapshotHash, rawDiagnosticsPath, rawDiagnosticsSha256, businessMarker, moduleMvidObservationPolicy;
+            [Preserve] public string patchId, patchManifestPath, patchManifestSha256, compileSnapshotHash, reserveMetadataBudget, rawDiagnosticsPath, rawDiagnosticsSha256, businessMarker, moduleMvidObservationPolicy;
             [Preserve] public string configure, begin, stage, validate, commit, abort, stateCode, state, executionModeCode, executionMode, diagnosticsCode, nativeDiagnosticsJson;
             [Preserve] public string[] stageOrder; [Preserve] public List<Check> checks; [Preserve] public List<Snapshot> snapshots;
             [Preserve] public List<AssemblyObservation> actualLogicalAssemblies, assemblyObservations; [Preserve] public List<LoadObservation> loadObservations;
@@ -749,7 +771,7 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] private sealed class Input { [Preserve] public string manifestPath, playerReceiptPath, MscorlibPath, MscorlibSha256, MscorlibFullName, MscorlibMvid; [Preserve] public FixtureManifest manifest; [Preserve] public PlayerBuildReceipt player; [Preserve] public BaselineManifest baseline; }
         [Serializable, Preserve] private sealed class BaselineManifest { [Preserve] public string baselineBuildId; [Preserve] public BaselineAssembly[] assemblies; }
         [Serializable, Preserve] private sealed class BaselineAssembly { [Preserve] public string name, mvid; }
-        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema; [Preserve] public string patchId, baselineBuildId, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; }
-        [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; }
+        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport; }
+        [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; [Preserve] public ulong dllSize; }
     }
 }

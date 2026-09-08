@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01 bounded native prebuild review",
+  "reviewer": "r00_review_gpt6astra_high_1",
+  "verdict": "PASS",
+  "milestoneAccepted": false,
+  "humanGateApproved": false,
+  "reviewScope": "Budget helper, allocator/reservation, recovery, adapters and ConfigureOnly startup diagnostics before real Player validation",
+  "findings": [],
+  "evidence": {
+    "budgetChecks": 2684,
+    "recoveryChecks": 498,
+    "preliminaryM06Checks": 824,
+    "preliminaryM06Syntax": 20
+  },
+  "limitations": [
+    "Not an R01 acceptance review",
+    "Managed/Editor integration not covered",
+    "Real shared-budget Player execution not yet run",
+    "Early startup observation remains ConfigureOnly"
+  ],
+  "followup": {
+    "latestM06Receipt": "_temp/AssemblyShadow/R01/m06-native-integration-3.json",
+    "latestM06Checks": 824,
+    "latestM06SyntaxChecks": 20,
+    "harnessFix": "Link actual generated AssemblyManifest.cpp for new diagnostics globals",
+    "nativeChangesAfterReview": "Static ABI assertions cover every recovery state/error; invalid capacity state returns InternalError; diagnostics uses helper limit constants"
+  },
+  "sourceCommits": {
+    "hybridclr": "99ed95d58c7d976e5fd05257a4fe735ce0ee3813",
+    "il2cpp_plus": "54320899eafedbd065bd9685811eebc7488c7df9"
+  }
+}

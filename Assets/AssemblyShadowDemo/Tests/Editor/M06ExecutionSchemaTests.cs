@@ -20,6 +20,9 @@ namespace AssemblyShadowDemo.EditorTests
         private const string Row = "HybridCLR.AssemblyShadowExecutionClassInfo";
         private const string M05Root = "HybridCLR.AssemblyShadowDiagnostics";
         private const string M05Row = "HybridCLR.AssemblyShadowDiagnosticAssembly";
+        private const string Capacity = "HybridCLR.AssemblyShadowMetadataCapacity";
+        private const string Allocation = "HybridCLR.AssemblyShadowMetadataAllocation";
+        private const string Recovery = "HybridCLR.AssemblyShadowRecoveryInfo";
 
         [Test] public void ActualExecutionDtosAndExactNativeSignaturesSurviveDifferentMvids()
         {
@@ -77,6 +80,28 @@ namespace AssemblyShadowDemo.EditorTests
                 }
         }
 
+        [Test] public void NegotiatedApiInventoryRejectsMissingMalformedAndExtraNativeEntries()
+        {
+            foreach (string mutation in new[] { "missing-public", "missing-private", "private-managed", "private-extra", "wrapper-native", "capacity-non-out" })
+                using (var fixture = new RuntimeFixture())
+                {
+                    var type = fixture.Linked.Find("HybridCLR.AssemblyShadowRuntime", false);
+                    var wrapper = type.Methods.Single(candidate => candidate.Name == "GetMetadataCapacityJson");
+                    if (mutation == "missing-public") type.Methods.Remove(wrapper);
+                    else if (mutation == "missing-private") type.Methods.Remove(type.Methods.Single(candidate => candidate.Name == "GetMetadataCapacityJsonInternal"));
+                    else if (mutation == "private-managed")
+                    {
+                        var method = type.Methods.Single(candidate => candidate.Name == "GetMetadataCapacityJsonInternal");
+                        method.ImplAttributes = dnlib.DotNet.MethodImplAttributes.IL; method.Body = new CilBody(); method.Body.Instructions.Add(OpCodes.Ret.ToInstruction());
+                    }
+                    else if (mutation == "private-extra") type.Methods.Add(new MethodDefUser("UnexpectedInternal", wrapper.MethodSig,
+                        dnlib.DotNet.MethodAttributes.Private | dnlib.DotNet.MethodAttributes.Static) { ImplAttributes = dnlib.DotNet.MethodImplAttributes.InternalCall });
+                    else if (mutation == "wrapper-native") { wrapper.ImplAttributes = dnlib.DotNet.MethodImplAttributes.InternalCall; wrapper.Body = null; }
+                    else wrapper.ParamDefs.Single(parameter => parameter.Sequence == 2).IsOut = false;
+                    AssertCode("M06ExecutionApi", fixture.Verify);
+                }
+        }
+
         [Test] public void EveryStableExecutionErrorCodeRejectsRenumbering()
         {
             for (int value = 0; value < 22; ++value)
@@ -88,9 +113,24 @@ namespace AssemblyShadowDemo.EditorTests
                 }
         }
 
+        [Test] public void R01ErrorCodesAreAdditiveAfterTheLegacyRange()
+        {
+            using (var fixture = new RuntimeFixture())
+            {
+                var code = fixture.Linked.Find("HybridCLR.AssemblyShadowErrorCode", false);
+                foreach (int value in new[] { 22, 23, 24 })
+                {
+                    var field = code.Fields.Single(candidate => candidate.IsLiteral && (int)candidate.Constant.Value == value);
+                    field.Constant = new ConstantUser(value + 100);
+                    AssertCode("M06ExecutionErrorCodes", fixture.Verify);
+                    field.Constant = new ConstantUser(value);
+                }
+            }
+        }
+
         [Test] public void NewSourceDtosRequireTrustedTypeAndFieldPreservation()
         {
-            foreach (string typeName in new[] { Root, Row })
+            foreach (string typeName in new[] { Root, Row, Capacity, Allocation, Recovery })
                 foreach (bool removeType in new[] { false, true })
                     using (var fixture = new RuntimeFixture())
                     {
@@ -105,7 +145,7 @@ namespace AssemblyShadowDemo.EditorTests
         {
             using (var fixture = new RuntimeFixture())
             {
-                foreach (string name in new[] { Root, Row })
+                foreach (string name in new[] { Root, Row, Capacity, Allocation, Recovery })
                 {
                     TypeDef type = fixture.Linked.Find(name, false);
                     type.CustomAttributes.Clear();
@@ -113,6 +153,22 @@ namespace AssemblyShadowDemo.EditorTests
                 }
                 Assert.DoesNotThrow(fixture.Verify);
             }
+        }
+
+        [Test] public void NegotiatedDtosRejectMissingExtraAndWrongTypedFields()
+        {
+            foreach (string mutation in new[] { "capacity-missing", "capacity-extra", "capacity-wrong", "allocation-missing", "recovery-missing", "recovery-wrong" })
+                using (var fixture = new RuntimeFixture())
+                {
+                    TypeDef type = fixture.Linked.Find(mutation.StartsWith("capacity", StringComparison.Ordinal) ? Capacity :
+                        mutation.StartsWith("allocation", StringComparison.Ordinal) ? Allocation : Recovery, false);
+                    if (mutation == "capacity-missing" || mutation == "allocation-missing" || mutation == "recovery-missing")
+                        type.Fields.Remove(type.Fields.First(field => field.IsPublic && !field.IsStatic));
+                    else if (mutation == "capacity-extra") type.Fields.Add(new FieldDefUser("undeclared", new FieldSig(fixture.Linked.CorLibTypes.Int32), dnlib.DotNet.FieldAttributes.Public));
+                    else if (mutation == "capacity-wrong") type.Fields.Single(field => field.Name == "ordinaryAllocatedCount").FieldSig = new FieldSig(fixture.Linked.CorLibTypes.Int64);
+                    else if (mutation == "recovery-wrong") type.Fields.Single(field => field.Name == "retainedBytes").FieldSig = new FieldSig(fixture.Linked.CorLibTypes.Int64);
+                    AssertCode("M06ExecutionSchemaMismatch", fixture.Verify);
+                }
         }
 
         [Test] public void WrongRuntimeAssemblyIdentityIsRejected()
@@ -510,11 +566,33 @@ namespace AssemblyShadowDemo.EditorTests
                 // Editor/Mono implementations throw. Model the real IL2CPP declarations
                 // without executing the business/native API or resolving another DLL.
                 foreach (ModuleDef module in new[] { Input, Linked })
-                    foreach (MethodDef method in module.Find("HybridCLR.AssemblyShadowRuntime", false).Methods.Where(method => method.IsPublic && !method.IsConstructor))
+                {
+                    TypeDef api = module.Find("HybridCLR.AssemblyShadowRuntime", false);
+                    foreach (MethodDef method in api.Methods.Where(method => method.IsPublic && !method.IsConstructor && LegacyNames.Contains(method.Name.String)))
                     { method.Body = null; method.ImplAttributes = dnlib.DotNet.MethodImplAttributes.InternalCall; }
+                    AddNegotiatedNativeEntries(api);
+                }
             }
             internal void Verify() { Invoke("VerifyRuntimeModules", Input, Linked); }
             public void Dispose() { Input.Dispose(); Linked.Dispose(); }
+
+            private static readonly HashSet<string> LegacyNames = new HashSet<string>(new[] {
+                "ConfigureCandidates", "BeginTransaction", "StageAssembly", "ValidateTransaction", "CommitTransaction", "AbortTransaction",
+                "GetState", "GetAssemblyExecutionMode", "GetDiagnosticsJson", "GetTypeResolutionInfo", "GetExecutionDiagnosticsJson",
+            }, StringComparer.Ordinal);
+
+            private static void AddNegotiatedNativeEntries(TypeDef api)
+            {
+                foreach (string name in new[] { "GetMetadataCapacityJsonInternal", "ReserveMetadataBudgetInternal", "GetRecoveryInfoJsonInternal" })
+                {
+                    MethodDef wrapper = api.Methods.Single(method => method.Name == name.Substring(0, name.Length - "Internal".Length));
+                    var native = new MethodDefUser(name, wrapper.MethodSig,
+                        dnlib.DotNet.MethodAttributes.Private | dnlib.DotNet.MethodAttributes.Static) {
+                        ImplAttributes = dnlib.DotNet.MethodImplAttributes.InternalCall,
+                    };
+                    api.Methods.Add(native);
+                }
+            }
         }
 
         private sealed class M05LinkedSchemaFixture : IDisposable

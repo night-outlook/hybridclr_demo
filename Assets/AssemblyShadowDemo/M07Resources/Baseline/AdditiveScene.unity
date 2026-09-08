@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &720576297
+--- !u!1001 &1176672414
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -179,18 +179,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02c54ba788ef2488b8559a70e392d8b7, type: 3}
---- !u!114 &720576298 stripped
+--- !u!114 &1176672415 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7618070089481431886, guid: 02c54ba788ef2488b8559a70e392d8b7, type: 3}
-  m_PrefabInstance: {fileID: 720576297}
+  m_PrefabInstance: {fileID: 1176672414}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b853187e0c1364aef9a899bb0bf9567c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
---- !u!1 &1362411403
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1226855596
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,8 +198,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1362411405}
-  - component: {fileID: 1362411404}
+  - component: {fileID: 1226855598}
+  - component: {fileID: 1226855597}
   m_Layer: 0
   m_Name: M07 Additive Scene Root
   m_TagString: Untagged
@@ -207,47 +207,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1362411404
+--- !u!114 &1226855597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362411403}
+  m_GameObject: {fileID: 1226855596}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102e5e668cbb487bbf6b51f282664328, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   sceneValue: 708
   dataReference: {fileID: 11400000, guid: f183e6c1f2bb14c159d473dc90cde0b5, type: 2}
   graphReference: {fileID: 11400000, guid: fac87319343204d7a81edaddc93f9daf, type: 2}
-  serializedInterfaceObject: {fileID: 720576298}
+  serializedInterfaceObject: {fileID: 1176672415}
   persistentEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1362411404}
+      - m_Target: {fileID: 1226855597}
         m_TargetAssemblyTypeName: AssemblyA.Implementation.Internal.M07SceneOnlyComponent,
           AssemblyA.Implementation.Internal
         m_MethodName: OnM07UnityEvent
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   beforeSerializeCount: 4
   afterDeserializeCount: 1
---- !u!4 &1362411405
+--- !u!4 &1226855598
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362411403}
+  m_GameObject: {fileID: 1226855596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -260,5 +260,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 720576297}
-  - {fileID: 1362411405}
+  - {fileID: 1176672414}
+  - {fileID: 1226855598}

@@ -67,6 +67,7 @@ def execute(args, receipt):
               "vm-utils/VmStringUtils.cpp", "utils/StringUtils.cpp", "char-conversions.cpp")]
     core += [native / "hybridclr/metadata/AssemblyShadowBridge.cpp"]
     core += [native / "hybridclr/metadata/Image.cpp"]
+    core += [native / "hybridclr/generated/AssemblyManifest.cpp"]
     reflection = [demo / "Tools/AssemblyShadow/native-tests/m05_reflection.cpp"]
     reflection += [runtime / "libil2cpp" / name for name in
                    ("icalls/mscorlib/System.Reflection/RuntimeAssembly.cpp", "icalls/mscorlib/System/Object.cpp",

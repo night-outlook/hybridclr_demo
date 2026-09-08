@@ -121,6 +121,7 @@ namespace AssemblyShadowDemo
             result.beginCode = Expect(result, "begin", AssemblyShadowRuntime.BeginTransaction(
                 fixture.patchId, input.manifest.baselineBuildId, fixture.closureLoadOrder, RuntimeAbiVersion));
             RequireState(result, AssemblyShadowState.Staging, "staging");
+            result.reserveMetadataBudget = ReserveMetadataBudget(result, input, fixture);
             foreach (string name in fixture.closureLoadOrder)
             {
                 PatchAssembly assembly = input.patch.closure.Single(item => item.name == name);
@@ -412,6 +413,24 @@ namespace AssemblyShadowDemo
             return full;
         }
 
+        private static string ReserveMetadataBudget(Result result, Input input, Fixture fixture)
+        {
+            AssemblyShadowErrorCode code;
+            bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
+                input.patch.nativeBudgetCapabilityVersion, input.patch.metadataEncodingProfile, input.patch.metadataCapacityReport,
+                input.patch.loadOrder, input.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
+                name => ReadVerifiedDll(input.patch, fixture, name), out code);
+            return declared ? Expect(result, "reserve-metadata-budget", code) : null;
+        }
+
+        private static byte[] ReadVerifiedDll(PatchManifest patch, Fixture fixture, string name)
+        {
+            PatchAssembly assembly = patch.closure.Single(item => item.name == name);
+            byte[] dll = File.ReadAllBytes(Confined(fixture.patchDirectory, assembly.dll));
+            Require(Hash(dll) == assembly.sha256, "M07 patch DLL hash mismatch: " + name);
+            return dll;
+        }
+
         internal static void ValidateFile(string path, string expectedHash)
         {
             Require(File.Exists(path) && IsHash(expectedHash) && HashFile(path) == expectedHash, "M07 artifact hash differs: " + path);
@@ -451,7 +470,7 @@ namespace AssemblyShadowDemo
             [Preserve] public string baselineManifestPath, baselineManifestSha256, patchId, patchManifestPath, patchManifestSha256;
             [Preserve] public string resourceReceiptPath, resourceReceiptSha256, baselineResourceAbiHash, selectedResourceAbiHash, resourcePrecheckPhase;
             [Preserve] public bool il2cpp, resourcePrecheckPassed, commitCompletedBeforeResourceLoad, businessResourceLoadStarted;
-            [Preserve] public string configureCode, beginCode, stageProbeCode, validateCode, commitCode, abortCode, stateCode, state;
+            [Preserve] public string configureCode, beginCode, reserveMetadataBudget, stageProbeCode, validateCode, commitCode, abortCode, stateCode, state;
             [Preserve] public string executionModeCode, diagnosticsCode, typeResolutionCode, executionDiagnosticsCode, nativeDiagnosticsJson;
             [Preserve] public string rawDiagnosticsPath, rawDiagnosticsSha256, unityPathJson, monoScriptClass, monoScriptAssembly, graphType, graphDescription;
             [Preserve] public string serializedState, lifecycleBefore, lifecycleAfter, sceneLifecycleAfter;
@@ -510,10 +529,11 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] internal sealed class BaselineAssembly { public string name, mvid; }
         [Serializable, Preserve] internal sealed class PatchManifest
         {
-            public int schemaVersion, semanticHashSchema; public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash;
-            public string baselineResourceAbiHash, resourceAbiHash, resourceChangeLevel; public bool dllOnly; public string[] resourceBundlesRequired, changedRoots, loadOrder; public PatchAssembly[] closure;
+            [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash;
+            [Preserve] public string baselineResourceAbiHash, resourceAbiHash, resourceChangeLevel; [Preserve] public bool dllOnly; [Preserve] public string[] resourceBundlesRequired, changedRoots, loadOrder; [Preserve] public PatchAssembly[] closure;
+            [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport;
         }
-        [Serializable, Preserve] internal sealed class PatchAssembly { public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; }
+        [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; [Preserve] public ulong dllSize; }
         [Serializable, Preserve] internal sealed class ResourceReceipt
         {
             public int schemaVersion; public string provenance, unityVersion, target, architecture, resourceAbiHash, bundleDirectory; public ResourceBundle[] bundles;

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "scope": "Bounded R01 prebuild integration; not milestone or human acceptance",
+  "verdict": "FAIL",
+  "reviewer": "r00_review_gpt6astra_high_1",
+  "findings": [
+    {
+      "id": "R01-PRE-001",
+      "priority": "P1",
+      "detail": "Inherited exact legacy manifest/runtime proof schema rejects new R01 artifacts before launch.",
+      "status": "FixInProgress",
+      "owner": "r01_recovery_classifier_gpt56luna_high_1"
+    },
+    {
+      "id": "R01-PRE-002",
+      "priority": "P2",
+      "detail": "M04 T04-05 begins singleton Contracts but reserves full P03 closure.",
+      "status": "FixedAwaitingIndependentReReview",
+      "fix": "Validate original complete manifest and verified sizes separately, then reserve actual transaction singleton.",
+      "verification": "Demo Editor 281/281 passed; actual Player negative still pending."
+    }
+  ],
+  "otherFindings": [
+    {
+      "detail": "Native transaction metadata-failure scenario did not originally traverse production Validate failure branch.",
+      "status": "Fixed",
+      "verification": "native-transaction-4.json 83 checks, production state machine plus explicit synthetic ownership/backend."
+    },
+    {
+      "detail": "Warmup test JSON writer recursed through UInt64 static fields and exhausted native stack.",
+      "status": "Fixed",
+      "verification": "Package671/671, warmup17/17; prior crash receipts retained."
+    }
+  ],
+  "startupBoundary": "ConfigureOnly pending ObserveGap experiments; no early-observation claim",
+  "reReview": {
+    "verdict": "FAIL",
+    "fixed": [
+      "R01-PRE-002"
+    ],
+    "remaining": [
+      "R01 patch helper Path plus string TypeError",
+      "R01 result binder expects nonexistent Player receipt keys",
+      "R01 diagnostics uses undefined imported constant",
+      "ObserveGap incorrectly requires early native baseline uses",
+      "M06 historical results require a new field and M07 new results reject the new field"
+    ],
+    "resolution": "Escalated to Astra debugger with exclusive Python verifier/test ownership and complete-shaped test requirement"
+  }
+}

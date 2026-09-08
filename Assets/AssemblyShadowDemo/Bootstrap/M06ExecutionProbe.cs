@@ -186,6 +186,7 @@ namespace AssemblyShadowDemo
                 RequireCode(result.beginCode, AssemblyShadowErrorCode.Success, "begin");
             });
             RequireState(result, AssemblyShadowState.Staging, "staging");
+            result.reserveCode = ReserveMetadataBudget(result, fixture);
             RunSupplementaryMetadata(result, input, fixture);
             TimedOperation(result, "stage", () => {
                 foreach (string name in fixture.closureLoadOrder)
@@ -861,7 +862,7 @@ namespace AssemblyShadowDemo
         private static Result NewResult(string mode, string baseline, string abi)
         {
             return new Result { schemaVersion = 1, milestone = "M06", mode = mode, result = "Failed", error = "", il2cpp = IsIl2CppPlayer(),
-                configureCode = -1, beginCode = -1, validateCode = -1, commitCode = -1, abortCode = -1, stateCode = -1, executionModeCode = -1,
+                configureCode = -1, beginCode = -1, reserveCode = -1, validateCode = -1, commitCode = -1, abortCode = -1, stateCode = -1, executionModeCode = -1,
                 diagnosticsCode = -1, executionDiagnosticsCode = -1, typeResolutionCode = -1,
                 processId = Process.GetCurrentProcess().Id, unityVersion = Application.unityVersion, platform = Application.platform.ToString(), buildGuid = Application.buildGUID,
                 playerDataPath = Application.dataPath, baselineBuildId = baseline, runtimeAbiHash = abi, moduleMvidObservationPolicy = MvidPolicy,
@@ -882,6 +883,26 @@ namespace AssemblyShadowDemo
 #endif
         }
         private static string Hash(byte[] bytes) { using (var sha = SHA256.Create()) return BitConverter.ToString(sha.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant(); }
+        private static int ReserveMetadataBudget(Result result, Fixture fixture)
+        {
+            AssemblyShadowErrorCode code;
+            bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
+                fixture.patch.nativeBudgetCapabilityVersion, fixture.patch.metadataEncodingProfile, fixture.patch.metadataCapacityReport,
+                fixture.patch.loadOrder, fixture.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
+                name => ReadVerifiedDll(fixture, name), out code);
+            if (!declared) return -1;
+            RequireCode((int)code, AssemblyShadowErrorCode.Success, "reserve-metadata-budget");
+            return (int)code;
+        }
+
+        private static byte[] ReadVerifiedDll(Fixture fixture, string name)
+        {
+            PatchAssembly patch = fixture.patch.closure.Single(item => item.name == name);
+            byte[] dll = File.ReadAllBytes(patch.dll);
+            Require(Hash(dll) == patch.sha256, "M06 patch DLL hash mismatch: " + name);
+            return dll;
+        }
+
         private static void RequireCode(int actual, AssemblyShadowErrorCode expected, string operation) { Require(actual == (int)expected, "M06 " + operation + " returned " + actual + ", expected " + (int)expected + "."); }
         private static void RequireState(Result result, AssemblyShadowState expected, string operation)
         {
@@ -899,7 +920,7 @@ namespace AssemblyShadowDemo
 
         [Serializable, Preserve] public sealed class Result
         {
-            [Preserve] public int schemaVersion, processId, configureCode, beginCode, validateCode, commitCode, abortCode, stateCode, executionModeCode, diagnosticsCode, executionDiagnosticsCode, typeResolutionCode;
+            [Preserve] public int schemaVersion, processId, configureCode, beginCode, reserveCode, validateCode, commitCode, abortCode, stateCode, executionModeCode, diagnosticsCode, executionDiagnosticsCode, typeResolutionCode;
             [Preserve] public string milestone, mode, result, error, unityVersion, platform, buildGuid, playerDataPath, baselineBuildId, runtimeAbiHash, variant, moduleMvidObservationPolicy;
             [Preserve] public bool il2cpp, developmentBuild, businessLaunched;
             [Preserve] public string fixtureManifestPath, fixtureManifestSha256, playerBuildReceiptPath, playerBuildReceiptSha256, generationProofPath, generationProofSha256, executionProofPath, executionProofSha256;
@@ -1028,7 +1049,7 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] internal sealed class WarmupType { [Preserve] public string assembly, type; }
         [Serializable, Preserve] internal sealed class WarmupMethod { [Preserve] public string assembly, declaringType, name; [Preserve] public bool isStatic; [Preserve] public int genericArity; [Preserve] public WarmupTypeIdentity[] genericArguments, parameterTypes; [Preserve] public WarmupTypeIdentity returnType; }
         [Serializable, Preserve] internal sealed class WarmupTypeIdentity { [Preserve] public string assembly, type; }
-        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema; [Preserve] public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; }
-        [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; }
+        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport; }
+        [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; [Preserve] public ulong dllSize; }
     }
 }

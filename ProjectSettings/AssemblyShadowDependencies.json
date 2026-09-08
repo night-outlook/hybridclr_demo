@@ -683,6 +683,35 @@
       "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
       "method": "AssemblyShadowDemo.M07R00PerformanceProbe::RunExistingExecutionRegressions",
       "reason": "R00 reruns the retained M06 new, dispatch and generics witness after its benchmark, with active physical type diagnostics and exact observation checks; this is not an unrestricted bootstrap reflection waiver."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.M07R01Probe::ObserveType",
+      "reason": "R01 test-only negative pre-Configure fixture resolves the exact baseline-known InternalEntry through literal Assembly.Load/GetType to expose the ConfigureOnly gap; this grants no startup safety and is not a Commit path."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+      "method": "AssemblyShadowDemo.M07R01Probe::ObserveObject",
+      "reason": "R01 test-only negative pre-Configure fixture resolves the exact nested M06InternalNode after literal Assembly.Load; this declaration records the finite type identity only, grants no startup safety and is not a Commit path."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+      "method": "AssemblyShadowDemo.M07R01Probe::ObserveObject",
+      "target": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode",
+      "reason": "R01 test-only negative pre-Configure fixture approves only the exact nested M06InternalNode literal target; this grants no startup safety and is not a Commit path."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M07R01Probe::ObserveCctor",
+      "reason": "R01 test-only negative pre-Configure fixture resolves the exact M06ExecutionWitness and its cctor evidence through literal Assembly.Load/GetType; this grants no startup safety and is not a Commit path."
     }
   ]
 }

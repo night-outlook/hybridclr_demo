@@ -112,6 +112,7 @@ def execute(args, receipt):
                       ("vm/AssemblyShadowTypeKey.cpp", "vm/AssemblyShadowTypeResolver.cpp", "vm/AssemblyShadowDiagnostics.cpp",
                        "vm-utils/VmStringUtils.cpp", "utils/StringUtils.cpp", "char-conversions.cpp")]
     core += [native / "hybridclr/metadata" / name for name in ("AssemblyShadowBridge.cpp", "Image.cpp")]
+    core += [native / "hybridclr/generated/AssemblyManifest.cpp"]
     syntax = [runtime / "libil2cpp" / name for name in
               ("vm/AssemblyShadow.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/AssemblyShadowDiagnostics.cpp",
                "vm/Runtime.cpp", "vm/GlobalMetadata.cpp", "codegen/il2cpp-codegen.h")]
