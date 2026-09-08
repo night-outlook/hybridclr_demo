@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV5NativeRegressions",
+  "result": "PassedNativeScope",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "c2c908c5a11ce65aabb0da75b512923f709277c1",
+      "localPath": "."
+    }
+  },
+  "freshReceipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m03-native-v5-1.json",
+      "sha256": "78ab31030427b9f06407e606341a03f33a9f3df4b2e17ad491b8c97542c784e4",
+      "metrics": {
+        "identityChecks": 94707,
+        "nameChecks": 30,
+        "facadeChecks": 25,
+        "facadeLookupChecks": 15,
+        "disabledApiChecks": 33
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Real parser/VM folding/facade policy/TLS and VM image lookup; raw-metadata and diagnostic-counter fixture adapters plus Memory::Free; real baselib; unused VM paths dead-stripped with dynamic_lookup; no transaction/state emulation"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m04-native-v5-1.json",
+      "sha256": "6a9528fa4a9f269f96cc2749963e76ef4cf6d07962c85d3ec45559fadf204837",
+      "metrics": {
+        "checks": 53,
+        "lookupCount": 1000000,
+        "lookupAllocations": 0,
+        "lookupMicroseconds": 373503,
+        "syntaxChecks": 22,
+        "referenceIdentityChecks": 15
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Actual resolver/core, Assembly enumeration/publication, TLS, physical-AOT closure scan and serializer. Controlled physical metadata-table, exception and class-enumeration adapters; immutable active snapshot fixture. Not full transaction, managed reflection or Player acceptance."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m05-native-v5-1.json",
+      "sha256": "4b07ce25409334d6c03ace29f66ef118e04ec9bbfa835b9b2598a4ff7b41109d",
+      "metrics": {
+        "syntaxChecks": 34,
+        "coreTestsChecks": 616,
+        "reflectionTestsChecks": 35,
+        "imageIdentityTestsChecks": 219
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Actual TypeKey/resolver/guard/transaction diagnostic/TLS code. Controlled physical metadata and upstream generic/array/pointer interner adapters, managed exception adapter, immutable active snapshot. No class initialization, object reinterpretation, Player or full transaction acceptance."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m06-native-v5-1.json",
+      "sha256": "b3b88f0dc9b7ed599d58677506dd2a4958ac802c9d7229467d19971866a5feb5",
+      "metrics": {
+        "checks": 824,
+        "syntaxChecks": 20
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Actual AssemblyShadow core, TypeKey/resolver/serializer and TLS. M05 physical/interner/exception adapters; M06 raw TypeDef adapters and immutable publication fixture. No managed execution, class materialization or object reinterpretation. Cctor/transform hooks are manually driven; actual Runtime/interpreter/codegen are syntax-checked, not executed."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-v5-1.json",
+      "sha256": "617db685f9f6d2d0cf70522d82f2611e5e023d591453b0efb5bc806f376b00c8",
+      "metrics": {
+        "checks": 168
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Production AssemblyShadow startup registration, Configure, observation, transaction APIs and recovery serializer. Physical assembly/type-handle lookup and constructor enumeration use explicit native adapters. Heap and metadata lookup failures are injected. Concurrent observation is synchronized inside Configure physical stable lookup. Generated startup schema and names are explicit fixture values. This runner does not execute MetadataCache initialization, full Runtime startup, Unity, GC or Player behavior."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-contention-v5-1.json",
+      "sha256": "466031da4362e678c8b16cea22f2e344fe9c7f7f278504b4f9185f8f41dc2f0e",
+      "metrics": {
+        "checks": 545
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Production InterpreterImage.cpp allocator primitive and il2cpp g_MetadataLock are linked; this does not exercise Assembly::Create, Unity GC, or Player publication. Worker alignment uses atomics only; no std::mutex substitutes allocator locking. Unity Player and managed publication are outside this standalone test."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-transaction-v5-1.json",
+      "sha256": "ac4a38dda436cb87b7fcada2965db381acab70caa7ca1e02be14340be8b61be4",
+      "metrics": {
+        "checks": 131
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "Production AssemblyShadow transaction API, identity parser and recovery serializer. Physical lookup, image-constructor assembly enumeration, exception and metadata-init/initializer outcomes are explicit native adapters. Managed metadata initialization, Unity and Player publication are outside this standalone process."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-v5-2.json",
+      "sha256": "011121649fcc6b8116d583c33cdcaeca3ef4dcef3fbc818b9aadc89e315cdaf1",
+      "metrics": {
+        "checkCount": 2684
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "C++11 native executable includes the production InterpreterImageBudget header directly; no Python model or IL2CPP dependency is used."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-recovery-v5-1.json",
+      "sha256": "fa8e594fa8a9830a00e558a55ad3917f94a7b5ddd27432c2e559c860dced7cda",
+      "metrics": {
+        "checkCount": 498
+      },
+      "execution": "fresh v5",
+      "inputsUnchanged": true,
+      "boundary": "C++11 native executable includes the production recovery header directly; no IL2CPP runtime, Unity, or Python model is used."
+    }
+  ],
+  "helperCompilerBinding": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-helpers-compiler-binding-v5-1.json",
+    "sha256": "73096a0e4795a022ed2c17075a654ff17f26acfc46dd9b386c8af2a169ca8e14"
+  },
+  "retainedGateway": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-gateway-death-v3-1.json",
+    "sha256": "0b73c5f5d076df2ae82ce90691d28b1c510e76db1d5b22531e202bdec2b1c4d9"
+  },
+  "retainedGatewayInputAudit": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/retained-unchanged-helpers-v5-1.json",
+    "sha256": "cb349c0ec9b516d7037d76b637566e4334198bf69742f43fa078f904a50f79ca"
+  },
+  "retainedGatewayScope": "All9 recorded inputs match;41 scenarios,37death tests,194 native checks,406 process assertions,8 syntax checks. Retained execution, not fresh v5.",
+  "limits": [
+    "Native adapter and production helper boundaries are explicitly separated from actual Player metadata initialization and publication.",
+    "Q05 is native production allocator/g_MetadataLock contention, not concurrent Player Assembly.Load.",
+    "M04 timing is one bounded native observation, not production performance qualification.",
+    "Full R01 Player acceptance, M07 resource aggregate and stage review remain pending."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}
