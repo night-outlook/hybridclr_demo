@@ -153,5 +153,90 @@ namespace AssemblyShadowDemo.EditorTests
             StringAssert.Contains("$existingPlayerReceipts", source);
             StringAssert.Contains("$excluded.Contains($fullPath)", source);
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void PlayerBuildSettingsScopeRestoresExactStateAfterSuccess(bool originalScriptsOnly)
+        {
+            ExercisePlayerBuildSettingsScope(originalScriptsOnly, false);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void PlayerBuildSettingsScopeRestoresExactStateAfterFailure(bool originalScriptsOnly)
+        {
+            ExercisePlayerBuildSettingsScope(originalScriptsOnly, true);
+        }
+
+        private static void ExercisePlayerBuildSettingsScope(bool originalScriptsOnly, bool throwFromBuild)
+        {
+            MethodInfo scope = typeof(M07Build).GetMethod("WithPlayerBuildSettings", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            MethodInfo readExport = typeof(M06Build).GetMethod("PlayerExportProject", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            MethodInfo writeExport = typeof(M06Build).GetMethod("SetPlayerExportProject", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            Assert.IsNotNull(scope);
+            Assert.IsNotNull(readExport);
+            Assert.IsNotNull(writeExport);
+
+            BuildTarget target = HostPlayerBuildTarget;
+            bool previousScriptsOnly = EditorUserBuildSettings.buildScriptsOnly;
+            bool previousExport = ReadPlayerExport(readExport, target);
+            try
+            {
+                EditorUserBuildSettings.buildScriptsOnly = originalScriptsOnly;
+                WritePlayerExport(writeExport, target, !originalScriptsOnly);
+                bool inside = false;
+                Action build = () =>
+                {
+                    Assert.IsFalse(EditorUserBuildSettings.buildScriptsOnly, "Scoped Player build must disable scripts-only mode.");
+                    Assert.IsFalse(ReadPlayerExport(readExport, target), "Scoped Player build must disable native project export.");
+                    inside = true;
+                    if (throwFromBuild) throw new InvalidOperationException("test build failure");
+                };
+
+                TargetInvocationException caught = null;
+                try
+                {
+                    scope.Invoke(null, new object[] { target, build });
+                }
+                catch (TargetInvocationException exception)
+                {
+                    caught = exception;
+                }
+
+                Assert.IsTrue(inside, "The build delegate did not execute inside the settings scope.");
+                if (throwFromBuild)
+                {
+                    Assert.IsNotNull(caught);
+                    Assert.IsInstanceOf<InvalidOperationException>(caught.InnerException);
+                }
+                else
+                    Assert.IsNull(caught);
+                Assert.AreEqual(originalScriptsOnly, EditorUserBuildSettings.buildScriptsOnly);
+                Assert.AreEqual(!originalScriptsOnly, ReadPlayerExport(readExport, target));
+            }
+            finally
+            {
+                WritePlayerExport(writeExport, target, previousExport);
+                EditorUserBuildSettings.buildScriptsOnly = previousScriptsOnly;
+            }
+        }
+
+#if UNITY_EDITOR_OSX
+        private static BuildTarget HostPlayerBuildTarget { get { return BuildTarget.StandaloneOSX; } }
+#elif UNITY_EDITOR_WIN
+        private static BuildTarget HostPlayerBuildTarget { get { return BuildTarget.StandaloneWindows64; } }
+#else
+        private static BuildTarget HostPlayerBuildTarget { get { return EditorUserBuildSettings.activeBuildTarget; } }
+#endif
+
+        private static bool ReadPlayerExport(MethodInfo method, BuildTarget target)
+        {
+            return (bool)method.Invoke(null, new object[] { target });
+        }
+
+        private static void WritePlayerExport(MethodInfo method, BuildTarget target, bool value)
+        {
+            method.Invoke(null, new object[] { target, value });
+        }
     }
 }

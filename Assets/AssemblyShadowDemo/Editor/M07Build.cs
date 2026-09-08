@@ -291,6 +291,27 @@ namespace AssemblyShadowDemo.Editor
             return string.Join("\n", ShadowResourceBaseline.ValidateMap(map).Select(item => item.assetBundleName + ":" + string.Join("|", item.assetNames)).ToArray());
         }
 
+        internal static void WithPlayerBuildSettings(BuildTarget target, Action build)
+        {
+            bool oldScriptsOnly = EditorUserBuildSettings.buildScriptsOnly;
+            bool oldExportProject = M06Build.PlayerExportProject(target);
+            try
+            {
+                // Strip-only generation persists these settings. An interrupted
+                // Editor must not turn an evidence Player into a project export.
+                EditorUserBuildSettings.buildScriptsOnly = false;
+                M06Build.SetPlayerExportProject(target, false);
+                Require(!EditorUserBuildSettings.buildScriptsOnly && !M06Build.PlayerExportProject(target),
+                    "M07 Player requires a built application, not a scripts-only or exported native project.");
+                build();
+            }
+            finally
+            {
+                M06Build.SetPlayerExportProject(target, oldExportProject);
+                EditorUserBuildSettings.buildScriptsOnly = oldScriptsOnly;
+            }
+        }
+
         private static string CapturePlayerInputs(string output, bool nativeEnabled, VerifiedShadowResourceBaseline resources)
         {
             var settings = AssemblyShadowSettings.Instance;
@@ -305,13 +326,15 @@ namespace AssemblyShadowDemo.Editor
             ShadowPlayerInputCapture.Begin(snapshot, settings.buildId, target, settings.architecture, pins, Candidates, defines);
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(output));
-                var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
-                    scenes = new[] { BootstrapScene }, locationPathName = output, target = target, targetGroup = BuildTargetGroup.Standalone,
-                    options = BuildOptions.Development | BuildOptions.DetailedBuildReport | BuildOptions.CleanBuildCache,
-                    extraScriptingDefines = defines,
+                WithPlayerBuildSettings(target, () => {
+                    Directory.CreateDirectory(Path.GetDirectoryName(output));
+                    var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
+                        scenes = new[] { BootstrapScene }, locationPathName = output, target = target, targetGroup = BuildTargetGroup.Standalone,
+                        options = BuildOptions.Development | BuildOptions.DetailedBuildReport | BuildOptions.CleanBuildCache,
+                        extraScriptingDefines = defines,
+                    });
+                    ShadowPlayerInputCapture.CompleteSuccessfulBuild(report);
                 });
-                ShadowPlayerInputCapture.CompleteSuccessfulBuild(report);
             }
             finally { ShadowPlayerInputCapture.End(); }
             AssemblySnapshotReceipt captured = AssemblySnapshot.ReadAndVerify(snapshot, true);

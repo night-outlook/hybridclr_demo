@@ -438,7 +438,7 @@ namespace AssemblyShadowDemo.Editor
         internal static string[] ExpectedChangedRoots(string id)
         { ExpectedDefines(id); return id == "P03" ? ProviderFirstOrder.ToArray() : id == "P02" ? new[] { "AssemblyA.Implementation.Extensibility", "AssemblyA.Implementation.Internal", "AssemblyShadowDemo.ExtensibilityConsumer" } : new[] { "AssemblyA.Implementation.Internal" }; }
         internal static BuildOptions PlayerOptions(bool development) { return BuildOptions.CleanBuildCache | BuildOptions.DetailedBuildReport | (development ? BuildOptions.Development : BuildOptions.None); }
-        private static bool PlayerExportProject(BuildTarget target)
+        internal static bool PlayerExportProject(BuildTarget target)
         {
 #if UNITY_EDITOR_OSX
             if (target == BuildTarget.StandaloneOSX) return UnityEditor.OSXStandalone.UserBuildSettings.createXcodeProject;
@@ -447,7 +447,7 @@ namespace AssemblyShadowDemo.Editor
 #endif
             return false;
         }
-        private static void SetPlayerExportProject(BuildTarget target, bool value)
+        internal static void SetPlayerExportProject(BuildTarget target, bool value)
         {
 #if UNITY_EDITOR_OSX
             if (target == BuildTarget.StandaloneOSX) UnityEditor.OSXStandalone.UserBuildSettings.createXcodeProject = value;
