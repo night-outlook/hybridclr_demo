@@ -1,0 +1,869 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01SourceChangesFromAcceptedR00",
+  "scope": "Cumulative diff from accepted R00 to v6 executable pins; includes historical documentation/evidence files, not only implementation code. Later documentation-only commits are separate.",
+  "repositories": [
+    {
+      "repository": "hybridclr_demo",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo",
+      "baseRevision": "8b2e0d60a36268c9066c2a68bd69460a6d597534",
+      "targetExecutableRevision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "summary": "152 files changed, 22305 insertions(+), 226 deletions(-)",
+      "files": [
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Extensibility/M03ModuleInitializer.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/M03ModuleInitializer.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M03TransactionProbe.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04ReferenceProbe.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionProbe.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07BootstrapRunner.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07EarlyStartupHandoff.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07EarlyStartupHandoff.cs.meta"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01OrdinarySnapshotBinding.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01OrdinarySnapshotBinding.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyObserver.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyObserver.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01NativeScriptWitness.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01NativeScriptWitness.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs.meta"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Editor/M06ExecutionSchemaVerifier.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Editor/R01EditorValidation.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Editor/R01EditorValidation.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Editor/R01FailureFixtures.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Editor/R01FailureFixtures.cs.meta"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/AdditiveScene.unity"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/BusinessScene.unity"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/ManagedGraph.asset"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/MixedAssets.prefab"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/MonoScriptCarrier.asset"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/NestedPrefab.prefab"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/VersionedData.asset"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/M07Resources/Baseline/VersionedPrefab.prefab"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M03TransactionTests.cs"
+        },
+        {
+          "status": "M",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M06ExecutionSchemaTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M07R01OrdinarySnapshotBindingTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/M07R01OrdinarySnapshotBindingTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyObserverTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyObserverTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyStartupTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyStartupTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01FailureFixturesTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01FailureFixturesTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/R01-execution-plan.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/R01-report.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/acceptance-remaining.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/approved-early-activation-amendment.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/approved-early-feasibility-evidence.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/approved-early-feasibility-report.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-argument-order-evidence.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-gateway-integration-checkpoint.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-pair-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-pair-prebuild.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-prebuild-evidence.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-source-changes.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-source-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-build-attempt-1.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-control-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-failure-fixture-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-matrix-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-native-regressions.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-native-script-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-player-build-pair-checkpoint.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-prebuild-evidence.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-source-correction-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v2-source-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v3-editor-validation.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v3-failure-inventory-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v3-instrumentation-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v3-native-regressions.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v3-player-build-pair-checkpoint.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v3-source-correction-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v4-editor-validation.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v4-matrix-diagnostic.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v4-native-regressions.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v4-native-script-trace.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v4-player-build-pair-checkpoint.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v4-source-correction-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-editor-validation.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-native-regressions.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-native-script-trace.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-player-build-pair-checkpoint.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-postbuild-audit.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-source-correction-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-stage-source-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/early-v5-strict-matrix.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/initial-pairing.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/metadata-budget-contract.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/native-prebuild-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/prebuild-evidence-index.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/prebuild-managed-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/recovery-contract.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/retained-native-input-audit-v2.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/source-change-index-v3.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/source-change-index-v4.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/source-change-index-v5.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/startup-blocker-evidence.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/startup-blocker-report.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/startup-blocker-review.json"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/R01/startup-investigation.md"
+        },
+        {
+          "status": "A",
+          "path": "Docs/AssemblyShadow/M07R/current-status.json"
+        },
+        {
+          "status": "M",
+          "path": "ProjectSettings/AssemblyShadowDependencies.json"
+        },
+        {
+          "status": "M",
+          "path": "ProjectSettings/AssemblyShadowSettings.asset"
+        },
+        {
+          "status": "M",
+          "path": "ProjectSettings/AssemblyShadowSourcePins.json"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/NativeTests/R01InterpreterImageBudgetTests.cpp"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/m04_results.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/m06_results.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/m07_results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/native-tests/R01RecoveryTests.cpp"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/native-tests/m03_disabled_api.cpp"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/native-tests/r01_budget_contention.cpp"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/native-tests/r01_startup.cpp"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/native-tests/r01_startup_gateway.cpp"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/native-tests/r01_transaction.cpp"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/r01_early_capsule.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/r01_early_results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/r01_failure_results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/r01_negative_inputs.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/r01_results.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/run-m04-native-tests.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/run-m05-native-tests.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/run-m06-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-budget-contention-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-budget-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-early-players.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-failure-players.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-players.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-recovery-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-startup-gateway-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-startup-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/run-r01-transaction-native-tests.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/data/r01-contracts-parser-fixture.json"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/data/r01-metadata-serialization.json"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/tests/test_m04_results.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/tests/test_m06_results.py"
+        },
+        {
+          "status": "M",
+          "path": "Tools/AssemblyShadow/tests/test_m07_results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_early_capsule.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_early_launch.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_early_results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_launch_pipeline.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_metadata_pipeline.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_negative_inputs.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_pipeline.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/tests/test_r01_results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/verify-r01-failure-results.py"
+        },
+        {
+          "status": "A",
+          "path": "Tools/AssemblyShadow/verify-r01-results.py"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr",
+      "baseRevision": "a19db144751f4f016769b90e61a80b8c27578678",
+      "targetExecutableRevision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "summary": "11 files changed, 513 insertions(+), 60 deletions(-)",
+      "files": [
+        {
+          "status": "M",
+          "path": "hybridclr/AssemblyShadowRuntimeApi.cpp"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/AssemblyShadowRuntimeApi.h"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/generated/AssemblyManifest.cpp"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/Assembly.cpp"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/Assembly.h"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/AssemblyShadowBridge.h"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/InterpreterImage.cpp"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/InterpreterImage.h"
+        },
+        {
+          "status": "A",
+          "path": "hybridclr/metadata/InterpreterImageBudget.h"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/MetadataUtil.h"
+        },
+        {
+          "status": "M",
+          "path": "hybridclr/metadata/StagedAssembly.cpp"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr_unity",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_unity",
+      "baseRevision": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+      "targetExecutableRevision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "summary": "31 files changed, 2579 insertions(+), 12 deletions(-)",
+      "files": [
+        {
+          "status": "M",
+          "path": "Data~/Templates/AssemblyManifest.cpp.tpl"
+        },
+        {
+          "status": "A",
+          "path": "Editor/AssemblyShadow/Build/MetadataCapacityPlanner.cs"
+        },
+        {
+          "status": "A",
+          "path": "Editor/AssemblyShadow/Build/MetadataCapacityPlanner.cs.meta"
+        },
+        {
+          "status": "M",
+          "path": "Editor/AssemblyShadow/Build/ShadowBaselineManifestBuilder.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/AssemblyShadow/Build/ShadowManifests.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/AssemblyShadow/Build/ShadowWarmupJson.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/AssemblyShadow/Build/ShadowWarmupManifestReader.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/AssemblyShadow/Settings/AssemblyShadowSettings.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/Commands/Il2CppDefGeneratorCommand.cs"
+        },
+        {
+          "status": "M",
+          "path": "Editor/Il2CppDef/Il2CppDefGenerator.cs"
+        },
+        {
+          "status": "A",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs"
+        },
+        {
+          "status": "A",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowCapabilityReader.cs.meta"
+        },
+        {
+          "status": "M",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs"
+        },
+        {
+          "status": "M",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowErrorCode.cs"
+        },
+        {
+          "status": "A",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs"
+        },
+        {
+          "status": "A",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs"
+        },
+        {
+          "status": "A",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowRecoveryInfo.cs.meta"
+        },
+        {
+          "status": "M",
+          "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs"
+        },
+        {
+          "status": "M",
+          "path": "Tests/Editor/AssemblyShadow/M03RuntimeApiTests.cs"
+        },
+        {
+          "status": "M",
+          "path": "Tests/Editor/AssemblyShadow/M06RuntimeApiTests.cs"
+        },
+        {
+          "status": "M",
+          "path": "Tests/Editor/AssemblyShadow/M06WarmupTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01EarlyCapabilityNegotiationTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01EarlyCapabilityNegotiationTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01Il2CppDefGeneratorTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01Il2CppDefGeneratorTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01MetadataCapacityTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01MetadataCapacityTests.cs.meta"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01RuntimeContractTests.cs"
+        },
+        {
+          "status": "A",
+          "path": "Tests/Editor/AssemblyShadow/R01RuntimeContractTests.cs.meta"
+        }
+      ]
+    },
+    {
+      "repository": "il2cpp_plus",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/il2cpp_plus",
+      "baseRevision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+      "targetExecutableRevision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "summary": "12 files changed, 913 insertions(+), 41 deletions(-)",
+      "files": [
+        {
+          "status": "M",
+          "path": "libil2cpp/il2cpp-api.cpp"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/AssemblyShadow.cpp"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/AssemblyShadow.h"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/AssemblyShadowDiagnostics.cpp"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/AssemblyShadowDiagnostics.h"
+        },
+        {
+          "status": "A",
+          "path": "libil2cpp/vm/AssemblyShadowRecovery.h"
+        },
+        {
+          "status": "A",
+          "path": "libil2cpp/vm/AssemblyShadowStartup.cpp"
+        },
+        {
+          "status": "A",
+          "path": "libil2cpp/vm/AssemblyShadowStartup.h"
+        },
+        {
+          "status": "A",
+          "path": "libil2cpp/vm/AssemblyShadowStartupGate.h"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/AssemblyShadowTypes.h"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/MetadataCache.cpp"
+        },
+        {
+          "status": "M",
+          "path": "libil2cpp/vm/Runtime.cpp"
+        }
+      ]
+    }
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}
