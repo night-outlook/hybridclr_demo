@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R01",
+  "purpose": "Initial ObserveGap diagnostic pair",
+  "acceptance": "NotAccepted",
+  "startupObservation": "ConfigureOnly",
+  "players": [
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-07e906dbbaf746d68bc9b0ea47c23262/m07-player-build.json",
+      "receiptSha256": "d213442a569ec65a817782bacf5e920e2829875cc286337c9ec0ce27a15939c0",
+      "variant": "NativeOn",
+      "baselineBuildId": "M07-Baseline-R01-gap-v1",
+      "runtimeAbiHash": "b4003baf2590b7398168ac945ffe97ad63def586884bffe55a086f8289693de8",
+      "buildGuid": "126dd787e53840e08165a102d5dc04ed",
+      "nativeLibrarySha256": "f50b673c937886b5f6069e9ffe7f4965a434206096ad001c17c9b9cebcace4d1",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-gap-v1.app/Contents/Frameworks/GameAssembly.dylib",
+      "inputSnapshotHash": "7e3fb0f61b7e5048a724bbee749ee87657907238d4ee8283d127b52e7d180aa8",
+      "inputSnapshot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-07e906dbbaf746d68bc9b0ea47c23262",
+      "playerOutput": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-gap-v1.app",
+      "resourceBaselinePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07ResourceBaseline-M07-Baseline-R01-gap-v1-14e7b573f387426bbd758166eba4b326"
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-2d1d5e1b180047d5bd9de2bad3b77a58/m07-player-build.json",
+      "receiptSha256": "89b47ef80e3e99c033593645245288d434ff07f68797fe11c05c77f8352cbdb9",
+      "variant": "NativeOff",
+      "baselineBuildId": "M07-Baseline-R01-gap-v1",
+      "runtimeAbiHash": "b4003baf2590b7398168ac945ffe97ad63def586884bffe55a086f8289693de8",
+      "buildGuid": "e1613227cbbd47e6bd7a22be8ee023d8",
+      "nativeLibrarySha256": "49705d01edbd7c86b52cd40a6493d55d4cb3a545758e0e030dd91e382c06a9b3",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-gap-v1-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+      "inputSnapshotHash": "c8e16f07e98a880ee4ce3d9e72e08d350a243aecc942c5a4c208a60e665c859d",
+      "inputSnapshot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-2d1d5e1b180047d5bd9de2bad3b77a58",
+      "playerOutput": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-gap-v1-NativeOff.app",
+      "resourceBaselinePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07ResourceBaseline-M07-Baseline-R01-gap-v1-14e7b573f387426bbd758166eba4b326"
+    }
+  ],
+  "fixtureReplay": "Passed",
+  "playerExecution": "Completed:8PassedDiagnostic,2FailedProbeBinding",
+  "humanGate": "H1NotReached",
+  "workflowEvidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-f523b982b2a84887829f645c6591f095/m07-build-workflow.json",
+      "sha256": "917bd1ba1a20dcacf095804c6f376b44358aeabd2ff1c1da04c30387e9e39bb8"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-f523b982b2a84887829f645c6591f095/m07-fixtures.json",
+      "sha256": "68f415e32d24ea823e495f530d716e4a48a1c4d525a8815032dfb76ee3e2f7ff"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-f523b982b2a84887829f645c6591f095/m07-editor-replay.json",
+      "sha256": "da78ea0c7680efe9be75cfcecdf400158fef5ca74fbc5c9be9f6d53bab6a984c"
+    }
+  ],
+  "launchLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/observe-gap-launch-1.log",
+  "strictSuite": "Failed",
+  "strictSuiteError": "R01-P03-OrdinaryFirst.exitCode: expected 0, got 1",
+  "diagnosticAudit": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/initial-diagnostic-audit-1.json",
+    "sha256": "8141d647bb27321a18d7f6f3d5168a1eea77e7855f9199992592a9e3fd892d49"
+  },
+  "startupGap": "ReproducedInAllFourDeclaredPreConfigureModes",
+  "inputsUnchanged": true,
+  "hashedLaunchInputs": 16828
+}

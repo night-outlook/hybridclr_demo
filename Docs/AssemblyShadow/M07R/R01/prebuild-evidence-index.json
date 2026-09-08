@@ -5,8 +5,8 @@
   "acceptance": "NotAccepted",
   "humanGate": "H1NotReached",
   "stageReview": "Pending",
-  "playerEvidence": "NotRun",
-  "startupObservationMode": "ConfigureOnly",
+  "playerEvidence": "Initial diagnostic:8 individual Passed,2 probe-binding failures;complete suite Failed",
+  "startupObservationMode": "ConfigureOnly gap reproduced;early implementation pending",
   "productionSizing": "NotProvided",
   "evidence": [
     {
@@ -118,6 +118,41 @@
       "sha256": "c12875b6e6f0995e9e7853ca5226f7fc466f00c63caaa7d7e3477c42d02c43a5",
       "tests": 387,
       "skips": 0
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/installed-runtime-verification-1.json",
+      "bytes": 261,
+      "sha256": "97f90eadacb1cd190ce57651f2796ff5ddd091178328bfa6372cf7e9de7c1c1f"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/m00-install-receipt.json",
+      "bytes": 191082,
+      "sha256": "78b763104beeb1e0fa229aca6e9c5b57620f1cc2d17076bac754dda75ecf6bce"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/initial-diagnostic-audit-1.json",
+      "bytes": 8519,
+      "sha256": "8141d647bb27321a18d7f6f3d5168a1eea77e7855f9199992592a9e3fd892d49"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/initial-diagnostic-audit-1.log",
+      "bytes": 1319,
+      "sha256": "69f2fb8645cd045b8b5c42c264af8bb3b97b941af33986c0e16f02014200dbc0"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/editor-capacity-initial-1.json",
+      "bytes": 14655,
+      "sha256": "c37835eb5d0472e50e4ae2df46931b09bfd17c13743b05053e649fb7afd78eb3"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/editor-capacity-initial-1.log",
+      "bytes": 25498,
+      "sha256": "c0059b140f60162166cd334ec02d819536eece6a5f93b84c2a7721b3d3f3e873"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-ObserveGap-current-pair-v1/r01-player-launches.json",
+      "bytes": 10465495,
+      "sha256": "45f34d464633deed5fcdc6a103534a3b4d5126c7f64cb5b018b276d1f395337e"
     }
   ],
   "limitations": [
@@ -140,5 +175,17 @@
     "temporaryExporter": "Archived under _temp/AssemblyShadow/R01 and removed from Assets after clean owned Unity exit",
     "confirmed": "Successful firstFailingAssembly serializes as empty string"
   },
-  "initialPrebuildReview": "PASS"
+  "initialPrebuildReview": "PASS",
+  "initialPairing": {
+    "demoSource": "cd0eeb458c2da7654cb968c18b325ff318ae41d7",
+    "hybridclr": "99ed95d58c7d976e5fd05257a4fe735ce0ee3813",
+    "hybridclrUnity": "9f5d288e36f60c35420878f5796798b2dfa34de7",
+    "il2cppPlus": "54320899eafedbd065bd9685811eebc7488c7df9",
+    "baselineBuildId": "M07-Baseline-R01-gap-v1",
+    "runtimeAbiHash": "b4003baf2590b7398168ac945ffe97ad63def586884bffe55a086f8289693de8",
+    "startupExpectation": "ObserveGap",
+    "buildStatus": "Running",
+    "acceptance": "DiagnosticOnly; not R01 completion"
+  },
+  "editorCapacityEvidence": "Passed:actual five-member positive and64MiB rejection before publication directory"
 }
