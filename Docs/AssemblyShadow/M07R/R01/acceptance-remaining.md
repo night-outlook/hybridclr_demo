@@ -1,38 +1,45 @@
-# R01 remaining acceptance evidence
+# R01 Remaining Acceptance
 
-Status: R01 in progress, not accepted. This checklist supplements the normative R01 plan and validation matrix; it does not advance H1 or replace human review.
+Status: **Active / Unaccepted**. This is the current v5 checklist for R01. It supplements the normative plan and validation matrix; it cannot advance H1 or authorize R02.
 
-## Current execution boundary (early v3 correction)
+## Current source and evidence boundary
 
-The historical checklist below is retained as investigation history. Its `NotProvided` count and unresolved R01B statements are superseded by the user's approved **65,536-assembly** target in `approved-early-activation-amendment.md`. R01B is mandatory after R01; allocation domain, DLL size distribution and required headroom still need a declared bound. A five-image Player validates the R01 transaction contract only.
+The v5 executable pairing is:
 
-- Completed v2 build evidence: exact ON/OFF Player pair, sealed P01–P05 fixtures, resource rejection cases, and deterministic Editor replay. Five generated native PInvoke wrappers use direct production exports, including a pointer-width assembly count.
-- Completed v2 diagnostic execution: all nine non-failure-fixture probes produced internally consistent early receipts after an isolated casing correction; three positive modes also completed M07 resource handoff. These are diagnostic results, not strict acceptance.
-- Confirmed P1: all six negative modes continued into Unity after `il2cpp_init` returned false. Oversize's exit 1 was a later M07 error; other negatives exited 2. See `early-v2-matrix-diagnostic.json`. The configured failure path now uses immediate native process termination; 37 production-path death tests and independent bounded source review passed. Fresh Player noncontinuation evidence remains required.
-- Confirmed fixture issue: Internal's module initializer changes a serialization callback dependency and correctly triggers resource rebuild admission. An R01-only throw in callback-free Extensibility preserves the resource guard and legacy M03 behavior. The fresh Unity compiler test verifies its actual module initializer and exact throw; fixture build/replay also passed; actual post-publication failure remains pending.
-- Completed v3 source integration: strict stable-name identity mapping, hash-bound logs and native termination checks, isolated initializer fixture, new pins and baseline assets. All 437 Python tests passed. The 302-test Editor run passed 301 and exposed one assertion-type defect; after correction, the actual compiler test passed. Independent bounded correction review passed. See `early-v3-source-correction-review.json`.
-- Completed v3 build checkpoint: repeatable pinned installation and generation, fresh ON/OFF Players, sealed P01–P05 fixtures and three ResourceRebuildRequired rejection cases. Deterministic Editor replay and the build workflow passed. See `early-v3-player-build-pair-checkpoint.json`.
-- Completed v3 Editor validation: isolated initializer fixture passes DLL-only resource admission and exact-byte replay with all five closure members. A fresh positive capacity patch passes, while an exactly 64 MiB padded DLL is rejected before publication with MetadataCapacityExceeded. See `early-v3-editor-validation.json`.
-- Pending final runtime acceptance: run all 11 early modes and 13 ON M07 resource modes plus OFF. Q04 and initializer failure must capture retained budget and durable recovery. Repeat the read-only NativeScript trace with class arguments/return captured. Observer evidence is bounded retained sampling, not continuous validation of dropped samples.
-- Completed native evidence audit: fresh gateway and immutable-snapshot M03/M04 regressions; retained helper and five v2 regression receipts with explicit unchanged tested inputs and historical pin metadata. See `early-v3-native-regressions.json`.
-- Pending delivery: consolidate final Player/source/binary/log/receipt bindings, report remaining limitations, and obtain independent R01 stage review.
-- Then execute required R01B and stop at H1. Experiment approval and agent review do not pass H1 or permit R02.
+```text
+hybridclr       b22fa3d92223645c32663e4a2157eaadf8ea495e
+hybridclr_unity b649c499385ea68490a0f652a98b732e060aeb89
+il2cpp_plus     7967b8c7043904fcae130b294defd5ce7aa897c4
+hybridclr_demo  c2c908c5a11ce65aabb0da75b512923f709277c1
+runtime ABI     46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00
+```
 
-## Historical investigation checklist
+The v5 installation verification is repeatable at 945 source files and 947 installed files, with the demo source verified and receipt SHA-256 `32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045` (`_temp/AssemblyShadow/R01/early-v5-installed-verification-1.json`). The v5 source-change index is [source-change-index-v5.json](source-change-index-v5.json:1).
 
-- Complete the immutable initial ConfigureOnly ON/OFF fixture/replay workflow, then run all ten ObserveGap Player modes. Preserve both successful and failed processes. These runs diagnose startup behavior and cannot pass the final early-observation requirement.
-- Run the production Editor positive five-assembly closure and oversize rejection before publication-directory creation against the actual pinned baseline.
-- If real startup negatives confirm the gap, implement early observation with immutable candidate identities, a separate configuration boundary, retained first-use records, and fail-closed initialization retry. Run the untouched control, all four startup negatives, rejected/corrected Configure, exact-set/duplicate rejection, OFF/empty-list and concurrent Configure observation checks.
-- Q04: add a real Player metadata-initialization failure after genuine staged ownership, capture retained shared-budget consumption, unpublished Failed state, rejected Abort/second Begin, and durable RestartRequired. The existing 109-check native transaction harness uses explicit synthetic ownership/metadata adapters and does not prove this Player boundary.
-- Q05: test concurrent ordinary allocation and reservation with the actual production allocator and metadata lock, mixed sizes, both scheduling orders, unique indices, all-or-nothing reservation and monotonic cursors. Sequential OrdinaryAfterReserve alone does not establish contention behavior.
-- S04: observe actual publication snapshots before and after a budgeted publication and around unpublished metadata failure/published initializer failure. Require complete snapshots and no private image leakage. Full stress/fuzz and recovery coordination remain later milestones.
-- Q06: production sizing remains NotProvided. Freeze the measured candidate closure, ordinary inputs, DLL sizes and allocation order; separately label suggested 100/300/1000 stress observations. Do not promote a suggested tier into a required product target, or use a five-assembly success to claim an unspecified production target. R01B becomes mandatory when an explicitly required target exceeds the unchanged profile.
-- Reinstall and regenerate from final four-repository pins, build a new immutable ON/OFF pair for runtime/source changes, run the final strict R01 matrix and affected M03–M07/R00 regression and performance observations, then obtain independent stage review.
+The v5 native correction review passed 131 checks, including 22 new checks, with 1,069 unchanged source inputs. Three native files were corrected; the receipt covers the actual staging error carrier and exception formatter. It does not cover metadata initialization, publication, or the Player boundary ([early-v5-source-correction-review.json](early-v5-source-correction-review.json:48)). Affected native reruns remain pending.
 
-No automatic restart/LKG coordinator, deployment health marker, resource rollback, broad metadata fuzzing or production performance qualification is included here; those remain M09/M11 responsibilities under their human gates.
+## Required completion
 
-## Historical bounded scale interpretation
+- **Fresh Player pairing and strict matrices — Pending.** Complete the v5 ON/OFF build and bind all 11 early modes plus 13 M07 ON resource modes and OFF. The v4 matrix is diagnostic history: 9/11 strict-passed, while MetadataFailure and InitializerFailure failed strict verification ([early-v4-matrix-diagnostic.json](early-v4-matrix-diagnostic.json:220)).
+- **Q04/S03 failure recovery — Pending.** Re-run the corrected Player failure paths and record the real staged failure state, retained budget, no publication, legal/illegal Abort behavior, and restart disposition. The 131-check native correction is supporting evidence only.
+- **NativeScript witness — Pending actual v5 trace.** The v4 bounded LLDB run captured five public IL2CPP API events, a non-null class return, and return-before-Configure ordering. A fresh v5 ON debug capture is prepared with build GUID `a5b484a6772e4c90a24dd29216022630` and native UUID `6F75EA76-5544-4D01-9414-D8004DD46D1B` (`_temp/AssemblyShadow/R01/early-v5-on-native-wrappers/native-debug-artifacts.json`); capture and bind the actual v5 trace before treating the witness as current ([early-v4-native-script-trace.json](early-v4-native-script-trace.json:1)).
+- **Affected native regressions — Pending.** Separate fresh v5 native reruns from retained M03-M06 receipts. Q05’s production allocator/`g_MetadataLock` contention evidence remains native-only and is not concurrent Player Configure coverage.
+- **Installed/generated audit — Pending.** After the v5 build, verify generated definitions and installed bindings against the exact v5 source/runtime pins without treating mutable build artifacts as source evidence.
+- **Final evidence package — Pending.** Bind every result to TestId, four-repository pins, ABI/encoding/capability identity, target/compiler, input/resource hashes, native library, process or device, raw log, and assertions. Preserve all historical receipts and label their pins.
+- **Independent R01 code review — Required.** An independent agent code review may inspect the design, plan, four repositories, tests, Player/negative evidence, regressions, limitations, performance, and release risk for the R01 stage. This is separate from the human H1 review; the H1 human review is required only after R01B and cannot be replaced by agent review ([HUMAN_REVIEW_GATES.md](../../../../Documents/HybridCLR_AssemblyShadow_Design_and_Plans/reviews/M07_SourceReview_2026-09-07/plans/HUMAN_REVIEW_GATES.md:12)).
 
-A follow-up independent review clarified that 100/300/1000 are suggested pressure tiers, not mandatory counts of distinct AOT Shadow candidates. The proposed bounded exercise loads 100 and 300 distinct ordinary interpreter images before the existing five-member Shadow closure, then consumes ordinary capacity until fewer than five slots remain and requires whole-closure reservation rejection before Stage. A 1,000-size query is diagnostic only: passing 1,000 sizes to a public reservation for a five-member transaction would test BudgetMismatch, not capacity exhaustion.
+## S02 scope clarification
 
-This can support a limited implementation/evidence package for human review. It cannot mark Q06's unspecified project target Passed. Demonstrated Shadow closure remains five; larger closures and production-target capacity remain unverified, and R01B applicability is unresolved until the target is declared. Only a human may accept the limited scope or deferred risk.
+Normative S02 is “Stage input correctable rejection”: correct state/error followed by legal Abort and permitted recovery ([validation-matrix.md](../../../../Documents/HybridCLR_AssemblyShadow_Design_and_Plans/reviews/M07_SourceReview_2026-09-07/validation-matrix.md:71)). The v4 R01 Mismatch mode is the Player witness for this boundary. Its one-byte Stage mismatch, unchanged cursor, expected error, and Abort belong in the final strict v5 early aggregate after current-pair binding.
+
+The exact-set admission checks in `R01EarlyStartup.ValidateCapsule` and `M07R01Probe.RequireSet` are pre-Configure validation. Existing M03 Player probes cover duplicate Stage, malformed-input rejection followed by valid retry, invalid Configure arguments/state, and bounded concurrent ordinary reads (`M03TransactionProbe.cs:158-180,190-198,280-302,680-741`). Those retained M03 cases are historical unless the affected M03-M07 regression gate requires fresh v5 Player receipts. No separate concurrent Configure test is required by S02, and Q05 native contention must not be relabeled as one.
+
+## Capacity and target boundary
+
+The v4 Editor evidence includes a positive five-member closure and an exactly 64 MiB padded assembly rejected before publication with `MetadataCapacityExceeded` ([early-v4-editor-validation.json](early-v4-editor-validation.json:31)). This does not prove the user target of 65,536 assemblies. The approved target makes R01B mandatory; allocation domain, DLL size distribution, and headroom remain to be declared and measured. Suggested 100/300/1000 pressure tiers are diagnostic observations, not product closure criteria.
+
+## Gate disposition
+
+R01 remains unaccepted. After R01 evidence and review, execute required R01B for the 65,536 target, then stop at H1. Do not enter R02. `H1Passed=false` and `mayEnterR02=false` remain the current status ([current-status.json](../current-status.json:14)).
+
+This checklist is complete only when the current v5 Player matrices, corrected failure recovery, v5 NativeScript binding, affected native evidence, final hash-bound package, and independent R01 code-review decision are recorded. The human H1 review follows required R01B completion. No historical evidence is deleted or overwritten.
