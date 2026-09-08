@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "result": "CannotRetainCompleteDeclaredInputChain",
+  "milestoneAccepted": false,
+  "script": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/audit-v6-retained-native.py",
+    "sha256": "7fad1346f18796bd31e4ed17cfa7154c489e3ff397c2a101ee784b173d12e0a0"
+  },
+  "executionLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/retained-native-v6-1.log",
+    "sha256": "002d8073c508a881afc4d6a42d0282f42957a4110328aae29d4616033e9e016d"
+  },
+  "reviewFinding": {
+    "priority": "P2",
+    "finding": "Original helper did not join current receipts to historical hashes and compiler bindings.",
+    "status": "fixed",
+    "reReview": "Passed before execution; the corrected helper then correctly rejected changed provenance inputs."
+  },
+  "receipts": [
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m03-native-v5-1.json",
+      "receiptSha256": "78ab31030427b9f06407e606341a03f33a9f3df4b2e17ad491b8c97542c784e4",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m04-native-v5-1.json",
+      "receiptSha256": "6a9528fa4a9f269f96cc2749963e76ef4cf6d07962c85d3ec45559fadf204837",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m05-native-v5-1.json",
+      "receiptSha256": "4b07ce25409334d6c03ace29f66ef118e04ec9bbfa835b9b2598a4ff7b41109d",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m06-native-v5-1.json",
+      "receiptSha256": "b3b88f0dc9b7ed599d58677506dd2a4958ac802c9d7229467d19971866a5feb5",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-v5-1.json",
+      "receiptSha256": "617db685f9f6d2d0cf70522d82f2611e5e023d591453b0efb5bc806f376b00c8",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-contention-v5-1.json",
+      "receiptSha256": "466031da4362e678c8b16cea22f2e344fe9c7f7f278504b4f9185f8f41dc2f0e",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-transaction-v5-1.json",
+      "receiptSha256": "ac4a38dda436cb87b7fcada2965db381acab70caa7ca1e02be14340be8b61be4",
+      "mismatches": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "retainedSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045",
+          "currentSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+          "retainedSha256": "5a193e21abd4aa016a49ab03ce88abc3e3324ed10d7615705135a8ba412dd229",
+          "currentSha256": "9010b200f7bd420f4e65c83782fe6f60c570061757b04d9b2dcda55948fe6848"
+        }
+      ]
+    }
+  ],
+  "uniqueChangedPaths": [
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json"
+  ],
+  "disposition": "Preserve v5 evidence and rerun all nine native suites with v6 provenance; do not label every declared v5 input unchanged.",
+  "nativeRerunDriver": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/run-early-v6-native-regressions.py"
+}
