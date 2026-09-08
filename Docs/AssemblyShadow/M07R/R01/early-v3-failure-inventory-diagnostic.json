@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV3FailureInventoryDiagnostic",
+  "status": "ConfirmedProducerDefect",
+  "finding": "P1: failure fixture receipt includes transient CompilePlayerScripts output which a subsequent compiler invocation removed.",
+  "fixtureReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/failure-fixtures.json",
+    "sha256": "9d4e39797828ab77d7f12b8d0cbbd09fd22674ad1ec749021f997877210670a2"
+  },
+  "matrixLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v3-matrix-1.log",
+    "sha256": "7457f91b68a5dd141f9be14366327d9a51a5edb26fda954d776da6a8f1cf9bff"
+  },
+  "playerProcessesLaunched": 0,
+  "recordedFileCount": 450,
+  "missingFileCount": 72,
+  "missingFiles": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Assembly-CSharp.dll",
+      "sha256": "b63f7dd450928c7d50fd6b74fd4bb9fab2a334bc418bdb13b1414e01d44f6c63",
+      "length": 5120
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Assembly-CSharp.pdb",
+      "sha256": "e039a9af92974ef8f9c8a5dd1fd0750ef0e6830199d2cae05ae9d12d2fcbbd15",
+      "length": 17608
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyA.Contracts.dll",
+      "sha256": "5147c12db4a732f5cf77d5079ae3876231874ed53177259238723ac3e12a8be6",
+      "length": 25600
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyA.Contracts.pdb",
+      "sha256": "29c7f3c740b4513b412dae20951c0f6c67ce4e0641398e36a8eac474428272be",
+      "length": 18392
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyA.Implementation.Extensibility.dll",
+      "sha256": "f17a601c1fb304a0c2ab41473f4abc041a22ebadface2861734e683bd8b9e121",
+      "length": 26624
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyA.Implementation.Extensibility.pdb",
+      "sha256": "f94092ad0c1fab708bb9d4f748f3af008b2148a41f676e0325dbf4283973868b",
+      "length": 22356
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyA.Implementation.Internal.dll",
+      "sha256": "ff8014a193872df76a106c8a4a1cbdeaa0a7ffe1060cb469887296378ce6547c",
+      "length": 37888
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyA.Implementation.Internal.pdb",
+      "sha256": "0cb89840ff13b648bd7baa8156f984cc6e21c8718be0af608a3a69e9cb54a24c",
+      "length": 27604
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowBaseline.Aot.dll",
+      "sha256": "0d66c04b7ca67de82018ab5c4318637eac99ae2119c3fb4387ed12f41d34b8a2",
+      "length": 11264
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowBaseline.Aot.pdb",
+      "sha256": "8bf6327c5cdb2837ac5bed2850fc83c919656089597ebbfee7a126df4c0813cc",
+      "length": 17308
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowBaseline.HotUpdate.dll",
+      "sha256": "958807f04f081606d90d13f5e2f23d2d409021c96aade8365a8d8cbfa50335ab",
+      "length": 4608
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowBaseline.HotUpdate.pdb",
+      "sha256": "51df5f69e3e3bfe65d74bcb8b3a0e509597504f01ee845cead1bc68d82fbc79f",
+      "length": 11992
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowDemo.Bootstrap.dll",
+      "sha256": "78c300cf4117bb2ffd549f26434d62dc59eccedba3059a0cc4356dd09a188acb",
+      "length": 525312
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowDemo.Bootstrap.pdb",
+      "sha256": "310c440b6b9805bd60b33714baa1cee6c903b49e12494d3daf8dd1bb34a9411b",
+      "length": 150476
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowDemo.ContractsConsumer.dll",
+      "sha256": "d59a397465b1bf1b01dc6edb4c0b8e5c26c9afc3beb430eb65d41291e8e9322b",
+      "length": 24576
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowDemo.ContractsConsumer.pdb",
+      "sha256": "a70ea7d19bd80519f2d859ee60a020bdb0931d075b555066a065982ad73d3e73",
+      "length": 17576
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+      "sha256": "6b7f32d4775a16605741f7da3668a0e6a90c604f0475ec97d1b5445d85626609",
+      "length": 26112
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/AssemblyShadowDemo.ExtensibilityConsumer.pdb",
+      "sha256": "c1340413bedb6814cbc2466da7eeb76fe3bd43fedcdb967ce01d0e4a3462a18b",
+      "length": 22148
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/HybridCLR.Runtime.dll",
+      "sha256": "0f39fc6f297ce9bc505fafd69bc749c812b57a4821740c6df51c0eefd323edf9",
+      "length": 52224
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/HybridCLR.Runtime.pdb",
+      "sha256": "61641982ce50b71c305a21f01f5c6f4a7942c24e2e744e4a3c70b877993d1dd3",
+      "length": 32888
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/MCPForUnity.Runtime.dll",
+      "sha256": "a9acda0c8f878937555517bb6802ca5b87482b167e068b5283d322407258c83c",
+      "length": 33280
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/MCPForUnity.Runtime.pdb",
+      "sha256": "74b630ae79a46faca073ecc09d4c607a5dd1a7bea6fc502a054f5a57f942799e",
+      "length": 28104
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.Animation.Runtime.dll",
+      "sha256": "e14063d87152ad07fa2bdd1be07885af0cc71b83599c61c370d3cd95747d5eba",
+      "length": 77824
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.Animation.Runtime.pdb",
+      "sha256": "6dc33de3cb01289f7666ed4c22c0113bcec342ad3912c2e8b49c6aacf717a266",
+      "length": 51172
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.Common.Runtime.dll",
+      "sha256": "5d7b715f49c9b86b3e08ad21b8fffb2ccab07e8d91ab671262d74cbbd2cd2463",
+      "length": 48128
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.Common.Runtime.pdb",
+      "sha256": "10b9cc0b1c2330b61fd61cf873f13763c876e2f4d385898e6ac7df9d08900e0c",
+      "length": 42684
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.IK.Runtime.dll",
+      "sha256": "f24a1b94be52d69241f2a68e3173d12a26dfd5e2d0cb3acae51d94fed30f59f6",
+      "length": 22016
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.IK.Runtime.pdb",
+      "sha256": "a985d9a0e7b764a2edff6aee687166b860ff0ac7f8b0b589c68966bab5c3a517",
+      "length": 26796
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.PixelPerfect.dll",
+      "sha256": "097de8ee7aa05070ec8aec2f6676d288dbff99ab6c94410e5f4efe70a46778a2",
+      "length": 14336
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.PixelPerfect.pdb",
+      "sha256": "0e3f0c1b2d979568f6d233b5235db42f2bad0cf7a8044fa9a3b7801dc8a0315e",
+      "length": 19912
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.SpriteShape.Runtime.dll",
+      "sha256": "0931faf24a48127ce6ddae1f4d2aae478ce79e77654b0c7bb6d34a285b29fa02",
+      "length": 118272
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.SpriteShape.Runtime.pdb",
+      "sha256": "6c4444ed5235f6edb4d7f6614c8f0380df7c1648384866d4d09c044f07ccbd86",
+      "length": 80756
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.Tilemap.Extras.dll",
+      "sha256": "e55a64d2b0154fffa15290edea56df61c06766c8d398495a6ba085d849076d8b",
+      "length": 35840
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.2D.Tilemap.Extras.pdb",
+      "sha256": "7d17ea32c51f480d7fc0b170151e93e663ecc138235df9d4b590e0572b68a8e2",
+      "length": 30360
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Burst.dll",
+      "sha256": "991274465d9095004745a177f34e03434f72c9483c50630a23ee9eba4a0b7880",
+      "length": 348160
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Burst.pdb",
+      "sha256": "9d2afc0f3750541fb82605da81daa722862c12c2a79b3b9d58fab3a6af5da579",
+      "length": 220016
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Collections.dll",
+      "sha256": "692f884f286cfa87b9801b6ccda22f225bae1ec12faaf1e192799dc860de898f",
+      "length": 400896
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Collections.pdb",
+      "sha256": "70549907d09bc7c5074abac27b974c83acd9b1c902156864f632498a30e3e71b",
+      "length": 255408
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.InternalAPIEngineBridge.001.dll",
+      "sha256": "57716017560e7be158095921360d48c1129a22aaf1b5dc90615b6890c0fdbffc",
+      "length": 6656
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.InternalAPIEngineBridge.001.pdb",
+      "sha256": "65546fea51332664c65196455c7fd31e84f8dd690ef5dcf0d4d2bba515c2ea28",
+      "length": 16824
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Mathematics.dll",
+      "sha256": "56027bcdfe0e15f111aff54ce38e8d549be00e86b35b401fa3775f578c751fd1",
+      "length": 873984
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Mathematics.pdb",
+      "sha256": "59d8e01c1718f1007a515be414a8117d0cbc055115c85d49a6c41fe5f6e40707",
+      "length": 507492
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "sha256": "a193a088fe7b9992e6829d1afe9e70947b7f300861111f4f2dd087471a33bee1",
+      "length": 8192
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipeline.Universal.ShaderLibrary.pdb",
+      "sha256": "816d03118f9fbb2dcfd308cd0ae12a05e38b2254c0417cfbb4ceb2396d0664e7",
+      "length": 16544
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Core.Runtime.dll",
+      "sha256": "553c92b0425e5e9fea1a4ec6ef89025412affdcba2642188740d6e96bec41f91",
+      "length": 594944
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Core.Runtime.pdb",
+      "sha256": "b666d5844d92fb2888beb26654517521dd3ff2b89f0f98576dd49ad544bbeec0",
+      "length": 284012
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "sha256": "f89154cefbc4f77e3128feafd5c9ede25ca4baf0f8c5117f5655f8cac37a3b03",
+      "length": 4608
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Core.ShaderLibrary.pdb",
+      "sha256": "9ee54021faa6a003cfcd2e444959ec538bb300e5719cfee4cfb7a9183a9ddbcf",
+      "length": 16064
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "sha256": "aef459cf3b62663b259eac4dfbb7fab7fa27e18d929ff2791818d3ed1f03a1e8",
+      "length": 4608
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb",
+      "sha256": "e8eb58ba8f3ec0e6adab9fb2ff0126b53c0c770dc481865d1158d50e7c32571c",
+      "length": 16044
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.2D.Internal.dll",
+      "sha256": "0db2409ee8d92f3e8408a6e1f0e45747aa519baf06be134630b17c322c037564",
+      "length": 5120
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.2D.Internal.pdb",
+      "sha256": "2a8e950867076d07cef6c63923e5e1268b23d726cd00c69c9ec23e385fac309a",
+      "length": 16304
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "sha256": "db89fc8e1251834e121f0a47adf3e9a9565b470734679a8b88f6bf82e7d99f6b",
+      "length": 5632
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.Config.Runtime.pdb",
+      "sha256": "b8c9890ebde714bacbc6469329eb79cb0402a7f07f0ebba26ae91b3f44776332",
+      "length": 16220
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.Runtime.dll",
+      "sha256": "ceee72b1d96dec9a5e5fb6d8a14a3316b8b5e413f1bb409237f83f5902cadab6",
+      "length": 850432
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.Runtime.pdb",
+      "sha256": "d4d4a774db8d97a00a324661e12c445cc692eb552438320f5c60d2d479a810dc",
+      "length": 395040
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.Shaders.dll",
+      "sha256": "b15efa1aa396595e85ed88cabd77deff9465337707a74c5e1f2823594c8e56b9",
+      "length": 4608
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.RenderPipelines.Universal.Shaders.pdb",
+      "sha256": "2df58b5512e53d01a761352a4a23da3bd1d76f01b0348b7c8b05e9aad235a889",
+      "length": 16056
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.TextMeshPro.dll",
+      "sha256": "7dcf1147fccc6ee8fe82b6dd6cdd58ad380ddace2c1ec3cafd73045a4bd6c2a2",
+      "length": 436224
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.TextMeshPro.pdb",
+      "sha256": "56d5061f08d56be03370cd1f84faafaf4d2b62fd1833e9899c6c785df93cb5d7",
+      "length": 234284
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Timeline.dll",
+      "sha256": "c61f3f3ffae515a0dd1951e73950e56953a31187a30406ec902c4737cc7787ea",
+      "length": 141312
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.Timeline.pdb",
+      "sha256": "2258cc23d8a752947d180cf4d816ebaea1ab34f9c73e6713f35f24cacca3159f",
+      "length": 86716
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.VisualScripting.Core.dll",
+      "sha256": "9af6c589621368030edfc2cfd8e51e57ed8dfe65cddf453ab0982996e3389fff",
+      "length": 668672
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.VisualScripting.Core.pdb",
+      "sha256": "647e5b2910100d42f09ed1d2324ae92e201930c8a81555f0df30d45c4aba5ed8",
+      "length": 334536
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.VisualScripting.Flow.dll",
+      "sha256": "3c61fb730e7fe76fe3fe32c5150131798e0e670f3854eca8b33ada1d53ec3a16",
+      "length": 427008
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.VisualScripting.Flow.pdb",
+      "sha256": "c980175a15893a7319880b8c5ec815f7f77bcf9616c8ab1bb35b27a98e2395f9",
+      "length": 218676
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.VisualScripting.State.dll",
+      "sha256": "2dfd3476587a56db046bfc1203409a0077c47736f9e42442e6e63a1e459d261d",
+      "length": 33792
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/Unity.VisualScripting.State.pdb",
+      "sha256": "daf18d87a1ceb53d2d52904b572baaae5078c1f13674faa0aca420fe681c7a21",
+      "length": 29088
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/UnityEngine.TestRunner.dll",
+      "sha256": "4733e7e171b5a1a4408c14072ab177ec641adb13acf98bb4b3baedd8002bc94a",
+      "length": 144896
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/UnityEngine.TestRunner.pdb",
+      "sha256": "41507227bb0fc99e2e2e1c0ef5ef0dc5c5c2cbeaa5563dc53c2eb03a1a5a1496",
+      "length": 77388
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/UnityEngine.UI.dll",
+      "sha256": "ba571e729fddd72e9902fe7344108f8092ba5f45d3318e19e9662c71f6f86667",
+      "length": 297472
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/CompilerOutput/UnityEngine.UI.pdb",
+      "sha256": "18199909d76113f8d5a0bcf92d95be4d331e7432d3357154160d287ad797b547",
+      "length": 181740
+    }
+  ],
+  "retainedCapturedSnapshot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-failure-fixtures-1/R01-P03-InitializerThrow-compile/Snapshot",
+  "laterCompileReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v3-capacity-editor-1.json",
+    "sha256": "132ef3966e1a8986a906409502346dd4dce918a4ea76c8b2c986c40a6375a4a4"
+  },
+  "correction": "Compile outside the fixture tree, relocate the complete captured Snapshot before building patches, reverify its snapshot/compiler mode, and seal the complete published tree. Strict inventory verifier unchanged.",
+  "boundedSourceReview": {
+    "reviewer": "r01_integration_review_gpt6astra_high_1",
+    "verdict": "Passed",
+    "scope": "Producer relocation; postcompile survival still pending"
+  },
+  "focusedCompilerTest": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-3cde63b2d2ff4821b1e011a6629545c9/results.xml",
+    "sha256": "f44ca4001be442d54e73c475bbb65747f31c8519f5cc6ea43e5db6095d6b9aa6"
+  },
+  "plannedRegression": "Fresh v4 fixture then a subsequent real capacity compilation, full tree hashes and strict fixture preflight.",
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

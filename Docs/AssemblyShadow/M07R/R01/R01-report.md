@@ -1,0 +1,48 @@
+> Update: v3 Player preflight rejected the fixture inventory before any Player launched. The producer sealed transient CompilerOutput files; the corrected producer is preparing a fresh v4 baseline. See [diagnostic](early-v3-failure-inventory-diagnostic.json). The v3 Editor/build results below are retained history, not accepted Player evidence.
+
+# R01 Stage Report
+
+Status: **Active / Unaccepted**. This is a stage report draft for the R01 evidence package. It does not pass R01, R01B, H1, or authorize R02.
+
+The current executable source pin is demo `d2da3055ee64c65e2f29b453e9b3b4bdd738cb26`, with HybridCLR `54666fee824331822daad9b8da28b2599c515b3d`, `hybridclr_unity` `b649c499385ea68490a0f652a98b732e060aeb89`, and `il2cpp_plus` `7967b8c7043904fcae130b294defd5ce7aa897c4`. The Unity target is 2022.3.62f2, StandaloneOSX arm64, and the documented runtime ABI hash is `df5465eaa165acab2d26c7d8b6bf106e362ea532c3c5597506ebfcad4fdf6f5f`. The current documentation head is `3667bb208ef20472364427dd8ea7c5a012381034`.
+
+The normative R01 contract requires native budget boundaries, at least one real multi-assembly Player capacity rejection before publication, shared ordinary/Shadow consumption, strict failure and recovery behavior, version-bound evidence, and explicit NotRun limitations. The validation matrix assigns Q01/Q02/Q05 to native helper or native boundaries, Q03/Q04 to native plus Player, Q06 to Player and R01B, and S01-S04 to policy/native/Player boundaries. Every result must bind its source pairing, target, compiler, runtime/encoding identity, input hashes, process or device, raw logs, and assertions.
+
+## Current evidence
+
+The v3 build workflow and deterministic Editor replay passed for the pinned ON/OFF pair. The checkpoint records the fresh NativeOn and NativeOff build identities, native library and metadata hashes, workflow receipt, fixture manifest, and replay receipt ([early-v3-player-build-pair-checkpoint.json](early-v3-player-build-pair-checkpoint.json:3)). Build and replay success establishes provenance and repeatability; it does not execute the early Player matrix.
+
+The isolated initializer fixture now passes production compilation, exact-byte replay, and DLL-only admission for the five-member closure. Its resource ABI remains equal to the baseline and it requires no resource bundles. Editor capacity validation also passes a positive five-member case and rejects an exactly 64 MiB padded assembly with `MetadataCapacityExceeded` before producing rejected output ([early-v3-editor-validation.json](early-v3-editor-validation.json:31)).
+
+The current native evidence is indexed in [early-v3-native-regressions.json](early-v3-native-regressions.json:1). It includes the 2,684-check budget helper, 498-check recovery helper, the v3 gateway receipt with 41 scenarios and 37 death tests, and fresh immutable-snapshot M03/M04 regressions. The gateway receipt includes success, global-namespace, empty, and OFF cases as well as refusal cases. These are native or bounded adapter boundaries; they do not establish full Unity startup, GC behavior, managed publication, or the Player matrix. Q05 is specifically native allocator and `g_MetadataLock` contention evidence, not concurrent Player `Assembly.Load` coverage.
+
+Source provenance and the exhaustive cumulative file list are in [source-change-index-v3.json](source-change-index-v3.json:1). The indexed demo delta is 124 files with 16,427 additions and 226 deletions ([source-change-index-v3.json](source-change-index-v3.json:7)). The source correction review records 437 Python tests passed, a 302-test demo Editor run with 301 passed and one assertion-type defect, followed by a focused compiler correction pass; its verdict is a bounded source review, not acceptance ([early-v3-source-correction-review.json](early-v3-source-correction-review.json:7)). The committed package Editor suite has a retained 687-test receipt; it remains Editor evidence and is not Player evidence ([early-gateway-integration-checkpoint.json](early-gateway-integration-checkpoint.json:17)).
+
+## Q and S acceptance matrix
+
+| Criterion | Evidence state | Remaining requirement |
+|---|---|---|
+| Q01 budget boundaries | Native helper passed 2,684 checks with the production budget header | Bind the helper receipt into the final current-pin package; Player is not required for this sub-boundary |
+| Q02 fresh capacity | Native helper covers the declared profile and rejection boundary | A real Player closure must show shared budget behavior where required by the final R01 package |
+| Q03 ordinary plus Shadow allocation | Native startup/transaction adapters and the retained 545-check Q05 contention receipt exist | Execute and strictly verify the current Player ordinary-first and ordinary-after-reserve cases, then compare against Shadow reservation and cursor evidence |
+| Q04 staged metadata failure | Identity-preserving negative transform and failure fixture are prepared; native 109-check transaction evidence is synthetic/adapter bounded | Run the real Player metadata-init failure after Stage; capture retained budget, unpublished `Failed`, rejected Abort/second Begin, and `RestartRequired` disposition |
+| Q05 mixed-size and concurrent allocation | Native production allocator and `g_MetadataLock` contention receipt passed 545 checks | Preserve the native-only boundary; do not relabel it as concurrent Player coverage |
+| Q06 project capacity | Editor positive five-member admission passed; exactly 64 MiB is rejected before publication with `MetadataCapacityExceeded` | The user target is 65,536 assemblies. No 64k support claim follows; R01B is mandatory for the target, with actual size distribution, allocation domain, and headroom contract |
+| S01 pre-Configure use | v3 native gateway death tests prove refusal termination and no host/atexit continuation; policy/source review is bounded | Complete all 11 early Player modes, including current NativeScript witness capture, with strict process and state assertions |
+| S02 correctable Configure failure | Native state and transaction adapters exist | Run current Player exact-set, duplicate, retry, and concurrent Configure cases and bind recovery JSON to the fresh pair |
+| S03 metadata failure recovery | Native transaction receipt and fixture/replay evidence exist | Capture the real Player failure state and restart disposition after genuine staged ownership |
+| S04 publication/failure snapshots | Bounded native and observer evidence exists | Capture complete before/after publication and failure snapshots in Player; sampling and dropped-observation counts must remain explicitly bounded |
+
+## Remaining Player and review work
+
+The full current early matrix has 11 modes running. Final R01 runtime evidence must strictly verify all 11 early modes and the 13 ON M07 resource modes plus OFF, including process exit, result schema, physical versus logical identity, resource behavior, and no-continuation assertions. The v3 source review still records Player verification as pending ([early-v3-source-correction-review.json](early-v3-source-correction-review.json:17)).
+
+The NativeScript instrumentation review passed its read-only LLDB design checks, but actual v3 execution remains pending. The required witness must use a fresh v3 PID/TID and outputs, match the native and DWARF UUID, capture `class_from_name` namespace/name and non-null return, and prove that the return event precedes Configure ([early-v3-instrumentation-review.json](early-v3-instrumentation-review.json:16)). The historical catalog diagnosis remains useful scope evidence; it is not the current production public-API witness.
+
+The current Editor and Python results support source and admission checks. They do not replace the required Player receipts. The current resource fixture and capacity receipts prove build-time admission and rejection boundaries, while the Q04 metadata failure and published initializer failure still require real Player execution and durable recovery capture.
+
+The 65,536 target is the conservative interpretation of the user's approved up-to-64k target. It exceeds the current profile's best-case fresh capacity of 338, so the ordered path is: finish R01 Player evidence and stage review, execute R01B with its encoding and measured-scale contract, then stop at H1 ([approved-early-activation-amendment.md](approved-early-activation-amendment.md:7)). Suggested 100/300/1000 pressure tiers are not product closure criteria. No 64k support claim is made here.
+
+An independent human R01 stage review is still required. The normative gate requires the agent to stop at the gate, requires a human to explicitly initiate the full review, and requires version-bound four-repository, test, Player, negative, regression, limitation, performance, and release-risk evidence before a `Passed` or `PassedWithExplicitDeferredRisk` decision ([HUMAN_REVIEW_GATES.md](../../../../Documents/HybridCLR_AssemblyShadow_Design_and_Plans/reviews/M07_SourceReview_2026-09-07/plans/HUMAN_REVIEW_GATES.md:12)). The configured automatic skill gate helper is currently Off on both active and original roots; that status cannot substitute for the user-required independent stage review. H1 remains false, R01B remains mandatory, and R02 must not be entered.
+
+This report is intentionally incomplete until the current Player matrix, NativeScript witness, Q04/S03 recovery captures, final evidence bindings, and independent R01 stage review are complete. No source or native rerun is implied by this report.
