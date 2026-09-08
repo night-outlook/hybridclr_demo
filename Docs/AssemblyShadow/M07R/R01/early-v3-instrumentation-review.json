@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV3InstrumentationReview",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "verdict": "Passed",
+  "scope": "Read-only LLDB instrumentation, not runtime or milestone acceptance",
+  "helperPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v3-native-script-debug-1/r01_native_script_trace.py",
+  "helperSha256": "3c55ea2698aa8eb45aab32778aa270c861fd76b10759500f5c0d1876b7d8025d",
+  "findings": [],
+  "verified": [
+    "Normalized native function spelling handles leading namespace separators and argument lists.",
+    "Entry registers x0-x2 are read before prologue; LR return breakpoint is one-shot and thread-restricted.",
+    "Witness filtering precedes disabling entry breakpoint; Configure has a separate event.",
+    "No target expressions or register/data writes; breakpoint operations only."
+  ],
+  "requiredExecutionChecks": [
+    "Fresh v3 PID/TID and outputs",
+    "Native and DWARF UUID 19C34AD3-4AA1-475B-81C0-DD39C05E692D",
+    "class_from_name target namespace/name and nonnull return",
+    "Return event precedes Configure"
+  ],
+  "limitations": [
+    "Actual LLDB command and execution pending.",
+    "Each API sampled once; not exhaustive assembly enumeration."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

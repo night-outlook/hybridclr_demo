@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV3NativeEvidenceIndex",
+  "status": "EvidenceOnly",
+  "milestoneAccepted": false,
+  "H1Passed": false,
+  "sourcePins": {
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": "54666fee824331822daad9b8da28b2599c515b3d",
+    "hybridclrUnity": "b649c499385ea68490a0f652a98b732e060aeb89",
+    "il2cppPlus": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+    "demo": "d2da3055ee64c65e2f29b453e9b3b4bdd738cb26"
+  },
+  "compiler": {
+    "path": "/usr/bin/clang++",
+    "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
+    "version": "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+  },
+  "fresh": [
+    {
+      "id": "R01-STARTUP-GATEWAY-V3",
+      "receipt": "_temp/AssemblyShadow/R01/native-startup-gateway-death-v3-1.json",
+      "receiptSha256": "0b73c5f5d076df2ae82ce90691d28b1c510e76db1d5b22531e202bdec2b1c4d9",
+      "result": "Passed",
+      "scenarios": 41,
+      "deathTests": 37,
+      "checks": 194,
+      "processAssertions": 406,
+      "syntaxChecks": 8,
+      "inputsUnchanged": true,
+      "nonDeathScenarios": [
+        "success",
+        "global-namespace",
+        "empty",
+        "off"
+      ],
+      "inputHashes": {
+        "Tools/AssemblyShadow/run-r01-startup-gateway-native-tests.py": "a375909ebcb66ad721d834efada9870cc16fbd67bc889c4ccde88837e4bf13b2",
+        "Tools/AssemblyShadow/native-tests/r01_startup_gateway.cpp": "45212fb0609a87dd743018aee132136c1c1dbb0b563b07fd0384092f130d1b47",
+        "HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/UnityVersion.h": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff",
+        "il2cpp_plus/libil2cpp/vm/AssemblyShadowStartup.h": "3ab04a34c1a4a65f3167c58a8396211435ff3228ad7622dc201ebd122ab5c548",
+        "il2cpp_plus/libil2cpp/vm/AssemblyShadowStartup.cpp": "ec0a60602aa1a345cc3bc89892278e12241b7ecaa48f0c26315f65d433e36d38",
+        "il2cpp_plus/libil2cpp/vm/AssemblyShadowStartupGate.h": "1fd6dda1f7b10e88968a1d21ee5db357bdfbe54da89e724e7d996dac43181ed8",
+        "il2cpp_plus/libil2cpp/il2cpp-api.cpp": "6c0e9fef54df169cf8a7b9bbf36b7224ea320d02bc15c5b14707d971da6f2371",
+        "il2cpp_plus/libil2cpp/vm/Runtime.cpp": "b4513eef34da0ab2f3006f99ef829002995a3650f049725f33b14fa4a2417fe9",
+        "hybridclr/hybridclr/generated/AssemblyManifest.cpp": "9ca5218919a7ac10d90094f01ca7beb186036ddcfa07a960e416912add9845db"
+      },
+      "boundary": "Production gateway and child-process termination, including continuation and atexit assertions; no Unity, GC, full Runtime::Init, or Player execution.",
+      "inputHashNote": "All nine recorded inputs match current files, including generated UnityVersion.h and AssemblyManifest.cpp."
+    },
+    {
+      "id": "M03-NATIVE-V3",
+      "receipt": "_temp/AssemblyShadow/R01/m03-native-v3-1.json",
+      "receiptSha256": "313a09574b14439b9294a7268ed00d7c4e9a56f9e035e77f62873716725f7461",
+      "result": "Passed",
+      "dependencyCount": 1007,
+      "identityChecks": 94707,
+      "nameChecks": 30,
+      "facadeChecks": 25,
+      "facadeLookupChecks": 15,
+      "disabledApiChecks": 33,
+      "sourceFileHashCount": 1007,
+      "inputsUnchanged": true,
+      "fixtureSnapshot": "_temp/AssemblyShadow/M07PlayerInputs-dad83c49e5774aa9b16d44e4f0aa4833",
+      "fixtureDllSha256": {
+        "AssemblyA.Contracts.dll": "73abd358ed1d2f60d08457478146fcbf556c5fa2bae4b8c9ff6980bf07624118",
+        "AssemblyA.Implementation.Internal.dll": "8d90a0e27b240926864c8599a669445506241ec2267c7b38e516805ebdb9259c",
+        "AssemblyA.Implementation.Extensibility.dll": "eb5dc08318758ea61f9de622e8cc44fa3ca0af38e4cdec10082ca6ac44c918fe"
+      },
+      "boundary": "Native parser/facade and disabled API regression against immutable ON Player input DLLs; not Player acceptance."
+    },
+    {
+      "id": "M04-NATIVE-V3",
+      "receipt": "_temp/AssemblyShadow/R01/m04-native-v3-1.json",
+      "receiptSha256": "9c50dad178e5cc934d42fca6cccf6a9124892f7fa81662abf58e2a44ac167435",
+      "result": "Passed",
+      "checks": 53,
+      "syntaxChecks": 22,
+      "lookupCount": 1000000,
+      "lookupAllocations": 0,
+      "sourceFileHashCount": 1058,
+      "inputsUnchanged": true,
+      "fixtureSnapshot": "_temp/AssemblyShadow/M07PlayerInputs-dad83c49e5774aa9b16d44e4f0aa4833",
+      "boundary": "Resolver/core, Assembly enumeration/publication, TLS, physical-AOT closure scan, and serializer with controlled adapters; not full transaction, managed reflection, or Player acceptance."
+    }
+  ],
+  "retained": [
+    {
+      "id": "R01-STARTUP-V2",
+      "receipt": "_temp/AssemblyShadow/R01/native-startup-v2-1.json",
+      "receiptSha256": "d42b2e0ed3d0aa92c95a73bd17a5f3bf91a38ef853be8954801014dd68cad752",
+      "result": "Passed",
+      "checks": 168,
+      "audit": "Compiled headers/code/fixtures/generated dependencies match current; only install receipt and source-pin metadata differ.",
+      "metadataOnlyChanges": [
+        "assembly-shadow-install.json",
+        "ProjectSettings/AssemblyShadowSourcePins.json"
+      ],
+      "boundary": "Native startup transaction/recovery adapter; no full MetadataCache initialization, Unity, GC, or Player behavior."
+    },
+    {
+      "id": "Q05-CONTENTION-V2",
+      "receipt": "_temp/AssemblyShadow/R01/native-budget-contention-v2-1.json",
+      "receiptSha256": "d1550ea9582ad38ac3069f73586c66851ac1997b2dbafae4cf23495ada862e27",
+      "result": "Passed",
+      "checks": 545,
+      "audit": "Compiled headers/code/fixtures/generated dependencies match current; only install receipt and source-pin metadata differ.",
+      "metadataOnlyChanges": [
+        "assembly-shadow-install.json",
+        "ProjectSettings/AssemblyShadowSourcePins.json"
+      ],
+      "boundary": "Production allocator and g_MetadataLock contention; no concurrent full Assembly.Load publication or Player execution."
+    },
+    {
+      "id": "R01-TRANSACTION-V2",
+      "receipt": "_temp/AssemblyShadow/R01/native-transaction-v2-1.json",
+      "receiptSha256": "919e7da296e420f9ebfbf75c6b8ad623256d391aec4996e8fdc06a5dcaa161ee",
+      "result": "Passed",
+      "checks": 109,
+      "audit": "Compiled headers/code/fixtures/generated dependencies match current; only install receipt and source-pin metadata differ.",
+      "metadataOnlyChanges": [
+        "assembly-shadow-install.json",
+        "ProjectSettings/AssemblyShadowSourcePins.json"
+      ],
+      "boundary": "Native transaction, identity, recovery, and injected failure adapters; no managed metadata initialization, Unity, or Player publication."
+    },
+    {
+      "id": "M05-NATIVE-V2",
+      "receipt": "_temp/AssemblyShadow/R01/m05-native-v2-1.json",
+      "receiptSha256": "93b352810390051ab3a5ec933bbc3322094ea90bb90554bc0d7752d7b0e26cbc",
+      "result": "Passed",
+      "syntaxChecks": 34,
+      "inputsUnchanged": true,
+      "audit": "Compiled headers/code/fixtures/generated dependencies match current; only install receipt and source-pin metadata differ.",
+      "metadataOnlyChanges": [
+        "assembly-shadow-install.json",
+        "ProjectSettings/AssemblyShadowSourcePins.json"
+      ],
+      "boundary": "Native type/reflection/image identity regression; no Player acceptance."
+    },
+    {
+      "id": "M06-NATIVE-V2",
+      "receipt": "_temp/AssemblyShadow/R01/m06-native-v2-1.json",
+      "receiptSha256": "bf5790489788408894286219952a0ab30a206b0c2327498d37a5fed92f01bdcb",
+      "result": "Passed",
+      "checks": 824,
+      "syntaxChecks": 20,
+      "inputsUnchanged": true,
+      "audit": "Compiled headers/code/fixtures/generated dependencies match current; only install receipt and source-pin metadata differ.",
+      "metadataOnlyChanges": [
+        "assembly-shadow-install.json",
+        "ProjectSettings/AssemblyShadowSourcePins.json"
+      ],
+      "boundary": "Native execution regression and bounded adapter tests; no Unity Player/runtime acceptance."
+    }
+  ],
+  "auditSource": "_temp/AssemblyShadow/R01/retained-native-input-audit-v3-1.json",
+  "auditSha256": "813999efb489d0aa772254328688384b512cc68491c41b2fa310e4acc3093cbb",
+  "retainedV2Metadata": {
+    "recordedSourcePins": {
+      "il2cppPlus": "a999f3d293184e8af6f9dc138ea42f45e024a699",
+      "demo": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b"
+    },
+    "currentSourcePins": {
+      "il2cppPlus": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "demo": "d2da3055ee64c65e2f29b453e9b3b4bdd738cb26"
+    },
+    "metadataFileHashes": {
+      "HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json": {
+        "recorded": "a7e3f5fd62ef270954a56615e0f8b8e04d93e586c7dee6c906bbcb0528323207",
+        "current": "f1f9fa20dc43f0e6c08dd480a17863b875f7b87fc94b87313308bfb1e6ae8d72"
+      },
+      "ProjectSettings/AssemblyShadowSourcePins.json": {
+        "recorded": "40cd6fbbe5e9969657ee49982c6943a346deeba9b05c9bfc999f4a0214d11468",
+        "current": "31f3ff652b230833c6dc47c1b2c3966a52acfb6a56105e7ca0b3bc46e599cf56"
+      }
+    },
+    "compiledInputConclusion": "The v3 audit found no compiled header, source, fixture, or generated dependency differences for these five receipts; the differences are provenance/install metadata only."
+  },
+  "auditSummary": {
+    "auditedUniquePaths": 1178,
+    "retainedV2ReceiptsWithMetadataOnlyDifferences": 5,
+    "freshCurrentPinReceipts": 2,
+    "freshGatewayInputHashesMatching": 9,
+    "generatedBindingAudit": "Recorded by the audit but retained as post-build provenance; this index makes no new mutation or acceptance claim."
+  },
+  "limitations": [
+    "Native evidence is supporting analysis only; it is not R01 milestone acceptance or H1 review.",
+    "Native adapters do not prove Unity Player startup, GC behavior, natural process exit, managed publication, or the full R01 ON/OFF matrix.",
+    "The Q05 receipt is native-only and must not be described as concurrent Player Assembly.Load coverage.",
+    "No native reruns are required from the v3 audit; final Player evidence must bind to the current pins above."
+  ],
+  "retainedUnchangedHelpers": [
+    {
+      "id": "R01-NATIVE-BUDGET",
+      "receipt": "_temp/AssemblyShadow/R01/native-budget-1.json",
+      "receiptSha256": "13a14f738455b73a7d2cf0acbbe10480612898824fbe153f3156f5bc41735393",
+      "result": "Passed",
+      "checkCount": 2684,
+      "inputsUnchanged": true,
+      "sourceHash": {
+        "testSource": "7c98a29157dc7954cf2413e910837de556d41b5f5a23c8b27053438048af0f2d",
+        "budgetHeader": "755fcf9848a83ec387956758d3531b4f68fa6551b69b8d24a4f4704dd8cb760d",
+        "runner": "aabbc66aa518cb65100dc598d143cd16710db2a0744234cb652f6f1c5b56bbff"
+      },
+      "boundary": "Standalone C++11 production InterpreterImageBudget header; no IL2CPP runtime, Unity, Python model, or Player.",
+      "executionStatus": "Retained execution; source/header/runner/compiler hashes re-audited unchanged for v3"
+    },
+    {
+      "id": "R01-NATIVE-RECOVERY",
+      "receipt": "_temp/AssemblyShadow/R01/native-recovery-1.json",
+      "receiptSha256": "9a9ab8da83403320b0c39774b067e4a818eaea2d0db1acc99479d9a5d3d94e02",
+      "result": "Passed",
+      "checkCount": 498,
+      "inputsUnchanged": true,
+      "sourceHash": {
+        "testSource": "dd22f60a1c893480c867828bc66b3c7ad5fde08a8d2e6f5ef7be918ccb5d6f9d",
+        "recoveryHeader": "02165a37ec40d2503f92087e86b0da0ec749ae47efbab18ca0c6c38b072473c6",
+        "runner": "bf89f2b4d73ff47fddf2cf997900830d751b5c47ca9f77efc29005842d79698c"
+      },
+      "boundary": "Standalone C++11 production recovery header; no IL2CPP runtime, Unity, Python model, or Player.",
+      "executionStatus": "Retained execution; source/header/runner/compiler hashes re-audited unchanged for v3"
+    }
+  ]
+}
