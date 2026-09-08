@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "result": "PassedSourceScopeEvidencePending",
+  "milestoneAccepted": false,
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "reviewType": "Independent R01 stage source review, not human H1",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "c2c908c5a11ce65aabb0da75b512923f709277c1",
+      "localPath": "."
+    }
+  },
+  "reviewOrder": [
+    "revised design",
+    "R01 plan",
+    "pinned implementation call chains",
+    "available native and Editor evidence"
+  ],
+  "findings": [],
+  "checks": [
+    "Startup callback runs outside initialization lock; refusal terminates before host continuation; OFF and empty tuple retained.",
+    "Ordinary and Shadow allocation share metadata lock and monotonic cursors; complete reservation plan commits atomically.",
+    "Terminal recovery survives rejected operations; staging error 13 avoids managed construction; initializer result 19 retains inner cause.",
+    "Editor admission precedes publication; capability negotiation fails closed; verifiers bind immutable inputs, processes, snapshots and termination.",
+    "All nine fresh native receipt hashes and Editor fixture/capacity/lifetime hashes matched."
+  ],
+  "pendingEvidenceAtReview": [
+    "Strict v5 11-mode offline verdict",
+    "Strict v5 14-mode M07 aggregate",
+    "Actual v5 native trace final review"
+  ],
+  "limitations": [
+    "Source approval is not runtime or milestone acceptance.",
+    "Current encoding remains bounded; mandatory R01B capacity work remains.",
+    "Human H1 follows R01B and cannot be replaced by this review."
+  ]
+}

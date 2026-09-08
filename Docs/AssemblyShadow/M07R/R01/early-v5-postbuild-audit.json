@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "result": "PassedPostBuildAudit",
+  "milestoneAccepted": false,
+  "recordedAt": "2026-09-08T21:49:03.834540+00:00",
+  "installedVerification": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-postbuild-installed-verification-1.json",
+    "sha256": "9eee588ea19c82bdabf8679686b591f3ad0db7701888052e05caa859cda963d1",
+    "summary": {
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "sourceFiles": 945,
+      "installedFiles": 947,
+      "demoSourceVerified": true,
+      "configuredShadowMode": "on",
+      "receiptSha256": "32d9d71093c2aeef028bd9fd48088c2bf9b837493eb07453d2d989a5488ee045"
+    }
+  },
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "c2c908c5a11ce65aabb0da75b512923f709277c1",
+      "localPath": "."
+    }
+  },
+  "generatedFiles": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/AssemblyManifest.cpp",
+      "preservedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-postbuild-generated-1/AssemblyManifest.cpp",
+      "sha256": "5412e86587584590bf08a7a182940d363b3776c1525ac2afca81bc9849cd5a7e",
+      "bytes": 1110
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/MethodBridge.cpp",
+      "preservedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-postbuild-generated-1/MethodBridge.cpp",
+      "sha256": "149cc4bfe9ea73ac39e1c06e85ddaf4fc6a20ece89d69e0c826d1273be855bf1",
+      "bytes": 5922739
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/UnityVersion.h",
+      "preservedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-postbuild-generated-1/UnityVersion.h",
+      "sha256": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff",
+      "bytes": 280
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/libil2cpp-version.txt",
+      "preservedPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-postbuild-generated-1/libil2cpp-version.txt",
+      "sha256": "21ff4a6aabf9e962c439c0508dd64f3a6c1a42337c79e872eb02f46b6f89160a",
+      "bytes": 9
+    }
+  ],
+  "playerPairs": [
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-6bb7d48847c645cdaeb19936acf052f7/m07-player-build.json",
+      "sha256": "3d3059b4046da5ab66366509885faa34db5efaeb415cbfba2aa3289e2c509ab1",
+      "buildGuid": "a5b484a6772e4c90a24dd29216022630",
+      "variant": "NativeOn",
+      "placeholderManifestSha256": "5412e86587584590bf08a7a182940d363b3776c1525ac2afca81bc9849cd5a7e"
+    },
+    {
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-8190edf274c440c0a747b77a51de54ad/m07-player-build.json",
+      "sha256": "a6711ca13142e8bfad920ef9ddfab2274775a65d368218d1fa32f5243c3b2913",
+      "buildGuid": "cdfb323305354110b7f5848524a3a7e2",
+      "variant": "NativeOff",
+      "placeholderManifestSha256": "5412e86587584590bf08a7a182940d363b3776c1525ac2afca81bc9849cd5a7e"
+    }
+  ],
+  "limitations": [
+    "The fixed generated-file allowlist is excluded from pinned native source byte comparison. Current generated files are separately preserved here.",
+    "AssemblyManifest.cpp exactly matches both immutable Player receipt copies. Other generated hashes are post-build observations; this audit does not invent historical compiler input hashes.",
+    "This audit does not replace strict Player matrices or independent R01 review."
+  ]
+}
