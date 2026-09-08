@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV2BuildAttempt",
+  "attempt": 1,
+  "result": "FailedBeforePlayerBuild",
+  "sourceRevision": "87b2884c133fd3e2e864a8780743c39728b4e1b2",
+  "failedMethod": "AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs",
+  "error": "BootstrapReflection: Bootstrap reflection reference is not an approved entrypoint: AssemblyShadowDemo.Bootstrap -> AssemblyShadowDemo.R01EarlyStartup::Witness|AssemblyA.Implementation.Internal",
+  "correction": "Declare only the four finite type identities already approved for the equivalent existing R01 negative probe. No wildcard, policy checker change, or baseline-use guard exemption.",
+  "independentPreRuntimeFinding": "Normal M07 Control fixtures do not compile M03-INIT logging; verifier wrongly expected closure log events. Native initializer state checks remain required; dedicated initializer-failure fixture must retain its exact event prefix.",
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-build-1.log",
+      "sha256": "f960fcb1961e69691f31986c77867db53a4755b2998bef4aabee1d81caa54271"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/UnityExec_20260908_094221.log",
+      "sha256": "b33df5285fd8e0a369ccaa1f445f7ecf55677cc63699ef912a6042c4d06c6a82"
+    }
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

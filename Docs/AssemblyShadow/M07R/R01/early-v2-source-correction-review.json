@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV2SourceCorrectionReview",
+  "baseRevision": "87b2884c133fd3e2e864a8780743c39728b4e1b2",
+  "targetRevision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "verdict": "Passed",
+  "milestoneAccepted": false,
+  "H1Passed": false,
+  "findings": [
+    {
+      "issue": "Missing finite policy entries for early negative reflection witnesses",
+      "status": "Fixed",
+      "verification": "Four exact declarations, no wildcard or guard exemption; fresh actual baseline compiler policy validation passed."
+    },
+    {
+      "issue": "Control incorrectly required M03 Console initializer markers absent from M07 fixtures",
+      "status": "Fixed",
+      "verification": "Normal Control requires zero markers; native initializer flags and commit order remain strict; dedicated InitializerFailure exact prefix preserved."
+    }
+  ],
+  "rootChecks": {
+    "focusedPythonPassed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "compilerPolicyValidation": "Passed"
+  },
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-final-focused-2.log",
+      "sha256": "e991569ff258f8e113cf5ce5ca81ac5454e891ecdf779b72e4f5592a127fe0c1"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-compiler-policy-correction-1.log",
+      "sha256": "13fe51a184a35d8d0db3f2d9329257b85c47794e58e83aea95122f12169ce4f9"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/UnityExec_20260908_094809.log",
+      "sha256": "b187448618568ed2fb2dd02b5fc802445025bb22908ef123a7917205ea5a6e4d"
+    }
+  ],
+  "retainedCompiledFixtureInspection": {
+    "performedBy": "r01_startup_failure_gpt6astra_high_1",
+    "tool": "Unity-bundled Mono.Cecil read-only inspection",
+    "manifestPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-d6098a7774524c888944b5fb3a90f8e9/m07-fixtures.json",
+    "manifestSha256": "2a907ee8258c2586f7a418e0f598ec11e3c5b14c77ae9e2a293706974ef841a1",
+    "dllsHashedAgainstPatchManifests": 11,
+    "output": "P01 closure=1 M03Types=0 M03ConsoleMarkers=0\nP02 closure=3 M03Types=0 M03ConsoleMarkers=0\nP03 closure=5 M03Types=0 M03ConsoleMarkers=0\nP04 closure=1 M03Types=0 M03ConsoleMarkers=0\nP05 closure=1 M03Types=0 M03ConsoleMarkers=0\n",
+    "outputSha256": "0d26c765899ee9deb8ab9ecc972db8ee35996ac065b827371a7c1f18414e373d",
+    "scope": "Retained v1 fixture content confirms source intent; not fresh v2 Player acceptance."
+  },
+  "remaining": [
+    "Reinstall exact final demo pin and regenerate definitions",
+    "Fresh ON/OFF Player and strict R01/M07 runtime verification",
+    "R01 evidence and milestone review",
+    "Required R01B then stop H1"
+  ]
+}
