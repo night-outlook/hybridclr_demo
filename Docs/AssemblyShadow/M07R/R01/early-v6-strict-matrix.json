@@ -1,0 +1,463 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6StrictMatrix",
+  "result": "PassedBoundedProfile",
+  "milestoneAccepted": false,
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "verification": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/r01-early-verified.json",
+    "sha256": "928a3aa131b8e0d40a5567956162eb46f00b29de89767c82ab4619f781154637"
+  },
+  "launchReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/r01-early-launches.json",
+    "sha256": "a9aa3e809f4d6f5bab6e9e72c6978019abfb72991276e03ce03573e3211b2d78"
+  },
+  "producerLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-matrix-1.log",
+    "sha256": "eada36190f2a41be97358364d83112198cc47d1f8ca41c05cf27a820e550198f"
+  },
+  "offlineLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-matrix-offline-1.log",
+    "sha256": "e9f25f09fd857de6b1df993e39942eae91ce1475feacbbaa18fd9babea04ab26"
+  },
+  "modes": [
+    {
+      "mode": "Control",
+      "processId": 58942,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Control/r01-early.json",
+      "m07Receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Control/m07-T07-03-FullClosure-P03.json"
+    },
+    {
+      "mode": "OrdinaryFirst",
+      "processId": 58952,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/OrdinaryFirst/r01-early.json",
+      "m07Receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/OrdinaryFirst/m07-T07-03-FullClosure-P03.json"
+    },
+    {
+      "mode": "OrdinaryAfterReserve",
+      "processId": 58963,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/OrdinaryAfterReserve/r01-early.json",
+      "m07Receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json"
+    },
+    {
+      "mode": "Oversize",
+      "processId": 58971,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Oversize/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Mismatch",
+      "processId": 58977,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Mismatch/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Type",
+      "processId": 58981,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Type/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Object",
+      "processId": 58983,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Object/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Cctor",
+      "processId": 58984,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Cctor/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "NativeScript",
+      "processId": 58986,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/NativeScript/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "MetadataFailure",
+      "processId": 58988,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/MetadataFailure/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "InitializerFailure",
+      "processId": 58990,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/InitializerFailure/r01-early.json",
+      "m07Receipt": ""
+    }
+  ],
+  "correctedFailureAndRejectionWitnesses": [
+    {
+      "mode": "MetadataFailure",
+      "processId": 58988,
+      "rawReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/MetadataFailure/r01-early.json",
+        "sha256": "3628710488c5c20708b02574028355c80d8e54b6fd6771a1d5af58a24d1cc4e0"
+      },
+      "result": "PassedExpectedFailure",
+      "operations": [
+        {
+          "phase": "configure",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697115234407,
+          "elapsedTicks": 5867
+        },
+        {
+          "phase": "begin",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697116935326,
+          "elapsedTicks": 303
+        },
+        {
+          "phase": "reserve",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697118803745,
+          "elapsedTicks": 796563
+        },
+        {
+          "phase": "stage:AssemblyA.Contracts",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697121317131,
+          "elapsedTicks": 4986
+        },
+        {
+          "phase": "stage:AssemblyA.Implementation.Extensibility",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697121323413,
+          "elapsedTicks": 4441
+        },
+        {
+          "phase": "stage:AssemblyA.Implementation.Internal",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697121329147,
+          "elapsedTicks": 4556
+        },
+        {
+          "phase": "stage:AssemblyShadowDemo.ContractsConsumer",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697121334954,
+          "elapsedTicks": 2976
+        },
+        {
+          "phase": "stage:AssemblyShadowDemo.ExtensibilityConsumer",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697121339161,
+          "elapsedTicks": 2965
+        },
+        {
+          "phase": "validate",
+          "code": "ReferenceResolutionFailed",
+          "intCode": 13,
+          "startedTicks": 11697123069905,
+          "elapsedTicks": 6980
+        },
+        {
+          "phase": "abort",
+          "code": "InvalidState",
+          "intCode": 2,
+          "startedTicks": 11697124807113,
+          "elapsedTicks": 34
+        },
+        {
+          "phase": "begin-after-failure",
+          "code": "InvalidState",
+          "intCode": 2,
+          "startedTicks": 11697124808253,
+          "elapsedTicks": 99
+        }
+      ],
+      "terminalRecovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 13,
+        "reason": "AssemblyA.Contracts: Image::ReadType invalid type",
+        "retainedBytes": 243672,
+        "baselineEligibilityRequiresStartupValidation": true
+      }
+    },
+    {
+      "mode": "InitializerFailure",
+      "processId": 58990,
+      "rawReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/InitializerFailure/r01-early.json",
+        "sha256": "34875c2bd0af32a15791b90b580de5714df7d72b3e87ac68bf99c80661cd5d0a"
+      },
+      "result": "PassedExpectedFailure",
+      "operations": [
+        {
+          "phase": "configure",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697191520225,
+          "elapsedTicks": 5805
+        },
+        {
+          "phase": "begin",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697193267522,
+          "elapsedTicks": 302
+        },
+        {
+          "phase": "reserve",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697195191195,
+          "elapsedTicks": 837641
+        },
+        {
+          "phase": "stage:AssemblyA.Contracts",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697197797478,
+          "elapsedTicks": 3761
+        },
+        {
+          "phase": "stage:AssemblyA.Implementation.Extensibility",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697197802537,
+          "elapsedTicks": 3168
+        },
+        {
+          "phase": "stage:AssemblyA.Implementation.Internal",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697197806981,
+          "elapsedTicks": 4644
+        },
+        {
+          "phase": "stage:AssemblyShadowDemo.ContractsConsumer",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697197812920,
+          "elapsedTicks": 10993
+        },
+        {
+          "phase": "stage:AssemblyShadowDemo.ExtensibilityConsumer",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697197825150,
+          "elapsedTicks": 4989
+        },
+        {
+          "phase": "validate",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11697199624032,
+          "elapsedTicks": 107068
+        },
+        {
+          "phase": "commit",
+          "code": "ModuleInitializerFailed",
+          "intCode": 19,
+          "startedTicks": 11697201553972,
+          "elapsedTicks": 286001
+        },
+        {
+          "phase": "abort",
+          "code": "AlreadyCommitted",
+          "intCode": 18,
+          "startedTicks": 11697204006041,
+          "elapsedTicks": 34
+        },
+        {
+          "phase": "begin-after-commit",
+          "code": "AlreadyCommitted",
+          "intCode": 18,
+          "startedTicks": 11697204007261,
+          "elapsedTicks": 106
+        }
+      ],
+      "terminalRecovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 9,
+        "state": "FailedAfterCommit",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 19,
+        "reason": "AssemblyA.Implementation.Extensibility: The type initializer for '<Module>' threw an exception. ---> R01-INIT-THROW:AssemblyA.Implementation.Extensibility",
+        "retainedBytes": 248876,
+        "baselineEligibilityRequiresStartupValidation": true
+      }
+    },
+    {
+      "mode": "Oversize",
+      "processId": 58971,
+      "rawReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Oversize/r01-early.json",
+        "sha256": "bdcfef5959b7efa3b232ec447b404f054c4b8378757df69edc2894eafa96c34b"
+      },
+      "result": "PassedExpectedRejection",
+      "operations": [
+        {
+          "phase": "configure",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696686369766,
+          "elapsedTicks": 5982
+        },
+        {
+          "phase": "begin",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696687957369,
+          "elapsedTicks": 311
+        },
+        {
+          "phase": "reserve",
+          "code": "MetadataCapacityExceeded",
+          "intCode": 23,
+          "startedTicks": 11696689545983,
+          "elapsedTicks": 737972
+        },
+        {
+          "phase": "abort",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696691878450,
+          "elapsedTicks": 51
+        }
+      ],
+      "terminalRecovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 7,
+        "state": "Aborted",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 3,
+        "disposition": "BaselineEligibleAfterAbort",
+        "terminalFailureCode": 0,
+        "reason": "Private metadata retained; a second transaction is forbidden.",
+        "retainedBytes": 0,
+        "baselineEligibilityRequiresStartupValidation": true
+      }
+    },
+    {
+      "mode": "Mismatch",
+      "processId": 58977,
+      "rawReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/Mismatch/r01-early.json",
+        "sha256": "479dc49c693540d79ee2dd3498a93f0cb6f20adb41740ccf0c9aaa7d785b0e99"
+      },
+      "result": "PassedExpectedRejection",
+      "operations": [
+        {
+          "phase": "configure",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696754274958,
+          "elapsedTicks": 5907
+        },
+        {
+          "phase": "begin",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696755958400,
+          "elapsedTicks": 346
+        },
+        {
+          "phase": "reserve",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696757652942,
+          "elapsedTicks": 785086
+        },
+        {
+          "phase": "stage:AssemblyA.Contracts",
+          "code": "MetadataBudgetMismatch",
+          "intCode": 24,
+          "startedTicks": 11696760168217,
+          "elapsedTicks": 912
+        },
+        {
+          "phase": "abort",
+          "code": "Success",
+          "intCode": 0,
+          "startedTicks": 11696761904050,
+          "elapsedTicks": 63
+        }
+      ],
+      "terminalRecovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 7,
+        "state": "Aborted",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 3,
+        "disposition": "BaselineEligibleAfterAbort",
+        "terminalFailureCode": 0,
+        "reason": "Private metadata retained; a second transaction is forbidden.",
+        "retainedBytes": 0,
+        "baselineEligibilityRequiresStartupValidation": true
+      }
+    }
+  ],
+  "scope": "Requested early modes only. Full R01 acceptance and remaining M07 matrices require separate evidence. NativeScript trace is separately bound.",
+  "observerPolicy": "At most 16 retained raw samples per phase; discarded queries are counted, not semantically verified.",
+  "limitations": [
+    "This strict bounded profile has diagnosticOnly=true and does not by itself declare R01 accepted.",
+    "Baseline restart/LKG coordinator is not covered; required M07 aggregate and independent stage evidence review remain separate."
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "R01EarlyV6PlayerBuildPairCheckpoint",
-  "status": "PlayersBuiltWorkflowPending",
+  "status": "PlayersBuiltFixturesAndReplayPassed",
   "baselineBuildId": "M07-Baseline-R01-early-v6",
   "runtimeAbiHash": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
   "sourcePins": {
@@ -72,10 +72,22 @@
   },
   "milestoneAccepted": false,
   "pending": [
-    "Final resource fixtures and Editor deterministic replay",
+    "Fresh R01 Editor failure/capacity/lifetime evidence",
+    "Fresh v6 nine native suites",
     "Fresh early11 and M07 14 strict Player evidence",
     "Actual v6 NativeScript trace",
-    "Unchanged native input audit",
     "Independent final R01 evidence review"
-  ]
+  ],
+  "workflowReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-9768362ff2d7472bbba5c450b82194f4/m07-build-workflow.json",
+    "sha256": "84ef5f79271c70d08f6cf24cdee652b4eb97cd5f28bc42a677d2db3a14cc2725"
+  },
+  "fixtureManifest": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-9768362ff2d7472bbba5c450b82194f4/m07-fixtures.json",
+    "sha256": "ecb6df206a781675d90b387f3aa0d98f8dbdef8fe713f41c45686ea757ab2c61"
+  },
+  "editorReplay": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-9768362ff2d7472bbba5c450b82194f4/m07-editor-replay.json",
+    "sha256": "f6646a27e8cc42892009f860ce223b10dab82e3591b44ab548bdaac4102be887"
+  }
 }

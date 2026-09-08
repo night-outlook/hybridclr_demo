@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6BoundedEvidenceReview",
+  "verdict": "PASS",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "reviewedAt": "2026-09-08T23:13:40.223774+00:00",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "reviewedEvidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-player-build-pair-checkpoint.json",
+      "sha256": "c7ede98152dadb57321a53b206042f141b78dc0b30da78935dba0b782b8aad6d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-editor-validation.json",
+      "sha256": "8e4ab6c0b256b90a22502aeff83912d72c133729079b338826fc6d24344cbe68"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-postbuild-audit.json",
+      "sha256": "e43c88fd90253a65d3baae0a3d2410c6e3cd8f42865b95b1ac0e7f0de1e41311"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-native-regressions.json",
+      "sha256": "f977cf42083628573c6ce66ce17eafe991b8b10e4525664e2db654dbc980b12a"
+    }
+  ],
+  "findings": [],
+  "verified": [
+    "Exact build/replay/Editor/post-build receipt hashes and both native binary/metadata/manifest pairs",
+    "379 sealed fixture files unchanged after compilation; Q04 exact 01-to-ff mutation at offset 20237",
+    "Nine fresh native receipt inputs, applicable current source pins and DLL fixtures, and actual indexed metrics",
+    "Both helper receipt/runner/source/compiler joins",
+    "Retained v3 gateway anchored to pinned Git history; all nine original inputs match"
+  ],
+  "limits": [
+    "Other generated hashes remain post-build observations.",
+    "Strict11 early and strict14 M07 Player matrices and actual v6 trace remain pending.",
+    "This bounded evidence review does not accept R01 or H1."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

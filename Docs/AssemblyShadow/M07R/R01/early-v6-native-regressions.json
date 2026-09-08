@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6NativeRegressions",
+  "result": "PassedNativeScope",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "freshReceipts": [
+    {
+      "path": "_temp/AssemblyShadow/R01/m03-native-v6-1.json",
+      "sha256": "005141a6bbb87eb19611c4244d8f68369b80efe97537d451ffdf874c6e9c2c25",
+      "result": "Passed",
+      "metrics": {
+        "identityChecks": 94707,
+        "nameChecks": 30,
+        "facadeChecks": 25,
+        "facadeLookupChecks": 15,
+        "disabledApiChecks": 33
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1007,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": "Real parser/VM folding/facade policy/TLS and VM image lookup; raw-metadata and diagnostic-counter fixture adapters plus Memory::Free; real baselib; unused VM paths dead-stripped with dynamic_lookup; no transaction/state emulation Separate macro-OFF executable links actual runtime adapter, native core and serializer; only String::New is substituted for allocation/output/exception checks; no JSON or native API stubs; ON adapter syntax also checked"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/m04-native-v6-1.json",
+      "sha256": "1f80e6fc211fe8e441ac4ffecf51653094dda38f3b9f45070d47303207aa77bb",
+      "result": "Passed",
+      "metrics": {
+        "checks": 53,
+        "lookupCount": 1000000,
+        "lookupAllocations": 0,
+        "lookupMicroseconds": 373765,
+        "syntaxChecks": 22,
+        "referenceIdentityChecks": 15
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1058,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": "Actual resolver/core, Assembly enumeration/publication, TLS, physical-AOT closure scan and serializer. Controlled physical metadata-table, exception and class-enumeration adapters; immutable active snapshot fixture. Not full transaction, managed reflection or Player acceptance."
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/m05-native-v6-1.json",
+      "sha256": "f96deda5834a4e54f3f0d783e356c45765fa43009dbeeb3e950e7581ef3b77c6",
+      "result": "Passed",
+      "metrics": {
+        "coreChecks": 616,
+        "reflectionChecks": 35,
+        "imageIdentityChecks": 219,
+        "syntaxChecks": 34,
+        "nestedTestCounts": {
+          "coreTests": 8,
+          "reflectionTests": 2,
+          "imageIdentityTests": 2
+        },
+        "nestedCheckSumsVerified": true
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1117,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": null
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/m06-native-v6-1.json",
+      "sha256": "9d7310a976401766148f64b0c9cef8b8b8fa7a5057f9ef8f6efda6d50b073835",
+      "result": "Passed",
+      "metrics": {
+        "checks": 824,
+        "syntaxChecks": 20,
+        "testCount": 37,
+        "dependencyCount": 1084,
+        "sourceFirstIncludesVerified": true
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1084,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": "Actual AssemblyShadow core, TypeKey/resolver/serializer and TLS. M05 physical/interner/exception adapters; M06 raw TypeDef adapters and immutable publication fixture. No managed execution, class materialization or object reinterpretation. Cctor/transform hooks are manually driven; actual Runtime/interpreter/codegen are syntax-checked, not executed."
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/native-startup-v6-1.json",
+      "sha256": "37b9b2953668caee0184d87be24ca55d36f0054d1ab6df12d210cfecc63fcd88",
+      "result": "Passed",
+      "metrics": {
+        "checks": 168,
+        "scenarioCount": 15
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1067,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": "Production AssemblyShadow startup registration, Configure, observation, transaction APIs and recovery serializer. Physical assembly/type-handle lookup and constructor enumeration use explicit native adapters. Heap and metadata lookup failures are injected. Concurrent observation is synchronized inside Configure physical stable lookup. Generated startup schema and names are explicit fixture values. This runner does not execute MetadataCache initialization, full Runtime startup, Unity, GC or Player behavior."
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/native-budget-contention-v6-1.json",
+      "sha256": "ba9318d991dc72ae3739b738131db873d05e0d257095c30c47d42a63df4c6cdc",
+      "result": "Passed",
+      "metrics": {
+        "checks": 545,
+        "scenarioCount": 5
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1059,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": "Production InterpreterImage.cpp allocator primitive and il2cpp g_MetadataLock are linked; this does not exercise Assembly::Create, Unity GC, or Player publication. Worker alignment uses atomics only; no std::mutex substitutes allocator locking. Unity Player and managed publication are outside this standalone test."
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/native-transaction-v6-1.json",
+      "sha256": "b81bc02ee3c8e4282dea46a6585338397fe175c4586d1a6aac7dfa689c71d341",
+      "result": "Passed",
+      "metrics": {
+        "checks": 131,
+        "scenarioCount": 7
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": 1069,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": true,
+      "boundary": "Production AssemblyShadow transaction API, identity parser and recovery serializer. Physical lookup, image-constructor assembly enumeration, exception and metadata-init/initializer outcomes are explicit native adapters. Managed metadata initialization, Unity and Player publication are outside this standalone process."
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/native-budget-v6-1.json",
+      "sha256": "2f1aab7655a443977e572c541fab88036b97b739cc8e16f15f48fbb7cd9e60ab",
+      "result": "Passed",
+      "metrics": {
+        "checkCount": 2684
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": null,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": null,
+      "boundary": "C++11 native executable includes the production InterpreterImageBudget header directly; no Python model or IL2CPP dependency is used."
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01/native-recovery-v6-1.json",
+      "sha256": "64f1be2c30ca5832d8c9c97b233c221265bcf5fbf04383e64c82da903fab5154",
+      "result": "Passed",
+      "metrics": {
+        "checkCount": 498
+      },
+      "execution": "fresh v6",
+      "inputsUnchanged": true,
+      "inputHashCount": null,
+      "receiptHashMatchesIndexedSource": true,
+      "sourcePinsMatch": null,
+      "boundary": "C++11 native executable includes the production recovery header directly; no IL2CPP runtime, Unity, or Python model is used."
+    }
+  ],
+  "helperCompilerBinding": {
+    "path": "_temp/AssemblyShadow/R01/native-helpers-compiler-binding-v6-1.json",
+    "sha256": "8bee9f23667204589b0bcc1399127ae8e558a128a2992ec2e0493238363e65b3",
+    "result": "Passed",
+    "sourcePinsMatch": true,
+    "compiler": {
+      "invocationPath": "/usr/bin/clang++",
+      "resolvedBackend": "/Library/Developer/CommandLineTools/usr/bin/clang",
+      "version": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+      "sdkPath": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "binaryHashesStable": true
+    },
+    "receipts": [
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-v6-1.json",
+        "sha256": "2f1aab7655a443977e572c541fab88036b97b739cc8e16f15f48fbb7cd9e60ab",
+        "result": "Passed",
+        "checks": 2684,
+        "inputsUnchanged": true,
+        "sourceHashesMatchBinding": true,
+        "compilerBindingPath": "_temp/AssemblyShadow/R01/native-helpers-compiler-binding-v6-1.json",
+        "compilerBindingSha256": "8bee9f23667204589b0bcc1399127ae8e558a128a2992ec2e0493238363e65b3",
+        "compilerJoinVerified": true
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-recovery-v6-1.json",
+        "sha256": "64f1be2c30ca5832d8c9c97b233c221265bcf5fbf04383e64c82da903fab5154",
+        "result": "Passed",
+        "checks": 498,
+        "inputsUnchanged": true,
+        "sourceHashesMatchBinding": true,
+        "compilerBindingPath": "_temp/AssemblyShadow/R01/native-helpers-compiler-binding-v6-1.json",
+        "compilerBindingSha256": "8bee9f23667204589b0bcc1399127ae8e558a128a2992ec2e0493238363e65b3",
+        "compilerJoinVerified": true
+      }
+    ]
+  },
+  "retainedGateway": {
+    "path": "_temp/AssemblyShadow/R01/native-startup-gateway-death-v3-1.json",
+    "sha256": "0b73c5f5d076df2ae82ce90691d28b1c510e76db1d5b22531e202bdec2b1c4d9",
+    "auditPath": "_temp/AssemblyShadow/R01/retained-gateway-v6-1.json",
+    "execution": "retained v3; not fresh v6",
+    "originalResult": "Passed",
+    "inputsUnchanged": true,
+    "inputCount": 9,
+    "inputHashesExact": true
+  },
+  "currentInputHashVerification": {
+    "allNineReceiptsIndexedHashesMatchFiles": true,
+    "allNineReceiptsInputsUnchanged": true,
+    "allNineReceiptsPassed": true,
+    "sourcePinnedReceiptsMatch": true,
+    "sourceFileHashCounts": {
+      "m03-native-v6-1.json": 1007,
+      "m04-native-v6-1.json": 1058,
+      "m05-native-v6-1.json": 1117,
+      "m06-native-v6-1.json": 1084,
+      "native-startup-v6-1.json": 1067,
+      "native-budget-contention-v6-1.json": 1059,
+      "native-transaction-v6-1.json": 1069
+    },
+    "helperCompilerBindingPassed": true,
+    "budgetChecks": 2684,
+    "recoveryChecks": 498
+  },
+  "limits": [
+    "Fresh native/adapter evidence only; no Player metadata initialization, managed publication, Unity, or R01 milestone acceptance claim.",
+    "Q05 is production allocator/g_MetadataLock contention and is not concurrent Player Assembly.Load or Configure coverage.",
+    "M04 lookup timing is one bounded native observation, not production performance qualification.",
+    "Budget and recovery helpers are direct production-header C++11 checks bound to the v6 compiler receipt; no IL2CPP runtime or Python model is used.",
+    "The retained gateway is v3 execution, not a fresh v6 run; its nine current input hashes are exact and its v5 anchor is Git-pinned.",
+    "R01 remains unaccepted and H1 remains false."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

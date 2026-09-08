@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6TraceWaitDiagnostic",
+  "result": "TaskLocalWaitFailedBeforeDebuggerLaunch",
+  "reason": "Waiter observed producer launch-receipt path before non-atomic JSON write completed; json.loads failed.",
+  "failedLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-trace-driver-1.log",
+    "sha256": "ba442eb0a26e7446b20a55091171ccb86b1ba63b95b7548f4059ea9357b8d074"
+  },
+  "disposition": "Preserved failed log. Root waited for producer completion marker and then prepared commands and launched LLDB. No receipt mutation or product source change.",
+  "runtimeFailure": false
+}

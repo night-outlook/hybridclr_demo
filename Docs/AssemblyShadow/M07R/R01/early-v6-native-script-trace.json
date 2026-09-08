@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6NativeScriptTrace",
+  "result": "PassedBoundedWitness",
+  "milestoneAccepted": false,
+  "processId": 59024,
+  "threadId": 15225507,
+  "nativeDebugUuid": "87AD4B01-4A33-4710-9EA6-53F730751DC0",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "onBuildReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-2ad89701d1c34d29b549d8ff6bba5b70/m07-player-build.json",
+    "sha256": "884621df662ebc585e1653da9f081445e5f753ce9c7310020c4ccaefd702750a"
+  },
+  "launchReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/r01-early-launches.json",
+    "sha256": "a9aa3e809f4d6f5bab6e9e72c6978019abfb72991276e03ce03573e3211b2d78"
+  },
+  "capsule": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-matrix-1/NativeScript/r01-early.capsule",
+    "sha256": "56fb044b951d96999b59e7b00ec597c5439257b7eb8e60fb312681c2c16dc281"
+  },
+  "events": [
+    {
+      "nativeFunction": "il2cpp_domain_get",
+      "displaySymbol": "::il2cpp_domain_get()",
+      "event": "native-witness-call",
+      "sequence": 1,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 6963179791
+    },
+    {
+      "nativeFunction": "il2cpp_domain_get_assemblies",
+      "displaySymbol": "::il2cpp_domain_get_assemblies(const Il2CppDomain *, size_t *)",
+      "event": "native-witness-call",
+      "sequence": 2,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 6971328000
+    },
+    {
+      "nativeFunction": "il2cpp_assembly_get_image",
+      "displaySymbol": "::il2cpp_assembly_get_image(const Il2CppAssembly *)",
+      "event": "native-witness-call",
+      "sequence": 3,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 6978463166
+    },
+    {
+      "nativeFunction": "il2cpp_image_get_name",
+      "displaySymbol": "::il2cpp_image_get_name(const Il2CppImage *)",
+      "event": "native-witness-call",
+      "sequence": 4,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 6985560500
+    },
+    {
+      "nativeFunction": "il2cpp_class_from_name",
+      "displaySymbol": "::il2cpp_class_from_name(const Il2CppImage *, const char *, const char *)",
+      "image": "0x1164185a8",
+      "namespace": "AssemblyA.Implementation.Internal",
+      "name": "InternalEntry",
+      "event": "native-witness-call",
+      "sequence": 5,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 7006810041
+    },
+    {
+      "result": "0x116ae9c60",
+      "event": "native-class-return",
+      "sequence": 6,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 7013199833
+    },
+    {
+      "event": "configure-entry",
+      "sequence": 7,
+      "pid": 59024,
+      "tid": 15225507,
+      "monotonicNs": 7180646666
+    }
+  ],
+  "files": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-native-script-debug-1/commands.lldb",
+      "sha256": "6695829aaf9465749f13e93cd9ba0e8c3d8d488b4b0a5a0bd4348846d548c847"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-native-script-debug-1/events.jsonl",
+      "sha256": "57814938858b8ec27f0c17b86cf0bfa570d33d171a48086b2dc9e5035b15e913"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-native-script-debug-1/lldb-console.log",
+      "sha256": "ac4add5442a5f38187c93b1c4f40c00c0d2e8cce0fef576696fcaa3b0ef6db4b"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-native-script-debug-1/r01-early.json",
+      "sha256": "22a01e08afa1951a9d5dca2011bcd0030a8fcedecb8e8979a443a4451c95e4cb"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-native-script-debug-1/r01_native_script_trace.py",
+      "sha256": "3c55ea2698aa8eb45aab32778aa270c861fd76b10759500f5c0d1876b7d8025d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v6-native-script-debug-1/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    }
+  ],
+  "debugArtifacts": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-on-native-wrappers/native-debug-artifacts.json",
+    "sha256": "4b815b4939974cd259b6683f4ddcf6201ce45dcd1503343f3de228b76ce33290"
+  },
+  "naturalExit": 1,
+  "classReturnBeforeConfigure": true,
+  "review": "Independent bounded v6 trace review PASS; no actionable findings. See early-v6-native-script-review.json.",
+  "scope": "Five direct public IL2CPP API calls by R01NativeScriptWitness; no pre-Configure Prefab claim. Read-only debugger callbacks; no expressions or register/data writes. LLDB console is diagnostic output, not a normal negative verifier log."
+}

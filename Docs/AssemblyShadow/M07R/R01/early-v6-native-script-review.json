@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6NativeScriptReview",
+  "verdict": "PASS",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "reviewedAt": "2026-09-08T23:24:40.994171+00:00",
+  "evidence": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-native-script-trace.json",
+    "sha256": "6b4de5829e65bfd0b5e906ecbc278e283af6b80c87d06a6fefb964b3ae19fb2b"
+  },
+  "findings": [],
+  "processId": 59024,
+  "threadId": 15225507,
+  "nativeDebugUuid": "87AD4B01-4A33-4710-9EA6-53F730751DC0",
+  "verified": [
+    "Trace/build/capsule/debug artifact hashes and same launch with fresh output paths",
+    "Seven raw events: five direct calls, nonnull class return, then Configure, same PID/TID/UUID",
+    "Same-process rejection 15 and successful Abort",
+    "One LLDB launch, natural exit1, exact final refusal and termination pair in Unity log",
+    "Initial JSON read failure preceded command preparation and debugger launch"
+  ],
+  "milestoneAccepted": false,
+  "limits": [
+    "Strict11 offline verdict not yet available at review time.",
+    "Bounded native witness only; no pre-Configure Prefab claim; full R01 remains pending."
+  ]
+}
