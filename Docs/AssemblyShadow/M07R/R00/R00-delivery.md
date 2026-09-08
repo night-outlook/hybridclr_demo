@@ -1,6 +1,6 @@
 # R00 delivery
 
-Status: **Final independent stage review pending. R00 is not accepted; R01 has not started and remains closed. H1 is pending.** The current-pairing evidence below is complete enough for review, but a strict result is not a human gate approval or release approval.
+Status: **R00 accepted after independent stage review PASS at `2eb4a36`. R01 may start. H1 has not been reached.** The [review verdict](continuation-code-review.json) grants no human-gate or release approval.
 
 ## Pairing and workflow
 
@@ -40,7 +40,7 @@ The shutdown ordering trace used LLDB breakpoints and one instrumented P05 run; 
 
 ## Review gate and rollback
 
-The current disposition is **awaiting independent R00 stage review**. The reviewer must reopen the strict gates, workflow receipt, four R00 results, fourteen M07 results, shutdown repetitions, generic evidence, source pins, and changed-file inventory. R01 remains closed until R00 is accepted; H1 remains pending. No human gate or release approval has been granted.
+The independent disposition is **PASS**, with no remaining actionable findings. The reviewer independently recomputed both strict gates and checked the raw results, archive members, claims, source pairing and file inventory. R01 may now start. H1 occurs only after R01 and any required R01B, where work must stop for human complete review. No human gate or release approval has been granted.
 
 Rollback is to withhold promotion and keep the current Players and raw evidence retained. The original repositories and historical receipts remain untouched. Any source-pin rollback, archive decision, or commit publication is owned by the root integration task; this documentation update makes no such mutation.
 

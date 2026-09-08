@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "kind": "R00 final independent stage review",
+  "reviewer": "r00_review_gpt6astra_high_1",
+  "reviewedRange": {
+    "base": "73161474f5b681b46c25424f4e72b4b757c51e66",
+    "target": "2eb4a36a2b167ff63688121b6b0714e4bb066f74"
+  },
+  "executableSourceCommit": "a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59",
+  "verdict": "PASS",
+  "actionableFindings": [],
+  "independentVerification": {
+    "strictR00RecomputedMatches": true,
+    "r00PassedModes": 4,
+    "strictM07RecomputedMatches": true,
+    "m07PassedModes": 14,
+    "archiveMembersRehashed": 442,
+    "reviewedFileInventory": 63,
+    "inputInventoryCount": 16804,
+    "inputsUnchanged": true,
+    "editorDemoPassed": 278,
+    "editorPackagePassed": 650,
+    "pythonPassed": 365,
+    "separateEditorInvocations": true,
+    "claimHashesMatch": true
+  },
+  "limitations": [
+    "Native suites retained unchanged-source evidence",
+    "No complete legacy M05/M06 Player matrix rerun",
+    "Release/Windows/Android NotRun",
+    "Production capacity unqualified",
+    "One Development sample per R00 mode, not statistical characterization",
+    "One LLDB trace proves observed ordering only; no general Unity race fix"
+  ],
+  "mayContinueToR01": true,
+  "humanGateApproval": false,
+  "releaseApproval": false,
+  "gateOrder": "R00 stage PASS permits R01. Stop for human H1 after R01 and optional required R01B; agent review cannot replace H1.",
+  "acceptanceMetadataScope": "This record and accompanying status/wording changes add no source or raw-evidence mutation."
+}

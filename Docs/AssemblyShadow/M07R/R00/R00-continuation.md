@@ -1,6 +1,6 @@
 # R00 continuation
 
-Status: final evidence assembled for independent stage review; R00 is not accepted and R01 remains closed. This record supplements the immutable initial checkpoint at `08cd976` and does not replace the failed historical Player run.
+Status: R00 accepted by independent stage review at `2eb4a36`; R01 may start. H1 remains at its prescribed position after R01/optional R01B. This record supplements the immutable initial checkpoint at `08cd976` and does not replace the failed historical Player run.
 
 ## Changes under validation
 
@@ -36,13 +36,13 @@ Historical generated C++ proves `Start.work -> M07Probe.resource -> M07ResourceP
 - Independent re-review of the executable-build settings guard returned **PASS**, with no remaining actionable findings; it verified all four success/failure restoration test cases. Actual native Player output remains pending.
 - Fresh current-pairing workflow completed with a passed receipt at `_temp/AssemblyShadow/M02Validation-970e9107f1e7483a84abaddfac31e0d2/m07-build-workflow.json`. The linked ON/OFF Players, resource baseline, fixture manifest and Editor replay are bound to source pin `a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59`; native/package pins remain unchanged.
 - Current strict M07 verification passed all fourteen modes, including P05 rebuilt and feature-off, in `_temp/AssemblyShadow/R00-M07-current-pair-v4/strict-gate.json`. Current strict R00 verification passed all four worlds in `_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json`; each world recorded first, 100 warmup, 10 repeated and 10,000 repeated allocation, reflection-invoke and closed-generic observations with constructor counts and checksums.
-- Three bounded P05/feature-off shutdown repetitions exited zero. The separate `_temp/AssemblyShadow/R00-P05-ordering-v4/ordering-summary.json` LLDB run observed all tracked finalizer/native destruction before quit and physics cleanup. `_temp/AssemblyShadow/R00-native-generic-ON-v4/evidence.json` found the closed `Int32` generic symbols and AOT reference, while its runtime execution field remains `NotRun`.
+- Three bounded P05/feature-off shutdown repetitions exited zero. The separate `_temp/AssemblyShadow/R00-P05-ordering-v4/ordering-summary.json` LLDB run observed all tracked finalizer/native destruction before quit and physics cleanup. `_temp/AssemblyShadow/R00-native-generic-ON-v4/evidence.json` found the closed `Int32` generic symbols and AOT reference, while its capture-time runtime execution field remains `NotRun`. Later strict R00 results separately prove closed-generic execution in all four worlds.
 - The current split Editor coverage is 278 demo tests plus 650 package tests, 928 total, with zero failures or skips. The retained initial native M03–M06 suites and their counters remain evidence; they are not a fresh full M05/M06 Player matrix. Performance timing remains one Development sample per world, and native proof-build, metadata-row-scan and runtime-allocation counters remain unavailable.
 
-## Final-review remainder
+## Final review and next boundary
 
-1. Independent stage review must reopen the fresh workflow, fourteen-mode M07 gate, four-world R00 gate, shutdown repetitions/order trace, generic-symbol evidence, source pins and changed-file boundaries. The strict passes do not constitute acceptance or a human gate.
-2. Root owns publication of the continuation evidence archive, `continuation-evidence-index.json`, `current-snapshot-scale.json`, `continuation-changed-files.json`, and any final metadata-only source-pin or archive commit.
-3. Keep R01 closed and H1 pending until the independent review and required human gate disposition are recorded. No release approval is implied by the current strict results.
+1. Independent stage review returned PASS with no actionable findings; both strict verifiers were independently recomputed and matched. See [continuation-code-review.json](continuation-code-review.json).
+2. The continuation archive, fresh scale, claims and cumulative changed-file inventory are committed. Initial raw evidence and historical failures remain unchanged.
+3. R01 may start. H1 requires a separate human complete review after R01 and any required R01B; no human gate or release approval is implied.
 
 Performance timing includes reflection call overhead and managed argument boxing where applicable. Allocation batch timing includes one reflection entry into the batch. Readiness means the configured active witness can execute its marker, before resource/scene load. Parent launch-to-readiness timing is separately computed when the Player process-start API is unavailable. Native proof-build, metadata-row-scan and allocation counters remain explicitly unavailable in this unchanged runtime.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "milestone": "R00",
-  "status": "AwaitingIndependentStageReview",
+  "status": "Accepted",
   "python": {
     "passed": 365,
     "failed": 0,
@@ -51,10 +51,10 @@
     "Full legacy M05/M06 Player acceptance matrices"
   ],
   "gate": {
-    "R00": "AwaitingIndependentStageReview",
-    "R01": "NotStarted",
+    "R00": "PassedIndependentStageReview",
+    "R01": "AllowedNotStarted",
     "H1": "NotReached",
-    "mayContinueToR01": false
+    "mayContinueToR01": true
   },
   "repositoriesAtEvidencePreparation": [
     {
@@ -91,5 +91,6 @@
       "branch": "codex/assembly-shadow-r00",
       "status": []
     }
-  ]
+  ],
+  "review": "continuation-code-review.json"
 }
