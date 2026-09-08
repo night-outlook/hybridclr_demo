@@ -37,8 +37,16 @@ namespace AssemblyShadowDemo.Editor
             string[] defines = { M07Build.P01Define, M07Build.P03Define, M03Build.InitializerDefine,
                 M03Build.P03InitializerDefine, InitializerThrowDefine };
             Directory.CreateDirectory(output);
-            M07Build.M07Fixture initializer = M07Build.BuildFixture(output, InitializerPatchId, defines, M07Build.Candidates,
-                true, target, settings.architecture, pins, policy, baselinePath);
+            // Unity can remove a previous CompilePlayerScripts output during a later
+            // compile. Only the complete captured snapshot belongs in the sealed tree.
+            string compilerRoot = Path.GetFullPath("_temp/AssemblyShadow/R01FailureCompiler-" + Guid.NewGuid().ToString("N"));
+            string captured = AssemblySnapshot.CompileWithOptions(compilerRoot, target, settings.architecture, pins, policy, defines, true);
+            string publishedSnapshot = Path.Combine(output, "CompileSnapshot");
+            Directory.Move(captured, publishedSnapshot);
+            AssemblySnapshot.ReadAndVerify(publishedSnapshot, false);
+            ShadowCompilerModeEvidence.ReadAndVerify(publishedSnapshot, true);
+            M07Build.M07Fixture initializer = M07Build.BuildFixtureFromSnapshot(output, InitializerPatchId, defines, M07Build.Candidates,
+                true, target, settings.architecture, pins, policy, baselinePath, publishedSnapshot);
             var snapshot = AssemblySnapshot.ReadAndVerify(initializer.compileSnapshot, false);
             ShadowSourcePins.RequireSameBuildSources(pins, snapshot.sourcePins);
             ShadowReflectionBindingEvidence.RequirePolicy(policy, initializer.compileSnapshot, snapshot, false);
