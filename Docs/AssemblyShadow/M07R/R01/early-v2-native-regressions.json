@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV2NativeRegressions",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "54666fee824331822daad9b8da28b2599c515b3d",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "a999f3d293184e8af6f9dc138ea42f45e024a699",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+      "localPath": "."
+    }
+  },
+  "receipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-v2-1.json",
+      "sha256": "d42b2e0ed3d0aa92c95a73bd17a5f3bf91a38ef853be8954801014dd68cad752",
+      "result": {
+        "success": true,
+        "checks": 168,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-contention-v2-1.json",
+      "sha256": "d1550ea9582ad38ac3069f73586c66851ac1997b2dbafae4cf23495ada862e27",
+      "result": {
+        "success": true,
+        "checks": 545,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-transaction-v2-1.json",
+      "sha256": "919e7da296e420f9ebfbf75c6b8ad623256d391aec4996e8fdc06a5dcaa161ee",
+      "result": {
+        "success": true,
+        "checks": 109,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m04-native-v2-1.json",
+      "sha256": "50f8d95e2538494d0baa4dd5ed6bf750541e9c4080a58cd2e95c7c9ee229f562",
+      "result": {
+        "success": true,
+        "checks": 53,
+        "syntaxChecks": 22,
+        "inputsUnchanged": true,
+        "lookupCount": 1000000,
+        "lookupAllocations": 0
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m05-native-v2-1.json",
+      "sha256": "93b352810390051ab3a5ec933bbc3322094ea90bb90554bc0d7752d7b0e26cbc",
+      "result": {
+        "success": true,
+        "syntaxChecks": 34,
+        "inputsUnchanged": true,
+        "coreTests": [
+          {
+            "mode": "layout",
+            "debug": true,
+            "checks": 77
+          },
+          {
+            "mode": "metadata",
+            "debug": true,
+            "checks": 77
+          },
+          {
+            "mode": "staging",
+            "debug": true,
+            "checks": 77
+          },
+          {
+            "mode": "reference",
+            "debug": true,
+            "checks": 77
+          },
+          {
+            "mode": "layout",
+            "debug": false,
+            "checks": 77
+          },
+          {
+            "mode": "metadata",
+            "debug": false,
+            "checks": 77
+          },
+          {
+            "mode": "staging",
+            "debug": false,
+            "checks": 77
+          },
+          {
+            "mode": "reference",
+            "debug": false,
+            "checks": 77
+          }
+        ],
+        "reflectionTests": [
+          {
+            "feature": 1,
+            "checks": 32
+          },
+          {
+            "feature": 0,
+            "checks": 3
+          }
+        ],
+        "imageIdentityTests": [
+          {
+            "feature": 1,
+            "checks": 187
+          },
+          {
+            "feature": 0,
+            "checks": 32
+          }
+        ],
+        "disabledCoreChecks": 2
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m06-native-v2-1.json",
+      "sha256": "bf5790489788408894286219952a0ab30a206b0c2327498d37a5fed92f01bdcb",
+      "result": {
+        "success": true,
+        "checks": 824,
+        "syntaxChecks": 20,
+        "inputsUnchanged": true
+      }
+    }
+  ],
+  "retainedUnchangedHelperEvidence": "retained-native-input-audit-v2.json",
+  "scope": "Current native sources, syntax/link and bounded adapter tests; no Unity Player/runtime acceptance",
+  "limitations": [
+    "Fixtures explicitly adapt parts of VM/GC/core metadata; real early Player failure and publication evidence remains required.",
+    "Q05 contention exercises production allocator and metadata lock; it does not establish concurrent full Assembly.Load publication."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

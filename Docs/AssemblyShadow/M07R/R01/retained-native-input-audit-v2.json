@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01RetainedNativeInputAudit",
+  "auditor": "r01_evidence_map_gpt56luna_high_1",
+  "method": "Read-only compare indexed receipts and recorded source/compiler/fixture hashes to current files",
+  "auditedDemoExecutableRevision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+  "nativeRevisions": {
+    "hybridclr": "54666fee824331822daad9b8da28b2599c515b3d",
+    "il2cppPlus": "a999f3d293184e8af6f9dc138ea42f45e024a699"
+  },
+  "receipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-1.json",
+      "sha256": "13a14f738455b73a7d2cf0acbbe10480612898824fbe153f3156f5bc41735393",
+      "assessment": "RetainUnchangedHelperInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-recovery-1.json",
+      "sha256": "9a9ab8da83403320b0c39774b067e4a818eaea2d0db1acc99479d9a5d3d94e02",
+      "assessment": "RetainUnchangedHelperInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-gateway-root-1.json",
+      "sha256": "f99382055971212178a1125e2aa0866fd491f57a62d2f6cb72d1f4dc5a391362",
+      "assessment": "RetainUnchangedGatewayInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-1.json",
+      "sha256": "0cf3c86cfdb80802c647326ece258eadfc35fb1cb40005959e80fcecfad18efc",
+      "assessment": "RerunChangedRuntimeInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-budget-contention-1.json",
+      "sha256": "36bc2c2b875b3d22e84fc8fe2875fac7ee208017faab49addd39350b7bb7bac3",
+      "assessment": "RerunChangedRuntimeInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-transaction-early-default-fixed.json",
+      "sha256": "8ba13522a8f088f24fd07f0ccee04d40c0b0f25301dafc9cf343fab2ceeb19fc",
+      "assessment": "RerunChangedRuntimeInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m03-native-early-1.json",
+      "sha256": "cd61fa2601ec9d190d0d1bb1bd873c2612cda741a277d917f4caec95ca1ae80b",
+      "assessment": "RetainUnchangedCompiledInputsWithHistoricalPins"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m04-native-early-1.json",
+      "sha256": "7d840265da2648dfeae905828ff58addbb21e314a41124d819b05e6a5ad5a0ff",
+      "assessment": "RerunChangedGeneratedInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m05-native-early-1.json",
+      "sha256": "235c2b31199e913093dce311c1976ae6b921bee095b903758e5f3a709da197a0",
+      "assessment": "RerunChangedRuntimeInputs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m06-native-early-1.json",
+      "sha256": "b9ad50d0fa7d78c5f0160b98fee6da7b353775b58bcb1bcfab3f167b5abc8d83",
+      "assessment": "RerunChangedRuntimeInputs"
+    }
+  ],
+  "changedNativeDependencies": [
+    "il2cpp_plus/libil2cpp/vm/Runtime.cpp",
+    "il2cpp_plus/libil2cpp/il2cpp-api.cpp",
+    "installed hybridclr/generated/AssemblyManifest.cpp"
+  ],
+  "changedProvenance": [
+    "ProjectSettings/AssemblyShadowSourcePins.json",
+    "assembly-shadow-install.json"
+  ],
+  "notes": [
+    "Budget/recovery standalone source and test inputs unchanged; current compiler hash unchanged.",
+    "M03 early compiled inputs unchanged; old pins remain historical provenance.",
+    "Q05 is a native contention requirement; sequential Player ordinary modes address Q03.",
+    "Current source syntax/link inputs must be rerun after generated build files stop changing.",
+    "Historical mutable m00-install-receipt path has been replaced; copies are preserved in versioned inventory references.",
+    "The final source correction review and 31-test receipt supersede the earlier 87b2884 bounded Python source review."
+  ],
+  "milestoneAccepted": false,
+  "preservedHistoricalInstall": {
+    "oldIndex": "prebuild-evidence-index.json",
+    "originalMutablePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/m00-install-receipt.json",
+    "preservedCopy": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/initial-install-receipts/m00-install-receipt.json",
+    "sha256": "78b763104beeb1e0fa229aca6e9c5b57620f1cc2d17076bac754dda75ecf6bce",
+    "bytes": 191082,
+    "verifiedBy": "root"
+  }
+}
