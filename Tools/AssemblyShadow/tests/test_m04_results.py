@@ -319,6 +319,34 @@ class StrictEvidenceTests(unittest.TestCase):
         d["unknown"] = 0
         with self.assertRaises(VerificationError): v._diagnostic(d, "unknown")
 
+    def test_r01_diagnostic_extension_is_complete_and_typed(self):
+        d = diagnostic()
+        d.update(startupCandidateSchemaVersion=1, startupCandidateNames=["A"],
+                 startupObservationMode="ConfigureOnly", metadataBudgetCapabilityVersion=1,
+                 recoveryCapabilityVersion=1)
+        v._diagnostic(d, "r01")
+        for field in ("startupCandidateSchemaVersion", "startupCandidateNames", "startupObservationMode",
+                      "metadataBudgetCapabilityVersion", "recoveryCapabilityVersion"):
+            bad = copy.deepcopy(d); del bad[field]
+            with self.assertRaises(VerificationError): v._diagnostic(bad, "r01-missing")
+        bad = copy.deepcopy(d); bad["startupObservationMode"] = "fabricated"
+        with self.assertRaises(VerificationError): v._diagnostic(bad, "r01-mode")
+
+    def test_native_diagnostic_error_enum_is_versioned_without_mutating_m03(self):
+        legacy = diagnostic()
+        current = dict(legacy, startupCandidateSchemaVersion=1, startupCandidateNames=["A"],
+                       startupObservationMode="ConfigureOnly", metadataBudgetCapabilityVersion=1,
+                       recoveryCapabilityVersion=1)
+        for code in range(25):
+            v._diagnostic(dict(current, lastError=code), "r01-error")
+            if code <= 21:
+                v._diagnostic(dict(legacy, lastError=code), "legacy-error")
+            else:
+                with self.assertRaises(VerificationError): v._diagnostic(dict(legacy, lastError=code), "legacy-new-error")
+        for code in (25, -1, True):
+            with self.assertRaises(VerificationError): v._diagnostic(dict(current, lastError=code), "unknown-error")
+        self.assertNotIn("MetadataBudgetMismatch", v.ERROR_CODES)
+
     def test_uint64_exact_not_float_signed_or_boolean(self):
         d = diagnostic()
         d["baselineUses"] = [dict(name="A", kind="Reflection", detail="", type="", thread=(1 << 64) - 1, timestamp=1 << 63)]

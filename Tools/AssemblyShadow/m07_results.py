@@ -68,9 +68,16 @@ REPLAY_FIELDS = "schemaVersion milestone result comparisonPolicy fixtureManifest
 REPLAY_FIXTURE_FIELDS = "patchId patchManifestSha256 compileSnapshotHash resourceAbiHash dllOnly changedRoots closureLoadOrder resourceBundlesRequired"
 REPLAY_REJECTED_FIELDS = "patchId compileSnapshotHash errorCode errorMessage"
 RESULT_FIELDS = "schemaVersion processId milestone mode result error unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 baselineManifestPath baselineManifestSha256 patchId patchManifestPath patchManifestSha256 resourceReceiptPath resourceReceiptSha256 baselineResourceAbiHash selectedResourceAbiHash resourcePrecheckPhase il2cpp resourcePrecheckPassed commitCompletedBeforeResourceLoad businessResourceLoadStarted configureCode beginCode stageProbeCode validateCode commitCode abortCode stateCode state executionModeCode diagnosticsCode typeResolutionCode executionDiagnosticsCode nativeDiagnosticsJson rawDiagnosticsPath rawDiagnosticsSha256 unityPathJson monoScriptClass monoScriptAssembly graphType graphDescription serializedState lifecycleBefore lifecycleAfter sceneLifecycleAfter graphSum p04RuntimeValue p05SerializedValue baselineUseCount nativeEventCount transactionGeneration stageOrder checks stageResults snapshots bundles assets scenes typeResolutions cacheEvents assemblyModes"
+R01_RESULT_FIELDS = RESULT_FIELDS + " reserveMetadataBudget"
 RESOURCE_FIELDS = "schemaVersion provenance unityVersion target architecture compilerSnapshotPath compilerSnapshotHash compilerSnapshotIsPlayer compilerDefines editorScriptingDefines metadataAssemblyDirectory metadataAssemblies resourceAbiPath resourceAbiHash resourceAbiFileSha256 resourceIndexPath resourceIndexHash bundleDirectory candidateAssemblies buildMap bundles sources sourceSetHash scripts dependencies originalManifestPath originalManifestSha256 originalSourceAuditPath originalSourceAuditSha256 reconstructionProof"
 PATCH_FIELDS = "schemaVersion semanticHashSchema patchId baselineBuildId baselineManifestSha256 unityVersion target architecture sourcePins runtimeAbiHash compileSnapshotHash reflectionBindingConfigurationSha256 reflectionBindingConfigurationHash reflectionBindings bootstrapAbiHash baselineResourceAbiHash resourceAbiHash resourceChangeLevel dllOnly resourceBundlesRequired resourceChangeReasons changedRoots loadOrder closure dependencyGraph deferredFacadeReferences unsigned signatureAlgorithm"
 PATCH_ASSEMBLY_FIELDS = "name dll sha256 semanticHash mvid baselineMvid pdb pdbSha256 references"
+R01_PATCH_FIELDS = PATCH_FIELDS + " nativeBudgetCapabilityVersion metadataEncodingProfile metadataCapacityReport"
+R01_PATCH_ASSEMBLY_FIELDS = PATCH_ASSEMBLY_FIELDS + " dllSize"
+R01_PROFILE_FIELDS = "profileVersion metadataIndexBits metadataKindBits extraShiftBits kindStrides indexMasks initialCursors kindLimits sizeMultiplier nativeSourceRevision nativeHelperSha256 nativeBudgetCapabilityVersion"
+R01_CAPACITY_FIELDS = "schemaVersion profileVersion metadataIndexBits metadataKindBits nativeSourceRevision nativeHelperSha256 nativeBudgetCapabilityVersion inputs allocations cursorsBefore cursorsAfter remainingSlotsBefore remainingSlotsAfter requiredImages acceptedImages availableImages availableImagesAtFailure fits firstFailingIndex firstFailingAssembly firstFailingBytes firstFailingSize failureReason firstFailingReason ordinaryAssemblyCount aotCandidateAssemblyCount actualRemainingRuntime runtimeCursorSource ordinaryConsumptionIsEstimate runtimeReserveMetadataBudget"
+R01_CAPACITY_INPUT_FIELDS = "name bytes dllSize sha256"
+R01_CAPACITY_ALLOCATION_FIELDS = "name bytes dllSize sha256 imageIndex kind cursorBefore cursorAfter slot"
 CHECK_FIELDS = "name actual expected passed"
 STAGE_FIELDS = "name code dllSha256 pdbSha256"
 SNAPSHOT_FIELDS = "phase diagnostics"
@@ -109,6 +116,18 @@ def exact(actual, expected, path):
         for index, wanted in enumerate(expected): exact(actual[index], wanted, f"{path}[{index}]")
     else:
         require(actual == expected, f"{path}: expected {expected!r}, got {actual!r}")
+
+
+def _schema_variant(value, legacy_fields, capability_fields, path):
+    """Accept exactly one known legacy/capability schema, never arbitrary extras."""
+    require(type(value) is dict, f"{path}: expected object")
+    actual = set(value)
+    legacy = set(legacy_fields.split())
+    capability = set(capability_fields.split())
+    require(actual in (legacy, capability),
+            f"{path}: unsupported schema fields; missing={sorted(capability - actual)} "
+            f"unknown={sorted(actual - capability)}")
+    return actual == capability
 
 
 def integer(value, path, minimum=0, maximum=(1 << 63) - 1):
@@ -468,6 +487,121 @@ def verify_baseline(manifest, manifest_path):
     return baseline, baseline_path, snapshot, snapshot_root, resources
 
 
+def _uint(value, path):
+    require(type(value) is int and not isinstance(value, bool) and 0 <= value < (1 << 64),
+            f"{path}: expected unsigned integer")
+    return value
+
+
+def _uint_array(value, path):
+    require(type(value) is list and len(value) == 4, f"{path}: expected four-element integer array")
+    return [_uint(item, f"{path}[{index}]") for index, item in enumerate(value)]
+
+
+def _verify_r01_patch_metadata(patch, closure, patch_root, load_order, path):
+    # Public callers use Path objects; labels are text, filesystem roots stay Paths.
+    path = str(path)
+    profile = fields(patch["metadataEncodingProfile"], R01_PROFILE_FIELDS, path + ".metadataEncodingProfile")
+    capacity = fields(patch["metadataCapacityReport"], R01_CAPACITY_FIELDS, path + ".metadataCapacityReport")
+    exact(patch["nativeBudgetCapabilityVersion"], 1, path + ".nativeBudgetCapabilityVersion")
+    for key, expected in (("profileVersion", 1), ("metadataIndexBits", 22), ("metadataKindBits", 2),
+                          ("sizeMultiplier", 4), ("nativeBudgetCapabilityVersion", 1)):
+        exact(profile[key], expected, path + ".metadataEncodingProfile." + key)
+    exact(profile["extraShiftBits"], [6, 4, 2, 0], path + ".metadataEncodingProfile.extraShiftBits")
+    exact(profile["kindStrides"], [64, 16, 4, 1], path + ".metadataEncodingProfile.kindStrides")
+    exact(profile["indexMasks"], [268435455, 67108863, 16777215, 4194303], path + ".metadataEncodingProfile.indexMasks")
+    exact(profile["initialCursors"], [64, 0, 0, 0], path + ".metadataEncodingProfile.initialCursors")
+    exact(profile["kindLimits"], [256, 256, 256, 255], path + ".metadataEncodingProfile.kindLimits")
+    require(re.fullmatch(r"[0-9a-fA-F]{40}", profile["nativeSourceRevision"] or "") is not None,
+            path + ".metadataEncodingProfile.nativeSourceRevision: invalid revision")
+    hash64(profile["nativeHelperSha256"], path + ".metadataEncodingProfile.nativeHelperSha256")
+    for key, expected in (("schemaVersion", 1), ("profileVersion", 1), ("metadataIndexBits", 22),
+                          ("metadataKindBits", 2), ("nativeBudgetCapabilityVersion", 1),
+                          ("requiredImages", len(load_order)), ("acceptedImages", len(load_order)),
+                          ("firstFailingIndex", -1), ("availableImagesAtFailure", 0)):
+        exact(capacity[key], expected, path + ".metadataCapacityReport." + key)
+    exact(capacity["nativeSourceRevision"], profile["nativeSourceRevision"], path + ".metadataCapacityReport.nativeSourceRevision")
+    exact(capacity["nativeHelperSha256"], profile["nativeHelperSha256"], path + ".metadataCapacityReport.nativeHelperSha256")
+    exact(capacity["fits"], True, path + ".metadataCapacityReport.fits")
+    exact(capacity["firstFailingAssembly"], "", path + ".metadataCapacityReport.firstFailingAssembly")
+    exact(capacity["firstFailingBytes"], 0, path + ".metadataCapacityReport.firstFailingBytes")
+    exact(capacity["firstFailingSize"], 0, path + ".metadataCapacityReport.firstFailingSize")
+    exact(capacity["failureReason"], "None", path + ".metadataCapacityReport.failureReason")
+    exact(capacity["firstFailingReason"], "None", path + ".metadataCapacityReport.firstFailingReason")
+    exact(capacity["actualRemainingRuntime"], "NotKnown", path + ".metadataCapacityReport.actualRemainingRuntime")
+    exact(capacity["runtimeCursorSource"], "BaselineOrdinaryPlan", path + ".metadataCapacityReport.runtimeCursorSource")
+    exact(capacity["ordinaryConsumptionIsEstimate"], True, path + ".metadataCapacityReport.ordinaryConsumptionIsEstimate")
+    exact(capacity["runtimeReserveMetadataBudget"], True, path + ".metadataCapacityReport.runtimeReserveMetadataBudget")
+    for key in ("cursorsBefore", "cursorsAfter", "remainingSlotsBefore", "remainingSlotsAfter"):
+        _uint_array(capacity[key], path + ".metadataCapacityReport." + key)
+    for key in ("availableImages", "ordinaryAssemblyCount", "aotCandidateAssemblyCount"):
+        _uint(capacity[key], path + ".metadataCapacityReport." + key)
+    inputs = array(capacity["inputs"], path + ".metadataCapacityReport.inputs")
+    allocations = array(capacity["allocations"], path + ".metadataCapacityReport.allocations")
+    exact(len(inputs), len(load_order), path + ".metadataCapacityReport.inputCount")
+    exact(len(allocations), len(load_order), path + ".metadataCapacityReport.allocationCount")
+    closure_by_name = {row["name"]: row for row in closure}
+    for index, name in enumerate(load_order):
+        require(name in closure_by_name, path + ": capacity closure missing " + name)
+        row = fields(inputs[index], R01_CAPACITY_INPUT_FIELDS, path + f".inputs[{index}]")
+        exact(row["name"], name, path + f".inputs[{index}].name")
+        exact(row["bytes"], closure_by_name[name]["dllSize"], path + f".inputs[{index}].bytes")
+        exact(row["dllSize"], row["bytes"], path + f".inputs[{index}].dllSize")
+        exact(row["sha256"], closure_by_name[name]["sha256"], path + f".inputs[{index}].sha256")
+        allocation = fields(allocations[index], R01_CAPACITY_ALLOCATION_FIELDS, path + f".allocations[{index}]")
+        exact(allocation["name"], name, path + f".allocations[{index}].name")
+        exact(allocation["bytes"], row["bytes"], path + f".allocations[{index}].bytes")
+        exact(allocation["dllSize"], row["dllSize"], path + f".allocations[{index}].dllSize")
+        exact(allocation["sha256"], row["sha256"], path + f".allocations[{index}].sha256")
+        for key in ("imageIndex", "kind", "cursorBefore", "cursorAfter", "slot"):
+            _uint(allocation[key], path + f".allocations[{index}].{key}")
+    # Recompute the allocation transcript; a self-consistent claimed `fits` is insufficient.
+    from r01_results import evaluate_budget, remaining_slots
+    cursors = list(capacity["cursorsBefore"])
+    model = evaluate_budget(cursors, [row["bytes"] for row in inputs])
+    exact(model["fits"], True, path + ".capacityModel.fits")
+    exact(capacity["cursorsAfter"], model["finalCursors"], path + ".cursorsAfter")
+    exact(capacity["remainingSlotsBefore"], remaining_slots(cursors), path + ".remainingSlotsBefore")
+    exact(capacity["remainingSlotsAfter"], remaining_slots(model["finalCursors"]), path + ".remainingSlotsAfter")
+    exact(capacity["availableImages"], sum(remaining_slots(cursors)), path + ".availableImages")
+    for index, allocation in enumerate(allocations):
+        expected = model["allocations"][index]
+        for key in ("imageIndex", "kind", "dllSize"):
+            exact(allocation[key], expected[key], path + f".allocations[{index}].{key}")
+        kind = expected["kind"]
+        stride = profile["kindStrides"][kind]
+        exact(allocation["cursorBefore"], cursors[kind], path + f".allocations[{index}].cursorBefore")
+        exact(allocation["slot"], cursors[kind] // stride, path + f".allocations[{index}].slot")
+        cursors[kind] += stride
+        exact(allocation["cursorAfter"], cursors[kind], path + f".allocations[{index}].cursorAfter")
+    for row in closure:
+        dll = prior._rel(patch_root, row["dll"], path, "capacity DLL")
+        exact(row["dllSize"], dll.stat().st_size, path + "." + row["name"] + ".dllSize")
+
+
+def verify_budget_binding(patch, baseline, path):
+    """Bind negotiated patch estimates to the baseline that supplied the cursors."""
+    capability = patch.get("nativeBudgetCapabilityVersion", 0)
+    exact(capability, baseline.get("nativeBudgetCapabilityVersion", 0), f"{path}: patch/baseline capability")
+    if capability == 0:
+        require(not any(key in baseline for key in ("metadataEncodingProfile", "metadataCapacityReport")),
+                f"{path}: legacy baseline has partial budget capability")
+        return
+    exact(capability, 1, f"{path}: unsupported budget capability")
+    profile = fields(baseline.get("metadataEncodingProfile"), R01_PROFILE_FIELDS, f"{path}.baselineProfile")
+    report = fields(baseline.get("metadataCapacityReport"), R01_CAPACITY_FIELDS, f"{path}.baselineCapacity")
+    exact(patch["metadataEncodingProfile"], profile, f"{path}: patch/baseline profile")
+    exact(profile["nativeSourceRevision"], baseline["sourcePins"]["hybridclr"]["revision"], f"{path}: profile/source revision")
+    exact(report["fits"], True, f"{path}.baselineCapacity.fits")
+    exact(report["runtimeReserveMetadataBudget"], True, f"{path}.baselineCapacity.reserve")
+    for key in ("profileVersion", "nativeBudgetCapabilityVersion", "nativeSourceRevision", "nativeHelperSha256"):
+        exact(report[key], profile[key], f"{path}.baselineCapacity.{key}")
+    capacity = patch["metadataCapacityReport"]
+    exact(capacity["cursorsBefore"], report["cursorsAfter"], f"{path}: baseline/patch cursors")
+    for key in ("ordinaryAssemblyCount", "aotCandidateAssemblyCount"):
+        exact(capacity[key], report[key], f"{path}: baseline/patch {key}")
+
+
 def verify_patch(fixture, manifest, baseline, manifest_path):
     patch_id = fixture["patchId"]
     defines, roots, dll_only = fixture_policy(patch_id)
@@ -481,7 +615,8 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
     patch_root = canonical(fixture["patchDirectory"], manifest_path, "patchDirectory", True)
     patch_path = bound(fixture["patchManifest"], fixture["patchManifestSha256"], manifest_path, "patchManifest")
     exact(patch_path, patch_root / "patch-manifest.json", f"{manifest_path}.{patch_id}.patchManifest")
-    patch = prior._obj(patch_path, PATCH_FIELDS)
+    patch = prior._obj(patch_path)
+    capability = _schema_variant(patch, PATCH_FIELDS, R01_PATCH_FIELDS, patch_path)
     sidecar = patch_root / "manifest.sha256"
     require(sidecar.is_file() and not sidecar.is_symlink() and sidecar.read_text(encoding="utf-8").strip() == digest(patch_path),
             f"{sidecar}: missing or stale patch manifest sidecar")
@@ -523,7 +658,7 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
     dlls, pdbs = [], []
     for index, row in enumerate(closure):
         rp = f"{patch_path}.closure[{index}]"
-        fields(row, PATCH_ASSEMBLY_FIELDS, rp)
+        fields(row, R01_PATCH_ASSEMBLY_FIELDS if capability else PATCH_ASSEMBLY_FIELDS, rp)
         name = row["name"]
         require(name in compiled_by_name and name in baseline_by_name, f"{rp}: unknown closure assembly")
         dll = prior._rel(patch_root, row["dll"], rp, "dll")
@@ -534,6 +669,9 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
         source_pdb = prior._rel(compile_root, compiled_by_name[name]["pdbPath"], rp, "compiler PDB")
         exact(digest(pdb), row["pdbSha256"], rp + ".pdbSha256")
         exact(row["pdbSha256"], digest(source_pdb), rp + ".compilerPdbSha256")
+        if capability:
+            _uint(row["dllSize"], rp + ".dllSize")
+            exact(row["dllSize"], dll.stat().st_size, rp + ".dllSize")
         dlls.append(dll)
         pdbs.append(pdb)
     identities = prior.verify_identities(fixture["assemblyIdentities"], dlls, f"{manifest_path}.{patch_id}.assemblyIdentities")
@@ -554,8 +692,12 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
     prior._verify_topological(expected_order, closure_set, edges, patch_path)
     reflected = prior._reflection_snapshot(compile_root, compiled, patch_path)
     prior._reflection_manifest(patch, reflected, patch_path)
+    if capability:
+        _verify_r01_patch_metadata(patch, closure, patch_root, expected_order, patch_path)
+    verify_budget_binding(patch, baseline, patch_path)
     return dict(fixture=fixture, patch=patch, root=patch_root, path=patch_path,
-                compile_root=compile_root, compiled=compiled, identities=identities)
+                compile_root=compile_root, compiled=compiled, identities=identities,
+                r01Capability=capability)
 
 
 def verify_rejected(row, manifest, baseline, manifest_path):
@@ -593,6 +735,9 @@ def verify_inputs(path):
     for row in rows:
         fields(row, FIXTURE_FIELDS, path)
         fixtures[row["patchId"]] = verify_patch(row, manifest, baseline, path)
+    capabilities = {item["r01Capability"] for item in fixtures.values()}
+    require(len(capabilities) == 1, f"{path}: fixture patches mix legacy and R01 capability schemas")
+    manifest["_r01Capability"] = capabilities.pop()
     rejected_rows = array(manifest["rejectedFixtures"], f"{path}.rejectedFixtures")
     exact([row.get("patchId") for row in rejected_rows],
           ["P05-DllOnly", "P14-ClassRename", "P15-SerializeReferenceRename"], f"{path}.rejectedFixtures")
@@ -754,7 +899,10 @@ def raw_diagnostic(result, result_path):
 
 def verify_result_header(path, manifest, baseline, build):
     path = canonical(str(path), path, "result")
-    result = prior._obj(path, RESULT_FIELDS)
+    result = prior._obj(path)
+    capability = _schema_variant(result, RESULT_FIELDS, R01_RESULT_FIELDS, path)
+    exact(capability, baseline.get("nativeBudgetCapabilityVersion", 0) == 1,
+          f"{path}: result/baseline budget capability")
     require(result["schemaVersion"] == 1 and result["milestone"] == "M07" and result["mode"] in MODES and
             path.name == "m07-" + result["mode"] + ".json" and result["result"] == "Passed" and
             result["error"] == "" and result["il2cpp"] is True,
@@ -773,7 +921,7 @@ def verify_result_header(path, manifest, baseline, build):
                   "p04RuntimeValue", "p05SerializedValue", "baselineUseCount", "nativeEventCount",
                   "transactionGeneration", "stageOrder", "checks", "stageResults", "snapshots", "bundles",
                   "assets", "scenes", "typeResolutions", "cacheEvents", "assemblyModes"}
-    for key in set(RESULT_FIELDS.split()) - nonstrings:
+    for key in set(result) - nonstrings:
         require(type(result[key]) is str, f"{path}.{key}: expected string evidence")
     player = build["player"]
     for key in ("baselineBuildId", "runtimeAbiHash", "unityVersion", "buildGuid"):
@@ -812,6 +960,8 @@ def verify_transaction(result, path, manifest, patch_item):
                        "monoscript-active-after-unload-true", "scriptable-object-state",
                        "dont-destroy-survives-scene-switch", "p04-runtime-storage", "p05-serialized-storage"]
     if feature_off:
+        if "reserveMetadataBudget" in result:
+            exact(result["reserveMetadataBudget"], "", f"{path}.reserveMetadataBudget")
         operations = ["configure", "begin", "stage", "validate", "commit", "abort", "state",
                       "execution-mode", "diagnostics", "type-resolution", "execution-diagnostics"]
         expected_checks = operations + ["assembly-mode-" + name for name in CANDIDATES] + resource_checks
@@ -839,7 +989,11 @@ def verify_transaction(result, path, manifest, patch_item):
 
     fixture, patch = patch_item["fixture"], patch_item["patch"]
     order = fixture["closureLoadOrder"]
-    expected_checks = ["configure", "begin"] + ["stage-" + name for name in order] + ["validate", "commit"] + \
+    capability = patch_item.get("r01Capability", patch.get("nativeBudgetCapabilityVersion", 0) == 1)
+    exact("reserveMetadataBudget" in result, capability, f"{path}: result/patch budget capability")
+    if capability:
+        exact(result["reserveMetadataBudget"], "Success", f"{path}.reserveMetadataBudget")
+    expected_checks = ["configure", "begin"] + (["reserve-metadata-budget"] if capability else []) + ["stage-" + name for name in order] + ["validate", "commit"] + \
                       ["assembly-mode-" + name for name in CANDIDATES] + resource_checks
     if result["mode"] == "T07-11-DelayedCatalog-P03": expected_checks.insert(len(expected_checks) - len(resource_checks) + 1, "delayed-catalog-after-commit")
     exact(checks, expected_checks, f"{path}.checks")
@@ -863,6 +1017,9 @@ def verify_transaction(result, path, manifest, patch_item):
         rp = f"{path}.snapshots[{index}]"
         fields(row, SNAPSHOT_FIELDS, rp)
         diagnostic = prior._diagnostic(row["diagnostics"], rp)
+        exact("metadataBudgetCapabilityVersion" in diagnostic, capability, rp + ".capability")
+        reservations = [event for event in diagnostic["events"] if event["kind"] == "metadata-budget-reserved"]
+        exact(reservations, [dict(sequence=3, kind="metadata-budget-reserved", name="", generation=0, stagedCount=0)] if capability else [], rp + ".reservationEvent")
         prior._verify_diag_invariants(diagnostic, order, manifest["stableAotNames"], rp, patch=patch)
         exact(diagnostic["baselineBuildId"], manifest["baselineBuildId"], rp + ".baselineBuildId")
         exact(diagnostic["patchId"], patch["patchId"], rp + ".patchId")

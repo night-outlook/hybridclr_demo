@@ -16,6 +16,7 @@ import re
 import sys
 
 import m04_results as prior
+import m07_results as r01_schema
 import m05_results as types
 import m05_raw_type_admissions as raw
 from m06_execution_metadata import ExecutionMetadata, LinkedSchemaResolver, read_methods, schema_fields
@@ -31,6 +32,7 @@ RESULT_INTS = "schemaVersion processId configureCode beginCode validateCode comm
 RESULT_STRINGS = "milestone mode result error unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash variant moduleMvidObservationPolicy fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 generationProofPath generationProofSha256 executionProofPath executionProofSha256 patchId patchManifestPath patchManifestSha256 compileSnapshotHash state executionMode nativeDiagnosticsJson executionDiagnosticsJson rawTransactionDiagnosticsPath rawTransactionDiagnosticsSha256 rawExecutionDiagnosticsPath rawExecutionDiagnosticsSha256 recoveryResultPath recoveryResultSha256"
 RESULT_ARRAYS = "stageOrder checks transactionSnapshots executionSnapshots observations methodObservations moduleObservations warmupObservations timings supplementaryMetadata stageResults"
 RESULT_FIELDS = RESULT_INTS+" "+RESULT_STRINGS+" "+RESULT_ARRAYS+" il2cpp developmentBuild businessLaunched ordinary"
+R01_RESULT_FIELDS = RESULT_FIELDS + " reserveCode"
 MANIFEST_FIELDS=prior.MANIFEST_FIELDS+" developmentBuild generationProofPath generationProofSha256 initializerFailureFixture"
 FIXTURE_FIELDS=prior.FIXTURE_FIELDS+" typeInventories variant generationPlanPath generationPlanSha256 developmentBuild requiredAotMetadataNames"
 PLAYER_FIELDS=prior.PLAYER_FIELDS+" buildOptions developmentBuild typeProofPath typeProofSha256 executionProofPath executionProofSha256 generationProofPath generationProofSha256 supplementaryMetadataInputs"
@@ -52,8 +54,12 @@ EXEC_FIELDS=EXEC_INTS+" "+EXEC_COUNTERS+" enabled state classes"
 CLASS_STRINGS="logicalAssembly typeKey executionMode physicalImageKind staticStoragePointer"
 CLASS_BOOLS="isActive cctorStarted cctorFinished hasInitializationException pointerDetailsAvailable staticStorageAvailable"
 CLASS_FIELDS=CLASS_STRINGS+" "+CLASS_BOOLS+" executionModeCode"
-API_NAMES=("ConfigureCandidates(System.String,System.String[],System.String[])","BeginTransaction(System.String,System.String,System.String[],System.Int32)","StageAssembly(System.Byte[],System.Byte[])","ValidateTransaction()","CommitTransaction()","AbortTransaction()","GetState(HybridCLR.AssemblyShadowState&)","GetAssemblyExecutionMode(System.String,HybridCLR.AssemblyExecutionMode&)","GetDiagnosticsJson(System.String&)","GetTypeResolutionInfo(System.Type,System.String&)","GetExecutionDiagnosticsJson(System.String&)")
-ERROR_NAMES="Success FeatureDisabled InvalidState InvalidArgument CandidateNotRegistered DuplicateAssemblyName BaselineAssemblyNotFound BaselineBuildMismatch AssemblyNameMismatch BadImage UnsupportedAssembly ClosureMemberMissing UnexpectedClosureMember ReferenceResolutionFailed ReferenceEscapesClosure BaselineAlreadyUsed ResourceAbiMismatch RuntimeAbiMismatch AlreadyCommitted ModuleInitializerFailed InternalError BaselineMethodExecution".split()
+LEGACY_API_NAMES=("ConfigureCandidates(System.String,System.String[],System.String[])","BeginTransaction(System.String,System.String,System.String[],System.Int32)","StageAssembly(System.Byte[],System.Byte[])","ValidateTransaction()","CommitTransaction()","AbortTransaction()","GetState(HybridCLR.AssemblyShadowState&)","GetAssemblyExecutionMode(System.String,HybridCLR.AssemblyExecutionMode&)","GetDiagnosticsJson(System.String&)","GetTypeResolutionInfo(System.Type,System.String&)","GetExecutionDiagnosticsJson(System.String&)")
+NEGOTIATED_API_NAMES=("GetMetadataCapacityJson(System.Int64[],System.String&)","ReserveMetadataBudget(System.Int64[],System.Int32)","GetRecoveryInfoJson(System.String&)")
+API_NAMES=LEGACY_API_NAMES
+LEGACY_ERROR_NAMES="Success FeatureDisabled InvalidState InvalidArgument CandidateNotRegistered DuplicateAssemblyName BaselineAssemblyNotFound BaselineBuildMismatch AssemblyNameMismatch BadImage UnsupportedAssembly ClosureMemberMissing UnexpectedClosureMember ReferenceResolutionFailed ReferenceEscapesClosure BaselineAlreadyUsed ResourceAbiMismatch RuntimeAbiMismatch AlreadyCommitted ModuleInitializerFailed InternalError BaselineMethodExecution".split()
+NEGOTIATED_ERROR_NAMES=LEGACY_ERROR_NAMES+"CapabilityUnavailable MetadataCapacityExceeded MetadataBudgetMismatch".split()
+ERROR_NAMES=LEGACY_ERROR_NAMES
 fields, array, boolean, strings = prior._fields, prior._array, prior._bool, prior._strings
 bound, canonical, digest = types._bound_file, types._canonical, prior.digest
 
@@ -421,7 +427,7 @@ def verify_patch(fixture,manifest,baseline,plan_tuple,path):
     root=canonical(fixture['patchDirectory'],path,'patchDirectory',True);patch_path=bound(fixture['patchManifest'],fixture['patchManifestSha256'],path,'patchManifest');exact(patch_path,root/'patch-manifest.json',path)
     exact((root/'manifest.sha256').read_text().strip(),digest(patch_path),path)
     envelope=obj(patch_path,'schemaVersion patch warmup');exact(envelope['schemaVersion'],2,path);patch=envelope['patch']
-    fields(patch,'schemaVersion semanticHashSchema patchId baselineBuildId baselineManifestSha256 unityVersion target architecture sourcePins runtimeAbiHash compileSnapshotHash reflectionBindingConfigurationSha256 reflectionBindingConfigurationHash reflectionBindings bootstrapAbiHash baselineResourceAbiHash resourceAbiHash resourceChangeLevel dllOnly resourceBundlesRequired resourceChangeReasons changedRoots loadOrder closure dependencyGraph deferredFacadeReferences unsigned signatureAlgorithm',path)
+    r01_capability = r01_schema._schema_variant(patch, r01_schema.PATCH_FIELDS, r01_schema.R01_PATCH_FIELDS, path)
     exact(patch['schemaVersion'],1,path);exact(patch['semanticHashSchema'],1,path);exact(patch['patchId'],pid,path)
     for key in ('baselineBuildId','baselineManifestSha256','unityVersion','target','architecture','runtimeAbiHash'):exact(patch[key],manifest[key],path)
     exact(patch['compileSnapshotHash'],fixture['compileSnapshotHash'],path);prior._pins(patch['sourcePins'],path,baseline['sourcePins'])
@@ -433,10 +439,14 @@ def verify_patch(fixture,manifest,baseline,plan_tuple,path):
     exact(sorted(names([i['name'] for i in patch['closure']],path)),sorted(order_for(pid)),path)
     dlls=[];identities={}
     for item in patch['closure']:
-        fields(item,'name dll sha256 semanticHash mvid baselineMvid pdb pdbSha256 references',path);name=item['name'];dll=prior._rel(root,item['dll'],path,'patch DLL');dlls.append(dll)
+        fields(item, r01_schema.R01_PATCH_ASSEMBLY_FIELDS if r01_capability else 'name dll sha256 semanticHash mvid baselineMvid pdb pdbSha256 references', path);name=item['name'];dll=prior._rel(root,item['dll'],path,'patch DLL');dlls.append(dll)
         actual=prior.read_identity(dll);identities[name]=actual
         for key in ('name','sha256','mvid'):exact(item[key],actual[key],path)
         exact(item['sha256'],source[name]['sha256'],path);exact(item['baselineMvid'],base[name]['mvid'],path)
+        if r01_capability:
+            require(type(item['dllSize']) is int and not isinstance(item['dllSize'], bool) and item['dllSize'] >= 0,
+                    f"{path}: invalid R01 dllSize")
+            exact(item['dllSize'],dll.stat().st_size,path)
         exact(sorted(canonical_names(item['references'],path)),
               sorted(canonical_names([r['name'] for r in actual['referenceIdentities']],path)),path)
         if manifest['developmentBuild']:
@@ -457,7 +467,10 @@ def verify_patch(fixture,manifest,baseline,plan_tuple,path):
             providers[key]=prior.read_identity(prior._rel(snapshot_root,row['path'],path,'compiler corlib DLL'))
     cores={name:compiler_core_identity(identities[name],providers,path) for name in patch['loadOrder']}
     verify_warmup(envelope['warmup'],patch['loadOrder'],cores,path)
-    return dict(fixture=fixture,patch=patch,warmup=envelope['warmup'],root=root,snapshot=snapshot)
+    if r01_capability:
+        r01_schema._verify_r01_patch_metadata(patch, patch['closure'], root, patch['loadOrder'], path)
+    r01_schema.verify_budget_binding(patch,baseline,path)
+    return dict(fixture=fixture,patch=patch,warmup=envelope['warmup'],root=root,snapshot=snapshot,r01Capability=r01_capability)
 
 
 def verify_baseline(manifest,path,m01_root):
@@ -511,7 +524,7 @@ def verify_inputs(path,m01_root,development):
     return dict(manifest=manifest,path=path,baseline=baseline,snapshot=snapshot,generation=generation,plans=plans,fixtures=fixtures)
 
 
-def verify_schema_rows(rows,modules,resolver,path):
+def verify_schema_rows(rows,modules,resolver,path,r01_capability=False):
     seen=set();actual_rows=[]
     for row in array(rows,path):
         fields(row,'side assemblyName assemblyIdentity typeName typeAttributes isSerializable fields',path)
@@ -529,6 +542,8 @@ def verify_schema_rows(rows,modules,resolver,path):
         pending=[('AssemblyShadowDemo.Bootstrap','AssemblyShadowDemo.M06ExecutionProbe/'+name) for name in 'Result FixtureManifest PlayerBuildReceipt TypeProof ExecutionProof GenerationProof ExecutionPolicyProof PatchManifestVersion PatchManifestEnvelope PatchManifest BaselineManifest SnapshotReceipt GenerationPlan CompilerModeProof GenerationOutput AotInputProof LinkedPlayerReceipt'.split()]
         pending += [('AssemblyShadowDemo.Bootstrap','AssemblyShadowDemo.M04OrdinaryAssemblyProbe/'+name) for name in ('Configuration','Site')]
         pending += [('HybridCLR.Runtime',name) for name in ('HybridCLR.AssemblyShadowDiagnostics','HybridCLR.AssemblyShadowTypeResolutionInfo','HybridCLR.AssemblyShadowExecutionDiagnostics','HybridCLR.AssemblyShadowExecutionClassInfo')]
+        if r01_capability:
+            pending += [('HybridCLR.Runtime',name) for name in ('HybridCLR.AssemblyShadowMetadataCapacity','HybridCLR.AssemblyShadowMetadataAllocation','HybridCLR.AssemblyShadowRecoveryInfo')]
         required=set()
         while pending:
             assembly,type_name=pending.pop()
@@ -561,8 +576,18 @@ def verify_execution_proof(player,snapshot,context,path):
     exact(proof_path,Path(player['inputSnapshot'])/'m06-execution-proof.json',path);exact(proof['schemaVersion'],1,path);exact(proof['milestone'],'M06',path);exact(proof['policy'],'execution-world:1',path)
     for key in ('buildGuid','nativeLibrarySha256','developmentBuild','generationProofPath','generationProofSha256','typeProofPath','typeProofSha256'):exact(proof[key],player[key],path)
     exact(proof['compileSnapshotHash'],snapshot['snapshotHash'],path);exact(proof['linkedPlayerReceiptHash'],snapshot['linkedPlayerReceiptHash'],path)
-    exact(proof['apiSignatures'],['HybridCLR.AssemblyShadowErrorCode HybridCLR.AssemblyShadowRuntime::'+n for n in API_NAMES],path)
-    exact(proof['errorCodes'],[dict(name=name,value=i) for i,name in enumerate(ERROR_NAMES)],path)
+    legacy_api=['HybridCLR.AssemblyShadowErrorCode HybridCLR.AssemblyShadowRuntime::'+n for n in LEGACY_API_NAMES]
+    negotiated_api=['HybridCLR.AssemblyShadowErrorCode HybridCLR.AssemblyShadowRuntime::'+n for n in NEGOTIATED_API_NAMES]
+    if proof['apiSignatures'] == legacy_api:
+        r01_capability=False; expected_api=legacy_api; expected_errors=LEGACY_ERROR_NAMES
+    elif proof['apiSignatures'] == legacy_api + negotiated_api:
+        r01_capability=True; expected_api=legacy_api + negotiated_api; expected_errors=NEGOTIATED_ERROR_NAMES
+    else:
+        require(False,f"{path}: unsupported execution API capability schema")
+    for item in context['fixtures'].values():
+        exact(item.get('r01Capability',False),r01_capability,f'{path}: patch/execution-proof capability')
+    exact(proof['apiSignatures'],expected_api,path)
+    exact(proof['errorCodes'],[dict(name=name,value=i) for i,name in enumerate(expected_errors)],path)
     type_path=bound(player['typeProofPath'],player['typeProofSha256'],path,'typeProofPath');type_proof=obj(type_path,types.PROOF_FIELDS)
     exact(type_path,Path(player['inputSnapshot'])/'m06-type-proof.json',path);exact(type_proof['schemaVersion'],1,path);exact(type_proof['milestone'],'M06',path);exact(type_proof['policy'],'active-execution-types:1',path)
     for key in ('compileSnapshotHash','linkedPlayerReceiptHash','nativeLibrarySha256','buildGuid','developmentBuild'):exact(type_proof[key],proof[key],path)
@@ -587,14 +612,14 @@ def verify_execution_proof(player,snapshot,context,path):
             require(element&255==8 and len(runtime.tables.blob(blob))==4,f"{path}: error enum constant is not Int32")
             name=runtime.tables.string(runtime.tables.row(4,field)[1]);require(name not in constants,f"{path}: duplicate enum constant")
             constants[name]=int.from_bytes(runtime.tables.blob(blob),'little',signed=True)
-        exact(constants,{name:i for i,name in enumerate(ERROR_NAMES)},path)
+        exact(constants,{name:i for i,name in enumerate(expected_errors)},path)
         expected_root={key:'System.UInt64' for key in EXEC_COUNTERS.split()};expected_root.update({key:'System.Int32' for key in EXEC_INTS.split()});expected_root.update(enabled='System.Boolean',state='System.String',classes='HybridCLR.AssemblyShadowExecutionClassInfo[]')
         expected_class={key:'System.String' for key in CLASS_STRINGS.split()};expected_class.update({key:'System.Boolean' for key in CLASS_BOOLS.split()});expected_class['executionModeCode']='System.Int32'
         for name,expected in (('HybridCLR.AssemblyShadowExecutionDiagnostics',expected_root),('HybridCLR.AssemblyShadowExecutionClassInfo',expected_class)):
             actual_fields=[f for f in runtime.fields(name) if f['flags']&7==6 and not f['flags']&16]
             exact({f['name']:f['type'] for f in actual_fields},expected,path)
     resolver=LinkedSchemaResolver({i['fullName']:i['path'] for i in player['assemblyIdentities']})
-    verify_schema_rows(proof['schemaTypes'],modules,resolver,path)
+    verify_schema_rows(proof['schemaTypes'],modules,resolver,path,r01_capability)
     expected=[]
     for role in ('PlayerInput','LinkedPlayer'):
         files=snapshot['assemblies'] if role=='PlayerInput' else snapshot['linkedPlayerReceipt']['assemblies'];directory=root if role=='PlayerInput' else root/'LinkedPlayer'
@@ -776,7 +801,12 @@ def verify_exception(values,image,path,shadow,development):
 
 
 def verify_result_header(path,context,build):
-    result=obj(path,RESULT_FIELDS);player=build['player'];manifest=context['manifest']
+    result=obj(path);player=build['player'];manifest=context['manifest']
+    capability=r01_schema._schema_variant(result,RESULT_FIELDS,R01_RESULT_FIELDS,path)
+    proof=build.get('proof', {})
+    expected_capability=any('::ReserveMetadataBudget(' in signature for signature in proof.get('apiSignatures', []))
+    exact(capability,expected_capability,f"{path}: result/execution-proof capability")
+    if capability:integer(result['reserveCode'],path)
     for key in RESULT_INTS.split():integer(result[key],path)
     for key in RESULT_STRINGS.split():require(type(result[key]) is str,f"{path}: missing string/default {key}")
     for key in ('il2cpp','developmentBuild','businessLaunched'):boolean(result[key],path)
@@ -863,11 +893,12 @@ def verify_checks(result,closure,path):
     exact(result['checks'],expected,path)
 
 
-def transaction_events(phase,closure):
+def transaction_events(phase,closure,r01_capability=False):
     if phase in ('initial','baseline-recovery'):return []
     rows=[]
     def add(kind,name='',generation=0,staged=0):rows.append(dict(sequence=len(rows)+1,kind=kind,name=name,generation=generation,stagedCount=staged))
     add('candidates-registered');add('transaction-begun')
+    if r01_capability:add('metadata-budget-reserved')
     for i,name in enumerate(closure):add('skeleton-created',name,staged=i+1)
     if phase=='staged':return rows
     for name in closure:
@@ -890,7 +921,8 @@ def verify_snapshots(result,context,path,closure):
         exact(d['enabled'],True,path)
         phase=row['phase'];expected_state={'initial':0,'baseline-recovery':0,'staged':3,'validated':4,'committed':6,'final':6,'initializer-failure':9}
         require(phase in expected_state,f"{path}: unknown transaction phase");exact(d['stateCode'],expected_state[phase],path)
-        exact(d['events'],transaction_events(phase,closure),path)
+        exact('metadataBudgetCapabilityVersion' in d,'reserveCode' in result,f'{path}: result/diagnostic capability')
+        exact(d['events'],transaction_events(phase,closure,'reserveCode' in result),path)
         exact(d['generation'],1 if phase in ('committed','final','initializer-failure') else 0,path)
         if row['phase'] not in ('initial','baseline-recovery'):
             exact(d['closureLoadOrder'],closure,path);exact(d['baselineBuildId'],context['manifest']['baselineBuildId'],path)
@@ -1143,11 +1175,13 @@ def verify_warmup_observations(result,item,build,path):
 def verify_case(path,context,build):
     result=verify_result_header(path,context,build);mode=result['mode'];off=mode=='T06-11-FeatureOff';recovery=mode=='T06-09-BaselineRecovery';failure=mode=='T06-09-InitializerFailure'
     if off:
+        if 'reserveCode' in result:exact(result['reserveCode'],-1,path)
         for key in ('configureCode','beginCode','validateCode','commitCode','abortCode','stateCode','executionModeCode','diagnosticsCode','executionDiagnosticsCode','typeResolutionCode'):exact(result[key],1,path)
         exact(result['stageResults'],[dict(name='',dllSha256='',pdbSha256='',code=1)],path);exact(result['state'],'Disabled',path);exact(result['executionMode'],'AotBaseline',path)
         disabled=prior._diagnostic(json_text(result['nativeDiagnosticsJson'],path),path);exact(disabled['enabled'],False,path);exact(disabled['lastError'],1,path);exact(disabled['stateCode'],0,path)
         for key,value in disabled.items():
-            if key not in ('schemaVersion','runtimeAbiVersion','enabled','lastError','stateCode','state'):
+            if key == 'startupObservationMode':exact(value,'Unavailable',path)
+            elif key not in ('schemaVersion','runtimeAbiVersion','enabled','lastError','stateCode','state'):
                 exact(value,[] if type(value) is list else '' if type(value) is str else 0,path)
         exact(result['executionDiagnosticsJson'],'',path);exact(result['businessLaunched'],False,path)
         for key in RESULT_ARRAYS.split():
@@ -1160,6 +1194,7 @@ def verify_case(path,context,build):
     exact(result['diagnosticsCode'],0,path);exact(result['executionDiagnosticsCode'],0,path)
     exact(result['abortCode'],-1,path);prior._inactive(result['ordinary'],prior.ORDINARY_FIELDS,path)
     if recovery:
+        if 'reserveCode' in result:exact(result['reserveCode'],-1,path)
         for key in ('configureCode','beginCode','validateCode','commitCode'):exact(result[key],-1,path)
         exact(result['stateCode'],0,path);exact(result['typeResolutionCode'],0,path);exact(result['businessLaunched'],True,path)
         for key in ('patchId','patchManifestPath','patchManifestSha256','compileSnapshotHash'):exact(result[key],'',path)
@@ -1170,6 +1205,8 @@ def verify_case(path,context,build):
         verify_observations(result,build,'BASELINE',path);return result
     pid='InitializerFailure' if failure else 'P03' if mode.endswith('P03') or mode=='T06-13-ReleaseNoPdb' else 'P02' if mode.endswith('P02') else 'P01'
     item=context['fixtures'][pid];fixture=item['fixture'];closure=fixture['closureLoadOrder']
+    exact('reserveCode' in result,item.get('r01Capability',False),f'{path}: result/patch budget capability')
+    if 'reserveCode' in result:exact(result['reserveCode'],0,path)
     for key in ('patchId','patchManifestPath','patchManifestSha256','compileSnapshotHash'):exact(result[key],fixture['patchManifest'] if key=='patchManifestPath' else fixture[key],path)
     for key in ('configureCode','beginCode','validateCode'):exact(result[key],0,path)
     exact(result['commitCode'],19 if failure else 0,path);exact(result['stateCode'],9 if failure else 6,path);exact(result['typeResolutionCode'],-1 if failure else 0,path)

@@ -40,6 +40,13 @@ class M06ResultTests(unittest.TestCase):
         self.assertEqual(len(gate.API_NAMES),11);self.assertEqual(len(gate.ERROR_NAMES),22)
         self.assertEqual(gate.ERROR_NAMES[21],'BaselineMethodExecution')
 
+    def test_r01_capability_extension_keeps_legacy_inventory_explicit(self):
+        self.assertEqual(len(gate.LEGACY_API_NAMES), 11)
+        self.assertEqual(len(gate.NEGOTIATED_API_NAMES), 3)
+        self.assertEqual(len(gate.NEGOTIATED_ERROR_NAMES), 25)
+        self.assertEqual(gate.NEGOTIATED_ERROR_NAMES[-3:],
+                         ["CapabilityUnavailable", "MetadataCapacityExceeded", "MetadataBudgetMismatch"])
+
     def test_exact_dto_primitive_inventory_includes_native_metadata_token(self):
         self.assertEqual(gate.DTO_PRIMITIVES,frozenset(('System.Int32','System.UInt32','System.UInt64',
                                                        'System.Int64','System.Boolean','System.String')))

@@ -54,6 +54,17 @@ class M07ResultTests(unittest.TestCase):
                          ["consumer", "callSite", "concreteTypes", "evidence"])
         self.assertEqual(len(gate.REPLAY_FIXTURE_FIELDS.split()), 8)
 
+    def test_patch_schema_accepts_only_legacy_or_complete_r01_capability(self):
+        legacy = {field: None for field in gate.PATCH_FIELDS.split()}
+        self.assertFalse(gate._schema_variant(legacy, gate.PATCH_FIELDS, gate.R01_PATCH_FIELDS, "legacy"))
+        capability = dict(legacy, nativeBudgetCapabilityVersion=1, metadataEncodingProfile={}, metadataCapacityReport={})
+        self.assertTrue(gate._schema_variant(capability, gate.PATCH_FIELDS, gate.R01_PATCH_FIELDS, "r01"))
+        for field in ("nativeBudgetCapabilityVersion", "metadataEncodingProfile", "metadataCapacityReport"):
+            bad = copy.deepcopy(capability); del bad[field]
+            with self.assertRaises(VerificationError): gate._schema_variant(bad, gate.PATCH_FIELDS, gate.R01_PATCH_FIELDS, "missing")
+        bad = dict(capability, unexpected=True)
+        with self.assertRaises(VerificationError): gate._schema_variant(bad, gate.PATCH_FIELDS, gate.R01_PATCH_FIELDS, "unknown")
+
     def test_monoscript_player_evidence_policy_is_finite(self):
         source = (Path(__file__).resolve().parents[3] / "Assets/AssemblyShadowDemo/Bootstrap/M07ResourceProbe.cs").read_text()
         verifier = (Path(__file__).resolve().parents[1] / "m07_results.py").read_text()

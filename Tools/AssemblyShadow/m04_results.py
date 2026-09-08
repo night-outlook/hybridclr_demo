@@ -330,6 +330,10 @@ def _verify_replay(path, manifest, baseline, fixtures, on_build):
 
 
 DIAGNOSTIC_FIELDS = "schemaVersion enabled runtimeAbiVersion state stateCode lastError detail baselineBuildId patchId generation expected staged retainedBytes enumerationGeneration ordinaryAssemblies classEnumerationGeneration ordinaryClasses closureLoadOrder stableAotNames commitOrder assemblies events baselineUses"
+R01_DIAGNOSTIC_FIELDS = DIAGNOSTIC_FIELDS + " startupCandidateSchemaVersion startupCandidateNames startupObservationMode metadataBudgetCapabilityVersion recoveryCapabilityVersion"
+LEGACY_DIAGNOSTIC_ERROR_CODES = dict(ERROR_CODES, BaselineMethodExecution=21)
+R01_DIAGNOSTIC_ERROR_CODES = dict(LEGACY_DIAGNOSTIC_ERROR_CODES, CapabilityUnavailable=22,
+                                MetadataCapacityExceeded=23, MetadataBudgetMismatch=24)
 ASSEMBLY_DIAG_FIELDS = "name mvid skeletonBuilt runtimeMetadataInitialized published moduleInitializerAttempted moduleInitializerRan"
 BENCHMARK_FIELDS = "enabled finalSameAssembly requestedName warmupCount lookupCount elapsedTicks stopwatchFrequency checksum finalAssemblyName finalFullName finalMvid finalMvidAvailable finalReferenceIdentities"
 ORDINARY_FIELDS = "schemaVersion moduleMvidObservationPolicy aotMvidAvailable fixedImageMvidAvailable aotFullName aotMvid aotLoadMatchesType placeholderName placeholderFoundBefore placeholderHiddenBefore placeholderSameAfterLoad assemblyCountBefore assemblyCountAfter ordinaryCountBefore ordinaryCountAfter ordinaryCountAfterDuplicate configurationPath configurationSha256 configurationHash fixedImageGuard fixedImagePath fixedImageSha256 fixedImageFullName fixedImageMvid fixedImageMarker fixedImageTamperRejected fixedImageNullRejected fixedImageCallerBytesUnchanged loadedNameSame enumeratedSame duplicateRejected duplicateExceptionType duplicateMessage knownNameResolveInput knownNameResolveFullName knownNameResolveEvents knownNameResolveSame supplementaryInputPath supplementaryInputSha256 supplementaryInputFullName supplementaryInputMvid supplementaryFirstCode supplementaryRepeatCode supplementaryInvalidModeCode supplementaryCallerBytesUnchanged"
@@ -341,13 +345,26 @@ def _uint64(value, path):
 
 
 def _diagnostic(value, path):
-    d = _fields(value, DIAGNOSTIC_FIELDS, path)
+    actual = _fields(value, R01_DIAGNOSTIC_FIELDS, path) if type(value) is dict and set(value) == set(R01_DIAGNOSTIC_FIELDS.split()) else _fields(value, DIAGNOSTIC_FIELDS, path)
+    d = actual
     require(type(d["schemaVersion"]) is int and d["schemaVersion"] == 1 and
             type(d["runtimeAbiVersion"]) is int and d["runtimeAbiVersion"] == 1, f"{path}: diagnostic schema mismatch")
     _bool(d["enabled"], path)
+    if set(d) == set(R01_DIAGNOSTIC_FIELDS.split()):
+        require(type(d["startupCandidateSchemaVersion"]) is int and d["startupCandidateSchemaVersion"] >= 0,
+                f"{path}: invalid startup candidate schema version")
+        _names(d["startupCandidateNames"], path, "startupCandidateNames")
+        require(type(d["startupObservationMode"]) is str and d["startupObservationMode"] in
+                {"Unavailable", "ConfigureOnly", "EarlyTracking"}, f"{path}: invalid startup observation mode")
+        for field in ("metadataBudgetCapabilityVersion", "recoveryCapabilityVersion"):
+            require(type(d[field]) is int and d[field] >= 0, f"{path}: invalid {field}")
+        if d["enabled"]:
+            require(d["metadataBudgetCapabilityVersion"] == 1 and d["recoveryCapabilityVersion"] == 1,
+                    f"{path}: enabled diagnostic capability version mismatch")
     _strings(d, path, "state detail baselineBuildId patchId")
     require(d["state"] in STATE_CODES and type(d["stateCode"]) is int and d["stateCode"] == STATE_CODES[d["state"]], f"{path}: state enum/code mismatch")
-    require(type(d["lastError"]) is int and d["lastError"] in ERROR_CODES.values(), f"{path}: invalid native error code")
+    errors = R01_DIAGNOSTIC_ERROR_CODES if set(d) == set(R01_DIAGNOSTIC_FIELDS.split()) else LEGACY_DIAGNOSTIC_ERROR_CODES
+    require(type(d["lastError"]) is int and d["lastError"] in errors.values(), f"{path}: invalid native error code")
     for field in "generation expected staged retainedBytes enumerationGeneration classEnumerationGeneration".split(): _uint64(d[field], f"{path}.{field}")
     for field in "closureLoadOrder stableAotNames commitOrder".split(): _names(d[field], path, field)
     for a in _array(d["assemblies"], path):
