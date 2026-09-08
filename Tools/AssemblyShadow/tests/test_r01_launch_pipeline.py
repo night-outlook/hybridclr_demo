@@ -15,7 +15,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from test_r01_pipeline import fixture
+from test_r01_pipeline import fixture, fixed_reflection
 import r01_results as gate
 from shadow_tools import VerificationError
 
@@ -67,10 +67,13 @@ class R01LaunchPipelineTests(unittest.TestCase):
             path.write_text(json.dumps(r));Path(command[-1]).write_text('offline process substitute');console_path.write_text('offline process substitute')
             return dict(processId=r['processId'],exitCode=0,timedOut=False,startedAtUnix=1.0,durationSeconds=0.25)
         args=['--project-root',str(root),'--fixture-manifest',str(fixture_path),'--on-build',str(on['path']),'--off-build',str(off['path']),'--replay-receipt',str(replay),'--output-root',str(out),'--startup-expectation',expectation]
-        with patch.object(launcher,'verify_inputs',return_value=context),patch.object(launcher,'_run_one',side_effect=run),contextlib.redirect_stdout(io.StringIO()):
+        with patch.object(launcher,'verify_inputs',return_value=context),patch.object(launcher,'_run_one',side_effect=run),\
+                patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(on)),\
+                contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(launcher.main(args),0)
         launch=out/'r01-player-launches.json'
-        with patch.object(gate,'verify_inputs',return_value=context):
+        with patch.object(gate,'verify_inputs',return_value=context),\
+                patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(on)):
             result=gate.verify_suite(launch,expectation)
         self.assertEqual(len(result['modes']),10)
         self.assertEqual(result['diagnosticOnly'],expectation==gate.STARTUP_OBSERVATION_GAP)

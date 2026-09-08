@@ -62,6 +62,7 @@ namespace AssemblyShadowDemo
             result.resourcePrecheckPhase = "before-commit-before-business-resource-load";
 
             if (mode == "T07-14-FeatureOff") RunFeatureOff(result);
+            else if (Array.IndexOf(Environment.GetCommandLineArgs(), "-shadowEarlyCapsule") >= 0) AdoptEarlyTransaction(result, input);
             else RunTransaction(result, input);
 
             IEnumerator resource = M07ResourceProbe.Run(result, input);

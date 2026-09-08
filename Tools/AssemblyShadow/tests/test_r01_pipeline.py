@@ -11,6 +11,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import r01_results as gate
@@ -20,6 +21,13 @@ from shadow_tools import VerificationError
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def fixed_reflection(build):
+    fixed = next(path for path in Path(build['player']['inputSnapshot']).rglob('*.dll.bytes'))
+    return {'declarations': [{'id': 'm00-normal-hot-update-image', 'kind': 'FixedAssemblyBytes',
+                              'imageSha256': fixed.name[:-len('.dll.bytes')],
+                              'providerAssemblyIdentity': gate.ORDINARY + ', Version=0.0.0.0, Culture=neutral, PublicKeyToken=null'}]}
 
 
 def capacity(phase, sizes, allocated=0, ordinary=0, reserved=0):
@@ -67,14 +75,17 @@ def fixture(root, mode, expectation):
         content = bytes([index + 1]) * (512 + index * 16)
         dll = patch_root / (name + '.dll'); dll.write_bytes(content)
         patch_rows.append(dict(name=name, dll=dll.name, sha256=sha(content), dllSize=len(content), pdbSha256='', pdb=''))
-    ordinary = snapshot / (gate.ORDINARY + '.dll'); ordinary.write_bytes(b'ordinary' * 64)
+    filtered_ordinary = snapshot / (gate.ORDINARY + '.dll'); filtered_ordinary.write_bytes(b'filtered-ordinary' * 64)
+    fixed_bytes = b'approved-fixed-image'; fixed_hash = sha(fixed_bytes)
+    fixed_ordinary = snapshot / 'ReflectionBindings' / 'Images' / (fixed_hash + '.dll.bytes')
+    fixed_ordinary.parent.mkdir(parents=True, exist_ok=True); fixed_ordinary.write_bytes(fixed_bytes)
     manifest = dict(_path=str(fixture_path), unityVersion='2022.3.62f2', target='StandaloneOSX', architecture='arm64',
                     baselineBuildId='R01-test', runtimeAbiHash='a'*64, baselineManifestPath=str(root/'baseline.json'),
                     baselineManifestSha256='b'*64, candidateNames=candidates)
     player = dict(buildGuid='test-guid', inputSnapshot=str(snapshot), inputSnapshotHash='c'*64,
                   nativeLibraryPath=str(root/'native'), nativeLibrarySha256='d'*64,
                   nativeMetadataPath=str(root/'metadata'), nativeMetadataSha256='e'*64, playerOutput=str(output))
-    build = dict(path=receipt, player=player, snapshot=dict(filteredAssemblies=[dict(name=gate.ORDINARY+'.dll', path=ordinary.name, sha256=sha(ordinary.read_bytes()))]))
+    build = dict(path=receipt, player=player, snapshot=dict(filteredAssemblies=[dict(name=gate.ORDINARY+'.dll', path=filtered_ordinary.name, sha256=sha(filtered_ordinary.read_bytes()))]))
     item = dict(fixture=dict(closureLoadOrder=closure, patchDirectory=str(patch_root), patchManifest=str(patch_path), patchManifestSha256=gate.digest(patch_path)), patch=dict(closure=patch_rows))
     context = dict(manifest=manifest, fixtures={'P03': item})
     r = {key: '' for key in gate.RESULT_STRINGS.split()}
@@ -107,7 +118,7 @@ def fixture(root, mode, expectation):
         ordinary_count = int(mode in ('R01-P03-OrdinaryFirst', 'R01-P03-OrdinaryAfterReserve'))
         if ordinary_count:
             phase='ordinary-before-configure' if mode.endswith('OrdinaryFirst') else 'ordinary-after-reserve'
-            row=byte_row(gate.ORDINARY,ordinary,phase,'verified ordinary bytes')
+            row=byte_row(gate.ORDINARY,fixed_ordinary,phase,'verified ON snapshot fixed M00 image')
             r['byteInputs'].insert(0,row) if mode.endswith('OrdinaryFirst') else r['byteInputs'].append(row)
             r['observations'].append(dict(phase=phase,kind='ordinary-interpreter-load' if mode.endswith('OrdinaryFirst') else 'reserved-slot-isolation',detail='verified',passed=True))
         caps=[]
@@ -170,17 +181,21 @@ class R01PipelineTests(unittest.TestCase):
             with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temp:
                 path,r,context,build=fixture(Path(temp),mode,gate.STARTUP_OBSERVATION_GAP)
                 path.write_text(json.dumps(r))
-                self.assertEqual(gate.verify_result(path,mode,context,build,gate.STARTUP_OBSERVATION_GAP)['mode'],mode)
+                with patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(build)):
+                    self.assertEqual(gate.verify_result(path,mode,context,build,gate.STARTUP_OBSERVATION_GAP)['mode'],mode)
 
     def test_all_preconfigure_early_guards_require_full_first_use_retention(self):
         for mode in sorted(gate.PRECONFIGURE_MODES):
             with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temp:
                 path,r,context,build=fixture(Path(temp),mode,gate.STARTUP_EARLY_GUARD)
-                path.write_text(json.dumps(r));gate.verify_result(path,mode,context,build,gate.STARTUP_EARLY_GUARD)
+                path.write_text(json.dumps(r))
+                with patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(build)):
+                    gate.verify_result(path,mode,context,build,gate.STARTUP_EARLY_GUARD)
                 row=next(row for row in r['diagnosticSnapshots'] if row['phase']=='configured')
                 raw=json.loads(row['rawJson']);raw['baselineUses'][0]['timestamp']+=1;row['rawJson']=json.dumps(raw)
                 path.write_text(json.dumps(r))
-                with self.assertRaises(VerificationError):gate.verify_result(path,mode,context,build,gate.STARTUP_EARLY_GUARD)
+                with patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(build)), self.assertRaises(VerificationError):
+                    gate.verify_result(path,mode,context,build,gate.STARTUP_EARLY_GUARD)
 
     def test_unknown_dto_fields_and_wrong_native_use_key_fail_closed(self):
         for mutation in ('unknown','missing','assembly-key','numeric-state','wrong-stage-hash'):
@@ -193,4 +208,5 @@ class R01PipelineTests(unittest.TestCase):
                 else:
                     row=r['diagnosticSnapshots'][1];raw=json.loads(row['rawJson']);raw['baselineUses'][0]['assembly']=raw['baselineUses'][0].pop('name');row['rawJson']=json.dumps(raw)
                 path.write_text(json.dumps(r))
-                with self.assertRaises(VerificationError):gate.verify_result(path,mode,context,build,gate.STARTUP_EARLY_GUARD)
+                with patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(build)), self.assertRaises(VerificationError):
+                    gate.verify_result(path,mode,context,build,gate.STARTUP_EARLY_GUARD)

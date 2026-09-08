@@ -5,7 +5,9 @@ import copy
 import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import r01_results as gate
@@ -38,6 +40,52 @@ def capacity_observation(sizes):
 
 
 class R01ResultTests(unittest.TestCase):
+    def test_ordinary_input_binds_hash_named_fixed_image(self):
+        with tempfile.TemporaryDirectory(dir=Path.cwd()) as directory:
+            root = Path(directory)
+            snapshot_root = root / "snapshot"
+            fixed = snapshot_root / "ReflectionBindings" / "Images" / ("a" * 64 + ".dll.bytes")
+            filtered = snapshot_root / "Assemblies" / "Filtered" / "AssemblyShadowBaseline.HotUpdate.dll"
+            fixed.parent.mkdir(parents=True)
+            filtered.parent.mkdir(parents=True)
+            fixed.write_bytes(b"approved-fixed-image")
+            filtered.write_bytes(b"valid-filtered-compiler-image")
+            fixed_hash = gate.digest(fixed)
+            filtered_hash = gate.digest(filtered)
+            fixed.rename(fixed.with_name(fixed_hash + ".dll.bytes"))
+            fixed = fixed.with_name(fixed_hash + ".dll.bytes")
+            result = {
+                "fixtureManifestPath": str(root / "manifest.json"),
+                "byteInputs": [{
+                    "phase": "ordinary-before-configure", "assemblyName": gate.ORDINARY,
+                    "path": str(fixed), "originalSha256": fixed_hash,
+                    "actualSha256": fixed_hash, "originalLength": len(b"approved-fixed-image"),
+                    "actualLength": len(b"approved-fixed-image"),
+                    "transformation": "verified ON snapshot fixed M00 image"
+                }]
+            }
+            build = {
+                "player": {"inputSnapshot": str(snapshot_root)},
+                "path": root / "player.json",
+                "snapshot": {"filteredAssemblies": [{
+                    "name": gate.ORDINARY + ".dll", "path": "Assemblies/Filtered/AssemblyShadowBaseline.HotUpdate.dll",
+                    "sha256": filtered_hash
+                }]}
+            }
+            reflection = {"declarations": [{
+                "id": "m00-normal-hot-update-image", "kind": "FixedAssemblyBytes",
+                "imageSha256": fixed_hash,
+                "providerAssemblyIdentity": gate.ORDINARY + ", Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            }]}
+            with patch.object(gate.m07.prior, "_reflection_snapshot", return_value=reflection):
+                gate.verify_byte_inputs(result, "R01-P03-OrdinaryFirst", [], {}, build)
+                result["byteInputs"][0].update(path=str(filtered), originalSha256=filtered_hash,
+                                               actualSha256=filtered_hash,
+                                               originalLength=len(filtered.read_bytes()),
+                                               actualLength=len(filtered.read_bytes()))
+                with self.assertRaises(VerificationError):
+                    gate.verify_byte_inputs(result, "R01-P03-OrdinaryFirst", [], {}, build)
+
     def test_complete_ordered_inventory_and_strict_default(self):
         self.assertEqual(len(gate.MODES), 10)
         self.assertEqual(gate.MODES[2], "R01-P03-OrdinaryAfterReserve")

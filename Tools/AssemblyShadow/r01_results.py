@@ -333,19 +333,37 @@ def verify_byte_inputs(result: dict[str, Any], mode: str, closure: list[str], fi
         else:
             snapshot_root = canonical(build["player"]["inputSnapshot"], build["path"], label + ".snapshotRoot", True)
             require(path.is_relative_to(snapshot_root), label + ": ordinary bytes escaped ON Player snapshot")
-            ordinary_rows = [item for item in build["snapshot"].get("filteredAssemblies", [])
+            # m07.verify_player has already verified the complete compiled,
+            # linked, and fixed-image evidence. Reuse its reflection parser
+            # here so R01 selects the exact M00 hash-named blob rather than a
+            # valid-but-different filtered compiler DLL.
+            reflection = m07.prior._reflection_snapshot(snapshot_root, build["snapshot"], build["path"], require_linked=True)
+            require(reflection is not None, label + ": verified Player has no reflection binding configuration")
+            sites = [declaration for declaration in reflection["declarations"]
+                     if declaration.get("id") == "m00-normal-hot-update-image"]
+            require(len(sites) == 1, label + ": M00 fixed-image site is missing or ambiguous")
+            site = sites[0]
+            require(site.get("kind") == "FixedAssemblyBytes" and site.get("imageSha256") and
+                    site.get("providerAssemblyIdentity", "").split(",", 1)[0] == ORDINARY,
+                    label + ": M00 fixed-image site identity differs from ordinary provider")
+            provider_rows = [item for item in build["snapshot"].get("filteredAssemblies", [])
                              if item.get("name") in (ORDINARY, ORDINARY + ".dll")]
-            require(len(ordinary_rows) == 1, label + ": ordinary image missing or ambiguous in verified snapshot")
-            ordinary_relative = Path(ordinary_rows[0]["path"])
-            require(not ordinary_relative.is_absolute() and "\\" not in ordinary_rows[0]["path"],
-                    label + ": ordinary snapshot path must be relative POSIX")
-            ordinary_candidate = (snapshot_root / ordinary_relative).resolve()
-            require(ordinary_candidate.is_relative_to(snapshot_root),
-                    label + ": ordinary snapshot path escaped snapshot root")
-            ordinary_path = canonical(str(ordinary_candidate), snapshot_root,
-                                     label + ".ordinarySnapshotPath")
-            exact(path, ordinary_path, label + ".ordinaryInputPath")
-            exact(row["originalSha256"], ordinary_rows[0]["sha256"], label + ".ordinarySnapshotHash")
+            require(len(provider_rows) == 1, label + ": ordinary provider identity is missing or ambiguous")
+            provider_relative = Path(provider_rows[0]["path"])
+            require(not provider_relative.is_absolute() and "\\" not in provider_rows[0]["path"],
+                    label + ": ordinary provider path must be relative POSIX")
+            provider_path = canonical(str((snapshot_root / provider_relative).resolve()), snapshot_root,
+                                      label + ".providerPath")
+            require(provider_path.is_file() and not provider_path.is_symlink() and
+                    digest(provider_path) == provider_rows[0]["sha256"],
+                    label + ": ordinary provider bytes differ from verified filtered identity")
+            fixed_relative = Path("ReflectionBindings", "Images", site["imageSha256"] + ".dll.bytes")
+            fixed_path = canonical(str((snapshot_root / fixed_relative).resolve()), snapshot_root,
+                                   label + ".fixedImagePath")
+            require(fixed_path.is_relative_to(snapshot_root), label + ": fixed image escaped ON Player snapshot")
+            require(fixed_path.is_file() and not fixed_path.is_symlink(), label + ": fixed image blob is missing")
+            exact(path, fixed_path, label + ".ordinaryInputPath")
+            exact(row["originalSha256"], site["imageSha256"], label + ".ordinaryFixedImageHash")
             exact(row["actualLength"], len(original), label + ".ordinaryActualLength")
         actual_hash = __import__("hashlib").sha256(actual).hexdigest()
         exact(row["actualSha256"], actual_hash, label + ".actualSha256")

@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &406337997
+--- !u!1 &105375777
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 406337999}
-  - component: {fileID: 406337998}
+  - component: {fileID: 105375779}
+  - component: {fileID: 105375778}
   m_Layer: 0
   m_Name: M07 Additive Scene Root
   m_TagString: Untagged
@@ -139,13 +139,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &406337998
+--- !u!114 &105375778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406337997}
+  m_GameObject: {fileID: 105375777}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102e5e668cbb487bbf6b51f282664328, type: 3}
@@ -154,11 +154,11 @@ MonoBehaviour:
   sceneValue: 708
   dataReference: {fileID: 11400000, guid: f183e6c1f2bb14c159d473dc90cde0b5, type: 2}
   graphReference: {fileID: 11400000, guid: fac87319343204d7a81edaddc93f9daf, type: 2}
-  serializedInterfaceObject: {fileID: 426027847}
+  serializedInterfaceObject: {fileID: 847997702}
   persistentEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 406337998}
+      - m_Target: {fileID: 105375778}
         m_TargetAssemblyTypeName: AssemblyA.Implementation.Internal.M07SceneOnlyComponent,
           AssemblyA.Implementation.Internal
         m_MethodName: OnM07UnityEvent
@@ -173,13 +173,13 @@ MonoBehaviour:
         m_CallState: 2
   beforeSerializeCount: 4
   afterDeserializeCount: 1
---- !u!4 &406337999
+--- !u!4 &105375779
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406337997}
+  m_GameObject: {fileID: 105375777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -188,7 +188,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &426027846
+--- !u!1001 &847997701
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -245,10 +245,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02c54ba788ef2488b8559a70e392d8b7, type: 3}
---- !u!114 &426027847 stripped
+--- !u!114 &847997702 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7618070089481431886, guid: 02c54ba788ef2488b8559a70e392d8b7, type: 3}
-  m_PrefabInstance: {fileID: 426027846}
+  m_PrefabInstance: {fileID: 847997701}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -260,5 +260,5 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 426027846}
-  - {fileID: 406337999}
+  - {fileID: 847997701}
+  - {fileID: 105375779}

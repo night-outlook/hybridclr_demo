@@ -401,7 +401,7 @@ namespace AssemblyShadowDemo
                 phase = phase, assemblyName = OrdinaryImageName, path = verified.path,
                 originalLength = bytes.LongLength, actualLength = bytes.LongLength,
                 originalSha256 = M07Probe.Hash(bytes), actualSha256 = M07Probe.Hash(bytes),
-                transformation = "verified ON snapshot filtered ordinary image; M00 fixed guard; no padding"
+                transformation = "verified ON snapshot fixed M00 image; filtered provider identity retained; no padding"
             });
             return bytes;
         }
