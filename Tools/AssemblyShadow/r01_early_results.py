@@ -655,7 +655,10 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
                 if key != "ordinaryClasses":
                     exact(d[key], final[key], "early.observer.afterMatchesTerminal." + key)
     require(saw_private_transaction, "early.observer missing retained private-transaction sample")
-    expected_initializers = closure if mode == "Control" else closure[:closure.index(INTERNAL) + 1] if mode == "InitializerFailure" else []
+    # Ordinary M07 P01-P05 fixtures do not enable the M03 Console markers.
+    # Native attempted/ran flags above still cover every committed member.
+    # Only the dedicated throwing fixture enables captured M03-INIT lines.
+    expected_initializers = closure[:closure.index(INTERNAL) + 1] if mode == "InitializerFailure" else []
     exact([row["name"] for row in initializers], expected_initializers, "early.initializerOrder")
     previous_ticks = 0
     for index, row in enumerate(initializers):

@@ -712,6 +712,35 @@
       "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
       "method": "AssemblyShadowDemo.M07R01Probe::ObserveCctor",
       "reason": "R01 test-only negative pre-Configure fixture resolves the exact M06ExecutionWitness and its cctor evidence through literal Assembly.Load/GetType; this grants no startup safety and is not a Commit path."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.InternalEntry",
+      "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+      "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+      "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+      "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+      "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+      "target": "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode",
+      "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
+      "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit."
     }
   ]
 }

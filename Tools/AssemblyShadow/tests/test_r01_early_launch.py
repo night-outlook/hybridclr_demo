@@ -92,12 +92,16 @@ def prepare_graph(root):
     bundle = root / "resources/bundles/fixture.bundle"; bundle.parent.mkdir(parents=True); bundle.write_bytes(b"bundle")
     write("resources/resource-build-receipt.json", dict(bundleDirectory="bundles", bundles=[dict(name="fixture.bundle")]))
     fixtures = {}
-    for key in ("P03", "P01", "R01-P03-InitializerThrow"):
-        p = dict(patchId=key, loadOrder=[r["name"] for r in data["inputs"]], dllOnly=True,
+    for key in ("P01", "P02", "P03", "P04", "P05", "R01-P03-InitializerThrow"):
+        order = list(gate.m07.fixture_order("P03" if key == "R01-P03-InitializerThrow" else key))
+        p = dict(patchId=key, loadOrder=order, dllOnly=key != "P05",
                  closure=[dict(name=r["name"], dll=Path(r["dllPath"]).name, sha256=r["dllSha256"],
                                pdb=Path(r["pdbPath"]).name if r["pdbPath"] else "", pdbSha256=r["pdbSha256"])
-                          for r in data["inputs"]])
+                          for r in data["inputs"] if r["name"] in order])
         fixtures[key] = dict(patch=p, root=inputs, path=write(key + ".json", p))
+        if key == "P05":
+            resource = write("replacement/P05/resource-build-receipt.json", dict(kind="synthetic replacement resources"))
+            fixtures[key]["fixture"] = dict(replacementResourcePath=str(resource.parent))
     snapshot = root / "snapshot"
     ordinary = snapshot / "ReflectionBindings/Images" / (gate.capsule.FIXED_IMAGE_SHA + ".dll.bytes")
     ordinary.parent.mkdir(parents=True); ordinary.write_bytes(FIXED_ORDINARY)
@@ -236,6 +240,30 @@ class EarlyLaunchPipelineTests(unittest.TestCase):
             code, path, prepared = self.launch(Path(t).resolve(), ["Control"], m07_mode="T07-01-Prefab-P01")
             self.assertEqual(code, 0)
             self.assertEqual(self.verify(path, prepared)["result"], "PassedBoundedProfile")
+
+    def test_all_m07_control_patches_have_no_console_initializer_markers(self):
+        for m07_mode in ("T07-01-Prefab-P01", "T07-02-Nested-P02", "T07-03-FullClosure-P03",
+                         "T07-12-P04-NonSerialized", "T07-13-P05-Rebuilt"):
+            with self.subTest(mode=m07_mode), tempfile.TemporaryDirectory() as t:
+                code, path, prepared = self.launch(Path(t).resolve(), ["Control"], m07_mode=m07_mode)
+                self.assertEqual(code, 0)
+                self.assertEqual(self.verify(path, prepared)["result"], "PassedBoundedProfile")
+                launch = gate.read(path); row = launch["processLaunches"][0]
+                early_path = Path(row["earlyResultPath"]); early = gate.read(early_path)
+                self.assertEqual(early["patchId"], gate.m07.MODE_PATCH[m07_mode])
+                self.assertEqual(early["initializerEvents"], [])
+                committed = json.loads(early["snapshots"][-1]["diagnosticsJson"])
+                order = list(gate.m07.fixture_order(early["patchId"]))
+                self.assertEqual(committed["commitOrder"], order)
+                self.assertTrue(all(a["moduleInitializerAttempted"] and a["moduleInitializerRan"]
+                                    for a in committed["assemblies"]))
+                # A fabricated Console event must fail even though the native
+                # initializer lifecycle correctly covers every closure member.
+                early["initializerEvents"] = [dict(name=order[0], diagnostics=copy.deepcopy(early["observerSamples"][0]))]
+                early_path.write_text(json.dumps(early)); row["earlyResultSha256"] = gate.digest(early_path)
+                path.write_text(json.dumps(launch))
+                with self.assertRaisesRegex(VerificationError, "initializerOrder"):
+                    self.verify(path, prepared)
 
     def test_rebound_receipt_hash_cannot_hide_imported_snapshot_divergence(self):
         for mode in ("Control", "OrdinaryFirst", "OrdinaryAfterReserve"):

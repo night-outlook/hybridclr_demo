@@ -24,8 +24,8 @@ import m04_results as m04
 from shadow_tools import VerificationError
 from test_m04_results import make_pe
 
-ORDER = ["AssemblyA.Contracts", gate.INTERNAL, "AssemblyA.Implementation.Extensibility",
-         "AssemblyA.Contracts.Consumer", "AssemblyA.Implementation.Extensibility.Consumer"]
+ORDER = ["AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility", gate.INTERNAL,
+         "AssemblyShadowDemo.ContractsConsumer", "AssemblyShadowDemo.ExtensibilityConsumer"]
 GUARDS = {"Type", "Object", "Cctor", "NativeScript"}
 FAILURES = {"MetadataFailure", "InitializerFailure"}
 POSITIVES = {"Control", "OrdinaryFirst", "OrdinaryAfterReserve"}
@@ -243,7 +243,7 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                 event("active-published")
                 for a in d["assemblies"]:
                     event("initializer-begin", a["name"]); a["moduleInitializerAttempted"] = True
-                    if result["observerJoined"]:
+                    if mode == "InitializerFailure":
                         result["initializerEvents"].append(dict(name=a["name"], diagnostics=sample("initializer", d, 1, 20 + len(result["initializerEvents"]))))
                     if mode == "InitializerFailure" and a["name"] == gate.INTERNAL:
                         event("initializer-failed", a["name"]); state("FailedAfterCommit"); terminal = 19
@@ -347,7 +347,7 @@ class EarlyReceiptTests(unittest.TestCase):
                     lambda v: v.update(observerDroppedBefore=1),
                     lambda v: v["observerSamples"][-1].update(code=20),
                 ]
-                if mode != "MetadataFailure":
+                if mode == "InitializerFailure":
                     mutations.extend([lambda v: v.update(initializerEvents=[]),
                                       lambda v: v["initializerEvents"][0].update(name="wrong-provider"),
                                       lambda v: v["initializerEvents"][0]["diagnostics"].update(threadId=2)])
@@ -402,7 +402,7 @@ class EarlyReceiptTests(unittest.TestCase):
 
     def test_observer_and_initializer_native_raw_mutants(self):
         with tempfile.TemporaryDirectory() as t:
-            _, cap, out, original = self.create(Path(t).resolve(), "Control")
+            _, cap, out, original = self.create(Path(t).resolve(), "InitializerFailure")
             for target, mutate in [
                 ("observer", lambda d: d.update(generation=1)),
                 ("observer", lambda d: d.update(events=[])),
