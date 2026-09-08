@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "R01EarlyV3PlayerBuildPairCheckpoint",
-  "status": "PlayersBuiltFixturesPending",
+  "status": "PlayersBuiltFixturesAndReplayPassed",
   "baselineBuildId": "M07-Baseline-R01-early-v3",
   "runtimeAbiHash": "df5465eaa165acab2d26c7d8b6bf106e362ea532c3c5597506ebfcad4fdf6f5f",
   "sourcePins": {
@@ -58,10 +58,22 @@
   ],
   "workflowDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-30fb9badf15e4ece9534abbc3fa86e04",
   "limitations": [
-    "Fixture/replay workflow is still running.",
+    "Fresh Player runtime modes and separate R01 initializer fixture/capacity validation pending.",
     "Fresh Player runtime modes not yet executed.",
     "Generated native wrapper and matched dSYM are code/debug artifacts, not execution evidence."
   ],
   "milestoneAccepted": false,
-  "H1Passed": false
+  "H1Passed": false,
+  "workflow": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-30fb9badf15e4ece9534abbc3fa86e04/m07-build-workflow.json",
+    "sha256": "42cc0d703d2d3499e19987c7eaf68ee222dcbaa9b9e0a29ab1fd03774f3c1dca"
+  },
+  "fixtures": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-30fb9badf15e4ece9534abbc3fa86e04/m07-fixtures.json",
+    "sha256": "9d19728835bbef477e1dd117a1ba2723ed20d4633ea8be1d586ec3983603165a"
+  },
+  "editorReplay": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-30fb9badf15e4ece9534abbc3fa86e04/m07-editor-replay.json",
+    "sha256": "57ae61e45425e882c22e0a9c855f38f5d9a606bc7540112940d57fda389e2d9c"
+  }
 }
