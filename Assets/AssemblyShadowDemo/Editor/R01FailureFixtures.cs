@@ -11,6 +11,7 @@ namespace AssemblyShadowDemo.Editor
     public static class R01FailureFixtures
     {
         public const string InitializerPatchId = "R01-P03-InitializerThrow";
+        public const string InitializerThrowDefine = "ASSEMBLY_SHADOW_R01_INITIALIZER_THROW";
 
         public static void Build()
         {
@@ -34,7 +35,7 @@ namespace AssemblyShadowDemo.Editor
             baseline.metadataEncodingProfile.ValidateOrThrow();
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
             string[] defines = { M07Build.P01Define, M07Build.P03Define, M03Build.InitializerDefine,
-                M03Build.P03InitializerDefine, M03Build.InitializerThrowDefine };
+                M03Build.P03InitializerDefine, InitializerThrowDefine };
             Directory.CreateDirectory(output);
             M07Build.M07Fixture initializer = M07Build.BuildFixture(output, InitializerPatchId, defines, M07Build.Candidates,
                 true, target, settings.architecture, pins, policy, baselinePath);
@@ -47,7 +48,7 @@ namespace AssemblyShadowDemo.Editor
             Require(initializer.patchManifestSha256 == replay.patchManifestSha256, "Initializer replay bytes differ.");
             var patch = JsonUtility.FromJson<ShadowPatchManifest>(File.ReadAllText(initializer.patchManifest));
             Require(patch.nativeBudgetCapabilityVersion == 1 && patch.metadataCapacityReport != null && patch.metadataCapacityReport.fits &&
-                patch.metadataCapacityReport.runtimeReserveMetadataBudget && patch.loadOrder.SequenceEqual(M07Build.Candidates),
+                patch.metadataCapacityReport.runtimeReserveMetadataBudget && initializer.dllOnly && patch.loadOrder.SequenceEqual(M07Build.Candidates),
                 "Initializer patch lacks the complete budgeted closure.");
             string path = Path.Combine(output, "failure-fixtures.json");
             var evidence = new Receipt {
@@ -71,6 +72,7 @@ namespace AssemblyShadowDemo.Editor
             return Path.GetFullPath(value);
         }
         private static void Require(bool condition, string detail) { if (!condition) throw new BuildFailedException(detail); }
+
         [Serializable] private sealed class FileRow { public string path, sha256; public long length; }
         [Serializable] private sealed class Receipt
         {

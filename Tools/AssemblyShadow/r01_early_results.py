@@ -69,7 +69,7 @@ LAUNCH_FIELDS = (
 PROCESS_FIELDS = (
     "mode command processId startedAtUnix durationSeconds exitCode timedOut passed "
     "capsulePath capsuleSha256 earlyResultPath earlyResultSha256 m07ResultPath m07ResultSha256 "
-    "logPath consolePath inputHashesBefore inputHashesAfter inputsUnchanged error"
+    "logPath logSha256 consolePath consoleSha256 inputHashesBefore inputHashesAfter inputsUnchanged error"
 )
 
 
@@ -340,6 +340,68 @@ def _verify_snapshot(snapshot: dict[str, Any], sizes: list[int], candidates: lis
             "profileComplete": True}
 
 
+def physical_stable_names(data: dict[str, Any], diagnostics: dict[str, Any], label: str) -> list[str]:
+    """Resolve policy spelling without changing capsule or raw diagnostic bytes.
+
+    Configure uses the existing case-insensitive physical AOT lookup and stores
+    the assembly's actual identity. Preserve policy order and require uniqueness
+    on both sides so normalization cannot hide missing or ambiguous identities.
+    """
+    policy = data["stableAotNames"]
+    exact(len({name.casefold() for name in policy}), len(policy), label + ".uniqueStablePolicy")
+    physical = [row["name"] for row in diagnostics["ordinaryAssemblies"] if not row["isInterpreter"]]
+    resolved = []
+    for name in policy:
+        matches = [actual for actual in physical if actual.casefold() == name.casefold()]
+        exact(len(matches), 1, label + ".physicalStableAot." + name)
+        resolved.append(matches[0])
+    return resolved
+
+
+TERMINAL_MARKER = "[AssemblyShadowStartup] Terminating process before host continuation (exit=1)"
+FAILURE_PREFIX = "[AssemblyShadowStartup] Failed: "
+EXPECTED_REFUSAL = FAILURE_PREFIX + "Bootstrap explicitly refused startup"
+# These are observed post-il2cpp_init host boundaries or managed M07 entrypoints.
+# A terminal marker appended to a continued Player log cannot repair that run.
+HOST_CONTINUATION_MARKERS = (
+    "Player connection [", "Input System module state changed to: Initialized",
+    "[PhysX] Initialized", "Initialize engine version:", "[Subsystems] Discovering",
+    "GfxDevice:", "NullGfxDevice:", "MonoScript::", "M07BootstrapRunner", "M07Probe",
+    "M07BaselineProbe", "UnityEngine.SetupCoroutine", "UnloadTime:",
+)
+
+
+def verify_startup_logs(mode: str, log_path: Path, console_path: Path) -> None:
+    """Check both process-owned streams; hash binding is checked by verify_suite.
+
+    The native marker plus exact exit status is bounded evidence of the gateway
+    path. Nonreturn itself is independently established by native death tests.
+    Streams may duplicate stderr, but every refusal-bearing stream must end in
+    the complete adjacent refusal/termination pair, with no host continuation.
+    """
+    terminal_streams = 0
+    for path in (log_path, console_path):
+        lines = Path(path).read_text(encoding="utf-8-sig", errors="strict").splitlines()
+        if mode not in REJECTION_MODES:
+            require(not any(FAILURE_PREFIX in line or TERMINAL_MARKER in line for line in lines),
+                    mode + ": unexpected startup refusal in " + str(path))
+            continue
+        require(not any(marker in line for line in lines for marker in HOST_CONTINUATION_MARKERS),
+                mode + ": downstream host/M07 continuation in " + str(path))
+        nonempty = [line for line in lines if line.strip()]
+        refusals = [i for i, line in enumerate(nonempty) if line.startswith(FAILURE_PREFIX)]
+        terminals = [i for i, line in enumerate(nonempty) if line == TERMINAL_MARKER]
+        if refusals or terminals:
+            exact(len(refusals), 1, mode + ".nativeRefusalCount")
+            exact(len(terminals), 1, mode + ".nativeTerminalCount")
+            exact(refusals[0], len(nonempty) - 2, mode + ".nativeRefusalPosition")
+            exact(terminals[0], len(nonempty) - 1, mode + ".nativeTerminalPosition")
+            exact(nonempty[refusals[0]], EXPECTED_REFUSAL, mode + ".nativeRefusalReason")
+            terminal_streams += 1
+    require(mode not in REJECTION_MODES or terminal_streams > 0,
+            mode + ": missing native terminal refusal evidence")
+
+
 def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict[str, Any]) -> None:
     """Synchronous main-thread snapshots of AssemblyShadow.cpp's exact operations.
 
@@ -413,10 +475,10 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
         elif phase == "after-commit":
             published = True
             event("active-published")
-            attempts = closure[:closure.index(INTERNAL) + 1] if mode == "InitializerFailure" else closure
+            attempts = closure[:closure.index(failures.INITIALIZER_TARGET) + 1] if mode == "InitializerFailure" else closure
             for name in attempts:
                 event("initializer-begin", name)
-                if mode == "InitializerFailure" and name == INTERNAL:
+                if mode == "InitializerFailure" and name == failures.INITIALIZER_TARGET:
                     event("initializer-failed", name)
                 else:
                     commit_order.append(name)
@@ -443,7 +505,7 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
                                 baselineBuildId=data["baselineBuildId"] if configured else "",
                                 patchId=data["patchId"] if begun else "",
                                 closureLoadOrder=closure if begun else [],
-                                stableAotNames=data["stableAotNames"] if configured else [],
+                                stableAotNames=physical_stable_names(data, d, label) if configured else [],
                                 expected=len(closure) if begun else 0, staged=len(closure) if staged else 0,
                                 retainedBytes=retained if staged else 0,
                                 generation=int(published), enumerationGeneration=int(published),
@@ -461,7 +523,7 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
         if initial_physical is None:
             initial_physical = physical
         exact(physical, initial_physical, label + ".physicalAotRetention")
-        for name in data["candidates"] + data["stableAotNames"]:
+        for name in data["candidates"] + physical_stable_names(data, d, label):
             exact(sum(row["name"] == name for row in physical), 1, label + ".physicalAot." + name)
         actual_interpreters = sorted(row["name"] for row in d["ordinaryAssemblies"] if row["isInterpreter"])
         exact(actual_interpreters, sorted((closure if published else []) + ([ORDINARY] if ordinary_count else [])),
@@ -505,7 +567,7 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
                                 baselineEligibilityRequiresStartupValidation=disposition != "ActiveShadow").items():
             exact(r[key], wanted, label + ".recovery." + key)
         if terminal:
-            reason = "Image::ReadType invalid type" if mode == "MetadataFailure" else "M03-INIT-THROW:AssemblyA.Implementation.Internal"
+            reason = "Image::ReadType invalid type" if mode == "MetadataFailure" else failures.INITIALIZER_REASON
             require(reason in r["reason"], label + ".terminalReason")
             if terminal_recovery is None:
                 terminal_recovery = r
@@ -583,7 +645,7 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
         configured = d["state"] != "Disabled"
         begun = d["state"] not in ("Disabled", "CandidatesRegistered")
         exact(d["baselineBuildId"], data["baselineBuildId"] if configured else "", label + ".baselineBuildId")
-        exact(d["stableAotNames"], data["stableAotNames"] if configured else [], label + ".stableAotNames")
+        exact(d["stableAotNames"], physical_stable_names(data, d, label) if configured else [], label + ".stableAotNames")
         exact(d["patchId"], data["patchId"] if begun else "", label + ".patchId")
         exact(d["closureLoadOrder"], closure if begun else [], label + ".closureLoadOrder")
         exact(d["expected"], len(closure) if begun else 0, label + ".expected")
@@ -658,7 +720,7 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
     # Ordinary M07 P01-P05 fixtures do not enable the M03 Console markers.
     # Native attempted/ran flags above still cover every committed member.
     # Only the dedicated throwing fixture enables captured M03-INIT lines.
-    expected_initializers = closure[:closure.index(INTERNAL) + 1] if mode == "InitializerFailure" else []
+    expected_initializers = closure[:closure.index(failures.INITIALIZER_TARGET) + 1] if mode == "InitializerFailure" else []
     exact([row["name"] for row in initializers], expected_initializers, "early.initializerOrder")
     previous_ticks = 0
     for index, row in enumerate(initializers):
@@ -883,8 +945,9 @@ def verify_suite(launch_path: Path) -> dict[str, Any]:
         exact(row["command"], expected_command, mode + ".command")
         exact(row["logPath"], str(expected_dir / "unity.log"), mode + ".logPath")
         exact(row["consolePath"], str(expected_dir / "console.log"), mode + ".consolePath")
-        canonical(row["logPath"], launch_path, mode + ".log")
-        canonical(row["consolePath"], launch_path, mode + ".console")
+        log_path = bound(row["logPath"], row["logSha256"], launch_path, mode + ".log")
+        console_path = bound(row["consolePath"], row["consoleSha256"], launch_path, mode + ".console")
+        verify_startup_logs(mode, log_path, console_path)
         exact(row["inputHashesBefore"], inventory, mode + ".inputHashesBefore")
         exact(row["inputHashesAfter"], inventory, mode + ".inputHashesAfter")
         early = verify_early_receipt(early_path, capsule_path, mode, row["processId"])

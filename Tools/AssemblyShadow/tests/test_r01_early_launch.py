@@ -119,7 +119,7 @@ def prepare_graph(root):
 
 
 class EarlyLaunchPipelineTests(unittest.TestCase):
-    def launch(self, root, modes, exit_override=None, corrupt=None, m07_mode=gate.DEFAULT_M07_MODE):
+    def launch(self, root, modes, exit_override=None, corrupt=None, m07_mode=gate.DEFAULT_M07_MODE, logs=None):
         launcher = load_launcher()
         prepared, paths = prepare_graph(root)
         output = root / "_temp/AssemblyShadow/run"
@@ -137,8 +137,12 @@ class EarlyLaunchPipelineTests(unittest.TestCase):
             out = Path(value("-shadowEarlyResult")); receipt = emit_receipt(data, cap, out, pid)
             if corrupt: corrupt(receipt)
             out.write_text(json.dumps(receipt))
-            console.write_text("synthetic console")
-            Path(value("-logFile")).write_text("synthetic Unity log")
+            refusal = ("[AssemblyShadowStartup] Failed: Bootstrap explicitly refused startup\n"
+                       "[AssemblyShadowStartup] Terminating process before host continuation (exit=1)\n")
+            unity_text, console_text = logs if logs is not None else (
+                (refusal, "") if data["mode"] in gate.REJECTION_MODES else ("synthetic Unity log", "synthetic console"))
+            console.write_text(console_text)
+            Path(value("-logFile")).write_text(unity_text)
             if "-shadowM07Result" in command:
                 imported = []
                 for source, target in (("after-stage", "staged"), ("after-validate", "validated-resource-precheck-complete")):
@@ -304,6 +308,55 @@ class EarlyLaunchPipelineTests(unittest.TestCase):
             early_path.write_text(json.dumps(receipt)); row["earlyResultSha256"] = gate.digest(early_path)
             path.write_text(json.dumps(launch))
             self.assertEqual(self.verify(path, prepared)["result"], "PassedBoundedProfile")
+
+    def test_negative_requires_terminal_pair_and_no_host_continuation_in_either_stream(self):
+        refusal = "[AssemblyShadowStartup] Failed: Bootstrap explicitly refused startup\n"
+        terminal = "[AssemblyShadowStartup] Terminating process before host continuation (exit=1)\n"
+        # Captured v2 Oversize shape: a genuine early receipt and exit=1, but
+        # Unity ignored il2cpp_init(false) and M07 failed later with missing args.
+        continued = refusal + ("Initialize engine version: 2022.3.62f2 (7670c08855a9)\n"
+                               "ArgumentException: The specified path is not of a legal form (empty).\n"
+                               "  at AssemblyShadowDemo.M07Probe.ReadInputs (...)\n"
+                               "  at AssemblyShadowDemo.M07BootstrapRunner+<Start>d__3.MoveNext ()\n")
+        cases = [(continued, ""), (continued + terminal, ""), (refusal, ""),
+                 (terminal, ""), (refusal + terminal + "late output\n", ""),
+                 ("[AssemblyShadowStartup] Failed: CallbackThrew\n" + terminal, ""),
+                 ("[AssemblyShadowStartup] Failed: Invalid bootstrap configuration\n" + terminal, ""),
+                 (refusal + terminal, "M07BootstrapRunner.Start\n"),
+                 ("", ""), (refusal + terminal.replace("exit=1", "exit=2"), "")]
+        for logs in cases:
+            with self.subTest(logs=logs), tempfile.TemporaryDirectory() as t:
+                code, path, prepared = self.launch(Path(t).resolve(), ["Oversize"], logs=logs)
+                self.assertEqual(code, 1)
+                launch = gate.read(path); row = launch["processLaunches"][0]
+                self.assertEqual(row["exitCode"], 1)
+                # Prove the independent offline gate does not trust launcher refusal.
+                row.update(passed=True, error=""); path.write_text(json.dumps(launch))
+                with self.assertRaises(VerificationError): self.verify(path, prepared)
+
+    def test_terminal_pair_can_be_in_console_or_both_streams(self):
+        pair = ("[AssemblyShadowStartup] Failed: Bootstrap explicitly refused startup\n"
+                "[AssemblyShadowStartup] Terminating process before host continuation (exit=1)\n")
+        for logs in (("", pair), (pair, pair)):
+            with tempfile.TemporaryDirectory() as t:
+                code, path, prepared = self.launch(Path(t).resolve(), ["Oversize"], logs=logs)
+                self.assertEqual(code, 0)
+                self.assertEqual(self.verify(path, prepared)["result"], "PassedBoundedProfile")
+
+    def test_both_log_hashes_are_bound_and_rebound_continuation_is_rejected(self):
+        for mode in ("Control", "Oversize"):
+            for key, hash_key in (("logPath", "logSha256"), ("consolePath", "consoleSha256")):
+                with self.subTest(mode=mode, stream=key), tempfile.TemporaryDirectory() as t:
+                    _, path, prepared = self.launch(Path(t).resolve(), [mode])
+                    launch = gate.read(path); row = launch["processLaunches"][0]; log = Path(row[key])
+                    self.assertEqual(row[hash_key], gate.digest(log))
+                    log.write_text(log.read_text() + "M07BootstrapRunner.Start\n")
+                    with self.assertRaises(VerificationError): self.verify(path, prepared)
+                    if mode == "Oversize":
+                        row[hash_key] = gate.digest(log); path.write_text(json.dumps(launch))
+                        with self.assertRaisesRegex(VerificationError, "continuation"):
+                            self.verify(path, prepared)
+
 
 
 if __name__ == "__main__":

@@ -100,7 +100,7 @@ def produce(path,mode,p,process_id):
         if q04 and state=='Failed':value['detail']='AssemblyA.Contracts: Image::ReadType invalid type'
         value['ordinaryAssemblies']=[dict(name=name,isInterpreter=False) for name in order]+([dict(name=name,isInterpreter=True) for name in order] if published else [])
         if state!='Disabled':value['assemblies']=[dict(name=name,mvid=patch['patch']['closure'][i]['mvid'] if staged else '',skeletonBuilt=staged,runtimeMetadataInitialized=metadata,
-            published=published,moduleInitializerAttempted=init and published and i<=2,moduleInitializerRan=init and published and i<2) for i,name in enumerate(order)]
+            published=published,moduleInitializerAttempted=init and published and i<=1,moduleInitializerRan=init and published and i<1) for i,name in enumerate(order)]
         if state in ('Failed','Validated','Committed','FailedAfterCommit','Committing'):
             value['events']=[dict(sequence=1,kind='metadata-begin',name=order[0],generation=0,stagedCount=len(order))]
         return value
@@ -115,11 +115,11 @@ def produce(path,mode,p,process_id):
         result['capacities'].append(raw(phase,cap))
         rec=dict(schemaVersion=1,enabled=True,capabilityVersion=1,stateCode=m04.STATE_CODES[state],state=state,published=published,abortAllowed=False,
             dispositionCode=0 if terminal else 4,disposition='RestartRequired' if terminal else 'ActiveShadow',terminalFailureCode=terminal,
-            reason=('AssemblyA.Contracts: Image::ReadType invalid type' if q04 else 'M03-INIT-THROW:AssemblyA.Implementation.Internal') if terminal else '',retainedBytes=sum(sizes) if i>=2 else 0,baselineEligibilityRequiresStartupValidation=bool(terminal))
+            reason=('AssemblyA.Contracts: Image::ReadType invalid type' if q04 else 'R01-INIT-THROW:AssemblyA.Implementation.Extensibility') if terminal else '',retainedBytes=sum(sizes) if i>=2 else 0,baselineEligibilityRequiresStartupValidation=bool(terminal))
         result['recovery'].append(raw(phase,rec))
     result['observerSamples']=[raw('before',diag('Staging',False,False),2),raw('after',diag(final,True,not q04,not q04),2)]
     if init:
-        for name in order[:3]:result['initializerEvents'].append(dict(name=name,diagnostics=raw('initializer',diag('Committing',True,True,True))))
+        for name in order[:2]:result['initializerEvents'].append(dict(name=name,diagnostics=raw('initializer',diag('Committing',True,True,True))))
     write(path,result);return result
 
 
@@ -219,8 +219,15 @@ class FailurePipelineTests(unittest.TestCase):
         directory=self.root/'initializer-helper';directory.mkdir()
         f,m,b,path,p,compiled,snapshot,seal=patch_fixture(directory,True)
         f['patchId']=p['patchId']=gate.INITIALIZER_ID;f['defines']=gate.DEFINES;seal()
+        self.assertEqual(f['defines'], ['ASSEMBLY_SHADOW_P01', 'ASSEMBLY_SHADOW_P03',
+            'ASSEMBLY_SHADOW_M03_INITIALIZERS', 'ASSEMBLY_SHADOW_M03_P03',
+            'ASSEMBLY_SHADOW_R01_INITIALIZER_THROW'])
         with patch.object(gate.m07,'verify_compile_snapshot',return_value=(compiled,snapshot)),patch.object(gate.prior,'_reflection_snapshot',return_value=None):
             self.assertTrue(gate.verify_initializer(f,m,b,path)['r01Capability'])
+            f['defines'] = f['defines'][:-1] + ['ASSEMBLY_SHADOW_M03_INITIALIZER_THROW']
+            with self.assertRaisesRegex(VerificationError, 'defines'):
+                gate.verify_initializer(f,m,b,path)
+            f['defines'] = list(gate.DEFINES)
             p['metadataCapacityReport']['allocations'][1]['slot']=0;seal()
             with self.assertRaises(VerificationError):gate.verify_initializer(f,m,b,path)
 
@@ -256,7 +263,7 @@ class FailurePipelineTests(unittest.TestCase):
 
     def test_initializer_failure_cannot_be_relabelled_as_complete_initialization(self):
         launch=self.launch();receipt=gate.read(launch);path=Path(receipt['processLaunches'][2]['resultPath']);result=gate.read(path)
-        row=result['diagnostics'][-1];data=json.loads(row['rawJson']);data['assemblies'][2]['moduleInitializerRan']=True
+        row=result['diagnostics'][-1];data=json.loads(row['rawJson']);data['assemblies'][1]['moduleInitializerRan']=True
         row['rawJson']=json.dumps(data);Path(row['rawPath']).write_text(row['rawJson']);row['rawSha256']=gate.digest(Path(row['rawPath']))
         write(path,result);receipt['processLaunches'][2]['resultSha256']=gate.digest(path);write(launch,receipt)
         with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)

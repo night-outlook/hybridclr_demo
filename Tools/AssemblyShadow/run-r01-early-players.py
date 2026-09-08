@@ -81,6 +81,7 @@ def _verify_process_output(probe: dict, run: dict, m07_mode: str) -> None:
     mode = probe["mode"]
     require(run["timedOut"] is False, mode + ": Player timed out")
     gate.exact(run["exitCode"], 1 if mode in gate.REJECTION_MODES else 0, mode + ".exitCode")
+    gate.verify_startup_logs(mode, probe["logPath"], probe["consolePath"])
     early = gate.verify_early_receipt(probe["earlyResultPath"], probe["capsulePath"], mode, run["processId"])
     if mode in gate.POSITIVE_MODES:
         result = _read(probe["m07ResultPath"])
@@ -173,7 +174,8 @@ def main(argv: list[str] | None = None) -> int:
                      "earlyResultSha256": gate.digest(early_result) if early_result.is_file() else "",
                      "m07ResultPath": str(m07_result) if m07_result is not None and m07_result.is_file() else "",
                      "m07ResultSha256": gate.digest(m07_result) if m07_result is not None and m07_result.is_file() else "",
-                     "logPath": str(log_path), "consolePath": str(console_path),
+                     "logPath": str(log_path), "logSha256": gate.digest(log_path) if log_path.is_file() else "",
+                     "consolePath": str(console_path), "consoleSha256": gate.digest(console_path) if console_path.is_file() else "",
                      "inputHashesBefore": before, "inputHashesAfter": after,
                      "inputsUnchanged": before == after,
                      "error": error})

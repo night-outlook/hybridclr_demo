@@ -3,6 +3,7 @@
 #include "vm/AssemblyShadowStartup.h"
 #include "vm/AssemblyShadowStartupGate.h"
 #include <atomic>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
@@ -14,8 +15,21 @@ static int checks = 0;
 static void Check(bool value, const char* message)
 {
     ++checks;
-    if (!value) throw std::runtime_error(message);
+    if (!value) {
+        std::fprintf(stderr, "r01_gateway_check_failed=%s\n", message);
+        std::fflush(stderr);
+        throw std::runtime_error(message);
+    }
+    std::fprintf(stderr, "r01_gateway_check=%d PASS\n", checks);
+    std::fflush(stderr);
 }
+
+static void Event(const char* name)
+{
+    std::fprintf(stderr, "r01_gateway_event=%s checks=%d\n", name, checks);
+    std::fflush(stderr);
+}
+static void AtExitSentinel() { Event("atexit"); }
 
 #if HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW
 #include "vm/AssemblyShadowStartup.cpp"
@@ -38,7 +52,6 @@ static Il2CppType returnType = {};
 static MethodInfo method = {};
 static struct Box { Il2CppObject object; int32_t value; } box = {};
 static int lookupCalls = 0, invokeCalls = 0, sealedCalls = 0;
-static bool recursiveResult = true;
 static bool Is(const char* name) { return scenario == name; }
 static void StubMethod() {}
 static void StubInvoker(Il2CppMethodPointer, const MethodInfo*, void*, void**, void*) {}
@@ -47,10 +60,10 @@ namespace il2cpp { namespace vm {
 Il2CppThread* Thread::Current() { return Is("wrong-thread") ? nullptr : reinterpret_cast<Il2CppThread*>(1); }
 Il2CppThread* Thread::Main() { return reinterpret_cast<Il2CppThread*>(1); }
 const Il2CppAssembly* MetadataCache::GetAotAssemblyByNamePhysical(const char*)
-{ ++lookupCalls; return Is("missing-assembly") ? nullptr : &assembly; }
+{ ++lookupCalls; Event("lookup"); return Is("missing-assembly") ? nullptr : &assembly; }
 bool AssemblyShadow::IsCandidate(const Il2CppAssembly*) { return Is("candidate"); }
 AssemblyShadowError AssemblyShadow::ReportUnexpectedFailure()
-{ ++sealedCalls; return AssemblyShadowError::InternalError; }
+{ ++sealedCalls; Event("seal"); return AssemblyShadowError::InternalError; }
 Il2CppClass* Image::ClassFromNameDefinedInImage(const Il2CppImage* actual, const char*, const char*)
 { Check(actual == &image, "physical image used"); return Is("missing-type") ? nullptr : &klass; }
 const MethodInfo* Class::GetMethods(Il2CppClass* actual, void** iterator)
@@ -64,9 +77,13 @@ Il2CppObject* Runtime::Invoke(const MethodInfo* actual, void* instance, void** p
 {
     ++invokeCalls;
     Check(actual == &method && !instance && !parameters && exception, "exact static invocation");
+    Event("invoke");
     if (Is("native-throw")) throw std::runtime_error("injected native unwind");
     if (Is("managed-throw")) { *exception = reinterpret_cast<Il2CppException*>(1); return nullptr; }
-    if (Is("reentry")) recursiveResult = AssemblyShadowStartup::AfterRuntimeInit(true);
+    if (Is("reentry")) {
+        AssemblyShadowStartup::AfterRuntimeInit(true);
+        Event("post-recursive-init");
+    }
     if (Is("null-result")) return nullptr;
     return &box.object;
 }
@@ -161,6 +178,8 @@ static void InitializeFixture()
     if (Is("uncallable")) method.invoker_method = nullptr;
     if (Is("wrong-result")) box.object.klass = &otherClass;
     if (Is("refuse")) box.value = 7;
+    if (Is("refuse-13")) box.value = 13;
+    if (Is("refuse-19")) box.value = 19;
 }
 #endif
 
@@ -175,7 +194,10 @@ int main(int argc, char** argv)
         using il2cpp::vm::AssemblyShadowStartup;
         if (!Is("before-core")) AssemblyShadowStartup::MarkCoreReady();
         bool initialized = !Is("core-failed");
+        Check(std::atexit(AtExitSentinel) == 0, "atexit sentinel registered");
+        Event("before-init");
         bool accepted = AssemblyShadowStartup::AfterRuntimeInit(initialized);
+        Event("post-init");
         bool expected = Is("success") || Is("global-namespace") || Is("empty");
         Check(accepted == expected, "gateway outcome");
         Check(AssemblyShadowStartup::AfterRuntimeInit(initialized) == expected, "gateway repeat outcome");
@@ -185,7 +207,6 @@ int main(int argc, char** argv)
         Check(invokeCalls == (invoked ? 1 : 0), "callback invocation count");
         bool unexpected = Is("native-throw") || Is("managed-throw") || Is("reentry");
         Check(sealedCalls == (unexpected ? 1 : 0), "known errors preserved; unexpected failure sealed once");
-        if (Is("reentry")) Check(!recursiveResult, "recursive initialization rejected");
         if (Is("empty")) {
             Check(lookupCalls == 0, "empty gateway does not inspect metadata");
             Check(!AssemblyShadowStartup::AfterRuntimeInit(false), "empty preserves runtime failure");

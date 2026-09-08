@@ -79,7 +79,7 @@ def make_capsule(root, mode="Control"):
     ordinary.write_bytes(FIXED_ORDINARY)
     return dict(mode=mode, baselineBuildId="baseline", runtimeAbiHash="a" * 64,
                 patchId="R01-P03-InitializerThrow" if mode == "InitializerFailure" else "P03",
-                candidates=ORDER, stableAotNames=["Bootstrap", "mscorlib"], inputs=inputs,
+                candidates=ORDER, stableAotNames=["assemblyshadowdemo.bootstrap", "mscorlib"], inputs=inputs,
                 ordinaryPath=str(ordinary) if mode.startswith("Ordinary") else "",
                 ordinarySha256=capsule.digest(ordinary) if mode.startswith("Ordinary") else "",
                 prerequisiteFiles=[dict(path=str(prerequisite), length=prerequisite.stat().st_size,
@@ -132,7 +132,7 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
              detail="", baselineBuildId="", patchId="", generation=0, expected=0, staged=0, retainedBytes=0,
              closureLoadOrder=[], stableAotNames=[], commitOrder=[], assemblies=[], events=[], baselineUses=[],
              enumerationGeneration=0,
-             ordinaryAssemblies=[dict(name=n, isInterpreter=False) for n in data["candidates"] + data["stableAotNames"]],
+             ordinaryAssemblies=[dict(name=n, isInterpreter=False) for n in data["candidates"] + ["AssemblyShadowDemo.Bootstrap", "mscorlib"]],
              classEnumerationGeneration=0, ordinaryClasses=[])
     cursors = list(budget.FRESH_CURSORS)
     ordinary = shadow = reserved = 0
@@ -190,7 +190,7 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
             detail="Image::ClassFromName.input FirstUseSequence=1", type="", thread=777, timestamp=888)]
         snap("after-preconfigure-witness")
     op("configure"); state("CandidatesRegistered"); d["baselineBuildId"] = data["baselineBuildId"]
-    d["stableAotNames"] = data["stableAotNames"]; event("candidates-registered"); snap("after-configure")
+    d["stableAotNames"] = ["AssemblyShadowDemo.Bootstrap", "mscorlib"]; event("candidates-registered"); snap("after-configure")
     op("begin"); state("Staging"); d["patchId"] = data["patchId"]; d["closureLoadOrder"] = names
     d["expected"] = len(names)
     d["assemblies"] = [dict(name=n, mvid="", skeletonBuilt=False, runtimeMetadataInitialized=False,
@@ -245,9 +245,9 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                     event("initializer-begin", a["name"]); a["moduleInitializerAttempted"] = True
                     if mode == "InitializerFailure":
                         result["initializerEvents"].append(dict(name=a["name"], diagnostics=sample("initializer", d, 1, 20 + len(result["initializerEvents"]))))
-                    if mode == "InitializerFailure" and a["name"] == gate.INTERNAL:
+                    if mode == "InitializerFailure" and a["name"] == "AssemblyA.Implementation.Extensibility":
                         event("initializer-failed", a["name"]); state("FailedAfterCommit"); terminal = 19
-                        d["lastError"] = 19; d["detail"] = "M03-INIT-THROW:AssemblyA.Implementation.Internal"; break
+                        d["lastError"] = 19; d["detail"] = "R01-INIT-THROW:AssemblyA.Implementation.Extensibility"; break
                     a["moduleInitializerRan"] = True; d["commitOrder"].append(a["name"]); event("initializer-complete", a["name"])
                 if not terminal: state("Committed"); event("transaction-committed")
                 snap("after-commit")
@@ -454,6 +454,54 @@ class EarlyReceiptTests(unittest.TestCase):
                 sample["rawJson"] = json.dumps(validated)
                 with self.assertRaisesRegex(VerificationError, "privateMetadataReadiness"):
                     self.verify(cap, out, value)
+
+    def test_physical_stable_identity_spelling_and_order_are_independent_of_policy(self):
+        for mode in ("Control", "MetadataFailure", "InitializerFailure"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as t:
+                data, cap, out, value = self.create(Path(t).resolve(), mode)
+                self.assertEqual(data["stableAotNames"], ["assemblyshadowdemo.bootstrap", "mscorlib"])
+                raw = json.loads(value["snapshots"][0]["diagnosticsJson"])
+                self.assertIn(dict(name="AssemblyShadowDemo.Bootstrap", isInterpreter=False), raw["ordinaryAssemblies"])
+                self.assertTrue(self.verify(cap, out, value)["diagnosticProfileComplete"])
+                configured = next(row for row in value["snapshots"] if row["phase"] == "after-configure")
+                self.assertEqual(json.loads(configured["diagnosticsJson"])["stableAotNames"],
+                                 ["AssemblyShadowDemo.Bootstrap", "mscorlib"])
+
+    def test_missing_ambiguous_and_reordered_physical_stable_identity_rejected(self):
+        def missing(d):
+            d["ordinaryAssemblies"] = [a for a in d["ordinaryAssemblies"] if a["name"] != "AssemblyShadowDemo.Bootstrap"]
+        def duplicate(d):
+            d["ordinaryAssemblies"].append(dict(name="assemblyshadowdemo.bootstrap", isInterpreter=False))
+        def reorder(d):
+            d["stableAotNames"].reverse()
+        def retain_order(d):
+            d["ordinaryAssemblies"].reverse()
+        for mode in ("Control", "MetadataFailure", "InitializerFailure"):
+            for mutate in (missing, duplicate, reorder, retain_order):
+                for observer in (False, True):
+                    with self.subTest(mode=mode, mutation=mutate.__name__, observer=observer), tempfile.TemporaryDirectory() as t:
+                        _, cap, out, value = self.create(Path(t).resolve(), mode)
+                        row = value["observerSamples"][0] if observer else next(
+                            r for r in value["snapshots"] if r["phase"] == "after-configure")
+                        field = "rawJson" if observer else "diagnosticsJson"
+                        raw = json.loads(row[field]); mutate(raw); row[field] = json.dumps(raw)
+                        with self.assertRaises(VerificationError): self.verify(cap, out, value)
+
+    def test_initializer_failure_stops_at_extensibility_preserving_internal_witness_identity(self):
+        with tempfile.TemporaryDirectory() as t:
+            _, cap, out, value = self.create(Path(t).resolve(), "InitializerFailure")
+            self.assertEqual([row["name"] for row in value["initializerEvents"]],
+                             ["AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility"])
+            final = json.loads(value["snapshots"][-1]["diagnosticsJson"])
+            self.assertEqual(final["commitOrder"], ["AssemblyA.Contracts"])
+            self.assertEqual([row["name"] for row in final["assemblies"] if row["moduleInitializerAttempted"]],
+                             ["AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility"])
+            self.assertEqual(gate.INTERNAL, "AssemblyA.Implementation.Internal")
+            self.verify(cap, out, value)
+            value["initializerEvents"][-1]["name"] = "AssemblyA.Implementation.Internal"
+            with self.assertRaisesRegex(VerificationError, "initializerOrder"):
+                self.verify(cap, out, value)
+
 
 
 def mutate_raw(value, index, field, mutate):

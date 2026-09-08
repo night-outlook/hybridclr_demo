@@ -13,8 +13,10 @@ from shadow_tools import require
 
 MODES = ("R01-Failure-P03-Control", "R01-Failure-Q04-Metadata", "R01-Failure-InitializerThrow")
 INITIALIZER_ID = "R01-P03-InitializerThrow"
+INITIALIZER_TARGET = "AssemblyA.Implementation.Extensibility"
+INITIALIZER_REASON = "R01-INIT-THROW:" + INITIALIZER_TARGET
 DEFINES = ["ASSEMBLY_SHADOW_P01", "ASSEMBLY_SHADOW_P03", "ASSEMBLY_SHADOW_M03_INITIALIZERS",
-           "ASSEMBLY_SHADOW_M03_P03", "ASSEMBLY_SHADOW_M03_INITIALIZER_THROW"]
+           "ASSEMBLY_SHADOW_M03_P03", "ASSEMBLY_SHADOW_R01_INITIALIZER_THROW"]
 RESULT_FIELDS = "schemaVersion kind mode result error resultPath processId mainThreadId unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 baselineManifestPath baselineManifestSha256 failureFixturesPath failureFixturesSha256 negativeInputPath negativeInputSha256 patchId patchManifestPath patchManifestSha256 nativeLibrarySha256 nativeMetadataSha256 inputSnapshotHash il2cpp observerJoined closureLoadOrder observerErrors orderedSizes byteInputs operations diagnostics capacities recovery observerSamples initializerEvents"
 RAW_FIELDS = "phase rawJson rawPath rawSha256 code threadId ticks"
 RECEIPT_FIELDS = "schemaVersion kind result sourcePins baselineManifestPath baselineManifestSha256 baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 initializer replayPatchManifest replayPatchManifestSha256 replayBytesEqual files"
@@ -333,7 +335,7 @@ def verify_result(path, mode, prepared):
             exact(value[key], expected, "durable recovery." + key)
         require(value["retainedBytes"] >= sum(sizes), "Recovery lost genuine owner retention")
         if terminal:
-            expected_reason = "Image::ReadType invalid type" if q04 else "M03-INIT-THROW:AssemblyA.Implementation.Internal"
+            expected_reason = "Image::ReadType invalid type" if q04 else INITIALIZER_REASON
             require(expected_reason in value["reason"], "Terminal recovery lost the actual injected failure reason")
     if terminal:
         exact(parsed["recovery"][-1], parsed["recovery"][terminal_index], "rejected operations rewrote terminal recovery")
@@ -348,7 +350,7 @@ def verify_result(path, mode, prepared):
         if row["phase"] == "after": exact(value["state"], state, "observer final state"); exact(current, (0, 0, 0) if q04 else (1, 1, 1), "observer final publication")
     require(any(raw(row, path, "observer initial")["enumerationGeneration"] == 0 for row in samples if row["phase"] == "before"), "No actual pre-publication sample")
     if initializer:
-        attempted = closure[:closure.index("AssemblyA.Implementation.Internal") + 1]
+        attempted = closure[:closure.index(INITIALIZER_TARGET) + 1]
         exact([row["name"] for row in result["initializerEvents"]], attempted, "actual throwing initializer order")
         for row in result["initializerEvents"]:
             value = raw(row["diagnostics"], path, "initializer reentrant"); raw_paths.append(row["diagnostics"]["rawPath"])
