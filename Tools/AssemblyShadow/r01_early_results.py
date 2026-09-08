@@ -402,6 +402,47 @@ def verify_startup_logs(mode: str, log_path: Path, console_path: Path) -> None:
             mode + ": missing native terminal refusal evidence")
 
 
+BASELINE_USE_KINDS = frozenset((
+    "AssemblyReflection", "TypeReflection", "ClassInit", "ObjectAllocation", "StaticField",
+    "VTable", "MonoScript", "ModuleReflection", "MethodExecution",
+))
+
+
+def verify_first_use_history(current: list[dict[str, Any]], previous: list[dict[str, Any]],
+                             data: dict[str, Any], label: str, *, witness: bool = False) -> None:
+    """Retain the whole generated registry history, scoped to the selected closure.
+
+    ResolvePrivate intentionally uses physical AOT for unchanged candidates.
+    Those records remain observable and do not make a different selected member
+    ineligible. This is the established M07 rule, with the R01 first-use sequence
+    and immutable record contract checked as well.
+    """
+    candidates = data["candidates"]
+    closure = {row["name"] for row in data["inputs"]}
+    names, sequences, chronological = [], [], []
+    for use in current:
+        fields(use, "name kind detail type thread timestamp", label)
+        name = use["name"]
+        require(name in candidates and (witness or name not in closure),
+                label + ": selected closure or non-candidate baseline use observed")
+        require(use["kind"] in BASELINE_USE_KINDS, label + ".invalidKind")
+        integer(use["thread"], label + ".thread", 1)
+        integer(use["timestamp"], label + ".timestamp", 1)
+        match = re.fullmatch(r"(.+) FirstUseSequence=([1-9][0-9]*)", use["detail"])
+        require(match is not None, label + ".invalidFirstUseSequence")
+        sequence = int(match.group(2))
+        names.append(name); sequences.append(sequence)
+        chronological.append((sequence, use["timestamp"]))
+    # Native emits registry order, which need not be first-use sequence order.
+    exact(names, [name for name in candidates if name in names], label + ".registryOrder")
+    exact(sorted(sequences), list(range(1, len(current) + 1)), label + ".completeSequence")
+    timestamps = [timestamp for _, timestamp in sorted(chronological)]
+    exact(timestamps, sorted(timestamps), label + ".sequenceTimeOrder")
+    by_name = {use["name"]: use for use in current}
+    for use in previous:
+        exact(by_name.get(use["name"]), use, label + ".immutableFirstUse." + use["name"])
+
+
 def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict[str, Any]) -> None:
     """Synchronous main-thread snapshots of AssemblyShadow.cpp's exact operations.
 
@@ -425,6 +466,8 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
     attempts: list[str] = []
     initial_physical = None
     witness_uses = None
+    previous_uses = []
+    validation_started = False
     terminal_recovery = None
 
     def event(kind: str, name: str = "", count: int | None = None) -> None:
@@ -547,7 +590,14 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
                 exact(len(uses), 1, label + ".nativeInputWitnessCount")
                 exact(uses[0]["kind"], "AssemblyReflection", label + ".nativeInputKind")
                 exact(uses[0]["detail"], "Image::ClassFromName.input FirstUseSequence=1", label + ".nativeInputDetail")
-        exact(uses, witness_uses or [], label + ".firstUseHistory")
+        verify_first_use_history(uses, previous_uses, data, label + ".firstUseHistory", witness=mode in GUARD_MODES)
+        if mode in GUARD_MODES:
+            exact(uses, witness_uses or [], label + ".firstUseHistory")
+        else:
+            validation_started = validation_started or phase == "after-validate"
+            if not validation_started:
+                exact(uses, [], label + ".preValidationFirstUse")
+        previous_uses = uses
         if terminal:
             disposition, disposition_code, abort_allowed = "RestartRequired", 0, False
         elif state in ("Disabled", "CandidatesRegistered"):
@@ -687,7 +737,10 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
               [row["name"] for row in d["assemblies"] if row["skeletonBuilt"]], label + ".skeletonEvents")
         exact(d["commitOrder"], [row["name"] for row in d["events"] if row["kind"] == "initializer-complete"],
               label + ".completedInitializerEvents")
-        exact(d["baselineUses"], [], label + ".unexpectedBaselineUse")
+        verify_first_use_history(d["baselineUses"], [], data, label + ".firstUseHistory")
+        final_uses = {use["name"]: use for use in final["baselineUses"]}
+        for use in d["baselineUses"]:
+            exact(use, final_uses.get(use["name"]), label + ".finalFirstUse." + use["name"])
         exact([row for row in d["ordinaryAssemblies"] if not row["isInterpreter"]],
               [row for row in final["ordinaryAssemblies"] if not row["isInterpreter"]], label + ".physicalAotRetention")
         exact(sorted(row["name"] for row in d["ordinaryAssemblies"] if row["isInterpreter"]),
@@ -699,14 +752,21 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
                 require(c == 1 and row["assemblyName"] in closure, label + ".unpublishedInterpreterClass")
         return d
 
+    previous_uses = []
     for index, sample in enumerate(samples):
         d = raw(sample, "early.observer[" + str(index) + "]")
+        # State and usage are copied under separate locks. A query that copied
+        # Staging can acquire new nonclosure uses while Validate runs before its
+        # usage copy. Only the handshake's first sample is certainly pre-Validate.
+        verify_first_use_history(d["baselineUses"], previous_uses, data, "early.observer.firstUseHistory")
+        previous_uses = d["baselineUses"]
         generation = tuple(d[key] for key in ("generation", "enumerationGeneration", "classEnumerationGeneration"))
         require(all(a <= b for a, b in zip(previous, generation)), "early.observer generation regressed")
         require(sample["ticks"] >= previous_ticks, "early.observer clock regressed")
         previous, previous_ticks = generation, sample["ticks"]
         if index == 0:
             exact(d["state"], "Staging", "early.observer.initialState")
+            exact(d["baselineUses"], [], "early.observer.initialFirstUse")
             exact(generation, (0, 0, 0), "early.observer.initialGeneration")
         if sample["phase"] == "before" and d["closureLoadOrder"] and generation[0] == 0:
             saw_private_transaction = True

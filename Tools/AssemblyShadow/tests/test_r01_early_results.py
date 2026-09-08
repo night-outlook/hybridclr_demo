@@ -26,6 +26,17 @@ from test_m04_results import make_pe
 
 ORDER = ["AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility", gate.INTERNAL,
          "AssemblyShadowDemo.ContractsConsumer", "AssemblyShadowDemo.ExtensibilityConsumer"]
+# Retained P01 native receipt projection: registry order differs from first-use
+# order. Neither provider is in the P01 replacement closure (Internal only).
+P01_BASELINE_USES = [
+    dict(name="AssemblyA.Contracts", kind="AssemblyReflection",
+         detail="Image::ClassFromName.input FirstUseSequence=2", type="",
+         thread=18199233411598851025, timestamp=1172860484094166),
+    dict(name="AssemblyA.Implementation.Extensibility", kind="AssemblyReflection",
+         detail="Image::ClassFromName.input FirstUseSequence=1", type="",
+         thread=18199233411598851025, timestamp=1172860483755750),
+]
+
 GUARDS = {"Type", "Object", "Cctor", "NativeScript"}
 FAILURES = {"MetadataFailure", "InitializerFailure"}
 POSITIVES = {"Control", "OrdinaryFirst", "OrdinaryAfterReserve"}
@@ -231,6 +242,8 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                 for a in d["assemblies"]:
                     event("metadata-begin", a["name"]); a["runtimeMetadataInitialized"] = True; event("metadata-ready", a["name"])
                 state("Validated"); event("transaction-validated")
+                if mode == "Control" and data["patchId"] == "P01":
+                    d["baselineUses"] = copy.deepcopy(P01_BASELINE_USES)
             snap("after-validate")
             if mode in POSITIVES | {"InitializerFailure"}:
                 op("commit", 19 if mode == "InitializerFailure" else 0,
@@ -264,8 +277,12 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
 
 
 class EarlyReceiptTests(unittest.TestCase):
-    def create(self, root, mode):
+    def create(self, root, mode, patch_id=None):
         data = make_capsule(root, mode)
+        if patch_id is not None:
+            data["patchId"] = patch_id
+            by_name = {row["name"]: row for row in data["inputs"]}
+            data["inputs"] = [by_name[name] for name in gate.m07.fixture_order(patch_id)]
         cap = root / "r01-early.capsule"; capsule.write_capsule(cap, data)
         out = root / "r01-early.json"
         value = emit_receipt(data, cap, out)
@@ -501,6 +518,107 @@ class EarlyReceiptTests(unittest.TestCase):
             value["initializerEvents"][-1]["name"] = "AssemblyA.Implementation.Internal"
             with self.assertRaisesRegex(VerificationError, "initializerOrder"):
                 self.verify(cap, out, value)
+
+
+    def test_p01_retains_real_nonclosure_provider_history_without_private_publication(self):
+        with tempfile.TemporaryDirectory() as t:
+            data, cap, out, value = self.create(Path(t).resolve(), "Control", "P01")
+            self.assertEqual([row["name"] for row in data["inputs"]], ["AssemblyA.Implementation.Internal"])
+            validated = next(s for s in value["snapshots"] if s["phase"] == "after-validate")
+            d = json.loads(validated["diagnosticsJson"])
+            self.assertEqual(d["baselineUses"], P01_BASELINE_USES)
+            self.assertEqual(d["generation"], 0)
+            self.assertFalse(any(row["published"] for row in d["assemblies"]))
+            self.assertTrue(self.verify(cap, out, value)["diagnosticProfileComplete"])
+
+    def test_p01_rejects_selected_unknown_premature_or_invalid_first_use_records(self):
+        mutations = [
+            ("selected", lambda uses: uses[0].update(name="AssemblyA.Implementation.Internal")),
+            ("unregistered", lambda uses: uses[0].update(name="System")),
+            ("wrong spelling", lambda uses: uses[0].update(name="assemblya.contracts")),
+            ("unknown kind", lambda uses: uses[0].update(kind="Untracked")),
+            ("zero thread", lambda uses: uses[0].update(thread=0)),
+            ("zero timestamp", lambda uses: uses[0].update(timestamp=0)),
+            ("missing sequence", lambda uses: uses[0].update(detail="Image::ClassFromName.input")),
+            ("duplicate sequence", lambda uses: uses[0].update(detail="Image::ClassFromName.input FirstUseSequence=1")),
+            ("sequence gap", lambda uses: uses[0].update(detail="Image::ClassFromName.input FirstUseSequence=3")),
+            ("zero sequence", lambda uses: uses[0].update(detail="Image::ClassFromName.input FirstUseSequence=0")),
+            ("time regression", lambda uses: uses[0].update(timestamp=1)),
+            ("duplicate record", lambda uses: uses.append(copy.deepcopy(uses[0]))),
+            ("registry reorder", lambda uses: uses.reverse()),
+        ]
+        for label, mutate in mutations:
+            with self.subTest(mutation=label), tempfile.TemporaryDirectory() as t:
+                _, cap, out, value = self.create(Path(t).resolve(), "Control", "P01")
+                snapshot = next(s for s in value["snapshots"] if s["phase"] == "after-validate")
+                d = json.loads(snapshot["diagnosticsJson"]); mutate(d["baselineUses"])
+                snapshot["diagnosticsJson"] = json.dumps(d)
+                with self.assertRaises(VerificationError): self.verify(cap, out, value)
+        for phase in ("before-startup-ops", "after-configure", "after-begin", "after-reserve", "after-stage"):
+            with self.subTest(phase=phase), tempfile.TemporaryDirectory() as t:
+                _, cap, out, value = self.create(Path(t).resolve(), "Control", "P01")
+                snapshot = next(s for s in value["snapshots"] if s["phase"] == phase)
+                d = json.loads(snapshot["diagnosticsJson"]); d["baselineUses"] = copy.deepcopy(P01_BASELINE_USES)
+                snapshot["diagnosticsJson"] = json.dumps(d)
+                with self.assertRaisesRegex(VerificationError, "preValidationFirstUse"):
+                    self.verify(cap, out, value)
+
+    def test_p01_cannot_delete_or_rewrite_prior_main_records(self):
+        mutations = [lambda uses: uses.clear(), lambda uses: uses[0].update(type="Changed.Type"),
+                     lambda uses: uses[0].update(thread=123), lambda uses: uses[0].update(timestamp=1172860484094167),
+                     lambda uses: uses[0].update(kind="TypeReflection"),
+                     lambda uses: uses[0].update(detail="Different.Site FirstUseSequence=2")]
+        for mutate in mutations:
+            with tempfile.TemporaryDirectory() as t:
+                _, cap, out, value = self.create(Path(t).resolve(), "Control", "P01")
+                snapshot = value["snapshots"][-1]; d = json.loads(snapshot["diagnosticsJson"])
+                mutate(d["baselineUses"]); snapshot["diagnosticsJson"] = json.dumps(d)
+                with self.assertRaisesRegex(VerificationError, "immutableFirstUse"):
+                    self.verify(cap, out, value)
+
+    def test_full_closure_keeps_empty_history_requirement(self):
+        for mode in ("Control", "MetadataFailure", "InitializerFailure"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as t:
+                _, cap, out, value = self.create(Path(t).resolve(), mode)
+                snapshot = next(s for s in value["snapshots"] if s["phase"] == "after-validate")
+                d = json.loads(snapshot["diagnosticsJson"]); d["baselineUses"] = copy.deepcopy(P01_BASELINE_USES)
+                snapshot["diagnosticsJson"] = json.dumps(d)
+                with self.assertRaisesRegex(VerificationError, "selected closure"):
+                    self.verify(cap, out, value)
+
+    def test_p01_observer_can_copy_prevalidate_state_then_new_validate_use_history(self):
+        with tempfile.TemporaryDirectory() as t:
+            _, cap, out, value = self.create(Path(t).resolve(), "Control", "P01")
+            sample = value["observerSamples"][1]
+            d = json.loads(sample["rawJson"])
+            self.assertEqual(d["state"], "Staging")
+            d["baselineUses"] = [copy.deepcopy(P01_BASELINE_USES[1])]
+            sample["rawJson"] = json.dumps(d)
+            later = copy.deepcopy(sample); later["ticks"] += 1
+            d["baselineUses"] = copy.deepcopy(P01_BASELINE_USES); later["rawJson"] = json.dumps(d)
+            value["observerSamples"].insert(2, later)
+            self.verify(cap, out, value)
+            # A later registry copy may add records in registry order, but can
+            # never lose one even when both state copies still say Staging.
+            d["baselineUses"] = []; later["rawJson"] = json.dumps(d)
+            with self.assertRaisesRegex(VerificationError, "immutableFirstUse"):
+                self.verify(cap, out, value)
+
+    def test_p01_observer_rejects_initial_premature_changed_or_terminal_missing_history(self):
+        for target in ("initial", "changed", "not in final", "terminal missing", "selected"):
+            with self.subTest(target=target), tempfile.TemporaryDirectory() as t:
+                _, cap, out, value = self.create(Path(t).resolve(), "Control", "P01")
+                index = 0 if target == "initial" else -1 if target == "terminal missing" else 1
+                sample = value["observerSamples"][index]; d = json.loads(sample["rawJson"])
+                d["baselineUses"] = copy.deepcopy(P01_BASELINE_USES)
+                if target == "changed": d["baselineUses"][0]["thread"] = 123
+                if target == "not in final":
+                    d["baselineUses"].append(dict(name="AssemblyShadowDemo.ContractsConsumer", kind="ClassInit",
+                        detail="Class::Init FirstUseSequence=3", type="Consumer", thread=123, timestamp=1172860484094167))
+                if target == "terminal missing": d["baselineUses"] = []
+                if target == "selected": d["baselineUses"][0]["name"] = "AssemblyA.Implementation.Internal"
+                sample["rawJson"] = json.dumps(d)
+                with self.assertRaises(VerificationError): self.verify(cap, out, value)
 
 
 
