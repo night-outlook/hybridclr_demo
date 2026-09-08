@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R00",
+  "status": "AwaitingIndependentStageReview",
+  "python": {
+    "passed": 365,
+    "failed": 0,
+    "skipped": 0
+  },
+  "editor": {
+    "demoPassed": 278,
+    "packagePassed": 650,
+    "separateInvocations": true,
+    "failed": 0,
+    "skipped": 0
+  },
+  "native": "Retained five initial R00 suites; unchanged source pairing; see validation-summary.json",
+  "m07": {
+    "passedModes": 14,
+    "strictResult": "Passed",
+    "inputs": 16804,
+    "inputsUnchanged": true
+  },
+  "r00": {
+    "passedModes": 4,
+    "strictResult": "Passed",
+    "operationsPerMode": 12,
+    "executionRegressionsPerMode": 6
+  },
+  "shutdown": {
+    "additionalOrdinaryRuns": 6,
+    "cleanExits": 6,
+    "instrumentedP05": "ObservedExpectedOrdering",
+    "globalRaceEliminationProven": false
+  },
+  "sourceVerification": {
+    "sourceFiles": 940,
+    "installedFiles": 942,
+    "demoSourceVerified": true,
+    "mode": "on",
+    "receiptSha256": "1bcbdbe5f46fe401937dcc8709c631f03b3e0e47d8065a9af84b24e83beaab97",
+    "lastCommand": "python3 Tools/AssemblyShadow/verify-installed-runtime.py --project /Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo --expect-shadow on --json",
+    "lastExitCode": 0
+  },
+  "notRun": [
+    "Windows x64",
+    "Android ARM64",
+    "Release Player",
+    "Production scale qualification",
+    "Native capacity boundary/stress tests (R01)",
+    "Full legacy M05/M06 Player acceptance matrices"
+  ],
+  "gate": {
+    "R00": "AwaitingIndependentStageReview",
+    "R01": "NotStarted",
+    "H1": "NotReached",
+    "mayContinueToR01": false
+  },
+  "repositoriesAtEvidencePreparation": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo",
+      "head": "e2cc808d49b0d78d73b5bde79f15405e5bdf1a5b",
+      "branch": "codex/assembly-shadow-r00",
+      "status": [
+        "?? Docs/AssemblyShadow/M07R/R00/Evidence/r00-continuation-evidence.tar.gz",
+        "?? Docs/AssemblyShadow/M07R/R00/R00-delivery.md",
+        "?? Docs/AssemblyShadow/M07R/R00/continuation-claim-ledger.json",
+        "?? Docs/AssemblyShadow/M07R/R00/continuation-evidence-index.json",
+        "?? Docs/AssemblyShadow/M07R/R00/performance-observations.json"
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr",
+      "head": "a19db144751f4f016769b90e61a80b8c27578678",
+      "branch": "codex/assembly-shadow-r00",
+      "status": []
+    },
+    {
+      "repository": "hybridclr_unity",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_unity",
+      "head": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+      "branch": "codex/assembly-shadow-r00",
+      "status": []
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/il2cpp_plus",
+      "head": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+      "branch": "codex/assembly-shadow-r00",
+      "status": []
+    }
+  ]
+}

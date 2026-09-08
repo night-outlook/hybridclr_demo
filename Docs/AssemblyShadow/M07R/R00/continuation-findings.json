@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R00",
+  "status": "AwaitingIndependentStageReview",
+  "findings": [
+    {
+      "id": "ASR-001",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R01",
+      "confirmationTask": "Run exact allocator boundary/mixed-order tests; measure ordinary image use and retained failed allocations; reconcile actual closure demand with capacity.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-002",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R02",
+      "confirmationTask": "Measure same-type allocations 1/10/10000 with first-call and warmed proof-build/row-scan/native-allocation counts; include full constructed types.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-003",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R02",
+      "confirmationTask": "Measure OFF, ON before configuration, ON/no patch, P01/P03 and diagnostic modes; preserve virtual/interface/delegate/generic safety guards.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-004",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R03",
+      "confirmationTask": "Compile private primitive/reference, interface/base, value/generic and Unity-bound layout changes; compare build admission and actual native allocation.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-005",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R03",
+      "confirmationTask": "Use real DLLs inserting virtual method before an existing method; verify changed slot/token without changed logical signature. Existing synthetic methods all use invalid slot.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-006",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R03",
+      "confirmationTask": "Verify baseline A->B/target B->A counterexample; retain complete safety closure and reject only a real target cycle.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-007",
+      "disposition": "scope-decision",
+      "responsibleMilestone": "M08A",
+      "confirmationTask": "Record full Editor package commit in RuntimeAbiHash; later test explicit tool/runtime compatibility without spoofing old revisions.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-008",
+      "disposition": "not-fixed",
+      "responsibleMilestone": "R01",
+      "confirmationTask": "Enumerate native error/state/generation for correctable rejection, partial skeleton/metadata failure, failed Abort and postpublication failure; do not infer process termination.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-009",
+      "disposition": "scope-decision",
+      "responsibleMilestone": "M08B",
+      "confirmationTask": "Confirm existing RequireCoverage is not called at publication; test unchanged resource ABI with new struct/callback/native-capacity demand.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-010",
+      "disposition": "scope-decision",
+      "responsibleMilestone": "X01",
+      "confirmationTask": "Keep Replace/AddManaged/AddUnityTypes/Remove separate; identify current BaselineMissing/AssemblyRemoved/BaselineAssemblyNotFound rejection and product requirements.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-011",
+      "disposition": "not-reproduced",
+      "responsibleMilestone": "R01",
+      "confirmationTask": "Exercise pre-Configure type/method acquisition, cctor, allocation and native script resolution in a real startup path; no-use counters alone are insufficient.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "ASR-012",
+      "disposition": "fixed",
+      "responsibleMilestone": "R00",
+      "confirmationTask": "Bind source pins, actual captured input hashes, build/native/resource identities, real process exits and current results; keep all missing checks NotRun.",
+      "priorDetail": "finding-confirmation-ledger.json",
+      "scope": "R00 evidence boundary only: fresh current-pairing claims, preserved old evidence and explicit NotRun scope; no cross-platform/full-path acceptance",
+      "evidence": [
+        "continuation-claim-ledger.json",
+        "continuation-validation-summary.json"
+      ]
+    },
+    {
+      "id": "ASR-013",
+      "disposition": "not-reproduced",
+      "responsibleMilestone": "M11",
+      "confirmationTask": "Mutate actual metadata/IL tables, heaps, signatures, EH and PDB under sanitizer/Player checks; no confirmed exploit or native crash attributed without evidence.",
+      "priorDetail": "finding-confirmation-ledger.json"
+    },
+    {
+      "id": "R00-OBS-003",
+      "disposition": "fixed",
+      "confirmation": "Build v2 actually regenerated eight pinned assets",
+      "fix": "Read-only normal resource validation; authoring remains explicit; source verification between build phases",
+      "evidence": [
+        "R00-continuation.md",
+        "continuation-claim-ledger.json"
+      ]
+    },
+    {
+      "id": "R00-OBS-004",
+      "disposition": "fixed",
+      "confirmation": "Build v3 exported Xcode project and capture rejected missing native library",
+      "fix": "Reuse M06 platform setting accessors; force executable build temporarily and restore in finally",
+      "evidence": [
+        "R00-continuation.md",
+        "continuation-claim-ledger.json"
+      ]
+    }
+  ],
+  "riskRule": "Unconfirmed native risks remain pending confirmation in assigned milestones; passing R00 witnesses does not close them."
+}

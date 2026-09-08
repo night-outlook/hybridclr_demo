@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R00",
+  "executableSourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59",
+      "localPath": "."
+    }
+  },
+  "metadataHeadBeforeEvidence": "e2cc808d49b0d78d73b5bde79f15405e5bdf1a5b",
+  "runtimeAbiHash": "6f27487799c4e398e6e60dceae734ccf59c4dc871bbd55754c2034d2037ae8de",
+  "platform": "Unity2022.3.62f2 StandaloneOSX arm64 Development IL2CPP",
+  "claims": [
+    {
+      "claimId": "R00-CURRENT-PAIR",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-40e757d2bcc34d44bf0a4326939ffb92/m07-player-build.json",
+          "sha256": "b6eefb4f658b51d276a0a8ae8080d600c993444409e4b45017e7f4ef88b192a9",
+          "archiveMember": "_temp/AssemblyShadow/M07PlayerInputs-40e757d2bcc34d44bf0a4326939ffb92/m07-player-build.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a833f39a1bae402d92dea28cfa5a4708/m07-player-build.json",
+          "sha256": "39e513d58b7876e906b874c0dcc959919559552106bf1274f2d11c59bcb761e5",
+          "archiveMember": "_temp/AssemblyShadow/M07PlayerInputs-a833f39a1bae402d92dea28cfa5a4708/m07-player-build.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-installed-player-settings-v4.json",
+          "sha256": "001e891d5a9af92f4277d35a2b809ba8d2e5e8f18a01204bba7447e9fa0a2297",
+          "archiveMember": "_temp/AssemblyShadow/R00-installed-player-settings-v4.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/M02Validation-970e9107f1e7483a84abaddfac31e0d2/m07-build-workflow.json",
+          "sha256": "7cb240a109e23153f8b3a3e0129cba5e6c69d267984a5cae8f7e865675a5cc97",
+          "archiveMember": "_temp/AssemblyShadow/M02Validation-970e9107f1e7483a84abaddfac31e0d2/m07-build-workflow.json"
+        }
+      ],
+      "scope": "Fresh native ON/OFF, source pin a4f3ce6; native/package unchanged; build v4 and strict verifier compare all four pins, generated native evidence and installed source."
+    },
+    {
+      "claimId": "R00-CURRENT-M07",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-M07-current-pair-v4/strict-gate.json",
+          "sha256": "58efa4d71bbb12d6c7746feee50a8def4cbb5e9d7297ff2bdc48de98c841f6ea",
+          "archiveMember": "_temp/AssemblyShadow/R00-M07-current-pair-v4/strict-gate.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-M07-current-pair-v4/m07-player-launches.json",
+          "sha256": "629c1a6ed634576a522504a5f9506d9a4dfb9df4fe1aa1a846d053e1404f5175",
+          "archiveMember": "_temp/AssemblyShadow/R00-M07-current-pair-v4/m07-player-launches.json"
+        }
+      ],
+      "scope": "Full14 real Player modes clean exit; 16804 inputs unchanged. Includes actual compiled structural negatives and rebuilt P05 resources."
+    },
+    {
+      "claimId": "R00-CURRENT-PERFORMANCE",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json",
+          "sha256": "74d57978c02932116ec992d83c1618184f9e640fded14af28fb87cce8123452a",
+          "archiveMember": "_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/r00-player-launches.json",
+          "sha256": "000a0330a515536295b42fc7b78bf5775e56a6b6ff78248645341cdd305c63c8",
+          "archiveMember": "_temp/AssemblyShadow/R00-performance-current-pair-v4/r00-player-launches.json"
+        }
+      ],
+      "scope": "Four fresh processes: ON/no patch,P01,P03,OFF. Each12 timing rows and6 repeated existing M06 execution rows. Single Development observation per mode, not full legacyM05/M06 acceptance or statistical/Release performance."
+    },
+    {
+      "claimId": "R00-CURRENT-SHUTDOWN",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-shutdown-repetitions-v4.json",
+          "sha256": "6901203124a16369e0744c323bd412b30d2551c3cf4006fa035e6c48f13195fd",
+          "archiveMember": "_temp/AssemblyShadow/R00-shutdown-repetitions-v4.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-P05-ordering-v4/ordering-summary.json",
+          "sha256": "18146bfc112273dff27ded1f8181fbc4873f925571f0f58236734a292b1c2476",
+          "archiveMember": "_temp/AssemblyShadow/R00-P05-ordering-v4/ordering-summary.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-P05-ordering-v4/integrity.json",
+          "sha256": "c3f0ad91e158a85868bc0bce75ee3c9c480e81381c048888a1bb6812028e460d",
+          "archiveMember": "_temp/AssemblyShadow/R00-P05-ordering-v4/integrity.json"
+        }
+      ],
+      "scope": "Three additional ordinary P05/OFF pairs clean exit. One ASLR-enabled LLDB trace places seven finalizers before Quit and physics cleanup. Does not prove global engine race elimination or that Shadow caused historical crash."
+    },
+    {
+      "claimId": "R00-CURRENT-GENERIC",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-native-generic-ON-v4/evidence.json",
+          "sha256": "42fba87ff047bb66e4b97ade229e965a94aa7c5f4a5ea3507a8903baff12d31c",
+          "archiveMember": "_temp/AssemblyShadow/R00-native-generic-ON-v4/evidence.json"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-native-generic-ON-v4/generated-source-capture.json",
+          "sha256": "0b4739ccb3d71bb3538d056b7ea899c6ea6f85d1cdd506041bbd9df2a8feb041",
+          "archiveMember": "_temp/AssemblyShadow/R00-native-generic-ON-v4/generated-source-capture.json"
+        }
+      ],
+      "scope": "ON native concrete int body and registration proof; generated bytes captured after OFF matched prior ON hashes. Capture-time runtimeExecution NotRun is historical in this receipt; later strict R00 results establish actual execution."
+    },
+    {
+      "claimId": "R00-PYTHON-FINAL",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-python-source-stability-full-v1.log",
+          "sha256": "5c5c5602dd4d5d8e826a6b16806fff7f4a9acccf798d5d76e18d59314b8681f6",
+          "archiveMember": "_temp/AssemblyShadow/R00-python-source-stability-full-v1.log"
+        }
+      ],
+      "scope": "365 passed0skips; real compiler fixture inputs retained from originalM05; no Python changes after this run."
+    },
+    {
+      "claimId": "R00-EDITOR-FINAL",
+      "result": "Passed",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/EditorTests-9794fc0174124a0c8d89d9e926b6a963/results.xml",
+          "sha256": "b8bc5e6ed9d8f274dea07bedbb1312ff1aa2340026b7cfcf242309bc9da72b56",
+          "archiveMember": "_temp/AssemblyShadow/EditorTests-9794fc0174124a0c8d89d9e926b6a963/results.xml"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/EditorTests-fab4e889c4e9481eb766c5d772520832/results.xml",
+          "sha256": "77ebaced187797bfa31326aef9c963c3e42920c54f25f454232b39a387ecb597",
+          "archiveMember": "_temp/AssemblyShadow/EditorTests-fab4e889c4e9481eb766c5d772520832/results.xml"
+        }
+      ],
+      "scope": "278 demo plus650 unchanged package tests, separate invocations. Not one928-test invocation. Final demo run covers settings guard success/failure restoration."
+    },
+    {
+      "claimId": "R00-NATIVE-RETAINED",
+      "result": "Passed",
+      "evidence": [],
+      "scope": "Five initial R00 native suites remain applicable because native/package source revisions unchanged. Exact raw hashes/counts in initial validation-summary.json; no claim those runs were repeated after benchmark additions."
+    }
+  ],
+  "initialClaims": "claim-ledger.json (historical, unchanged)",
+  "replayCommandsSource": "Commands in launch receipts, R00-build-v4.log and original claim-ledger.json. All new evidence indexed by continuation-evidence-index.json."
+}

@@ -1,5 +1,7 @@
 # R00 baseline execution
 
+Latest continuation: [R00-delivery.md](R00-delivery.md). The status and observations below describe the preserved initial checkpoint, not the current continuation.
+
 Status: **Not accepted — baseline execution found an intermittent Player shutdown failure.** R01 has not started. H1–H5 have not been reached; M12 still requires an explicit human start.
 
 This is an execution record, not a revision of the accepted M00–M07 history. The original review and every historical receipt remain unchanged.

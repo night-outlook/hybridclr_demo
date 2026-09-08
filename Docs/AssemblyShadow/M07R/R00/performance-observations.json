@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 1,
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59",
+      "localPath": "."
+    }
+  },
+  "platform": "StandaloneOSX arm64, Unity 2022.3.62f2, Development IL2CPP",
+  "strictResult": "Passed",
+  "strictGatePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json",
+  "strictGateSha256": "74d57978c02932116ec992d83c1618184f9e640fded14af28fb87cce8123452a",
+  "sampleCountPerMode": 1,
+  "measurementScope": "First invocation,100 warmup,10 repeated,10000 repeated per operation in each separate fresh process. Readiness includes fixture verification and active marker resolution; excludes business resource/scene load. Timings include reflection entry and managed argument boxing. Allocation batch uses one reflection entry. Constructor counts measure payload construction, not total runtime heap allocations.",
+  "diagnosticsScope": "Existing unchanged native diagnostics captured before/after; native proof-build, metadata-row-scan and runtime-allocation counters remain unavailable. No Release or statistical-performance claim.",
+  "modes": [
+    {
+      "mode": "R00-ON-NoPatch",
+      "buildGuid": "6da35d18f5f5493fbd2714e59697d567",
+      "launchToBusinessReadyMilliseconds": 17350.157499313354,
+      "readinessMeasurementScope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load",
+      "operations": [
+        {
+          "operation": "allocation",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 510,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 51000.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 1548,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 1548.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 575,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 5750.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 114493,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 1144.93
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 631,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 63100.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 38427,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 38427.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 3840,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 38400.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 3880865,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 38808.65
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 931,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 93100.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 54025,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 54025.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 5603,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 56030.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 5431779,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 54317.79
+        }
+      ],
+      "allocationCounts": [
+        {
+          "phase": "first",
+          "requestedIterations": 1,
+          "actualNewCount": 1,
+          "constructorCountBefore": 0,
+          "constructorCountAfter": 1,
+          "checksum": 3301,
+          "expectedChecksum": 3301
+        },
+        {
+          "phase": "warmup",
+          "requestedIterations": 100,
+          "actualNewCount": 100,
+          "constructorCountBefore": 1,
+          "constructorCountAfter": 101,
+          "checksum": 2114250,
+          "expectedChecksum": 2114250
+        },
+        {
+          "phase": "repeat10",
+          "requestedIterations": 10,
+          "actualNewCount": 10,
+          "constructorCountBefore": 101,
+          "constructorCountAfter": 111,
+          "checksum": 373775,
+          "expectedChecksum": 373775
+        },
+        {
+          "phase": "repeat10000",
+          "requestedIterations": 10000,
+          "actualNewCount": 10000,
+          "constructorCountBefore": 111,
+          "constructorCountAfter": 10111,
+          "checksum": 1392925000,
+          "expectedChecksum": 1392925000
+        }
+      ],
+      "executionRegressionRows": 6,
+      "resultPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-NoPatch.json",
+      "resultSha256": "37e6a4166a34dcd67df08c15c0425685161b5f6761e1b06fb1624242f0439923"
+    },
+    {
+      "mode": "R00-ON-P01",
+      "buildGuid": "6da35d18f5f5493fbd2714e59697d567",
+      "launchToBusinessReadyMilliseconds": 17803.826570510864,
+      "readinessMeasurementScope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load",
+      "operations": [
+        {
+          "operation": "allocation",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 4383,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 438300.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 60311,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 60311.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 6538,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 65380.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 5974240,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 59742.4
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 1085,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 108500.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 47810,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 47810.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 4934,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 49340.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 4796482,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 47964.82
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 1353,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 135300.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 68137,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 68137.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 6911,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 69110.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 6805295,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 68052.95
+        }
+      ],
+      "allocationCounts": [
+        {
+          "phase": "first",
+          "requestedIterations": 1,
+          "actualNewCount": 1,
+          "constructorCountBefore": 0,
+          "constructorCountAfter": 1,
+          "checksum": 3297,
+          "expectedChecksum": 3297
+        },
+        {
+          "phase": "warmup",
+          "requestedIterations": 100,
+          "actualNewCount": 100,
+          "constructorCountBefore": 1,
+          "constructorCountAfter": 101,
+          "checksum": 2113850,
+          "expectedChecksum": 2113850
+        },
+        {
+          "phase": "repeat10",
+          "requestedIterations": 10,
+          "actualNewCount": 10,
+          "constructorCountBefore": 101,
+          "constructorCountAfter": 111,
+          "checksum": 373735,
+          "expectedChecksum": 373735
+        },
+        {
+          "phase": "repeat10000",
+          "requestedIterations": 10000,
+          "actualNewCount": 10000,
+          "constructorCountBefore": 111,
+          "constructorCountAfter": 10111,
+          "checksum": 1392885000,
+          "expectedChecksum": 1392885000
+        }
+      ],
+      "executionRegressionRows": 6,
+      "resultPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-P01.json",
+      "resultSha256": "3ef71aa81550025884e1d42aa149cef0f2f82ad1e0ae3d9f63e6f7032e5c4b9c"
+    },
+    {
+      "mode": "R00-ON-P03",
+      "buildGuid": "6da35d18f5f5493fbd2714e59697d567",
+      "launchToBusinessReadyMilliseconds": 17802.876472473145,
+      "readinessMeasurementScope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load",
+      "operations": [
+        {
+          "operation": "allocation",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 4800,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 480000.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 61022,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 61022.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 6591,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 65910.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 6038751,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 60387.51
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 895,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 89500.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 47773,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 47773.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 4769,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 47690.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 4796535,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 47965.35
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 1633,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 163300.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 67899,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 67899.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 6836,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 68360.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 6793449,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 67934.49
+        }
+      ],
+      "allocationCounts": [
+        {
+          "phase": "first",
+          "requestedIterations": 1,
+          "actualNewCount": 1,
+          "constructorCountBefore": 0,
+          "constructorCountAfter": 1,
+          "checksum": 3299,
+          "expectedChecksum": 3299
+        },
+        {
+          "phase": "warmup",
+          "requestedIterations": 100,
+          "actualNewCount": 100,
+          "constructorCountBefore": 1,
+          "constructorCountAfter": 101,
+          "checksum": 2114050,
+          "expectedChecksum": 2114050
+        },
+        {
+          "phase": "repeat10",
+          "requestedIterations": 10,
+          "actualNewCount": 10,
+          "constructorCountBefore": 101,
+          "constructorCountAfter": 111,
+          "checksum": 373755,
+          "expectedChecksum": 373755
+        },
+        {
+          "phase": "repeat10000",
+          "requestedIterations": 10000,
+          "actualNewCount": 10000,
+          "constructorCountBefore": 111,
+          "constructorCountAfter": 10111,
+          "checksum": 1392905000,
+          "expectedChecksum": 1392905000
+        }
+      ],
+      "executionRegressionRows": 6,
+      "resultPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-P03.json",
+      "resultSha256": "a4998cbd2e53d4ae81606edb6597924efa9e7656728419990a0fba9e2399e13f"
+    },
+    {
+      "mode": "R00-OFF-NoPatch",
+      "buildGuid": "90df196c97714385a9ce9412fd78dcc2",
+      "launchToBusinessReadyMilliseconds": 16996.938467025757,
+      "readinessMeasurementScope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load",
+      "operations": [
+        {
+          "operation": "allocation",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 88,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 8800.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 165,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 165.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 48,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 480.0
+        },
+        {
+          "operation": "allocation",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 14799,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 147.99
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 300,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 30000.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 5638,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 5638.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 278,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 2780.0
+        },
+        {
+          "operation": "reflectionInvoke",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 330299,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 3302.99
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "first",
+          "iterations": 1,
+          "elapsedTicks": 331,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 33100.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "warmup",
+          "iterations": 100,
+          "elapsedTicks": 3773,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 3773.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10",
+          "iterations": 10,
+          "elapsedTicks": 375,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 3750.0
+        },
+        {
+          "operation": "closedGeneric",
+          "phase": "repeat10000",
+          "iterations": 10000,
+          "elapsedTicks": 436908,
+          "stopwatchFrequency": 10000000,
+          "nanosecondsPerIteration": 4369.08
+        }
+      ],
+      "allocationCounts": [
+        {
+          "phase": "first",
+          "requestedIterations": 1,
+          "actualNewCount": 1,
+          "constructorCountBefore": 0,
+          "constructorCountAfter": 1,
+          "checksum": 3301,
+          "expectedChecksum": 3301
+        },
+        {
+          "phase": "warmup",
+          "requestedIterations": 100,
+          "actualNewCount": 100,
+          "constructorCountBefore": 1,
+          "constructorCountAfter": 101,
+          "checksum": 2114250,
+          "expectedChecksum": 2114250
+        },
+        {
+          "phase": "repeat10",
+          "requestedIterations": 10,
+          "actualNewCount": 10,
+          "constructorCountBefore": 101,
+          "constructorCountAfter": 111,
+          "checksum": 373775,
+          "expectedChecksum": 373775
+        },
+        {
+          "phase": "repeat10000",
+          "requestedIterations": 10000,
+          "actualNewCount": 10000,
+          "constructorCountBefore": 111,
+          "constructorCountAfter": 10111,
+          "checksum": 1392925000,
+          "expectedChecksum": 1392925000
+        }
+      ],
+      "executionRegressionRows": 6,
+      "resultPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-OFF-NoPatch.json",
+      "resultSha256": "ebbd6b22861c0aea5aed3cc8864219a5c7c821f6763018e7168b338eac8cdd70"
+    }
+  ]
+}

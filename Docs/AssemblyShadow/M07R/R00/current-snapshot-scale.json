@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "basis": "Fresh M07-Baseline-R00-v1 snapshot; candidate hashes recomputed from actual DLL bytes. Independent read-only scale audit; not production sizing.",
+  "baselineManifest": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R00-v1/baseline-manifest.json",
+    "sizeBytes": 2102855,
+    "sha256": "e1b8e8387f2f403135cc6095416d7d48dbb818672593439527c17ed0e2aaa948"
+  },
+  "sourceSnapshot": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-40e757d2bcc34d44bf0a4326939ffb92/assembly-snapshot.json",
+    "sizeBytes": 152666,
+    "sha256": "add447cab1a4bb7c7d7b3fbfe049967c215940eb8d469fa5d804f9715811cdb6",
+    "snapshotHash": "e514208ea6bff50be37f82c4ec0a8ffe170b13fa09321658cc51e7db55a1a3ca"
+  },
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59",
+      "localPath": "."
+    }
+  },
+  "baselineAssemblyCount": 41,
+  "snapshotAssemblyCount": 38,
+  "candidateCount": 5,
+  "candidateTotalDllBytes": 138240,
+  "candidates": [
+    {
+      "name": "AssemblyA.Contracts",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R00-v1/PlayerInputs/Assemblies/AssemblyA.Contracts.dll",
+      "sizeBytes": 25088,
+      "sha256": "a823a475bd5e0dc4964b6ea753de369e82b0da682732d13889d6406dada87c2f",
+      "typeCount": 27,
+      "methodCount": 0
+    },
+    {
+      "name": "AssemblyA.Implementation.Extensibility",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R00-v1/PlayerInputs/Assemblies/AssemblyA.Implementation.Extensibility.dll",
+      "sizeBytes": 25600,
+      "sha256": "c6cfedfe9a3e9afde382fdc66bdc7048209cd0f85960f2312c9c7a389f5de0ea",
+      "typeCount": 22,
+      "methodCount": 0
+    },
+    {
+      "name": "AssemblyA.Implementation.Internal",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R00-v1/PlayerInputs/Assemblies/AssemblyA.Implementation.Internal.dll",
+      "sizeBytes": 37888,
+      "sha256": "bcffd0f60c4a76a44e7a3c8071b9da2f1e72fb924ad1af1bcb211749f9303e86",
+      "typeCount": 36,
+      "methodCount": 0
+    },
+    {
+      "name": "AssemblyShadowDemo.ContractsConsumer",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R00-v1/PlayerInputs/Assemblies/AssemblyShadowDemo.ContractsConsumer.dll",
+      "sizeBytes": 24064,
+      "sha256": "cebb646bddada3936f7aba3f311a4fc2b7b818d2f18b1b13833a6bdad21cb419",
+      "typeCount": 21,
+      "methodCount": 0
+    },
+    {
+      "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R00-v1/PlayerInputs/Assemblies/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+      "sizeBytes": 25600,
+      "sha256": "41ce068632cccf7751a294d0821d9fb22067b915509fd1987e70acb53d65f16a",
+      "typeCount": 21,
+      "methodCount": 0
+    }
+  ],
+  "ordinaryInterpreter": {
+    "filteredInputCount": 3,
+    "filteredInputs": [
+      "AssemblyShadowBaseline.HotUpdate",
+      "UnityEngine.TestRunner",
+      "nunit.framework"
+    ],
+    "configuredAssemblies": [
+      "AssemblyShadowBaseline.HotUpdate"
+    ],
+    "configuredCount": 1,
+    "actualImageConsumption": "Not measured by snapshot; configured ordinary hot-update input is not proof of actual runtime load or remaining budget"
+  },
+  "dependencyStats": {
+    "candidateAllReferenceMax": {
+      "directCount": 5,
+      "transitiveCount": 5
+    },
+    "candidateOnlyGraphMax": {
+      "directCount": 2,
+      "transitiveCount": 2,
+      "edgeCount": 6
+    },
+    "baselineMax": {
+      "directCount": 12,
+      "transitiveCount": 29
+    }
+  },
+  "fixtures": [
+    {
+      "patchId": "P01",
+      "closureCount": 1,
+      "totalDllBytes": 37376
+    },
+    {
+      "patchId": "P02",
+      "closureCount": 3,
+      "totalDllBytes": 89088
+    },
+    {
+      "patchId": "P03",
+      "closureCount": 5,
+      "totalDllBytes": 137728
+    },
+    {
+      "patchId": "P04",
+      "closureCount": 1,
+      "totalDllBytes": 37888
+    },
+    {
+      "patchId": "P05",
+      "closureCount": 1,
+      "totalDllBytes": 37888
+    }
+  ],
+  "maximumObservedClosure": 5,
+  "historicalDelta": {
+    "candidateTotalDllBytes": 2048,
+    "allFiveCandidateHashesChanged": true,
+    "historicalArtifact": "snapshot-scale.json",
+    "historicalReceiptsRelabeled": false
+  },
+  "productionSnapshots": "NotProvided",
+  "stressRequirements": [
+    100,
+    300,
+    1000
+  ],
+  "R01B": "Conditional on declared target exceeding measured available profile. Source-derived fresh homogeneous small-image bound338 is not a runtime qualification; stress1000 exceeds it. No100/300/1000 support claim; R01 must establish shared ordinary/Shadow budget and resolve R01B requirement.",
+  "platformScope": {
+    "measured": "macOS StandaloneOSX arm64 Development",
+    "NotRun": [
+      "Windows",
+      "Android",
+      "Release"
+    ],
+    "newAssemblies": "Not required by current Replace-only demo; X01 not accepted",
+    "AddUnityTypes": "Not accepted; separate X01 scope"
+  }
+}

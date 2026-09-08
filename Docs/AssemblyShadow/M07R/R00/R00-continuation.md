@@ -1,6 +1,6 @@
 # R00 continuation
 
-Status: implementation under validation; R00 is not accepted and R01 remains closed. This record supplements the immutable initial checkpoint at `08cd976` and does not replace the failed historical Player run.
+Status: final evidence assembled for independent stage review; R00 is not accepted and R01 remains closed. This record supplements the immutable initial checkpoint at `08cd976` and does not replace the failed historical Player run.
 
 ## Changes under validation
 
@@ -34,12 +34,15 @@ Historical generated C++ proves `Start.work -> M07Probe.resource -> M07ResourceP
 - Build v3 passed compiler preflight, resource compilation and both post-phase pin checks. It then exported an Xcode project instead of a native application; capture correctly rejected missing `GameAssembly.dylib` (`NativeEvidenceMissing`). Confirmed observation `R00-OBS-004`: M07 lacked M06's executable-build settings guard, so persistent `createXcodeProject` / `buildScriptsOnly` settings left by interrupted strip-only generation could affect its output. The failed output at `Builds/AssemblyShadow/M07/M07-Baseline-R00-v1.app` is retained; it is not a runnable Player or accepted receipt. M07 now reuses M06's platform setting accessors, temporarily disables both settings around the actual Player build and restores their prior values in `finally`. This corrective guard is under test/review.
 - The new guard tests initially reflected the reused accessors on the wrong declaring class (M07 instead of M06), producing four test failures (`EditorTests-aa86f68ec67e46e59b9c22d68f46157b`, 274/278 passed). After correcting the test target, the demo suite passed **278/278**, zero failures/skips (`EditorTests-9794fc0174124a0c8d89d9e926b6a963`). Success and throwing delegates both observe disabled settings and restore their original states. Package tests remain the separately verified 650; current split Editor coverage totals **928**.
 - Independent re-review of the executable-build settings guard returned **PASS**, with no remaining actionable findings; it verified all four success/failure restoration test cases. Actual native Player output remains pending.
+- Fresh current-pairing workflow completed with a passed receipt at `_temp/AssemblyShadow/M02Validation-970e9107f1e7483a84abaddfac31e0d2/m07-build-workflow.json`. The linked ON/OFF Players, resource baseline, fixture manifest and Editor replay are bound to source pin `a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59`; native/package pins remain unchanged.
+- Current strict M07 verification passed all fourteen modes, including P05 rebuilt and feature-off, in `_temp/AssemblyShadow/R00-M07-current-pair-v4/strict-gate.json`. Current strict R00 verification passed all four worlds in `_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json`; each world recorded first, 100 warmup, 10 repeated and 10,000 repeated allocation, reflection-invoke and closed-generic observations with constructor counts and checksums.
+- Three bounded P05/feature-off shutdown repetitions exited zero. The separate `_temp/AssemblyShadow/R00-P05-ordering-v4/ordering-summary.json` LLDB run observed all tracked finalizer/native destruction before quit and physics cleanup. `_temp/AssemblyShadow/R00-native-generic-ON-v4/evidence.json` found the closed `Int32` generic symbols and AOT reference, while its runtime execution field remains `NotRun`.
+- The current split Editor coverage is 278 demo tests plus 650 package tests, 928 total, with zero failures or skips. The retained initial native M03–M06 suites and their counters remain evidence; they are not a fresh full M05/M06 Player matrix. Performance timing remains one Development sample per world, and native proof-build, metadata-row-scan and runtime-allocation counters remain unavailable.
 
-## Remaining execution
+## Final-review remainder
 
-1. Commit the validated demo code/configuration and update its source pin in a separate metadata-only commit.
-2. Reinstall the pinned pairing, build a fresh immutable M07 native ON/OFF pair, fixtures and Editor replay, then verify generated generic coverage and source receipts.
-3. Execute the four R00 observations, affected execution paths, full M07 matrix, and shutdown repetitions/order diagnosis; run strict verifiers with no skip/incomplete overrides.
-4. Append exact hashes, raw evidence, final changed-file inventory and independent R00 acceptance review. Only an accepted R00 permits R01; H1 remains mandatory after R01/R01B.
+1. Independent stage review must reopen the fresh workflow, fourteen-mode M07 gate, four-world R00 gate, shutdown repetitions/order trace, generic-symbol evidence, source pins and changed-file boundaries. The strict passes do not constitute acceptance or a human gate.
+2. Root owns publication of the continuation evidence archive, `continuation-evidence-index.json`, `current-snapshot-scale.json`, `continuation-changed-files.json`, and any final metadata-only source-pin or archive commit.
+3. Keep R01 closed and H1 pending until the independent review and required human gate disposition are recorded. No release approval is implied by the current strict results.
 
 Performance timing includes reflection call overhead and managed argument boxing where applicable. Allocation batch timing includes one reflection entry into the batch. Readiness means the configured active witness can execute its marker, before resource/scene load. Parent launch-to-readiness timing is separately computed when the Player process-start API is unavailable. Native proof-build, metadata-row-scan and allocation counters remain explicitly unavailable in this unchanged runtime.
