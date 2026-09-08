@@ -1,4 +1,4 @@
-> Update: v3 Player preflight rejected the fixture inventory before any Player launched. The producer sealed transient CompilerOutput files; the corrected producer is preparing a fresh v4 baseline. See [diagnostic](early-v3-failure-inventory-diagnostic.json). The v3 Editor/build results below are retained history, not accepted Player evidence.
+> Current update: the v4 build/replay and fixture lifetime checks passed. The actual 11-mode Player matrix passed nine modes and failed strict checks in MetadataFailure and InitializerFailure; both processes stopped the host with exit 1. The read-only NativeScript trace captured a non-null return before Configure. See [matrix diagnostic](early-v4-matrix-diagnostic.json) and [native trace](early-v4-native-script-trace.json). R01 remains unaccepted. The v3 narrative below is retained draft history pending the native error-path correction and fresh verification.
 
 # R01 Stage Report
 
