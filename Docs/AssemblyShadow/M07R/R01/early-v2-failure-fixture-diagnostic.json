@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "status": "RejectedBeforePublication",
+  "milestoneAccepted": false,
+  "executableSourceRevision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+  "baselineId": "M07-Baseline-R01-early-v2",
+  "logPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-failure-fixtures-1.log",
+  "logSha256": "206585cde90d94dda693a724e213c9f7c271000b23544095634e59445659d4a1",
+  "errorCode": "ResourceRebuildRequired",
+  "cause": "Internal module initializer is traversed as a dependency of M07SceneOnlyComponent serialization callbacks; its Console and exception paths change the callback contract.",
+  "scopeDecision": "Keep DLL-only resource compatibility admission. Isolate genuine initializer failure in a callback-free closure member using a dedicated R01 define.",
+  "proposedCorrectionValidated": false,
+  "failureFixtureReceiptExists": false
+}

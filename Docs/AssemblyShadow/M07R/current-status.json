@@ -13,10 +13,10 @@
   ],
   "currentMilestone": "R01",
   "currentStatus": "ActiveUnaccepted",
-  "currentPhase": "Both early-v2 native Players built; all affected native reruns passed; Unity finalizing patch fixtures and replay before Control Player",
+  "currentPhase": "V3 source and runtime revisions frozen; reinstalling and regenerating before fresh ON/OFF build",
   "activeRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01",
   "branch": "codex/assembly-shadow-r01",
-  "plannedBaselineId": "M07-Baseline-R01-early-v2",
+  "plannedBaselineId": "M07-Baseline-R01-early-v3",
   "requiredNextMilestone": "R01B",
   "requiredAssemblyCount": 65536,
   "assemblyCountInterpretation": "Conservative interpretation of user-approved up to 64k; allocation domain and DLL size distribution unresolved",
@@ -30,9 +30,11 @@
     "Finish required R01B then stop at H1 for human full review",
     "Do not treat debugger feasibility, unit tests or agent review as human approval"
   ],
-  "executableSourceRevision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
-  "activeBuildLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-build-2.log",
-  "activeWorkflowDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-03662442dff24d14aa602c8c558c58df",
+  "executableSourceRevision": "d2da3055ee64c65e2f29b453e9b3b4bdd738cb26",
   "playerBuildCheckpoint": "R01/early-v2-player-build-pair-checkpoint.json",
-  "nativeRegressionEvidence": "R01/early-v2-native-regressions.json"
+  "nativeRegressionEvidence": "R01/early-v2-native-regressions.json",
+  "workflowReceiptSha256": "0852aa91666dd924a4bf17ea5103099f4f14ab5f2afb9d76ed5dc2be9e5e50ec",
+  "sourceCorrectionReview": "R01/early-v3-source-correction-review.json",
+  "retainedV2BuildLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-build-2.log",
+  "retainedV2WorkflowDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-03662442dff24d14aa602c8c558c58df"
 }

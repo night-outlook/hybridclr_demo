@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "status": "DiagnosticNativeCallStackCaptured",
+  "milestoneAccepted": false,
+  "processId": 15862,
+  "naturalExitCode": 1,
+  "forcedTermination": false,
+  "executableSourceRevision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+  "nativeLibrarySha256": "4a946751871d6e03cf1b2cda7143661c39d40c026976829920f55305a55a9fea",
+  "observedCalls": [
+    "::il2cpp_domain_get()",
+    "::il2cpp_domain_get_assemblies(const Il2CppDomain *, size_t *)",
+    "::il2cpp_assembly_get_image(const Il2CppAssembly *)",
+    "::il2cpp_image_get_name(const Il2CppImage *)",
+    "::il2cpp_class_from_name(const Il2CppImage *, const char *, const char *)",
+    "configure-entry"
+  ],
+  "evidenceScope": "Five direct __Internal production IL2CPP API calls occur in R01NativeScriptWitness before Configure. Generated signature for assembly count is uintptr_t*. Read-only breakpoints, no expression evaluation or target data/register writes.",
+  "limitations": [
+    "Host continuation defect reproduced; later exit1 does not establish safe rejection.",
+    "Demangled function spelling prevented intended native-class return breakpoint; rerun corrected observer with final build.",
+    "Initial LLDB command rejected before Player launch; corrected second command ran naturally."
+  ],
+  "files": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/commands-2.lldb",
+      "sha256": "8d4197e10d71cef54ccd54ffb41d30f8675ee1d7bb5f7e0181b1835eae619d81",
+      "bytes": 2666
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/commands.lldb",
+      "sha256": "81ceb7ed88edb477f17264c145cb25e6acb22a259f9ff909654b082ef1219451",
+      "bytes": 2663
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/events.jsonl",
+      "sha256": "6dbbb2ddcb020f885bcb91828096b3449d6926e92824979dfbad7ba57b4c92e1",
+      "bytes": 31584
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/launch-inputs.json",
+      "sha256": "69a1d202605450198dc8570ae7ac7919ef06982f323c51f112cda14b06da389c",
+      "bytes": 1741
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/lldb-2.log",
+      "sha256": "965722a34f6a909744603207d98672e91733e07169afed0267595d2c51578128",
+      "bytes": 27195
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/lldb.log",
+      "sha256": "249ff7f20752a34cc8b960bf693e16bd772ca9b0dbcf148967395cfa57bdec87",
+      "bytes": 2658
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/r01-early.json",
+      "sha256": "71bcff8eeb1ac487e5153af74728d0a74a76e2253773386c3a5b3b8afa1eddc2",
+      "bytes": 1264796
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/r01_native_script_trace.py",
+      "sha256": "e95bf5423051a2b70ce7d8060ada426bba1da0543a331b425a17397a2a563855",
+      "bytes": 2967
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/unity.log",
+      "sha256": "ac4da280002e21707ac8587f5a74013d9e0d1ab30ddc9e499088c89028177bdc",
+      "bytes": 310014
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/unused-m07-diagnostics.json",
+      "sha256": "0780531b8eb8d6bde2895bfeed5b51dfe51194e877b7d4a3e9a414eaa724c3ca",
+      "bytes": 858587
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-native-script-debug-1/unused-m07.json",
+      "sha256": "cce39ca82f5ce352a7f9b155014c0f2a03e721e181f3e5bc4b159b4e09d95bfd",
+      "bytes": 2726103
+    }
+  ]
+}

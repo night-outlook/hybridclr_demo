@@ -2,15 +2,18 @@
 
 Status: R01 in progress, not accepted. This checklist supplements the normative R01 plan and validation matrix; it does not advance H1 or replace human review.
 
-## Current execution boundary (early v2)
+## Current execution boundary (early v3 correction)
 
-The historical checklist below describes the earlier investigation. Its `NotProvided` count and unresolved R01B statements are superseded by the user's approved **65,536-assembly** target in `approved-early-activation-amendment.md`. R01B is now mandatory after R01; allocation domain, DLL size distribution and required headroom still need a declared bound. A five-image Player can validate the R01 transaction contract but cannot satisfy that production scale requirement.
+The historical checklist below is retained as investigation history. Its `NotProvided` count and unresolved R01B statements are superseded by the user's approved **65,536-assembly** target in `approved-early-activation-amendment.md`. R01B is mandatory after R01; allocation domain, DLL size distribution and required headroom still need a declared bound. A five-image Player validates the R01 transaction contract only.
 
-- Completed: preserved initial and early-v1 diagnostic evidence; traced the global MonoScript startup conflict; proved a bounded debugger-assisted early activation; implemented and independently source-reviewed the opt-in gateway, BCL callback, observer, native script witness and strict receipt verifier.
-- Completed source checks: 284 native gateway checks plus 8 ON/OFF syntax checks, 687 package Editor tests, 301 demo Editor tests followed by 9 focused tests after the final timing change, 426 Python tests before the final two bounded verifier corrections, then 30 focused tests after those corrections. See `early-v2-prebuild-evidence.json` and `early-v2-source-review.json` for exact evidence and limitations.
-- Pending runtime acceptance: install and regenerate the complete v2 pins; build the fresh ON/OFF pair; inspect actual native PInvoke wrappers; execute all 11 early modes and the 13 ON M07 resource modes plus OFF. Q04 and initializer failure must capture actual state, retained budget and recovery; observer evidence is bounded retained sampling, not continuous validation of dropped samples.
-- Pending delivery: bind retained native boundary/contention evidence to its exact inputs, verify Editor capacity admission against the final baseline, consolidate failure/recovery and first-use evidence, record all limitations, and obtain the independent R01 stage review.
-- Then execute required R01B and stop at H1. Neither the experiment approval nor a bounded source review passes H1 or permits R02.
+- Completed v2 build evidence: exact ON/OFF Player pair, sealed P01–P05 fixtures, resource rejection cases, and deterministic Editor replay. Five generated native PInvoke wrappers use direct production exports, including a pointer-width assembly count.
+- Completed v2 diagnostic execution: all nine non-failure-fixture probes produced internally consistent early receipts after an isolated casing correction; three positive modes also completed M07 resource handoff. These are diagnostic results, not strict acceptance.
+- Confirmed P1: all six negative modes continued into Unity after `il2cpp_init` returned false. Oversize's exit 1 was a later M07 error; other negatives exited 2. See `early-v2-matrix-diagnostic.json`. The configured failure path now uses immediate native process termination; 37 production-path death tests and independent bounded source review passed. Fresh Player noncontinuation evidence remains required.
+- Confirmed fixture issue: Internal's module initializer changes a serialization callback dependency and correctly triggers resource rebuild admission. An R01-only throw in callback-free Extensibility preserves the resource guard and legacy M03 behavior; its compiled shape, fixture build/replay, and actual post-publication failure still require validation.
+- Pending source integration: strict stable-name identity mapping, hash-bound logs and native termination checks, isolated initializer fixture, new pins and baseline assets, focused/full regressions and independent correction review.
+- Pending final runtime acceptance: reinstall/regenerate the v3 runtime; build its fresh ON/OFF pair and fixture/replay; run all 11 early modes and 13 ON M07 resource modes plus OFF; verify real Editor capacity admission. Q04 and initializer failure must capture retained budget and durable recovery. Repeat the read-only NativeScript trace with class arguments/return captured. Observer evidence is bounded retained sampling, not continuous validation of dropped samples.
+- Pending delivery: audit retained native input hashes, consolidate exact source/binary/log/receipt bindings, report remaining limitations, and obtain independent R01 stage review.
+- Then execute required R01B and stop at H1. Experiment approval and agent review do not pass H1 or permit R02.
 
 ## Historical investigation checklist
 
@@ -25,7 +28,7 @@ The historical checklist below describes the earlier investigation. Its `NotProv
 
 No automatic restart/LKG coordinator, deployment health marker, resource rollback, broad metadata fuzzing or production performance qualification is included here; those remain M09/M11 responsibilities under their human gates.
 
-## Bounded scale interpretation
+## Historical bounded scale interpretation
 
 A follow-up independent review clarified that 100/300/1000 are suggested pressure tiers, not mandatory counts of distinct AOT Shadow candidates. The proposed bounded exercise loads 100 and 300 distinct ordinary interpreter images before the existing five-member Shadow closure, then consumes ordinary capacity until fewer than five slots remain and requires whole-closure reservation rejection before Stage. A 1,000-size query is diagnostic only: passing 1,000 sizes to a public reservation for a five-member transaction would test BudgetMismatch, not capacity exhaustion.
 

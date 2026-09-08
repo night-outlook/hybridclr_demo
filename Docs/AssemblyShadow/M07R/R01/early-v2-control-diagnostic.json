@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV2ControlDiagnostic",
+  "status": "RuntimeCompletedVerifierRejected",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "54666fee824331822daad9b8da28b2599c515b3d",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "a999f3d293184e8af6f9dc138ea42f45e024a699",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+      "localPath": "."
+    }
+  },
+  "launchReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-control-1/r01-early-launches.json",
+    "sha256": "41b407c9dc054e2392fa17ab0109b10efe8771a6fc652bb3912823c447bb488e"
+  },
+  "processId": 14786,
+  "exitCode": 0,
+  "inputsUnchanged": true,
+  "earlyResult": "Passed",
+  "callbackReturnCode": 0,
+  "operations": [
+    {
+      "phase": "configure",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "begin",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "reserve",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "stage:AssemblyA.Contracts",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "stage:AssemblyA.Implementation.Extensibility",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "stage:AssemblyA.Implementation.Internal",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "stage:AssemblyShadowDemo.ContractsConsumer",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "stage:AssemblyShadowDemo.ExtensibilityConsumer",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "validate",
+      "code": "Success",
+      "intCode": 0
+    },
+    {
+      "phase": "commit",
+      "code": "Success",
+      "intCode": 0
+    }
+  ],
+  "observerJoined": true,
+  "observerErrors": [],
+  "observerSamples": 18,
+  "observerDroppedBefore": 73,
+  "observerDroppedAfter": 0,
+  "m07Result": "Passed",
+  "m07Mode": "T07-03-FullClosure-P03",
+  "verificationError": "early.before-startup-ops.physicalAot.assemblyshadowdemo.bootstrap: expected 1, got 0",
+  "diagnosis": "Raw physical enumeration includes AssemblyShadowDemo.Bootstrap. Verifier compares original-case names to casefolded known_names. Read-only full receipt diagnosis is pending before any source correction.",
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

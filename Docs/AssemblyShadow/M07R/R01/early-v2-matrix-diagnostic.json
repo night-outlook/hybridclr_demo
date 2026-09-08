@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "status": "RuntimeDefectConfirmed",
+  "milestoneAccepted": false,
+  "executableSourceRevision": "a6803b3ddc5f8561a6fde24c5485abd85ae91e2b",
+  "launchReceiptPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/r01-early-launches.json",
+  "launchReceiptSha256": "678ede09368e699d04acde13796418fd9d112d8ce3bf77955f3886ee9d27031b",
+  "diagnosticReplay": "All nine early receipts and three M07 imported pairs pass an isolated stable-name casing correction. This does not accept host behavior.",
+  "confirmedFindings": [
+    {
+      "id": "R01-EARLY-V2-01",
+      "priority": "P2",
+      "detail": "Verifier compares lowercased policy stable names against physical-case enumeration; requires unique identity resolution."
+    },
+    {
+      "id": "R01-EARLY-V2-02",
+      "priority": "P1",
+      "detail": "Unity continues after il2cpp_init returns false. All six negative logs show gateway refusal followed by engine initialization and M07BootstrapRunner. Oversize exit1 is a later unrelated error, remaining negatives exit2."
+    }
+  ],
+  "requiredCorrection": "Immediate native process termination at configured gateway failure, production child-process death tests, exact exit1 and hash-bound terminal logs; preserve empty tuple/OFF passthrough and recovery13/19.",
+  "processLaunches": [
+    {
+      "mode": "Control",
+      "processId": 15597,
+      "exitCode": 0,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "Passed",
+      "callbackReturnCode": 0,
+      "strictError": "early.before-startup-ops.physicalAot.assemblyshadowdemo.bootstrap: expected 1, got 0",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Control/r01-early.capsule",
+          "sha256": "ff310135beae4e5786ff1167ba70c0979d00c16412e48f6f58f9e5ae5f823906",
+          "bytes": 7357
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Control/r01-early.json",
+          "sha256": "8048aeff82e3522e260d124b4e514b5446e9aa9f03ea263eaf9cb3fb85bce94a",
+          "bytes": 4170348
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Control/unity.log",
+          "sha256": "81fad8408fe798dc001ae50b0be93437f41ebfbbb3d313fadbb6fa3dc2c72897",
+          "bytes": 20550
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Control/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "OrdinaryFirst",
+      "processId": 15603,
+      "exitCode": 0,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "Passed",
+      "callbackReturnCode": 0,
+      "strictError": "early.before-startup-ops.physicalAot.assemblyshadowdemo.bootstrap: expected 1, got 0",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryFirst/r01-early.capsule",
+          "sha256": "b9f84e07f322b2c3e5b5b86c920139cb04ca3945bb1b631b75e02a9a3f2567d3",
+          "bytes": 7659
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryFirst/r01-early.json",
+          "sha256": "1e2c4ede475994ff39c601808571a8b52693435390405151ceb2452a6b4f3916",
+          "bytes": 1311241
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryFirst/unity.log",
+          "sha256": "f59d28bf0ed359f1dab53050f9c48792ca968e58803ee63b134bb95535cc867f",
+          "bytes": 20527
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryFirst/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "OrdinaryAfterReserve",
+      "processId": 15658,
+      "exitCode": 0,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "Passed",
+      "callbackReturnCode": 0,
+      "strictError": "early.before-startup-ops.physicalAot.assemblyshadowdemo.bootstrap: expected 1, got 0",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryAfterReserve/r01-early.capsule",
+          "sha256": "6054a65e292f5c9ac6c75b0f8026e104b93ebdaca2e22ed9c7413d0c77ef6089",
+          "bytes": 7666
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryAfterReserve/r01-early.json",
+          "sha256": "478d4148d4086fdcbc9a610bd6e964b9d7326585cae8ed702097ae926f8243a4",
+          "bytes": 1298842
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryAfterReserve/unity.log",
+          "sha256": "771ee65182a92b0d1048fe6d834a90b6b71398d07e868241cd5011dbc1d649b0",
+          "bytes": 20554
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/OrdinaryAfterReserve/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "Oversize",
+      "processId": 15670,
+      "exitCode": 1,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "PassedExpectedRejection",
+      "callbackReturnCode": 1,
+      "strictError": "early.before-startup-ops.physicalAot.assemblyshadowdemo.bootstrap: expected 1, got 0",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Oversize/r01-early.capsule",
+          "sha256": "267098d71c3da866d7fcd824aa0ad9a33f54505ec2bdec83c3cea284d694e4f1",
+          "bytes": 7358
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Oversize/r01-early.json",
+          "sha256": "36eb3533f56301a0c90baca00e86bcb669bc8891c5939ac7657d6ebf75c4c1f7",
+          "bytes": 807558
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Oversize/unity.log",
+          "sha256": "bc0e82cf48173dc9a5a24570bd2a3e43a09e0454ed412d2600d54b8bf8848e85",
+          "bytes": 18247
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Oversize/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "Mismatch",
+      "processId": 15680,
+      "exitCode": 2,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "PassedExpectedRejection",
+      "callbackReturnCode": 1,
+      "strictError": "Mismatch.exitCode: expected 1, got 2",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Mismatch/r01-early.capsule",
+          "sha256": "08aabb47674aee1dfc997a5c3e47e7d0366a8e0d58ea5eaf439585281f396d6c",
+          "bytes": 7358
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Mismatch/r01-early.json",
+          "sha256": "497230867e2efd81e399ee2aeb053a7fa9fcee586883d27ed42a7ac5bcf93cec",
+          "bytes": 956231
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Mismatch/unity.log",
+          "sha256": "66daa46b8ebfbe5e85e50c4c55cda52cac0474909030c6fe68d182984f2ebd39",
+          "bytes": 19838
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Mismatch/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "Type",
+      "processId": 15686,
+      "exitCode": 2,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "PassedExpectedRejection",
+      "callbackReturnCode": 1,
+      "strictError": "Type.exitCode: expected 1, got 2",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Type/r01-early.capsule",
+          "sha256": "b5ea13f982204939f290df1fa90ec6538b150a86744f5802efbfb015d271d799",
+          "bytes": 7354
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Type/r01-early.json",
+          "sha256": "896f349f0ce2db981ac5957a3e82dded852e351efd4cfafac156ddaebcd5e76b",
+          "bytes": 1275294
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Type/unity.log",
+          "sha256": "f5e21fa25c7db61ae5a9593654ec3dd276d504799089c37d1977113f50cc40f8",
+          "bytes": 19839
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Type/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "Object",
+      "processId": 15687,
+      "exitCode": 2,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "PassedExpectedRejection",
+      "callbackReturnCode": 1,
+      "strictError": "Object.exitCode: expected 1, got 2",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Object/r01-early.capsule",
+          "sha256": "145bf470f803d8439a2a029cae0e18c75fc2b273b5c6c7264bdb04dc320a6d49",
+          "bytes": 7356
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Object/r01-early.json",
+          "sha256": "ebcdb33bea6d24720040f068d6d74b756c6d7f409eef5c97437fad128cdba4cf",
+          "bytes": 1282469
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Object/unity.log",
+          "sha256": "6f64eb31a6ffcf1745bf325daab78dcc8b6fc0575c5067c4910ca78c0e19c6e3",
+          "bytes": 19839
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Object/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "Cctor",
+      "processId": 15689,
+      "exitCode": 2,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "PassedExpectedRejection",
+      "callbackReturnCode": 1,
+      "strictError": "Cctor.exitCode: expected 1, got 2",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Cctor/r01-early.capsule",
+          "sha256": "8a40ddbee1925edd07b05be3fdaa7b6feb0593c152d3ac46f9e53b590063964e",
+          "bytes": 7355
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Cctor/r01-early.json",
+          "sha256": "739be138ce982fbb89eb98cff88ee95bd25abc894a99cf302fd9c692001f4f26",
+          "bytes": 1295604
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Cctor/unity.log",
+          "sha256": "31326a4dfaa89a1c0ae75bcf4dcb3bcf34d9fd1d507f00a52537aa549ca5db0f",
+          "bytes": 19839
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/Cctor/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    },
+    {
+      "mode": "NativeScript",
+      "processId": 15691,
+      "exitCode": 2,
+      "timedOut": false,
+      "inputsUnchanged": true,
+      "producerResult": "PassedExpectedRejection",
+      "callbackReturnCode": 1,
+      "strictError": "NativeScript.exitCode: expected 1, got 2",
+      "files": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/NativeScript/r01-early.capsule",
+          "sha256": "d3940d72dd9577e942c7b379cf0eb97ab3a8244920c3ce7b5d28ced51533c277",
+          "bytes": 7362
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/NativeScript/r01-early.json",
+          "sha256": "2d5a0fbfd5d2ff0ba70d718f9ccbe92fd573afccda4b4b5c4a96e05f356c8e01",
+          "bytes": 1264790
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/NativeScript/unity.log",
+          "sha256": "e7b6a2470621b7d868a8544b0ac6cadfa2aebaa9e39cee3147ea62f265a09cee",
+          "bytes": 19838
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v2-matrix-1/NativeScript/console.log",
+          "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+          "bytes": 1741
+        }
+      ]
+    }
+  ]
+}

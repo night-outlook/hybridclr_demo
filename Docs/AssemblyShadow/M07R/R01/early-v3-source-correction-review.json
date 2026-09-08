@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R01",
+  "milestoneAccepted": false,
+  "reviewKind": "BoundedSourceCorrection",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "verdict": "Passed",
+  "runtimeRevision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+  "runtimeAbiHash": "df5465eaa165acab2d26c7d8b6bf106e362ea532c3c5597506ebfcad4fdf6f5f",
+  "findings": [
+    {
+      "id": "R01-EARLY-V2-01",
+      "status": "fixed",
+      "detail": "Physical stable names resolved uniquely from policy spelling; exact ordering and raw/capsule equality retained."
+    },
+    {
+      "id": "R01-EARLY-V2-02",
+      "status": "source-fixed-player-verification-pending",
+      "detail": "Configured startup refusal logs, flushes stderr, and immediately exits1. Native production child tests prove no return or atexit. Empty/OFF unchanged; callback refusal does not overwrite recovery."
+    },
+    {
+      "id": "R01-EARLY-V2-03",
+      "status": "source-fixed-fixture-player-verification-pending",
+      "detail": "Dedicated R01 define suppresses Internal initializer and throws in callback-free Extensibility. Existing resource compatibility guard and M03 behavior preserved."
+    },
+    {
+      "id": "R01-EARLY-V3-TEST-01",
+      "status": "fixed",
+      "detail": "New actual compiler test compared dnlib UTF8String to System.String; explicitly compare Name.String. Focused rerun passed."
+    }
+  ],
+  "validation": {
+    "pythonFull": {
+      "passed": 437,
+      "skipped": 0,
+      "seconds": 65.517
+    },
+    "demoEditorFullBeforeTestAssertionCorrection": {
+      "total": 302,
+      "passed": 301,
+      "failed": 1,
+      "skipped": 0
+    },
+    "compiledInitializerFocusedAfterCorrection": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "nativeGateway": {
+      "scenarios": 41,
+      "deathTests": 37,
+      "nativeChecks": 194,
+      "processAssertions": 406,
+      "syntaxChecks": 8,
+      "addressSanitizer": true
+    }
+  },
+  "limits": [
+    "Source review is not milestone acceptance or human H1.",
+    "Native lookup/invocation/sealing adapters do not prove actual recovery JSON.",
+    "Fresh installed v3 ON/OFF pair, resource replay, all Player modes, real fixture admission and capacity validation remain required."
+  ],
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-gateway-death-v3-1.json",
+      "sha256": "0b73c5f5d076df2ae82ce90691d28b1c510e76db1d5b22531e202bdec2b1c4d9"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v3-python-full-1.log",
+      "sha256": "6df05ea43a1828d0f6c5835abdef406f0f8fb16d9dedfe71a793315f5fb8a2ac"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-2b18b3dec1c748b8b2daa4c93a6b8cfa/results.xml",
+      "sha256": "10ba154de3e97c9af8630d0c5e596681b253950a821f7d51696cf8d180300c9f"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-e76856cab12642f2b76319ddd88fee31/results.xml",
+      "sha256": "02743f47fe6a3cae0380807e7daecd77f35b938d2dc85e2f1eaa3a047113703d"
+    }
+  ],
+  "demoExecutableRevision": "d2da3055ee64c65e2f29b453e9b3b4bdd738cb26",
+  "sourceStateNote": "Reviewed source corrections committed; bootstrap scene and settings identify early-v3 and exact runtime ABI. Incidental regenerated resource object IDs were restored before capture."
+}
