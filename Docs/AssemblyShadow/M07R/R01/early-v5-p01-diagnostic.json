@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "result": "FailedStrictVerification",
+  "milestoneAccepted": false,
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "c2c908c5a11ce65aabb0da75b512923f709277c1",
+      "localPath": "."
+    }
+  },
+  "launchReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v5-T07-01-Prefab-P01-1/r01-early-launches.json",
+    "sha256": "80a35dbb4a2561fedfa706135a3c811a030b7c507fc9d984f3db4e5f69983a55"
+  },
+  "mode": "T07-01-Prefab-P01",
+  "processId": 47561,
+  "exitCode": 0,
+  "producerPassed": false,
+  "inputsUnchanged": true,
+  "error": "early.after-validate.firstUseHistory: expected [], got [{'name': 'AssemblyA.Contracts', 'kind': 'AssemblyReflection', 'detail': 'Image::ClassFromName.input FirstUseSequence=2', 'type': '', 'thread': 18199233411598851025, 'timestamp': 1172860484094166}, {'name': 'AssemblyA.Implementation.Extensi",
+  "diagnosisStatus": "Independent source review traces recorded use to unchanged candidate AOT dependencies outside P01 replacement closure; verifier full-candidate empty-history assumption under investigation. No runtime bug is inferred merely from this rejection.",
+  "nextAction": "Complete closure-aware contract review and regression tests before correction; retain all original output."
+}

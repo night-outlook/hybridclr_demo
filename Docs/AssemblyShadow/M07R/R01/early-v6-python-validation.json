@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "result": "PassedPythonScope",
+  "milestoneAccepted": false,
+  "tests": 443,
+  "skips": 0,
+  "durationSeconds": 63.044,
+  "log": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-python-full-1.log",
+    "sha256": "1269d988739a1fcef054aed9a8d32b17fabad033804d279bf3f92b9038b7fb44"
+  },
+  "command": "python3 -B -m unittest discover -s Tools/AssemblyShadow/tests -v",
+  "changedInputs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/r01_early_results.py",
+      "sha256": "7943c324faece5abb9668b083e37a79b070aa7af88ac26d47335944897cb4841"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/tests/test_r01_early_results.py",
+      "sha256": "14be5fe362db5404059bedf8e123e7ff926051bca2d51d77a9b6d80f89a57972"
+    }
+  ],
+  "scope": "Full Python suite after closure-aware first-use correction. Native/managed runtime source unchanged. Fresh source-pin-bound v6 Player evidence remains pending.",
+  "workingDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo",
+  "environment": {
+    "M05_REAL_COMPILER_ROOT": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M05LayoutCompilerRegression-b4f55fe6eb794caf9b31256d6d44478a/Assemblies",
+    "M05_RAW_CONFIGURATION": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/ProjectSettings/AssemblyShadowRawTypeAdmissions.json"
+  }
+}

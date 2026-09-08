@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "result": "PassedSourceAndPythonScope",
+  "milestoneAccepted": false,
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "baselineBuildId": "M07-Baseline-R01-early-v6",
+  "runtimeAbiHash": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "findings": [
+    {
+      "finding": "Early verifier generalized full P03 empty baseline-use history to partial M07 closures.",
+      "status": "fixed",
+      "rootCause": "ResolvePrivate intentionally resolves unchanged registered candidates outside the selected closure to their physical baseline; existing M07 verification and report already preserve those uses. Early verifier incorrectly required the entire candidate history to stay empty.",
+      "changedFiles": [
+        "Tools/AssemblyShadow/r01_early_results.py",
+        "Tools/AssemblyShadow/tests/test_r01_early_results.py"
+      ],
+      "preservedFailure": "early-v5-p01-diagnostic.json",
+      "verification": "early-v6-python-validation.json"
+    }
+  ],
+  "reviewAssertions": [
+    "Nonclosure candidate provenance, native registry order, complete unique first-use sequences and monotonic timestamps.",
+    "Immutable previous records; synchronous pre-Validate snapshots remain empty.",
+    "Observer history grows monotonically, matches final canonical records and starts empty at the initial handshake.",
+    "Separate native transaction/usage locks explain state/history race allowance.",
+    "Full-P03 empty history and explicit guard witnesses remain strict.",
+    "443 Python tests passed with zero skips; frozen source hashes matched."
+  ],
+  "limitations": [
+    "Failed v5 P01 evidence is not retroactively accepted by diagnostic semantic replay.",
+    "First-use records are not continuous user-code exclusion evidence; staging guard source and native tests establish that separate boundary.",
+    "No native or managed runtime code changed. Fresh v6 source-pin-bound Player matrices and stage evidence review remain pending."
+  ]
+}
