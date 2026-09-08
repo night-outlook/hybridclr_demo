@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "result": "PassedSourceScopeEvidencePending",
+  "result": "PassedSourceAndEarlyRuntimeScopeM07Pending",
   "milestoneAccepted": false,
   "reviewer": "r01_integration_review_gpt6astra_high_1",
   "reviewType": "Independent R01 stage source review, not human H1",
@@ -45,13 +45,37 @@
     "All nine fresh native receipt hashes and Editor fixture/capacity/lifetime hashes matched."
   ],
   "pendingEvidenceAtReview": [
-    "Strict v5 11-mode offline verdict",
-    "Strict v5 14-mode M07 aggregate",
-    "Actual v5 native trace final review"
+    "Strict v5 14-mode M07 aggregate and final stage evidence review"
   ],
   "limitations": [
     "Source approval is not runtime or milestone acceptance.",
     "Current encoding remains bounded; mandatory R01B capacity work remains.",
     "Human H1 follows R01B and cannot be replaced by this review."
+  ],
+  "completedEvidenceReviews": [
+    {
+      "scope": "Actual v5 native trace and post-build audit",
+      "result": "Passed",
+      "findings": [],
+      "evidence": [
+        "early-v5-native-script-trace.json",
+        "early-v5-postbuild-audit.json"
+      ]
+    },
+    {
+      "scope": "Strict v5 11-mode early runtime evidence",
+      "result": "Passed",
+      "findings": [],
+      "evidence": [
+        "early-v5-strict-matrix.json"
+      ],
+      "verified": [
+        "Strict verdict and launcher binding hashes match; all process artifacts match; verifier matches executable pin.",
+        "MetadataFailure Validate13: five skeletons remain unpublished at generation0 and cursors stay charged; rejected Abort/Begin preserve terminal13 and restartRequired.",
+        "InitializerFailure Commit19: all five images publish at generation1; initializer snapshots show full closure; rejected operations preserve inner failure reason.",
+        "Budget and ordinary cases share consumption; reservation remains retained; capacity rejection precedes publication.",
+        "Failure process exit1 and terminal log pairs are hash-bound; observers joined without errors with bounded before/after retained samples."
+      ]
+    }
   ]
 }
