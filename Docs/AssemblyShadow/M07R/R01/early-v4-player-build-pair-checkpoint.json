@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV4PlayerBuildPairCheckpoint",
+  "status": "PlayersBuiltFixturesPending",
+  "baselineBuildId": "M07-Baseline-R01-early-v4",
+  "runtimeAbiHash": "df5465eaa165acab2d26c7d8b6bf106e362ea532c3c5597506ebfcad4fdf6f5f",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "54666fee824331822daad9b8da28b2599c515b3d",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "1b4c75445703515c21a21031b2082c31750c04ac",
+      "localPath": "."
+    }
+  },
+  "players": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-3dca48a78c8247adb70cba2e954da768/m07-player-build.json",
+      "sha256": "7dbc587e42a4271f6367b9f40c3957dd3c221e9d2a34e70f110d1cc6862e5480",
+      "variant": "NativeOn",
+      "buildGuid": "573303cc9deb403d9153a1aa01bd6f17",
+      "inputSnapshotHash": "c48f0e1b25fc63700691aec1a051bf830a4dc4004be8c784b5ee9ff73686d3eb",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v4.app/Contents/Frameworks/GameAssembly.dylib",
+      "nativeLibrarySha256": "2f6e31f52ae9ebcffbd48a220b914571ac9f4c1dc22a6c5786a961dc0b3b87aa",
+      "nativeMetadataPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v4.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "nativeMetadataSha256": "92aec8a72db1418d7995cac486580b92144fc46bba5814da23904760864301e9",
+      "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1\""
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-715e25d9b7d64e9bb465c83a231bd070/m07-player-build.json",
+      "sha256": "a330b357ce9f8956d1d1e658061c24848582d6c2f49bc01efa8a06e3ef43f684",
+      "variant": "NativeOff",
+      "buildGuid": "9ae52f0186c542918697c9af51b7a751",
+      "inputSnapshotHash": "af356785249a9794eba035720ba55bf91b8b506d0596790a22918f0d4024828f",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v4-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+      "nativeLibrarySha256": "bbaeb51c03955a8ac5968ce7fda5f77b21b39935f9373fb32cc1b1f2fc23a6cb",
+      "nativeMetadataPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v4-NativeOff.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "nativeMetadataSha256": "92aec8a72db1418d7995cac486580b92144fc46bba5814da23904760864301e9",
+      "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0\""
+    }
+  ],
+  "workflowDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M02Validation-331334ce8d124eea9a6aa7a58e8cbe5c",
+  "debugArtifacts": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v4-on-native-wrappers/native-debug-artifacts.json",
+    "sha256": "0debe48c9714c168cc341e543d951c5e2e65831bbacfd7144da6ec814cc3c9c7"
+  },
+  "nativeDebugUuid": "A45F7C69-D521-4FE6-B9AB-7DD0DDB086E5",
+  "limitations": [
+    "Fixture/replay workflow is running.",
+    "Corrected R01 fixture, postcompile lifetime and Player validation pending."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}

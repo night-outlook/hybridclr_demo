@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV4RetainedNativeEvidence",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "54666fee824331822daad9b8da28b2599c515b3d",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "1b4c75445703515c21a21031b2082c31750c04ac",
+      "localPath": "."
+    }
+  },
+  "previousEvidenceIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v3-native-regressions.json",
+    "sha256": "d6c1c18058636a1a787bbed3c9ff6d9f8325b7f9dd3085d3006ddf712516f2b2"
+  },
+  "currentInputAudit": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/retained-native-input-audit-v4-1.json",
+    "sha256": "87b9e8b2d3636631c47590790e880c63ece6dd39bd814ac9c70b88fcb6c9c830"
+  },
+  "retainedExecution": true,
+  "freshNativeReruns": false,
+  "unchangedHelperInputs": [
+    "R01-NATIVE-BUDGET: 2684 checks",
+    "R01-NATIVE-RECOVERY: 498 checks"
+  ],
+  "compilerHashUnchanged": true,
+  "conclusion": "Gateway 9 tested inputs exactly match; seven native regression receipts differ only in install/source-pin metadata. All compiler, helper, tested source/header/generated/fixture bytes match. Retain execution with historical metadata rather than claim fresh v4 runs.",
+  "limitations": [
+    "Native evidence is supporting analysis only; it is not R01 milestone acceptance or H1 review.",
+    "Native adapters do not prove Unity Player startup, GC behavior, natural process exit, managed publication, or the full R01 ON/OFF matrix.",
+    "The Q05 receipt is native-only and must not be described as concurrent Player Assembly.Load coverage."
+  ],
+  "milestoneAccepted": false,
+  "H1Passed": false
+}
