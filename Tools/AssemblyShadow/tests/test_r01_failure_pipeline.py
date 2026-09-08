@@ -115,7 +115,7 @@ def produce(path,mode,p,process_id):
         result['capacities'].append(raw(phase,cap))
         rec=dict(schemaVersion=1,enabled=True,capabilityVersion=1,stateCode=m04.STATE_CODES[state],state=state,published=published,abortAllowed=False,
             dispositionCode=0 if terminal else 4,disposition='RestartRequired' if terminal else 'ActiveShadow',terminalFailureCode=terminal,
-            reason=('AssemblyA.Contracts: Image::ReadType invalid type' if q04 else 'M03-INIT-THROW:AssemblyA.Implementation.Internal') if terminal else '',retainedBytes=sum(sizes) if i>=2 else 0,baselineEligibilityRequiresStartupValidation=False)
+            reason=('AssemblyA.Contracts: Image::ReadType invalid type' if q04 else 'M03-INIT-THROW:AssemblyA.Implementation.Internal') if terminal else '',retainedBytes=sum(sizes) if i>=2 else 0,baselineEligibilityRequiresStartupValidation=bool(terminal))
         result['recovery'].append(raw(phase,rec))
     result['observerSamples']=[raw('before',diag('Staging',False,False),2),raw('after',diag(final,True,not q04,not q04),2)]
     if init:
@@ -157,7 +157,7 @@ class FailurePipelineTests(unittest.TestCase):
     def test_raw_tampering_after_rebinding_all_hashes_is_rejected(self):
         launch=self.launch();initial=gate.read(launch)
         cases=[('diagnostics',3,'lastError',9),('diagnostics',3,'retainedBytes',0),('capacities',3,'cursors',[64,0,0,0]),
-               ('recovery',-1,'terminalFailureCode',2),('recovery',-1,'disposition','BaselineEligibleAfterAbort'),
+               ('recovery',-1,'baselineEligibilityRequiresStartupValidation',False),('recovery',-1,'terminalFailureCode',2),('recovery',-1,'disposition','BaselineEligibleAfterAbort'),
                ('observerSamples',-1,'enumerationGeneration',1),('observerSamples',-1,'classEnumerationGeneration',1)]
         path=Path(initial['processLaunches'][1]['resultPath']);saved=gate.read(path)
         for group,index,key,value in cases:
@@ -168,6 +168,22 @@ class FailurePipelineTests(unittest.TestCase):
                 with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
                 raw_path.write_text(old)
         write(path,saved)
+    def test_recovery_startup_validation_flag_matches_native_disposition(self):
+        launch=self.launch();initial=gate.read(launch)
+        for mode_index,process in enumerate(initial['processLaunches']):
+            path=Path(process['resultPath']);saved=gate.read(path)
+            terminal_index=3 if mode_index==1 else 4
+            for index in range(terminal_index,len(saved['recovery'])):
+                with self.subTest(mode=mode_index,index=index):
+                    result=copy.deepcopy(saved);row=result['recovery'][index];raw_path=Path(row['rawPath']);old=raw_path.read_text()
+                    data=json.loads(row['rawJson']);data['baselineEligibilityRequiresStartupValidation']=mode_index==0
+                    row['rawJson']=json.dumps(data);raw_path.write_text(row['rawJson']);row['rawSha256']=gate.digest(raw_path)
+                    write(path,result);receipt=copy.deepcopy(initial);receipt['processLaunches'][mode_index]['resultSha256']=gate.digest(path);write(launch,receipt)
+                    with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
+                    raw_path.write_text(old)
+            write(path,saved)
+        write(launch,initial)
+
     def test_native_transaction_identity_tampering_with_rebound_hashes_is_rejected(self):
         launch=self.launch();initial=gate.read(launch)
         cases=[('baselineBuildId','unrelated-baseline'),('patchId','unrelated-patch'),

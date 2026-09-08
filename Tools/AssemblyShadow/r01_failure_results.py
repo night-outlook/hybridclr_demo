@@ -329,7 +329,7 @@ def verify_result(path, mode, prepared):
     for value in parsed["recovery"][terminal_index:]:
         for key, expected in dict(schemaVersion=1, enabled=True, capabilityVersion=1, state=state, stateCode=state_code,
             published=not q04, abortAllowed=False, disposition="RestartRequired" if terminal else "ActiveShadow",
-            dispositionCode=0 if terminal else 4, terminalFailureCode=terminal, baselineEligibilityRequiresStartupValidation=False).items():
+            dispositionCode=0 if terminal else 4, terminalFailureCode=terminal, baselineEligibilityRequiresStartupValidation=bool(terminal)).items():
             exact(value[key], expected, "durable recovery." + key)
         require(value["retainedBytes"] >= sum(sizes), "Recovery lost genuine owner retention")
         if terminal:

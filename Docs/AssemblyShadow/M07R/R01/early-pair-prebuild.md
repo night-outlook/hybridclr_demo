@@ -4,7 +4,7 @@ Status: InProgress / NotAccepted / H1NotReached. This is prebuild evidence, not 
 
 The initial ConfigureOnly pair reproduced ASR-011 in four pre-Configure use paths. Its eight individually verified diagnostic processes and two ordinary-probe failures remain preserved. The ordinary failure was a probe bug: it compared the raw snapshot JSON SHA to its semantic snapshot hash. The corrected probe binds both independently to the selected Player inputs and consumes verified DLL bytes.
 
-The next baseline is `M07-Baseline-R01-early-v1`, runtime ABI `33bcf290b4e70420668494d5bb7119619413df25a66ec13b6c4ad6f410cca3a7`. Native source pins: hybridclr `99ed95d58c7d976e5fd05257a4fe735ce0ee3813`, package `9f5d288e36f60c35420878f5796798b2dfa34de7`, il2cpp_plus `5e9a1a93b530888fa41603e40c29e049a3914ea6`. Demo source is frozen in the commit containing this document, then recorded in a metadata-only child commit.
+The next baseline is `M07-Baseline-R01-early-v1`, runtime ABI `33bcf290b4e70420668494d5bb7119619413df25a66ec13b6c4ad6f410cca3a7`. Native source pins: hybridclr `99ed95d58c7d976e5fd05257a4fe735ce0ee3813`, package `9f5d288e36f60c35420878f5796798b2dfa34de7`, il2cpp_plus `5e9a1a93b530888fa41603e40c29e049a3914ea6`. Demo source is frozen in the implementation commit, then recorded in a metadata-only child commit. The first attempted freeze was aac281b, pinned by 69a3532; the recovery-verifier correction below requires a new freeze before Player compilation.
 
 ## Implemented changes
 
@@ -28,3 +28,11 @@ P2: the new failure verifier accepted native baseline/patch/closure/MVID fields 
 ## Still required
 
 Reinstall final pins, regenerate native definitions, verify exact installation, build the new immutable ON/OFF pair, run the strict ten-mode early-guard matrix and the three real failure modes, complete affected M07/R00 regressions and evidence review. The failure modes have only synthetic wire-contract and compiler evidence so far. Production sizing remains NotProvided; no R01B applicability or Q06 production acceptance is inferred from the five-member demo.
+
+## Subsequent cross-repository source audit
+
+P2: the failure verifier and its synthetic producer incorrectly required `baselineEligibilityRequiresStartupValidation=false` for terminal failures. The actual native `Restart()` recovery decision and the existing documented recovery table require true. Corrected the verifier to require true for terminal failures and false for the healthy ActiveShadow control; added recomputed-hash rejection cases at every terminal capture in all three modes. Nine focused tests passed in `_temp/AssemblyShadow/R01/failure-recovery-tests-1.log`. This changes the verifier to match the native contract, without changing or relaxing native behavior.
+
+The first early build attempt completed compiler/resource preparation, then its source guard rejected the changed verifier before Player compilation. `_temp/AssemblyShadow/R01/early-build-workflow-1.log` is retained as Failed; its install receipts are archived in `early-first-install-receipts`. A fresh pinned attempt is required. No prior Player acceptance is claimed for that attempt.
+
+Independent bounded source audit: PASS after the recovery correction. It covered early registry lifecycle, shared allocator locking/charging, durable recovery, capability negotiation and Editor admission. Fresh Player evidence and project sizing remained outside that verdict.
