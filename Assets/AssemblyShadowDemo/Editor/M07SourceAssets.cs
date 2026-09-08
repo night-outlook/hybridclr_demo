@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -39,8 +40,22 @@ namespace AssemblyShadowDemo.Editor
             EnsureMonoScriptCarrier(root + "/MonoScriptCarrier.asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-            Validate(root, structural);
-            return Map(root);
+            return ValidateExisting(structural);
+        }
+
+        /// <summary>
+        /// Validates the already-authored source inputs without changing the AssetDatabase or
+        /// opening a scene. Build/replay entry points must use this method when they consume the
+        /// pinned fixture; <see cref="Ensure"/> remains the explicit authoring path.
+        /// </summary>
+        internal static ShadowResourceBuildMap ValidateExisting(bool structural)
+        {
+            string root = structural ? P05Root : BaselineRoot;
+            bool hasStructuralField = typeof(VersionedPrefabComponent).GetField("addedSerializedField", BindingFlags.Instance | BindingFlags.NonPublic) != null;
+            Require(hasStructuralField == structural, "The active Editor domain does not match the requested M07 resource layout.");
+            ShadowResourceBuildMap map = Map(root);
+            Validate(root, structural, map);
+            return map;
         }
 
         internal static ShadowResourceBuildMap Map(string root)
@@ -222,21 +237,145 @@ namespace AssemblyShadowDemo.Editor
                 SetInlineValue(property.GetArrayElementAtIndex(index), numbers[index], prefix + numbers[index]);
         }
 
-        private static void Validate(string root, bool structural)
+        private static void Validate(string root, bool structural, ShadowResourceBuildMap map)
         {
-            ShadowResourceBuildMap map = Map(root);
             Require(map.bundles.Length == 7 && map.bundles.Select(item => item.name).Distinct(StringComparer.Ordinal).Count() == 7,
                 "M07 requires exactly seven uniquely named bundles.");
             foreach (string path in map.bundles.SelectMany(item => item.assets))
                 Require(File.Exists(path) && File.Exists(path + ".meta") && !string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(path)), "M07 source asset is not imported: " + path);
+
+            string dataPath = root + "/VersionedData.asset";
+            string graphPath = root + "/ManagedGraph.asset";
+            string nestedPath = root + "/NestedPrefab.prefab";
+            string mixedPath = root + "/MixedAssets.prefab";
+            string monoScriptPath = root + "/MonoScriptCarrier.asset";
+
+            var data = AssetDatabase.LoadAssetAtPath<VersionedScriptableObject>(dataPath);
+            string dataMarker = structural ? "M07-P05-DATA" : "M07-BASELINE-DATA";
+            Require(data != null && data.name == "M07 Versioned Data" && data.ReadSerializedNumber() == 5678 && data.ReadSerializedText() == "M07-DATA" &&
+                data.ReadM07State() == "81:M07-INLINE-DATA|82:M07-DATA-LIST-82,83:M07-DATA-LIST-83|" + dataMarker,
+                "M07 versioned data did not retain its exact serialized values.");
+
+            var graph = AssetDatabase.LoadAssetAtPath<M07ManagedGraphAsset>(graphPath);
+            string graphDescription = structural ? "NODE-A|M07-P05-NODE|NODE-B|M07-P05" : "NODE-A|M07-BASELINE-NODE|NODE-B|M07-BASELINE";
+            Require(graph != null && graph.name == "M07 Managed Graph" && graph.SumGraph() == 77 && graph.DescribeGraph() == graphDescription &&
+                graph.ConcreteTypeName().StartsWith("AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal", StringComparison.Ordinal),
+                "M07 SerializeReference graph did not retain the baseline concrete type or values.");
+
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(root + "/VersionedPrefab.prefab");
             var component = prefab == null ? null : prefab.GetComponent<VersionedPrefabComponent>();
-            Require(component != null && component.ReadSerializedNumber() == 1234 && component.ReadM07SerializedState() ==
+            Require(prefab != null && prefab.name == "VersionedPrefab" && component != null && component.ReadSerializedNumber() == 1234 && component.ReadSerializedText() == "M07-PREFAB" && component.ReadDataReferenceName() == "M07 Versioned Data" && component.ReadM07SerializedState() ==
                 "701|M07-BASELINE-TEXT|71:M07-INLINE|72:M07-LIST-72,73:M07-LIST-73|M07 Versioned Data|74:M07-NESTED" &&
                 component.ReadM07AddedSerializedField() == (structural ? 705 : -1), "M07 versioned prefab did not freeze its exact serialized values.");
-            var graph = AssetDatabase.LoadAssetAtPath<M07ManagedGraphAsset>(root + "/ManagedGraph.asset");
-            Require(graph != null && graph.SumGraph() == 77 && graph.ConcreteTypeName().StartsWith("AssemblyA.Implementation.Internal.M07NodeA, AssemblyA.Implementation.Internal", StringComparison.Ordinal),
-                "M07 SerializeReference graph did not retain the baseline concrete type.");
+
+            var nested = AssetDatabase.LoadAssetAtPath<GameObject>(nestedPath);
+            var nestedComponent = nested == null ? null : nested.GetComponent<VersionedPrefabComponent>();
+            var external = nested == null ? null : nested.GetComponentInChildren<DerivedExternalComponent>(true);
+            Require(nested != null && nested.name == "NestedPrefab" && nestedComponent != null && nestedComponent.ReadM07SerializedState() ==
+                "701|M07-BASELINE-TEXT|71:M07-INLINE|72:M07-LIST-72,73:M07-LIST-73|M07 Nested Child|74:M07-NESTED" &&
+                external != null && external.ReadM07NestedState() == "M07-NESTED-EXTERNAL|AssemblyA.Implementation.Internal.VersionedPrefabComponent|M07-BASELINE-CONSUMER",
+                "M07 nested prefab did not retain its cross-component references and values.");
+
+            var mixed = AssetDatabase.LoadAssetAtPath<GameObject>(mixedPath);
+            var mixedComponent = mixed == null ? null : mixed.GetComponent<VersionedPrefabComponent>();
+            var renameProbe = mixed == null ? null : mixed.GetComponent<M07RenameProbeComponent>();
+            Require(mixed != null && mixed.name == "MixedAssets" && mixedComponent != null && mixedComponent.ReadM07SerializedState() ==
+                "701|M07-BASELINE-TEXT|71:M07-INLINE|72:M07-LIST-72,73:M07-LIST-73|M07 Versioned Data|74:M07-NESTED" &&
+                renameProbe != null && renameProbe.ReadValue() == 714,
+                "M07 mixed prefab did not retain its component domain shape and values.");
+
+            var carrier = AssetDatabase.LoadAssetAtPath<M07MonoScriptCarrier>(monoScriptPath);
+            MonoScript script = AssetDatabase.LoadAssetAtPath<MonoScript>("Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/VersionedPrefabComponent.cs");
+            Require(carrier != null && carrier.name == "M07 MonoScript Carrier" && script != null && script.GetClass() == typeof(VersionedPrefabComponent) && carrier.Script == script,
+                "M07 MonoScript carrier does not retain the exact component script object.");
+
+            ValidateScene(root + "/BusinessScene.unity", 707, dataPath, graphPath);
+            ValidateScene(root + "/AdditiveScene.unity", 708, dataPath, graphPath);
+        }
+
+        private static void ValidateScene(string path, int expectedValue, string dataPath, string graphPath)
+        {
+            Require(AssetDatabase.LoadAssetAtPath<SceneAsset>(path) != null, "M07 scene is not imported: " + path);
+            string yaml = File.ReadAllText(path);
+            string dataGuid = AssetDatabase.AssetPathToGUID(dataPath);
+            string graphGuid = AssetDatabase.AssetPathToGUID(graphPath);
+            string sceneScriptGuid = AssetDatabase.AssetPathToGUID("Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/M07SceneOnlyComponent.cs");
+            Require(ValidateSceneContent(yaml, expectedValue, dataGuid, graphGuid, sceneScriptGuid),
+                "M07 scene did not retain its exact serialized values and persistent event shape: " + path);
+        }
+
+        /// <summary>Validates scene YAML without opening or importing the scene.</summary>
+        internal static bool ValidateSceneContent(string yaml, int expectedValue, string dataGuid, string graphGuid, string sceneScriptGuid)
+        {
+            if (yaml == null || dataGuid == null || graphGuid == null || sceneScriptGuid == null)
+                return false;
+            string expected = expectedValue.ToString(CultureInfo.InvariantCulture);
+            return HasExactScalar(yaml, "sceneValue", expected) &&
+                yaml.Contains("dataReference: {fileID: 11400000, guid: " + dataGuid + ", type: 2}") &&
+                yaml.Contains("graphReference: {fileID: 11400000, guid: " + graphGuid + ", type: 2}") &&
+                HasReferencedSceneRecord(yaml, "serializedInterfaceObject") &&
+                yaml.Contains("m_Script: {fileID: 11500000, guid: " + sceneScriptGuid + ", type: 3}") &&
+                HasReferencedSceneRecord(yaml, "m_Target") &&
+                yaml.Contains("m_TargetAssemblyTypeName: AssemblyA.Implementation.Internal.M07SceneOnlyComponent,") &&
+                yaml.Contains("m_MethodName: OnM07UnityEvent");
+        }
+
+        private static bool HasExactScalar(string yaml, string field, string expected)
+        {
+            string prefix = field + ":";
+            foreach (string line in yaml.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                string trimmed = line.Trim();
+                if (trimmed.StartsWith(prefix, StringComparison.Ordinal))
+                    return trimmed.Substring(prefix.Length).Trim() == expected;
+            }
+            return false;
+        }
+
+        private static bool HasReferencedSceneRecord(string yaml, string field)
+        {
+            string prefix = field + ": {fileID: ";
+            foreach (string line in yaml.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                string trimmed = line.Trim();
+                if (trimmed.StartsWith("- ", StringComparison.Ordinal))
+                    trimmed = trimmed.Substring(2).TrimStart();
+                if (!trimmed.StartsWith(prefix, StringComparison.Ordinal))
+                    continue;
+                int end = trimmed.IndexOf('}', prefix.Length);
+                if (end <= prefix.Length)
+                    return false;
+                string fileId = trimmed.Substring(prefix.Length, end - prefix.Length).Trim();
+                if (fileId == "0" || !IsDecimal(fileId))
+                    return false;
+                return HasSceneRecord(yaml, fileId);
+            }
+            return false;
+        }
+
+        private static bool HasSceneRecord(string yaml, string fileId)
+        {
+            string marker = "&" + fileId;
+            foreach (string line in yaml.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                string trimmed = line.Trim();
+                if (!trimmed.StartsWith("--- !u!", StringComparison.Ordinal))
+                    continue;
+                string[] tokens = trimmed.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                if (tokens.Contains(marker, StringComparer.Ordinal))
+                    return true;
+            }
+            return false;
+        }
+
+        private static bool IsDecimal(string value)
+        {
+            if (value.Length == 0)
+                return false;
+            for (int index = 0; index < value.Length; ++index)
+                if (value[index] < '0' || value[index] > '9')
+                    return false;
+            return true;
         }
 
         private static ShadowBundleDefinition Bundle(string name, params string[] assets)

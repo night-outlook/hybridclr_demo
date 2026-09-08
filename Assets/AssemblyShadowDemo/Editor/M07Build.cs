@@ -56,12 +56,19 @@ namespace AssemblyShadowDemo.Editor
             Debug.Log("[AssemblyShadow M07] Configured " + buildId + " with a business-free bootstrap scene.");
         }
 
+        /// <summary>Explicitly authors source assets; commit and pin the resulting bytes before building.</summary>
+        public static void AuthorBaselineResourceInputs()
+        {
+            Configure();
+            M07SourceAssets.Ensure(false);
+        }
+
         public static void BuildBaselineResources()
         {
             Configure();
             var settings = AssemblyShadowSettings.Instance;
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
-            ShadowResourceBuildMap map = M07SourceAssets.Ensure(false);
+            ShadowResourceBuildMap map = M07SourceAssets.ValidateExisting(false);
             Require(MapIdentity(map) == MapIdentity(ReadConfiguredMap()), "Generated M07 baseline resource map differs from ProjectSettings.");
             EnsureBootstrapScene(settings.buildId, ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture).RuntimeAbiHash());
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(BootstrapScene, true) };

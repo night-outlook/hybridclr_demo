@@ -20,6 +20,13 @@ namespace AssemblyShadowDemo.Editor
             M02StructuralPatchCompilation.Prepare();
         }
 
+        /// <summary>Explicit authoring only, in an already prepared P05 Editor domain.</summary>
+        public static void AuthorResourceInputs()
+        {
+            M02StructuralPatchCompilation.GetValidationRunDirectory();
+            M07SourceAssets.Ensure(true);
+        }
+
         public static void Compile()
         {
             M02StructuralPatchCompilation.Compile();
@@ -34,7 +41,7 @@ namespace AssemblyShadowDemo.Editor
             ShadowBaselineManifest baseline = M07Build.ReadBaseline(session.baselineManifestPath);
             Require(baseline.baselineBuildId == settings.buildId && baseline.runtimeAbiHash == pins.RuntimeAbiHash(),
                 "M07 P05 baseline/source identity differs from the prepared structural context.");
-            ShadowResourceBuildMap map = M07SourceAssets.Ensure(true);
+            ShadowResourceBuildMap map = M07SourceAssets.ValidateExisting(true);
             string resources = Path.Combine(run, "P05-Resources");
             string frozen = ShadowResourceBaseline.Build(new ShadowResourceBuildRequest {
                 outputDirectory = resources, target = target, architecture = settings.architecture, sourcePins = pins,

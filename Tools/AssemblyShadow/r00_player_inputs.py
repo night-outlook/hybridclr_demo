@@ -18,6 +18,7 @@ def verify_inputs(project, fixture_manifest, on_path, off_path, replay_path):
     pins = read_json(project / PINS)
     manifest, baseline, fixtures, rejected, resources = m07.verify_inputs(fixture_manifest)
     require_current_pairing(pins, baseline["sourcePins"], "R00 baseline")
+    m07.prepare_fixture_resources(manifest, baseline, fixtures, resources)
     on = m07.verify_player(on_path, manifest, baseline, resources, "NativeOn")
     off = m07.verify_player(off_path, manifest, baseline, resources, "NativeOff")
     for name, build in (("NativeOn", on), ("NativeOff", off)):

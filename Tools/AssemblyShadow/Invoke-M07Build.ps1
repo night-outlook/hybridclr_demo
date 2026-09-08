@@ -61,6 +61,15 @@ function Invoke-M07GuardedMethod {
     if (Test-UnityProjectRunning -ProjectPath $Project) { throw "$Method returned before its Unity process exited." }
 }
 
+function Assert-M07PinnedInputs {
+    param([string]$Project)
+    $python = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $python) { $python = Get-Command python -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1 }
+    if (-not $python) { throw 'Python is required to verify the real pinned M07 build inputs.' }
+    & $python.Source (Join-Path $Project 'Tools/AssemblyShadow/verify-installed-runtime.py') --project $Project --expect-shadow on --json
+    if ($LASTEXITCODE -ne 0) { throw 'M07 source or installation differs from the pinned build inputs; author and commit inputs before building.' }
+}
+
 function Save-M07OriginalSettings {
     param([string]$Project, [string]$Run)
     if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot capture ProjectSettings while this exact project is open.' }
@@ -166,11 +175,16 @@ $lockPath = Join-Path $parent 'm07-build.lock'
 $workflowLock = [IO.File]::Open($lockPath, [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
 try {
     if (Test-UnityProjectRunning -ProjectPath $shadowProject) { throw 'This project opened while acquiring the M07 workflow lock.' }
+    Assert-M07PinnedInputs $shadowProject
     $common = @('-shadowBaselineId', $BaselineId)
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs' $shadowProject $shadowMethods $TimeoutSec $BuildTarget $common
+    Assert-M07PinnedInputs $shadowProject
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildBaselineResources' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowM07ResourceOutput', $resourceRoot))
+    Assert-M07PinnedInputs $shadowProject
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $onOutput))
+    Assert-M07PinnedInputs $shadowProject
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $offOutput))
+    Assert-M07PinnedInputs $shadowProject
 
     Save-M07OriginalSettings $shadowProject $run
     $stageFailure = $null
@@ -189,7 +203,9 @@ try {
     }
     if ($restoreFailure) { throw "M07 P05 recovery failed. Stage failure: $stageFailure Recovery failure: $restoreFailure" }
     if ($stageFailure) { throw $stageFailure }
+    Assert-M07PinnedInputs $shadowProject
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07StructuralResources.FinalizeFixtures' $shadowProject $shadowMethods $TimeoutSec $BuildTarget @('-shadowValidationRoot', $run)
+    Assert-M07PinnedInputs $shadowProject
 
     $settingsPath = Join-Path $shadowProject 'ProjectSettings/ProjectSettings.asset'
     $backupPath = Join-Path $run 'p05-project-settings.original'
