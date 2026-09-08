@@ -14,7 +14,7 @@ namespace AssemblyShadowDemo
 {
     /// <summary>Hash-bound transaction and evidence boundary for M07.</summary>
     [Preserve]
-    public static class M07Probe
+    public static partial class M07Probe
     {
         internal const int RuntimeAbiVersion = 1;
         internal static readonly string[] Candidates = {

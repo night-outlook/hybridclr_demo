@@ -154,15 +154,14 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
-        public void CoroutineFailureIsWrittenAndEachEnumeratorIsDisposedOnce()
+        public void CoroutineFailureRetainsEvidenceAndUsesOwnedProbeCleanup()
         {
             string runner = File.ReadAllText(RunnerSource);
             StringAssert.Contains("CompleteCoroutineFailure(error)", runner);
             StringAssert.Contains("work = null", runner);
-            int failedDispose = runner.IndexOf("failed.Dispose()", StringComparison.Ordinal);
-            int cleared = runner.IndexOf("work = null", failedDispose, StringComparison.Ordinal);
-            int finalDispose = runner.IndexOf("disposable.Dispose()", cleared, StringComparison.Ordinal);
-            Assert.Greater(failedDispose, 0); Assert.Greater(cleared, failedDispose); Assert.Greater(finalDispose, cleared);
+            // M07BootstrapLifetimeTests executes the detach/dispose ownership
+            // contract, including repeated cleanup and a throwing disposer.
+            StringAssert.Contains("ReleaseProbe(ref work)", runner);
             StringAssert.Contains("FileMode.CreateNew", File.ReadAllText(ProbeSource));
         }
     }

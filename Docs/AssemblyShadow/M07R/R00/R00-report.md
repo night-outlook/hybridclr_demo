@@ -4,6 +4,8 @@ Status: **Not accepted — baseline execution found an intermittent Player shutd
 
 This is an execution record, not a revision of the accepted M00–M07 history. The original review and every historical receipt remain unchanged.
 
+The sections below record the initial checkpoint through `08cd976`. Subsequent implementation and validation are tracked in [R00-continuation.md](R00-continuation.md); R00 acceptance remains pending.
+
 ## Scope and changes
 
 - Created four sibling integration worktrees under `/Users/ah/GitHub/hybridclr/assembly_shadow_r00`, all on `codex/assembly-shadow-r00`.

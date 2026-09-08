@@ -19,20 +19,20 @@ namespace AssemblyShadowDemo
         private IEnumerator Start()
         {
             int exitCode = 2;
+            bool r00 = Array.IndexOf(Environment.GetCommandLineArgs(), "-shadowR00Mode") >= 0;
             IEnumerator work = null;
             try
             {
-                work = M07Probe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code);
+                work = r00
+                    ? M07R00PerformanceProbe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code)
+                    : M07Probe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code);
                 while (true)
                 {
                     bool moved;
                     try { moved = work.MoveNext(); }
                     catch (Exception error)
                     {
-                        exitCode = M07Probe.CompleteCoroutineFailure(error);
-                        var failed = work as IDisposable;
-                        if (failed != null) failed.Dispose();
-                        work = null;
+                        exitCode = r00 ? M07R00PerformanceProbe.CompleteCoroutineFailure(error) : M07Probe.CompleteCoroutineFailure(error);
                         break;
                     }
                     if (!moved) break;
@@ -41,12 +41,28 @@ namespace AssemblyShadowDemo
             }
             finally
             {
-                var disposable = work as IDisposable;
-                if (disposable != null) disposable.Dispose();
+                ReleaseProbe(ref work);
             }
+            // Completed resource iterators retain scene AsyncOperations even
+            // after Dispose. Release the owned chain and clear this coroutine's
+            // Current on another frame before collecting while Unity is live.
+            yield return null;
 #if !UNITY_EDITOR
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            Debug.Log("[AssemblyShadow M07] Completed probe references released; two pre-quit collection cycles completed.");
             Application.Quit(exitCode);
 #endif
+        }
+
+        private static void ReleaseProbe(ref IEnumerator work)
+        {
+            IEnumerator completed = work;
+            work = null;
+            var disposable = completed as IDisposable;
+            if (disposable != null) disposable.Dispose();
         }
     }
 }
