@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6PlayerBuildPairCheckpoint",
+  "status": "PlayersBuiltWorkflowPending",
+  "baselineBuildId": "M07-Baseline-R01-early-v6",
+  "runtimeAbiHash": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "players": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-2ad89701d1c34d29b549d8ff6bba5b70/m07-player-build.json",
+      "sha256": "884621df662ebc585e1653da9f081445e5f753ce9c7310020c4ccaefd702750a",
+      "variant": "NativeOn",
+      "buildGuid": "3b320e36c2374faaaa20112eb2657306",
+      "inputSnapshotHash": "5f857c12f28cdafe6c2b46bc30de9afc41e1544d8fac4b532ceb02aaa5742088",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v6.app/Contents/Frameworks/GameAssembly.dylib",
+      "nativeLibrarySha256": "fc073787477f993cd94ee18591580e1f19ce6d750e0a5dee56e52d39b87d8e9c",
+      "nativeMetadataPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v6.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "nativeMetadataSha256": "92aec8a72db1418d7995cac486580b92144fc46bba5814da23904760864301e9",
+      "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1\""
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-6b3d75aa752446379ee33deec099c8d2/m07-player-build.json",
+      "sha256": "7a4de2c0c6aea184c34ea15ed7be3fd096cebff5c16a9153b51fc3cbffab1d1c",
+      "variant": "NativeOff",
+      "buildGuid": "85fe3f403def4ec2815662c78cbbf423",
+      "inputSnapshotHash": "a3e596ffde24a5676856fccfdff921b5938a38ffb7eb2f9e1da5261cfd1b2e8c",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v6-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+      "nativeLibrarySha256": "303613030b3020d6f0550a9884d34958ef06fdaa9412a0d95fbcde32ca2b8cc6",
+      "nativeMetadataPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v6-NativeOff.app/Contents/Resources/Data/il2cpp_data/Metadata/global-metadata.dat",
+      "nativeMetadataSha256": "92aec8a72db1418d7995cac486580b92144fc46bba5814da23904760864301e9",
+      "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0\""
+    }
+  ],
+  "nativeDebugUuid": "87AD4B01-4A33-4710-9EA6-53F730751DC0",
+  "installVerification": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-installed-verification-1.json",
+    "sha256": "c6b528aa333ad8934c427a574093143e883fea1b7289b53a85cf9ab428798c76",
+    "result": {
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "sourceFiles": 945,
+      "installedFiles": 947,
+      "demoSourceVerified": true,
+      "configuredShadowMode": "on",
+      "receiptSha256": "5197c5575cd775031e7176bed1532929ca8a9b9e15f50b2c21b86d1f36af9f66"
+    }
+  },
+  "milestoneAccepted": false,
+  "pending": [
+    "Final resource fixtures and Editor deterministic replay",
+    "Fresh early11 and M07 14 strict Player evidence",
+    "Actual v6 NativeScript trace",
+    "Unchanged native input audit",
+    "Independent final R01 evidence review"
+  ]
+}
