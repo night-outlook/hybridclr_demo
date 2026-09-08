@@ -149,11 +149,90 @@ size_t checks = 0;
 std::vector<const Il2CppAssembly*> physicalAssemblies;
 std::unordered_map<const Il2CppAssembly*, il2cpp::vm::AssemblyVector> references;
 std::string exceptionMessage;
+size_t managedExceptionConstructionCount = 0;
 
 void Check(bool condition, const char* detail)
 {
     ++checks;
     if (!condition) throw std::runtime_error(detail);
+}
+
+// Native object-layout fixtures only: no GC allocation, ClassInit or managed
+// formatting. The formatter and staging TLS/error helper are production code.
+struct ExceptionMessageFixture
+{
+    std::vector<uint64_t> storage;
+    explicit ExceptionMessageFixture(const std::u16string& value)
+        : storage((offsetof(Il2CppString, chars) + (value.size() + 1) * sizeof(Il2CppChar) + 7) / 8, 0)
+    {
+        Get()->length = static_cast<int32_t>(value.size());
+        std::memcpy(Get()->chars, value.data(), value.size() * sizeof(Il2CppChar));
+    }
+    Il2CppString* Get() { return reinterpret_cast<Il2CppString*>(storage.data()); }
+};
+
+void CheckNativeFailureDetails()
+{
+    using namespace hybridclr::metadata;
+    const size_t constructions = managedExceptionConstructionCount;
+    const std::vector<StagedAssembly*> images;
+    {
+        ScopedStagingResolver scope(images, nullptr, nullptr);
+        Check(AssemblyShadowBridge::IsStaging(), "Real staging TLS is inactive");
+        bool caught = false;
+        try { RaiseBadImageException("Image::ReadType invalid type"); }
+        catch (const StagedMetadataFailure& error)
+        {
+            caught = true;
+            Check(std::string(error.what()) == "Image::ReadType invalid type", "Native carrier lost parser detail");
+        }
+        Check(caught, "Bad-image reporting did not use the typed native carrier");
+        Check(managedExceptionConstructionCount == constructions, "Staging attempted managed exception construction");
+    }
+    Check(!AssemblyShadowBridge::IsStaging(), "Staging TLS leaked after failure");
+    bool ordinaryCaught = false;
+    try { RaiseBadImageException("ordinary bad image"); }
+    catch (const StagedMetadataFailure&) { Check(false, "Native carrier escaped the staging-only boundary"); }
+    catch (const std::runtime_error& error)
+    {
+        ordinaryCaught = true;
+        Check(std::string(error.what()) == "ordinary bad image", "Ordinary adapter lost its managed exception detail");
+    }
+    Check(ordinaryCaught && managedExceptionConstructionCount == constructions + 1,
+        "Ordinary bad-image reporting no longer calls its managed exception constructor");
+
+    ExceptionMessageFixture outerText(u"The type initializer threw an exception.");
+    ExceptionMessageFixture innerText(u"R01-INIT-THROW:AssemblyA.Implementation.Extensibility");
+    Il2CppException outer = {}, inner = {};
+    outer.message = outerText.Get(); inner.message = innerText.Get(); outer.inner_ex = &inner;
+    auto format = [](Il2CppException* value) { return ManagedExceptionDetail(Il2CppExceptionWrapper(value)); };
+    const std::string nested = format(&outer);
+    Check(nested.find("The type initializer") == 0, "Formatter lost outer exception context");
+    Check(nested.find("R01-INIT-THROW:") != std::string::npos, "Formatter lost stored inner failure cause");
+    Check(!format(nullptr).empty(), "Null exception lacks a native fallback");
+    outer.message = nullptr;
+    Check(format(&outer).find("R01-INIT-THROW:") != std::string::npos, "Null outer message hid inner cause");
+    ExceptionMessageFixture emptyText(u""); outer.message = emptyText.Get();
+    Check(format(&outer).find("R01-INIT-THROW:") != std::string::npos, "Empty outer message hid inner cause");
+    inner.inner_ex = &outer;
+    Check(format(&outer).find("[exception chain cycle]") != std::string::npos, "Exception cycle did not terminate explicitly");
+    inner.inner_ex = nullptr;
+    std::vector<Il2CppException> deep(17);
+    for (size_t i = 0; i < deep.size(); ++i)
+    {
+        deep[i].message = outerText.Get();
+        deep[i].inner_ex = i + 1 < deep.size() ? &deep[i + 1] : nullptr;
+    }
+    Check(format(&deep[0]).find("[exception chain depth limit reached]") != std::string::npos,
+        "Deep exception chain lacks bounded traversal marker");
+    std::u16string longText(1023, u'A'); longText.push_back(0xd83d); longText.push_back(0xde00);
+    ExceptionMessageFixture oversized(longText); outer.message = oversized.Get();
+    const std::string truncated = format(&outer);
+    Check(truncated.find("[message truncated]") != std::string::npos, "Large exception message was not bounded");
+    Check(truncated.find("R01-INIT-THROW:") != std::string::npos, "Bounded outer message hid inner cause");
+    Check(truncated.find("\xef\xbf\xbd") == std::string::npos, "Message limit split a UTF16 surrogate pair");
+    Check(managedExceptionConstructionCount == constructions + 1, "Native formatter constructed a managed exception");
+    std::cout << "r01_native_failure_details=pass typedStagingCarrier=1 managedConstructionDuringStaging=0 nativeExceptionChain=1\n";
 }
 
 struct Fixture
@@ -372,7 +451,7 @@ Il2CppException* Exception::GetInvalidOperationException(const char* detail)
     return reinterpret_cast<Il2CppException*>(1);
 }
 Il2CppException* Exception::GetBadImageFormatException(const char* detail)
-{ return GetInvalidOperationException(detail); }
+{ ++managedExceptionConstructionCount; return GetInvalidOperationException(detail); }
 void Exception::Raise(Il2CppException*, MethodInfo*) { throw std::runtime_error(exceptionMessage); }
 void AssemblyShadowVisibility::CollectOrdinaryClasses(std::vector<Il2CppClass*>&, uint64_t& generation)
 { generation = AssemblyShadow::ActiveGeneration(); }
@@ -401,6 +480,7 @@ int main(int argc, char** argv)
         else if (scenario == "poison") CheckPoison(name);
         else if (scenario == "skeleton") CheckPartialOwner(bytes, name);
         else if (scenario == "initializer") CheckPostPublicationInitializerFailure(bytes, name);
+        else if (scenario == "native-failure-details") CheckNativeFailureDetails();
         else throw std::runtime_error("unknown R01 transaction scenario");
         std::cout << "r01_transaction_checks=" << checks << " scenario=" << scenario << " PASS\n";
         return 0;

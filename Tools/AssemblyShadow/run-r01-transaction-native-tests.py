@@ -125,7 +125,8 @@ def execute(args, receipt):
                        "RawImageBase.cpp", "MetadataUtil.cpp", "AssemblyShadowBridge.cpp")]
     runtime_sources = [runtime / "libil2cpp" / name for name in
                        ("vm/AssemblyShadowDiagnostics.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/Runtime.cpp",
-                        "vm/Assembly.cpp", "vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "utils/sha1.cpp")]
+                        "vm/Assembly.cpp", "vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "utils/sha1.cpp",
+                        "utils/StringUtils.cpp")]
     manifest = canonical_file(native / "hybridclr/generated/AssemblyManifest.cpp", "generated AssemblyManifest.cpp")
     sources = [source, manifest, *native_sources, *runtime_sources]
     compiler_version = run([compiler, "--version"], demo, receipt, "compiler-version", args.timeout)
@@ -159,7 +160,7 @@ def execute(args, receipt):
         run([compiler, "-fsanitize=address", "-Wl,-dead_strip", "-Wl,-undefined,dynamic_lookup",
              *objects, baselib, "-o", executable], native, receipt, "link", args.timeout)
         scenarios = []
-        for scenario in ("preowner", "poison", "baseline-use", "validate-failure", "skeleton", "initializer"):
+        for scenario in ("preowner", "poison", "baseline-use", "validate-failure", "skeleton", "initializer", "native-failure-details"):
             output = run([executable, scenario, fixture], native, receipt, "tests", args.timeout)
             marker = re.search(r"^r01_transaction_checks=(\d+) scenario=" + re.escape(scenario) + r" PASS$",
                                output, re.MULTILINE)
@@ -174,6 +175,10 @@ def execute(args, receipt):
                 require("r01_initializer_failure=pass" in output and
                         "syntheticPublication=1" in output,
                         "post-publication initializer marker missing")
+            if scenario == "native-failure-details":
+                require("r01_native_failure_details=pass typedStagingCarrier=1 managedConstructionDuringStaging=0 nativeExceptionChain=1" in output,
+                        "production native failure-detail boundary marker missing")
+                scenarios[-1]["boundary"] = "Production RaiseBadImageException and ScopedStagingResolver with counted managed exception adapter; production ManagedExceptionDetail with native object-layout fixtures. Full Image::ReadType/metadata initialization remains Player evidence."
         after = {path: digest(path) for path in before}
         require(after == before, "read-only input changed during native checks")
         receipt.update({"scenarios": scenarios, "checks": sum(item["checks"] for item in scenarios),
