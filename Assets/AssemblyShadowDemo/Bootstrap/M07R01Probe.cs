@@ -24,7 +24,6 @@ namespace AssemblyShadowDemo
         private const string InternalType = "AssemblyA.Implementation.Internal.InternalEntry";
         private const string CctorType = "AssemblyA.Implementation.Internal.M06ExecutionWitness";
         private const string OrdinaryImageName = "AssemblyShadowBaseline.HotUpdate";
-        private const string SnapshotReceiptName = "assembly-snapshot.json";
         private const string OrdinaryGuardPrefix = "__AssemblyShadowReflectionBinding_";
         private const string PrefabBundleName = "versioned-prefab.bundle";
         private const string StartupObservationGap = "ObserveGap";
@@ -393,22 +392,13 @@ namespace AssemblyShadowDemo
 
         private static byte[] LoadVerifiedOrdinaryImage(Result result, M07Probe.Input input, string phase)
         {
-            string snapshotRoot = Path.GetFullPath(input.player.inputSnapshot);
-            string receiptPath = M07Probe.Confined(snapshotRoot, SnapshotReceiptName);
-            M07Probe.Require(M07Probe.HashFile(receiptPath) == input.player.inputSnapshotHash,
-                "The ON Player compiler snapshot receipt hash differs from its receipt.");
-            InputSnapshotReceipt snapshot = JsonUtility.FromJson<InputSnapshotReceipt>(File.ReadAllText(receiptPath));
-            M07Probe.Require(snapshot != null && snapshot.filteredAssemblies != null,
-                "The ON Player compiler snapshot has no filtered assembly catalog.");
-            InputSnapshotFile[] matches = snapshot.filteredAssemblies.Where(file => file != null &&
-                (file.name == OrdinaryImageName || file.name == OrdinaryImageName + ".dll")).ToArray();
-            M07Probe.Require(matches.Length == 1, "The ON Player compiler snapshot ordinary image is missing or ambiguous.");
-            InputSnapshotFile file = matches[0];
-            string path = M07Probe.Confined(snapshotRoot, file.path);
-            M07Probe.ValidateFile(path, file.sha256);
-            byte[] bytes = File.ReadAllBytes(path);
+            M07R01OrdinarySnapshotBinding.VerifiedImage verified = M07R01OrdinarySnapshotBinding.LoadVerifiedImage(
+                input.player.inputSnapshot, input.player.inputSnapshotHash, input.player.buildGuid,
+                input.player.playerOutput, input.player.nativeLibraryPath, input.player.nativeLibrarySha256,
+                M07Probe.Argument(M07R01OrdinarySnapshotBinding.RawReceiptSha256Argument, ""), OrdinaryImageName);
+            byte[] bytes = verified.bytes;
             result.byteInputs.Add(new ByteInputObservation {
-                phase = phase, assemblyName = OrdinaryImageName, path = path,
+                phase = phase, assemblyName = OrdinaryImageName, path = verified.path,
                 originalLength = bytes.LongLength, actualLength = bytes.LongLength,
                 originalSha256 = M07Probe.Hash(bytes), actualSha256 = M07Probe.Hash(bytes),
                 transformation = "verified ON snapshot filtered ordinary image; M00 fixed guard; no padding"
@@ -708,13 +698,5 @@ namespace AssemblyShadowDemo
             [Preserve] public long originalLength, actualLength;
         }
 
-        [Serializable, Preserve] private sealed class InputSnapshotReceipt
-        {
-            [Preserve] public InputSnapshotFile[] filteredAssemblies;
-        }
-        [Serializable, Preserve] private sealed class InputSnapshotFile
-        {
-            [Preserve] public string name, path, sha256;
-        }
     }
 }

@@ -120,12 +120,14 @@ def main(argv: list[str] | None = None) -> int:
         build = context["off"] if mode == OFF_MODE else context["on"]
         executable = m07.executable_for(build["output"])
         receipt_path = Path(build["path"])
+        snapshot_receipt = Path(build["player"]["inputSnapshot"]) / "assembly-snapshot.json"
         result_path = result_dir / ("r01-" + mode + ".json")
         log_path = output_root / (mode + ".unity.log")
         console_path = output_root / (mode + ".console.log")
         command = [str(executable), "-batchmode", "-nographics",
                    "-shadowR01Mode", mode,
                    "-shadowR01StartupExpectation", args.startup_expectation,
+                   "-shadowR01SnapshotReceiptSha256", m07.digest(snapshot_receipt),
                    "-shadowM07Fixtures", str(args.fixture_manifest),
                    "-shadowM07PlayerReceipt", str(receipt_path),
                    "-shadowR01Result", str(result_path), "-logFile", str(log_path)]

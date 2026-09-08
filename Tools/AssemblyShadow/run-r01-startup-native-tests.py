@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and run the R01 public transaction boundary executable.
+"""Build and run the R01 native startup observation boundary executable.
 
 Each scenario is a fresh process.  The executable includes the production
 AssemblyShadow state machine and staging parser; VM assembly enumeration,
@@ -90,7 +90,7 @@ def repository(root, configured_pin):
 
 
 def execute(args, receipt):
-    require(sys.platform == "darwin", "R01 transaction native tests require macOS clang++/baselib")
+    require(sys.platform == "darwin", "R01 startup native tests require macOS clang++/baselib")
     demo = canonical_dir(args.demo_root, "demo root")
     native = canonical_dir(args.hybridclr_root, "HybridCLR root")
     pins_path = canonical_file(args.pins or demo / "ProjectSettings/AssemblyShadowSourcePins.json", "source pins")
@@ -110,7 +110,7 @@ def execute(args, receipt):
     fixture = canonical_file(args.dll or demo /
                              "HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3/CompilerInputs/Assemblies/AssemblyA.Contracts.dll",
                              "DLL fixture")
-    source = canonical_file(demo / "Tools/AssemblyShadow/native-tests/r01_transaction.cpp", "R01 source")
+    source = canonical_file(demo / "Tools/AssemblyShadow/native-tests/r01_startup.cpp", "R01 source")
     runner = canonical_file(Path(__file__).resolve(), "R01 runner")
     defines = dict(re.findall(r"^#define\s+(HYBRIDCLR_UNITY_[A-Z0-9_]+)\s+(\d+)\s*$",
                               header.read_text(encoding="utf-8"), re.MULTILINE))
@@ -126,8 +126,7 @@ def execute(args, receipt):
     runtime_sources = [runtime / "libil2cpp" / name for name in
                        ("vm/AssemblyShadowDiagnostics.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/Runtime.cpp",
                         "vm/Assembly.cpp", "vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "utils/sha1.cpp")]
-    manifest = canonical_file(native / "hybridclr/generated/AssemblyManifest.cpp", "generated AssemblyManifest.cpp")
-    sources = [source, manifest, *native_sources, *runtime_sources]
+    sources = [source, *native_sources, *runtime_sources]
     compiler_version = run([compiler, "--version"], demo, receipt, "compiler-version", args.timeout)
     receipt.update({"platform": platform.platform(), "architecture": platform.machine(),
                     "sourcePins": pins,
@@ -139,41 +138,38 @@ def execute(args, receipt):
                     "repositories": {"hybridclr": repository(native, pins["hybridclr"]["revision"]),
                                      "il2cppPlus": repository(runtime, pins["il2cppPlus"]["revision"])},
                     "fixture": {"path": str(fixture), "sha256": digest(fixture)},
-                    "boundary": "Production AssemblyShadow transaction API, identity parser and recovery serializer. Physical lookup, image-constructor assembly enumeration, exception and metadata-init/initializer outcomes are explicit native adapters. Managed metadata initialization, Unity and Player publication are outside this standalone process.",
+                    "boundary": "Production AssemblyShadow startup registration, Configure, observation, transaction APIs and recovery serializer. Physical assembly/type-handle lookup and constructor enumeration use explicit native adapters. Heap and metadata lookup failures are injected. Concurrent observation is synchronized inside Configure physical stable lookup. Generated startup schema and names are explicit fixture values. This runner does not execute MetadataCache initialization, full Runtime startup, Unity, GC or Player behavior.",
                     "sourceFiles": [str(path) for path in sources]})
 
-    all_inputs = {pins_path, install_path, header, compiler, baselib, source, runner, fixture, manifest}
+    all_inputs = {pins_path, install_path, header, compiler, baselib, source, runner, fixture}
     for path in sources:
         dependency_output = run([compiler, *flags, "-M", "-MT", "r01", path], native, receipt, "dependencies", args.timeout)
         all_inputs.update(dependency_paths(dependency_output, native))
     before = {path: digest(path) for path in sorted(all_inputs)}
     receipt["sourceFileHashes"] = [{"path": str(path), "sha256": value} for path, value in before.items()]
-    with tempfile.TemporaryDirectory(prefix="assembly-shadow-r01-transaction-") as temp_name:
+    build_parent = demo / "_temp/AssemblyShadow/R01"
+    build_parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="startup-native-build-", dir=build_parent) as temp_name:
         temp = Path(temp_name)
         objects = []
         for index, path in enumerate(sources):
             obj = temp / f"source-{index}.o"
             run([compiler, *flags, "-c", path, "-o", obj], native, receipt, "compile", args.timeout)
             objects.append(obj)
-        executable = temp / "r01-transaction"
+        executable = temp / "r01-startup"
         run([compiler, "-fsanitize=address", "-Wl,-dead_strip", "-Wl,-undefined,dynamic_lookup",
              *objects, baselib, "-o", executable], native, receipt, "link", args.timeout)
         scenarios = []
-        for scenario in ("preowner", "poison", "baseline-use", "validate-failure", "skeleton", "initializer"):
-            output = run([executable, scenario, fixture], native, receipt, "tests", args.timeout)
-            marker = re.search(r"^r01_transaction_checks=(\d+) scenario=" + re.escape(scenario) + r" PASS$",
+        for scenario in ("tracking", "empty", "retry", "failed-retry", "missing", "duplicate", "bad-name", "missing-handle", "duplicate-handle", "allocation", "unknown", "heap-allocation", "validate", "published-retry", "schema"):
+            output = run((["/usr/bin/env", "R01_BAD_SCHEMA=1"] if scenario == "schema" else []) + [executable, scenario, fixture], native, receipt, "tests", args.timeout)
+            marker = re.search(r"^r01_startup_checks=(\d+) scenario=" + re.escape(scenario) + r" PASS$",
                                output, re.MULTILINE)
             require(marker is not None, f"{scenario}: native pass marker missing")
             scenarios.append({"scenario": scenario, "checks": int(marker[1]),
                               "outputSha256": hashlib.sha256(output.encode()).hexdigest()})
-            if scenario == "skeleton":
-                require("r01_skeleton_outcome=partial-owner" in output,
-                        "synthetic partial-owner boundary marker missing")
-                scenarios[-1]["ownerBoundary"] = "synthetic-partial-owner"
-            if scenario == "initializer":
-                require("r01_initializer_failure=pass" in output and
-                        "syntheticPublication=1" in output,
-                        "post-publication initializer marker missing")
+            if scenario == "published-retry":
+                require("r01_initializer_failure=pass" in output and "syntheticPublication=1" in output,
+                        "post-publication retry boundary marker missing")
         after = {path: digest(path) for path in before}
         require(after == before, "read-only input changed during native checks")
         receipt.update({"scenarios": scenarios, "checks": sum(item["checks"] for item in scenarios),
@@ -198,7 +194,7 @@ def main():
     output = args.output.expanduser().resolve()
     require(not output.exists() and not output.is_symlink(), f"output already exists: {output}")
     require(output.parent.is_dir(), f"output parent does not exist: {output.parent}")
-    receipt = {"schemaVersion": 1, "kind": "R01AssemblyShadowTransactionNative",
+    receipt = {"schemaVersion": 1, "kind": "R01AssemblyShadowStartupNative",
                "success": False, "result": "Failed",
                "startedUtc": dt.datetime.now(dt.timezone.utc).isoformat(), "commands": []}
     try:

@@ -727,6 +727,7 @@ def verify_suite(launch_path: Path, expected_startup: str = STARTUP_EARLY_GUARD)
                 mode + ": launcher logs are missing")
         expected_command = [str(runner.executable_for(build["output"])), "-batchmode", "-nographics",
                             "-shadowR01Mode", mode, "-shadowR01StartupExpectation", expected_startup,
+                            "-shadowR01SnapshotReceiptSha256", digest(Path(build["player"]["inputSnapshot"]) / "assembly-snapshot.json"),
                             "-shadowM07Fixtures", str(fixture_path), "-shadowM07PlayerReceipt", str(build["path"]),
                             "-shadowR01Result", str(result_path), "-logFile", row["logPath"]]
         exact(row["command"], expected_command, mode + ".command")

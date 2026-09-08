@@ -34,6 +34,9 @@ class R01LaunchPipelineTests(unittest.TestCase):
             _,r,context,on=fixture(root,mode,expectation);templates[mode]=r
         (root/'Assets/AssemblyShadowDemo').mkdir(parents=True)
         (root/'_temp/AssemblyShadow').mkdir(parents=True)
+        snapshot_receipt = root/'Inputs/assembly-snapshot.json'
+        snapshot_receipt.write_text(json.dumps(dict(snapshotHash=on['player']['inputSnapshotHash'], filteredAssemblies=on['snapshot']['filteredAssemblies'])))
+        self.assertNotEqual(gate.digest(snapshot_receipt), on['player']['inputSnapshotHash'])
         resources=root/'Resources';resources.mkdir();(resources/'resource').write_text('resource')
         scratch=root/'ReplayScratch';scratch.mkdir();(scratch/'proof').write_text('proof')
         native=root/'native';native.write_text('native')
@@ -57,6 +60,7 @@ class R01LaunchPipelineTests(unittest.TestCase):
         context.update(on=on,off=off,sourcePins=dict(testOnly='upstream-admission-substituted'),baseline=dict(nativeBudgetCapabilityVersion=1))
         out=root/'_temp/AssemblyShadow/Run'
         def run(command,cwd,console_path,timeout):
+            self.assertEqual(command[command.index('-shadowR01SnapshotReceiptSha256')+1],gate.digest(snapshot_receipt))
             mode=command[command.index('-shadowR01Mode')+1];r=copy.deepcopy(templates[mode]);build=off if mode==gate.OFF_MODE else on
             path=Path(command[command.index('-shadowR01Result')+1]);r.update(resultPath=str(path),processId=1000+gate.MODES.index(mode),buildGuid=build['player']['buildGuid'],
                  playerBuildReceiptPath=str(build['path']),playerBuildReceiptSha256=gate.digest(build['path']),fixtureManifestSha256=gate.digest(fixture_path),baselineManifestSha256=gate.digest(baseline_path))
@@ -77,12 +81,15 @@ class R01LaunchPipelineTests(unittest.TestCase):
             with self.subTest(expectation=expectation),tempfile.TemporaryDirectory() as temp:
                 launch,context=self.round_trip(Path(temp),expectation)
                 original=json.loads(launch.read_text())
-                for mutation in ('diagnosticOnly','inputHash','receiptAlias','processReuse'):
+                for mutation in ('diagnosticOnly','inputHash','receiptAlias','processReuse','rawSnapshotHash'):
                     bad=copy.deepcopy(original)
                     if mutation=='diagnosticOnly':bad['diagnosticOnly']=not bad['diagnosticOnly']
                     elif mutation=='inputHash':
                         key=next(iter(bad['inputHashesBefore']));bad['inputHashesBefore'][key]='0'*64;bad['inputHashesAfter'][key]='0'*64
                     elif mutation=='receiptAlias':bad['onBuildReceiptPath']=str(Path(bad['onBuildReceiptPath']).parent)+'/./player.json'
+                    elif mutation=='rawSnapshotHash':
+                        command=bad['processLaunches'][0]['command']
+                        command[command.index('-shadowR01SnapshotReceiptSha256')+1]=context['on']['player']['inputSnapshotHash']
                     else:bad['processLaunches'][1]['processId']=bad['processLaunches'][0]['processId']
                     launch.write_text(json.dumps(bad))
                     with self.subTest(mutation=mutation),patch.object(gate,'verify_inputs',return_value=context),self.assertRaises(VerificationError):gate.verify_suite(launch,expectation)

@@ -21,11 +21,15 @@ namespace AssemblyShadowDemo
             int exitCode = 2;
             bool r00 = Array.IndexOf(Environment.GetCommandLineArgs(), "-shadowR00Mode") >= 0;
             bool r01 = Array.IndexOf(Environment.GetCommandLineArgs(), "-shadowR01Mode") >= 0;
+            bool r01Failure = Array.IndexOf(Environment.GetCommandLineArgs(), "-shadowR01FailureMode") >= 0;
             IEnumerator work = null;
             try
             {
-                if (r00 && r01) throw new InvalidOperationException("M07 R00 and R01 modes cannot run together.");
-                work = r01
+                if ((r00 ? 1 : 0) + (r01 ? 1 : 0) + (r01Failure ? 1 : 0) > 1)
+                    throw new InvalidOperationException("M07 revision modes cannot run together.");
+                work = r01Failure
+                    ? R01FailureProbe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code)
+                    : r01
                     ? M07R01Probe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code)
                     : r00
                     ? M07R00PerformanceProbe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code)
@@ -36,7 +40,7 @@ namespace AssemblyShadowDemo
                     try { moved = work.MoveNext(); }
                     catch (Exception error)
                     {
-                        exitCode = r01 ? M07R01Probe.CompleteCoroutineFailure(error) : r00 ? M07R00PerformanceProbe.CompleteCoroutineFailure(error) : M07Probe.CompleteCoroutineFailure(error);
+                        exitCode = r01Failure ? R01FailureProbe.CompleteCoroutineFailure(error) : r01 ? M07R01Probe.CompleteCoroutineFailure(error) : r00 ? M07R00PerformanceProbe.CompleteCoroutineFailure(error) : M07Probe.CompleteCoroutineFailure(error);
                         break;
                     }
                     if (!moved) break;
