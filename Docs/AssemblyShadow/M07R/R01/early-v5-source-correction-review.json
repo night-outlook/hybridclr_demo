@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV5SourceCorrectionReview",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "c2c908c5a11ce65aabb0da75b512923f709277c1",
+      "localPath": "."
+    }
+  },
+  "runtimeAbiHash": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "verdict": "Passed",
+  "scope": "Bounded native error-path correction; not R01 acceptance",
+  "findings": [
+    {
+      "id": "V4-MetadataErrorConstruction",
+      "status": "fixed",
+      "cause": "BadImageFormatException construction invoked forbidden managed code inside the private resolver, masking the original parser failure as20.",
+      "fix": "Typed staging-only native carrier preserves original parser detail as13 without bypassing the guard."
+    },
+    {
+      "id": "V4-InitializerRootCause",
+      "status": "fixed",
+      "cause": "Formatter discarded the stored inner TypeInitializationException cause.",
+      "fix": "Read native exception chain with cycle/depth/message bounds; preserve durable19 and outer context."
+    }
+  ],
+  "nativeRegression": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-failure-detail-correction-2.json",
+    "sha256": "7e353593e496892805e10921e8e81a59af7a5c494bc7b7ad0e8650a2edc72051",
+    "checks": 131,
+    "newChecks": 22,
+    "sourceInputs": 1069,
+    "inputsUnchanged": true,
+    "scope": "Actual staging TLS/error helper and exception formatter; metadata initialization and publication remain explicit adapters."
+  },
+  "failedHarnessAttempt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-failure-detail-correction-1.json",
+  "harnessCorrection": "Link actual utils/StringUtils.cpp required by the newly exercised formatter. No conversion stub.",
+  "onOffSyntax": {
+    "reportedChecks": 6,
+    "agent": "r01_ordinary_guard_gpt6astra_high_1",
+    "independentlyReviewed": false
+  },
+  "milestoneAccepted": false,
+  "H1Passed": false,
+  "pending": [
+    "Fresh pinned installation and generated definitions",
+    "New ON/OFF Players, fixtures and replay",
+    "All11 strict early Player modes and14 M07 resource modes",
+    "Fresh native public-API stack binding",
+    "Affected native regressions",
+    "Independent R01 stage review"
+  ]
+}
