@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyPairDiagnostic",
+  "acceptance": "NotAccepted",
+  "gate": "H1NotReached",
+  "launchReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-current-pair-v1/r01-player-launches.json",
+  "launchReceiptSha256": "40c1102ed211006d14f782cee82625fe9bca9469afe0de84f8e6896dd84ec345",
+  "inputsUnchanged": true,
+  "inputCount": 16840,
+  "processes": [
+    {
+      "mode": "R01-P03-Control",
+      "pid": 82751,
+      "exitCode": 1,
+      "producerPassed": false
+    },
+    {
+      "mode": "R01-P03-OrdinaryFirst",
+      "pid": 82757,
+      "exitCode": 1,
+      "producerPassed": false
+    },
+    {
+      "mode": "R01-P03-OrdinaryAfterReserve",
+      "pid": 82763,
+      "exitCode": 1,
+      "producerPassed": false
+    },
+    {
+      "mode": "R01-P03-Oversize",
+      "pid": 82775,
+      "exitCode": 0,
+      "producerPassed": true
+    },
+    {
+      "mode": "R01-P03-Mismatch",
+      "pid": 82908,
+      "exitCode": 0,
+      "producerPassed": true
+    },
+    {
+      "mode": "R01-PreConfigure-Type",
+      "pid": 82960,
+      "exitCode": 0,
+      "producerPassed": true
+    },
+    {
+      "mode": "R01-PreConfigure-Object",
+      "pid": 82968,
+      "exitCode": 0,
+      "producerPassed": true
+    },
+    {
+      "mode": "R01-PreConfigure-Cctor",
+      "pid": 82993,
+      "exitCode": 0,
+      "producerPassed": true
+    },
+    {
+      "mode": "R01-PreConfigure-NativePrefab",
+      "pid": 83011,
+      "exitCode": 0,
+      "producerPassed": true
+    },
+    {
+      "mode": "R01-FeatureOff",
+      "pid": 83028,
+      "exitCode": 0,
+      "producerPassed": true
+    }
+  ],
+  "controlFirstUses": [
+    {
+      "name": "AssemblyA.Contracts",
+      "kind": "AssemblyReflection",
+      "detail": "Image::ClassFromName.input FirstUseSequence=1",
+      "type": "",
+      "thread": 18199233411598851025,
+      "timestamp": 1135725383243375
+    },
+    {
+      "name": "AssemblyA.Implementation.Extensibility",
+      "kind": "AssemblyReflection",
+      "detail": "Image::ClassFromName.input FirstUseSequence=3",
+      "type": "",
+      "thread": 18199233411598851025,
+      "timestamp": 1135725384748791
+    },
+    {
+      "name": "AssemblyA.Implementation.Internal",
+      "kind": "AssemblyReflection",
+      "detail": "Image::ClassFromName.input FirstUseSequence=2",
+      "type": "",
+      "thread": 18199233411598851025,
+      "timestamp": 1135725383785291
+    },
+    {
+      "name": "AssemblyShadowDemo.ContractsConsumer",
+      "kind": "AssemblyReflection",
+      "detail": "Image::ClassFromName.input FirstUseSequence=4",
+      "type": "",
+      "thread": 18199233411598851025,
+      "timestamp": 1135725386261000
+    },
+    {
+      "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+      "kind": "AssemblyReflection",
+      "detail": "Image::ClassFromName.input FirstUseSequence=5",
+      "type": "",
+      "thread": 18199233411598851025,
+      "timestamp": 1135725387541500
+    }
+  ],
+  "findings": [
+    {
+      "issue": "Untouched control rejected BaselineAlreadyUsed from pre-Configure Image::ClassFromName.input records",
+      "status": "Native caller and subsequent class activity under debugger investigation; no whitelist or history clearing"
+    },
+    {
+      "issue": "Ordinary probe selected filtered compiler DLL instead of captured M00 FixedAssemblyBytes image",
+      "status": "Confirmed probe selection defect; correction in progress"
+    }
+  ],
+  "limitations": [
+    "Seven producer Passed values are not seven strict acceptance passes: startup-negative causality is confounded by pre-existing use records",
+    "Q04 metadata failure and initializer publication experiments deferred until untouched control is valid",
+    "Fresh corrected executable pairing and regressions required"
+  ]
+}

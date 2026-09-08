@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01StartupBlockerEvidence",
+  "date": "2026-09-08",
+  "milestoneStatus": "BlockedNotAccepted",
+  "humanGate": "H1NotReached",
+  "nextMilestoneAllowed": false,
+  "repositories": [
+    {
+      "repository": "hybridclr_demo",
+      "head": "d72726063e459e22a4b742c329570975b31fde05",
+      "branch": "codex/assembly-shadow-r01",
+      "workingTree": "M Assets/AssemblyShadowDemo/Bootstrap/M07R01OrdinarySnapshotBinding.cs\n M Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs\n M Assets/AssemblyShadowDemo/Tests/Editor/M07R01OrdinarySnapshotBindingTests.cs\n M Tools/AssemblyShadow/r01_results.py\n M Tools/AssemblyShadow/tests/test_r01_launch_pipeline.py\n M Tools/AssemblyShadow/tests/test_r01_pipeline.py\n M Tools/AssemblyShadow/tests/test_r01_results.py\n?? Docs/AssemblyShadow/M07R/R01/early-pair-diagnostic.json\n?? Docs/AssemblyShadow/M07R/R01/early-source-changes.json\n?? Docs/AssemblyShadow/M07R/R01/early-source-review.json"
+    },
+    {
+      "repository": "hybridclr",
+      "head": "99ed95d58c7d976e5fd05257a4fe735ce0ee3813",
+      "branch": "codex/assembly-shadow-r01",
+      "workingTree": ""
+    },
+    {
+      "repository": "hybridclr_unity",
+      "head": "9f5d288e36f60c35420878f5796798b2dfa34de7",
+      "branch": "codex/assembly-shadow-r01",
+      "workingTree": ""
+    },
+    {
+      "repository": "il2cpp_plus",
+      "head": "5e9a1a93b530888fa41603e40c29e049a3914ea6",
+      "branch": "codex/assembly-shadow-r01",
+      "workingTree": ""
+    }
+  ],
+  "workingSourceFiles": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/M07R01OrdinarySnapshotBinding.cs",
+      "sha256": "b8586b519ce8f2cbaef677cd29a8d5df933907e10d05ee47d3c270ad78612bb0",
+      "bytes": 14017
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs",
+      "sha256": "95d4a8f12512beb16d466a4f51e9719513fc7ffd7d123aca1d28e232bcb0ca93",
+      "bytes": 46428
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Assets/AssemblyShadowDemo/Tests/Editor/M07R01OrdinarySnapshotBindingTests.cs",
+      "sha256": "d1f3467d949b491e12a67bfe345107c47762e48eef54d8b709bc938cf59c2834",
+      "bytes": 19383
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/r01_results.py",
+      "sha256": "847eed8dd947e133fa6cff0f00a992ba30768d61bbe2837ef42cacc40af055de",
+      "bytes": 49826
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/tests/test_r01_launch_pipeline.py",
+      "sha256": "112e6c9412f3847459398edd0925a4c8b881b8d1df85075ef5f050a4c7014c1e",
+      "bytes": 7504
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/tests/test_r01_pipeline.py",
+      "sha256": "e1509aba1ec6e2ae57dc620bdd18272b16cb01d44e8bdc2a5290924824e531b8",
+      "bytes": 17197
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/tests/test_r01_results.py",
+      "sha256": "7e13d3be97143fd12153d607093be959966869c86184225d38a0ba63b31c1257",
+      "bytes": 8442
+    }
+  ],
+  "executedPair": {
+    "baselineBuildId": "M07-Baseline-R01-early-v1",
+    "runtimeAbiHash": "33bcf290b4e70420668494d5bb7119619413df25a66ec13b6c4ad6f410cca3a7",
+    "buildGuid": "dedb05933b3443f68ad412c5e522de9c",
+    "nativeLibrarySha256": "c6c3640a43d66d62c21e1f4e5fb00d81c2152b1dbcaced57e961c88edacdc361",
+    "nativeMetadataSha256": "ae809d0ca2a7dd21a1928205cd1bce7d98235af9e3a99b82a5b62054e8ab9a19",
+    "playerBuildReceiptSha256": "ae4836f746406e842fe38a29d18b9c520f4323af1265e625d5268ce8c4c71f1c",
+    "playerInputSnapshotSha256": "597d13799cbb5bc4ac3ea0ed502ac6fcc401052a7bef6965ba528d2a0555705d"
+  },
+  "executedDemoSource": "94457105b6f37b9e180e9cc16b73e526e999ea34",
+  "ordinaryCorrectionIncludedInExecutedPlayer": false,
+  "capture": {
+    "pid": 85569,
+    "playerExitCode": 1,
+    "result": "Failed",
+    "failure": "Validate returned BaselineAlreadyUsed; no commit",
+    "state": "Staged",
+    "eventCounts": {
+      "capture-setup": 1,
+      "record-use": 220,
+      "lookup-input": 22,
+      "lookup-return": 22,
+      "configure-entry": 1
+    },
+    "catalog": {
+      "artifact": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v1.app/Contents/Resources/Data/globalgamemanagers.assets",
+      "sha256": "0a8158a90e387544344e70224a445c654111cd9fc25c3822358d53df879c1cbd",
+      "unityVersion": "2022.3.62f2",
+      "objectCount": 1757,
+      "monoScriptCount": 1670,
+      "candidateCount": 22,
+      "eventCounts": {
+        "capture-setup": 1,
+        "record-use": 220,
+        "lookup-input": 22,
+        "lookup-return": 22,
+        "configure-entry": 1
+      },
+      "allCandidateLookupsMatchArtifactOrder": true,
+      "allCandidateReturnsNonNull": true,
+      "candidateRecords": [
+        {
+          "pathId": 160,
+          "offset": 52456,
+          "size": 124,
+          "assetName": "AssemblyAContractVersion",
+          "image": "AssemblyA.Contracts",
+          "namespace": "AssemblyA.Contracts",
+          "name": "AssemblyAContractVersion"
+        },
+        {
+          "pathId": 186,
+          "offset": 55600,
+          "size": 116,
+          "assetName": "M06ExecutionWitness",
+          "image": "AssemblyA.Contracts",
+          "namespace": "AssemblyA.Contracts",
+          "name": "M06ExecutionWitness"
+        },
+        {
+          "pathId": 196,
+          "offset": 56848,
+          "size": 156,
+          "assetName": "M07SceneOnlyComponent",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "M07SceneOnlyComponent"
+        },
+        {
+          "pathId": 204,
+          "offset": 57952,
+          "size": 108,
+          "assetName": "IM07ManagedNode",
+          "image": "AssemblyA.Contracts",
+          "namespace": "AssemblyA.Contracts",
+          "name": "IM07ManagedNode"
+        },
+        {
+          "pathId": 260,
+          "offset": 64968,
+          "size": 140,
+          "assetName": "M07ResourceTypes",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "M07NestedPayload"
+        },
+        {
+          "pathId": 281,
+          "offset": 67584,
+          "size": 164,
+          "assetName": "VersionedComponentBase",
+          "image": "AssemblyA.Implementation.Extensibility",
+          "namespace": "AssemblyA.Implementation.Extensibility",
+          "name": "VersionedComponentBase"
+        },
+        {
+          "pathId": 428,
+          "offset": 85672,
+          "size": 140,
+          "assetName": "ContractsConsumer",
+          "image": "AssemblyShadowDemo.ContractsConsumer",
+          "namespace": "AssemblyShadowDemo.Consumers",
+          "name": "ContractsConsumer"
+        },
+        {
+          "pathId": 468,
+          "offset": 90688,
+          "size": 108,
+          "assetName": "M07InlineValue",
+          "image": "AssemblyA.Contracts",
+          "namespace": "AssemblyA.Contracts",
+          "name": "M07InlineValue"
+        },
+        {
+          "pathId": 479,
+          "offset": 92112,
+          "size": 164,
+          "assetName": "VersionedScriptableObject",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "VersionedScriptableObject"
+        },
+        {
+          "pathId": 545,
+          "offset": 100496,
+          "size": 148,
+          "assetName": "M07ManagedGraphAsset",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "M07ManagedGraphAsset"
+        },
+        {
+          "pathId": 546,
+          "offset": 100648,
+          "size": 148,
+          "assetName": "M06ExecutionWitness",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "M06ExecutionWitness"
+        },
+        {
+          "pathId": 560,
+          "offset": 102464,
+          "size": 100,
+          "assetName": "DemoValue",
+          "image": "AssemblyA.Contracts",
+          "namespace": "AssemblyA.Contracts",
+          "name": "DemoValue"
+        },
+        {
+          "pathId": 620,
+          "offset": 110168,
+          "size": 152,
+          "assetName": "DerivedExternalComponent",
+          "image": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "namespace": "AssemblyShadowDemo.Consumers",
+          "name": "DerivedExternalComponent"
+        },
+        {
+          "pathId": 699,
+          "offset": 120368,
+          "size": 156,
+          "assetName": "M07RenameProbeComponent",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "M07RenameProbeComponent"
+        },
+        {
+          "pathId": 822,
+          "offset": 135600,
+          "size": 140,
+          "assetName": "InternalEntry",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "InternalEntry"
+        },
+        {
+          "pathId": 853,
+          "offset": 139472,
+          "size": 148,
+          "assetName": "M07UnityPathProbe",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "M07UnityPathProbe"
+        },
+        {
+          "pathId": 924,
+          "offset": 148424,
+          "size": 148,
+          "assetName": "M06ExecutionWitness",
+          "image": "AssemblyShadowDemo.ContractsConsumer",
+          "namespace": "AssemblyShadowDemo.Consumers",
+          "name": "ContractsM06ExecutionWitness"
+        },
+        {
+          "pathId": 1045,
+          "offset": 163392,
+          "size": 156,
+          "assetName": "M06ExecutionWitness",
+          "image": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "namespace": "AssemblyShadowDemo.Consumers",
+          "name": "ExtensibilityM06ExecutionWitness"
+        },
+        {
+          "pathId": 1188,
+          "offset": 181552,
+          "size": 156,
+          "assetName": "R00PerformanceWitness",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "R00PerformanceWitness"
+        },
+        {
+          "pathId": 1199,
+          "offset": 182880,
+          "size": 156,
+          "assetName": "M06ExecutionWitness",
+          "image": "AssemblyA.Implementation.Extensibility",
+          "namespace": "AssemblyA.Implementation.Extensibility",
+          "name": "M06ExecutionWitness"
+        },
+        {
+          "pathId": 1293,
+          "offset": 194792,
+          "size": 156,
+          "assetName": "VersionedPrefabComponent",
+          "image": "AssemblyA.Implementation.Internal",
+          "namespace": "AssemblyA.Implementation.Internal",
+          "name": "VersionedPrefabComponent"
+        },
+        {
+          "pathId": 1712,
+          "offset": 247672,
+          "size": 116,
+          "assetName": "IVersionTextProvider",
+          "image": "AssemblyA.Contracts",
+          "namespace": "AssemblyA.Contracts",
+          "name": "IVersionTextProvider"
+        }
+      ]
+    },
+    "frameVerification": "RecordBaselineUse+0x9c, saved arguments fp-0x18/-0x1c/-0x28/-0x30; symbols/registers only; stale DWARF ignored",
+    "limitations": [
+      "Debugger timings are diagnostic, not performance data.",
+      "Candidate metadata/native cache use is proven; mixed-world execution is not proven.",
+      "Artifact parser is scoped to the captured Unity v22 format and does not decode MonoManager reference edges.",
+      "Earlier interrupted/failed debugger attempts are retained and are not successful controls."
+    ]
+  },
+  "validation": {
+    "python": {
+      "result": "Passed",
+      "tests": 400,
+      "seconds": 57.472,
+      "skipped": 0,
+      "log": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/python-tests-fixed-image-1.log",
+        "sha256": "2a006106c8208b793cdca8dc30255158875db5e1dcbefcad8d6cb6ccf113d0c3",
+        "bytes": 64622
+      }
+    },
+    "unityEditor": {
+      "result": "Passed",
+      "tests": 292,
+      "skipped": 0,
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-56ecb45489ce41ebb44cd4d62c87ede7/results.xml",
+        "sha256": "5f736e2ebcbd131c309d866e90e145bb529374f7b9f18bbe3c841610e09465ea",
+        "bytes": 196854
+      }
+    },
+    "newCorrectedPlayer": "NotRun",
+    "stageAcceptance": "Failed control blocks startup negatives, Q04/initializer matrix and affected Player regressions"
+  },
+  "review": [
+    {
+      "id": "fixed-image-selection",
+      "status": "FixedSourceReviewed",
+      "description": "Use hash-bound captured M00 FixedAssemblyBytes image; retain filtered provider provenance and unchanged generated guard."
+    },
+    {
+      "id": "fixture-initialization",
+      "status": "FixedReviewedValidated",
+      "description": "Initial configuration write must not dereference the uninitialized snapshot."
+    },
+    {
+      "id": "fixture-path-shadowing",
+      "status": "FixedReviewedValidated",
+      "description": "Rename outer contract path to avoid nested fixture instance field shadowing in static builder."
+    },
+    {
+      "id": "pre-configure-global-catalog",
+      "status": "ConfirmedScopeDecisionRequired",
+      "description": "Global MonoScript activation materializes physical candidate classes before managed Configure; no guard weakening or packaging transform applied."
+    }
+  ],
+  "capacityTarget": "NotProvided; R01B trigger unresolved",
+  "evidenceArchive": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/startup-blocker-evidence-v1.tar.gz",
+    "sha256": "39fcae9fdc66fbebc944897795f639b03a90e7cd00f0ba6efaffa1635f56a0b7",
+    "bytes": 441502
+  },
+  "archiveMembers": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-173f418b7827417a96cf83803c38f3b2/unity.log",
+      "sha256": "ae7b327a49e0d7925a26fcfb2a066280b0c3be2bee36924c58d496d3a7e22965",
+      "bytes": 71557
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-56ecb45489ce41ebb44cd4d62c87ede7/results.xml",
+      "sha256": "5f736e2ebcbd131c309d866e90e145bb529374f7b9f18bbe3c841610e09465ea",
+      "bytes": 196854
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-56ecb45489ce41ebb44cd4d62c87ede7/unity.log",
+      "sha256": "f07a8cac65f44d8d02031d95d41fd9e815c8ccfe8d2d5a6d087865114c89199c",
+      "bytes": 295140
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/demo-editor-fixed-image-1.log",
+      "sha256": "269a54f434a4673f7374ba85c5f0ebe2aedf597b4bfcdc548631440adf4cd713",
+      "bytes": 710
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/demo-editor-fixed-image-2.log",
+      "sha256": "73561ac8b48548059f7f245193228a27adcd6387f8eff4c63810f5eef9016138",
+      "bytes": 401
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/python-tests-fixed-image-1.log",
+      "sha256": "2a006106c8208b793cdca8dc30255158875db5e1dcbefcad8d6cb6ccf113d0c3",
+      "bytes": 64622
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/write-startup-blocker-evidence.py",
+      "sha256": "3792a63f0d7ed0b41ff49ece8151a226aeb4b7e4be4b565ef011981cc11ab1b6",
+      "bytes": 4861
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v1/command.json",
+      "sha256": "91fe6b01755e6ca9f6c5c32ee5559d9a017ea0a82439c1fffeaaec7efe5996d8",
+      "bytes": 1052
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v1/commands.lldb",
+      "sha256": "2ceca01a00890af615dc01a90f6a34a0eda9d89a049747b7f393f29e4ed10ac1",
+      "bytes": 1562
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v1/debugger.log",
+      "sha256": "908b265e7a36d874de3530cc2ebb0f31d57dcdeecd81718213f00a0b810023b4",
+      "bytes": 2470
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v1/trace.py",
+      "sha256": "51e2712ba39616840a90d007debf8725aa06f43d8b447c9979d07a8b02c58ff2",
+      "bytes": 2587
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v2/command.json",
+      "sha256": "6b8f987b923ce4283c413d24e38634485aba126cd5df637f02ad3b8148ba472e",
+      "bytes": 1052
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v2/commands.lldb",
+      "sha256": "c3f27dd37dabc567d7bdb927192e7a21a281618b9b4b718b80616463e3d45b2e",
+      "bytes": 1565
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v2/debugger.log",
+      "sha256": "5a15f6c65eb2d6f9ad5842efa7f930558166f87f002028ea8d2c177c65c771b0",
+      "bytes": 127487
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v2/player.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v2/trace.py",
+      "sha256": "51e2712ba39616840a90d007debf8725aa06f43d8b447c9979d07a8b02c58ff2",
+      "bytes": 2587
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v3/command.json",
+      "sha256": "d16237997952cbf2f215fea5ac90786666266b76182f57cbcebbe00741969240",
+      "bytes": 1052
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v3/commands.lldb",
+      "sha256": "2a6e66cbeebc3ddf976665de0372f7924d8d2c1301a82f5443a696c6591443d0",
+      "bytes": 1565
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v3/debugger.log",
+      "sha256": "e9f275028fcb63c0c3c9a94b9a996bf210333a84ce90ec07607d4ae46974d260",
+      "bytes": 126764
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v3/player.log",
+      "sha256": "c0aef9c800616fad33420d5e85222baed34b9a7737d02d232792cee766af26c2",
+      "bytes": 826496
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v3/trace.py",
+      "sha256": "c62ecd599c175efa9e6f96a94406ca26d807cd23f2716c156976d0a3bd2ae57d",
+      "bytes": 2541
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v4/command.json",
+      "sha256": "3e909795aaf27da816388bdecf24459c09a6241a9bc90809a1c7d54d246f0032",
+      "bytes": 1052
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v4/commands.lldb",
+      "sha256": "9eaf167fe021acf2431919444ad2ca3d4f290bda07005fdbcdb01932f24fa76a",
+      "bytes": 1586
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v4/debugger.log",
+      "sha256": "92977fd110b376b84e8b180477fc56269231143c95a7b878dbca5c70296f2109",
+      "bytes": 127820
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v4/events.jsonl",
+      "sha256": "995c27512959f1446bbafde35fdc1e9d95f298a62135737ff41fe7dd19e6d86a",
+      "bytes": 24132
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v4/player.log",
+      "sha256": "91cfe6535ad16b7b927294e973f764999147fe3c21c8312c69f7d4e449b912db",
+      "bytes": 551375
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v4/trace.py",
+      "sha256": "d1a87a8c8e48e4074f5bd0ed08759264f4132bb554f04535e4170425080afa5f",
+      "bytes": 2610
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/command.json",
+      "sha256": "9f9839b90370588063386dd83fd10df3d9a397986d05ec6c7bf361955a26027f",
+      "bytes": 1052
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/commands.lldb",
+      "sha256": "45dc392e0c5ace1c3956480d29a0e88c7ac18d7eb8223fc6a0bfe93a714f3c7c",
+      "bytes": 1613
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/debugger.log",
+      "sha256": "e58f9d1b631a4e186348df7a31a25336e8a15774dfe35fb190defa041af0ab12",
+      "bytes": 127848
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/events.jsonl",
+      "sha256": "1adac727dc9b572ff2de9133d63b635cc0c70b8024f3b2221970b24d791ee7df",
+      "bytes": 744544
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/interruption.json",
+      "sha256": "5309af2c88bf31c80e9c15936b1a74652a8a1fc29eb5f51857d60903fdf2bdce",
+      "bytes": 198
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/player.log",
+      "sha256": "c4b98b96c2e7dae58cb5a3e8e6ffbb497b08b7450bd48d0dc32a4c1903095eb4",
+      "bytes": 790477
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/record-use-disassembly.log",
+      "sha256": "7d6c7337d559abdd1dcfc57abf6ba3dc21f113ca51c0500925ea51b823143e20",
+      "bytes": 6739
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v5/trace.py",
+      "sha256": "845f280de4ab3a3655213e63b8a11bc44e77836f951793e80eac1774f9de0eb4",
+      "bytes": 3208
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/catalog-correlation.json",
+      "sha256": "cdd0483564f539c97b3bb0ea8965e6e5c46680bd847905670d8b0c9581a0249a",
+      "bytes": 6295
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/command.json",
+      "sha256": "8ed38269115b513ef23e6f6c2a31564b8b6e62eed23630eb5ce457e0a2a7001c",
+      "bytes": 1052
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/commands.lldb",
+      "sha256": "bd40075e4ab090ad949b237c9ca7789495431fb11544ca86c3303741caceb6d2",
+      "bytes": 1491
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/control-result.json",
+      "sha256": "a5cd8d75c0b39a8c66c4a9fd9fe85156d861aa8287f4bdc3ec977e7c0864c293",
+      "bytes": 3693900
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/correlate_catalog.py",
+      "sha256": "f74c153c1a7e31f684b4bdd7cbfd19d7454387b88ecd7f2bdd1150ff6cd172f1",
+      "bytes": 2959
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/debugger.log",
+      "sha256": "dabd8c5e1edbe3450d2967e6f8d44fa0bb459ce23e3bf2aea8f8c45e567914f3",
+      "bytes": 154369
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/events.jsonl",
+      "sha256": "0a3c0bce92ed0d1bda9531587a841cc5349bc108cd55c70a31c5561815596b41",
+      "bytes": 1212664
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/player.log",
+      "sha256": "46755cfbd4451515fbabe0ee5fc2bd8bdc2574963e201a9fc332837ce9ed025e",
+      "bytes": 3721112
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-startup-debug-v6/trace.py",
+      "sha256": "59b079d05ab74a094299a2c9ea9f96e96c2d0707b8c2f1ca6dc9156f9c2cd0c8",
+      "bytes": 3699
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BoundedSourceReview",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "verdict": "Passed",
+  "milestoneAccepted": false,
+  "humanGateApproved": false,
+  "scope": "R00 to R01 source integration plus failure-probe wire contract; final Player evidence excluded",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "99ed95d58c7d976e5fd05257a4fe735ce0ee3813",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "9f5d288e36f60c35420878f5796798b2dfa34de7",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "5e9a1a93b530888fa41603e40c29e049a3914ea6",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "94457105b6f37b9e180e9cc16b73e526e999ea34",
+      "localPath": "."
+    }
+  },
+  "findings": [
+    {
+      "priority": 2,
+      "issue": "Native diagnostic transaction identities were not bound to admitted patch inputs",
+      "status": "Fixed",
+      "verification": "97 independently recomputed-hash identity mutations rejected across all three positive modes"
+    },
+    {
+      "priority": 2,
+      "issue": "Failure verifier incorrectly required no baseline startup validation for RestartRequired",
+      "status": "Fixed",
+      "verification": "Native Restart and managed parser traced; nine focused tests include opposite-value tampering at every terminal capture"
+    }
+  ],
+  "limitations": [
+    "Fresh Player acceptance remains pending",
+    "Q06 production target NotProvided",
+    "Native adapters do not prove full Unity runtime behavior"
+  ],
+  "receipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/failure-identity-tests-1.log",
+      "sha256": "672732a404f5bf03ce842e9706e303d9ee2f9f5ea7b873ecdae3b5c6a6ed23de"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/failure-recovery-tests-1.log",
+      "sha256": "261700cc11ce9601f6b3ecb30396e7e8066bf06ace0ccec91b3f6e2b79ee186d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/python-tests-early-final-source-1.log",
+      "sha256": "63c05e65a73ada97caa32384200cf5115e99f6fe627bc82230923384953a4ccb"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/verify-installed-early-2.json",
+      "sha256": "8d54b7010573c915a6077f7d67a2feb5ade5a6c0d1811be934b34d6e4307b4e6"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01RetainedPlayerArgumentOrder",
+  "result": "PassedBoundedOrderCheck",
+  "processId": 93375,
+  "argc": 7,
+  "sequence": [
+    "il2cpp_set_commandline_arguments",
+    "il2cpp_init"
+  ],
+  "unityCallerOffsets": [
+    152,
+    324
+  ],
+  "termination": "Owned diagnostic Player deliberately killed at il2cpp_init entry",
+  "hashes": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-argument-order-v2/commands.lldb": "51e149fd841fc6a94c8e30cb8c020ee4237b8fcbddf54b7b09fdbafb8d6afa75",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-argument-order-v2/debugger.log": "f57663aff976835c3fcb1d97657af1fe599ace6ce6486400705ac423e4b35823",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v1.app/Contents/Frameworks/GameAssembly.dylib": "c6c3640a43d66d62c21e1f4e5fb00d81c2152b1dbcaced57e961c88edacdc361",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-R01-early-v1.app/Contents/Frameworks/UnityPlayer.dylib": "417339d1c2d2b7bff00e30ac0f7cf0f25ed8918e1511c2340ca756090bb92c5f"
+  },
+  "limitations": [
+    "Retained early-v1 executable, not new source-built Player acceptance",
+    "Symbols/registers only; stale Bee DWARF warnings retained",
+    "Does not exercise the new managed callback or capsule parsing"
+  ]
+}

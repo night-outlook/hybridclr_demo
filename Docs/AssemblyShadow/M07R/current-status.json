@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "acceptedMilestones": [
+    "M00",
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "R00"
+  ],
+  "currentMilestone": "R01",
+  "currentStatus": "ActiveUnaccepted",
+  "currentPhase": "Early v2 executable source frozen and bounded source review passed; pinned installation and Player build next",
+  "activeRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01",
+  "branch": "codex/assembly-shadow-r01",
+  "plannedBaselineId": "M07-Baseline-R01-early-v2",
+  "requiredNextMilestone": "R01B",
+  "requiredAssemblyCount": 65536,
+  "assemblyCountInterpretation": "Conservative interpretation of user-approved up to 64k; allocation domain and DLL size distribution unresolved",
+  "nextHumanGate": "H1",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "evidence": "R01/approved-early-feasibility-evidence.json",
+  "checkpoint": "R01/early-gateway-integration-checkpoint.json",
+  "constraints": [
+    "Finish R01 implementation, real tests, evidence and stage code review before R01B",
+    "Finish required R01B then stop at H1 for human full review",
+    "Do not treat debugger feasibility, unit tests or agent review as human approval"
+  ],
+  "executableSourceRevision": "87b2884c133fd3e2e864a8780743c39728b4e1b2"
+}

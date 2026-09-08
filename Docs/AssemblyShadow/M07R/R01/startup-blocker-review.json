@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BlockedCheckpointReview",
+  "date": "2026-09-08",
+  "reviewer": "/root/r01_integration_review_gpt6astra_high_1",
+  "role": "code-reviewer-astra",
+  "scope": "Checkpoint accuracy only; not R01 acceptance or human H1",
+  "verdict": "PASS",
+  "actionableFindings": [],
+  "reviewedFiles": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/startup-blocker-report.md",
+      "sha256": "4869b0eb1497ea15cbe2e742f6fca0366a9f26970f30f7239c3b5c16e59342df"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/startup-blocker-evidence.json",
+      "sha256": "a5cf6cda394ad5842260505f5e4f6c57cf31be70e7dc1eb96805787b5be3e34e"
+    }
+  ],
+  "verified": [
+    "400 Python tests passed",
+    "292 Unity Editor tests passed",
+    "Seven current source hashes",
+    "All 44 archive members",
+    "v6 pre-Configure candidate uses, BaselineAlreadyUsed, generation zero and no commit"
+  ],
+  "limitations": [
+    "Early-activation proposal remains unapproved and requires supported entry point, readiness and failure behavior before implementation.",
+    "Corrected ordinary Player remains NotRun.",
+    "Production sizing and R01B unresolved.",
+    "H1NotReached; next milestone not allowed."
+  ],
+  "finalProcessAudit": "No owned Unity, Player or debugger process running at root final audit."
+}

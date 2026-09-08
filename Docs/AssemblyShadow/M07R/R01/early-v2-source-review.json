@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV2BoundedSourceReview",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "verdict": "Passed",
+  "executableSourceRevision": "87b2884c133fd3e2e864a8780743c39728b4e1b2",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "54666fee824331822daad9b8da28b2599c515b3d",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "a999f3d293184e8af6f9dc138ea42f45e024a699",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "87b2884c133fd3e2e864a8780743c39728b4e1b2",
+      "localPath": "."
+    }
+  },
+  "milestoneAccepted": false,
+  "humanGateApproved": false,
+  "scope": "Early gateway, pure BCL capability negotiation, managed startup/observer/handoff/native script witness, exact-input capsule and strict all-mode receipt/launcher verification",
+  "finalFindings": [
+    {
+      "priority": 2,
+      "issue": "Imported M07 snapshots could diverge from early captures after rebinding receipt hashes",
+      "status": "Fixed",
+      "verification": "Exact parsed equality; 12 divergence mutation combinations across three positive modes, two imported phases and either side"
+    },
+    {
+      "priority": 2,
+      "issue": "Private observer metadata readiness could contradict skeleton/state/metadata events",
+      "status": "Fixed",
+      "verification": "Readiness follows native mutex-protected state and events; mutation tests for Control and both failure modes; separate enumeration generations remain supported"
+    }
+  ],
+  "finalFocusedTests": {
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "log": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-final-focused-1.log",
+    "sha256": "865225bffe0d5445ae9b37ed3f3898c02dbd80656ee72df60a6faaa440f36698"
+  },
+  "reviewedPythonFiles": [
+    {
+      "path": "Tools/AssemblyShadow/r01_early_results.py",
+      "sha256": "97efd7954e98373438b72f64fa09ae11dcfdea5b14f8b097f34e1c43e5cfa4be"
+    },
+    {
+      "path": "Tools/AssemblyShadow/run-r01-early-players.py",
+      "sha256": "7798bc81de62398cf79abe273ba90f2a6a009c3fc8224b170e6ef8af92c8e092"
+    },
+    {
+      "path": "Tools/AssemblyShadow/tests/test_r01_early_results.py",
+      "sha256": "a9a0e96060f3c8d232272da2596c697b98e061b03169e22d77b9c7687160064b"
+    },
+    {
+      "path": "Tools/AssemblyShadow/tests/test_r01_early_launch.py",
+      "sha256": "75e4e79fb41fd4835872119080a80e1b5ff7aa056434c56d54b4be16bef87841"
+    }
+  ],
+  "limitations": [
+    "Reviewer inspected tests; root executed them.",
+    "Fresh native generated wrappers and actual Player validation remain pending.",
+    "Bounded raw observer sampling does not continuously validate dropped samples.",
+    "This is a source integration checkpoint, not R01 acceptance or human H1 approval."
+  ]
+}

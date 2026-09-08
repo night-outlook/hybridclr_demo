@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "milestone": "R01",
+  "status": "ActiveUnaccepted",
+  "checkpoint": "Early gateway integration before observer completion",
+  "nativeRevision": "54666fee824331822daad9b8da28b2599c515b3d",
+  "packageRevision": "b649c499385ea68490a0f652a98b732e060aeb89",
+  "il2cppRevision": "a999f3d293184e8af6f9dc138ea42f45e024a699",
+  "newBaselineId": "M07-Baseline-R01-early-v2",
+  "runtimeAbiHash": "d02f6879c2615c3fd5328d2f2f3325315a0c3ebfcd97c36e0361b09905f4a150",
+  "checks": {
+    "nativeGateway": {
+      "checks": 284,
+      "syntaxChecks": 8,
+      "result": "Passed"
+    },
+    "demoEditorBeforeFinalObserver": 297,
+    "packageEditorAtCommittedSource": 687,
+    "focusedEarlyBeforeObserver": 5,
+    "pythonBeforeVerifierCorrections": 415
+  },
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-gateway-root-1.json",
+      "sha256": "f99382055971212178a1125e2aa0866fd491f57a62d2f6cb72d1f4dc5a391362"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-0172db3543204951babb4a8853ee29b9/results.xml",
+      "sha256": "5c00e7ad0bb582852b89332280636b021934b28a79cc34debb42d67b6e14dcfe"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-f7c63f732470410581014714e2d3c706/results.xml",
+      "sha256": "1e4d643650cea05b3eb0c4a006f2230bffa629bd30ed69a427e31b339f9dda17"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-86b609109eb047a9865c463de46f3592/results.xml",
+      "sha256": "7525f18255ccde09371d19b21982690b04a746b1362c9afc030f46937172b23d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-python-1.log",
+      "sha256": "503817e811ed3b7d3863c0477ce74308e4658f24b02330bb3b0adcb8ecb6cd29"
+    }
+  ],
+  "review": {
+    "nativeGateway": "No remaining source finding; real Player pending",
+    "package": "Source review corrections closed; committed package Editor suite passed",
+    "managedEarly": "Parser/order/read-once/exclusive-output and budget-atomicity corrected; observer addition pending fresh compilation",
+    "earlyVerifier": "FAIL: complete schema/timeline/provenance invariants under correction; prior 9 focused tests insufficient"
+  },
+  "remaining": [
+    "Complete early observer and initializer capture",
+    "Correct and independently review strict all-mode receipt/launch verification",
+    "Freeze demo executable source and metadata pins",
+    "Install and regenerate from complete four-repository pins",
+    "Build fresh source-pinned ON/OFF pair and inspect native PInvoke wrappers",
+    "Execute and strictly verify all required Player modes including 13 M07 ON resource modes and OFF",
+    "Finalize R01 evidence and stage review; then required R01B",
+    "Stop at human H1 after R01/R01B"
+  ],
+  "gate": "H1 not reached; no permission to enter R02"
+}

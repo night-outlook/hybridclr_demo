@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV2PrebuildEvidence",
+  "status": "ActiveUnaccepted",
+  "baselineId": "M07-Baseline-R01-early-v2",
+  "runtimeAbiHash": "d02f6879c2615c3fd5328d2f2f3325315a0c3ebfcd97c36e0361b09905f4a150",
+  "checks": {
+    "nativeGateway": {
+      "scenarios": 39,
+      "checks": 284,
+      "syntaxChecks": 8,
+      "asanFailures": 0
+    },
+    "packageEditor": {
+      "passed": 687,
+      "failed": 0,
+      "skipped": 0
+    },
+    "demoEditorBeforeFinalObserverTiming": {
+      "passed": 301,
+      "failed": 0,
+      "skipped": 0
+    },
+    "focusedDemoAfterFinalObserverTiming": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "pythonBeforeFinalTwoReviewCorrections": {
+      "passed": 426,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/native-startup-gateway-root-1.json",
+      "sha256": "f99382055971212178a1125e2aa0866fd491f57a62d2f6cb72d1f4dc5a391362"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-f7c63f732470410581014714e2d3c706/results.xml",
+      "sha256": "1e4d643650cea05b3eb0c4a006f2230bffa629bd30ed69a427e31b339f9dda17"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-736bde6315384054905be030c8cc1915/results.xml",
+      "sha256": "b90ad381df146bd07ca915a516d9a643d3221809261b151e61b82ce22f832e3f"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/EditorTests-6bc12c3a501940248ae06128ca82fe7d/results.xml",
+      "sha256": "5f0d7b6d2673da92eb1f3560de2e28ddc87745e5671cf239f45d18dd1c85da78"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v2-python-2.log",
+      "sha256": "33beca301d95f65c5fc04c3b59870212f3ad969f3845d6761683208d8f7589dd"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/pre-v2-install-preserved/inventory.json",
+      "sha256": "bf979e2e5459e11e1b7510c156fb4cbe624b545080a0f76fcd5f7302e03faf3f"
+    }
+  ],
+  "limitations": [
+    "Native fixture uses VM adapters; does not prove full Unity initialization or GC.",
+    "Editor tests do not prove early Player runtime threading, native script-resolution wrappers or natural exit.",
+    "Observer retains at most 16 samples per phase and counts dropped samples; dropped samples are not semantically validated.",
+    "Final strict verifier source review and fresh Player execution remain pending.",
+    "No 65536-assembly support claim; R01B is required after R01."
+  ],
+  "gate": {
+    "milestoneAccepted": false,
+    "H1Passed": false,
+    "mayEnterR02": false
+  }
+}
