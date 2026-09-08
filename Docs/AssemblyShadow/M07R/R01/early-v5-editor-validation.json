@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV5EditorValidation",
+  "status": "EditorAndFixtureLifetimePassed",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "c2c908c5a11ce65aabb0da75b512923f709277c1",
+      "localPath": "."
+    }
+  },
+  "baselineBuildId": "M07-Baseline-R01-early-v5",
+  "failureFixture": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v5-failure-fixtures-1/failure-fixtures.json",
+    "sha256": "f8e6097342ec671d963af6f548c2f61d8207e09657bb6bf50942240cd981cc48"
+  },
+  "failureFixtureInventoryFiles": 378,
+  "transientCompilerOutputFiles": 0,
+  "replayBytesEqual": true,
+  "capacityValidation": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-capacity-editor-1.json",
+    "sha256": "2cbafb9d882b04499bcbf91aa8702f2a95db6ed80c2bf1f5dae1cd98f7ed98b5"
+  },
+  "capacityRejectionCode": "MetadataCapacityExceeded",
+  "paddedAssemblyBytes": 67108864,
+  "rejectedOutputAbsent": true,
+  "lifetimeRegression": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v5-fixture-lifetime-1.json",
+    "sha256": "9054a45c09def27313702acef987d7bacf2ba7e500ae6cd6c3231b051fe552be"
+  },
+  "sealedFilesAfterSubsequentCompile": 379,
+  "sealedBytesUnchanged": true,
+  "q04Input": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01-early-v5-negative-1/q04-metadata-transform.json",
+    "sha256": "be6c0188d0b02321dfc773639908753e03f33eb3e1218f0fb98036a05fc4eab3"
+  },
+  "q04Transform": {
+    "sourceSha256": "0eb02ff8900ac0c0c60261bd47f6a8e66e76762072a33473fea088f5dd6b8167",
+    "outputSha256": "670684b63e60190f8736244f88a1816f7766e77e11572699a641049cf987b4dd",
+    "changedByteCount": 1,
+    "changedByteOffset": 20237,
+    "signatureOriginal": "200001",
+    "originalByte": "01",
+    "mutatedByte": "ff",
+    "identityUnchanged": true
+  },
+  "milestoneAccepted": false,
+  "H1Passed": false,
+  "pending": [
+    "Strict11 early Player modes",
+    "Strict14 M07 resource modes",
+    "NativeScript v5 actual trace",
+    "Independent R01 code review"
+  ]
+}
