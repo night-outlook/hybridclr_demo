@@ -662,6 +662,27 @@
       "typeName": "AssemblyShadowDemo.Consumers.DerivedExternalComponent",
       "method": "AssemblyShadowDemo.M07ResourceProbe::ResolveRepeatedType",
       "reason": "M07 repeats this exact literal lookup solely to prove active Type identity for the nested cross-assembly consumer component."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+      "method": "AssemblyShadowDemo.M07R00PerformanceProbe::CaptureSelectedType",
+      "reason": "R00 acquires this exact performance witness only after the byte-bound M07 input precheck and selected transaction or explicit no-patch configuration, then verifies its active physical world."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+      "method": "AssemblyShadowDemo.M07R00PerformanceProbe::RunWitnessBenchmarks",
+      "reason": "R00 executes bounded allocation, reflection and generic observations through this exact witness after active type identity validation; no other business type or image loading is authorized."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+      "method": "AssemblyShadowDemo.M07R00PerformanceProbe::RunExistingExecutionRegressions",
+      "reason": "R00 reruns the retained M06 new, dispatch and generics witness after its benchmark, with active physical type diagnostics and exact observation checks; this is not an unrestricted bootstrap reflection waiver."
     }
   ]
 }
