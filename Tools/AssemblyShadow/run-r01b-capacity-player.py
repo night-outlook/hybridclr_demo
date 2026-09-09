@@ -8,10 +8,11 @@ from pathlib import Path
 import subprocess
 import time
 
-from r00_player_inputs import verify_inputs
+import r01_early_results as early
+from r01b_diagnostic_inputs import verify_diagnostic_inputs
 from r01b_capacity_inputs import (canonical_directory, canonical_file, collect_direct_inputs, digest,
                                   executable_for, validate_mixed_workload, validate_overflow, validate_workload)
-from shadow_tools import require
+from shadow_tools import VerificationError, require
 
 
 def main() -> int:
@@ -20,6 +21,7 @@ def main() -> int:
     parser.add_argument("--fixture-manifest", required=True, type=Path)
     parser.add_argument("--on-build", required=True, type=Path)
     parser.add_argument("--off-build", required=True, type=Path)
+    parser.add_argument("--diagnostic-build", required=True, type=Path)
     parser.add_argument("--replay-receipt", required=True, type=Path)
     parser.add_argument("--workload-manifest", required=True, type=Path)
     parser.add_argument("--corpus-root", required=True, type=Path)
@@ -29,7 +31,7 @@ def main() -> int:
     parser.add_argument("--output-root", required=True, type=Path)
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--mixed", action="store_true",
-                        help="Commit M07 P03, retain three failed ordinary reservations, then fill the shared ledger")
+                        help="Run R01 EarlyStartup Control/P03, retain three failed ordinary reservations, then fill the shared ledger")
     args = parser.parse_args()
 
     project = canonical_directory(args.project_root, "project root")
@@ -37,6 +39,8 @@ def main() -> int:
     fixture = canonical_file(args.fixture_manifest, "M07 fixture manifest")
     on_path = canonical_file(args.on_build, "NativeOn build receipt")
     off_path = canonical_file(args.off_build, "NativeOff build receipt")
+    diagnostic_path = canonical_file(args.diagnostic_build, "diagnostic build receipt")
+    diagnostic_receipt = diagnostic_path
     replay = canonical_file(args.replay_receipt, "M07 replay receipt")
     workload_path = canonical_file(args.workload_manifest, "R01B workload manifest")
     corpus = canonical_directory(args.corpus_root, "R01B corpus root")
@@ -55,7 +59,8 @@ def main() -> int:
     require(output_root.is_absolute() and output_root == output_root.resolve() and not output_root.exists() and
             output_root.parent == project / "_temp/AssemblyShadow", "output root must be a new direct _temp/AssemblyShadow child")
 
-    context = verify_inputs(project, fixture, on_path, off_path, replay)
+    context = verify_diagnostic_inputs(project, fixture, on_path, off_path, replay, diagnostic_receipt)
+    diagnostic = context["diagnostic"]
     workload, workload_files = validate_workload(workload_path, corpus, deep=False)
     mixed_workload_files = []
     if mixed_manifest is not None and mixed_corpus is not None:
@@ -67,19 +72,27 @@ def main() -> int:
     require(overflow["assembly"]["name"].casefold() not in {row["name"].casefold() for row in workload["assemblies"]} and
             overflow["assembly"]["sha256"] not in {row["sha256"] for row in workload["assemblies"]},
             "Overflow DLL is not distinct from the supported workload")
-    app = context["on"]["output"]
+    app = diagnostic["output"]
     executable = executable_for(app)
     direct_inputs = collect_direct_inputs(workload_path, workload_files, overflow_path, overflow_dll,
                                           fixture, on_path, off_path, replay, app)
     if mixed_manifest is not None and mixed_corpus is not None:
         direct_inputs.update({mixed_manifest, *mixed_workload_files})
         direct_inputs.update(Path(path).resolve(strict=True) for path in mixed_workload["shadow"]["assemblies"] for path in [path["path"]])
-    hashes_before = {str(path): digest(path) for path in sorted(direct_inputs)}
+    direct_inputs.update({diagnostic_path, *diagnostic["inventory"]})
 
     output_root.mkdir()
     prefix = "r01b-mixed" if args.mixed else "r01b-capacity"
     result_path = output_root / (prefix + "-result.json")
-    m07_result_path = output_root / "m07-T07-03-FullClosure-P03.json" if args.mixed else None
+    early_result_path = output_root / "r01-early-Control.json" if args.mixed else None
+    capsule_path = output_root / "r01-early-Control.capsule" if args.mixed else None
+    if args.mixed:
+        prepared = early._prepare(project, fixture, on_path, off_path, replay, None, None, ["Control"])
+        require(prepared["profile"] == 2, "R01B mixed early setup requires metadata profile 2")
+        early._capsule_for(prepared, "Control", fixture, capsule_path, "P03")
+        direct_inputs.update(prepared["inventory"])
+        direct_inputs.add(capsule_path)
+    hashes_before = {str(path): digest(path) for path in sorted(direct_inputs)}
     unity_log = output_root / (prefix + ".unity.log")
     console_log = output_root / (prefix + ".console.log")
     command = [str(executable), "-batchmode", "-nographics",
@@ -89,10 +102,9 @@ def main() -> int:
                "-shadowR01BOverflowSha256", overflow["assembly"]["sha256"],
                "-shadowR01BResult", str(result_path), "-logFile", str(unity_log)]
     if args.mixed:
-        command[3:3] = ["-shadowR01BMixed", "-shadowM07Mode", "T07-03-FullClosure-P03",
-                        "-shadowM07Fixtures", str(fixture), "-shadowM07PlayerReceipt", str(on_path),
-                        "-shadowM07Result", str(m07_result_path), "-shadowR01BMixedManifest", str(mixed_manifest),
-                        "-shadowR01BMixedCorpus", str(mixed_corpus)]
+        command[3:3] = ["-shadowR01BMixed", "-shadowEarlyCapsule", str(capsule_path),
+                        "-shadowEarlyCapsuleSha256", digest(capsule_path), "-shadowEarlyResult", str(early_result_path),
+                        "-shadowR01BMixedManifest", str(mixed_manifest), "-shadowR01BMixedCorpus", str(mixed_corpus)]
     started = time.time()
     timed_out = False
     with console_log.open("xb") as console:
@@ -117,11 +129,11 @@ def main() -> int:
             result = json.loads(result_path.read_text(encoding="utf-8-sig"))
         except (OSError, ValueError, UnicodeError) as problem:
             error = str(problem)
-    expected = context["on"]["player"]
-    m07_result = None
-    if m07_result_path is not None and m07_result_path.is_file() and not m07_result_path.is_symlink():
+    expected = diagnostic["player"]
+    early_result = None
+    if early_result_path is not None and early_result_path.is_file() and not early_result_path.is_symlink():
         try:
-            m07_result = json.loads(m07_result_path.read_text(encoding="utf-8-sig"))
+            early_result = json.loads(early_result_path.read_text(encoding="utf-8-sig"))
         except (OSError, ValueError, UnicodeError) as problem:
             error = error or str(problem)
     passed = (not timed_out and exit_code == 0 and type(result) is dict and result.get("schemaVersion") == 1 and
@@ -133,9 +145,17 @@ def main() -> int:
               result.get("baselineBuildId") == expected["baselineBuildId"] and
               result.get("runtimeAbiHash") == expected["runtimeAbiHash"] and
               result.get("scenario") == ("MixedShadowRetainedFailures" if args.mixed else "OrdinaryEnvelope") and
-              (not args.mixed or type(m07_result) is dict and m07_result.get("mode") == "T07-03-FullClosure-P03" and
-               m07_result.get("result") == "Passed" and m07_result.get("processId") == process.pid))
-    verify_inputs(project, fixture, on_path, off_path, replay)
+              (not args.mixed or type(early_result) is dict and early_result.get("mode") == "Control" and
+               early_result.get("result") == "Passed" and early_result.get("processId") == process.pid))
+    if args.mixed and passed:
+        try:
+            admitted = early.expected_capsule(prepared, "Control", fixture, "P03")
+            early.exact(early.capsule.decode(capsule_path.read_bytes()), admitted, "R01B mixed early capsule")
+            early.verify_early_receipt(early_result_path, capsule_path, "Control", process.pid, profile=2)
+        except (OSError, ValueError, KeyError, TypeError, VerificationError) as problem:
+            passed = False
+            error = str(problem)
+    verify_diagnostic_inputs(project, fixture, on_path, off_path, replay, diagnostic_receipt)
     hashes_after = {str(path): digest(path) for path in sorted(direct_inputs)}
     receipt = {
         "schemaVersion": 1,
@@ -171,8 +191,12 @@ def main() -> int:
         "passed": passed,
         "resultPath": str(result_path),
         "resultSha256": digest(result_path) if result_path.is_file() else "",
-        "m07ResultPath": str(m07_result_path) if m07_result_path is not None else "",
-        "m07ResultSha256": digest(m07_result_path) if m07_result_path is not None and m07_result_path.is_file() else "",
+        "diagnosticBuildPath": str(diagnostic_path),
+        "diagnosticBuildSha256": digest(diagnostic_path),
+        "capsulePath": str(capsule_path) if capsule_path is not None else "",
+        "capsuleSha256": digest(capsule_path) if capsule_path is not None and capsule_path.is_file() else "",
+        "earlyResultPath": str(early_result_path) if early_result_path is not None else "",
+        "earlyResultSha256": digest(early_result_path) if early_result_path is not None and early_result_path.is_file() else "",
         "unityLogPath": str(unity_log),
         "consoleLogPath": str(console_log),
         "inputHashesBefore": hashes_before,

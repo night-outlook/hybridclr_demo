@@ -26,7 +26,13 @@ namespace AssemblyShadowDemo
 
         public static IEnumerator RunAndWriteCoroutine(string baselineBuildId, string runtimeAbiHash, Action<int> completed)
         {
-            output = Path.GetFullPath(M07Probe.Argument("-shadowR01BResult", Path.Combine(
+            completed(RunAndWrite(baselineBuildId, runtimeAbiHash));
+            yield break;
+        }
+
+        private static int RunAndWrite(string baselineBuildId, string runtimeAbiHash)
+        {
+            output = Path.GetFullPath(Argument("-shadowR01BResult", Path.Combine(
                 Application.persistentDataPath, "AssemblyShadowTests/r01b-capacity.json")));
             active = new Result {
                 schemaVersion = 1, kind = "R01BCapacityPlayerResult", milestone = "R01B",
@@ -44,24 +50,26 @@ namespace AssemblyShadowDemo
                 Require(active.il2cpp, "R01B capacity acceptance requires an IL2CPP Player.");
                 Require(!File.Exists(output), "R01B result path must be immutable.");
                 bool mixed = active.scenario == "MixedShadowRetainedFailures";
-                string manifestPath = Path.GetFullPath(M07Probe.Argument(mixed ? "-shadowR01BMixedManifest" : "-shadowR01BManifest", ""));
-                string corpusRoot = Path.GetFullPath(M07Probe.Argument(mixed ? "-shadowR01BMixedCorpus" : "-shadowR01BCorpus", ""));
+                string manifestPath = Path.GetFullPath(Argument(mixed ? "-shadowR01BMixedManifest" : "-shadowR01BManifest", ""));
+                string corpusRoot = Path.GetFullPath(Argument(mixed ? "-shadowR01BMixedCorpus" : "-shadowR01BCorpus", ""));
                 Require(File.Exists(manifestPath) && Directory.Exists(corpusRoot), "R01B workload inputs are missing.");
                 active.manifestPath = manifestPath;
                 active.manifestSha256 = Hash(File.ReadAllBytes(manifestPath));
                 WorkloadManifest manifest;
+                int expectedShadowImageCount = 0;
                 if (mixed)
                 {
                     MixedWorkloadManifest mixedManifest = JsonUtility.FromJson<MixedWorkloadManifest>(File.ReadAllText(manifestPath));
                     ValidateMixedManifest(mixedManifest);
                     manifest = mixedManifest.ToWorkloadManifest();
+                    expectedShadowImageCount = mixedManifest.shadow.imageCount;
                     active.mixedManifestPath = manifestPath;
                     active.mixedManifestSha256 = active.manifestSha256;
                     active.mixedCorpusRoot = corpusRoot;
                     active.shadowDllBytes = mixedManifest.shadow.validDllBytes;
                     active.validDllBytes = mixedManifest.totals.validDllBytes;
                     active.retainedFailureInputBytes = mixedManifest.failedInputBytes;
-                    VerifyMixedShadowEvidence(mixedManifest);
+                    VerifyMixedShadowEvidence(mixedManifest, baselineBuildId, runtimeAbiHash);
                 }
                 else
                 {
@@ -76,10 +84,10 @@ namespace AssemblyShadowDemo
                 active.initial = Capacity(new long[0]);
                 if (mixed)
                 {
-                    Require(active.initial.lifetimeReservedImageCount > 0 && active.initial.shadowAllocatedCount > 0 &&
+                    Require(active.initial.lifetimeReservedImageCount == (ulong)expectedShadowImageCount && active.initial.shadowAllocatedCount == (ulong)expectedShadowImageCount &&
                         active.initial.ordinaryAllocatedCount == 0 &&
                         active.initial.reservedShadowImageCount == active.initial.shadowAllocatedCount,
-                        "The mixed capacity scenario did not start after a committed Shadow closure.");
+                        "The mixed capacity scenario did not start after the five-image committed Shadow closure.");
                     var failures = new List<string>();
                     for (int attempt = 0; attempt != 3; ++attempt)
                     {
@@ -167,9 +175,9 @@ namespace AssemblyShadowDemo
                     "R01B loaded workload did not preserve the 25% usable page margin.");
 
                 bool rejected = false;
-                string overflowPath = Path.GetFullPath(M07Probe.Argument("-shadowR01BOverflowDll", ""));
-                string overflowName = M07Probe.Argument("-shadowR01BOverflowName", "");
-                string overflowHash = M07Probe.Argument("-shadowR01BOverflowSha256", "");
+                string overflowPath = Path.GetFullPath(Argument("-shadowR01BOverflowDll", ""));
+                string overflowName = Argument("-shadowR01BOverflowName", "");
+                string overflowHash = Argument("-shadowR01BOverflowSha256", "");
                 Require(File.Exists(overflowPath) && !string.IsNullOrWhiteSpace(overflowName) && IsHash(overflowHash),
                     "The distinct 8193rd assembly evidence is missing.");
                 byte[] overflowBytes = File.ReadAllBytes(overflowPath);
@@ -212,8 +220,7 @@ namespace AssemblyShadowDemo
                 UnityEngine.Debug.LogException(error);
             }
             Write(active);
-            completed(active.result == "Passed" ? 0 : 1);
-            yield break;
+            return active.result == "Passed" ? 0 : 1;
         }
 
         private static void VerifyMethods(Assembly loaded, WorkloadAssembly item, int index, bool afterRejection)
@@ -366,21 +373,35 @@ namespace AssemblyShadowDemo
             Require(shadowTotal == manifest.shadow.validDllBytes, "R01B mixed Shadow rows do not satisfy their envelope.");
         }
 
-        private static void VerifyMixedShadowEvidence(MixedWorkloadManifest manifest)
+        private static void VerifyMixedShadowEvidence(MixedWorkloadManifest manifest, string baselineBuildId, string runtimeAbiHash)
         {
-            string path = Path.GetFullPath(M07Probe.Argument("-shadowM07Result", ""));
-            Require(File.Exists(path), "R01B mixed M07 P03 result is missing.");
-            M07Probe.Result result = JsonUtility.FromJson<M07Probe.Result>(File.ReadAllText(path));
-            Require(result != null && result.result == "Passed" && result.mode == "T07-03-FullClosure-P03" &&
-                result.processId == Process.GetCurrentProcess().Id && result.stageResults != null &&
-                result.stageResults.Count == manifest.shadow.assemblies.Length,
-                "R01B mixed M07 P03 result is not the committed closure for this process.");
-            for (int index = 0; index < manifest.shadow.assemblies.Length; ++index)
+            string path = Path.GetFullPath(Argument("-shadowEarlyResult", ""));
+            Require(File.Exists(path), "R01B mixed early-startup result is missing.");
+            EarlyReceipt result = JsonUtility.FromJson<EarlyReceipt>(File.ReadAllText(path));
+            Require(result != null && result.kind == "R01EarlyStartupReceipt" && result.mode == "Control" &&
+                result.result == "Passed" && result.callbackReturnCode == 0 &&
+                result.processId == Process.GetCurrentProcess().Id && result.baselineBuildId == baselineBuildId &&
+                result.runtimeAbiHash == runtimeAbiHash && result.operations != null &&
+                result.byteInputs != null && result.snapshots != null,
+                "R01B mixed early result is not the committed Control capsule for this process.");
+            Require(result.operations.Any(item => item.phase == "commit" && item.code == "Success" && item.intCode == 0),
+                "R01B mixed early result has no successful commit operation.");
+            foreach (MixedShadowAssembly expected in manifest.shadow.assemblies)
+                Require(result.operations.Any(item => item.phase == "stage:" + expected.name && item.code == "Success" && item.intCode == 0),
+                    "R01B mixed early result has no successful stage for " + expected.name + ".");
+            Require(result.snapshots.Any(item => item.phase == "after-commit" && !string.IsNullOrEmpty(item.diagnosticsJson)),
+                "R01B mixed early result has no post-commit diagnostic snapshot.");
+            string nativeJson;
+            Require(AssemblyShadowRuntime.GetDiagnosticsJson(out nativeJson) == AssemblyShadowErrorCode.Success && !string.IsNullOrEmpty(nativeJson),
+                "R01B mixed native committed diagnostics are unavailable.");
+            AssemblyShadowDiagnostics native = AssemblyShadowDiagnostics.Parse(nativeJson);
+            Require(native != null && native.state == "Committed" && native.generation > 0 && native.assemblies != null && native.assemblies.Length >= manifest.shadow.assemblies.Length,
+                "R01B mixed native state is not the committed early Shadow closure.");
+            foreach (MixedShadowAssembly expected in manifest.shadow.assemblies)
             {
-                MixedShadowAssembly expected = manifest.shadow.assemblies[index];
-                M07Probe.StageResult actual = result.stageResults[index];
-                Require(actual.name == expected.name && actual.dllSha256 == expected.sha256,
-                    "R01B mixed M07 Shadow hash differs at closure index " + index + ".");
+                EarlyByteInput actual = result.byteInputs.FirstOrDefault(item => item.name == expected.name);
+                Require(actual != null && actual.sha256 == expected.sha256 && actual.length > 0,
+                    "R01B mixed early Shadow hash differs for " + expected.name + ".");
             }
         }
 
@@ -410,6 +431,14 @@ namespace AssemblyShadowDemo
         private static bool IsHash(string value)
         {
             return value != null && value.Length == 64 && value.All(c => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'));
+        }
+
+        private static string Argument(string name, string fallback)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            for (int index = 0; index + 1 < args.Length; ++index)
+                if (args[index] == name) return args[index + 1];
+            return fallback;
         }
 
         private static void Require(bool condition, string message)
@@ -486,6 +515,25 @@ namespace AssemblyShadowDemo
             [Preserve] public int assemblyCount;
             [Preserve] public long totalBytes, meanBytes, maxBytes;
         }
+
+        [Serializable, Preserve]
+        private sealed class EarlyReceipt
+        {
+            [Preserve] public string kind, mode, baselineBuildId, runtimeAbiHash, result;
+            [Preserve] public int processId, callbackReturnCode;
+            [Preserve] public EarlyOperation[] operations;
+            [Preserve] public EarlySnapshot[] snapshots;
+            [Preserve] public EarlyByteInput[] byteInputs;
+        }
+
+        [Serializable, Preserve]
+        private sealed class EarlyOperation { [Preserve] public string phase, code; [Preserve] public int intCode; }
+
+        [Serializable, Preserve]
+        private sealed class EarlySnapshot { [Preserve] public string phase, diagnosticsJson; }
+
+        [Serializable, Preserve]
+        private sealed class EarlyByteInput { [Preserve] public string name, sha256; [Preserve] public long length; }
 
         [Serializable, Preserve]
         private sealed class Result

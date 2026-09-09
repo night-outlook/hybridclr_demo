@@ -23,7 +23,13 @@ namespace AssemblyShadowDemo
 
         public static IEnumerator RunAndWriteCoroutine(string baselineBuildId, string runtimeAbiHash, Action<int> completed)
         {
-            output = Path.GetFullPath(M07Probe.Argument("-shadowR01BLazyResult", Path.Combine(
+            completed(RunAndWrite(baselineBuildId, runtimeAbiHash));
+            yield break;
+        }
+
+        private static int RunAndWrite(string baselineBuildId, string runtimeAbiHash)
+        {
+            output = Path.GetFullPath(Argument("-shadowR01BLazyResult", Path.Combine(
                 Application.persistentDataPath, "AssemblyShadowTests/r01b-lazy.json")));
             active = new Result {
                 schemaVersion = 1, kind = "R01BLazyPlayerResult", milestone = "R01B", result = "Failed",
@@ -37,7 +43,7 @@ namespace AssemblyShadowDemo
             {
                 Check("il2cpp-player", active.il2cpp, "R01B lazy-path evidence requires an IL2CPP Player.");
                 Check("result-path-unused", !File.Exists(output), "The result path must be immutable.");
-                string fixturePath = Path.GetFullPath(M07Probe.Argument("-shadowR01BLazyDll", ""));
+                string fixturePath = Path.GetFullPath(Argument("-shadowR01BLazyDll", ""));
                 Check("fixture-exists", File.Exists(fixturePath), "The R01B lazy fixture DLL is missing.");
                 active.fixturePath = fixturePath;
                 byte[] bytes = File.ReadAllBytes(fixturePath);
@@ -156,8 +162,7 @@ namespace AssemblyShadowDemo
                 UnityEngine.Debug.LogException(error);
             }
             Write(active);
-            completed(active.result == "Passed" ? 0 : 1);
-            yield break;
+            return active.result == "Passed" ? 0 : 1;
         }
 
         public static int CompleteCoroutineFailure(Exception error)
@@ -171,7 +176,7 @@ namespace AssemblyShadowDemo
 
         private static void RunDenseAdjunctIfRequested()
         {
-            string manifestPath = M07Probe.Argument("-shadowR01BDenseManifest", "");
+            string manifestPath = Argument("-shadowR01BDenseManifest", "");
             if (string.IsNullOrWhiteSpace(manifestPath)) return;
             manifestPath = Path.GetFullPath(manifestPath);
             Check("dense-manifest-exists", File.Exists(manifestPath), "The optional dense adjunct manifest is missing.");
@@ -273,6 +278,14 @@ namespace AssemblyShadowDemo
         {
             using (var hash = SHA256.Create())
                 return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
+        }
+
+        private static string Argument(string name, string fallback)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            for (int index = 0; index + 1 < args.Length; ++index)
+                if (args[index] == name) return args[index + 1];
+            return fallback;
         }
 
         private static bool IsIl2CppPlayer()

@@ -12,7 +12,7 @@ import time
 import m07_results
 from m04_metadata import read_identity
 from m05_types import CliTables
-from r00_player_inputs import verify_inputs
+from r01b_diagnostic_inputs import verify_diagnostic_inputs
 from r01b_capacity_inputs import canonical_directory, canonical_file, digest, executable_for
 from shadow_tools import read_json, require
 
@@ -49,7 +49,7 @@ CHECK_FIELDS = frozenset(("name", "detail", "passed"))
 SNAPSHOT_FIELDS = frozenset(("phase", "reservedPages", "mappedPages", "lifetimeReservedImageCount", "remainingImageCount",
                              "ordinaryAllocatedCount", "shadowAllocatedCount", "reservedShadowImageCount", "aggregateInputDllBytes"))
 LAUNCH_FIELDS = frozenset(("schemaVersion", "kind", "milestone", "diagnosticOnly", "projectRoot", "fixtureManifestPath", "fixtureManifestSha256",
-                           "onBuildPath", "onBuildSha256", "offBuildPath", "offBuildSha256", "replayReceiptPath", "replayReceiptSha256",
+                           "onBuildPath", "onBuildSha256", "offBuildPath", "offBuildSha256", "diagnosticBuildPath", "diagnosticBuildSha256", "replayReceiptPath", "replayReceiptSha256",
                            "lazyFixtureReceiptPath", "lazyFixtureReceiptSha256", "lazyFixturePath", "lazyFixtureSha256", "denseManifestPath",
                            "denseManifestSha256", "denseFixturePaths", "denseFixtureSha256", "playerOutput", "playerExecutable", "command", "processId",
                            "startedAtUnix", "durationSeconds", "exitCode", "timedOut", "passed", "resultPath", "resultSha256", "unityLogPath",
@@ -256,7 +256,7 @@ def verify_result(result: dict, result_path: Path, launch_pid: int, expected: di
         previous = item
     require(snapshots[1]["lifetimeReservedImageCount"] == snapshots[0]["lifetimeReservedImageCount"] + 1,
             "lazy fixture load did not reserve exactly one ordinary image")
-    pre_dense = snapshots[:-1] if dense_enabled else snapshots
+    pre_dense = snapshots[1:-1] if dense_enabled else snapshots[1:]
     require(all(item["lifetimeReservedImageCount"] == snapshots[1]["lifetimeReservedImageCount"] for item in pre_dense),
             "lazy metadata operations changed the process image count")
     if dense_enabled:
@@ -274,6 +274,7 @@ def main() -> int:
     parser.add_argument("--on-build", required=True, type=Path)
     parser.add_argument("--off-build", required=True, type=Path)
     parser.add_argument("--replay-receipt", required=True, type=Path)
+    parser.add_argument("--diagnostic-build", required=True, type=Path)
     parser.add_argument("--lazy-fixture-receipt", required=True, type=Path)
     parser.add_argument("--dense-manifest", required=True, type=Path)
     parser.add_argument("--output-root", required=True, type=Path)
@@ -285,6 +286,7 @@ def main() -> int:
     on_build = canonical_file(args.on_build, "NativeOn build receipt")
     off_build = canonical_file(args.off_build, "NativeOff build receipt")
     replay = canonical_file(args.replay_receipt, "M07 replay receipt")
+    diagnostic_build = canonical_file(args.diagnostic_build, "diagnostic build receipt")
     lazy_receipt_path = canonical_file(args.lazy_fixture_receipt, "lazy fixture receipt")
     dense_manifest_path = canonical_file(args.dense_manifest, "dense adjunct manifest")
     require(1 <= args.timeout <= 3600, "timeout must be in 1..3600 seconds")
@@ -292,13 +294,15 @@ def main() -> int:
     require(output_root.is_absolute() and output_root == output_root.resolve() and not output_root.exists() and
             output_root.parent == project / "_temp/AssemblyShadow", "output root must be a new direct _temp/AssemblyShadow child")
 
-    context = verify_inputs(project, fixture_manifest, on_build, off_build, replay)
+    context = verify_diagnostic_inputs(project, fixture_manifest, on_build, off_build, replay, diagnostic_build)
     lazy_receipt, lazy_dll, lazy_inputs = verify_lazy_receipt(lazy_receipt_path)
     dense_manifest, dense_inputs = verify_dense_manifest(dense_manifest_path)
-    app = context["on"]["output"]
+    app = context["diagnostic"]["output"]
     executable = executable_for(app)
     direct_inputs = collect_inputs(fixture_manifest, on_build, off_build, replay, lazy_receipt_path, lazy_dll, lazy_inputs,
                                    dense_inputs, app)
+    direct_inputs.add(diagnostic_build)
+    direct_inputs.update(context["diagnostic"]["inventory"])
     hashes_before = {str(path): digest(path) for path in sorted(direct_inputs)}
 
     output_root.mkdir()
@@ -334,7 +338,7 @@ def main() -> int:
     passed = False
     if result is not None and not timed_out and exit_code == 0:
         try:
-            verify_result(result, result_path, process.pid, context["on"]["player"], lazy_receipt, lazy_dll,
+            verify_result(result, result_path, process.pid, context["diagnostic"]["player"], lazy_receipt, lazy_dll,
                           dense_manifest_path, dense_manifest, True)
             passed = True
         except Exception as problem:
@@ -342,6 +346,7 @@ def main() -> int:
     if result is not None and result.get("error"):
         error = error or result["error"]
 
+    verify_diagnostic_inputs(project, fixture_manifest, on_build, off_build, replay, diagnostic_build)
     hashes_after = {str(path): digest(path) for path in sorted(direct_inputs)}
     unity_log_hash = digest(unity_log) if unity_log.is_file() and not unity_log.is_symlink() else ""
     console_log_hash = digest(console_log) if console_log.is_file() and not console_log.is_symlink() else ""
@@ -351,6 +356,7 @@ def main() -> int:
         "schemaVersion": 1, "kind": "R01BLazyPlayerLaunchReceipt", "milestone": "R01B", "diagnosticOnly": True,
         "projectRoot": str(project), "fixtureManifestPath": str(fixture_manifest), "fixtureManifestSha256": digest(fixture_manifest),
         "onBuildPath": str(on_build), "onBuildSha256": digest(on_build), "offBuildPath": str(off_build), "offBuildSha256": digest(off_build),
+        "diagnosticBuildPath": str(diagnostic_build), "diagnosticBuildSha256": digest(diagnostic_build),
         "replayReceiptPath": str(replay), "replayReceiptSha256": digest(replay), "lazyFixtureReceiptPath": str(lazy_receipt_path),
         "lazyFixtureReceiptSha256": digest(lazy_receipt_path), "lazyFixturePath": str(lazy_dll), "lazyFixtureSha256": digest(lazy_dll),
         "denseManifestPath": str(dense_manifest_path), "denseManifestSha256": digest(dense_manifest_path),
@@ -363,9 +369,9 @@ def main() -> int:
         "consoleLogSha256": console_log_hash, "inputHashesBefore": hashes_before, "inputHashesAfter": hashes_after,
         "inputsUnchanged": hashes_before == hashes_after,
         "error": error or (result or {}).get("error", "No result file"),
-        "note": "This receipt binds the actual ON Player process and direct inputs; its result is accepted only when all lazy checks and ledger snapshots pass.",
+        "note": "This receipt binds the actual diagnostic Player process and direct inputs; its result is accepted only when all lazy checks and ledger snapshots pass.",
     }
-    with launch_path.open("xb") as stream:
+    with launch_path.open("x", encoding="utf-8") as stream:
         json.dump(receipt, stream, indent=2)
         stream.write("\n")
     print(json.dumps({"result": "Passed" if passed else "Failed", "processId": process.pid,

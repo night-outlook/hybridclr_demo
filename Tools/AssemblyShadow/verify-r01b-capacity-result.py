@@ -7,8 +7,8 @@ import json
 import math
 from pathlib import Path
 
-import m07_results
-from r00_player_inputs import verify_inputs
+import r01_early_results as early
+from r01b_diagnostic_inputs import verify_diagnostic_inputs
 from r01b_capacity_inputs import (CHARGED_PAGE_CEILING, IMAGE_COUNT, MINIMUM_FREE_PAGES, TOTAL_DLL_BYTES,
                                   USABLE_PAGES, canonical_directory, canonical_file, collect_direct_inputs,
                                   digest, executable_for, validate_mixed_workload, validate_overflow, validate_workload)
@@ -45,7 +45,8 @@ LAUNCH_FIELDS = frozenset(("schemaVersion", "kind", "milestone", "diagnosticOnly
                            "mixedManifestSha256", "mixedCorpusRoot", "overflowReceiptPath",
                            "overflowReceiptSha256", "playerOutput", "playerExecutable", "command", "processId",
                            "startedAtUnix", "durationSeconds", "exitCode", "timedOut", "passed", "resultPath",
-                           "resultSha256", "m07ResultPath", "m07ResultSha256", "unityLogPath", "consoleLogPath", "inputHashesBefore", "inputHashesAfter",
+                           "resultSha256", "diagnosticBuildPath", "diagnosticBuildSha256",
+                           "capsulePath", "capsuleSha256", "earlyResultPath", "earlyResultSha256", "unityLogPath", "consoleLogPath", "inputHashesBefore", "inputHashesAfter",
                            "inputsUnchanged", "error", "note"))
 
 
@@ -122,6 +123,7 @@ def main() -> int:
     parser.add_argument("--fixture-manifest", required=True, type=Path)
     parser.add_argument("--on-build", required=True, type=Path)
     parser.add_argument("--off-build", required=True, type=Path)
+    parser.add_argument("--diagnostic-build", required=True, type=Path)
     parser.add_argument("--replay-receipt", required=True, type=Path)
     parser.add_argument("--workload-manifest", required=True, type=Path)
     parser.add_argument("--corpus-root", required=True, type=Path)
@@ -137,6 +139,8 @@ def main() -> int:
     fixture = canonical_file(args.fixture_manifest, "M07 fixture manifest")
     on_path = canonical_file(args.on_build, "NativeOn build receipt")
     off_path = canonical_file(args.off_build, "NativeOff build receipt")
+    diagnostic_path = canonical_file(args.diagnostic_build, "diagnostic build receipt")
+    diagnostic_receipt = diagnostic_path
     replay = canonical_file(args.replay_receipt, "M07 replay receipt")
     workload_path = canonical_file(args.workload_manifest, "R01B workload manifest")
     corpus = canonical_directory(args.corpus_root, "R01B corpus root")
@@ -155,7 +159,8 @@ def main() -> int:
     require(output.is_absolute() and output == output.resolve() and not output.exists() and not output.is_symlink(),
             "strict verifier output must be a new canonical absolute path")
 
-    context = verify_inputs(project, fixture, on_path, off_path, replay)
+    context = verify_diagnostic_inputs(project, fixture, on_path, off_path, replay, diagnostic_receipt)
+    diagnostic = context["diagnostic"]
     workload, workload_files = validate_workload(workload_path, corpus, deep=True)
     mixed_workload = None
     mixed_workload_files = []
@@ -187,7 +192,7 @@ def main() -> int:
     expected_paths = {
         "projectRoot": project, "fixtureManifestPath": fixture, "onBuildPath": on_path, "offBuildPath": off_path,
         "replayReceiptPath": replay, "workloadManifestPath": workload_path, "corpusRoot": corpus,
-        "overflowReceiptPath": overflow_path, "playerOutput": context["on"]["output"],
+        "overflowReceiptPath": overflow_path, "playerOutput": diagnostic["output"],
     }
     for field, expected in expected_paths.items():
         require(launch[field] == str(expected), "launch." + field + " differs")
@@ -195,11 +200,14 @@ def main() -> int:
                         ("offBuildSha256", off_path), ("replayReceiptSha256", replay),
                         ("workloadManifestSha256", workload_path), ("overflowReceiptSha256", overflow_path)):
         require(launch[field] == digest(path), "launch." + field + " hash differs")
+    require(launch["diagnosticBuildPath"] == str(diagnostic_path) and
+            launch["diagnosticBuildSha256"] == digest(diagnostic_path),
+            "launch diagnostic build binding differs")
     require(launch["mixedManifestPath"] == (str(mixed_manifest) if mixed_manifest is not None else "") and
             launch["mixedManifestSha256"] == (digest(mixed_manifest) if mixed_manifest is not None else "") and
             launch["mixedCorpusRoot"] == (str(mixed_corpus) if mixed_corpus is not None else ""),
             "launch mixed workload binding differs")
-    executable = executable_for(context["on"]["output"])
+    executable = executable_for(diagnostic["output"])
     require(launch["playerExecutable"] == str(executable) and launch["schemaVersion"] == 1 and
             launch["kind"] == "R01BCapacityPlayerLaunchReceipt" and launch["milestone"] == "R01B" and
             launch["diagnosticOnly"] is True and launch["exitCode"] == 0 and launch["timedOut"] is False and
@@ -220,29 +228,37 @@ def main() -> int:
                         "-shadowR01BOverflowSha256", overflow["assembly"]["sha256"],
                         "-shadowR01BResult", str(result_path), "-logFile", launch["unityLogPath"]]
     if args.mixed:
-        expected_command[3:3] = ["-shadowR01BMixed", "-shadowM07Mode", "T07-03-FullClosure-P03",
-                                 "-shadowM07Fixtures", str(fixture), "-shadowM07PlayerReceipt", str(on_path),
-                                 "-shadowM07Result", launch["m07ResultPath"], "-shadowR01BMixedManifest",
+        expected_command[3:3] = ["-shadowR01BMixed", "-shadowEarlyCapsule", launch["capsulePath"],
+                                 "-shadowEarlyCapsuleSha256", launch["capsuleSha256"], "-shadowEarlyResult",
+                                 launch["earlyResultPath"], "-shadowR01BMixedManifest",
                                  str(mixed_manifest), "-shadowR01BMixedCorpus", str(mixed_corpus)]
     require(launch["command"] == expected_command, "R01B Player command differs")
     require(launch["scenario"] == ("MixedShadowRetainedFailures" if args.mixed else "OrdinaryEnvelope"),
             "R01B launch scenario differs")
     if args.mixed:
-        m07_result = canonical_file(launch["m07ResultPath"], "mixed M07 result")
-        require(m07_result.parent == launch_path.parent and launch["m07ResultSha256"] == digest(m07_result),
-                "Mixed M07 result path/hash binding differs")
-        m07_summary = m07_results.verify_suite(fixture, m07_result.parent, on_path, off_path, True, replay)
-        require(len(m07_summary["modes"]) == 1 and m07_summary["modes"][0]["mode"] == "T07-03-FullClosure-P03" and
-                m07_summary["modes"][0]["processId"] == launch["processId"],
-                "Mixed setup is not the exact M07 P03 result from the capacity process")
+        capsule_path = canonical_file(launch["capsulePath"], "mixed early capsule")
+        early_path = canonical_file(launch["earlyResultPath"], "mixed early result")
+        require(capsule_path.parent == launch_path.parent and launch["capsuleSha256"] == digest(capsule_path) and
+                early_path.parent == launch_path.parent and launch["earlyResultSha256"] == digest(early_path),
+                "Mixed early result/capsule path binding differs")
+        prepared = early._prepare(project, fixture, on_path, off_path, replay, None, None, ["Control"])
+        require(prepared["profile"] == 2, "Mixed setup requires metadata profile 2")
+        early.exact(early.capsule.decode(capsule_path.read_bytes()),
+                    early.expected_capsule(prepared, "Control", fixture, "P03"),
+                    "mixed early admitted capsule")
+        early.verify_early_receipt(early_path, capsule_path, "Control", launch["processId"], profile=2)
     else:
-        require(launch["m07ResultPath"] == "" and launch["m07ResultSha256"] == "", "Ordinary scenario claims an M07 setup result")
+        require(launch["capsulePath"] == launch["capsuleSha256"] == launch["earlyResultPath"] == launch["earlyResultSha256"] == "",
+                "Ordinary scenario claims an early setup result")
 
     direct_inputs = collect_direct_inputs(workload_path, workload_files, overflow_path, overflow_dll,
-                                          fixture, on_path, off_path, replay, context["on"]["output"])
+                                          fixture, on_path, off_path, replay, diagnostic["output"])
+    direct_inputs.update({diagnostic_path, *diagnostic["inventory"]})
     if mixed_manifest is not None and mixed_corpus is not None:
         direct_inputs.update({mixed_manifest, *mixed_workload_files})
         direct_inputs.update(Path(row["path"]).resolve(strict=True) for row in mixed_workload["shadow"]["assemblies"])
+        direct_inputs.update(prepared["inventory"])
+        direct_inputs.add(capsule_path)
     expected_hashes = {str(path): digest(path) for path in sorted(direct_inputs)}
     require(launch["inputHashesBefore"] == expected_hashes and launch["inputHashesAfter"] == expected_hashes,
             "R01B direct input inventory/hash binding differs")
@@ -262,7 +278,7 @@ def main() -> int:
          "overflowPath", "overflowName", "overflowSha256", "scenario"}, {"il2cpp"},
         {"retainedFailureExceptions"}, {"initial", "afterRetainedFailures", "before", "at8191", "after", "afterRejected"},
         "result")
-    player = context["on"]["player"]
+    player = diagnostic["player"]
     require(result["schemaVersion"] == 1 and result["kind"] == "R01BCapacityPlayerResult" and
             result["milestone"] == "R01B" and result["result"] == "Passed" and not result["error"] and
             result["il2cpp"] is True and result["processId"] == launch["processId"] and
