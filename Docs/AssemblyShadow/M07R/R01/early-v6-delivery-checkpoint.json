@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyV6DeliveryCheckpoint",
+  "result": "ImplementationAndValidationCompleteAwaitingIndependentStageReview",
+  "recordedAt": "2026-09-09T01:35:08.819452+00:00",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "milestoneAccepted": false,
+  "H1Passed": false,
+  "mayEnterR02": false,
+  "strict11": "PassedBoundedProfile",
+  "strict14": "Passed",
+  "nativeSuites": 9,
+  "pythonTests": 443,
+  "pythonSkips": 0,
+  "archive": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/Evidence/r01-early-v6-evidence.tar.gz",
+    "sha256": "9dbfc2732c76d6a26ea1384f2966051799f27945467d7431bd8ae714c1338a21",
+    "sizeBytes": 67777861,
+    "memberCount": 256,
+    "rawBytes": 590252277
+  },
+  "evidenceIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-evidence-index.json",
+    "sha256": "c98018e76000b5dc4a27e5840447d059fc010d2ef49d59e8a21a83baa1d70ee9"
+  },
+  "packagerLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-evidence-package-1.log",
+    "sha256": "d672d510524a9236b8776b4a594373717b0cd9a5cd6b6b78e83c55ba4a3c8a86"
+  },
+  "packagerExitCode": 0,
+  "archiveVerification": "Every member reopened and SHA-256 matched; no symlinks; normalized tar metadata; source bytes unchanged before/after archiving.",
+  "sourceReview": "early-v6-runtime-and-gap-review.json",
+  "remaining": [
+    "Independent final R01 stage review of committed source and complete evidence"
+  ],
+  "nextMilestoneAfterAcceptance": "R01B",
+  "requiredAssemblyCount": 65536,
+  "nextHumanGate": "H1 after R01B",
+  "limits": [
+    "The package proves evidence capture and byte identity; it does not change milestoneAccepted or H1 state.",
+    "The report/checklist and other current docs are sealed for this packaging interval; a later final-stage decision is a separate record and is not implied by this archive.",
+    "Native helper and retained gateway records are bounded adapters and retained execution; they are not full Player or managed publication coverage.",
+    "The original OFF launcher may lack historical logSha256/consoleSha256 fields; the strict14 aggregate still seals its logPath and consolePath bytes in evidenceHashes.",
+    "Build/source/fixture/native artifacts referenced by receipts remain outside this archive and must be resolved from their recorded hashes."
+  ]
+}

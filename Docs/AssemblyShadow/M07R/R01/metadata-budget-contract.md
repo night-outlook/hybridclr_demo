@@ -1,6 +1,8 @@
 # R01 metadata budget contract — implementation draft
 
-Status: native helper and Editor/managed integration implemented; actual R01 Player acceptance is pending.
+Status: fresh v6 bounded evidence is current: the strict 11-mode profile is `PassedBoundedProfile`, the nine-suite native scope is `PassedNativeScope`, and all 14 producer cases have passed. The strict 14-mode aggregate has passed; final packaging has passed; independent stage review remains pending, so R01 is not stage-accepted.
+
+The current evidence indices are [early-v6-strict-matrix.json](early-v6-strict-matrix.json:1), [early-v6-native-regressions.json](early-v6-native-regressions.json:1), and [early-v6-runtime-and-gap-review.json](early-v6-runtime-and-gap-review.json:1). The first records the bounded 11-mode result, the second records nine fresh native receipts, and the third records the remaining strict14/package/stage gates. The producer pass count does not by itself close the strict14 aggregate or accept R01.
 
 The encoding remains profile 1: 22 metadata index bits, two image-kind bits, extra shifts 6/4/2/0, kind strides 64/16/4/1, initial cursors 64/0/0/0, and exclusive limits 256/256/256/255. Image index zero remains invalid. DLL bytes are multiplied by four with overflow rejection before selecting a kind. A DLL exactly at 1/4/16 MiB moves to the next kind; exactly 64 MiB is rejected. Fresh homogeneous capacities are 338/83/19/3 for the four corresponding size classes; mixed sizes and order change achievable capacity.
 
@@ -13,3 +15,5 @@ New manifests declare capability/profile/report version 1 and exact `dllSize` va
 Managed wrappers negotiate through the existing diagnostics API before invoking a new internal call. An old enabled runtime without the required capability returns CapabilityUnavailable (22); feature OFF returns FeatureDisabled (1) without fabricated capacity/recovery JSON. Capacity overflow is MetadataCapacityExceeded (23); a reserved-member byte-size mismatch is MetadataBudgetMismatch (24). Existing enum values 0–21 and runtime ABI version 1 remain unchanged; the new contract has its own capability versions.
 
 The user has declared a target of up to 64k assemblies, conservatively interpreted as **65,536**. This exceeds profile 1's best-case fresh capacity, so **R01B is mandatory after R01**. Allocation domain, maximum DLL size, size distribution and required headroom remain unresolved. Neither native boundary tests nor the five-image Player closure establishes 65,536-assembly support. H1 must receive the explicit sizing contract and measured supported scope after the required encoding work.
+
+Strict14 completion and original raw hashes are recorded in [early-v6-m07-aggregate.json](early-v6-m07-aggregate.json). The stopped ordering-failure attempt remains preserved; all 140 restart-sealed raw Player files are unchanged.

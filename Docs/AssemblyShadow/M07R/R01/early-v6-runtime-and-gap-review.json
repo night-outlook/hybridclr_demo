@@ -33,9 +33,143 @@
     "Observers joined without errors; bounded sampling limits explicit"
   ],
   "remaining": [
-    "Strict14 M07 aggregate",
     "Final evidence package and independent R01 stage review"
   ],
   "milestoneAccepted": false,
-  "H1Passed": false
+  "H1Passed": false,
+  "archiveRecipeReview": {
+    "verdict": "PASS",
+    "reviewer": "r01_integration_review_gpt6astra_high_1",
+    "reviewedAt": "2026-09-09T00:12:46.805372+00:00",
+    "recipe": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/package-early-v6-evidence.py",
+      "sha256": "004bf54e60e279e332df475c8a80c04b51f00c7edabce042ed26420f8f1ad0c0"
+    },
+    "closedFindings": [
+      "Actual native/compiler/gateway schemas and indexed joins",
+      "Mandatory aggregate membership and hashes for launcher children including OFF logs",
+      "Actual strict11 and per-mode verification/launcher/result/PID joins",
+      "Packaging recipe included in before/after sealed archive inventory",
+      "OFF unique named row; no Control assumption",
+      "Reused P03 full11 inventory and PID joins with unique Control selected"
+    ],
+    "reportedCollectionChecks": [
+      "Actual strict11/native/build/Editor/trace collections passed",
+      "Actual full11 P03 inventory/PID join passed",
+      "In-memory OFF named-row acceptance and incorrect Control-row rejection passed",
+      "Missing OFF aggregate seal rejected"
+    ],
+    "scope": "Bounded source re-review. Strict14, actual packaging and reopened tar member verification remain pending; this does not accept R01 or H1.",
+    "supersededRecipeSha256": "7c8484e7594cc49830cd9d41feec0f607e4928d864bd8e23eda2088eec7d8b7f",
+    "orderingCorrection": {
+      "verdict": "PASS",
+      "reviewer": "r01_integration_review_gpt6astra_high_1",
+      "recordedAt": "2026-09-09T01:01:01.219379+00:00",
+      "aggregateRecipe": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/verify-early-v6-m07-aggregate.py",
+        "sha256": "0887cd4df719e05f8c0b565942b1cb75cfa67a4850f460f8f763e6b8c601e3d1"
+      },
+      "packagingRecipe": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/package-early-v6-evidence.py",
+        "sha256": "8903cbd0d19f816d5483ce42d17e35135261b2608d065034a4a2baba3bb2d707"
+      },
+      "finding": "Unordered frozenset iteration was compared with ordered OFF mode inventory; packager separately assumed ordered aggregate rows.",
+      "resolution": "Aggregate uses stable canonical mode ordering. Packager checks exact fourteen unique modes independent of row order before canonical processing. All other strict verification and hash checks retained.",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-aggregate-order-diagnostic-1.json",
+          "sha256": "7164294e2dbca8782228fd3873eaffb86c021b6a6e3067ab50f9ee9ae52cd7de"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-aggregate-restart-input-seal-1.json",
+          "sha256": "e2f9c18a226e0c41865483233359fe42cd6f0bed8d41d15156d7f6a4696d3eb0"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/early-v6-aggregate-order-tests-1.json",
+          "sha256": "3c63ec9bbb6e39947fd48d6a6662bfd1d54e3da18f8a44defb500137759c98e5"
+        }
+      ],
+      "rawPlayerFilesUnchangedAtReview": 140,
+      "finiteArchivePathExtension": "PASS: added corrected aggregate log and five existing diagnostic/original-script paths only; AST passed.",
+      "acceptanceLimit": "Corrected strict14 aggregation and packaging still pending. No runtime source changes or Player receipt changes."
+    }
+  },
+  "finalPreparatorySourceReview": {
+    "verdict": "PASS",
+    "reviewer": "r01_integration_review_gpt6astra_high_1",
+    "recordedAt": "2026-09-09T01:04:11.122478+00:00",
+    "sourceChangeIndex": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/source-change-index-v6.json",
+      "sha256": "9bffe0708eb4ec10b81cdc0d2200536197cf13d4628acec42d8c1da844af9351"
+    },
+    "scope": [
+      "Cumulative budget and ordinary/reserved allocation",
+      "Recovery and pre/post-publication failure handling",
+      "Early startup registration/activation and managed capability negotiation",
+      "Editor capacity admission, OFF and source pin invariants"
+    ],
+    "findings": [],
+    "openDeliveryCriteria": [
+      "Archive verification and final committed-evidence review"
+    ],
+    "regressionDisposition": "No additional mandatory full legacy M03-M06 Player matrix. Native Q05 and bounded observers retain their documented scope limits.",
+    "milestoneAccepted": false,
+    "H1Passed": false
+  },
+  "finalIndexAndComparisonReview": {
+    "verdict": "PASS",
+    "reviewer": "r01_integration_review_gpt6astra_high_1",
+    "recordedAt": "2026-09-09T01:12:47.074214+00:00",
+    "evidence": [
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-r00-performance-comparison.json",
+        "sha256": "50873da477db8b84a5fb4670409463f46ffcf78aeca6f3afa3809bac7d65dd50"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-final-pairing-audit.json",
+        "sha256": "e52494876c962f55163e9e0c67876aca8b65924fd987a88a169db831013be9af"
+      }
+    ],
+    "recipes": [
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/index-early-v6-performance-comparison.py",
+        "sha256": "0b1904be6623cdd65bd378b716a1c69428e64967046e66698225679241441d73"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/audit-early-v6-final-pairing.py",
+        "sha256": "356fc8c11009fb729970a674cf3b1db220f6673b9cd8f046ec46bdebf366df39"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/index-early-v6-m07.py",
+        "sha256": "ad4a9d4aef6f67a5573cb63d1c3582cdfef18fa3d470e0da0ab7ebe4fe7f3aa7"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/package-early-v6-evidence.py",
+        "sha256": "004bf54e60e279e332df475c8a80c04b51f00c7edabce042ed26420f8f1ad0c0"
+      }
+    ],
+    "findings": [],
+    "verifiedFileReferences": 17,
+    "comparisonDisposition": "Bounded R00 native comparison criterion closed; current equivalent Player measurements and overall performance qualification remain NotRun.",
+    "checks": [
+      "M07 index requires exact14, distinctPIDs, completion log and unchanged raw/aggregate seals",
+      "Pairing audit preserves porcelain whitespace and distinguishes executable pin from metadata HEAD",
+      "Archive recipe only finite path additions; all four ASTs passed"
+    ],
+    "remaining": [
+      "Strict14 completion",
+      "Actual packaging and reopened member verification",
+      "Final committed-evidence review"
+    ],
+    "milestoneAccepted": false,
+    "H1Passed": false
+  },
+  "aggregateCompletion": {
+    "result": "Passed",
+    "modeCount": 14,
+    "index": "early-v6-m07-aggregate.json",
+    "processExitCode": 0,
+    "restartSealedRawFilesUnchanged": 140,
+    "independentFinalEvidenceReview": "Pending"
+  }
 }

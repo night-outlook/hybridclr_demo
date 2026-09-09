@@ -1,0 +1,911 @@
+{
+  "callpathScope": {
+    "changedOr_exercised": [
+      "InterpreterImage allocator",
+      "ordinary Assembly::Create",
+      "Stage reservation",
+      "early registry/visibility",
+      "stable-provider lookup",
+      "il2cpp_init callback"
+    ],
+    "limit": "This record preserves the reviewer-scoped call-path assessment; it does not turn the bounded M04 timing into function-level attribution.",
+    "steadyStateUnchangedConclusion": [
+      "Invoke/new/generic implementations are unchanged per the bounded reviewer assessment."
+    ]
+  },
+  "kind": "R01R00PerformanceComparison",
+  "limits": [
+    "R00 Player observations are one sample per mode in Development IL2CPP; timing includes reflection entry and managed argument boxing, and readiness excludes scene/resource load.",
+    "R00 performance observations and strict gate are retained diagnostics; the R00 claim ledger still marks the performance claim NotRun.",
+    "The native M04 receipts share the lookup workload and zero-allocation count, but differ in source pins, fixture, generated source inventory and reference-identity checks.",
+    "No production performance threshold, release qualification, R01 acceptance, R01B acceptance or H1 claim follows from this comparison."
+  ],
+  "milestoneAccepted": false,
+  "nativeM04Comparison": {
+    "deltaMicroseconds": -2952,
+    "deltaPercent": -0.783612101391761,
+    "interpretation": "Bounded diagnostic comparison only; differing source pins, fixture, generated inputs and reference-check count prevent isolation or an overall performance conclusion.",
+    "r00Microseconds": 376717,
+    "r01V6Microseconds": 373765,
+    "workload": "M04 native one million resolver lookups with zero reported allocations"
+  },
+  "performanceQualification": "NotRun",
+  "r00": {
+    "diagnosticsScope": "Existing unchanged native diagnostics captured before/after; native proof-build, metadata-row-scan and runtime-allocation counters remain unavailable. No Release or statistical-performance claim.",
+    "measurementScope": "First invocation,100 warmup,10 repeated,10000 repeated per operation in each separate fresh process. Readiness includes fixture verification and active marker resolution; excludes business resource/scene load. Timings include reflection entry and managed argument boxing. Allocation batch uses one reflection entry. Constructor counts measure payload construction, not total runtime heap allocations.",
+    "modes": [
+      {
+        "buildGuid": "6da35d18f5f5493fbd2714e59697d567",
+        "mode": "R00-ON-NoPatch",
+        "operations": [
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 1,
+            "elapsedTicks": 510,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 51000.0,
+            "operation": "allocation",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 100,
+            "elapsedTicks": 1548,
+            "iterations": 100,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 1548.0,
+            "operation": "allocation",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10,
+            "elapsedTicks": 575,
+            "iterations": 10,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 5750.0,
+            "operation": "allocation",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10000,
+            "elapsedTicks": 114493,
+            "iterations": 10000,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 1144.93,
+            "operation": "allocation",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 631,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 63100.0,
+            "operation": "reflectionInvoke",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 38427,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 38427.0,
+            "operation": "reflectionInvoke",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 3840,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 38400.0,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 3880865,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 38808.65,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 931,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 93100.0,
+            "operation": "closedGeneric",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 54025,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 54025.0,
+            "operation": "closedGeneric",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 5603,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 56030.0,
+            "operation": "closedGeneric",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 5431779,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 54317.79,
+            "operation": "closedGeneric",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          }
+        ],
+        "readiness": {
+          "businessReady": true,
+          "launchToBusinessReadyMilliseconds": 17350.157499313354,
+          "rawPhase": "configured-and-witness-resolved",
+          "scope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load"
+        },
+        "result": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-NoPatch.json",
+          "sha256": "37e6a4166a34dcd67df08c15c0425685161b5f6761e1b06fb1624242f0439923",
+          "sizeBytes": 1856957
+        }
+      },
+      {
+        "buildGuid": "6da35d18f5f5493fbd2714e59697d567",
+        "mode": "R00-ON-P01",
+        "operations": [
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 1,
+            "elapsedTicks": 4383,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 438300.0,
+            "operation": "allocation",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 100,
+            "elapsedTicks": 60311,
+            "iterations": 100,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 60311.0,
+            "operation": "allocation",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10,
+            "elapsedTicks": 6538,
+            "iterations": 10,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 65380.0,
+            "operation": "allocation",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10000,
+            "elapsedTicks": 5974240,
+            "iterations": 10000,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 59742.4,
+            "operation": "allocation",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 1085,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 108500.0,
+            "operation": "reflectionInvoke",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 47810,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 47810.0,
+            "operation": "reflectionInvoke",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 4934,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 49340.0,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 4796482,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 47964.82,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 1353,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 135300.0,
+            "operation": "closedGeneric",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 68137,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 68137.0,
+            "operation": "closedGeneric",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 6911,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 69110.0,
+            "operation": "closedGeneric",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 6805295,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 68052.95,
+            "operation": "closedGeneric",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          }
+        ],
+        "readiness": {
+          "businessReady": true,
+          "launchToBusinessReadyMilliseconds": 17803.826570510864,
+          "rawPhase": "configured-and-witness-resolved",
+          "scope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load"
+        },
+        "result": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-P01.json",
+          "sha256": "3ef71aa81550025884e1d42aa149cef0f2f82ad1e0ae3d9f63e6f7032e5c4b9c",
+          "sizeBytes": 1869642
+        }
+      },
+      {
+        "buildGuid": "6da35d18f5f5493fbd2714e59697d567",
+        "mode": "R00-ON-P03",
+        "operations": [
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 1,
+            "elapsedTicks": 4800,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 480000.0,
+            "operation": "allocation",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 100,
+            "elapsedTicks": 61022,
+            "iterations": 100,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 61022.0,
+            "operation": "allocation",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10,
+            "elapsedTicks": 6591,
+            "iterations": 10,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 65910.0,
+            "operation": "allocation",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10000,
+            "elapsedTicks": 6038751,
+            "iterations": 10000,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 60387.51,
+            "operation": "allocation",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 895,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 89500.0,
+            "operation": "reflectionInvoke",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 47773,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 47773.0,
+            "operation": "reflectionInvoke",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 4769,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 47690.0,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 4796535,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 47965.35,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 1633,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 163300.0,
+            "operation": "closedGeneric",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 67899,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 67899.0,
+            "operation": "closedGeneric",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 6836,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 68360.0,
+            "operation": "closedGeneric",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 6793449,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 67934.49,
+            "operation": "closedGeneric",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          }
+        ],
+        "readiness": {
+          "businessReady": true,
+          "launchToBusinessReadyMilliseconds": 17802.876472473145,
+          "rawPhase": "configured-and-witness-resolved",
+          "scope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load"
+        },
+        "result": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-P03.json",
+          "sha256": "a4998cbd2e53d4ae81606edb6597924efa9e7656728419990a0fba9e2399e13f",
+          "sizeBytes": 1877133
+        }
+      },
+      {
+        "buildGuid": "90df196c97714385a9ce9412fd78dcc2",
+        "mode": "R00-OFF-NoPatch",
+        "operations": [
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 1,
+            "elapsedTicks": 88,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 8800.0,
+            "operation": "allocation",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 100,
+            "elapsedTicks": 165,
+            "iterations": 100,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 165.0,
+            "operation": "allocation",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10,
+            "elapsedTicks": 48,
+            "iterations": 10,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 480.0,
+            "operation": "allocation",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 0,
+            "actualNewCount": 10000,
+            "elapsedTicks": 14799,
+            "iterations": 10000,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 147.99,
+            "operation": "allocation",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 300,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 30000.0,
+            "operation": "reflectionInvoke",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 5638,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 5638.0,
+            "operation": "reflectionInvoke",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 278,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 2780.0,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 330299,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 3302.99,
+            "operation": "reflectionInvoke",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 1,
+            "actualNewCount": 0,
+            "elapsedTicks": 331,
+            "iterations": 1,
+            "methodCalls": 1,
+            "nanosecondsPerIteration": 33100.0,
+            "operation": "closedGeneric",
+            "phase": "first",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 100,
+            "actualNewCount": 0,
+            "elapsedTicks": 3773,
+            "iterations": 100,
+            "methodCalls": 100,
+            "nanosecondsPerIteration": 3773.0,
+            "operation": "closedGeneric",
+            "phase": "warmup",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10,
+            "actualNewCount": 0,
+            "elapsedTicks": 375,
+            "iterations": 10,
+            "methodCalls": 10,
+            "nanosecondsPerIteration": 3750.0,
+            "operation": "closedGeneric",
+            "phase": "repeat10",
+            "stopwatchFrequency": 10000000
+          },
+          {
+            "actualInvocationCount": 10000,
+            "actualNewCount": 0,
+            "elapsedTicks": 436908,
+            "iterations": 10000,
+            "methodCalls": 10000,
+            "nanosecondsPerIteration": 4369.08,
+            "operation": "closedGeneric",
+            "phase": "repeat10000",
+            "stopwatchFrequency": 10000000
+          }
+        ],
+        "readiness": {
+          "businessReady": true,
+          "launchToBusinessReadyMilliseconds": 16996.938467025757,
+          "rawPhase": "configured-and-witness-resolved",
+          "scope": "Parent Popen boundary to configured witness marker resolution; excludes scene/resource load"
+        },
+        "result": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-OFF-NoPatch.json",
+          "sha256": "ebbd6b22861c0aea5aed3cc8864219a5c7c821f6763018e7168b338eac8cdd70",
+          "sizeBytes": 22728
+        }
+      }
+    ],
+    "performanceObservations": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/Docs/AssemblyShadow/M07R/R00/performance-observations.json",
+      "sha256": "9f49f60d63dd5b42bb9f553895fdd780eb3c6485a57f91d8bbef3977794ddd30"
+    },
+    "platform": "StandaloneOSX arm64, Unity 2022.3.62f2, Development IL2CPP",
+    "provenanceNote": "The R00 Player performance observation/strict-gate pair and the retained R00 native M04 receipt are separate records: their demo pins are a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59 and 73161474f5b681b46c25424f4e72b4b757c51e66 respectively.",
+    "retainedNativeM04": {
+      "boundary": "Actual resolver/core, Assembly enumeration/publication, TLS, physical-AOT closure scan and serializer. Controlled physical metadata-table, exception and class-enumeration adapters; immutable active snapshot fixture. Not full transaction, managed reflection or Player acceptance.",
+      "claimLedger": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/Docs/AssemblyShadow/M07R/R00/claim-ledger.json",
+        "sha256": "df1b40c717fe78c9e8a440a4772a6b3a2c7763986250b5042e7886e6498bb5ba",
+        "sizeBytes": 17870
+      },
+      "conditions": {
+        "compileCommand": [
+          "/usr/bin/clang++",
+          "-std=c++11",
+          "-O1",
+          "-g",
+          "-fsanitize=address",
+          "-fno-omit-frame-pointer",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-DBASELIB_INLINE_NAMESPACE=il2cpp_baselib",
+          "-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1",
+          "-DHYBRIDCLR_UNITY_2019_OR_NEW=1",
+          "-DHYBRIDCLR_UNITY_2020_OR_NEW=1",
+          "-DHYBRIDCLR_UNITY_2021_OR_NEW=1",
+          "-DHYBRIDCLR_UNITY_2022=1",
+          "-DHYBRIDCLR_UNITY_2022_OR_NEW=1",
+          "-DHYBRIDCLR_UNITY_VERSION=20220362",
+          "-I",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/il2cpp_plus/libil2cpp",
+          "-I",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr",
+          "-isystem",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include",
+          "-isystem",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include",
+          "-iquote",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/utils",
+          "-I",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/google",
+          "-c",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/Tools/AssemblyShadow/native-tests/m04_resolution.cpp",
+          "-o",
+          "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/assembly-shadow-m04-native-urw289nm/source-0.o"
+        ],
+        "compilerVersion": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+        "testCommand": [
+          "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/assembly-shadow-m04-native-urw289nm/m04-resolution",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07PlayerInputs-30c933f9043545cc887466494ecef5d4/Assemblies/AssemblyA.Implementation.Internal.dll"
+        ],
+        "testCwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr",
+        "testEnvironmentOverrides": {
+          "ASAN_OPTIONS": "halt_on_error=1:abort_on_error=1"
+        }
+      },
+      "fixture": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow_m07/_temp/AssemblyShadow/M07PlayerInputs-30c933f9043545cc887466494ecef5d4/Assemblies/AssemblyA.Implementation.Internal.dll",
+        "sha256": "270e96ba1ec563cbf5d0d5e48c37776ba68593b651533fea572da7e7a7306fc4"
+      },
+      "metrics": {
+        "checks": 53,
+        "lookupAllocations": 0,
+        "lookupCount": 1000000,
+        "lookupMicroseconds": 376717,
+        "referenceIdentityChecks": 27,
+        "syntaxChecks": 22
+      },
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-20260907/run-m04-native-tests-provisioned.json",
+        "sha256": "9001f9ddae914f310de0933d2ffca0737546c1e7dbe1ad9f8fe20d955c13c418",
+        "sizeBytes": 518726
+      },
+      "repositories": {
+        "hybridclr": {
+          "configuredPin": "a19db144751f4f016769b90e61a80b8c27578678",
+          "head": "a19db144751f4f016769b90e61a80b8c27578678",
+          "headMatchesPin": true,
+          "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr"
+        },
+        "il2cppPlus": {
+          "configuredPin": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "head": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "headMatchesPin": true,
+          "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/il2cpp_plus"
+        }
+      },
+      "sourceFileHashCount": 1055,
+      "sourcePins": {
+        "architecture": "arm64",
+        "demo": {
+          "localPath": ".",
+          "revision": "73161474f5b681b46c25424f4e72b4b757c51e66",
+          "url": "https://github.com/night-outlook/hybridclr_demo"
+        },
+        "hybridclr": {
+          "localPath": "../hybridclr",
+          "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+          "url": "https://github.com/night-outlook/hybridclr"
+        },
+        "hybridclrUnity": {
+          "localPath": "../hybridclr_unity",
+          "revision": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+          "url": "https://github.com/night-outlook/hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "localPath": "../il2cpp_plus",
+          "revision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+          "url": "https://github.com/night-outlook/il2cpp_plus"
+        },
+        "schemaVersion": 1,
+        "target": "StandaloneOSX",
+        "unityVersion": "2022.3.62f2"
+      },
+      "validationSummary": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/Docs/AssemblyShadow/M07R/R00/validation-summary.json",
+        "sha256": "b6775d483ad6bf4e281278201b7c223bf0ddacb09ca768476842f48c708cf2d6",
+        "sizeBytes": 3486
+      }
+    },
+    "sourcePins": {
+      "architecture": "arm64",
+      "demo": {
+        "localPath": ".",
+        "revision": "a4f3ce6ac271ddf37d4ea2c3a06fbdc402098e59",
+        "url": "https://github.com/night-outlook/hybridclr_demo"
+      },
+      "hybridclr": {
+        "localPath": "../hybridclr",
+        "revision": "a19db144751f4f016769b90e61a80b8c27578678",
+        "url": "https://github.com/night-outlook/hybridclr"
+      },
+      "hybridclrUnity": {
+        "localPath": "../hybridclr_unity",
+        "revision": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "url": "https://github.com/night-outlook/hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "localPath": "../il2cpp_plus",
+        "revision": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "url": "https://github.com/night-outlook/il2cpp_plus"
+      },
+      "schemaVersion": 1,
+      "target": "StandaloneOSX",
+      "unityVersion": "2022.3.62f2"
+    },
+    "strictGate": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json",
+      "sha256": "74d57978c02932116ec992d83c1618184f9e640fded14af28fb87cce8123452a",
+      "sizeBytes": 16594
+    },
+    "strictLaunch": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/r00-player-launches.json",
+      "sha256": "000a0330a515536295b42fc7b78bf5775e56a6b6ff78248645341cdd305c63c8",
+      "sizeBytes": 10362934
+    }
+  },
+  "r01PlayerEquivalent": {
+    "directComparison": false,
+    "reason": "No current v6 Player receipt in the scoped evidence exposes the R00 allocation, reflectionInvoke, closedGeneric and readiness measurements under the same phase contract.",
+    "status": "NotRun"
+  },
+  "r01V6Native": {
+    "boundary": "Actual resolver/core, Assembly enumeration/publication, TLS, physical-AOT closure scan and serializer. Controlled physical metadata-table, exception and class-enumeration adapters; immutable active snapshot fixture. Not full transaction, managed reflection or Player acceptance.",
+    "conditions": {
+      "compileCommand": [
+        "/usr/bin/clang++",
+        "-std=c++11",
+        "-O1",
+        "-g",
+        "-fsanitize=address",
+        "-fno-omit-frame-pointer",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-DBASELIB_INLINE_NAMESPACE=il2cpp_baselib",
+        "-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1",
+        "-DHYBRIDCLR_UNITY_2019_OR_NEW=1",
+        "-DHYBRIDCLR_UNITY_2020_OR_NEW=1",
+        "-DHYBRIDCLR_UNITY_2021_OR_NEW=1",
+        "-DHYBRIDCLR_UNITY_2022=1",
+        "-DHYBRIDCLR_UNITY_2022_OR_NEW=1",
+        "-DHYBRIDCLR_UNITY_VERSION=20220362",
+        "-I",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/il2cpp_plus/libil2cpp",
+        "-I",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr",
+        "-isystem",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Include",
+        "-isystem",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/baselib/Platforms/OSX/Include",
+        "-iquote",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/utils",
+        "-I",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/google",
+        "-c",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Tools/AssemblyShadow/native-tests/m04_resolution.cpp",
+        "-o",
+        "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/assembly-shadow-m04-native-567bfybr/source-0.o"
+      ],
+      "compilerVersion": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+      "testCommand": [
+        "/var/folders/8w/lgmfhbk15gddrdq0stxvy_pm0000gn/T/assembly-shadow-m04-native-567bfybr/m04-resolution",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-2ad89701d1c34d29b549d8ff6bba5b70/Assemblies/AssemblyA.Contracts.dll"
+      ],
+      "testCwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr",
+      "testEnvironmentOverrides": {
+        "ASAN_OPTIONS": "halt_on_error=1:abort_on_error=1"
+      }
+    },
+    "fixture": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-2ad89701d1c34d29b549d8ff6bba5b70/Assemblies/AssemblyA.Contracts.dll",
+      "sha256": "73abd358ed1d2f60d08457478146fcbf556c5fa2bae4b8c9ff6980bf07624118"
+    },
+    "metrics": {
+      "checks": 53,
+      "lookupAllocations": 0,
+      "lookupCount": 1000000,
+      "lookupMicroseconds": 373765,
+      "referenceIdentityChecks": 15,
+      "syntaxChecks": 22
+    },
+    "nativeIndex": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-native-regressions.json",
+      "sha256": "f977cf42083628573c6ce66ce17eafe991b8b10e4525664e2db654dbc980b12a",
+      "sizeBytes": 11883
+    },
+    "receipt": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/_temp/AssemblyShadow/R01/m04-native-v6-1.json",
+      "sha256": "1f80e6fc211fe8e441ac4ffecf51653094dda38f3b9f45070d47303207aa77bb",
+      "sizeBytes": 524498
+    },
+    "repositories": {
+      "hybridclr": {
+        "configuredPin": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+        "head": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+        "headMatchesPin": true,
+        "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr"
+      },
+      "il2cppPlus": {
+        "configuredPin": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+        "head": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+        "headMatchesPin": true,
+        "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/il2cpp_plus"
+      }
+    },
+    "sourceFileHashCount": 1058,
+    "sourcePins": {
+      "architecture": "arm64",
+      "demo": {
+        "localPath": ".",
+        "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+        "url": "https://github.com/night-outlook/hybridclr_demo"
+      },
+      "hybridclr": {
+        "localPath": "../hybridclr",
+        "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+        "url": "https://github.com/night-outlook/hybridclr"
+      },
+      "hybridclrUnity": {
+        "localPath": "../hybridclr_unity",
+        "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+        "url": "https://github.com/night-outlook/hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "localPath": "../il2cpp_plus",
+        "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+        "url": "https://github.com/night-outlook/il2cpp_plus"
+      },
+      "schemaVersion": 1,
+      "target": "StandaloneOSX",
+      "unityVersion": "2022.3.62f2"
+    }
+  },
+  "result": "PassedBoundedDiagnosticComparison",
+  "schemaVersion": 1
+}
