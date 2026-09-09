@@ -212,7 +212,7 @@ namespace AssemblyShadowDemo
         private static object Invoke(Type type, string method, params object[] arguments)
         {
             MethodInfo info = type.GetMethod(method, BindingFlags.Public | BindingFlags.Static);
-            Check("method-present-" + type.Name + "-" + method, info != null, "Missing fixture method " + type.FullName + "." + method);
+            Check("method-present-" + type.FullName + "-" + method + "-" + active.checks.Count, info != null, "Missing fixture method " + type.FullName + "." + method);
             return info.Invoke(null, arguments);
         }
 
@@ -254,9 +254,9 @@ namespace AssemblyShadowDemo
 
         private static bool LifetimeImageDelta(ulong expected)
         {
-            if (active.capacitySnapshots.Count < 2) return false;
+            if (!ImageDelta(expected)) return false;
             ulong baseline = active.capacitySnapshots[1].lifetimeReservedImageCount;
-            return active.capacitySnapshots.All(item => item.lifetimeReservedImageCount == baseline);
+            return active.capacitySnapshots.Skip(1).All(item => item.lifetimeReservedImageCount == baseline);
         }
 
         private static bool PagesMonotonic()

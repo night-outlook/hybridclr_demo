@@ -63,6 +63,20 @@ class LazyResultLedgerTests(unittest.TestCase):
         with self.assertRaises(Exception):
             self.verify(value)
 
+    def test_accepts_distinct_repeated_reflection_observations(self):
+        value = copy.deepcopy(self.result)
+        for invocation in range(4):
+            value['checks'].append(dict(name='method-present-LazyBox-Echo-' + str(invocation), detail='', passed=True))
+        value['passedChecks'] = len(value['checks'])
+        self.verify(value)
+
+    def test_rejects_duplicate_reflection_observations(self):
+        value = copy.deepcopy(self.result)
+        value['checks'].extend([dict(name='method-present-LazyBox-Echo', detail='', passed=True)] * 2)
+        value['passedChecks'] = len(value['checks'])
+        with self.assertRaises(Exception):
+            self.verify(value)
+
     def test_rejects_production_guid_substitution(self):
         value = copy.deepcopy(self.result)
         value['buildGuid'] = 'production-guid'
