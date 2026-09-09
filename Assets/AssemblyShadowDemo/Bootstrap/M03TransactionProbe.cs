@@ -16,6 +16,7 @@ namespace AssemblyShadowDemo
         private const string Contracts = "AssemblyA.Contracts";
         private const string Extensibility = "AssemblyA.Implementation.Extensibility";
         private const string Internal = "AssemblyA.Implementation.Internal";
+        private const int RuntimeAbiVersion = 2;
         private static readonly string[] Candidates = {
             Contracts, Extensibility, Internal, "AssemblyShadowDemo.ContractsConsumer", "AssemblyShadowDemo.ExtensibilityConsumer"
         };
@@ -123,7 +124,7 @@ namespace AssemblyShadowDemo
             RequireState(result, "configured", AssemblyShadowState.CandidatesRegistered);
             if (mode == "T03-14") CheckBeforeBegin(result, fixture, patch);
             result.begin = Expect(result, "begin", AssemblyShadowRuntime.BeginTransaction(patchId,
-                mode == "T03-06" ? result.baselineBuildId + "-WRONG" : result.baselineBuildId, closure, 1),
+                mode == "T03-06" ? result.baselineBuildId + "-WRONG" : result.baselineBuildId, closure, RuntimeAbiVersion),
                 mode == "T03-06" ? AssemblyShadowErrorCode.BaselineBuildMismatch : AssemblyShadowErrorCode.Success);
             if (mode == "T03-06")
             {
@@ -290,10 +291,10 @@ namespace AssemblyShadowDemo
         private static void CheckBeforeBegin(ProbeResult result, FixtureInput fixture, PatchInput patch)
         {
             Expect(result, "configure-again", AssemblyShadowRuntime.ConfigureCandidates(result.baselineBuildId, Candidates, fixture.manifest.stableAotNames), AssemblyShadowErrorCode.InvalidState);
-            Expect(result, "abi-mismatch", AssemblyShadowRuntime.BeginTransaction("bad-abi", result.baselineBuildId, patch.manifest.loadOrder, 2), AssemblyShadowErrorCode.RuntimeAbiMismatch);
-            Expect(result, "duplicate-closure", AssemblyShadowRuntime.BeginTransaction("duplicate", result.baselineBuildId, new[] { Internal, Internal }, 1), AssemblyShadowErrorCode.DuplicateAssemblyName);
-            Expect(result, "unknown-candidate", AssemblyShadowRuntime.BeginTransaction("unknown", result.baselineBuildId, new[] { "M03.NotRegistered" }, 1), AssemblyShadowErrorCode.CandidateNotRegistered);
-            Expect(result, "empty-closure", AssemblyShadowRuntime.BeginTransaction("empty", result.baselineBuildId, new string[0], 1), AssemblyShadowErrorCode.InvalidArgument);
+            Expect(result, "abi-mismatch", AssemblyShadowRuntime.BeginTransaction("bad-abi", result.baselineBuildId, patch.manifest.loadOrder, 1), AssemblyShadowErrorCode.RuntimeAbiMismatch);
+            Expect(result, "duplicate-closure", AssemblyShadowRuntime.BeginTransaction("duplicate", result.baselineBuildId, new[] { Internal, Internal }, RuntimeAbiVersion), AssemblyShadowErrorCode.DuplicateAssemblyName);
+            Expect(result, "unknown-candidate", AssemblyShadowRuntime.BeginTransaction("unknown", result.baselineBuildId, new[] { "M03.NotRegistered" }, RuntimeAbiVersion), AssemblyShadowErrorCode.CandidateNotRegistered);
+            Expect(result, "empty-closure", AssemblyShadowRuntime.BeginTransaction("empty", result.baselineBuildId, new string[0], RuntimeAbiVersion), AssemblyShadowErrorCode.InvalidArgument);
             AssemblyExecutionMode mode;
             Expect(result, "null-mode", AssemblyShadowRuntime.GetAssemblyExecutionMode(null, out mode), AssemblyShadowErrorCode.InvalidArgument);
             Expect(result, "unknown-mode", AssemblyShadowRuntime.GetAssemblyExecutionMode("M03.NotRegistered", out mode), AssemblyShadowErrorCode.CandidateNotRegistered);
@@ -307,7 +308,7 @@ namespace AssemblyShadowDemo
             RequireState(result, "aborted", AssemblyShadowState.Aborted);
             AssemblyShadowDiagnostics aborted = Capture(result, "aborted");
             CheckPrivate(aborted, result.expectedClosure, result.initializerEvents.Count);
-            Expect(result, "begin-after-abort", AssemblyShadowRuntime.BeginTransaction(patch.manifest.patchId, result.baselineBuildId, patch.manifest.loadOrder, 1), AssemblyShadowErrorCode.InvalidState);
+            Expect(result, "begin-after-abort", AssemblyShadowRuntime.BeginTransaction(patch.manifest.patchId, result.baselineBuildId, patch.manifest.loadOrder, RuntimeAbiVersion), AssemblyShadowErrorCode.InvalidState);
             Expect(result, "commit-after-abort", AssemblyShadowRuntime.CommitTransaction(), AssemblyShadowErrorCode.InvalidState);
             Expect(result, "abort-again", AssemblyShadowRuntime.AbortTransaction(), AssemblyShadowErrorCode.InvalidState);
             RequireState(result, "aborted-frozen", AssemblyShadowState.Aborted);
@@ -325,6 +326,7 @@ namespace AssemblyShadowDemo
             AssemblyShadowErrorCode code;
             bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
                 patch.manifest.nativeBudgetCapabilityVersion, patch.manifest.metadataEncodingProfile, patch.manifest.metadataCapacityReport,
+                patch.manifest.metadataEncodingProfile2, patch.manifest.metadataCapacityReport2,
                 patch.manifest.loadOrder, patch.manifest.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
                 name => { byte[] dll, pdb; patch.ReadAssembly(name, out dll, out pdb); return dll; }, out code);
             return declared ? Expect(result, "reserve-metadata-budget", code) : null;
@@ -402,7 +404,7 @@ namespace AssemblyShadowDemo
 
         private static void RequireDiagnosticSchema(AssemblyShadowDiagnostics result, bool expectedEnabled)
         {
-            Require(result.schemaVersion == 1 && result.enabled == expectedEnabled && result.runtimeAbiVersion == 1 && result.assemblies != null && result.events != null && result.ordinaryAssemblies != null && result.ordinaryClasses != null && result.baselineUses != null, "Incomplete native diagnostic schema.");
+            Require(result.schemaVersion == 1 && result.enabled == expectedEnabled && result.runtimeAbiVersion == RuntimeAbiVersion && result.assemblies != null && result.events != null && result.ordinaryAssemblies != null && result.ordinaryClasses != null && result.baselineUses != null, "Incomplete native diagnostic schema.");
             Require(Enum.IsDefined(typeof(AssemblyShadowState), result.stateCode) && ((AssemblyShadowState)result.stateCode).ToString() == result.state, "State enum/string ABI mismatch.");
         }
 
@@ -745,7 +747,7 @@ namespace AssemblyShadowDemo
         [Serializable] private sealed class RepositoryPin { public string url, revision; }
         [Serializable] private sealed class SourcePins { public int schemaVersion; public string unityVersion, target, architecture; public RepositoryPin hybridclr, hybridclrUnity, il2cppPlus, demo; }
         [Serializable] private sealed class BaselineManifest { public int schemaVersion, semanticHashSchema; public string baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, playerInputSnapshotHash, bootstrapAbiHash, resourceAbiHash; public string[] shadowCandidates; public SourcePins sourcePins; }
-        [Serializable] private sealed class PatchManifest { public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, unityVersion, target, architecture, compileSnapshotHash, bootstrapAbiHash, baselineResourceAbiHash, resourceAbiHash, signatureAlgorithm; public bool dllOnly, unsigned; public string[] loadOrder; public PatchAssembly[] closure; public SourcePins sourcePins; public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; public ShadowPatchMetadataCapacityReport metadataCapacityReport; }
+        [Serializable] private sealed class PatchManifest { public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, unityVersion, target, architecture, compileSnapshotHash, bootstrapAbiHash, baselineResourceAbiHash, resourceAbiHash, signatureAlgorithm; public bool dllOnly, unsigned; public string[] loadOrder; public PatchAssembly[] closure; public SourcePins sourcePins; public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; public ShadowPatchMetadataCapacityReport metadataCapacityReport; public ShadowPatchMetadataEncodingProfile2 metadataEncodingProfile2; public ShadowPatchMetadataCapacityReport2 metadataCapacityReport2; }
         [Serializable] private sealed class PatchAssembly { public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; public ulong dllSize; }
         [Serializable] private sealed class FixtureManifest { public int schemaVersion; public string milestone, baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, baselineManifestPath, baselineManifestSha256, baselineInputSnapshotHash, stableAotProvenance, stableAotProvenanceHash; public string[] candidateNames, closureLoadOrder, stableAotNames; public Fixture[] fixtures; }
         [Serializable] private sealed class Fixture { public string patchId, patchDirectory, patchManifest, patchManifestSha256, compileSnapshotHash; public string[] closureLoadOrder, stableAotNames; }

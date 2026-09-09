@@ -19,7 +19,7 @@ namespace AssemblyShadowDemo
     [Preserve]
     public static class M07R01Probe
     {
-        private const int ProfileVersion = 1;
+        private const int ProfileVersion = 2;
         private const string InternalAssembly = "AssemblyA.Implementation.Internal";
         private const string InternalType = "AssemblyA.Implementation.Internal.InternalEntry";
         private const string CctorType = "AssemblyA.Implementation.Internal.M06ExecutionWitness";

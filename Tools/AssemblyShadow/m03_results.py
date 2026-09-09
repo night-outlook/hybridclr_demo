@@ -394,9 +394,9 @@ def _verify_patch(patch_id, item, manifest, baseline):
     return patch
 
 
-def _diag(value, path):
+def _diag(value, path, expected_abi=1):
     require(isinstance(value, dict), f"{path}: diagnostics must be object")
-    require(value.get("schemaVersion") == 1 and value.get("runtimeAbiVersion") == 1,
+    require(value.get("schemaVersion") == 1 and type(value.get("runtimeAbiVersion")) is int and value.get("runtimeAbiVersion") == expected_abi,
             f"{path}: native diagnostics schema mismatch")
     require(isinstance(value.get("assemblies"), list) and isinstance(value.get("events"), list) and
             isinstance(value.get("ordinaryAssemblies"), list) and isinstance(value.get("ordinaryClasses"), list) and
@@ -407,7 +407,11 @@ def _diag(value, path):
 
 
 def _verify_diag_invariants(diagnostics, expected, stable, path, final=False, patch=None):
-    d = _diag(diagnostics, path)
+    expected_abi = 1
+    if patch is not None and patch.get("nativeBudgetCapabilityVersion") == 2:
+        from m07_results import diagnostic_abi
+        expected_abi = diagnostic_abi(patch, path)
+    d = _diag(diagnostics, path, expected_abi)
     require(d.get("enabled") is True, f"{path}: native ON diagnostic is disabled")
     require(type(d.get("lastError")) is int and 0 <= d["lastError"] <= 20, f"{path}: native lastError code is invalid")
     _name_order(d.get("closureLoadOrder"), expected, path, "diagnostic closureLoadOrder")

@@ -427,7 +427,7 @@ def verify_patch(fixture,manifest,baseline,plan_tuple,path):
     root=canonical(fixture['patchDirectory'],path,'patchDirectory',True);patch_path=bound(fixture['patchManifest'],fixture['patchManifestSha256'],path,'patchManifest');exact(patch_path,root/'patch-manifest.json',path)
     exact((root/'manifest.sha256').read_text().strip(),digest(patch_path),path)
     envelope=obj(patch_path,'schemaVersion patch warmup');exact(envelope['schemaVersion'],2,path);patch=envelope['patch']
-    r01_capability = r01_schema._schema_variant(patch, r01_schema.PATCH_FIELDS, r01_schema.R01_PATCH_FIELDS, path)
+    r01_capability = r01_schema.patch_schema(patch, path)
     exact(patch['schemaVersion'],1,path);exact(patch['semanticHashSchema'],1,path);exact(patch['patchId'],pid,path)
     for key in ('baselineBuildId','baselineManifestSha256','unityVersion','target','architecture','runtimeAbiHash'):exact(patch[key],manifest[key],path)
     exact(patch['compileSnapshotHash'],fixture['compileSnapshotHash'],path);prior._pins(patch['sourcePins'],path,baseline['sourcePins'])
@@ -492,6 +492,8 @@ def verify_baseline(manifest,path,m01_root):
     frozen=prior._verify_snapshot(frozen_root,manifest['baselineBuildId'],manifest['runtimeAbiHash'],baseline,path)
     prior._snapshot_files(frozen,frozen_root,path);raw.verify_snapshot(frozen_root,frozen,require_linked=True)
     exact(snapshot,frozen,path);exact(manifest['baselineInputSnapshotHash'],snapshot['snapshotHash'],path)
+    from m07_results import verify_baseline_metadata
+    verify_baseline_metadata(baseline,frozen,frozen_root,path)
     prior._verify_bundles(Path(m01_root),baseline,path)
     resource=prior._verify_resource_baseline(baseline_path.parent,baseline,path,Path(m01_root))
     exact(resource['provenance'],'M01AuditedFrozenSourceReconstruction',path);exact(resource['compilerSnapshotHash'],snapshot['snapshotHash'],path)
@@ -915,9 +917,11 @@ def transaction_events(phase,closure,r01_capability=False):
 
 
 def verify_snapshots(result,context,path,closure):
+    from m07_results import diagnostic_abi
+    expected_abi = diagnostic_abi(context["baseline"], path)
     transaction=[]
     for row in result['transactionSnapshots']:
-        fields(row,'phase rawJson diagnostics',path);strings(row,path,'phase rawJson');d=prior._diagnostic(json_text(row['rawJson'],path),path);exact(row['diagnostics'],d,path)
+        fields(row,'phase rawJson diagnostics',path);strings(row,path,'phase rawJson');d=prior._diagnostic(json_text(row['rawJson'],path),path,expected_abi);exact(row['diagnostics'],d,path)
         exact(d['enabled'],True,path)
         phase=row['phase'];expected_state={'initial':0,'baseline-recovery':0,'staged':3,'validated':4,'committed':6,'final':6,'initializer-failure':9}
         require(phase in expected_state,f"{path}: unknown transaction phase");exact(d['stateCode'],expected_state[phase],path)
@@ -1178,7 +1182,8 @@ def verify_case(path,context,build):
         if 'reserveCode' in result:exact(result['reserveCode'],-1,path)
         for key in ('configureCode','beginCode','validateCode','commitCode','abortCode','stateCode','executionModeCode','diagnosticsCode','executionDiagnosticsCode','typeResolutionCode'):exact(result[key],1,path)
         exact(result['stageResults'],[dict(name='',dllSha256='',pdbSha256='',code=1)],path);exact(result['state'],'Disabled',path);exact(result['executionMode'],'AotBaseline',path)
-        disabled=prior._diagnostic(json_text(result['nativeDiagnosticsJson'],path),path);exact(disabled['enabled'],False,path);exact(disabled['lastError'],1,path);exact(disabled['stateCode'],0,path)
+        from m07_results import diagnostic_abi
+        disabled=prior._diagnostic(json_text(result['nativeDiagnosticsJson'],path),path,diagnostic_abi(context['baseline'],path));exact(disabled['enabled'],False,path);exact(disabled['lastError'],1,path);exact(disabled['stateCode'],0,path)
         for key,value in disabled.items():
             if key == 'startupObservationMode':exact(value,'Unavailable',path)
             elif key not in ('schemaVersion','runtimeAbiVersion','enabled','lastError','stateCode','state'):

@@ -35,7 +35,7 @@ namespace AssemblyShadowDemo
             "T05-11-FeatureOff", "T05-12-BenchmarkOn", "T05-13-BenchmarkOff"
         };
 
-        private const int RuntimeAbiVersion = 1;
+        private const int RuntimeAbiVersion = 2;
         private const string MvidPolicy = "unavailable-pinned-il2cpp-use-byte-bound-build-and-native-diagnostics";
         private static readonly string[] Candidates = { Contracts, Extensibility, Internal, ContractsConsumer, ExtensibilityConsumer };
         private static Result activeCoroutineResult;
@@ -372,6 +372,7 @@ namespace AssemblyShadowDemo
             AssemblyShadowErrorCode code;
             bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
                 fixture.patch.nativeBudgetCapabilityVersion, fixture.patch.metadataEncodingProfile, fixture.patch.metadataCapacityReport,
+                fixture.patch.metadataEncodingProfile2, fixture.patch.metadataCapacityReport2,
                 fixture.patch.loadOrder, fixture.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
                 name => ReadVerifiedDll(fixture, name), out code);
             return declared ? Expect(result, "reserve-metadata-budget", code) : null;
@@ -1009,6 +1010,8 @@ namespace AssemblyShadowDemo
             [Preserve] public PatchAssembly[] closure;
             [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile;
             [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport;
+            [Preserve] public ShadowPatchMetadataEncodingProfile2 metadataEncodingProfile2;
+            [Preserve] public ShadowPatchMetadataCapacityReport2 metadataCapacityReport2;
         }
         [Serializable, Preserve] internal sealed class PatchAssembly
         {

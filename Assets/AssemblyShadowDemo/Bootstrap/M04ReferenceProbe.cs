@@ -27,7 +27,7 @@ namespace AssemblyShadowDemo
         private const string Internal = "AssemblyA.Implementation.Internal";
         private const string ContractsConsumer = "AssemblyShadowDemo.ContractsConsumer";
         private const string ExtensibilityConsumer = "AssemblyShadowDemo.ExtensibilityConsumer";
-        private const int RuntimeAbiVersion = 1;
+        private const int RuntimeAbiVersion = 2;
         private static readonly string[] Candidates = { Contracts, Extensibility, Internal, ContractsConsumer, ExtensibilityConsumer };
 
         public static int RunAndWrite(string expectedBaselineBuildId, string expectedRuntimeAbiHash)
@@ -380,6 +380,7 @@ namespace AssemblyShadowDemo
             Dictionary<string, long> verifiedSizes;
             bool declared = ShadowPatchMetadataReservation.ValidateIfDeclared(
                 fixture.patch.nativeBudgetCapabilityVersion, fixture.patch.metadataEncodingProfile, fixture.patch.metadataCapacityReport,
+                fixture.patch.metadataEncodingProfile2, fixture.patch.metadataCapacityReport2,
                 fixture.patch.loadOrder, fixture.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
                 name => ReadVerifiedDll(fixture, name), out profileVersion, out verifiedSizes);
             if (!declared) return null;
@@ -771,7 +772,7 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] private sealed class Input { [Preserve] public string manifestPath, playerReceiptPath, MscorlibPath, MscorlibSha256, MscorlibFullName, MscorlibMvid; [Preserve] public FixtureManifest manifest; [Preserve] public PlayerBuildReceipt player; [Preserve] public BaselineManifest baseline; }
         [Serializable, Preserve] private sealed class BaselineManifest { [Preserve] public string baselineBuildId; [Preserve] public BaselineAssembly[] assemblies; }
         [Serializable, Preserve] private sealed class BaselineAssembly { [Preserve] public string name, mvid; }
-        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport; }
+        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport; [Preserve] public ShadowPatchMetadataEncodingProfile2 metadataEncodingProfile2; [Preserve] public ShadowPatchMetadataCapacityReport2 metadataCapacityReport2; }
         [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; [Preserve] public ulong dllSize; }
     }
 }

@@ -24,6 +24,132 @@ LAUNCH_FIELDS = "schemaVersion kind projectRoot fixtureManifestPath onBuildRecei
 read, exact, fields, digest, bound, canonical = r01.read, r01.exact, r01.fields, r01.digest, r01.bound, r01.canonical
 prior = m07.prior
 
+PROFILE2_PROFILE_FIELDS = getattr(m07, "R01B_PROFILE_FIELDS", (
+    "schemaVersion profileVersion nativeBudgetCapabilityVersion codecId codecBits "
+    "invalidIndexSentinel aotMaxIndex minImageId maximumImageCount pageValues "
+    "usablePageCapacity chargedPageCeiling minimumFreePageMargin maximumDllBytes "
+    "aggregateDllEnvelopeBytes nativeSourceRevision nativeCodecHeaderSha256"
+))
+PROFILE2_CAPACITY_FIELDS = (
+    "schemaVersion enabled profileVersion maximumImageCount maximumDllBytes usablePageCapacity "
+    "chargedPageCeiling minimumFreePageMargin reservedPages mappedPages lifetimeReservedImageCount "
+    "remainingImageCount requiredImages acceptedImages firstFailingIndex firstFailingSize "
+    "failureReason fitsPreliminary runtimeFinalizationRequired aggregateInputDllBytes "
+    "aggregateInputDllBytesInformational ordinaryAllocatedCount shadowAllocatedCount reservedShadowImageCount"
+)
+PROFILE2_BASELINE_CAPACITY_FIELDS = getattr(m07, "R01B_REPORT_FIELDS", (
+    "schemaVersion profileVersion budgetCapabilityVersion nativeBudgetCapabilityVersion nativeSourceRevision "
+    "nativeCodecHeaderSha256 codecId codecBits invalidIndexSentinel aotMaxIndex minImageId maxImages pageValues "
+    "usablePages maxChargedPages maxDllBytes aggregateDllEnvelopeBytes maximumImageCount maximumDllBytes "
+    "usablePageCapacity chargedPageCeiling minimumFreePageMargin currentReservedImageCount reservedImageCountBefore "
+    "reservedImageCountAfter requestedImageCount requiredImages aggregateDllBytes aggregateInputDllBytes "
+    "aggregateInputDllBytesInformational reservedPages mappedPages lifetimeReservedImageCount remainingImageCount "
+    "inputs allocations acceptedImages fitsImageCount aggregateDllEnvelopeFits aggregateDllEnvelopeExceeded "
+    "inputCountWasBounded admissionAccepted fitsPreliminary finalPageFitKnown runtimeFinalizationRequired "
+    "admissionKind firstFailingIndex firstFailingAssembly failureReason"
+))
+PROFILE2_MAX_IMAGES = 8192
+PROFILE2_MAX_DLL_BYTES = 32 * 1024 * 1024
+PROFILE2_USABLE_PAGE_CAPACITY = 524287
+PROFILE2_CHARGED_PAGE_CEILING = 393215
+PROFILE2_MINIMUM_FREE_PAGE_MARGIN = 131072
+
+
+def metadata_profile(context, label="R01"):
+    """Return the negotiated metadata profile from already verified inputs.
+
+    The profile is selected from the baseline contract, rather than inferred
+    from an untrusted Player snapshot.  Profile 1 remains delegated to the
+    historical R01 input gate; profile 2 requires its complete baseline
+    declarations before any raw result is accepted.
+    """
+    baseline = context["baseline"]
+    capability = baseline.get("nativeBudgetCapabilityVersion", 0)
+    require(type(capability) is int and capability in (1, 2),
+            f"{label}: unsupported baseline budget capability")
+    if capability == 1:
+        return 1
+    profile = fields(baseline.get("metadataEncodingProfile2"), PROFILE2_PROFILE_FIELDS,
+                     f"{label}.baseline.metadataEncodingProfile2")
+    report = fields(baseline.get("metadataCapacityReport2"), PROFILE2_BASELINE_CAPACITY_FIELDS,
+                    f"{label}.baseline.metadataCapacityReport2")
+    for key, expected in (("schemaVersion", 2), ("profileVersion", 2),
+                          ("nativeBudgetCapabilityVersion", 2),
+                          ("maximumImageCount", PROFILE2_MAX_IMAGES),
+                          ("maximumDllBytes", PROFILE2_MAX_DLL_BYTES),
+                          ("usablePageCapacity", PROFILE2_USABLE_PAGE_CAPACITY),
+                          ("chargedPageCeiling", PROFILE2_CHARGED_PAGE_CEILING),
+                          ("minimumFreePageMargin", PROFILE2_MINIMUM_FREE_PAGE_MARGIN)):
+        exact(profile[key], expected, f"{label}.baseline.metadataEncodingProfile2.{key}")
+    for key, expected in (("schemaVersion", 2), ("profileVersion", 2),
+                          ("maximumImageCount", PROFILE2_MAX_IMAGES),
+                          ("maximumDllBytes", PROFILE2_MAX_DLL_BYTES),
+                          ("usablePageCapacity", PROFILE2_USABLE_PAGE_CAPACITY),
+                          ("chargedPageCeiling", PROFILE2_CHARGED_PAGE_CEILING),
+                          ("minimumFreePageMargin", PROFILE2_MINIMUM_FREE_PAGE_MARGIN),
+                          ("runtimeFinalizationRequired", True),
+                          ("aggregateInputDllBytesInformational", True)):
+        exact(report[key], expected, f"{label}.baseline.metadataCapacityReport2.{key}")
+    exact(report.get("nativeBudgetCapabilityVersion"), 2,
+          f"{label}.baseline.metadataCapacityReport2.nativeBudgetCapabilityVersion")
+    return 2
+
+
+def verify_profile2_capacity(value, sizes, label):
+    """Verify the native profile 2 preliminary admission report.
+
+    Page counts are native observations and are checked for type and bounds;
+    admission, aggregate bytes, and all-or-nothing acceptance are recomputed
+    here from the ordered DLL sizes and the committed reservation count.
+    """
+    fields(value, PROFILE2_CAPACITY_FIELDS, label)
+    exact(value["schemaVersion"], 2, label + ".schemaVersion")
+    exact(value["enabled"], True, label + ".enabled")
+    exact(value["profileVersion"], 2, label + ".profileVersion")
+    for key, expected in (("maximumImageCount", PROFILE2_MAX_IMAGES),
+                          ("maximumDllBytes", PROFILE2_MAX_DLL_BYTES),
+                          ("usablePageCapacity", PROFILE2_USABLE_PAGE_CAPACITY),
+                          ("chargedPageCeiling", PROFILE2_CHARGED_PAGE_CEILING),
+                          ("minimumFreePageMargin", PROFILE2_MINIMUM_FREE_PAGE_MARGIN)):
+        exact(value[key], expected, label + "." + key)
+    require(type(sizes) is list and all(type(size) is int and not isinstance(size, bool) and size >= 0 for size in sizes),
+            label + ".sizes: expected non-negative integers")
+    for key in ("reservedPages", "mappedPages", "lifetimeReservedImageCount", "remainingImageCount",
+                "requiredImages", "acceptedImages", "firstFailingSize", "aggregateInputDllBytes",
+                "ordinaryAllocatedCount", "shadowAllocatedCount", "reservedShadowImageCount"):
+        r01.integer(value[key], label + "." + key)
+    exact(value["requiredImages"], len(sizes), label + ".requiredImages")
+    reserved = value["lifetimeReservedImageCount"]
+    require(reserved <= PROFILE2_MAX_IMAGES, label + ".lifetimeReservedImageCount")
+    exact(value["remainingImageCount"], PROFILE2_MAX_IMAGES - reserved, label + ".remainingImageCount")
+    aggregate = 0
+    for size in sizes:
+        aggregate = min((1 << 64) - 1, aggregate + size)
+    exact(value["aggregateInputDllBytes"], aggregate, label + ".aggregateInputDllBytes")
+    exact(value["runtimeFinalizationRequired"], True, label + ".runtimeFinalizationRequired")
+    exact(value["aggregateInputDllBytesInformational"], True, label + ".aggregateInputDllBytesInformational")
+    failure_index = -1
+    failure_reason = "None"
+    if len(sizes) > PROFILE2_MAX_IMAGES - reserved:
+        failure_index, failure_reason = PROFILE2_MAX_IMAGES - reserved, "ImageLimit"
+    else:
+        for index, size in enumerate(sizes):
+            if size == 0:
+                failure_index, failure_reason = index, "EmptyDll"
+                break
+            if size > PROFILE2_MAX_DLL_BYTES:
+                failure_index, failure_reason = index, "DllTooLarge"
+                break
+    fits = failure_index == -1
+    exact(value["fitsPreliminary"], fits, label + ".fitsPreliminary")
+    exact(value["acceptedImages"], len(sizes) if fits else 0, label + ".acceptedImages")
+    exact(value["firstFailingIndex"], failure_index, label + ".firstFailingIndex")
+    exact(value["firstFailingSize"], 0 if failure_index < 0 else sizes[failure_index], label + ".firstFailingSize")
+    exact(value["failureReason"], failure_reason, label + ".failureReason")
+    require(value["reservedShadowImageCount"] <= value["lifetimeReservedImageCount"],
+            label + ".reservedShadowImageCount")
+    return value
+
 
 def verify_initializer(fixture, manifest, baseline, manifest_path):
     patch_id = fixture["patchId"]
@@ -40,7 +166,10 @@ def verify_initializer(fixture, manifest, baseline, manifest_path):
     patch_path = bound(fixture["patchManifest"], fixture["patchManifestSha256"], manifest_path, "patchManifest")
     exact(patch_path, patch_root / "patch-manifest.json", f"{manifest_path}.{patch_id}.patchManifest")
     patch = prior._obj(patch_path)
-    capability = m07._schema_variant(patch, m07.PATCH_FIELDS, m07.R01_PATCH_FIELDS, patch_path)
+    # m07.patch_schema is the single verified wire-schema selector. It keeps
+    # historical profile 1 fixtures strict while admitting the explicit
+    # profile 2 extension owned by the current native baseline.
+    capability = m07.patch_schema(patch, patch_path)
     sidecar = patch_root / "manifest.sha256"
     require(sidecar.is_file() and not sidecar.is_symlink() and sidecar.read_text(encoding="utf-8").strip() == digest(patch_path),
             f"{sidecar}: missing or stale patch manifest sidecar")
@@ -181,12 +310,14 @@ def verify_negative(path, fixture_path, p03):
 
 def prepare(project, fixture_path, on_path, off_path, replay_path, failures_path, negative_path):
     context = verify_inputs(project, fixture_path, on_path, off_path, replay_path)
-    r01.require_r01_inputs(context)
+    profile = metadata_profile(context, "R01 failure")
+    if profile == 1:
+        r01.require_r01_inputs(context)
     failures = verify_failure_fixtures(failures_path, context, fixture_path)
     negative = verify_negative(negative_path, fixture_path, context["fixtures"]["P03"])
     runner = r01._load_m07_runner()
     inventory = runner.collect_inputs(fixture_path, replay_path, (on_path, off_path)) | failures["files"] | negative["files"]
-    return dict(context=context, failures=failures, negative=negative, inventory=inventory, runner=runner)
+    return dict(context=context, profile=profile, failures=failures, negative=negative, inventory=inventory, runner=runner)
 
 
 def raw(row, result_path, label):
@@ -199,12 +330,15 @@ def raw(row, result_path, label):
     return m07.json_text(row["rawJson"], label)
 
 
-def ordinary(value, patch, baseline_id, label, begun=True):
+def ordinary(value, patch, baseline_id, label, begun=True, profile=1):
     closure = patch["loadOrder"]
     fields(value, m04.R01_DIAGNOSTIC_FIELDS, label)
-    m04._diagnostic(value, label)
-    for key in ("schemaVersion", "runtimeAbiVersion", "metadataBudgetCapabilityVersion", "recoveryCapabilityVersion", "startupCandidateSchemaVersion"):
-        exact(value[key], 1, label + "." + key)
+    m04._diagnostic(value, label, expected_abi=profile)
+    exact(value["schemaVersion"], 1, label + ".schemaVersion")
+    exact(value["runtimeAbiVersion"], profile, label + ".runtimeAbiVersion")
+    exact(value["metadataBudgetCapabilityVersion"], profile, label + ".metadataBudgetCapabilityVersion")
+    exact(value["recoveryCapabilityVersion"], 1, label + ".recoveryCapabilityVersion")
+    exact(value["startupCandidateSchemaVersion"], 1, label + ".startupCandidateSchemaVersion")
     exact(value["enabled"], True, label + ".enabled")
     exact(value["startupObservationMode"], "EarlyTracking", label + ".startupObservationMode")
     exact(value["startupCandidateNames"], closure, label + ".startupCandidateNames")
@@ -235,6 +369,11 @@ def verify_result(path, mode, prepared):
     path = canonical(str(path), Path(path), "result")
     result = fields(read(path), RESULT_FIELDS, str(path))
     context, failures, negative = (prepared[key] for key in ("context", "failures", "negative"))
+    profile = prepared.get("profile")
+    if profile is None:
+        # Focused producer tests substitute a deliberately minimal prepared
+        # context; those fixtures are the historical profile-1 contract.
+        profile = 1
     manifest, build = context["manifest"], context["on"]
     fixture = failures["initializer"] if mode == MODES[2] else context["fixtures"]["P03"]
     closure = fixture["patch"]["loadOrder"]
@@ -281,7 +420,8 @@ def verify_result(path, mode, prepared):
         require(all(row["threadId"] == result["mainThreadId"] for row in result[group]), "Main snapshots used another thread")
         require([row["ticks"] for row in result[group]] == sorted(row["ticks"] for row in result[group]), "Snapshot time regressed")
     for i, value in enumerate(parsed["diagnostics"]):
-        ordinary(value, fixture["patch"], manifest["baselineBuildId"], "diagnostics." + phases[i], begun=i > 0)
+        ordinary(value, fixture["patch"], manifest["baselineBuildId"], "diagnostics." + phases[i], begun=i > 0,
+                 profile=profile)
         expected_state = ("Disabled", "Staging", "Staged", "Failed" if q04 else "Validated")[i] if i < 4 else state
         exact(value["state"], expected_state, "diagnostic state")
         if i < 2: exact(value["retainedBytes"], 0, "premature retained owner")
@@ -307,20 +447,31 @@ def verify_result(path, mode, prepared):
         require(not any(row["kind"] == "metadata-ready" for row in failure["events"]), "Q04 reported completed provider metadata")
     if initializer: exact(parsed["diagnostics"][-2]["lastError"], 19, "initializer exact failure")
     capacities = parsed["capacities"]
-    for value in capacities:
-        fields(value, "schemaVersion enabled profileVersion indexBits kindBits cursors remainingSlots requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason fits allocations finalCursors ordinaryAllocatedCount shadowAllocatedCount reservedImageCount", "capacity raw")
-        model = r01.evaluate_budget(value["cursors"], sizes)
-        for key in model: exact(value[key], model[key], "capacity dry-run." + key)
-        exact(value["remainingSlots"], r01.remaining_slots(value["cursors"]), "capacity remaining slots")
-        for key, expected in (("schemaVersion", 1), ("enabled", True), ("profileVersion", 1), ("indexBits", 22), ("kindBits", 2)):
-            exact(value[key], expected, "capacity." + key)
-    exact(capacities[1]["cursors"], capacities[0]["finalCursors"], "reservation advanced exact planned cursors")
-    exact(capacities[1]["reservedImageCount"], capacities[0]["reservedImageCount"] + len(sizes), "complete reserved budget")
-    for value in capacities[1:]:
-        exact(value["cursors"], capacities[1]["cursors"], "retained budget cursor cannot roll back")
-        exact(value["ordinaryAllocatedCount"], capacities[0]["ordinaryAllocatedCount"], "unexpected ordinary image")
-        exact(value["reservedImageCount"], capacities[1]["reservedImageCount"], "reservation discarded")
-    for value in capacities[2:]: exact(value["shadowAllocatedCount"], capacities[1]["shadowAllocatedCount"] + len(sizes), "staged reserved slots consumed exactly once")
+    if profile == 1:
+        for value in capacities:
+            fields(value, "schemaVersion enabled profileVersion indexBits kindBits cursors remainingSlots requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason fits allocations finalCursors ordinaryAllocatedCount shadowAllocatedCount reservedImageCount", "capacity raw")
+            model = r01.evaluate_budget(value["cursors"], sizes)
+            for key in model: exact(value[key], model[key], "capacity dry-run." + key)
+            exact(value["remainingSlots"], r01.remaining_slots(value["cursors"]), "capacity remaining slots")
+            for key, expected in (("schemaVersion", 1), ("enabled", True), ("profileVersion", 1), ("indexBits", 22), ("kindBits", 2)):
+                exact(value[key], expected, "capacity." + key)
+        exact(capacities[1]["cursors"], capacities[0]["finalCursors"], "reservation advanced exact planned cursors")
+        exact(capacities[1]["reservedImageCount"], capacities[0]["reservedImageCount"] + len(sizes), "complete reserved budget")
+        for value in capacities[1:]:
+            exact(value["cursors"], capacities[1]["cursors"], "retained budget cursor cannot roll back")
+            exact(value["ordinaryAllocatedCount"], capacities[0]["ordinaryAllocatedCount"], "unexpected ordinary image")
+            exact(value["reservedImageCount"], capacities[1]["reservedImageCount"], "reservation discarded")
+        for value in capacities[2:]: exact(value["shadowAllocatedCount"], capacities[1]["shadowAllocatedCount"] + len(sizes), "staged reserved slots consumed exactly once")
+    else:
+        for value in capacities:
+            verify_profile2_capacity(value, sizes, "capacity raw")
+        exact(capacities[1]["lifetimeReservedImageCount"], capacities[0]["lifetimeReservedImageCount"] + len(sizes),
+             "profile2 reservation advanced exact image count")
+        for value in capacities[1:]:
+            exact(value["lifetimeReservedImageCount"], capacities[1]["lifetimeReservedImageCount"],
+                  "profile2 reservation count cannot roll back")
+            exact(value["ordinaryAllocatedCount"], capacities[0]["ordinaryAllocatedCount"],
+                  "profile2 unexpected ordinary image")
     for value in parsed["recovery"]:
         fields(value, "schemaVersion enabled capabilityVersion stateCode state published abortAllowed dispositionCode disposition terminalFailureCode reason retainedBytes baselineEligibilityRequiresStartupValidation", "recovery raw")
         for key in ("enabled", "published", "abortAllowed", "baselineEligibilityRequiresStartupValidation"): r01.boolean(value[key], "recovery." + key)
@@ -345,7 +496,7 @@ def verify_result(path, mode, prepared):
     previous = (0, 0, 0)
     for row in samples:
         value = raw(row, path, "observer"); raw_paths.append(row["rawPath"])
-        current = ordinary(value, fixture["patch"], manifest["baselineBuildId"], "observer")
+        current = ordinary(value, fixture["patch"], manifest["baselineBuildId"], "observer", profile=profile)
         require(all(a <= b for a, b in zip(previous, current)), "Observer generations regressed"); previous = current
         if row["phase"] == "after": exact(value["state"], state, "observer final state"); exact(current, (0, 0, 0) if q04 else (1, 1, 1), "observer final publication")
     require(any(raw(row, path, "observer initial")["enumerationGeneration"] == 0 for row in samples if row["phase"] == "before"), "No actual pre-publication sample")
@@ -354,7 +505,7 @@ def verify_result(path, mode, prepared):
         exact([row["name"] for row in result["initializerEvents"]], attempted, "actual throwing initializer order")
         for row in result["initializerEvents"]:
             value = raw(row["diagnostics"], path, "initializer reentrant"); raw_paths.append(row["diagnostics"]["rawPath"])
-            exact(value["state"], "Committing", "initializer reentrant state"); exact(ordinary(value, fixture["patch"], manifest["baselineBuildId"], "initializer"), (1, 1, 1), "initializer complete publication")
+            exact(value["state"], "Committing", "initializer reentrant state"); exact(ordinary(value, fixture["patch"], manifest["baselineBuildId"], "initializer", profile=profile), (1, 1, 1), "initializer complete publication")
         final_rows = parsed["diagnostics"][-1]["assemblies"]
         exact([row["moduleInitializerAttempted"] for row in final_rows], [name in attempted for name in closure], "initializer attempts")
         exact([row["moduleInitializerRan"] for row in final_rows], [name in attempted[:-1] for name in closure], "initializer completion")

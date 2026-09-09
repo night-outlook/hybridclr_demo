@@ -35,7 +35,8 @@ namespace AssemblyShadowDemo
         private const string InternalEntryType = "AssemblyA.Implementation.Internal.InternalEntry";
         private const string ObjectWitnessType = "AssemblyA.Implementation.Internal.M06ExecutionWitness+M06InternalNode";
         private const string CctorWitnessType = "AssemblyA.Implementation.Internal.M06ExecutionWitness";
-        private const int RuntimeAbiVersion = 1;
+        private const int RuntimeAbiVersion = 2;
+        private const int MetadataProfileVersion = 2;
 
         private static string s_lastReceiptJson;
 
@@ -262,7 +263,7 @@ namespace AssemblyShadowDemo
             });
             Snapshot(receipt, "after-begin", sizes);
             Operation(receipt, "reserve", AssemblyShadowErrorCode.MetadataCapacityExceeded, delegate {
-                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 1);
+                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, MetadataProfileVersion);
             });
             Snapshot(receipt, "after-failed-reserve", sizes);
             AssemblyShadowMetadataCapacity after = LastCapacity(receipt);
@@ -285,7 +286,7 @@ namespace AssemblyShadowDemo
             });
             Snapshot(receipt, "after-begin", sizes);
             Operation(receipt, "reserve", AssemblyShadowErrorCode.Success, delegate {
-                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 1);
+                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, MetadataProfileVersion);
             });
             Snapshot(receipt, "after-reserve", sizes);
 
@@ -337,7 +338,7 @@ namespace AssemblyShadowDemo
             if (afterBegin != null) afterBegin();
             Snapshot(receipt, "after-begin", sizes);
             Operation(receipt, "reserve", AssemblyShadowErrorCode.Success, delegate {
-                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 1);
+                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, MetadataProfileVersion);
             });
             Snapshot(receipt, "after-reserve", sizes);
             if (ordinaryAfterReserve)
@@ -381,7 +382,7 @@ namespace AssemblyShadowDemo
             if (afterBegin != null) afterBegin();
             Snapshot(receipt, "after-begin", sizes);
             Operation(receipt, "reserve", AssemblyShadowErrorCode.Success, delegate {
-                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 1);
+                return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, MetadataProfileVersion);
             });
             Snapshot(receipt, "after-reserve", sizes);
             for (int i = 0; i < closure.Count; ++i)

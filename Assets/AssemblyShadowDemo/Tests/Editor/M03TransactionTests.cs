@@ -180,7 +180,7 @@ namespace AssemblyShadowDemo.EditorTests
             MethodInfo validate = probe.GetMethod("RequireDisabledDiagnostics", BindingFlags.NonPublic | BindingFlags.Static);
             Assert.IsNotNull(validate);
             const string complete = "{\"schemaVersion\":1,\"startupCandidateSchemaVersion\":0,\"startupCandidateNames\":[],\"startupObservationMode\":\"Unavailable\",\"enabled\":false," +
-                "\"metadataBudgetCapabilityVersion\":0,\"recoveryCapabilityVersion\":0,\"runtimeAbiVersion\":1,\"state\":\"Disabled\",\"stateCode\":0," +
+                "\"metadataBudgetCapabilityVersion\":0,\"recoveryCapabilityVersion\":0,\"runtimeAbiVersion\":2,\"state\":\"Disabled\",\"stateCode\":0," +
                 "\"lastError\":1,\"detail\":\"\",\"baselineBuildId\":\"\",\"patchId\":\"\",\"generation\":0,\"expected\":0,\"staged\":0," +
                 "\"retainedBytes\":0,\"enumerationGeneration\":0,\"classEnumerationGeneration\":0,\"assemblies\":[],\"events\":[]," +
                 "\"baselineUses\":[],\"ordinaryAssemblies\":[],\"ordinaryClasses\":[],\"closureLoadOrder\":[],\"stableAotNames\":[],\"commitOrder\":[]}";
@@ -188,6 +188,7 @@ namespace AssemblyShadowDemo.EditorTests
             foreach (string invalid in new[] {
                 "{\"enabled\":false}", complete.Replace("\"lastError\":1", "\"lastError\":0"),
                 complete.Replace("\"generation\":0", "\"generation\":1"),
+                complete.Replace("\"runtimeAbiVersion\":2", "\"runtimeAbiVersion\":1"),
                 complete.Replace("\"stableAotNames\":[]", "\"stableAotNames\":[\"mscorlib\"]"),
                 complete.Replace("\"closureLoadOrder\":[],", ""), complete.Replace("\"detail\":\"\",", "") })
             {

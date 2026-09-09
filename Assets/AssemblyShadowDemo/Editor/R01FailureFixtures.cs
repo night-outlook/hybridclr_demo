@@ -30,9 +30,30 @@ namespace AssemblyShadowDemo.Editor
                 m07.baselineBuildId == baseline.baselineBuildId && m07.runtimeAbiHash == baseline.runtimeAbiHash, "M07 baseline binding differs.");
             Require(File.ReadAllText(Path.Combine(Path.GetDirectoryName(baselinePath), "manifest.sha256")).Trim() == ShadowHash.File(baselinePath), "Unsealed baseline.");
             ShadowSourcePins.RequireSameBuildSources(pins, baseline.sourcePins);
-            Require(baseline.metadataEncodingProfile != null && baseline.metadataCapacityReport != null && baseline.metadataCapacityReport.fits,
-                "Failure fixtures require the R01 capacity baseline.");
-            baseline.metadataEncodingProfile.ValidateOrThrow();
+            if (baseline.nativeBudgetCapabilityVersion == 1)
+            {
+                Require(baseline.metadataEncodingProfile != null && baseline.metadataCapacityReport != null && baseline.metadataCapacityReport.fits,
+                    "Failure fixtures require the R01 capacity baseline.");
+                baseline.metadataEncodingProfile.ValidateOrThrow();
+            }
+            else if (baseline.nativeBudgetCapabilityVersion == MetadataCapacityProfile2.BudgetCapabilityVersion)
+            {
+                Require(baseline.metadataEncodingProfile2 != null && baseline.metadataCapacityReport2 != null,
+                    "Failure fixtures require the profile 2 capacity baseline.");
+                var profile = baseline.metadataEncodingProfile2;
+                var report = baseline.metadataCapacityReport2;
+                profile.ValidateOrThrow();
+                Require(report.schemaVersion == 2 && report.profileVersion == MetadataCapacityProfile2.ProfileVersion &&
+                    report.nativeBudgetCapabilityVersion == MetadataCapacityProfile2.BudgetCapabilityVersion && report.fitsPreliminary &&
+                    report.runtimeFinalizationRequired && !report.finalPageFitKnown &&
+                    string.Equals(report.nativeSourceRevision, profile.nativeSourceRevision, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(report.nativeCodecHeaderSha256, profile.nativeCodecHeaderSha256, StringComparison.OrdinalIgnoreCase),
+                    "Profile 2 baseline capacity is incomplete or not bound to its native codec.");
+            }
+            else
+            {
+                throw new BuildFailedException("Failure fixtures require an explicit profile 1 or profile 2 capacity baseline.");
+            }
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
             string[] defines = { M07Build.P01Define, M07Build.P03Define, M03Build.InitializerDefine,
                 M03Build.P03InitializerDefine, InitializerThrowDefine };
@@ -55,9 +76,28 @@ namespace AssemblyShadowDemo.Editor
             M05EditorValidation.VerifyArtifactTree(initializer.patchDirectory, replay.patchDirectory);
             Require(initializer.patchManifestSha256 == replay.patchManifestSha256, "Initializer replay bytes differ.");
             var patch = JsonUtility.FromJson<ShadowPatchManifest>(File.ReadAllText(initializer.patchManifest));
-            Require(patch.nativeBudgetCapabilityVersion == 1 && patch.metadataCapacityReport != null && patch.metadataCapacityReport.fits &&
-                patch.metadataCapacityReport.runtimeReserveMetadataBudget && initializer.dllOnly && patch.loadOrder.SequenceEqual(M07Build.Candidates),
-                "Initializer patch lacks the complete budgeted closure.");
+            if (baseline.nativeBudgetCapabilityVersion == 1)
+            {
+                Require(patch.nativeBudgetCapabilityVersion == 1 && patch.metadataCapacityReport != null && patch.metadataCapacityReport.fits &&
+                    patch.metadataCapacityReport.runtimeReserveMetadataBudget && initializer.dllOnly && patch.loadOrder.SequenceEqual(M07Build.Candidates),
+                    "Initializer patch lacks the complete budgeted closure.");
+            }
+            else
+            {
+                Require(patch.nativeBudgetCapabilityVersion == MetadataCapacityProfile2.BudgetCapabilityVersion &&
+                    patch.metadataEncodingProfile2 != null && patch.metadataCapacityReport2 != null &&
+                    patch.metadataCapacityReport2.admissionAccepted && patch.metadataCapacityReport2.fitsPreliminary &&
+                    patch.metadataCapacityReport2.runtimeFinalizationRequired && !patch.metadataCapacityReport2.finalPageFitKnown &&
+                    initializer.dllOnly && patch.loadOrder.SequenceEqual(M07Build.Candidates),
+                    "Initializer profile 2 patch lacks the complete preliminary budget closure.");
+                patch.metadataEncodingProfile2.ValidateOrThrow();
+                Require(string.Equals(patch.metadataEncodingProfile2.nativeSourceRevision, baseline.metadataEncodingProfile2.nativeSourceRevision, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(patch.metadataEncodingProfile2.nativeCodecHeaderSha256, baseline.metadataEncodingProfile2.nativeCodecHeaderSha256, StringComparison.OrdinalIgnoreCase) &&
+                    patch.metadataCapacityReport2.nativeBudgetCapabilityVersion == MetadataCapacityProfile2.BudgetCapabilityVersion &&
+                    string.Equals(patch.metadataCapacityReport2.nativeSourceRevision, patch.metadataEncodingProfile2.nativeSourceRevision, StringComparison.OrdinalIgnoreCase) &&
+                    string.Equals(patch.metadataCapacityReport2.nativeCodecHeaderSha256, patch.metadataEncodingProfile2.nativeCodecHeaderSha256, StringComparison.OrdinalIgnoreCase),
+                    "Initializer profile 2 patch is not bound to the baseline native codec.");
+            }
             string path = Path.Combine(output, "failure-fixtures.json");
             var evidence = new Receipt {
                 schemaVersion = 1, kind = "R01FailureFixtures", result = "Passed", sourcePins = pins,

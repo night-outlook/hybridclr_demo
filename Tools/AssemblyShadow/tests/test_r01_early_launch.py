@@ -1,7 +1,9 @@
 import tempfile
 import unittest
+import json
 from pathlib import Path
 import sys
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import r01_early_results as gate
@@ -108,12 +110,12 @@ def prepare_graph(root):
     exe = root / "Player.app/Contents/MacOS/Player"; exe.parent.mkdir(parents=True); exe.write_text("synthetic process adapter")
     context = dict(manifest=dict(baselineBuildId=data["baselineBuildId"], runtimeAbiHash=data["runtimeAbiHash"],
                     candidateNames=data["candidates"], stableAotNames=data["stableAotNames"], baselineManifestPath=str(baseline)),
-                   baseline=dict(resourceBaselinePath="resources"), fixtures=fixtures,
+                   baseline=dict(resourceBaselinePath="resources", nativeBudgetCapabilityVersion=1), fixtures=fixtures,
                    on=dict(output=root / "Player.app", path=paths["on"], snapshot={}, player=dict(inputSnapshot=str(snapshot))),
                    off=dict(path=paths["off"]), sourcePins={"fixture": "explicit-synthetic"})
     failure = dict(failures=dict(initializer=fixtures["R01-P03-InitializerThrow"]),
                    negative=dict(data=dict(outputPath=data["inputs"][0]["dllPath"], outputSha256=data["inputs"][0]["dllSha256"])))
-    prepared = dict(context=context, failures=failure, inventory={p for p in root.rglob("*") if p.is_file()},
+    prepared = dict(context=context, profile=1, failures=failure, inventory={p for p in root.rglob("*") if p.is_file()},
                     baselineResources={}, runner=type("Runner", (), {"executable_for": lambda self, _: exe})())
     return prepared, paths
 
@@ -195,7 +197,43 @@ class EarlyLaunchPipelineTests(unittest.TestCase):
         launcher = load_launcher()
         with self.assertRaisesRegex(VerificationError, "timed out"):
             launcher._verify_process_output(dict(mode="Type"),
-                dict(exitCode=1, timedOut=True), gate.DEFAULT_M07_MODE)
+                dict(exitCode=1, timedOut=True), gate.DEFAULT_M07_MODE, 1)
+
+    def test_process_output_passes_prepared_profile_to_early_verifier(self):
+        launcher = load_launcher()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            log = root / "unity.log"
+            console = root / "console.log"
+            pair = ("[AssemblyShadowStartup] Failed: Bootstrap explicitly refused startup\n"
+                    "[AssemblyShadowStartup] Terminating process before host continuation (exit=1)\n")
+            log.write_text(pair); console.write_text("")
+            probe = dict(mode="Type", logPath=log, consolePath=console,
+                         earlyResultPath=root / "early.json", capsulePath=root / "capsule")
+            with patch.object(launcher.gate, "verify_early_receipt", return_value={}) as verify:
+                launcher._verify_process_output(probe, dict(exitCode=1, timedOut=False, processId=42),
+                                                gate.DEFAULT_M07_MODE, 2)
+            verify.assert_called_once_with(probe["earlyResultPath"], probe["capsulePath"],
+                                           "Type", 42, 2)
+
+    def test_positive_process_output_routes_profile2_to_early_and_m07_handoff(self):
+        launcher = load_launcher()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            log = root / "unity.log"; console = root / "console.log"
+            log.write_text("synthetic Unity log"); console.write_text("synthetic console")
+            m07 = root / "m07.json"
+            m07.write_text(json.dumps(dict(processId=42, mode=gate.DEFAULT_M07_MODE, result="Passed", snapshots=[])))
+            probe = dict(mode="Control", logPath=log, consolePath=console,
+                         earlyResultPath=root / "early.json", capsulePath=root / "capsule",
+                         m07ResultPath=m07)
+            with patch.object(launcher.gate, "verify_early_receipt", return_value={}) as verify, \
+                 patch.object(launcher.gate, "verify_imported_snapshots") as handoff:
+                launcher._verify_process_output(probe, dict(exitCode=0, timedOut=False, processId=42),
+                                                gate.DEFAULT_M07_MODE, 2)
+            verify.assert_called_once_with(probe["earlyResultPath"], probe["capsulePath"],
+                                           "Control", 42, 2)
+            handoff.assert_called_once_with({}, json.loads(m07.read_text()))
 
     def test_rebound_capsule_mutations_rejected_against_admitted_graph(self):
         mutations = [

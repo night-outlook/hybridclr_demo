@@ -129,14 +129,14 @@ namespace AssemblyShadowDemo
             long[] sizes = dlls.Select(bytes => bytes.LongLength).ToArray(); result.orderedSizes = sizes;
             Capture(result, "before-reserve", sizes);
             Expect(result, "configure", AssemblyShadowRuntime.ConfigureCandidates(result.baselineBuildId, input.manifest.candidateNames, input.manifest.stableAotNames));
-            Expect(result, "begin", AssemblyShadowRuntime.BeginTransaction(patch.patchId, result.baselineBuildId, patch.loadOrder, 1));
+            Expect(result, "begin", AssemblyShadowRuntime.BeginTransaction(patch.patchId, result.baselineBuildId, patch.loadOrder, M07Probe.RuntimeAbiVersion));
             var observer = new Observer(patch.loadOrder);
             TextWriter previous = Console.Out;
             try
             {
                 observer.Start(); observer.Wait(false);
                 Console.SetOut(new InitializerWriter(previous, result));
-                Expect(result, "reserve", AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 1));
+                Expect(result, "reserve", AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 2));
                 Capture(result, "after-reserve", sizes);
                 for (int index = 0; index < dlls.Count; ++index) {
                     var code = AssemblyShadowRuntime.StageAssembly(dlls[index], pdbs[index]);
@@ -154,7 +154,7 @@ namespace AssemblyShadowDemo
                 observer.MarkAfter(); observer.Wait(true);
                 if (result.mode != Control) {
                     Expect(result, "abort-rejected", AssemblyShadowRuntime.AbortTransaction(), result.mode == Metadata ? AssemblyShadowErrorCode.InvalidState : AssemblyShadowErrorCode.AlreadyCommitted);
-                    Expect(result, "begin-rejected", AssemblyShadowRuntime.BeginTransaction("must-not-restart", result.baselineBuildId, patch.loadOrder, 1),
+                    Expect(result, "begin-rejected", AssemblyShadowRuntime.BeginTransaction("must-not-restart", result.baselineBuildId, patch.loadOrder, M07Probe.RuntimeAbiVersion),
                         result.mode == Metadata ? AssemblyShadowErrorCode.InvalidState : AssemblyShadowErrorCode.AlreadyCommitted);
                     Capture(result, "after-rejected-operations", sizes);
                 }

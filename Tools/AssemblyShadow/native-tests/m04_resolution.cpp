@@ -50,6 +50,33 @@ struct Fixture
         physicalTables.push_back(&assembly);
     }
 };
+struct PlaceholderPublicationFixture
+{
+    Il2CppAssembly* destination;
+    Il2CppAssembly replacement;
+    Il2CppAssembly backup;
+    bool publishResult;
+    std::atomic<bool> commitEntered{false};
+    std::atomic<bool> releaseCommit{false};
+    PlaceholderPublicationFixture(Il2CppAssembly* target, const Il2CppAssembly& original, bool result)
+        : destination(target), replacement{}, backup(original), publishResult(result) {}
+};
+void CommitPlaceholder(void* opaque)
+{
+    auto& value = *static_cast<PlaceholderPublicationFixture*>(opaque);
+    *value.destination = value.replacement;
+    value.commitEntered.store(true, std::memory_order_release);
+    while (!value.releaseCommit.load(std::memory_order_acquire)) std::this_thread::yield();
+}
+bool PublishPlaceholder(void* opaque)
+{
+    return static_cast<PlaceholderPublicationFixture*>(opaque)->publishResult;
+}
+void RollbackPlaceholder(void* opaque)
+{
+    auto& value = *static_cast<PlaceholderPublicationFixture*>(opaque);
+    *value.destination = value.backup;
+}
 const Il2CppAssembly* PrivateLookup(const char* name, void* context)
 {
     return assembly_shadow_detail::NameEquals(assembly_shadow_detail::ViewName(name),
@@ -81,7 +108,7 @@ const Il2CppAssembly* MetadataCache::GetAssemblyByNameOriginal(const char* name)
         ActiveSnapshot* publish = pendingPublication;
         pendingPublication = nullptr;
         Check(Assembly::PublishShadowBatch({publish->byName.Find(name)}, [](void*) { return true; },
-            [](void* p) { s_active.store(static_cast<ActiveSnapshot*>(p), std::memory_order_release); }, publish),
+            [](void* p) { s_active.store(static_cast<ActiveSnapshot*>(p), std::memory_order_release); return true; }, publish),
             "real locked batch/list invalidation during original lookup");
     }
     return result;
@@ -113,9 +140,18 @@ int main(int argc, char** argv)
         const size_t referenceChecks = CheckDeclaredReferenceIdentity(argv[1]);
         Fixture baseline("Tests.Contracts"), unchanged("Tests.Unchanged"), stable("mscorlib"), external("Tests.Consumer");
         Fixture shadow("Tests.Contracts", true), dynamic("Tests.Dynamic", true), duplicate("TESTS.DYNAMIC", true);
-        Fixture placeholder("Tests.Placeholder", true, false), unapproved("Tests.Unapproved");
+        Fixture placeholder("Tests.Placeholder", true, false), unapproved("Tests.Unapproved"), rollback("Tests.Rollback", true);
         for (Fixture* fixture : { &baseline, &stable, &unchanged, &external, &placeholder })
             Assembly::Register(&fixture->assembly);
+        il2cpp::vm::AssemblyVector beforeRollback;
+        Assembly::CaptureShadowEnumeration(beforeRollback);
+        Check(!Assembly::PublishShadowBatch({ &rollback.assembly }, [](void*) { return true; }, [](void*) { return false; }, nullptr),
+            "failed publication callback must reject the physical batch");
+        il2cpp::vm::AssemblyVector afterRollback;
+        Assembly::CaptureShadowEnumeration(afterRollback);
+        Check(afterRollback == beforeRollback &&
+            std::find(afterRollback.begin(), afterRollback.end(), &rollback.assembly) == afterRollback.end(),
+            "failed publication callback must roll back every physical append");
         Check(AssemblyShadow::ConfigureCandidates("fixture-baseline", {"Tests.Contracts", "Tests.Unchanged"}, {"mscorlib"}) == AssemblyShadowError::Success,
             "configure actual registry");
         Check(AssemblyShadow::BeginTransaction("fixture-patch", "fixture-baseline", {"Tests.Contracts"}, kAssemblyShadowRuntimeAbiVersion) == AssemblyShadowError::Success,
@@ -207,6 +243,55 @@ int main(int argc, char** argv)
         std::string after;
         AssemblyShadow::GetDiagnosticsJson(after);
         Check(after.find("Path=Tests.Consumer -> Tests.Contracts") != std::string::npos, "bounded first failure is retained");
+
+        Fixture ordinaryPlaceholder("Tests.OrdinaryPlaceholder", false, false);
+        Assembly::Register(&ordinaryPlaceholder.assembly);
+        Check(Assembly::GetLoadedAssemblyPhysical("Tests.OrdinaryPlaceholder") == nullptr,
+            "token-zero ordinary placeholder is not externally loadable");
+        Il2CppImage publishedImage{};
+        PlaceholderPublicationFixture placeholderCommit(&ordinaryPlaceholder.assembly, ordinaryPlaceholder.assembly, true);
+        placeholderCommit.replacement.aname.name = "Tests.OrdinaryPlaceholder";
+        placeholderCommit.replacement.image = &publishedImage;
+        placeholderCommit.replacement.token = 1;
+        std::atomic<const Il2CppAssembly*> concurrentLookup{nullptr};
+        std::atomic<bool> publishSucceeded{false};
+        std::thread publisher([&]() {
+            publishSucceeded.store(Assembly::PublishInterpreterPlaceholder(CommitPlaceholder, PublishPlaceholder,
+                RollbackPlaceholder, &placeholderCommit), std::memory_order_release);
+        });
+        while (!placeholderCommit.commitEntered.load(std::memory_order_acquire)) std::this_thread::yield();
+        std::thread reader([&]() {
+            concurrentLookup.store(Assembly::GetLoadedAssemblyPhysical("Tests.OrdinaryPlaceholder"), std::memory_order_release);
+        });
+        placeholderCommit.releaseCommit.store(true, std::memory_order_release);
+        publisher.join(); reader.join();
+        Check(publishSucceeded.load(std::memory_order_acquire) &&
+            concurrentLookup.load(std::memory_order_acquire) == &ordinaryPlaceholder.assembly &&
+            ordinaryPlaceholder.assembly.image == &publishedImage && ordinaryPlaceholder.assembly.token == 1,
+            "reader observes only the fully committed ordinary placeholder");
+
+        Fixture failedPlaceholder("Tests.FailedPlaceholder", false, false);
+        Assembly::Register(&failedPlaceholder.assembly);
+        Il2CppImage rejectedImage{};
+        PlaceholderPublicationFixture placeholderRollback(&failedPlaceholder.assembly, failedPlaceholder.assembly, false);
+        placeholderRollback.replacement.aname.name = "Tests.FailedPlaceholder";
+        placeholderRollback.replacement.image = &rejectedImage;
+        placeholderRollback.replacement.token = 1;
+        std::atomic<const Il2CppAssembly*> rollbackLookup{reinterpret_cast<const Il2CppAssembly*>(1)};
+        std::atomic<bool> rollbackRejected{false};
+        std::thread failedPublisher([&]() {
+            rollbackRejected.store(!Assembly::PublishInterpreterPlaceholder(CommitPlaceholder, PublishPlaceholder,
+                RollbackPlaceholder, &placeholderRollback), std::memory_order_release);
+        });
+        while (!placeholderRollback.commitEntered.load(std::memory_order_acquire)) std::this_thread::yield();
+        std::thread rollbackReader([&]() {
+            rollbackLookup.store(Assembly::GetLoadedAssemblyPhysical("Tests.FailedPlaceholder"), std::memory_order_release);
+        });
+        placeholderRollback.releaseCommit.store(true, std::memory_order_release);
+        failedPublisher.join(); rollbackReader.join();
+        Check(rollbackRejected.load(std::memory_order_acquire) &&
+            rollbackLookup.load(std::memory_order_acquire) == nullptr && failedPlaceholder.assembly.token == 0,
+            "reader observes only the restored unpublished placeholder after rollback");
         std::printf("m04_resolution_checks=%zu lookup_count=%zu lookup_allocations=%zu lookup_microseconds=%lld PASS\n",
             checks, hits, lookupAllocations, static_cast<long long>(micros));
         std::printf("m04_guard_diagnostics=%s\n", after.c_str());

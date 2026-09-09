@@ -102,6 +102,7 @@ struct R01Adapter
         // or GC registry is touched by this standalone test.
         if (staged) staged->published = true;
     }
+    static bool PublishStagedImagesBatch(const std::vector<uint32_t>&) { return true; }
     static il2cpp::vm::AssemblyShadowError RunStagedModuleInitializer(StagedAssembly* staged, std::string& detail)
     {
         if (r01BackendMode == R01BackendMode::InitializerFailure)
@@ -119,11 +120,10 @@ struct R01Adapter
 {
     static void GetAllPhysicalAssemblies(AssemblyVector& assemblies) { assemblies.clear(); }
     static uint64_t CaptureShadowEnumeration(AssemblyVector& assemblies) { assemblies.clear(); return 0; }
-    static bool PublishShadowBatch(const AssemblyVector&, bool (*tryBegin)(void*), void (*publish)(void*), void* context)
+    static bool PublishShadowBatch(const AssemblyVector&, bool (*tryBegin)(void*), bool (*publish)(void*), void* context)
     {
         if (!tryBegin(context)) return false;
-        publish(context);
-        return true;
+        return publish(context);
     }
 };
 }}
@@ -414,15 +414,14 @@ void CheckPoison(const std::string& name)
 namespace il2cpp { namespace vm {
 void AssemblyShadowVisibility::RegisterPrivateImage(const Il2CppImage*) {}
 bool MetadataCache::PublishInterpreterAssembliesBatch(const std::vector<Il2CppAssembly*>& assemblies,
-    bool (*tryBegin)(void*), void (*publishActive)(void*), void* context)
+    bool (*tryBegin)(void*), bool (*publishActive)(void*), void* context)
 {
     // Controlled logical publication adapter. The production transaction
     // supplies both callbacks; this boundary executes them in order without
     // touching Unity's global assembly registry.
     (void)assemblies;
     if (!tryBegin(context)) return false;
-    publishActive(context);
-    return true;
+    return publishActive(context);
 }
 const Il2CppAssembly* MetadataCache::GetAotAssemblyByNamePhysical(const char* name)
 {

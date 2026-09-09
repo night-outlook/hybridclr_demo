@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -74,6 +75,90 @@ namespace AssemblyShadowDemo.EditorTests
             foreach (string field in new[] { "schemaVersion", "kind", "mode", "processId", "managedThreadId", "capsulePath", "capsuleSha256", "baselineBuildId", "runtimeAbiHash", "patchId", "result", "error", "callbackReturnCode", "operations", "snapshots", "byteInputs", "inputReadCount" })
                 StringAssert.Contains("\"" + field + "\"", json);
             StringAssert.Contains("\"kind\":\"prerequisite\"", json);
+        }
+
+        [Test]
+        public void Profile2PatchReservationValidatesDistinctManifestFields()
+        {
+            var profile = Profile2();
+            var report = Report2(profile, 1);
+            var closure = new[] { new ShadowPatchMetadataAssembly { name = "AssemblyA.Contracts", dllSize = 3 } };
+            int version;
+            Dictionary<string, long> sizes;
+            Assert.IsTrue(ShadowPatchMetadataReservation.ValidateIfDeclared(2, null, null, profile, report,
+                new[] { "AssemblyA.Contracts" }, closure, _ => new byte[] { 1, 2, 3 }, out version, out sizes));
+            Assert.AreEqual(2, version);
+            Assert.AreEqual(3, sizes["AssemblyA.Contracts"]);
+
+            Assert.Throws<InvalidOperationException>(() => ShadowPatchMetadataReservation.ValidateIfDeclared(2,
+                new ShadowPatchMetadataEncodingProfile { profileVersion = 1, nativeBudgetCapabilityVersion = 1 }, null,
+                profile, report, new[] { "AssemblyA.Contracts" }, closure, _ => new byte[] { 1, 2, 3 }, out version, out sizes));
+            report.acceptedImages = 0;
+            Assert.Throws<InvalidOperationException>(() => ShadowPatchMetadataReservation.ValidateIfDeclared(2, null, null,
+                profile, report, new[] { "AssemblyA.Contracts" }, closure, _ => new byte[] { 1, 2, 3 }, out version, out sizes));
+        }
+
+        [Serializable]
+        private sealed class LegacyWire
+        {
+            public ShadowPatchMetadataEncodingProfile metadataEncodingProfile;
+            public ShadowPatchMetadataCapacityReport metadataCapacityReport;
+        }
+
+        [Test]
+        public void Profile2ReservationAcceptsOnlyExactDormantLegacyJsonUtilityFields()
+        {
+            string json = UnityEngine.JsonUtility.ToJson(new HybridCLR.Editor.AssemblyShadow.ShadowPatchManifest {
+                nativeBudgetCapabilityVersion = 2
+            });
+            LegacyWire wire = UnityEngine.JsonUtility.FromJson<LegacyWire>(json);
+            Assert.NotNull(wire.metadataEncodingProfile);
+            Assert.NotNull(wire.metadataCapacityReport);
+            var profile = Profile2();
+            var report = Report2(profile, 1);
+            var closure = new[] { new ShadowPatchMetadataAssembly { name = "AssemblyA.Contracts", dllSize = 3 } };
+            int version;
+            Dictionary<string, long> sizes;
+            Assert.IsTrue(ShadowPatchMetadataReservation.ValidateIfDeclared(2, wire.metadataEncodingProfile,
+                wire.metadataCapacityReport, profile, report, new[] { "AssemblyA.Contracts" }, closure,
+                _ => new byte[] { 1, 2, 3 }, out version, out sizes));
+            wire.metadataEncodingProfile.extraShiftBits[0] = 7;
+            Assert.Throws<InvalidOperationException>(() => ShadowPatchMetadataReservation.ValidateIfDeclared(2,
+                wire.metadataEncodingProfile, wire.metadataCapacityReport, profile, report,
+                new[] { "AssemblyA.Contracts" }, closure, _ => new byte[] { 1, 2, 3 }, out version, out sizes));
+            wire = UnityEngine.JsonUtility.FromJson<LegacyWire>(json);
+            wire.metadataCapacityReport.nativeSourceRevision = "active-legacy-profile";
+            Assert.Throws<InvalidOperationException>(() => ShadowPatchMetadataReservation.ValidateIfDeclared(2,
+                wire.metadataEncodingProfile, wire.metadataCapacityReport, profile, report,
+                new[] { "AssemblyA.Contracts" }, closure, _ => new byte[] { 1, 2, 3 }, out version, out sizes));
+        }
+
+        private static ShadowPatchMetadataEncodingProfile2 Profile2()
+        {
+            return new ShadowPatchMetadataEncodingProfile2 {
+                schemaVersion = 2, profileVersion = 2, nativeBudgetCapabilityVersion = 2,
+                codecId = "SparseSignedInt32", codecBits = 32, invalidIndexSentinel = -1,
+                aotMaxIndex = int.MaxValue, minImageId = 1, maximumImageCount = 8192,
+                pageValues = 4096, usablePageCapacity = 524287, chargedPageCeiling = 393215,
+                minimumFreePageMargin = 131072, maximumDllBytes = 33554432UL,
+                aggregateDllEnvelopeBytes = 536870912UL, nativeSourceRevision = "revision",
+                nativeCodecHeaderSha256 = new string('a', 64)
+            };
+        }
+
+        private static ShadowPatchMetadataCapacityReport2 Report2(ShadowPatchMetadataEncodingProfile2 profile, int count)
+        {
+            return new ShadowPatchMetadataCapacityReport2 {
+                schemaVersion = 2, profileVersion = 2, nativeBudgetCapabilityVersion = 2,
+                nativeSourceRevision = profile.nativeSourceRevision, nativeCodecHeaderSha256 = profile.nativeCodecHeaderSha256,
+                codecId = profile.codecId, codecBits = profile.codecBits, invalidIndexSentinel = profile.invalidIndexSentinel,
+                aotMaxIndex = profile.aotMaxIndex, minImageId = profile.minImageId, maximumImageCount = profile.maximumImageCount,
+                maximumDllBytes = profile.maximumDllBytes, usablePageCapacity = profile.usablePageCapacity,
+                chargedPageCeiling = profile.chargedPageCeiling, minimumFreePageMargin = profile.minimumFreePageMargin,
+                requiredImages = count, acceptedImages = count, admissionAccepted = true, fitsPreliminary = true,
+                finalPageFitKnown = false, runtimeFinalizationRequired = true, aggregateInputDllBytesInformational = true,
+                firstFailingIndex = -1, failureReason = "None"
+            };
         }
 
         private static byte[] Encode(string mode, bool ordinary)

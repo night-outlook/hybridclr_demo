@@ -16,7 +16,7 @@ namespace AssemblyShadowDemo
     [Preserve]
     public static partial class M07Probe
     {
-        internal const int RuntimeAbiVersion = 1;
+        internal const int RuntimeAbiVersion = 2;
         internal static readonly string[] Candidates = {
             "AssemblyA.Contracts", "AssemblyA.Implementation.Extensibility", "AssemblyA.Implementation.Internal",
             "AssemblyShadowDemo.ContractsConsumer", "AssemblyShadowDemo.ExtensibilityConsumer"
@@ -419,6 +419,7 @@ namespace AssemblyShadowDemo
             AssemblyShadowErrorCode code;
             bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
                 input.patch.nativeBudgetCapabilityVersion, input.patch.metadataEncodingProfile, input.patch.metadataCapacityReport,
+                input.patch.metadataEncodingProfile2, input.patch.metadataCapacityReport2,
                 input.patch.loadOrder, input.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
                 name => ReadVerifiedDll(input.patch, fixture, name), out code);
             return declared ? Expect(result, "reserve-metadata-budget", code) : null;
@@ -533,6 +534,7 @@ namespace AssemblyShadowDemo
             [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash;
             [Preserve] public string baselineResourceAbiHash, resourceAbiHash, resourceChangeLevel; [Preserve] public bool dllOnly; [Preserve] public string[] resourceBundlesRequired, changedRoots, loadOrder; [Preserve] public PatchAssembly[] closure;
             [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport;
+            [Preserve] public ShadowPatchMetadataEncodingProfile2 metadataEncodingProfile2; [Preserve] public ShadowPatchMetadataCapacityReport2 metadataCapacityReport2;
         }
         [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; [Preserve] public ulong dllSize; }
         [Serializable, Preserve] internal sealed class ResourceReceipt

@@ -344,11 +344,14 @@ def _uint64(value, path):
     return value
 
 
-def _diagnostic(value, path):
+def _diagnostic(value, path, expected_abi=1):
     actual = _fields(value, R01_DIAGNOSTIC_FIELDS, path) if type(value) is dict and set(value) == set(R01_DIAGNOSTIC_FIELDS.split()) else _fields(value, DIAGNOSTIC_FIELDS, path)
     d = actual
     require(type(d["schemaVersion"]) is int and d["schemaVersion"] == 1 and
-            type(d["runtimeAbiVersion"]) is int and d["runtimeAbiVersion"] == 1, f"{path}: diagnostic schema mismatch")
+            type(d["runtimeAbiVersion"]) is int and d["runtimeAbiVersion"] == expected_abi, f"{path}: diagnostic schema mismatch")
+    require(type(expected_abi) is int and expected_abi in (1, 2), f"{path}: unsupported expected diagnostic ABI")
+    if expected_abi == 2:
+        require(set(d) == set(R01_DIAGNOSTIC_FIELDS.split()), f"{path}: ABI2 requires negotiated diagnostic schema")
     _bool(d["enabled"], path)
     if set(d) == set(R01_DIAGNOSTIC_FIELDS.split()):
         require(type(d["startupCandidateSchemaVersion"]) is int and d["startupCandidateSchemaVersion"] >= 0,
@@ -359,7 +362,7 @@ def _diagnostic(value, path):
         for field in ("metadataBudgetCapabilityVersion", "recoveryCapabilityVersion"):
             require(type(d[field]) is int and d[field] >= 0, f"{path}: invalid {field}")
         if d["enabled"]:
-            require(d["metadataBudgetCapabilityVersion"] == 1 and d["recoveryCapabilityVersion"] == 1,
+            require(d["metadataBudgetCapabilityVersion"] == expected_abi and d["recoveryCapabilityVersion"] == 1,
                     f"{path}: enabled diagnostic capability version mismatch")
     _strings(d, path, "state detail baselineBuildId patchId")
     require(d["state"] in STATE_CODES and type(d["stateCode"]) is int and d["stateCode"] == STATE_CODES[d["state"]], f"{path}: state enum/code mismatch")

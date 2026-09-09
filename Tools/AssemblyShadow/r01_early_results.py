@@ -315,7 +315,8 @@ def _verify_capacity(raw: dict[str, Any], sizes: list[int], label: str) -> None:
         integer(raw[key], label + "." + key)
 
 
-def _verify_snapshot(snapshot: dict[str, Any], sizes: list[int], candidates: list[str], label: str) -> dict[str, Any]:
+def _verify_snapshot(snapshot: dict[str, Any], sizes: list[int], candidates: list[str], label: str,
+                     profile: int = 1) -> dict[str, Any]:
     fields(snapshot, SNAPSHOT_FIELDS, label)
     exact(snapshot["orderedSizes"], sizes, label + ".orderedSizes")
     for key in ("diagnosticsCode", "recoveryCode", "capacityCode"):
@@ -323,12 +324,15 @@ def _verify_snapshot(snapshot: dict[str, Any], sizes: list[int], candidates: lis
     diagnostics = _json(snapshot["diagnosticsJson"], label + ".diagnosticsJson")
     recovery = _json(snapshot["recoveryJson"], label + ".recoveryJson")
     capacity = _json(snapshot["capacityJson"], label + ".capacityJson")
-    _verify_capacity(capacity, sizes, label + ".capacityJson")
+    if profile == 1:
+        _verify_capacity(capacity, sizes, label + ".capacityJson")
+    else:
+        failures.verify_profile2_capacity(capacity, sizes, label + ".capacityJson")
     fields(diagnostics, m04.R01_DIAGNOSTIC_FIELDS, label + ".diagnosticsJson")
-    m04._diagnostic(diagnostics, label + ".diagnosticsJson")
+    m04._diagnostic(diagnostics, label + ".diagnosticsJson", expected_abi=profile)
     for key, expected in dict(enabled=True, startupCandidateSchemaVersion=1,
                              startupObservationMode="EarlyTracking", startupCandidateNames=candidates,
-                             metadataBudgetCapabilityVersion=1, recoveryCapabilityVersion=1).items():
+                             metadataBudgetCapabilityVersion=profile, recoveryCapabilityVersion=1).items():
         exact(diagnostics[key], expected, label + "." + key)
     fields(recovery, "schemaVersion enabled capabilityVersion state stateCode published abortAllowed disposition dispositionCode terminalFailureCode reason retainedBytes baselineEligibilityRequiresStartupValidation", label + ".recoveryJson")
     for key in ("enabled", "published", "abortAllowed", "baselineEligibilityRequiresStartupValidation"):
@@ -645,7 +649,8 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
 OBSERVER_MODES = frozenset(("Control", "MetadataFailure", "InitializerFailure"))
 
 
-def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: list[dict[str, Any]]) -> None:
+def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: list[dict[str, Any]],
+                      profile: int = 1) -> None:
     mode = data["mode"]
     samples, initializers = receipt["observerSamples"], receipt["initializerEvents"]
     require(type(samples) is list and type(initializers) is list, "early.observer arrays")
@@ -684,7 +689,7 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
         integer(sample["ticks"], label + ".ticks", 1)
         d = _json(sample["rawJson"], label + ".rawJson")
         fields(d, m04.R01_DIAGNOSTIC_FIELDS, label)
-        m04._diagnostic(d, label)
+        m04._diagnostic(d, label, expected_abi=profile)
         for key in ("schemaVersion", "enabled", "runtimeAbiVersion", "metadataBudgetCapabilityVersion",
                     "recoveryCapabilityVersion", "startupCandidateSchemaVersion", "startupObservationMode", "startupCandidateNames"):
             exact(d[key], final[key], label + "." + key)
@@ -801,7 +806,8 @@ def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: lis
               [name in closure[:index] for name in closure], "early.initializer.ranPrefix")
 
 
-def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str, expected_pid: int | None = None) -> dict[str, Any]:
+def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str,
+                         expected_pid: int | None = None, profile: int = 1) -> dict[str, Any]:
     path = canonical(path, path, "early receipt")
     receipt = fields(read(path), RECEIPT_FIELDS, str(path))
     capsule_path = canonical(capsule_path, path, "early capsule")
@@ -847,10 +853,11 @@ def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str, exp
     snapshots = receipt["snapshots"]
     expected_phases = _expected_snapshots(expected_mode, [r["name"] for r in data["inputs"]])
     exact([row.get("phase") for row in snapshots], expected_phases, "early.snapshotPhases")
-    parsed = [_verify_snapshot(row, sizes, data["candidates"], f"early.snapshots[{i}]")
+    require(profile in (1, 2), "early: unsupported metadata profile")
+    parsed = [_verify_snapshot(row, sizes, data["candidates"], f"early.snapshots[{i}]", profile)
               for i, row in enumerate(snapshots)]
     _verify_timeline(parsed, expected_phases, data)
-    _verify_observers(receipt, data, parsed)
+    _verify_observers(receipt, data, parsed, profile)
     complete = all(item["profileComplete"] for item in parsed)
     return {"receipt": receipt, "capsule": data, "pid": pid, "diagnosticProfileComplete": complete,
             "snapshots": parsed}
@@ -869,7 +876,9 @@ def _load_runner():
 def _prepare(project: Path, fixture: Path, on: Path, off: Path, replay: Path,
              failure_path: Path | None, negative_path: Path | None, modes: list[str]) -> dict[str, Any]:
     context = verify_inputs(project, fixture, on, off, replay)
-    r01_results.require_r01_inputs(context)
+    profile = failures.metadata_profile(context, "R01 early")
+    if profile == 1:
+        r01_results.require_r01_inputs(context)
     runner = _load_runner()
     inventory = runner.collect_inputs(fixture, replay, (on, off))
     prepared_failures = None
@@ -882,7 +891,7 @@ def _prepare(project: Path, fixture: Path, on: Path, off: Path, replay: Path,
     # the independently verified baseline resource projection for the exact
     # M07 case verifier without changing that shared contract.
     _, _, _, _, resources = m07.verify_inputs(fixture)
-    return {"context": context, "runner": runner, "inventory": inventory,
+    return {"context": context, "profile": profile, "runner": runner, "inventory": inventory,
             "failures": prepared_failures, "baselineResources": resources}
 
 
@@ -1010,7 +1019,7 @@ def verify_suite(launch_path: Path) -> dict[str, Any]:
         verify_startup_logs(mode, log_path, console_path)
         exact(row["inputHashesBefore"], inventory, mode + ".inputHashesBefore")
         exact(row["inputHashesAfter"], inventory, mode + ".inputHashesAfter")
-        early = verify_early_receipt(early_path, capsule_path, mode, row["processId"])
+        early = verify_early_receipt(early_path, capsule_path, mode, row["processId"], prepared["profile"])
         exact(early["receipt"]["patchId"], admitted_capsule["patchId"], mode + ".patchId")
         if mode in POSITIVE_MODES:
             exact(row["exitCode"], 0, mode + ".exitCode")

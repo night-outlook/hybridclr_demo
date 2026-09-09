@@ -261,6 +261,78 @@ class FailurePipelineTests(unittest.TestCase):
             changed=copy.deepcopy(receipt);changed['sourcePins']['demo']['revision']='f'*40;write(receipt_path,changed)
             with self.assertRaises(VerificationError):gate.verify_failure_fixtures(receipt_path,context,fixture_path)
 
+    def test_profile2_capacity_recomputes_all_or_nothing_admission(self):
+        sizes = [100, 200]
+        value = dict(schemaVersion=2, enabled=True, profileVersion=2,
+            maximumImageCount=gate.PROFILE2_MAX_IMAGES, maximumDllBytes=gate.PROFILE2_MAX_DLL_BYTES,
+            usablePageCapacity=gate.PROFILE2_USABLE_PAGE_CAPACITY,
+            chargedPageCeiling=gate.PROFILE2_CHARGED_PAGE_CEILING,
+            minimumFreePageMargin=gate.PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+            reservedPages=0, mappedPages=0, lifetimeReservedImageCount=7,
+            remainingImageCount=gate.PROFILE2_MAX_IMAGES - 7, requiredImages=2,
+            acceptedImages=2, firstFailingIndex=-1, firstFailingSize=0, failureReason='None',
+            fitsPreliminary=True, runtimeFinalizationRequired=True,
+            aggregateInputDllBytes=300, aggregateInputDllBytesInformational=True,
+            ordinaryAllocatedCount=4, shadowAllocatedCount=0, reservedShadowImageCount=7)
+        self.assertIs(gate.verify_profile2_capacity(value, sizes, 'profile2'), value)
+        for key, replacement in [('aggregateInputDllBytes', 301), ('acceptedImages', 1),
+                                 ('fitsPreliminary', False)]:
+            bad = copy.deepcopy(value); bad[key] = replacement
+            with self.subTest(key=key), self.assertRaises(VerificationError):
+                gate.verify_profile2_capacity(bad, sizes, 'profile2')
+
+    def test_profile2_capacity_reports_native_admission_priority(self):
+        sizes = [100, gate.PROFILE2_MAX_DLL_BYTES + 1]
+        value = dict(schemaVersion=2, enabled=True, profileVersion=2,
+            maximumImageCount=gate.PROFILE2_MAX_IMAGES, maximumDllBytes=gate.PROFILE2_MAX_DLL_BYTES,
+            usablePageCapacity=gate.PROFILE2_USABLE_PAGE_CAPACITY,
+            chargedPageCeiling=gate.PROFILE2_CHARGED_PAGE_CEILING,
+            minimumFreePageMargin=gate.PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+            reservedPages=0, mappedPages=0, lifetimeReservedImageCount=0,
+            remainingImageCount=gate.PROFILE2_MAX_IMAGES, requiredImages=2,
+            acceptedImages=0, firstFailingIndex=1, firstFailingSize=sizes[1], failureReason='DllTooLarge',
+            fitsPreliminary=False, runtimeFinalizationRequired=True,
+            aggregateInputDllBytes=sum(sizes), aggregateInputDllBytesInformational=True,
+            ordinaryAllocatedCount=0, shadowAllocatedCount=0, reservedShadowImageCount=0)
+        gate.verify_profile2_capacity(value, sizes, 'profile2.failure')
+
+    def test_profile2_selection_requires_complete_verified_baseline_contract(self):
+        profile = dict(schemaVersion=2, profileVersion=2, nativeBudgetCapabilityVersion=2,
+            codecId='SparseSignedInt32', codecBits=32, invalidIndexSentinel=-1,
+            aotMaxIndex=2147483647, minImageId=1, maximumImageCount=gate.PROFILE2_MAX_IMAGES,
+            pageValues=4096, usablePageCapacity=gate.PROFILE2_USABLE_PAGE_CAPACITY,
+            chargedPageCeiling=gate.PROFILE2_CHARGED_PAGE_CEILING,
+            minimumFreePageMargin=gate.PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+            maximumDllBytes=gate.PROFILE2_MAX_DLL_BYTES, aggregateDllEnvelopeBytes=536870912,
+            nativeSourceRevision='a' * 40, nativeCodecHeaderSha256='b' * 64)
+        report = dict(schemaVersion=2, profileVersion=2, nativeBudgetCapabilityVersion=2,
+            budgetCapabilityVersion=2, nativeSourceRevision='a' * 40,
+            nativeCodecHeaderSha256='b' * 64, codecId='SparseSignedInt32', codecBits=32,
+            invalidIndexSentinel=-1, aotMaxIndex=2147483647, minImageId=1,
+            maxImages=gate.PROFILE2_MAX_IMAGES, pageValues=4096,
+            usablePages=gate.PROFILE2_USABLE_PAGE_CAPACITY,
+            maxChargedPages=gate.PROFILE2_CHARGED_PAGE_CEILING,
+            maxDllBytes=gate.PROFILE2_MAX_DLL_BYTES, aggregateDllEnvelopeBytes=536870912,
+            maximumImageCount=gate.PROFILE2_MAX_IMAGES, maximumDllBytes=gate.PROFILE2_MAX_DLL_BYTES,
+            usablePageCapacity=gate.PROFILE2_USABLE_PAGE_CAPACITY,
+            chargedPageCeiling=gate.PROFILE2_CHARGED_PAGE_CEILING,
+            minimumFreePageMargin=gate.PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+            currentReservedImageCount=0, reservedImageCountBefore=0, reservedImageCountAfter=0,
+            requestedImageCount=0,
+            reservedPages=0, mappedPages=0, lifetimeReservedImageCount=0,
+            remainingImageCount=gate.PROFILE2_MAX_IMAGES, requiredImages=0,
+            aggregateDllBytes=0, aggregateInputDllBytes=0,
+            aggregateInputDllBytesInformational=True, inputs=[], allocations=[], acceptedImages=0,
+            fitsImageCount=True, aggregateDllEnvelopeFits=True, aggregateDllEnvelopeExceeded=False,
+            inputCountWasBounded=False, admissionAccepted=True, fitsPreliminary=True,
+            finalPageFitKnown=False, runtimeFinalizationRequired=True, admissionKind='Preliminary',
+            firstFailingIndex=-1, firstFailingAssembly=None, failureReason='None')
+        context = {'baseline': {'nativeBudgetCapabilityVersion': 2,
+            'metadataEncodingProfile2': profile, 'metadataCapacityReport2': report}}
+        self.assertEqual(gate.metadata_profile(context), 2)
+        bad = copy.deepcopy(context); bad['baseline'].pop('metadataCapacityReport2')
+        with self.assertRaises(VerificationError): gate.metadata_profile(bad)
+
     def test_initializer_failure_cannot_be_relabelled_as_complete_initialization(self):
         launch=self.launch();receipt=gate.read(launch);path=Path(receipt['processLaunches'][2]['resultPath']);result=gate.read(path)
         row=result['diagnostics'][-1];data=json.loads(row['rawJson']);data['assemblies'][1]['moduleInitializerRan']=True

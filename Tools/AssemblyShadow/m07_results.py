@@ -14,6 +14,7 @@ import json
 from pathlib import Path
 import re
 import sys
+import subprocess
 
 import m02_results as resource_v2
 import m04_results as prior
@@ -445,6 +446,7 @@ def verify_baseline(manifest, manifest_path):
     frozen_root = canonical(str(baseline_path.parent / baseline["playerInputSnapshot"]), baseline_path,
                             "frozen Player snapshot", True)
     raw_admissions.verify_snapshot(frozen_root, frozen, require_linked=True)
+    verify_baseline_metadata(baseline, frozen, frozen_root, baseline_path)
 
     snapshot_root = canonical(manifest["baselineInputSnapshot"], manifest_path, "baselineInputSnapshot", True)
     snapshot = prior._verify_snapshot(snapshot_root, manifest["baselineBuildId"], manifest["runtimeAbiHash"],
@@ -487,6 +489,139 @@ def verify_baseline(manifest, manifest_path):
     return baseline, baseline_path, snapshot, snapshot_root, resources
 
 
+R01B_PATCH_FIELDS = PATCH_FIELDS + " nativeBudgetCapabilityVersion metadataEncodingProfile2 metadataCapacityReport2"
+R01B_PROFILE_CONSTANTS = dict(schemaVersion=2, profileVersion=2, nativeBudgetCapabilityVersion=2,
+    codecId="SparseSignedInt32", codecBits=32, invalidIndexSentinel=-1, aotMaxIndex=2147483647,
+    minImageId=1, maximumImageCount=8192, pageValues=4096, usablePageCapacity=524287,
+    chargedPageCeiling=393215, minimumFreePageMargin=131072, maximumDllBytes=33554432,
+    aggregateDllEnvelopeBytes=536870912)
+R01B_PROFILE_FIELDS = " ".join(R01B_PROFILE_CONSTANTS) + " nativeSourceRevision nativeCodecHeaderSha256"
+R01B_REPORT_CONSTANTS = dict(R01B_PROFILE_CONSTANTS, budgetCapabilityVersion=2, maxImages=8192,
+    usablePages=524287, maxChargedPages=393215, maxDllBytes=33554432,
+    aggregateInputDllBytesInformational=True, reservedPages=0, mappedPages=0,
+    fitsImageCount=True, inputCountWasBounded=False, admissionAccepted=True, fitsPreliminary=True,
+    finalPageFitKnown=False, runtimeFinalizationRequired=True, admissionKind="Preliminary",
+    firstFailingIndex=-1, firstFailingAssembly="", failureReason="None")
+R01B_REPORT_FIELDS = " ".join(R01B_REPORT_CONSTANTS) + " nativeSourceRevision nativeCodecHeaderSha256 currentReservedImageCount reservedImageCountBefore reservedImageCountAfter requestedImageCount requiredImages aggregateDllBytes aggregateInputDllBytes lifetimeReservedImageCount remainingImageCount inputs allocations acceptedImages aggregateDllEnvelopeFits aggregateDllEnvelopeExceeded"
+
+
+def _dormant_profile1(value, report, path):
+    # JsonUtility materializes null serializable DTO fields using constructors.
+    # Only the exact default wire object (or null) is an inactive extension.
+    if value is None:
+        return
+    expected = dict(profileVersion=1, metadataIndexBits=22, metadataKindBits=2,
+        nativeSourceRevision="", nativeHelperSha256="", nativeBudgetCapabilityVersion=1)
+    if report:
+        expected.update(schemaVersion=1, inputs=[], allocations=[], cursorsBefore=[0]*4,
+            cursorsAfter=[0]*4, remainingSlotsBefore=[0]*4, remainingSlotsAfter=[0]*4,
+            requiredImages=0, acceptedImages=0, availableImages=0, availableImagesAtFailure=0,
+            fits=False, firstFailingIndex=-1, firstFailingAssembly="", firstFailingBytes=0,
+            firstFailingSize=0, failureReason="None", firstFailingReason="None",
+            ordinaryAssemblyCount=0, aotCandidateAssemblyCount=0, actualRemainingRuntime="NotKnown",
+            runtimeCursorSource="BaselineOrdinaryPlan", ordinaryConsumptionIsEstimate=True,
+            runtimeReserveMetadataBudget=False)
+    else:
+        expected.update(extraShiftBits=[6,4,2,0], kindStrides=[64,16,4,1],
+            indexMasks=[268435455,67108863,16777215,4194303], initialCursors=[64,0,0,0],
+            kindLimits=[256,256,256,255], sizeMultiplier=4)
+    normalized = copy.deepcopy(value)
+    if type(normalized) is dict:
+        for key in ("nativeSourceRevision", "nativeHelperSha256", "firstFailingAssembly"):
+            if key in normalized and normalized[key] is None: normalized[key] = ""
+    exact(normalized, expected, path)
+
+
+def _profile2_extensions(value, path):
+    pair = ("metadataEncodingProfile", "metadataCapacityReport")
+    require(all(k in value for k in pair) or all(k not in value for k in pair),
+            f"{path}: partial legacy metadata pair")
+    for key, report in zip(pair, (False, True)):
+        if key in value: _dormant_profile1(value[key], report, f"{path}.{key}")
+
+
+def patch_schema(value, path):
+    if value.get("nativeBudgetCapabilityVersion") != 2:
+        return _schema_variant(value, PATCH_FIELDS, R01_PATCH_FIELDS, path)
+    _profile2_extensions(value, path)
+    active = {key: val for key, val in value.items()
+              if key not in ("metadataEncodingProfile", "metadataCapacityReport")}
+    fields(active, R01B_PATCH_FIELDS, path)
+    exact(value["nativeBudgetCapabilityVersion"], 2, f"{path}.nativeBudgetCapabilityVersion")
+    return True
+
+
+def verify_profile2(manifest, path):
+    _profile2_extensions(manifest, path)
+    exact(manifest.get("nativeBudgetCapabilityVersion"), 2, f"{path}.nativeBudgetCapabilityVersion")
+    profile = fields(manifest.get("metadataEncodingProfile2"), R01B_PROFILE_FIELDS, f"{path}.profile2")
+    for key, expected in R01B_PROFILE_CONSTANTS.items(): exact(profile[key], expected, f"{path}.profile2.{key}")
+    revision = profile["nativeSourceRevision"]
+    require(type(revision) is str and re.fullmatch(r"[0-9a-f]{40}", revision), f"{path}: invalid native revision")
+    pin = manifest["sourcePins"]["hybridclr"]
+    exact(revision, pin["revision"], f"{path}: profile/source revision")
+    hash64(profile["nativeCodecHeaderSha256"], f"{path}.nativeCodecHeaderSha256")
+    repository = Path(pin.get("localPath", Path(__file__).resolve().parents[3] / "hybridclr"))
+    header = "hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+    try:
+        content = subprocess.run(["git", "-C", str(repository), "show", revision + ":" + header],
+                                 check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise VerificationError(f"{path}: cannot read pinned native codec {revision}:{header}") from error
+    exact(hashlib.sha256(content).hexdigest(), profile["nativeCodecHeaderSha256"], f"{path}: pinned native codec hash")
+    return profile
+
+
+def verify_profile2_report(manifest, inputs, before, path):
+    profile = verify_profile2(manifest, path)
+    report = fields(manifest.get("metadataCapacityReport2"), R01B_REPORT_FIELDS, f"{path}.capacity2")
+    for key, expected in R01B_REPORT_CONSTANTS.items(): exact(report[key], expected, f"{path}.capacity2.{key}")
+    for key in ("nativeSourceRevision", "nativeCodecHeaderSha256"):
+        exact(report[key], profile[key], f"{path}.capacity2.{key}")
+    integer(before, f"{path}.reservedImageCountBefore", 0, 8192)
+    require(before + len(inputs) <= 8192, f"{path}: image admission exceeds profile2 capacity")
+    names([row["name"] for row in inputs], f"{path}.inputs.names")
+    for row in inputs:
+        fields(row, "name dllSize sha256", path)
+        integer(row["dllSize"], path, 1, 33554432)
+        hash64(row["sha256"], path)
+    total = sum(row["dllSize"] for row in inputs)
+    after = before + len(inputs)
+    expected = dict(inputs=inputs, allocations=[dict(row, imageId=before+i+1) for i,row in enumerate(inputs)],
+        currentReservedImageCount=before, reservedImageCountBefore=before, reservedImageCountAfter=after,
+        requestedImageCount=len(inputs), requiredImages=len(inputs), acceptedImages=len(inputs),
+        aggregateDllBytes=total, aggregateInputDllBytes=total, lifetimeReservedImageCount=after,
+        remainingImageCount=8192-after, aggregateDllEnvelopeFits=total<=536870912,
+        aggregateDllEnvelopeExceeded=total>536870912)
+    for key, value in expected.items(): exact(report[key], value, f"{path}.capacity2.{key}")
+    return report
+
+
+def verify_baseline_metadata(baseline, snapshot, root, path):
+    diagnostic_abi(baseline, path)
+    if baseline.get("nativeBudgetCapabilityVersion") == 2:
+        inventory = {row["name"]: row for section in ("assemblies", "filteredAssemblies", "references")
+                     for row in snapshot[section]}
+        inputs = []
+        for name in snapshot["normalHotUpdateAssemblies"]:
+            require(name in inventory, f"{path}: ordinary capacity input missing from verified snapshot")
+            row = inventory[name]
+            dll = prior._rel(root, row["path"], path, "ordinary capacity DLL")
+            inputs.append(dict(name=name, dllSize=dll.stat().st_size, sha256=digest(dll)))
+        verify_profile2_report(baseline, inputs, 0, path)
+
+
+def diagnostic_abi(baseline, path):
+    capability = baseline.get("nativeBudgetCapabilityVersion", 0)
+    require(type(capability) is int and capability in (0, 1, 2), f"{path}: unsupported metadata capability")
+    if capability == 2:
+        verify_profile2(baseline, path)
+        return 2
+    require(not any(k in baseline for k in ("metadataEncodingProfile2", "metadataCapacityReport2")),
+            f"{path}: mixed profile2 metadata")
+    return 1
+
+
 def _uint(value, path):
     require(type(value) is int and not isinstance(value, bool) and 0 <= value < (1 << 64),
             f"{path}: expected unsigned integer")
@@ -501,6 +636,17 @@ def _uint_array(value, path):
 def _verify_r01_patch_metadata(patch, closure, patch_root, load_order, path):
     # Public callers use Path objects; labels are text, filesystem roots stay Paths.
     path = str(path)
+    if patch.get("nativeBudgetCapabilityVersion") == 2:
+        rows = {row["name"]: row for row in closure}
+        inputs = []
+        for name in load_order:
+            row = rows[name]
+            dll = prior._rel(patch_root, row["dll"], path, "capacity DLL")
+            exact(row["dllSize"], dll.stat().st_size, f"{path}.{name}.dllSize")
+            exact(row["sha256"], digest(dll), f"{path}.{name}.sha256")
+            inputs.append({key: row[key] for key in ("name", "dllSize", "sha256")})
+        verify_profile2_report(patch, inputs, patch["metadataCapacityReport2"]["reservedImageCountBefore"], path)
+        return
     profile = fields(patch["metadataEncodingProfile"], R01_PROFILE_FIELDS, path + ".metadataEncodingProfile")
     capacity = fields(patch["metadataCapacityReport"], R01_CAPACITY_FIELDS, path + ".metadataCapacityReport")
     exact(patch["nativeBudgetCapabilityVersion"], 1, path + ".nativeBudgetCapabilityVersion")
@@ -584,10 +730,23 @@ def verify_budget_binding(patch, baseline, path):
     capability = patch.get("nativeBudgetCapabilityVersion", 0)
     exact(capability, baseline.get("nativeBudgetCapabilityVersion", 0), f"{path}: patch/baseline capability")
     if capability == 0:
-        require(not any(key in baseline for key in ("metadataEncodingProfile", "metadataCapacityReport")),
+        require(not any(key in value for value in (patch, baseline) for key in
+                        ("metadataEncodingProfile", "metadataCapacityReport", "metadataEncodingProfile2", "metadataCapacityReport2")),
                 f"{path}: legacy baseline has partial budget capability")
         return
+    if capability == 2:
+        verify_profile2(patch, path)
+        verify_profile2(baseline, path)
+        exact(patch["metadataEncodingProfile2"], baseline["metadataEncodingProfile2"], f"{path}: patch/baseline profile2")
+        report = baseline["metadataCapacityReport2"]
+        verify_profile2_report(baseline, report["inputs"], 0, path)
+        exact(patch["metadataCapacityReport2"]["reservedImageCountBefore"], report["reservedImageCountAfter"],
+              f"{path}: baseline/patch image reservation")
+        return
     exact(capability, 1, f"{path}: unsupported budget capability")
+    for value in (patch, baseline):
+        require(not any(key in value for key in ("metadataEncodingProfile2", "metadataCapacityReport2")),
+                f"{path}: profile1 mixes profile2 fields")
     profile = fields(baseline.get("metadataEncodingProfile"), R01_PROFILE_FIELDS, f"{path}.baselineProfile")
     report = fields(baseline.get("metadataCapacityReport"), R01_CAPACITY_FIELDS, f"{path}.baselineCapacity")
     exact(patch["metadataEncodingProfile"], profile, f"{path}: patch/baseline profile")
@@ -616,7 +775,7 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
     patch_path = bound(fixture["patchManifest"], fixture["patchManifestSha256"], manifest_path, "patchManifest")
     exact(patch_path, patch_root / "patch-manifest.json", f"{manifest_path}.{patch_id}.patchManifest")
     patch = prior._obj(patch_path)
-    capability = _schema_variant(patch, PATCH_FIELDS, R01_PATCH_FIELDS, patch_path)
+    capability = patch_schema(patch, patch_path)
     sidecar = patch_root / "manifest.sha256"
     require(sidecar.is_file() and not sidecar.is_symlink() and sidecar.read_text(encoding="utf-8").strip() == digest(patch_path),
             f"{sidecar}: missing or stale patch manifest sidecar")
@@ -738,6 +897,7 @@ def verify_inputs(path):
     capabilities = {item["r01Capability"] for item in fixtures.values()}
     require(len(capabilities) == 1, f"{path}: fixture patches mix legacy and R01 capability schemas")
     manifest["_r01Capability"] = capabilities.pop()
+    manifest["_diagnosticAbi"] = diagnostic_abi(baseline, path)
     rejected_rows = array(manifest["rejectedFixtures"], f"{path}.rejectedFixtures")
     exact([row.get("patchId") for row in rejected_rows],
           ["P05-DllOnly", "P14-ClassRename", "P15-SerializeReferenceRename"], f"{path}.rejectedFixtures")
@@ -885,7 +1045,7 @@ def parse_scene_counters(value, path):
     return counters, parts[12]
 
 
-def raw_diagnostic(result, result_path):
+def raw_diagnostic(result, result_path, expected_abi=1):
     raw_path = bound(result["rawDiagnosticsPath"], result["rawDiagnosticsSha256"], result_path,
                      "rawDiagnosticsPath")
     exact(raw_path, result_path.with_name(result_path.stem + "-diagnostics.json"),
@@ -893,7 +1053,7 @@ def raw_diagnostic(result, result_path):
     inline = json_text(result["nativeDiagnosticsJson"], f"{result_path}.nativeDiagnosticsJson")
     disk = prior._obj(raw_path)
     exact(inline, disk, f"{result_path}: inline/raw diagnostics")
-    prior._diagnostic(disk, raw_path)
+    prior._diagnostic(disk, raw_path, expected_abi)
     return disk
 
 
@@ -901,7 +1061,7 @@ def verify_result_header(path, manifest, baseline, build):
     path = canonical(str(path), path, "result")
     result = prior._obj(path)
     capability = _schema_variant(result, RESULT_FIELDS, R01_RESULT_FIELDS, path)
-    exact(capability, baseline.get("nativeBudgetCapabilityVersion", 0) == 1,
+    exact(capability, baseline.get("nativeBudgetCapabilityVersion", 0) in (1, 2),
           f"{path}: result/baseline budget capability")
     require(result["schemaVersion"] == 1 and result["milestone"] == "M07" and result["mode"] in MODES and
             path.name == "m07-" + result["mode"] + ".json" and result["result"] == "Passed" and
@@ -943,6 +1103,9 @@ def verify_result_header(path, manifest, baseline, build):
 
 
 def verify_transaction(result, path, manifest, patch_item):
+    expected_abi = manifest.get("_diagnosticAbi", 1)
+    if patch_item is not None:
+        expected_abi = diagnostic_abi(patch_item["patch"], path)
     feature_off = patch_item is None
     checks = []
     seen = set()
@@ -974,7 +1137,7 @@ def verify_transaction(result, path, manifest, patch_item):
         exact(result["stageResults"], [], f"{path}.stageResults")
         exact([row["phase"] for row in result["snapshots"]], ["disabled"], f"{path}.snapshots")
         fields(result["snapshots"][0], SNAPSHOT_FIELDS, f"{path}.snapshots[0]")
-        diagnostic = raw_diagnostic(result, path)
+        diagnostic = raw_diagnostic(result, path, expected_abi)
         exact(result["snapshots"][0]["diagnostics"], diagnostic, f"{path}.snapshots[0].diagnostics")
         require(diagnostic["enabled"] is False and diagnostic["state"] == "Disabled" and diagnostic["lastError"] == 1,
                 f"{path}: feature-OFF diagnostic differs")
@@ -989,7 +1152,7 @@ def verify_transaction(result, path, manifest, patch_item):
 
     fixture, patch = patch_item["fixture"], patch_item["patch"]
     order = fixture["closureLoadOrder"]
-    capability = patch_item.get("r01Capability", patch.get("nativeBudgetCapabilityVersion", 0) == 1)
+    capability = patch_item.get("r01Capability", patch.get("nativeBudgetCapabilityVersion", 0) in (1, 2))
     exact("reserveMetadataBudget" in result, capability, f"{path}: result/patch budget capability")
     if capability:
         exact(result["reserveMetadataBudget"], "Success", f"{path}.reserveMetadataBudget")
@@ -1016,7 +1179,7 @@ def verify_transaction(result, path, manifest, patch_item):
     for index, row in enumerate(result["snapshots"]):
         rp = f"{path}.snapshots[{index}]"
         fields(row, SNAPSHOT_FIELDS, rp)
-        diagnostic = prior._diagnostic(row["diagnostics"], rp)
+        diagnostic = prior._diagnostic(row["diagnostics"], rp, expected_abi)
         exact("metadataBudgetCapabilityVersion" in diagnostic, capability, rp + ".capability")
         reservations = [event for event in diagnostic["events"] if event["kind"] == "metadata-budget-reserved"]
         exact(reservations, [dict(sequence=3, kind="metadata-budget-reserved", name="", generation=0, stagedCount=0)] if capability else [], rp + ".reservationEvent")
@@ -1030,7 +1193,7 @@ def verify_transaction(result, path, manifest, patch_item):
         expected_state = "Staged" if index == 0 else "Validated" if index == 1 else "Committed"
         exact(diagnostic["state"], expected_state, rp + ".state")
         final = diagnostic
-    raw = raw_diagnostic(result, path)
+    raw = raw_diagnostic(result, path, expected_abi)
     exact(raw, final, f"{path}: final/raw diagnostic")
     exact(result["baselineUseCount"], 0, f"{path}.baselineUseCount")
     exact(result["nativeEventCount"], len(final["events"]), f"{path}.nativeEventCount")

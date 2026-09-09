@@ -206,7 +206,7 @@ namespace AssemblyShadowDemo.EditorTests
 
         [Test] public void FeatureOffKeepsTheExistingDisabledTransactionSchema()
         {
-            var value = new AssemblyShadowDiagnostics { schemaVersion = 1, enabled = false, runtimeAbiVersion = 1, state = "Disabled", stateCode = (int)AssemblyShadowState.Disabled,
+            var value = new AssemblyShadowDiagnostics { schemaVersion = 1, enabled = false, runtimeAbiVersion = 2, state = "Disabled", stateCode = (int)AssemblyShadowState.Disabled,
                 lastError = (int)AssemblyShadowErrorCode.FeatureDisabled, detail = "", baselineBuildId = "", patchId = "", closureLoadOrder = new string[0], stableAotNames = new string[0], commitOrder = new string[0],
                 assemblies = new AssemblyShadowDiagnosticAssembly[0], events = new AssemblyShadowDiagnosticEvent[0], baselineUses = new AssemblyShadowBaselineUse[0],
                 ordinaryAssemblies = new AssemblyShadowOrdinaryAssembly[0], ordinaryClasses = new AssemblyShadowOrdinaryClass[0] };
@@ -414,7 +414,7 @@ namespace AssemblyShadowDemo.EditorTests
             imageType.GetField("name").SetValue(image, name); imageType.GetField("mvid").SetValue(image, mvid);
             Array closure = Array.CreateInstance(imageType, 1); closure.SetValue(image, 0); patchType.GetField("closure").SetValue(patch, closure);
             typeof(M06ExecutionProbe.Fixture).GetField("patch", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(fixture, patch);
-            var value = new AssemblyShadowDiagnostics { schemaVersion = 1, enabled = true, runtimeAbiVersion = 1, stateCode = (int)AssemblyShadowState.FailedAfterCommit,
+            var value = new AssemblyShadowDiagnostics { schemaVersion = 1, enabled = true, runtimeAbiVersion = 2, stateCode = (int)AssemblyShadowState.FailedAfterCommit,
                 state = "FailedAfterCommit", lastError = (int)AssemblyShadowErrorCode.ModuleInitializerFailed, baselineBuildId = "baseline", patchId = fixture.patchId,
                 generation = 1, expected = 1, staged = 1, closureLoadOrder = new[] { name }, assemblies = new[] { new AssemblyShadowDiagnosticAssembly { name = name, mvid = mvid,
                     skeletonBuilt = true, runtimeMetadataInitialized = true, published = true, moduleInitializerAttempted = true, moduleInitializerRan = false } } };

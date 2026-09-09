@@ -18,7 +18,7 @@ namespace AssemblyShadowDemo
     [Preserve]
     public static partial class M06ExecutionProbe
     {
-        internal const int RuntimeAbiVersion = 1;
+        internal const int RuntimeAbiVersion = 2;
         internal const string Contracts = "AssemblyA.Contracts";
         internal const string Extensibility = "AssemblyA.Implementation.Extensibility";
         internal const string Internal = "AssemblyA.Implementation.Internal";
@@ -456,7 +456,7 @@ namespace AssemblyShadowDemo
 
         private static void ValidateDisabledDiagnostics(AssemblyShadowDiagnostics value)
         {
-            Require(value != null && value.schemaVersion == 1 && !value.enabled && value.runtimeAbiVersion == 1 &&
+            Require(value != null && value.schemaVersion == 1 && !value.enabled && value.runtimeAbiVersion == RuntimeAbiVersion &&
                 value.state == "Disabled" && value.stateCode == (int)AssemblyShadowState.Disabled && value.lastError == (int)AssemblyShadowErrorCode.FeatureDisabled &&
                 value.generation == 0 && value.expected == 0 && value.staged == 0 && value.retainedBytes == 0 && value.enumerationGeneration == 0 && value.classEnumerationGeneration == 0 &&
                 value.detail == "" && value.baselineBuildId == "" && value.patchId == "" &&
@@ -888,6 +888,7 @@ namespace AssemblyShadowDemo
             AssemblyShadowErrorCode code;
             bool declared = ShadowPatchMetadataReservation.ReserveIfDeclared(
                 fixture.patch.nativeBudgetCapabilityVersion, fixture.patch.metadataEncodingProfile, fixture.patch.metadataCapacityReport,
+                fixture.patch.metadataEncodingProfile2, fixture.patch.metadataCapacityReport2,
                 fixture.patch.loadOrder, fixture.patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
                 name => ReadVerifiedDll(fixture, name), out code);
             if (!declared) return -1;
@@ -1049,7 +1050,7 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] internal sealed class WarmupType { [Preserve] public string assembly, type; }
         [Serializable, Preserve] internal sealed class WarmupMethod { [Preserve] public string assembly, declaringType, name; [Preserve] public bool isStatic; [Preserve] public int genericArity; [Preserve] public WarmupTypeIdentity[] genericArguments, parameterTypes; [Preserve] public WarmupTypeIdentity returnType; }
         [Serializable, Preserve] internal sealed class WarmupTypeIdentity { [Preserve] public string assembly, type; }
-        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport; }
+        [Serializable, Preserve] internal sealed class PatchManifest { [Preserve] public int schemaVersion, semanticHashSchema, nativeBudgetCapabilityVersion; [Preserve] public string patchId, baselineBuildId, baselineManifestSha256, runtimeAbiHash, compileSnapshotHash; [Preserve] public string[] loadOrder; [Preserve] public PatchAssembly[] closure; [Preserve] public ShadowPatchMetadataEncodingProfile metadataEncodingProfile; [Preserve] public ShadowPatchMetadataCapacityReport metadataCapacityReport; [Preserve] public ShadowPatchMetadataEncodingProfile2 metadataEncodingProfile2; [Preserve] public ShadowPatchMetadataCapacityReport2 metadataCapacityReport2; }
         [Serializable, Preserve] internal sealed class PatchAssembly { [Preserve] public string name, dll, sha256, pdb, pdbSha256, mvid, baselineMvid; [Preserve] public ulong dllSize; }
     }
 }

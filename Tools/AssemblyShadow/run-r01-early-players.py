@@ -76,13 +76,15 @@ def _read(path: Path) -> dict:
     return value
 
 
-def _verify_process_output(probe: dict, run: dict, m07_mode: str) -> None:
+def _verify_process_output(probe: dict, run: dict, m07_mode: str, profile: int) -> None:
     """A receipt written before a crash is not a successful startup refusal."""
     mode = probe["mode"]
+    require(profile in (1, 2), mode + ": unsupported prepared metadata profile")
     require(run["timedOut"] is False, mode + ": Player timed out")
     gate.exact(run["exitCode"], 1 if mode in gate.REJECTION_MODES else 0, mode + ".exitCode")
     gate.verify_startup_logs(mode, probe["logPath"], probe["consolePath"])
-    early = gate.verify_early_receipt(probe["earlyResultPath"], probe["capsulePath"], mode, run["processId"])
+    early = gate.verify_early_receipt(probe["earlyResultPath"], probe["capsulePath"], mode,
+                                      run["processId"], profile)
     if mode in gate.POSITIVE_MODES:
         result = _read(probe["m07ResultPath"])
         gate.exact(result["processId"], run["processId"], mode + ".m07PID")
@@ -162,7 +164,7 @@ def main(argv: list[str] | None = None) -> int:
         after = {str(path): gate.digest(path) for path in sorted(immutable)}
         error = ""
         try:
-            _verify_process_output(probe, run, args.m07_mode)
+            _verify_process_output(probe, run, args.m07_mode, prepared["profile"])
             require(before == after == matrix_before, mode + ": immutable inputs changed")
             producer_ok = True
         except (VerificationError, ValueError, OSError, KeyError, TypeError) as problem:
