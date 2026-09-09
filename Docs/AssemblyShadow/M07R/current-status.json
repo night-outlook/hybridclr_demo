@@ -9,11 +9,12 @@
     "M05",
     "M06",
     "M07",
-    "R00"
+    "R00",
+    "R01"
   ],
-  "currentMilestone": "R01",
-  "currentStatus": "ActiveUnaccepted",
-  "currentPhase": "V6 implementation, strict11/strict14, native/Editor validation and evidence archive complete; committed final R01 stage review pending",
+  "currentMilestone": "R01B",
+  "currentStatus": "ReadyNotStarted",
+  "currentPhase": "R01 accepted after final independent review; prepare required R01B entry inventory and encoding ADR",
   "activeRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01",
   "branch": "codex/assembly-shadow-r01",
   "plannedBaselineId": "M07-Baseline-R01-early-v6",
@@ -41,9 +42,7 @@
   "retainedNativeRegressionEvidence": "R01/early-v4-native-regressions.json",
   "retainedEditorValidationEvidence": "R01/early-v4-editor-validation.json",
   "retainedV4NativeScriptEvidence": "R01/early-v4-native-script-trace.json",
-  "pendingCurrentEvidence": [
-    "Independent final R01 stage code review of committed evidence"
-  ],
+  "pendingCurrentEvidence": [],
   "nativeRegressionEvidence": "R01/early-v6-native-regressions.json",
   "retainedV5StrictEarlyEvidence": "R01/early-v5-strict-matrix.json",
   "retainedV5NativeScriptEvidence": "R01/early-v5-native-script-trace.json",
@@ -67,5 +66,8 @@
   "performanceComparison": "R01/early-v6-r00-performance-comparison.json",
   "finalPairingAudit": "R01/early-v6-final-pairing-audit.json",
   "evidencePackage": "R01/early-v6-evidence-index.json",
-  "deliveryCheckpoint": "R01/early-v6-delivery-checkpoint.json"
+  "deliveryCheckpoint": "R01/early-v6-delivery-checkpoint.json",
+  "R01FinalStageReview": "R01/R01-final-stage-review.json",
+  "R01AcceptedReviewCommit": "7fe868ada1b4eb0b19ebbaa68f00d2611e88b3bf",
+  "mayEnterR01B": true
 }

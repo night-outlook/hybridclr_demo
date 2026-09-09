@@ -1,6 +1,6 @@
 # R01 Remaining Acceptance
 
-Status: **Active / Unaccepted**. This is the current v6 checklist for R01. It supplements the normative plan and validation matrix; it cannot advance H1 or authorize R02.
+Status: **R01 Accepted**; [final independent review](R01-final-stage-review.json) passed with no open findings. This is the current v6 checklist for R01. It supplements the normative plan and validation matrix; it cannot advance H1 or authorize R02.
 
 ## Current source and evidence boundary
 
@@ -31,7 +31,7 @@ The retained v5 native scope is recorded as `PassedNativeScope`: nine hash-bound
 - **Installed/generated provenance — Completed bounded v6 audit.** The v6 post-build audit binds installed verification, immutable ON/OFF Player copies, generated files, and the manifest; other generated hashes remain post-build observations ([early-v6-postbuild-audit.json](early-v6-postbuild-audit.json:1)).
 - **R00 performance comparison — Completed bounded diagnostic comparison.** Both native M04 observations cover one million lookups and zero recorded lookup allocations: R00 376,717 microseconds, v6 373,765 microseconds. Different fixtures/source pins prevent causal attribution or overall equivalence. The original R00 Player phase measurements are retained; comparable current Player startup/allocation/Invoke/generic timing and production qualification remain NotRun ([early-v6-r00-performance-comparison.json](early-v6-r00-performance-comparison.json)).
 - **Final evidence package — Completed and byte-verified.** Bind every result to TestId, four-repository pins, ABI/encoding/capability identity, target/compiler, input/resource hashes, native library, process or device, raw log, and assertions. Preserve all historical receipts and label their pins.
-- **Bounded R01 evidence review — Passed bounded scope; final review pending.** The independent v6 review found no issues across build, Editor, native, and post-build evidence, while the NativeScript review separately passed with no findings; these reviews explicitly do not accept R01 or H1. The final R01 evidence review remains pending ([early-v6-bounded-evidence-review.json](early-v6-bounded-evidence-review.json:1), [early-v6-native-script-review.json](early-v6-native-script-review.json:1), [early-v6-runtime-and-gap-review.json](early-v6-runtime-and-gap-review.json:1)). The human H1 review is required only after R01B and cannot be replaced by agent review ([HUMAN_REVIEW_GATES.md](../../../../Documents/HybridCLR_AssemblyShadow_Design_and_Plans/reviews/M07_SourceReview_2026-09-07/plans/HUMAN_REVIEW_GATES.md:12)).
+- **Bounded R01 evidence review — Passed final independent stage review.** The independent v6 review found no issues across build, Editor, native, and post-build evidence, while the NativeScript review separately passed with no findings; these reviews explicitly do not accept R01 or H1. The final R01 evidence review has passed ([early-v6-bounded-evidence-review.json](early-v6-bounded-evidence-review.json:1), [early-v6-native-script-review.json](early-v6-native-script-review.json:1), [early-v6-runtime-and-gap-review.json](early-v6-runtime-and-gap-review.json:1)). The human H1 review is required only after R01B and cannot be replaced by agent review ([HUMAN_REVIEW_GATES.md](../../../../Documents/HybridCLR_AssemblyShadow_Design_and_Plans/reviews/M07_SourceReview_2026-09-07/plans/HUMAN_REVIEW_GATES.md:12)).
 
 ## S02 scope clarification
 
@@ -45,10 +45,12 @@ The v5 Editor evidence remains historical. Fresh v6 Editor validation passes fix
 
 ## Gate disposition
 
-R01 remains unaccepted. After R01 evidence and review, execute required R01B for the 65,536 target, then stop at H1. Do not enter R02. `H1Passed=false` and `mayEnterR02=false` remain the current status ([current-status.json](../current-status.json:14)).
+R01 is accepted. Execute required R01B for the 65,536 target, then stop at H1. Do not enter R02. `H1Passed=false` and `mayEnterR02=false` remain the current status ([current-status.json](../current-status.json:14)).
 
 This checklist is complete only when the strict 14-mode M07 aggregate, final hash-bound evidence package/review, and final R01 evidence decision are recorded. The v6 strict11 profile, NativeScript witness/review, pair, Editor, native, and post-build evidence are complete within their explicit limits; v5 evidence is preserved as historical. The human H1 review follows required R01B completion. No historical evidence is deleted or overwritten.
 
 The report also records the required manual whole-baseline rollback method, including coherent four-repository pins, installed/generated artifacts, baseline/resource identity and process restart. This procedure is documented but NotRun; it is distinct from the deferred M09 automatic LKG coordinator.
 
-The final [evidence index](early-v6-evidence-index.json) binds 256 archived files (590,252,277 raw bytes). Packaging exited 0 after reopening every member, checking its SHA-256 and normalized metadata, and confirming all selected source bytes unchanged. The archived documentation is a package-time snapshot; this current delivery update and the later independent decision are separate records. See [delivery checkpoint](early-v6-delivery-checkpoint.json). Only final independent R01 stage review remains pending.
+The final [evidence index](early-v6-evidence-index.json) binds 256 archived files (590,252,277 raw bytes). Packaging exited 0 after reopening every member, checking its SHA-256 and normalized metadata, and confirming all selected source bytes unchanged. The archived documentation is a package-time snapshot; this current delivery update and the later independent decision are separate records. See [delivery checkpoint](early-v6-delivery-checkpoint.json). Final independent R01 stage review has passed.
+
+Final disposition: R01 has no remaining acceptance items. The final independent review passed against commit `7fe868ada1b4eb0b19ebbaa68f00d2611e88b3bf`; its decision supersedes preparatory pending-review wording above. Proceed to required R01B, then stop at H1.

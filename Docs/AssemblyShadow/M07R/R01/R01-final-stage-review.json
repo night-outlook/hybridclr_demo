@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01IndependentFinalStageReview",
+  "verdict": "PASS",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "recordedAt": "2026-09-09T01:39:38.476475+00:00",
+  "reviewedDemoCommit": "7fe868ada1b4eb0b19ebbaa68f00d2611e88b3bf",
+  "executableSourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "localPath": "."
+    }
+  },
+  "milestone": "R01",
+  "milestoneAccepted": true,
+  "findings": [],
+  "verified": [
+    "Actual strict14 launcher/verification/result joins with fourteen distinct PIDs and all140 raw restart evidence hashes",
+    "All256 archive members, payload hashes, normalized metadata and archive SHA",
+    "Clean four-repository pairing and metadata-only final demo changes",
+    "Preserved M00-M07/R00 history",
+    "Accurate post-packaging documentation with archived versions identified as snapshots"
+  ],
+  "retainedApplicableReviews": [
+    "Cumulative source review",
+    "Strict11 and NativeScript runtime review",
+    "Fresh native and Editor evidence review",
+    "Installed/generated/build provenance review",
+    "Bounded R00 performance comparison review"
+  ],
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-evidence-index.json",
+      "sha256": "c98018e76000b5dc4a27e5840447d059fc010d2ef49d59e8a21a83baa1d70ee9"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-m07-aggregate.json",
+      "sha256": "509ce8cd56fdab67594ae52040078d616ff4ca0025940b65a8ffbfa21efd99ec"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-delivery-checkpoint.json",
+      "sha256": "6cd55d18bfe9c2f592a5866bd6158b86e79b99fd64dbcd60ed275577a66f0f8e"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/Docs/AssemblyShadow/M07R/R01/early-v6-runtime-and-gap-review.json",
+      "sha256": "201dd4ce67f388eaf487b51caf3689e05d9aab27e8e5f8277f2e48f5340e6d5c"
+    }
+  ],
+  "mayEnterR01B": true,
+  "requiredAssemblyCount": 65536,
+  "H1Passed": false,
+  "mayEnterR02": false,
+  "stopAfter": "R01B implementation, validation, evidence and stage review; human H1 required",
+  "limits": [
+    "65,536-assembly support is not yet implemented or accepted.",
+    "Production performance qualification and other platforms remain NotRun.",
+    "Automatic startup recovery/LKG coordinator is deferred to M09.",
+    "The evidence archive requires external hash-bound build/source/fixture artifacts."
+  ]
+}
