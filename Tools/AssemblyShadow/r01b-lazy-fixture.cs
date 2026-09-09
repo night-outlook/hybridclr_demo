@@ -130,7 +130,7 @@ internal static class R01BLazyFixture
             TypeAttributes.Interface | TypeAttributes.Abstract | TypeAttributes.Public);
         GenericParameter parameter = new GenericParameter("T", type);
         type.GenericParameters.Add(parameter);
-        MethodDefinition echo = AddMethod(type, "Echo", MethodAttributes.Public | MethodAttributes.Abstract | MethodAttributes.Virtual | MethodAttributes.HideBySig, parameter);
+        MethodDefinition echo = AddMethod(type, "Echo", MethodAttributes.Public | MethodAttributes.Abstract | MethodAttributes.Virtual | MethodAttributes.HideBySig | MethodAttributes.NewSlot, parameter);
         echo.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, parameter));
         return type;
     }
@@ -148,20 +148,24 @@ internal static class R01BLazyFixture
     {
         TypeDefinition type = AddClass(module, "LazyImplementation", module.TypeSystem.Object,
             TypeAttributes.Class | TypeAttributes.Public | TypeAttributes.Sealed);
+        // C# emits the inherited interface closure on the implementing class.
+        // Vtable setup needs the generic and AOT interface entries as well.
         type.Interfaces.Add(new InterfaceImplementation(inherited));
+        foreach (InterfaceImplementation parent in inherited.Interfaces)
+            type.Interfaces.Add(new InterfaceImplementation(parent.InterfaceType));
         MethodDefinition constructor = AddMethod(type, ".ctor", MethodAttributes.Public | MethodAttributes.HideBySig | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName, module.TypeSystem.Void);
         ILProcessor constructorIl = Body(constructor);
         constructorIl.Emit(OpCodes.Ldarg_0);
         constructorIl.Emit(OpCodes.Call, module.ImportMethod(typeof(object), ".ctor", typeof(void)));
         constructorIl.Emit(OpCodes.Ret);
-        MethodDefinition echo = AddMethod(type, "Echo", MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig, module.TypeSystem.Int32);
+        MethodDefinition echo = AddMethod(type, "Echo", MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig | MethodAttributes.NewSlot | MethodAttributes.Final, module.TypeSystem.Int32);
         echo.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, module.TypeSystem.Int32));
         ILProcessor il = Body(echo);
         il.Emit(OpCodes.Ldarg_1);
         il.Emit(OpCodes.Ldc_I4_7);
         il.Emit(OpCodes.Add);
         il.Emit(OpCodes.Ret);
-        MethodDefinition dispose = AddMethod(type, "Dispose", MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig, module.TypeSystem.Void);
+        MethodDefinition dispose = AddMethod(type, "Dispose", MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig | MethodAttributes.NewSlot | MethodAttributes.Final, module.TypeSystem.Void);
         Body(dispose).Emit(OpCodes.Ret);
         return type;
     }
@@ -313,11 +317,50 @@ internal static class R01BLazyFixture
             foreach (string typeName in new[] { "LazyMarkerAttribute", "LazyRetryAttribute", "LazyMalformedAttribute", "ILazyContract`1", "IInheritedLazyContract",
                 "LazyImplementation", "LazyBox`1", "LazyAttributeCarrier", "LazyRetryCarrier", "LazyMalformedCarrier", "LazyEntry" })
                 FindType(module, typeName);
+            VerifyVTableShape(module);
             if (FindType(module, "LazyAttributeCarrier").CustomAttributes.Count != 1 ||
                 FindType(module, "LazyRetryCarrier").CustomAttributes.Count != 1 ||
                 FindType(module, "LazyMalformedCarrier").CustomAttributes.Count != 1)
                 throw new InvalidOperationException("generated fixture custom-attribute shape is incomplete");
         }
+    }
+
+    private static void VerifyVTableShape(ModuleDefinition module)
+    {
+        TypeDefinition contract = FindType(module, "ILazyContract`1");
+        TypeDefinition inherited = FindType(module, "IInheritedLazyContract");
+        TypeDefinition implementation = FindType(module, "LazyImplementation");
+        VerifyMethodFlags(contract, "Echo", MethodAttributes.Public | MethodAttributes.Abstract |
+            MethodAttributes.Virtual | MethodAttributes.HideBySig | MethodAttributes.NewSlot);
+        MethodAttributes implementationFlags = MethodAttributes.Public | MethodAttributes.Final |
+            MethodAttributes.Virtual | MethodAttributes.HideBySig | MethodAttributes.NewSlot;
+        VerifyMethodFlags(implementation, "Echo", implementationFlags);
+        VerifyMethodFlags(implementation, "Dispose", implementationFlags);
+        string closedContract = ClosedBox(module, contract, module.TypeSystem.Int32).FullName;
+        VerifyInterfaces(inherited, closedContract, typeof(IDisposable).FullName);
+        VerifyInterfaces(implementation, inherited.FullName, closedContract, typeof(IDisposable).FullName);
+    }
+
+    private static void VerifyMethodFlags(TypeDefinition type, string name, MethodAttributes expected)
+    {
+        MethodDefinition found = null;
+        foreach (MethodDefinition method in type.Methods)
+        {
+            if (method.Name != name) continue;
+            if (found != null) throw new InvalidOperationException("duplicate fixture method " + type.Name + "." + name);
+            found = method;
+        }
+        if (found == null || found.Attributes != expected || found.Overrides.Count != 0)
+            throw new InvalidOperationException("fixture interface method differs from implicit C# shape: " + type.Name + "." + name);
+    }
+
+    private static void VerifyInterfaces(TypeDefinition type, params string[] expected)
+    {
+        if (type.Interfaces.Count != expected.Length)
+            throw new InvalidOperationException("fixture interface closure is incomplete: " + type.Name);
+        for (int index = 0; index < expected.Length; ++index)
+            if (type.Interfaces[index].InterfaceType.FullName != expected[index])
+                throw new InvalidOperationException("fixture interface closure differs from C# shape: " + type.Name);
     }
 
     private static MethodReference ImportMethod(this ModuleDefinition module, Type type, string name, Type returnType, params Type[] parameterTypes)
@@ -343,7 +386,7 @@ internal static class R01BLazyFixture
     {
         using (SHA256 hash = SHA256.Create())
         {
-            byte[] digest = hash.ComputeHash(Encoding.UTF8.GetBytes("R01B-lazy-interpreter-fixture:mvid:v1"));
+            byte[] digest = hash.ComputeHash(Encoding.UTF8.GetBytes("R01B-lazy-interpreter-fixture:mvid:v2-vtable-shape"));
             byte[] bytes = new byte[16];
             Buffer.BlockCopy(digest, 0, bytes, 0, bytes.Length);
             bytes[7] = (byte)((bytes[7] & 0x0f) | 0x40);

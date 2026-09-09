@@ -122,10 +122,10 @@ def execute(args, receipt):
     flags += [f"-D{name}={value}" for name, value in sorted(defines.items())]
     native_sources = [native / "hybridclr/metadata" / name for name in
                       ("InterpreterImage.cpp", "Image.cpp", "PDBImage.cpp", "RawImage.cpp",
-                       "RawImageBase.cpp", "MetadataUtil.cpp", "AssemblyShadowBridge.cpp")]
+                       "RawImageBase.cpp", "MetadataUtil.cpp", "AssemblyShadowBridge.cpp", "InterpreterMetadataIndexRuntime.cpp")]
     runtime_sources = [runtime / "libil2cpp" / name for name in
-                       ("vm/AssemblyShadowDiagnostics.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/Runtime.cpp",
-                        "vm/Assembly.cpp", "vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "utils/sha1.cpp",
+                       ("vm/AssemblyShadowVisibility.cpp", "vm/AssemblyShadowDiagnostics.cpp", "vm/AssemblyShadowTypeKey.cpp", "vm/Runtime.cpp",
+                        "vm/Assembly.cpp", "os/FastReaderReaderWriterLock.cpp", "vm-utils/VmStringUtils.cpp", "char-conversions.cpp", "utils/sha1.cpp",
                         "utils/StringUtils.cpp")]
     manifest = canonical_file(native / "hybridclr/generated/AssemblyManifest.cpp", "generated AssemblyManifest.cpp")
     sources = [source, manifest, *native_sources, *runtime_sources]

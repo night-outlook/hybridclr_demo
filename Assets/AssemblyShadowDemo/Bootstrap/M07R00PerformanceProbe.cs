@@ -42,6 +42,8 @@ namespace AssemblyShadowDemo
             M07Probe.Require(Modes.Contains(mode, StringComparer.Ordinal), "Unknown R00 mode: " + mode);
 
             bool featureEnabled = mode != "R00-OFF-NoPatch";
+            bool legacyNoEarlyStartup = M07Probe.Argument("-shadowR00LegacyNoEarlyStartup", "") == "1";
+            result.earlyStartupStrategy = legacyNoEarlyStartup ? "legacy-explicit-no-capsule" : "R01EarlyStartup";
             string inputMode = mode == "R00-OFF-NoPatch" ? "T07-14-FeatureOff" :
                 mode == "R00-ON-P03" ? "T07-03-FullClosure-P03" : "T07-01-Prefab-P01";
             M07Probe.Input input = M07Probe.R00ReadInputs(expectedBaselineBuildId, expectedRuntimeAbiHash, inputMode);
@@ -64,6 +66,11 @@ namespace AssemblyShadowDemo
             {
                 if (input.fixture == null)
                 {
+                    // Baseline is a genuine no-op early callback.  It proves
+                    // the mandatory R01 boundary before this existing
+                    // configured no-patch observation.
+                    if (!legacyNoEarlyStartup)
+                        result.earlyHandoff = ValidateEarlyHandoff(input, "Baseline", false);
                     result.configureCode = M07Probe.Expect(result.m07Transaction, "configure", AssemblyShadowRuntime.ConfigureCandidates(
                         input.manifest.baselineBuildId, input.manifest.candidateNames, input.manifest.stableAotNames));
                     AssemblyShadowState state;
@@ -78,7 +85,16 @@ namespace AssemblyShadowDemo
                 }
                 else
                 {
-                    M07Probe.R00RunTransaction(result.m07Transaction, input);
+                    // M07 owns the only transaction path. Its early-capsule
+                    // branch calls AdoptEarlyTransaction, so R00 does not
+                    // Configure or BeginTransaction a second time.
+                    if (legacyNoEarlyStartup)
+                        M07Probe.R00RunTransaction(result.m07Transaction, input);
+                    else
+                    {
+                        result.earlyHandoff = ValidateEarlyHandoff(input, "Control", true);
+                        M07Probe.R00AdoptEarlyTransaction(result.m07Transaction, input);
+                    }
                     CopyTransaction(result);
                     result.transactionCommitted = true;
                 }
@@ -125,11 +141,13 @@ namespace AssemblyShadowDemo
         {
             return new Result {
                 schemaVersion = 1, milestone = "M07R-R00", mode = mode, result = "Failed", error = "",
+                earlyStartupStrategy = M07Probe.Argument("-shadowR00LegacyNoEarlyStartup", "") == "1" ? "legacy-explicit-no-capsule" : "R01EarlyStartup",
                 il2cpp = M07Probe.R00IsIl2CppPlayer(), processId = Process.GetCurrentProcess().Id,
                 unityVersion = Application.unityVersion, platform = Application.platform.ToString(), buildGuid = Application.buildGUID,
                 playerDataPath = Application.dataPath, baselineBuildId = baseline, runtimeAbiHash = runtimeAbi,
                 assertions = new List<Assertion>(), operations = new List<OperationObservation>(),
                 patchManifest = new ArtifactReceipt { name = "patch-manifest", available = false },
+                earlyHandoff = new EarlyHandoffObservation { available = false },
                 m07Transaction = M07Probe.R00NewResult(mode, baseline, runtimeAbi)
             };
         }
@@ -190,6 +208,63 @@ namespace AssemblyShadowDemo
             result.stateCode = result.m07Transaction.stateCode;
             result.state = result.m07Transaction.state;
             result.stageOrder = result.m07Transaction.stageOrder == null ? new string[0] : result.m07Transaction.stageOrder.ToArray();
+        }
+
+        private static EarlyHandoffObservation ValidateEarlyHandoff(M07Probe.Input input, string expectedMode, bool expectTransaction)
+        {
+            string capsulePath = Path.GetFullPath(M07Probe.Argument("-shadowEarlyCapsule", ""));
+            string capsuleSha256 = M07Probe.Argument("-shadowEarlyCapsuleSha256", "");
+            string resultPath = Path.GetFullPath(M07Probe.Argument("-shadowEarlyResult", ""));
+            M07Probe.Require(!string.IsNullOrEmpty(capsulePath) && !string.IsNullOrEmpty(resultPath) &&
+                File.Exists(capsulePath) && File.Exists(resultPath) && M07Probe.IsHash(capsuleSha256),
+                "R00 requires explicit early capsule, digest, and receipt paths.");
+            byte[] bytes = File.ReadAllBytes(capsulePath);
+            M07Probe.Require(M07Probe.Hash(bytes) == capsuleSha256, "R00 early capsule digest differs from launcher input.");
+            string raw = File.ReadAllText(resultPath);
+            M07Probe.Require(raw == R01EarlyStartup.LastReceiptJson,
+                "R00 early receipt differs from the current process callback observation.");
+            R01EarlyStartup.Receipt receipt = JsonUtility.FromJson<R01EarlyStartup.Receipt>(raw);
+            M07Probe.Require(receipt != null && receipt.schemaVersion == 1 && receipt.kind == "R01EarlyStartupReceipt" &&
+                receipt.mode == expectedMode && receipt.result == "Passed" && string.IsNullOrEmpty(receipt.error) &&
+                receipt.callbackReturnCode == 0 && receipt.processId == Process.GetCurrentProcess().Id &&
+                receipt.managedThreadId == Environment.CurrentManagedThreadId &&
+                Path.GetFullPath(receipt.capsulePath) == capsulePath && receipt.capsuleSha256 == capsuleSha256 &&
+                Path.GetFullPath(receipt.resultPath) == resultPath && receipt.baselineBuildId == input.manifest.baselineBuildId &&
+                receipt.runtimeAbiHash == input.manifest.runtimeAbiHash,
+                "R00 early receipt is not the expected same-process successful handoff.");
+            R01EarlyStartup.Capsule capsule = R01EarlyStartup.CapsuleCodec.Parse(bytes);
+            M07Probe.Require(capsule.mode == expectedMode && capsule.baselineBuildId == input.manifest.baselineBuildId &&
+                capsule.runtimeAbiHash == input.manifest.runtimeAbiHash &&
+                capsule.candidateNames.SequenceEqual(input.manifest.candidateNames) &&
+                capsule.stableAotNames.SequenceEqual(input.manifest.stableAotNames),
+                "R00 early capsule identity differs from the selected M07 manifest.");
+            if (expectTransaction)
+            {
+                M07Probe.Require(capsule.patchId == input.fixture.patchId &&
+                    capsule.closureLoadOrder.SequenceEqual(input.fixture.closureLoadOrder) &&
+                    receipt.patchId == input.fixture.patchId && receipt.operations != null &&
+                    receipt.operations.Any(row => row.phase == "configure") && receipt.operations.Any(row => row.phase == "begin") &&
+                    receipt.operations.Any(row => row.phase == "commit"),
+                    "R00 early Control receipt is not bound to the selected patch closure.");
+            }
+            else
+            {
+                M07Probe.Require((capsule.patchId == "P01" || capsule.patchId == "P03") && receipt.patchId == capsule.patchId,
+                    "R00 Baseline capsule is not bound to a published patch identity.");
+                M07Probe.Fixture baselineFixture = input.manifest.fixtures.Single(row => row.patchId == capsule.patchId);
+                M07Probe.Require(capsule.closureLoadOrder.SequenceEqual(baselineFixture.closureLoadOrder),
+                    "R00 Baseline capsule closure differs from its published fixture.");
+                M07Probe.Require(receipt.operations != null && receipt.operations.Count == 0 &&
+                    receipt.snapshots != null && receipt.snapshots.Count == 1 &&
+                    receipt.snapshots[0].phase == "before-startup-ops",
+                    "R00 Baseline early receipt performed unexpected transaction work.");
+            }
+            return new EarlyHandoffObservation {
+                available = true, mode = receipt.mode, patchId = receipt.patchId,
+                capsulePath = capsulePath, capsuleSha256 = capsuleSha256, resultPath = resultPath,
+                resultSha256 = M07Probe.HashFile(resultPath), processId = receipt.processId,
+                callbackReturnCode = receipt.callbackReturnCode
+            };
         }
 
         private static TypeIdentity CaptureSelectedType(Result result, string mode)
@@ -479,7 +554,7 @@ namespace AssemblyShadowDemo
         public sealed class Result
         {
             [Preserve] public int schemaVersion, processId;
-            [Preserve] public string milestone, mode, result, error, unityVersion, platform, buildGuid, playerDataPath, baselineBuildId, runtimeAbiHash;
+            [Preserve] public string milestone, mode, result, error, earlyStartupStrategy, unityVersion, platform, buildGuid, playerDataPath, baselineBuildId, runtimeAbiHash;
             [Preserve] public bool il2cpp, featureEnabled, transactionCommitted;
             [Preserve] public string configureCode, beginCode, stageProbeCode, validateCode, commitCode, abortCode, stateCode, state, patchId;
             [Preserve] public string[] stageOrder;
@@ -492,7 +567,15 @@ namespace AssemblyShadowDemo
             [Preserve] public List<OperationObservation> operations;
             [Preserve] public List<Assertion> assertions;
             [Preserve] public List<ExecutionRegression> executionRegressions;
+            [Preserve] public EarlyHandoffObservation earlyHandoff;
             [NonSerialized] internal M07Probe.Result m07Transaction;
+        }
+
+        [Serializable, Preserve] public sealed class EarlyHandoffObservation
+        {
+            [Preserve] public bool available;
+            [Preserve] public string mode, patchId, capsulePath, capsuleSha256, resultPath, resultSha256;
+            [Preserve] public int processId, callbackReturnCode;
         }
 
         [Serializable, Preserve] public sealed class ArtifactReceipt { [Preserve] public string name, path, sha256; [Preserve] public bool available; }
@@ -558,6 +641,7 @@ namespace AssemblyShadowDemo
         internal static Result R00NewResult(string mode, string baseline, string runtimeAbi) { return NewResult(mode, baseline, runtimeAbi); }
         internal static Input R00ReadInputs(string baseline, string runtimeAbi, string mode) { return ReadInputs(baseline, runtimeAbi, mode); }
         internal static void R00RunTransaction(Result result, Input input) { RunTransaction(result, input); }
+        internal static void R00AdoptEarlyTransaction(Result result, Input input) { AdoptEarlyTransaction(result, input); }
         internal static void R00RunFeatureOff(Result result) { RunFeatureOff(result); }
     }
 }

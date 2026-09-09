@@ -10,6 +10,8 @@ import subprocess
 import time
 
 import m07_results
+import r01_early_capsule as capsule
+import r01_early_results as early
 from m04_metadata import read_identity
 from m05_types import CliTables
 from r01b_diagnostic_inputs import verify_diagnostic_inputs
@@ -17,7 +19,7 @@ from r01b_capacity_inputs import canonical_directory, canonical_file, digest, ex
 from shadow_tools import read_json, require
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(m07_results.__file__).resolve().parent
 LAZY_SOURCE = HERE / "r01b-lazy-fixture.cs"
 LAZY_LAUNCHER = HERE / "create-r01b-lazy-fixture.py"
 IDENTITY_READER = HERE / "m04_metadata.py"
@@ -53,7 +55,8 @@ LAUNCH_FIELDS = frozenset(("schemaVersion", "kind", "milestone", "diagnosticOnly
                            "lazyFixtureReceiptPath", "lazyFixtureReceiptSha256", "lazyFixturePath", "lazyFixtureSha256", "denseManifestPath",
                            "denseManifestSha256", "denseFixturePaths", "denseFixtureSha256", "playerOutput", "playerExecutable", "command", "processId",
                            "startedAtUnix", "durationSeconds", "exitCode", "timedOut", "passed", "resultPath", "resultSha256", "unityLogPath",
-                           "unityLogSha256", "consoleLogPath", "consoleLogSha256", "inputHashesBefore", "inputHashesAfter", "inputsUnchanged", "error", "note"))
+                           "unityLogSha256", "consoleLogPath", "consoleLogSha256", "inputHashesBefore", "inputHashesAfter", "inputsUnchanged", "error", "note",
+                           "earlyMode", "capsulePath", "capsuleSha256", "earlyResultPath", "earlyResultSha256"))
 
 
 def exact(value: object, fields: frozenset[str], label: str) -> dict:
@@ -267,6 +270,33 @@ def verify_result(result: dict, result_path: Path, launch_pid: int, expected: di
         require(value["denseFixtures"] == 0 and value["denseBoundaryChecks"] == 0, "lazy Player omitted dense adjunct evidence")
 
 
+def expected_baseline_capsule(context, fixture_path, profile):
+    """Use already admitted current/old artifacts; Baseline performs no transaction."""
+    from r01_failure_results import metadata_profile
+    early.exact(metadata_profile(context, "R01B startup"), profile, "R01B startup profile")
+    return early.expected_capsule({"context": context, "failures": None}, "Baseline", fixture_path, "P03")
+
+
+def baseline_capsule_inputs(data):
+    files = {Path(row["path"]) for row in data["prerequisiteFiles"]}
+    for row in data["inputs"]:
+        files.update(Path(row[key]) for key in ("dllPath", "pdbPath") if row[key])
+    return files
+
+
+def baseline_startup_arguments(capsule_path, early_result):
+    return ["-shadowEarlyCapsule", str(capsule_path), "-shadowEarlyCapsuleSha256", capsule.digest(capsule_path),
+            "-shadowEarlyResult", str(early_result)]
+
+
+def verify_baseline_startup(context, fixture_path, capsule_path, early_result, pid, profile):
+    admitted = expected_baseline_capsule(context, fixture_path, profile)
+    early.exact(capsule.decode(capsule_path.read_bytes()), admitted, "R01B admitted Baseline capsule")
+    result = early.verify_early_receipt(early_result, capsule_path, "Baseline", pid, profile=profile)
+    early.exact(result["receipt"]["operations"], [], "R01B Baseline must not configure/stage/reserve")
+    return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", required=True, type=Path)
@@ -303,16 +333,21 @@ def main() -> int:
                                    dense_inputs, app)
     direct_inputs.add(diagnostic_build)
     direct_inputs.update(context["diagnostic"]["inventory"])
-    hashes_before = {str(path): digest(path) for path in sorted(direct_inputs)}
-
     output_root.mkdir()
+    capsule_path = output_root / "r01b-lazy-baseline.capsule"
+    early_result_path = output_root / "r01b-lazy-early.json"
+    admitted_capsule = expected_baseline_capsule(context, fixture_manifest, 2)
+    capsule.write_capsule(capsule_path, admitted_capsule)
+    direct_inputs.update(baseline_capsule_inputs(admitted_capsule))
+    direct_inputs.add(capsule_path)
+    hashes_before = {str(path): digest(path) for path in sorted(direct_inputs)}
     result_path = output_root / "r01b-lazy-result.json"
     unity_log = output_root / "r01b-lazy.unity.log"
     console_log = output_root / "r01b-lazy.console.log"
     launch_path = output_root / "r01b-lazy-player-launch.json"
     command = [str(executable), "-batchmode", "-nographics", "-shadowR01BLazyDll", str(lazy_dll),
                "-shadowR01BLazyResult", str(result_path), "-shadowR01BDenseManifest", str(dense_manifest_path),
-               "-logFile", str(unity_log)]
+               "-logFile", str(unity_log)] + baseline_startup_arguments(capsule_path, early_result_path)
     started = time.time()
     timed_out = False
     with console_log.open("xb") as console:
@@ -338,6 +373,8 @@ def main() -> int:
     passed = False
     if result is not None and not timed_out and exit_code == 0:
         try:
+            verify_baseline_startup(context, fixture_manifest, capsule_path, early_result_path, process.pid, 2)
+            early.verify_startup_logs("Baseline", unity_log, console_log)
             verify_result(result, result_path, process.pid, context["diagnostic"]["player"], lazy_receipt, lazy_dll,
                           dense_manifest_path, dense_manifest, True)
             passed = True
@@ -357,6 +394,9 @@ def main() -> int:
         "projectRoot": str(project), "fixtureManifestPath": str(fixture_manifest), "fixtureManifestSha256": digest(fixture_manifest),
         "onBuildPath": str(on_build), "onBuildSha256": digest(on_build), "offBuildPath": str(off_build), "offBuildSha256": digest(off_build),
         "diagnosticBuildPath": str(diagnostic_build), "diagnosticBuildSha256": digest(diagnostic_build),
+        "earlyMode": "Baseline", "capsulePath": str(capsule_path), "capsuleSha256": digest(capsule_path),
+        "earlyResultPath": str(early_result_path),
+        "earlyResultSha256": digest(early_result_path) if early_result_path.is_file() and not early_result_path.is_symlink() else "",
         "replayReceiptPath": str(replay), "replayReceiptSha256": digest(replay), "lazyFixtureReceiptPath": str(lazy_receipt_path),
         "lazyFixtureReceiptSha256": digest(lazy_receipt_path), "lazyFixturePath": str(lazy_dll), "lazyFixtureSha256": digest(lazy_dll),
         "denseManifestPath": str(dense_manifest_path), "denseManifestSha256": digest(dense_manifest_path),

@@ -240,7 +240,7 @@ namespace AssemblyShadowDemo
             {
                 FieldInfo field = entry.GetField("PayloadRva_" + fieldIndex.ToString("D2"), BindingFlags.Public | BindingFlags.Static);
                 byte expected = (byte)((item.id * 17 + fieldIndex * 29) % 251);
-                Require(field != null && field.FieldType == typeof(byte) && (byte)field.GetValue(null) == expected,
+                Require(ReadRvaByte(field) == expected,
                     "R01B initialized RVA field is wrong at " + index + ":" + fieldIndex +
                     (afterRejection ? " after rejection." : "."));
                 if (!afterRejection)
@@ -259,6 +259,18 @@ namespace AssemblyShadowDemo
                     "R01B dense metadata/name lookup is wrong at " + index + ".");
                 if (!afterRejection) ++active.denseNameChecks;
             }
+        }
+
+        private static byte ReadRvaByte(FieldInfo field)
+        {
+            Require(field != null && field.FieldType == typeof(byte) &&
+                (field.Attributes & FieldAttributes.HasFieldRVA) != 0,
+                "R01B payload requires a byte field with RVA data.");
+            // RVA data is a metadata payload, not initialized static storage.
+            // This follows the runtime path used by compiler-emitted arrays.
+            byte[] payload = new byte[1];
+            System.Runtime.CompilerServices.RuntimeHelpers.InitializeArray(payload, field.FieldHandle);
+            return payload[0];
         }
 
         public static int CompleteCoroutineFailure(Exception error)

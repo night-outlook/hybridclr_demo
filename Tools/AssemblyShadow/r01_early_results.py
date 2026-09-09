@@ -447,7 +447,48 @@ def verify_first_use_history(current: list[dict[str, Any]], previous: list[dict[
         exact(by_name.get(use["name"]), use, label + ".immutableFirstUse." + use["name"])
 
 
-def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict[str, Any]) -> None:
+def _verify_profile2_timeline_capacity(current, previous, phase, mode, ordinary, shadow, reserved, label):
+    """Bind the native process-lifetime ledger to this capsule's operations.
+
+    ReserveImages charges exactly one page credit per newly reserved image;
+    construction/finalization may add credits, and published lazy reads may
+    map already charged pages. Failed/aborted transactions retain both ledgers.
+    """
+    lifetime = ordinary + reserved
+    for key, wanted in dict(ordinaryAllocatedCount=ordinary, shadowAllocatedCount=shadow,
+                            reservedShadowImageCount=reserved, lifetimeReservedImageCount=lifetime,
+                            remainingImageCount=failures.PROFILE2_MAX_IMAGES-lifetime).items():
+        exact(current[key], wanted, label + "." + key)
+    require(shadow <= reserved, label + ".shadowExceedsReservation")
+    pages, mapped = current["reservedPages"], current["mappedPages"]
+    require(lifetime <= pages <= failures.PROFILE2_CHARGED_PAGE_CEILING and
+            0 <= mapped <= pages and
+            failures.PROFILE2_USABLE_PAGE_CAPACITY-pages >= failures.PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+            label + ".pageAccountingBounds")
+    if previous is None:
+        exact((pages, mapped, lifetime), (0, 0, 0), label + ".freshProcessLedger")
+        return
+    for key in ("reservedPages", "mappedPages", "lifetimeReservedImageCount", "ordinaryAllocatedCount",
+                "shadowAllocatedCount", "reservedShadowImageCount"):
+        require(current[key] >= previous[key], label + ".monotonic." + key)
+    if phase == "after-reserve":
+        added = reserved - previous["reservedShadowImageCount"]
+        exact(pages, previous["reservedPages"] + added, label + ".oneCreditPerReservedImage")
+        exact(mapped, previous["mappedPages"], label + ".reservationDoesNotMapPages")
+    elif phase in ("after-ordinary-before-configure", "after-ordinary-after-reserve"):
+        require(pages >= previous["reservedPages"] + 1, label + ".ordinaryReservationCredit")
+    elif phase == "after-stage" or phase == "after-validate" and mode not in GUARD_MODES:
+        # Private skeletons and eager initialization can grow charges. The
+        # native sealing footprint is not derivable from DLL byte size here.
+        pass
+    elif phase == "after-commit":
+        exact(pages, previous["reservedPages"], label + ".sealedFootprintCredits")
+    else:
+        exact((pages, mapped), (previous["reservedPages"], previous["mappedPages"]),
+              label + ".operationDoesNotChangePages")
+
+
+def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict[str, Any], profile: int = 1) -> None:
     """Synchronous main-thread snapshots of AssemblyShadow.cpp's exact operations.
 
     Recovery is classified independently from mutable lastError. Refused Abort
@@ -473,6 +514,7 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
     previous_uses = []
     validation_started = False
     terminal_recovery = None
+    previous_capacity = None
 
     def event(kind: str, name: str = "", count: int | None = None) -> None:
         events.append(dict(sequence=len(events) + 1, kind=kind, name=name, generation=int(published),
@@ -488,15 +530,25 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
             begun, state = True, "Staging"
             event("transaction-begun")
         elif phase == "after-reserve":
-            budget = r01_results.evaluate_budget(cursors, sizes)
-            exact(budget["fits"], True, label + ".reservationFits")
-            cursors = budget["finalCursors"]
+            if profile == 1:
+                budget = r01_results.evaluate_budget(cursors, sizes)
+                exact(budget["fits"], True, label + ".reservationFits")
+                cursors = budget["finalCursors"]
+            else:
+                require(reserved_count + ordinary_count + len(sizes) <= failures.PROFILE2_MAX_IMAGES and
+                        all(0 < size <= failures.PROFILE2_MAX_DLL_BYTES for size in sizes),
+                        label + ".reservationFits")
             reserved_count += len(sizes)
             event("metadata-budget-reserved")
         elif phase in ("after-ordinary-before-configure", "after-ordinary-after-reserve"):
-            budget = r01_results.evaluate_budget(cursors, [Path(data["ordinaryPath"]).stat().st_size])
-            exact(budget["fits"], True, label + ".ordinaryFits")
-            cursors = budget["finalCursors"]
+            ordinary_size = Path(data["ordinaryPath"]).stat().st_size
+            if profile == 1:
+                budget = r01_results.evaluate_budget(cursors, [ordinary_size])
+                exact(budget["fits"], True, label + ".ordinaryFits")
+                cursors = budget["finalCursors"]
+            else:
+                require(reserved_count + ordinary_count < failures.PROFILE2_MAX_IMAGES and
+                        0 < ordinary_size <= failures.PROFILE2_MAX_DLL_BYTES, label + ".ordinaryFits")
             ordinary_count += 1
         elif phase == "after-failed-reserve":
             error = 23
@@ -542,11 +594,16 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
             event("transaction-aborted")
 
         # No other managed operation in this capsule allocates interpreter images.
-        for key, wanted in dict(cursors=cursors, ordinaryAllocatedCount=ordinary_count,
-                                shadowAllocatedCount=shadow_count, reservedImageCount=reserved_count).items():
-            exact(c[key], wanted, label + ".capacity." + key)
+        if profile == 1:
+            for key, wanted in dict(cursors=cursors, ordinaryAllocatedCount=ordinary_count,
+                                    shadowAllocatedCount=shadow_count, reservedImageCount=reserved_count).items():
+                exact(c[key], wanted, label + ".capacity." + key)
+        else:
+            _verify_profile2_timeline_capacity(c, previous_capacity, phase, mode, ordinary_count,
+                                              shadow_count, reserved_count, label + ".capacity")
+            previous_capacity = c
         if mode == "Oversize":
-            exact(c["fits"], False, label + ".oversize.fits")
+            exact(c["fits" if profile == 1 else "fitsPreliminary"], False, label + ".oversize.fits")
             exact(c["firstFailingIndex"], len(sizes) - 1, label + ".oversize.firstFailingIndex")
         for key, wanted in dict(state=state, stateCode=m04.STATE_CODES[state], lastError=error,
                                 baselineBuildId=data["baselineBuildId"] if configured else "",
@@ -853,10 +910,10 @@ def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str,
     snapshots = receipt["snapshots"]
     expected_phases = _expected_snapshots(expected_mode, [r["name"] for r in data["inputs"]])
     exact([row.get("phase") for row in snapshots], expected_phases, "early.snapshotPhases")
-    require(profile in (1, 2), "early: unsupported metadata profile")
+    require(type(profile) is int and profile in (1, 2), "early: unsupported metadata profile")
     parsed = [_verify_snapshot(row, sizes, data["candidates"], f"early.snapshots[{i}]", profile)
               for i, row in enumerate(snapshots)]
-    _verify_timeline(parsed, expected_phases, data)
+    _verify_timeline(parsed, expected_phases, data, profile)
     _verify_observers(receipt, data, parsed, profile)
     complete = all(item["profileComplete"] for item in parsed)
     return {"receipt": receipt, "capsule": data, "pid": pid, "diagnosticProfileComplete": complete,
@@ -865,7 +922,7 @@ def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str,
 
 def _load_runner():
     import importlib.util
-    path = Path(__file__).with_name("run-m07-players.py")
+    path = Path(m07.__file__).with_name("run-m07-players.py")
     spec = importlib.util.spec_from_file_location("m07_player_runner_r01_early", path)
     require(spec is not None and spec.loader is not None, "Cannot load M07 launcher helpers")
     module = importlib.util.module_from_spec(spec)

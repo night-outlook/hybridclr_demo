@@ -84,14 +84,14 @@ def main() -> int:
     output_root.mkdir()
     prefix = "r01b-mixed" if args.mixed else "r01b-capacity"
     result_path = output_root / (prefix + "-result.json")
-    early_result_path = output_root / "r01-early-Control.json" if args.mixed else None
-    capsule_path = output_root / "r01-early-Control.capsule" if args.mixed else None
-    if args.mixed:
-        prepared = early._prepare(project, fixture, on_path, off_path, replay, None, None, ["Control"])
-        require(prepared["profile"] == 2, "R01B mixed early setup requires metadata profile 2")
-        early._capsule_for(prepared, "Control", fixture, capsule_path, "P03")
-        direct_inputs.update(prepared["inventory"])
-        direct_inputs.add(capsule_path)
+    early_mode = "Control" if args.mixed else "Baseline"
+    early_result_path = output_root / ("r01-early-" + early_mode + ".json")
+    capsule_path = output_root / ("r01-early-" + early_mode + ".capsule")
+    prepared = early._prepare(project, fixture, on_path, off_path, replay, None, None, [early_mode])
+    require(prepared["profile"] == 2, "R01B startup setup requires metadata profile 2")
+    early._capsule_for(prepared, early_mode, fixture, capsule_path, "P03")
+    direct_inputs.update(prepared["inventory"])
+    direct_inputs.add(capsule_path)
     hashes_before = {str(path): digest(path) for path in sorted(direct_inputs)}
     unity_log = output_root / (prefix + ".unity.log")
     console_log = output_root / (prefix + ".console.log")
@@ -101,10 +101,12 @@ def main() -> int:
                "-shadowR01BOverflowName", overflow["assembly"]["name"],
                "-shadowR01BOverflowSha256", overflow["assembly"]["sha256"],
                "-shadowR01BResult", str(result_path), "-logFile", str(unity_log)]
+    startup_args = ["-shadowEarlyCapsule", str(capsule_path),
+                    "-shadowEarlyCapsuleSha256", digest(capsule_path), "-shadowEarlyResult", str(early_result_path)]
     if args.mixed:
-        command[3:3] = ["-shadowR01BMixed", "-shadowEarlyCapsule", str(capsule_path),
-                        "-shadowEarlyCapsuleSha256", digest(capsule_path), "-shadowEarlyResult", str(early_result_path),
-                        "-shadowR01BMixedManifest", str(mixed_manifest), "-shadowR01BMixedCorpus", str(mixed_corpus)]
+        startup_args = ["-shadowR01BMixed"] + startup_args + ["-shadowR01BMixedManifest", str(mixed_manifest),
+                       "-shadowR01BMixedCorpus", str(mixed_corpus)]
+    command[3:3] = startup_args
     started = time.time()
     timed_out = False
     with console_log.open("xb") as console:
@@ -131,7 +133,7 @@ def main() -> int:
             error = str(problem)
     expected = diagnostic["player"]
     early_result = None
-    if early_result_path is not None and early_result_path.is_file() and not early_result_path.is_symlink():
+    if early_result_path.is_file() and not early_result_path.is_symlink():
         try:
             early_result = json.loads(early_result_path.read_text(encoding="utf-8-sig"))
         except (OSError, ValueError, UnicodeError) as problem:
@@ -145,13 +147,13 @@ def main() -> int:
               result.get("baselineBuildId") == expected["baselineBuildId"] and
               result.get("runtimeAbiHash") == expected["runtimeAbiHash"] and
               result.get("scenario") == ("MixedShadowRetainedFailures" if args.mixed else "OrdinaryEnvelope") and
-              (not args.mixed or type(early_result) is dict and early_result.get("mode") == "Control" and
+              (type(early_result) is dict and early_result.get("mode") == early_mode and
                early_result.get("result") == "Passed" and early_result.get("processId") == process.pid))
-    if args.mixed and passed:
+    if passed:
         try:
-            admitted = early.expected_capsule(prepared, "Control", fixture, "P03")
-            early.exact(early.capsule.decode(capsule_path.read_bytes()), admitted, "R01B mixed early capsule")
-            early.verify_early_receipt(early_result_path, capsule_path, "Control", process.pid, profile=2)
+            admitted = early.expected_capsule(prepared, early_mode, fixture, "P03")
+            early.exact(early.capsule.decode(capsule_path.read_bytes()), admitted, "R01B startup capsule")
+            early.verify_early_receipt(early_result_path, capsule_path, early_mode, process.pid, profile=2)
         except (OSError, ValueError, KeyError, TypeError, VerificationError) as problem:
             passed = False
             error = str(problem)
@@ -193,10 +195,10 @@ def main() -> int:
         "resultSha256": digest(result_path) if result_path.is_file() else "",
         "diagnosticBuildPath": str(diagnostic_path),
         "diagnosticBuildSha256": digest(diagnostic_path),
-        "capsulePath": str(capsule_path) if capsule_path is not None else "",
-        "capsuleSha256": digest(capsule_path) if capsule_path is not None and capsule_path.is_file() else "",
-        "earlyResultPath": str(early_result_path) if early_result_path is not None else "",
-        "earlyResultSha256": digest(early_result_path) if early_result_path is not None and early_result_path.is_file() else "",
+        "capsulePath": str(capsule_path),
+        "capsuleSha256": digest(capsule_path) if capsule_path.is_file() else "",
+        "earlyResultPath": str(early_result_path),
+        "earlyResultSha256": digest(early_result_path) if early_result_path.is_file() else "",
         "unityLogPath": str(unity_log),
         "consoleLogPath": str(console_log),
         "inputHashesBefore": hashes_before,

@@ -108,7 +108,8 @@ def execute(args, receipt):
         flags += [switch, str(required_path(directory, directory=True))]
     sources = [required_path(demo / "Tools/AssemblyShadow/native-tests/m03_private_visibility.cpp"),
                required_path(runtime / "libil2cpp/vm/AssemblyShadowVisibility.cpp"),
-               required_path(native / "hybridclr/metadata/MetadataUtil.cpp")]
+               required_path(native / "hybridclr/metadata/MetadataUtil.cpp"),
+               required_path(native / "hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp")]
     policy_files = [required_path(runtime / "libil2cpp/vm" / name) for name in
                     ("MemoryInformation.cpp", "GlobalMetadata.cpp")]
     receipt.update(platform=platform.platform(), architecture="arm64", sourcePins=pins,
@@ -120,7 +121,7 @@ def execute(args, receipt):
                    generatedHeaderProvenance={"root": str(generated), "installation": str(installation),
                        "installationSha256": sha256(installation), "versionHeader": str(version),
                        "versionHeaderSha256": sha256(version), "fullInstalledRuntimeVerification": False},
-                   linkBoundary="Real visibility predicates and metadata index decoder; synthetic native metadata; only ActiveGeneration/IsActiveShadow substituted; unused VM paths dead-stripped with dynamic_lookup",
+                   linkBoundary="Real visibility predicates and metadata index decoder; synthetic native metadata; actual sparse runtime/codec; opaque image/TLS/active snapshot adapters; unused VM paths dead-stripped with dynamic_lookup",
                    playerAcceptance=False)
     with tempfile.TemporaryDirectory(prefix="assembly-shadow-m03-visibility-") as temporary_name:
         temporary = Path(temporary_name)

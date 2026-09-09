@@ -117,6 +117,55 @@ def capacity(value: object, label: str) -> tuple[dict, dict]:
     return captured, raw
 
 
+def startup_mode(mixed: bool) -> str:
+    """Select the startup transaction represented by this capacity scenario."""
+    return "Control" if mixed else "Baseline"
+
+
+def startup_binding(launch: dict, launch_path: Path, mixed: bool) -> tuple[str, Path, Path]:
+    """Validate launch startup paths and bind the capsule mode before provenance setup."""
+    mode = startup_mode(mixed)
+    capsule_path = canonical_file(launch["capsulePath"], "R01B startup capsule")
+    early_path = canonical_file(launch["earlyResultPath"], "R01B startup result")
+    require(capsule_path.parent == launch_path.parent and launch["capsuleSha256"] == digest(capsule_path) and
+            early_path.parent == launch_path.parent and launch["earlyResultSha256"] == digest(early_path),
+            "R01B startup result/capsule path binding differs")
+    capsule_data = early.capsule.decode(capsule_path.read_bytes())
+    early.exact(capsule_data["mode"], mode, "R01B startup capsule mode")
+    return mode, capsule_path, early_path
+
+
+def validate_startup_receipt_contract(early_path: Path, capsule_path: Path, mode: str,
+                                     process_id: int) -> dict:
+    """Check the process binding and operation shape before profile-2 replay."""
+    receipt = early.read(early_path)
+    early.fields(receipt, early.RECEIPT_FIELDS, "R01B startup receipt")
+    capsule_data = early.capsule.decode(capsule_path.read_bytes())
+    early.exact(receipt["mode"], mode, "R01B startup receipt mode")
+    early.exact(receipt["processId"], process_id, "R01B startup receipt process")
+    early.exact(receipt["capsulePath"], str(capsule_path), "R01B startup receipt capsule")
+    early.exact(receipt["capsuleSha256"], early.digest(capsule_path), "R01B startup receipt capsule hash")
+    early.exact(receipt["resultPath"], str(early_path), "R01B startup receipt result")
+    early.exact(receipt["result"], "Passed", "R01B startup receipt result status")
+    early.exact(receipt["error"], "", "R01B startup receipt error")
+    expected_callback = 0 if mode in early.POSITIVE_MODES or mode == "Baseline" else 1
+    early.exact(receipt["callbackReturnCode"], expected_callback, "R01B startup receipt callback")
+    expected_operations = early._expected_operations(mode, [row["name"] for row in capsule_data["inputs"]])
+    operations = receipt["operations"]
+    early.exact(len(operations), len(expected_operations), "R01B startup receipt operation count")
+    for index, (operation, expected) in enumerate(zip(operations, expected_operations)):
+        early.fields(operation, early.OPERATION_FIELDS, f"R01B startup receipt operation[{index}]")
+        early.exact((operation["phase"], operation["code"], operation["intCode"]), expected,
+                    f"R01B startup receipt operation[{index}]")
+    return receipt
+
+
+def verify_startup_receipt(early_path: Path, capsule_path: Path, mode: str, process_id: int) -> dict:
+    """Run the shared strict profile-2 startup receipt verifier."""
+    validate_startup_receipt_contract(early_path, capsule_path, mode, process_id)
+    return early.verify_early_receipt(early_path, capsule_path, mode, process_id, profile=2)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", required=True, type=Path)
@@ -227,29 +276,24 @@ def main() -> int:
                         "-shadowR01BOverflowName", overflow["assembly"]["name"],
                         "-shadowR01BOverflowSha256", overflow["assembly"]["sha256"],
                         "-shadowR01BResult", str(result_path), "-logFile", launch["unityLogPath"]]
+    early_mode = startup_mode(args.mixed)
+    startup_args = ["-shadowEarlyCapsule", launch["capsulePath"],
+                    "-shadowEarlyCapsuleSha256", launch["capsuleSha256"], "-shadowEarlyResult",
+                    launch["earlyResultPath"]]
     if args.mixed:
-        expected_command[3:3] = ["-shadowR01BMixed", "-shadowEarlyCapsule", launch["capsulePath"],
-                                 "-shadowEarlyCapsuleSha256", launch["capsuleSha256"], "-shadowEarlyResult",
-                                 launch["earlyResultPath"], "-shadowR01BMixedManifest",
-                                 str(mixed_manifest), "-shadowR01BMixedCorpus", str(mixed_corpus)]
+        startup_args = ["-shadowR01BMixed"] + startup_args + ["-shadowR01BMixedManifest",
+                       str(mixed_manifest), "-shadowR01BMixedCorpus", str(mixed_corpus)]
+    expected_command[3:3] = startup_args
     require(launch["command"] == expected_command, "R01B Player command differs")
     require(launch["scenario"] == ("MixedShadowRetainedFailures" if args.mixed else "OrdinaryEnvelope"),
             "R01B launch scenario differs")
-    if args.mixed:
-        capsule_path = canonical_file(launch["capsulePath"], "mixed early capsule")
-        early_path = canonical_file(launch["earlyResultPath"], "mixed early result")
-        require(capsule_path.parent == launch_path.parent and launch["capsuleSha256"] == digest(capsule_path) and
-                early_path.parent == launch_path.parent and launch["earlyResultSha256"] == digest(early_path),
-                "Mixed early result/capsule path binding differs")
-        prepared = early._prepare(project, fixture, on_path, off_path, replay, None, None, ["Control"])
-        require(prepared["profile"] == 2, "Mixed setup requires metadata profile 2")
-        early.exact(early.capsule.decode(capsule_path.read_bytes()),
-                    early.expected_capsule(prepared, "Control", fixture, "P03"),
-                    "mixed early admitted capsule")
-        early.verify_early_receipt(early_path, capsule_path, "Control", launch["processId"], profile=2)
-    else:
-        require(launch["capsulePath"] == launch["capsuleSha256"] == launch["earlyResultPath"] == launch["earlyResultSha256"] == "",
-                "Ordinary scenario claims an early setup result")
+    early_mode, capsule_path, early_path = startup_binding(launch, launch_path, args.mixed)
+    prepared = early._prepare(project, fixture, on_path, off_path, replay, None, None, [early_mode])
+    require(prepared["profile"] == 2, "R01B startup setup requires metadata profile 2")
+    early.exact(early.capsule.decode(capsule_path.read_bytes()),
+                early.expected_capsule(prepared, early_mode, fixture, "P03"),
+                "R01B admitted startup capsule")
+    verify_startup_receipt(early_path, capsule_path, early_mode, launch["processId"])
 
     direct_inputs = collect_direct_inputs(workload_path, workload_files, overflow_path, overflow_dll,
                                           fixture, on_path, off_path, replay, diagnostic["output"])
@@ -257,6 +301,9 @@ def main() -> int:
     if mixed_manifest is not None and mixed_corpus is not None:
         direct_inputs.update({mixed_manifest, *mixed_workload_files})
         direct_inputs.update(Path(row["path"]).resolve(strict=True) for row in mixed_workload["shadow"]["assemblies"])
+        direct_inputs.update(prepared["inventory"])
+        direct_inputs.add(capsule_path)
+    else:
         direct_inputs.update(prepared["inventory"])
         direct_inputs.add(capsule_path)
     expected_hashes = {str(path): digest(path) for path in sorted(direct_inputs)}

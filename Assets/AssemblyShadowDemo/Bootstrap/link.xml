@@ -35,4 +35,9 @@
   <assembly fullname="AssemblyShadowBaseline.Aot">
     <type fullname="AssemblyShadowBaseline.BaselineBootstrap" preserve="all" />
   </assembly>
+  <!-- Keep the profile-2 parser API identical in production and the separately
+       built R01B diagnostic Player, where it validates native capacity JSON. -->
+  <assembly fullname="HybridCLR.Runtime">
+    <type fullname="HybridCLR.AssemblyShadowMetadataCapacityProfile2" preserve="all" />
+  </assembly>
 </linker>

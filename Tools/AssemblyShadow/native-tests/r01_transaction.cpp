@@ -42,6 +42,11 @@ struct R01ImageAdapter
 namespace hybridclr { namespace metadata {
 enum class R01BackendMode { Production, MetadataFailure, InitializerFailure, PartialOwner };
 static R01BackendMode r01BackendMode = R01BackendMode::Production;
+struct R01FixtureInterpreterImage : InterpreterImage
+{
+    explicit R01FixtureInterpreterImage(uint32_t index) : InterpreterImage(index) {}
+    using InterpreterImage::SetIl2CppImage;
+};
 struct R01Adapter
 {
     static il2cpp::vm::AssemblyShadowError ReadStagedAssemblyIdentity(const byte* dll, size_t length, std::string& name, std::string& detail)
@@ -51,7 +56,7 @@ struct R01Adapter
     {
         (void)pdb;
         (void)pdbLength;
-        (void)reservedImageIndex;
+
         staged = nullptr;
         std::string name;
         il2cpp::vm::AssemblyShadowError parsed = Assembly::ReadStagedAssemblyIdentity(dll, dllLength, name, detail);
@@ -73,7 +78,25 @@ struct R01Adapter
         staged->image->assembly = staged->assembly;
         staged->image->name = staged->canonicalName.c_str();
         staged->image->nameNoExt = staged->canonicalName.c_str();
-        staged->image->token = (UINT32_C(1) << 31) | 1;
+        // Exercise the production reservation/construction-scope lifetime:
+        // Stage's real visibility registration runs only after this scope ends.
+        using IndexRuntime = InterpreterMetadataIndexRuntime;
+        uint32_t imageId = reservedImageIndex;
+        if (!imageId)
+        {
+            std::vector<IndexRuntime::Reservation> reservations;
+            if (IndexRuntime::ReserveImages(1, reservations) != IndexRuntime::Error::None)
+                throw std::runtime_error("synthetic skeleton reservation failed");
+            imageId = reservations[0].imageId;
+        }
+        auto* fixtureImage = new R01FixtureInterpreterImage(imageId);
+        fixtureImage->SetIl2CppImage(staged->image);
+        staged->interpreterImage = fixtureImage;
+        IndexRuntime::ScopedConstruction construction(imageId, staged->interpreterImage, true);
+        int32_t imageToken = 0;
+        if (IndexRuntime::Encode(imageId, 0, imageToken) != IndexRuntime::Error::None)
+            throw std::runtime_error("synthetic skeleton token encoding failed");
+        staged->image->token = imageToken;
         staged->skeletonBuilt = true;
         if (r01BackendMode == R01BackendMode::PartialOwner)
         {
@@ -91,6 +114,9 @@ struct R01Adapter
             return il2cpp::vm::AssemblyShadowError::ReferenceResolutionFailed;
         }
         if (!staged || !staged->skeletonBuilt) return il2cpp::vm::AssemblyShadowError::InvalidState;
+        if (InterpreterMetadataIndexRuntime::Finalize(staged->interpreterImage->GetIndex(), 1) !=
+            InterpreterMetadataIndexRuntime::Error::None)
+            throw std::runtime_error("synthetic metadata footprint sealing failed");
         staged->runtimeMetadataInitialized = true;
         detail.clear();
         return il2cpp::vm::AssemblyShadowError::Success;
@@ -102,7 +128,11 @@ struct R01Adapter
         // or GC registry is touched by this standalone test.
         if (staged) staged->published = true;
     }
-    static bool PublishStagedImagesBatch(const std::vector<uint32_t>&) { return true; }
+    static bool PublishStagedImagesBatch(const std::vector<uint32_t>& indices)
+    {
+        return InterpreterMetadataIndexRuntime::PublishBatch(indices.data(), indices.size()) ==
+            InterpreterMetadataIndexRuntime::Error::None;
+    }
     static il2cpp::vm::AssemblyShadowError RunStagedModuleInitializer(StagedAssembly* staged, std::string& detail)
     {
         if (r01BackendMode == R01BackendMode::InitializerFailure)
@@ -319,12 +349,36 @@ void CheckPreOwner(const std::string& name)
     std::cout << "r01_preowner=pass injectedBackendOutcome=none publication=none\n";
 }
 
+void CheckStagedVisibilityBoundary()
+{
+    using IndexRuntime = hybridclr::metadata::InterpreterMetadataIndexRuntime;
+    auto* staged = il2cpp::vm::Current().closure.front().staged;
+    Check(staged && staged->interpreterImage, "production Stage did not register its owner");
+    const uint32_t id = staged->interpreterImage->GetIndex();
+    Check(IndexRuntime::GetConstructionImage(id) == nullptr, "construction scope leaked into transaction");
+    Il2CppTypeDefinition definition{};
+    definition.byvalTypeIndex = static_cast<int32_t>(staged->image->token);
+    Il2CppType type{};
+    type.type = IL2CPP_TYPE_CLASS;
+    type.data.typeHandle = reinterpret_cast<Il2CppMetadataTypeHandle>(&definition);
+    std::thread observer([&] {
+        IndexRuntime::Codec::DecodedData rejected{};
+        Check(IndexRuntime::Decode(static_cast<int32_t>(staged->image->token), rejected) == IndexRuntime::Error::OwnerRequired,
+            "registration granted foreign private decoding");
+        Check(IndexRuntime::GetPublishedImage(id) == nullptr, "registration exposed private image globally");
+        Check(!il2cpp::vm::AssemblyShadowVisibility::IsTypeVisible(&type, 0),
+            "registered private raw type escaped foreign observer");
+    });
+    observer.join();
+}
+
 void CheckValidateMetadataFailure(const Bytes& bytes, const std::string& name)
 {
     hybridclr::metadata::r01BackendMode = hybridclr::metadata::R01BackendMode::MetadataFailure;
     ConfigureAndBegin(name);
     Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
         AssemblyShadowError::Success, "synthetic skeleton was rejected");
+    CheckStagedVisibilityBoundary();
     Check(il2cpp::vm::AssemblyShadow::ValidateTransaction() == AssemblyShadowError::ReferenceResolutionFailed,
         "injected metadata failure was not returned through ValidateTransaction");
     Check(il2cpp::vm::AssemblyShadow::AbortTransaction() == AssemblyShadowError::InvalidState,
@@ -338,6 +392,7 @@ void CheckBaselineUse(const Bytes& bytes, const std::string& name, Fixture& base
     ConfigureAndBegin(name);
     Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
         AssemblyShadowError::Success, "synthetic skeleton was rejected");
+    CheckStagedVisibilityBoundary();
     il2cpp::vm::AssemblyShadow::RecordBaselineUse(&baseline.assembly,
         il2cpp::vm::BaselineUseKind::AssemblyReflection, "R01.before-validate");
     std::string diagnostics;
@@ -372,6 +427,7 @@ void CheckPostPublicationInitializerFailure(const Bytes& bytes, const std::strin
     ConfigureAndBegin(name);
     Check(il2cpp::vm::AssemblyShadow::StageAssembly(bytes.data(), bytes.size(), nullptr, 0) ==
         AssemblyShadowError::Success, "synthetic skeleton was rejected");
+    CheckStagedVisibilityBoundary();
     Check(il2cpp::vm::AssemblyShadow::ValidateTransaction() == AssemblyShadowError::Success,
         "synthetic metadata validation was rejected");
     Check(il2cpp::vm::AssemblyShadow::CommitTransaction() == AssemblyShadowError::ModuleInitializerFailed,
@@ -412,7 +468,6 @@ void CheckPoison(const std::string& name)
 }
 
 namespace il2cpp { namespace vm {
-void AssemblyShadowVisibility::RegisterPrivateImage(const Il2CppImage*) {}
 bool MetadataCache::PublishInterpreterAssembliesBatch(const std::vector<Il2CppAssembly*>& assemblies,
     bool (*tryBegin)(void*), bool (*publishActive)(void*), void* context)
 {
@@ -452,10 +507,11 @@ Il2CppException* Exception::GetInvalidOperationException(const char* detail)
 Il2CppException* Exception::GetBadImageFormatException(const char* detail)
 { ++managedExceptionConstructionCount; return GetInvalidOperationException(detail); }
 void Exception::Raise(Il2CppException*, MethodInfo*) { throw std::runtime_error(exceptionMessage); }
-void AssemblyShadowVisibility::CollectOrdinaryClasses(std::vector<Il2CppClass*>&, uint64_t& generation)
-{ generation = AssemblyShadow::ActiveGeneration(); }
-bool AssemblyShadowVisibility::ClassUsesStagedMetadata(const Il2CppClass*) { return false; }
 }}
+
+// The standalone process has no Unity class registry. Production visibility
+// collection still owns locking and filtering; only this VM enumeration is empty.
+extern "C" void il2cpp_class_for_each(void (*)(Il2CppClass*, void*), void*) {}
 
 int main(int argc, char** argv)
 {

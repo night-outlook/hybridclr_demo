@@ -1,11 +1,14 @@
-// Actual visibility predicates over synthetic native metadata, NOT a Unity/IL2CPP
-// transaction or public-enumeration test. Only the two active-snapshot queries
-// are substituted; private-image registration and recursive inspection are real.
+// Actual visibility predicates, sparse index runtime and codec over synthetic
+// native metadata. Actual reservation, scope exit, abort and codec publication;
+// activation and image pointers are explicit adapters. Not Unity acceptance.
 #include "vm/AssemblyShadow.h"
 #include "vm/AssemblyShadowVisibility.h"
 #include "vm/GlobalMetadataFileInternals.h"
 #include "il2cpp-class-internals.h"
 #include "hybridclr/metadata/MetadataUtil.h"
+#include "hybridclr/metadata/InterpreterMetadataIndexRuntime.h"
+#include "hybridclr/metadata/AssemblyShadowBridge.h"
+#include <thread>
 
 #include <atomic>
 #include <cstring>
@@ -17,6 +20,9 @@
 namespace {
 using il2cpp::vm::AssemblyShadowVisibility;
 using hybridclr::metadata::EncodeImageAndMetadataIndex;
+using IndexRuntime = hybridclr::metadata::InterpreterMetadataIndexRuntime;
+using Codec = IndexRuntime::Codec;
+using InterpreterImage = hybridclr::metadata::InterpreterImage;
 
 struct SimulatedActiveSnapshot
 {
@@ -35,16 +41,40 @@ void Require(bool condition, const char* detail)
 
 struct ImageFixture
 {
+    uint32_t index = 0;
+    InterpreterImage* opaque = nullptr;
     Il2CppImage image{};
     Il2CppAssembly assembly{};
     Il2CppTypeDefinition definition{};
     Il2CppType type{};
     Il2CppClass klass{};
 
-    void Initialize(uint32_t index, const char* name)
+    void Initialize(uint32_t interpreter, const char* name, bool shadow = true)
+    {
+        if (interpreter)
+        {
+            std::vector<IndexRuntime::Reservation> reserved;
+            Require(IndexRuntime::ReserveImages(1, reserved) == Codec::Error::None, "Fixture reservation failed");
+            index = reserved[0].imageId;
+            opaque = reinterpret_cast<InterpreterImage*>(this);
+        }
+        // No fake bit-packed token: use the production sparse runtime under an
+        // exact construction scope, which ends before registration below.
+        if (index)
+        {
+            IndexRuntime::ScopedConstruction construction(index, opaque, shadow);
+            InitializeMetadata(name);
+            Require(IndexRuntime::Finalize(index, 18) == Codec::Error::None, "Fixture footprint sealing failed");
+        }
+        else InitializeMetadata(name);
+        if (index && !shadow)
+            Require(IndexRuntime::Publish(index) == Codec::Error::None, "Ordinary fixture publication failed");
+    }
+
+    void InitializeMetadata(const char* name)
     {
         image.assembly = &assembly;
-        image.token = index ? EncodeImageAndMetadataIndex(index, 1) : 1;
+        image.token = index ? EncodeImageAndMetadataIndex(index, 0) : 1;
         image.name = name;
         assembly.image = &image;
         assembly.aname.name = name;
@@ -107,7 +137,7 @@ void Run(const std::string& mode)
     // Every registered image outlives every predicate call, as in production.
     ImageFixture publicImage, privateImages[4], ordinaryInterpreter, nonMember;
     publicImage.Initialize(0, "mscorlib");
-    ordinaryInterpreter.Initialize(771, "OrdinaryInterpreter");
+    ordinaryInterpreter.Initialize(1, "OrdinaryInterpreter", false);
     nonMember.Initialize(772, "RegisteredButNeverActivated");
     std::vector<Il2CppClass*> hidden, ordinary;
     ordinary.push_back(&publicImage.klass);
@@ -119,19 +149,22 @@ void Run(const std::string& mode)
 
     for (uint32_t kind = 0; kind != 4; ++kind)
     {
-        const uint32_t offset = 1u << hybridclr::metadata::kMetadataImageIndexExtraShiftBitsArr[kind];
-        const uint32_t index = (kind << (hybridclr::metadata::kMetadataImageIndexBits -
-            hybridclr::metadata::kMetadataKindBits)) | offset;
-        privateImages[kind].Initialize(index, "Private");
-        Require(hybridclr::metadata::DecodeImageIndex(privateImages[kind].image.token) == index,
-            "Fixture image index failed actual decoder");
-        AssemblyShadowVisibility::RegisterPrivateImage(&privateImages[kind].image);
-        AssemblyShadowVisibility::RegisterPrivateImage(&privateImages[kind].image); // Idempotent registration.
+        privateImages[kind].Initialize(1, "Private");
+        const uint32_t index = privateImages[kind].index;
+        Codec::DecodedData rejected{};
+        Require(IndexRuntime::Decode(privateImages[kind].image.token, rejected) == Codec::Error::OwnerRequired,
+            "Private decode unexpectedly succeeded after construction scope exit");
+        Require(AssemblyShadowVisibility::RegisterPrivateImage(&privateImages[kind].image, index),
+            "Real registration failed outside construction scope");
+        Require(AssemblyShadowVisibility::RegisterPrivateImage(&privateImages[kind].image, index),
+            "Registration is not idempotent");
+        Require(!AssemblyShadowVisibility::RegisterPrivateImage(&privateImages[kind].image, nonMember.index),
+            "Registration accepted a foreign stable identity");
         hidden.push_back(&privateImages[kind].klass);
         Require(!AssemblyShadowVisibility::IsTypeVisible(&privateImages[kind].type, 0),
             "Unmaterialized type handle escaped one of the four metadata index encodings");
     }
-    AssemblyShadowVisibility::RegisterPrivateImage(&nonMember.image);
+    Require(AssemblyShadowVisibility::RegisterPrivateImage(&nonMember.image, nonMember.index), "Nonmember registration failed");
 
     // Public image + raw private handle: no Il2CppClass/MetadataModule lookup is
     // available for the argument, so image-only checks cannot pass these tests.
@@ -171,8 +204,10 @@ void Run(const std::string& mode)
     hidden.push_back(&methodContextClass);
 
     Il2CppGenericParameter parameter{};
-    parameter.ownerIndex = EncodeImageAndMetadataIndex(
-        hybridclr::metadata::DecodeImageIndex(privateImages[1].image.token), 17);
+    {
+        IndexRuntime::ScopedConstruction construction(privateImages[1].index, privateImages[1].opaque, true);
+        parameter.ownerIndex = EncodeImageAndMetadataIndex(privateImages[1].index, 17);
+    }
     Il2CppType var{};
     var.type = IL2CPP_TYPE_VAR;
     var.data.genericParameterHandle = reinterpret_cast<Il2CppMetadataGenericParameterHandle>(&parameter);
@@ -217,14 +252,29 @@ void Run(const std::string& mode)
     publicCycle.element_class = publicCycle.declaringType = &publicCycle;
     ordinary.push_back(&publicCycle);
 
+    Require(!IndexRuntime::TokenBelongsToImageForVisibility(-1, privateImages[0].index), "Sentinel acquired provenance");
+    Require(!IndexRuntime::TokenBelongsToImageForVisibility(0, privateImages[0].index), "AOT token acquired provenance");
+    Require(!IndexRuntime::TokenBelongsToImageForVisibility(-2, privateImages[0].index), "Unbound token acquired provenance");
+    Require(!IndexRuntime::TokenBelongsToImageForVisibility(privateImages[0].image.token, 0), "Zero identity matched");
+    Require(!IndexRuntime::TokenBelongsToImageForVisibility(privateImages[0].image.token, Codec::kMaxImageCount + 1), "Invalid identity matched");
+    Require(!AssemblyShadowVisibility::RegisterPrivateImage(nullptr, privateImages[0].index), "Null registration accepted");
+    Require(!AssemblyShadowVisibility::RegisterPrivateImage(&publicImage.image, privateImages[0].index), "AOT registration accepted");
+    std::thread observerBefore([&] { CheckVisibility(hidden, ordinary, 0, false); });
+    observerBefore.join();
     CheckVisibility(hidden, ordinary, 0, false); // Staged/pre-Validate.
     CheckVisibility(hidden, ordinary, 0, false); // Validated: still no publication.
     Require(!AssemblyShadowVisibility::IsClassVisible(&nonMember.klass, 0), "Unpublished private member escaped");
 
     if (mode == "abort")
     {
-        // Abort retains the registry and never publishes. There is deliberately
-        // no fake Abort implementation or registry clearing in this harness.
+        for (const ImageFixture& fixture : privateImages)
+            Require(IndexRuntime::Abort(fixture.index) == Codec::Error::None, "Real sparse abort failed");
+        Codec::DecodedData rejected{};
+        Require(IndexRuntime::Decode(privateImages[0].image.token, rejected) == Codec::Error::InvalidState,
+            "Abort failed to reject strict decoding");
+        // Retained compound provenance must remain filterable on foreign threads.
+        std::thread observer([&] { CheckVisibility(hidden, ordinary, 0, false); });
+        observer.join();
         for (int iteration = 0; iteration != 128; ++iteration)
             CheckVisibility(hidden, ordinary, 0, false);
         Require(il2cpp::vm::AssemblyShadow::ActiveGeneration() == 0, "Abort scenario published a snapshot");
@@ -233,7 +283,20 @@ void Run(const std::string& mode)
     {
         const SimulatedActiveSnapshot snapshot{ 1, { &privateImages[0].assembly, &privateImages[1].assembly,
             &privateImages[2].assembly, &privateImages[3].assembly } };
+        uint32_t ids[4];
+        for (size_t i = 0; i != 4; ++i) ids[i] = privateImages[i].index;
+        Require(IndexRuntime::PublishBatch(ids, 4) == Codec::Error::None, "Actual sparse publication failed");
+        Codec::DecodedData rejected{};
+        Require(IndexRuntime::Decode(privateImages[0].image.token, rejected) == Codec::Error::OwnerRequired,
+            "Sparse publication exposed shadow before active snapshot");
         s_simulatedActive.store(&snapshot, std::memory_order_release);
+        Require(IndexRuntime::Decode(privateImages[0].image.token, rejected) == Codec::Error::None,
+            "Activated shadow failed strict public decode");
+        std::thread observer([&] {
+            CheckVisibility(hidden, ordinary, 0, false);
+            CheckVisibility(hidden, ordinary, 1, true);
+        });
+        observer.join();
         Require(il2cpp::vm::AssemblyShadow::ActiveGeneration() == 1, "Simulated publication was not acquired");
         for (int iteration = 0; iteration != 128; ++iteration)
         {
@@ -251,6 +314,15 @@ void Run(const std::string& mode)
     std::cout << "visibility_checks=" << s_checks << " mode=" << mode << " PASS\n";
 }
 }
+
+namespace hybridclr { namespace metadata {
+InterpreterImage* AssemblyShadowBridge::GetPrivateImage(uint32_t) { return nullptr; }
+bool AssemblyShadowBridge::IsPublicImage(uint32_t, InterpreterImage* image)
+{
+    const ImageFixture* fixture = reinterpret_cast<const ImageFixture*>(image);
+    return il2cpp::vm::AssemblyShadow::IsActiveShadow(&fixture->assembly);
+}
+}}
 
 namespace il2cpp { namespace vm {
 uint64_t AssemblyShadow::ActiveGeneration()
