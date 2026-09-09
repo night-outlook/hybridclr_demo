@@ -39,6 +39,7 @@ namespace AssemblyShadowDemo
                 result = "Failed", baselineBuildId = baselineBuildId, runtimeAbiHash = runtimeAbiHash,
                 unityVersion = Application.unityVersion, platform = Application.platform.ToString(),
                 buildGuid = Application.buildGUID, processId = Process.GetCurrentProcess().Id,
+                memoryMeasurement = R01BProcessMemory.Measurement,
                 resultPath = output, il2cpp = IsIl2CppPlayer(),
                 mixedManifestPath = "", mixedManifestSha256 = "", mixedCorpusRoot = "",
                 scenario = Array.IndexOf(Environment.GetCommandLineArgs(), "-shadowR01BMixed") >= 0
@@ -78,8 +79,9 @@ namespace AssemblyShadowDemo
                     active.validDllBytes = AggregateDllBytes;
                 }
                 active.corpusRoot = corpusRoot;
-                active.workingSetBytesBefore = Process.GetCurrentProcess().WorkingSet64;
-                active.maximumWorkingSetBytes = active.workingSetBytesBefore;
+                var initialMemory = R01BProcessMemory.Capture();
+                active.workingSetBytesBefore = initialMemory.ResidentBytes;
+                active.maximumWorkingSetBytes = initialMemory.PeakResidentBytes;
 
                 active.initial = Capacity(new long[0]);
                 if (mixed)
@@ -151,7 +153,7 @@ namespace AssemblyShadowDemo
                     active.loadedImages = index + 1;
                     active.invokedImages = index + 1;
                     active.loadedDllBytes += bytes.LongLength;
-                    active.maximumWorkingSetBytes = Math.Max(active.maximumWorkingSetBytes, Process.GetCurrentProcess().WorkingSet64);
+                    active.maximumWorkingSetBytes = Math.Max(active.maximumWorkingSetBytes, R01BProcessMemory.Capture().PeakResidentBytes);
                     if (active.afterRetainedFailures.lifetimeReservedImageCount + (ulong)index + 1 == RequiredImages - 1)
                     {
                         active.at8191 = Capacity(new[] { manifest.assemblies[index + 1].sizeBytes });
@@ -211,6 +213,7 @@ namespace AssemblyShadowDemo
                     VerifyMethods(loadedAssemblies[index], manifest.assemblies[index], index, true);
                     ++active.postRejectionMappingChecks;
                 }
+                active.maximumWorkingSetBytes = Math.Max(active.maximumWorkingSetBytes, R01BProcessMemory.Capture().PeakResidentBytes);
                 active.managedBytesAfter = GC.GetTotalMemory(false);
                 active.result = "Passed";
             }
@@ -545,6 +548,7 @@ namespace AssemblyShadowDemo
                 overflowPath, overflowName, overflowSha256, scenario;
             [Preserve] public string[] retainedFailureExceptions;
             [Preserve] public bool il2cpp;
+            [Preserve] public string memoryMeasurement;
             [Preserve] public long loadedDllBytes, shadowDllBytes, validDllBytes, retainedFailureInputBytes, overflowDllBytes, loadMilliseconds, workingSetBytesBefore, maximumWorkingSetBytes, managedBytesAfter;
             [Preserve] public string mixedManifestPath, mixedManifestSha256, mixedCorpusRoot;
             [Preserve] public CapacityResult initial, afterRetainedFailures, before, at8191, after, afterRejected;

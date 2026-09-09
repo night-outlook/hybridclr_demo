@@ -18,7 +18,7 @@ from shadow_tools import VerificationError, read_json, require, unique_object
 RESULT_FIELDS = frozenset(("schemaVersion", "processId", "loadedImages", "invokedImages", "payloadRvaChecks",
                            "denseNameChecks", "postRejectionMappingChecks", "retainedFailureCount", "validImagesToLoad",
                            "highRvaFieldChecks",
-                           "kind", "milestone", "result", "error",
+                           "kind", "milestone", "result", "error", "memoryMeasurement",
                            "baselineBuildId", "runtimeAbiHash", "unityVersion", "platform", "buildGuid", "resultPath",
                            "manifestPath", "manifestSha256", "corpusRoot", "mixedManifestPath", "mixedManifestSha256",
                            "mixedCorpusRoot", "limitException", "overflowPath",
@@ -267,13 +267,13 @@ def main() -> int:
     strict_types(
         result,
         {field for field in RESULT_FIELDS if field not in {
-            "kind", "milestone", "result", "error", "baselineBuildId", "runtimeAbiHash", "unityVersion",
+            "kind", "milestone", "result", "error", "memoryMeasurement", "baselineBuildId", "runtimeAbiHash", "unityVersion",
             "platform", "buildGuid", "resultPath", "manifestPath", "manifestSha256", "corpusRoot",
             "mixedManifestPath", "mixedManifestSha256", "mixedCorpusRoot",
             "limitException", "overflowPath", "overflowName", "overflowSha256", "scenario",
             "retainedFailureExceptions", "il2cpp", "initial", "afterRetainedFailures", "before", "at8191",
             "after", "afterRejected"}},
-        {"kind", "milestone", "result", "error", "baselineBuildId", "runtimeAbiHash", "unityVersion",
+        {"kind", "milestone", "result", "error", "memoryMeasurement", "baselineBuildId", "runtimeAbiHash", "unityVersion",
          "platform", "buildGuid", "resultPath", "manifestPath", "manifestSha256", "corpusRoot", "mixedManifestPath", "mixedManifestSha256", "mixedCorpusRoot", "limitException",
          "overflowPath", "overflowName", "overflowSha256", "scenario"}, {"il2cpp"},
         {"retainedFailureExceptions"}, {"initial", "afterRetainedFailures", "before", "at8191", "after", "afterRejected"},
@@ -286,6 +286,8 @@ def main() -> int:
             result["runtimeAbiHash"] == player["runtimeAbiHash"] and result["unityVersion"] == player["unityVersion"] and
             result["platform"] == "OSXPlayer" and result["resultPath"] == str(result_path),
             "R01B Player identity/outcome differs")
+    require(result["memoryMeasurement"] == "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+            "R01B memory evidence must use Darwin current RSS and kernel lifetime peak bytes")
     selected_manifest_path = mixed_manifest if mixed_manifest is not None else workload_path
     selected_corpus = mixed_corpus if mixed_corpus is not None else corpus
     require(result["manifestPath"] == str(selected_manifest_path) and result["manifestSha256"] == digest(selected_manifest_path) and
@@ -377,7 +379,7 @@ def main() -> int:
             before_raw["mappedPages"] <= at8191_raw["mappedPages"] <= after_raw["mappedPages"],
             "R01B page accounting is not monotonic")
 
-    verify_inputs(project, fixture, on_path, off_path, replay)
+    verify_diagnostic_inputs(project, fixture, on_path, off_path, replay, diagnostic_path)
     summary = {
         "schemaVersion": 1,
         "kind": "R01BCapacityStrictVerification",
@@ -400,6 +402,7 @@ def main() -> int:
         "mappedPagesAt8192": after_raw["mappedPages"],
         "freeUsablePagesAt8192": after["freeUsablePages"],
         "minimumFreePages": MINIMUM_FREE_PAGES,
+        "memoryMeasurement": result["memoryMeasurement"],
         "workingSetBytesBefore": result["workingSetBytesBefore"],
         "maximumWorkingSetBytes": result["maximumWorkingSetBytes"],
         "workingSetGrowthBytes": result["maximumWorkingSetBytes"] - result["workingSetBytesBefore"],
