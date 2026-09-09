@@ -38,6 +38,12 @@ STARTUP_EXPECTATIONS = (STARTUP_EARLY_GUARD, STARTUP_OBSERVATION_GAP)
 INTERNAL = "AssemblyA.Implementation.Internal"
 ORDINARY = "AssemblyShadowBaseline.HotUpdate"
 PROFILE_VERSION = 1
+PROFILE2_VERSION = 2
+PROFILE2_MAX_IMAGES = 8192
+PROFILE2_MAX_DLL_BYTES = 33554432
+PROFILE2_USABLE_PAGE_CAPACITY = 524287
+PROFILE2_CHARGED_PAGE_CEILING = 393215
+PROFILE2_MINIMUM_FREE_PAGE_MARGIN = 131072
 INDEX_BITS = 22
 KIND_BITS = 2
 SIZE_MULTIPLIER = 4
@@ -123,10 +129,15 @@ def _load_m07_runner():
 
 
 def require_r01_inputs(context):
-    exact(context["baseline"].get("nativeBudgetCapabilityVersion"), 1, "R01 baseline capability")
+    profile = m07.diagnostic_abi(context["baseline"], "R01 baseline capability")
+    declared = context["baseline"].get("nativeBudgetCapabilityVersion")
+    require(type(declared) is int and declared in (PROFILE_VERSION, PROFILE2_VERSION),
+            "R01 baseline profile must be explicitly declared as profile 1 or 2")
+    exact(profile, declared, "R01 baseline profile")
     require(context["fixtures"], "R01 fixtures are missing")
     for patch_id, item in context["fixtures"].items():
         exact(item.get("r01Capability"), True, "R01 fixture capability: " + patch_id)
+    return profile
 
 
 def _known_mode(mode: str) -> None:
@@ -214,12 +225,97 @@ def remaining_slots(cursors: list[int]) -> list[int]:
             for kind in range(4)]
 
 
-def verify_capacity_snapshot(observation: dict[str, Any], sizes: list[int], label: str) -> dict[str, Any]:
+def verify_profile2_capacity(raw: dict[str, Any], sizes: list[int], label: str) -> dict[str, Any]:
+    fields(raw, "schemaVersion enabled profileVersion maximumImageCount maximumDllBytes usablePageCapacity chargedPageCeiling minimumFreePageMargin reservedPages mappedPages lifetimeReservedImageCount remainingImageCount requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason fitsPreliminary runtimeFinalizationRequired aggregateInputDllBytes aggregateInputDllBytesInformational ordinaryAllocatedCount shadowAllocatedCount reservedShadowImageCount", label)
+    exact(raw["schemaVersion"], 2, label + ".schemaVersion")
+    exact(raw["enabled"], True, label + ".enabled")
+    exact(raw["profileVersion"], PROFILE2_VERSION, label + ".profileVersion")
+    for key, expected in (("maximumImageCount", PROFILE2_MAX_IMAGES),
+                          ("maximumDllBytes", PROFILE2_MAX_DLL_BYTES),
+                          ("usablePageCapacity", PROFILE2_USABLE_PAGE_CAPACITY),
+                          ("chargedPageCeiling", PROFILE2_CHARGED_PAGE_CEILING),
+                          ("minimumFreePageMargin", PROFILE2_MINIMUM_FREE_PAGE_MARGIN)):
+        exact(raw[key], expected, label + "." + key)
+    require(type(sizes) is list and all(type(size) is int and not isinstance(size, bool) and size >= 0 for size in sizes),
+            label + ".sizes: expected non-negative integers")
+    for key in ("reservedPages", "mappedPages", "lifetimeReservedImageCount", "remainingImageCount",
+                "requiredImages", "acceptedImages", "firstFailingSize", "aggregateInputDllBytes",
+                "ordinaryAllocatedCount", "shadowAllocatedCount", "reservedShadowImageCount"):
+        integer(raw[key], label + "." + key)
+    boolean(raw["fitsPreliminary"], label + ".fitsPreliminary")
+    boolean(raw["runtimeFinalizationRequired"], label + ".runtimeFinalizationRequired")
+    boolean(raw["aggregateInputDllBytesInformational"], label + ".aggregateInputDllBytesInformational")
+    exact(raw["requiredImages"], len(sizes), label + ".requiredImages")
+    lifetime = raw["lifetimeReservedImageCount"]
+    require(lifetime <= PROFILE2_MAX_IMAGES, label + ".lifetimeReservedImageCount")
+    exact(lifetime, raw["ordinaryAllocatedCount"] + raw["reservedShadowImageCount"], label + ".lifetimeLedger")
+    exact(raw["remainingImageCount"], PROFILE2_MAX_IMAGES - lifetime, label + ".remainingImageCount")
+    require(raw["mappedPages"] <= raw["reservedPages"] <= PROFILE2_CHARGED_PAGE_CEILING,
+            label + ".pageBounds")
+    require(raw["lifetimeReservedImageCount"] <= raw["reservedPages"] and
+            PROFILE2_USABLE_PAGE_CAPACITY - raw["reservedPages"] >= PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+            label + ".pageAccounting")
+    aggregate = 0
+    for size in sizes:
+        aggregate = min(MAX_UINT64, aggregate + size)
+    exact(raw["aggregateInputDllBytes"], aggregate, label + ".aggregateInputDllBytes")
+    exact(raw["runtimeFinalizationRequired"], True, label + ".runtimeFinalizationRequired")
+    exact(raw["aggregateInputDllBytesInformational"], True, label + ".aggregateInputDllBytesInformational")
+    failure_index = -1
+    failure_reason = "None"
+    if len(sizes) > PROFILE2_MAX_IMAGES - lifetime:
+        failure_index, failure_reason = PROFILE2_MAX_IMAGES - lifetime, "ImageLimit"
+    else:
+        for index, size in enumerate(sizes):
+            if size == 0:
+                failure_index, failure_reason = index, "EmptyDll"
+                break
+            if size > PROFILE2_MAX_DLL_BYTES:
+                failure_index, failure_reason = index, "DllTooLarge"
+                break
+    fits = failure_index == -1
+    exact(raw["fitsPreliminary"], fits, label + ".fitsPreliminary")
+    exact(raw["acceptedImages"], len(sizes) if fits else 0, label + ".acceptedImages")
+    exact(raw["firstFailingIndex"], failure_index, label + ".firstFailingIndex")
+    exact(raw["firstFailingSize"], 0 if failure_index < 0 else sizes[failure_index], label + ".firstFailingSize")
+    exact(raw["failureReason"], failure_reason, label + ".failureReason")
+    require(raw["reservedShadowImageCount"] <= lifetime and
+            raw["shadowAllocatedCount"] <= raw["reservedShadowImageCount"],
+            label + ".shadowLedger")
+    return raw
+
+
+def verify_capacity_snapshot(observation: dict[str, Any], sizes: list[int], label: str,
+                             expected_profile: int | None = None) -> dict[str, Any]:
+    require(type(observation) is dict, label + ": expected object")
+    raw = m07.json_text(observation.get("rawJson"), label + ".rawJson")
+    actual_profile = raw.get("profileVersion")
+    require(actual_profile in (PROFILE_VERSION, PROFILE2_VERSION), label + ".profileVersion")
+    if expected_profile is not None:
+        exact(actual_profile, expected_profile, label + ".profileVersion")
+    if actual_profile == PROFILE2_VERSION:
+        fields(observation, "phase code rawJson orderedSizes parsed fits fitsPreliminary profileVersion indexBits kindBits cursors finalCursors remainingSlots requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason ordinaryAllocatedCount shadowAllocatedCount reservedImageCount reservedPages mappedPages lifetimeReservedImageCount remainingImageCount reservedShadowImageCount", label)
+        exact(observation["orderedSizes"], sizes, label + ".orderedSizes")
+        exact(observation["code"], "Success", label + ".code")
+        exact(observation["parsed"], True, label + ".parsed")
+        parsed = verify_profile2_capacity(raw, sizes, label + ".rawJson")
+        exact(observation["profileVersion"], 2, label + ".reported-profileVersion")
+        exact(observation["fits"], parsed["fitsPreliminary"], label + ".reported-fits")
+        exact(observation["fitsPreliminary"], parsed["fitsPreliminary"], label + ".reported-fitsPreliminary")
+        for key in ("requiredImages", "acceptedImages", "firstFailingIndex", "firstFailingSize", "failureReason",
+                    "ordinaryAllocatedCount", "shadowAllocatedCount", "reservedPages", "mappedPages",
+                    "lifetimeReservedImageCount", "remainingImageCount", "reservedShadowImageCount"):
+            exact(observation[key], parsed[key], label + ".reported-" + key)
+        for key in ("indexBits", "kindBits", "reservedImageCount"):
+            exact(observation[key], 0, label + ".profile2-empty-" + key)
+        for key in ("cursors", "finalCursors", "remainingSlots"):
+            exact(observation[key], [], label + ".profile2-empty-" + key)
+        return parsed
+
     fields(observation, "phase code rawJson orderedSizes parsed fits profileVersion indexBits kindBits cursors finalCursors remainingSlots requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason ordinaryAllocatedCount shadowAllocatedCount reservedImageCount", label)
     exact(observation["orderedSizes"], sizes, label + ".orderedSizes")
     exact(observation["code"], "Success", label + ".code")
     exact(observation["parsed"], True, label + ".parsed")
-    raw = m07.json_text(observation["rawJson"], label + ".rawJson")
     fields(raw, "schemaVersion enabled profileVersion indexBits kindBits cursors remainingSlots requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason fits allocations finalCursors ordinaryAllocatedCount shadowAllocatedCount reservedImageCount", label + ".rawJson")
     exact(raw["schemaVersion"], 1, label + ".schemaVersion")
     exact(raw["enabled"], True, label + ".enabled")
@@ -257,7 +353,7 @@ def _expected_closure(context: dict[str, Any]) -> tuple[list[str], dict[str, Any
 
 
 def _expected_player(result: dict[str, Any], build: dict[str, Any], manifest: dict[str, Any], mode: str,
-                     startup_expectation: str) -> None:
+                     startup_expectation: str, expected_profile: int) -> None:
     for key, expected in (("schemaVersion", 1), ("milestone", "M07R-R01"), ("mode", mode),
                           ("result", "Passed"), ("error", ""), ("il2cpp", True),
                           ("unityVersion", manifest["unityVersion"]), ("target", manifest["target"]),
@@ -280,7 +376,7 @@ def _expected_player(result: dict[str, Any], build: dict[str, Any], manifest: di
     data_path = canonical(result["playerDataPath"], build["path"], mode + ".playerDataPath", True)
     require(data_path.is_relative_to(Path(player["playerOutput"])), mode + ": Player data escaped build output")
     exact(result["candidateNames"], manifest["candidateNames"], mode + ".candidateNames")
-    exact(result["profileVersion"], PROFILE_VERSION, mode + ".profileVersion")
+    exact(result["profileVersion"], expected_profile, mode + ".profileVersion")
 
 
 def verify_byte_inputs(result: dict[str, Any], mode: str, closure: list[str], fixture: dict[str, Any], build: dict[str, Any]) -> list[int]:
@@ -398,32 +494,74 @@ def verify_capacity(result: dict[str, Any], mode: str, sizes: list[int]) -> None
     phase_sizes = ([[]] + [sizes, sizes] if mode == "R01-P03-OrdinaryFirst" else
                    [sizes] * len(expected_phases))
     for index, row in enumerate(snapshots):
-        raws.append(verify_capacity_snapshot(row, phase_sizes[index], f"{mode}.capacity[{index}]") )
+        raws.append(verify_capacity_snapshot(row, phase_sizes[index], f"{mode}.capacity[{index}]", result["profileVersion"]) )
     exact(result["capacityCode"], "Success", mode + ".capacityCode")
     exact(result["capacityJson"], snapshots[-1]["rawJson"], mode + ".capacityJson")
-    if mode in ("R01-P03-Oversize",):
-        exact(raws[0]["fits"], False, mode + ".oversizeDryRun")
-        exact(raws[1]["cursors"], raws[0]["cursors"], mode + ".failedReserveCursors")
-        exact(raws[1]["finalCursors"], raws[0]["finalCursors"], mode + ".failedReserveFinalCursors")
-        exact(raws[1]["reservedImageCount"], raws[0]["reservedImageCount"], mode + ".failedReserveReservedCount")
-        exact(raws[1]["acceptedImages"], raws[0]["acceptedImages"], mode + ".failedReserveAccepted")
-    if mode in COMMITTED_MODES or mode == "R01-P03-Mismatch":
-        before, after = (raws[1], raws[2]) if mode == "R01-P03-OrdinaryFirst" else (raws[0], raws[1])
-        exact(after["cursors"], before["finalCursors"], mode + ".reservationCursorAdvance")
-        exact(after["reservedImageCount"], before["reservedImageCount"] + len(sizes), mode + ".reservationCount")
-        exact(after["ordinaryAllocatedCount"], before["ordinaryAllocatedCount"], mode + ".reservationOrdinaryCount")
-        exact(after["shadowAllocatedCount"], before["shadowAllocatedCount"], mode + ".reservationShadowCount")
-    if mode == "R01-P03-OrdinaryFirst":
-        require(raws[1]["ordinaryAllocatedCount"] > raws[0]["ordinaryAllocatedCount"], mode + ".ordinaryFirstCount")
-        require(raws[1]["cursors"] != raws[0]["cursors"], mode + ".ordinaryFirstCursor")
-    if mode == "R01-P03-Mismatch":
-        exact(raws[2]["cursors"], raws[1]["cursors"], mode + ".mismatchNoCursorAdvance")
-        exact(raws[2]["finalCursors"], raws[1]["finalCursors"], mode + ".mismatchFinalCursors")
-    if mode == "R01-P03-OrdinaryAfterReserve":
-        exact(raws[2]["shadowAllocatedCount"], raws[1]["shadowAllocatedCount"], mode + ".ordinaryShadowCount")
-        exact(raws[2]["reservedImageCount"], raws[1]["reservedImageCount"], mode + ".ordinaryReservedCount")
-        require(raws[2]["ordinaryAllocatedCount"] > raws[1]["ordinaryAllocatedCount"], mode + ".ordinaryCount")
-        require(raws[2]["cursors"] != raws[1]["cursors"], mode + ".ordinaryCursorIsolation")
+    if result["profileVersion"] == PROFILE2_VERSION:
+        def ledger(row):
+            return tuple(row[key] for key in ("reservedPages", "mappedPages", "lifetimeReservedImageCount",
+                                               "remainingImageCount", "ordinaryAllocatedCount",
+                                               "shadowAllocatedCount", "reservedShadowImageCount"))
+        if mode == "R01-P03-Oversize":
+            exact(raws[0]["fitsPreliminary"], False, mode + ".oversizeDryRun")
+            exact(raws[0]["acceptedImages"], 0, mode + ".oversizeAtomicAccepted")
+            exact(ledger(raws[1]), ledger(raws[0]), mode + ".failedReserveLedger")
+            exact(raws[1]["acceptedImages"], raws[0]["acceptedImages"], mode + ".failedReserveAccepted")
+        if mode == "R01-P03-Mismatch":
+            before, after = raws[1], raws[2]
+            exact(ledger(after), ledger(before), mode + ".mismatchLedger")
+            for key in ("fitsPreliminary", "requiredImages", "acceptedImages", "firstFailingIndex", "firstFailingSize", "failureReason"):
+                exact(after[key], before[key], mode + ".mismatch-" + key)
+        if mode in COMMITTED_MODES or mode == "R01-P03-Mismatch":
+            before, after = (raws[1], raws[2]) if mode == "R01-P03-OrdinaryFirst" else (raws[0], raws[1])
+            added = len(sizes)
+            exact(after["reservedShadowImageCount"], before["reservedShadowImageCount"] + added,
+                  mode + ".reservationShadowCount")
+            exact(after["lifetimeReservedImageCount"], after["ordinaryAllocatedCount"] + after["reservedShadowImageCount"],
+                  mode + ".reservationLifetimeCount")
+            exact(after["reservedPages"], before["reservedPages"] + added, mode + ".reservationPageCredit")
+            exact(after["mappedPages"], before["mappedPages"], mode + ".reservationDoesNotMapPages")
+            exact(after["ordinaryAllocatedCount"], before["ordinaryAllocatedCount"], mode + ".reservationOrdinaryCount")
+            exact(after["shadowAllocatedCount"], before["shadowAllocatedCount"], mode + ".reservationShadowAllocations")
+        if mode == "R01-P03-OrdinaryFirst":
+            before, after = raws[0], raws[1]
+            exact(after["ordinaryAllocatedCount"], before["ordinaryAllocatedCount"] + 1, mode + ".ordinaryFirstCount")
+            exact(after["shadowAllocatedCount"], before["shadowAllocatedCount"], mode + ".ordinaryFirstShadowCount")
+            exact(after["reservedShadowImageCount"], before["reservedShadowImageCount"], mode + ".ordinaryFirstShadowReservation")
+            require(after["reservedPages"] >= before["reservedPages"] + 1, mode + ".ordinaryFirstPageCredit")
+            require(after["mappedPages"] >= before["mappedPages"], mode + ".ordinaryFirstMappedMonotonic")
+            exact(after["reservedShadowImageCount"], before["reservedShadowImageCount"], mode + ".ordinaryFirstShadowReservation")
+        if mode == "R01-P03-OrdinaryAfterReserve":
+            before, after = raws[1], raws[2]
+            exact(after["ordinaryAllocatedCount"], before["ordinaryAllocatedCount"] + 1, mode + ".ordinaryCount")
+            exact(after["shadowAllocatedCount"], before["shadowAllocatedCount"], mode + ".ordinaryShadowCount")
+            require(after["reservedPages"] >= before["reservedPages"] + 1, mode + ".ordinaryPageCredit")
+            require(after["mappedPages"] >= before["mappedPages"], mode + ".ordinaryMappedMonotonic")
+            exact(after["reservedShadowImageCount"], before["reservedShadowImageCount"], mode + ".ordinaryShadowReservation")
+    else:
+        if mode in ("R01-P03-Oversize",):
+            exact(raws[0]["fits"], False, mode + ".oversizeDryRun")
+            exact(raws[1]["cursors"], raws[0]["cursors"], mode + ".failedReserveCursors")
+            exact(raws[1]["finalCursors"], raws[0]["finalCursors"], mode + ".failedReserveFinalCursors")
+            exact(raws[1]["reservedImageCount"], raws[0]["reservedImageCount"], mode + ".failedReserveReservedCount")
+            exact(raws[1]["acceptedImages"], raws[0]["acceptedImages"], mode + ".failedReserveAccepted")
+        if mode in COMMITTED_MODES or mode == "R01-P03-Mismatch":
+            before, after = (raws[1], raws[2]) if mode == "R01-P03-OrdinaryFirst" else (raws[0], raws[1])
+            exact(after["cursors"], before["finalCursors"], mode + ".reservationCursorAdvance")
+            exact(after["reservedImageCount"], before["reservedImageCount"] + len(sizes), mode + ".reservationCount")
+            exact(after["ordinaryAllocatedCount"], before["ordinaryAllocatedCount"], mode + ".reservationOrdinaryCount")
+            exact(after["shadowAllocatedCount"], before["shadowAllocatedCount"], mode + ".reservationShadowCount")
+        if mode == "R01-P03-OrdinaryFirst":
+            require(raws[1]["ordinaryAllocatedCount"] > raws[0]["ordinaryAllocatedCount"], mode + ".ordinaryFirstCount")
+            require(raws[1]["cursors"] != raws[0]["cursors"], mode + ".ordinaryFirstCursor")
+        if mode == "R01-P03-Mismatch":
+            exact(raws[2]["cursors"], raws[1]["cursors"], mode + ".mismatchNoCursorAdvance")
+            exact(raws[2]["finalCursors"], raws[1]["finalCursors"], mode + ".mismatchFinalCursors")
+        if mode == "R01-P03-OrdinaryAfterReserve":
+            exact(raws[2]["shadowAllocatedCount"], raws[1]["shadowAllocatedCount"], mode + ".ordinaryShadowCount")
+            exact(raws[2]["reservedImageCount"], raws[1]["reservedImageCount"], mode + ".ordinaryReservedCount")
+            require(raws[2]["ordinaryAllocatedCount"] > raws[1]["ordinaryAllocatedCount"], mode + ".ordinaryCount")
+            require(raws[2]["cursors"] != raws[1]["cursors"], mode + ".ordinaryCursorIsolation")
 
 
 def verify_recovery(result: dict[str, Any], mode: str) -> None:
@@ -464,7 +602,7 @@ def verify_recovery(result: dict[str, Any], mode: str) -> None:
 
 
 def verify_diagnostic_snapshots(result: dict[str, Any], mode: str, closure: list[str],
-                                startup_expectation: str) -> None:
+                                startup_expectation: str, expected_profile: int) -> None:
     snapshots = array(result["diagnosticSnapshots"], mode + ".diagnosticSnapshots")
     if mode == OFF_MODE:
         exact(snapshots, [], mode + ".featureOffDiagnosticSnapshots")
@@ -490,14 +628,14 @@ def verify_diagnostic_snapshots(result: dict[str, Any], mode: str, closure: list
         exact(row["parsed"], True, label + ".parsed")
         raw = m07.json_text(row["rawJson"], label + ".rawJson")
         fields(raw, m04.R01_DIAGNOSTIC_FIELDS, label + ".rawJson")
-        m04._diagnostic(raw, label + ".rawJson")
+        m04._diagnostic(raw, label + ".rawJson", expected_abi=expected_profile)
         exact(raw["schemaVersion"], 1, label + ".schemaVersion")
-        exact(raw["runtimeAbiVersion"], 1, label + ".runtimeAbiVersion")
+        exact(raw["runtimeAbiVersion"], expected_profile, label + ".runtimeAbiVersion")
         exact(raw["enabled"], True, label + ".enabled")
         exact(raw["startupCandidateSchemaVersion"], 1, label + ".startupCandidateSchemaVersion")
         exact(raw["startupCandidateNames"], result["candidateNames"], label + ".startupCandidateNames")
         exact(raw["startupObservationMode"], expected_observation, label + ".startupObservationMode")
-        exact(raw["metadataBudgetCapabilityVersion"], 1, label + ".metadataBudgetCapabilityVersion")
+        exact(raw["metadataBudgetCapabilityVersion"], expected_profile, label + ".metadataBudgetCapabilityVersion")
         exact(raw["recoveryCapabilityVersion"], 1, label + ".recoveryCapabilityVersion")
         phase = row["phase"]
         wanted_state = ("CandidatesRegistered" if phase == "configured" else
@@ -565,7 +703,7 @@ def verify_physical(result: dict[str, Any], mode: str, closure: list[str], candi
 
 
 def verify_result(result_path: Path, mode: str, context: dict[str, Any], build: dict[str, Any],
-                  startup_expectation: str) -> dict[str, Any]:
+                  startup_expectation: str, expected_profile: int | None = None) -> dict[str, Any]:
     result = fields(read(result_path), RESULT_FIELDS, str(result_path))
     for key in RESULT_INTS.split(): integer(result[key], str(result_path) + "." + key)
     integer(result["processId"], str(result_path) + ".processId", 1)
@@ -573,9 +711,12 @@ def verify_result(result_path: Path, mode: str, context: dict[str, Any], build: 
     for key in RESULT_ARRAYS.split(): array(result[key], str(result_path) + "." + key)
     _known_mode(mode)
     exact(result["resultPath"], str(result_path), mode + ".resultPath")
+    profile = require_r01_inputs(context)
+    if expected_profile is not None:
+        exact(expected_profile, profile, mode + ".expectedProfileBinding")
     manifest = context["manifest"]
     closure, fixture = _expected_closure(context)
-    _expected_player(result, build, manifest, mode, startup_expectation)
+    _expected_player(result, build, manifest, mode, startup_expectation, profile)
     if mode == OFF_MODE:
         exact(result["patchId"], "", mode + ".patchId")
         exact(result["patchManifestPath"], "", mode + ".patchManifestPath")
@@ -588,7 +729,7 @@ def verify_result(result_path: Path, mode: str, context: dict[str, Any], build: 
     exact(result["closureLoadOrder"], closure, mode + ".closureLoadOrder")
     sizes = verify_byte_inputs(result, mode, closure, fixture, build)
     verify_capacity(result, mode, sizes)
-    verify_diagnostic_snapshots(result, mode, closure, startup_expectation)
+    verify_diagnostic_snapshots(result, mode, closure, startup_expectation, profile)
     verify_states(result, mode, startup_expectation)
     verify_recovery(result, mode)
     verify_physical(result, mode, closure, list(manifest["candidateNames"]))
@@ -718,7 +859,7 @@ def verify_suite(launch_path: Path, expected_startup: str = STARTUP_EARLY_GUARD)
     off_path = canonical(launch["offBuildReceiptPath"], launch_path, "launch.offBuildReceiptPath", False)
     replay_path = canonical(launch["replayReceiptPath"], launch_path, "launch.replayReceiptPath", False)
     context = verify_inputs(project, fixture_path, on_path, off_path, replay_path)
-    require_r01_inputs(context)
+    profile = require_r01_inputs(context)
     exact(launch["sourcePins"], context["sourcePins"], "launch.sourcePins")
     runner = _load_m07_runner()
     immutable = runner.collect_inputs(fixture_path, replay_path, (on_path, off_path))
@@ -754,7 +895,7 @@ def verify_suite(launch_path: Path, expected_startup: str = STARTUP_EARLY_GUARD)
         exact(result["buildGuid"], build["player"]["buildGuid"], mode + ".buildGuid")
         data_path = canonical(result["playerDataPath"], result_path, mode + ".playerDataPath", True)
         require(data_path.is_relative_to(build["output"]), mode + ": Player data escaped executed app")
-        summary.append(verify_result(result_path, mode, context, build, expected_startup))
+        summary.append(verify_result(result_path, mode, context, build, expected_startup, profile))
     return {"schemaVersion": 1, "milestone": "M07R-R01", "result": "Passed",
             "diagnosticOnly": expected_startup == STARTUP_OBSERVATION_GAP,
             "acceptance": ("DiagnosticOnly-ObserveGap" if expected_startup == STARTUP_OBSERVATION_GAP

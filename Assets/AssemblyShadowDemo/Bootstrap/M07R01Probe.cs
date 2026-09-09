@@ -129,7 +129,7 @@ namespace AssemblyShadowDemo
         private static void RunOrdinaryFirst(Result result, M07Probe.Input input)
         {
             QueryCapacity(result, "before-ordinary", new long[0], AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity beforeOrdinary = LastCapacity(result);
+            R01MetadataCapacitySnapshot beforeOrdinary = LastCapacity(result);
             byte[] ordinaryBytes = LoadVerifiedOrdinaryImage(result, input, "ordinary-before-configure");
             MethodInfo ordinaryGuard = FindOrdinaryImageGuard();
             Assembly ordinary = (Assembly)ordinaryGuard.Invoke(null, new object[] { ordinaryBytes });
@@ -144,7 +144,7 @@ namespace AssemblyShadowDemo
             List<LoadedAssembly> closure = LoadClosure(result, input, -1, 0);
             long[] sizes = closure.Select(item => (long)item.actualDll.Length).ToArray();
             QueryCapacity(result, "after-ordinary-before-configure", sizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity afterOrdinary = LastCapacity(result);
+            R01MetadataCapacitySnapshot afterOrdinary = LastCapacity(result);
             M07Probe.Require(afterOrdinary.ordinaryAllocatedCount > beforeOrdinary.ordinaryAllocatedCount,
                 "The ordinary fixed-image load did not consume the shared ordinary image budget.");
             result.observations.Add(new Observation {
@@ -173,7 +173,7 @@ namespace AssemblyShadowDemo
             ConfigureAndBegin(result, input);
             Reserve(result, sizes, AssemblyShadowErrorCode.Success);
             QueryCapacity(result, "after-reserve", sizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity afterReserve = LastCapacity(result);
+            R01MetadataCapacitySnapshot afterReserve = LastCapacity(result);
 
             byte[] ordinaryBytes = LoadVerifiedOrdinaryImage(result, input, "ordinary-after-reserve");
             Assembly ordinary = (Assembly)FindOrdinaryImageGuard().Invoke(null, new object[] { ordinaryBytes });
@@ -181,15 +181,18 @@ namespace AssemblyShadowDemo
                 "The verified ordinary hot-update image loaded an unexpected identity after reservation.");
             CaptureDiagnostics(result, "ordinary-after-reserve");
             QueryCapacity(result, "after-ordinary-after-reserve", sizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity afterOrdinary = LastCapacity(result);
+            R01MetadataCapacitySnapshot afterOrdinary = LastCapacity(result);
             M07Probe.Require(afterOrdinary.ordinaryAllocatedCount > afterReserve.ordinaryAllocatedCount &&
-                afterOrdinary.shadowAllocatedCount == afterReserve.shadowAllocatedCount &&
-                afterOrdinary.reservedImageCount == afterReserve.reservedImageCount &&
-                !SameCursors(afterReserve.cursors, afterOrdinary.cursors),
-                "The ordinary image did not consume a separate post-reservation cursor position.");
+                afterReserve.SameShadowReservation(afterOrdinary) &&
+                (afterReserve.profileVersion != 2 ||
+                    (afterOrdinary.reservedPages >= afterReserve.reservedPages + 1 &&
+                     afterOrdinary.mappedPages >= afterReserve.mappedPages &&
+                     afterOrdinary.lifetimeReservedImageCount == afterOrdinary.ordinaryAllocatedCount + afterOrdinary.reservedShadowImageCount)) &&
+                (afterReserve.profileVersion == 2 || !SameCursors(afterReserve.cursors, afterOrdinary.cursors)),
+                "The ordinary image did not consume a separate post-reservation image position.");
             result.observations.Add(new Observation {
                 phase = "ordinary-after-reserve", kind = "reserved-slot-isolation",
-                detail = "reserved=" + afterReserve.reservedImageCount + ";ordinary=" +
+                detail = "reserved=" + afterReserve.ReservedImageCount + ";ordinary=" +
                     afterReserve.ordinaryAllocatedCount + "->" + afterOrdinary.ordinaryAllocatedCount,
                 passed = true
             });
@@ -210,18 +213,17 @@ namespace AssemblyShadowDemo
             long[] sizes = closure.Select(item => (long)item.actualDll.Length).ToArray();
             int lastIndex = sizes.Length - 1;
             QueryCapacity(result, "before-configure", sizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity capacity = LastCapacity(result);
-            M07Probe.Require(!capacity.fits && capacity.firstFailingIndex == lastIndex && capacity.acceptedImages == (uint)lastIndex,
-                "The oversize batch did not fail at its last ordered member during dry-run.");
+            R01MetadataCapacitySnapshot capacity = LastCapacity(result);
+            M07Probe.Require(capacity.IsOversizeFailure(lastIndex, (ulong)sizes[lastIndex]),
+                "The oversize batch did not fail atomically at its last ordered member during dry-run.");
             ConfigureAndBegin(result, input);
-            AssemblyShadowMetadataCapacity beforeReserve = LastCapacity(result);
+            R01MetadataCapacitySnapshot beforeReserve = LastCapacity(result);
             Reserve(result, sizes, AssemblyShadowErrorCode.MetadataCapacityExceeded);
             QueryCapacity(result, "after-failed-reserve", sizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity afterReserve = LastCapacity(result);
-            M07Probe.Require(SameCursors(beforeReserve.cursors, afterReserve.cursors) &&
-                SameCursors(beforeReserve.finalCursors, afterReserve.finalCursors) &&
-                afterReserve.acceptedImages == beforeReserve.acceptedImages && afterReserve.fits == false,
-                "Failed whole-batch reservation changed shared cursors or accepted images.");
+            R01MetadataCapacitySnapshot afterReserve = LastCapacity(result);
+            M07Probe.Require(beforeReserve.SameAtomicState(afterReserve) &&
+                beforeReserve.SamePlanningState(afterReserve) && !afterReserve.fits,
+                "Failed whole-batch reservation changed the shared allocation ledger.");
             M07Probe.Require(result.stageResults.Count == 0, "Oversize rejection reached Stage before publication.");
             Expect(result, "abort", AssemblyShadowRuntime.AbortTransaction(), AssemblyShadowErrorCode.Success);
             CaptureState(result, "aborted");
@@ -237,7 +239,7 @@ namespace AssemblyShadowDemo
             ConfigureAndBegin(result, input);
             Reserve(result, reservedSizes, AssemblyShadowErrorCode.Success);
             QueryCapacity(result, "after-reserve", reservedSizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity beforeStage = LastCapacity(result);
+            R01MetadataCapacitySnapshot beforeStage = LastCapacity(result);
             LoadedAssembly mismatched = closure[0];
             AssemblyShadowErrorCode stageCode = AssemblyShadowRuntime.StageAssembly(mismatched.actualDll, mismatched.pdb);
             result.stageCode = stageCode.ToString();
@@ -247,9 +249,9 @@ namespace AssemblyShadowDemo
             });
             Expect(result, "stage-mismatched-length", stageCode, AssemblyShadowErrorCode.MetadataBudgetMismatch);
             QueryCapacity(result, "after-mismatch", reservedSizes, AssemblyShadowErrorCode.Success);
-            AssemblyShadowMetadataCapacity afterStage = LastCapacity(result);
-            M07Probe.Require(SameCursors(beforeStage.cursors, afterStage.cursors),
-                "Budget mismatch consumed an additional owner/index allocation.");
+            R01MetadataCapacitySnapshot afterStage = LastCapacity(result);
+            M07Probe.Require(beforeStage.SameAtomicState(afterStage) && beforeStage.SamePlanningState(afterStage),
+                "Budget mismatch consumed or released an owner/index allocation.");
             Expect(result, "abort", AssemblyShadowRuntime.AbortTransaction(), AssemblyShadowErrorCode.Success);
             CaptureState(result, "aborted");
             CaptureRecovery(result, "aborted");
@@ -486,37 +488,51 @@ namespace AssemblyShadowDemo
             result.capacityJson = json;
             if (code == AssemblyShadowErrorCode.Success)
             {
-                AssemblyShadowMetadataCapacity capacity;
-                M07Probe.Require(AssemblyShadowMetadataCapacity.TryParse(json, out capacity),
-                    "R01 metadata capacity JSON is malformed at " + phase + ".");
+                R01MetadataCapacitySnapshot capacity;
+                try { capacity = R01MetadataCapacitySnapshot.Parse(json, ProfileVersion); }
+                catch (Exception error) { throw new InvalidOperationException("R01 metadata capacity JSON is malformed at " + phase + ".", error); }
                 observation.parsed = true;
                 observation.profileVersion = capacity.profileVersion;
-                observation.indexBits = capacity.indexBits;
-                observation.kindBits = capacity.kindBits;
-                observation.cursors = capacity.cursors;
-                observation.finalCursors = capacity.finalCursors;
-                observation.remainingSlots = capacity.remainingSlots;
-                observation.requiredImages = capacity.requiredImages;
-                observation.acceptedImages = capacity.acceptedImages;
+                observation.requiredImages = checked((uint)capacity.requiredImages);
+                observation.acceptedImages = checked((uint)capacity.acceptedImages);
                 observation.firstFailingIndex = capacity.firstFailingIndex;
                 observation.firstFailingSize = capacity.firstFailingSize;
                 observation.failureReason = capacity.failureReason;
                 observation.fits = capacity.fits;
                 observation.ordinaryAllocatedCount = capacity.ordinaryAllocatedCount;
                 observation.shadowAllocatedCount = capacity.shadowAllocatedCount;
-                observation.reservedImageCount = capacity.reservedImageCount;
+                if (capacity.profileVersion == 1)
+                {
+                    observation.indexBits = 22;
+                    observation.kindBits = 2;
+                    observation.cursors = capacity.cursors;
+                    observation.finalCursors = capacity.finalCursors;
+                    observation.remainingSlots = capacity.remainingSlots;
+                    observation.reservedImageCount = capacity.reservedImageCount;
+                }
+                else
+                {
+                    observation.fitsPreliminary = capacity.fits;
+                    observation.cursors = new uint[0];
+                    observation.finalCursors = new uint[0];
+                    observation.remainingSlots = new uint[0];
+                    observation.reservedPages = capacity.reservedPages;
+                    observation.mappedPages = capacity.mappedPages;
+                    observation.lifetimeReservedImageCount = capacity.lifetimeReservedImageCount;
+                    observation.remainingImageCount = capacity.remainingImageCount;
+                    observation.reservedShadowImageCount = capacity.reservedShadowImageCount;
+                }
             }
             AddCheck(result, "capacity-" + phase, code.ToString(), expected.ToString(), code == expected);
             M07Probe.Require(code == expected, "R01 metadata capacity query returned " + code + ", expected " + expected + ".");
         }
 
-        private static AssemblyShadowMetadataCapacity LastCapacity(Result result)
+        private static R01MetadataCapacitySnapshot LastCapacity(Result result)
         {
             CapacityObservation observation = result.capacitySnapshots.Last();
             M07Probe.Require(observation.parsed && !string.IsNullOrEmpty(observation.rawJson), "R01 capacity snapshot was not parsed.");
-            AssemblyShadowMetadataCapacity value;
-            M07Probe.Require(AssemblyShadowMetadataCapacity.TryParse(observation.rawJson, out value), "R01 capacity snapshot cannot be reparsed.");
-            return value;
+            try { return R01MetadataCapacitySnapshot.Parse(observation.rawJson, ProfileVersion); }
+            catch (Exception error) { throw new InvalidOperationException("R01 capacity snapshot cannot be reparsed.", error); }
         }
 
         private static void CaptureState(Result result, string phase)
@@ -672,10 +688,11 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve] public sealed class CapacityObservation
         {
             [Preserve] public string phase, code, rawJson, failureReason; [Preserve] public long[] orderedSizes;
-            [Preserve] public bool parsed, fits; [Preserve] public int profileVersion, indexBits, kindBits, firstFailingIndex;
+            [Preserve] public bool parsed, fits, fitsPreliminary; [Preserve] public int profileVersion, indexBits, kindBits, firstFailingIndex;
             [Preserve] public ulong firstFailingSize; [Preserve] public uint[] cursors, finalCursors, remainingSlots;
             [Preserve] public uint requiredImages, acceptedImages;
             [Preserve] public ulong ordinaryAllocatedCount, shadowAllocatedCount, reservedImageCount;
+            [Preserve] public ulong reservedPages, mappedPages, lifetimeReservedImageCount, remainingImageCount, reservedShadowImageCount;
         }
         [Serializable, Preserve] public sealed class StateSnapshot { [Preserve] public string phase, code, state; [Preserve] public bool passed; }
         [Serializable, Preserve] public sealed class RecoverySnapshot

@@ -251,9 +251,8 @@ namespace AssemblyShadowDemo
 
         private static void RunOversize(Receipt receipt, Capsule capsule, long[] sizes)
         {
-            AssemblyShadowMetadataCapacity before = LastCapacity(receipt);
-            Require(!before.fits && before.firstFailingIndex == sizes.Length - 1 &&
-                before.acceptedImages == (uint)(sizes.Length - 1), "Oversize dry-run did not fail at the last member.");
+            R01MetadataCapacitySnapshot before = LastCapacity(receipt);
+            Require(before.IsOversizeFailure(sizes.Length - 1, (ulong)sizes[sizes.Length - 1]), "Oversize dry-run did not fail atomically at the last member.");
             Operation(receipt, "configure", AssemblyShadowErrorCode.Success, delegate {
                 return AssemblyShadowRuntime.ConfigureCandidates(capsule.baselineBuildId, capsule.candidateNames, capsule.stableAotNames);
             });
@@ -266,11 +265,9 @@ namespace AssemblyShadowDemo
                 return AssemblyShadowRuntime.ReserveMetadataBudget(sizes, MetadataProfileVersion);
             });
             Snapshot(receipt, "after-failed-reserve", sizes);
-            AssemblyShadowMetadataCapacity after = LastCapacity(receipt);
-            Require(SameCursors(before.cursors, after.cursors) && SameCursors(before.finalCursors, after.finalCursors) &&
-                before.acceptedImages == after.acceptedImages && !after.fits &&
-                before.ordinaryAllocatedCount == after.ordinaryAllocatedCount && before.shadowAllocatedCount == after.shadowAllocatedCount &&
-                before.reservedImageCount == after.reservedImageCount, "Failed reservation changed the shared allocation state.");
+            R01MetadataCapacitySnapshot after = LastCapacity(receipt);
+            Require(before.SameAtomicState(after) && before.SamePlanningState(after) && !after.fits,
+                "Failed reservation changed the shared allocation state.");
             Operation(receipt, "abort", AssemblyShadowErrorCode.Success, delegate { return AssemblyShadowRuntime.AbortTransaction(); });
             Snapshot(receipt, "after-abort", sizes);
         }
@@ -290,7 +287,7 @@ namespace AssemblyShadowDemo
             });
             Snapshot(receipt, "after-reserve", sizes);
 
-            AssemblyShadowMetadataCapacity before = LastCapacity(receipt);
+            R01MetadataCapacitySnapshot before = LastCapacity(receipt);
             OwnedInput first = closure[0];
             byte[] mismatched = new byte[checked(first.bytes.Length + 1)];
             Buffer.BlockCopy(first.bytes, 0, mismatched, 0, first.bytes.Length);
@@ -302,27 +299,18 @@ namespace AssemblyShadowDemo
                 return AssemblyShadowRuntime.StageAssembly(mismatched, first.pdbBytes);
             });
             Snapshot(receipt, "after-mismatch", sizes);
-            AssemblyShadowMetadataCapacity after = LastCapacity(receipt);
-            Require(SameCursors(before.cursors, after.cursors) && before.ordinaryAllocatedCount == after.ordinaryAllocatedCount &&
-                before.shadowAllocatedCount == after.shadowAllocatedCount && before.reservedImageCount == after.reservedImageCount,
+            R01MetadataCapacitySnapshot after = LastCapacity(receipt);
+            Require(before.SameAtomicState(after) && before.SamePlanningState(after),
                 "Rejected Stage consumed or released an owner/index reservation.");
             Operation(receipt, "abort", AssemblyShadowErrorCode.Success, delegate { return AssemblyShadowRuntime.AbortTransaction(); });
             Snapshot(receipt, "after-abort", sizes);
         }
 
-        private static AssemblyShadowMetadataCapacity LastCapacity(Receipt receipt)
+        private static R01MetadataCapacitySnapshot LastCapacity(Receipt receipt)
         {
             SnapshotReceipt snapshot = receipt.snapshots[receipt.snapshots.Count - 1];
             Require(snapshot.capacityCode == "Success", "Native capacity query failed.");
-            // This DTO uses the strict BCL reader, not Unity serialization.
-            return AssemblyShadowMetadataCapacity.Parse(snapshot.capacityJson);
-        }
-
-        private static bool SameCursors(uint[] left, uint[] right)
-        {
-            if (left == null || right == null || left.Length != right.Length) return false;
-            for (int i = 0; i < left.Length; ++i) if (left[i] != right[i]) return false;
-            return true;
+            return R01MetadataCapacitySnapshot.Parse(snapshot.capacityJson, MetadataProfileVersion);
         }
 
         private static void RunTransaction(Receipt receipt, Capsule capsule, List<OwnedInput> closure, long[] sizes,
@@ -955,6 +943,106 @@ namespace AssemblyShadowDemo
                 Require(found != null, "R01 argument is missing: " + name);
                 return found;
             }
+        }
+    }
+
+    // The native capacity endpoint has two intentionally strict wire schemas.
+    // Keep the production probes on a discriminated managed projection so a
+    // profile-2 report cannot be accidentally fed to the legacy cursor DTO.
+    [Preserve]
+    internal sealed class R01MetadataCapacitySnapshot
+    {
+        public int profileVersion;
+        public bool fits;
+        public ulong ReservedImageCount { get { return profileVersion == 2 ? reservedShadowImageCount : reservedImageCount; } }
+        public ulong requiredImages, acceptedImages, firstFailingSize;
+        public int firstFailingIndex;
+        public string failureReason;
+        public uint[] cursors, remainingSlots, finalCursors;
+        public ulong ordinaryAllocatedCount, shadowAllocatedCount, reservedImageCount;
+        public ulong reservedPages, mappedPages, lifetimeReservedImageCount, remainingImageCount, reservedShadowImageCount;
+
+        public static R01MetadataCapacitySnapshot Parse(string json, int expectedProfile)
+        {
+            if (expectedProfile == 2)
+                return FromProfile2(AssemblyShadowMetadataCapacityProfile2.Parse(json));
+            if (expectedProfile == 1)
+                return FromProfile1(AssemblyShadowMetadataCapacity.Parse(json));
+            throw new FormatException("Unsupported expected metadata capacity profile: " + expectedProfile);
+        }
+
+        public bool IsOversizeFailure(int lastIndex, ulong expectedSize)
+        {
+            bool validFailure = profileVersion == 2
+                ? failureReason == "DllTooLarge"
+                : (failureReason == "Exhausted" || failureReason == "InvalidSizeOrProfileState");
+            return !fits && requiredImages == (ulong)(lastIndex + 1) && firstFailingIndex == lastIndex &&
+                firstFailingSize == expectedSize && validFailure &&
+                acceptedImages == (profileVersion == 2 ? 0UL : (ulong)lastIndex);
+        }
+
+        public bool SamePlanningState(R01MetadataCapacitySnapshot other)
+        {
+            return other != null && profileVersion == other.profileVersion && fits == other.fits &&
+                requiredImages == other.requiredImages && acceptedImages == other.acceptedImages &&
+                firstFailingIndex == other.firstFailingIndex && firstFailingSize == other.firstFailingSize &&
+                failureReason == other.failureReason;
+        }
+
+        public bool SameAtomicState(R01MetadataCapacitySnapshot other)
+        {
+            if (other == null || profileVersion != other.profileVersion ||
+                ordinaryAllocatedCount != other.ordinaryAllocatedCount || shadowAllocatedCount != other.shadowAllocatedCount)
+                return false;
+            if (profileVersion == 2)
+                return reservedPages == other.reservedPages && mappedPages == other.mappedPages &&
+                    lifetimeReservedImageCount == other.lifetimeReservedImageCount &&
+                    remainingImageCount == other.remainingImageCount &&
+                    reservedShadowImageCount == other.reservedShadowImageCount;
+            return reservedImageCount == other.reservedImageCount && Same(cursors, other.cursors) &&
+                Same(finalCursors, other.finalCursors);
+        }
+
+        public bool SameShadowReservation(R01MetadataCapacitySnapshot other)
+        {
+            if (other == null || profileVersion != other.profileVersion ||
+                shadowAllocatedCount != other.shadowAllocatedCount) return false;
+            if (profileVersion == 2)
+                return reservedShadowImageCount == other.reservedShadowImageCount;
+            return reservedImageCount == other.reservedImageCount;
+        }
+
+        private static R01MetadataCapacitySnapshot FromProfile1(AssemblyShadowMetadataCapacity value)
+        {
+            return new R01MetadataCapacitySnapshot {
+                profileVersion = value.profileVersion, fits = value.fits,
+                requiredImages = value.requiredImages, acceptedImages = value.acceptedImages,
+                firstFailingIndex = value.firstFailingIndex, firstFailingSize = value.firstFailingSize,
+                failureReason = value.failureReason, cursors = value.cursors, remainingSlots = value.remainingSlots, finalCursors = value.finalCursors,
+                ordinaryAllocatedCount = value.ordinaryAllocatedCount, shadowAllocatedCount = value.shadowAllocatedCount,
+                reservedImageCount = value.reservedImageCount
+            };
+        }
+
+        private static R01MetadataCapacitySnapshot FromProfile2(AssemblyShadowMetadataCapacityProfile2 value)
+        {
+            return new R01MetadataCapacitySnapshot {
+                profileVersion = value.profileVersion, fits = value.fitsPreliminary,
+                requiredImages = value.requiredImages, acceptedImages = value.acceptedImages,
+                firstFailingIndex = value.firstFailingIndex, firstFailingSize = value.firstFailingSize,
+                failureReason = value.failureReason, ordinaryAllocatedCount = value.ordinaryAllocatedCount,
+                shadowAllocatedCount = value.shadowAllocatedCount, reservedPages = value.reservedPages,
+                mappedPages = value.mappedPages, lifetimeReservedImageCount = value.lifetimeReservedImageCount,
+                remainingImageCount = value.remainingImageCount, reservedShadowImageCount = value.reservedShadowImageCount
+            };
+        }
+
+        private static bool Same(uint[] left, uint[] right)
+        {
+            if (left == null || right == null || left.Length != right.Length) return false;
+            for (int index = 0; index < left.Length; ++index)
+                if (left[index] != right[index]) return false;
+            return true;
         }
     }
 }

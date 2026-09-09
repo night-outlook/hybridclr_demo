@@ -86,8 +86,8 @@ def fixture(root, mode, expectation):
                   nativeLibraryPath=str(root/'native'), nativeLibrarySha256='d'*64,
                   nativeMetadataPath=str(root/'metadata'), nativeMetadataSha256='e'*64, playerOutput=str(output))
     build = dict(path=receipt, player=player, snapshot=dict(filteredAssemblies=[dict(name=gate.ORDINARY+'.dll', path=filtered_ordinary.name, sha256=sha(filtered_ordinary.read_bytes()))]))
-    item = dict(fixture=dict(closureLoadOrder=closure, patchDirectory=str(patch_root), patchManifest=str(patch_path), patchManifestSha256=gate.digest(patch_path)), patch=dict(closure=patch_rows))
-    context = dict(manifest=manifest, fixtures={'P03': item})
+    item = dict(fixture=dict(closureLoadOrder=closure, patchDirectory=str(patch_root), patchManifest=str(patch_path), patchManifestSha256=gate.digest(patch_path)), patch=dict(closure=patch_rows), r01Capability=True)
+    context = dict(manifest=manifest, fixtures={'P03': item}, baseline={'nativeBudgetCapabilityVersion': 1})
     r = {key: '' for key in gate.RESULT_STRINGS.split()}
     r.update({key: [] for key in gate.RESULT_ARRAYS.split()})
     r.update(schemaVersion=1, processId=1001, profileVersion=1, milestone='M07R-R01', mode=mode, result='Passed', il2cpp=True,
@@ -176,6 +176,13 @@ def fixture(root, mode, expectation):
 
 
 class R01PipelineTests(unittest.TestCase):
+    def test_direct_result_verification_cannot_override_verified_baseline_profile(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path, result, context, build = fixture(Path(temp), gate.OFF_MODE, gate.STARTUP_OBSERVATION_GAP)
+            path.write_text(json.dumps(result))
+            with patch.object(gate.m07.prior, '_reflection_snapshot', return_value=fixed_reflection(build)), self.assertRaises(VerificationError):
+                gate.verify_result(path, gate.OFF_MODE, context, build, gate.STARTUP_OBSERVATION_GAP, expected_profile=2)
+
     def test_all_ten_producer_shaped_results_pass_complete_public_validator(self):
         for mode in gate.MODES:
             with self.subTest(mode=mode), tempfile.TemporaryDirectory() as temp:

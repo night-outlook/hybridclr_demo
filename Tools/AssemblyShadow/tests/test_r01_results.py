@@ -39,6 +39,59 @@ def capacity_observation(sizes):
     }
 
 
+def profile2_raw(sizes, ordinary=0, reserved=0, pages=None, mapped=0):
+    if pages is None:
+        pages = ordinary + reserved
+    lifetime = ordinary + reserved
+    failure_index = -1
+    failure_reason = "None"
+    if len(sizes) > gate.PROFILE2_MAX_IMAGES - lifetime:
+        failure_index, failure_reason = gate.PROFILE2_MAX_IMAGES - lifetime, "ImageLimit"
+    else:
+        for index, size in enumerate(sizes):
+            if size == 0:
+                failure_index, failure_reason = index, "EmptyDll"
+                break
+            if size > gate.PROFILE2_MAX_DLL_BYTES:
+                failure_index, failure_reason = index, "DllTooLarge"
+                break
+    fits = failure_index < 0
+    return {
+        "schemaVersion": 2, "enabled": True, "profileVersion": 2,
+        "maximumImageCount": gate.PROFILE2_MAX_IMAGES, "maximumDllBytes": gate.PROFILE2_MAX_DLL_BYTES,
+        "usablePageCapacity": gate.PROFILE2_USABLE_PAGE_CAPACITY,
+        "chargedPageCeiling": gate.PROFILE2_CHARGED_PAGE_CEILING,
+        "minimumFreePageMargin": gate.PROFILE2_MINIMUM_FREE_PAGE_MARGIN,
+        "reservedPages": pages, "mappedPages": mapped,
+        "lifetimeReservedImageCount": lifetime, "remainingImageCount": gate.PROFILE2_MAX_IMAGES - lifetime,
+        "requiredImages": len(sizes), "acceptedImages": len(sizes) if fits else 0,
+        "firstFailingIndex": failure_index,
+        "firstFailingSize": 0 if failure_index < 0 else sizes[failure_index],
+        "failureReason": failure_reason, "fitsPreliminary": fits,
+        "runtimeFinalizationRequired": True,
+        "aggregateInputDllBytes": sum(sizes), "aggregateInputDllBytesInformational": True,
+        "ordinaryAllocatedCount": ordinary, "shadowAllocatedCount": 0,
+        "reservedShadowImageCount": reserved,
+    }
+
+
+def profile2_observation(raw, phase, sizes):
+    return {
+        "phase": phase, "code": "Success", "rawJson": json.dumps(raw),
+        "orderedSizes": list(sizes), "parsed": True, "fits": raw["fitsPreliminary"],
+        "fitsPreliminary": raw["fitsPreliminary"], "profileVersion": 2,
+        "indexBits": 0, "kindBits": 0, "cursors": [], "finalCursors": [],
+        "remainingSlots": [], "requiredImages": raw["requiredImages"],
+        "acceptedImages": raw["acceptedImages"], "firstFailingIndex": raw["firstFailingIndex"],
+        "firstFailingSize": raw["firstFailingSize"], "failureReason": raw["failureReason"],
+        "ordinaryAllocatedCount": raw["ordinaryAllocatedCount"], "shadowAllocatedCount": raw["shadowAllocatedCount"],
+        "reservedImageCount": 0, "reservedPages": raw["reservedPages"], "mappedPages": raw["mappedPages"],
+        "lifetimeReservedImageCount": raw["lifetimeReservedImageCount"],
+        "remainingImageCount": raw["remainingImageCount"],
+        "reservedShadowImageCount": raw["reservedShadowImageCount"],
+    }
+
+
 class R01ResultTests(unittest.TestCase):
     def test_ordinary_input_binds_hash_named_fixed_image(self):
         with tempfile.TemporaryDirectory(dir=Path.cwd()) as directory:
@@ -110,6 +163,78 @@ class R01ResultTests(unittest.TestCase):
         self.assertFalse(model["fits"])
         self.assertEqual(model["firstFailingIndex"], 1)
         self.assertEqual(model["acceptedImages"], 1)
+
+    def test_profile_binding_comes_from_verified_baseline(self):
+        context = {"baseline": {"nativeBudgetCapabilityVersion": 1},
+                   "fixtures": {"P03": {"r01Capability": True}}}
+        self.assertEqual(gate.require_r01_inputs(context), 1)
+        with self.assertRaises(VerificationError):
+            gate.require_r01_inputs({"baseline": {"nativeBudgetCapabilityVersion": 2},
+                                     "fixtures": {"P03": {"r01Capability": True}}})
+        with self.assertRaises(VerificationError):
+            gate.require_r01_inputs({"baseline": {},
+                                     "fixtures": {"P03": {"r01Capability": True}}})
+        observation = capacity_observation([5120])
+        result = {"profileVersion": 2, "capacitySnapshots": [observation],
+                  "capacityCode": "Success", "capacityJson": observation["rawJson"]}
+        with self.assertRaises(VerificationError):
+            gate.verify_capacity(result, "R01-PreConfigure-Type", [5120])
+
+    def test_profile2_oversize_rejection_is_atomic_and_all_or_nothing(self):
+        sizes = [5120, 64 * 1024 * 1024]
+        before = profile2_raw(sizes)
+        after = profile2_raw(sizes)
+        result = {"profileVersion": 2, "capacitySnapshots": [
+            profile2_observation(before, "before-configure", sizes),
+            profile2_observation(after, "after-failed-reserve", sizes)],
+            "capacityCode": "Success", "capacityJson": json.dumps(after)}
+        gate.verify_capacity(result, "R01-P03-Oversize", sizes)
+        tampered = copy.deepcopy(result)
+        changed = json.loads(tampered["capacitySnapshots"][1]["rawJson"])
+        changed["reservedPages"] = 1
+        tampered["capacitySnapshots"][1]["rawJson"] = json.dumps(changed)
+        tampered["capacitySnapshots"][1]["reservedPages"] = 1
+        with self.assertRaises(VerificationError):
+            gate.verify_capacity(tampered, "R01-P03-Oversize", sizes)
+
+    def test_profile2_ordinary_load_grows_pages_then_reserve_adds_one_credit(self):
+        sizes = [5120]
+        fresh = profile2_raw([], pages=0)
+        ordinary = profile2_raw(sizes, ordinary=1, pages=1)
+        reserved = profile2_raw(sizes, ordinary=1, reserved=1, pages=2)
+        result = {"profileVersion": 2, "capacitySnapshots": [
+            profile2_observation(fresh, "before-ordinary", []),
+            profile2_observation(ordinary, "after-ordinary-before-configure", sizes),
+            profile2_observation(reserved, "after-reserve", sizes)],
+            "capacityCode": "Success", "capacityJson": json.dumps(reserved)}
+        gate.verify_capacity(result, "R01-P03-OrdinaryFirst", sizes)
+        for field, value in (("reservedPages", 1), ("ordinaryAllocatedCount", 3), ("shadowAllocatedCount", 1)):
+            tampered = copy.deepcopy(result)
+            changed = json.loads(tampered["capacitySnapshots"][2]["rawJson"])
+            changed[field] = value
+            tampered["capacitySnapshots"][2]["rawJson"] = json.dumps(changed)
+            tampered["capacitySnapshots"][2][field] = value
+            with self.subTest(field=field), self.assertRaises(VerificationError):
+                gate.verify_capacity(tampered, "R01-P03-OrdinaryFirst", sizes)
+
+    def test_profile2_mismatch_preserves_ledger_after_rejected_stage(self):
+        sizes = [5120]
+        before = profile2_raw(sizes)
+        reserved = profile2_raw(sizes, reserved=1, pages=1)
+        after = copy.deepcopy(reserved)
+        result = {"profileVersion": 2, "capacitySnapshots": [
+            profile2_observation(before, "before-configure", sizes),
+            profile2_observation(reserved, "after-reserve", sizes),
+            profile2_observation(after, "after-mismatch", sizes)],
+            "capacityCode": "Success", "capacityJson": json.dumps(after)}
+        gate.verify_capacity(result, "R01-P03-Mismatch", sizes)
+        tampered = copy.deepcopy(result)
+        changed = json.loads(tampered["capacitySnapshots"][2]["rawJson"])
+        changed["mappedPages"] = 1
+        tampered["capacitySnapshots"][2]["rawJson"] = json.dumps(changed)
+        tampered["capacitySnapshots"][2]["mappedPages"] = 1
+        with self.assertRaises(VerificationError):
+            gate.verify_capacity(tampered, "R01-P03-Mismatch", sizes)
 
     def test_one_byte_mismatch_is_reserved_at_original_length(self):
         source = (Path(__file__).resolve().parents[1] / "r01_results.py").read_text()

@@ -183,7 +183,7 @@ namespace AssemblyShadowDemo
         {
             result.diagnostics.Add(ReadDiagnostics(phase));
             string json; var code = AssemblyShadowRuntime.GetMetadataCapacityJson(sizes, out json);
-            Require(code == AssemblyShadowErrorCode.Success, "Capacity query failed."); AssemblyShadowMetadataCapacity.Parse(json);
+            Require(code == AssemblyShadowErrorCode.Success, "Capacity query failed."); R01MetadataCapacitySnapshot.Parse(json, 2);
             result.capacities.Add(Raw.Create(phase, code, json));
             code = AssemblyShadowRuntime.GetRecoveryInfoJson(out json);
             Require(code == AssemblyShadowErrorCode.Success, "Recovery query failed."); AssemblyShadowRecoveryInfo.Parse(json);
