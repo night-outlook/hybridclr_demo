@@ -30,8 +30,13 @@ namespace AssemblyShadowDemo.Editor
         public static void BuildDiagnosticPlayer()
         {
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
-            Require(target == BuildTarget.StandaloneOSX && BaselineBuild.TargetArchitecture() == "arm64",
-                "H1 count diagnostic Player is pinned to StandaloneOSX arm64.");
+            Require(target == BuildTarget.StandaloneOSX,
+                "H1 count diagnostic Player is pinned to StandaloneOSX.");
+#if UNITY_EDITOR_OSX
+            OSArchitecture previousOsxArchitecture = UnityEditor.OSXStandalone.UserBuildSettings.architecture;
+#else
+            throw new BuildFailedException("H1 count diagnostic Player requires a macOS Unity Editor.");
+#endif
             bool featureEnabled = ParseFeature(AssemblyShadowBuildCommands.Argument("-shadowH1Feature", ""));
             Il2CppCompilerConfiguration cppConfiguration = ParseCppConfiguration(
                 AssemblyShadowBuildCommands.Argument("-shadowH1Cpp", ""));
@@ -65,6 +70,9 @@ namespace AssemblyShadowDemo.Editor
             string baselineId = "H1Count-" + (featureEnabled ? "On" : "Off") + "-" + cppConfiguration;
             try
             {
+#if UNITY_EDITOR_OSX
+                UnityEditor.OSXStandalone.UserBuildSettings.architecture = OSArchitecture.ARM64;
+#endif
                 ConfigureSettings(settings, target, featureEnabled, baselineId);
                 ShadowSourcePins pins = ShadowSourcePins.Read(settings.sourcePinFile, target, settings.architecture);
                 string sourcePinsPathBefore = Path.Combine(projectRoot, settings.sourcePinFile);
@@ -167,18 +175,27 @@ namespace AssemblyShadowDemo.Editor
             }
             finally
             {
-                if (captureStarted) ShadowPlayerInputCapture.End();
-                PlayerSettings.SetAdditionalIl2CppArgs(nativeArgumentsBefore);
-                PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone, scriptingBackendBefore);
-                PlayerSettings.SetIl2CppCompilerConfiguration(NamedBuildTarget.Standalone, cppBefore);
-                EditorUserBuildSettings.development = developmentBefore;
-                EditorUserBuildSettings.allowDebugging = allowDebuggingBefore;
-                EditorUserBuildSettings.connectProfiler = connectProfilerBefore;
-                EditorUserBuildSettings.buildScriptsOnly = buildScriptsOnlyBefore;
-                EditorBuildSettings.scenes = scenesBefore;
-                JsonUtility.FromJsonOverwrite(settingsJson, settings);
-                AssemblyShadowSettings.Save();
-                AssetDatabase.SaveAssets();
+                try
+                {
+                    if (captureStarted) ShadowPlayerInputCapture.End();
+                    PlayerSettings.SetAdditionalIl2CppArgs(nativeArgumentsBefore);
+                    PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone, scriptingBackendBefore);
+                    PlayerSettings.SetIl2CppCompilerConfiguration(NamedBuildTarget.Standalone, cppBefore);
+                    EditorUserBuildSettings.development = developmentBefore;
+                    EditorUserBuildSettings.allowDebugging = allowDebuggingBefore;
+                    EditorUserBuildSettings.connectProfiler = connectProfilerBefore;
+                    EditorUserBuildSettings.buildScriptsOnly = buildScriptsOnlyBefore;
+                    EditorBuildSettings.scenes = scenesBefore;
+                    JsonUtility.FromJsonOverwrite(settingsJson, settings);
+                    AssemblyShadowSettings.Save();
+                    AssetDatabase.SaveAssets();
+                }
+                finally
+                {
+#if UNITY_EDITOR_OSX
+                    UnityEditor.OSXStandalone.UserBuildSettings.architecture = previousOsxArchitecture;
+#endif
+                }
             }
             Require(completedReceipt != null, "H1 diagnostic build did not produce a completed receipt after settings restoration.");
             Directory.CreateDirectory(Path.GetDirectoryName(receiptPath));
