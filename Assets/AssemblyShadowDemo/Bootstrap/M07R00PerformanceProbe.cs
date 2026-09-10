@@ -223,14 +223,10 @@ namespace AssemblyShadowDemo
             string raw = File.ReadAllText(resultPath);
             M07Probe.Require(raw == R01EarlyStartup.LastReceiptJson,
                 "R00 early receipt differs from the current process callback observation.");
-            R01EarlyStartup.Receipt receipt = JsonUtility.FromJson<R01EarlyStartup.Receipt>(raw);
-            M07Probe.Require(receipt != null && receipt.schemaVersion == 1 && receipt.kind == "R01EarlyStartupReceipt" &&
-                receipt.mode == expectedMode && receipt.result == "Passed" && string.IsNullOrEmpty(receipt.error) &&
-                receipt.callbackReturnCode == 0 && receipt.processId == Process.GetCurrentProcess().Id &&
-                receipt.managedThreadId == Environment.CurrentManagedThreadId &&
-                Path.GetFullPath(receipt.capsulePath) == capsulePath && receipt.capsuleSha256 == capsuleSha256 &&
-                Path.GetFullPath(receipt.resultPath) == resultPath && receipt.baselineBuildId == input.manifest.baselineBuildId &&
-                receipt.runtimeAbiHash == input.manifest.runtimeAbiHash,
+            EarlyReceipt receipt = ParseEarlyReceipt(raw);
+            M07Probe.Require(HasExpectedReceiptIdentity(receipt, expectedMode, capsulePath, capsuleSha256, resultPath,
+                    input.manifest.baselineBuildId, input.manifest.runtimeAbiHash, Process.GetCurrentProcess().Id,
+                    Environment.CurrentManagedThreadId),
                 "R00 early receipt is not the expected same-process successful handoff.");
             R01EarlyStartup.Capsule capsule = R01EarlyStartup.CapsuleCodec.Parse(bytes);
             M07Probe.Require(capsule.mode == expectedMode && capsule.baselineBuildId == input.manifest.baselineBuildId &&
@@ -242,9 +238,8 @@ namespace AssemblyShadowDemo
             {
                 M07Probe.Require(capsule.patchId == input.fixture.patchId &&
                     capsule.closureLoadOrder.SequenceEqual(input.fixture.closureLoadOrder) &&
-                    receipt.patchId == input.fixture.patchId && receipt.operations != null &&
-                    receipt.operations.Any(row => row.phase == "configure") && receipt.operations.Any(row => row.phase == "begin") &&
-                    receipt.operations.Any(row => row.phase == "commit"),
+                    receipt.patchId == input.fixture.patchId &&
+                    HasExactSuccessfulOperations(receipt.operations, capsule.closureLoadOrder),
                     "R00 early Control receipt is not bound to the selected patch closure.");
             }
             else
@@ -254,9 +249,7 @@ namespace AssemblyShadowDemo
                 M07Probe.Fixture baselineFixture = input.manifest.fixtures.Single(row => row.patchId == capsule.patchId);
                 M07Probe.Require(capsule.closureLoadOrder.SequenceEqual(baselineFixture.closureLoadOrder),
                     "R00 Baseline capsule closure differs from its published fixture.");
-                M07Probe.Require(receipt.operations != null && receipt.operations.Count == 0 &&
-                    receipt.snapshots != null && receipt.snapshots.Count == 1 &&
-                    receipt.snapshots[0].phase == "before-startup-ops",
+                M07Probe.Require(HasExactBaselineReceipt(receipt),
                     "R00 Baseline early receipt performed unexpected transaction work.");
             }
             return new EarlyHandoffObservation {
@@ -265,6 +258,50 @@ namespace AssemblyShadowDemo
                 resultSha256 = M07Probe.HashFile(resultPath), processId = receipt.processId,
                 callbackReturnCode = receipt.callbackReturnCode
             };
+        }
+
+        private static EarlyReceipt ParseEarlyReceipt(string raw)
+        {
+            return JsonUtility.FromJson<EarlyReceipt>(raw);
+        }
+
+        private static bool HasExpectedReceiptIdentity(EarlyReceipt receipt, string expectedMode, string capsulePath,
+            string capsuleSha256, string resultPath, string baselineBuildId, string runtimeAbiHash, int processId, int managedThreadId)
+        {
+            return receipt != null && receipt.schemaVersion == 1 && receipt.kind == "R01EarlyStartupReceipt" &&
+                receipt.mode == expectedMode && receipt.result == "Passed" && string.IsNullOrEmpty(receipt.error) &&
+                receipt.callbackReturnCode == 0 && receipt.processId == processId && receipt.managedThreadId == managedThreadId &&
+                Path.GetFullPath(receipt.capsulePath) == capsulePath && receipt.capsuleSha256 == capsuleSha256 &&
+                Path.GetFullPath(receipt.resultPath) == resultPath && receipt.baselineBuildId == baselineBuildId &&
+                receipt.runtimeAbiHash == runtimeAbiHash;
+        }
+
+        private static bool HasExactBaselineReceipt(EarlyReceipt receipt)
+        {
+            return receipt != null && receipt.operations != null && receipt.operations.Length == 0 &&
+                receipt.snapshots != null && receipt.snapshots.Length == 1 &&
+                receipt.snapshots[0] != null && receipt.snapshots[0].phase == "before-startup-ops";
+        }
+
+        private static bool HasExactSuccessfulOperations(EarlyOperation[] operations, string[] closureLoadOrder)
+        {
+            if (operations == null || closureLoadOrder == null || operations.Length != closureLoadOrder.Length + 5)
+                return false;
+            string[] expected = new string[closureLoadOrder.Length + 5];
+            expected[0] = "configure";
+            expected[1] = "begin";
+            expected[2] = "reserve";
+            for (int i = 0; i < closureLoadOrder.Length; ++i)
+                expected[i + 3] = "stage:" + closureLoadOrder[i];
+            expected[expected.Length - 2] = "validate";
+            expected[expected.Length - 1] = "commit";
+            for (int i = 0; i < expected.Length; ++i)
+            {
+                EarlyOperation row = operations[i];
+                if (row == null || row.phase != expected[i] || row.code != "Success" || row.intCode != 0)
+                    return false;
+            }
+            return true;
         }
 
         private static TypeIdentity CaptureSelectedType(Result result, string mode)
@@ -576,6 +613,29 @@ namespace AssemblyShadowDemo
             [Preserve] public bool available;
             [Preserve] public string mode, patchId, capsulePath, capsuleSha256, resultPath, resultSha256;
             [Preserve] public int processId, callbackReturnCode;
+        }
+
+        // R01EarlyStartup.Receipt is deliberately serialized by a framework-
+        // independent codec, so its nested rows are not Unity JsonUtility
+        // contracts. Keep this reader projection local to the R00 probe.
+        [Serializable, Preserve] private sealed class EarlyReceipt
+        {
+            [Preserve] public int schemaVersion, processId, managedThreadId, callbackReturnCode;
+            [Preserve] public string kind, mode, capsulePath, capsuleSha256, resultPath, baselineBuildId, runtimeAbiHash, patchId, result, error;
+            [Preserve] public EarlyOperation[] operations;
+            [Preserve] public EarlySnapshot[] snapshots;
+        }
+
+        [Serializable, Preserve] private sealed class EarlyOperation
+        {
+            [Preserve] public string phase, code;
+            [Preserve] public int intCode;
+            [Preserve] public long startedTicks, elapsedTicks;
+        }
+
+        [Serializable, Preserve] private sealed class EarlySnapshot
+        {
+            [Preserve] public string phase;
         }
 
         [Serializable, Preserve] public sealed class ArtifactReceipt { [Preserve] public string name, path, sha256; [Preserve] public bool available; }
