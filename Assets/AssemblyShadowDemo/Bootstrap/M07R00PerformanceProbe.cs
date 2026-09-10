@@ -42,6 +42,8 @@ namespace AssemblyShadowDemo
             M07Probe.Require(Modes.Contains(mode, StringComparer.Ordinal), "Unknown R00 mode: " + mode);
 
             bool featureEnabled = mode != "R00-OFF-NoPatch";
+            bool legacyNoEarlyStartup = M07Probe.Argument("-shadowR00LegacyNoEarlyStartup", "") == "1";
+            result.earlyStartupStrategy = legacyNoEarlyStartup ? "legacy-explicit-no-capsule" : "R01EarlyStartup";
             string inputMode = mode == "R00-OFF-NoPatch" ? "T07-14-FeatureOff" :
                 mode == "R00-ON-P03" ? "T07-03-FullClosure-P03" : "T07-01-Prefab-P01";
             M07Probe.Input input = M07Probe.R00ReadInputs(expectedBaselineBuildId, expectedRuntimeAbiHash, inputMode);
@@ -64,6 +66,11 @@ namespace AssemblyShadowDemo
             {
                 if (input.fixture == null)
                 {
+                    // Baseline is a genuine no-op early callback.  It proves
+                    // the mandatory R01 boundary before this existing
+                    // configured no-patch observation.
+                    if (!legacyNoEarlyStartup)
+                        result.earlyHandoff = ValidateEarlyHandoff(input, "Baseline", false);
                     result.configureCode = M07Probe.Expect(result.m07Transaction, "configure", AssemblyShadowRuntime.ConfigureCandidates(
                         input.manifest.baselineBuildId, input.manifest.candidateNames, input.manifest.stableAotNames));
                     AssemblyShadowState state;
@@ -78,7 +85,16 @@ namespace AssemblyShadowDemo
                 }
                 else
                 {
-                    M07Probe.R00RunTransaction(result.m07Transaction, input);
+                    // M07 owns the only transaction path. Its early-capsule
+                    // branch calls AdoptEarlyTransaction, so R00 does not
+                    // Configure or BeginTransaction a second time.
+                    if (legacyNoEarlyStartup)
+                        M07Probe.R00RunTransaction(result.m07Transaction, input);
+                    else
+                    {
+                        result.earlyHandoff = ValidateEarlyHandoff(input, "Control", true);
+                        M07Probe.R00AdoptEarlyTransaction(result.m07Transaction, input);
+                    }
                     CopyTransaction(result);
                     result.transactionCommitted = true;
                 }
@@ -91,12 +107,14 @@ namespace AssemblyShadowDemo
             }
 
             CaptureDiagnostics(result, "before-benchmark");
+            CaptureMemorySnapshot(result, "before-benchmark");
             result.selectedType = CaptureSelectedType(result, mode);
             result.readiness = CaptureReadiness(invocationTimestamp, invocationUtcTicks, true);
             yield return null;
             RunWitnessBenchmarks(result, mode);
             RunExistingExecutionRegressions(result);
             CaptureDiagnostics(result, "after-benchmark");
+            CaptureMemorySnapshot(result, "after-benchmark");
             result.result = "Passed";
 
             int exitCode;
@@ -125,11 +143,14 @@ namespace AssemblyShadowDemo
         {
             return new Result {
                 schemaVersion = 1, milestone = "M07R-R00", mode = mode, result = "Failed", error = "",
+                earlyStartupStrategy = M07Probe.Argument("-shadowR00LegacyNoEarlyStartup", "") == "1" ? "legacy-explicit-no-capsule" : "R01EarlyStartup",
                 il2cpp = M07Probe.R00IsIl2CppPlayer(), processId = Process.GetCurrentProcess().Id,
                 unityVersion = Application.unityVersion, platform = Application.platform.ToString(), buildGuid = Application.buildGUID,
                 playerDataPath = Application.dataPath, baselineBuildId = baseline, runtimeAbiHash = runtimeAbi,
                 assertions = new List<Assertion>(), operations = new List<OperationObservation>(),
+                memorySnapshots = new List<MemorySnapshot>(),
                 patchManifest = new ArtifactReceipt { name = "patch-manifest", available = false },
+                earlyHandoff = new EarlyHandoffObservation { available = false },
                 m07Transaction = M07Probe.R00NewResult(mode, baseline, runtimeAbi)
             };
         }
@@ -190,6 +211,100 @@ namespace AssemblyShadowDemo
             result.stateCode = result.m07Transaction.stateCode;
             result.state = result.m07Transaction.state;
             result.stageOrder = result.m07Transaction.stageOrder == null ? new string[0] : result.m07Transaction.stageOrder.ToArray();
+        }
+
+        private static EarlyHandoffObservation ValidateEarlyHandoff(M07Probe.Input input, string expectedMode, bool expectTransaction)
+        {
+            string capsulePath = Path.GetFullPath(M07Probe.Argument("-shadowEarlyCapsule", ""));
+            string capsuleSha256 = M07Probe.Argument("-shadowEarlyCapsuleSha256", "");
+            string resultPath = Path.GetFullPath(M07Probe.Argument("-shadowEarlyResult", ""));
+            M07Probe.Require(!string.IsNullOrEmpty(capsulePath) && !string.IsNullOrEmpty(resultPath) &&
+                File.Exists(capsulePath) && File.Exists(resultPath) && M07Probe.IsHash(capsuleSha256),
+                "R00 requires explicit early capsule, digest, and receipt paths.");
+            byte[] bytes = File.ReadAllBytes(capsulePath);
+            M07Probe.Require(M07Probe.Hash(bytes) == capsuleSha256, "R00 early capsule digest differs from launcher input.");
+            string raw = File.ReadAllText(resultPath);
+            M07Probe.Require(raw == R01EarlyStartup.LastReceiptJson,
+                "R00 early receipt differs from the current process callback observation.");
+            EarlyReceipt receipt = ParseEarlyReceipt(raw);
+            M07Probe.Require(HasExpectedReceiptIdentity(receipt, expectedMode, capsulePath, capsuleSha256, resultPath,
+                    input.manifest.baselineBuildId, input.manifest.runtimeAbiHash, Process.GetCurrentProcess().Id,
+                    Environment.CurrentManagedThreadId),
+                "R00 early receipt is not the expected same-process successful handoff.");
+            R01EarlyStartup.Capsule capsule = R01EarlyStartup.CapsuleCodec.Parse(bytes);
+            M07Probe.Require(capsule.mode == expectedMode && capsule.baselineBuildId == input.manifest.baselineBuildId &&
+                capsule.runtimeAbiHash == input.manifest.runtimeAbiHash &&
+                capsule.candidateNames.SequenceEqual(input.manifest.candidateNames) &&
+                capsule.stableAotNames.SequenceEqual(input.manifest.stableAotNames),
+                "R00 early capsule identity differs from the selected M07 manifest.");
+            if (expectTransaction)
+            {
+                M07Probe.Require(capsule.patchId == input.fixture.patchId &&
+                    capsule.closureLoadOrder.SequenceEqual(input.fixture.closureLoadOrder) &&
+                    receipt.patchId == input.fixture.patchId &&
+                    HasExactSuccessfulOperations(receipt.operations, capsule.closureLoadOrder),
+                    "R00 early Control receipt is not bound to the selected patch closure.");
+            }
+            else
+            {
+                M07Probe.Require((capsule.patchId == "P01" || capsule.patchId == "P03") && receipt.patchId == capsule.patchId,
+                    "R00 Baseline capsule is not bound to a published patch identity.");
+                M07Probe.Fixture baselineFixture = input.manifest.fixtures.Single(row => row.patchId == capsule.patchId);
+                M07Probe.Require(capsule.closureLoadOrder.SequenceEqual(baselineFixture.closureLoadOrder),
+                    "R00 Baseline capsule closure differs from its published fixture.");
+                M07Probe.Require(HasExactBaselineReceipt(receipt),
+                    "R00 Baseline early receipt performed unexpected transaction work.");
+            }
+            return new EarlyHandoffObservation {
+                available = true, mode = receipt.mode, patchId = receipt.patchId,
+                capsulePath = capsulePath, capsuleSha256 = capsuleSha256, resultPath = resultPath,
+                resultSha256 = M07Probe.HashFile(resultPath), processId = receipt.processId,
+                callbackReturnCode = receipt.callbackReturnCode
+            };
+        }
+
+        private static EarlyReceipt ParseEarlyReceipt(string raw)
+        {
+            return JsonUtility.FromJson<EarlyReceipt>(raw);
+        }
+
+        private static bool HasExpectedReceiptIdentity(EarlyReceipt receipt, string expectedMode, string capsulePath,
+            string capsuleSha256, string resultPath, string baselineBuildId, string runtimeAbiHash, int processId, int managedThreadId)
+        {
+            return receipt != null && receipt.schemaVersion == 1 && receipt.kind == "R01EarlyStartupReceipt" &&
+                receipt.mode == expectedMode && receipt.result == "Passed" && string.IsNullOrEmpty(receipt.error) &&
+                receipt.callbackReturnCode == 0 && receipt.processId == processId && receipt.managedThreadId == managedThreadId &&
+                Path.GetFullPath(receipt.capsulePath) == capsulePath && receipt.capsuleSha256 == capsuleSha256 &&
+                Path.GetFullPath(receipt.resultPath) == resultPath && receipt.baselineBuildId == baselineBuildId &&
+                receipt.runtimeAbiHash == runtimeAbiHash;
+        }
+
+        private static bool HasExactBaselineReceipt(EarlyReceipt receipt)
+        {
+            return receipt != null && receipt.operations != null && receipt.operations.Length == 0 &&
+                receipt.snapshots != null && receipt.snapshots.Length == 1 &&
+                receipt.snapshots[0] != null && receipt.snapshots[0].phase == "before-startup-ops";
+        }
+
+        private static bool HasExactSuccessfulOperations(EarlyOperation[] operations, string[] closureLoadOrder)
+        {
+            if (operations == null || closureLoadOrder == null || operations.Length != closureLoadOrder.Length + 5)
+                return false;
+            string[] expected = new string[closureLoadOrder.Length + 5];
+            expected[0] = "configure";
+            expected[1] = "begin";
+            expected[2] = "reserve";
+            for (int i = 0; i < closureLoadOrder.Length; ++i)
+                expected[i + 3] = "stage:" + closureLoadOrder[i];
+            expected[expected.Length - 2] = "validate";
+            expected[expected.Length - 1] = "commit";
+            for (int i = 0; i < expected.Length; ++i)
+            {
+                EarlyOperation row = operations[i];
+                if (row == null || row.phase != expected[i] || row.code != "Success" || row.intCode != 0)
+                    return false;
+            }
+            return true;
         }
 
         private static TypeIdentity CaptureSelectedType(Result result, string mode)
@@ -354,6 +469,18 @@ namespace AssemblyShadowDemo
             else result.diagnosticsFailure = observation;
         }
 
+        private static void CaptureMemorySnapshot(Result result, string phase)
+        {
+            R00ProcessMemory.Sample sample = R00ProcessMemory.Capture();
+            result.memorySnapshots.Add(new MemorySnapshot {
+                phase = phase, measurement = R00ProcessMemory.Measurement,
+                measurementSemantics = R00ProcessMemory.MeasurementSemantics,
+                sampledUtcTicks = DateTime.UtcNow.Ticks,
+                currentRssBytes = sample.CurrentRssBytes, managedBytes = sample.ManagedBytes,
+                lifetimePeakRssBytes = sample.LifetimePeakRssBytes
+            });
+        }
+
         private static void RunExistingExecutionRegressions(Result result)
         {
             Type type = Type.GetType(InternalAssembly + ".M06ExecutionWitness, " + InternalAssembly, true);
@@ -479,7 +606,7 @@ namespace AssemblyShadowDemo
         public sealed class Result
         {
             [Preserve] public int schemaVersion, processId;
-            [Preserve] public string milestone, mode, result, error, unityVersion, platform, buildGuid, playerDataPath, baselineBuildId, runtimeAbiHash;
+            [Preserve] public string milestone, mode, result, error, earlyStartupStrategy, unityVersion, platform, buildGuid, playerDataPath, baselineBuildId, runtimeAbiHash;
             [Preserve] public bool il2cpp, featureEnabled, transactionCommitted;
             [Preserve] public string configureCode, beginCode, stageProbeCode, validateCode, commitCode, abortCode, stateCode, state, patchId;
             [Preserve] public string[] stageOrder;
@@ -492,7 +619,39 @@ namespace AssemblyShadowDemo
             [Preserve] public List<OperationObservation> operations;
             [Preserve] public List<Assertion> assertions;
             [Preserve] public List<ExecutionRegression> executionRegressions;
+            [Preserve] public List<MemorySnapshot> memorySnapshots;
+            [Preserve] public EarlyHandoffObservation earlyHandoff;
             [NonSerialized] internal M07Probe.Result m07Transaction;
+        }
+
+        [Serializable, Preserve] public sealed class EarlyHandoffObservation
+        {
+            [Preserve] public bool available;
+            [Preserve] public string mode, patchId, capsulePath, capsuleSha256, resultPath, resultSha256;
+            [Preserve] public int processId, callbackReturnCode;
+        }
+
+        // R01EarlyStartup.Receipt is deliberately serialized by a framework-
+        // independent codec, so its nested rows are not Unity JsonUtility
+        // contracts. Keep this reader projection local to the R00 probe.
+        [Serializable, Preserve] private sealed class EarlyReceipt
+        {
+            [Preserve] public int schemaVersion, processId, managedThreadId, callbackReturnCode;
+            [Preserve] public string kind, mode, capsulePath, capsuleSha256, resultPath, baselineBuildId, runtimeAbiHash, patchId, result, error;
+            [Preserve] public EarlyOperation[] operations;
+            [Preserve] public EarlySnapshot[] snapshots;
+        }
+
+        [Serializable, Preserve] private sealed class EarlyOperation
+        {
+            [Preserve] public string phase, code;
+            [Preserve] public int intCode;
+            [Preserve] public long startedTicks, elapsedTicks;
+        }
+
+        [Serializable, Preserve] private sealed class EarlySnapshot
+        {
+            [Preserve] public string phase;
         }
 
         [Serializable, Preserve] public sealed class ArtifactReceipt { [Preserve] public string name, path, sha256; [Preserve] public bool available; }
@@ -511,6 +670,11 @@ namespace AssemblyShadowDemo
         {
             [Preserve] public string phase, code, rawJson, unavailableReason; [Preserve] public bool diagnosticsOnly, parsed;
             [Preserve] public DiagnosticsCounters counters;
+        }
+        [Serializable, Preserve] public sealed class MemorySnapshot
+        {
+            [Preserve] public string phase, measurement, measurementSemantics;
+            [Preserve] public long sampledUtcTicks, currentRssBytes, managedBytes, lifetimePeakRssBytes;
         }
         [Serializable, Preserve] public sealed class DiagnosticsCounters
         {
@@ -558,6 +722,7 @@ namespace AssemblyShadowDemo
         internal static Result R00NewResult(string mode, string baseline, string runtimeAbi) { return NewResult(mode, baseline, runtimeAbi); }
         internal static Input R00ReadInputs(string baseline, string runtimeAbi, string mode) { return ReadInputs(baseline, runtimeAbi, mode); }
         internal static void R00RunTransaction(Result result, Input input) { RunTransaction(result, input); }
+        internal static void R00AdoptEarlyTransaction(Result result, Input input) { AdoptEarlyTransaction(result, input); }
         internal static void R00RunFeatureOff(Result result) { RunFeatureOff(result); }
     }
 }
