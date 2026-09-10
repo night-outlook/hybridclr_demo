@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BContinuationCheckpoint",
+  "status": "ActiveUnaccepted",
+  "scope": "Complete R01B implementation, pinned install/build, runtime matrix, evidence and independent stage review; stop at H1",
+  "milestoneAccepted": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "checks": [
+    {
+      "path": "_temp/UnityCompile_20260909_065129.log",
+      "sha256": "e5a3d19bd99a6fd3df8ae6ed4cb83cdb65267da253785434bcd69c6442369376"
+    },
+    {
+      "path": "_temp/AssemblyShadow/EditorTests-5961f0a5b7334e028022ba0863827140/results.xml",
+      "sha256": "27398304fe22a0899658eca22c7057197ea68b84ed1d5ee543671b8c9cea13bd"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/codec-kernel-run-10/codec-kernel-receipt.json",
+      "sha256": "723529e93333b8a0442a7346e13984904e42e1d94ec12fb184282e0bec39eba9"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/index-runtime-current-1.json",
+      "sha256": "ccf48cb8955bc2a8e2a62dac28bb3715d7661c0098c55af8c18c334c19ddee91"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/type-cache-current-1.json",
+      "sha256": "c292c754f82fe11fba2e0d9282ccae2ba2aa9f066f69c9f8a39527bbfbdae0ee"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/attribute-current-1.json",
+      "sha256": "db3e405c1e003c0d0c676b9be1449ebefe51d19468e5afd91d2f4aa1d28ceaee"
+    }
+  ],
+  "ongoing": [
+    "Demo profile2 verifier and exact mixed byte-envelope integration",
+    "Fresh pinned ON/OFF Player build and runtime matrix",
+    "Evidence packaging and independent full-stage review"
+  ],
+  "editorTestNotes": {
+    "package": {
+      "passed": 695,
+      "failed": 0,
+      "skipped": 0
+    },
+    "demoInitial": {
+      "passed": 291,
+      "failed": 12,
+      "skipped": 0,
+      "causes": [
+        "Missing historical fixture artifacts",
+        "Stale ABI1 fixture values fixed; current nativeABI2"
+      ]
+    },
+    "combinedFirst": {
+      "passed": 998,
+      "failed": 1,
+      "skipped": 0,
+      "cause": "Fresh worktree local OSX architecture differed from frozen M01 ARM64 baseline"
+    },
+    "M01ConfiguredRetest": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "result": "_temp/AssemblyShadow/EditorTests-abd79f1ae471476ca521bda8dd602efe/results.xml"
+    }
+  },
+  "integrationFindings": [
+    {
+      "id": "R01B-CONT-001",
+      "detail": "Attribute string source bounds checked after copy",
+      "status": "ImplementedAndScopedReviewPassed"
+    },
+    {
+      "id": "R01B-CONT-002",
+      "detail": "Native16bit per-type counts and inherited method slots can narrow or overflow",
+      "status": "ImplementedAndScopedReviewPassed"
+    },
+    {
+      "id": "R01B-CONT-003",
+      "detail": "Profile2 API negotiation accepts capability1",
+      "status": "ImplementedAndScopedReviewPassed"
+    }
+  ],
+  "readerReconciliation": "Implemented in isolated runtime commit7bf9479; primary working copy untouched",
+  "installation": {
+    "repeatable": true,
+    "installedFiles": 957,
+    "receiptSha256": "7b01dce58e0e5388c2d4d0b7103b5dae529ecdee436fc777db6eb33c20029379",
+    "sourcePins": "current-status.json:R01BValidationCandidatePins",
+    "generatedNativeDefinitions": true,
+    "PlayerBuilt": false
+  }
+}

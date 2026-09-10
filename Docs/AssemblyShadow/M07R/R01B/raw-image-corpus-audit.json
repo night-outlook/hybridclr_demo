@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BRawImageCorpusRootAudit",
+  "receipt": "_temp/AssemblyShadow/R01B/raw-image-script3-receipt.json",
+  "receiptSha256": "bcea2fab762974fce2bc125c1d594f6bdfb53ca411d2eae773c2a93ff59cd5cb",
+  "dependencyCount": 953,
+  "changedDependenciesAtAudit": [],
+  "parserExecutionPassed": true,
+  "asanPassed": true,
+  "ubsanPassed": false,
+  "sanitizerFinding": "Existing production MetadataUtil.h:60 unaligned uint32 read; investigation in progress",
+  "workload": {
+    "assemblyCount": 8192,
+    "totalBytes": 536870912,
+    "maxBytes": 33554432,
+    "meanBytes": 65536,
+    "coreBytes": 487179264,
+    "fieldRvaPayloadBytes": 398640000,
+    "paddingBytes": 49691648,
+    "resourceBytes": 0
+  },
+  "manifestErrataPending": true,
+  "runtimeImageCapacityAccepted": false,
+  "playerExecuted": false,
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

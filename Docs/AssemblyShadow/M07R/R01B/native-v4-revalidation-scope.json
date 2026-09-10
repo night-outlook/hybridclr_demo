@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BNativeDependencyReconciliation",
+  "reviewer": "codec_review_gpt6astra_high_1",
+  "finalNativePins": {
+    "hybridclr": "3a70624d4c13d0a19c6d9a026395b79adcb3c215",
+    "il2cppPlus": "cb68c26c12cc60b8d98d2e9fc398f6e0f05d202e"
+  },
+  "requiredRefresh": [
+    "parser",
+    "codec-kernel",
+    "index-range",
+    "type-cache",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "VTableSetup.cpp syntax ON/OFF"
+  ],
+  "retainedSourceIdentical": [
+    {
+      "suite": "attribute",
+      "checkedDependencies": 935
+    },
+    {
+      "suite": "constraint helpers",
+      "syntaxCoverage": "Fresh M04 covers InterpreterImage.cpp and GlobalMetadata.cpp"
+    },
+    {
+      "suite": "native-counts helpers",
+      "syntaxCoverage": "Fresh VTableSetup.cpp ON/OFF plus M04"
+    },
+    {
+      "suite": "budget and recovery",
+      "namedHashes": 6
+    },
+    {
+      "suite": "startup gateway",
+      "namedHashes": 9,
+      "syntaxCoverage": "Fresh M05 covers Runtime.cpp and il2cpp-api.cpp"
+    }
+  ],
+  "alreadyRefreshed": "corrective-native-1/aggregate.json",
+  "headerSnapshot": "_temp/AssemblyShadow/R01B/v4-native-installed-snapshot",
+  "snapshotFiles": 957,
+  "externalFiles": 916,
+  "status": "RequiredRefreshPassed",
+  "freshParser": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/r01b-parser-run-7/r01b-parser-receipt.json",
+    "sha256": "7953d67d8f3af2bdb7fe4ffcdc5ff9300b7b9c2a47babb8aca17d31f7cc68407",
+    "result": "Passed",
+    "sanitizers": [
+      "ASan",
+      "UBSan"
+    ],
+    "recordedCommands": 48,
+    "corpusFiles": 8192,
+    "inputHashesStable": 960
+  },
+  "freshResultsAvailable": [
+    "M03",
+    "M04",
+    "M05",
+    "index-range",
+    "type-cache",
+    "codec-kernel",
+    "VTableSetup.cpp syntax ON/OFF",
+    "parser"
+  ],
+  "finalIndex": "native-v4-validation.json"
+}

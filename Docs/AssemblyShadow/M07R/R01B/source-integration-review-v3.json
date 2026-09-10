@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BIndependentSourceIntegrationReview",
+  "verdict": "PASS",
+  "scope": "Source only; Q06-Q08 and B05 integration. Not final stage acceptance.",
+  "reviewer": "codec_review_gpt6astra_high_1",
+  "pins": {
+    "demo": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+    "hybridclr": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+    "il2cppPlus": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+    "hybridclrUnity": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd"
+  },
+  "actionableFindings": [],
+  "reviewedInvariants": [
+    "Shared lifetime reservations and retained failures; finalization before publication; charged-page ceiling",
+    "Separate nonnegative AOT and negative interpreter indices; checked arithmetic; constraint sidecars",
+    "Owner-controlled private lookup, coordinated publication and bounded lazy-cache growth",
+    "Profile/capability2, source-bound codec identity, old-Player refusal before configuration and staging"
+  ],
+  "remainingEvidence": [
+    "Fresh v3 production and diagnostic Player pairing",
+    "Ordinary and mixed 8191/8192/8193 workload/headroom",
+    "Lazy/resource/private-publication and old-Player regression",
+    "Measured performance and memory",
+    "Immutable evidence package and final stage review"
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

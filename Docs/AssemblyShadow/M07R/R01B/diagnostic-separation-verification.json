@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BDiagnosticSeparationVerification",
+  "checks": {
+    "UnityConfigure": "Passed",
+    "DiagnosticSceneAuthor": "Passed",
+    "Python": {
+      "passed": 468,
+      "failed": 0,
+      "skipped": 0
+    },
+    "CapacityTools": {
+      "passed": 9,
+      "failed": 0
+    },
+    "EditorPackageFilter": {
+      "passed": 696,
+      "failed": 0,
+      "skipped": 0
+    },
+    "EditorDemo": {
+      "passed": 304,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "corrections": [
+    "Keep arbitrary acquisition stress inputs in the explicit diagnostic assembly",
+    "Keep IEnumerator yield outside catch-protected execution",
+    "Use mixed manifest image count before conversion to ordinary workload DTO",
+    "Import UnityEditor.Build for BuildFailedException",
+    "Exclude pre-load snapshot from post-load lazy image stability check",
+    "Write JSON launch receipt through a text stream"
+  ],
+  "logs": [
+    {
+      "path": "_temp/AssemblyShadow/R01B/configure-v2-3.log",
+      "sha256": "450a0110f7fc7109c2182b466a146c3c63cbb6d532a90e5a537faa4f8de16884"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/diagnostic-author-1.log",
+      "sha256": "7314aedf42b08f6a9493e6477dda62e876d02356676bcc708e27b88405d2c906"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/python-diagnostic-separation-1.log",
+      "sha256": "73c1b474e05ab92b7eee69d595038a598594ffccbbd8427e0354d0acc3a185a5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/capacity-diagnostic-separation-1.log",
+      "sha256": "8f80dce5f80bde383ad6ab42659579c9e51c403fc4ca99c757cac4baffb3e56f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/production-preflight-v2-1.log",
+      "sha256": "1822c4595a3c25a22d9e8a17a9dd391a476e23643fc4e5272938b059e9573878"
+    },
+    {
+      "path": "_temp/UnityExec_20260909_081850.log",
+      "sha256": "39dfde0fd92eb050063a31ca48f9a802a8e5e7c4df8241c85c61210fa786b472"
+    },
+    {
+      "path": "_temp/AssemblyShadow/M07CompilerPreflight-f3d81f79d70545169b8573d259e577e9/Snapshot/assembly-snapshot.json",
+      "sha256": "28f2070c5f9a96008494784838056d1b3b90e5e97e2b40a1e4b789206fc96e4a"
+    },
+    {
+      "path": "_temp/AssemblyShadow/EditorTests-540aa3411b5847f9a6290b18c14203c8/results.xml",
+      "sha256": "d8c874de071bda205954eff90b142414b1f9ec29de2ed0f7fafdc0de28f462cc"
+    },
+    {
+      "path": "_temp/AssemblyShadow/EditorTests-6d6cc12e746a495fadb4daca181b0870/results.xml",
+      "sha256": "b27f965a8726c6d783d9769a3929a7d7659fe2bada9e546044e7594b9b3fc4b9"
+    }
+  ],
+  "productionPreflight": "Passed",
+  "actualPlayerAcceptance": "NotRun",
+  "mayEnterR02": false,
+  "productionCompilerDiagnosticAssemblyAbsent": true,
+  "sourceRevision": "94a6a3146ffb69e6b4a3f236f76f5fb4592a2644"
+}

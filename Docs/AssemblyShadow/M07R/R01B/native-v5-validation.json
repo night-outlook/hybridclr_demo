@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BFinalNativeValidationIndex",
+  "result": "Passed",
+  "scope": "Fresh affected v5 native tests plus explicitly reconciled source-identical helpers; no Player or full-stage acceptance",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "63dde5e28e29b708ec05005e6d8bb82ef38442dc",
+      "localPath": "."
+    }
+  },
+  "freshReceipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/corrective-native-v5-1/aggregate.json",
+      "sha256": "f93dd258c887ac2b5b81710d8aac43ff39b5c04f0c342f9621c0e70f861a9a2a"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/syntax-v5-1/syntax-v5-1.json",
+      "sha256": "1080b159e903887546f89ee8b0cd045526030dcf126483eef265b8bb5fc4e847"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/m03-m06-v5-sealed-summary-1.json",
+      "sha256": "5ef1d13b6bee830c8525a9e278557551ea783f1244345766f93079c8c6c1e77a"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/parser-v5-sealed-1/r01b-parser-receipt.json",
+      "sha256": "50d8836bd428152c028dd84639cea12142c2ba627b230d5850807d6f48846608"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/parser-v5-sealed-1/sealed-v5-validation.json",
+      "sha256": "0c7d2f7ecf946b17b1f9cd72dc70148bb064de61dd821120aa206e7eb6871026"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/live-capability-correction-final-2.json",
+      "sha256": "2415ecea194f4b1d86f9cc799df70ec5e5d94d8fef4248b857474b77968a155c"
+    }
+  ],
+  "retainedReceipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/corrective-native-1/index-runtime.json",
+      "sha256": "4dae1f10f06f675c8114d07a4991d0f297076204e90a42f2afe2e248440f7df3"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/index-range-v4-sealed-1.json",
+      "sha256": "75543073df44af2cf1efef44094f18c08dafb21b74633dc8f0b1eecf32fd24db"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/type-cache-v4-sealed-1.json",
+      "sha256": "7f82d7eea30d949d67f5698ca739816bfbceac81f71872aad0b4a18af16ef6e7"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/codec-kernel-run-13/codec-kernel-receipt.json",
+      "sha256": "899299a4e467a56aa2e9602d67071370ebb87d09dab1df4e561f649d3d16c02b"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/attribute-v3-installed-1.json",
+      "sha256": "50770e030e5483766b0dd794d686d4feb4989cc1b773aa44a2bb26c29b116538"
+    }
+  ],
+  "retainedReconciliation": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/native-v5-revalidation-scope.json",
+    "sha256": "80a6641c169e17e5cd95a088afdd937bc863b50574c0ff205bf460dd4ca06a74"
+  }
+}

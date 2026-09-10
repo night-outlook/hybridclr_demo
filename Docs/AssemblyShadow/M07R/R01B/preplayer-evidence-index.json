@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BPrePlayerEvidenceIndex",
+  "createdUtc": "2026-09-09",
+  "status": "PrePlayerEvidenceOnly",
+  "scope": "Hash-bound index of current R01B native/scoped checks, managed diagnostics, installation pairing and focused corrections. It records validation coverage and does not constitute production adoption, runtime-capacity support, Player acceptance or a full-stage PASS.",
+  "sourcePins": {
+    "hybridclr": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+    "il2cppPlus": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+    "hybridclrUnity": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+    "demoExecutable": "6201caba908339579b034303c2a72735a5e51065",
+    "sourcePinArtifact": {
+      "path": "_temp/AssemblyShadow/M07ResourceBaseline-M07-Baseline-R01B-20260909-v2-de0771b23aa44d9f9355fc8936ae5fe8/Sources/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "430e0ad3719419f11418d3b207034cd3403be04a3b3f6c226bbe52626af87dfd"
+    },
+    "nativeCodeUnchangedForThisIndex": true
+  },
+  "revisionBoundary": {
+    "preDemoCorrection": {
+      "revision": "94a6a3146ffb69e6b4a3f236f76f5fb4592a2644",
+      "appliesTo": [
+        "Python full diagnostic separation (468 passed)",
+        "Editor package and demo diagnostic separation (696 and 304 passed)",
+        "capacity tools (9 passed)"
+      ],
+      "limit": "These artifacts are source-revision-bound evidence and are not retested proof for a later demo source.",
+      "evidenceDocument": {
+        "path": "Docs/AssemblyShadow/M07R/R01B/diagnostic-separation-verification.json",
+        "sha256": "9660e3c889fcddfe999d11c8974a465c2263697a7152e9bd2a8bb2d336421ba6"
+      }
+    },
+    "focusedDemoCorrection": {
+      "revision": "6201caba908339579b034303c2a72735a5e51065",
+      "editorPassed": 4,
+      "editorFailed": 0,
+      "pythonLazyFocusedPassed": 5,
+      "pythonLazyFocusedFailed": 0,
+      "evidenceDocument": {
+        "path": "Docs/AssemblyShadow/M07R/R01B/diagnostic-separation-review-2.json",
+        "sha256": "98e2a9320456a804070c632a7d90c4ac967b52b0aa399d476865e19c6d99f62c"
+      }
+    }
+  },
+  "nativeEvidence": {
+    "continuationIndex": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/continuation-native-evidence-index.json",
+      "sha256": "771042fc392123b1ded2a82d346f34a7a7331fb52d7c8068ded40d70ab5d517d",
+      "entryCount": 12,
+      "allEntriesSuccess": true
+    },
+    "installedHeaderValidation": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/installed-header-validation.json",
+      "sha256": "cdc5fd2f6315b37efa8437b886c9e79b552f8750fecb0f15fdfec91dee49c03d",
+      "allChecksSuccess": true,
+      "playerEvidence": false
+    },
+    "reconciledParser": {
+      "path": "_temp/AssemblyShadow/R01B/r01b-parser-run-5/r01b-parser-receipt.json",
+      "sha256": "ecc364ee7514238936ca09b09d39c64f7db7f9c2dac44f717db0d2f793328efe",
+      "success": true,
+      "provenanceStable": true,
+      "fullCorpus": {
+        "files": 8192,
+        "fieldRvaRows": 8196,
+        "payloadSamples": 40980,
+        "largeFiles": 1
+      },
+      "denseAdjunct": {
+        "typedefRows": 8196,
+        "methodRows": 8194,
+        "checks": 2
+      },
+      "boundedReader": {
+        "allCasesPassed": true,
+        "zeroSentinelPassed": true,
+        "validateStreamsPassed": true,
+        "controlledExceptionCasesPassed": 7,
+        "boundedFalseCasesPassed": 2
+      },
+      "sanitizerClean": true
+    },
+    "codecKernel": {
+      "review": {
+        "path": "Docs/AssemblyShadow/M07R/R01B/codec-finalize-review-2.json",
+        "sha256": "365fcdbbc661772681dea67750b193314904ee4beff1858a27bd814b0191b8d3",
+        "verdict": "PASS",
+        "milestoneAccepted": false,
+        "humanGatePassed": false
+      },
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/codec-kernel-run-10/codec-kernel-receipt.json",
+        "sha256": "723529e93333b8a0442a7346e13984904e42e1d94ec12fb184282e0bec39eba9",
+        "releaseChecks": 8797,
+        "asanUbsanChecks": 8797,
+        "releaseFailures": 0,
+        "asanUbsanFailures": 0
+      }
+    },
+    "runtimeAdapter": {
+      "path": "_temp/AssemblyShadow/R01B/index-runtime-current-1.json",
+      "sha256": "ccf48cb8955bc2a8e2a62dac28bb3715d7661c0098c55af8c18c334c19ddee91",
+      "success": true,
+      "checks": 157,
+      "limit": "Controlled opaque-image and bridge/TLS stubs; no full InterpreterImage, Unity, install or Player semantics."
+    }
+  },
+  "managedAndInstallationEvidence": {
+    "diagnosticSeparation": {
+      "document": {
+        "path": "Docs/AssemblyShadow/M07R/R01B/diagnostic-separation-verification.json",
+        "sha256": "9660e3c889fcddfe999d11c8974a465c2263697a7152e9bd2a8bb2d336421ba6"
+      },
+      "editorPackage": {
+        "passed": 696,
+        "failed": 0,
+        "skipped": 0,
+        "results": {
+          "path": "_temp/AssemblyShadow/EditorTests-540aa3411b5847f9a6290b18c14203c8/results.xml",
+          "sha256": "d8c874de071bda205954eff90b142414b1f9ec29de2ed0f7fafdc0de28f462cc"
+        }
+      },
+      "editorDemo": {
+        "passed": 304,
+        "failed": 0,
+        "skipped": 0,
+        "results": {
+          "path": "_temp/AssemblyShadow/EditorTests-6d6cc12e746a495fadb4daca181b0870/results.xml",
+          "sha256": "b27f965a8726c6d783d9769a3929a7d7659fe2bada9e546044e7594b9b3fc4b9"
+        }
+      },
+      "pythonFull": {
+        "passed": 468,
+        "failed": 0,
+        "skipped": 0,
+        "log": {
+          "path": "_temp/AssemblyShadow/R01B/python-diagnostic-separation-1.log",
+          "sha256": "73c1b474e05ab92b7eee69d595038a598594ffccbbd8427e0354d0acc3a185a5"
+        }
+      },
+      "capacityTools": {
+        "passed": 9,
+        "failed": 0,
+        "log": {
+          "path": "_temp/AssemblyShadow/R01B/capacity-tools-current-2.log",
+          "sha256": "8f80dce5f80bde383ad6ab42659579c9e51c403fc4ca99c757cac4baffb3e56f"
+        }
+      }
+    },
+    "focusedCorrection": {
+      "review": {
+        "path": "Docs/AssemblyShadow/M07R/R01B/diagnostic-separation-review-2.json",
+        "sha256": "98e2a9320456a804070c632a7d90c4ac967b52b0aa399d476865e19c6d99f62c"
+      },
+      "editor": {
+        "passed": 4,
+        "failed": 0,
+        "log": {
+          "path": "_temp/AssemblyShadow/R01B/editor-lazy-corrections-2.log",
+          "sha256": "2f7a1504234821dea9589b6f42baf04ff6e0133e2184fe0ac9b8661826439999"
+        },
+        "results": {
+          "path": "_temp/AssemblyShadow/EditorTests-380ab6a54eaf4ec78d9c681c6b452dc8/results.xml",
+          "sha256": "d5238fd470e425fb01110d82c9f6f4674b66464c67100a23364b368decd8bdaa"
+        }
+      },
+      "pythonLazyFocused": {
+        "passed": 5,
+        "failed": 0,
+        "countSource": "diagnostic-separation-review-2.json"
+      }
+    },
+    "installationPairing": {
+      "path": "_temp/AssemblyShadow/R01B/prebuild-pairing-4.json",
+      "sha256": "60637a92558323a94fbb86e91d410bd57cf4fa88e5b033d4026d5f47627e7dee",
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "sourceFiles": 955,
+      "installedFiles": 957,
+      "configuredShadowMode": "on",
+      "embeddedReceiptSha256": "22c437c1e8b6c723cdb04a8aaf2c6198c312c106365a841d48c7b5561455fb3b"
+    }
+  },
+  "historicalLineage": {
+    "candidateManagedSnapshot": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/candidate-managed-verification.json",
+      "sha256": "108de5dc22ed6c3fc2c8a764a83b303ed9055dbd2d308e097b32fa02d1d4934d",
+      "role": "SupersededCandidateSnapshot",
+      "demoSource": "5418c521f132695a70927e2108b672e93c8bbcc1",
+      "countsUsedForCurrentSummary": false
+    }
+  },
+  "acceptanceBoundary": {
+    "playerEvidence": false,
+    "actualPlayerAcceptance": "Pending",
+    "playerBuildState": "RootOwnedBuildPendingAcceptance",
+    "milestoneAccepted": false,
+    "humanGatePassed": false,
+    "mayEnterR02": false,
+    "runtimeCapacityClaim": false,
+    "checkpoint": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/continuation-checkpoint-20260909.json",
+      "sha256": "ad1d3b3fc7b61d6260fe90325b9a19d7de7b538a18345ade7d2a132e8fe7d2d8"
+    },
+    "deferredEvidence": [
+      "Fresh pinned ON/OFF Player build and runtime matrix",
+      "H1 human acceptance",
+      "Independent full-stage review",
+      "R02 entry decision"
+    ]
+  }
+}

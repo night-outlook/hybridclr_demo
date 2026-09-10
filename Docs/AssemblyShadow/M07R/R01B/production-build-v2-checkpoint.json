@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BProductionBuildCheckpoint",
+  "status": "SupersededBeforeFixtureFinalization",
+  "sourceRevision": "6201caba908339579b034303c2a72735a5e51065",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v2",
+  "metadataProfile": 2,
+  "artifacts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-46f0d5515a574e45b66cba88c7a87d98/m07-player-build.json",
+      "sha256": "b222a040bba0ff5c6e6a4842069d8f514f75a6389783e7071aadb984130cd191"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R01B-20260909-v2/baseline-manifest.json",
+      "sha256": "07e643b7f2c8b7b778dd1459fc652a7ee6979b5be8e6d45000b41eaea9968d5a"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/prebuild-pairing-4.json",
+      "sha256": "60637a92558323a94fbb86e91d410bd57cf4fa88e5b033d4026d5f47627e7dee"
+    }
+  ],
+  "milestoneAccepted": false,
+  "mayEnterR02": false,
+  "reason": "Pinned IL2CPP GetProcessData rejects Process.WorkingSet64 used by diagnostic capacity probe; replace with verified Darwin current/peak RSS and freeze new demo pin before rebuilding",
+  "ownedStoppedProcess": {
+    "pid": 40318,
+    "method": "AssemblyShadowDemo.Editor.M07StructuralResources.FinalizeFixtures",
+    "signal": "SIGTERM",
+    "workflowExitCode": 1
+  },
+  "productionOnAndOffPlayersBuilt": true,
+  "fixtureReplayAcceptance": false
+}

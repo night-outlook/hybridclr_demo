@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BDiagnosticFailureDiscoveryV3",
+  "acceptance": false,
+  "reason": "Diagnostic linked HybridCLR.Runtime differs from production by four stripped parser methods; startup harness corrections are not integrated.",
+  "diagnosticBuild": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/diagnostic-v3-1.json",
+    "sha256": "0b2578d8d316f0b498c2dbae41196383e3071521534f2f55e1b5b6132de9bd30"
+  },
+  "coreCompatibility": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/diagnostic-v3-core-compatibility.json",
+    "sha256": "4d0fe465520da7387ee28292562d196402556449ef1ff32d05133cb243f4a607"
+  },
+  "lazy": {
+    "launch": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-lazy-diagnostic-1/launch.json",
+      "sha256": "00e27f41fae41b9c980d1b30cc20bc7d9d866d5ef78353f8a3bf43bada8b5a9b"
+    },
+    "early": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-lazy-diagnostic-1/early.json",
+      "sha256": "a0e902fd0ca0d1d562bb5e22964f27a58fde434f95f7f44035b74cf57fcf28a9"
+    },
+    "log": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-lazy-diagnostic-1/unity.log",
+      "sha256": "8d4ccddcafff78f0f9bb818357556c03393b918e538e5dac72c3ea06b24a1784"
+    },
+    "result": "SIGABRT in VTableSetup IsPrivateMethod assertion; fixture virtual method slot/closure metadata being corrected against pinned C# compiler."
+  },
+  "ordinary": {
+    "launch": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-capacity-diagnostic-1/launch.json",
+      "sha256": "e00d16a3834505074d1275806fa95f8f2815cdf1756c06f66a39adc2cf031817"
+    },
+    "result": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-capacity-diagnostic-1/capacity.json",
+      "sha256": "6b910e77ed1b4d35ffcad321c544df2adb3d478d68f9cb174784ac816238d4a3"
+    },
+    "failure": "Probe read RVA payload as initialized static storage; replace with supported RuntimeHelpers.InitializeArray field-data path.",
+    "memoryProviderObserved": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+    "currentRssBeforeBytes": 242909184,
+    "peakAtFirstImageFailureBytes": 242941952,
+    "envelopeAccepted": false
+  },
+  "next": "Integrate ownership, harness, fixture and targeted linker fixes; freeze fresh source and rebuild production/diagnostic evidence."
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BDormantProfileWireCorrection",
+  "cause": "JsonUtility materializes unused legacy metadata DTO fields into default objects; runtime probe formerly required null and would reject current profile2 patch manifests",
+  "fix": "Retain complete legacy value shape and accept only its exact dormant values beside active profile2; reject partial or populated legacy pairs",
+  "test": "AssemblyShadowDemo.EditorTests.R01EarlyStartupTests.Profile2ReservationAcceptsOnlyExactDormantLegacyJsonUtilityFields",
+  "testResult": "Passed",
+  "source": "Actual package ShadowPatchManifest serialized by Unity JsonUtility and parsed into runtime probe DTOs; negative altered array and native revision tests",
+  "resultXml": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/EditorTests-06dd300d1610472f86bd9b7fddfe8a16/results.xml",
+  "resultXmlSha256": "364ded1693bc68bf3ee52d59f098572a14ae156e013cf4b34b0aea1764bd1c29",
+  "suiteResult": "999 passed,1 failed because an in-progress mixed probe source change interrupted the compiler fixture test; complete final rerun pending",
+  "PlayerAcceptance": false
+}

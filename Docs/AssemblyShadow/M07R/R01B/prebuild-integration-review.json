@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "BoundedPrebuildIntegration",
+  "verdict": "PASS",
+  "reviewer": "codec_review_gpt6astra_high_1",
+  "sourceCommits": {
+    "hybridclr": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+    "il2cppPlus": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+    "hybridclrUnity": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd"
+  },
+  "scope": [
+    "ordinary load construction ownership and finalized footprint before publication",
+    "shared Shadow lifetime reservation and VM snapshot publication",
+    "profile-2 native JSON and managed parsing contract",
+    "capability-2 negotiation and ABI-2 startup rejection"
+  ],
+  "findings": [],
+  "limitations": [
+    "Source inspection only; actual Player construction, lazy growth and workload capacity remain pending",
+    "Aggregate capacity diagnostics do not independently prove every finalized image footprint",
+    "Not the independent final R01B stage gate or human H1 approval"
+  ]
+}

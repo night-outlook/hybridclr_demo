@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV5ProductionWorkflow",
+  "result": "Passed",
+  "scope": "Production build, fixture generation and replay only; Player acceptance pending",
+  "workflow": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-f69d5ea9257e4ceea59c727a918a4cdb/m07-build-workflow.json",
+    "sha256": "b1ae013922f68bdac9e1e63f5c9a4e920c8c6c0712fd04c8ca75257e7877b2cf"
+  },
+  "fixture": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-f69d5ea9257e4ceea59c727a918a4cdb/m07-fixtures.json",
+    "sha256": "44a63e69667c7b4fca2e5e24adad006e4d53924352b4e1975f0380dc77d996cd"
+  },
+  "replay": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-f69d5ea9257e4ceea59c727a918a4cdb/m07-editor-replay.json",
+    "sha256": "e167f02a9ea2e991c47f320e8a32fe7ff8aaed58d123b76f4507fa33bef4c522"
+  },
+  "on": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-368c3c79b8bc44878eebad60e7860772/m07-player-build.json",
+    "sha256": "8ad7a97cbf26c8bdfe7b834e1ff0bb975db4c30a8c9611bb5380e04dbd2df3fb"
+  },
+  "off": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-be940c47c40049e6b4e8f69109044fb5/m07-player-build.json",
+    "sha256": "3bb31e6953e785dacaedd8a67fc19932001b170ee856556e7c885868fb057956"
+  },
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "63dde5e28e29b708ec05005e6d8bb82ef38442dc",
+      "localPath": "."
+    }
+  },
+  "buildLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/build-v5.log",
+    "sha256": "16e2776735e93b30aa980096bcc95a33931d936402f8daacb0e038443769ee78"
+  },
+  "prebuildPairing": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/prebuild-pairing-7.json",
+    "sha256": "5bf0b36c64a610345b66097e47a620afd1ac8c9c8ae9191e7d8657ee06a5701c"
+  }
+}

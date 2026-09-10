@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "status": "PinnedProductionWorkflowRunning",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v5",
+  "runtimeAbiHash": "d4e003eb88ed41a8a1acc1d9b46024faa94cf48e57f7ca6a80fc01222571115f",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "63dde5e28e29b708ec05005e6d8bb82ef38442dc",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "08441628dc06d317052583035dc3e85f5dc1dd6f",
+  "buildLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/build-v5.log",
+  "sourceValidation": "corrective-v5-source-validation.json",
+  "prebuildPairing": {
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "sourceFiles": 955,
+    "installedFiles": 957,
+    "demoSourceVerified": true,
+    "configuredShadowMode": "on",
+    "receiptSha256": "9378796d42cd0e27b476b26795c6cf95ed595b91609eb16ba0e505b3c434252f"
+  },
+  "sealedNativeHeaders": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/v5-native-installed-snapshot",
+  "pending": [
+    "Production ON/OFF workflow and fixture/replay seal",
+    "Diagnostic Player plus strict production/core compatibility",
+    "Fresh failure fixtures, negative inputs and mixed corpus",
+    "Strict early11 and M0714 Player regression",
+    "Actual ordinary/mixed8192 and8193 capacity gates",
+    "Lazy/dense and oldPlayer refusal gates",
+    "R004 strict Player observations and comparison",
+    "Native refresh evidence reconciliation",
+    "Evidence package, local commits and independent fullstage review; stopH1"
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

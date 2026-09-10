@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "runs": [
+    {
+      "milestone": "M03",
+      "receipt": "_temp/AssemblyShadow/R01B/lazy-regression-m03-1.json",
+      "sha256": "6f2adc63f0a0051e8a85b2a50cf189e8fe7cd1f2df49074cce32e5faff889e85",
+      "success": true,
+      "inputsUnchanged": true
+    },
+    {
+      "milestone": "M04",
+      "receipt": "_temp/AssemblyShadow/R01B/lazy-regression-m04-1.json",
+      "sha256": "89eb6c58afc6ce8929642cd5b5d6bb70b2aebbef07dee42c18312cb4eabbf5a8",
+      "success": true,
+      "inputsUnchanged": true
+    },
+    {
+      "milestone": "M05",
+      "receipt": "_temp/AssemblyShadow/R01B/lazy-regression-m05-1.json",
+      "sha256": "87ed38be3fe15dbe7ace14d0f7a733d22b42b3288dcf992c1e5f02d5fc339304",
+      "success": true,
+      "inputsUnchanged": true
+    },
+    {
+      "milestone": "M06",
+      "receipt": "_temp/AssemblyShadow/R01B/lazy-regression-m06-1.json",
+      "sha256": "3d3a2f566f8c39bbd60be1958fd3bc3f6bed7a49669902a6328e111931d124f0",
+      "success": true,
+      "inputsUnchanged": true
+    }
+  ],
+  "scope": "Affected M03-M06 native regression harnesses after reader and lazy-cache changes; current R01B sources plus accepted R01 generated fallback",
+  "limits": [
+    "Each native runner retains its controlled-adapter limitations",
+    "No installed-source or Player acceptance",
+    "Production sparse codec remains unwired",
+    "Run1 M03/M04 selected older M01 baseline DLL snapshots under the R01 checkout; retain as extra coverage. Exact prior HotUpdateDll fixture reruns requested before comparing regression counts."
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false,
+  "sameFixtureComparisonComplete": false
+}

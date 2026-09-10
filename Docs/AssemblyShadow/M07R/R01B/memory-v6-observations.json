@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6MemoryObservations",
+  "status": "ReceiptBoundNoUnstatedThreshold",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+  "capacityReceipts": [
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/strict-verification.json",
+      "sha256": "2e9b7d06cf952d1a749a6ecd68a6a2feb8b0d58e4ee0f935d248f88357130b04"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/strict-verification.json",
+      "sha256": "f60c64307c0a44e40f2e06fd07e8e2ca5dc67d72ea459543c95c76e224375626"
+    }
+  ],
+  "rawResults": [
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/r01b-capacity-result.json",
+      "sha256": "2d871f6ec05986b4b81e0481ce7de1cd9835e2df14911d5e3e7edae702e8f20d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/r01b-mixed-result.json",
+      "sha256": "eccb35a1089dee8d61c725e6388b9b578add066f52874d3fc739314eaff85ace"
+    }
+  ],
+  "observations": [
+    {
+      "scenario": "ordinary",
+      "processId": 60171,
+      "validDllBytes": 536870912,
+      "loadedOrdinaryImages": 8192,
+      "shadowImages": 0,
+      "retainedFailureCount": 0,
+      "lifetimeImages": 8192,
+      "reservedPages": 16388,
+      "mappedPages": 16388,
+      "freeUsablePages": 507899,
+      "freePercent": 96.87423109861584,
+      "initialResidentBytes": 243171328,
+      "lifetimePeakResidentBytes": 1722351616,
+      "managedBytesAfter": 21876736,
+      "loadMilliseconds": 308376
+    },
+    {
+      "scenario": "mixed",
+      "processId": 61694,
+      "validDllBytes": 536870912,
+      "loadedOrdinaryImages": 8184,
+      "shadowImages": 5,
+      "retainedFailureCount": 3,
+      "lifetimeImages": 8192,
+      "reservedPages": 16392,
+      "mappedPages": 16389,
+      "freeUsablePages": 507895,
+      "freePercent": 96.87346815770752,
+      "initialResidentBytes": 307822592,
+      "lifetimePeakResidentBytes": 1783267328,
+      "managedBytesAfter": 55033856,
+      "loadMilliseconds": 301481
+    }
+  ],
+  "limits": [
+    "No calibrated RAM, RSS, throughput, or P99 claim is inferred from input-byte capacity."
+  ]
+}

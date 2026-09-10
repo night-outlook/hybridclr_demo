@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV5R00HandoffReaderFailure",
+  "result": "FailedBeforeTiming",
+  "scope": "Three ON performance modes fail; OFF passes; other passing v5 runtime records are retained but do not complete R01B.",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "63dde5e28e29b708ec05005e6d8bb82ef38442dc",
+      "localPath": "."
+    }
+  },
+  "launch": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/r00-player-launches.json",
+    "sha256": "a29ec82a89ea83515958e3104cbdad8a488f9dea9643f9258e94b6b5a866f446"
+  },
+  "log": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/r00-v5-1.log",
+    "sha256": "a70fcd8e3ad146cc1d3e1dd6ddae1a0bc2bce13bbf4531d8d51f07ff6404dd29"
+  },
+  "modes": [
+    {
+      "mode": "R00-ON-NoPatch",
+      "result": "Failed",
+      "resultArtifact": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-ON-NoPatch.json",
+        "sha256": "b5c8567427b1191725189ee33e305d71f772a019d2c060d2ba3fc3691e82e9cc"
+      },
+      "error": "System.InvalidOperationException: R00 Baseline early receipt performed unexpected transaction work.\n  at AssemblyShadowDemo.M07Probe.Require (System.Boolean value, System.String message) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07R00PerformanceProbe.ValidateEarlyHandoff (AssemblyShadowDemo.M07Probe+Input input, System.String expectedMode, System.Boolean expectTransaction) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07R00PerformanceProbe+<RunAndWriteCoroutine>d__7.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07BootstrapRunner+<Start>d__3.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) [0x00000] in <00000000000000000000000000000000>:0 ",
+      "earlyReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-ON-NoPatch/r01-early.json",
+        "sha256": "6e90c230ef573a120a2a09b9d912679610158bc1aa863963e7450b787da2f344"
+      },
+      "earlyResult": "Passed",
+      "operationPhases": [],
+      "snapshotPhases": [
+        "before-startup-ops"
+      ]
+    },
+    {
+      "mode": "R00-ON-P01",
+      "result": "Failed",
+      "resultArtifact": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-ON-P01.json",
+        "sha256": "70fb3d8db2a2fdb39271c109ecf062e3d0e2e3de9500847a416cf0465d11000f"
+      },
+      "error": "System.InvalidOperationException: R00 early Control receipt is not bound to the selected patch closure.\n  at AssemblyShadowDemo.M07Probe.Require (System.Boolean value, System.String message) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07R00PerformanceProbe.ValidateEarlyHandoff (AssemblyShadowDemo.M07Probe+Input input, System.String expectedMode, System.Boolean expectTransaction) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07R00PerformanceProbe+<RunAndWriteCoroutine>d__7.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07BootstrapRunner+<Start>d__3.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) [0x00000] in <00000000000000000000000000000000>:0 ",
+      "earlyReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-ON-P01/r01-early.json",
+        "sha256": "5bb101f527901ceea3affd670bc3d113766c842e94cab60454fc4ffd6b32ed1a"
+      },
+      "earlyResult": "Passed",
+      "operationPhases": [
+        "configure",
+        "begin",
+        "reserve",
+        "stage:AssemblyA.Implementation.Internal",
+        "validate",
+        "commit"
+      ],
+      "snapshotPhases": [
+        "before-startup-ops",
+        "after-configure",
+        "after-begin",
+        "after-reserve",
+        "after-stage",
+        "after-validate",
+        "after-commit"
+      ]
+    },
+    {
+      "mode": "R00-ON-P03",
+      "result": "Failed",
+      "resultArtifact": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-ON-P03.json",
+        "sha256": "79c4a6f486519d6777ff7239f8784c9da52ea3e71423cbdcc7f7f44502880813"
+      },
+      "error": "System.InvalidOperationException: R00 early Control receipt is not bound to the selected patch closure.\n  at AssemblyShadowDemo.M07Probe.Require (System.Boolean value, System.String message) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07R00PerformanceProbe.ValidateEarlyHandoff (AssemblyShadowDemo.M07Probe+Input input, System.String expectedMode, System.Boolean expectTransaction) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07R00PerformanceProbe+<RunAndWriteCoroutine>d__7.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.M07BootstrapRunner+<Start>d__3.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) [0x00000] in <00000000000000000000000000000000>:0 ",
+      "earlyReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-ON-P03/r01-early.json",
+        "sha256": "dd91fdef211db69e0502cb5431192f14c32cba681b7d79240624a67187d6573c"
+      },
+      "earlyResult": "Passed",
+      "operationPhases": [
+        "configure",
+        "begin",
+        "reserve",
+        "stage:AssemblyA.Contracts",
+        "stage:AssemblyA.Implementation.Extensibility",
+        "stage:AssemblyA.Implementation.Internal",
+        "stage:AssemblyShadowDemo.ContractsConsumer",
+        "stage:AssemblyShadowDemo.ExtensibilityConsumer",
+        "validate",
+        "commit"
+      ],
+      "snapshotPhases": [
+        "before-startup-ops",
+        "after-configure",
+        "after-begin",
+        "after-reserve",
+        "after-stage",
+        "after-validate",
+        "after-commit"
+      ]
+    },
+    {
+      "mode": "R00-OFF-NoPatch",
+      "result": "Passed",
+      "resultArtifact": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v5-r00-1/Results/R00-OFF-NoPatch.json",
+        "sha256": "1d6ef8ca03b0747f083d36dea74d7b6c12a45f46ac5f726e9d7c20dea1fbec0a"
+      },
+      "error": ""
+    }
+  ],
+  "diagnosis": "R00 uses JsonUtility.FromJson<R01EarlyStartup.Receipt> on a manually encoded receipt model whose nested operation/snapshot classes are not Serializable. Raw same-process receipts contain the correct operation/snapshot inventory, but the Unity reader cannot faithfully materialize those lists. Dedicated serializable handoff projection and exact inventory regression coverage required.",
+  "correction": "In progress; new demo executable pins and v6 Player build/acceptance required.",
+  "milestoneAccepted": false,
+  "H1Passed": false,
+  "mayEnterR02": false
+}

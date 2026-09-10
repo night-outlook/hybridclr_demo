@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BContinuationNativeChecks",
+  "entries": [
+    {
+      "path": "_temp/AssemblyShadow/R01B/m03-current-2.json",
+      "sha256": "9bd87c2a8630afd721d71ff9f468812a2860154c53ccaaab418190410cc3c0c0",
+      "success": true,
+      "metrics": {
+        "identityChecks": 94707
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/m04-current-1.json",
+      "sha256": "ad7ae5b879af8db0597f2dad8343432ea76301214cb46e7f26ddc684f4c1269d",
+      "success": true,
+      "metrics": {
+        "checks": 58,
+        "syntaxChecks": 22
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/m05-current-1.json",
+      "sha256": "65a7c8371886db4e509dcb5cd90a8aff9b29f957adc5a30d83f6f633577145ec",
+      "success": true,
+      "metrics": {
+        "syntaxChecks": 34
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/m06-current-1.json",
+      "sha256": "05efc0cabe80b96dc61b8e327b5f1190a163d9cfc1005bb13303067ac3f600f0",
+      "success": true,
+      "metrics": {
+        "checks": 824,
+        "syntaxChecks": 20
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/startup-current-1.json",
+      "sha256": "a9668a7400552402a8d75a269a458dfa5af5184fe8355d057faf757ee1437544",
+      "success": true,
+      "metrics": {
+        "checks": 168
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/transaction-current-1.json",
+      "sha256": "96a1ae8710efd14cb315868f1fc68731dd721dc058e09ca469a729536c67f67c",
+      "success": true,
+      "metrics": {
+        "checks": 131
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/constraint-current-1.json",
+      "sha256": "0878a678324ecd10aa76f8cf859f616af19c6796b58b659ceceb4a805666ebf5",
+      "success": true,
+      "metrics": {
+        "checkCount": 34
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/index-range-current-1.json",
+      "sha256": "9c2f4029565ea69486e6c5f6b853322273e722b3e961403783bcd23a5392901f",
+      "success": true,
+      "metrics": {
+        "checkCount": 49
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/index-runtime-current-1.json",
+      "sha256": "ccf48cb8955bc2a8e2a62dac28bb3715d7661c0098c55af8c18c334c19ddee91",
+      "success": true,
+      "metrics": {
+        "checkCount": 157
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/type-cache-current-1.json",
+      "sha256": "c292c754f82fe11fba2e0d9282ccae2ba2aa9f066f69c9f8a39527bbfbdae0ee",
+      "success": true,
+      "metrics": {
+        "checkCount": 77
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/attribute-current-1.json",
+      "sha256": "db3e405c1e003c0d0c676b9be1449ebefe51d19468e5afd91d2f4aa1d28ceaee",
+      "success": true,
+      "metrics": {
+        "releaseChecks": 4197,
+        "asanUbsanChecks": 4197
+      }
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/native-counts-current-1.json",
+      "sha256": "c34b442d69cef3b8e36d16b2f73eaabb708c370b2a4847fc85473f802a4f51b9",
+      "success": true,
+      "metrics": {
+        "releaseChecks": 32
+      }
+    }
+  ],
+  "boundary": "Source-first native checks; installed R01 headers provide Unity ABI provenance only. Not new installed-runtime or Player evidence. Source file hashes bind tested bytes before source candidate commits.",
+  "milestoneAccepted": false
+}

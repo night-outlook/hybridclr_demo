@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV5AcceptanceInputGeneration",
+  "result": "PassedInputGenerationOnly",
+  "failure": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/failure-v5-1/failure-fixtures.json",
+    "sha256": "a78403f1ce27bf218d26b4e3b7bec599a2c0687baaca12c0539bf4ca61c20d46"
+  },
+  "negative": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/negative-v5-1/q04-metadata-transform.json",
+    "sha256": "a5378d1a57cdd22baf9ac8238c8cbea7669b78908d38a1a929a7cd67194d085a"
+  },
+  "mixed": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/mixed-v5-1/r01b-mixed-workload-manifest.json",
+    "sha256": "bfa0a34f62d14c62b8dd5f0ee94caa4040e10d943a53b134d1785de98562b8af"
+  },
+  "mixedProvenance": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/mixed-v5-1/generation-provenance.json",
+    "sha256": "7854eace5be46f399b0a9fe348979b3878b295f645f653a0f8fcd8faf421e4c7"
+  },
+  "postDiagnosticPairing": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/postdiagnostic-pairing-v5-1.json",
+    "sha256": "5bf0b36c64a610345b66097e47a620afd1ac8c9c8ae9191e7d8657ee06a5701c"
+  },
+  "limits": [
+    "No Player result is inferred from input generation.",
+    "Mixed population has 8189 valid DLLs plus 3 retained failures; 512 MiB is valid DLL bytes, not a 64 KiB mean over 8189 valid DLLs."
+  ]
+}

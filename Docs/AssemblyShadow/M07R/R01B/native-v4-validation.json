@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BFinalNativeValidationIndex",
+  "result": "Passed",
+  "scope": "Corrected native source and sealed installed headers; no Player or full-stage acceptance",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "3a70624d4c13d0a19c6d9a026395b79adcb3c215",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "cb68c26c12cc60b8d98d2e9fc398f6e0f05d202e",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "68def7a9530913daab6b8175f06c9cf47a1a3fd4",
+      "localPath": "."
+    }
+  },
+  "receipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/corrective-native-1/aggregate.json",
+      "sha256": "2ad270f7f0ae5528fae6b2dd74ec817bc28761219da03607b1e0f4e4b6fbe94a"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/r01b-parser-run-7/r01b-parser-receipt.json",
+      "sha256": "7953d67d8f3af2bdb7fe4ffcdc5ff9300b7b9c2a47babb8aca17d31f7cc68407"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/r01b-parser-run-7/sealed-v4-validation.json",
+      "sha256": "e16da84c64098ba6d4a4c17e2795cd9da5246a12fd7c82647ae9f1ac3293f872"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/m03-m06-v4-sealed-summary-1.json",
+      "sha256": "9ae029ffd1361b63871a5e5b77928c17d15c158900deae3ea61ed009f78727f0"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/index-range-v4-sealed-1.json",
+      "sha256": "75543073df44af2cf1efef44094f18c08dafb21b74633dc8f0b1eecf32fd24db"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/type-cache-v4-sealed-1.json",
+      "sha256": "7f82d7eea30d949d67f5698ca739816bfbceac81f71872aad0b4a18af16ef6e7"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/codec-kernel-run-13/codec-kernel-receipt.json",
+      "sha256": "899299a4e467a56aa2e9602d67071370ebb87d09dab1df4e561f649d3d16c02b"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/vtable-v4-sealed-1.json",
+      "sha256": "0ba17ec2a73332e43619cd11e9cc40184e29ff28bf6eadff9bb5af5462b8c7e5"
+    }
+  ],
+  "retainedReconciliation": "native-v4-revalidation-scope.json"
+}

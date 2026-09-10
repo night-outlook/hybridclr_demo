@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BHistoricalEvidenceClassification",
+  "purpose": "Retain diagnostic history without using superseded results as current Player or milestone acceptance.",
+  "documents": [
+    {
+      "path": "continuation-checkpoint-20260909.json",
+      "sha256": "ad1d3b3fc7b61d6260fe90325b9a19d7de7b538a18345ade7d2a132e8fe7d2d8",
+      "classification": "HistoricalContext",
+      "note": "Historical pre-v2 checkpoint; superseded by v3 and final evidence."
+    },
+    {
+      "path": "continuation-checkpoint-20260909-build-v2.json",
+      "sha256": "22cfa038d3042bd4d4d33fb7cf2861e455dd8a2c46729912ce79d2c620196569",
+      "classification": "HistoricalContext",
+      "note": "Historical v2 active checkpoint; v2 later stopped deliberately for the macOS memory API correction."
+    },
+    {
+      "path": "production-build-v2-checkpoint.json",
+      "sha256": "d5d40192b9568a2e81b6b41b15a8f4247a365d2c8efb9d56def94fa7955d50b9",
+      "classification": "HistoricalContext",
+      "note": "Superseded v2 ON/OFF artifacts; wrapper stopped before fixture finalization. Not final acceptance."
+    },
+    {
+      "path": "preplayer-evidence-index.json",
+      "sha256": "98595e68e95bea13cb25e55e1d89733bd68cb44a6f2fd757ccc2ad4ea7ac5ca9",
+      "classification": "HistoricalContext",
+      "note": "Historical source6201 pre-Player inventory; final current-source inventory is separate."
+    },
+    {
+      "path": "raw-image-corpus-audit.json",
+      "sha256": "e557e719a5d48eb67e94b320abdeb485d754357b59911cd94e596439df121513",
+      "classification": "HistoricalContext",
+      "note": "Original parser/sanitizer defect record; current raw-parser-sealed-run.json binds repaired run5."
+    },
+    {
+      "path": "blob-reader-reproduction.json",
+      "sha256": "698bf5218290c4895f77b949c652dabaccfba9309bf47d745a704064fd03f2a6",
+      "classification": "HistoricalContext",
+      "note": "Original defect reproduction, preserved unchanged. Current parser evidence and source reviews supersede its in-progress status."
+    },
+    {
+      "path": "dormant-profile-wire-correction.json",
+      "sha256": "0ec8bca98f3e7686ea823eb03fa49231890a7482c68e1eebace4f64ee13ad9db",
+      "classification": "HistoricalContext",
+      "note": "Historical failed1000-test attempt, superseded by current1005-test full Editor pass."
+    },
+    {
+      "path": "python-current-player-inputs.json",
+      "sha256": "9dc80d60e4b308bade214f734c260d5d739c21e5f88e142191d8f937ff1b50f5",
+      "classification": "HistoricalContext",
+      "note": "470-test pass using v2 source6201 compiler inputs; superseded for current acceptance by python-v3-player-inputs.json."
+    },
+    {
+      "path": "diagnostic-separation-review-1.json",
+      "sha256": "b193c5c093c3c327ece4a789c129a686cbd568fe2151c7fd820240bceb2cf1b9",
+      "classification": "HistoricalContext",
+      "note": "Historical independent FAIL and actionable findings; review2 and source-integration-review-v3 record corrections."
+    },
+    {
+      "path": "continuation-checkpoint-20260909-build-v3.json",
+      "sha256": "b81b41349234882ae522319b96629e93fbbc627cfb994400f4229ab89dea9603",
+      "classification": "HistoricalContext",
+      "note": "Progress snapshot at build start; final workflow and acceptance index supersede its running-state fields."
+    }
+  ]
+}

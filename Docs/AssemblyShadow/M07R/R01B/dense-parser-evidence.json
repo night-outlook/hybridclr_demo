@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BDenseNativeParserEvidence",
+  "receipt": "_temp/AssemblyShadow/R01B/raw-image-dense-receipt.json",
+  "sha256": "fe6992f0813c659e4799eb39bf97ff50b6f671873d240c6a5af330be2d8da17c",
+  "results": {
+    "asanUbsan": "raw_image_dense_checks=2 typedef_rows=8196 method_rows=8194 boundary_rows=PASS PASS",
+    "asanUbsanStderr": "",
+    "asan": "raw_image_dense_checks=2 typedef_rows=8196 method_rows=8194 boundary_rows=PASS PASS",
+    "asanStderr": "",
+    "parserPass": true,
+    "sanitizerClean": true,
+    "sourceTreeStable": true
+  },
+  "boundary": "Two sealed v1 dense adjuncts outside8192 corpus. Actual RawImage parser; no runtime codec or Player capacity acceptance."
+}

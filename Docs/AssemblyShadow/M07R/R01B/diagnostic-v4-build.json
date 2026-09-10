@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV4DiagnosticBuildAndCoreCompatibility",
+  "result": "PassedForBuildAndCoreComparison",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "3a70624d4c13d0a19c6d9a026395b79adcb3c215",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "cb68c26c12cc60b8d98d2e9fc398f6e0f05d202e",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "68def7a9530913daab6b8175f06c9cf47a1a3fd4",
+      "localPath": "."
+    }
+  },
+  "build": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/diagnostic-v4-1.json",
+    "sha256": "d29a3d7dd11deccdda9d35edb3675bdb9a455984fe341d3bb1d6338a11cdb136"
+  },
+  "log": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/diagnostic-build-v4-1.log",
+    "sha256": "596249b21b0277a4c6603d2a9fe8e41cae34594f474635099eb7e574da3d77e6"
+  },
+  "coreComparison": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/diagnostic-v4-core-compatibility.json",
+    "sha256": "4c8227a4239a03ffa507231b64ee0bb2573e8d61e0178b9a6b61e3575bfb1ee6"
+  },
+  "limits": [
+    "Separate diagnostic Player has no production policy admission.",
+    "Every capacity/lazy runner still requires complete diagnostic provenance verification and actual runtime results."
+  ]
+}

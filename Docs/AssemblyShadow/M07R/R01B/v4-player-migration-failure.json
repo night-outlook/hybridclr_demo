@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV4FailureDiscovery",
+  "status": "FailedRequiresManagedMigrationAndRebuild",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v4",
+  "rows": [
+    {
+      "mode": "Cctor",
+      "result": "PassedExpectedRejection",
+      "processId": 79202,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/Cctor/r01-early.json",
+      "sha256": "9bd83a59619187982c70d7b88f9ececfdff7a1cb6da8e83f617e29ddfac58151"
+    },
+    {
+      "mode": "Control",
+      "result": "Passed",
+      "processId": 79121,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/Control/r01-early.json",
+      "sha256": "a24173d444ea3c4a16737dc3a02ecd16ec828665618ad9964f410ef2b60608f6"
+    },
+    {
+      "mode": "InitializerFailure",
+      "result": "PassedExpectedFailure",
+      "processId": 79275,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/InitializerFailure/r01-early.json",
+      "sha256": "0c76752d028cf796e0ea863cd52dee4219a4af1ab519cf444d2217aec20223ce"
+    },
+    {
+      "mode": "MetadataFailure",
+      "result": "PassedExpectedFailure",
+      "processId": 79262,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/MetadataFailure/r01-early.json",
+      "sha256": "201e00b02a8b7a95c04257b1c8d3d4ed567aabeadbcdfdc20d633d3afb47d065"
+    },
+    {
+      "mode": "Mismatch",
+      "result": "Failed",
+      "processId": 79178,
+      "error": "System.FormatException: Unknown metadata capacity field: maximumImageCount\n  at HybridCLR.AssemblyShadowMetadataCapacity.Parse (System.String json) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01EarlyStartup.LastCapacity (AssemblyShadowDemo.R01EarlyStartup+Receipt receipt) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01EarlyStartup.RunMismatch (AssemblyShadowDemo.R01EarlyStartup+Receipt receipt, AssemblyShadowDemo.R01EarlyStartup+Capsule capsule, System.Collections.Generic.List`1[T] closure, System.Int64[] sizes) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01EarlyStartup.Run () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/Mismatch/r01-early.json",
+      "sha256": "79eee005c47de4739a3acd0a096dbc9fee83eb60bd109be4f387924b05cec498"
+    },
+    {
+      "mode": "NativeScript",
+      "result": "PassedExpectedRejection",
+      "processId": 79260,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/NativeScript/r01-early.json",
+      "sha256": "c94359d248654edd3d553f2a8f77a3a6b1b79f7143e91b1d93e19d999e19a7bf"
+    },
+    {
+      "mode": "Object",
+      "result": "PassedExpectedRejection",
+      "processId": 79197,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/Object/r01-early.json",
+      "sha256": "1a1b86bfc0a03c7d41c4bf4d310ca371caa452501a335901e62ccf7e84468b8b"
+    },
+    {
+      "mode": "OrdinaryAfterReserve",
+      "result": "Passed",
+      "processId": 79154,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/OrdinaryAfterReserve/r01-early.json",
+      "sha256": "29498f822e7e780701b22f1e8f310d9875bc73b8dc87b0938962260b815fd9af"
+    },
+    {
+      "mode": "OrdinaryFirst",
+      "result": "Passed",
+      "processId": 79147,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/OrdinaryFirst/r01-early.json",
+      "sha256": "c44e2b01ff2d2d402d2632c5d02ffba08cca4fe2addc8e895e2ca717584b73c5"
+    },
+    {
+      "mode": "Oversize",
+      "result": "Failed",
+      "processId": 79166,
+      "error": "System.FormatException: Unknown metadata capacity field: maximumImageCount\n  at HybridCLR.AssemblyShadowMetadataCapacity.Parse (System.String json) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01EarlyStartup.LastCapacity (AssemblyShadowDemo.R01EarlyStartup+Receipt receipt) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01EarlyStartup.RunOversize (AssemblyShadowDemo.R01EarlyStartup+Receipt receipt, AssemblyShadowDemo.R01EarlyStartup+Capsule capsule, System.Int64[] sizes) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01EarlyStartup.Run () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/Oversize/r01-early.json",
+      "sha256": "830e67c411defc89eb21f1a3666a9d1ace4ae0a2b78f2aed5e65d775de7202ce"
+    },
+    {
+      "mode": "Type",
+      "result": "PassedExpectedRejection",
+      "processId": 79190,
+      "error": "",
+      "receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-matrix-1/Type/r01-early.json",
+      "sha256": "128ef00d0bc19fb25b9c5e6ff9b0cc05bd93f9b56935bad30f18429ca1fbd469"
+    }
+  ],
+  "rootCause": "R01EarlyStartup negative probes retain profile1 DTO and cursor/prefix acceptance assumptions after native capacity switched to atomic profile2. Explicit additional probes M07R01Probe and R01FailureProbe also mix profiles.",
+  "lazySelfVerifyingReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-lazy-1/r01b-lazy-player-launch.json",
+  "acceptedAsFinal": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

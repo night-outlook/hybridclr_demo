@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BDiagnosticSeparationScopedReview",
+  "verdict": "FAIL",
+  "reviewedSource": "94a6a3146ffb69e6b4a3f236f76f5fb4592a2644",
+  "findings": [
+    {
+      "id": "R01B-DIAG-001",
+      "priority": "P1",
+      "detail": "C# lazy ledger stability compared pre-load snapshot against post-load count",
+      "status": "CorrectedPendingFocusedEditorTest"
+    },
+    {
+      "id": "R01B-DIAG-002",
+      "priority": "P1",
+      "detail": "Repeated generic reflection calls emitted duplicate check names rejected by strict Python verifier",
+      "status": "CorrectedPendingFocusedEditorTest"
+    }
+  ],
+  "scope": "Diagnostic separation and acceptance-path source only; full Player acceptance pending",
+  "milestoneAccepted": false
+}

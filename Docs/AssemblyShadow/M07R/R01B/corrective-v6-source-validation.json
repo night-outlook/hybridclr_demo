@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6CorrectiveSourceValidation",
+  "result": "PassedSourceAndEditorScope",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+  "rootCause": "R00 deserialized framework-independent manual receipt DTOs through JsonUtility; nested operation/snapshot types lacked Unity serialization metadata.",
+  "correction": "Dedicated private Serializable/Preserve projection; authenticated same-process handoff unchanged; exact successful Control operation order and Baseline no-work shape enforced.",
+  "editor": {
+    "passed": 1021,
+    "failed": 0,
+    "skipped": 0,
+    "result": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/EditorTests-8f36e72027194528bc61ad72105c788f/results.xml",
+      "sha256": "442efe3be8e2b2e684f745307c8ae2f08f989b630f988894003880c6cc3df80d"
+    },
+    "unityLog": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/EditorTests-8f36e72027194528bc61ad72105c788f/unity.log",
+      "sha256": "003b4da4fc5bd598ba63280f02919b3345cc9925d58d0a1d284d6580ce447e4d"
+    },
+    "runnerLog": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/editor-v6-1.log",
+      "sha256": "603ee8ffe6a68710a6a2d712067abaa38487da59a502c9fd16e796a960dbbb10"
+    }
+  },
+  "python": {
+    "passed": 492,
+    "failed": 0,
+    "skipped": 0,
+    "log": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/python-v6-sealed-2.log",
+      "sha256": "2ac93a0e4e193280ab11dd16300fb344f38b88c27092dd67cfebcc98e791514e"
+    },
+    "scope": "Fresh v6 sealed NativeOn real compiler inputs; unittest discovery under Tools/AssemblyShadow/tests.",
+    "compilerInputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-800287b1f3e84aa496db4cb46087d4f3",
+    "discardedDiscoveryAttempt": "python-v6-sealed-1.log targeted the parent directory and ran zero tests; not acceptance evidence."
+  },
+  "independentReview": {
+    "reviewer": "verifier_profile_gpt6astra_high_1",
+    "result": "BoundedSourcePASS",
+    "scope": "Actual wire producer/parser, preserved identity checks, exact operations, meaningful negative tests; no Player/full-stage claim."
+  },
+  "H1Passed": false,
+  "mayEnterR02": false,
+  "pythonHistoricalCorrectionRun": {
+    "passed": 492,
+    "skipped": 0,
+    "log": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/python-v6-correction-1.log",
+      "sha256": "0a742d06d013773b064b840d5dbb201c6892a0e576400fe3bde8d564b5b1ca73"
+    },
+    "scope": "Corrected source, retained sealed v5 real compiler inputs; fresh v6 compiler-input run pending."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BActualPlayerStagingFailure",
+  "result": "FailedDiagnostic",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v3",
+  "pins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+      "localPath": "."
+    }
+  },
+  "earlyReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-T07-01-Prefab-P01-1/Control/r01-early.json",
+    "sha256": "4c2e32a5a55fe4178606a20a9776fe4fc9095280eb3b105adac886bd736e6a99"
+  },
+  "debuggerLog": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v3-staging-debug-1/lldb.log",
+    "sha256": "6bf60a95fc5d0ae755f1448b059af93c10822a42680e119911a3ccd866871ded"
+  },
+  "trigger": "Control P01: Configure, Begin and Reserve succeed; Stage first closure DLL returns InternalError20.",
+  "runtimeObservation": "Transaction Failed, retainedBytes64648, staged0; unexpected native failure requires restart.",
+  "debuggerStack": [
+    "AssemblyShadow::StageAssembly",
+    "AssemblyShadowVisibility::RegisterPrivateImage",
+    "DecodeImageIndex",
+    "RaiseMetadataIndexCodecError",
+    "RaiseExecutionEngineException",
+    "Exception::Raise",
+    "__cxa_throw"
+  ],
+  "rootCause": "Visibility bookkeeping used owner-gated metadata decode after the construction scope ended. Adjacent compound visibility inspection also uses the gated decode on observers and retained aborted images.",
+  "remediation": "Prepare narrow token-membership predicate and transaction-owned image identity for visibility bookkeeping; preserve strict private metadata resolution.",
+  "remediationStatus": "InProgress",
+  "limits": [
+    "Debugger run was terminated by LLDB; not runtime acceptance.",
+    "Debug map object files had been replaced by OFF build, so frame-variable inspection was unavailable; symbolized throw stack was captured."
+  ],
+  "humanGatePassed": false
+}

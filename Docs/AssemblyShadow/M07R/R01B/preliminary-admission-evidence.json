@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "status": "Experimental pure preliminary admission implemented; not wired",
+  "nativeHeader": "hybridclr/metadata/InterpreterImageAdmission.h",
+  "receipt": "_temp/AssemblyShadow/R01B/image-admission-run-2/receipt.json",
+  "receiptSha256": "120732507a00b330cb105fc12490a50b2bc0b5e12c21552067b4bfe4a1a171e0",
+  "releaseChecks": 52,
+  "asanUbsanChecks": 52,
+  "contract": [
+    "8192 cumulative reserved interpreter images",
+    "32MiB maximum individual DLL input",
+    "Rejectedproposal doesnotchange reservedcount",
+    "Emptyproposalvalid; runtimefootprintfinalizationstillrequired",
+    "512MiBtestedaggregate isnot converted into a metadataRAM/indexbudget"
+  ],
+  "limitations": [
+    "Tracks explicit header/test/compiler hashes, not complete system dependency closure",
+    "Managed counterpart and runtime wiring pending",
+    "No finalpagefit or Playercapacity claim"
+  ],
+  "milestoneAccepted": false
+}

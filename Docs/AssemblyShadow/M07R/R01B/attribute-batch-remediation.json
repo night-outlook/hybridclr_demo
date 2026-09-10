@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "status": "ScopedPass",
+  "receipt": "_temp/AssemblyShadow/R01B/attribute-batch-receipt-13.json",
+  "receiptSha256": "7698b3d33bf2fec664ad016d620b2b829c09b1e776fb4ea483e3609f3104c6f5",
+  "releaseChecks": 4197,
+  "asanUbsanChecks": 4197,
+  "transitiveDependenciesBeforeAfterEqual": true,
+  "productionSyntaxReceipt": "_temp/AssemblyShadow/R01B/lazy-cache-syntax-1/receipt.json",
+  "productionSyntaxReceiptSha256": "315fba853493d493b689204e6b35031608521df1dab446996ddc91df1ffeeea0",
+  "productionTranslationUnits": [
+    "InterpreterImage.cpp",
+    "Class.cpp"
+  ],
+  "changes": [
+    "Preserve recursive conversion-wide metadata lock",
+    "Recoverable runtime writer allocation failure and checked copy/fixup bounds",
+    "Geometric batch and owner-vector growth",
+    "Checked full aggregate raw-index bound before encoding"
+  ],
+  "limits": [
+    "Private abandonment tests exercise helpers, not actual cai or runtime nested publication",
+    "No Player concurrency, memory or capacity acceptance"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false,
+  "reviewer": "r01b_codec_design_review_gpt6astra_high_1",
+  "reviewFindings": "No actionable remaining issue in bounded root remediation",
+  "reviewVerifiedDependencies": 932,
+  "reviewVerifiedSyntaxDependencies": 1018
+}

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BContinuationCheckpoint",
+  "status": "ActiveUnaccepted",
+  "scope": "Finish R01B real Player acceptance, evidence and independent full-stage review; stop at H1, no R02",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "6201caba908339579b034303c2a72735a5e51065",
+      "localPath": "."
+    }
+  },
+  "demoMetadataCommit": "ba375ed",
+  "activeBuild": {
+    "baselineId": "M07-Baseline-R01B-20260909-v2",
+    "command": "pwsh -NoProfile -File Tools/AssemblyShadow/Invoke-M07Build.ps1 -BaselineId M07-Baseline-R01B-20260909-v2 -BuildTarget StandaloneOSX -TimeoutSec 28800",
+    "log": "_temp/AssemblyShadow/R01B/build-v2.log",
+    "lastKnownStage": "M07StructuralResources.Compile",
+    "nativeOnReceipt": "_temp/AssemblyShadow/M07PlayerInputs-46f0d5515a574e45b66cba88c7a87d98/m07-player-build.json"
+  },
+  "prebuildAudit": "_temp/AssemblyShadow/R01B/prebuild-pairing-4.json",
+  "installationReceiptSha256": "22c437c1e8b6c723cdb04a8aaf2c6198c312c106365a841d48c7b5561455fb3b",
+  "evidence": [
+    "preplayer-evidence-index.json",
+    "python-current-player-inputs.json",
+    "diagnostic-separation-review-2.json",
+    "production-build-v2-checkpoint.json"
+  ],
+  "remaining": [
+    "Finish production workflow, actual14M07/11early/3failure/R00performance/oldPlayerrejection",
+    "Build distinct diagnostic Player with R01BDiagnosticBuild.BuildDiagnosticPlayer; require fixture and ONreceipt args; strict diagnostic-input verification",
+    "Generate mixed workload from currentP03, run ordinary8192/8193,mixed5Shadow+3failed+8184ordinary,lazy+dense tests",
+    "Actual memory/performance evidence, immutable artifact index/package",
+    "Independent full-stage review then STOPatH1"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

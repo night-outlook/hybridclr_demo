@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV5CorrectiveSourceValidation",
+  "status": "SourceChecksPassedBuildAndPlayerGatesPending",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v5",
+  "runtimeAbiHash": "d4e003eb88ed41a8a1acc1d9b46024faa94cf48e57f7ca6a80fc01222571115f",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "63dde5e28e29b708ec05005e6d8bb82ef38442dc",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "08441628dc06d317052583035dc3e85f5dc1dd6f",
+  "editor": {
+    "artifact": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/EditorTests-ca54ca13947c412dac862d52a535065e/results.xml",
+      "sha256": "7a67aab0666ddc313dd3a292fc3a9d54748f5941076902d75354a268e9451078"
+    },
+    "summary": {
+      "id": "2",
+      "testcasecount": "1018",
+      "result": "Passed",
+      "total": "1018",
+      "passed": "1018",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-09-09 18:56:46Z",
+      "end-time": "2026-09-09 18:58:33Z",
+      "duration": "107.5384207"
+    }
+  },
+  "python": {
+    "log": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/python-corrective-v5-2.log",
+      "sha256": "a9058b3b7ca02525a77b9f3649727749385dc2de277392e476678ccc44f7bf06"
+    },
+    "passed": 492,
+    "skipped": 0,
+    "compilerInputVersion": "sealed v4; final v5 compiler-input rerun pending"
+  },
+  "capabilityRegression": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/live-capability-correction-final-2.json",
+    "sha256": "2415ecea194f4b1d86f9cc799df70ec5e5d94d8fef4248b857474b77968a155c"
+  },
+  "boundedSourceReviews": [
+    {
+      "scope": "ProfileBoundManagedProbesAndVerifier",
+      "reviewer": "verifier_profile_gpt6astra_high_1",
+      "result": "PASS"
+    },
+    {
+      "scope": "LiveCapabilityNegotiationAndEditorMock",
+      "reviewer": "codec_review_gpt6astra_high_1",
+      "result": "PASS"
+    }
+  ],
+  "historicalFailures": [
+    "v4-player-migration-failure.json",
+    "v4-capacity-capability-failure.json"
+  ],
+  "corrections": [
+    "Bind managed probe and verifier schemas to declared profile; reject oversize atomically and preserve exact lifetime/page ledger semantics.",
+    "Validate actual JsonUtility dormant-array representation and preserve explicit historical profile1 behavior.",
+    "Negotiate live capabilities through constant-size read-only runtime options, with narrowly authenticated old-runtime fallback.",
+    "Keep full diagnostics parser bounded; exact original Player parser limit was not captured, while native serializer fixture reproduces node-limit rejection."
+  ],
+  "fullStageAccepted": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

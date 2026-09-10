@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "status": "Passed native parser regression after bounded reader fix",
+  "receipt": "_temp/AssemblyShadow/R01B/raw-image-script6-evidence/raw-image-script6-receipt.json",
+  "receiptSha256": "bdf09c02843894bab2a99ce104375dcddc8579c8197881740e94fc7de1b2c413",
+  "actualBeforeAfterProvenanceEqual": true,
+  "comparedProvenanceFields": [
+    "dependencyCount",
+    "dependencyPaths",
+    "sourceHashes"
+  ],
+  "results": {
+    "fullAsanUbsan": "raw_image_helper_offsets=8 PASS\nraw_image_checks=8192 files=8192 field_rva_rows=8196 payload_samples=40980 large_files=1 PASS",
+    "fullAsanUbsanStderr": "",
+    "denseAsanUbsan": "raw_image_dense_checks=2 typedef_rows=8196 method_rows=8194 boundary_rows=PASS PASS",
+    "denseAsanUbsanStderr": "",
+    "fullAsan": "raw_image_helper_offsets=8 PASS\nraw_image_checks=8192 files=8192 field_rva_rows=8196 payload_samples=40980 large_files=1 PASS",
+    "fullAsanStderr": "",
+    "denseAsan": "raw_image_dense_checks=2 typedef_rows=8196 method_rows=8194 boundary_rows=PASS PASS",
+    "denseAsanStderr": "",
+    "fullParserPass": true,
+    "denseParserPass": true,
+    "sanitizerClean": true,
+    "provenanceStable": true
+  },
+  "scope": "Actual RawImage/RawImageBase parser, verified8192DLL corpus and two denseadjuncts; strictnative linking and sanitizer execution",
+  "limits": [
+    "No installed or Player acceptance",
+    "CustomAttributeDataWriter is outside parser dependency closure",
+    "No production sparse codec integration in this run"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

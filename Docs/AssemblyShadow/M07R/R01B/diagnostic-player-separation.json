@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BDiagnosticPlayerSeparationDecision",
+  "status": "ImplementedPendingBuildVerification",
+  "productionAdmissionUnchanged": true,
+  "reason": "The arbitrary and malformed Assembly.Load(byte[]) stress inputs are intentionally outside the production bounded-acquisition contract. The first production preflight rejected them.",
+  "production": {
+    "assemblyExcluded": "AssemblyShadow.R01BDiagnostics",
+    "requiredAcceptance": "Fresh pinned M07 NativeOn/NativeOff resources, replay and all 14 modes"
+  },
+  "diagnostic": {
+    "define": "ASSEMBLY_SHADOW_R01B_DIAGNOSTICS",
+    "ownBuildGuidAndNativeMetadata": true,
+    "productionPolicyAdmission": false,
+    "requiredAcceptance": [
+      "Exact source pins and installed NativeOn sources",
+      "Actual diagnostic compiler/linked/app inventories and hashes",
+      "Conservative production-to-diagnostic candidate/core metadata compatibility proof",
+      "Ordinary 8192/8193 capacity and sparse field RVAs",
+      "Real early-startup Control/P03 Shadow commit then ordinary/failed image shared ledger",
+      "Lazy metadata and dense adjunct Player checks"
+    ]
+  },
+  "mixedBoundary": "Use the native early-startup capsule gateway and verify its genuine Control/P03 receipt in the same PID. Do not invoke the production M07 probe with a diagnostic binary or relabel build receipts.",
+  "priorFailedAttempts": [
+    {
+      "path": "_temp/AssemblyShadow/R01B/build-v1.log",
+      "sha256": "4448e0b5cd75eb9c96324498047579115bcd14283b45ee1b4892e2e5f9f957c8"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/compiler-diagnostic-2.log",
+      "sha256": "ae5e9b4b4c250fd294ea7cab12584e86df36f1312ef6299697b8ed8fd7056853"
+    }
+  ],
+  "milestoneAccepted": false,
+  "mayEnterR02": false
+}

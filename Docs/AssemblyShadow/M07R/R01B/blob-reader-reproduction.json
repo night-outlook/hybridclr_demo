@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "status": "Confirmed defects; production fix in progress",
+  "receipt": "_temp/AssemblyShadow/R01B/blob-reader-receipt.json",
+  "receiptSha256": "3003c10dc774d0de8e3aa5fea1dde621e3216cd2224fda6c8192746b2f39eda6",
+  "actualBeforeAfterSnapshotsEqual": true,
+  "boundary": "Production BlobReader and RawImageBase headers compiled with assertions disabled; controlled runtime adapters and ASan/UBSan. These are malformed-input native reproductions, not Player evidence.",
+  "findings": [
+    "SkipBytes(UINT32_MAX) escapes logical range and wraps",
+    "Truncated fixed reads and compressed prefixes read past heap allocation",
+    "RawImageBase::DecodeBlob reads a truncated prefix past the heap allocation"
+  ],
+  "fixAccepted": false,
+  "milestoneAccepted": false
+}

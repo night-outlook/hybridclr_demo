@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BMacRssCorrection",
+  "sourceRevision": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+  "cause": "Pinned IL2CPP Process.GetProcessData explicitly rejects Process.WorkingSet64",
+  "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+  "abi": {
+    "library": "/usr/lib/libSystem.B.dylib",
+    "taskInfoFlavor": 20,
+    "count": 12,
+    "pack": 4,
+    "structBytes": 48,
+    "residentOffset": 8,
+    "peakOffset": 16
+  },
+  "ownership": "One cached mach_task_self send right for process lifetime; repeated exported function calls acquire additional references",
+  "scope": "Current RSS before loading; kernel lifetime peak sampled through completion of workload and overflow rejection, before result serialization. Managed heap bytes remain a separate observation.",
+  "validation": {
+    "standalonePinnedMonoNativeComparisonChecks": 30,
+    "EditorFocusedPassed": 5,
+    "capacityToolChecks": 9,
+    "ruffUndefinedNameChecks": "Passed for five diagnostic launch/verification tools"
+  },
+  "integrationCorrections": [
+    "Replace unsupported WorkingSet64 calls",
+    "Preserve true kernel peak rather than max sampled current RSS",
+    "Require explicit measurement provider in strict result schema",
+    "Replace final undefined verify_inputs with complete verify_diagnostic_inputs"
+  ],
+  "artifacts": [
+    {
+      "path": "_temp/AssemblyShadow/R01B/macos-rss-native-proof-1/receipt.json",
+      "sha256": "8f4145f678b2535705d1f80bbbbec90b3c75dfd873a7615a0f46f7e47dcdc72a"
+    },
+    {
+      "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs",
+      "sha256": "337558b77555352a79f6ab33b67d7d12bbbd51e35bdecf43db5a0ffdf2b77edc"
+    },
+    {
+      "path": "_temp/AssemblyShadow/EditorTests-10397efe872c4d5a9f89a5f979db4975/results.xml",
+      "sha256": "0de2b77d68880cafad156f3ea6575f87685584e387424d0871a6251c61556584"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/capacity-memory-correction-1.log",
+      "sha256": "8f80dce5f80bde383ad6ab42659579c9e51c403fc4ca99c757cac4baffb3e56f"
+    }
+  ],
+  "actualIl2CppPlayer": "Pending",
+  "milestoneAccepted": false,
+  "mayEnterR02": false,
+  "independentScopedReview": {
+    "verdict": "PASS",
+    "reviewedSource": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+    "scope": "Mach helper ABI/ownership, capacity integration and strict verifier provider check; actual IL2CPP pending"
+  },
+  "derivedMemoryDifferenceLimit": "maximumWorkingSetBytes minus workingSetBytesBefore is lifetime peak minus initial RSS, not workload-attributable memory growth."
+}

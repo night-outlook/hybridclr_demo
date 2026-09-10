@@ -1,0 +1,1417 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6ImmutableSourceInventory",
+  "status": "SealedV6SourcePins;FinalDeliveryPending",
+  "scope": "Immutable git-show inventory for the sealed v6 source pins. Every changed path is hashed from its target commit bytes and assigned a bounded source role. No live working-tree status, generated-output hash, Player acceptance, capacity support, or H1 claim.",
+  "sourceHeads": {
+    "hybridclr": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+    "il2cppPlus": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+    "hybridclrUnity": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+    "demoExecutable": "9b04fb9f3578a55f50915b914d0071234441289d",
+    "demoMetadata": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2"
+  },
+  "acceptedR01Bases": {
+    "hybridclr": {
+      "metadata": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "executable": "b22fa3d92223645c32663e4a2157eaadf8ea495e"
+    },
+    "il2cpp_plus": {
+      "metadata": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "executable": "7967b8c7043904fcae130b294defd5ce7aa897c4"
+    },
+    "hybridclr_unity": {
+      "metadata": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "executable": "b649c499385ea68490a0f652a98b732e060aeb89"
+    },
+    "hybridclr_demo": {
+      "metadata": "b89959fcb5b9a3da1dd0e0ffe7874de412472ae8",
+      "executable": "cc7b17683c2e68a162914c347bb81d765dbc26c0"
+    }
+  },
+  "headRoles": {
+    "hybridclr": "native runtime/metadata executable and metadata head",
+    "il2cpp_plus": "native IL2CPP runtime executable and metadata head",
+    "hybridclr_unity": "managed package/runtime executable and metadata head",
+    "hybridclr_demo": "executable head for linked Player/tool source; separate metadata head for documentation/managed source delivery"
+  },
+  "repositories": [
+    {
+      "repository": "hybridclr",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr",
+      "currentExecutableHead": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "executableDelta": {
+        "head": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+        "kind": "executable",
+        "base": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+        "commitRange": "b22fa3d92223645c32663e4a2157eaadf8ea495e..67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+        "shortStat": "29 files changed, 2963 insertions(+), 363 deletions(-)",
+        "changedPathCount": 29,
+        "paths": [
+          {
+            "status": "M",
+            "path": "hybridclr/RuntimeConfig.cpp",
+            "sha256": "48c69e9cca1f957071774ad52d95a5329cded69c7549fc4d50c5982d008f0ed6",
+            "role": "native-capability-query"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/RuntimeConfig.h",
+            "sha256": "0db41daddd16b4a8c290995a399c29e4cf41877b96443687d1d1af98c1a43e9a",
+            "role": "native-capability-query"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/Assembly.cpp",
+            "sha256": "48115895b4353e439655cb938fa60d9f10718be041134a67694c99ecfbb6fa1a",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/Assembly.h",
+            "sha256": "9828ab68463b30583c6c460cd72bb02dc75b7c390aa6ae0da2b675455d42fe43",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/AssemblyShadowBridge.cpp",
+            "sha256": "66c9d2d36a1d373186071ad56a07f21f85663c6d00719c38e51d556fd23bc5ed",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/AssemblyShadowBridge.h",
+            "sha256": "3fd6999147e8f60a00cd4feec8fdcbe70b8655507cad83fadfa1d0525ef139c0",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/BlobReader.h",
+            "sha256": "1610e5c60fe191fc4a03feeb2109d6530791e68e128d034e9104877fb09a9a8f",
+            "role": "bounded-metadata-reader"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/BlobReaderBounds.h",
+            "sha256": "08cb3c47b5e654b72ce29acdd4d0ab8e42815d64d6d41e76f9fa22fdd1c56c5b",
+            "role": "bounded-metadata-reader"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/CustomAttributeDataWriter.h",
+            "sha256": "e6cf146d22a8b5eabd88e701d4df627ac7c834a0eb31f50dfbc2d293201b37d2",
+            "role": "bounded-metadata-reader"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/CustomAttributeTypeIndexBatch.h",
+            "sha256": "2118984d7b446d00c99310bece76857011fea45cef538a81a3991bc1d0bab24a",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/Image.cpp",
+            "sha256": "6e6159831d358c9e730cb19243fa836297d5dad3a18080a374a4904b292a7dfe",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterGenericConstraintMap.h",
+            "sha256": "91b04d6fe2a4862c88a56f7043213e712a9f61e280d30b577cdb4e87e5d1abac",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/InterpreterImage.cpp",
+            "sha256": "9e508f860d9face2f81c20d8cb45b8ce4c1bb10025f5b0db265555560d3ff96c",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/InterpreterImage.h",
+            "sha256": "9a9c3f172c2dbdbec930a45638f23fc99147a694b276b1756c99efc23024b874",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterImageAdmission.h",
+            "sha256": "6a9918cd71d06fee9990d42ccac0599513bec97cb56a902d8fd3782e8625cae7",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterMetadataCounts.h",
+            "sha256": "1fd1322b7a2d64a8d6fa370f3b1b39dcb1aa05cae0b17cb4429d6ddf1fe1979a",
+            "role": "metadata-index-codec"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterMetadataIndexCodec.h",
+            "sha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e",
+            "role": "metadata-index-codec"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp",
+            "sha256": "874225ed20d6889195e44910133c2711a34ecd45a755a76677bd0b8a361c580e",
+            "role": "metadata-index-codec"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterMetadataIndexRuntime.h",
+            "sha256": "af832525b33aa25640bd3a4300266f7e4fc7cae0901e7eba1356d94f41c127cd",
+            "role": "metadata-index-codec"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterMetadataRange.h",
+            "sha256": "94bb929575c6eb3f77acd3e94e4094c7ef1442cdab869b77d9b5f22ef27f694f",
+            "role": "metadata-index-codec"
+          },
+          {
+            "status": "A",
+            "path": "hybridclr/metadata/InterpreterTypeCacheInsertion.h",
+            "sha256": "71cf1f8ad382c3eaae36d3dca77b8ccd4290b69697e63961432200b7306fdb7c",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/MetadataUtil.cpp",
+            "sha256": "c9ab1bb824b917b7bee34988b2b229acbe7386aa52f5dfb8987a906318e4186e",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/MetadataUtil.h",
+            "sha256": "4866c9e6d83d3a6198a2a11fcf05a5ee73428360a697152e6fd4d00048b56382",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/RawImageBase.cpp",
+            "sha256": "7e986c41f1201d31424778c8aece149ae39f11c38e619de12d82e190c0d6c7d4",
+            "role": "bounded-metadata-reader"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/RawImageBase.h",
+            "sha256": "de7ca70e5672768885d22cbc977b72f02e9cf7245b78062952c0f19a8760231d",
+            "role": "bounded-metadata-reader"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/StagedAssembly.cpp",
+            "sha256": "9c9afcae1cfaa9f2d47d9f69e125845006e689c9f9d38e8b4d28392d72db5ede",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/VTableSetup.cpp",
+            "sha256": "e41ea2aa345495ec484f17a1666a58ea773687b028e5331bd6cefb5e6a7b3c6e",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "M",
+            "path": "hybridclr/metadata/VTableSetup.h",
+            "sha256": "fd45113bb84a92789cb9ee0731a696b5bdeedd280d0fa24d8325d4751c6264ff",
+            "role": "native-metadata-consumer"
+          },
+          {
+            "status": "A",
+            "path": "tests/metadata/BlobReaderBoundsTests.cpp",
+            "sha256": "83ad5928e1752e1ce7e1ca86b6e89bbd7527f73681427b06529ac5343434ba8e",
+            "role": "bounded-metadata-reader"
+          }
+        ]
+      }
+    },
+    {
+      "repository": "il2cpp_plus",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/il2cpp_plus",
+      "currentExecutableHead": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "executableDelta": {
+        "head": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "kind": "executable",
+        "base": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+        "commitRange": "7967b8c7043904fcae130b294defd5ce7aa897c4..6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "shortStat": "12 files changed, 244 insertions(+), 79 deletions(-)",
+        "changedPathCount": 12,
+        "paths": [
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/Assembly.cpp",
+            "sha256": "748ba65c9dd97ecaa30e98d0cf5da0e3f4d7594f9e2509c26c228b98f3983142",
+            "role": "native-vm-integration"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/Assembly.h",
+            "sha256": "804a6264e8f29c2c7e74a42e1fb32dbf7807315bfa9a2a7eb35dfba91db6b8df",
+            "role": "native-vm-integration"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/AssemblyShadow.cpp",
+            "sha256": "c6dcc8af37b638aac4905ec9d0f7855e03853c6eb523f3f0a30f103e265b9ad8",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/AssemblyShadowDiagnostics.cpp",
+            "sha256": "cb4fc34a4310c9a71aa972e6add33afb3ee7928316a0560f7ff683082adf1887",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/AssemblyShadowTypes.h",
+            "sha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/AssemblyShadowVisibility.cpp",
+            "sha256": "cd38986adce39d844046a1f18fa78110bf725eb0d551388eb73c67da71993f7b",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/AssemblyShadowVisibility.h",
+            "sha256": "e8c6ba8a0a784790a4e81b1c281c4110e3cb56e5fd0680acbd711bf25362e52c",
+            "role": "native-admission-ownership"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/Class.cpp",
+            "sha256": "d618543bf924a76b18e9e5ad5303b262d5f2757501e6da80066acd27234f184b",
+            "role": "native-vm-integration"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/GlobalMetadata.cpp",
+            "sha256": "a2012ab491d3838e08f043529348e3f69b7a04b5bcf020192703f07cc6c60c7e",
+            "role": "native-vm-integration"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/GlobalMetadata.h",
+            "sha256": "c3ab6e02660879c488ff44db49b0b21cdf24e18e990b1a5847106774d6f4a9b2",
+            "role": "native-vm-integration"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/MetadataCache.cpp",
+            "sha256": "519d8df12fe38253ef63c2cdc3dcb6daf1547924377aefe7aed403d207250c35",
+            "role": "native-vm-integration"
+          },
+          {
+            "status": "M",
+            "path": "libil2cpp/vm/MetadataCache.h",
+            "sha256": "aacb84830bf69e85712e0f87ace2ac50e9afbbfa05755d7fb1a330bf23c0c661",
+            "role": "native-vm-integration"
+          }
+        ]
+      }
+    },
+    {
+      "repository": "hybridclr_unity",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_unity",
+      "currentExecutableHead": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "executableDelta": {
+        "head": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+        "kind": "executable",
+        "base": "b649c499385ea68490a0f652a98b732e060aeb89",
+        "commitRange": "b649c499385ea68490a0f652a98b732e060aeb89..c7ed6d244a2c3a8e948f062d5431c289e1369650",
+        "shortStat": "21 files changed, 1161 insertions(+), 75 deletions(-)",
+        "changedPathCount": 21,
+        "paths": [
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/MetadataCapacityPlanner.cs",
+            "sha256": "63c06581572901aeeecb5a9a644b7ec5c870e74d2b951f7e0cbffdc65f95fa85",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "A",
+            "path": "Editor/AssemblyShadow/Build/MetadataCapacityPlannerProfile2.cs",
+            "sha256": "10ea8199138c2f109ad19517e45de6c4c1bf7966da6e039976575e481a476c3f",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "A",
+            "path": "Editor/AssemblyShadow/Build/MetadataCapacityPlannerProfile2.cs.meta",
+            "sha256": "139c36af1964162717bc8256d0e7af9462c13d8e69f7d80cb7d2ab1a0645893a",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/ShadowBaselineManifestBuilder.cs",
+            "sha256": "d56a872d0cb948385373ae1b146c47cf7c4801b6e1c96e9f3585841e2f1eccec",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/ShadowManifests.cs",
+            "sha256": "7b90179d946870b8f930be5ab11b44d7013ce1bda77f316f14c3557864d98b64",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs",
+            "sha256": "a269f7d5457f5a52161997dbbe2c43fc56909f69536d48dbfbeafa97d937fc3b",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/ShadowWarmupJson.cs",
+            "sha256": "706a660a6d59815eb8b49fdd49a7b216ce7c5f13eb57f24bfb5ee331745d6880",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/ShadowWarmupManifestReader.cs",
+            "sha256": "aa299f6999c6ca98954a106af703faf46b4e3ca3dd31b74cae972ca03eda507a",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Editor/AssemblyShadow/Build/TargetFrameworkReferenceVerifier.cs",
+            "sha256": "91ad5e02e1d75f5eb2b6b7a2bc13ac7b24c2f6afe6b3164b356861d52b9b077a",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs",
+            "sha256": "cc37f2f4fa5b48137141725cfbadd3fe800aaf4489de14705b30f09e8678393f",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs",
+            "sha256": "a167f761b94dfc2a08b80246cdda87190bbd045e375fb88f76c18f1092dee3b3",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs",
+            "sha256": "b4346e73636bdb7b8b054d5168579c08891109f76f9e0221d7f3dd61e55b284d",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Runtime/RuntimeApi.cs",
+            "sha256": "71dba96eae32651c2f72fa20736d5cee228bd19c686a75dc5ec4559eac239cc9",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Runtime/RuntimeOptionId.cs",
+            "sha256": "55b75f2d4e7058d5f78e7479c02fe2ac085432842fe3393c5e2bc3df6a0046f6",
+            "role": "managed-profile-runtime"
+          },
+          {
+            "status": "M",
+            "path": "Tests/Editor/AssemblyShadow/M03RuntimeApiTests.cs",
+            "sha256": "48c23e0e678964e2b618496c11a019c1601e96195837bc20fcf71849ca9a930a",
+            "role": "managed-validation"
+          },
+          {
+            "status": "M",
+            "path": "Tests/Editor/AssemblyShadow/M06WarmupTests.cs",
+            "sha256": "383f1640a84c1f6834fbd42fe32bf3ca0a458beaa523b296b58d424da1fb38c6",
+            "role": "managed-validation"
+          },
+          {
+            "status": "M",
+            "path": "Tests/Editor/AssemblyShadow/R01EarlyCapabilityNegotiationTests.cs",
+            "sha256": "b413af2614f3ede7929ff191ef3a0a6c9bd52991506f43da4d9ca795e0f19125",
+            "role": "managed-validation"
+          },
+          {
+            "status": "A",
+            "path": "Tests/Editor/AssemblyShadow/R01Profile2PreliminaryTests.cs",
+            "sha256": "48ea0983e275386dec5a461347667f46e8cd39aea27a76f28a6e4fcb5d7fa2f4",
+            "role": "managed-validation"
+          },
+          {
+            "status": "A",
+            "path": "Tests/Editor/AssemblyShadow/R01Profile2PreliminaryTests.cs.meta",
+            "sha256": "be0d8370427467cbb7d62c03d6f91283369e5c0264e64a9664979090be7dda29",
+            "role": "managed-validation"
+          },
+          {
+            "status": "M",
+            "path": "Tests/Editor/AssemblyShadow/R01RuntimeContractTests.cs",
+            "sha256": "ff6e1564e0620c145816841001f313eff075f6a9129d7ec1f235d5a3491c3fff",
+            "role": "managed-validation"
+          },
+          {
+            "status": "M",
+            "path": "Tests/Editor/AssemblyShadow/ResourceReceiptTests.cs",
+            "sha256": "85ad799fb2f8ec0536fa621ac6c4d7d8e7312230cf9d08599cd0171ac7aaabd7",
+            "role": "managed-validation"
+          }
+        ]
+      }
+    },
+    {
+      "repository": "hybridclr_demo",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo",
+      "currentExecutableHead": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "executableDelta": {
+        "head": "9b04fb9f3578a55f50915b914d0071234441289d",
+        "kind": "executable",
+        "base": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+        "commitRange": "cc7b17683c2e68a162914c347bb81d765dbc26c0..9b04fb9f3578a55f50915b914d0071234441289d",
+        "shortStat": "138 files changed, 19847 insertions(+), 803 deletions(-)",
+        "changedPathCount": 138,
+        "paths": [
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M03TransactionProbe.cs",
+            "sha256": "597f403a7800351857ee07fbc8033bb620ea76f0db032cfa85d890a3b9c42ee9",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M04ReferenceProbe.cs",
+            "sha256": "1a1f89626089d35f8af48b04e4cfb2bb3f6716bd65c6e054fb18ad56841f478e",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs",
+            "sha256": "252f12bf7795a030f2342c55bb150c000f1c9ffcf6fb70b66e13d0954cd1ade8",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionProbe.cs",
+            "sha256": "daca2d249d29c556e096ce9a30503ecc1caf2c60590bab71eb994eaac845698d",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs",
+            "sha256": "bae0e995df55911db464f549392a0b3569ec5b14e641b246159662e4beae2b0e",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R00PerformanceProbe.cs",
+            "sha256": "b7175b091a90f34087d3781e75e45c2ad87a689003c2e80a0953611b4c63b741",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs",
+            "sha256": "912d7176dff26569ea170c46aa3ef964558397330b848e9d2464c3b2973a6f17",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs",
+            "sha256": "ff34cd0286c58d3021d3fcc56c065ca25e66c3c727ab80365a1d5699642bef27",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs",
+            "sha256": "2e4022810930623b4868453acf89339d7a8d4a87279d6537626305ebded3fa29",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs",
+            "sha256": "6159292a9e4d5ffe941002265fc769b85c5edf290b06089b1811772e6201ab9f",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Bootstrap/link.xml",
+            "sha256": "9eab55765cee043c3124d57173dccedb8ed1418ba4479cb0a2cbbb6aef62e12d",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Editor/AssemblyShadowDemo.Editor.asmdef",
+            "sha256": "0d93c4cd50a6b037326b66892f33d1a118c16cf1bf85d4d10ac990bca791a574",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Editor/R01BDiagnosticBuild.cs",
+            "sha256": "641ed798321411509e06fe06a160f53629852a4c56360b0a8de5376325e19bb2",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Editor/R01BDiagnosticBuild.cs.meta",
+            "sha256": "e993a60c697023353f59d1f77ef9346364559ea1026215c43c07b72be0620ceb",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Editor/R01FailureFixtures.cs",
+            "sha256": "933d502f16ac8ebc289cb701afd61150db3df7ae200ae1d64d6d9088ec614f5a",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+            "sha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/M03TransactionTests.cs",
+            "sha256": "0aaa7cbc8100f1288e4039e91826ecad72dd49340a2aafbf22966da860956611",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/M06ExecutionProbeTests.cs",
+            "sha256": "c75dac045746fa86d096cc3df8972b27287870c2be88c17596ef3049c979cde0",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/M07R00EarlyHandoffDeserializationTests.cs",
+            "sha256": "de487306702b27dd6e5a5ef9923f044e3dd1ff5d7986ace4c089d0476d62c26d",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/M07R00EarlyHandoffDeserializationTests.cs.meta",
+            "sha256": "481daba7069433f5c49ac8a5f968371f2beadf8b6f17b1246f56612abf231e48",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01BDiagnosticMemoryTests.cs",
+            "sha256": "82ac0371119c43aaabd2ae34e3883f3679da9f2b84f4b7c4f39f9a3813c4dfd2",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01BDiagnosticMemoryTests.cs.meta",
+            "sha256": "a061382283e85954ae9840deb6a3d28a2e3de770d4d7c72121cd70818c74c9c0",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs",
+            "sha256": "7ffc21be2fde73fbd4231f39310674409b0d8c8990e5e3afd85a07e1da9ba448",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs.meta",
+            "sha256": "18af596cc44428ef9f9b29d838a091b943f42422408d767a00df1f8bf6770ab6",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01BRvaPayloadTests.cs",
+            "sha256": "addd734b07b314bcc09db942cc6b8e688de437902e440a0ce861635bd09ba307",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01BRvaPayloadTests.cs.meta",
+            "sha256": "5219fc8f8b277f33141fcba8b4e3ce34ce34e59ddd874bddf0b8177102aea805",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "M",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyStartupTests.cs",
+            "sha256": "6112e4fc49b8b502700626c04020d44e7fa6e8806260452bc43113d6a54bd811",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01MetadataProfile2MigrationTests.cs",
+            "sha256": "cd08316e391b9a1c399e9eb517943033b33c263c0bd615fadb0b3450f70a73ae",
+            "role": "managed-profile-migration"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowDemo/Tests/Editor/R01MetadataProfile2MigrationTests.cs.meta",
+            "sha256": "81adcf67655ef39521d6c38b4d319554304a6afa5df73515df6f42c52e072ad7",
+            "role": "managed-profile-migration"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics.meta",
+            "sha256": "04c77fb4fce82c995e80ecce5db990eb8e6e823ccc9154aee2eea3e154b859cc",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime.meta",
+            "sha256": "2e11448f341831799f88e254cb26a0988ef9bb34627295f5880814bd28d899bd",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/AssemblyShadow.R01BDiagnostics.asmdef",
+            "sha256": "8ed2d92e7ff4ca2a19b851d1d0c85d8a474a9c5ab0784b34f07da8ce3ad05297",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/AssemblyShadow.R01BDiagnostics.asmdef.meta",
+            "sha256": "f5283bb169ebb0cde9dd6d85dbe61f65b67fb9bfe796212fe92c0eed948d598f",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BCapacityProbe.cs",
+            "sha256": "908ae51e4adb19b08b0ebeaf266bf8e6f4c07ef59170025085892918821bb073",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BCapacityProbe.cs.meta",
+            "sha256": "05509a223020b83497f237b2ebba4a230ab0ab6fdd00a4e31272f068bd89cab0",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BDiagnosticRunner.cs",
+            "sha256": "e381690487f3bddedc466fa90f70b3fd78801233f6a1acdd594758dc7d9314d4",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BDiagnosticRunner.cs.meta",
+            "sha256": "16bfaa5d1759653b6cd015bc8bcfa2a26b8e8c832f684e7d17f7a83e32dfe322",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs",
+            "sha256": "ee145d784ccf4b3be9ad0d53e673c47732e8a2aec6c3f2b5c9716a8eca1f68e7",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs.meta",
+            "sha256": "1f240e58ca56a80dd131574450d43f0a40deadd14c36be71c1ee20fb24ec46a1",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs",
+            "sha256": "337558b77555352a79f6ab33b67d7d12bbbd51e35bdecf43db5a0ffdf2b77edc",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs.meta",
+            "sha256": "6c66226a34b3dfcf95aa643bf48d6df317d734e26b5b0d65b8fb6af8ef131938",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Scenes.meta",
+            "sha256": "6a567de9c38329c2c8dead6e6d09c9f7d72a17b559a3d58ac8250c357f27a9c3",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Scenes/R01BDiagnostic.unity",
+            "sha256": "5ded38f8039978db24cbdd1bef8ca3901b4c7f6026ba95ade7eb0b8578df8bbc",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Assets/AssemblyShadowR01BDiagnostics/Scenes/R01BDiagnostic.unity.meta",
+            "sha256": "6afb9028f26a10a6dbd024d19c669194a806e28affa10f03fe037679c2df6353",
+            "role": "demo-player-probe"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/Evidence/r01-early-v6-evidence.tar.gz",
+            "sha256": "9dbfc2732c76d6a26ea1384f2966051799f27945467d7431bd8ae714c1338a21",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/R01/R01-execution-plan.md",
+            "sha256": "805ecdb5c5bcd602a555a3f2ea9f0924ecd1d0390addfb777b349f405a4e0817",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/R01-final-stage-review.json",
+            "sha256": "862a8503df9f590ef7a292f420cd587e76658f08a93b46402c6ac8ccc2274bee",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/R01/R01-report.md",
+            "sha256": "ecb80cd347da2d28762c38d3dd7e0b307b29378e60b0e77bf1d18953fc52ced8",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/R01/acceptance-remaining.md",
+            "sha256": "db0b9c4345b236fd03c952f4fc61cd0dbb34cc5d0f59ecbdab33bdb56f445eb5",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/R01/approved-early-activation-amendment.md",
+            "sha256": "b722ca8dde61a643b804ab1df5ddce2b5fcd1d00d3c49bd7d26ab166121427f6",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v5-p01-diagnostic.json",
+            "sha256": "87ea583d9ba11f000b88c59f23fc15435be6f47d47a198c0e1d9c6aaf07689e7",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-bounded-evidence-review.json",
+            "sha256": "c1af64b91df779dcce668b5fc2f1da4afdb3a151058c355018eb558b5c58c7de",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-delivery-checkpoint.json",
+            "sha256": "6cd55d18bfe9c2f592a5866bd6158b86e79b99fd64dbcd60ed275577a66f0f8e",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-editor-validation.json",
+            "sha256": "8e4ab6c0b256b90a22502aeff83912d72c133729079b338826fc6d24344cbe68",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-evidence-index.json",
+            "sha256": "c98018e76000b5dc4a27e5840447d059fc010d2ef49d59e8a21a83baa1d70ee9",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-final-pairing-audit.json",
+            "sha256": "e52494876c962f55163e9e0c67876aca8b65924fd987a88a169db831013be9af",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-m07-aggregate.json",
+            "sha256": "509ce8cd56fdab67594ae52040078d616ff4ca0025940b65a8ffbfa21efd99ec",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-native-regressions.json",
+            "sha256": "f977cf42083628573c6ce66ce17eafe991b8b10e4525664e2db654dbc980b12a",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-native-retention-diagnostic.json",
+            "sha256": "60c1ca24f092e2d3561056991f68edfb9db75a53322d07d805a0b9a13493c19e",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-native-script-review.json",
+            "sha256": "08f295f473ecf55fc7c7e00f0b64085791ce15eba9b9e1d1ec8d41d9dbb360e9",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-native-script-trace.json",
+            "sha256": "6b4de5829e65bfd0b5e906ecbc278e283af6b80c87d06a6fefb964b3ae19fb2b",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-player-build-pair-checkpoint.json",
+            "sha256": "c7ede98152dadb57321a53b206042f141b78dc0b30da78935dba0b782b8aad6d",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-postbuild-audit.json",
+            "sha256": "e43c88fd90253a65d3baae0a3d2410c6e3cd8f42865b95b1ac0e7f0de1e41311",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-python-validation.json",
+            "sha256": "cd6874948ca8f6b6df1ea0045460217508fe23b05ee785c8759fdd71d06eba25",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-r00-performance-comparison.json",
+            "sha256": "50873da477db8b84a5fb4670409463f46ffcf78aeca6f3afa3809bac7d65dd50",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-runtime-and-gap-review.json",
+            "sha256": "201dd4ce67f388eaf487b51caf3689e05d9aab27e8e5f8277f2e48f5340e6d5c",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-strict-matrix.json",
+            "sha256": "3dcfe0722bd021b113f15a7e099e65f3c30191e0aa248e1a4121c0560eb912b7",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-trace-wait-diagnostic.json",
+            "sha256": "13870d00188d438d73089a35c05a104025f4c930483af64f335648b8470deefa",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/early-v6-verifier-correction-review.json",
+            "sha256": "640d0ff0abe6f0cb069be899bd0bd1904754819c7de842a294fd6ecf1495997e",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/R01/metadata-budget-contract.md",
+            "sha256": "e521f784cfdc1c8f1bc6d443bad9b7f98faa4fb53397d3198a7517f85a754b31",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/R01/recovery-contract.md",
+            "sha256": "420537afa6a60a9ac0fe4f58144d3ba1db1d2da52edcdad626b84f9cbc09884a",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "A",
+            "path": "Docs/AssemblyShadow/M07R/R01/source-change-index-v6.json",
+            "sha256": "9bffe0708eb4ec10b81cdc0d2200536197cf13d4628acec42d8c1da844af9351",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "Docs/AssemblyShadow/M07R/current-status.json",
+            "sha256": "2ccb96872999651487c609ff4ae8d94fc5eb4f72278ad9707e6e84e9cae1c029",
+            "role": "documentation-evidence"
+          },
+          {
+            "status": "M",
+            "path": "ProjectSettings/AssemblyShadowSettings.asset",
+            "sha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+            "role": "profile-settings"
+          },
+          {
+            "status": "M",
+            "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+            "sha256": "8560031239333270bb6b000992ee7cf5419d9cd08a581c441ca059c6f857615e",
+            "role": "profile-settings"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/create-r01b-lazy-fixture.py",
+            "sha256": "1f3274d731f0776176041bb7cd231546f0afc5ce9ec7ee4f8bbe18fb88963717",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/create-r01b-mixed-workload.py",
+            "sha256": "310844ded77335804b6aa5f88c9b46a49342d2860607c1b4c212076cabc3bc2b",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/create-r01b-overflow-fixture.py",
+            "sha256": "896c1d963db9e00cd645ad38fd609de7a729aa4c8468edc10b18008ab6c53676",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/m03_results.py",
+            "sha256": "749f04410acb853c7a0f757b1cb9f60d94d33783bed3a6e3f7d35d915c07314d",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/m04_results.py",
+            "sha256": "bf19d10c6bacda53153a39a405d72a687df837a6af18c982dc064074b22b157c",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/m06_results.py",
+            "sha256": "5d44fdbc0c7ab35404c02ccb830039f47e64597306a443f01d39567877a41362",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/m07_results.py",
+            "sha256": "aab72ac311785fe8774d8c8e21feb1c63fda422c56f8a73ca6fe4a2896022f87",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/native-tests/m03_private_visibility.cpp",
+            "sha256": "bfbe42ee3c323eca0b9b7e4e0d4bd3348db84c03fdab7bd11970016145972774",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/native-tests/m04_resolution.cpp",
+            "sha256": "1970eea8372adc009b8756194a49a439f30e084e18df926558798b770e062d93",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/native-tests/r01_budget_contention.cpp",
+            "sha256": "3e10d88ca60f09a59c5c078f99447682ce79d62168149b0da31a201712d2a75f",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/native-tests/r01_startup.cpp",
+            "sha256": "1c1a4e1e9a1d6aaeaf47804fe447de2b96b55b85edd4a86b959aac9b8f67b781",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/native-tests/r01_transaction.cpp",
+            "sha256": "5d545a273fc9de95a3ba6f6d1000d42cab29462d23147ed7a1e9b90e5773ef83",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-attribute-batch.cpp",
+            "sha256": "485c7d805c7a6747c13211508a068e73fd1b9e40f8017d13883a46ea97facc87",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-codec-kernel.cpp",
+            "sha256": "d364aacd290c018f560adcf719f6b0b5404796eb932a09d895b3faa82af8c43b",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-constraint-adapter.cpp",
+            "sha256": "16acde86c8dcb78c3715f940cc018c4ed345ddf701f172b0b481fb39c7c6fedb",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-image-admission.cpp",
+            "sha256": "b37e34ad6c270ade6a2552df040762792093c53bd9bb1b2ca87e5e2b5aaa3865",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-index-range.cpp",
+            "sha256": "d04a13536753efa159f8bc89b55786c7bbbeca4da2452c9febb2b3b5678f2eea",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-index-runtime.cpp",
+            "sha256": "ce10c3fea8c9337f3352f56a58374449d196fbe4d0d7cbb7d0b2e9a6e864dfe3",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-live-capability.cpp",
+            "sha256": "4731ae9c007a4be773f14a128bf5370b14ad7694f8f6d0f7fad3b5794f7d139a",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-parser-bounds.cpp",
+            "sha256": "6bb516665a8538af7c1168dcd7d1d75148a717edcb184663f87be8265edc4933",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-parser-dense.cpp",
+            "sha256": "66fd0b43c4a4c253831f96e2997454d200214b14469042a5f0918e50082a53c0",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-parser-full.cpp",
+            "sha256": "3bd5eee6d6ae2b2fd9490b9a26b2e9dbc887ac78214ac0a404461657f1aebd34",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-parser-index-adapter.cpp",
+            "sha256": "17bf24507c504e37c506c97eb576f72c8738ba6e5dc0b1c513af2d672e028382",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/native-tests/r01b-type-cache.cpp",
+            "sha256": "68d2b6af123a3136b0d0109a4e346549568683cacaf5289795ca8be7320e5812",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/r00_results.py",
+            "sha256": "467dc513ee90a855d5246231791c04258e07039bb811c84e196f97e0d7e5cb5f",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/r01_early_results.py",
+            "sha256": "ee0a71c87c0b1f754505bd2dca9bced446d27a9268e93df3c6400bcfe43f80a3",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/r01_failure_results.py",
+            "sha256": "821bd3cdd436001da3479abdcb932efa4310ada0afe1e2cb136fd2bc41a22b0e",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/r01_results.py",
+            "sha256": "e694a80b7fa8ead887ffceaa0cc8e46f9af255b5008d8b7033152490cb074ce7",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b-capacity-tools-tests.py",
+            "sha256": "f45f9f60297bc9e5a24576a6411417badb9fb8f07360f0c6db85b68f2afaeacc",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b-lazy-fixture.cs",
+            "sha256": "f197d588d52ffb1d8f9720f4c152d56154bc0109770b6c24f11293f191df81ee",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b-native-counts-tests.py",
+            "sha256": "b4e5c2a00537a8950d611e85daa9ac112e70739a39d6ace33e2f6bbe6c70ee7e",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b-native-counts.cpp",
+            "sha256": "1811b760861a7da8a50e49f45409340241c21daf4b972f682bbab4bd04b21a35",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b-overflow-fixture.cs",
+            "sha256": "e0680b483d33765ba827c59a2ae0389f1ae39fc6169ead2d8f9e0f801c7b1433",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b_capacity_inputs.py",
+            "sha256": "032bb13854f963431e8f378c0ad95d67475c55db90f58e1257da48fbcb8e3497",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/r01b_diagnostic_inputs.py",
+            "sha256": "90fba7bc0e4fd7e9914dbb272acb4a23d111e21c5a02effd440fee7cef3a5065",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/run-m03-visibility-tests.py",
+            "sha256": "59f54dbe0b4793a95f2ee4b3b416da7725ef4077a1608c52b50efae315c3b179",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/run-r00-players.py",
+            "sha256": "61b6db2cc733f06a12259150a12b11c12e378e65724409323b8639788b1439b0",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/run-r01-budget-contention-native-tests.py",
+            "sha256": "5caf470e94cc59dfeafaab167bf6aaf1008dbf32b1282519edcd3e9dd0d57a20",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/run-r01-early-players.py",
+            "sha256": "48bd0348d5062523399e0c895fd54c15ca714845c8559118c7d8933e611c3702",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/run-r01-startup-native-tests.py",
+            "sha256": "1ffa37b94dbcfd2f9816051e028a9be4d158be7df81ee3b99379665eff11f40e",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/run-r01-transaction-native-tests.py",
+            "sha256": "4f55baef0188e7fb6d582a5ad4fa31ef5f94958f79cbc1bfcec1554d7b127b31",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-attribute-batch-tests.py",
+            "sha256": "5dc08b46f9ab89bda13ce614b65f556d89fb656c0e1abf285ec405e76ceb06d6",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-capacity-player.py",
+            "sha256": "f45dc8d069bffb651e60602b615f93451969ec7edcf28862ecd1ec0ebfe3d212",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-codec-kernel-tests.py",
+            "sha256": "8459dd1c6f0df32935ada49a0c3570e2ef31c758c7a61476f9aa5b7f4aecb0bf",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-constraint-native-tests.py",
+            "sha256": "34d87d4577a69c3390a7189ba226640aeaff6e3f8eeea9a79b17ea03e7198a94",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-index-range-tests.py",
+            "sha256": "04c3430fa66391e3bd0704cd69f9e014d7d4b639b30fcd749ec88b38b78ab3da",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-index-runtime-tests.py",
+            "sha256": "e8def63671188f16e564220400614c205ba2917677658ebe462b67d9c50e72ba",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-lazy-player.py",
+            "sha256": "2903cd4d48b3f2a8e81ac6a4f5803b6176dbe42a303c021285037d2e014d6a1a",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-live-capability-tests.py",
+            "sha256": "24c026ab0d3077aed95391206840cc36559c56e964255ba6548767a3825c34e5",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-old-player-rejection.py",
+            "sha256": "147d545dac3a9b2a2a1d0c8965d4e58b0bd27844883e8979d997ab3567e9486b",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-parser-tests.py",
+            "sha256": "17a438fe93a4316fadf69c3c6a14f00e9e5d80d01026f49761f80f87df0c1ca9",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/run-r01b-type-cache-tests.py",
+            "sha256": "30f0cbbbb42ed08019565800e249b791ca2e53641487e22f365428f2fcda50ee",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/tests/R01BLiveCapabilityStandalone.cs",
+            "sha256": "51086e4b60ee03688f13c733650fc6eb9173a14edeb681ce1655d02bd3973c51",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/tests/test_r00_startup_correction.py",
+            "sha256": "90146cc5bb0eaab2a92f4887b8a589cd56626b2c6a70363e1ff739b4aac5de48",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/tests/test_r01_early_launch.py",
+            "sha256": "0a09128a63d9b57f9e186ee7871e6875dbfcce42744aef08edef0892d86fef2a",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py",
+            "sha256": "67402bc0d4a49559cd1e253e87a3e990aa8c5c61997ad898683ed89cf0f01678",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/tests/test_r01_pipeline.py",
+            "sha256": "fe7d47c5f2259fc40e9d8c420a239556d2e09a854f52c3108364401d1ea2a7a5",
+            "role": "validation-harness"
+          },
+          {
+            "status": "M",
+            "path": "Tools/AssemblyShadow/tests/test_r01_results.py",
+            "sha256": "9cb60fae9b2c993ddf784b1d0f89b0ce4bb64c5d3645123db3a5d0c6d78b46a2",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/tests/test_r01b_diagnostic_inputs.py",
+            "sha256": "802a71c6687e69e2a95762eb038f70c8343367599a7d379c1a1dced908d9efaa",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/tests/test_r01b_lazy_result.py",
+            "sha256": "00f5b14e476a4b805430a819def9af3dc09889734964574e450b5ababe2dfbcd",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/tests/test_r01b_metadata_verifier.py",
+            "sha256": "7beb3a5cf8558efec93cc6f12dbeaba973dca92cf4d9e49c85a39be953dc2458",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/tests/test_r01b_startup_corrections.py",
+            "sha256": "2664875f4eee5f5cfef03aa923ffdcebe4db31790db4520ee4af4e57fd58b0ad",
+            "role": "validation-harness"
+          },
+          {
+            "status": "A",
+            "path": "Tools/AssemblyShadow/verify-r01b-capacity-result.py",
+            "sha256": "a60d87db0334a6048edc0125240c3f4d14aab50d4c70bc446321dc859e20e6db",
+            "role": "validation-harness"
+          }
+        ]
+      },
+      "currentMetadataHead": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+      "metadataDelta": {
+        "head": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+        "kind": "metadataIncremental",
+        "base": "9b04fb9f3578a55f50915b914d0071234441289d",
+        "commitRange": "9b04fb9f3578a55f50915b914d0071234441289d..c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+        "shortStat": "1 file changed, 1 insertion(+), 1 deletion(-)",
+        "changedPathCount": 1,
+        "paths": [
+          {
+            "status": "M",
+            "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+            "sha256": "f82ec036ce8d03b634710ec8fe3167837b90fd61966e9ef7ed6830a65be4f9ca",
+            "role": "profile-settings"
+          }
+        ]
+      }
+    }
+  ],
+  "semanticRoles": [
+    {
+      "id": "bounded-metadata-reader",
+      "meaning": "Blob/raw metadata reader bounds, stream validation and sentinel handling"
+    },
+    {
+      "id": "metadata-index-codec",
+      "meaning": "Index/count/range encoding and runtime helpers"
+    },
+    {
+      "id": "native-admission-ownership",
+      "meaning": "Image admission, ownership, publication and lifetime"
+    },
+    {
+      "id": "native-capability-query",
+      "meaning": "Native capability/capacity query endpoint and ABI-facing data"
+    },
+    {
+      "id": "native-metadata-consumer",
+      "meaning": "Adjacent HybridCLR metadata consumers"
+    },
+    {
+      "id": "native-vm-integration",
+      "meaning": "IL2CPP VM metadata integration"
+    },
+    {
+      "id": "managed-profile-runtime",
+      "meaning": "Managed profile, manifest, capacity and capability runtime"
+    },
+    {
+      "id": "managed-profile-migration",
+      "meaning": "Managed DTO/profile2 migration and atomicity consumer tests"
+    },
+    {
+      "id": "managed-validation",
+      "meaning": "Managed Editor/runtime validation"
+    },
+    {
+      "id": "demo-player-probe",
+      "meaning": "Demo Player probes, fixtures, scenes and diagnostic assembly"
+    },
+    {
+      "id": "validation-harness",
+      "meaning": "Python/native test harnesses and strict verifiers"
+    },
+    {
+      "id": "profile-settings",
+      "meaning": "Demo profile/source pin settings in the immutable commit"
+    },
+    {
+      "id": "documentation-evidence",
+      "meaning": "Versioned documentation/evidence files in the executable delta"
+    }
+  ],
+  "documentationBoundary": {
+    "statusPath": "Docs/AssemblyShadow/M07R/current-status.json",
+    "status": "Pending final delivery update; deliberately excluded as a live HEAD artifact",
+    "metadataHeadProof": "The demo metadata head is immutable commit c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2, not the live status file.",
+    "sourceInventoryAccounting": "The superseded draft counted the accepted-metadata-base-to-metadata-head cumulative range (305 records); this sealed inventory uses the one-file incremental metadata range and reports unique paths separately."
+  },
+  "pathAccounting": {
+    "definition": "Each delta path is hashed from immutable git-show bytes at its range head. The demo metadata range is incremental from the executable head to the metadata head; an overlap is counted as a duplicated version entry, not as another unique repository path.",
+    "sourceCommitRangeEntryCount": 201,
+    "uniqueRepositoryPathCount": 200,
+    "duplicatedVersionEntryCount": 1,
+    "supersededDraftCumulativeEntryCount": 305,
+    "perRepository": [
+      {
+        "repository": "hybridclr",
+        "executableRangePathCount": 29,
+        "metadataRangePathCount": 0,
+        "sourceCommitRangeEntryCount": 29,
+        "uniquePathCount": 29,
+        "duplicatedVersionEntryCount": 0
+      },
+      {
+        "repository": "il2cpp_plus",
+        "executableRangePathCount": 12,
+        "metadataRangePathCount": 0,
+        "sourceCommitRangeEntryCount": 12,
+        "uniquePathCount": 12,
+        "duplicatedVersionEntryCount": 0
+      },
+      {
+        "repository": "hybridclr_unity",
+        "executableRangePathCount": 21,
+        "metadataRangePathCount": 0,
+        "sourceCommitRangeEntryCount": 21,
+        "uniquePathCount": 21,
+        "duplicatedVersionEntryCount": 0
+      },
+      {
+        "repository": "hybridclr_demo",
+        "executableRangePathCount": 138,
+        "metadataRangePathCount": 1,
+        "sourceCommitRangeEntryCount": 139,
+        "uniquePathCount": 138,
+        "duplicatedVersionEntryCount": 1
+      }
+    ]
+  }
+}

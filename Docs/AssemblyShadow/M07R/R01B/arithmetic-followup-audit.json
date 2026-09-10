@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "r01b_hybrid_index_inventory_gpt56luna_medium_1",
+  "scope": "Follow-up audit of GlobalMetadata encoded-start arithmetic and interpreter raw-domain adapters",
+  "conclusion": "No additional confirmed interpreter-reachable encoded arithmetic gap in inspected paths",
+  "inspectedDomains": [
+    "entry point",
+    "vtable",
+    "field and method starts",
+    "properties and events",
+    "generic parameters and constraints",
+    "raw parameter vector",
+    "raw nested type and interface arrays"
+  ],
+  "remainingIntegrationRequirement": "Replace current1024-entry image address table with an8193-slot or equivalent mapping for IDs0..8192, with checked lookup and publication. This is a known sparse-profile migration requirement, not an existing reachable allocator bug.",
+  "sourceHashesAtRootCapture": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr/hybridclr/metadata/InterpreterImage.cpp": "c7cff2b6bd8784986d473bfd307006b36ee1aee3343fe23ad5bb4abba7cb861e",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr/hybridclr/metadata/InterpreterImage.h": "2db10f5f82424292d5c4c23146e39c10d4455acd60abbd8268f571835a16a783",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr/hybridclr/metadata/MetadataUtil.h": "db2307ee2018c7574926dd6fba4519547b33455d652d11ff79f5a1cde75f005d",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/il2cpp_plus/libil2cpp/vm/GlobalMetadata.cpp": "a2012ab491d3838e08f043529348e3f69b7a04b5bcf020192703f07cc6c60c7e",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr/hybridclr/interpreter/MethodBridge.cpp": "0061d8490747882dd0fe65ea22b20823c39b7ad02f18bb29d9bf8b06f343d0a7"
+  },
+  "limits": [
+    "Bounded source audit; no whole-repository proof or runtime sparse-profile acceptance",
+    "Typed accessor semantic range checks remain distinct from encoded-page capacity"
+  ],
+  "milestoneAccepted": false
+}

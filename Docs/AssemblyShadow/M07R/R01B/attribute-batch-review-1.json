@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "verdict": "Fail",
+  "scope": "Intermediate custom attribute batch implementation; source under remediation",
+  "reviewer": "r01b_codec_design_review_gpt6astra_high_1",
+  "frozenSourceVerdict": false,
+  "findings": [
+    {
+      "id": "A1",
+      "priority": 1,
+      "detail": "Temporary constructor/field/property buffer fixups were not relocated into the final buffer."
+    },
+    {
+      "id": "A2",
+      "priority": 1,
+      "detail": "Global MetadataPool access from conversion requires synchronization."
+    },
+    {
+      "id": "A3",
+      "priority": 1,
+      "detail": "Completed attribute state and pointer readers require synchronized publication."
+    },
+    {
+      "id": "A4",
+      "priority": 2,
+      "detail": "Aggregate type-index bounds and final allocation must be checked before appending."
+    },
+    {
+      "id": "A5",
+      "priority": 2,
+      "detail": "Writer resize must commit pointer and capacity together after allocation succeeds."
+    }
+  ],
+  "intermediateObservation": "Duplicate unique_ptr ownership observed during edits was subsequently removed; frozen allocation-failure tests remain required.",
+  "requiredEvidence": [
+    "Actual distinct-buffer merge and relocated fixups",
+    "Failure in final blob leaves owner entries unchanged",
+    "Nested or concurrent winner discards local batch",
+    "Fault injection verifies single ownership and no partial publication",
+    "Affected production translation-unit compilation"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

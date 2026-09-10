@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6NativeEvidenceReuseAudit",
+  "status": "Passed",
+  "scope": "Read-only live audit of v5 native/compiler evidence against current v6 source pins and sealed v5 inputs; no fresh v6 execution, Unity/Player launch, or full-stage acceptance.",
+  "currentHeads": {
+    "hybridclr": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+    "hybridclrUnity": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+    "il2cppPlus": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+    "demo": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2"
+  },
+  "workingTreeAudit": {
+    "hybridclrDirtyPaths": 0,
+    "hybridclrUnityDirtyPaths": 0,
+    "il2cppPlusDirtyPaths": 0,
+    "demoDirtyPaths": 2,
+    "demoDirtyScope": "Docs/AssemblyShadow/M07R/current-status.json plus untracked R01B documentation directory; no uncommitted native/code source"
+  },
+  "v5Evidence": {
+    "index": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v5-validation.json",
+      "sha256": "60e6c44a366076c2be858c86e486f4579bb07e36139d21dfe608c486216a7727"
+    },
+    "freshReceipts": [
+      {"path": "_temp/AssemblyShadow/R01B/corrective-native-v5-1/aggregate.json", "sha256": "f93dd258c887ac2b5b81710d8aac43ff39b5c04f0c342f9621c0e70f861a9a2a"},
+      {"path": "_temp/AssemblyShadow/R01B/syntax-v5-1/syntax-v5-1.json", "sha256": "1080b159e903887546f89ee8b0cd045526030dcf126483eef265b8bb5fc4e847"},
+      {"path": "_temp/AssemblyShadow/R01B/m03-m06-v5-sealed-summary-1.json", "sha256": "5ef1d13b6bee830c8525a9e278557551ea783f1244345766f93079c8c6c1e77a"},
+      {"path": "_temp/AssemblyShadow/R01B/parser-v5-sealed-1/r01b-parser-receipt.json", "sha256": "50d8836bd428152c028dd84639cea12142c2ba627b230d5850807d6f48846608"},
+      {"path": "_temp/AssemblyShadow/R01B/parser-v5-sealed-1/sealed-v5-validation.json", "sha256": "0c7d2f7ecf946b17b1f9cd72dc70148bb064de61dd821120aa206e7eb6871026"},
+      {"path": "_temp/AssemblyShadow/R01B/live-capability-correction-final-2.json", "sha256": "2415ecea194f4b1d86f9cc799df70ec5e5d94d8fef4248b857474b77968a155c"}
+    ],
+    "aggregateChecks": 54630,
+    "nativeCodeInputsUnchanged": true,
+    "excludedNonNativeMetadataDeltas": ["ProjectSettings/AssemblyShadowSourcePins.json", "assembly-shadow-install.json"]
+  },
+  "liveHashAudit": {
+    "sealedV5LibIl2Cpp": {"recordedFiles": 957, "missing": 0, "mismatches": 1, "metadataOnlyPaths": ["assembly-shadow-install.json"]},
+    "sealedV5External": {"recordedFiles": 916, "missing": 0, "mismatches": 0},
+    "nativeReceiptRepositoryInputs": {"visibility": {"recorded": 1000, "repositorySourceFilesAudited": 262, "mismatches": 1}, "transaction": {"recorded": 1084, "repositorySourceFilesAudited": 262, "mismatches": 1}, "startup": {"recorded": 1079, "repositorySourceFilesAudited": 257, "mismatches": 1}, "contention": {"recorded": 1068, "repositorySourceFilesAudited": 249, "mismatches": 1}, "onlyMismatch": "ProjectSettings/AssemblyShadowSourcePins.json"},
+    "changedMetadata": {"path": "assembly-shadow-install.json", "before": "9378796d42cd0e27b476b26795c6cf95ed595b91609eb16ba0e505b3c434252f", "after": "ef9ea7b52c1b0a59288a8a25473c92647178eda7eeb55b5a049dddd7b842593f"},
+    "currentDemoMetadataSha256": "f82ec036ce8d03b634710ec8fe3167837b90fd61966e9ef7ed6830a65be4f9ca"
+  },
+  "v4DiagnosticFixture": {
+    "receipt": "_temp/AssemblyShadow/R01B/live-capability-correction-final-2.json",
+    "recordedDependencies": 1006,
+    "liveMissing": 0,
+    "liveHashMismatches": 0,
+    "v4SnapshotFixtureInputs": 46,
+    "statement": "The v4 installed headers are retained fixed diagnostic fixtures; this receipt is not v5 sealed-install or Player proof."
+  },
+  "sourceIdenticalChangedDependencies": {
+    "runtimeConfigHeaderSha256": "0db41daddd16b4a8c290995a399c29e4cf41877b96443687d1d1af98c1a43e9a",
+    "assemblyShadowTypesHeaderSha256": "df149952bd8beefd0ee6580f337262f28614c43f7eb695554a3a284eca1a1257",
+    "currentMatchesRecorded": true,
+    "newNativeTestRequired": false
+  },
+  "claims": {"nativeEvidenceReuse": "PASS", "freshV6Execution": false, "playerAcceptance": false, "fullStageAcceptance": false}
+}

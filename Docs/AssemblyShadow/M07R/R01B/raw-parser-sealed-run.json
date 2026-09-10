@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BFullNativeCorpusSealedRun",
+  "receipt": "_temp/AssemblyShadow/R01B/raw-image-script5-receipt.json",
+  "receiptSha256": "6170b5cae1191e9fffe8fac080051932561ab091aab498de363e28fcf7dd901c",
+  "results": {
+    "asanUbsan": "raw_image_helper_offsets=8 PASS\nraw_image_checks=8192 files=8192 field_rva_rows=8196 payload_samples=40980 large_files=1 PASS",
+    "asanUbsanStderr": "",
+    "asan": "raw_image_helper_offsets=8 PASS\nraw_image_checks=8192 files=8192 field_rva_rows=8196 payload_samples=40980 large_files=1 PASS",
+    "asanStderr": "",
+    "helperOffsetPass": true,
+    "ubsanDiagnosticsPresent": false,
+    "sanitizerClean": true,
+    "asanPass": true,
+    "parserPass": true,
+    "provenanceStable": true
+  },
+  "note": "Run5 replaces the need to infer execution stability from historical HEAD/prior-receipt hashes in run4. Runner reports matching actual before/after compiler dependency sets and955 provenance inputs. Earlier artifacts retained.",
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

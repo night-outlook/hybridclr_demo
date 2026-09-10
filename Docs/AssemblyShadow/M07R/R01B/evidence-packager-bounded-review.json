@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BEvidencePackagerBoundedReview",
+  "result": "Passed",
+  "reviewer": "verifier_profile_gpt6astra_high_1",
+  "scope": "Reviewed recipe correctness and existing v5 configuration; v6 final configuration, generated archive and full-stage acceptance pending",
+  "reviewedFiles": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/package-v5-evidence.py",
+      "sha256": "915268e0f9427b3747819741cdc9a94aa02835731a4e89e898d97933ab48f12c"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/write-v5-player-evidence-index.py",
+      "sha256": "cb7c705e12aa7d9f6c75462d340b9fc19d8259e6e282a7d668d0ec580a1333c6"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/package-v5-evidence-config.json",
+      "sha256": "24307f801d6abe2b913a839c915523b6b628a49d908455cdcf27984f6512aa4b"
+    }
+  ],
+  "closedFindings": [
+    "Parsed bytes bound to inventory",
+    "All artifact hashes rechecked before publication",
+    "Original output ancestors reject symlinks",
+    "Complete deferred source binding required",
+    "Historical old-player pins use distinct authenticated role",
+    "Compiler and snapshot metadata explicitly selected",
+    "Full production/diagnostic/failure child Unity logs selected"
+  ],
+  "focusedTests": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/focusedtests-packager-astra/receipt.json",
+    "sha256": "f894f092b4862440aa33ee537b3ab0000151d917a18023d8a94a8dfdc6f1e9fb",
+    "passed": 16
+  },
+  "H1Passed": false,
+  "mayEnterR02": false
+}

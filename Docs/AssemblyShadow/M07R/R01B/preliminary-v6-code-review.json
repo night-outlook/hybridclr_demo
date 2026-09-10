@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6PreliminaryFullStageCodeReview",
+  "result": "NoNewBlockingDefectInInspectedMigrationPaths",
+  "reviewer": "verifier_profile_gpt6astra_high_1",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+  "findings": [
+    {
+      "id": "R01B-INHERITED-COUNT-01",
+      "disposition": "NotFixedInheritedScopeLimitation",
+      "path": "../hybridclr/hybridclr/metadata/InterpreterImage.cpp",
+      "line": 2063,
+      "description": "uint16 nested_type_count increments and narrows without guarding 65536; grouping can restart after wrap.",
+      "acceptedR01Revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "acceptedR01Lines": [
+        1810,
+        1821
+      ],
+      "supportedLimit": 65535,
+      "runtimeCounterexample": "NotRun"
+    },
+    {
+      "id": "R01B-INHERITED-COUNT-02",
+      "disposition": "NotFixedInheritedScopeLimitation",
+      "path": "../hybridclr/hybridclr/metadata/InterpreterImage.cpp",
+      "line": 1790,
+      "description": "parameterCount narrows before the >=256 guard; 65536 can evade existing rejection.",
+      "acceptedR01Revision": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "acceptedR01Lines": [
+        1549,
+        1550
+      ],
+      "supportedLimit": 255,
+      "runtimeCounterexample": "NotRun"
+    }
+  ],
+  "scopeDecision": "R01B preserves existing IL2CPP count widths. These shapes fit the old address profile and are inherited admission debt. Required target workload failures cannot be excluded. Do not claim arbitrary over-limit metadata rejection or comprehensive malformed metadata certification. Workload shape audit pending.",
+  "followup": "Check actual counts before narrowing/increment and add actual loader Debug/Release counterexamples.",
+  "inspected": [
+    "Codec AOT/sentinel disjointness",
+    "Lifetime reservation and abort charges",
+    "Sealed lazy growth",
+    "Publication group and ActiveSnapshot visibility",
+    "Cross-page raw-domain arithmetic",
+    "Native ABI/capability/profile/source binding",
+    "Bounded blob reads, attribute batching, type-cache insertion",
+    "Preserved authenticated R00 deserialization"
+  ],
+  "validation": "Read-only source inspection and four-repository git diff --check; no runtime tests executed by reviewer.",
+  "finalReview": "Pending final v6 Player evidence, archive and documentation commit",
+  "H1Passed": false,
+  "mayEnterR02": false
+}

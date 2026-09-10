@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV5PythonValidation",
+  "result": "Passed",
+  "tests": 492,
+  "skipped": 0,
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Tools/AssemblyShadow/tests",
+    "-p",
+    "test_*.py"
+  ],
+  "environment": {
+    "M05_REAL_COMPILER_ROOT": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-368c3c79b8bc44878eebad60e7860772/Assemblies",
+    "M05_RAW_CONFIGURATION": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-368c3c79b8bc44878eebad60e7860772/RawTypeAdmissions/configuration.json"
+  },
+  "log": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/python-v5-player-inputs-1.log",
+    "sha256": "a9d95dd9ebc1548c8e71b453653d62aec6df34ad15253440760d4858af455620"
+  },
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "63dde5e28e29b708ec05005e6d8bb82ef38442dc",
+      "localPath": "."
+    }
+  },
+  "scope": "Full Python suite on sealed v5 compiler inputs; no Player/full-stage acceptance"
+}

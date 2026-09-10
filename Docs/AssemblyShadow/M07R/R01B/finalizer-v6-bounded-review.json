@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6FinalizerBoundedReview",
+  "result": "Passed",
+  "reviewer": "verifier_profile_gpt6astra_high_1",
+  "recipe": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/finalize-v6-docs.py",
+    "sha256": "bacd2514b03e265c35192ba070269ff691db4164c37f2a4738ae337db118cbae"
+  },
+  "drafts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/v6-final-doc-drafts/encoding-adr.md",
+      "sha256": "16807feaef2bb6402c1f5ccb40ee2a99bb69a58798ef50e43eb51574269f43dd"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/v6-final-doc-drafts/profile-2-contract.md",
+      "sha256": "36baff4230b122fb229032fe00d2b5b1beaad4c3cd51d1b0c26eb1afcc08b4ce"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/v6-final-doc-drafts/runtime-admission.md",
+      "sha256": "c87d48839b58cab65a24abed9897752b408083e7083fd4f3d7adc1ea8e9a0973"
+    }
+  ],
+  "focusedTests": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/v6-final-doc-drafts/focusedtests-finalizer-receipt.json",
+    "sha256": "c568ccd3d3eab72c0e0403d1ceb41b8c200d3c9f4d2e52fafe63d2de69e94015"
+  },
+  "focusedPassed": 44,
+  "scope": "Bounded recipe/source delta review PASS and actual read-only guard PASS. Final generated document publication, archive, independent full-stage verdict and H1 remain pending.",
+  "closedFindings": [
+    "Required pin-role schemas",
+    "Strict/raw/launch hash bindings",
+    "Exact mode and timing-cell coverage",
+    "Validate all outputs before mutation and final input seal",
+    "Remove contradictory pending/unchecked promotion claims",
+    "Preserve case-specific metrics and inherited issue dispositions",
+    "Exclude overwritten document preimages from exported evidence while retaining concurrency seals",
+    "Mixed manifest schema, valid-DLL byte partition and selected manifest alias bindings",
+    "Expected startup refusal exit/result/callback semantics",
+    "Binary capsules restricted to selected-launch declared path/hash pairs"
+  ],
+  "H1Passed": false,
+  "mayEnterR02": false,
+  "focusedTestRecipe": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/v6-final-doc-drafts/focusedtests-finalizer.py",
+    "sha256": "8c8d5eafdb5b1083f016e2e91ae9d69fd52f5d83a7cac4ee2bfc1f39e57cb2a2"
+  },
+  "deltaReview": {
+    "result": "Passed",
+    "reviewer": "verifier_profile_gpt6astra_high_1",
+    "recipeSha256": "bacd2514b03e265c35192ba070269ff691db4164c37f2a4738ae337db118cbae",
+    "actualEvidenceChecks": {
+      "startupModes": 11,
+      "distinctDeclaredBinaryCapsules": 23,
+      "mixedManifestPartitions": "Passed"
+    },
+    "scope": "Read-only recipe/source and actual evidence schema review; no document/archive publication or full-stage/H1 verdict."
+  },
+  "readOnlyGuard": {
+    "result": "Passed",
+    "command": "python3 -B _temp/AssemblyShadow/R01B/finalize-v6-docs.py",
+    "exitCode": 0,
+    "output": {
+      "baseline": "M07-Baseline-R01B-20260909-v6",
+      "concreteReceiptCount": 17,
+      "fullStagePassed": false,
+      "humanGatePassed": false,
+      "nativeFreshExecution": false,
+      "r02Eligible": false,
+      "sourceInventorySha256": "2a92350edd65743a6316110f43605aa7fbfab271e36f7a676830cce54f1aa46a",
+      "status": "guard-passed"
+    },
+    "scope": "Complete actual v6 input validation and all outputs prepared in memory, followed by final input seal. No --write."
+  }
+}

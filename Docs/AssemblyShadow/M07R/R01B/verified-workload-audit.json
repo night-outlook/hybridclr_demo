@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BVerifiedCorpusRootAudit",
+  "all8192DllHashesAndSizesMatch": true,
+  "maximumDllBytes": 33554432,
+  "totalDllBytes": 536870912,
+  "verifiedArtifacts": [
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v2-verified-manifest.json",
+      "sha256": "7a00fda1f3026d82d7881c3555031bde49f5a54101ca110f7938a6b6d7e7d607"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v2-verified-errata.json",
+      "sha256": "835e82eb9f14945adf2ff1f3d22a7dec1395836d2bff9b8c0a0877bcf424d7ee"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v3-fixture-generator.cs",
+      "sha256": "455f9fa7bcc8eeb40bcb8011855830ab07d81f8c655931622f4fe711934f5868"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v3-replay-receipt.json",
+      "sha256": "fd333cbf807bb71a822cfb5279133197349effc80dfbe01e77d806dea9996f6e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v3-dense-adjunct.json",
+      "sha256": "5fc5cfbdec1f469ac21c7796193ca57ee9b37b7264cb1cfac9a14f92eda396a0"
+    }
+  ],
+  "methodRowExplanation": "96 MetadataType.ReturnId methods plus MetadataEntry.ReturnId and ReturnPayloadMarker =98. The errata reason text omits ReturnPayloadMarker; the corrected numeric counts and generator formula MetadataTypeCount+2 are verified.",
+  "originalManifest194ExpectationAccepted": false,
+  "denseAdjunctIncludedIn8192Envelope": false,
+  "runtimeCapacityAccepted": false
+}

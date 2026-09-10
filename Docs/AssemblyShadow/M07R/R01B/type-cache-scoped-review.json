@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "scope": "R01B type-cache insertion and named lazy cache locks",
+  "verdict": "ScopedPass",
+  "reviewer": "r01b_codec_design_review_gpt6astra_high_1",
+  "receipt": "_temp/AssemblyShadow/R01B/type-cache-native-receipt-1.json",
+  "receiptSha256": "352a652d38732b8aa728a9cfb596780bf52c4861dd056a430d6baaf7ee0a4f01",
+  "checks": 77,
+  "sanitizers": [
+    "AddressSanitizer"
+  ],
+  "implementation": [
+    "hybridclr/metadata/InterpreterTypeCacheInsertion.h",
+    "hybridclr/metadata/InterpreterImage.h: type-vector readers and generic constraint lock",
+    "hybridclr/metadata/InterpreterImage.cpp: AddIl2CppTypeCache and interface first-resolution lock",
+    "il2cpp_plus/libil2cpp/vm/Class.cpp: generic parameter reflection cache lock"
+  ],
+  "limits": [
+    "Native tests use std::unordered_map and std::mutex substitutes; production sparse hash allocator failure recovery is not established.",
+    "Affected production translation units and Player integration remain pending.",
+    "No whole-runtime concurrency or performance acceptance.",
+    "Kernel finalization changes require rerunning dependent tests."
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

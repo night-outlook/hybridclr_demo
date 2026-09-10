@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BIntegrationFindingReReview",
+  "reviewer": "codec_review_gpt6astra_high_1",
+  "verdict": "PASS",
+  "scope": [
+    "Native count and slot overflow guards",
+    "Attribute string checked copy"
+  ],
+  "receipt": "_temp/AssemblyShadow/R01B/native-counts-current-1.json",
+  "receiptSha256": "c34b442d69cef3b8e36d16b2f73eaabb708c370b2a4847fc85473f802a4f51b9",
+  "checks": {
+    "release": 32,
+    "asanUbsan": 32,
+    "productionSyntaxOnOff": 4
+  },
+  "limits": [
+    "Signature and exception adapters in native harness",
+    "Whole-loader and Player verification pending"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

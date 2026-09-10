@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "verdict": "Fail",
+  "scope": "Atomic codec footprint finalization extension",
+  "reviewer": "r01b_codec_design_review_gpt6astra_high_1",
+  "headerSha256": "f7962e4f6a0e88c1194a658662937a5e0a0b4bda74015b291224fa839401f405",
+  "receipt": "_temp/AssemblyShadow/R01B/codec-kernel-run-5/codec-kernel-receipt.json",
+  "receiptSha256": "9e14e544f308b66d188c7102f8ebb3da91fb46d1bb5d03c97c74b99574d64bf1",
+  "findings": [
+    {
+      "priority": 2,
+      "detail": "Existing-binding fast path widens a sealed partial low page after lazy binding: Finalize(1), Encode(1) rejects, Encode(0), Encode(1) succeeds. Retain preseal sparse membership and enforce it before returning binding."
+    }
+  ],
+  "requiredTests": [
+    "Partial low-page endpoint before and after lazy binding",
+    "Genuinely preseal sparse-page offset acceptance",
+    "Finalize racing Encode with both legal serialized outcomes"
+  ],
+  "priorStandaloneChecks": 8474,
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

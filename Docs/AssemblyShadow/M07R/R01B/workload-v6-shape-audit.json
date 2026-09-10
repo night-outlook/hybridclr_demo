@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6WorkloadShapeAuditIndex",
+  "result": "PassedBoundedInputShape",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "localPath": "."
+    }
+  },
+  "audit": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/workload-v6-shape-audit-2.json",
+    "sha256": "accc2e469f3749339a8a8ece1ceb57b592ec3501f929640558c8f9341528df46"
+  },
+  "recipe": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/audit-v6-workload-shapes.py",
+    "sha256": "51862aa611b0f0ef4e088063e52d02a7b8f87902f9242cc8b8ce9992e53ec42e"
+  },
+  "ordinary8192": {
+    "directory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/workload-v2-corpus-512MiB-8192",
+    "manifestSha256": "a823aeb3ca6ca4652394fbf29593e93da3ac32477f74d7a750c7cdad447bd66b",
+    "manifestFileListSha256": "80db435e88c3d568aab08dbe900aedbf66bea4c6c66b85d8a89a00afd81c4259",
+    "dllCount": 8192,
+    "maxSignatureParameterCount": 0,
+    "maxNestedChildrenPerDeclaringType": 0,
+    "nestedTypeDefinitions": 0
+  },
+  "denseCount": 2,
+  "lazyMaximumParameters": 2,
+  "patches": {
+    "P01-patch": {
+      "count": 1,
+      "maximumParameters": 3,
+      "maximumNestedChildren": 14
+    },
+    "P03-patch": {
+      "count": 5,
+      "maximumParameters": 3,
+      "maximumNestedChildren": 14
+    }
+  },
+  "widthAssurance": {
+    "inheritedMethodParameterMaximum": 255,
+    "inheritedNestedChildrenMaximumPerDeclaringType": 65535,
+    "observedWithinWidths": true,
+    "overlimitTestsRun": false,
+    "malformedInputRejectionClaim": false
+  },
+  "scope": "Actual required DLL shape parse and before/after input hashes; no actual over-limit loader test.",
+  "H1Passed": false
+}

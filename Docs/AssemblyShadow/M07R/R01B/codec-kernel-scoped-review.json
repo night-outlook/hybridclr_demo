@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BExperimentalKernelScopedReview",
+  "verdict": "PASS",
+  "reviewer": "/root/r01b_codec_design_review_gpt6astra_high_1",
+  "receipt": "_temp/AssemblyShadow/R01B/codec-kernel-run-2/codec-kernel-receipt.json",
+  "receiptSha256": "2096fcd5db7ceb0aaf9843199bc3cd691d29ed49812ba16809346b4c3e944658",
+  "headerSha256": "75912658ab0628ddef00bb38cc710d0456a20a5d10292625a37eb683f7d58ed2",
+  "checksPerRun": 8434,
+  "variants": [
+    "Release",
+    "ASan+UBSan"
+  ],
+  "fixedFindings": [
+    "Runner previously overwrote evidence; new exclusive directories and failure receipts preserve runs",
+    "Actual lifecycle atomic now included in lock-free check",
+    "Successful lazy offsets, allocation-failure, concurrent writers and publication tests added"
+  ],
+  "limitations": [
+    "No TSAN",
+    "No injected runner-failure execution",
+    "Allocation-free decode based on source inspection, not allocator interception",
+    "Runtime/TLS adapters, complete growth proof and Player capacity not established"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

@@ -1,0 +1,957 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6AutomatedRuntimeAcceptance",
+  "result": "AutomatedRuntimeEvidenceReadyAwaitingIndependentStageReview",
+  "baseline": "M07-Baseline-R01B-20260909-v6",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+  "sourceInventoryAccounting": {
+    "uniqueRepositoryPathCount": 200,
+    "sourceCommitRangeEntryCount": 201,
+    "duplicatedVersionEntryCount": 1
+  },
+  "gates": {
+    "v6SourceInventory": {
+      "path": "_temp/AssemblyShadow/R01B/v6-source-inventory.json",
+      "sha256": "2a92350edd65743a6316110f43605aa7fbfab271e36f7a676830cce54f1aa46a"
+    },
+    "startupMatrix": {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/strict-verification.json",
+      "sha256": "9ea5707a7e609f62940ee78059b018b0152b79a62ac0fc6575e93b5f70c3c9c6"
+    },
+    "m07Aggregate": {
+      "path": "_temp/AssemblyShadow/R01B/v6-m07-aggregate-1.json",
+      "sha256": "868963c010ccbf3b3b58d465808e762ededdf609d9cc67ec6ad039f77a0dc002"
+    },
+    "featureOff": {
+      "path": "_temp/AssemblyShadow/R01B-v6-feature-off-1/m07-player-launches.json",
+      "sha256": "c66542341089abb530149124b1eb250672ec2c4dcab0df093938e36bba540651"
+    },
+    "ordinaryCapacity": {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/strict-verification.json",
+      "sha256": "2e9b7d06cf952d1a749a6ecd68a6a2feb8b0d58e4ee0f935d248f88357130b04"
+    },
+    "mixedCapacity": {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/strict-verification.json",
+      "sha256": "f60c64307c0a44e40f2e06fd07e8e2ca5dc67d72ea459543c95c76e224375626"
+    },
+    "ordinaryRaw": {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/r01b-capacity-result.json",
+      "sha256": "2d871f6ec05986b4b81e0481ce7de1cd9835e2df14911d5e3e7edae702e8f20d"
+    },
+    "mixedRaw": {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/r01b-mixed-result.json",
+      "sha256": "eccb35a1089dee8d61c725e6388b9b578add066f52874d3fc739314eaff85ace"
+    },
+    "lazyDense": {
+      "path": "_temp/AssemblyShadow/R01B-v6-lazy-1/r01b-lazy-player-launch.json",
+      "sha256": "146391cc1dc896dbc8de4c63ab97e241698ea49cdcceeb3ab48828fc94dbc7c3"
+    },
+    "oldPlayer": {
+      "path": "_temp/AssemblyShadow/R01B-v6-old-player-1/old-player-rejection-receipt.json",
+      "sha256": "a05180cec370574855f6c466c5def5e2539ae1708e828b2fd55e1f21e4613d16"
+    },
+    "r00": {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/strict-verification.json",
+      "sha256": "aeb9a23ed307f56640212b01cde92b9e4c7d347f718f6c268b1b4114d2c58554"
+    },
+    "performance": {
+      "path": "_temp/AssemblyShadow/R01B/v6-r00-comparison-1.json",
+      "sha256": "501a06a1d49658e36495a34b46d6ae8fe9535db6379b8429d87ebc26f22efb17"
+    },
+    "editorResults": {
+      "path": "_temp/AssemblyShadow/EditorTests-8f36e72027194528bc61ad72105c788f/results.xml",
+      "sha256": "442efe3be8e2b2e684f745307c8ae2f08f989b630f988894003880c6cc3df80d"
+    },
+    "editorLog": {
+      "path": "_temp/AssemblyShadow/EditorTests-8f36e72027194528bc61ad72105c788f/unity.log",
+      "sha256": "003b4da4fc5bd598ba63280f02919b3345cc9925d58d0a1d284d6580ce447e4d"
+    },
+    "pythonLog": {
+      "path": "_temp/AssemblyShadow/R01B/python-v6-sealed-2.log",
+      "sha256": "2ac93a0e4e193280ab11dd16300fb344f38b88c27092dd67cfebcc98e791514e"
+    },
+    "pythonValidation": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/corrective-v6-source-validation.json",
+      "sha256": "8dd782d8e00cbaee6e2867e0a6b4d942fd25ceb3cc358574f79fa4448e96a18c"
+    },
+    "nativeReuseAudit": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v6-validation.json",
+      "sha256": "87925772c14f09e5585ffcad207160caaaecb08e3010bb1045a7ac6eb7709ed9"
+    },
+    "nativeV5Index": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v5-validation.json",
+      "sha256": "60e6c44a366076c2be858c86e486f4579bb07e36139d21dfe608c486216a7727"
+    },
+    "shapeAudit": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/workload-v6-shape-audit.json",
+      "sha256": "3dd60a7174523b28a90659da5b46d3f002f31aa727c54e3e06631a66b0e693f1"
+    },
+    "preliminaryReview": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/preliminary-v6-code-review.json",
+      "sha256": "531569637566faaabd50e0ff859e2c0a5e0033bd80e69b877b7b7913b569ed02"
+    }
+  },
+  "ordinaryRaw": {
+    "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/r01b-capacity-result.json",
+    "sha256": "2d871f6ec05986b4b81e0481ce7de1cd9835e2df14911d5e3e7edae702e8f20d"
+  },
+  "mixedRaw": {
+    "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/r01b-mixed-result.json",
+    "sha256": "eccb35a1089dee8d61c725e6388b9b578add066f52874d3fc739314eaff85ace"
+  },
+  "measurements": [
+    {
+      "scenario": "ordinary",
+      "processId": 60171,
+      "validDllBytes": 536870912,
+      "loadedOrdinaryImages": 8192,
+      "shadowImages": 0,
+      "retainedFailureCount": 0,
+      "lifetimeImages": 8192,
+      "reservedPages": 16388,
+      "mappedPages": 16388,
+      "freeUsablePages": 507899,
+      "freePercent": 96.87423109861584,
+      "initialResidentBytes": 243171328,
+      "lifetimePeakResidentBytes": 1722351616,
+      "managedBytesAfter": 21876736,
+      "loadMilliseconds": 308376
+    },
+    {
+      "scenario": "mixed",
+      "processId": 61694,
+      "validDllBytes": 536870912,
+      "loadedOrdinaryImages": 8184,
+      "shadowImages": 5,
+      "retainedFailureCount": 3,
+      "lifetimeImages": 8192,
+      "reservedPages": 16392,
+      "mappedPages": 16389,
+      "freeUsablePages": 507895,
+      "freePercent": 96.87346815770752,
+      "initialResidentBytes": 307822592,
+      "lifetimePeakResidentBytes": 1783267328,
+      "managedBytesAfter": 55033856,
+      "loadMilliseconds": 301481
+    }
+  ],
+  "nativeEvidence": {
+    "v6ReuseAudit": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v6-validation.json",
+      "sha256": "87925772c14f09e5585ffcad207160caaaecb08e3010bb1045a7ac6eb7709ed9"
+    },
+    "nativeV5Index": {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v5-validation.json",
+      "sha256": "60e6c44a366076c2be858c86e486f4579bb07e36139d21dfe608c486216a7727"
+    },
+    "freshV6Execution": false
+  },
+  "humanGatePassed": false,
+  "fullStagePassed": false,
+  "h1RequiredForIndex": false,
+  "r02Eligible": false,
+  "limits": [
+    "Evidence is bounded to the declared macOS arm64 v6 workload and concrete receipts.",
+    "native-v6-validation.json reuses unchanged native-v5 raw executions and is not fresh native execution.",
+    "Input-byte, lazy, memory, and performance conclusions remain bounded by their receipts.",
+    "Inherited loader counter widths remain bounded: method parameters 0..255 and nested children per declaring type 0..65535; arbitrary over-limit or malformed shapes are not certified.",
+    "Pre-narrow/increment rejection tests in Debug and Release remain a follow-up outside R01B.",
+    "Independent full-stage review must complete before the H1 human review handoff."
+  ],
+  "validatedArtifacts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-OFF-NoPatch.json",
+      "sha256": "ebbd6b22861c0aea5aed3cc8864219a5c7c821f6763018e7168b338eac8cdd70"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-NoPatch.json",
+      "sha256": "37e6a4166a34dcd67df08c15c0425685161b5f6761e1b06fb1624242f0439923"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-P01.json",
+      "sha256": "3ef71aa81550025884e1d42aa149cef0f2f82ad1e0ae3d9f63e6f7032e5c4b9c"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/Results/R00-ON-P03.json",
+      "sha256": "a4998cbd2e53d4ae81606edb6597924efa9e7656728419990a0fba9e2399e13f"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r00/hybridclr_demo/_temp/AssemblyShadow/R00-performance-current-pair-v4/strict-gate.json",
+      "sha256": "74d57978c02932116ec992d83c1618184f9e640fded14af28fb87cce8123452a"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R00/performance-observations.json",
+      "sha256": "9f49f60d63dd5b42bb9f553895fdd780eb3c6485a57f91d8bbef3977794ddd30"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/corrective-v6-source-validation.json",
+      "sha256": "8dd782d8e00cbaee6e2867e0a6b4d942fd25ceb3cc358574f79fa4448e96a18c"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v5-revalidation-scope.json",
+      "sha256": "80a6641c169e17e5cd95a088afdd937bc863b50574c0ff205bf460dd4ca06a74"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v5-validation.json",
+      "sha256": "60e6c44a366076c2be858c86e486f4579bb07e36139d21dfe608c486216a7727"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/native-v6-validation.json",
+      "sha256": "87925772c14f09e5585ffcad207160caaaecb08e3010bb1045a7ac6eb7709ed9"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/preliminary-v6-code-review.json",
+      "sha256": "531569637566faaabd50e0ff859e2c0a5e0033bd80e69b877b7b7913b569ed02"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/workload-v6-shape-audit.json",
+      "sha256": "3dd60a7174523b28a90659da5b46d3f002f31aa727c54e3e06631a66b0e693f1"
+    },
+    {
+      "path": "_temp/AssemblyShadow/EditorTests-8f36e72027194528bc61ad72105c788f/results.xml",
+      "sha256": "442efe3be8e2b2e684f745307c8ae2f08f989b630f988894003880c6cc3df80d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/EditorTests-8f36e72027194528bc61ad72105c788f/unity.log",
+      "sha256": "003b4da4fc5bd598ba63280f02919b3345cc9925d58d0a1d284d6580ce447e4d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/R01BDiagnosticPlayerInputs-f8a038312e7b4b2ca8bb23ad861a2773/assembly-snapshot.json",
+      "sha256": "12eaa9a5482a58bb0732b46c063de650b1817794d508cdc7bfdbb293f5f3a230"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/attribute-v3-installed-1.json",
+      "sha256": "50770e030e5483766b0dd794d686d4feb4989cc1b773aa44a2bb26c29b116538"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/audit-v6-workload-shapes.py",
+      "sha256": "51862aa611b0f0ef4e088063e52d02a7b8f87902f9242cc8b8ce9992e53ec42e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/codec-kernel-run-13/codec-kernel-receipt.json",
+      "sha256": "899299a4e467a56aa2e9602d67071370ebb87d09dab1df4e561f649d3d16c02b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/corrective-native-1/index-runtime.json",
+      "sha256": "4dae1f10f06f675c8114d07a4991d0f297076204e90a42f2afe2e248440f7df3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/corrective-native-v5-1/aggregate.json",
+      "sha256": "f93dd258c887ac2b5b81710d8aac43ff39b5c04f0c342f9621c0e70f861a9a2a"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/diagnostic-v6-1.json",
+      "sha256": "6cc672e0b7b193d23a7e897141bb2371b23383bb09af20d41e191f1d6897227b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/finalize-v6-docs.py",
+      "sha256": "bacd2514b03e265c35192ba070269ff691db4164c37f2a4738ae337db118cbae"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/index-range-v4-sealed-1.json",
+      "sha256": "75543073df44af2cf1efef44094f18c08dafb21b74633dc8f0b1eecf32fd24db"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/live-capability-correction-final-2.json",
+      "sha256": "2415ecea194f4b1d86f9cc799df70ec5e5d94d8fef4248b857474b77968a155c"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/m03-m06-v5-sealed-summary-1.json",
+      "sha256": "5ef1d13b6bee830c8525a9e278557551ea783f1244345766f93079c8c6c1e77a"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/mixed-v6-1/r01b-mixed-workload-manifest.json",
+      "sha256": "5e6df4f6a03eb76fc62a72a271cd20f2fa439b593c4a3d01f3534abe4add2b3d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/parser-v5-sealed-1/r01b-parser-receipt.json",
+      "sha256": "50d8836bd428152c028dd84639cea12142c2ba627b230d5850807d6f48846608"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/parser-v5-sealed-1/sealed-v5-validation.json",
+      "sha256": "0c7d2f7ecf946b17b1f9cd72dc70148bb064de61dd821120aa206e7eb6871026"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/python-v6-sealed-2.log",
+      "sha256": "2ac93a0e4e193280ab11dd16300fb344f38b88c27092dd67cfebcc98e791514e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/syntax-v5-1/syntax-v5-1.json",
+      "sha256": "1080b159e903887546f89ee8b0cd045526030dcf126483eef265b8bb5fc4e847"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/type-cache-v4-sealed-1.json",
+      "sha256": "7f82d7eea30d949d67f5698ca739816bfbceac81f71872aad0b4a18af16ef6e7"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/v6-final-doc-drafts/encoding-adr.md",
+      "sha256": "16807feaef2bb6402c1f5ccb40ee2a99bb69a58798ef50e43eb51574269f43dd"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/v6-final-doc-drafts/profile-2-contract.md",
+      "sha256": "36baff4230b122fb229032fe00d2b5b1beaad4c3cd51d1b0c26eb1afcc08b4ce"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/v6-final-doc-drafts/runtime-admission.md",
+      "sha256": "c87d48839b58cab65a24abed9897752b408083e7083fd4f3d7adc1ea8e9a0973"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/v6-m07-aggregate-1.json",
+      "sha256": "868963c010ccbf3b3b58d465808e762ededdf609d9cc67ec6ad039f77a0dc002"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/v6-r00-comparison-1.json",
+      "sha256": "501a06a1d49658e36495a34b46d6ae8fe9535db6379b8429d87ebc26f22efb17"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/v6-source-inventory.json",
+      "sha256": "2a92350edd65743a6316110f43605aa7fbfab271e36f7a676830cce54f1aa46a"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v2-verified-manifest.json",
+      "sha256": "7a00fda1f3026d82d7881c3555031bde49f5a54101ca110f7938a6b6d7e7d607"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v6-shape-audit-2.json",
+      "sha256": "accc2e469f3749339a8a8ece1ceb57b592ec3501f929640558c8f9341528df46"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/Control/m07-T07-01-Prefab-P01-diagnostics.json",
+      "sha256": "ca687aa68614100c0c9e98b4a166beba9456af946da8177625c3ea738b5549b1"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/Control/m07-T07-01-Prefab-P01.json",
+      "sha256": "14f901022afe112fe395a20648abfeda0ad094bbf1faeeaa13c4712466c0efcb"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/Control/r01-early.capsule",
+      "sha256": "a87331a05820ef2e730ddcf1de7dbceefad456f998b42426f623cdc9432ba632"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/Control/r01-early.json",
+      "sha256": "7985c75f3bdb6765f7d2e03e66cb3899f4cd9e0c07beec92cb626e1fe7aeee6f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/Control/unity.log",
+      "sha256": "2d13de0f59037fe3127a2d6eb284fa2c2e041b92bfc7f52be660fbc9ac495cbf"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-01-Prefab-P01-1/r01-early-launches.json",
+      "sha256": "c6ca783229f4db35b2cccbb87679305737627aca31c46149418f3b020e3581c8"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/Control/m07-T07-02-Nested-P02-diagnostics.json",
+      "sha256": "09c6f385869f3872c16f5f19483139be0b40e7da089c57655e8d02218b8b6f32"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/Control/m07-T07-02-Nested-P02.json",
+      "sha256": "5be59a35fe7fee48959811186147af8a4a0295d355370f37c2d4a87062d8f636"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/Control/r01-early.capsule",
+      "sha256": "5b4375082bd55a905c3c958f390fdc903bfb72e0bd127f737ea1cddb9720f41c"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/Control/r01-early.json",
+      "sha256": "f1c185eb0f7836be6cbe5c647ccf26ea7a590f8a4bdbee0b4cc36c08581fcfda"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/Control/unity.log",
+      "sha256": "8c8de0947329201b7cc9a90771eee4df133d03627e8fa4fc70efafc0d27a9a92"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-02-Nested-P02-1/r01-early-launches.json",
+      "sha256": "bcd9638460f3d91ceab3e62606e3d887872403d73c8234c7c169da2f9489f499"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/Control/m07-T07-04-UnityApis-P01-diagnostics.json",
+      "sha256": "169572c9b2b8ffa1388b650871517f923de857908de84fc7b4823f0a9d5a6d2e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/Control/m07-T07-04-UnityApis-P01.json",
+      "sha256": "2d46e2d4d1f415ea9509e260b1bdbfc4c82a9652051a57f7e6f634b404e1979e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/Control/r01-early.capsule",
+      "sha256": "a87331a05820ef2e730ddcf1de7dbceefad456f998b42426f623cdc9432ba632"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/Control/r01-early.json",
+      "sha256": "9ef17f79077b15577b9faf2019c4a78680d29b28cd4ce30be9e7f9dd263efc04"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/Control/unity.log",
+      "sha256": "07834420d8f1017cd1786179d46df726dfe6e5a55a2b496e50df6c7cba00b1cb"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-04-UnityApis-P01-1/r01-early-launches.json",
+      "sha256": "0941e979a7538390fb6f35bc765850ce10e62f1d8e090f07c36e38eda98fd50b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/Control/m07-T07-05-Scriptable-P03-diagnostics.json",
+      "sha256": "55487e5c45d310eec60da405a237996df4122c527f3b0f9d89d29f3a5ef3af2c"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/Control/m07-T07-05-Scriptable-P03.json",
+      "sha256": "a7dd3f041ef1749bf4121fc2ceaf0bcc4b2bf33e7dd801c0b7765fc32a343dc7"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/Control/r01-early.capsule",
+      "sha256": "abf60b3f7d6630af465f67620276e6c5b445485c4d003cabfbe560d25c9beb31"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/Control/r01-early.json",
+      "sha256": "ebc9acb13de15e3223bfed1ece79358db742aba5c97df53dacb799ad2aec2805"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/Control/unity.log",
+      "sha256": "ecdfffdb69a57f032fe12a6cd53725eb711fcbb39fbf61a1289876755f5afa43"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-05-Scriptable-P03-1/r01-early-launches.json",
+      "sha256": "7c63328dd7b8ce6c6008884c6dc4e8b2ac4835aaab4c28cca48d2cb6c6876b05"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/Control/m07-T07-06-SceneSingle-P01-diagnostics.json",
+      "sha256": "cef5b168c4d47228ac1fa338632f67673be77c0d4068a3297f63553fabd322ea"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/Control/m07-T07-06-SceneSingle-P01.json",
+      "sha256": "bb0eff99cb53f2a24f39e1349f2152a11b760c3cddef48d115b505b6cbbe2600"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/Control/r01-early.capsule",
+      "sha256": "a87331a05820ef2e730ddcf1de7dbceefad456f998b42426f623cdc9432ba632"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/Control/r01-early.json",
+      "sha256": "743d8a1b334a34bd260bb8e8ea6961d2b13fffa11c33ae1d9d3b8e34908de0e3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/Control/unity.log",
+      "sha256": "62cae4d4f908fe9ebd4847b799718d187564dcf61034a65b39d50a50be772e19"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-06-SceneSingle-P01-1/r01-early-launches.json",
+      "sha256": "f078d0f7851662a5fa1b69049679a925e6bac4c42f11d3acdba3f26eb2ec0e17"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/Control/m07-T07-07-SceneAdditive-P03-diagnostics.json",
+      "sha256": "55487e5c45d310eec60da405a237996df4122c527f3b0f9d89d29f3a5ef3af2c"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/Control/m07-T07-07-SceneAdditive-P03.json",
+      "sha256": "d43723177d100f048b3f445ecaee2b5f3b95481d415a49976aec21531184affe"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/Control/r01-early.capsule",
+      "sha256": "abf60b3f7d6630af465f67620276e6c5b445485c4d003cabfbe560d25c9beb31"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/Control/r01-early.json",
+      "sha256": "ba4ec0a7eefd53d772f9f774a55b203b9d498b6b17fd65dcf8f53d2f8f8a633a"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/Control/unity.log",
+      "sha256": "bf300cede9dbaf60e54dccce7d3ae96bc7c84029f8a0e3d7ec969bfc0e732f92"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-07-SceneAdditive-P03-1/r01-early-launches.json",
+      "sha256": "f8cf18187c9be949a7fa01a649c7ca477f3cfff3f97304bc777208b2a5804efb"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/Control/m07-T07-08-SerializeReference-P03-diagnostics.json",
+      "sha256": "e54d7c97161a97636fafce187457ac009b76bacacaaff053e72c24b469f0e27c"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/Control/m07-T07-08-SerializeReference-P03.json",
+      "sha256": "51fffeaa1bf21c7a5cf92dcc3ccb2d482b08a27c8aeaa6d42448965ee24a2110"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/Control/r01-early.capsule",
+      "sha256": "abf60b3f7d6630af465f67620276e6c5b445485c4d003cabfbe560d25c9beb31"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/Control/r01-early.json",
+      "sha256": "f7c186f515ad6804a5fe6214d4a25f562ecbd9e514c558041a565de855777de3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/Control/unity.log",
+      "sha256": "824281e39a3a0726c2dbc516c031fbf16a8e2a47de0e3761d233aca3040ca27f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-08-SerializeReference-P03-1/r01-early-launches.json",
+      "sha256": "669bf607fa48aff0b66706c2d264f443cdd42f0687c9fa84f61e5df1085b8972"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/Control/m07-T07-09-Messages-P01-diagnostics.json",
+      "sha256": "e4627f4c92c9edf699a2a88e48fcbffb760ba36703217a4ccf57df64d9aacd77"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/Control/m07-T07-09-Messages-P01.json",
+      "sha256": "e519f0456cbbbb9a3917134c604fcd2b4faeffae5567b56bc17f394713fbab30"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/Control/r01-early.capsule",
+      "sha256": "a87331a05820ef2e730ddcf1de7dbceefad456f998b42426f623cdc9432ba632"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/Control/r01-early.json",
+      "sha256": "cd2d3c80f7f39fda6f28a516972835e2cb27f88d763369f1e274628d4e97ddc6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/Control/unity.log",
+      "sha256": "090aeef32a05d68c9296320e59997d840d897153790c88a2167eb754bbf09cc3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-09-Messages-P01-1/r01-early-launches.json",
+      "sha256": "aad770f3ed7ce36d3c627481d5ca9c62b03056a4ac21d017fe70d2686be7ced9"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/Control/m07-T07-10-Cache-P03-diagnostics.json",
+      "sha256": "e648c075ed36b2704503be90d0e46d7da5c7f426840b58d4e7c548a8d1197c1b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/Control/m07-T07-10-Cache-P03.json",
+      "sha256": "2cfc57ee4a227d101d03f7a5b4a1a1382afeb9f46bfbde30f356d6f7a5559258"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/Control/r01-early.capsule",
+      "sha256": "abf60b3f7d6630af465f67620276e6c5b445485c4d003cabfbe560d25c9beb31"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/Control/r01-early.json",
+      "sha256": "6c7ef45d94d3eb84ac90fb47b0a68679215e5469d0cd3ceed2a97b35b72cb914"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/Control/unity.log",
+      "sha256": "dcb9042433f4c3d1d26a6560831d6fe384df98312725f8dd48607dadc899614b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-10-Cache-P03-1/r01-early-launches.json",
+      "sha256": "9aef54a24c5cbd22c2f01785bd99bc95741d4d68ef6285151308f3337932ff6f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/Control/m07-T07-11-DelayedCatalog-P03-diagnostics.json",
+      "sha256": "ff8d2a8cc9c2dde5de4a405ccf70faa9dfedf82913b51cab5938253717e645ed"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/Control/m07-T07-11-DelayedCatalog-P03.json",
+      "sha256": "34f4fc6db69ca3f7ba383782125f560c5a3b7ad944865d30e736f2a43652da8d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/Control/r01-early.capsule",
+      "sha256": "abf60b3f7d6630af465f67620276e6c5b445485c4d003cabfbe560d25c9beb31"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/Control/r01-early.json",
+      "sha256": "bfda1627fa609277317c0811d300482e34ac017f3f8470fa0fc63dd1fac6ec81"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/Control/unity.log",
+      "sha256": "a3fdbc29ba94e3cb31fb53435abb955c97e49d9a967c066b32abbab1b1474e38"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-11-DelayedCatalog-P03-1/r01-early-launches.json",
+      "sha256": "c857513da20460e880afe6e62e473523aee2d623704c4a65cee3e04bf3d65f9e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/Control/m07-T07-12-P04-NonSerialized-diagnostics.json",
+      "sha256": "a24cdd95297dad21b42027008cf7c7328de41f14d4e57b447d7ba4a5ce4c97e3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/Control/m07-T07-12-P04-NonSerialized.json",
+      "sha256": "5893ef10af6b7c337287f09915c1bd779101823e5492be49409d541ca941c039"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/Control/r01-early.capsule",
+      "sha256": "fb86943543cc1739907bfbfb320af29fb6d8a6908f977feda4bcb3a181f19ff7"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/Control/r01-early.json",
+      "sha256": "6e792bb36b1789460da99673caf653264ac04fb8ad35a70caeb77c8730fee250"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/Control/unity.log",
+      "sha256": "9e312d5660df6b322e7f838def853a9492f96b3faaebcf7b552c52b47d773aaf"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-12-P04-NonSerialized-1/r01-early-launches.json",
+      "sha256": "4a6cf9be30c5fe203b857e363e44e4dfe4d29954112c95ae254e58868583f9e1"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/Control/m07-T07-13-P05-Rebuilt-diagnostics.json",
+      "sha256": "43db03977933b29fe003f0a171120d69fa1aaef7d0a256af00b70db401c82291"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/Control/m07-T07-13-P05-Rebuilt.json",
+      "sha256": "af037c12d3687137b485d8ed2471b6c4562cecb27620a1056f50534a70e6cc47"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/Control/r01-early.capsule",
+      "sha256": "97709289dd511c08e60891e93e59fa09cd2afae9b198f8229244685cc0e5014a"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/Control/r01-early.json",
+      "sha256": "7e3d2b5ce10db4117619b90e5042f50319a0c910478b711830fcdedb3b9b5e68"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/Control/unity.log",
+      "sha256": "b7bb02d016af05f4c986ec034609a8f983be601e7b754dc83e18083bca6bbd2f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-T07-13-P05-Rebuilt-1/r01-early-launches.json",
+      "sha256": "dbed26ec4e630a40afa19b67eb6fe2fec61e4950bdebab2dd61793ebe76a96a7"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/r01b-mixed-player-launch.json",
+      "sha256": "3410e2ecedd20058688ac900f0c88299c7926ef6627d383ff43b614799e4ab2d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/r01b-mixed-result.json",
+      "sha256": "eccb35a1089dee8d61c725e6388b9b578add066f52874d3fc739314eaff85ace"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-mixed-1/strict-verification.json",
+      "sha256": "f60c64307c0a44e40f2e06fd07e8e2ca5dc67d72ea459543c95c76e224375626"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/r01b-capacity-player-launch.json",
+      "sha256": "cd5f1b5ccb7f347fc9538cc501dc1bf135386a63a951f8a68ec732426b48f43f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/r01b-capacity-result.json",
+      "sha256": "2d871f6ec05986b4b81e0481ce7de1cd9835e2df14911d5e3e7edae702e8f20d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-capacity-ordinary-1/strict-verification.json",
+      "sha256": "2e9b7d06cf952d1a749a6ecd68a6a2feb8b0d58e4ee0f935d248f88357130b04"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-feature-off-1/Results/m07-T07-14-FeatureOff.json",
+      "sha256": "ea6ce364020544f199815fa71085f1285250a5fa094f726aa1c084f160941119"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-feature-off-1/m07-player-launches.json",
+      "sha256": "c66542341089abb530149124b1eb250672ec2c4dcab0df093938e36bba540651"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-lazy-1/r01b-lazy-player-launch.json",
+      "sha256": "146391cc1dc896dbc8de4c63ab97e241698ea49cdcceeb3ab48828fc94dbc7c3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-lazy-1/r01b-lazy-result.json",
+      "sha256": "5d1e86c0017aea99c7e5980659279c1727c4a953f92e8cd6df4b73e4df1edee0"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Cctor/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Cctor/r01-early.capsule",
+      "sha256": "ee5e30b629a49c819249f1ae95c0c10c546bda52988fb4e1ef9b6524be3cb194"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Cctor/r01-early.json",
+      "sha256": "661a77aad8f3a0d0e853a484d3a60fb0efc294d7b11e9609ab2f89cfc0aced19"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Cctor/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Control/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Control/m07-T07-03-FullClosure-P03-diagnostics.json",
+      "sha256": "91b30ac143cbf00344dbac8d44084aec537828d31356b356ec7eb17d11867e35"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Control/m07-T07-03-FullClosure-P03.json",
+      "sha256": "3bb9e8fdf27e35724934465a45af7325aa14c720888954c9bcc05e9238291b22"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Control/r01-early.capsule",
+      "sha256": "abf60b3f7d6630af465f67620276e6c5b445485c4d003cabfbe560d25c9beb31"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Control/r01-early.json",
+      "sha256": "5de081dee754ae4cce1a525312c5fe0a5c563a7ffde5761a6f5b03544e8abdc5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Control/unity.log",
+      "sha256": "536d0d55f7ea67f319c79580d03db48c4684401568763db0694ac74bcb47e91f"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/InitializerFailure/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/InitializerFailure/r01-early.capsule",
+      "sha256": "93395080b00dac5d849467c2e32ddcf6466f7e6800bb09f78ba8e39a74087f47"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/InitializerFailure/r01-early.json",
+      "sha256": "400866ffa4a3a0a0368a95e1dba9430c76718338ac92ce17baa1b9f25bf69adc"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/InitializerFailure/unity.log",
+      "sha256": "1f22740da5785ea4c1a6c3e48adfe73c23632f94d1c351b5cb140e3c975fccf3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/MetadataFailure/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/MetadataFailure/r01-early.capsule",
+      "sha256": "2fbcb0768a3dffb022e8b19d74ddfed1c899ef0e56ed1ae88f4a14d93635e9fd"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/MetadataFailure/r01-early.json",
+      "sha256": "27f3c5eb11eada23067b0a566f69bc6d7a05c830e155a2ff0f252b01fccf0c35"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/MetadataFailure/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Mismatch/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Mismatch/r01-early.capsule",
+      "sha256": "010a9b5bd495058e5d95250b722a50aeabecf22e19c76e7f8a3afdee2eb1fd5d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Mismatch/r01-early.json",
+      "sha256": "c389dfc5307b9455cbef9a3f03052fe7396f19f5a7db58eacae3da28c44972fe"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Mismatch/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/NativeScript/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/NativeScript/r01-early.capsule",
+      "sha256": "234d7d0e0e821708df2ba33956b338d416d0d3c71237c183af0853d747d3a6f4"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/NativeScript/r01-early.json",
+      "sha256": "5b1c1821b6dbb15910b5da2815960561720c68badf8ec253852248ee9f02d230"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/NativeScript/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Object/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Object/r01-early.capsule",
+      "sha256": "9b48e6a133422e958f57ef53e78521b12b02d7ddbcd13d379b234e8e392efd10"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Object/r01-early.json",
+      "sha256": "53602f340aceef93e65434e6c00666d79761d0a42ab94afcb81de8c23f181251"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Object/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryAfterReserve/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03-diagnostics.json",
+      "sha256": "64825e232d794bb1726b50343cdbf618c66c7fab317abc53dfd01c92033c240b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json",
+      "sha256": "2866e337d98e8946e3b50a50e21369874870438c6678620ce296c01ff56daddb"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryAfterReserve/r01-early.capsule",
+      "sha256": "2d939b335895932e8d94f2569b55a347365a2f087af011b148eaf629501108e3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryAfterReserve/r01-early.json",
+      "sha256": "0422e2fd43b0ebe9a442371157e3b71b99886fa1f8e8981ec3ba7f48ed43640e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryAfterReserve/unity.log",
+      "sha256": "175cf717a147b3ebb9c4fcff8ed01fecd736c1baf2be020f4ba3790df778cd83"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryFirst/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryFirst/m07-T07-03-FullClosure-P03-diagnostics.json",
+      "sha256": "d53abdb8b65688d87ff3c00565be8b8966de0028c575f0cd94d6a44e9bdca307"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryFirst/m07-T07-03-FullClosure-P03.json",
+      "sha256": "0ac77641534b857c8810ecb00b5e5dd3f574546c9763188a56a8786c1d464511"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryFirst/r01-early.capsule",
+      "sha256": "dabb9ce5d38c09382e531bb1bb4d4b2e3c9d7e70c27d0bb0f9f75e5f27f2aa9d"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryFirst/r01-early.json",
+      "sha256": "f1fb0a5566e714ca5b13f6713cb1b912410dbf1750c228c21d0f56dd32e24156"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/OrdinaryFirst/unity.log",
+      "sha256": "6814e1686874818de68722e814fa7aec82bffdeac26b07fc17258c9f9306600e"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Oversize/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Oversize/r01-early.capsule",
+      "sha256": "3ba10d76d86649e89392a9af39a4f44768179bd582b634f841bff4c9349fa0dd"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Oversize/r01-early.json",
+      "sha256": "c0b141bea99772ba75fe78eb4b74debaeefbea10aae20a010e42311911b3d06b"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Oversize/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Type/console.log",
+      "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Type/r01-early.capsule",
+      "sha256": "447bf45746c46d5861b9dbbfe3cdf6455fde550f5893321a3a409a502a032981"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Type/r01-early.json",
+      "sha256": "edcb2730ca7cfcec3d2b57079ccb9180750fc030b6b0c237f6226dbb1527f9ab"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/Type/unity.log",
+      "sha256": "8132c472928c0ef40997f59a46927c8b0ab5f60a00dda95c00554fa3725600d5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/r01-early-launches.json",
+      "sha256": "235b975b0f7d0401812a9598f2bc4754c83b922eb038986f84c802bd182d5ed2"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-matrix-1/strict-verification.json",
+      "sha256": "9ea5707a7e609f62940ee78059b018b0152b79a62ac0fc6575e93b5f70c3c9c6"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-old-player-1/old-player-rejection-receipt.json",
+      "sha256": "a05180cec370574855f6c466c5def5e2539ae1708e828b2fd55e1f21e4613d16"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/Results/R00-OFF-NoPatch.json",
+      "sha256": "b776d6fafe1b11354341f5ceed6d778e67aa44e9a35e35d8ea0e49d4be473693"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/Results/R00-ON-NoPatch.json",
+      "sha256": "68c45bdfa9821f5191aa80961b9a1364732f92d7b82d0d33dfeccc031cd3d8d3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/Results/R00-ON-P01.json",
+      "sha256": "e0db0dc5e4afa76b25b3c6f3c0d4d5a783b6dee6d60b05b4e31819e314aacf75"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/Results/R00-ON-P03.json",
+      "sha256": "e1f7778cc0dfe089e39de169b9e841beddf3711669f211590d92ad6e323e6790"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/r00-player-launches.json",
+      "sha256": "db46bc567241383fb087634b1acec2da5b9f441f45c20b984f26621683e4d5d3"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B-v6-r00-1/strict-verification.json",
+      "sha256": "aeb9a23ed307f56640212b01cde92b9e4c7d347f718f6c268b1b4114d2c58554"
+    }
+  ]
+}

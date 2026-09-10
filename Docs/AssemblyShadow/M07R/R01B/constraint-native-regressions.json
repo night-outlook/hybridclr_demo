@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BConstraintAdapterAffectedNativeRegressions",
+  "runs": [
+    {
+      "milestone": "M03",
+      "receipt": "_temp/AssemblyShadow/R01B/constraint-regression-m03-2.json",
+      "receiptSha256": "d82d4898287d59d3a5ed7f1b44600ed3051a54a82c9fe74c1f2b6210fa91fff6",
+      "summary": {
+        "kind": "M03NativeParserRegression",
+        "success": true,
+        "identityChecks": 94707,
+        "nameChecks": 30,
+        "facadeChecks": 25,
+        "facadeLookupChecks": 15,
+        "disabledApiChecks": 33,
+        "dependencyCount": 1008,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "milestone": "M04",
+      "receipt": "_temp/AssemblyShadow/R01B/constraint-regression-m04-2.json",
+      "receiptSha256": "12ef6f5d3e30d4b9a605c5a167262b1d7b0763380f926e9df9d5ca517780c05a",
+      "summary": {
+        "kind": "M04NativeResolutionRegression",
+        "success": true,
+        "syntaxChecks": 22,
+        "referenceIdentityChecks": 27,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "milestone": "M05",
+      "receipt": "_temp/AssemblyShadow/R01B/constraint-regression-m05-2.json",
+      "receiptSha256": "dd523f3246a05b1cb62f54ef2f2e0e35cf323a1f55ba0096523a1028619c6a83",
+      "summary": {
+        "kind": "M05NativeTypeRegression",
+        "success": true,
+        "syntaxChecks": 34,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "milestone": "M06",
+      "receipt": "_temp/AssemblyShadow/R01B/constraint-regression-m06-2.json",
+      "receiptSha256": "7476eb96e99258bbbcb146c741a39d0e8382ca3bc913b4af8ed9cfe53628b78b",
+      "summary": {
+        "kind": "M06NativeExecutionRegression",
+        "success": true,
+        "syntaxChecks": 20,
+        "dependencyCount": 1085,
+        "inputsUnchanged": true
+      }
+    }
+  ],
+  "boundary": "Current R01B native sources; accepted R01 generated headers and DLL fixtures supplied read-only. Focused native suites, not installed runtime/Player validation. Later source edits require affected revalidation.",
+  "setupFailureRetained": "_temp/AssemblyShadow/R01B/constraint-regression-m03-1.json",
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6AcceptanceInputGeneration",
+  "result": "PassedInputGenerationOnly",
+  "failure": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/failure-v6-1/failure-fixtures.json",
+    "sha256": "5fdae7b24bd0cc34c5f7b83d148b6987fa8a806b6c81c593e7d20be6d0fdc32b"
+  },
+  "negative": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/negative-v6-1/q04-metadata-transform.json",
+    "sha256": "93efa0bd3b2ea072d88c695f183a354524091ae171875e69a495e95a51815599"
+  },
+  "mixed": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/mixed-v6-1/r01b-mixed-workload-manifest.json",
+    "sha256": "5e6df4f6a03eb76fc62a72a271cd20f2fa439b593c4a3d01f3534abe4add2b3d"
+  },
+  "mixedProvenance": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/mixed-v6-1/generation-provenance.json",
+    "sha256": "7f301c9e2955f86da51708ed2dfc3c2d96f34a87bd3cc3b9a3d79edb99b9dd42"
+  },
+  "postDiagnosticPairing": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/postdiagnostic-pairing-v6-1.json",
+    "sha256": "b7fec538ec3f4c89b3c120a04eb7b4b41311e1cdf9ec457a3819c6df769c720e"
+  },
+  "logs": {
+    "failure": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/failure-v6-1.log",
+      "sha256": "cdd8d20efd5366711edc58a346d1b3037dd8d4d8d09e23667acff038dc27bd81"
+    },
+    "negative": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/negative-v6-1.log",
+      "sha256": "f2a2861841bc1b4ce2d0c7994112bf80c234200ecd244308fa42f95caa1cfa0a"
+    },
+    "mixed": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/mixed-v6-1.log",
+      "sha256": "5d8fe4c1e8f6e76fe9c2e8579cd2ae6038be48ccdee1b9ca0a3895031821333d"
+    }
+  },
+  "limits": [
+    "No Player result is inferred from input generation.",
+    "Mixed population has 8189 valid DLLs plus 3 retained failures; 512 MiB is valid DLL bytes, not a 64 KiB mean over 8189 valid DLLs."
+  ]
+}

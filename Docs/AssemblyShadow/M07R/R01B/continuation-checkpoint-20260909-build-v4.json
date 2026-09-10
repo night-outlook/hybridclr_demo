@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "status": "ProductionWorkflowPassedDiagnosticBuildRunning",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v4",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "3a70624d4c13d0a19c6d9a026395b79adcb3c215",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "cb68c26c12cc60b8d98d2e9fc398f6e0f05d202e",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "68def7a9530913daab6b8175f06c9cf47a1a3fd4",
+      "localPath": "."
+    }
+  },
+  "buildLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/build-v4.log",
+  "runDirectory": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-4fe71ffd405246e18eefd68e08b397fd",
+  "finalizerLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/UnityExec_20260909_103916.log",
+  "sourceValidation": "corrective-v4-source-validation.json",
+  "nativeValidation": "native-v4-validation.json",
+  "lazyFixtureReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/lazy-current-8/r01b-lazy-fixture-receipt.json",
+  "phase": "Production sealed; diagnostic build pending",
+  "pending": [
+    "Production workflow final receipt",
+    "Diagnostic build and strict linked-core compatibility",
+    "Failure fixtures and negative startup inputs",
+    "Strict early11 and M07 fourteen-mode aggregate",
+    "Actual ordinary/mixed8192 workloads and overflow rejection",
+    "Lazy/dense runtime acceptance",
+    "OldPlayer rejection",
+    "R00 performance comparison",
+    "Evidence delivery and independent stage review; stopH1"
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "onBuild": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-605e2808edf3491c8e01462e3380be31/m07-player-build.json",
+    "sha256": "edd9d49eadb2cd5ef1f78bd59772f7a877c8351ee861e74046c37d68ca43d04f",
+    "buildGuid": "962e6790bfdb48caa8a5d6508eda21be",
+    "nativeLibrarySha256": "0aaf94010639b398c126a3a5c3559560487b78ba07608a2787caf5fd7f4b7f9f"
+  },
+  "offBuild": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-87949cc60ccf4dd5b3d0d0517882a64d/m07-player-build.json",
+    "sha256": "eeec3f01023969b8d5e254ce17be7ba0c4ed9d969eee34725b33cfc9e825c94c",
+    "buildGuid": "54683787b1a64689aab05556202842a2",
+    "nativeLibrarySha256": "88e237bdafac6c490cf761d49f5992594bafc4263b27045aeeab27c12f7f35ac"
+  },
+  "workflow": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-4fe71ffd405246e18eefd68e08b397fd/m07-build-workflow.json",
+    "sha256": "d9ea1c90a99d8aad6596f6e9dbe4d6a2ecee4748bd71b3cd9a2667a4e8083b6f"
+  },
+  "fixture": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-4fe71ffd405246e18eefd68e08b397fd/m07-fixtures.json",
+    "sha256": "92310a83b92958af4bcf81f96dd728fefda31db7daa328331c80dcf6675e008a"
+  },
+  "replay": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-4fe71ffd405246e18eefd68e08b397fd/m07-editor-replay.json",
+    "sha256": "49bae078668eb818099ea4492c49d8d92a9f3c4480f93b50c3419633f191b220"
+  }
+}

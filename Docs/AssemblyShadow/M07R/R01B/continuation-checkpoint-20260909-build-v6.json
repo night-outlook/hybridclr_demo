@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6BuildCheckpoint",
+  "status": "PinnedProductionWorkflowRunning",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v6",
+  "runtimeAbiHash": "d4e003eb88ed41a8a1acc1d9b46024faa94cf48e57f7ca6a80fc01222571115f",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "9b04fb9f3578a55f50915b914d0071234441289d",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+  "buildLog": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/build-v6.log",
+  "sourceValidation": "corrective-v6-source-validation.json",
+  "prebuildPairing": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/prebuild-pairing-8.json",
+    "sha256": "b7fec538ec3f4c89b3c120a04eb7b4b41311e1cdf9ec457a3819c6df769c720e"
+  },
+  "pending": [
+    "Production ON/OFF/fixture replay completion",
+    "Fresh v6 diagnostic build, failure/mixed inputs",
+    "Run R00 first after rebuild to test actual serialized handoff before large workload gates",
+    "All v6 strict Player acceptance and performance comparison",
+    "Final report/archive/commits, independent full-stage review, STOP H1"
+  ],
+  "H1Passed": false,
+  "mayEnterR02": false
+}

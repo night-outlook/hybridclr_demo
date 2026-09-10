@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV4CapacityFailureDiscovery",
+  "result": "Failed",
+  "rawResult": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-capacity-ordinary-1/r01b-capacity-result.json",
+    "sha256": "2f87eee5ff7f3e6d6750f5d36b4d04a1fc6b59fbf0e9b9b959e8512a253aad6d"
+  },
+  "processId": 79725,
+  "loadedImages": 8191,
+  "error": "System.InvalidOperationException: GetMetadataCapacityJson failed: CapabilityUnavailable\n  at AssemblyShadowDemo.R01BCapacityProbe.Require (System.Boolean condition, System.String message) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01BCapacityProbe.Capacity (System.Int64[] sizes) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01BCapacityProbe.RunAndWrite (System.String baselineBuildId, System.String runtimeAbiHash) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01BCapacityProbe+<RunAndWriteCoroutine>d__7.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadowDemo.R01BDiagnosticRunner+<Start>d__3.MoveNext () [0x00000] in <00000000000000000000000000000000>:0 \n  at UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) [0x00000] in <00000000000000000000000000000000>:0 ",
+  "postRunVerificationCancelled": true,
+  "cancellationReason": "Real Player exited with actionable runtime failure; preserve raw artifacts, release source seal for correction. No strict acceptance claimed.",
+  "wrapperCommand": "78985 78983 /Library/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python Tools/AssemblyShadow/run-r01b-capacity-player.py --project-root /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo --fixture-manifest /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-4fe71ffd405246e18eefd68e08b397fd/m07-fixtures.json --on-build /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-605e2808edf3491c8e01462e3380be31/m07-player-build.json --off-build /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-87949cc60ccf4dd5b3d0d0517882a64d/m07-player-build.json --replay-receipt /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-4fe71ffd405246e18eefd68e08b397fd/m07-editor-replay.json --diagnostic-build /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/diagnostic-v4-1.json --workload-manifest /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/workload-v2-verified-manifest.json --corpus-root /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/workload-v2-corpus-512MiB-8192 --overflow-receipt /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/overflow-current-1/r01b-overflow-fixture-receipt.json --output-root /Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B-v4-capacity-ordinary-1 --timeout 3600",
+  "cancelledAtEpoch": 1788979019.5985138,
+  "acceptedAsFinal": false
+}

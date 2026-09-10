@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BCurrentNativeValidation",
+  "scope": "Current production sources; count and M06 compilation use newly installed R01B generated headers; parser receipt includes explicit retained external header provenance",
+  "PlayerEvidence": false,
+  "checks": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/r01b-parser-run-5/r01b-parser-receipt.json",
+      "sha256": "ecc364ee7514238936ca09b09d39c64f7db7f9c2dac44f717db0d2f793328efe",
+      "success": true,
+      "checks": {
+        "provenanceStable": true
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/native-counts-installed-1.json",
+      "sha256": "def3178b132221c60685cb483aec7f0ceb666a1aa3c7691e9af920e5ef1f819f",
+      "success": true,
+      "checks": {
+        "releaseChecks": 32,
+        "asan-ubsanChecks": 32,
+        "inputsUnchanged": true
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/m06-installed-1.json",
+      "sha256": "c38e302167437e9ed7400243a48b6e3c318467b2110af7a5aab549da26d7d797",
+      "success": true,
+      "checks": {
+        "checks": 824,
+        "syntaxChecks": 20,
+        "inputsUnchanged": true
+      }
+    }
+  ]
+}

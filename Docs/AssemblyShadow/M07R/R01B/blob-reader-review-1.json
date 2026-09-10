@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "verdict": "Fail",
+  "reviewer": "r01_integration_review_gpt6astra_high_1",
+  "receipt": "_temp/AssemblyShadow/R01B/blob-reader-fix5-receipt.json",
+  "receiptSha256": "de3d57f0d6a1c5770035f699757ae80c25582f20f2e79f945a05b6f044e4580b",
+  "finding": "Preserve zero/null-blob sentinel when #Blob heap is absent or empty; unsigned assembly public-key lookup uses indexzero.",
+  "requiredEvidence": [
+    "Absent and empty blob heap zero-index compatibility",
+    "Direct ValidateStreams coverage for bounded #US/#Blob loops"
+  ],
+  "milestoneAccepted": false
+}

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BIndependentPrototypeAdoptionReview",
+  "reviewer": "/root/r01b_codec_design_review_gpt6astra_high_1",
+  "verdict": "FAIL",
+  "scope": "Production adoption of historical sparse-codec-prototype.cpp model; not R01B stage or H1",
+  "findings": [
+    {
+      "id": "R01B-P01",
+      "priority": 1,
+      "finding": "Per-page publication lacks one image-wide visibility transition",
+      "status": "PrototypeV4ScopedPass_ProductionIntegrationOpen",
+      "requiredCorrection": "Immutable page bindings plus stable owner and one atomic image lifecycle; preserve whole-transaction boundary",
+      "testsRequired": [
+        "Publication interleaving across two pages",
+        "Abort racing decode",
+        "Lazy binding and nested TLS scopes"
+      ]
+    },
+    {
+      "id": "R01B-P02",
+      "priority": 1,
+      "finding": "Custom-attribute range subtraction uses encoded values",
+      "status": "Open",
+      "requiredCorrection": "Same-image checked raw endpoint subtraction",
+      "testsRequired": [
+        "4095/4096 noncontiguous mapping",
+        "Reversed and one-past-end endpoints",
+        "Two published images accessible to one caller"
+      ]
+    },
+    {
+      "id": "R01B-P03",
+      "priority": 1,
+      "finding": "Native int16 generic constraint start cannot carry sparse encodings",
+      "status": "ProductionConstraintAdapterScopedPass_RuntimeCodecIntegrationPending",
+      "requiredCorrection": "Interpreter handle/localordinal adapter with uint32 raw-start sidecar; preserve AOT layout",
+      "testsRequired": [
+        "Raw constraints32767/32768",
+        "4095/4096 cross-page",
+        "Foreign handles and AOT regression"
+      ]
+    }
+  ],
+  "remainingProof": [
+    "Sound bounded synthetic and post-publication lazy growth",
+    "Full interpreter/AOT/sentinel adapter inventory",
+    "Actual declared workload, Player and performance evidence"
+  ],
+  "humanGatePassed": false,
+  "milestoneAccepted": false,
+  "followupReviews": [
+    {
+      "candidate": "sparse-codec-v4.cpp",
+      "reviewer": "/root/r01b_codec_design_review_gpt6astra_high_1",
+      "verdict": "PASS",
+      "scope": "P01 prototype image lifecycle and C++11 publication only; not production integration, complete transaction visibility, or R01B acceptance",
+      "source": "_temp/AssemblyShadow/R01B/sparse-codec-v4.cpp",
+      "sourceSha256": "f9e9c5d287576ad7671c13286bc0f7ffb47a30cd8e581fc23df16985a78fdecb",
+      "receipt": "_temp/AssemblyShadow/R01B/sparse-codec-v4-receipt.json",
+      "receiptSha256": "8e8770fd99b7b1958aa1d6124347b75b28f19ed25c876bfaca350928bc8e9eb8",
+      "reportedChecks": 56538,
+      "sanitizers": [
+        "ASan",
+        "UBSan"
+      ],
+      "tsanRun": false,
+      "remaining": [
+        "Real TLS and ordinary construction integration",
+        "Transaction-wide visibility",
+        "Mutable metadata cache and growth admission"
+      ]
+    },
+    {
+      "finding": "R01B-P03",
+      "verdict": "PASS",
+      "scope": "Generic constraint raw-start adapter and focused evidence; no Player or stage acceptance",
+      "reviewer": "/root/r01b_codec_design_review_gpt6astra_high_1",
+      "receipt": "_temp/AssemblyShadow/R01B/constraint-native-receipt-13.json",
+      "receiptSha256": "06d67d6682bb6a1420b731890dc07235f861d9d3a88f292a3c2017edb51a1ebe",
+      "helperSha256": "91b04d6fe2a4862c88a56f7043213e712a9f61e280d30b577cdb4e87e5d1abac",
+      "checks": 34,
+      "affectedNativeRegressionEvidence": "constraint-native-regressions.json",
+      "fixedFinding": "Receipt11 omitted actual helper and runner hashes; receipt13 seals both before/after and adds malformed cases",
+      "remaining": [
+        "Actual runtime lazy constraint resolution",
+        "Installed codec and Player pairing"
+      ]
+    }
+  ]
+}

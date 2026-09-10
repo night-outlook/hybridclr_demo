@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BProductionWorkflowCheckpoint",
+  "result": "PassedBuildAndReplay",
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v3",
+  "executableSourceRevision": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+  "workflow": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-c72b32f0030e4235995f6e6d1e1b3497/m07-build-workflow.json",
+    "sha256": "f79c4e17a1daa001ad9f91000ad96603d50f94a7abdbd292da1f40431964e0e2"
+  },
+  "nativeOn": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-72eac22c9bc2459a81bb64e46b046c3a/m07-player-build.json",
+    "sha256": "c223f9fed776d1a3081b2633de07552b32824fce86f13554332ed9ed725c90ed"
+  },
+  "nativeOff": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-bffda494a9ce4ba0af0b1753bb282324/m07-player-build.json",
+    "sha256": "afc6da16e8ebdf4b41437618a3a8d677c754bc62eb1311137039256b158990f0"
+  },
+  "fixtures": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-c72b32f0030e4235995f6e6d1e1b3497/m07-fixtures.json",
+    "sha256": "dd387a71bd1c52ae7343f094aeddc901579a1a50e22c296fbc5c7cb504f130a1"
+  },
+  "editorReplay": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M02Validation-c72b32f0030e4235995f6e6d1e1b3497/m07-editor-replay.json",
+    "sha256": "b2eb7208dfd8df997ebe308aa21d79e2e4d41d9ca832a83185eff829075d575e"
+  },
+  "scope": "Both Players built; independent fixture replay and post-build installed-source audit passed. Player runtime acceptance is separate.",
+  "runtimeAcceptance": "Pending",
+  "harnessCorrection": "Plain legacy M07 launch omitted required R01 startup capsule and was refused before host continuation. Capsule-aware accepted R01 Control route is being used. Diagnostic ordinary/lazy, old-Player and R00 launch routes require capsule integration before final acceptance."
+}

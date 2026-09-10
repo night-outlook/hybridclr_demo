@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BNativeV3Validation",
+  "createdUtc": "2026-09-09T16:46:43.479331+00:00",
+  "status": "CompletedWithLegacyHarnessCompileFailure",
+  "refreshRuns": 16,
+  "refreshPassed": 15,
+  "refreshFailed": 1,
+  "parentM04Passed": true,
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+      "localPath": "."
+    }
+  },
+  "repositoryHeads": {
+    "demo": "57f7b3755b04bca63d9ebd1b49084ffb177c98df",
+    "hybridclr": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+    "il2cppPlus": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+    "hybridclrUnity": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd"
+  },
+  "demoHeadExplanation": "Demo HEAD57f7b375 is source-pin metadata commit; executable demo source pin7a507e1.",
+  "installedRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+  "provenanceFiles": [
+    {
+      "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "fb5f44971f78478da33b4fe08f5720c1edfe95eab7efcca0f32ec176e1410035"
+    },
+    {
+      "path": "HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+      "sha256": "c24ff8adfad4b788ac4287ca8b6cee152df7f0460fbc36e8aa2aa706160ec1e9"
+    },
+    {
+      "path": "HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/hybridclr/generated/UnityVersion.h",
+      "sha256": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff"
+    },
+    {
+      "path": "_temp/AssemblyShadow/M07PlayerInputs-72eac22c9bc2459a81bb64e46b046c3a/Assemblies/AssemblyA.Contracts.dll",
+      "sha256": "f0d417052ad8c7014e8236b5829188b2375a0119ab5198ea914da977cb830203"
+    },
+    {
+      "path": "_temp/AssemblyShadow/M07PlayerInputs-72eac22c9bc2459a81bb64e46b046c3a/Assemblies/AssemblyA.Implementation.Internal.dll",
+      "sha256": "7e4cb953a41a3ed7fc527586987a830b35da335c540169182342eb522b7326e5"
+    },
+    {
+      "path": "_temp/AssemblyShadow/M07PlayerInputs-72eac22c9bc2459a81bb64e46b046c3a/Assemblies/AssemblyA.Implementation.Extensibility.dll",
+      "sha256": "666699f9e50635e81f19095ced6e6cde85383845834ef59624b39ea2bcaf1d7b"
+    }
+  ],
+  "provenanceRecord": {
+    "path": "_temp/AssemblyShadow/R01B/native-v3-installed-provenance-1.json",
+    "sha256": "39b05817e09c71c4505f55ddea1ebf18a347604d624ce5270804bf1a07b35fb3"
+  },
+  "dispatch": {
+    "path": "_temp/AssemblyShadow/R01B/native-v3-installed-dispatch-1.json",
+    "sha256": "5a34caa970c792c5a504f4adb24c1d3707a2b263c25e9d232f9a8f5aab41d261"
+  },
+  "inputProvenanceUnchanged": true,
+  "repositoryHeadsUnchanged": true,
+  "nativeRuntimePackageWorkingCopiesClean": true,
+  "oldR01InstalledFallbackReferences": [],
+  "entries": [
+    {
+      "suite": "m03",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/m03-v3-installed-1.json",
+        "sha256": "a838e3faf571d89dae768eebe9afb22518e15165c31aeee33440a146593cfadc"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/m03-v3-installed-1.log",
+        "sha256": "4cc6b54ec816819f929a4f6a71b129853e4c523860a1db826080061769273733"
+      },
+      "metrics": {
+        "identityChecks": 94707,
+        "nameChecks": 30,
+        "facadeChecks": 25,
+        "facadeLookupChecks": 15,
+        "disabledApiChecks": 33
+      }
+    },
+    {
+      "suite": "m04",
+      "result": "Passed",
+      "executedBy": "parent; reused current v3 receipt without rerun",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/m04-v3-installed-1.json",
+        "sha256": "52f80eac4715ed97661e01bf73365edf397eb5fef291641429eb7e9810e8545b"
+      },
+      "metrics": {
+        "checks": 58,
+        "syntaxChecks": 22,
+        "referenceIdentityChecks": 27
+      }
+    },
+    {
+      "suite": "m05",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/m05-v3-installed-1.json",
+        "sha256": "867dce375bbcdcc7259096a7a00b445e5d728c1d3f5cde2d4cbe7d1d83b25eba"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/m05-v3-installed-1.log",
+        "sha256": "d52d6b2ff8abbe068016408e77821d6b863376f7ab17a7e940e758aa3764a52d"
+      },
+      "metrics": {
+        "syntaxChecks": 34
+      }
+    },
+    {
+      "suite": "m06",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/m06-v3-installed-1.json",
+        "sha256": "559074da65629c1c1b8b94b2aa0058dd878f672ada076cc74fd475ee74c6e68b"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/m06-v3-installed-1.log",
+        "sha256": "9e3f2bcc9ecb34066e993b75a6c357ad4687abd5e61bcdb85a7329dab11d3d81"
+      },
+      "metrics": {
+        "checks": 824,
+        "syntaxChecks": 20
+      }
+    },
+    {
+      "suite": "startup",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/startup-v3-installed-1.json",
+        "sha256": "2133e76d0907c84ce110072961346d0015137e1f959e42a0c2c578bc329395b2"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/startup-v3-installed-1.log",
+        "sha256": "c84dae64ca4072ef84eb5ea5f57fb8f73c1b8f6b3da68a1c8361842fd372771d"
+      },
+      "metrics": {
+        "checks": 168
+      }
+    },
+    {
+      "suite": "transaction",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/transaction-v3-installed-1.json",
+        "sha256": "b9ca0937d1d59063cea772924ed552506e245cb6427750df1500cfbd32262916"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/transaction-v3-installed-1.log",
+        "sha256": "e4a660b3bbd09989790b53eb6f64f72e9a127c40774aef5cd3e8fa4a535b5ee4"
+      },
+      "metrics": {
+        "checks": 131
+      }
+    },
+    {
+      "suite": "startup-gateway",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/startup-gateway-v3-installed-1.json",
+        "sha256": "0f6b9c32ebd020e42d9f1e71bb58430f71c205dfcaffd8a6d63d9f32b688a257"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/startup-gateway-v3-installed-1.log",
+        "sha256": "5cb9a9cf22e86fe70915c165b52f3b62891160862a6f95f81305715d3d57fd91"
+      },
+      "metrics": {
+        "checks": 194,
+        "syntaxChecks": 8
+      }
+    },
+    {
+      "suite": "budget-contention",
+      "result": "Failed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/budget-contention-v3-installed-1.json",
+        "sha256": "9e29aba30cd150cd8cb58c8d6307995279776fcee954703b961bb95cb48f3883"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/budget-contention-v3-installed-1.log",
+        "sha256": "874af2712cc80c600771126b4d9d87092ef1a920b2677a2cc004e2aed43ec921"
+      },
+      "metrics": {},
+      "diagnosis": "Compile failure: retained R01 fixture uses InterpreterImageBudget/GetImageBudgetState and the removed one-argument ReserveImageBudget API. Current R01B InterpreterImage requires sizes, imageIndices, and runtimeError. No contention behavior executed; no fixes authorized or attempted."
+    },
+    {
+      "suite": "budget",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/budget-v3-installed-1.json",
+        "sha256": "ad29ab515be1fe97ea0f94c1baae979bdd1b9ca8ca2ef0d4f71a604fe0214550"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/budget-v3-installed-1.log",
+        "sha256": "e4b1ca85ef046fa37105096dde2b7b5b7c4eb0de412330a56f62d2d90c8f63c1"
+      },
+      "metrics": {
+        "checkCount": 2684
+      },
+      "boundary": "Retained R01 InterpreterImageBudget helper checks; this passing legacy helper does not prove current R01B admission integration."
+    },
+    {
+      "suite": "recovery",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/recovery-v3-installed-1.json",
+        "sha256": "4573dc5e17b6c8aebe8c98c1e0bc7d9002133f1ff8cae954dc2a2b2aa704020d"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/recovery-v3-installed-1.log",
+        "sha256": "392d399a863c0554904c680e5e026251dae958eb631c49868e1e90407255caaa"
+      },
+      "metrics": {
+        "checkCount": 498
+      }
+    },
+    {
+      "suite": "index-runtime",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/index-runtime-v3-installed-1.json",
+        "sha256": "7a4c466b3d28adecc1bdcbfdc89e43607685908fa3e8f2c5507256487e16a7dd"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/index-runtime-v3-installed-1.log",
+        "sha256": "94a030f1d2478765eb6c7de656c331035d9b308e0cc08204ce89ab06cd660c09"
+      },
+      "metrics": {
+        "checkCount": 157
+      }
+    },
+    {
+      "suite": "index-range",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/index-range-v3-installed-1.json",
+        "sha256": "235d197afeff3d758dc6bb5c5b9ddeabeb9a65a9df379a5b9878676563948689"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/index-range-v3-installed-1.log",
+        "sha256": "980f12b7b820b7086666fe4c2fd9bcdf8e0e5651b63f50792a3994faa919ace4"
+      },
+      "metrics": {
+        "checkCount": 49
+      }
+    },
+    {
+      "suite": "type-cache",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/type-cache-v3-installed-1.json",
+        "sha256": "ced51898b3f8c256550475226306d9df5ea83f5464da3b65b774d5b062cf0272"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/type-cache-v3-installed-1.log",
+        "sha256": "0daf601ca68092920f622efd6effe24ada4cc67bc5df8f09ebe9f14af06c3e98"
+      },
+      "metrics": {
+        "checkCount": 77
+      }
+    },
+    {
+      "suite": "attribute",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/attribute-v3-installed-1.json",
+        "sha256": "50770e030e5483766b0dd794d686d4feb4989cc1b773aa44a2bb26c29b116538"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/attribute-v3-installed-1.log",
+        "sha256": "19dda96360fcb3cf096b1a22484efa761acc69e9c55093089ba3393f57f3ffc9"
+      },
+      "metrics": {
+        "asanUbsanChecks": 4197,
+        "releaseChecks": 4197
+      },
+      "runDirectory": "_temp/AssemblyShadow/R01B/attribute-batch-run-15"
+    },
+    {
+      "suite": "constraint",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/constraint-v3-installed-1.json",
+        "sha256": "a9a63656ce96eebde9080893d3dfec9fa97d4caab04fa79226263bf1638070e9"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/constraint-v3-installed-1.log",
+        "sha256": "557f7258825f0feed7804c91cbabde3999a9b05cb1f01317cf9eab224c334864"
+      },
+      "metrics": {
+        "checkCount": 34
+      }
+    },
+    {
+      "suite": "native-counts",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/native-counts-v3-installed-1.json",
+        "sha256": "f547384accd8351292f726ec696a9cc0bd4e77b1657238025cda1dc8321439ce"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/native-counts-v3-installed-1.log",
+        "sha256": "09aed5168b35c9833ccdaa5fcd70c26ed9218b864d8d2f44bdee4d68c44ee0b8"
+      },
+      "metrics": {
+        "releaseChecks": 32,
+        "asan-ubsanChecks": 32
+      }
+    },
+    {
+      "suite": "codec-kernel",
+      "result": "Passed",
+      "receipt": {
+        "path": "_temp/AssemblyShadow/R01B/codec-kernel-run-11/codec-kernel-receipt.json",
+        "sha256": "d2dedcd0e1de481cab049667a7658a827b14f695de422ab01a0362df12635727"
+      },
+      "log": {
+        "path": "_temp/AssemblyShadow/R01B/codec-kernel-v3-installed-1.log",
+        "sha256": "7ffd12e563312c891712abd3510b3be5e554f3ab0998fc321416fd550898a29e"
+      },
+      "metrics": {
+        "asan_ubsan_checks": 8797,
+        "asan_ubsan_failures": 0,
+        "release_checks": 8797,
+        "release_failures": 0
+      },
+      "runDirectory": "_temp/AssemblyShadow/R01B/codec-kernel-run-11"
+    }
+  ],
+  "remainingFailure": {
+    "suite": "budget-contention",
+    "classification": "Retained R01 harness is incompatible with the current R01B API; not a runtime assertion or observed contention failure.",
+    "currentContentionEvidence": "Fresh index-runtime and codec-kernel suites pass current production reservation/owner uniqueness and publication/finalization concurrency checks; they are bounded tests and do not make the legacy integration fixture pass.",
+    "nextStep": "Parent decides disposition of retired R01 integration fixture; no source/tool changes made in this refresh."
+  },
+  "boundaries": [
+    "Wrappers use current source roots; every offered --installed-root points to the current R01B installation. Standalone helper wrappers without that option have no installed-header dependency.",
+    "DLL fixtures come only from the immutable sealed v3 M07PlayerInputs directory. Mutable HotUpdateDlls were not used.",
+    "Wrappers executed sequentially. Timings are diagnostic only because parent owned concurrent Unity replay.",
+    "No Unity control, installation, source pins, native sources, test sources, tools, or existing receipts were changed.",
+    "Current native regression evidence only; no Player or milestone acceptance."
+  ],
+  "playerAcceptance": false,
+  "milestoneAccepted": false
+}

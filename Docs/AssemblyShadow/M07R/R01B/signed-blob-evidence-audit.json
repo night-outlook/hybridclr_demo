@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BSignedBlobEvidenceAudit",
+  "result": "PassedBoundedNativeRoundtrip",
+  "receipt": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/signed-blob-roundtrip-receipt.json",
+    "sha256": "fbf392144e96f41d7f90aebb09bc7bbecb481997f36b15b259179522d37b45fc"
+  },
+  "verifiedFileHashCount": 925,
+  "productionSources": {
+    "writer": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr/hybridclr/metadata/CustomAttributeDataWriter.h",
+    "reader": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/il2cpp_plus/libil2cpp/utils/MemoryRead.cpp",
+    "readerHeader": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/il2cpp_plus/libil2cpp/utils/MemoryRead.h"
+  },
+  "productionSourceHashes": {
+    "writer": "a47e6a7a920fe853ccc0bfa850be43b9bef3864715515ac0daed312f93e6fd4b",
+    "reader": "a5aa927b0583f3851875cc569ce80f6cd8a6cd58293f1833c4ac8c3817a75706"
+  },
+  "output": "signed_blob_roundtrip_checks=2572878 candidate=0x80000000..0xffffefff sentinel=-1 random=1000000 max_bytes=5 PASS\n",
+  "controlledAdapters": [
+    "il2cpp::utils::Memory::Malloc/Calloc/Free in harness"
+  ],
+  "scope": "Actual production writer and reader under ASan/UBSan on macOS arm64; signed-shift concern not reproduced on this toolchain. No production fix justified by this experiment. Not a full codec, Player or platform acceptance.",
+  "milestoneAccepted": false
+}

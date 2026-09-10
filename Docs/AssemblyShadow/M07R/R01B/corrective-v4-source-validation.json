@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BCorrectiveSourceValidation",
+  "status": "SourceChecksPassedPlayerAcceptancePending",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "3a70624d4c13d0a19c6d9a026395b79adcb3c215",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "cb68c26c12cc60b8d98d2e9fc398f6e0f05d202e",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "68def7a9530913daab6b8175f06c9cf47a1a3fd4",
+      "localPath": "."
+    }
+  },
+  "demoMetadataHead": "b6f81f88abca44e685002ad346a5bb636bddc0f1",
+  "editor": {
+    "summary": {
+      "id": "2",
+      "testcasecount": "1009",
+      "result": "Passed",
+      "total": "1009",
+      "passed": "1009",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-09-09 17:17:35Z",
+      "end-time": "2026-09-09 17:19:27Z",
+      "duration": "111.3405993"
+    },
+    "artifact": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/EditorTests-3d6d99ef98b04ebeb012cbd7a3b39b42/results.xml",
+      "sha256": "ae7e4766dfa76013dc5fc42eade5ec4d0e72ec66aa3fe9b4076671b4b8852058"
+    }
+  },
+  "native": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/corrective-native-1/aggregate.json",
+    "sha256": "2ad270f7f0ae5528fae6b2dd74ec817bc28761219da03607b1e0f4e4b6fbe94a"
+  },
+  "sourceReviews": [
+    {
+      "scope": "NativeOwnership",
+      "result": "Passed",
+      "reviewer": "codec_review_gpt6astra_high_1",
+      "findings": []
+    },
+    {
+      "scope": "CapsuleStartupHarness",
+      "result": "Passed",
+      "reviewer": "verifier_profile_gpt6astra_high_1",
+      "findings": [],
+      "focusedTests": 50,
+      "capacityTests": 15
+    }
+  ],
+  "corrections": [
+    "Register private image through immutable token membership, without granting decode authority.",
+    "Hide unpublished and retained-aborted tokens without owner-gated decoding.",
+    "Exercise real registration and metadata-lock contention in native harnesses.",
+    "Use authenticated startup capsules for current R00, ordinary capacity, lazy, and old Player rejection routes.",
+    "Enforce strict profile2 early timelines and reject legacy receipt downgrade.",
+    "Preserve only the stripped profile2 parser type to pair production and diagnostic linked core.",
+    "Read RVA payload through RuntimeHelpers.InitializeArray.",
+    "Generate C#-compatible lazy virtual slots and interface closure."
+  ],
+  "finalAcceptance": false,
+  "python": {
+    "result": "Passed",
+    "log": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/python-corrective-final-1.log",
+    "sha256": "52adeda764a82c9e039ada0f461f9ad00df286011f4626051a44c03e2e03227c",
+    "summary": [
+      "Ran 487 tests in 70.149s"
+    ]
+  }
+}

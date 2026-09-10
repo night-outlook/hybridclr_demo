@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BContinuationCheckpoint",
+  "status": "ActiveUnaccepted",
+  "scope": "Finish R01B implementation, real Player acceptance, evidence and independent full-stage review; stop at H1, no R02",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+      "localPath": "."
+    }
+  },
+  "demoMetadataCommit": "57f7b3755b04bca63d9ebd1b49084ffb177c98df",
+  "activeBuild": {
+    "baselineId": "M07-Baseline-R01B-20260909-v3",
+    "log": "_temp/AssemblyShadow/R01B/build-v3.log",
+    "command": "pwsh -NoProfile -File Tools/AssemblyShadow/Invoke-M07Build.ps1 -BaselineId M07-Baseline-R01B-20260909-v3 -BuildTarget StandaloneOSX -TimeoutSec 28800",
+    "lastKnownStage": "ValidateCompilerInputs"
+  },
+  "prebuildAudit": "_temp/AssemblyShadow/R01B/prebuild-pairing-5.json",
+  "installationReceiptSha256": "c24ff8adfad4b788ac4287ca8b6cee152df7f0460fbc36e8aa2aa706160ec1e9",
+  "verification": [
+    "editor-final-candidate.json",
+    "macos-rss-correction.json",
+    "python-v3-player-inputs.json",
+    "preplayer-evidence-index.json"
+  ],
+  "priorV2": "production-build-v2-checkpoint.json",
+  "remaining": [
+    "Finish v3 workflow; build diagnostic Player with R01BDiagnosticBuild.BuildDiagnosticPlayer using v3fixture andONreceipt arguments",
+    "Run strict14M07,11early,3failure,R00performance,oldPlayerrejection",
+    "Generate mixed manifest from currentP03; run diagnostic ordinary8192/8193,mixed5Shadow+3failed+8184ordinary,lazy+dense cases",
+    "Finalactualmemory/performancecomparison and immutableevidencepackage",
+    "Independentfull-stage review thenSTOPatH1"
+  ],
+  "milestoneAccepted": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

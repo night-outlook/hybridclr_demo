@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BRawReaderFixEvidence",
+  "receipt": "_temp/AssemblyShadow/R01B/raw-image-script4-receipt.json",
+  "receiptSha256": "13a955e74f021ea5aee4e535379777b0ed619ef73fcd0d111bd1d1f24482e081",
+  "results": {
+    "asanUbsan": "raw_image_helper_offsets=8 PASS\nraw_image_checks=8192 files=8192 field_rva_rows=8196 payload_samples=40980 large_files=1 PASS",
+    "asanUbsanStderr": "",
+    "asan": "raw_image_helper_offsets=8 PASS\nraw_image_checks=8192 files=8192 field_rva_rows=8196 payload_samples=40980 large_files=1 PASS",
+    "asanStderr": "",
+    "helperOffsetPass": true,
+    "ubsanDiagnosticsPresent": false,
+    "sanitizerClean": true,
+    "asanPass": true,
+    "parserPass": true
+  },
+  "sourceRetention": "_temp/AssemblyShadow/R01B/raw-image-source-retention.json",
+  "sourceRetentionSha256": "18d91320a957baa9652341a37bcc0f6b7b33262f4b4d4db599795388c77cf128",
+  "finding": "Confirmed packed-table unaligned typed reads; U2/U4/U8 now use existing bytewise little-endian expressions",
+  "boundary": "Actual parser and shared byte-reader helpers under sanitizers; preceding source state, before subsequent mixed member-index migration. No Player/capacity acceptance.",
+  "subsequentSourceChangesRequireAffectedRevalidation": true,
+  "milestoneAccepted": false,
+  "humanGatePassed": false
+}

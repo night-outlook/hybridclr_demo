@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BPythonCurrentPlayerInputsVerification",
+  "sourceRevision": "6201caba908339579b034303c2a72735a5e51065",
+  "result": "Passed",
+  "passed": 470,
+  "failed": 0,
+  "skipped": 0,
+  "compilerRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-46f0d5515a574e45b66cba88c7a87d98/Assemblies",
+  "configuration": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-46f0d5515a574e45b66cba88c7a87d98/RawTypeAdmissions/configuration.json",
+  "command": "M05_REAL_COMPILER_ROOT=<compilerRoot> M05_RAW_CONFIGURATION=<configuration> python3 -m unittest discover -s Tools/AssemblyShadow/tests -p 'test_*.py'",
+  "inputsAndLog": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/python-current-player-inputs-1.log",
+      "sha256": "a8d898b6bc42c15048aa85f360719e930fa8d062e9879658a4d3c297fb6d2a16"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-46f0d5515a574e45b66cba88c7a87d98/assembly-snapshot.json",
+      "sha256": "7a8026b9895003c45a3bbd4898dd2f09755ec0b3441004899b7a4c43946585a9"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-46f0d5515a574e45b66cba88c7a87d98/RawTypeAdmissions/configuration.json",
+      "sha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c"
+    }
+  ],
+  "limit": "Python verification of sealed current Player compiler inputs is not actual Player runtime acceptance",
+  "milestoneAccepted": false
+}

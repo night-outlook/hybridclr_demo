@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BSemanticIndexDomainReview",
+  "result": "PartialSemanticInventory",
+  "milestoneAccepted": false,
+  "sites": [
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/InterpreterImage.cpp",
+      "sourceSha256": "4d51046a72815c76f56474466a9ec17b4231796952835dc959a480b5377627be",
+      "classification": "EncodedArithmeticMustMigrate",
+      "reason": "Compute differences/additions in raw domain with owner validation; attribute startOffset subtraction is included.",
+      "sites": [
+        {
+          "line": 277,
+          "text": "last.field_count = (uint16_t)(cur.fieldStart - last.fieldStart);"
+        },
+        {
+          "line": 278,
+          "text": "last.method_count = (uint16_t)(cur.methodStart - last.methodStart);"
+        },
+        {
+          "line": 535,
+          "text": "const Il2CppFieldDefinition* field = GetFieldDefinitionFromRawIndex(DecodeMetadataIndex(def->fieldStart + i));"
+        },
+        {
+          "line": 806,
+          "text": "uint32_t attrCount = nextTypeRange.startOffset - curTypeRange.startOffset;"
+        },
+        {
+          "line": 1980,
+          "text": "uint32_t globalIndex = DecodeMetadataIndex((uint32_t)(typeDefine->interfaceOffsetsStart + index));"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/VTableSetup.cpp",
+      "sourceSha256": "d706a6ad0f94989bee68b6bcbb1812677478de0734e1a31a6a3c1073400fb3ba",
+      "classification": "MixedAotInterpreterAddition",
+      "reason": "Type tree may contain either owner domain; use explicit domain-preserving metadata method offset operation.",
+      "sites": [
+        {
+          "line": 101,
+          "text": "const Il2CppMethodDefinition* methodDef = il2cpp::vm::GlobalMetadata::GetMethodDefinitionFromIndex(typeDef->methodStart + i);"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/MetadataUtil.cpp",
+      "sourceSha256": "057fd0dfc693497721cd9f2fb33f4fde547ec7fe39dd767225ba3c093a5bd818",
+      "classification": "MixedAotInterpreterAddition",
+      "reason": "Method resolver iterates metadata definitions of either domain.",
+      "sites": [
+        {
+          "line": 663,
+          "text": "const Il2CppMethodDefinition* methodDef = il2cpp::vm::GlobalMetadata::GetMethodDefinitionFromIndex(typeDef->methodStart + i);"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/Image.cpp",
+      "sourceSha256": "ae0eaa4fca52f613a739d04232d5699a76cc3ac761cc7ca95320259c4a1de279",
+      "classification": "MixedAotInterpreterAddition",
+      "reason": "Method resolution may receive an interpreter type; raw encoded addition is not page-safe.",
+      "sites": [
+        {
+          "line": 1016,
+          "text": "const Il2CppMethodDefinition* methodDef = il2cpp::vm::GlobalMetadata::GetMethodDefinitionFromIndex(typeDef->methodStart + i);"
+        }
+      ]
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GlobalMetadata.cpp",
+      "sourceSha256": "9076415bc118ee7def18be93811b860f012ca9ce48b3145c220b3d413a5ecad8",
+      "classification": "MixedAotInterpreterAddition",
+      "reason": "Default field lookup, field metadata and method metadata add before interpreter dispatch; migrate before sparse profile adoption.",
+      "sites": [
+        {
+          "line": 1143,
+          "text": "fieldIndex += reinterpret_cast<const Il2CppTypeDefinition*>(parent->typeMetadataHandle)->fieldStart;"
+        },
+        {
+          "line": 1295,
+          "text": "return GetFieldDefinitionFromIndex(typeDef->fieldStart + index);"
+        },
+        {
+          "line": 1306,
+          "text": "const Il2CppFieldDefinition* fieldDefinition = GetFieldDefinitionFromIndex(typeDefinition->fieldStart + fieldIndex);"
+        },
+        {
+          "line": 1323,
+          "text": "const Il2CppMethodDefinition* methodDefinition = GetMethodDefinitionFromIndex(typeDefinition->methodStart + index);"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/InterpreterImage.cpp",
+      "sourceSha256": "4d51046a72815c76f56474466a9ec17b4231796952835dc959a480b5377627be",
+      "classification": "NarrowNativeFieldNeedsAdapter",
+      "reason": "constraintsStart is int16. Current packed token narrowing preserves only small raw offsets. Sparse page placement changes low bits; use explicit interpreter sidecar/raw-start adapter, preserving native AOT layout.",
+      "sites": [
+        {
+          "line": 2130,
+          "text": "genericParam.constraintsStart = EncodeWithIndex(i);"
+        }
+      ]
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GlobalMetadata.cpp",
+      "sourceSha256": "9076415bc118ee7def18be93811b860f012ca9ce48b3145c220b3d413a5ecad8",
+      "classification": "NarrowNativeFieldNeedsAdapter",
+      "reason": "Dispatch interpreter constraints before adding the int16 native start; use full-width image-local raw start and validated local offset.",
+      "sites": [
+        {
+          "line": 1516,
+          "text": "index = genericParameter->constraintsStart + index;"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/InterpreterImage.cpp",
+      "sourceSha256": "4d51046a72815c76f56474466a9ec17b4231796952835dc959a480b5377627be",
+      "classification": "ImageLocalRawNotEncoded",
+      "reason": "Parameter starts, nested type starts and direct interface starts are intentionally raw. Do not blindly apply codec to their arithmetic.",
+      "sites": [
+        {
+          "line": 1491,
+          "text": "md.parameterStart = methodData.paramList - 1;"
+        },
+        {
+          "line": 1548,
+          "text": "md.parameterStart = actualParamStart;"
+        },
+        {
+          "line": 1820,
+          "text": "enclosingTypeDef.nestedTypesStart = (NestedTypeIndex)_nestedTypeDefineIndexs.size();"
+        },
+        {
+          "line": 1974,
+          "text": "uint32_t globalOffset = typeDef->interfacesStart + offset;"
+        },
+        {
+          "line": 1989,
+          "text": "uint32_t globalIndex = typeDefine->nestedTypesStart + offset;"
+        },
+        {
+          "line": 2227,
+          "text": "typeDef.interfacesStart = (InterfacesIndex)i;"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/InterpreterImage.h",
+      "sourceSha256": "802f35b4c0ab37074d7f09fa48ecae1ca2a76d6a70bb403fbeb133a996ff0600",
+      "classification": "DecodeBeforeArithmetic",
+      "reason": "These sites already decode first; retain raw arithmetic and validate appropriate range/owner in the new adapter.",
+      "sites": [
+        {
+          "line": 297,
+          "text": "uint32_t globalIndex = DecodeMetadataIndex(container->genericParameterStart) + index;"
+        },
+        {
+          "line": 382,
+          "text": "uint32_t fieldActualIndex = DecodeMetadataIndex(typeDef->fieldStart) + fieldIndexInType;"
+        },
+        {
+          "line": 461,
+          "text": "uint32_t rowIndex = DecodeMetadataIndex(typeDef->propertyStart) + index;"
+        },
+        {
+          "line": 463,
+          "text": "uint32_t baseMethodIdx = DecodeMetadataIndex(typeDef->methodStart) + 1;"
+        },
+        {
+          "line": 488,
+          "text": "uint32_t rowIndex = DecodeMetadataIndex(typeDef->eventStart) + index;"
+        },
+        {
+          "line": 490,
+          "text": "uint32_t baseMethodIdx = DecodeMetadataIndex(typeDef->methodStart) + 1;"
+        }
+      ]
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/GlobalMetadata.cpp",
+      "sourceSha256": "9076415bc118ee7def18be93811b860f012ca9ce48b3145c220b3d413a5ecad8",
+      "classification": "AotBranchAfterInterpreterDispatch",
+      "reason": "Inspected surrounding functions route interpreter inputs before these operations. Preserve AOT raw arithmetic; this classification does not prove every caller or platform branch.",
+      "sites": [
+        {
+          "line": 704,
+          "text": "TypeDefinitionIndex typeDefintionIndex = imageMetadata->typeStart + index;"
+        },
+        {
+          "line": 818,
+          "text": "const TypeDefinitionIndex typeIndex = imageMetadata->typeStart + index;"
+        },
+        {
+          "line": 847,
+          "text": "InterfacesIndex index = typeDefinition->interfacesStart + offset;"
+        },
+        {
+          "line": 870,
+          "text": "index = index + typeDefine->interfaceOffsetsStart;"
+        },
+        {
+          "line": 1270,
+          "text": "fieldIndex += reinterpret_cast<const Il2CppTypeDefinition*>(parent->typeMetadataHandle)->fieldStart;"
+        },
+        {
+          "line": 1365,
+          "text": "const Il2CppPropertyDefinition* propertyDefintion = GetPropertyDefinitionFromIndex(klass->image, typeDefintion->propertyStart + index);"
+        },
+        {
+          "line": 1387,
+          "text": "const Il2CppEventDefinition* eventDefintion = GetEventDefinitionFromIndex(klass->image, typeDefintion->eventStart + index);"
+        },
+        {
+          "line": 1507,
+          "text": "return GetGenericParameterFromIndexInternal(genericContainer->genericParameterStart + index);"
+        },
+        {
+          "line": 1636,
+          "text": "if (index >= imageMetadata->typeStart && static_cast<uint32_t>(index) < (imageMetadata->typeStart + imageMetadata->image->typeCount))"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/SuperSetAOTHomologousImage.cpp",
+      "sourceSha256": "5226fb1fddb8ce8235af34b9a5f541e71bc4745d28adf91c52875133a9feaf04",
+      "classification": "AotHomologousPath",
+      "reason": "Method matching receives an AOT type definition; maintain explicit AOT contract rather than globally treating positive raw indices as sparse tokens.",
+      "sites": [
+        {
+          "line": 26,
+          "text": "const Il2CppMethodDefinition* aotMethodDef = il2cpp::vm::GlobalMetadata::GetMethodDefinitionFromIndex(aotTypeDef->methodStart + i);"
+        }
+      ]
+    },
+    {
+      "repository": "hybridclr",
+      "path": "hybridclr/metadata/ConsistentAOTHomologousImage.cpp",
+      "sourceSha256": "8e57040e062c8008edde294220a4c608cb4e1a3e439f988b4f9b08796d0dd07e",
+      "classification": "AotHomologousPath",
+      "reason": "Method matching uses retained AOT definitions; preserve native raw format.",
+      "sites": [
+        {
+          "line": 74,
+          "text": "const Il2CppMethodDefinition* methodDef = il2cpp::vm::GlobalMetadata::GetMethodDefinitionFromIndex(type->methodStart + i);"
+        }
+      ]
+    }
+  ],
+  "narrowFieldCounterexample": {
+    "result": {
+      "nativeConstraintStartBytes": 2,
+      "rawIndex": 7,
+      "packedNarrowed": 7,
+      "sparseNarrowed": 4103,
+      "counterexampleConfirmed": true
+    },
+    "source": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/narrow-index-probe.cpp",
+      "sha256": "2df42ebc751401799d0709dc1963e6c94b6065a4d10a1693318b5b6a2ed7cf02",
+      "sizeBytes": 837
+    },
+    "executable": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/narrow-index-probe",
+      "sha256": "41e9c504504ccd207af042a5b35563c456b3a86240454a153185cdee51017a6a",
+      "sizeBytes": 33776
+    },
+    "output": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo/_temp/AssemblyShadow/R01B/narrow-index-probe-result.json",
+      "sha256": "aae8db3281f0824359e50e17b10d4f565f8bbb63c883992594b4a319e1480558",
+      "sizeBytes": 118
+    },
+    "compilerCommand": [
+      "/usr/bin/clang++",
+      "-std=c++11",
+      "-O1",
+      "-g",
+      "-fsanitize=undefined",
+      "-fno-sanitize-recover=all",
+      "-I",
+      "../il2cpp_plus/libil2cpp",
+      "-I",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_r01/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+      "-MMD",
+      "-MF",
+      "_temp/AssemblyShadow/R01B/narrow-index-probe.d",
+      "_temp/AssemblyShadow/R01B/narrow-index-probe.cpp",
+      "-o",
+      "_temp/AssemblyShadow/R01B/narrow-index-probe"
+    ],
+    "buildExitCode": 0,
+    "runExitCode": 0,
+    "scope": "Actual native struct declaration; synthetic packed and sparse values. Demonstrates sparse-adoption narrowing failure, not an existing Player regression. Hashes captured after execution; not a complete before/after toolchain seal."
+  },
+  "limits": [
+    "Partial semantic caller inventory; generated code and remaining platform branches still need final audit.",
+    "No production source changes, new profile adoption, install or Player execution.",
+    "Existing accepted R01/M00-M07 source pins and historical evidence remain unchanged."
+  ]
+}

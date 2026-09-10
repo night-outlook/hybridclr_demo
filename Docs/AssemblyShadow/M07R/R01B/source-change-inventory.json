@@ -1,0 +1,893 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BExecutableChangeInventory",
+  "scope": "R01 accepted delivery bases to R01B current executable candidates; final R01B evidence delivery is separate.",
+  "repositories": [
+    {
+      "repository": "hybridclr",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr",
+      "acceptedExecutableBase": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "candidateExecutableTarget": "7bf9479858345d6c7ba96e90f0f6b581299e71d0",
+      "changes": [
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/Assembly.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/Assembly.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/AssemblyShadowBridge.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/AssemblyShadowBridge.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/BlobReader.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/BlobReaderBounds.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/CustomAttributeDataWriter.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/CustomAttributeTypeIndexBatch.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/Image.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterGenericConstraintMap.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/InterpreterImage.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/InterpreterImage.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterImageAdmission.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterMetadataCounts.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterMetadataIndexRuntime.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterMetadataRange.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "hybridclr/metadata/InterpreterTypeCacheInsertion.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/MetadataUtil.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/MetadataUtil.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/RawImageBase.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/RawImageBase.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/StagedAssembly.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/VTableSetup.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "hybridclr/metadata/VTableSetup.h"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "tests/metadata/BlobReaderBoundsTests.cpp"
+          ]
+        }
+      ],
+      "shortStat": "27 files changed, 2914 insertions(+), 362 deletions(-)",
+      "changeInventoryBase": "b22fa3d92223645c32663e4a2157eaadf8ea495e"
+    },
+    {
+      "repository": "il2cpp_plus",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/il2cpp_plus",
+      "acceptedExecutableBase": "7967b8c7043904fcae130b294defd5ce7aa897c4",
+      "candidateExecutableTarget": "2109c2c653bf8839845690ef2cf80ae69ba0c437",
+      "changes": [
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/Assembly.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/Assembly.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/AssemblyShadow.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/AssemblyShadowDiagnostics.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/AssemblyShadowTypes.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/Class.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/GlobalMetadata.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/GlobalMetadata.h"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/MetadataCache.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "libil2cpp/vm/MetadataCache.h"
+          ]
+        }
+      ],
+      "shortStat": "10 files changed, 220 insertions(+), 68 deletions(-)",
+      "changeInventoryBase": "7967b8c7043904fcae130b294defd5ce7aa897c4"
+    },
+    {
+      "repository": "hybridclr_unity",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_unity",
+      "acceptedExecutableBase": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "candidateExecutableTarget": "e06c293a26fa52f3dfa6cdb5b5b7bd896a8640dd",
+      "changes": [
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/MetadataCapacityPlanner.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Editor/AssemblyShadow/Build/MetadataCapacityPlannerProfile2.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Editor/AssemblyShadow/Build/MetadataCapacityPlannerProfile2.cs.meta"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/ShadowBaselineManifestBuilder.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/ShadowManifests.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/ShadowPatchManifestBuilder.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/ShadowWarmupJson.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/ShadowWarmupManifestReader.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Editor/AssemblyShadow/Build/TargetFrameworkReferenceVerifier.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Runtime/AssemblyShadow/AssemblyShadowDiagnostics.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Runtime/AssemblyShadow/AssemblyShadowMetadataCapacity.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Runtime/AssemblyShadow/AssemblyShadowRuntime.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/M03RuntimeApiTests.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/M06WarmupTests.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/R01EarlyCapabilityNegotiationTests.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/R01Profile2PreliminaryTests.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/R01Profile2PreliminaryTests.cs.meta"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/R01RuntimeContractTests.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tests/Editor/AssemblyShadow/ResourceReceiptTests.cs"
+          ]
+        }
+      ],
+      "shortStat": "19 files changed, 994 insertions(+), 73 deletions(-)",
+      "changeInventoryBase": "b649c499385ea68490a0f652a98b732e060aeb89"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "root": "/Users/ah/GitHub/hybridclr/assembly_shadow_r01b/hybridclr_demo",
+      "acceptedExecutableBase": "cc7b17683c2e68a162914c347bb81d765dbc26c0",
+      "candidateExecutableTarget": "7a507e1c16865c2605ea8d507f901c5fbf06eef5",
+      "changes": [
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/M03TransactionProbe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/M04ReferenceProbe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionProbe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Editor/AssemblyShadowDemo.Editor.asmdef"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Editor/R01BDiagnosticBuild.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Editor/R01BDiagnosticBuild.cs.meta"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Editor/R01FailureFixtures.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/M03TransactionTests.cs"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/M06ExecutionProbeTests.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/R01BDiagnosticMemoryTests.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/R01BDiagnosticMemoryTests.cs.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs.meta"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyStartupTests.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/AssemblyShadow.R01BDiagnostics.asmdef"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/AssemblyShadow.R01BDiagnostics.asmdef.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BCapacityProbe.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BCapacityProbe.cs.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BDiagnosticRunner.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BDiagnosticRunner.cs.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Scenes.meta"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Scenes/R01BDiagnostic.unity"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Assets/AssemblyShadowR01BDiagnostics/Scenes/R01BDiagnostic.unity.meta"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "ProjectSettings/AssemblyShadowSettings.asset"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "ProjectSettings/AssemblyShadowSourcePins.json"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/create-r01b-lazy-fixture.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/create-r01b-mixed-workload.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/create-r01b-overflow-fixture.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/m03_results.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/m04_results.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/m06_results.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/m07_results.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/m04_resolution.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01_startup.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01_transaction.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-attribute-batch.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-codec-kernel.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-constraint-adapter.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-image-admission.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-index-range.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-index-runtime.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-parser-bounds.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-parser-dense.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-parser-full.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-parser-index-adapter.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/native-tests/r01b-type-cache.cpp"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/r01_early_results.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/r01_failure_results.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b-capacity-tools-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b-lazy-fixture.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b-native-counts-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b-native-counts.cpp"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b-overflow-fixture.cs"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b_capacity_inputs.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/r01b_diagnostic_inputs.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01-early-players.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-attribute-batch-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-capacity-player.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-codec-kernel-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-constraint-native-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-index-range-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-index-runtime-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-lazy-player.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-old-player-rejection.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-parser-tests.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/run-r01b-type-cache-tests.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/tests/test_r01_early_launch.py"
+          ]
+        },
+        {
+          "status": "M",
+          "paths": [
+            "Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/tests/test_r01b_diagnostic_inputs.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/tests/test_r01b_lazy_result.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/tests/test_r01b_metadata_verifier.py"
+          ]
+        },
+        {
+          "status": "A",
+          "paths": [
+            "Tools/AssemblyShadow/verify-r01b-capacity-result.py"
+          ]
+        }
+      ],
+      "shortStat": "85 files changed, 10535 insertions(+), 127 deletions(-)",
+      "changeInventoryBase": "b89959fcb5b9a3da1dd0e0ffe7874de412472ae8"
+    }
+  ]
+}
