@@ -9,6 +9,7 @@ using UnityEditorInternal;
 using UnityEditor.Build;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using HybridCLR.Editor.Settings;
 
 namespace AssemblyShadowDemo.Editor
 {
@@ -51,6 +52,7 @@ namespace AssemblyShadowDemo.Editor
             string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
             var settings = AssemblyShadowSettings.Instance;
             string settingsJson = JsonUtility.ToJson(settings);
+            string hybridClrSettingsJson = JsonUtility.ToJson(HybridCLRSettings.Instance);
             EditorBuildSettingsScene[] scenesBefore = EditorBuildSettings.scenes;
             string nativeArgumentsBefore = PlayerSettings.GetAdditionalIl2CppArgs();
             Il2CppCompilerConfiguration cppBefore = PlayerSettings.GetIl2CppCompilerConfiguration(NamedBuildTarget.Standalone);
@@ -188,6 +190,8 @@ namespace AssemblyShadowDemo.Editor
                     EditorBuildSettings.scenes = scenesBefore;
                     JsonUtility.FromJsonOverwrite(settingsJson, settings);
                     AssemblyShadowSettings.Save();
+                    JsonUtility.FromJsonOverwrite(hybridClrSettingsJson, HybridCLRSettings.Instance);
+                    HybridCLRSettings.Save();
                     AssetDatabase.SaveAssets();
                 }
                 finally
@@ -234,12 +238,26 @@ namespace AssemblyShadowDemo.Editor
             settings.shadowAssemblyDefinitions = new AssemblyDefinitionAsset[0];
             settings.shadowAssemblyNames = Candidates.ToArray();
             settings.bootstrapAssemblyDefinitions = new AssemblyDefinitionAsset[0];
-            settings.bootstrapAssemblyNames = new[] { DiagnosticsAssemblyName };
+            settings.bootstrapAssemblyNames = new string[0];
+            settings.startupBootstrapAssembly = "";
+            settings.startupBootstrapNamespace = "";
+            settings.startupBootstrapType = "";
+            settings.startupBootstrapMethod = "";
+            settings.allowedInternalEditorAssemblies = new string[0];
+            settings.explicitDependencyConfig = new TextAsset("{\"schemaVersion\":2,\"runtimeDependencies\":[],\"resourceDependencies\":[],\"serializeReferenceDependencies\":[],\"bootstrapEntrypoints\":[]}");
             settings.architecture = BaselineBuild.TargetArchitecture();
             settings.buildId = baselineId;
             settings.playerInputSnapshot = "";
             settings.baselineManifestPath = "";
+            HybridCLRSettings hybridClr = HybridCLRSettings.Instance;
+            hybridClr.enable = true;
+            hybridClr.hotUpdateAssemblyDefinitions = new AssemblyDefinitionAsset[0];
+            hybridClr.hotUpdateAssemblies = new string[0];
+            hybridClr.preserveHotUpdateAssemblies = new string[0];
+            hybridClr.patchAOTAssemblies = new string[0];
+            hybridClr.externalHotUpdateAssembliyDirs = new string[0];
             AssemblyShadowSettings.Save();
+            HybridCLRSettings.Save();
             AssemblyShadowSettingsUtil.ValidateSettingsOrThrow(settings);
             var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
             ShadowAssemblyPolicyValidator.ValidateBeforeCompile(policy, target).ThrowIfInvalid();
