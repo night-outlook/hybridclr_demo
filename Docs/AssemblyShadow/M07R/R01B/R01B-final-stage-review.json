@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BV6IndependentFinalStageReview",
+  "result": "Passed",
+  "reviewer": "verifier_profile_gpt6astra_high_1",
+  "reviewedCandidateCommit": "9d51767df790e16c7b36eed59e410c0cd0fd9921",
+  "scope": "R01B full-stage implementation and evidence for declared StandaloneOSX arm64 bounded workload; not human H1 acceptance",
+  "archive": {
+    "path": "Docs/AssemblyShadow/M07R/R01B/Evidence/r01b-v6-evidence.tar.gz",
+    "sha256": "d50193ad9e5ebe93998b6d5d412d32696a57925f4b05b55de91027011f0bd0d9"
+  },
+  "index": {
+    "path": "Docs/AssemblyShadow/M07R/R01B/Evidence/evidence-v6-index.json",
+    "sha256": "e82126f75efb96a83b51caa3c2d2b1cdbedb2b34ca2351c8871cfb3cf3711606"
+  },
+  "frozenPreReviewStatus": {
+    "path": "Docs/AssemblyShadow/M07R/current-status.json",
+    "sha256": "bcec34889cf99eb4828edd7824595c0a2f4eaa0d89bf44bfb6eafade01e88b37"
+  },
+  "verified": {
+    "archiveMembers": 329,
+    "allMemberHashesAndSizes": true,
+    "allCapturedRawPathHashes": true,
+    "finalizerValidatedArtifacts": 194,
+    "startupModes": 11,
+    "m07Modes": 14,
+    "r00Modes": 4,
+    "recomputedTimingCells": 48,
+    "editorPasses": 1021,
+    "freshPythonPasses": 492,
+    "ordinaryImageBoundary": 8192,
+    "mixedLifetimeImages": 8192,
+    "lazyChecks": 61
+  },
+  "closedFinding": "Rebuilt archive/index after correcting v6 status links; every archived member and current capture locator matched at reviewed commit.",
+  "limitations": [
+    "Native v6 results reuse hash-audited unchanged native v5 executions; no fresh v6 native execution claimed.",
+    "Inherited method parameter narrowing and nested-type count overflow issues remain not fixed; supported method parameter counts 0..255 and nested children per declaring type 0..65535. Over-limit loader counterexamples NotRun.",
+    "Development timing samples are descriptive; no equivalent R01 Player baseline, Release/P99, calibrated performance or RAM threshold acceptance.",
+    "Repeated per-process Shadow transactions and additional platforms remain later milestones."
+  ],
+  "statusSemantics": "This successor review supersedes the frozen candidate status pending-stage field. The archived status is an immutable pre-review snapshot at reviewedCandidateCommit, not the live post-review verdict.",
+  "humanGate": "H1",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "pushed": false
+}
