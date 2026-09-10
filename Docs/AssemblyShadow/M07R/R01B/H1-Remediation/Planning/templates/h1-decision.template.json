@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "kind": "HumanH1DecisionTemplate",
+  "templateOnly": true,
+  "humanDecision": null,
+  "allowedDecisions": [
+    "Passed",
+    "PassedWithExplicitDeferredRisk",
+    "Failed",
+    "Blocked"
+  ],
+  "decidedBy": null,
+  "decisionDate": null,
+  "explicitHumanInstructionReference": null,
+  "independentReviewReference": null,
+  "candidatePins": {
+    "hybridclr_demo": null,
+    "hybridclr": null,
+    "hybridclr_unity": null,
+    "il2cpp_plus": null
+  },
+  "originalV6Audit": null,
+  "candidateEvidenceArchive": {
+    "path": null,
+    "sha256": null
+  },
+  "candidateEvidenceIndex": {
+    "path": null,
+    "sha256": null
+  },
+  "findingsClosure": {
+    "H1-B01": null,
+    "H1-H02": null,
+    "H1-H03": null,
+    "H1-M04": null
+  },
+  "supportedScope": null,
+  "explicitDeferredRisks": [],
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "warning": "1A+2A策略确认不填写humanDecision；脚本或agent不得替人放行。"
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "kind": "IndependentH1ReviewStatus",
+  "reviewDate": "2026-09-10",
+  "recommendation": "BLOCKED",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "reviewComplete": false,
+  "completionScope": "Bounded source review across four pinned repositories; archive authentication and raw-result audit incomplete",
+  "readOnly": true,
+  "repositoryWritesPerformed": false,
+  "testsExecutedByThisReview": [],
+  "sourcePins": {
+    "hybridclr_demo": "9534c7c775d69b79ecd612917231bef3d202a5aa",
+    "hybridclr": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+    "hybridclr_unity": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+    "il2cpp_plus": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+  },
+  "previouslyReviewedDemoCandidate": "9d51767df790e16c7b36eed59e410c0cd0fd9921",
+  "recordedDemoExecutablePin": "9b04fb9f3578a55f50915b914d0071234441289d",
+  "recordedDemoMetadataPin": "c5a3ac689f1a2c964f98a084f49e97ae3cee4cf2",
+  "evidenceAuthentication": {
+    "archiveExpectedSha256": "d50193ad9e5ebe93998b6d5d412d32696a57925f4b05b55de91027011f0bd0d9",
+    "indexExpectedSha256": "e82126f75efb96a83b51caa3c2d2b1cdbedb2b34ca2351c8871cfb3cf3711606",
+    "archiveComputedSha256": null,
+    "indexComputedSha256": null,
+    "reportedArchiveBytes": 86092066,
+    "reportedMemberCount": 329,
+    "verifiedMemberCount": null,
+    "archiveMembershipVerified": false,
+    "memberHashesVerified": false,
+    "fullBuildProvenanceVerified": false,
+    "rawResultsVerified": false,
+    "status": "UnavailableToThisReview_NotAFailedHashCheck",
+    "reason": "Repository text accessible via read-only connector; direct byte retrieval failed; no matching branch Actions runs for artifact retrieval",
+    "frozenCurrentStatusTreatedAsPreReview": true
+  },
+  "reportedNotIndependentlyVerifiedTestCounts": {
+    "editorPassed": 1021,
+    "freshPythonPassed": 492,
+    "startupModes": 11,
+    "m07Modes": 14,
+    "r00Modes": 4,
+    "timingCells": 48,
+    "lazyDenseChecks": 61
+  },
+  "findings": [
+    {
+      "id": "H1-B01",
+      "severity": "Blocker",
+      "type": "EvidenceAccess",
+      "status": "Open",
+      "summary": "Archive/index bytes, member hashes, provenance and raw results not independently authenticated"
+    },
+    {
+      "id": "H1-H02",
+      "severity": "High",
+      "type": "InheritedSourceDefect",
+      "status": "ConfirmedBySource_NotReproducedInLoader",
+      "summary": "Method parameter count validated only after uint16 narrowing"
+    },
+    {
+      "id": "H1-H03",
+      "severity": "High",
+      "type": "InheritedSourceDefect",
+      "status": "ConfirmedBySource_NotReproducedInLoader",
+      "summary": "Nested-child counter incremented in uint16 before validation"
+    },
+    {
+      "id": "H1-M04",
+      "severity": "Medium",
+      "type": "PerformanceEvidenceScope",
+      "status": "RequiresExplicitDisposition",
+      "summary": "Historical comparison must not be treated as an isolated R01 versus R01B regression measurement"
+    }
+  ],
+  "independentArithmeticOnly": {
+    "usablePages": 524287,
+    "chargedPageCeiling": 393215,
+    "minimumFreePages": 131072,
+    "minimumFreePercent": 25.00004768380677,
+    "reportedOrdinaryFreePagesRecomputed": 507899,
+    "reportedMixedFreePagesRecomputed": 507895,
+    "mixedValidDllCount": 8189,
+    "mixedLifetimeReservations": 8192,
+    "mixedMeanValidDllBytes": 65560.00879228233,
+    "note": "Mathematical checks of constants/reported values; not runtime evidence authentication"
+  },
+  "reportFile": "H1_R01B_Independent_Review.md"
+}

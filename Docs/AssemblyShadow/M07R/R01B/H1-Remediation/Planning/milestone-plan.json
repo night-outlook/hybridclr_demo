@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "kind": "H1RemediationMilestonePlan",
+  "planVersion": "2.0",
+  "earliestUnfinishedMilestone": "M00",
+  "earliestUnfinishedTask": "M00.A",
+  "implementationStarted": false,
+  "milestones": [
+    {
+      "id": "M00",
+      "path": "milestones/M00-entry-and-contract-freeze.md",
+      "status": "Pending",
+      "dependsOn": [],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M01",
+      "path": "milestones/M01-v6-evidence-authentication.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M00"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M02",
+      "path": "milestones/M02-boundary-fixtures-and-reproduction.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M00"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M03",
+      "path": "milestones/M03-method-parameter-fix.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M02"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M04",
+      "path": "milestones/M04-nested-count-fix.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M03"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M05",
+      "path": "milestones/M05-candidate-build-and-loader-validation.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M03",
+        "M04"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M06",
+      "path": "milestones/M06-regressions-and-capacity.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M05"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M07",
+      "path": "milestones/M07-controlled-performance.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M05",
+        "M06"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M08",
+      "path": "milestones/M08-seal-and-independent-stage-review.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M01",
+        "M05",
+        "M06",
+        "M07"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": false
+    },
+    {
+      "id": "M09",
+      "path": "milestones/M09-human-h1-and-r02-handoff.md",
+      "status": "Pending",
+      "dependsOn": [
+        "M08"
+      ],
+      "executionUnit": "BoundTaskCard_NotWholeMilestone",
+      "humanDecisionRequired": true
+    }
+  ],
+  "subtaskRules": {
+    "measurementPreparation": "M05.A may start after its inputs are ready; must finish before M05.B source freeze",
+    "historicalAudit": "M01 incomplete does not block independent work; blocks M08 completeness and H1",
+    "sharedSource": "M03/M04 InterpreterImage.cpp single writer",
+    "countShards": "2 families x 3 paths x 2 native configs; union is 84 base cells plus variants",
+    "returnPoint": "Every task returns to coordinator; no self-continuation"
+  },
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
