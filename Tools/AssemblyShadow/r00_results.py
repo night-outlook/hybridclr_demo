@@ -149,6 +149,30 @@ def validate_launch_profile(schema_version, strategy, profile):
         validate_strategy_profile(strategy, profile)
 
 
+def validate_launch_selection(launch, expected_mode=None):
+    """Require either the complete matrix or exactly the explicitly selected mode."""
+    require(expected_mode is None or expected_mode in MODES, "R00 unknown expected mode")
+    expected_modes = list(MODES) if expected_mode is None else [expected_mode]
+    equal(launch["requestedModes"], expected_modes, "R00 requested mode selection")
+    if "fullModeInventory" in launch:
+        equal(launch["fullModeInventory"], list(MODES), "R00 full mode inventory")
+    selection = launch.get("selection")
+    if selection is not None:
+        require(type(selection) is dict, "R00 selection must be an object")
+        equal(selection, {"kind": "single" if expected_mode is not None else "full",
+                          "mode": expected_mode or ""}, "R00 explicit selection")
+    elif expected_mode is not None:
+        require(False, "R00 single-mode receipt requires explicit selection metadata")
+    return expected_modes
+
+
+def result_scope(expected_mode):
+    if expected_mode is None:
+        return "Four current-pairing Development IL2CPP performance observations; not legacy M05/M06 full acceptance or release approval"
+    return ("One selected current-pairing Development IL2CPP performance observation for " + expected_mode +
+            "; not legacy M05/M06 full acceptance or release approval")
+
+
 def verify_result(result, mode, context, launch_row, early_strategy, strict_modern):
     enabled, patched = mode != OFF_MODE, mode in MODES[1:3]
     patch = "P01" if mode == MODES[1] else "P03" if mode == MODES[2] else ""
@@ -261,14 +285,14 @@ def verify_result(result, mode, context, launch_row, early_strategy, strict_mode
             "operations": verify_operations(result["operations"], mode)}
 
 
-def verify_suite(launch_path):
+def verify_suite(launch_path, expected_mode=None):
     launch_path = Path(launch_path).resolve(strict=True)
     launch = read(launch_path)
     schema_version = launch["schemaVersion"]
     require(schema_version in (1, 2), "R00 unsupported launch schema")
     strict_modern = schema_version == 2
     equal(launch["milestone"], "R00", "R00 launch milestone")
-    equal(launch["requestedModes"], list(MODES), "R00 full matrix")
+    expected_modes = validate_launch_selection(launch, expected_mode)
     equal(launch["inputsUnchanged"], True, "R00 immutable inputs")
     equal(launch["inputHashesAfter"], launch["inputHashesBefore"], "R00 before/after hashes")
     early_strategy = launch.get("earlyStartupStrategy", "legacy-historical")
@@ -295,9 +319,15 @@ def verify_suite(launch_path):
     prepared = None
     expected_capsules = {}
     if strict_modern and early_strategy == "R01EarlyStartup":
-        prepared = early._prepare(Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
-                                  Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
-                                  Path(launch["editorReplayReceipt"]), None, None, ["Control", "Baseline"])
+        early_modes = []
+        if any(mode in expected_modes for mode in ("R00-ON-P01", "R00-ON-P03")):
+            early_modes.append("Control")
+        if "R00-ON-NoPatch" in expected_modes:
+            early_modes.append("Baseline")
+        if early_modes:
+            prepared = early._prepare(Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
+                                      Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
+                                      Path(launch["editorReplayReceipt"]), None, None, early_modes)
         for row in launch["processLaunches"]:
             if row["mode"] == OFF_MODE:
                 continue
@@ -314,8 +344,9 @@ def verify_suite(launch_path):
                 inputs.add(capsule)
     equal(launch["inputHashesBefore"], {str(path): m07.digest(path) for path in sorted(inputs)}, "R00 complete current input inventory")
     rows = launch["processLaunches"]
-    equal([row["mode"] for row in rows], list(MODES), "R00 process inventory")
-    require(len({integer(row["processId"], "R00 PID", 1) for row in rows}) == len(MODES), "R00 processes must be distinct")
+    equal([row["mode"] for row in rows], expected_modes, "R00 process inventory")
+    require(len({integer(row["processId"], "R00 PID", 1) for row in rows}) == len(expected_modes), "R00 processes must be distinct")
+    executed_modes = [row["mode"] for row in rows]
     summary = []
     for row in rows:
         equal(row["exitCode"], 0, "R00 clean process exit")
@@ -362,7 +393,8 @@ def verify_suite(launch_path):
         summary.append(observation)
     return {"schemaVersion": 1, "milestone": "R00", "result": "Passed", "sourcePins": context["sourcePins"],
             "launchReceipt": str(launch_path), "launchReceiptSha256": m07.digest(launch_path),
-            "scope": "Four current-pairing Development IL2CPP performance observations; not legacy M05/M06 full acceptance or release approval",
+            "requestedModeIds": list(expected_modes), "executedModeIds": executed_modes,
+            "scope": result_scope(expected_mode),
             "modes": summary}
 
 
@@ -370,8 +402,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--launch-receipt", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--mode", choices=MODES,
+                        help="Verify one explicitly selected R00 mode; omit this option to require all four modes.")
     args = parser.parse_args(argv)
-    result = verify_suite(args.launch_receipt)
+    result = verify_suite(args.launch_receipt, args.mode)
     require(not args.output.exists() and not args.output.is_symlink(), "R00 output must be new")
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(result, stream, indent=2)

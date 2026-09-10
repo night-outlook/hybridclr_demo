@@ -35,6 +35,11 @@ def _receipt(data, pid=41, operations=None):
 
 
 class R00StartupCorrectionTests(unittest.TestCase):
+    def test_launcher_mode_selection_defaults_to_four_or_explicitly_one(self):
+        self.assertEqual(launcher.select_modes(None), list(gate.MODES))
+        for mode in gate.MODES:
+            self.assertEqual(launcher.select_modes(mode), [mode])
+
     def test_authenticated_baseline_and_control_operation_boundaries(self):
         with tempfile.TemporaryDirectory() as root:
             path = Path(root) / "A.dll"

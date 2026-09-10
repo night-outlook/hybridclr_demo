@@ -107,12 +107,14 @@ namespace AssemblyShadowDemo
             }
 
             CaptureDiagnostics(result, "before-benchmark");
+            CaptureMemorySnapshot(result, "before-benchmark");
             result.selectedType = CaptureSelectedType(result, mode);
             result.readiness = CaptureReadiness(invocationTimestamp, invocationUtcTicks, true);
             yield return null;
             RunWitnessBenchmarks(result, mode);
             RunExistingExecutionRegressions(result);
             CaptureDiagnostics(result, "after-benchmark");
+            CaptureMemorySnapshot(result, "after-benchmark");
             result.result = "Passed";
 
             int exitCode;
@@ -146,6 +148,7 @@ namespace AssemblyShadowDemo
                 unityVersion = Application.unityVersion, platform = Application.platform.ToString(), buildGuid = Application.buildGUID,
                 playerDataPath = Application.dataPath, baselineBuildId = baseline, runtimeAbiHash = runtimeAbi,
                 assertions = new List<Assertion>(), operations = new List<OperationObservation>(),
+                memorySnapshots = new List<MemorySnapshot>(),
                 patchManifest = new ArtifactReceipt { name = "patch-manifest", available = false },
                 earlyHandoff = new EarlyHandoffObservation { available = false },
                 m07Transaction = M07Probe.R00NewResult(mode, baseline, runtimeAbi)
@@ -466,6 +469,18 @@ namespace AssemblyShadowDemo
             else result.diagnosticsFailure = observation;
         }
 
+        private static void CaptureMemorySnapshot(Result result, string phase)
+        {
+            R00ProcessMemory.Sample sample = R00ProcessMemory.Capture();
+            result.memorySnapshots.Add(new MemorySnapshot {
+                phase = phase, measurement = R00ProcessMemory.Measurement,
+                measurementSemantics = R00ProcessMemory.MeasurementSemantics,
+                sampledUtcTicks = DateTime.UtcNow.Ticks,
+                currentRssBytes = sample.CurrentRssBytes, managedBytes = sample.ManagedBytes,
+                lifetimePeakRssBytes = sample.LifetimePeakRssBytes
+            });
+        }
+
         private static void RunExistingExecutionRegressions(Result result)
         {
             Type type = Type.GetType(InternalAssembly + ".M06ExecutionWitness, " + InternalAssembly, true);
@@ -604,6 +619,7 @@ namespace AssemblyShadowDemo
             [Preserve] public List<OperationObservation> operations;
             [Preserve] public List<Assertion> assertions;
             [Preserve] public List<ExecutionRegression> executionRegressions;
+            [Preserve] public List<MemorySnapshot> memorySnapshots;
             [Preserve] public EarlyHandoffObservation earlyHandoff;
             [NonSerialized] internal M07Probe.Result m07Transaction;
         }
@@ -654,6 +670,11 @@ namespace AssemblyShadowDemo
         {
             [Preserve] public string phase, code, rawJson, unavailableReason; [Preserve] public bool diagnosticsOnly, parsed;
             [Preserve] public DiagnosticsCounters counters;
+        }
+        [Serializable, Preserve] public sealed class MemorySnapshot
+        {
+            [Preserve] public string phase, measurement, measurementSemantics;
+            [Preserve] public long sampledUtcTicks, currentRssBytes, managedBytes, lifetimePeakRssBytes;
         }
         [Serializable, Preserve] public sealed class DiagnosticsCounters
         {

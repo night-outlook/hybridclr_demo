@@ -25,6 +25,15 @@ def output_paths(results: Path, mode: str) -> tuple[Path, Path, Path]:
     return results / (mode + ".json"), mode_dir, mode_dir / "r01-early.json"
 
 
+def select_modes(mode: str | None) -> list[str]:
+    """Return the requested mode set, preserving the full matrix by default."""
+    return [mode] if mode is not None else list(MODES)
+
+
+def selection_record(mode: str | None) -> dict[str, str]:
+    return {"kind": "single" if mode is not None else "full", "mode": mode or ""}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", required=True, type=Path)
@@ -34,6 +43,8 @@ def main(argv=None):
     parser.add_argument("--early-startup-strategy", choices=("R01EarlyStartup", "legacy-explicit-no-capsule"),
                         default="R01EarlyStartup",
                         help="Generate and bind R01 capsules, or explicitly preserve the historical no-capsule path.")
+    parser.add_argument("--mode", choices=MODES,
+                        help="Run one R00 mode; omit this option for the complete four-mode matrix.")
     parser.add_argument("--timeout", type=int, default=900)
     args = parser.parse_args(argv)
     project = args.project_root
@@ -42,31 +53,41 @@ def main(argv=None):
     m07.require(1 <= args.timeout <= 3600, "Timeout must be 1-3600 seconds")
     context = verify_inputs(project, args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
     inputs = m07.collect_inputs(args.fixture_manifest, args.replay_receipt, (args.on_build, args.off_build))
+    requested_modes = select_modes(args.mode)
     legacy = args.early_startup_strategy == "legacy-explicit-no-capsule"
     before = {str(path): m07.digest(path) for path in sorted(inputs)}
     output.mkdir()
     results = output / "Results"
     results.mkdir()
     early_capsules = {}
+    prepared = None
     if not legacy:
-        prepared = early._prepare(project, args.fixture_manifest, args.on_build, args.off_build,
-                                  args.replay_receipt, None, None, ["Control", "Baseline"])
-        for mode, early_mode, patch_id in (("R00-ON-P01", "Control", "P01"),
-                                            ("R00-ON-P03", "Control", "P03"),
-                                            ("R00-ON-NoPatch", "Baseline", "P03")):
-            mode_dir = results / mode
-            mode_dir.mkdir()
-            capsule_path = mode_dir / "r01-early.capsule"
-            early._capsule_for(prepared, early_mode, args.fixture_manifest, capsule_path, patch_id)
-            early_capsules[mode] = capsule_path
-        inputs.update(early_capsules.values())
-        before = {str(path): m07.digest(path) for path in sorted(inputs)}
+        early_modes = []
+        if any(mode in requested_modes for mode in ("R00-ON-P01", "R00-ON-P03")):
+            early_modes.append("Control")
+        if "R00-ON-NoPatch" in requested_modes:
+            early_modes.append("Baseline")
+        if early_modes:
+            prepared = early._prepare(project, args.fixture_manifest, args.on_build, args.off_build,
+                                      args.replay_receipt, None, None, early_modes)
+            for mode, early_mode, patch_id in (("R00-ON-P01", "Control", "P01"),
+                                                ("R00-ON-P03", "Control", "P03"),
+                                                ("R00-ON-NoPatch", "Baseline", "P03")):
+                if mode not in requested_modes:
+                    continue
+                mode_dir = results / mode
+                mode_dir.mkdir()
+                capsule_path = mode_dir / "r01-early.capsule"
+                early._capsule_for(prepared, early_mode, args.fixture_manifest, capsule_path, patch_id)
+                early_capsules[mode] = capsule_path
+            inputs.update(early_capsules.values())
+            before = {str(path): m07.digest(path) for path in sorted(inputs)}
     else:
         prepared = early._prepare(project, args.fixture_manifest, args.on_build, args.off_build,
                                   args.replay_receipt, None, None, [])
         validate_strategy_profile(args.early_startup_strategy, prepared["profile"])
     launches = []
-    for mode in MODES:
+    for mode in requested_modes:
         build = context["off" if mode == OFF_MODE else "on"]["player"]
         receipt = args.off_build if mode == OFF_MODE else args.on_build
         executable = m07.executable_for(Path(build["playerOutput"]))
@@ -133,10 +154,12 @@ def main(argv=None):
                "projectRoot": str(project), "sourcePins": context["sourcePins"],
                "fixtureManifestPath": str(args.fixture_manifest), "nativeOnReceipt": str(args.on_build),
                "nativeOffReceipt": str(args.off_build), "editorReplayReceipt": str(args.replay_receipt),
-               "requestedModes": list(MODES), "processLaunches": launches,
+               "requestedModes": requested_modes, "processLaunches": launches,
                "earlyStartupStrategy": args.early_startup_strategy,
                "inputHashesBefore": before, "inputHashesAfter": after, "inputsUnchanged": before == after,
                "resultDirectory": str(results)}
+    if args.mode is not None:
+        receipt["selection"] = selection_record(args.mode)
     with (output / "r00-player-launches.json").open("x", encoding="utf-8") as stream:
         json.dump(receipt, stream, indent=2)
         stream.write("\n")

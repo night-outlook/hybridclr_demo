@@ -8,6 +8,41 @@ from shadow_tools import VerificationError
 
 
 class R00OperationGateTests(unittest.TestCase):
+    def test_full_default_and_explicit_single_selection_are_distinct(self):
+        full = {"requestedModes": list(gate.MODES)}
+        self.assertEqual(gate.validate_launch_selection(full), list(gate.MODES))
+        single = {"requestedModes": [gate.MODES[1]], "fullModeInventory": list(gate.MODES),
+                  "selection": {"kind": "single", "mode": gate.MODES[1]}}
+        self.assertEqual(gate.validate_launch_selection(single, gate.MODES[1]), [gate.MODES[1]])
+
+    def test_single_selection_rejects_full_extra_missing_and_wrong_metadata(self):
+        mode = gate.MODES[1]
+        valid = {"requestedModes": [mode], "fullModeInventory": list(gate.MODES),
+                 "selection": {"kind": "single", "mode": mode}}
+        for mutation in (
+            dict(valid, requestedModes=list(gate.MODES)),
+            dict(valid, requestedModes=[]),
+            dict(valid, selection={"kind": "single", "mode": gate.MODES[2]}),
+            dict(valid, selection={"kind": "full", "mode": ""}),
+            {"requestedModes": [mode], "fullModeInventory": list(gate.MODES)},
+        ):
+            with self.subTest(mutation=mutation):
+                with self.assertRaises(VerificationError):
+                    gate.validate_launch_selection(mutation, mode)
+
+    def test_default_full_selection_rejects_single_receipt(self):
+        single = {"requestedModes": [gate.MODES[0]], "fullModeInventory": list(gate.MODES),
+                  "selection": {"kind": "single", "mode": gate.MODES[0]}}
+        with self.assertRaises(VerificationError):
+            gate.validate_launch_selection(single)
+
+    def test_single_result_scope_cannot_claim_four_modes(self):
+        mode = gate.MODES[1]
+        scope = gate.result_scope(mode)
+        self.assertIn(mode, scope)
+        self.assertNotIn("Four", scope)
+        self.assertNotEqual(scope, gate.result_scope(None))
+
     def observations(self, mode):
         rows = []
         constructors = 0
