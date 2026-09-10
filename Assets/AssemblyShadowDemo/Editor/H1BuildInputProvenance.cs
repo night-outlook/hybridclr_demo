@@ -292,10 +292,13 @@ namespace AssemblyShadowDemo.Editor
                     "Installed native receipt contains an invalid or duplicate source path.");
                 expected.Add(source.path, new FileEntry { path = source.path, source = source.source, sha256 = source.sha256 });
             }
+            Require(receipt.generatedFileExclusions != null && receipt.generatedFileExclusions.Length == GeneratedFiles.Length &&
+                new HashSet<string>(receipt.generatedFileExclusions, StringComparer.Ordinal).SetEquals(GeneratedFiles),
+                "Installed native generated exclusions differ from the fixed four-file contract.");
             foreach (string generated in GeneratedFiles)
             {
-                Require(!expected.ContainsKey(generated), "Generated native path overlaps the pinned source inventory: " + generated);
-                expected.Add(generated, new FileEntry { path = generated, source = "generated", sha256 = "" });
+                // The receipt retains the pinned template hash; generated build bytes are captured independently.
+                expected[generated] = new FileEntry { path = generated, source = "generated", sha256 = "" };
             }
             expected.Add("assembly-shadow-install.json", new FileEntry { path = "assembly-shadow-install.json", source = "install-receipt", sha256 = "" });
             var actualPathList = new List<string>();
@@ -470,7 +473,7 @@ namespace AssemblyShadowDemo.Editor
         private static void Require(bool condition, string message)
         { if (!condition) throw new BuildFailedException(message); }
 
-        [Serializable] private sealed class InstallReceipt { public SourceFileHash[] sourceFileHashes; }
+        [Serializable] private sealed class InstallReceipt { public SourceFileHash[] sourceFileHashes; public string[] generatedFileExclusions; }
         [Serializable] private sealed class SourceFileHash { public string path, source, sha256; }
         [Serializable] private sealed class ProcessResult { public int exitCode; public bool timedOut, killAttempted; public string stdout, stderr, killError; }
         private sealed class Inventory { public FileEntry[] files; public string hash; }

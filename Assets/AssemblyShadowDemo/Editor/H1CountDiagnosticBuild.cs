@@ -281,8 +281,11 @@ namespace AssemblyShadowDemo.Editor
                     EditorUserBuildSettings.connectProfiler = connectProfilerBefore;
                     EditorUserBuildSettings.buildScriptsOnly = buildScriptsOnlyBefore;
                     EditorBuildSettings.scenes = scenesBefore;
-                    JsonUtility.FromJsonOverwrite(settingsJson, settings);
+                    // Policy/generation can reload the singleton; restore the instance Save actually persists.
+                    JsonUtility.FromJsonOverwrite(settingsJson, AssemblyShadowSettings.Instance);
                     AssemblyShadowSettings.Save();
+                    Require(JsonUtility.ToJson(AssemblyShadowSettings.Instance) == settingsJson,
+                        "Assembly Shadow settings did not restore after the diagnostic build.");
                     JsonUtility.FromJsonOverwrite(hybridClrSettingsJson, HybridCLRSettings.Instance);
                     HybridCLRSettings.Save();
                     AssetDatabase.SaveAssets();
