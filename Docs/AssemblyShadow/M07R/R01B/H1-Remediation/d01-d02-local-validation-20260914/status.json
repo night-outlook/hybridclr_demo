@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1D01D02LocalValidationCheckpoint",
+  "date": "2026-09-14",
+  "h1Status": "InProgress",
+  "technicalReadiness": "Blocked",
+  "candidateCheckpointParent": "d041fede8984284263577f04b4a51eb4b53f9c00",
+  "delivery": {
+    "path": "/Users/ah/GitHub/hybridclr/H1_D01_D02_20260914",
+    "renderedFileCount": 44,
+    "blobAndPayloadVerification": "Passed",
+    "portableTests": {
+      "status": "Passed",
+      "passed": 53,
+      "total": 53,
+      "classification": "PackagingToolTests",
+      "unityAcceptance": false,
+      "playerAcceptance": false
+    }
+  },
+  "d01": {
+    "integration": "Passed",
+    "pdbFixtureTests": { "status": "Passed", "passed": 20, "total": 20 },
+    "layoutFixture": "Passed",
+    "initializerFixture": "Passed",
+    "capturedReplayTasks": { "status": "Passed", "passed": 12, "total": 12 },
+    "selectedRoute": "AExplicitCompilerReferences",
+    "buildProvenance": false
+  },
+  "d02": {
+    "integration": "Passed",
+    "normalOwnerTests": { "status": "Passed", "passed": 15, "total": 15 },
+    "normalCli": "Passed",
+    "historicalFiveSiteCompatibility": "Passed",
+    "strictSixSiteH1Parsing": "Passed"
+  },
+  "localValidation": {
+    "candidateUnityCompile": "Passed",
+    "reproductionUnityCompile": "Passed",
+    "editorTests": { "status": "Passed", "passed": 1067, "total": 1067 },
+    "pythonTests": {
+      "status": "CompletedWithNonPass",
+      "passed": 758,
+      "skipped": 1,
+      "total": 759,
+      "skippedId": "test_m05_raw_type_admissions.ProviderExportBoundaryTests.test_explicit_current_compiler_and_real_linq_cache_paths",
+      "skipReason": "explicit real compiler/config paths not supplied"
+    },
+    "candidateInstalledRuntime": "Passed",
+    "reproductionInstalledRuntime": "Passed",
+    "m01Baseline": "ReusedAuditedImmutableHistoricalEvidence"
+  },
+  "l03": {
+    "status": "Blocked",
+    "attempt": "fb64c3133d0243f79f096f85fc3143aa",
+    "mode": "CandidateOnDebug",
+    "playerBuildPhase": "Passed",
+    "compilerProvenancePhase": "Failed",
+    "failure": "Forced preprocessor inputs require explicit preprocessing evidence",
+    "restorePhase": "Passed",
+    "buildReceipt": "Unavailable",
+    "remainingFreshBuilds": "NotRun"
+  },
+  "runtimeCountReproStartupPerformance": "NotRun",
+  "successorPackage": "NotRun",
+  "independentWholeChainM08": "NotRun",
+  "wholeChainM08Pass": false,
+  "readyForHumanH1": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 15:49:32Z" end-time="2026-09-14 15:49:41Z" duration="8.4024864">
+  <test-suite type="TestSuite" id="2238" name="AssemblyShadowBaseline" fullname="AssemblyShadowBaseline" runstate="Runnable" testcasecount="1105" result="Passed" start-time="2026-09-14 15:49:32Z" end-time="2026-09-14 15:49:41Z" duration="8.402486" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="2640" name="AssemblyShadowDemo.EditorTests.dll" fullname="/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/ScriptAssemblies/AssemblyShadowDemo.EditorTests.dll" runstate="Runnable" testcasecount="347" result="Passed" start-time="2026-09-14 15:49:33Z" end-time="2026-09-14 15:49:41Z" duration="8.368489" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="68774" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="2641" name="AssemblyShadowDemo" fullname="AssemblyShadowDemo" runstate="Runnable" testcasecount="347" result="Passed" start-time="2026-09-14 15:49:33Z" end-time="2026-09-14 15:49:41Z" duration="8.366446" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2642" name="EditorTests" fullname="AssemblyShadowDemo.EditorTests" runstate="Runnable" testcasecount="347" result="Passed" start-time="2026-09-14 15:49:33Z" end-time="2026-09-14 15:49:41Z" duration="8.361577" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2388" name="M05EditorEvidenceTests" fullname="AssemblyShadowDemo.EditorTests.M05EditorEvidenceTests" classname="AssemblyShadowDemo.EditorTests.M05EditorEvidenceTests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-09-14 15:49:33Z" end-time="2026-09-14 15:49:41Z" duration="8.351480" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2389" name="LayoutFixtureUsesPublicPlayerCompilerWithUnchangedSerializedFields" fullname="AssemblyShadowDemo.EditorTests.M05EditorEvidenceTests.LayoutFixtureUsesPublicPlayerCompilerWithUnchangedSerializedFields" methodname="LayoutFixtureUsesPublicPlayerCompilerWithUnchangedSerializedFields" classname="AssemblyShadowDemo.EditorTests.M05EditorEvidenceTests" runstate="Runnable" seed="106480494" result="Passed" start-time="2026-09-14 15:49:33Z" end-time="2026-09-14 15:49:41Z" duration="8.341649" asserts="0">
+              <properties />
+              <output><![CDATA[Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(59,31): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(92,61): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+[AssemblyShadow M05] Public Player compiler accepted callback-state layout fixture: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M05LayoutCompilerRegression-de7554a2bb1741c5965deff428722f51/Assemblies/AssemblyA.Implementation.Internal.dll SHA256=b7b06f93d3bb46e9723b24968ed3e0a06c487b10f6d2b7a7b2f215a9f4e97f84
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

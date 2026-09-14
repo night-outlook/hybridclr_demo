@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.9347332">
+  <test-suite type="TestSuite" id="2238" name="AssemblyShadowBaseline" fullname="AssemblyShadowBaseline" runstate="Runnable" testcasecount="1105" result="Passed" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.934733" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="2640" name="AssemblyShadowDemo.EditorTests.dll" fullname="/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/ScriptAssemblies/AssemblyShadowDemo.EditorTests.dll" runstate="Runnable" testcasecount="347" result="Passed" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.896149" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="68907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="2641" name="AssemblyShadowDemo" fullname="AssemblyShadowDemo" runstate="Runnable" testcasecount="347" result="Passed" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.891924" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2642" name="EditorTests" fullname="AssemblyShadowDemo.EditorTests" runstate="Runnable" testcasecount="347" result="Passed" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.884984" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2632" name="R01FailureFixturesTests" fullname="AssemblyShadowDemo.EditorTests.R01FailureFixturesTests" classname="AssemblyShadowDemo.EditorTests.R01FailureFixturesTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.875449" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2633" name="InitializerThrowCompilerShapeIsIsolated" fullname="AssemblyShadowDemo.EditorTests.R01FailureFixturesTests.InitializerThrowCompilerShapeIsIsolated" methodname="InitializerThrowCompilerShapeIsIsolated" classname="AssemblyShadowDemo.EditorTests.R01FailureFixturesTests" runstate="Runnable" seed="885988487" result="Passed" start-time="2026-09-14 15:49:53Z" end-time="2026-09-14 15:50:00Z" duration="7.867355" asserts="0">
+              <properties />
+              <output><![CDATA[Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(59,31): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(92,61): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

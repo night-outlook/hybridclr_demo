@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1CompilerPchProvenanceBlocker",
+  "status": "Blocked",
+  "graphPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/Bee/Player5341cfcf.dag.json",
+  "graphSha256": "e29cd922a598644ae5a46e44b579418598c789f094202a7f41b8ff63e90eabac",
+  "graphNodeCount": 1121,
+  "nativeCompilerActionCount": 446,
+  "nativeObjectCompileActionCount": 444,
+  "objectActionsUsingIncludePch": 307,
+  "pchProducerActionCount": 2,
+  "precompiledHeaders": [
+    {
+      "output": "Library/Bee/artifacts/MacStandalonePlayerBuildProgram/kh3cm/pch-c-8239892124301955182.pch",
+      "outputSize": 1585872,
+      "outputSha256": "dfeb9887f49fcb7698e15959a17a8edb5d87c400f270970e176b82315b7d2197",
+      "producerAnnotation": "C_Mac_arm64Pch Library/Bee/artifacts/MacStandalonePlayerBuildProgram/kh3cm/pch-c-8239892124301955182.pch",
+      "producerDebugActionIndex": 358,
+      "producerSource": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch/pch-c.h",
+      "producerInputs": [
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch/pch-c.h",
+        "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "/Library/Developer/CommandLineTools/usr/bin/libtool",
+        "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/dummy"
+      ],
+      "usesNoPchTimestampPair": true,
+      "trackedFeatureDefinesPresent": true
+    },
+    {
+      "output": "Library/Bee/artifacts/MacStandalonePlayerBuildProgram/kh3cm/pch-cpp-16655247078921063439.pch",
+      "outputSize": 12367164,
+      "outputSha256": "512070807ba6df6f592a96f2cbd99bd3535e33c2f7544986a38f4bad3defc6a5",
+      "producerAnnotation": "C_Mac_arm64Pch Library/Bee/artifacts/MacStandalonePlayerBuildProgram/kh3cm/pch-cpp-16655247078921063439.pch",
+      "producerDebugActionIndex": 357,
+      "producerSource": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch/pch-cpp.hpp",
+      "producerInputs": [
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/pch/pch-cpp.hpp",
+        "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "/Library/Developer/CommandLineTools/usr/bin/libtool",
+        "/Library/Developer/CommandLineTools/usr/bin/clang++",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/dummy"
+      ],
+      "usesNoPchTimestampPair": true,
+      "trackedFeatureDefinesPresent": true
+    }
+  ],
+  "directFailure": "Forced preprocessor inputs require explicit preprocessing evidence",
+  "rootCause": "The fresh Unity Bee graph routes 307 GameAssembly object compilations through two produced PCH files. The current provenance verifier rejects forced preprocessing inputs because direct command-line macro extraction cannot prove effective tracked macro values after a PCH is applied.",
+  "requiredCorrection": [
+    "Retain and hash every consumed PCH byte artifact.",
+    "Bind each PCH to its exact Bee producer action, compiler, arguments, inputs, tracked feature defines, source header, and output.",
+    "Bind the object compile action to the exact consumed PCH and its producer dependency.",
+    "Provide independent effective preprocessor or macro evidence for the tracked feature defines after forced preprocessing.",
+    "Allow only exact, evidenced driver escape pairs such as -Xclang -fno-pch-timestamp; continue rejecting arbitrary -Xclang, -Xpreprocessor, -Wp, -include, and -imacros routes.",
+    "Add positive and tamper tests for PCH bytes, producer arguments, producer inputs, action dependency, tracked macro values, and forbidden forced-input routes."
+  ],
+  "unsafeShortcutRejected": "Allowing -include-pch without the producer, bytes, inputs, dependency, and effective macro proof would admit a different preprocessing environment and cannot be used for H1 provenance.",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

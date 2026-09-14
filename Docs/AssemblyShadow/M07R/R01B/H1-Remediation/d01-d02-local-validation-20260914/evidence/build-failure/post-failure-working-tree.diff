@@ -1,0 +1,33 @@
+diff --git a/Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity b/Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity
+index f0ab318..02e133f 100644
+--- a/Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity
++++ b/Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity
+@@ -151,10 +151,10 @@ MonoBehaviour:
+   m_Script: {fileID: 11500000, guid: e1b2c3d4f5a6478899aabbccddeeff01, type: 3}
+   m_Name: 
+   m_EditorClassIdentifier: 
+-  expectedBaselineBuildId: H1Count-Off-Release
+-  expectedRuntimeAbiHash: 74aa028f353d8d71e843ebb04733a413a6e811f37142132120f581dda5cce5a9
+-  expectedFeatureEnabled: 0
+-  expectedCppConfiguration: Release
++  expectedBaselineBuildId: H1Count-On-Debug
++  expectedRuntimeAbiHash: 60fe5d11a142be32ad5fefc0137022e7c9cc70962b5dac3f48067c3c23a7e35a
++  expectedFeatureEnabled: 1
++  expectedCppConfiguration: Debug
+ --- !u!4 &1845949792
+ Transform:
+   m_ObjectHideFlags: 0
+diff --git a/ProjectSettings/ProjectSettings.asset b/ProjectSettings/ProjectSettings.asset
+index 4be0772..51aa09c 100644
+--- a/ProjectSettings/ProjectSettings.asset
++++ b/ProjectSettings/ProjectSettings.asset
+@@ -757,7 +757,8 @@ PlayerSettings:
+   webGLMemoryGeometricGrowthStep: 0.2
+   webGLMemoryGeometricGrowthCap: 96
+   webGLPowerPreference: 2
+-  scriptingDefineSymbols: {}
++  scriptingDefineSymbols:
++    Standalone: 
+   additionalCompilerArguments: {}
+   platformArchitecture:
+     Standalone: 1

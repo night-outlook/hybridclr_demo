@@ -1,0 +1,34 @@
+{
+  "kind": "H1D01ReplayDiagnosticAudit",
+  "status": "CandidateRouteAvailable",
+  "routes": [
+    {
+      "mode": "unresolved",
+      "resultPath": "/Users/ah/GitHub/hybridclr/h1-d01d02-review.lGy9WQ/derived-replay-run/replay-003/replay/unresolved.json",
+      "resultSha256": "d059aaf1ff00a9953447f9ae0a1aa35f376172aea327c4a5e703ccba91a313fa",
+      "status": "EmissionFailed"
+    },
+    {
+      "mode": "compiler-references",
+      "resultPath": "/Users/ah/GitHub/hybridclr/h1-d01d02-review.lGy9WQ/derived-replay-run/replay-003/replay/compiler-references.json",
+      "resultSha256": "337372cb0eff618f9660a3fb9c668fd5f480b2a63b5a946b082d3d56309df53f",
+      "status": "ExactConstantScopeBytesEqual",
+      "constantCount": 13
+    },
+    {
+      "mode": "resolved-enums",
+      "resultPath": "/Users/ah/GitHub/hybridclr/h1-d01d02-review.lGy9WQ/derived-replay-run/replay-003/replay/resolved-enums.json",
+      "resultSha256": "5441dc50dc4dd8d51e5ff36fcd61efe2a1729138841ab3367b1c462c9294bf73",
+      "status": "ExactConstantScopeBytesEqual",
+      "constantCount": 13
+    }
+  ],
+  "availableRoutes": [
+    "compiler-references",
+    "resolved-enums"
+  ],
+  "routeAutomaticallySelected": false,
+  "wholeChainM08Pass": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
