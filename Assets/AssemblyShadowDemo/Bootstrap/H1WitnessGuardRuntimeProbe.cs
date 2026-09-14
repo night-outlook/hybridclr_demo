@@ -58,6 +58,21 @@ namespace AssemblyShadowDemo
             Application.Quit(result.result == "Passed" ? 0 : 1);
         }
 
+        public static Result CaptureForM02(string expectedConfigurationSha256, string expectedConfigurationHash)
+        {
+            var result = new Result {
+#if ENABLE_IL2CPP && !UNITY_EDITOR
+                il2cpp = true,
+#endif
+                unityVersion = Application.unityVersion, platform = Application.platform.ToString(), buildGuid = Application.buildGUID,
+            };
+            Run(result);
+            Require(result.configurationSha256 == expectedConfigurationSha256 && result.configurationHash == expectedConfigurationHash,
+                "M02 and H1 witness guard evidence refer to different configurations.");
+            result.result = "Passed";
+            return result;
+        }
+
         private static void Run(Result result)
         {
             Require(result.il2cpp, "Witness guard acceptance requires an IL2CPP Player.");

@@ -17,6 +17,7 @@ import uuid
 import xml.etree.ElementTree as ET
 
 from shadow_tools import VerificationError, read_json, require, safe_file
+import h1_witness_contract as _h1_witness
 
 
 TARGET = "StandaloneOSX"
@@ -351,8 +352,8 @@ def _reflection_method_variants(site):
 
 def _reflection_parse(path: Path, raw: bytes):
     try:
-        configuration = json.loads(raw.decode("utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        configuration = json.loads(raw.decode("utf-8"), object_pairs_hook=_h1_witness.unique_pairs)
+    except (UnicodeDecodeError, ValueError) as error:
         raise VerificationError(f"{path}: invalid reflection binding configuration: {error}") from error
     _need(isinstance(configuration, dict), path, "reflection binding configuration must be an object")
     schema = configuration.get("schemaVersion")
@@ -363,6 +364,12 @@ def _reflection_parse(path: Path, raw: bytes):
     sites = configuration.get("sites")
     _need(isinstance(sites, list) and 0 < len(sites) <= 4096, path,
          "reflection binding configuration sites must be a bounded non-empty array")
+    _need(type(schema) is int and type(transformer) is int, path,
+          "reflection schema/transformer must be integers")
+    try:
+        expected_ids = _h1_witness.expected_site_ids(configuration, M02_REFLECTION_SITE_IDS)
+    except ValueError as error:
+        raise VerificationError(f"{path}: {error}") from error
     ids = set(); methods = set(); declarations = []
     for index, site in enumerate(sites):
         site_path = f"{path}.sites[{index}]"
@@ -409,7 +416,7 @@ def _reflection_parse(path: Path, raw: bytes):
         allowed = site.get("allowedTypes")
         _need(isinstance(allowed, list) and len(allowed) <= 4096, site_path, "allowedTypes must be a bounded array")
         if schema >= 2:
-            _need(site_id in M02_REFLECTION_SITE_IDS, site_path, "reflection binding site id is not part of the M02 contract")
+            _need(site_id in expected_ids, site_path, "reflection binding site id is not part of the exact M02/H1 contract")
             if site_id == "urp-debug-ui-prefab-types":
                 _need(kind == "TypeGetType" and set(allowed) == M02_CANVAS_ALLOWED_TYPES, site_path,
                      "schema-2 canvas site does not declare the exact 26 configured AQNs")
@@ -438,7 +445,7 @@ def _reflection_parse(path: Path, raw: bytes):
             _reflection_full_identity(provider_identity, site_path)
             _need(isinstance(image_path, str) and image_path and not Path(image_path).is_absolute() and "\\" not in image_path and ":" not in image_path and
                   all(part not in ("", ".", "..") for part in image_path.split("/")), site_path, "imagePath is not a safe relative path")
-            _need(site_id == "m00-normal-hot-update-image" and image_sha == M02_FIXED_IMAGE_SHA256 and
+            _need(site_id in ("m00-normal-hot-update-image", _h1_witness.SITE_ID) and image_sha == M02_FIXED_IMAGE_SHA256 and
                   image_path == M02_FIXED_IMAGE_PATH and
                   provider_identity == "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                  site_path, "fixed image site does not match the pinned M00 normal hot-update contract")
@@ -473,7 +480,7 @@ def _reflection_parse(path: Path, raw: bytes):
             "imageSha256": image_sha, "providerAssemblyIdentity": provider_identity, "imagePath": image_path,
         })
     if schema >= 2:
-        _need(ids == M02_REFLECTION_SITE_IDS, path, "reflection binding configuration must contain exactly the five M02 sites")
+        _need(ids == expected_ids, path, "reflection binding configuration must contain the exact historical-five or H1-six sites")
     return {
         "rawSha256": hashlib.sha256(raw).hexdigest(),
         "canonicalHash": _reflection_canonical_hash(configuration, path),
@@ -826,8 +833,10 @@ def _verify_reflection_probe(path: Path, receipt: dict, reflection):
         _need(probe[field] == expected_guard, path, f"{field} does not identify the frozen site/configuration")
     if probe_schema == 2:
         site_map = {site.get("id"): site for site in sites if isinstance(site, dict)}
-        expected_ids = {"urp-debug-ui-prefab-types", "urp-serializable-enum-player", "urp-volume-assembly-domain",
-                        "urp-volume-type-domain", "m00-normal-hot-update-image"}
+        try:
+            expected_ids = _h1_witness.expected_site_ids(configuration, M02_REFLECTION_SITE_IDS)
+        except ValueError as error:
+            raise VerificationError(f"{path}: {error}") from error
         _need(set(site_map) == expected_ids, path, "schema-2 reflection probe configuration sites are incomplete")
         finite_assembly = site_map["urp-volume-assembly-domain"]
         finite_types = site_map["urp-volume-type-domain"]
@@ -853,6 +862,15 @@ def _verify_reflection_probe(path: Path, receipt: dict, reflection):
               probe.get("fixedImageCallerBytesUnchanged") is True and
               probe.get("volumeManagerMatchesContract") is True, path,
              "schema-2 fixed-image acceptance evidence is incomplete")
+    has_h1_witness = any(site.get("id") == _h1_witness.SITE_ID for site in sites if isinstance(site, dict))
+    if has_h1_witness:
+        try:
+            _h1_witness.verify_runtime_probe(probe, reflection["rawSha256"])
+        except ValueError as error:
+            raise VerificationError(f"{path}: {error}") from error
+    else:
+        _need(probe.get("h1WitnessContractValidated") in (None, False), path,
+              "Historical five-site results cannot claim H1 witness acceptance")
     allowed = probe.get("allowed")
     expected_allowed = []
     for value in sorted(canvas["allowedTypes"]):
@@ -1955,6 +1973,26 @@ def verify(editor_result: Path, nunit_results: Path, m01_baseline_root: Path, re
 
 
 def main(argv=None):
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if "--check-reflection-config" in arguments:
+        parser = argparse.ArgumentParser(description="Parse a reflection configuration through the normal M02 owner; no runtime acceptance.")
+        parser.add_argument("--check-reflection-config", type=Path, required=True)
+        parser.add_argument("--require-h1-witness", action="store_true")
+        options = parser.parse_args(arguments)
+        try:
+            path = options.check_reflection_config
+            parsed = _reflection_parse(path, path.read_bytes())
+            if options.require_h1_witness:
+                _h1_witness.expected_site_ids(parsed["configuration"], M02_REFLECTION_SITE_IDS, require_current=True)
+            print(json.dumps({"kind": "M02ReflectionConfigurationPreflight", "status": "ConfigurationParsedNotRuntimeVerified",
+                "rawSha256": parsed["rawSha256"], "canonicalHash": parsed["canonicalHash"],
+                "siteCount": len(parsed["declarations"]), "runtimeVerified": False,
+                "humanGatePassed": False, "mayEnterR02": False}, sort_keys=True))
+            return 0
+        except (OSError, ValueError, VerificationError) as error:
+            print("[FAIL] " + str(error), file=sys.stderr)
+            return 1
+    argv = arguments
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--editor-result", type=Path, required=True)
     parser.add_argument("--nunit-results", type=Path, required=True)

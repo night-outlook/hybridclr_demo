@@ -127,6 +127,9 @@ namespace AssemblyShadowDemo
             public int h1WitnessOperationIndex;
             public string h1WitnessImageSha256;
             public string h1WitnessProviderAssembly;
+            public string h1WitnessGuard;
+            public bool h1WitnessTamperRejected, h1WitnessNullRejected, h1WitnessCallerBytesUnchanged;
+            public int h1WitnessAssemblyResolveEvents;
             public AllowedResult[] allowed = new AllowedResult[0];
             public DeniedResult[] denied = new DeniedResult[0];
             public string error;
@@ -331,6 +334,12 @@ namespace AssemblyShadowDemo
             result.h1WitnessOperationIndex = site.operationIndex;
             result.h1WitnessImageSha256 = site.imageSha256;
             result.h1WitnessProviderAssembly = site.providerAssemblyIdentity;
+            var guardEvidence = H1WitnessGuardRuntimeProbe.CaptureForM02(result.configurationSha256, result.configurationHash);
+            result.h1WitnessGuard = guardEvidence.guardName;
+            result.h1WitnessTamperRejected = guardEvidence.tamperRejected;
+            result.h1WitnessNullRejected = guardEvidence.nullRejected;
+            result.h1WitnessCallerBytesUnchanged = guardEvidence.callerBytesUnchanged;
+            result.h1WitnessAssemblyResolveEvents = guardEvidence.assemblyResolveEvents;
         }
 
         private static void RequireFixedImageSite(Site site, string expectedId, string expectedAssembly, string expectedType,

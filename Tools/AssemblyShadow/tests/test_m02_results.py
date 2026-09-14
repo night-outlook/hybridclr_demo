@@ -557,7 +557,7 @@ class M02EvidenceTests(unittest.TestCase):
         project_config = Path(__file__).resolve().parents[3] / "ProjectSettings" / "AssemblyShadowReflectionBindings.json"
         reflection = _reflection_parse(project_config, project_config.read_bytes())
         self.assertEqual(reflection["configuration"]["schemaVersion"], 4)
-        self.assertEqual(reflection["canonicalHash"], "e695c00231792be899b8911806805b0ab182507ff07a6b2c4ec6ff5b923200d3")
+        self.assertEqual(reflection["canonicalHash"], "006d40f90c9efb4656f2a2e5a150c204aa2c9348b6f9d2b5a55eb6a9eea7ee51")
 
     def test_reflection_schema3_accepts_known_variants_and_hashes_every_field(self):
         with tempfile.TemporaryDirectory() as folder:

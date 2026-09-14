@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1D01D02PortableDeliveryValidation",
+  "pythonVersion": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "totalTestsRun": 53,
+  "status": "Passed",
+  "suites": [
+    {
+      "suite": "pdb-audit",
+      "exitCode": 0,
+      "result": {
+        "testsRun": 20,
+        "successful": true,
+        "tests": [
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_changed_name_detected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_changed_scope_detected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_changed_value_detected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_compressed_integer_forms",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_compressed_truncation",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_duplicate_constant_not_set_equal",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_empty_signature_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_enum_signature_bytes_preserved",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_exact_bytes_equal",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_invalid_constant_list_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_inventory_never_opens_human_gate",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_large_external_method_count_uses_four_byte_index",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_method_index_boundary",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_missing_method_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_real_format_minimal_inventory",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_scope_list_gap_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_truncated_root_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_truncated_stream_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_unscoped_constant_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_pdb_constant_audit.PortablePdbConstantAuditTests.test_wrong_magic_rejected",
+            "status": "Passed",
+            "detail": null
+          }
+        ]
+      },
+      "log": "pdb-audit.log",
+      "logSha256": "637577f3f1d7abf4c812584edbbacf79b58f810ddac227f2aacca39a3d4a2382",
+      "inventorySha256": "5d1c0e88cf68ca48a499f2f6f47663352cf51fefae7a86b61fe64253afee39bd"
+    },
+    {
+      "suite": "local-batch",
+      "exitCode": 0,
+      "result": {
+        "testsRun": 16,
+        "successful": true,
+        "tests": [
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_actual_command_execution",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_duplicate_task_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_failed_dependency_blocks_but_unrelated_runs",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_forward_dependency_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_json_duplicate_keys_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_no_output_overwrite",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_no_shell_interpolation",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_nunit_failed_child_not_hidden_by_root",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_nunit_no_cases_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_nunit_passes_require_real_cases",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_path_traversal_task_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_preview_does_not_create_output",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_timeout_recorded",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_unittest_zero_cases_not_pass",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_unity_requires_exact_project_guard",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_local_batch.LocalBatchTests.test_unknown_variable_fails_before_execution",
+            "status": "Passed",
+            "detail": null
+          }
+        ]
+      },
+      "log": "local-batch.log",
+      "logSha256": "255b5d2a22881f33c9532951a264378bbaed851087bf6ea99e9030a1b11fa9a5",
+      "inventorySha256": "1a7ab16b33c28a5272ae149124ced52f65e26f5505156769b4927dd3df746dc7"
+    },
+    {
+      "suite": "replay-batch",
+      "exitCode": 0,
+      "result": {
+        "testsRun": 6,
+        "successful": true,
+        "tests": [
+          {
+            "id": "test_h1_replay_batch.ReplayBatchTests.test_all_capture_directories_are_included",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_replay_batch.ReplayBatchTests.test_generates_replay_and_audit_tasks",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_replay_batch.ReplayBatchTests.test_hash_tamper_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_replay_batch.ReplayBatchTests.test_legacy_failure_does_not_hide_a_valid_A_route",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_replay_batch.ReplayBatchTests.test_no_capture_does_not_guess_another_root",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_h1_replay_batch.ReplayBatchTests.test_unavailable_reference_is_not_a_pass",
+            "status": "Passed",
+            "detail": null
+          }
+        ]
+      },
+      "log": "replay-batch.log",
+      "logSha256": "e4e2145a7cf77c8c6d151396799cbf9bd345bb5951cbd29c197afe61ea059617",
+      "inventorySha256": "69f7c1b190c91986e9212b81a7f21eb92e4a69e65f887f3cb30708c40c6404db"
+    },
+    {
+      "suite": "render-changes",
+      "exitCode": 0,
+      "result": {
+        "testsRun": 11,
+        "successful": true,
+        "tests": [
+          {
+            "id": "test_render_changes.RenderChangesTests.test_correct_blob_and_anchor",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_duplicate_anchor_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_eof_without_newline_is_preserved",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_generated_patch_applies",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_missing_anchor_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_modified_delivery_payload_rejected",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_new_file_patch",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_payload_hash_verified",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_render_output_cannot_write_into_source_checkout",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_unsafe_relative_path",
+            "status": "Passed",
+            "detail": null
+          },
+          {
+            "id": "test_render_changes.RenderChangesTests.test_wrong_blob_rejected",
+            "status": "Passed",
+            "detail": null
+          }
+        ]
+      },
+      "log": "render-changes.log",
+      "logSha256": "159ec2576a94ec34f9d36724ec1232422c048da8ad584270417d2cc024907b7f",
+      "inventorySha256": "1f91e80e3be9706d3406f17dcf2509b96bb845fa37917fd3285a29f8bc43be6d"
+    }
+  ],
+  "syntaxAndJsonChecked": [
+    "base/source-pins.json",
+    "delivery-tests/test_render_changes.py",
+    "demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/d01-d02-20260914/diagnostics-plan.json",
+    "demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/d01-d02-20260914/variables.example.json",
+    "demo/Tools/AssemblyShadow/h1_local_batch.py",
+    "demo/Tools/AssemblyShadow/h1_m02_results.py",
+    "demo/Tools/AssemblyShadow/h1_pdb_constant_audit.py",
+    "demo/Tools/AssemblyShadow/h1_replay_batch.py",
+    "demo/Tools/AssemblyShadow/tests/test_h1_local_batch.py",
+    "demo/Tools/AssemblyShadow/tests/test_h1_m02_owner.py",
+    "demo/Tools/AssemblyShadow/tests/test_h1_pdb_constant_audit.py",
+    "demo/Tools/AssemblyShadow/tests/test_h1_replay_batch.py",
+    "demo-edits.json",
+    "make_edits.py",
+    "render_changes.py",
+    "validate_delivery.py"
+  ],
+  "notRun": [
+    {
+      "scope": "Complete repository normal M02 owner/CLI integration",
+      "testCount": 15
+    },
+    {
+      "scope": "Unity C# compilation and new CodeGen NUnit tests",
+      "testCount": 19
+    },
+    {
+      "scope": "Original failed Bootstrap PE/PDB replay, fresh Player builds, H1 raw evidence and independent M08"
+    }
+  ],
+  "targetRepositoriesModified": false,
+  "targetRepositoriesCommitted": false,
+  "remotePushed": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

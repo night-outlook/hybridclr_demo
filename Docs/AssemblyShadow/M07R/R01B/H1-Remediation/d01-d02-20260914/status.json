@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1D01D02SourcePreparationStatus",
+  "h1Status": "InProgress",
+  "technicalReadiness": "Blocked",
+  "latestIndependentWholeChainM08": "FAIL",
+  "D01": "PreparedCorrectionAndExplicitAlternatives_ActualFailureReplayNotRun",
+  "D02": "BlobBoundOwnerEditsPrepared_CompleteRepositoryIntegrationNotRun",
+  "portableTests": {
+    "testsRun": 53,
+    "passed": 53,
+    "failed": 0,
+    "skipped": 0
+  },
+  "normalOwnerIntegrationTests": {
+    "testCount": 15,
+    "status": "NotRun"
+  },
+  "newNUnitTests": {
+    "testCount": 19,
+    "status": "NotRun"
+  },
+  "unityCompile": "NotRun",
+  "freshPlayerBuilds": "NotRun",
+  "targetRepositoryCommits": [],
+  "remotePublication": "BlockedByToolSafetyCheck",
+  "alternatePublicationRouteAttempted": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "readFirst": [
+    "LOCAL_CONTINUE.md",
+    "LOCAL_VALIDATION_TASKS.md",
+    "BOUNDED_REVIEW.md"
+  ]
+}
