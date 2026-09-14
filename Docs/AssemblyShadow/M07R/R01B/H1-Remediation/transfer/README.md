@@ -4,6 +4,8 @@ This directory is the portable handoff for continuing R01B/H1 assembly-shadow re
 
 Snapshot date: 2026-09-13 local time. The coordination records may contain UTC timestamps on 2026-09-14.
 
+Continuation checkpoint commits created by this handoff are candidate demo `06c2ee6`, candidate native `1d2df7c`, unfixed reproduction demo `c8ced4a`, unfixed reproduction native `99cdb1b`, and performance reference `88508b5`. These are preservation checkpoints, not acceptance commits. The source/evidence pins below intentionally remain the pre-checkpoint provenance identities until a new source freeze and rebuild are completed.
+
 ## Current gate state
 
 - H1: `InProgress`, technical readiness `Blocked`.
@@ -29,14 +31,14 @@ The planning files retain their original plan-time `Pending`/`ImplementationNotS
 
 | Role | Directory | Branch | HEAD | State |
 |---|---|---|---|---|
-| Candidate demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `9c6b812148f5ec640e57ecbedcf9399ce68e6aaa` | dirty H1 source, tests, tools, and handoff changes |
-| Candidate native | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `67f80ac01c15004ed9d2f0c884d0d92141d1019a` | dirty diagnostic/runtime changes |
+| Candidate demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `06c2ee6` (checkpoint; source pin was `9c6b812148f5ec640e57ecbedcf9399ce68e6aaa`) | clean for committed scope; historical v7-v11 evidence remains untracked |
+| Candidate native | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c` (checkpoint; active source pin was `67f80ac01c15004ed9d2f0c884d0d92141d1019a`) | clean for committed scope |
 | Candidate Unity package | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `c7ed6d244a2c3a8e948f062d5431c289e1369650` | clean |
 | Candidate IL2CPP Plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | clean |
 | Frozen build native | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_frozen_h1_v5` | detached/pinned checkout | `db685e44afb5aee440efae2eb7bec4205aac090d` | clean; keep separate from active native work |
-| Performance reference demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_reference/hybridclr_demo` | `codex/assembly-shadow-h1-performance-reference` | `f1c923cbaa814e1b63f3c5b9f8303c90616de726` | source-pin change retained |
-| Unfixed reproduction demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo` | `codex/assembly-shadow-h1-count-repro` | `3efc756f7c95ef6699fe838ddda3fdfffc856b53` | dirty diagnostic/provenance work |
-| Unfixed reproduction native | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr` | `codex/assembly-shadow-h1-count-repro` | `6356dac1df87f601b2d7eb44c9c2ce13b06aa19b` | dirty reproduction changes |
+| Performance reference demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_reference/hybridclr_demo` | `codex/assembly-shadow-h1-performance-reference` | `88508b5` (checkpoint; reference pin `f1c923cbaa814e1b63f3c5b9f8303c90616de726`) | clean for committed scope |
+| Unfixed reproduction demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo` | `codex/assembly-shadow-h1-count-repro` | `c8ced4a` (checkpoint; source pin `3efc756f7c95ef6699fe838ddda3fdfffc856b53`) | clean for committed scope |
+| Unfixed reproduction native | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr` | `codex/assembly-shadow-h1-count-repro` | `99cdb1b` (checkpoint; active source pin `6356dac1df87f601b2d7eb44c9c2ce13b06aa19b`) | clean for committed scope |
 
 The original checkout `/Users/ah/GitHub/hybridclr/hybridclr_demo` is on `main` at `73d95b4064ee23143e0722f6eae127fe61df6c9d` and contains three unrelated local changes. Do not stage or clean it.
 

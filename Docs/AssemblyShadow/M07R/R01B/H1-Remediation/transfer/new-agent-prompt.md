@@ -22,6 +22,8 @@ Current truth:
 
 The candidate demo source is on `codex/assembly-shadow-r01b-h1`; the candidate native source is a separate nested repository on the same branch. The clean frozen native build source is `hybridclr_frozen_h1_v5` at `db685e44afb5aee440efae2eb7bec4205aac090d`. Do not interchange active-native and frozen-build provenance.
 
+The continuation checkpoints are candidate demo `06c2ee6`, candidate native `1d2df7c`, unfixed reproduction demo `c8ced4a`, unfixed reproduction native `99cdb1b`, and reference demo `88508b5`. These preserve work for transfer only; they do not retroactively validate evidence produced against the earlier source pins.
+
 Continue in this order:
 
 1. Complete the exact witness acquisition/policy contract for the current Bootstrap, including `FixedAssemblyBytes`.
