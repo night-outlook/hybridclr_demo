@@ -176,7 +176,7 @@ namespace AssemblyShadowDemo
         {
             result.disposition = "OrdinaryAssemblyLoadOnly";
             result.publication.pathContract = "ordinary Assembly.Load(byte[]) only; AssemblyShadowRuntime was not called.";
-            result.publication.publicAssembliesBefore = PublicAssemblyInventory();
+            CapturePublicationInventory(result, true);
             H1CountDiagnosticAssemblyLoad(result, "ordinary-load", true);
             Assembly assembly = null;
             try
@@ -188,25 +188,24 @@ namespace AssemblyShadowDemo
                 if (!spec.accepted)
                     throw new InvalidOperationException("Controlled-rejected ordinary fixture loaded as a public assembly.");
                 InspectAcceptedAssembly(result, spec, assembly);
-                result.publication.publicAssembliesAfter = PublicAssemblyInventory();
+                CapturePublicationInventory(result, false);
                 result.operationSucceeded = true;
             }
             catch (Exception error)
             {
                 if (spec.accepted) throw;
                 result.publication.publicAssemblyLoaded = assembly != null;
-                result.publication.publicAssembliesAfter = PublicAssemblyInventory();
-                result.publication.publicAssemblyInventoryStable = SameStrings(
-                    result.publication.publicAssembliesBefore, result.publication.publicAssembliesAfter);
+                CapturePublicationInventory(result, false);
+                result.publication.publicAssemblyInventoryStable = AllPublicationInventoriesStable(result.publication);
                 result.publication.publicIdentityObservationAvailable = true;
                 result.publication.noPublicFixtureIdentity = assembly == null && result.publication.publicAssemblyInventoryStable;
                 result.publication.publicAssemblyObservation = result.publication.noPublicFixtureIdentity
-                    ? "Assembly.Load returned no assembly and the complete public name/MVID inventory remained unchanged."
-                    : "Ordinary rejection did not establish absence of a newly published assembly identity.";
+                    ? "Assembly.Load returned no assembly and the complete logical, physical, and published image inventories remained unchanged."
+                    : "Ordinary rejection did not establish absence of a newly published assembly/image identity.";
                 result.publication.rejectedExceptionFull = ExceptionText(error);
                 AddExceptionStep(result, "ordinary-load", "Assembly.Load(byte[])", ExceptionText(error));
                 if (assembly != null || !result.publication.publicAssemblyInventoryStable)
-                    throw new InvalidOperationException("Ordinary rejected input changed the public assembly inventory.");
+                    throw new InvalidOperationException("Ordinary rejected input changed a logical, physical, or published image inventory.");
                 result.observedControlledRejection = ObserveCountGuard(result, spec, ExceptionMessages(error), "ordinary-exception");
                 result.disposition = "OrdinaryRejectedNoCommitNoAbort";
             }
@@ -222,7 +221,7 @@ namespace AssemblyShadowDemo
         {
             string targetAssembly = spec.family == "parameters" ? ShadowParameterAssembly : ShadowNestedAssembly;
             result.publication.pathContract = "ConfigureCandidates -> BeginTransaction -> ReserveMetadataBudget(profile 2) -> StageAssembly -> ValidateTransaction -> CommitTransaction; logical-name Assembly.Load after commit.";
-            result.publication.publicAssembliesBefore = PublicAssemblyInventory();
+            CapturePublicationInventory(result, true);
             if (!result.expectedFeatureEnabled)
                 throw new InvalidOperationException("The shadow path requires an Assembly Shadow ON Player.");
             AssemblyShadowErrorCode code = AssemblyShadowRuntime.ConfigureCandidates(result.expectedBaselineBuildId,
@@ -310,7 +309,7 @@ namespace AssemblyShadowDemo
 
             Assembly assembly = Assembly.Load(targetAssembly);
             result.publication.publicAssemblyLoaded = true;
-            result.publication.publicAssembliesAfter = PublicAssemblyInventory();
+            CapturePublicationInventory(result, false);
             RecordAssemblyIdentity(result, assembly, spec, true);
             AssemblyExecutionMode mode;
             code = AssemblyShadowRuntime.GetAssemblyExecutionMode(targetAssembly, out mode);
@@ -335,17 +334,17 @@ namespace AssemblyShadowDemo
             result.publication.executionModeCode = code.ToString();
             result.publication.executionMode = mode.ToString();
             result.publication.publicAssemblyLoaded = false;
-            result.publication.publicAssembliesAfter = PublicAssemblyInventory();
-            result.publication.publicAssemblyInventoryStable = SameStrings(result.publication.publicAssembliesBefore, result.publication.publicAssembliesAfter);
+            CapturePublicationInventory(result, false);
+            result.publication.publicAssemblyInventoryStable = AllPublicationInventoriesStable(result.publication);
             result.publication.publicIdentityObservationAvailable = true;
             result.publication.noPublicFixtureIdentity = result.publication.publicAssemblyInventoryStable;
             result.publication.publicAssemblyObservation = result.publication.publicAssemblyInventoryStable
-                ? "Rejected before publication; public assembly name/MVID inventory was unchanged and no fixture MVID was fabricated."
-                : "Public assembly name/MVID inventory changed; fixture identity absence is not established.";
+                ? "Rejected before publication; logical, physical, and published image inventories were unchanged and no fixture MVID was fabricated."
+                : "A logical, physical, or published image inventory changed; fixture identity absence is not established.";
             if (code != AssemblyShadowErrorCode.Success || mode != AssemblyExecutionMode.AotBaseline)
                 throw new InvalidOperationException("Rejected target execution mode was not truthfully available as AotBaseline: " + code + "/" + mode);
             if (!result.publication.publicAssemblyInventoryStable)
-                throw new InvalidOperationException("Rejected shadow validation changed the public assembly inventory.");
+                throw new InvalidOperationException("Rejected shadow validation changed a logical, physical, or published image inventory.");
         }
 
         private static void InspectAcceptedAssembly(H1CountDiagnosticResult result, CaseSpec spec, Assembly assembly)
@@ -506,19 +505,39 @@ namespace AssemblyShadowDemo
         }
 
 
-        private static string[] PublicAssemblyInventory()
+        private static void CapturePublicationInventory(H1CountDiagnosticResult result, bool before)
         {
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            List<string> identities = new List<string>(assemblies.Length);
-            for (int i = 0; i < assemblies.Length; ++i)
+            H1CountNativeDiagnosticSnapshot snapshot = H1CountNativeDiagnostics.Read();
+            string[] logical = InventoryKeys(snapshot.logicalAssemblies);
+            string[] physical = InventoryKeys(snapshot.physicalAssemblies);
+            string[] published = InventoryKeys(snapshot.publishedInterpreterImages);
+            if (before)
             {
-                Assembly assembly = assemblies[i];
-                string name = assembly.GetName().Name;
-                string mvid = assembly.ManifestModule.ModuleVersionId.ToString("D");
-                identities.Add(name + "|" + mvid);
+                result.publication.publicAssembliesBefore = logical;
+                result.publication.physicalAssembliesBefore = physical;
+                result.publication.publishedInterpreterImagesBefore = published;
             }
-            identities.Sort(StringComparer.Ordinal);
-            return identities.ToArray();
+            else
+            {
+                result.publication.publicAssembliesAfter = logical;
+                result.publication.physicalAssembliesAfter = physical;
+                result.publication.publishedInterpreterImagesAfter = published;
+            }
+        }
+
+        private static string[] InventoryKeys(H1CountNativeAssemblyIdentity[] identities)
+        {
+            if (identities == null) throw new InvalidOperationException("Native assembly inventory was unavailable.");
+            List<string> keys = new List<string>(identities.Length);
+            for (int i = 0; i < identities.Length; ++i)
+            {
+                H1CountNativeAssemblyIdentity identity = identities[i];
+                if (identity == null || string.IsNullOrEmpty(identity.identityKey))
+                    throw new InvalidOperationException("Native assembly inventory contained an incomplete identity.");
+                keys.Add(identity.identityKey);
+            }
+            keys.Sort(StringComparer.Ordinal);
+            return keys.ToArray();
         }
 
         private static bool SameStrings(string[] left, string[] right)
@@ -528,15 +547,48 @@ namespace AssemblyShadowDemo
             return true;
         }
 
+        private static bool AllPublicationInventoriesStable(H1CountPublicationObservation publication)
+        {
+            return SameStrings(publication.publicAssembliesBefore, publication.publicAssembliesAfter) &&
+                SameStrings(publication.physicalAssembliesBefore, publication.physicalAssembliesAfter) &&
+                SameStrings(publication.publishedInterpreterImagesBefore, publication.publishedInterpreterImagesAfter);
+        }
+
         private static void RecordAssemblyIdentity(H1CountDiagnosticResult result, Assembly assembly, CaseSpec spec, bool shadow)
         {
             result.publication.publicAssemblyName = assembly.GetName().Name;
             result.publication.publicAssemblyFullName = assembly.FullName;
-            result.publication.publicAssemblyMvid = assembly.ManifestModule.ModuleVersionId.ToString("D");
+            H1CountNativeAssemblyIdentity observed = FindNativeLogicalIdentity(result.publication.publicAssemblyName);
+            if (!observed.mvidAvailable || string.IsNullOrEmpty(observed.mvid))
+                throw new InvalidOperationException("Published interpreter identity did not expose its native Module MVID.");
+            if (observed.imageKind != "Interpreter" || observed.imageId == 0 ||
+                string.IsNullOrEmpty(observed.nativeAssemblyId) || string.IsNullOrEmpty(observed.nativeImageId))
+                throw new InvalidOperationException("Published interpreter identity is missing its native assembly/image identity.");
+            result.publication.publicAssemblyMvid = observed.mvid;
+            result.publication.publicAssemblyMvidAvailable = true;
+            result.publication.nativeAssemblyId = observed.nativeAssemblyId;
+            result.publication.nativeImageId = observed.nativeImageId;
+            result.publication.imageKind = observed.imageKind;
+            result.publication.imageId = observed.imageId;
+            result.publication.nativeAssemblyFullName = observed.fullName;
+            if (observed.fullName != result.publication.publicAssemblyFullName)
+                throw new InvalidOperationException("Native/public assembly full-name observations differ.");
             result.publication.publicAssemblyMatchesExpected = result.publication.publicAssemblyName == (shadow ?
                 (spec.family == "parameters" ? ShadowParameterAssembly : ShadowNestedAssembly) :
                 (spec.family == "parameters" ? "AssemblyShadow.H1Count.Ordinary." : "AssemblyShadow.H1Nested.Ordinary.") + spec.id);
             if (!result.publication.publicAssemblyMatchesExpected) throw new InvalidOperationException("Public assembly identity mismatch.");
+        }
+
+        private static H1CountNativeAssemblyIdentity FindNativeLogicalIdentity(string name)
+        {
+            H1CountNativeDiagnosticSnapshot snapshot = H1CountNativeDiagnostics.Read();
+            for (int i = 0; i < snapshot.logicalAssemblies.Length; ++i)
+            {
+                H1CountNativeAssemblyIdentity identity = snapshot.logicalAssemblies[i];
+                if (identity != null && identity.name == name)
+                    return identity;
+            }
+            throw new InvalidOperationException("Native logical assembly identity was not published: " + name);
         }
 
         private static H1CountStateObservation CaptureState(H1CountDiagnosticResult result, string phase)
@@ -1028,6 +1080,10 @@ namespace AssemblyShadowDemo
         public bool publicAssemblyLoaded; public string publicAssemblyName; public string publicAssemblyFullName; public string publicAssemblyMvid;
         public bool publicAssemblyMatchesExpected; public bool noPublicFixtureIdentity; public bool publicIdentityObservationAvailable; public bool publicAssemblyInventoryStable;
         public string[] publicAssembliesBefore; public string[] publicAssembliesAfter; public string publicAssemblyObservation; public string rejectedExceptionFull;
+        public string[] physicalAssembliesBefore; public string[] physicalAssembliesAfter;
+        public string[] publishedInterpreterImagesBefore; public string[] publishedInterpreterImagesAfter;
+        public bool publicAssemblyMvidAvailable; public string imageKind; public uint imageId;
+        public string nativeAssemblyId; public string nativeImageId; public string nativeAssemblyFullName;
         public bool executionModeAvailable; public string executionModeCode; public string executionMode;
         public bool failureDiagnosticsAvailable; public string failureDiagnosticsCode; public string failureDiagnosticsJson;
         public string failureDiagnosticsState; public int failureDiagnosticsLastError; public string failureDiagnosticsDetail;

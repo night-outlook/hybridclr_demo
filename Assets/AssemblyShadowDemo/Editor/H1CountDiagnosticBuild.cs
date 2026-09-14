@@ -153,6 +153,10 @@ namespace AssemblyShadowDemo.Editor
             bool captureStarted = false;
             string nativeArgumentsUsed = null;
             H1BuildInputProvenance.Capture nativeProvenance = null;
+            H1CompilerProvenance.GraphInventory beeGraphBefore = null;
+            H1CompilerProvenance.Capture compilerProvenance = null;
+            string compilerProvenancePath = null;
+            string compilerProvenanceSha256 = null;
             GeneratedBuildInput[] generatedBuildInputs = null;
             DiagnosticBuildReceipt completedReceipt = null;
             string sourcePinsHashBefore = null;
@@ -195,6 +199,7 @@ namespace AssemblyShadowDemo.Editor
                 Directory.CreateDirectory(Path.GetDirectoryName(snapshot));
                 ShadowPlayerInputCapture.Begin(snapshot, baselineId, target, settings.architecture, pinsForCapture, Candidates, defines, true);
                 captureStarted = true;
+                beeGraphBefore = H1CompilerProvenance.Begin(projectRoot);
                 M07Build.WithPlayerBuildSettings(target, () =>
                 {
                     var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
@@ -214,6 +219,11 @@ namespace AssemblyShadowDemo.Editor
                 RetainGeneratedBuildInputs(snapshot, preparation.runDirectory, generatedBuildInputs);
 
                 AssemblySnapshotReceipt captured = AssemblySnapshot.ReadAndVerify(snapshot, true);
+                compilerProvenance = H1CompilerProvenance.CaptureAfterBuild(
+                    projectRoot, output, baselineId, captured.buildGuid, captured.snapshotHash,
+                    captured.nativeLibraryPath, captured.nativeLibrarySha256, sourcePinsHashBefore,
+                    beeGraphBefore, Path.Combine(preparation.runDirectory, "CompilerProvenance"),
+                    out compilerProvenancePath, out compilerProvenanceSha256);
                 M04AssemblyIdentity[] linked = M04AssemblyIdentityProof.ReadLinked(snapshot, captured);
                 Require(linked.Any(item => string.Equals(item.name, DiagnosticsAssemblyName, StringComparison.Ordinal)),
                     "The diagnostics runtime assembly was not retained in the linked Player input.");
@@ -248,6 +258,9 @@ namespace AssemblyShadowDemo.Editor
                     nativeLibraryPath = captured.nativeLibraryPath,
                     nativeLibrarySha256 = captured.nativeLibrarySha256,
                     nativeArguments = nativeArgumentsUsed,
+                    compilerProvenance = compilerProvenance,
+                    compilerProvenancePath = compilerProvenancePath,
+                    compilerProvenanceSha256 = compilerProvenanceSha256,
                     extraScriptingDefines = defines,
                     candidates = Candidates,
                     scenes = new[] { DiagnosticScene },
@@ -602,6 +615,7 @@ namespace AssemblyShadowDemo.Editor
             public string kind, cppConfiguration, baselineBuildId, runtimeAbiHash, unityVersion, target, architecture, buildGuid;
             public string playerOutput, playerExecutable, playerExecutableSha256, inputSnapshot, inputSnapshotHash;
             public string sourcePinFile, sourcePinSha256, sourcePinsJson, nativeLibraryPath, nativeLibrarySha256, nativeArguments;
+            public string compilerProvenancePath, compilerProvenanceSha256;
             public string preparationStatePath, preparationStateSha256, originalScriptingDefines, stagedScriptingDefines;
             public string[] extraScriptingDefines, candidates, scenes, linkedInputNames, linkedInputSha256;
             public M04AssemblyIdentity[] assemblyIdentities;
@@ -609,6 +623,7 @@ namespace AssemblyShadowDemo.Editor
             public M04NativeAssemblyIdentity[] nativeAssemblyIdentities;
             public string[] nativeGeneratedAssemblyNames;
             public H1BuildInputProvenance.Capture nativeProvenance;
+            public H1CompilerProvenance.Capture compilerProvenance;
             public GeneratedBuildInput[] generatedBuildInputs;
             public string note;
         }

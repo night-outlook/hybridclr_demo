@@ -8,11 +8,12 @@ namespace AssemblyShadowDemo
     // establishes the root schema first so omitted fields cannot default to zero.
     internal static class H1CountNativeDiagnosticsJsonReader
     {
-        private const int MaximumJsonLength = 4096;
+        private const int MaximumJsonLength = 1024 * 1024;
         private static readonly string[] RequiredFields = {
             "schemaVersion", "kind", "diagnosticOnly", "featureEnabled", "featureMode",
             "reservedPages", "mappedPages", "reservationCount", "nextImageId", "nextPageSlot",
-            "ordinaryAllocatedCount", "shadowAllocatedCount", "reservedImageCount"
+            "ordinaryAllocatedCount", "shadowAllocatedCount", "reservedImageCount",
+            "logicalAssemblies", "physicalAssemblies", "publishedInterpreterImages"
         };
 
         internal static void Validate(string json)
@@ -57,6 +58,10 @@ namespace AssemblyShadowDemo
                         case "ordinaryAllocatedCount": ReadUnsigned(); break;
                         case "shadowAllocatedCount": ReadUnsigned(); break;
                         case "reservedImageCount": ReadUnsigned(); break;
+                        case "logicalAssemblies":
+                        case "physicalAssemblies":
+                        case "publishedInterpreterImages":
+                            ReadIdentityArray(); break;
                         default: throw Invalid("Unknown H1 count diagnostics root field: " + field);
                     }
                 } while (Take(','));
@@ -66,6 +71,49 @@ namespace AssemblyShadowDemo
                 foreach (string field in RequiredFields)
                     if (!fields.Contains(field))
                         throw Invalid("Missing H1 count diagnostics root field: " + field);
+            }
+
+            private void ReadIdentityArray()
+            {
+                Expect('[');
+                if (Take(']')) return;
+                do { ReadIdentityObject(); } while (Take(','));
+                Expect(']');
+            }
+
+            private void ReadIdentityObject()
+            {
+                string[] required = {
+                    "nativeAssemblyId", "nativeImageId", "name", "fullName",
+                    "versionMajor", "versionMinor", "versionBuild", "versionRevision",
+                    "culture", "flags", "publicKeyToken", "mvidAvailable", "mvid",
+                    "imageKind", "imageId", "published", "identityKey"
+                };
+                Expect('{');
+                var fields = new HashSet<string>(StringComparer.Ordinal);
+                if (Take('}')) throw Invalid("H1 count diagnostics identity object has no fields.");
+                do
+                {
+                    string field = ReadString();
+                    if (!fields.Add(field))
+                        throw Invalid("Duplicate H1 count diagnostics identity field: " + field);
+                    Expect(':');
+                    switch (field)
+                    {
+                        case "nativeAssemblyId": case "nativeImageId": case "name": case "fullName":
+                        case "culture": case "publicKeyToken": case "mvid": case "imageKind": case "identityKey":
+                            ReadString(); break;
+                        case "versionMajor": case "versionMinor": case "versionBuild": case "versionRevision":
+                            ReadInteger(); break;
+                        case "flags": case "imageId": ReadUnsigned(); break;
+                        case "mvidAvailable": case "published": ReadBoolean(); break;
+                        default: throw Invalid("Unknown H1 count diagnostics identity field: " + field);
+                    }
+                } while (Take(','));
+                Expect('}');
+                foreach (string field in required)
+                    if (!fields.Contains(field))
+                        throw Invalid("Missing H1 count diagnostics identity field: " + field);
             }
 
             private void Expect(char token)

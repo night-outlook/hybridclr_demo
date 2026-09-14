@@ -1,0 +1,91 @@
+using System;
+using System.IO;
+using System.Linq;
+using AssemblyShadowDemo.Editor;
+using HybridCLR.Editor.AssemblyShadow;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace AssemblyShadowDemo.EditorTests
+{
+    public sealed class H1ManagedSourceProvenanceTests
+    {
+        private H1ManagedSourceProvenance.Capture capture;
+
+        [SetUp]
+        public void SetUp()
+        {
+            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            string parent = Path.Combine(projectRoot, "_temp", "AssemblyShadow", "H1ManagedSourceTests-" + Guid.NewGuid().ToString("N"));
+            capture = H1ManagedSourceProvenance.CaptureBeforeBuild(projectRoot, parent, "test-base", "test-head");
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (capture != null && Directory.Exists(capture.snapshotRoot)) Directory.Delete(capture.snapshotRoot, true);
+        }
+
+        [Test]
+        public void UnchangedCapturePassesAndBindsCodeAndConfigurationHashesSeparately()
+        {
+            H1ManagedSourceProvenance.RequireUnchanged(capture);
+            Assert.That(capture.codeContentHash, Does.Match("^[0-9a-f]{64}$"));
+            Assert.That(capture.configurationContentHash, Does.Match("^[0-9a-f]{64}$"));
+            Assert.AreNotEqual(capture.codeContentHash, capture.configurationContentHash);
+            Assert.That(capture.contentSetHash, Does.Match("^[0-9a-f]{64}$"));
+        }
+
+        [Test]
+        public void ChangedSourceBytesAreRejected()
+        {
+            H1ManagedSourceProvenance.SourceFile source = capture.sourceFiles.First(file => file.kind == "source");
+            File.AppendAllText(Path.Combine(capture.snapshotRoot, source.snapshotPath), "\n// tampered snapshot\n");
+            ShadowBuildException error = Assert.Throws<ShadowBuildException>(() => H1ManagedSourceProvenance.RequireUnchanged(capture));
+            Assert.AreEqual("ManagedSourceSnapshotChanged", error.Code);
+        }
+
+        [Test]
+        public void AddedSourceBytesAreRejectedByExactSnapshotInventory()
+        {
+            string extra = Path.Combine(capture.snapshotRoot, "ManagedSource", "Sources", "Assets", "unexpected.cs");
+            Directory.CreateDirectory(Path.GetDirectoryName(extra));
+            File.WriteAllText(extra, "class UnexpectedManagedSource {}\n");
+            ShadowBuildException error = Assert.Throws<ShadowBuildException>(() => H1ManagedSourceProvenance.RequireUnchanged(capture));
+            Assert.AreEqual("ManagedSourceSnapshotSetMismatch", error.Code);
+        }
+
+        [Test]
+        public void ChangedAsmdefBytesAreRejected()
+        {
+            H1ManagedSourceProvenance.SourceFile asmdef = capture.sourceFiles.First(file => file.kind == "asmdef");
+            File.AppendAllText(Path.Combine(capture.snapshotRoot, asmdef.snapshotPath), "\n// tampered asmdef snapshot\n");
+            ShadowBuildException error = Assert.Throws<ShadowBuildException>(() => H1ManagedSourceProvenance.RequireUnchanged(capture));
+            Assert.AreEqual("ManagedSourceSnapshotChanged", error.Code);
+        }
+
+        [Test]
+        public void SnapshotTraversalPathIsRejected()
+        {
+            H1ManagedSourceProvenance.SourceFile source = capture.sourceFiles.First(file => file.kind == "source");
+            string original = source.snapshotPath;
+            source.snapshotPath = "../outside.cs";
+            try
+            {
+                ShadowBuildException error = Assert.Throws<ShadowBuildException>(() => H1ManagedSourceProvenance.RequireUnchanged(capture));
+                Assert.AreEqual("InvalidPath", error.Code);
+            }
+            finally { source.snapshotPath = original; }
+        }
+
+        [Test]
+        public void PlayerBindingRecordsRawInputsWithoutClaimingSourceCausality()
+        {
+            StringAssert.Contains("source-file-set identity", ReadSource());
+            StringAssert.DoesNotContain("outputPath", ReadSource());
+        }
+
+        private static string ReadSource()
+        { return File.ReadAllText("Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs"); }
+    }
+}
