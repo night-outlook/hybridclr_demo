@@ -21,9 +21,10 @@ The current state is not an H1 acceptance. Do not promote a focused test, a hist
 
 1. `new-agent-prompt.md` — copy-paste continuation prompt.
 2. `h1-transfer-manifest.json` — machine-readable repository, pin, evidence, and transfer inventory.
-3. The live handoff at `../H1-handoff.md`.
-4. The planning files under `../Planning/`.
-5. The external coordination records listed in the manifest, if they have been transferred.
+3. `coordination-snapshot/` — committed snapshots of the live ledger, reviews, successor binding, and task cards.
+4. The live handoff at `../H1-handoff.md`.
+5. The planning files under `../Planning/`.
+6. The external raw evidence roots listed in the manifest, if detailed receipts or archives are needed.
 
 The planning files retain their original plan-time `Pending`/`ImplementationNotStarted` values. The live coordination ledger is authoritative for execution status.
 
@@ -80,6 +81,6 @@ No Unity Player build or fresh 11-mode startup run was performed as part of this
 
 ## Evidence transfer policy
 
-The coordination directory is not a Git repository and is approximately 3.4 GiB. The H1 remediation evidence area is approximately 2.0 GiB. Large generated archives and `_temp` raw evidence remain external artifacts; they are intentionally not placed in normal Git history. Their required paths and the hashes of the small coordination records are in `h1-transfer-manifest.json`.
+The coordination directory is not a Git repository and is approximately 3.4 GiB. The H1 remediation evidence area is approximately 2.0 GiB. The small coordination records needed to understand and resume the task are committed under `coordination-snapshot/`; large generated archives and `_temp` raw evidence remain external artifacts because they are intentionally not placed in normal Git history. Their required paths and the hashes of the committed snapshots' source records are in `h1-transfer-manifest.json`.
 
-Transfer the small coordination records and the raw evidence roots separately, preserving names, hashes, failure attempts, and historical status. Do not edit sealed records to replace absolute paths; use a relocation map when the new environment has a different root.
+Only transfer the raw evidence roots separately when the next validation needs their full receipts or archives. Preserve names, hashes, failure attempts, and historical status. Do not edit sealed records to replace absolute paths; use a relocation map when the new environment has a different root.

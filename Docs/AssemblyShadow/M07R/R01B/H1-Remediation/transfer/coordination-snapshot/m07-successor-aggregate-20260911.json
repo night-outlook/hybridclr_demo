@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1RBoundedM07SuccessorAggregate",
+  "createdAt": "2026-09-11",
+  "diagnosticOnly": true,
+  "projectRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "fixtureManifest": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M02Validation-d90fb623c8584feeb5722e1a32108796/m07-fixtures.json",
+    "sha256": "55a0414b23aebe293b45fb87c09522cca1509daf26cac8136732a71405c88775",
+    "sizeBytes": 45000
+  },
+  "buildReceipts": {
+    "on": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-432941ae0046419a92e2e416711162b4/m07-player-build.json",
+      "sha256": "742b1923adf5f6733a5864b83ab67d354593f2bde0b2c8b386252f1e6b95d68b",
+      "variant": "NativeOn",
+      "buildGuid": "3a5184b142b94b77be034cf93bcce42f"
+    },
+    "off": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-828ba6a1d7584a539767060ed460ae30/m07-player-build.json",
+      "sha256": "710baf236efae13975193b37ddf5425245edc7e4de9fd9b8773c8d4e93a54862",
+      "variant": "NativeOff",
+      "buildGuid": "45a9efaa6c1e4effb084e703b501e544"
+    },
+    "replay": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M02Validation-d90fb623c8584feeb5722e1a32108796/m07-editor-replay.json",
+      "sha256": "9fd623fd9af104596179d8572d0de1ec707d62e44ac159bf418db1c98deb0a7b",
+      "sizeBytes": 9549
+    }
+  },
+  "expectedModeMembership": [
+    "T07-01-Prefab-P01",
+    "T07-02-Nested-P02",
+    "T07-03-FullClosure-P03",
+    "T07-04-UnityApis-P01",
+    "T07-05-Scriptable-P03",
+    "T07-06-SceneSingle-P01",
+    "T07-07-SceneAdditive-P03",
+    "T07-08-SerializeReference-P03",
+    "T07-09-Messages-P01",
+    "T07-10-Cache-P03",
+    "T07-11-DelayedCatalog-P03",
+    "T07-12-P04-NonSerialized",
+    "T07-13-P05-Rebuilt",
+    "T07-14-FeatureOff"
+  ],
+  "coverage": {
+    "on": {
+      "status": "NotRun",
+      "requestedModes": [
+        "T07-01-Prefab-P01",
+        "T07-02-Nested-P02",
+        "T07-03-FullClosure-P03",
+        "T07-04-UnityApis-P01",
+        "T07-05-Scriptable-P03",
+        "T07-06-SceneSingle-P01",
+        "T07-07-SceneAdditive-P03",
+        "T07-08-SerializeReference-P03",
+        "T07-09-Messages-P01",
+        "T07-10-Cache-P03",
+        "T07-11-DelayedCatalog-P03",
+        "T07-12-P04-NonSerialized",
+        "T07-13-P05-Rebuilt"
+      ],
+      "launchedPlayers": 0,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1BoundedM07On-20260911",
+      "failureClass": "PreflightFailed",
+      "error": "Working bytes do not match pinned Git blob: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs",
+      "limitation": "The active candidate has intentional tracked H1 edits. r01_early_results._prepare fail-closed before capsule materialization and Player launch; no ON result or launch receipt exists."
+    },
+    "off": {
+      "status": "PlayerPassed",
+      "requestedModes": ["T07-14-FeatureOff"],
+      "launchedPlayers": 1,
+      "processId": 2976,
+      "exitCode": 0,
+      "timedOut": false,
+      "result": "Passed",
+      "semanticRowPassed": true
+    }
+  },
+  "offEvidence": {
+    "launchReceipt": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1BoundedM07Off-20260911/m07-player-launches.json",
+      "sha256": "c48921b98babe9ee1aafb1c12a6ae0a85ad89677d39378db81865a39d181a299",
+      "sizeBytes": 10193683
+    },
+    "immutableInputGraph": {
+      "memberCount": 16882,
+      "sha256Before": "8dcb1cce1da41eb9721552a753a6d154321164cda072b31fd7eeff51a2fc242b",
+      "sha256After": "8dcb1cce1da41eb9721552a753a6d154321164cda072b31fd7eeff51a2fc242b",
+      "inputsUnchanged": true
+    },
+    "outputs": [
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1BoundedM07Off-20260911/Results/m07-T07-14-FeatureOff.json",
+        "sha256": "152e3ae90406fe2a76330f3dc920f92b9ecbfd3dd58883472b42193bfbe70d92",
+        "sizeBytes": 31278
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1BoundedM07Off-20260911/T07-14-FeatureOff.unity.log",
+        "sha256": "8a6c82e0629d5786510fb555da4e5017d272644a007f0a7a88e5eb2fe2a1ac6b",
+        "sizeBytes": 18425
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1BoundedM07Off-20260911/T07-14-FeatureOff.console.log",
+        "sha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+        "sizeBytes": 1741
+      }
+    ],
+    "strictSemanticVerification": {
+      "path": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/m07-off-verification-20260911-v3.json",
+      "sha256": "13014e4f526585dac306bc78521506dd5130dde5f5440e684cbef78f9557ef67",
+      "diagnosticOnly": true,
+      "resultPassed": false,
+      "offRowPassed": true,
+      "limitation": "verify-m07-results.py --allow-incomplete necessarily reports false because the 13 ON result files are absent; the non-allow-incomplete invocation failed closed with the same missing-mode list."
+    }
+  },
+  "aggregateResult": "Incomplete",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "limitations": [
+    "The exact 14-mode membership is recorded, but only the OFF mode executed.",
+    "The ON adapter did not launch Players because source preflight rejected an intentional active-candidate working-tree edit.",
+    "The OFF semantic receipt is diagnostic-only and cannot establish full M07 acceptance.",
+    "No product code, Unity project settings, or existing evidence was modified by this coverage attempt."
+  ]
+}

@@ -5,6 +5,7 @@
   "sourceOfTruth": [
     "transfer/README.md",
     "transfer/new-agent-prompt.md",
+    "transfer/coordination-snapshot/",
     "../H1-handoff.md",
     "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/status.json",
     "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/current-review-gates.json"
@@ -127,6 +128,8 @@
     "startup11": {"status": "PassedReusedAudited", "freshCurrentCandidate": false}
   },
   "externalCoordinationRoot": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910",
+  "committedCoordinationSnapshot": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/",
+  "snapshotTransferRule": "The committed coordination snapshot is sufficient to understand and resume the task. Copy the external coordination root only when full raw receipts or archives are required for validation.",
   "coordinationRecords": [
     {"path": "status.json", "sizeBytes": 13889, "sha256": "9b127683ddf51725e2d13376911d18acb8699c6ee34548f2d92eefc940e7087a"},
     {"path": "current-review-gates.json", "sizeBytes": 1393, "sha256": "32796d254cd5635ac6297094821397784274b4e0545f46c43cb50689292a97eb"},

@@ -1,0 +1,87 @@
+{
+  "archive": {
+    "path": "/Users/ah/GitHub/hybridclr/h1r-evidence-audit-20260910/r01b-v6-evidence.tar.gz",
+    "sha256": "d50193ad9e5ebe93998b6d5d412d32696a57925f4b05b55de91027011f0bd0d9"
+  },
+  "baselineBuildId": "M07-Baseline-R01B-20260909-v6",
+  "kind": "Startup11RevalidatedAudit",
+  "limitations": [
+    "This is a strict revalidation of retained historical startup evidence, not a fresh Player run.",
+    "The retained launch/raw rows do not contain sourceBuildGUID or executable buildGUID; source pins and the immutable archive are bound instead."
+  ],
+  "modes": [
+    {
+      "mode": "Cctor",
+      "pid": 60285,
+      "rawSha256": "661a77aad8f3a0d0e853a484d3a60fb0efc294d7b11e9609ab2f89cfc0aced19",
+      "result": "PassedExpectedRejection"
+    },
+    {
+      "mode": "Control",
+      "pid": 60169,
+      "rawSha256": "5de081dee754ae4cce1a525312c5fe0a5c563a7ffde5761a6f5b03544e8abdc5",
+      "result": "Passed"
+    },
+    {
+      "mode": "InitializerFailure",
+      "pid": 60335,
+      "rawSha256": "400866ffa4a3a0a0368a95e1dba9430c76718338ac92ce17baa1b9f25bf69adc",
+      "result": "PassedExpectedFailure"
+    },
+    {
+      "mode": "MetadataFailure",
+      "pid": 60313,
+      "rawSha256": "27f3c5eb11eada23067b0a566f69bc6d7a05c830e155a2ff0f252b01fccf0c35",
+      "result": "PassedExpectedFailure"
+    },
+    {
+      "mode": "Mismatch",
+      "pid": 60248,
+      "rawSha256": "c389dfc5307b9455cbef9a3f03052fe7396f19f5a7db58eacae3da28c44972fe",
+      "result": "PassedExpectedRejection"
+    },
+    {
+      "mode": "NativeScript",
+      "pid": 60307,
+      "rawSha256": "5b1c1821b6dbb15910b5da2815960561720c68badf8ec253852248ee9f02d230",
+      "result": "PassedExpectedRejection"
+    },
+    {
+      "mode": "Object",
+      "pid": 60275,
+      "rawSha256": "53602f340aceef93e65434e6c00666d79761d0a42ab94afcb81de8c23f181251",
+      "result": "PassedExpectedRejection"
+    },
+    {
+      "mode": "OrdinaryAfterReserve",
+      "pid": 60233,
+      "rawSha256": "0422e2fd43b0ebe9a442371157e3b71b99886fa1f8e8981ec3ba7f48ed43640e",
+      "result": "Passed"
+    },
+    {
+      "mode": "OrdinaryFirst",
+      "pid": 60178,
+      "rawSha256": "f1fb0a5566e714ca5b13f6713cb1b912410dbf1750c228c21d0f56dd32e24156",
+      "result": "Passed"
+    },
+    {
+      "mode": "Oversize",
+      "pid": 60243,
+      "rawSha256": "c0b141bea99772ba75fe78eb4b74debaeefbea10aae20a010e42311911b3d06b",
+      "result": "PassedExpectedRejection"
+    },
+    {
+      "mode": "Type",
+      "pid": 60265,
+      "rawSha256": "edcb2730ca7cfcec3d2b57079ccb9180750fc030b6b0c237f6226dbb1527f9ab",
+      "result": "PassedExpectedRejection"
+    }
+  ],
+  "runtimeAbiHash": "d4e003eb88ed41a8a1acc1d9b46024faa94cf48e57f7ca6a80fc01222571115f",
+  "schemaVersion": 1,
+  "source": {
+    "path": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/entry/original-startup-raw-audit.json",
+    "sha256": "d453d9848221aea4e6feb7a82ce19013c4c9c677acd3d95a51df65d6066a8db4"
+  },
+  "status": "PassedReusedAudited"
+}
