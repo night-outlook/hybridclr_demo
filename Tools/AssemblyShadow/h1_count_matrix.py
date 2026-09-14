@@ -287,7 +287,7 @@ def _verify_cell(entry: dict, expected: dict, manifests: dict[str, tuple[dict, s
                  not Path(launch["resultPath"]).exists(),
                  "startup-rejected cell unexpectedly produced a scene result")
         early_result, _ = _read(early_path, "early startup result")
-        _require(early_result.get("schemaVersion") == 1 and
+        _require(early_result.get("schemaVersion") == 2 and
                  early_result.get("kind") == "H1CountEarlyStartupResult" and
                  early_result.get("result") == "ExpectedValidationRejection" and
                  early_result.get("callbackReturnCode") == 1 and early_result.get("committed") is False and
@@ -307,7 +307,7 @@ def _verify_cell(entry: dict, expected: dict, manifests: dict[str, tuple[dict, s
         _require(executed.get("resultPath") == str(result_path),
                  "cell report executed result path differs from launch receipt")
         raw_result, _ = _read(result_path, "diagnostic result")
-        _require(raw_result.get("schemaVersion") == 1 and
+        _require(raw_result.get("schemaVersion") == 2 and
                  raw_result.get("kind") == "H1CountDiagnosticResult" and
                  raw_result.get("result") == "Passed" and
                  raw_result.get("family") == expected["family"] and

@@ -22,6 +22,14 @@ from collections import OrderedDict
 HERE = Path(__file__).resolve().parent
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 MAX_JSON_BYTES = 512 * 1024 * 1024
+ORDINARY_WITNESS_NAME = "AssemblyShadowBaseline.HotUpdate"
+ORDINARY_WITNESS_FULL_NAME = "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+ORDINARY_WITNESS_TYPE = "AssemblyShadowBaseline.HotUpdate.Entry"
+ORDINARY_WITNESS_SHA256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+ORDINARY_WITNESS_RELATIVE_PATH = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+ORDINARY_WITNESS_MARKER = "M00-HOTUPDATE-OK"
+EARLY_EVIDENCE_SCHEMA_VERSION = 2
+RESULT_EVIDENCE_SCHEMA_VERSION = 2
 
 PARAMETER_CASES = {
     "H1R-P01-a": (0, "base-0", "Accepted"),
@@ -72,7 +80,11 @@ def _early_canonical_json(value, receipt_hash=""):
         ("expectedOutcome", value.get("expectedOutcome")), ("expectedCount", value.get("expectedCount")),
         ("fixturePath", value.get("fixturePath")), ("fixtureSha256Expected", value.get("fixtureSha256Expected")),
         ("fixtureSize", value.get("fixtureSize")), ("inputHashBefore", value.get("inputHashBefore")),
-        ("inputHashAfter", value.get("inputHashAfter")), ("startUtc", value.get("startUtc")),
+        ("inputHashAfter", value.get("inputHashAfter")),
+        ("witness", {key: (value.get("witness") or {}).get(key, "") for key in
+                      ("path", "sha256", "assemblyName", "assemblyFullName", "observationKind",
+                       "logicalIdentityKeys", "physicalIdentityKeys", "publishedIdentityKeys")}),
+        ("startUtc", value.get("startUtc")),
         ("endUtc", value.get("endUtc")), ("elapsedTicks", value.get("elapsedTicks")),
         ("stopwatchFrequency", value.get("stopwatchFrequency")), ("committed", value.get("committed")),
         ("baselineAlreadyUsed", value.get("baselineAlreadyUsed")),
@@ -116,10 +128,12 @@ def _verify_early_native_snapshots(early, request, accepted):
                  diagnostics.get("enabled") is True, "early Assembly Shadow diagnostics identity differs")
         parsed[item["phase"]] = (native, diagnostics)
     before = parsed["before"][0]
-    _require(all(before[key] == 0 for key in ("reservedPages", "mappedPages", "reservationCount",
-                                               "nextPageSlot", "ordinaryAllocatedCount", "shadowAllocatedCount",
-                                               "reservedImageCount")) and before["nextImageId"] == 1,
-             "early startup ledger was not empty before the transaction")
+    _verify_witness_snapshots({phase: pair[0] for phase, pair in parsed.items()}, early.get("witness"))
+    _require(before["ordinaryAllocatedCount"] == 1 and before["shadowAllocatedCount"] == 0 and
+             before["reservedImageCount"] == 0 and before["reservationCount"] == 1 and
+             before["nextImageId"] == 2 and before["reservedPages"] > 0 and
+             before["nextPageSlot"] == before["reservedPages"],
+             "early startup ledger did not retain exactly one preloaded ordinary witness")
     _require(parsed["after"][0] == parsed["final"][0], "early final native snapshots differ")
     if not accepted:
         # A retained failure must not publish, replace, or consume another
@@ -131,19 +145,20 @@ def _verify_early_native_snapshots(early, request, accepted):
         reserved = parsed["after-reserve"][0]
         staged = parsed["after-stage"][0]
         validated = parsed["after-validate"][0]
-        _require(reserved.get("ordinaryAllocatedCount") == 0 and reserved.get("shadowAllocatedCount") == 0 and
-                 reserved.get("reservedImageCount") == 1 and reserved.get("reservationCount") == 1 and
-                 reserved.get("nextImageId") == 2 and reserved.get("reservedPages") > 0 and
-                 reserved.get("nextPageSlot") == reserved.get("reservedPages") and reserved.get("mappedPages") == 0,
+        _require(reserved.get("ordinaryAllocatedCount") == 1 and reserved.get("shadowAllocatedCount") == 0 and
+                 reserved.get("reservedImageCount") == 1 and reserved.get("reservationCount") == 2 and
+                 reserved.get("nextImageId") == 3 and reserved.get("reservedPages") > 0 and
+                 reserved.get("nextPageSlot") == reserved.get("reservedPages") and
+                 reserved.get("mappedPages") == before.get("mappedPages"),
                  "early rejected reservation ledger is not exact")
-        _require(staged.get("ordinaryAllocatedCount") == 0 and staged.get("shadowAllocatedCount") == 1 and
-                 staged.get("reservedImageCount") == 1 and staged.get("reservationCount") == 1 and
-                 staged.get("nextImageId") == 2 and staged.get("reservedPages") == reserved.get("reservedPages") and
+        _require(staged.get("ordinaryAllocatedCount") == 1 and staged.get("shadowAllocatedCount") == 1 and
+                 staged.get("reservedImageCount") == 1 and staged.get("reservationCount") == 2 and
+                 staged.get("nextImageId") == 3 and staged.get("reservedPages") == reserved.get("reservedPages") and
                  staged.get("nextPageSlot") == reserved.get("nextPageSlot") and staged.get("mappedPages") >= 0,
                  "early rejected staging ledger is not exact")
-        _require(validated.get("ordinaryAllocatedCount") == 0 and validated.get("shadowAllocatedCount") == 1 and
-                 validated.get("reservedImageCount") == 1 and validated.get("reservationCount") == 1 and
-                 validated.get("nextImageId") == 2 and
+        _require(validated.get("ordinaryAllocatedCount") == 1 and validated.get("shadowAllocatedCount") == 1 and
+                 validated.get("reservedImageCount") == 1 and validated.get("reservationCount") == 2 and
+                 validated.get("nextImageId") == 3 and
                  validated.get("reservedPages") >= staged.get("reservedPages") and
                  validated.get("nextPageSlot") >= staged.get("nextPageSlot") and
                  validated.get("reservedPages") - staged.get("reservedPages") ==
@@ -172,11 +187,11 @@ def _verify_early_native_snapshots(early, request, accepted):
         _require(committed == parsed["after"][0] and
                  parsed["after-validate"][0]["shadowAllocatedCount"] == 1,
                  "early accepted commit ledger differs")
-        _require(committed.get("ordinaryAllocatedCount") == 0 and
+        _require(committed.get("ordinaryAllocatedCount") == 1 and
                  committed.get("shadowAllocatedCount") == 1 and
                  committed.get("reservedImageCount") == 1 and
-                 committed.get("reservationCount") == 1 and
-                 committed.get("nextImageId") == 2,
+                 committed.get("reservationCount") == 2 and
+                 committed.get("nextImageId") == 3,
                  "early accepted commit allocation ledger is not exact")
         target_name = ("AssemblyShadow.H1Count.Target" if request["family"] == "parameters"
                        else "AssemblyShadow.H1Nested.Target")
@@ -222,7 +237,8 @@ def _verify_early_native_snapshots(early, request, accepted):
                  sum(value.get("identityKey") == published.get("identityKey")
                      for value in physical_target_after) == 1 and
                  published.get("name") == expected_name and
-                 published.get("imageKind") == "Interpreter" and published.get("imageId") == 1 and
+                 published.get("imageKind") == "Interpreter" and
+                 published.get("imageId") == before.get("nextImageId") and
                  published.get("published") is True and published.get("mvidAvailable") is True and
                  isinstance(published.get("nativeAssemblyId"), str) and published.get("nativeAssemblyId") and
                  isinstance(published.get("nativeImageId"), str) and published.get("nativeImageId") and
@@ -257,7 +273,8 @@ def verify_early_receipt_document(early, early_bytes, request, *, build=None,
     can run.
     """
     _require(isinstance(early, dict), "early startup receipt must be an object")
-    _require(early.get("schemaVersion") == 1 and early.get("kind") == "H1CountEarlyStartupResult" and
+    _require(early.get("schemaVersion") == EARLY_EVIDENCE_SCHEMA_VERSION and
+             early.get("kind") == "H1CountEarlyStartupResult" and
              early.get("diagnosticOnly") is True and early.get("path") == "shadow",
              "early startup receipt header differs")
     supplied = _sha(early.get("receiptSha256"), "early startup receipt authentication")
@@ -299,6 +316,7 @@ def verify_early_receipt_document(early, early_bytes, request, *, build=None,
                  item.get("intCode") == expected_int_code,
                  "early startup operation evidence differs at " + phase)
     _require(early.get("baselineAlreadyUsed") is False, "early startup receipt reports baseline reuse")
+    _verify_witness_document(early.get("witness"))
     _verify_early_native_snapshots(early, request, accepted)
     if accepted:
         _require(early.get("result") == "Committed" and early.get("callbackReturnCode") == 0 and
@@ -346,6 +364,59 @@ def _unique_pairs(pairs):
             raise VerificationError("Duplicate JSON key: " + key)
         value[key] = item
     return value
+
+
+def _witness_keys(snapshot, witness, field, label):
+    values = snapshot.get(field)
+    _require(isinstance(values, list), label + " witness inventory is missing")
+    logical = field == "logicalAssemblies"
+    expected_kind = "Aot" if logical else "Interpreter"
+    matches = [value for value in values
+               if isinstance(value, dict) and value.get("name") == witness["assemblyName"] and
+               value.get("fullName") == witness["assemblyFullName"] and
+               value.get("imageKind") == expected_kind]
+    _require(len(matches) == 1, label + " witness identity is missing or ambiguous")
+    identity = matches[0]
+    state_valid = (identity.get("published") is False and identity.get("mvidAvailable") is False and
+                   identity.get("mvid") == "" and identity.get("imageId") == 0) if logical else (
+                  identity.get("published") is True and identity.get("mvidAvailable") is True and
+                  isinstance(identity.get("mvid"), str) and bool(identity["mvid"]) and
+                  identity.get("imageId") == 1)
+    _require(state_valid and isinstance(identity.get("nativeAssemblyId"), str) and
+             identity["nativeAssemblyId"] not in ("0", "0x0") and
+             isinstance(identity.get("nativeImageId"), str) and
+             identity["nativeImageId"] not in ("0", "0x0") and
+             isinstance(identity.get("identityKey"), str) and identity["identityKey"],
+             label + " witness identity is incomplete or has the wrong native publication state")
+    return [identity["identityKey"]]
+
+
+def _verify_witness_document(witness, *, require_file=True):
+    _require(isinstance(witness, dict), "ordinary witness observation is missing")
+    _require(witness.get("available", True) is True, "ordinary witness observation is unavailable")
+    path_value = witness.get("path")
+    _require(isinstance(path_value, str) and path_value.endswith(ORDINARY_WITNESS_RELATIVE_PATH),
+             "ordinary witness path is not the pinned M00 path")
+    path = _canonical_file(path_value, "ordinary witness") if require_file else None
+    _require(witness.get("sha256") == ORDINARY_WITNESS_SHA256 and
+             (path is None or _sha256(path) == ORDINARY_WITNESS_SHA256) and
+             witness.get("assemblyName") == ORDINARY_WITNESS_NAME and
+             witness.get("assemblyFullName") == ORDINARY_WITNESS_FULL_NAME and
+             witness.get("observationKind") == "NativeAssemblyIdentity",
+             "ordinary witness provenance or identity observation differs")
+
+
+def _verify_witness_snapshots(snapshots, witness):
+    _verify_witness_document(witness)
+    expected = (witness.get("logicalIdentityKeys"), witness.get("physicalIdentityKeys"),
+                witness.get("publishedIdentityKeys"))
+    supplied = all(isinstance(value, list) and len(value) == 1 and
+                   isinstance(value[0], str) and value[0] for value in expected)
+    _require(supplied, "ordinary witness native identity binding is incomplete")
+    for phase, snapshot in snapshots.items():
+        actual = tuple(_witness_keys(snapshot, witness, field, "native " + field + " at " + phase)
+                       for field in ("logicalAssemblies", "physicalAssemblies", "publishedInterpreterImages"))
+        _require(actual == expected, "ordinary witness native identity changed at " + phase)
 
 
 def read_json(path, label: str) -> tuple[dict, bytes]:
@@ -546,9 +617,12 @@ def _snapshot_checks(result, request, accepted):
             raise VerificationError("native ledger counters are invalid")
         snapshots[record["phase"]] = snapshot
     before = snapshots["before"]
-    _require(all(before[field] == 0 for field in numeric if field != "nextImageId") and
-             before["nextImageId"] == 1,
-             "native ledger was not empty before the diagnostic operation")
+    _verify_witness_snapshots(snapshots, result.get("witness"))
+    _require(before["ordinaryAllocatedCount"] == 1 and before["shadowAllocatedCount"] == 0 and
+             before["reservedImageCount"] == 0 and before["reservationCount"] == 1 and
+             before["nextImageId"] == 2 and before["reservedPages"] > 0 and
+             before["nextPageSlot"] == before["reservedPages"],
+             "native ledger did not retain exactly one preloaded ordinary witness")
     if request["flavor"] == "shadow":
         _require(snapshots["after-configure"] == before and snapshots["after-begin"] == before,
                  "shadow configure/begin changed the empty native ledger or assembly inventories")
@@ -564,29 +638,30 @@ def _snapshot_checks(result, request, accepted):
 
     final = snapshots["final"]
     if request["flavor"] == "ordinary":
-        _require(exact(final, 1, 0, 0, 1, 2) and
+        _require(exact(final, 2, 0, 0, 2, 3) and
                  final["reservedPages"] > 0 and
                  final["nextPageSlot"] == final["reservedPages"],
                  "ordinary ledger did not retain exactly one ordinary identity and page reservation")
     else:
         reserved = snapshots["after-reserve"]
-        _require(exact(reserved, 0, 0, 1, 1, 2) and reserved["reservedPages"] > 0 and
-                 reserved["nextPageSlot"] == reserved["reservedPages"] and reserved["mappedPages"] == 0,
+        _require(exact(reserved, 1, 0, 1, 2, 3) and reserved["reservedPages"] > 0 and
+                 reserved["nextPageSlot"] == reserved["reservedPages"] and
+                 reserved["mappedPages"] == before["mappedPages"],
                  "profile 2 reservation ledger is not exact")
         staged = snapshots["after-stage"]
-        _require(exact(staged, 0, 1, 1, 1, 2) and
+        _require(exact(staged, 1, 1, 1, 2, 3) and
                  staged["reservedPages"] == reserved["reservedPages"] and
                  staged["nextPageSlot"] == reserved["nextPageSlot"] and
                  staged["mappedPages"] >= reserved["mappedPages"],
                  "StageAssembly did not use exactly one reserved shadow identity")
         validated = snapshots["after-validate"]
-        _require(exact(validated, 0, 1, 1, 1, 2) and
+        _require(exact(validated, 1, 1, 1, 2, 3) and
                  validated["reservedPages"] >= reserved["reservedPages"] and
                  validated["nextPageSlot"] >= reserved["nextPageSlot"] and
                  validated["reservedPages"] - reserved["reservedPages"] ==
                  validated["nextPageSlot"] - reserved["nextPageSlot"] and
                  validated["mappedPages"] >= staged["mappedPages"] and
-                 exact(final, 0, 1, 1, 1, 2) and
+                 exact(final, 1, 1, 1, 2, 3) and
                  final["reservedPages"] >= reserved["reservedPages"] and
                  final["nextPageSlot"] >= reserved["nextPageSlot"] and
                  final["reservedPages"] - reserved["reservedPages"] ==
@@ -778,6 +853,10 @@ def _verify_publication(result, request, accepted, artifact):
     publication = result.get("publication") or {}
     shadow = request["flavor"] == "shadow"
     if accepted and artifact is not None:
+        snapshots = result.get("snapshots") or []
+        before = next((record.get("snapshot") for record in snapshots
+                       if isinstance(record, dict) and record.get("phase") == "before" and
+                       isinstance(record.get("snapshot"), dict)), None)
         _require(publication.get("publicAssemblyName") == artifact.get("name") and
                  publication.get("publicAssemblyFullName") == artifact.get("fullName") and
                  publication.get("publicAssemblyMvid") == artifact.get("mvid") and
@@ -785,7 +864,8 @@ def _verify_publication(result, request, accepted, artifact):
                  publication.get("imageKind") == "Interpreter" and
                  isinstance(publication.get("nativeAssemblyId"), str) and publication.get("nativeAssemblyId") and
                  isinstance(publication.get("nativeImageId"), str) and publication.get("nativeImageId") and
-                 isinstance(publication.get("imageId"), int) and publication.get("imageId") > 0,
+                 isinstance(publication.get("imageId"), int) and publication.get("imageId") > 0 and
+                 isinstance(before, dict) and publication.get("imageId") == before.get("nextImageId"),
                  "published assembly identity differs from the authenticated fixture")
     _operation_checks(result, accepted, shadow)
     if not shadow:
@@ -920,7 +1000,8 @@ def verify_result_document(result: dict, request: dict, *, build: dict | None = 
         if audit_observation is not None:
             fresh_audit = _verify_audit_observation(
                 audit_observation, shape, request, fixture_case)
-    _require(result.get("schemaVersion") == 1 and result.get("kind") == "H1CountDiagnosticResult",
+    _require(result.get("schemaVersion") == RESULT_EVIDENCE_SCHEMA_VERSION and
+             result.get("kind") == "H1CountDiagnosticResult",
              "diagnostic result header differs")
     _require(result.get("family") == request["family"] and result.get("caseId") == request["caseId"] and
              result.get("path") == request["flavor"] and result.get("expectedCount") == expected_count and
@@ -1045,7 +1126,8 @@ def _write_new(path: Path, report: dict):
 
 def verify_evidence(launch_path: Path, request: dict) -> dict:
     """Authenticate and evaluate one cell without writing a verification report."""
-    report = {"schemaVersion": 1, "kind": "H1CountResultVerification",
+    report = {"schemaVersion": RESULT_EVIDENCE_SCHEMA_VERSION,
+              "kind": "H1CountResultVerification",
               "requested": dict(request), "result": "Failed"}
     result_document = None
     launch_document = None

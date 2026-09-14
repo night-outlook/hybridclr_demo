@@ -19,6 +19,9 @@ namespace AssemblyShadowDemo
         public const int MaxNativeJsonCharacters = 1024 * 1024;
         private const string ParameterAssembly = "AssemblyShadow.H1Count.Target";
         private const string NestedAssembly = "AssemblyShadow.H1Nested.Target";
+        public const string OrdinaryWitnessAssembly = "AssemblyShadowBaseline.HotUpdate";
+        public const string OrdinaryWitnessRelativePath = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes";
+        public const string OrdinaryWitnessSha256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27";
         private static string s_lastReceiptJson;
         private static Receipt s_lastReceipt;
         [Preserve]
@@ -55,6 +58,9 @@ namespace AssemblyShadowDemo
                 receipt.fixtureSize = bytes.LongLength;
                 receipt.inputHashBefore = Sha256(bytes);
                 Require(receipt.inputHashBefore == input.fixtureSha256, "Fixture SHA-256 differs from the launcher digest.");
+                // Establish a real ordinary allocation and execution witness before
+                // any operation that can enter a retained Failed Shadow state.
+                receipt.witness = LoadOrdinaryWitness();
                 Snapshot(receipt, "before");
                 string target = input.family == "parameters" ? ParameterAssembly : NestedAssembly;
                 Operation(receipt, "configure", delegate { return AssemblyShadowRuntime.ConfigureCandidates(input.baselineBuildId,
@@ -141,6 +147,109 @@ namespace AssemblyShadowDemo
             Require(!string.IsNullOrEmpty(nativeJson) && nativeJson.Length <= MaxNativeJsonCharacters &&
                 !string.IsNullOrEmpty(diagnosticsJson) && diagnosticsJson.Length <= MaxNativeJsonCharacters,
                 "Native startup observation exceeds its bounds or is empty.");
+            BindWitnessSnapshot(receipt.witness, nativeJson, phase);
+        }
+
+        // The startup assembly intentionally has no dependency on the scene
+        // diagnostics DTO assembly. Extract only the bounded witness rows from
+        // the already authenticated native JSON and bind them into the receipt.
+        private static void BindWitnessSnapshot(WitnessReceipt witness, string json, string phase)
+        {
+            Require(witness != null, "Ordinary witness is missing at " + phase + ".");
+            string[] logical = ReadWitnessKey(json, "logicalAssemblies", witness, phase);
+            string[] physical = ReadWitnessKey(json, "physicalAssemblies", witness, phase);
+            string[] published = ReadWitnessKey(json, "publishedInterpreterImages", witness, phase);
+            if (witness.logicalIdentityKeys == null)
+            {
+                witness.logicalIdentityKeys = logical;
+                witness.physicalIdentityKeys = physical;
+                witness.publishedIdentityKeys = published;
+            }
+            else
+            {
+                Require(SameStrings(witness.logicalIdentityKeys, logical) &&
+                    SameStrings(witness.physicalIdentityKeys, physical) &&
+                    SameStrings(witness.publishedIdentityKeys, published),
+                    "Ordinary witness native identity changed at " + phase + ".");
+            }
+        }
+
+        private static string[] ReadWitnessKey(string json, string inventory, WitnessReceipt witness, string phase)
+        {
+            bool logicalInventory = inventory == "logicalAssemblies";
+            string marker = "\"" + inventory + "\":[";
+            int start = json.IndexOf(marker, StringComparison.Ordinal);
+            Require(start >= 0, "Native " + inventory + " inventory is unavailable at " + phase + ".");
+            start += marker.Length;
+            int end = json.IndexOf(']', start);
+            Require(end >= start, "Native " + inventory + " inventory is malformed at " + phase + ".");
+            string key = null; int matches = 0;
+            int cursor = start;
+            while (cursor < end)
+            {
+                int objectStart = json.IndexOf('{', cursor, end - cursor);
+                if (objectStart < 0) break;
+                int objectEnd = json.IndexOf('}', objectStart, end - objectStart);
+                Require(objectEnd > objectStart, "Native " + inventory + " identity is malformed at " + phase + ".");
+                string value = json.Substring(objectStart, objectEnd - objectStart + 1);
+                if (ReadJsonString(value, "name") == witness.assemblyName &&
+                    ReadJsonString(value, "fullName") == witness.assemblyFullName &&
+                    ReadJsonString(value, "imageKind") == (logicalInventory ? "Aot" : "Interpreter"))
+                {
+                    ++matches;
+                    bool complete = logicalInventory
+                        ? !ReadJsonBool(value, "published") && !ReadJsonBool(value, "mvidAvailable") &&
+                            string.IsNullOrEmpty(ReadJsonString(value, "mvid")) && ReadJsonUInt(value, "imageId") == 0
+                        : ReadJsonBool(value, "published") && ReadJsonBool(value, "mvidAvailable") &&
+                            !string.IsNullOrEmpty(ReadJsonString(value, "mvid")) && ReadJsonUInt(value, "imageId") == 1;
+                    Require(complete &&
+                        NonzeroId(ReadJsonString(value, "nativeAssemblyId")) &&
+                        NonzeroId(ReadJsonString(value, "nativeImageId")) &&
+                        !string.IsNullOrEmpty(ReadJsonString(value, "identityKey")),
+                        "Native " + inventory + " witness identity is incomplete at " + phase + ".");
+                    key = ReadJsonString(value, "identityKey");
+                }
+                cursor = objectEnd + 1;
+            }
+            Require(matches == 1, "Native " + inventory + " witness identity is missing or ambiguous at " + phase + ".");
+            return new[] { key };
+        }
+
+        private static bool NonzeroId(string value) { return !string.IsNullOrEmpty(value) && value != "0" && value != "0x0"; }
+
+        private static string ReadJsonString(string json, string name)
+        {
+            string marker = "\"" + name + "\":\"";
+            int start = json.IndexOf(marker, StringComparison.Ordinal);
+            if (start < 0) return null;
+            start += marker.Length;
+            int end = json.IndexOf('"', start);
+            if (end < 0 || (end > start && json[end - 1] == '\\')) return null;
+            return json.Substring(start, end - start);
+        }
+
+        private static bool ReadJsonBool(string json, string name)
+        {
+            string marker = "\"" + name + "\":";
+            int start = json.IndexOf(marker, StringComparison.Ordinal);
+            return start >= 0 && json.IndexOf("true", start + marker.Length, StringComparison.Ordinal) == start + marker.Length;
+        }
+
+        private static ulong ReadJsonUInt(string json, string name)
+        {
+            string marker = "\"" + name + "\":";
+            int start = json.IndexOf(marker, StringComparison.Ordinal);
+            if (start < 0) return 0;
+            start += marker.Length; int end = start;
+            while (end < json.Length && json[end] >= '0' && json[end] <= '9') ++end;
+            ulong value; return ulong.TryParse(json.Substring(start, end - start), NumberStyles.None, CultureInfo.InvariantCulture, out value) ? value : 0;
+        }
+
+        private static bool SameStrings(string[] left, string[] right)
+        {
+            if (left == null || right == null || left.Length != right.Length) return false;
+            for (int i = 0; i < left.Length; ++i) if (left[i] != right[i]) return false;
+            return true;
         }
 
         private static void RequireState(AssemblyShadowState expected)
@@ -175,6 +284,35 @@ namespace AssemblyShadowDemo
                 Require(stream.ReadByte() == -1, "Fixture grew during bounded read.");
                 return bytes;
             }
+        }
+
+        /// <summary>Loads the pinned M00 ordinary image and leaves identity/publication proof to the native snapshot.</summary>
+        [Preserve]
+        public static WitnessReceipt LoadOrdinaryWitness()
+        {
+            string path = Arguments.One(Environment.GetCommandLineArgs(), "-shadowH1Witness");
+            Require(!string.IsNullOrEmpty(path), "The absolute ordinary witness argument is required.");
+            byte[] bytes = ReadFixture(path);
+            string sha256 = Sha256(bytes);
+            Require(sha256 == OrdinaryWitnessSha256, "Ordinary witness bytes differ from the pinned M00 image.");
+            var assembly = System.Reflection.Assembly.Load(bytes);
+            Require(assembly != null && assembly.GetName().Name == OrdinaryWitnessAssembly &&
+                assembly.FullName == "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Ordinary witness assembly identity differs from the pinned M00 image.");
+            return new WitnessReceipt {
+                path = path, sha256 = sha256, assemblyName = assembly.GetName().Name,
+                assemblyFullName = assembly.FullName, observationKind = "NativeAssemblyIdentity"
+            };
+        }
+
+        [Preserve]
+        public static void RequireWitnessBytes(string path)
+        {
+            string canonical = Path.GetFullPath(path ?? "");
+            Require(canonical == path && canonical.EndsWith(OrdinaryWitnessRelativePath, StringComparison.Ordinal),
+                "Ordinary witness path is not the pinned M00 path.");
+            Require(Sha256(ReadFixture(canonical)) == OrdinaryWitnessSha256,
+                "Ordinary witness bytes changed after its production load.");
         }
 
         private static void RequireAbsoluteRegularFile(string path)
@@ -269,7 +407,7 @@ namespace AssemblyShadowDemo
 
         public sealed class Receipt
         {
-            public int schemaVersion = 1, callbackReturnCode = 2, processId, managedThreadId, expectedCount;
+            public int schemaVersion = 2, callbackReturnCode = 2, processId, managedThreadId, expectedCount;
             public string kind = "H1CountEarlyStartupResult", result = "Failed", error = "", disposition = "Uncompleted";
             public string resultPath = "", family = "", path = "shadow", caseId = "", baselineBuildId = "", runtimeAbiHash = "";
             public string expectedOutcome = "", fixturePath = "", fixtureSha256Expected = "", inputHashBefore = "", inputHashAfter = "";
@@ -278,9 +416,16 @@ namespace AssemblyShadowDemo
             public bool diagnosticOnly = true, committed, baselineAlreadyUsed;
             public List<OperationReceipt> operations = new List<OperationReceipt>();
             public List<SnapshotReceipt> snapshots = new List<SnapshotReceipt>();
+            public WitnessReceipt witness;
         }
         public sealed class OperationReceipt { public string phase, code; public int intCode; }
         public sealed class SnapshotReceipt { public string phase, nativeCode, nativeJson, diagnosticsCode, diagnosticsJson; }
+        [Preserve]
+        public sealed class WitnessReceipt
+        {
+            public string path, sha256, assemblyName, assemblyFullName, observationKind;
+            public string[] logicalIdentityKeys, physicalIdentityKeys, publishedIdentityKeys;
+        }
 
         public static class ReceiptCodec
         {
@@ -313,6 +458,16 @@ namespace AssemblyShadowDemo
                 Property(b, "expectedOutcome", r.expectedOutcome); Property(b, "expectedCount", r.expectedCount);
                 Property(b, "fixturePath", r.fixturePath); Property(b, "fixtureSha256Expected", r.fixtureSha256Expected); Property(b, "fixtureSize", r.fixtureSize);
                 Property(b, "inputHashBefore", r.inputHashBefore); Property(b, "inputHashAfter", r.inputHashAfter);
+                Name(b, "witness"); b.Append('{');
+                Property(b, "path", r.witness == null ? "" : r.witness.path);
+                Property(b, "sha256", r.witness == null ? "" : r.witness.sha256);
+                Property(b, "assemblyName", r.witness == null ? "" : r.witness.assemblyName);
+                Property(b, "assemblyFullName", r.witness == null ? "" : r.witness.assemblyFullName);
+                Property(b, "observationKind", r.witness == null ? "" : r.witness.observationKind);
+                Array(b, "logicalIdentityKeys", r.witness == null ? null : r.witness.logicalIdentityKeys);
+                Array(b, "physicalIdentityKeys", r.witness == null ? null : r.witness.physicalIdentityKeys);
+                Array(b, "publishedIdentityKeys", r.witness == null ? null : r.witness.publishedIdentityKeys);
+                b.Append('}');
                 Property(b, "startUtc", r.startUtc); Property(b, "endUtc", r.endUtc); Property(b, "elapsedTicks", r.elapsedTicks); Property(b, "stopwatchFrequency", r.stopwatchFrequency);
                 Property(b, "committed", r.committed); Property(b, "baselineAlreadyUsed", r.baselineAlreadyUsed);
                 Name(b, "operations"); b.Append('[');
@@ -324,6 +479,12 @@ namespace AssemblyShadowDemo
             private static void Property(StringBuilder b, string name, string value) { Name(b, name); String(b, value ?? ""); }
             private static void Property(StringBuilder b, string name, long value) { Name(b, name); b.Append(value.ToString(CultureInfo.InvariantCulture)); }
             private static void Property(StringBuilder b, string name, bool value) { Name(b, name); b.Append(value ? "true" : "false"); }
+            private static void Array(StringBuilder b, string name, string[] values)
+            {
+                Name(b, name); b.Append('[');
+                if (values != null) for (int i = 0; i < values.Length; ++i) { if (i != 0) b.Append(','); String(b, values[i]); }
+                b.Append(']');
+            }
             private static void Name(StringBuilder b, string name) { if (b[b.Length - 1] != '{') b.Append(','); String(b, name); b.Append(':'); }
             private static void String(StringBuilder b, string value)
             {

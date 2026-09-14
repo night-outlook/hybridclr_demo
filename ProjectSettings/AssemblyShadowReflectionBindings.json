@@ -162,6 +162,36 @@
         }
       ],
       "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+    },
+    {
+      "id": "h1-count-ordinary-witness-image",
+      "assembly": "AssemblyShadowDemo.Bootstrap",
+      "typeName": "AssemblyShadowDemo.H1CountEarlyStartup",
+      "methodSignature": "AssemblyShadowDemo.H1CountEarlyStartup/WitnessReceipt AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness()",
+      "originalMethodHash": "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e",
+      "operationIndex": 25,
+      "additionalMethodVariants": [
+        {
+          "originalMethodHash": "4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e",
+          "operationIndex": 25
+        }
+      ],
+      "allowedTypes": [],
+      "reason": "The H1 early-startup witness may load only the exact M00 ordinary image before count operations. Clone and SHA-256-check bytes before Assembly.Load; preserve the pinned provider identity and M00-HOTUPDATE-OK semantics. This site does not authorize candidate images or general byte loads.",
+      "kind": "FixedAssemblyBytes",
+      "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "providerSemanticVariants": [
+        {
+          "compilerMode": "Development",
+          "semanticHash": "7af4cf568c2c6bccebd58e780846f22826472629ca972e5abfcd02a8ba636369"
+        },
+        {
+          "compilerMode": "Release",
+          "semanticHash": "e34d8fe97ff909d878e91a081565fd7afaee5d1672da091eb58aadbb0289d022"
+        }
+      ],
+      "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
     }
   ]
 }

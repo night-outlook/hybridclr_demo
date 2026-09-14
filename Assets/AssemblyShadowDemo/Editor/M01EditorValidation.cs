@@ -28,7 +28,8 @@ namespace AssemblyShadowDemo.Editor
             File.WriteAllText("_temp/AssemblyShadow/m01-editor-validation.json", JsonUtility.ToJson(evidence, true));
             Debug.Log("[AssemblyShadow M01] Editor validation: " + JsonUtility.ToJson(evidence));
             if (!evidence.passed)
-                throw new BuildFailedException("M01 editor validation failed.");
+                throw new BuildFailedException("M01 editor validation failed: " + string.Join(" | ",
+                    cases.Where(item => !item.passed).Select(item => item.name + ": " + item.error)));
         }
 
         private static void CheckBootstrapAssembly()

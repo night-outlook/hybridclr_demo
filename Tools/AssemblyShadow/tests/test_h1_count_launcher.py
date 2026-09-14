@@ -22,6 +22,27 @@ def load_launcher():
 
 
 class H1CountPlayerLauncherTests(unittest.TestCase):
+    def test_result_identity_requires_current_schema_two(self):
+        launcher = load_launcher()
+        result_path = Path("/tmp/h1-result.json")
+        fixture = Path("/tmp/h1-fixture.dll")
+        fixture_hash = "a" * 64
+        build = {"buildGuid": "build", "featureEnabled": True, "cppConfiguration": "Debug"}
+        case = {"caseId": "H1R-P01-a", "count": 0, "expected": "Accepted"}
+        result = {"schemaVersion": 2, "kind": "H1CountDiagnosticResult", "result": "Passed",
+                  "resultPath": str(result_path), "processId": 123, "buildGuid": "build",
+                  "family": "parameters", "path": "ordinary", "caseId": "H1R-P01-a",
+                  "expectedCount": 0, "fixturePath": str(fixture),
+                  "inputHashBefore": fixture_hash, "inputHashAfter": fixture_hash,
+                  "fixtureSha256Expected": fixture_hash, "expectedOutcome": "Accepted",
+                  "expectedFeatureEnabled": True, "expectedCppConfiguration": "Debug",
+                  "operationSucceeded": True}
+        self.assertTrue(launcher.validate_result(result, result_path, 123, build, "parameters",
+                                                "ordinary", case, fixture, fixture_hash)["passed"])
+        result["schemaVersion"] = 1
+        self.assertFalse(launcher.validate_result(result, result_path, 123, build, "parameters",
+                                                 "ordinary", case, fixture, fixture_hash)["passed"])
+
     def test_immutable_native_snapshot_survives_live_drift_but_rejects_snapshot_drift(self):
         launcher = load_launcher()
         with tempfile.TemporaryDirectory() as folder:
@@ -107,7 +128,8 @@ class H1CountPlayerLauncherTests(unittest.TestCase):
             command = launcher.build_player_command(
                 Path("/tmp/H1Count.app/Contents/MacOS/H1Count"), family, path,
                 "H1R-N03-interleaved", Path("/tmp/H1R-N03-interleaved.dll"),
-                "a" * 64, Path("/tmp/result.json"), Path("/tmp/player.log"))
+                "a" * 64, Path("/tmp/result.json"), Path("/tmp/player.log"),
+                witness_path=Path("/tmp/ordinary-witness.dll.bytes"))
             self.assertEqual(family, command[command.index("-shadowH1Family") + 1])
             self.assertEqual(path, command[command.index("-shadowH1Path") + 1])
             self.assertEqual("/tmp/H1R-N03-interleaved.dll",
@@ -116,6 +138,8 @@ class H1CountPlayerLauncherTests(unittest.TestCase):
                              command[command.index("-shadowH1FixtureSha256") + 1])
             self.assertEqual("/tmp/result.json",
                              command[command.index("-shadowH1Result") + 1])
+            self.assertEqual("/tmp/ordinary-witness.dll.bytes",
+                             command[command.index("-shadowH1Witness") + 1])
             self.assertEqual("-logFile", command[-2])
             self.assertEqual("/tmp/player.log", command[-1])
 

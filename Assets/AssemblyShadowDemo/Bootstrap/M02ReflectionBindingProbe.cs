@@ -18,6 +18,26 @@ namespace AssemblyShadowDemo
         public const string StagedConfiguration = "AssemblyShadow/M02/reflection-bindings.json";
         private const string GuardPrefix = "__AssemblyShadowReflectionBinding_";
         private const string Candidate = "AssemblyA.Implementation.Internal.VersionedPrefabComponent, AssemblyA.Implementation.Internal";
+        private const string M00ImagePath = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes";
+        private const string M00ImageSha256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27";
+        private const string M00ProviderAssemblyIdentity = "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
+        private const string H1WitnessAssembly = "AssemblyShadowDemo.Bootstrap";
+        private const string H1WitnessType = "AssemblyShadowDemo.H1CountEarlyStartup";
+        private const string H1WitnessMethod = "AssemblyShadowDemo.H1CountEarlyStartup/WitnessReceipt AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness()";
+        private const string H1WitnessPrimaryHash = "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e";
+        private const string H1WitnessVariantHash = "4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e";
+        private const int H1WitnessOperationIndex = 25;
+        private const string H1WitnessProviderSemanticDevelopment = "7af4cf568c2c6bccebd58e780846f22826472629ca972e5abfcd02a8ba636369";
+        private const string H1WitnessProviderSemanticRelease = "e34d8fe97ff909d878e91a081565fd7afaee5d1672da091eb58aadbb0289d022";
+        private static readonly string[] ExpectedSiteIds =
+        {
+            "urp-debug-ui-prefab-types",
+            "urp-serializable-enum-player",
+            "urp-volume-assembly-domain",
+            "urp-volume-type-domain",
+            "m00-normal-hot-update-image",
+            "h1-count-ordinary-witness-image",
+        };
 
         [Serializable] private sealed class Configuration
         {
@@ -31,11 +51,28 @@ namespace AssemblyShadowDemo
             public string id;
             public string assembly;
             public string typeName;
+            public string methodSignature;
+            public string originalMethodHash;
+            public int operationIndex;
+            public MethodVariant[] additionalMethodVariants;
             public string[] allowedTypes;
             public string kind;
             public string imageSha256;
             public string providerAssemblyIdentity;
+            public SemanticVariant[] providerSemanticVariants;
             public string imagePath;
+        }
+
+        [Serializable] private sealed class MethodVariant
+        {
+            public string originalMethodHash;
+            public int operationIndex;
+        }
+
+        [Serializable] private sealed class SemanticVariant
+        {
+            public string compilerMode;
+            public string semanticHash;
         }
 
         [Serializable] public sealed class AllowedResult
@@ -84,6 +121,12 @@ namespace AssemblyShadowDemo
             public bool fixedImageTamperRejected;
             public bool fixedImageNullRejected;
             public bool fixedImageCallerBytesUnchanged;
+            public bool h1WitnessContractValidated;
+            public string h1WitnessMethod;
+            public string h1WitnessPrimaryHash;
+            public int h1WitnessOperationIndex;
+            public string h1WitnessImageSha256;
+            public string h1WitnessProviderAssembly;
             public AllowedResult[] allowed = new AllowedResult[0];
             public DeniedResult[] denied = new DeniedResult[0];
             public string error;
@@ -122,7 +165,8 @@ namespace AssemblyShadowDemo
             result.configurationSha256 = ShadowPatchFileProvider.Hash(bytes);
             var configuration = JsonUtility.FromJson<Configuration>(Encoding.UTF8.GetString(bytes));
             Require(configuration != null && configuration.schemaVersion == 4 && configuration.transformerVersion == 4 &&
-                configuration.sites != null && configuration.sites.Length == 5, "Unexpected finite binding fixture.");
+                configuration.sites != null, "Unexpected finite binding fixture.");
+            ValidateExactSiteMembership(configuration.sites.Select(site => site == null ? null : site.id));
             Site canvasSite = configuration.sites.Single(site => site.id == "urp-debug-ui-prefab-types");
             Site enumSite = configuration.sites.Single(site => site.id == "urp-serializable-enum-player");
             Require(canvasSite.allowedTypes != null && canvasSite.allowedTypes.Length == 26 &&
@@ -191,6 +235,7 @@ namespace AssemblyShadowDemo
             }
             ProbeDiscovery(result, configuration);
             ProbeFixedImage(result, configuration);
+            ProbeH1Witness(result, configuration);
         }
 
         private static void ProbeDiscovery(ProbeResult result, Configuration configuration)
@@ -233,12 +278,16 @@ namespace AssemblyShadowDemo
         private static void ProbeFixedImage(ProbeResult result, Configuration configuration)
         {
             Site site = configuration.sites.Single(value => value.id == "m00-normal-hot-update-image");
-            Require(site.kind == "FixedAssemblyBytes" && site.allowedTypes.Length == 0, "Unexpected fixed-image contract.");
+            RequireFixedImageSite(site, "m00-normal-hot-update-image", "AssemblyShadowBaseline.Aot",
+                "AssemblyShadowBaseline.BaselineBootstrap", "System.Void AssemblyShadowBaseline.BaselineBootstrap::Start()",
+                "5f6005b4130594f1c951bd8aba50f784b27976027977e8108ff6662170b87c22", 28,
+                "27b4708dcf832f298f02c6939e548a06d0e34de908bf76743eebb0e80e22ed75", 23,
+                M00ImagePath, M00ImageSha256, M00ProviderAssemblyIdentity);
             MethodInfo guard = FindGuard(typeof(AssemblyShadowBaseline.BaselineBootstrap), site, typeof(Assembly), typeof(byte[]));
             result.fixedImageGuard = guard.Name;
             Require(guard.Name.Substring(GuardPrefix.Length, 64) == result.configurationHash, "Mixed fixed-image configuration.");
             byte[] image = File.ReadAllBytes(Path.Combine(Application.streamingAssetsPath,
-                "AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"));
+                M00ImagePath.Substring("Assets/StreamingAssets/".Length)));
             result.fixedImageSha256 = ShadowPatchFileProvider.Hash(image);
             Require(result.fixedImageSha256 == site.imageSha256, "Staged normal hot-update bytes differ from the fixed contract.");
             byte[] altered = (byte[])image.Clone();
@@ -258,6 +307,68 @@ namespace AssemblyShadowDemo
             Require(result.fixedImageLoadedMarker == "M00-HOTUPDATE-OK", "The fixed normal hot-update method did not execute.");
             result.fixedImageCallerBytesUnchanged = ShadowPatchFileProvider.Hash(image) == result.fixedImageSha256;
             Require(result.fixedImageCallerBytesUnchanged, "The guard modified caller-owned image bytes.");
+        }
+
+        private static void ProbeH1Witness(ProbeResult result, Configuration configuration)
+        {
+            Site site = configuration.sites.Single(value => value.id == "h1-count-ordinary-witness-image");
+            RequireFixedImageSite(site, "h1-count-ordinary-witness-image", H1WitnessAssembly, H1WitnessType, H1WitnessMethod,
+                H1WitnessPrimaryHash, H1WitnessOperationIndex, H1WitnessVariantHash, H1WitnessOperationIndex,
+                M00ImagePath, M00ImageSha256, M00ProviderAssemblyIdentity);
+            Require(site.providerSemanticVariants != null && site.providerSemanticVariants.Length == 2,
+                "Unexpected H1 witness semantic variants.");
+            Require(site.providerSemanticVariants.Any(value => value != null && value.compilerMode == "Development" &&
+                value.semanticHash == H1WitnessProviderSemanticDevelopment) &&
+                site.providerSemanticVariants.Any(value => value != null && value.compilerMode == "Release" &&
+                value.semanticHash == H1WitnessProviderSemanticRelease),
+                "Unexpected H1 witness provider semantics.");
+            ValidateH1WitnessContract(site.methodSignature, site.originalMethodHash, site.operationIndex,
+                site.additionalMethodVariants[0].originalMethodHash, site.additionalMethodVariants[0].operationIndex,
+                site.imageSha256, site.providerAssemblyIdentity);
+            result.h1WitnessContractValidated = true;
+            result.h1WitnessMethod = site.methodSignature;
+            result.h1WitnessPrimaryHash = site.originalMethodHash;
+            result.h1WitnessOperationIndex = site.operationIndex;
+            result.h1WitnessImageSha256 = site.imageSha256;
+            result.h1WitnessProviderAssembly = site.providerAssemblyIdentity;
+        }
+
+        private static void RequireFixedImageSite(Site site, string expectedId, string expectedAssembly, string expectedType,
+            string expectedMethod, string expectedHash, int expectedOperationIndex, string expectedVariantHash,
+            int expectedVariantOperationIndex, string expectedImagePath, string expectedImageSha256,
+            string expectedProviderAssemblyIdentity)
+        {
+            Require(site != null && site.id == expectedId && site.assembly == expectedAssembly &&
+                site.typeName == expectedType && site.methodSignature == expectedMethod &&
+                site.originalMethodHash == expectedHash && site.operationIndex == expectedOperationIndex &&
+                site.kind == "FixedAssemblyBytes" && site.allowedTypes != null && site.allowedTypes.Length == 0 &&
+                site.imagePath == expectedImagePath && site.imageSha256 == expectedImageSha256 &&
+                site.providerAssemblyIdentity == expectedProviderAssemblyIdentity,
+                "Unexpected fixed-image contract: " + expectedId);
+            Require(site.additionalMethodVariants != null && site.additionalMethodVariants.Length == 1 &&
+                site.additionalMethodVariants[0] != null &&
+                site.additionalMethodVariants[0].originalMethodHash == expectedVariantHash &&
+                site.additionalMethodVariants[0].operationIndex == expectedVariantOperationIndex,
+                "Unexpected fixed-image method variants: " + expectedId);
+        }
+
+        private static void ValidateExactSiteMembership(IEnumerable<string> siteIds)
+        {
+            string[] observed = siteIds == null ? null : siteIds.ToArray();
+            Require(observed != null && observed.Length == ExpectedSiteIds.Length &&
+                observed.All(id => ExpectedSiteIds.Contains(id, StringComparer.Ordinal)) &&
+                ExpectedSiteIds.All(id => observed.Count(value => value == id) == 1),
+                "Unexpected finite binding site membership.");
+        }
+
+        private static void ValidateH1WitnessContract(string methodSignature, string originalMethodHash, int operationIndex,
+            string variantHash, int variantOperationIndex, string imageSha256, string providerAssemblyIdentity)
+        {
+            Require(methodSignature == H1WitnessMethod && originalMethodHash == H1WitnessPrimaryHash &&
+                operationIndex == H1WitnessOperationIndex && variantHash == H1WitnessVariantHash &&
+                variantOperationIndex == H1WitnessOperationIndex && imageSha256 == M00ImageSha256 &&
+                providerAssemblyIdentity == M00ProviderAssemblyIdentity,
+                "Unexpected H1 witness acquisition contract.");
         }
 
         [UnityEngine.Scripting.Preserve]

@@ -103,12 +103,12 @@ class H1CountMatrixTests(unittest.TestCase):
             startup_rejected = flavor == "shadow" and expected["expectedOutcome"] == "ControlledRejected"
             early_path = root / (cell_id.replace("/", "_") + ".early.json")
             if startup_rejected:
-                write_json(early_path, {"schemaVersion": 1, "kind": "H1CountEarlyStartupResult",
+                write_json(early_path, {"schemaVersion": 2, "kind": "H1CountEarlyStartupResult",
                                         "result": "ExpectedValidationRejection", "callbackReturnCode": 1,
                                         "committed": False, "family": family, "caseId": case_id,
                                         "path": "shadow", "processId": process_id})
             else:
-                write_json(result_path, {"schemaVersion": 1, "kind": "H1CountDiagnosticResult", "result": "Passed",
+                write_json(result_path, {"schemaVersion": 2, "kind": "H1CountDiagnosticResult", "result": "Passed",
                                          "family": family, "caseId": case_id, "path": flavor,
                                          "processId": process_id, "buildGuid": build_guid,
                                          "expectedOutcome": expected["expectedOutcome"],

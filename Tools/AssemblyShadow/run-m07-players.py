@@ -73,9 +73,11 @@ def collect_tree(files: set[Path], root: Path) -> None:
             files.add(path.resolve(strict=True))
 
 
-def collect_inputs(manifest_path: Path, replay_path: Path | None, builds: tuple[Path, Path]) -> set[Path]:
+def collect_inputs(manifest_path: Path, replay_path: Path | None, builds: tuple[Path, Path],
+                   early_capsules: tuple[Path, ...] = ()) -> set[Path]:
     manifest = read_object(manifest_path)
     files = {manifest_path}
+    files.update(early_capsules)
     if replay_path is not None:
         files.add(replay_path)
         replay = read_object(replay_path)
@@ -132,6 +134,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--on-build", required=True, type=canonical_file)
     parser.add_argument("--off-build", required=True, type=canonical_file)
     parser.add_argument("--replay-receipt", type=canonical_file)
+    parser.add_argument("--early-capsule-root", type=Path,
+                        help="Directory containing one authenticated <M07-mode>.capsule per native-ON mode")
     parser.add_argument("--output-root", required=True, type=Path)
     parser.add_argument("--mode", action="append", choices=MODES)
     parser.add_argument("--timeout", type=int, default=900)
@@ -151,7 +155,15 @@ def main(argv: list[str] | None = None) -> int:
     baseline = manifest["baselineBuildId"]
     on = load_build(project, args.on_build, "NativeOn", baseline)
     off = load_build(project, args.off_build, "NativeOff", baseline)
-    immutable_inputs = collect_inputs(args.fixture_manifest, args.replay_receipt, (args.on_build, args.off_build))
+    early_capsules = {}
+    if args.early_capsule_root is not None:
+        root = args.early_capsule_root
+        require(root.is_absolute() and root == root.resolve(strict=True) and root.is_dir() and not root.is_symlink(),
+                "Early capsule root must be a canonical absolute directory")
+        early_capsules = {mode: canonical_file(root / (mode + ".capsule"))
+                          for mode in modes if mode not in OFF_MODES}
+    immutable_inputs = collect_inputs(args.fixture_manifest, args.replay_receipt, (args.on_build, args.off_build),
+                                      tuple(early_capsules.values()))
     before = {str(path): digest(path) for path in sorted(immutable_inputs)}
 
     output_root.mkdir()
@@ -166,9 +178,17 @@ def main(argv: list[str] | None = None) -> int:
         log_path = output_root / (mode + ".unity.log")
         console_path = output_root / (mode + ".console.log")
         command = [str(executable), "-batchmode", "-nographics",
+                   "-shadowH1Path", "ordinary",
                    "-shadowM07Mode", mode, "-shadowM07Fixtures", str(args.fixture_manifest),
                    "-shadowM07PlayerReceipt", str(receipt_path),
                    "-shadowM07Result", str(result_path), "-logFile", str(log_path)]
+        early_result_path = None
+        if mode in early_capsules:
+            early_capsule = early_capsules[mode]
+            early_result_path = results / ("r01-early-" + mode + ".json")
+            command[3:3] = ["-shadowEarlyCapsule", str(early_capsule),
+                            "-shadowEarlyCapsuleSha256", digest(early_capsule),
+                            "-shadowEarlyResult", str(early_result_path)]
         started = time.time()
         timed_out = False
         with console_path.open("xb") as console:
@@ -186,20 +206,32 @@ def main(argv: list[str] | None = None) -> int:
                     process.kill()
                     exit_code = process.wait(timeout=15)
         outcome = None
+        early_outcome = None
         error = ""
         if result_path.is_file():
             try:
                 outcome = read_object(result_path)
             except (OSError, ValueError, json.JSONDecodeError) as problem:
                 error = str(problem)
+        if early_result_path is not None and early_result_path.is_file():
+            try:
+                early_outcome = read_object(early_result_path)
+            except (OSError, ValueError, json.JSONDecodeError) as problem:
+                error = error or str(problem)
+        early_passed = (early_result_path is None or
+                        (early_outcome is not None and early_outcome.get("mode") == "Control" and
+                         early_outcome.get("result") == "Passed" and early_outcome.get("processId") == process.pid))
         passed = (not timed_out and exit_code == 0 and outcome is not None and
                   outcome.get("mode") == mode and outcome.get("result") == "Passed" and
-                  outcome.get("processId") == process.pid and outcome.get("buildGuid") == build_guid)
+                  outcome.get("processId") == process.pid and outcome.get("buildGuid") == build_guid and early_passed)
         launches.append({
             "mode": mode, "command": command, "processId": process.pid,
             "startedAtUnix": started, "durationSeconds": time.time() - started,
             "exitCode": exit_code, "timedOut": timed_out, "passed": passed,
             "resultPath": str(result_path), "resultSha256": digest(result_path) if result_path.is_file() else "",
+            "earlyResultPath": str(early_result_path) if early_result_path is not None else "",
+            "earlyResultSha256": digest(early_result_path) if early_result_path is not None and early_result_path.is_file() else "",
+            "earlyPassed": early_passed,
             "logPath": str(log_path), "consolePath": str(console_path),
             "error": error or (outcome or {}).get("error", "No result file"),
         })

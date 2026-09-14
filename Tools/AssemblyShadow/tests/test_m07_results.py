@@ -188,6 +188,9 @@ class M07ResultTests(unittest.TestCase):
         self.assertIn("original and baseline-copied resource bytes differ", editor)
         self.assertIn('collect_tree(files, Path(replay["replayScratchPath"]))', launcher)
         self.assertIn("collect_tree(files, app)", launcher)
+        self.assertIn('"-shadowH1Path", "ordinary"', launcher)
+        self.assertIn('"-shadowEarlyCapsuleSha256", digest(early_capsule)', launcher)
+        self.assertIn('early_outcome.get("mode") == "Control"', launcher)
         self.assertNotIn("Path.GetFullPath(player.resourceBaselinePath) == baselineResourceRoot", runtime)
 
 

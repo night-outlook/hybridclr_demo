@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1AssemblyShadowTransferManifest",
+  "snapshotDate": "2026-09-13",
+  "sourceOfTruth": [
+    "transfer/README.md",
+    "transfer/new-agent-prompt.md",
+    "../H1-handoff.md",
+    "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/status.json",
+    "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/current-review-gates.json"
+  ],
+  "gateState": {
+    "h1": "InProgress",
+    "technicalReadiness": "Blocked",
+    "independentM08": "FAIL",
+    "humanGatePassed": false,
+    "readyForHumanH1": false,
+    "mayEnterR02": false,
+    "r02": "Closed"
+  },
+  "candidatePins": {
+    "demo": "9c6b812148f5ec640e57ecbedcf9399ce68e6aaa",
+    "activeHybridCLR": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+    "frozenHybridCLR": "db685e44afb5aee440efae2eb7bec4205aac090d",
+    "hybridclrUnity": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+    "il2cppPlus": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+  },
+  "separatePins": {
+    "performanceReferenceDemo": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
+    "unfixedReproductionDemo": "3efc756f7c95ef6699fe838ddda3fdfffc856b53",
+    "unfixedReproductionHybridCLR": "6356dac1df87f601b2d7eb44c9c2ce13b06aa19b",
+    "originalDemo": "73d95b4064ee23143e0722f6eae127fe61df6c9d"
+  },
+  "gitRepositories": [
+    {
+      "role": "candidateDemo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "9c6b812148f5ec640e57ecbedcf9399ce68e6aaa",
+      "checkpointScope": "H1 diagnostic source, tests, tools, configuration, and transfer package"
+    },
+    {
+      "role": "candidateHybridCLR",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "checkpointScope": "H1 diagnostic/runtime native changes"
+    },
+    {
+      "role": "candidateUnity",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "checkpointScope": "clean; no transfer commit required"
+    },
+    {
+      "role": "candidateIL2CPP",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "head": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "checkpointScope": "clean; no transfer commit required"
+    },
+    {
+      "role": "frozenNative",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_frozen_h1_v5",
+      "head": "db685e44afb5aee440efae2eb7bec4205aac090d",
+      "checkpointScope": "clean frozen build source; do not modify"
+    },
+    {
+      "role": "performanceReference",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_reference/hybridclr_demo",
+      "branch": "codex/assembly-shadow-h1-performance-reference",
+      "head": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
+      "checkpointScope": "reference source-pin modification"
+    },
+    {
+      "role": "unfixedReproductionDemo",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo",
+      "branch": "codex/assembly-shadow-h1-count-repro",
+      "head": "3efc756f7c95ef6699fe838ddda3fdfffc856b53",
+      "checkpointScope": "separate unfixed diagnostic/provenance work"
+    },
+    {
+      "role": "unfixedReproductionHybridCLR",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr",
+      "branch": "codex/assembly-shadow-h1-count-repro",
+      "head": "6356dac1df87f601b2d7eb44c9c2ce13b06aa19b",
+      "checkpointScope": "separate unfixed native reproduction work"
+    }
+  ],
+  "nextTasks": [
+    "Complete exact witness acquisition/policy contract and FixedAssemblyBytes binding",
+    "Authenticate managed overlay/source-to-binary and Debug/Release compiler provenance",
+    "Freeze matching baseline and rebuild Players, fixtures, replay, and receipts",
+    "Run fresh current-candidate R01EarlyLaunches for all 11 modes and update M06",
+    "Seal schema-2 successor package with mandatory reproduction membership",
+    "Obtain independent whole-chain M08 PASS",
+    "Stop for explicit human H1 review"
+  ],
+  "validationAtTransfer": {
+    "jsonSyntax": "Passed",
+    "gitDiffCheck": "Passed",
+    "pythonBytecodeCompilation": "Passed",
+    "compilerProvenanceTests": "Passed 3/3",
+    "countLauncherTests": "Passed 27/27",
+    "countMatrixTests": "Passed",
+    "countResultsTests": "Passed",
+    "m07ResultsTests": "Passed",
+    "m02ResultsTests": "NotPassed: 65 tests, 1 failure, 3 errors; missing historical M01 baseline and current schema-4 binding mismatch",
+    "pytest": "Unavailable: No module named pytest",
+    "unityPlayerRuns": "NotRun"
+  },
+  "evidenceSummary": {
+    "countLoader": {"status": "Passed", "cells": 132, "acceptanceBoundary": "available/authenticated but not sealed in v11"},
+    "capacity": {"status": "Passed", "ordinary": 8192, "mixed": 8192, "rejectionBoundary": 8193},
+    "lazyDenseFieldRVA": {"status": "Passed", "checks": 61},
+    "performance": {"status": "ComparabilityPassed", "formalPairs": 40, "scope": "Development StandaloneOSX arm64 only"},
+    "unfixedReproduction": {"status": "PassedExecutionAndClassification", "cells": 8, "unexpectedAccepted": 6, "assertAbort": 2, "provenance": "Unverified"},
+    "packaging": {"status": "Passed", "tests": "5/5", "boundary": "integrity only"},
+    "startup11": {"status": "PassedReusedAudited", "freshCurrentCandidate": false}
+  },
+  "externalCoordinationRoot": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910",
+  "coordinationRecords": [
+    {"path": "status.json", "sizeBytes": 13889, "sha256": "9b127683ddf51725e2d13376911d18acb8699c6ee34548f2d92eefc940e7087a"},
+    {"path": "current-review-gates.json", "sizeBytes": 1393, "sha256": "32796d254cd5635ac6297094821397784274b4e0545f46c43cb50689292a97eb"},
+    {"path": "h1-remediation-v12-successor-inputs.json", "sizeBytes": 7237, "sha256": "3f67edf46c23575042cd8ee28b0250d919d713bf92ba9ba158bba53d92b22ed9"},
+    {"path": "h1_successor_chain.py", "sizeBytes": 11646, "sha256": "7e3586e6f7c0d9dd0535e2987eefcd96110accfe39ec7d8f9030eebfb065aba0"},
+    {"path": "findings-ledger.json", "sizeBytes": 883, "sha256": "ab8bf839fe16589a00723a0a5e2fa08fc580d3dce717e1a142f8253e8ff127b6"},
+    {"path": "h1-count-matrix-verification-v3.json", "sizeBytes": 55597, "sha256": "f90475f5f8795a8523cd072507fa76dc174c8f2ab4fea52eaa5317146b451ada"},
+    {"path": "m06-successor-aggregate-v2.json", "sizeBytes": 21208, "sha256": "8f01b1a680a65abf2819143e9b86ecffa85b84e2b338a451429b8b0f5d02ae44"},
+    {"path": "m06-successor-native-impact-v2.json", "sizeBytes": 1644, "sha256": "67a00084486b1ae45d50d6b9516dec40e1a4ce719ebcd34e29350c427ad34d69"},
+    {"path": "m07-successor-aggregate-20260911.json", "sizeBytes": 5887, "sha256": "a43eef93a70d2c539a4f8b3e07daa0cac7cc998f29f32bcf04172c3fed2b48c7"},
+    {"path": "performance-analysis-final-v7-v2.json", "sizeBytes": 368583, "sha256": "e251cdfaae8b1c15cff15100ef2e4e1021ab1bdf2c18b9c235d0ed733f0e5d2a"},
+    {"path": "startup11-revalidated-20260911.json", "sizeBytes": 2974, "sha256": "325b0155e7854336a071dc47b720a4d9e8ab38102bb0d22fe77fdaaae499ef74"},
+    {"path": "historical-gap-disposition-v1.json", "sizeBytes": 4649, "sha256": "82b4f2fd990055f9450ba7188f32b5e636219272487167ab53eedef345a8c763"},
+    {"path": "coordinator-20260914T024529Z/M08-whole-chain-review.json", "sizeBytes": 3978, "sha256": "eae753a0bb8b6c0cde7ffff09c29a981be3971b52cef453028d94d647692447c"},
+    {"path": "coordinator-20260914T024529Z/finding-closure.json", "sizeBytes": 3879, "sha256": "9ad0075ff753f60198b8e9a5d984f71d67847165a5e450a55a06b7cb503e023d"},
+    {"path": "coordinator-20260914T024529Z/reproduction-execution.json", "sizeBytes": 15802, "sha256": "91e6fb20e769f69bdc86f8b20343f1837b0cea54465f37ac5e398079a5413982"},
+    {"path": "coordinator-20260914T024529Z/reproduction-independent-review.json", "sizeBytes": 1720, "sha256": "9e807f9c4a8ddf4e20f48ee4d4bf9c4d9d85cc97a07b749c41c885b2e96d8e83"},
+    {"path": "coordinator-20260914T024529Z/startup-fixture-attempt.json", "sizeBytes": 116085, "sha256": "eb6b1b87dfff9ce84513d6bf718bffdbf879717da5e35ee67585ebf30f2a5ac7"},
+    {"path": "coordinator-20260914T024529Z/startup-root-cause.json", "sizeBytes": 1963, "sha256": "e4c575fec597c8696b04a45135714db208c6fce3696e1fcd5e5eb65f3e00f504"},
+    {"path": "coordinator-20260914T024529Z/next-task-cards.json", "sizeBytes": 2995, "sha256": "a318a7e7708d34d7a7a7eaf0cce9225643a979a5d13393d7e9ea49f844470225"},
+    {"path": "coordinator-resume-20260914T032404Z/storage-preflight.json", "sizeBytes": 1063, "sha256": "5cd407b6a631a5858a6a237b222de31fd875e4e7b5ac15f50bafea9d4231171b"},
+    {"path": "coordinator-resume-20260914T032404Z/witness-contract-assets.json", "sizeBytes": 663, "sha256": "8d0421eb8512cbd7c937b2c78c9e9bc99f11eb30d7bf68742be89aa6c41cd1f8"}
+  ],
+  "largeExternalArtifacts": [
+    {"path": "assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v7/h1-remediation-v7-evidence.tar.gz", "sizeBytes": 362713258},
+    {"path": "assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v8/h1-remediation-v8-evidence.tar.gz", "sizeBytes": 363575415},
+    {"path": "assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v9/h1-remediation-v9-evidence.tar.gz", "sizeBytes": 440754378},
+    {"path": "assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v10/h1-remediation-v10-evidence.tar.gz", "sizeBytes": 441630300},
+    {"path": "assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/h1-remediation-v11-evidence.tar.gz", "sizeBytes": 442600053},
+    {"path": "assembly_shadow_h1r_repro/hybridclr_demo/_temp", "reason": "raw unfixed reproduction/build evidence; preserve failed attempts"},
+    {"path": "h1r-coordination-20260910", "sizeApproxGiB": 3.4, "reason": "full coordination/evidence root; transfer selectively using coordinationRecords above"}
+  ],
+  "doNotTransferAsGitSource": [
+    "Unity Library and generated caches",
+    "Builds and transient generated outputs",
+    "the original checkout's unrelated local changes",
+    "historical evidence as if it were current acceptance"
+  ],
+  "externalDependency": {
+    "kind": "Storage",
+    "observedFreeGiB": 3.5,
+    "requestedFreeGiB": 10,
+    "reason": "The planned baseline/source snapshots and Unity transient storage need room while preserving failed evidence"
+  }
+}

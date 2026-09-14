@@ -1001,9 +1001,12 @@ class M02EvidenceTests(unittest.TestCase):
     def _actual_historical_roots(self):
         repo = Path(__file__).resolve().parents[3]
         suffix = "StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3"
+        m01 = Path(os.environ.get(
+            "ASSEMBLY_SHADOW_M01_BASELINE_ROOT",
+            repo / "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1")).resolve()
         return (repo / "HybridCLRData/AssemblyShadow/Baselines" / suffix,
                 repo / "HybridCLRData/AssemblyShadow/ResourceBaselines" / suffix,
-                repo / "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1")
+                m01)
 
     def _copied_historical_resource(self, folder):
         baseline_root, resource_root, m01_root = self._actual_historical_roots()

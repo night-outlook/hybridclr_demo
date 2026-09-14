@@ -44,8 +44,14 @@ namespace AssemblyShadowDemo.EditorTests
         public void CountRunnerUsesNativeIdentityBridgeInsteadOfUnsupportedManagedModuleProbe()
         {
             string source = File.ReadAllText("Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs");
+            string startup = File.ReadAllText("Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs");
             Assert.IsFalse(source.Contains("ManifestModule"));
             Assert.IsFalse(source.Contains("ModuleVersionId"));
+            Assert.IsFalse(startup.Contains("ManifestModule"));
+            Assert.IsFalse(startup.Contains("Type.GetType"));
+            Assert.IsFalse(startup.Contains("GetMethod(\"Run\""));
+            Assert.IsFalse(startup.Contains("method.Invoke"));
+            StringAssert.Contains("NativeAssemblyIdentity", startup);
             StringAssert.Contains("CapturePublicationInventory", source);
             StringAssert.Contains("physicalAssembliesBefore", source);
             StringAssert.Contains("publishedInterpreterImagesBefore", source);

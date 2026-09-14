@@ -30,6 +30,9 @@ COORDINATION = Path(os.environ.get(
 ZERO_MVID = "00000000-0000-0000-0000-000000000001"
 TARGET_MVID = "00000000-0000-0000-0000-000000000002"
 BASELINE_MVID = "00000000-0000-0000-0000-000000000003"
+WITNESS_MVID = "00000000-0000-0000-0000-000000000004"
+WITNESS_PATH = str((Path(__file__).resolve().parents[3] /
+                    "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes").resolve())
 
 
 def _load_contract(family, case_id, flavor):
@@ -55,7 +58,15 @@ def _snapshot(feature, **updates):
              "featureEnabled": feature, "featureMode": "AssemblyShadowOn" if feature else "AssemblyShadowOff",
              "reservedPages": 0, "mappedPages": 0, "reservationCount": 0,
              "nextImageId": 1, "nextPageSlot": 0, "ordinaryAllocatedCount": 0,
-             "shadowAllocatedCount": 0, "reservedImageCount": 0}
+             "shadowAllocatedCount": 0, "reservedImageCount": 0,
+             "logicalAssemblies": [], "physicalAssemblies": [], "publishedInterpreterImages": []}
+    full_name = "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+    aot_witness = _native_aot_identity("AssemblyShadowBaseline.HotUpdate", full_name, "0xwa", "0xwai")
+    interpreter_witness = _native_identity("AssemblyShadowBaseline.HotUpdate", WITNESS_MVID,
+                                           full_name, "0xw", "0xwi", "Interpreter")
+    value["logicalAssemblies"] = [aot_witness]
+    value["physicalAssemblies"] = [aot_witness, interpreter_witness]
+    value["publishedInterpreterImages"] = [interpreter_witness]
     value.update(updates)
     return value
 
@@ -64,16 +75,51 @@ def _native_key(name, mvid, full_name, assembly_id, image_id, kind):
     return "|".join((name, mvid, full_name, assembly_id, image_id, kind, "1" if kind == "Interpreter" else "0"))
 
 
+def _native_identity(name, mvid, full_name, assembly_id, image_id, kind):
+    return {"name": name, "mvid": mvid, "fullName": full_name,
+            "nativeAssemblyId": assembly_id, "nativeImageId": image_id,
+            "mvidAvailable": True, "imageKind": kind,
+            "imageId": 1 if kind == "Interpreter" else 0, "published": True,
+            "identityKey": _native_key(name, mvid, full_name, assembly_id, image_id, kind)}
+
+
+def _native_aot_identity(name, full_name, assembly_id, image_id):
+    key = "|".join((name, "<unavailable>", full_name, assembly_id, image_id, "Aot", "0"))
+    return {"name": name, "mvid": "", "fullName": full_name,
+            "nativeAssemblyId": assembly_id, "nativeImageId": image_id,
+            "mvidAvailable": False, "imageKind": "Aot", "imageId": 0,
+            "published": False, "identityKey": key}
+
+
+def _witness():
+    full_name = "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+    logical_key = "|".join(("AssemblyShadowBaseline.HotUpdate", "<unavailable>", full_name,
+                            "0xwa", "0xwai", "Aot", "0"))
+    interpreter_key = _native_key("AssemblyShadowBaseline.HotUpdate", WITNESS_MVID,
+                                  full_name, "0xw", "0xwi", "Interpreter")
+    return {"available": True, "path": WITNESS_PATH,
+            "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "assemblyName": "AssemblyShadowBaseline.HotUpdate",
+            "assemblyFullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "observationKind": "NativeAssemblyIdentity",
+            "logicalIdentityKeys": [logical_key], "physicalIdentityKeys": [interpreter_key],
+            "publishedIdentityKeys": [interpreter_key]}
+
+
 def _snapshots(feature, flavor, accepted):
     before = _snapshot(feature)
     if flavor == "ordinary":
-        final = _snapshot(feature, reservedPages=2, mappedPages=1, reservationCount=1,
-                          nextImageId=2, nextPageSlot=2, ordinaryAllocatedCount=1)
+        before = _snapshot(feature, reservedPages=2, mappedPages=1, reservationCount=1,
+                           nextImageId=2, nextPageSlot=2, ordinaryAllocatedCount=1)
+        final = _snapshot(feature, reservedPages=4, mappedPages=2, reservationCount=2,
+                          nextImageId=3, nextPageSlot=4, ordinaryAllocatedCount=2)
         return [{"phase": "before", "available": True, "snapshot": before},
                 {"phase": "after", "available": True, "snapshot": copy.deepcopy(final)},
                 {"phase": "final", "available": True, "snapshot": copy.deepcopy(final)}]
-    reserved = _snapshot(feature, reservedPages=3, reservationCount=1, nextImageId=2,
-                         nextPageSlot=3, reservedImageCount=1)
+    before = _snapshot(feature, reservedPages=2, mappedPages=1, reservationCount=1,
+                       nextImageId=2, nextPageSlot=2, ordinaryAllocatedCount=1)
+    reserved = _snapshot(feature, reservedPages=5, mappedPages=1, reservationCount=2, nextImageId=3,
+                         nextPageSlot=5, ordinaryAllocatedCount=1, reservedImageCount=1)
     staged = dict(reserved, shadowAllocatedCount=1)
     validated = dict(staged, mappedPages=2)
     records = [{"phase": "before", "available": True, "snapshot": before},
@@ -94,19 +140,26 @@ def _snapshots(feature, flavor, accepted):
 def _publication(request, accepted):
     shadow = request["flavor"] == "shadow"
     baseline_full_name = "mscorlib, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
-    before = [_native_key("mscorlib", ZERO_MVID, baseline_full_name, "0xa", "0xb", "Aot")]
+    witness_full_name = "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+    witness_aot = "|".join(("AssemblyShadowBaseline.HotUpdate", "<unavailable>", witness_full_name,
+                            "0xwa", "0xwai", "Aot", "0"))
+    witness_interpreter = _native_key("AssemblyShadowBaseline.HotUpdate", WITNESS_MVID,
+                                      witness_full_name, "0xw", "0xwi", "Interpreter")
+    before = sorted([_native_key("mscorlib", ZERO_MVID, baseline_full_name, "0xa", "0xb", "Aot"), witness_aot])
     identity = _native_key(request["assemblyName"], request["assemblyMvid"],
                            request["assemblyFullName"], "0xc", "0xd", "Interpreter")
     if shadow and accepted:
         before = sorted(before + [_native_key(request["assemblyName"], BASELINE_MVID,
                                               request["assemblyFullName"], "0xe", "0xf", "Aot")])
-    physical_before = list(before)
+    physical_before = sorted(before + [witness_interpreter])
     physical_after = list(before)
-    published_before = []
-    published_after = []
+    published_before = [witness_interpreter]
+    published_after = [witness_interpreter]
     if accepted:
-        physical_after = sorted(physical_after + [identity])
-        published_after = [identity]
+        physical_after = sorted(physical_before + [identity])
+        published_after = sorted([witness_interpreter, identity])
+    else:
+        physical_after = list(physical_before)
     value = {"configureCalled": False, "beginCalled": False, "reserveCalled": False,
              "stageCalled": False, "validateCalled": False, "commitCalled": False,
              "abortCalled": False, "committed": False, "initializerObserved": False,
@@ -119,7 +172,7 @@ def _publication(request, accepted):
              "nativeImageId": "0xd" if accepted else None,
              "nativeAssemblyFullName": request["assemblyFullName"] if accepted else None,
              "imageKind": "Interpreter" if accepted else None,
-             "imageId": 1 if accepted else 0,
+             "imageId": 2 if accepted else 0,
              "publicIdentityObservationAvailable": not accepted,
              "noPublicFixtureIdentity": not accepted, "publicAssemblyInventoryStable": not accepted,
              "publicAssembliesBefore": before,
@@ -177,7 +230,7 @@ def _result(request, accepted, return_row_available=True):
                     "OrdinaryAssemblyLoadOnly") if accepted else
                    ("ValidationFailedNoCommitNoAbort" if request["flavor"] == "shadow" else
                     "OrdinaryRejectedNoCommitNoAbort"))
-    result = {"schemaVersion": 1, "kind": "H1CountDiagnosticResult", "result": "Passed",
+    result = {"schemaVersion": 2, "kind": "H1CountDiagnosticResult", "result": "Passed",
               "failureClass": "None", "family": request["family"], "path": request["flavor"],
               "caseId": request["caseId"], "expectedOutcome": "Accepted" if accepted else "ControlledRejected",
               "expectedCount": count, "observedCount": count if accepted else -1,
@@ -185,6 +238,7 @@ def _result(request, accepted, return_row_available=True):
               "observedControlledRejection": not accepted, "disposition": disposition,
               "externalFixtureByteAuditBindingRequired": True, "ledgerVerified": True,
               "admissionFailedNoCoverage": False, "publication": _publication(request, accepted),
+              "witness": _witness(),
               "operationSteps": _operations(request["flavor"], accepted),
               "states": _states(accepted) if request["flavor"] == "shadow" else [],
               "snapshots": _snapshots(request["featureEnabled"], request["flavor"], accepted)}
@@ -239,10 +293,10 @@ class H1CountResultTests(unittest.TestCase):
     def test_authenticated_early_rejection_requires_named_count_and_no_publication(self):
         request = {"family": "parameters", "caseId": "H1R-P03-a", "pathName": "Shadow-ON",
                    "featureEnabled": True}
-        before = _snapshot(True, logicalAssemblies=[], physicalAssemblies=[], publishedInterpreterImages=[])
-        reserved = _snapshot(True, reservedPages=3, nextPageSlot=3, reservationCount=1,
-                             nextImageId=2, reservedImageCount=1, logicalAssemblies=[],
-                             physicalAssemblies=[], publishedInterpreterImages=[])
+        before = _snapshot(True, reservedPages=2, mappedPages=1, nextPageSlot=2,
+                           reservationCount=1, nextImageId=2, ordinaryAllocatedCount=1)
+        reserved = _snapshot(True, reservedPages=3, mappedPages=1, nextPageSlot=3, reservationCount=2,
+                             nextImageId=3, ordinaryAllocatedCount=1, reservedImageCount=1)
         staged = dict(reserved, shadowAllocatedCount=1)
         detail = "method token:1 parameter count:65536 is too large"
         phases = ["before", "after-configure", "after-begin", "after-reserve", "after-stage",
@@ -258,7 +312,7 @@ class H1CountResultTests(unittest.TestCase):
                                 "assemblies": [{"name": "AssemblyShadow.H1Count.Target", "skeletonBuilt": True,
                                                 "runtimeMetadataInitialized": False, "published": False}],
                                 "detail": detail if phase in ("after-validate", "after", "final") else ""})
-        receipt = {"schemaVersion": 1, "kind": "H1CountEarlyStartupResult", "diagnosticOnly": True,
+        receipt = {"schemaVersion": 2, "kind": "H1CountEarlyStartupResult", "diagnosticOnly": True,
                    "result": "ExpectedValidationRejection", "error": "",
                    "disposition": "ValidationFailedNoCommitNoAbort", "callbackReturnCode": 1,
                    "processId": 1, "managedThreadId": 1, "resultPath": "/tmp/early.json",
@@ -277,10 +331,17 @@ class H1CountResultTests(unittest.TestCase):
                                   "diagnosticsJson": json.dumps(d, separators=(",", ":"))}
                                  for phase, n, d in zip(phases, native, diagnostics)],
                    "receiptSha256": ""}
+        receipt["witness"] = _witness()
         receipt["receiptSha256"] = hashlib.sha256(_early_canonical_json(receipt, "").encode()).hexdigest()
         encoded = _early_canonical_json(receipt, receipt["receiptSha256"]).encode()
         self.assertTrue(verify_early_receipt_document(receipt, encoded, request)["passed"])
         receipt["operations"][4]["intCode"] = 12
+        receipt["receiptSha256"] = hashlib.sha256(_early_canonical_json(receipt, "").encode()).hexdigest()
+        encoded = _early_canonical_json(receipt, receipt["receiptSha256"]).encode()
+        with self.assertRaises(VerificationError):
+            verify_early_receipt_document(receipt, encoded, request)
+
+        receipt["witness"].pop("logicalIdentityKeys")
         receipt["receiptSha256"] = hashlib.sha256(_early_canonical_json(receipt, "").encode()).hexdigest()
         encoded = _early_canonical_json(receipt, receipt["receiptSha256"]).encode()
         with self.assertRaises(VerificationError):
@@ -380,7 +441,7 @@ class H1CountResultTests(unittest.TestCase):
         def mutate(result):
             for row in result["snapshots"]:
                 if row["phase"] in ("after", "final"):
-                    row["snapshot"]["nextImageId"] = 3
+                    row["snapshot"]["nextImageId"] = 4
         self._mutated_runtime_fails(mutate)
 
     def test_rejected_public_inventory_must_be_identical(self):
@@ -389,9 +450,71 @@ class H1CountResultTests(unittest.TestCase):
 
     def test_rejected_physical_and_published_inventories_must_be_identical(self):
         for field in ("physicalAssembliesAfter", "publishedInterpreterImagesAfter"):
+                with self.subTest(field=field):
+                    self._mutated_runtime_fails(lambda result, field=field:
+                        result["publication"][field].append("Injected|identity"))
+
+    def test_missing_witness_is_rejected(self):
+        request, case, audited, shape, result = self.verify_contract(
+            "parameters", "H1R-P02-a", "shadow", False)
+        result.pop("witness")
+        with self.assertRaises(VerificationError):
+            verify_result_document(result, request, fixture_case=case, shape=shape,
+                                   audit_observation=audited)
+
+    def test_tampered_witness_observation_or_hash_is_rejected(self):
+        for field, value in (("observationKind", "ManagedReflectionMarker"), ("sha256", "0" * 64)):
             with self.subTest(field=field):
-                self._mutated_runtime_fails(lambda result, field=field:
-                    result["publication"][field].append("Injected|identity"))
+                request, case, audited, shape, result = self.verify_contract(
+                    "parameters", "H1R-P02-a", "shadow", False)
+                result["witness"][field] = value
+                with self.assertRaises(VerificationError):
+                    verify_result_document(result, request, fixture_case=case, shape=shape,
+                                           audit_observation=audited)
+
+    def test_changed_witness_native_identity_is_rejected(self):
+        request, case, audited, shape, result = self.verify_contract(
+            "parameters", "H1R-P02-a", "shadow", False)
+        result["snapshots"][-1]["snapshot"]["logicalAssemblies"][0]["identityKey"] = "changed"
+        with self.assertRaises(VerificationError):
+            verify_result_document(result, request, fixture_case=case, shape=shape,
+                                   audit_observation=audited)
+
+    def test_physical_witness_identity_row_must_be_published_interpreter_with_mvid(self):
+        for field, value in (("imageKind", "Aot"), ("published", False),
+                             ("mvidAvailable", False), ("mvid", ""),
+                             ("nativeAssemblyId", "0"), ("nativeImageId", "0x0"),
+                             ("imageId", 2)):
+            with self.subTest(field=field):
+                request, case, audited, shape, result = self.verify_contract(
+                    "parameters", "H1R-P02-a", "shadow", False)
+                for row in result["snapshots"]:
+                    row["snapshot"]["physicalAssemblies"][1][field] = value
+                with self.assertRaises(VerificationError):
+                    verify_result_document(result, request, fixture_case=case, shape=shape,
+                                           audit_observation=audited)
+
+    def test_logical_witness_identity_row_must_be_unpublished_aot_without_mvid(self):
+        for field, value in (("imageKind", "Interpreter"), ("published", True),
+                             ("mvidAvailable", True), ("mvid", WITNESS_MVID),
+                             ("nativeAssemblyId", "0"), ("nativeImageId", "0x0"),
+                             ("imageId", 1)):
+            with self.subTest(field=field):
+                request, case, audited, shape, result = self.verify_contract(
+                    "parameters", "H1R-P02-a", "shadow", False)
+                for row in result["snapshots"]:
+                    row["snapshot"]["logicalAssemblies"][0][field] = value
+                with self.assertRaises(VerificationError):
+                    verify_result_document(result, request, fixture_case=case, shape=shape,
+                                           audit_observation=audited)
+
+    def test_witness_identity_arrays_are_mandatory(self):
+        request, case, audited, shape, result = self.verify_contract(
+            "parameters", "H1R-P02-a", "shadow", False)
+        result["witness"].pop("physicalIdentityKeys")
+        with self.assertRaises(VerificationError):
+            verify_result_document(result, request, fixture_case=case, shape=shape,
+                                   audit_observation=audited)
 
     def test_shadow_replacement_must_preserve_unrelated_identity(self):
         request, case, audited, shape, result = self.verify_contract(

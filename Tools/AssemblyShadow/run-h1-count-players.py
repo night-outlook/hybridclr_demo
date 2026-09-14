@@ -17,6 +17,8 @@ import uuid
 HERE = Path(__file__).resolve().parent
 MAX_PLAYER_BYTES = 512 * 1024 * 1024
 MAX_TIMEOUT_SECONDS = 3600
+ORDINARY_WITNESS_RELATIVE = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+ORDINARY_WITNESS_SHA256 = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
 AUDIT_KINDS = {
     "parameters": "H1CountFixtureShapeAudit",
     "nested": "H1NestedFixtureShapeAudit",
@@ -177,7 +179,8 @@ def build_player_command(executable: Path, family: str, path: str, case_id: str,
                         fixture: Path, fixture_sha256: str, result_path: Path,
                         early_result_path: Path | None = None, expected_outcome: str = "",
                         expected_count: int = 0, baseline_build_id: str = "",
-                        runtime_abi_hash: str = "", log_path: Path | None = None) -> list[str]:
+                        runtime_abi_hash: str = "", log_path: Path | None = None,
+                        witness_path: Path | None = None) -> list[str]:
     # Keep the pre-receipt call shape available to focused launcher tests and
     # older tooling; production shadow launches always provide every binding.
     if log_path is None and expected_outcome == "" and expected_count == 0 and not baseline_build_id and not runtime_abi_hash:
@@ -191,6 +194,7 @@ def build_player_command(executable: Path, family: str, path: str, case_id: str,
         "-shadowH1Case", case_id,
         "-shadowH1Fixture", str(fixture),
         "-shadowH1FixtureSha256", fixture_sha256,
+        *( [] if witness_path is None else ["-shadowH1Witness", str(witness_path)] ),
         "-shadowH1Result", str(result_path),
         *( [] if early_result_path is None else ["-shadowH1EarlyResult", str(early_result_path),
           "-shadowH1ExpectedOutcome", expected_outcome, "-shadowH1ExpectedCount", str(expected_count),
@@ -552,7 +556,7 @@ def validate_result(result: dict, result_path: Path, process_id: int, build: dic
     expected = case["expected"]
     semantic = {
         "resultKind": result.get("kind") == "H1CountDiagnosticResult",
-        "schemaVersion": result.get("schemaVersion") == 1,
+        "schemaVersion": result.get("schemaVersion") == 2,
         "resultPath": result.get("resultPath") == str(result_path),
         "processId": result.get("processId") == process_id,
         "buildGuid": result.get("buildGuid") == build["buildGuid"],
@@ -649,13 +653,18 @@ def main(argv: list[str] | None = None) -> int:
         observation_errors.extend(tree_errors)
         before.update(tree_before)
         require_expected_hashes(before, validated_hashes)
+        witness_path = canonical_file(project / ORDINARY_WITNESS_RELATIVE, "ordinary witness")
+        witness_sha256 = digest(witness_path)
+        require(witness_sha256 == ORDINARY_WITNESS_SHA256, "ordinary witness hash differs")
+        immutable.add(witness_path)
+        before[str(witness_path)] = witness_sha256
         if observation_errors:
             raise ValueError("input observation failed: " + "; ".join(observation_errors))
         fixture_sha256 = before[str(fixture)]
         command = build_player_command(Path(build["playerExecutable"]), args.family, args.path,
                                        args.case_id, fixture, fixture_sha256, result_path,
                                        early_result_path, case["expected"], case["count"],
-                                       build["baselineBuildId"], build["runtimeAbiHash"], unity_log)
+                                       build["baselineBuildId"], build["runtimeAbiHash"], unity_log, witness_path)
         with console_log.open("x", encoding="utf-8") as console:
             process = subprocess.Popen(command, cwd=project, stdin=subprocess.DEVNULL,
                                        stdout=console, stderr=subprocess.STDOUT)

@@ -77,8 +77,10 @@ namespace AssemblyShadowDemo.EditorTests
         public void StartupSourceAndBuildKeepThePreCatalogContract()
         {
             string source = File.ReadAllText("Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs");
-            foreach (string forbidden in new[] { "JsonUtility", "Application.", "Debug.Log", "Assembly.Load", "AbortTransaction(" })
+            foreach (string forbidden in new[] { "JsonUtility", "Application.", "Debug.Log", "ManifestModule",
+                "GetManifestModuleInternal", "Type.GetType", "GetMethod(\"Run\")", "method.Invoke", "AbortTransaction(" })
                 StringAssert.DoesNotContain(forbidden, source);
+            StringAssert.Contains("Assembly.Load(bytes)", source);
             StringAssert.Contains("BaselineAlreadyUsed", source);
             StringAssert.Contains("ReserveMetadataBudget(new[] { bytes.LongLength }, 2)", source);
             string build = File.ReadAllText("Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuild.cs");

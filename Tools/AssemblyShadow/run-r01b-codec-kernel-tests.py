@@ -193,8 +193,9 @@ def main():
     receipt = {
         "artifact": "R01B production standalone interpreter metadata index codec kernel",
         "run_directory": str(run_dir),
-        "status": ("production_kernel_checks_passed; standalone_no_Player_capacity_claim"
-                   if passed else "production_kernel_checks_failed; evidence_captured"),
+        "result": "Passed" if passed else "Failed",
+        "status": ("PassedProductionKernelChecks; standalone_no_Player_capacity_claim"
+                   if passed else "FailedProductionKernelChecks; evidence_captured"),
         "failure_reasons": failure_reasons,
         "scope": {
             "production_header": str(HEADER),

@@ -46,7 +46,7 @@ namespace AssemblyShadowDemo
 
     internal static class H1CountDiagnosticProbe
     {
-        private const int SchemaVersion = 1;
+        private const int SchemaVersion = 2;
         private const long MaxFixtureBytes = 32L * 1024L * 1024L;
         private const string ResultKind = "H1CountDiagnosticResult";
         private const string ShadowParameterAssembly = "AssemblyShadow.H1Count.Target";
@@ -88,11 +88,14 @@ namespace AssemblyShadowDemo
                 if (result.path == "shadow")
                 {
                     s_earlyReceipt = ConsumeEarlyReceipt(result);
+                    result.witness = WitnessObservation(s_earlyReceipt.witness);
                     AddConsumedEarlySnapshot(result, s_earlyReceipt, "before");
                 }
                 else
+                {
+                    result.witness = WitnessObservation(H1CountEarlyStartup.LoadOrdinaryWitness());
                     CaptureNativeSnapshot(result, "before");
-                RequireZeroLedger(result, "before");
+                }
 
                 if (result.path == "ordinary") RunOrdinary(result, spec, dllBytes);
                 else RunShadow(result, spec, dllBytes);
@@ -174,6 +177,7 @@ namespace AssemblyShadowDemo
             result.publication = new H1CountPublicationObservation();
             result.parameter = new H1CountParameterObservation();
             result.nested = new H1CountNestedObservation();
+            result.witness = new H1CountWitnessObservation();
             result.operationSucceeded = false;
             result.externalFixtureByteAuditBindingRequired = true;
             result.earlyStartupConsumed = false;
@@ -366,7 +370,7 @@ namespace AssemblyShadowDemo
             if (string.IsNullOrEmpty(json))
                 throw new InvalidOperationException("Shadow path did not expose an early startup receipt.");
             H1CountEarlyStartup.Receipt receipt = H1CountEarlyStartup.LastReceipt;
-            if (receipt == null || receipt.schemaVersion != 1 || receipt.kind != "H1CountEarlyStartupResult" ||
+            if (receipt == null || receipt.schemaVersion != H1CountEarlyStartupReceiptSchemaVersion || receipt.kind != "H1CountEarlyStartupResult" ||
                 !receipt.diagnosticOnly || receipt.path != "shadow")
                 throw new InvalidOperationException("Early startup receipt header is invalid.");
             string supplied = receipt.receiptSha256;
@@ -429,6 +433,7 @@ namespace AssemblyShadowDemo
             result.publication.physicalAssembliesBefore = InventoryKeys(snapshot.physicalAssemblies);
             result.publication.publishedInterpreterImagesBefore = InventoryKeys(snapshot.publishedInterpreterImages);
             result.snapshots.Add(new H1CountSnapshotRecord { phase = phase, available = true, snapshot = snapshot });
+            BindOrVerifyWitness(result, snapshot, phase);
         }
 
         private static void AddConsumedEarlyPhase(H1CountDiagnosticResult result,
@@ -441,6 +446,7 @@ namespace AssemblyShadowDemo
                     if (snapshot.featureEnabled != result.expectedFeatureEnabled)
                         throw new InvalidOperationException("Early startup native feature state differs at " + phase + ".");
                     result.snapshots.Add(new H1CountSnapshotRecord { phase = phase, available = true, snapshot = snapshot });
+                    BindOrVerifyWitness(result, snapshot, phase);
                     return;
                 }
             throw new InvalidOperationException("Early startup snapshot missing: " + phase);
@@ -740,6 +746,9 @@ namespace AssemblyShadowDemo
             if (observed.imageKind != "Interpreter" || observed.imageId == 0 ||
                 string.IsNullOrEmpty(observed.nativeAssemblyId) || string.IsNullOrEmpty(observed.nativeImageId))
                 throw new InvalidOperationException("Published interpreter identity is missing its native assembly/image identity.");
+            H1CountNativeDiagnosticSnapshot before = FindSnapshot(result, "before");
+            if (before == null || observed.imageId != before.nextImageId)
+                throw new InvalidOperationException("Published interpreter image ID did not follow the preloaded witness ledger.");
             result.publication.publicAssemblyMvid = observed.mvidAvailable ? observed.mvid : null;
             result.publication.publicAssemblyMvidAvailable = observed.mvidAvailable;
             result.publication.nativeAssemblyId = observed.nativeAssemblyId;
@@ -799,6 +808,7 @@ namespace AssemblyShadowDemo
             });
             if (snapshot.featureEnabled != result.expectedFeatureEnabled)
                 throw new InvalidOperationException("Native featureEnabled disagrees with expectedFeatureEnabled.");
+            BindOrVerifyWitness(result, snapshot, phase);
             return snapshot;
         }
 
@@ -808,13 +818,93 @@ namespace AssemblyShadowDemo
             catch (Exception error) { result.snapshots.Add(new H1CountSnapshotRecord { phase = phase, available = false, errorFull = ExceptionText(error) }); }
         }
 
-        private static void RequireZeroLedger(H1CountDiagnosticResult result, string phase)
+        private static H1CountWitnessObservation WitnessObservation(H1CountEarlyStartup.WitnessReceipt witness)
         {
-            H1CountSnapshotRecord record = result.snapshots[result.snapshots.Count - 1];
-            H1CountNativeDiagnosticSnapshot snapshot = record.snapshot;
-            if (snapshot == null || snapshot.ordinaryAllocatedCount != 0 || snapshot.shadowAllocatedCount != 0 ||
-                snapshot.reservedImageCount != 0 || snapshot.reservationCount != 0 || snapshot.nextImageId != 1)
-                throw new InvalidOperationException("H1 before-ledger was not empty at " + phase + ".");
+            if (witness == null) throw new InvalidOperationException("The ordinary witness receipt is missing.");
+            string path = Path.GetFullPath(witness.path ?? "");
+            if (path != witness.path || !path.EndsWith(H1CountEarlyStartup.OrdinaryWitnessRelativePath, StringComparison.Ordinal) ||
+                witness.sha256 != H1CountEarlyStartup.OrdinaryWitnessSha256 ||
+                witness.assemblyName != H1CountEarlyStartup.OrdinaryWitnessAssembly ||
+                witness.assemblyFullName != "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" ||
+                witness.observationKind != "NativeAssemblyIdentity")
+                throw new InvalidOperationException("The ordinary witness receipt identity observation is invalid.");
+            H1CountWitnessObservation result = new H1CountWitnessObservation {
+                available = true, path = witness.path, sha256 = witness.sha256,
+                assemblyName = witness.assemblyName, assemblyFullName = witness.assemblyFullName,
+                observationKind = witness.observationKind,
+                logicalIdentityKeys = WitnessReceiptKeys(witness.logicalIdentityKeys, "logical"),
+                physicalIdentityKeys = WitnessReceiptKeys(witness.physicalIdentityKeys, "physical"),
+                publishedIdentityKeys = WitnessReceiptKeys(witness.publishedIdentityKeys, "published")
+            };
+            H1CountEarlyStartup.RequireWitnessBytes(witness.path);
+            return result;
+        }
+
+        private static void BindOrVerifyWitness(H1CountDiagnosticResult result,
+            H1CountNativeDiagnosticSnapshot snapshot, string phase)
+        {
+            if (result.witness == null || !result.witness.available)
+                throw new InvalidOperationException("Ordinary witness was not established before native snapshot " + phase + ".");
+            string[][] values = {
+                WitnessKeys(snapshot.logicalAssemblies, result.witness, "logical", phase),
+                WitnessKeys(snapshot.physicalAssemblies, result.witness, "physical", phase),
+                WitnessKeys(snapshot.publishedInterpreterImages, result.witness, "published", phase)
+            };
+            bool unbound = result.witness.logicalIdentityKeys.Length == 0 &&
+                result.witness.physicalIdentityKeys.Length == 0 && result.witness.publishedIdentityKeys.Length == 0;
+            if (unbound)
+            {
+                result.witness.logicalIdentityKeys = values[0];
+                result.witness.physicalIdentityKeys = values[1];
+                result.witness.publishedIdentityKeys = values[2];
+                return;
+            }
+            if (!SameStrings(result.witness.logicalIdentityKeys, values[0]) ||
+                     !SameStrings(result.witness.physicalIdentityKeys, values[1]) ||
+                     !SameStrings(result.witness.publishedIdentityKeys, values[2]))
+                throw new InvalidOperationException("Ordinary witness native identity changed at " + phase + ".");
+        }
+
+        private const int H1CountEarlyStartupReceiptSchemaVersion = 2;
+
+        private static string[] WitnessReceiptKeys(string[] values, string inventory)
+        {
+            if (values == null || values.Length == 0) return new string[0];
+            return RequireWitnessKeys(values, inventory);
+        }
+
+        private static string[] RequireWitnessKeys(string[] values, string inventory)
+        {
+            if (values == null || values.Length != 1 || string.IsNullOrEmpty(values[0]))
+                throw new InvalidOperationException("Early witness " + inventory + " identity binding is incomplete.");
+            return (string[])values.Clone();
+        }
+
+        private static string[] WitnessKeys(H1CountNativeAssemblyIdentity[] values,
+            H1CountWitnessObservation witness, string inventory, string phase)
+        {
+            if (values == null) throw new InvalidOperationException("Native " + inventory + " inventory is unavailable at " + phase + ".");
+            bool logicalInventory = inventory == "logical";
+            List<string> matches = new List<string>();
+            for (int i = 0; i < values.Length; ++i)
+            {
+                H1CountNativeAssemblyIdentity value = values[i];
+                if (value != null && value.name == witness.assemblyName && value.fullName == witness.assemblyFullName &&
+                    value.imageKind == (logicalInventory ? "Aot" : "Interpreter"))
+                {
+                    bool complete = logicalInventory
+                        ? !value.published && !value.mvidAvailable && string.IsNullOrEmpty(value.mvid) && value.imageId == 0
+                        : value.published && value.mvidAvailable && !string.IsNullOrEmpty(value.mvid) && value.imageId == 1;
+                    if (!complete ||
+                        string.IsNullOrEmpty(value.nativeAssemblyId) || value.nativeAssemblyId == "0" || value.nativeAssemblyId == "0x0" ||
+                        string.IsNullOrEmpty(value.nativeImageId) || value.nativeImageId == "0" || value.nativeImageId == "0x0" ||
+                        string.IsNullOrEmpty(value.identityKey))
+                        throw new InvalidOperationException("Native " + inventory + " witness identity is incomplete at " + phase + ".");
+                    matches.Add(value.identityKey);
+                }
+            }
+            if (matches.Count != 1) throw new InvalidOperationException("Native " + inventory + " witness identity is missing or ambiguous at " + phase + ".");
+            return matches.ToArray();
         }
 
         private static void VerifyFinalLedger(H1CountDiagnosticResult result)
@@ -1240,6 +1330,7 @@ namespace AssemblyShadowDemo
         public string unityVersion; public string platform; public string buildGuid; public int processId; public string startUtc; public string endUtc;
         public bool debugIsDebugBuild; public bool developmentBuild; public bool il2cpp; public bool operationSucceeded; public bool observedControlledRejection;
         public bool earlyStartupConsumed; public string earlyStartupResult; public string earlyStartupReceiptSha256;
+        public H1CountWitnessObservation witness;
         public bool ledgerVerified; public string ledgerObservation; public bool admissionFailedNoCoverage;
         public bool countGuardDiagnosticAvailable; public string countGuardDiagnostic; public string countGuardDiagnosticSource; public string countGuardExpectedNativeMessage;
         public int countGuardExpectedDecodedCount = -1; public bool countGuardDecodedCountAvailable; public int countGuardDecodedCount = -1; public string countGuardDiagnosticReason;
@@ -1280,5 +1371,11 @@ namespace AssemblyShadowDemo
     [Serializable] public sealed class H1CountNestedGroup
     {
         public string declaringType; public int count = -1; public string first; public string last; public string childrenSha256; public string[] children; public bool repeatPassed;
+    }
+    [Serializable] public sealed class H1CountWitnessObservation
+    {
+        public bool available; public string path; public string sha256; public string assemblyName, assemblyFullName;
+        public string observationKind;
+        public string[] logicalIdentityKeys, physicalIdentityKeys, publishedIdentityKeys;
     }
 }
