@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "kind": "H1CoordinatorFindingClosure",
   "status": "Blocked",
-  "review": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/coordinator-20260914T024529Z/M08-whole-chain-review.json",
+  "review": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/M08-whole-chain-review.json",
   "findings": [
     {
       "id": "H1-H02",
@@ -31,7 +31,7 @@
       "priority": "P1",
       "status": "Open",
       "finding": "v11 seals obsolete schema-1 count evidence; current verified schema-2 successor is not packaged.",
-      "evidence": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/requirements-coverage.json",
+      "evidence": "external-artifact://candidate-demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/requirements-coverage.json",
       "requiredClosure": "Seal schema-2 matrix, four build/provenance/input chains and updated closure documents; independently review the new package."
     },
     {
@@ -39,7 +39,7 @@
       "priority": "P1",
       "status": "Open",
       "finding": "Successor binding requires historical Startup11RevalidatedAudit/PassedReusedAudited, not fresh current-candidate execution.",
-      "evidence": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/h1-remediation-v12-successor-inputs.json",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1-remediation-v12-successor-inputs.json",
       "requiredClosure": "Produce verified current-candidate R01EarlyLaunches for all 11 modes, with executable/build/source/fixture identity and raw outcomes; update M06 aggregate and successor contract."
     },
     {
@@ -47,7 +47,7 @@
       "priority": "P1",
       "status": "Open",
       "finding": "Complete eight-cell unfixed Debug/Release reproduction missing and no reproduction artifact required by successor membership.",
-      "evidence": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/h1_successor_chain.py",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1_successor_chain.py",
       "requiredClosure": "Authenticate ReviewedV6 plus diagnostic overlay/build provenance; run and classify P03-a/P03-b/N02-a/N02-b in Debug and Release in fresh processes; require verified reproduction receipts in successor inputs."
     }
   ],
@@ -55,7 +55,7 @@
   "readyForHumanH1": false,
   "mayEnterR02": false,
   "successorDisposition": {
-    "review": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/coordinator-20260914T024529Z/reproduction-independent-review.json",
+    "review": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/reproduction-independent-review.json",
     "eightCellExecutionAndClassification": "Passed",
     "classificationCounts": {
       "UnexpectedAccepted": 6,

@@ -15,7 +15,7 @@
       "priority": "P1",
       "status": "Open",
       "finding": "v11 seals obsolete schema-1 count evidence; current verified schema-2 successor is not packaged.",
-      "evidence": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/requirements-coverage.json",
+      "evidence": "external-artifact://candidate-demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/requirements-coverage.json",
       "requiredClosure": "Seal schema-2 matrix, four build/provenance/input chains and updated closure documents; independently review the new package."
     },
     {
@@ -23,7 +23,7 @@
       "priority": "P1",
       "status": "Open",
       "finding": "Successor binding requires historical Startup11RevalidatedAudit/PassedReusedAudited, not fresh current-candidate execution.",
-      "evidence": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/h1-remediation-v12-successor-inputs.json",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1-remediation-v12-successor-inputs.json",
       "requiredClosure": "Produce verified current-candidate R01EarlyLaunches for all 11 modes, with executable/build/source/fixture identity and raw outcomes; update M06 aggregate and successor contract."
     },
     {
@@ -31,23 +31,23 @@
       "priority": "P1",
       "status": "Open",
       "finding": "Complete eight-cell unfixed Debug/Release reproduction missing and no reproduction artifact required by successor membership.",
-      "evidence": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/h1_successor_chain.py",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1_successor_chain.py",
       "requiredClosure": "Authenticate ReviewedV6 plus diagnostic overlay/build provenance; run and classify P03-a/P03-b/N02-a/N02-b in Debug and Release in fresh processes; require verified reproduction receipts in successor inputs."
     }
   ],
   "authenticatedArtifacts": [
     {
-      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/h1-remediation-v11-evidence.tar.gz",
+      "path": "external-artifact://candidate-demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/h1-remediation-v11-evidence.tar.gz",
       "sizeBytes": 442600053,
       "sha256": "c10236f7f3197af4699f855503d490203cdce31ed3d050f947c22202dc0d06b1"
     },
     {
-      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/evidence-v11-index.json",
+      "path": "external-artifact://candidate-demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/evidence-v11-index.json",
       "sizeBytes": 26814696,
       "sha256": "85bff522496ec6a4b60e4e3102ab7fb5b553d40fb5eeb2a43983dfe97cb93c73"
     },
     {
-      "path": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/h1-remediation-v12-successor-inputs.json",
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1-remediation-v12-successor-inputs.json",
       "sizeBytes": 7237,
       "sha256": "3f67edf46c23575042cd8ee28b0250d919d713bf92ba9ba158bba53d92b22ed9"
     }

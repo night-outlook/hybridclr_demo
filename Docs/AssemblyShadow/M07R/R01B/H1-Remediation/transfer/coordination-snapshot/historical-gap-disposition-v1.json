@@ -13,11 +13,11 @@
       "missing": "The selected historical diagnostic build did not retain complete transitive generated-file, compiler, SDK, and linker provenance.",
       "available": "Retained installed-native bytes and recorded source rows were audited, but that evidence cannot prove how every selected historical binary was produced.",
       "currentReplacementEvidence": [
-        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-cac0f4bc217249fd8340d89fca1e3525/build.json",
-        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-54cd124618224cada44cf35d2e9fe8c0/build.json",
-        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-6a67d46ce5d044ad8cab8bb1be964934/build.json",
-        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-8b433f8c62664dadb8b010d18612d73f/build.json",
-        "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/candidate-tool-inputs-after-final-count-9c6b812-v1.json"
+        "external-artifact://candidate-demo/_temp/AssemblyShadow/H1CountBuild-cac0f4bc217249fd8340d89fca1e3525/build.json",
+        "external-artifact://candidate-demo/_temp/AssemblyShadow/H1CountBuild-54cd124618224cada44cf35d2e9fe8c0/build.json",
+        "external-artifact://candidate-demo/_temp/AssemblyShadow/H1CountBuild-6a67d46ce5d044ad8cab8bb1be964934/build.json",
+        "external-artifact://candidate-demo/_temp/AssemblyShadow/H1CountBuild-8b433f8c62664dadb8b010d18612d73f/build.json",
+        "external-artifact://h1r-coordination-20260910/candidate-tool-inputs-after-final-count-9c6b812-v1.json"
       ],
       "claimBoundary": "No historical selected-build transitivity claim. The final H1 candidate is assessed only from its new immutable build receipts and captured inputs."
     },
@@ -25,28 +25,28 @@
       "id": "HIST-STRICT-INDEX-EXECUTABLE",
       "status": "IrrecoverableHistoricalGap_SourceAndInputEquivalenceOnly",
       "missing": "The resolved backend compiler, linker, sanitizer bindings, and temporary executable bytes from the original strict-index run are unavailable.",
-      "available": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/entry/native-v5-reuse-first-suite-audit.json records 823 of 823 inputs matching and 14 of 14 fixed-repository inputs matching.",
+      "available": "external-artifact://h1r-coordination-20260910/entry/native-v5-reuse-first-suite-audit.json records 823 of 823 inputs matching and 14 of 14 fixed-repository inputs matching.",
       "claimBoundary": "The historical receipt is not reused as fresh runtime proof and proves no Unity, Player, or production-loader execution."
     },
     {
       "id": "HIST-PYTHON-MEMBERSHIP",
       "status": "IrrecoverableHistoricalGap_CountOnly",
       "missing": "The dots-only Python log retained no test case IDs and no exact discovery or invocation command.",
-      "available": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/entry/original-python-raw-audit.json authenticates the raw log, 492 progress dots, the footer 'Ran 492 tests', and OK.",
+      "available": "external-artifact://h1r-coordination-20260910/entry/original-python-raw-audit.json authenticates the raw log, 492 progress dots, the footer 'Ran 492 tests', and OK.",
       "claimBoundary": "Exactly 492 successful executions are supported; uniqueness, membership, selection, and exact invocation are not claimed."
     },
     {
       "id": "HIST-OLD-PLAYER-PROFILE2",
       "status": "IrrecoverableHistoricalGap_IdentityBoundaryRevalidated",
       "missing": "The retained old-player capsule has transport schema version 1 and no explicit numeric metadata-profile-2 request field.",
-      "available": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1OldPlayerRejection-9c6b812/old-player-rejection-receipt.json is a fresh controlled identity-mismatch rejection with exit code 1 and unchanged inputs.",
+      "available": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1OldPlayerRejection-9c6b812/old-player-rejection-receipt.json is a fresh controlled identity-mismatch rejection with exit code 1 and unchanged inputs.",
       "claimBoundary": "The fresh run proves rejection before Configure, Stage, or publication for incompatible new source identity. It does not prove that the old binary received or understood an explicit profile-2 native request."
     },
     {
       "id": "HIST-EDITOR-COVERAGE",
       "status": "IrrecoverableHistoricalGap_1021Exact",
       "missing": "The retained selected XML contains 1,021 passed cases while a suite-level declaration reports 1,059; no filter metadata or identities for the remaining 38 were retained.",
-      "available": "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/entry/original-editor-raw-audit.json authenticates exactly 1,021 passed, zero failed, zero skipped, and zero inconclusive cases.",
+      "available": "external-artifact://h1r-coordination-20260910/entry/original-editor-raw-audit.json authenticates exactly 1,021 passed, zero failed, zero skipped, and zero inconclusive cases.",
       "claimBoundary": "Only the exact 1,021-case selected run is claimed. The 38-case difference remains an explicit coverage ambiguity."
     }
   ]
