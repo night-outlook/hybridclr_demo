@@ -13,7 +13,17 @@ class SidecarTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name).resolve();self.fixture=Fixture(self.root/'artifacts')
     def tearDown(self):self.temp.cleanup()
     def test_managed_capture_is_paired_in_memory_without_rewriting_build_receipt(self):
+        # Model immutable receipts produced by the existing Unity builder.
+        originals={}
+        for row,_ in self.fixture.builds['candidate'].values():
+            value=self.fixture.json(row)
+            del value['managedSourceProvenancePath']
+            del value['managedSourceProvenanceSha256']
+            self.fixture.add(row['id'],value)
+            originals[row['localPath']]=Path(row['localPath']).read_bytes()
         store=self.fixture.store();rows=sidecar.selected_builds(store,'candidate-count-builds','candidate-source-pins',('On/Debug','On/Release','Off/Debug','Off/Release'))
+        for path,original_bytes in originals.items():
+            self.assertEqual(original_bytes,Path(path).read_bytes())
         self.assertIn('managedSourceProvenancePath',rows['On/Debug'][1])
         original=self.fixture.json(self.fixture.builds['candidate']['On/Debug'][0])
         self.assertNotIn('managedSourceProvenancePath',original)

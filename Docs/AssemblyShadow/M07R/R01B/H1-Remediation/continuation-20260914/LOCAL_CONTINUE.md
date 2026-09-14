@@ -25,13 +25,15 @@ Use Python >= 3.11. Unity can receive `-shadowH1Python /ABS/python3` when `pytho
 
 ## Count builds and provenance
 
-Build candidate `On/Debug`, `On/Release`, `Off/Debug`, `Off/Release`; build reproduction `On/Debug`, `On/Release`. Each build uses a new preparation/output/evidence directory and separate Unity processes for prepare/build/restore. Existing entry points remain:
+Build candidate `On/Debug`, `On/Release`, `Off/Debug`, `Off/Release`; build reproduction `On/Debug`, `On/Release`. Each build uses a new preparation/output/evidence directory and separate Unity processes for prepare/build/restore. Use the managed-provenance wrapper for the build phase; prepare and restore keep their existing entry points:
 
 ```text
 AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.PrepareDiagnosticBuild
-AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.BuildDiagnosticPlayer
+AssemblyShadowDemo.Editor.H1CountDiagnosticBuildWithManagedProvenance.BuildDiagnosticPlayer
 AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.RestoreDiagnosticBuild
 ```
+
+Pass explicit absolute `-shadowH1BuildReceipt` and `-shadowH1PreparationRoot` arguments to the wrapper. Calling the unwrapped build method omits managed source capture.
 
 After each build, verify the generated managed and native provenance rather than inferring it from settings/logs. Candidate compiler verification consumes four build receipts; reproduction compiler verification consumes two. Managed proof route A is fresh graph verification. Route B is allowed only with an explicit prior direct proof whose source/configuration/defines and actual Player DLL bytes are reverified equal; no automatic fallback is permitted.
 

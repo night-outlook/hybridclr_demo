@@ -1,0 +1,836 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PythonLeafInventory",
+  "status": "Passed",
+  "count": 205,
+  "counts": {
+    "Passed": 205
+  },
+  "tests": [
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_ambiguous_header_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_cycle_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_debug",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_depth_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_duplicate_link_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_empty_response_allowed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_expand_nested_retained_responses",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_forced_include_requires_proof",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_link_macro_not_compile_evidence",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_macro_union_cannot_mask_missing_override",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_mismatched_sdk_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_ndebug_zero_is_defined",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_ordered_redefine",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_ordered_undefine",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_release",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_response_macro_can_undefine_direct_macro",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_separate_operand",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_shell_action_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_spaces_in_response_path",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_unreachable_library_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_unresolved_expression_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.CompilerActionsTests.test_unretained_response_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.ExtraMacroTests.test_explicit_values_do_not_eagerly_require_header_defaults",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.ExtraMacroTests.test_function_like_ndebug_still_counts_as_defined",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_actions.ExtraMacroTests.test_function_like_tracked_boolean_requires_preprocessing",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_provenance.H1CompilerProvenanceTests.test_duplicate_json_keys_are_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_provenance.H1CompilerProvenanceTests.test_graph_evidence_is_derived_from_actions_and_output_chain",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_provenance.H1CompilerProvenanceTests.test_graph_rejects_inconsistent_compilers",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_compiler_provenance.H1CompilerProvenanceTests.test_graph_rejects_native_output_not_reachable_from_link",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_audit.H1CountFixtureAuditTests.test_nested_visibility_requires_complete_nestedclass_ownership",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_audit.H1CountFixtureAuditTests.test_oversized_file_is_rejected_before_reading_contents",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_audit.H1CountFixtureAuditTests.test_param_rows_require_full_ownership_and_preserve_sequence_zero_names",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_audit.H1CountFixtureAuditTests.test_signature_rejects_explicitthis_and_nested_byref_shapes",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_audit.H1CountFixtureAuditTests.test_zero_child_target_is_observable_and_nested_names_are_escaped",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_generator.H1CountFixtureGeneratorTests.test_case_matrix_contains_base_and_p04_variants",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_generator.H1CountFixtureGeneratorTests.test_cli_rejects_unsupported_case_set",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_generator.H1CountFixtureGeneratorTests.test_names_and_manifest_contract_are_distinct_per_flavor",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_generator.H1CountFixtureGeneratorTests.test_nested_family_is_a_supported_cli_family",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_fixture_generator.H1CountFixtureGeneratorTests.test_writer_contains_bounded_large_signature_and_no_padding",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_added_tree_file_is_detected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_audit_kinds_are_family_specific",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_command_binds_registered_probe_flags_and_exact_fixture",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_immutable_native_snapshot_survives_live_drift_but_rejects_snapshot_drift",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_json_read_is_bounded_before_rejecting_oversize",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_mode_policy_requires_shadow_feature_on",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_normal_failure_is_distinct_from_signal_termination",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_overlapping_binary_observation_cannot_replace_build_hash",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_replacement_during_build_validation_is_refused_before_popen",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_result_identity_requires_current_schema_two",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_symlink_observation_is_rejected_without_raising",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_wrong_native_app_path_is_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_launcher.H1CountPlayerLauncherTests.test_wrong_native_provenance_is_rejected_before_launch",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_manifest.H1CountManifestTests.test_canonical_matrix_rejects_negative_count_missing_duplicate_and_zero",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_manifest.H1CountManifestTests.test_cli_failure_retains_new_receipt_and_refuses_overwrite",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_manifest.H1CountManifestTests.test_duplicate_json_keys_are_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_manifest.H1CountManifestTests.test_hash_identity_count_missing_and_duplicate_target_observations_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_manifest.H1CountManifestTests.test_high_signature_count_with_no_param_rows_is_accepted_as_shape",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_manifest.H1CountManifestTests.test_positive_zero_and_four_p04_shapes_bind_to_independent_controls",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_matrix.H1CountMatrixTests.test_complete_132_cell_matrix_passes",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_matrix.H1CountMatrixTests.test_missing_duplicate_and_extra_cells_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_matrix.H1CountMatrixTests.test_wrong_build_hash_and_failed_status_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_authenticated_early_rejection_requires_named_count_and_no_publication",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_changed_witness_native_identity_is_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_exact_state_is_required",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_failure_diagnostics_raw_json_is_authoritative",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_generic_bad_image_is_no_coverage",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_launch_status_and_inputs_are_required",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_ledger_extra_allocation_is_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_logical_witness_identity_row_must_be_unpublished_aot_without_mvid",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_missing_witness_is_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_parameter_guard_count_is_parsed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_path_flavor_and_feature_are_independent",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_physical_witness_identity_row_must_be_published_interpreter_with_mvid",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_positive_controlled_parameter_rejection",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_positive_real_parameter_audit_and_ordinary_probe",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_positive_real_zero_nested_audit_and_probe",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_positive_return_row_uses_authenticated_byte_oracle",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_positive_shadow_state_and_ledger_contract",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_rejected_operation_must_not_claim_load_success",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_rejected_physical_and_published_inventories_must_be_identical",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_rejected_public_inventory_must_be_identical",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_return_row_capability_cannot_contradict_rows",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_shadow_replacement_must_preserve_unrelated_identity",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_shadow_validation_may_extend_the_single_page_reservation",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_stored_audit_row_must_equal_fresh_decoding",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_tampered_witness_observation_or_hash_is_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_witness_identity_arrays_are_mandatory",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_count_results.H1CountResultTests.test_zero_nested_requires_parent_typedef",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_bad_hash_retains_failure_report",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_declared_tool_hash_mismatch_retains_failure_report",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_duplicate_index_json_and_archive_members_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_duplicate_json_key_in_archived_member_fails",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_index_replacement_after_digest_cannot_authenticate_new_bytes",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_missing_and_unindexed_members_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_unsafe_member_and_nonregular_member_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_valid_case_and_zero_case_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_members.MemberAuditTests.test_wrong_index_version_fails",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_references.ReferenceAuditTests.test_bare_exact_archive_member_resolves_before_field_heuristic",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_references.ReferenceAuditTests.test_cross_version_basename_and_missing_external_remain_pending",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_references.ReferenceAuditTests.test_duplicate_rawpath_zero_and_bad_prior_digest_fail",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_references.ReferenceAuditTests.test_exact_internal_and_pending_external",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_references.ReferenceAuditTests.test_path_array_preserves_locator_field_context",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_evidence_references.ReferenceAuditTests.test_unmatched_declared_path_string_is_pending",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedExplicitReuseTests.test_changed_player_input_cannot_reuse",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedExplicitReuseTests.test_changed_source_pins_cannot_reuse",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedExplicitReuseTests.test_explicit_identical_reuse",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedExplicitReuseTests.test_reuse_without_direct_proof_is_not_implicit",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedExplicitReuseTests.test_unproven_prior_cannot_be_reused",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_both_managed_domains_required",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_captured_graph_is_not_automatically_passed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_duplicate_source_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_implicit_source_search_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_irrelevant_action_is_not_a_compilation",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_missing_graph_stays_blocked",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_missing_response_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_new_root_required",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_reference_alias_supported",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_retained_source_tamper_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_source_change_during_build_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_managed_provenance.ManagedProvenanceTests.test_verifier_does_not_need_mutable_original_sources",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_multiple_selected_graphs_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_native_hash_tamper_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_no_overwrite",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_old_dag_is_not_fresh",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_recursive_responses_and_immutable_config",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_sdk_metadata_not_default_xcrun",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_wrong_feature_in_real_actions_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_native_capture.NativeCaptureTests.test_wrong_macro_profile_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_fixture_generator.H1NestedFixtureGeneratorTests.test_generation_command_binds_identity_and_family_for_each_flavor",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_fixture_generator.H1NestedFixtureGeneratorTests.test_n01_and_n02_are_the_six_direct_sibling_boundaries",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_fixture_generator.H1NestedFixtureGeneratorTests.test_n03_n04_n05_recipes_keep_shape_inputs_explicit",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_fixture_generator.H1NestedFixtureGeneratorTests.test_nested_identity_and_writer_contract_are_distinct_from_parameters",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_fixture_generator.H1NestedFixtureGeneratorTests.test_synthetic_interleaving_preserves_each_group_order",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_manifest.NestedManifestControls.test_canonical_temp_output_is_resolved_before_use",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_manifest.NestedManifestControls.test_duplicate_manifest_keys_are_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_manifest.NestedManifestControls.test_hand_authored_interleaving_and_relationships",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_manifest.NestedManifestControls.test_wrong_parent_is_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_nested_manifest.NestedManifestControls.test_zero_child_target_is_still_visible",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_attempt_must_be_positive",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_build_command_contains_exact_single_mode_contract",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_failure_receipt_is_new_only",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_formal_prior_requires_all_four_passed_pilot_receipts",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_pair_selection_is_one_pair_and_preserves_explicit_order",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_runner_is_the_single_mode_r00_harness",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_driver.H1PairedDriverTests.test_second_side_cleanup_failure_retains_both_attempts",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_performance.H1PairedPerformanceTests.test_minimal_or_claim_only_build_map_cannot_pass",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_performance.H1PairedPerformanceTests.test_producer_schema_build_map_authenticates_actual_facts",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_performance.H1PairedPerformanceTests.test_schedule_and_failed_launch_binding_guards",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_paired_performance.H1PairedPerformanceTests.test_wrong_guid_receipt_configuration_and_source_proof_are_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_assert_termination_missing_managed_result_is_not_collected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_cannot_exclude_required_role",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_collect_structural_roles_without_claiming_runtime_pass",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_empty_roots_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_locator_map_preserves_raw_receipt",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_nested_retained_path_preferred_over_mutable_source",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_positive_reproduction_requires_raw_result",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_repeated_reference_with_different_hash_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_tampered_referenced_hash",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_selection_collect.CollectionTests.test_unresolved_locator_blocks",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_archive_digest_mismatch",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_compiler_graph_cannot_be_unarchived",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_external_json_cannot_be_excused_as_binary",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_hash_mismatch_is_invalid",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_human_approval_is_never_inferred_from_package",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_index_and_archive_round_trip",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_membership_gate_never_approves_M08",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_missing_capture_is_unavailable_not_failed_runtime",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_missing_count_run_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_missing_reproduction_role",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_negative_startup_cannot_handoff",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_negative_startup_exit0_is_not_pass",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_negative_startup_exit1_and_no_m07_are_correct",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_path_safety",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_raw_schema1_rejected_summary_schema1_allowed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_repro_assert_does_not_require_missing_managed_result",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_repro_summary_cannot_replace_assert_log",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_repro_wrong_fresh_build_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_startup_diagnostic_incomplete_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_startup_reuse_audit_cannot_substitute",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_evidence.SuccessorTests.test_wrong_feature_cell_build_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_sidecar.SidecarTests.test_dedicated_witness_probe_contract",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_sidecar.SidecarTests.test_managed_capture_is_paired_in_memory_without_rewriting_build_receipt",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_successor_sidecar.SidecarTests.test_witness_probe_cannot_open_r02",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_duplicate_names_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_expected_failure_not_plain_pass",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_leaf_passes_not_suite_passes",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_nunit_external_entity_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_nunit_total_mismatch_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_python_suite_records_unique_leaf_ids",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_skips_are_not_passes",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_test_inventory.TestInventoryTests.test_zero_tests_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_current_exact",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_discovered_variant_not_auto_approved",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_duplicate_json_key_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_duplicate_provider_mode",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_duplicate_site_rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_every_pinned_field_rejected_when_changed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_historical_five_preserved",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_missing_provider_variant",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_not_a_new_type_whitelist",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_operation_not_boolean_or_different",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_reversed_provider_order_allowed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_schema3_cannot_authorize_h1",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_witness_contract.WitnessContractTests.test_unknown_site_rejected",
+      "result": "Passed"
+    }
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "discoveredCount": 205,
+  "logPath": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260914/python-h1-corrected.log",
+  "logSha256": "8beedf80e5e6b34eb51dbd0bb20abd99fae439c18f323e6d0d8ba18aac9d6df3"
+}

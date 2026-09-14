@@ -22,3 +22,7 @@ Portable validation performed before publication: 102 new Python unit tests, 12 
 ## Publication boundary
 
 The source/tooling continuation is committed to the candidate and reproduction demo branches. Historical evidence, coordination snapshots and old build receipts remain immutable. No native runtime algorithm, `hybridclr_unity`, or `il2cpp_plus` source is changed by this continuation. The reproduction branch receives diagnostic/provenance tooling only; it must keep the unfixed native behavior used by the counterexample runs.
+
+## Subsequent local validation
+
+See [local validation checkpoint](../local-validation-20260914/README.md) for fresh compilation/test results, independent readiness findings, and the committed remaining-work checklist. This is not H1 readiness or M08 PASS.
