@@ -81,6 +81,6 @@ No Unity Player build or fresh 11-mode startup run was performed as part of this
 
 ## Evidence transfer policy
 
-The coordination directory is not a Git repository and is approximately 3.4 GiB. The H1 remediation evidence area is approximately 2.0 GiB. The small coordination records needed to understand and resume the task are committed under `coordination-snapshot/`; large generated archives and `_temp` raw evidence remain external artifacts because they are intentionally not placed in normal Git history. Their required paths and the hashes of the committed snapshots' source records are in `h1-transfer-manifest.json`.
+The coordination directory is not a Git repository and is approximately 3.4 GiB. The H1 remediation evidence area is approximately 2.0 GiB. The coordination records needed to understand and resume the task are committed under `coordination-snapshot/`, except for the 368 KiB performance JSON, whose summary is recorded here and whose source hash remains in `h1-transfer-manifest.json`. Large generated archives and `_temp` raw evidence remain external artifacts because they are intentionally not placed in normal Git history.
 
 Only transfer the raw evidence roots separately when the next validation needs their full receipts or archives. Preserve names, hashes, failure attempts, and historical status. Do not edit sealed records to replace absolute paths; use a relocation map when the new environment has a different root.
