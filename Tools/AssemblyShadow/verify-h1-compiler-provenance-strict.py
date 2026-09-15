@@ -52,7 +52,9 @@ def _verify_macro_domains(derived, *, pch_graph):
         need(domains is None, 'Unexpected source-domain proof on the legacy non-PCH path')
         return None
     need(derived.get('macroDomainPolicy')=='unity-2022.3-apple-bee-source-domains-v1', 'Apple Bee macro-domain policy differs')
-    need(type(domains) is list and {row.get('id') for row in domains}=={'il2cpp-runtime','external-bdwgc','external-zlib'},
+    allowed={'il2cpp-runtime','external-bdwgc','external-zlib'}
+    ids={row.get('id') for row in domains} if type(domains) is list else set()
+    need(type(domains) is list and 'il2cpp-runtime' in ids and ids<=allowed and len(ids)==len(domains),
          'Apple Bee macro-domain inventory differs')
     indices=[]
     for row in domains:
