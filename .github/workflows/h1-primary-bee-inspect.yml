@@ -1,76 +1,428 @@
-name: H1 Primary Bee Inspect
+name: H1 Primary Bee Stage
 on:
   push:
     branches:
       - codex/h1-primary-bee-inspect-33543
+permissions:
+  contents: write
 jobs:
-  inspect:
+  stage:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect committed failure archive
+      - name: Apply primary implementation
         shell: bash
         run: |
           python3 - <<'PY'
-          import hashlib, json, pathlib, shlex, tarfile
-          archive = pathlib.Path('Documents/AgentHandoff/local-validation-20260914-bec2bd1/fresh-smoke-failure-inputs.tar.gz')
-          raw = archive.read_bytes()
-          actual = hashlib.sha256(raw).hexdigest()
-          expected = 'e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8'
-          print('archive_sha256', actual)
-          assert actual == expected, (actual, expected)
-          graph_sha = 'dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181'
-          graph = None
-          graph_name = None
-          with tarfile.open(archive, 'r:gz') as tf:
-              members = [m for m in tf.getmembers() if m.isfile()]
-              print('members', len(members))
-              for m in members:
-                  f = tf.extractfile(m)
-                  if f is None: continue
-                  data = f.read()
-                  if hashlib.sha256(data).hexdigest() == graph_sha:
-                      graph = json.loads(data.decode('utf-8-sig'))
-                      graph_name = m.name
-                      break
-          assert graph is not None, 'graph not found by sha256'
-          print('graph_member', graph_name)
-          nodes = graph['Nodes']
-          target = [151,152] + list(range(154,168))
-          def files_for(node):
-              vals = []
-              for p in node.get('Inputs', []):
-                  low = p.lower()
-                  if low.endswith(('.c','.cc','.cpp','.cxx','.m','.mm','.h','.hpp')):
-                      vals.append(p)
-              return vals
-          print('BEGIN_16')
-          for idx in target:
-              node = nodes[idx]
-              print(json.dumps({
-                  'nodeIndex': idx,
-                  'annotation': node.get('Annotation'),
-                  'sourceLikeInputs': files_for(node),
-                  'inputs': node.get('Inputs', []),
-                  'outputs': node.get('Outputs', []),
-                  'action': node.get('Action'),
-                  'deps': node.get('Deps', node.get('Dependencies', [])),
-              }, sort_keys=True))
-          print('END_16')
-          print('BEGIN_PCH')
-          for idx,node in enumerate(nodes):
-              ann = str(node.get('Annotation',''))
-              if ann.startswith('C_Mac_arm64Pch') or ann.startswith('Link_Mac_arm64'):
-                  print(json.dumps({'nodeIndex':idx,'annotation':ann,'inputs':node.get('Inputs',[]),'outputs':node.get('Outputs',[]),'action':node.get('Action'),'deps':node.get('Deps',node.get('Dependencies',[]))}, sort_keys=True))
-          print('END_PCH')
-          # Path-token census for all compile-source inputs.
-          census = {}
-          for idx,node in enumerate(nodes):
-              if not str(node.get('Annotation','')).startswith('C_Mac_arm64'):
-                  continue
-              srcs = files_for(node)
-              for src in srcs:
-                  key = 'bdwgc' if 'bdwgc' in src.lower() else 'zlib' if 'zlib' in src.lower() else 'libil2cpp' if 'libil2cpp' in src.lower() else 'other'
-                  census[key] = census.get(key,0)+1
-          print('source_token_census', json.dumps(census, sort_keys=True))
+          from pathlib import Path
+          import re, textwrap
+
+          def exact_replace(path, old, new, count=1):
+              p=Path(path); text=p.read_text()
+              actual=text.count(old)
+              if actual != count:
+                  raise SystemExit(f'{path}: expected {count} occurrence(s), got {actual}: {old[:80]!r}')
+              p.write_text(text.replace(old,new,count))
+
+          # 1) Compiler-action owner: explicit Apple Bee source domains.
+          path='Tools/AssemblyShadow/h1_compiler_actions.py'
+          exact_replace(path,
+              'TRACKED = ("IL2CPP_DEBUG", "NDEBUG", "IL2CPP_DEVELOPMENT")\n',
+              'TRACKED = ("IL2CPP_DEBUG", "NDEBUG", "IL2CPP_DEVELOPMENT")\nH1_APPLE_BEE_DOMAIN_POLICY = "h1-apple-bee-v1"\n')
+          p=Path(path); text=p.read_text()
+          start=text.index('def derive_graph_evidence(')
+          end=text.index('\ndef retained_responses(', start)
+          replacement=r'''def _under(path: str, parent: str) -> bool:
+              path = os.path.abspath(path); parent = os.path.abspath(parent)
+              try:
+                  return os.path.commonpath((path, parent)) == parent
+              except ValueError:
+                  return False
+
+
+def _source_from_node(node: dict, project_root: Path) -> str:
+              annotation = str(node.get("Annotation", ""))
+              extensions = (".h", ".hpp", ".hh", ".hxx") if annotation.startswith("C_Mac_arm64Pch") else (".c", ".cc", ".cpp", ".cxx", ".m", ".mm")
+              candidates = [resolve(project_root, value) for value in node.get("Inputs", [])
+                            if type(value) is str and Path(value).suffix.lower() in extensions]
+              need(len(candidates) == 1, "Expected exactly one compile source in Bee Inputs: " + annotation)
+              return candidates[0]
+
+
+def _direct_assertion_profile(arguments: list[str]) -> dict[str, str]:
+              values = definitions(arguments)
+              def direct(name: str) -> str:
+                  return boolean_macro(values[name], name) if name in values else "undefined"
+              return {"il2cppDebug": direct("IL2CPP_DEBUG"),
+                      "ndebug": "1" if "NDEBUG" in values else "0",
+                      "il2cppDevelopment": direct("IL2CPP_DEVELOPMENT")}
+
+
+def _h1_apple_macro_domains(compile_nodes: list[dict], compile_arguments: list[list[str]],
+                            link_node: dict, project_root: Path, config: str) -> tuple[dict[str, str], list[dict]]:
+              sources = [_source_from_node(node, project_root) for node in compile_nodes]
+              roots = set()
+              for source in sources:
+                  parts = Path(source).parts
+                  indexes = [i for i, part in enumerate(parts) if part == "libil2cpp"]
+                  if indexes:
+                      need(len(indexes) == 1, "Ambiguous libil2cpp source root: " + source)
+                      roots.add(str(Path(*parts[:indexes[0]])))
+              need(len(roots) == 1, "Expected one installed IL2CPP source root for H1 Apple provenance")
+              il2cpp_root = next(iter(roots))
+              external_root = os.path.join(il2cpp_root, "external")
+              runtime_root = os.path.join(il2cpp_root, "libil2cpp")
+              root_parts = Path(il2cpp_root).parts
+              try:
+                  hybrid_index = root_parts.index("HybridCLRData")
+                  graph_project_root = str(Path(*root_parts[:hybrid_index]))
+              except ValueError:
+                  raise CompilerActionError("Installed IL2CPP root is not below HybridCLRData: " + il2cpp_root)
+              generated_root = os.path.join(graph_project_root, "Library", "Bee", "artifacts", "MacStandalonePlayerBuildProgram")
+              link_inputs = {resolve(project_root, value) for value in link_node.get("Inputs", [])}
+              domains: dict[str, list[dict[str, str]]] = {"runtime": [], "bdwgc": [], "zlib": []}
+              counts = {name: 0 for name in domains}
+              source_examples = {name: [] for name in domains}
+              for node, args, source in zip(compile_nodes, compile_arguments, sources):
+                  annotation = str(node.get("Annotation", ""))
+                  producer = annotation.startswith("C_Mac_arm64Pch")
+                  if _under(source, runtime_root) or (_under(source, generated_root) and (os.sep + "il2cppOutput" + os.sep + "cpp" + os.sep) in source):
+                      domain = "runtime"
+                  elif _under(source, os.path.join(external_root, "bdwgc")):
+                      domain = "bdwgc"
+                  elif _under(source, os.path.join(external_root, "zlib")):
+                      domain = "zlib"
+                  else:
+                      raise CompilerActionError("Unreviewed Apple native source domain: " + source)
+                  if domain != "runtime":
+                      need(not producer, "External auxiliary domains may not produce the runtime PCH")
+                  if not producer:
+                      outputs = [resolve(project_root, value) for value in node.get("Outputs", []) if str(value).endswith(".o")]
+                      need(len(outputs) == 1 and outputs[0] in link_inputs,
+                           "Native object is not a direct input of the selected GameAssembly link: " + source)
+                  profile = effective_macros(args, config) if domain == "runtime" else _direct_assertion_profile(args)
+                  domains[domain].append(profile); counts[domain] += 1
+                  if len(source_examples[domain]) < 4: source_examples[domain].append(source)
+              need(counts["runtime"] > 0, "H1 Apple provenance has no runtime/PCH domain")
+              result = []
+              for name in ("runtime", "bdwgc", "zlib"):
+                  rows = domains[name]
+                  if not rows: continue
+                  need(all(row == rows[0] for row in rows), "Apple Bee macro domain disagrees internally: " + name)
+                  result.append({"name": name, "unitCount": counts[name],
+                                 "profileKind": "effective-runtime-config" if name == "runtime" else "direct-command-line",
+                                 "profile": rows[0], "sourceExamples": source_examples[name]})
+              return domains["runtime"][0], result
+
+
+def derive_graph_evidence(graph: dict, project_root: Path, native_library_path: Path,
+                          config: str, response_contents: Mapping[str, bytes] | None = None,
+                          *, expected_feature: bool | None = None, domain_policy: str | None = None) -> dict:
+              responses = response_contents or {}
+              nodes = graph.get("Nodes")
+              need(type(nodes) is list and nodes and len(nodes) <= 1_000_000, "Missing/bounded Bee node inventory")
+              compile_nodes = [n for n in nodes if type(n) is dict and str(n.get("Annotation", "")).startswith("C_Mac_arm64") and n.get("Action")]
+              link_nodes = [n for n in nodes if type(n) is dict and str(n.get("Annotation", "")).startswith("Link_Mac_arm64") and n.get("Action")]
+              need(compile_nodes and len(link_nodes) == 1, "Expected native compile actions and one link action")
+              rows = []
+              used = set()
+              for node in compile_nodes + link_nodes:
+                  tokens = split(node["Action"])
+                  expanded, sources = expand(tokens, project_root, responses)
+                  used.update(sources)
+                  rows.append((node, expanded))
+              compilers = {resolve(project_root, args[0]) for _, args in rows}
+              sysroots = {resolve(project_root, option(args, "-isysroot")) for _, args in rows}
+              need(len(compilers) == len(sysroots) == 1, "Native compiler/SDK action identities disagree")
+              outputs = [resolve(project_root, p) for p in link_nodes[0].get("Outputs", []) if Path(p).name == "GameAssembly.dylib"]
+              need(len(outputs) == 1, "Link action does not emit one GameAssembly.dylib")
+              reachable = {outputs[0]}
+              while True:
+                  added = set()
+                  for node in nodes:
+                      if type(node) is dict and {resolve(project_root, p) for p in node.get("Inputs", [])} & reachable:
+                          added.update(resolve(project_root, p) for p in node.get("Outputs", []))
+                  if added <= reachable: break
+                  reachable.update(added)
+              need(resolve(project_root, str(native_library_path)) in reachable, "Link output does not reach selected native library")
+              compile_args = [args for _, args in rows[:len(compile_nodes)]]
+              if expected_feature is not None:
+                  for args in compile_args:
+                      values = definitions(args)
+                      need(values.get("HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW") == ("1" if expected_feature else "0") and
+                           values.get("HYBRIDCLR_H1_COUNT_DIAGNOSTICS") == "1",
+                           "An actual compiler action lacks the requested Shadow/count-diagnostic defines")
+              if domain_policy is None:
+                  unit_macros = [effective_macros(args, config) for args in compile_args]
+                  need(all(item == unit_macros[0] for item in unit_macros),
+                       "Translation units disagree on effective diagnostic macros (link flags are not compile evidence)")
+                  runtime_profile = unit_macros[0]
+                  macro_domains = [{"name": "global-legacy", "unitCount": len(unit_macros),
+                                    "profileKind": "effective-runtime-config", "profile": runtime_profile,
+                                    "sourceExamples": []}]
+              else:
+                  need(domain_policy == H1_APPLE_BEE_DOMAIN_POLICY, "Unknown compiler macro-domain policy")
+                  runtime_profile, macro_domains = _h1_apple_macro_domains(
+                      compile_nodes, compile_args, link_nodes[0], project_root, config)
+              return {"compileActionCount": len(compile_nodes), "linkActionCount": 1,
+                  "compilerPath": next(iter(compilers)), "sdkPath": next(iter(sysroots)),
+                  "beeLinkOutputPath": outputs[0], **runtime_profile, "macroDomains": macro_domains,
+                  "macroDomainPolicy": domain_policy or "legacy-global", "responseSources": sorted(used)}
+'''
+          replacement=textwrap.dedent(replacement)
+          p.write_text(text[:start] + replacement + text[end:])
+
+          # 2) PCH plan uses the reviewed domain policy after forced-input stripping.
+          exact_replace('Tools/AssemblyShadow/h1_pch_provenance.py',
+              'derived = a.derive_graph_evidence(stripped, root, native, config, {}, expected_feature=feature)',
+              'derived = a.derive_graph_evidence(stripped, root, native, config, {}, expected_feature=feature, domain_policy=a.H1_APPLE_BEE_DOMAIN_POLICY)')
+
+          # 3) Fresh native capture: retain plan-stage inputs/failure before planning and bind domain evidence.
+          path='Tools/AssemblyShadow/h1_native_capture.py'; p=Path(path); text=p.read_text()
+          insert='''\n\nclass CaptureAttempt:\n    def __init__(self, root: Path, kind: str):\n        self.root = Path(root)\n        actions.need(self.root.is_absolute() and self.root == self.root.resolve() and not self.root.exists(),\n                     "Evidence directory must be new and canonical")\n        actions.need(self.root.parent.is_dir() and not self.root.parent.is_symlink(), "Evidence parent must exist and not be symlinked")\n        self.root.mkdir(parents=False)\n        self.state = {"schemaVersion": 1, "kind": kind, "stage": "created",\n                      "pchReplay": "NotRun", "macroProbes": "NotRun",\n                      "humanGatePassed": False, "mayEnterR02": False}\n        self._state()\n    def _state(self):\n        tmp = self.root / "attempt-state.json.tmp"\n        tmp.write_text(json.dumps(self.state, indent=2) + "\\n")\n        os.replace(tmp, self.root / "attempt-state.json")\n    def stage(self, name: str, **values):\n        self.state.update(values); self.state["stage"] = name; self._state()\n    def failure(self, error: BaseException):\n        payload = {**self.state, "status": "Failed", "errorType": type(error).__name__, "error": str(error)}\n        target = self.root / "capture-failure.json"\n        if not target.exists(): write_new(target, (json.dumps(payload, indent=2) + "\\n").encode())\n\n\ndef _retain_plan_inputs(graph: dict, root: Path, evidence_root: Path) -> None:\n    rows = []\n    seen = set()\n    for node in graph.get("Nodes", []):\n        if type(node) is not dict or not str(node.get("Annotation", "")).startswith("C_Mac_arm64"): continue\n        for value in node.get("Inputs", []):\n            if type(value) is not str: continue\n            source = Path(actions.resolve(root, value))\n            key = str(source)\n            if key in seen: continue\n            seen.add(key)\n            row = {"sourcePath": key, "exists": source.is_file(), "symlink": source.is_symlink()}\n            if source.is_file() and not source.is_symlink():\n                row["bytes"] = source.stat().st_size\n                if row["bytes"] <= 64 * 1024 * 1024:\n                    data = source.read_bytes(); row["sha256"] = hashlib.sha256(data).hexdigest()\n                    if source.suffix.lower() in (".pch", ".h", ".hpp", ".hh", ".hxx"):\n                        retained = evidence_root / "preplan-inputs" / (row["sha256"] + source.suffix.lower())\n                        if not retained.exists(): write_new(retained, data)\n                        row["retainedPath"] = str(retained)\n                else:\n                    row["hashStatus"] = "SkippedOver64MiBPlanRetentionBound"\n            rows.append(row)\n            actions.need(len(rows) <= 4096, "Pre-plan input inventory exceeds bound")\n    write_new(evidence_root / "preplan-input-inventory.json", (json.dumps(rows, indent=2) + "\\n").encode())\n'''
+          marker='def unique_pairs(pairs):\n'
+          if insert.strip() in text: raise SystemExit('native capture helper already present')
+          text=text.replace(marker, textwrap.dedent(insert)+'\n'+marker,1)
+          text=text.replace('def capture(request: dict, evidence_root: Path) -> dict:\n    root = Path(request["projectRoot"])\n    actions.need(root.is_absolute() and root == root.resolve(strict=True), "Project root is not canonical")\n    actions.need(evidence_root.is_absolute() and evidence_root == evidence_root.resolve() and not evidence_root.exists(),\n                 "Evidence directory must be new and canonical")',
+'''def capture(request: dict, evidence_root: Path, *, original_request: bytes | None = None) -> dict:\n    evidence_root = Path(evidence_root)\n    attempt = CaptureAttempt(evidence_root, "H1NativeCaptureAttempt")\n    if original_request is None:\n        original_request = (json.dumps(request, sort_keys=True, separators=(",", ":")) + "\\n").encode()\n        request_kind = "ReencodedRequestObject"\n    else:\n        request_kind = "ExactRequestBytes"\n    write_new(evidence_root / "capture-request.json", original_request)\n    write_new(evidence_root / "capture-request-kind.txt", (request_kind + "\\n").encode())\n    try:\n        attempt.stage("request-validation")\n        return _capture_impl(request, evidence_root, attempt)\n    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:\n        attempt.failure(error)\n        raise\n\n\ndef _capture_impl(request: dict, evidence_root: Path, attempt: CaptureAttempt) -> dict:\n    root = Path(request["projectRoot"])\n    actions.need(root.is_absolute() and root == root.resolve(strict=True), "Project root is not canonical")''',1)
+          text=text.replace("    matches = []\n", "    attempt.stage('graph-selection')\n    matches = []\n",1)
+          text=text.replace("    raw_config = config_path.read_bytes()\n    responses = collect_responses(graph, root)\n    pch_plan = pch.plan(graph, root, native, raw_config.decode('utf-8'), responses, request.get(\"featureEnabled\")) if pch.has_pch(graph, root, responses) else None\n    derived = pch_plan['derived'] if pch_plan else actions.derive_graph_evidence(graph, root, native, raw_config.decode('utf-8'), responses, expected_feature=request.get(\"featureEnabled\"))",
+'''    raw_config = config_path.read_bytes()\n    retained_graph = evidence_root / 'bee-action-graph.json'\n    retained_config = evidence_root / 'il2cpp-config.h'\n    write_new(retained_graph, raw_graph); write_new(retained_config, raw_config)\n    attempt.stage('preplan-input-retention')\n    _retain_plan_inputs(graph, root, evidence_root)\n    responses = collect_responses(graph, root)\n    response_rows = []\n    for i, (source, data) in enumerate(sorted(responses.items())):\n        retained = evidence_root / 'response-files' / ('%04d.rsp' % i)\n        write_new(retained, data)\n        response_rows.append({'sourcePath': source, 'retainedPath': str(retained),\n            'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)})\n    attempt.stage('planning')\n    pch_plan = pch.plan(graph, root, native, raw_config.decode('utf-8'), responses, request.get("featureEnabled")) if pch.has_pch(graph, root, responses) else None\n    derived = pch_plan['derived'] if pch_plan else actions.derive_graph_evidence(graph, root, native, raw_config.decode('utf-8'), responses, expected_feature=request.get("featureEnabled"), domain_policy=actions.H1_APPLE_BEE_DOMAIN_POLICY)\n    attempt.stage('planning-complete')''',1)
+          text=text.replace("    # No output is created until structural selection and macro interpretation pass.\n    evidence_root.mkdir(parents=False)\n    retained_graph = evidence_root / 'bee-action-graph.json'\n    retained_config = evidence_root / 'il2cpp-config.h'\n    retained_sdk = evidence_root / 'SDKSettings.plist'\n    write_new(retained_graph, raw_graph); write_new(retained_config, raw_config); write_new(retained_sdk, sdk_bytes)\n    response_rows = []\n    for i, (source, data) in enumerate(sorted(responses.items())):\n        retained = evidence_root / 'response-files' / ('%04d.rsp' % i)\n        write_new(retained, data)\n        response_rows.append({'sourcePath': source, 'retainedPath': str(retained),\n            'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)})",
+"    retained_sdk = evidence_root / 'SDKSettings.plist'\n    write_new(retained_sdk, sdk_bytes)",1)
+          text=text.replace("        proof = pch.capture(pch_plan, graph, root, str(config_path), binding, evidence_root / 'pch', responses=responses)",
+"        attempt.stage('pch-execution', pchReplay='Invoked', macroProbes='Invoked')\n        proof = pch.capture(pch_plan, graph, root, str(config_path), binding, evidence_root / 'pch', responses=responses)",1)
+          text=text.replace("        'macroEvidence': 'Per-unit ordered -D/-U intent; NDEBUG uses definedness. PCH contexts additionally require the bound raw syntax/macro proof when pchProofPath is nonempty. Other forced-input routes remain prohibited.',",
+"        'macroEvidence': 'H1 Apple Bee source-owned domains: runtime/PCH profile is build-mode authoritative; BDWGC and zlib are direct-link auxiliary domains with separate internally-consistent command-line assertion profiles. Requested Shadow/count defines remain mandatory on every compile action.',\n        'macroDomainEvidence': json.dumps(derived['macroDomains'], sort_keys=True, separators=(',', ':')),",1)
+          text=text.replace("    a=p.parse_args(); request_path=canonical_file(str(a.request)); before=digest(request_path)\n    report=capture(read_json(request_path), a.evidence_root)\n    actions.need(digest(request_path)==before, 'Capture request changed')",
+"    a=p.parse_args(); request_path=canonical_file(str(a.request)); raw_request=request_path.read_bytes(); before=hashlib.sha256(raw_request).hexdigest()\n    report=capture(json.loads(raw_request.decode('utf-8-sig'), object_pairs_hook=unique_pairs), a.evidence_root, original_request=raw_request)\n    actions.need(digest(request_path)==before, 'Capture request changed')",1)
+          p.write_text(text)
+
+          # 4) C# receipt can round-trip the canonical domain evidence string.
+          exact_replace('Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs',
+              'public string il2cppDebug, ndebug, il2cppDevelopment, macroEvidence;\n',
+              'public string il2cppDebug, ndebug, il2cppDevelopment, macroEvidence, macroDomainEvidence;\n')
+
+          # 5) Strict verifier re-derives the exact domain evidence from raw graph bytes.
+          path='Tools/AssemblyShadow/verify-h1-compiler-provenance-strict.py'; p=Path(path); text=p.read_text()
+          text=text.replace("derived=strict.derive_graph_evidence(graph,root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,expected_feature=build['featureEnabled'])",
+                            "derived=strict.derive_graph_evidence(graph,root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,expected_feature=build['featureEnabled'],domain_policy=strict.H1_APPLE_BEE_DOMAIN_POLICY)")
+          anchor="        need(set(derived['responseSources'])==set(responses),'Native response closure contains missing/unused captures')\n"
+          replacement=anchor+"        need(provenance.get('macroDomainEvidence')==json.dumps(derived['macroDomains'],sort_keys=True,separators=(',',':')),'Macro-domain evidence differs from raw Bee graph')\n"
+          if text.count(anchor)!=1: raise SystemExit('strict verifier response anchor changed')
+          p.write_text(text.replace(anchor,replacement,1))
+
+          # 6) Diagnostic replay creates and populates its root before plan().
+          Path('Tools/AssemblyShadow/h1_pch_diagnose.py').write_text(textwrap.dedent(r'''#!/usr/bin/env python3
+          """Replay PCH diagnostics from an explicit failed attempt; never repair a receipt."""
+          from __future__ import annotations
+          import argparse, json
+          from pathlib import Path
+          import h1_native_capture as n
+          import h1_pch_provenance as p
+
+          def diagnose(request_path, graph_path, output):
+              output=Path(output); attempt=n.CaptureAttempt(output,'H1PchDiagnosticReplayAttempt')
+              summary={'kind':'H1PchDiagnosticReplay','status':'Blocked','diagnosticOnly':True,
+                       'freshBuildClaim':False,'humanGatePassed':False,'mayEnterR02':False}
+              try:
+                  attempt.stage('request-and-graph-retention')
+                  request_path=n.canonical_file(str(request_path)); graph_path=n.canonical_file(str(graph_path))
+                  request_bytes=request_path.read_bytes(); graph_bytes=graph_path.read_bytes()
+                  n.write_new(output/'original-request.json',request_bytes); n.write_new(output/'original-graph.json',graph_bytes)
+                  request=json.loads(request_bytes.decode('utf-8-sig'),object_pairs_hook=n.unique_pairs)
+                  graph=json.loads(graph_bytes.decode('utf-8-sig'),object_pairs_hook=n.unique_pairs)
+                  root=Path(request['projectRoot'])
+                  p.a.need(root.is_absolute() and root==root.resolve(strict=True),'Original project root is unavailable; do not rewrite the receipt')
+                  native=n.canonical_file(request['nativeLibraryPath']); config=n.canonical_file(request['il2cppConfigPath'])
+                  config_bytes=config.read_bytes(); n.write_new(output/'il2cpp-config.h',config_bytes)
+                  p.a.need(n.digest(native)==request['nativeLibrarySha256'],'Selected failed native output bytes differ')
+                  p.a.need(request['cppConfiguration'] in ('Debug','Release') and type(request['featureEnabled']) is bool,'Original build mode absent')
+                  attempt.stage('preplan-input-retention'); n._retain_plan_inputs(graph,root,output)
+                  responses=n.collect_responses(graph,root)
+                  for i,(source,data) in enumerate(sorted(responses.items())):
+                      retained=output/'response-files'/('%04d.rsp'%i); n.write_new(retained,data)
+                  attempt.stage('planning')
+                  blueprint=p.plan(graph,root,native,config_bytes.decode('utf-8'),responses,request['featureEnabled'])
+                  binding={**{k:request[k] for k in p.BINDINGS},'graphSha256':p.sha(graph_bytes),
+                      'projectRoot':str(root),'featureEnabled':request['featureEnabled'],'cppConfiguration':request['cppConfiguration'],
+                      'diagnosticOnly':True,'replayedRequestSha256':p.sha(request_bytes)}
+                  attempt.stage('pch-execution',pchReplay='Invoked',macroProbes='Invoked')
+                  proof=p.capture(blueprint,graph,root,str(config),binding,output/'pch',responses)
+                  p.verify(proof,graph,root,native,config_bytes.decode('utf-8'),responses,binding)
+                  p.a.need(request_path.read_bytes()==request_bytes and graph_path.read_bytes()==graph_bytes and config.read_bytes()==config_bytes,
+                           'Original attempt changed during diagnosis')
+                  summary.update(status='DiagnosticReplayVerifiedNotBuildAccepted',proofPath=str(output/'pch/pch-proof.json'),proofSha256=n.digest(output/'pch/pch-proof.json'))
+                  attempt.stage('completed',pchReplay='Completed',macroProbes='Completed')
+              except (OSError,ValueError,KeyError,TypeError) as error:
+                  summary.update(error=str(error),errorType=type(error).__name__,failedStage=attempt.state['stage'])
+                  if not (output/'diagnostic-result.json').exists():
+                      n.write_new(output/'diagnostic-result.json',(json.dumps(summary,indent=2)+'\n').encode())
+                  attempt.failure(error); raise
+              n.write_new(output/'diagnostic-result.json',(json.dumps(summary,indent=2)+'\n').encode())
+              return summary
+
+          def main():
+              parser=argparse.ArgumentParser(description=__doc__)
+              parser.add_argument('--request',type=Path,required=True); parser.add_argument('--graph',type=Path,required=True)
+              parser.add_argument('--output',type=Path,required=True)
+              args=parser.parse_args(); print(json.dumps(diagnose(args.request,args.graph,args.output),indent=2)); return 0
+
+          if __name__=='__main__':
+              try: raise SystemExit(main())
+              except (OSError,ValueError,KeyError,TypeError) as error:
+                  print('Blocked diagnostic replay: '+str(error),file=__import__('sys').stderr); raise SystemExit(1)
+          '''))
+
+          # 7) Source-owned domain tests plus exact committed Apple fixture regression.
+          Path('Tools/AssemblyShadow/tests/test_h1_apple_macro_domains.py').write_text(textwrap.dedent(r'''import hashlib, json, tarfile, tempfile, unittest
+          from pathlib import Path
+          import h1_compiler_actions as h
+          import h1_pch_provenance as pch
+
+          CONFIG='#ifndef IL2CPP_DEBUG\n#define IL2CPP_DEBUG 0\n#endif\n#ifndef IL2CPP_DEVELOPMENT\n#define IL2CPP_DEVELOPMENT 0\n#endif\n'
+
+          class AppleDomainTests(unittest.TestCase):
+              def fixture(self, release=False):
+                  root=Path('/project'); il2cpp=root/'HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp'
+                  common='-isysroot /sdk -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 -DHYBRIDCLR_H1_COUNT_DIAGNOSTICS=1 '
+                  runtime=('-DNDEBUG=1' if release else '-DIL2CPP_DEBUG=1')
+                  sources=[il2cpp/'libil2cpp/vm/A.cpp',il2cpp/'external/bdwgc/extra/gc.c',il2cpp/'external/zlib/adler32.c',il2cpp/'external/zlib/crc32.c']
+                  flags=[runtime,'','','']
+                  nodes=[]
+                  for i,(source,flag) in enumerate(zip(sources,flags)):
+                      out=f'obj{i}.o'; nodes.append({'Annotation':'C_Mac_arm64 '+out,
+                          'Action':f'/tool/clang++ {common}{flag} -c -x '+('c++' if i==0 else 'c')+f' "{source}" -o {out}',
+                          'Inputs':[str(source)],'Outputs':[out]})
+                  nodes.append({'Annotation':'Link_Mac_arm64','Action':'/tool/clang++ -isysroot /sdk',
+                                'Inputs':[f'obj{i}.o' for i in range(4)],'Outputs':['Library/GameAssembly.dylib']})
+                  nodes.append({'Annotation':'Copy','Inputs':['Library/GameAssembly.dylib'],'Outputs':['Build/GameAssembly.dylib']})
+                  return root,{'Nodes':nodes}
+              def derive(self,value,release=False):
+                  root,_=self.fixture(release); return h.derive_graph_evidence(value,root,root/'Build/GameAssembly.dylib',CONFIG,{},expected_feature=True,domain_policy=h.H1_APPLE_BEE_DOMAIN_POLICY)
+              def test_runtime_and_auxiliary_domains_are_separate(self):
+                  root,g=self.fixture(); result=self.derive(g)
+                  self.assertEqual(('1','0','0'),(result['il2cppDebug'],result['ndebug'],result['il2cppDevelopment']))
+                  self.assertEqual({'runtime':1,'bdwgc':1,'zlib':2},{r['name']:r['unitCount'] for r in result['macroDomains']})
+              def test_release_runtime_profile_remains_authoritative(self):
+                  _,g=self.fixture(True); result=self.derive(g,True); self.assertEqual(('0','1'),(result['il2cppDebug'],result['ndebug']))
+              def test_auxiliary_domain_mixing_rejected(self):
+                  _,g=self.fixture(); g['Nodes'][3]['Action']=g['Nodes'][3]['Action'].replace(' -c ',' -DIL2CPP_DEBUG=1 -c ')
+                  with self.assertRaisesRegex(ValueError,'domain disagrees internally: zlib'): self.derive(g)
+              def test_unknown_native_source_domain_rejected(self):
+                  _,g=self.fixture(); g['Nodes'][2]['Inputs']=['/vendor/other/adler32.c']; g['Nodes'][2]['Action']=g['Nodes'][2]['Action'].replace('/project/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/external/zlib/adler32.c','/vendor/other/adler32.c')
+                  with self.assertRaisesRegex(ValueError,'Unreviewed Apple native source domain'): self.derive(g)
+              def test_auxiliary_object_must_reach_selected_link(self):
+                  _,g=self.fixture(); g['Nodes'][4]['Inputs'].remove('obj2.o')
+                  with self.assertRaisesRegex(ValueError,'direct input'): self.derive(g)
+              def test_feature_define_still_required_on_auxiliary(self):
+                  _,g=self.fixture(); g['Nodes'][1]['Action']=g['Nodes'][1]['Action'].replace('-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1 ','')
+                  with self.assertRaisesRegex(ValueError,'requested Shadow'): self.derive(g)
+              def test_exact_committed_failure_graph_has_430_2_14_domains(self):
+                  repo=Path(__file__).resolve().parents[3]
+                  archive=repo/'Documents/AgentHandoff/local-validation-20260914-bec2bd1/fresh-smoke-failure-inputs.tar.gz'
+                  raw=archive.read_bytes(); self.assertEqual('e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8',hashlib.sha256(raw).hexdigest())
+                  graph_sha='dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181'; graph=config=None
+                  with tarfile.open(archive,'r:gz') as tf:
+                      for member in tf.getmembers():
+                          if not member.isfile(): continue
+                          data=tf.extractfile(member).read()
+                          digest=hashlib.sha256(data).hexdigest()
+                          if digest==graph_sha: graph=json.loads(data.decode('utf-8-sig'))
+                          if member.name.endswith('/il2cpp-config.h'): config=data.decode('utf-8')
+                  self.assertIsNotNone(graph); self.assertIsNotNone(config)
+                  link=next(n for n in graph['Nodes'] if str(n.get('Annotation','')).startswith('Link_Mac_arm64'))
+                  native=Path('/ci')/link['Outputs'][0]
+                  # Resolve relative graph outputs under the same synthetic root used for the selected link path.
+                  plan=pch.plan(graph,Path('/ci'),native,config,{},True)
+                  domains={row['name']:row['unitCount'] for row in plan['derived']['macroDomains']}
+                  self.assertEqual({'runtime':430,'bdwgc':2,'zlib':14},domains)
+                  self.assertEqual(('1','0','0'),(plan['derived']['il2cppDebug'],plan['derived']['ndebug'],plan['derived']['il2cppDevelopment']))
+
+          if __name__=='__main__': unittest.main()
+          '''))
+
+          Path('Tools/AssemblyShadow/tests/test_h1_plan_stage_retention.py').write_text(textwrap.dedent(r'''import json, tempfile, unittest
+          from pathlib import Path
+          from unittest import mock
+          import h1_native_capture as n
+          import h1_pch_diagnose as d
+
+          class PlanStageRetentionTests(unittest.TestCase):
+              def project(self,root):
+                  project=root/'project'; (project/'Library/Bee').mkdir(parents=True); (project/'ProjectSettings').mkdir()
+                  native=project/'Build/GameAssembly.dylib'; native.parent.mkdir(); native.write_bytes(b'native')
+                  config=project/'config.h'; config.write_text('#define IL2CPP_DEBUG 1\n#define IL2CPP_DEVELOPMENT 0\n')
+                  graph={'Nodes':[{'Annotation':'Copy','Inputs':[],'Outputs':[str(native)]}]}
+                  graph_path=project/'Library/Bee/Player-test.dag.json'; graph_path.write_text(json.dumps(graph))
+                  request={'projectRoot':str(project),'inputSnapshotHash':'1'*64,'nativeLibraryPath':str(native),
+                           'nativeLibrarySha256':n.digest(native),'sourcePinSha256':'2'*64,'before':{'entries':[]},
+                           'il2cppConfigPath':str(config),'featureEnabled':True,'cppConfiguration':'Debug',
+                           'buildId':'H1Count-On-Debug','buildGuid':'g'}
+                  return project,graph_path,config,request
+              def test_fresh_capture_keeps_inputs_when_plan_rejects(self):
+                  with tempfile.TemporaryDirectory() as td:
+                      root=Path(td); project,graph_path,config,request=self.project(root); out=root/'attempt'
+                      with mock.patch.object(n.pch,'has_pch',return_value=True), mock.patch.object(n.pch,'plan',side_effect=ValueError('plan boom')):
+                          with self.assertRaisesRegex(ValueError,'plan boom'): n.capture(request,out)
+                      self.assertTrue((out/'bee-action-graph.json').is_file()); self.assertTrue((out/'il2cpp-config.h').is_file())
+                      failure=json.loads((out/'capture-failure.json').read_text()); self.assertEqual('planning',failure['stage'])
+                      self.assertEqual(('NotRun','NotRun'),(failure['pchReplay'],failure['macroProbes']))
+                      self.assertFalse((out/'h1-compiler-provenance.json').exists())
+              def test_diagnostic_replay_keeps_exact_request_and_graph_when_plan_rejects(self):
+                  with tempfile.TemporaryDirectory() as td:
+                      root=Path(td); project,graph_path,config,request=self.project(root); request_path=root/'request.json'; request_path.write_text(json.dumps(request)); out=root/'diag'
+                      with mock.patch.object(d.p,'plan',side_effect=ValueError('plan boom')):
+                          with self.assertRaisesRegex(ValueError,'plan boom'): d.diagnose(request_path,graph_path,out)
+                      self.assertEqual(request_path.read_bytes(),(out/'original-request.json').read_bytes())
+                      self.assertEqual(graph_path.read_bytes(),(out/'original-graph.json').read_bytes())
+                      result=json.loads((out/'diagnostic-result.json').read_text()); self.assertEqual('planning',result['failedStage'])
+                      self.assertFalse((out/'pch/pch-proof.json').exists())
+
+          if __name__=='__main__': unittest.main()
+          '''))
+
+          # Static record for the source-owned decision; not acceptance evidence.
+          Path('Documents/AgentHandoff/primary-bee-fix-33543').mkdir(parents=True,exist_ok=True)
+          Path('Documents/AgentHandoff/primary-bee-fix-33543/STATIC_REVIEW.md').write_text(textwrap.dedent('''# Primary static review — Apple Bee macro domains and failure retention
+
+          This review is source/evidence bounded; it is not Unity/Player validation or M08.
+
+          - The committed failure archive SHA-256 is authenticated before fixture use.
+          - The sixteen non-runtime actions are source-owned: two `external/bdwgc` C sources and fourteen `external/zlib` C sources. Their object outputs are direct inputs of the selected GameAssembly link. They are not identified by node number, language alone, or macro values.
+          - Runtime/PCH sources are restricted to the single installed `libil2cpp` root or that build's `il2cppOutput/cpp` tree. Any other compile-source root fails closed.
+          - Compiler and SDK identity, selected-output reachability, and requested Shadow/count diagnostic definitions remain global requirements for every compile action.
+          - Assertion/debug values are checked for internal consistency per source-owned domain. Only the runtime/PCH domain supplies the build's authoritative `IL2CPP_DEBUG/NDEBUG/IL2CPP_DEVELOPMENT` profile. BDWGC/zlib direct command-line profiles remain separately visible in canonical domain evidence.
+          - Every non-PCH object, including BDWGC/zlib, must be a direct input of the selected GameAssembly link; auxiliary PCH production is rejected.
+          - Fresh capture and diagnostic replay create a new evidence root before planning, retain exact graph/config/request plus a bounded input inventory, mark PCH replay/probes NotRun until invoked, and emit no successful receipt when planning fails.
+          - Historical validation and reproduction behavior are not rewritten. Local validation must rerun affected Python/Unity/NUnit and fresh V03–V05 evidence.
+          '''))
           PY
+          git diff --check
+      - name: Run focused portable regressions
+        shell: bash
+        run: |
+          export PYTHONPATH="$PWD/Tools/AssemblyShadow"
+          python3 -m unittest -v \
+            Tools.AssemblyShadow.tests.test_h1_compiler_actions \
+            Tools.AssemblyShadow.tests.test_h1_pch_provenance \
+            Tools.AssemblyShadow.tests.test_h1_native_capture \
+            Tools.AssemblyShadow.tests.test_h1_apple_macro_domains \
+            Tools.AssemblyShadow.tests.test_h1_plan_stage_retention
+      - name: Commit staged implementation
+        shell: bash
+        run: |
+          git config user.name 'night-outlook'
+          git config user.email 'wangxingfred.night@outlook.com'
+          git add Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs \
+                  Tools/AssemblyShadow/h1_compiler_actions.py \
+                  Tools/AssemblyShadow/h1_pch_provenance.py \
+                  Tools/AssemblyShadow/h1_native_capture.py \
+                  Tools/AssemblyShadow/h1_pch_diagnose.py \
+                  Tools/AssemblyShadow/verify-h1-compiler-provenance-strict.py \
+                  Tools/AssemblyShadow/tests/test_h1_apple_macro_domains.py \
+                  Tools/AssemblyShadow/tests/test_h1_plan_stage_retention.py \
+                  Documents/AgentHandoff/primary-bee-fix-33543/STATIC_REVIEW.md
+          git commit -m 'fix(h1): separate Apple Bee macro domains and retain plan failures [skip ci]'
+          git push origin HEAD:codex/h1-primary-bee-inspect-33543
