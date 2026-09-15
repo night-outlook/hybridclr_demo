@@ -5,7 +5,9 @@ on:
     paths:
       - '.github/workflows/h1-bee-primary.yml'
       - 'Tools/AssemblyShadow/h1_*.py'
+      - 'Tools/AssemblyShadow/verify-h1-compiler-provenance-strict.py'
       - 'Tools/AssemblyShadow/tests/test_h1_*.py'
+      - 'Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs'
 permissions:
   contents: read
 jobs:
