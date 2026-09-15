@@ -1,0 +1,3 @@
+# Primary static review
+
+The authenticated failure archive proves the 16-action split is exactly 2 BDWGC + 14 zlib C sources, all direct GameAssembly link inputs. Classification is by source ownership, never node number, language, or macro value. Runtime/PCH remains build-profile authoritative; BDWGC/zlib remain separately fail-closed. Unknown roots fail. Requested feature/count defines, compiler/SDK identity, selected-output reachability and direct link membership remain mandatory. Capture now retains request/graph/config/input inventory before plan validation and cannot emit a success receipt on planning failure. This is static/tool review only; V01-V05 remain required.

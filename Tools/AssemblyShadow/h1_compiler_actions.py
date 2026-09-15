@@ -18,6 +18,7 @@ MAX_RESPONSE_BYTES = 16 * 1024 * 1024
 MAX_EXPANDED_ARGUMENTS = 1_000_000
 MAX_RESPONSE_DEPTH = 16
 TRACKED = ("IL2CPP_DEBUG", "NDEBUG", "IL2CPP_DEVELOPMENT")
+H1_APPLE_BEE_DOMAIN_POLICY = "h1-apple-bee-v1"
 
 
 class CompilerActionError(ValueError):
@@ -144,9 +145,100 @@ def effective_macros(arguments: list[str], config: str) -> dict[str, str]:
             "il2cppDevelopment": effective("IL2CPP_DEVELOPMENT")}
 
 
+
+def _under(path: str, parent: str) -> bool:
+    path = os.path.abspath(path)
+    parent = os.path.abspath(parent)
+    try:
+        return os.path.commonpath((path, parent)) == parent
+    except ValueError:
+        return False
+
+
+def _source_from_node(node: dict, project_root: Path) -> str:
+    annotation = str(node.get("Annotation", ""))
+    extensions = (".h", ".hpp", ".hh", ".hxx") if annotation.startswith("C_Mac_arm64Pch") else (".c", ".cc", ".cpp", ".cxx", ".m", ".mm")
+    candidates = [resolve(project_root, value) for value in node.get("Inputs", [])
+                  if type(value) is str and Path(value).suffix.lower() in extensions]
+    if not annotation.startswith("C_Mac_arm64Pch"):
+        # Bee declares the source header used to build the consumed PCH as an
+        # input of many compile nodes. It is dependency evidence, not the TU.
+        candidates = [value for value in candidates
+                      if (os.sep + "libil2cpp" + os.sep + "pch" + os.sep) not in value]
+    need(len(candidates) == 1, "Expected exactly one compile source in Bee Inputs: " + annotation)
+    return candidates[0]
+
+
+def _direct_assertion_profile(arguments: list[str]) -> dict[str, str]:
+    values = definitions(arguments)
+    def direct(name: str) -> str:
+        return boolean_macro(values[name], name) if name in values else "undefined"
+    return {"il2cppDebug": direct("IL2CPP_DEBUG"),
+            "ndebug": "1" if "NDEBUG" in values else "0",
+            "il2cppDevelopment": direct("IL2CPP_DEVELOPMENT")}
+
+
+def _h1_apple_macro_domains(compile_nodes: list[dict], compile_arguments: list[list[str]],
+                            link_node: dict, project_root: Path, config: str) -> tuple[dict[str, str], list[dict]]:
+    sources = [_source_from_node(node, project_root) for node in compile_nodes]
+    runtime_roots = set()
+    for source in sources:
+        parts = Path(source).parts
+        indexes = [i for i, part in enumerate(parts) if part == "libil2cpp"]
+        if indexes:
+            need(len(indexes) == 1, "Ambiguous libil2cpp source root: " + source)
+            runtime_roots.add(str(Path(*parts[:indexes[0] + 1])))
+    need(len(runtime_roots) == 1, "Expected one installed libil2cpp source root for H1 Apple provenance")
+    runtime_root = next(iter(runtime_roots))
+    external_root = os.path.join(os.path.dirname(runtime_root), "external")
+    parts = Path(runtime_root).parts
+    try:
+        hybrid_index = parts.index("HybridCLRData")
+        graph_project_root = str(Path(*parts[:hybrid_index]))
+    except ValueError:
+        raise CompilerActionError("Installed IL2CPP root is not below HybridCLRData: " + runtime_root)
+    generated_root = os.path.join(graph_project_root, "Library", "Bee", "artifacts", "MacStandalonePlayerBuildProgram")
+    link_inputs = {resolve(project_root, value) for value in link_node.get("Inputs", [])}
+    domains: dict[str, list[dict[str, str]]] = {"runtime": [], "bdwgc": [], "zlib": []}
+    examples = {name: [] for name in domains}
+    for node, arguments, source in zip(compile_nodes, compile_arguments, sources):
+        producer = str(node.get("Annotation", "")).startswith("C_Mac_arm64Pch")
+        generated_runtime = (_under(source, generated_root) and
+            ((os.sep + "il2cppOutput" + os.sep + "cpp" + os.sep) in source or source.endswith(".lump.cpp")))
+        if _under(source, runtime_root) or generated_runtime:
+            domain = "runtime"
+        elif _under(source, os.path.join(external_root, "bdwgc")):
+            domain = "bdwgc"
+        elif _under(source, os.path.join(external_root, "zlib")):
+            domain = "zlib"
+        else:
+            raise CompilerActionError("Unreviewed Apple native source domain: " + source)
+        if domain != "runtime":
+            need(not producer, "External auxiliary domains may not produce the runtime PCH")
+        if not producer:
+            outputs = [resolve(project_root, value) for value in node.get("Outputs", []) if str(value).endswith(".o")]
+            need(len(outputs) == 1 and outputs[0] in link_inputs,
+                 "Native object is not a direct input of the selected GameAssembly link: " + source)
+        profile = effective_macros(arguments, config) if domain == "runtime" else _direct_assertion_profile(arguments)
+        domains[domain].append(profile)
+        if len(examples[domain]) < 4:
+            examples[domain].append(source)
+    need(domains["runtime"], "H1 Apple provenance has no runtime/PCH domain")
+    result = []
+    for name in ("runtime", "bdwgc", "zlib"):
+        rows = domains[name]
+        if not rows:
+            continue
+        need(all(row == rows[0] for row in rows), "Apple Bee macro domain disagrees internally: " + name)
+        result.append({"name": name, "unitCount": len(rows),
+                       "profileKind": "effective-runtime-config" if name == "runtime" else "direct-command-line",
+                       "profile": rows[0], "sourceExamples": examples[name]})
+    return domains["runtime"][0], result
+
+
 def derive_graph_evidence(graph: dict, project_root: Path, native_library_path: Path,
                           config: str, response_contents: Mapping[str, bytes] | None = None,
-                          *, expected_feature: bool | None = None) -> dict:
+                          *, expected_feature: bool | None = None, domain_policy: str | None = None) -> dict:
     responses = response_contents or {}
     nodes = graph.get("Nodes")
     need(type(nodes) is list and nodes and len(nodes) <= 1_000_000, "Missing/bounded Bee node inventory")
@@ -156,38 +248,48 @@ def derive_graph_evidence(graph: dict, project_root: Path, native_library_path: 
     rows = []
     used = set()
     for node in compile_nodes + link_nodes:
-        tokens = split(node["Action"])
-        expanded, sources = expand(tokens, project_root, responses)
+        expanded, sources = expand(split(node["Action"]), project_root, responses)
         used.update(sources)
         rows.append((node, expanded))
     compilers = {resolve(project_root, args[0]) for _, args in rows}
     sysroots = {resolve(project_root, option(args, "-isysroot")) for _, args in rows}
     need(len(compilers) == len(sysroots) == 1, "Native compiler/SDK action identities disagree")
-    outputs = [resolve(project_root, p) for p in link_nodes[0].get("Outputs", []) if Path(p).name == "GameAssembly.dylib"]
+    outputs = [resolve(project_root, value) for value in link_nodes[0].get("Outputs", []) if Path(value).name == "GameAssembly.dylib"]
     need(len(outputs) == 1, "Link action does not emit one GameAssembly.dylib")
     reachable = {outputs[0]}
     while True:
         added = set()
         for node in nodes:
-            if type(node) is dict and {resolve(project_root, p) for p in node.get("Inputs", [])} & reachable:
-                added.update(resolve(project_root, p) for p in node.get("Outputs", []))
-        if added <= reachable: break
+            if type(node) is dict and {resolve(project_root, value) for value in node.get("Inputs", [])} & reachable:
+                added.update(resolve(project_root, value) for value in node.get("Outputs", []))
+        if added <= reachable:
+            break
         reachable.update(added)
     need(resolve(project_root, str(native_library_path)) in reachable, "Link output does not reach selected native library")
+    compile_arguments = [args for _, args in rows[:len(compile_nodes)]]
     if expected_feature is not None:
-        for _, args in rows[:len(compile_nodes)]:
+        for args in compile_arguments:
             values = definitions(args)
             need(values.get("HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW") == ("1" if expected_feature else "0") and
                  values.get("HYBRIDCLR_H1_COUNT_DIAGNOSTICS") == "1",
                  "An actual compiler action lacks the requested Shadow/count-diagnostic defines")
-    unit_macros = [effective_macros(args, config) for _, args in rows[:len(compile_nodes)]]
-    need(all(item == unit_macros[0] for item in unit_macros),
-         "Translation units disagree on effective diagnostic macros (link flags are not compile evidence)")
-    # Caller compares this complete set with the authenticated retained inventory.
+    if domain_policy is None:
+        states = [effective_macros(args, config) for args in compile_arguments]
+        need(all(state == states[0] for state in states),
+             "Translation units disagree on effective diagnostic macros (link flags are not compile evidence)")
+        runtime_profile = states[0]
+        macro_domains = [{"name": "global-legacy", "unitCount": len(states),
+                          "profileKind": "effective-runtime-config", "profile": runtime_profile,
+                          "sourceExamples": []}]
+    else:
+        need(domain_policy == H1_APPLE_BEE_DOMAIN_POLICY, "Unknown compiler macro-domain policy")
+        runtime_profile, macro_domains = _h1_apple_macro_domains(
+            compile_nodes, compile_arguments, link_nodes[0], project_root, config)
     return {"compileActionCount": len(compile_nodes), "linkActionCount": 1,
-        "compilerPath": next(iter(compilers)), "sdkPath": next(iter(sysroots)),
-        "beeLinkOutputPath": outputs[0], **unit_macros[0], "responseSources": sorted(used)}
-
+            "compilerPath": next(iter(compilers)), "sdkPath": next(iter(sysroots)),
+            "beeLinkOutputPath": outputs[0], **runtime_profile,
+            "macroDomains": macro_domains, "macroDomainPolicy": domain_policy or "legacy-global",
+            "responseSources": sorted(used)}
 
 def retained_responses(provenance: dict, hash_file) -> dict[str, bytes]:
     rows = provenance.get("responseFiles")

@@ -186,7 +186,7 @@ def dependency(nodes, consumer_index, producer_index, pch, root):
     raise a.CompilerActionError("Consumed PCH lacks a declared Bee producer dependency: " + pch)
 
 
-def plan(graph, root, native, config, responses, feature):
+def plan(graph, root, native, config, responses, feature, domain_policy=None):
     a.need(type(feature) is bool, "PCH proof requires an explicit feature mode")
     nodes = graph.get("Nodes")
     a.need(type(nodes) is list and 0 < len(nodes) <= 1_000_000, "Invalid Bee graph")
@@ -232,7 +232,7 @@ def plan(graph, root, native, config, responses, feature):
         groups.setdefault(key, {"id": key, **context, "unitIndices": []})["unitIndices"].append(unit["nodeIndex"])
     a.need(consumers and {c["pch"] for c in consumers} == set(producers), "Unused/missing PCH consumers")
     a.need(len(groups) <= MAX_GROUPS, "Too many distinct PCH probe contexts")
-    derived = a.derive_graph_evidence(stripped, root, native, config, {}, expected_feature=feature)
+    derived = a.derive_graph_evidence(stripped, root, native, config, {}, expected_feature=feature, domain_policy=domain_policy)
     derived["responseSources"] = sorted(used)
     return {"schemaVersion": SCHEMA, "units": units, "producers": sorted(producers.values(), key=lambda u: u["output"]),
             "consumers": consumers, "groups": sorted(groups.values(), key=lambda g: g["id"]), "derived": derived}
@@ -400,7 +400,7 @@ def verify(proof, graph, root, native, config, responses, binding, read=load_row
     """
     a.need(type(proof.get("schemaVersion")) is int and proof["schemaVersion"] == SCHEMA and proof.get("kind") == "H1PchProvenance", "Unsupported PCH proof")
     a.need(proof.get("binding") == binding, "PCH proof build/graph binding differs")
-    blueprint = plan(graph, root, native, config, responses, binding["featureEnabled"])
+    blueprint = plan(graph, root, native, config, responses, binding["featureEnabled"], binding.get("macroDomainPolicy"))
     a.need(proof.get("plan") == blueprint, "PCH producer/consumer plan differs from the raw graph")
     expected = expected_macros(blueprint, binding["featureEnabled"])
     a.need(proof.get("expectedMacros") == expected, "PCH expected macro profile differs")
@@ -453,7 +453,8 @@ def verify(proof, graph, root, native, config, responses, binding, read=load_row
 
 def binding_from(provenance, root, feature, cpp):
     return {**{k: provenance[k] for k in BINDINGS}, "graphSha256": provenance["beeActionGraphSha256"],
-            "projectRoot": str(root), "featureEnabled": feature, "cppConfiguration": cpp}
+            "projectRoot": str(root), "featureEnabled": feature, "cppConfiguration": cpp,
+            "macroDomainPolicy": provenance.get("macroDomainPolicy")}
 
 
 def main():
@@ -467,7 +468,7 @@ def main():
     result = {"kind": "H1PchGraphPreflight", "diagnosticOnly": True, "humanGatePassed": False, "mayEnterR02": False}
     try:
         responses = capture_module.collect_responses(graph, root)
-        result["plan"] = plan(graph, root, args.native, args.config.read_text(), responses, args.feature == "on")
+        result["plan"] = plan(graph, root, args.native, args.config.read_text(), responses, args.feature == "on", a.H1_APPLE_BEE_DOMAIN_POLICY)
         result["status"] = "StructureSupportedNotBuildAccepted"
     except (OSError, ValueError) as error:
         result["status"] = "Blocked"; result["error"] = str(error)

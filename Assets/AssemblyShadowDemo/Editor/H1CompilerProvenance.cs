@@ -26,14 +26,14 @@ namespace AssemblyShadowDemo.Editor
             public string sdkPath, sdkVersion, sdkSettingsPath, sdkSettingsSha256;
             public string il2cppConfigPath, il2cppConfigSha256;
             public string pchProofPath, pchProofSha256;
-            public string il2cppDebug, ndebug, il2cppDevelopment, macroEvidence;
+            public string il2cppDebug, ndebug, il2cppDevelopment, macroEvidence, macroDomainEvidence, macroDomainPolicy;
             public ResponseFile[] responseFiles;
         }
         [Serializable] private sealed class Request
         {
             public string projectRoot, output, buildId, buildGuid, inputSnapshotHash;
             public string nativeLibraryPath, nativeLibrarySha256, sourcePinSha256;
-            public string il2cppConfigPath, cppConfiguration;
+            public string il2cppConfigPath, cppConfiguration, macroDomainPolicy;
             public GraphInventory before;
             public bool featureEnabled;
         }
@@ -65,6 +65,7 @@ namespace AssemblyShadowDemo.Editor
                 featureEnabled = buildId.StartsWith("H1Count-On-", StringComparison.Ordinal),
                 il2cppConfigPath = Path.GetFullPath(Path.Combine(HybridCLR.Editor.SettingsUtil.LocalIl2CppDir, "libil2cpp/il2cpp-config.h")),
                 cppConfiguration = PlayerSettings.GetIl2CppCompilerConfiguration(NamedBuildTarget.Standalone).ToString(),
+                macroDomainPolicy = "h1-apple-bee-v1",
             };
             string requestPath = Path.GetFullPath(evidenceRoot) + ".request-" + Guid.NewGuid().ToString("N") + ".json";
             Directory.CreateDirectory(Path.GetDirectoryName(requestPath));

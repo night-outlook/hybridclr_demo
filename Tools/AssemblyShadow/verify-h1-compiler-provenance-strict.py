@@ -62,6 +62,7 @@ def verify_receipt(receipt_path: Path) -> dict:
     need(('HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW='+('1' if build['featureEnabled'] else '0')) in build.get('nativeArguments',''),'Feature compiler intent differs')
     p=canonical(build.get('compilerProvenancePath',''),'compiler provenance');need(digest(p)==build.get('compilerProvenanceSha256'),'Compiler provenance hash differs')
     provenance=read(p);need(provenance==build.get('compilerProvenance'),'Embedded and retained compiler provenance differ')
+    need(provenance.get('macroDomainPolicy')==strict.H1_APPLE_BEE_DOMAIN_POLICY,'Fresh H1 build lacks the reviewed Apple macro-domain policy')
     for field in ('buildId','buildGuid','inputSnapshotHash','nativeLibraryPath','nativeLibrarySha256','sourcePinSha256'):
         source='baselineBuildId' if field=='buildId' else field
         need(provenance.get(field)==build.get(source),'Build/provenance differs: '+field)
@@ -87,8 +88,9 @@ def verify_receipt(receipt_path: Path) -> dict:
                         need(item['sdkSettings']['sha256']==provenance['sdkSettingsSha256'],'PCH SDK marker differs')
         else:
             need(not provenance.get('pchProofPath') and not provenance.get('pchProofSha256'),'Unexpected PCH proof on a non-PCH graph')
-            derived=strict.derive_graph_evidence(graph,root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,expected_feature=build['featureEnabled'])
+            derived=strict.derive_graph_evidence(graph,root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,expected_feature=build['featureEnabled'],domain_policy=strict.H1_APPLE_BEE_DOMAIN_POLICY)
         need(set(derived['responseSources'])==set(responses),'Native response closure contains missing/unused captures')
+        need(provenance.get('macroDomainEvidence')==json.dumps(derived['macroDomains'],sort_keys=True,separators=(',',':')),'Macro-domain evidence differs from raw Bee graph')
     except strict.CompilerActionError as error:
         raise VerificationError(str(error)) from error
     for field in ('compileActionCount','linkActionCount','compilerPath','sdkPath','beeLinkOutputPath','il2cppDebug','ndebug','il2cppDevelopment'):
