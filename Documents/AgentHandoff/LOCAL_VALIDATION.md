@@ -1,5 +1,85 @@
 # Local Validation report
 
+## Current run — 2026-09-15
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The required authoritative preflight fails at published handoff HEAD `c0d3070e15682567bb1b2d693d7c7a4f9ea802fb` before source validation:
+
+```text
+Blocked: Incomplete handoff sections
+```
+
+Candidate/reproduction/runtime/performance heads and pin files were independently observed at the requested identities, but that does not replace the committed preflight. V01–V05 were therefore `Blocked / NotRun`. No Unity, installation, Player, runtime, performance, successor, or M08 command was started for this anchor. Human Review Gate remains not ready and R02 was not started.
+
+### Source state observed before preflight
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate demo | `codex/assembly-shadow-r01b-h1` | `c0d3070e15682567bb1b2d693d7c7a4f9ea802fb` | `Pass` |
+| Candidate code anchor | same branch | `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9` | `Pass` in both source-target and pin files |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass` |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass` |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass` |
+| Reproduction demo | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged |
+| Reproduction native | `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged with its older profile |
+
+The candidate demo and all three candidate runtime branches were explicitly pulled with `--ff-only`. Remote reproduction and performance heads were checked without moving their worktrees. Candidate native/package/IL2CPP, reproduction demo/native, and performance reference were clean. Candidate retained only the pre-existing untracked historical v7–v11 directories; they were not staged or modified.
+
+### V00 preflight
+
+Command from the candidate root:
+
+```sh
+python3 Tools/AssemblyShadow/h1_handoff_preflight.py --project /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo --role candidate --output /Users/ah/GitHub/hybridclr/h1-local-validation-20260915-c0d3070/v00/candidate-handoff-attempt2.json
+```
+
+- Exit code: `1`
+- stdout: empty
+- stderr: `Blocked: Incomplete handoff sections`
+- Output JSON: `Unavailable`; verification failed before report creation
+- Repeated invocation: same result
+- `WEB_TO_LOCAL.md` SHA-256: `b89c4c156ae9687adaf81cc03f156cc601e58d89f8eb1ecd442ba03f8626cc68`
+- `source-targets.json` SHA-256: `9645753dfb0ba422d2a7e7553dd2a53ed971d058ffe6287147848ce985ec53a4`
+- source-pins SHA-256: `fbf3f556a75f5ed2555f111d111d4f5f178077cbf88e26a7edcb80419d765f30`
+- preflight script SHA-256: `994e6e48c05aa15b2c66207a256ca76dcebdc8075bb9c1350d35e1d6f55263b1`
+
+The script requires these exact heading substrings:
+
+```text
+## Objective
+## Source targets
+## Implementation
+## Local validation
+## Failure evidence
+## Alternatives
+## Risks
+## Local correction boundary
+## Human review gate
+```
+
+The published handoff omits four required substrings: `## Implementation`, `## Alternatives`, `## Risks`, and `## Human review gate`. Its `## Failure evidence to return` heading satisfies the script's substring check for `## Failure evidence`.
+
+### Validation status
+
+| Step | Result | Reason |
+| --- | --- | --- |
+| Preflight / V00 prerequisite | `Failed` | Published handoff is incompatible with its committed preflight contract |
+| V01 source/tool/Unity regressions | `Blocked / NotRun` | Required preflight did not pass |
+| V02 Apple-domain and failure-retention checks | `Blocked / NotRun` | Required preflight did not pass |
+| V03 install, smoke, and remaining builds | `Blocked / NotRun` | Required preflight did not pass |
+| V04 runtime/count/startup/performance | `Blocked / NotRun` | No accepted source preflight or fresh builds |
+| V05 successor and independent M08 | `Blocked / NotRun` | Acceptance chain has no valid inputs |
+
+No bounded local fix was made because `WEB_TO_LOCAL.md` is Primary-owned and changing the preflight contract would change source/acceptance semantics. Evidence is committed under [local-validation-20260915-c0d3070](local-validation-20260915-c0d3070/README.md). The actionable issue is at the top of [RETURN_TO_WEB.md](RETURN_TO_WEB.md).
+
+---
+
+## Historical run — 2026-09-14
+
 Validation date: 2026-09-14 (America/Los_Angeles)
 
 ## Exit

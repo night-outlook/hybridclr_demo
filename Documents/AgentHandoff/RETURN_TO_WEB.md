@@ -1,5 +1,67 @@
 # Local Validation → Primary Implementation
 
+## Current blocker: published handoff fails its own preflight
+
+### Symptom
+
+At final handoff HEAD `c0d3070e15682567bb1b2d693d7c7a4f9ea802fb`, the required candidate preflight exits `1` with:
+
+```text
+Blocked: Incomplete handoff sections
+```
+
+No preflight result JSON is created. The same command was executed twice with the same result.
+
+### Reproduction
+
+From `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`:
+
+```sh
+git pull --ff-only origin codex/assembly-shadow-r01b-h1
+python3 Tools/AssemblyShadow/h1_handoff_preflight.py --project /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo --role candidate --output /ABS/NEW/candidate-handoff.json
+```
+
+The checkout is exactly `c0d3070e15682567bb1b2d693d7c7a4f9ea802fb`; the code anchor is `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9`.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260915-c0d3070](local-validation-20260915-c0d3070/README.md):
+
+- `preflight-attempt1.*` and `preflight-attempt2.*`: raw stdout/stderr and the captured exit code;
+- `handoff-section-census.json`: exact required, present, and missing headings;
+- `source-state.json`: observed repository heads, worktree state, and authoritative-file hashes.
+
+The handoff SHA-256 is `b89c4c156ae9687adaf81cc03f156cc601e58d89f8eb1ecd442ba03f8626cc68`; the preflight script SHA-256 is `994e6e48c05aa15b2c66207a256ca76dcebdc8075bb9c1350d35e1d6f55263b1`.
+
+### Root cause
+
+`Tools/AssemblyShadow/h1_handoff_preflight.py` requires nine literal section substrings. The new `WEB_TO_LOCAL.md` reorganized the handoff but did not preserve four required names:
+
+- `## Implementation`
+- `## Alternatives`
+- `## Risks`
+- `## Human review gate`
+
+The check runs before source-target, branch, pin, or demo-source verification. The candidate pin and repository identities were manually observed as correct, but those observations cannot be promoted to a successful authoritative preflight.
+
+### Impact
+
+The handoff explicitly makes preflight a prerequisite for fresh V01–V05. Continuing would produce evidence against a source state that the committed authority tool refused to accept. V01–V05 are therefore `Blocked / NotRun`; no new Unity, Player, runtime, performance, successor, or M08 result exists for anchor `463ec3f`.
+
+### Recommended direction
+
+Preferred: publish a metadata-only handoff successor that restores the four required headings and places the current content beneath them, then run the unchanged preflight before returning to Local Validation.
+
+If the heading contract is intentionally obsolete, update `h1_handoff_preflight.py` and its tests as a reviewed executable-input change, publish a new code anchor, and issue a matching handoff. Do not ask Local Validation to weaken or bypass the committed check.
+
+### Uncertainty
+
+The failure occurs before the remaining preflight stages, so this run does not establish that the tool would accept code-anchor identity after the section issue is fixed. The independently observed pins and heads match the handoff, but a repaired published handoff must still be run through the full tool.
+
+---
+
+## Historical blocker addressed by code anchor 463ec3f
+
 ## Native-provenance macro scope rejects the actual Apple Bee graph
 
 ### Symptom
