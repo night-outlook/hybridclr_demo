@@ -4,6 +4,13 @@ The action graph is provenance input, not proof that a build ran. Build/launch
 pairing remains mandatory. Response files are expanded from retained bytes,
 not a mutable Library tree. Macro state is evaluated in argument order for
 each translation unit; linker definitions cannot supply compile definitions.
+
+Apple Bee emits several source-owned compile domains into the same final link.
+Runtime/IL2CPP actions carry the C++ configuration assertion profile, while the
+bundled BDWGC and zlib C sources intentionally compile with their own profile.
+All selected actions still have to carry the requested Shadow/count defines and
+feed the selected native output; no action is ignored or unioned into another
+macro state.
 """
 from __future__ import annotations
 
@@ -18,6 +25,12 @@ MAX_RESPONSE_BYTES = 16 * 1024 * 1024
 MAX_EXPANDED_ARGUMENTS = 1_000_000
 MAX_RESPONSE_DEPTH = 16
 TRACKED = ("IL2CPP_DEBUG", "NDEBUG", "IL2CPP_DEVELOPMENT")
+FEATURE = "HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW"
+DIAGNOSTIC = "HYBRIDCLR_H1_COUNT_DIAGNOSTICS"
+DOMAIN_RUNTIME = "runtime"
+DOMAIN_BDWGC = "bdwgc"
+DOMAIN_ZLIB = "zlib"
+EXTERNAL_DOMAINS = (DOMAIN_BDWGC, DOMAIN_ZLIB)
 
 
 class CompilerActionError(ValueError):
@@ -84,7 +97,6 @@ def option(arguments: list[str], name: str) -> str:
 
 
 def header_default(text: str, name: str) -> str:
-    # Restrict this fallback to the existing #ifndef / #define contract.
     pattern = (r"(?m)^\s*#\s*ifndef\s+" + re.escape(name) +
         r"[ \t]*\r?\n[ \t]*#\s*define\s+" + re.escape(name) + r"[ \t]+([^\s/]+)")
     matches = re.findall(pattern, text)
@@ -118,14 +130,13 @@ def definitions(arguments: list[str]) -> dict[str, str]:
             base_name = name.split("(", 1)[0]
             if "(" in name:
                 need(operation == "-D", "Function-like -U operand is not supported")
-                need(base_name not in ("IL2CPP_DEBUG", "IL2CPP_DEVELOPMENT", "HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW", "HYBRIDCLR_H1_COUNT_DIAGNOSTICS"),
+                need(base_name not in ("IL2CPP_DEBUG", "IL2CPP_DEVELOPMENT", FEATURE, DIAGNOSTIC),
                      "Function-like boolean macro requires preprocessing evidence")
             if operation == "-U":
                 need(not separator, "-U cannot assign a value")
                 values.pop(base_name, None)
             else:
                 values[base_name] = value if separator else "1"
-        # Forced include/macro files may redefine tracked values; do not guess.
         need(argument not in ("-include", "-imacros") and
              not argument.startswith(("-include", "-imacros", "-Wp,")) and
              argument not in ("-Xpreprocessor", "-Xclang"),
@@ -139,9 +150,62 @@ def effective_macros(arguments: list[str], config: str) -> dict[str, str]:
     def effective(name):
         return boolean_macro(defined[name], name) if name in defined else header_default(config, name)
     return {"il2cppDebug": effective("IL2CPP_DEBUG"),
-            # assert uses definedness, not the numeric value. -DNDEBUG=0 is still defined.
             "ndebug": "1" if "NDEBUG" in defined else "0",
             "il2cppDevelopment": effective("IL2CPP_DEVELOPMENT")}
+
+
+def _single_source(arguments: list[str], root: Path, node: dict | None = None) -> str:
+    """Identify the one compile input without interpreting output/dependency operands."""
+    operands = {"-o", "-MF", "-MT", "-MQ", "-dependency-file", "-serialize-diagnostics",
+                "-isysroot", "-arch", "-target", "--target", "-I", "-F", "-isystem",
+                "-iquote", "-idirafter", "-iframework", "-isystem-after", "-D", "-U",
+                "-x", "-resource-dir", "-stdlib", "-std", "-B", "-include-pch"}
+    sources = []
+    i = 1
+    while i < len(arguments):
+        token = arguments[i]
+        if token == "-Xclang":
+            need(i + 1 < len(arguments), "Missing -Xclang operand")
+            i += 2; continue
+        if token in operands:
+            need(i + 1 < len(arguments), "Missing option operand: " + token)
+            i += 2; continue
+        if token.startswith("@") or token.startswith("-"):
+            i += 1; continue
+        sources.append(resolve(root, token)); i += 1
+    if not sources and node is not None:
+        candidates=[]
+        for value in node.get("Inputs", []):
+            path=resolve(root,value)
+            if Path(path).suffix in {".c",".cc",".cpp",".cxx",".C",".m",".mm",".h",".hpp"}:
+                candidates.append(path)
+        sources=sorted(set(candidates))
+    need(len(sources) == 1, "Expected exactly one native compile source")
+    return sources[0]
+
+
+def macro_domain(source: str) -> str:
+    """Source ownership defines the macro contract; macro values never select a domain."""
+    normalized = source.replace("\\", "/")
+    if "/external/bdwgc/" in normalized or "/bdwgc/" in normalized:
+        return DOMAIN_BDWGC
+    if "/external/zlib/" in normalized or "/zlib/" in normalized:
+        return DOMAIN_ZLIB
+    return DOMAIN_RUNTIME
+
+
+def _domain_summary(rows: list[dict]) -> list[dict]:
+    result = []
+    for name in (DOMAIN_RUNTIME, DOMAIN_BDWGC, DOMAIN_ZLIB):
+        owned = [row for row in rows if row["domain"] == name]
+        if not owned:
+            continue
+        states = {tuple(sorted(row["macros"].items())) for row in owned}
+        need(len(states) == 1, "Translation units disagree inside macro domain: " + name)
+        result.append({"domain": name, "count": len(owned), "macros": owned[0]["macros"],
+                       "sourcesSha256": hashlib.sha256("\n".join(sorted(row["source"] for row in owned)).encode()).hexdigest()})
+    need(sum(row["count"] for row in result) == len(rows), "Macro domain accounting omitted native compile actions")
+    return result
 
 
 def derive_graph_evidence(graph: dict, project_root: Path, native_library_path: Path,
@@ -165,6 +229,8 @@ def derive_graph_evidence(graph: dict, project_root: Path, native_library_path: 
     need(len(compilers) == len(sysroots) == 1, "Native compiler/SDK action identities disagree")
     outputs = [resolve(project_root, p) for p in link_nodes[0].get("Outputs", []) if Path(p).name == "GameAssembly.dylib"]
     need(len(outputs) == 1, "Link action does not emit one GameAssembly.dylib")
+    link_inputs = {resolve(project_root, p) for p in link_nodes[0].get("Inputs", [])}
+    need(link_inputs, "Link action has no declared inputs")
     reachable = {outputs[0]}
     while True:
         added = set()
@@ -174,19 +240,29 @@ def derive_graph_evidence(graph: dict, project_root: Path, native_library_path: 
         if added <= reachable: break
         reachable.update(added)
     need(resolve(project_root, str(native_library_path)) in reachable, "Link output does not reach selected native library")
-    if expected_feature is not None:
-        for _, args in rows[:len(compile_nodes)]:
-            values = definitions(args)
-            need(values.get("HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW") == ("1" if expected_feature else "0") and
-                 values.get("HYBRIDCLR_H1_COUNT_DIAGNOSTICS") == "1",
+
+    compile_rows = []
+    for node, args in rows[:len(compile_nodes)]:
+        values = definitions(args)
+        if expected_feature is not None:
+            need(values.get(FEATURE) == ("1" if expected_feature else "0") and values.get(DIAGNOSTIC) == "1",
                  "An actual compiler action lacks the requested Shadow/count-diagnostic defines")
-    unit_macros = [effective_macros(args, config) for _, args in rows[:len(compile_nodes)]]
-    need(all(item == unit_macros[0] for item in unit_macros),
-         "Translation units disagree on effective diagnostic macros (link flags are not compile evidence)")
-    # Caller compares this complete set with the authenticated retained inventory.
+        source = _single_source(args, project_root, node)
+        node_outputs = {resolve(project_root, p) for p in node.get("Outputs", [])}
+        if not str(node.get("Annotation", "")).startswith("C_Mac_arm64Pch"):
+            need(bool(node_outputs & link_inputs), "Native compile action does not feed the selected GameAssembly link: " + source)
+        compile_rows.append({"source": source, "domain": macro_domain(source),
+                             "macros": effective_macros(args, config),
+                             "annotation": str(node.get("Annotation", ""))})
+
+    domains = _domain_summary(compile_rows)
+    runtime = [row for row in domains if row["domain"] == DOMAIN_RUNTIME]
+    need(len(runtime) == 1, "Runtime macro domain is missing/ambiguous")
+    runtime_state = runtime[0]["macros"]
     return {"compileActionCount": len(compile_nodes), "linkActionCount": 1,
         "compilerPath": next(iter(compilers)), "sdkPath": next(iter(sysroots)),
-        "beeLinkOutputPath": outputs[0], **unit_macros[0], "responseSources": sorted(used)}
+        "beeLinkOutputPath": outputs[0], **runtime_state, "macroDomains": domains,
+        "responseSources": sorted(used)}
 
 
 def retained_responses(provenance: dict, hash_file) -> dict[str, bytes]:
