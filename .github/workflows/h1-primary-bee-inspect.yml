@@ -15,6 +15,7 @@ jobs:
         run: |
           python3 .github/h1_primary_stage.py
           python3 .github/h1_primary_stage_fix3.py
+          python3 .github/h1_primary_stage_fix4.py
       - name: Check patch
         if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
         run: git diff --check
