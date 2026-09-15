@@ -14,7 +14,7 @@ jobs:
         if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
         run: |
           python3 .github/h1_primary_stage.py
-          python3 .github/h1_primary_stage_fix2.py
+          python3 .github/h1_primary_stage_fix3.py
       - name: Check patch
         if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
         run: git diff --check
