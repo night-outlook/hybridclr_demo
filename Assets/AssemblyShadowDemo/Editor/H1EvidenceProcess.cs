@@ -33,7 +33,12 @@ namespace AssemblyShadowDemo.Editor
         }
 
         public static string RunPython(string projectRoot, string script, params string[] arguments)
+        { return RunPythonWithTimeout(projectRoot, script, 300000, arguments); }
+
+        public static string RunPythonWithTimeout(string projectRoot, string script, int timeoutMilliseconds, params string[] arguments)
         {
+            if (timeoutMilliseconds < 1000 || timeoutMilliseconds > 1800000)
+                throw new ArgumentOutOfRangeException(nameof(timeoutMilliseconds), "Evidence timeout must be 1 second to 30 minutes.");
             string absoluteScript = Path.GetFullPath(Path.Combine(projectRoot, script));
             if (!File.Exists(absoluteScript)) throw new BuildFailedException("Missing evidence tool: " + absoluteScript);
             var info = new ProcessStartInfo
@@ -48,7 +53,7 @@ namespace AssemblyShadowDemo.Editor
                 if (process == null) throw new BuildFailedException("Evidence tool did not start.");
                 Task<string> stdout = process.StandardOutput.ReadToEndAsync();
                 Task<string> stderr = process.StandardError.ReadToEndAsync();
-                if (!process.WaitForExit(300000))
+                if (!process.WaitForExit(timeoutMilliseconds))
                 {
                     try { process.Kill(); } catch (InvalidOperationException) { }
                     throw new BuildFailedException("Evidence tool timed out; preserve this build attempt.");

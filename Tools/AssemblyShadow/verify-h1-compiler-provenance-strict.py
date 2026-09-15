@@ -15,6 +15,7 @@ from pathlib import Path
 import re
 
 import h1_compiler_actions as strict
+import h1_pch_provenance as pch
 
 
 class VerificationError(ValueError): pass
@@ -68,7 +69,26 @@ def verify_receipt(receipt_path: Path) -> dict:
     need(digest(graph_path)==provenance['beeActionGraphSha256'] and digest(config_path)==provenance['il2cppConfigSha256'],'Retained native input hash differs')
     responses=strict.retained_responses(provenance,digest)
     try:
-        derived=strict.derive_graph_evidence(read(graph_path),root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,expected_feature=build['featureEnabled'])
+        graph=read(graph_path)
+        if pch.has_pch(graph,root,responses):
+            need(provenance.get('projectRoot')==str(root),'PCH project root differs from the build receipt location')
+            proof_path=canonical(provenance.get('pchProofPath',''),'PCH proof')
+            need(digest(proof_path)==provenance.get('pchProofSha256'),'PCH proof hash differs')
+            proof=read(proof_path)
+            need(proof.get('compilerSha256')==provenance['compilerSha256'],'PCH compiler identity differs')
+            binding=pch.binding_from(provenance,root,build['featureEnabled'],build['cppConfiguration'])
+            derived=pch.verify(proof,graph,root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,binding)
+            for producer in proof['producers']:
+                for item in producer['inputs']:
+                    if item['kind']=='toolchain-binary':
+                        tool=canonical(item['toolPath'],'PCH producer tool',allow_symlink=True)
+                        need(digest(tool,allow_symlink=True)==item['toolSha256'],'PCH producer tool bytes differ')
+                    elif item['kind']=='bee-sdk-marker':
+                        need(item['sdkSettings']['sha256']==provenance['sdkSettingsSha256'],'PCH SDK marker differs')
+        else:
+            need(not provenance.get('pchProofPath') and not provenance.get('pchProofSha256'),'Unexpected PCH proof on a non-PCH graph')
+            derived=strict.derive_graph_evidence(graph,root,Path(provenance['nativeLibraryPath']),config_path.read_text(),responses,expected_feature=build['featureEnabled'])
+        need(set(derived['responseSources'])==set(responses),'Native response closure contains missing/unused captures')
     except strict.CompilerActionError as error:
         raise VerificationError(str(error)) from error
     for field in ('compileActionCount','linkActionCount','compilerPath','sdkPath','beeLinkOutputPath','il2cppDebug','ndebug','il2cppDevelopment'):
@@ -92,8 +112,11 @@ def verify_receipt(receipt_path: Path) -> dict:
 
 def main() -> int:
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--build',action='append',required=True,type=Path)
-    p.add_argument('--scope',choices=('candidate','reproduction'),default='candidate');p.add_argument('--output',required=True,type=Path);a=p.parse_args()
+    p.add_argument('--scope',choices=('candidate','reproduction','single'),default='candidate');p.add_argument('--output',required=True,type=Path);a=p.parse_args()
     expected={'On/Debug','On/Release','Off/Debug','Off/Release'} if a.scope=='candidate' else {'On/Debug','On/Release'}
+    if a.scope=='single':
+        need(len(a.build)==1,'Single-build smoke verification requires exactly one receipt')
+        expected={mode_for(read(a.build[0]))}
     need(len(a.build)==len(expected),'Selected scope requires exactly '+str(len(expected))+' receipts')
     rows=[verify_receipt(path) for path in a.build];need({r['mode'] for r in rows}==expected,'Compiler mode inventory differs')
     for field in ('compilerPath','compilerSha256','compilerVersion','sdkPath','sdkVersion','sdkSettingsSha256','sourcePinSha256'):
