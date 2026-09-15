@@ -1,0 +1,68 @@
+name: H1 primary pinned input census
+on:
+  push:
+    branches: [codex/assembly-shadow-h1-primary-census]
+    paths: [.github/workflows/h1-primary-census.yml]
+permissions:
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 33543dd39efec42a9480ea976ae3a3684dcd5ffd
+          persist-credentials: false
+      - name: Authenticate and expose pinned input inventory
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,tarfile,zipfile
+          root=pathlib.Path('.')
+          src=root/'Documents/AgentHandoff/local-validation-20260914-bec2bd1/fresh-smoke-failure-inputs.tar.gz'
+          expected='e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8'
+          actual=hashlib.sha256(src.read_bytes()).hexdigest()
+          assert actual==expected,(actual,expected)
+          out=pathlib.Path('primary-census-output');out.mkdir()
+          rows=[];graphs=[];seen=set()
+          with tarfile.open(src,'r:gz') as tar:
+            for member in tar:
+              p=pathlib.PurePosixPath(member.name)
+              assert member.isfile() or member.isdir()
+              assert not p.is_absolute() and '..' not in p.parts and '\\' not in member.name
+              assert member.name not in seen;seen.add(member.name)
+              if not member.isfile():continue
+              assert 0<=member.size<=64*1024*1024
+              data=tar.extractfile(member).read()
+              rows.append({'path':member.name,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+              if member.name.endswith('.json'):
+                try:value=json.loads(data)
+                except (ValueError,UnicodeError):continue
+                if type(value) is dict and type(value.get('Nodes')) is list:
+                  graphs.append((member.name,data,value))
+                if 'manifest' in member.name.lower():
+                  (out/pathlib.Path(member.name).name).write_bytes(data)
+          print('AUTHENTICATED_ARCHIVE',actual,'MEMBERS',len(rows))
+          (out/'archive-inventory.json').write_text(json.dumps(rows,indent=2))
+          assert len(graphs)==1,[(p,len(d)) for p,d,g in graphs]
+          path,data,graph=graphs[0]
+          assert hashlib.sha256(data).hexdigest()=='dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181'
+          (out/'selected-graph.json').write_bytes(data)
+          print('GRAPH',path,len(graph['Nodes']))
+          for i,n in enumerate(graph['Nodes']):
+            if type(n) is dict and (str(n.get('Annotation','')).startswith('C_Mac_arm64') and i<236 or str(n.get('Annotation','')).startswith(('Link_','Archive_','Lib_'))):
+              print('NODE',i,json.dumps(n,sort_keys=True))
+          with zipfile.ZipFile(out/'source-and-failure.zip','w',zipfile.ZIP_DEFLATED) as z:
+            z.write(src,'fresh-smoke-failure-inputs.tar.gz')
+            for folder in ['Tools/AssemblyShadow','Documents/AgentHandoff','Assets/AssemblyShadowDemo/Editor','Assets/AssemblyShadowDemo/Tests/Editor','ProjectSettings']:
+              for f in sorted((root/folder).rglob('*')):
+                if f.is_file() and f.suffix in ('.py','.md','.json','.cs','.meta','.asset','.ps1'):
+                  z.write(f,str(f))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: h1-primary-pinned-inputs
+          path: primary-census-output/
+          retention-days: 14
+          if-no-files-found: error
