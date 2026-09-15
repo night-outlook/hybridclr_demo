@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationCheckpoint",
+  "validationDate": "2026-09-14",
+  "status": "LocalValidationToPrimaryImplementation",
+  "validationBase": {
+    "candidateCheckoutHead": "bec2bd1936171313663a425d63bd3b0249b171c5",
+    "candidateCodeAnchor": "54259ef467e3937fe1879161aa552e42eb7e5854",
+    "reproductionCheckoutHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
+    "reproductionCodeAnchor": "4e3d2035991ab5629265ac663e61bcb2ca62828b"
+  },
+  "results": {
+    "V00": "Passed",
+    "V01": "Passed",
+    "V02": "FailedRawOldGraphUnavailableAfterExecution",
+    "V03": "Failed",
+    "V04": "BlockedNotRun",
+    "V05": "BlockedNotRun"
+  },
+  "freshSmoke": {
+    "playerBuild": "Succeeded",
+    "provenanceCapture": "Failed",
+    "buildId": "H1Count-On-Debug",
+    "buildGuid": "4ca877a4f3bf4c708d43089f6016f9fb",
+    "inputSnapshotHash": "3cbdc85d75bf7b185936b9dff450dfdd43f60a91d46875ed8be112069b3b8418",
+    "nativeLibrarySha256": "d26b47e1f83781ff0bf14baa178e8ace3184ff52552177e53109e21abff981c6",
+    "beeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
+    "compileActions": 446,
+    "macroGroups": [
+      {
+        "count": 16,
+        "il2cppDebug": "0",
+        "ndebug": "0",
+        "il2cppDevelopment": "0"
+      },
+      {
+        "count": 430,
+        "il2cppDebug": "1",
+        "ndebug": "0",
+        "il2cppDevelopment": "0"
+      }
+    ],
+    "error": "Translation units disagree on effective diagnostic macros (link flags are not compile evidence)",
+    "sourceRestoration": "ExactRestorationVerified"
+  },
+  "gate": {
+    "independentM08": "NotRunBlockedByV03",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "manifestSelfExcluded": true,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1502,
+      "sha256": "fe7f669d0630513477e4ed2977ed9c3e1a73de0a2a1081a302ce4538bf6cbd0a"
+    },
+    {
+      "path": "candidate-H1EvidenceProcessTests.json",
+      "bytes": 2737,
+      "sha256": "8c03c5fd92ec2e1034737c17c5c4eb4e44ee6085fe418b440c398577d9a0ef6f"
+    },
+    {
+      "path": "candidate-H1PchEvidenceProcessTests.json",
+      "bytes": 1504,
+      "sha256": "c5d9e50b7bbb579964239ea630c788465d8f28dc0017e7f28e5baa886c655c81"
+    },
+    {
+      "path": "candidate-handoff.json",
+      "bytes": 769,
+      "sha256": "c213ace83e47c36dcba0e4433ea032df81aa5a9f9f59f880af16a2fa3d023b8b"
+    },
+    {
+      "path": "candidate-installed-runtime.json",
+      "bytes": 261,
+      "sha256": "55b307ecd3f114a89308ddac5e7775a54b2bd5391d41bef55f66535cc2a3e73c"
+    },
+    {
+      "path": "candidate-python-inventory.json",
+      "bytes": 48176,
+      "sha256": "ca35581c9e069a92a7d0b13677eb440e9712e9a64f66ecd8ca0c7c114cebee0d"
+    },
+    {
+      "path": "fresh-smoke-failure-inputs.tar.gz",
+      "bytes": 9794232,
+      "sha256": "e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8"
+    },
+    {
+      "path": "reproduction-H1EvidenceProcessTests.json",
+      "bytes": 2737,
+      "sha256": "adfdf480e04cf42534416758bdd563f7320b109dd98c88d2bbd8fc168f6850df"
+    },
+    {
+      "path": "reproduction-H1PchEvidenceProcessTests.json",
+      "bytes": 1504,
+      "sha256": "0230526913a2faa51a0c164e654e68ea9d24cf2a868bc6155ff3e0e72d005e8b"
+    },
+    {
+      "path": "reproduction-handoff.json",
+      "bytes": 779,
+      "sha256": "744c0cf2bff684873d9baafaca40d1d36a3535de565fafa37109d48568468378"
+    },
+    {
+      "path": "reproduction-installed-runtime.json",
+      "bytes": 261,
+      "sha256": "7dfef20b5665ae35ccf9ea63f36991b2869734cd9f024dd4c0367e58e2d99923"
+    },
+    {
+      "path": "reproduction-python-inventory.json",
+      "bytes": 13580,
+      "sha256": "e009cb1fc6a71456c4bf8bba2d873f1aba3a4eab4d74712d353b1fa3aee41603"
+    },
+    {
+      "path": "v02-macro-intent-diagnostic.json",
+      "bytes": 303520,
+      "sha256": "572ad70881eb18102cb0e322f47dc1a01327ae0f76e5edc16e15d79866b759ac"
+    },
+    {
+      "path": "v02-original-request.json",
+      "bytes": 1344,
+      "sha256": "fb0c229f6ea8ad0e147cfbe96645ce2730a2c127d3599ed80fca37a928d3c979"
+    },
+    {
+      "path": "validation-raw-results.tar.gz",
+      "bytes": 396670,
+      "sha256": "b5bd929bf8be4dd95afc42650ed5b4576e01f5f088e640cacce3cc70b7641a37"
+    }
+  ]
+}
