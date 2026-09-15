@@ -18,6 +18,7 @@ import uuid
 
 import h1_local_batch as batch
 import shadow_tools as source
+import h1_handoff_preflight as handoff
 
 SCENE = 'Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity'
 SETTINGS = 'ProjectSettings/ProjectSettings.asset'
@@ -64,9 +65,12 @@ def modes(scope):
 
 
 def inspect_project(root, role):
-    expected = 'codex/assembly-shadow-r01b-h1' if role == 'candidate' else 'codex/assembly-shadow-h1-count-repro'
+    source.require(role in ('candidate', 'reproduction'), 'Unknown build source role')
     source.require(root.is_absolute() and root == root.resolve(strict=True), 'Project must be canonical')
-    source.require(source.git(root,'branch','--show-current').decode().strip()==expected,'Wrong '+role+' branch')
+    # A reviewed tooling successor can preserve the original reproduction branch.
+    # The committed handoff owns the exact branch/anchor; no CLI override or
+    # unchecked alternative branch is admitted by the batch runner.
+    handoff_state = handoff.verify(root, role)
     remote=source.git(root,'remote','get-url','origin').decode().strip()
     source.require(remote in ('git@github.com:night-outlook/hybridclr_demo.git','https://github.com/night-outlook/hybridclr_demo.git','https://github.com/night-outlook/hybridclr_demo'), 'Unexpected demo origin')
     pins=source.read_json(root/source.PINS)
@@ -77,7 +81,7 @@ def inspect_project(root, role):
     expected_shadow='on' if '-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1' in line[1] else 'off'
     report=source.verify(root,demo_source=True,expected_shadow=expected_shadow)
     return {'head':source.git(root,'rev-parse','HEAD').decode().strip(),'pins':pins,
-            'sourcePinSha256':digest((root/source.PINS).read_bytes()),'installed':report}
+            'sourcePinSha256':digest((root/source.PINS).read_bytes()),'installed':report,'handoff':handoff_state}
 
 
 def command(argv, project, log, timeout):

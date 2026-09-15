@@ -4,11 +4,8 @@ on:
     branches: [codex/assembly-shadow-r01b-h1]
     paths:
       - '.github/workflows/h1-bee-primary.yml'
-      - 'Tools/AssemblyShadow/h1_bee_*.py'
-      - 'Tools/AssemblyShadow/h1_*capture*.py'
-      - 'Tools/AssemblyShadow/h1_pch*.py'
-      - 'Tools/AssemblyShadow/tests/test_h1_bee*.py'
-      - 'Tools/AssemblyShadow/tests/test_h1_plan_failure_retention.py'
+      - 'Tools/AssemblyShadow/h1_*.py'
+      - 'Tools/AssemblyShadow/tests/test_h1_*.py'
 permissions:
   contents: read
 jobs:
@@ -22,12 +19,20 @@ jobs:
           fetch-depth: 1
       - name: Authenticate immutable failure fixture
         run: python3 Tools/AssemblyShadow/h1_bee_fixture_export.py --output "$RUNNER_TEMP/h1-bee-fixture"
+      - name: Run exact Primary regression suite
+        env:
+          H1_BEE_FIXTURE_DIR: ${{ runner.temp }}/h1-bee-fixture
+          PYTHONPATH: Tools/AssemblyShadow
+        run: python3 Tools/AssemblyShadow/h1_bee_primary_tests.py --output "$RUNNER_TEMP/h1-bee-fixture/test-results"
       - name: Export reviewed source inputs
+        if: always()
         run: |
           mkdir -p "$RUNNER_TEMP/h1-bee-fixture/source"
           cp -R Tools/AssemblyShadow "$RUNNER_TEMP/h1-bee-fixture/source/"
+          cp Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs "$RUNNER_TEMP/h1-bee-fixture/source/"
           git rev-parse HEAD > "$RUNNER_TEMP/h1-bee-fixture/source-head.txt"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
         with:
           name: h1-bee-primary-${{ github.sha }}
           path: ${{ runner.temp }}/h1-bee-fixture

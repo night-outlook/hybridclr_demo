@@ -19,7 +19,7 @@ def graph(root, compiler='/tool/clang'):
     return {'Nodes': [
         {'Annotation': 'C_Mac_arm64Pch fixture', 'Action': f'{compiler} {FLAGS} -x c-header -Xclang -fno-pch-timestamp p.h -o p.pch', 'Inputs': ['p.h', compiler], 'Outputs': ['p.pch']},
         {'Annotation': 'C_Mac_arm64 unit', 'Action': f'{compiler} {FLAGS} -include-pch p.pch -c u.c -o u.o', 'Inputs': ['u.c', 'p.pch'], 'Outputs': ['u.o']},
-        {'Annotation': 'Link_Mac_arm64', 'Action': f'{compiler} -isysroot /', 'Inputs': ['u.o'], 'Outputs': ['GameAssembly.dylib']},
+        {'Annotation': 'Link_Mac_arm64', 'Action': f'{compiler} -isysroot / u.o -o GameAssembly.dylib', 'Inputs': ['u.o'], 'Outputs': ['GameAssembly.dylib']},
     ]}
 
 
@@ -66,6 +66,7 @@ class PchPlanTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'requested'):self.plan()
     def test_unique_contexts_not_merged_by_pch_alone(self):
         other=copy.deepcopy(self.g['Nodes'][1]);other['Action']=other['Action'].replace('u.c','v.c').replace('u.o','v.o')+' -DOTHER=2';other['Inputs']=['v.c','p.pch'];other['Outputs']=['v.o'];self.g['Nodes'].append(other)
+        self.g['Nodes'][2]['Inputs'].append('v.o');self.g['Nodes'][2]['Action']+=' v.o'
         self.assertEqual(2,len(self.plan()['groups']))
     def test_legacy_parser_still_rejects_pch_without_proof(self):
         with self.assertRaisesRegex(ValueError,'Forced'):a.derive_graph_evidence(self.g,self.root,self.root/'GameAssembly.dylib',CONFIG,{},expected_feature=True)

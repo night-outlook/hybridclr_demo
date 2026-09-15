@@ -18,6 +18,26 @@ class BatchTests(unittest.TestCase):
     def test_all_six_modes_are_unique_and_repro_is_on_only(self):
         rows=b.modes('all');self.assertEqual(6,len(set(rows)))
         self.assertEqual([('reproduction','on','Debug'),('reproduction','on','Release')],rows[-2:])
+    def test_inspect_uses_verified_handoff_role_not_a_hardcoded_branch(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp).resolve();(root/'ProjectSettings').mkdir()
+            (root/b.SETTINGS).write_text('  additionalIl2CppArgs: -DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1\n')
+            (root/s.PINS).write_text('{}')
+            proof={'branch':'codex/assembly-shadow-h1-repro-bee-domains','codeCommit':'a'*40}
+            def git(path,*args):
+                return (b'https://github.com/night-outlook/hybridclr_demo.git' if args[0]=='remote' else b'b'*40)
+            with patch.object(b.handoff,'verify',return_value=proof) as preflight,patch.object(s,'git',side_effect=git),patch.object(s,'verify',return_value={'demoSourceVerified':True}):
+                row=b.inspect_project(root,'reproduction')
+            preflight.assert_called_once_with(root,'reproduction');self.assertEqual(proof,row['handoff'])
+    def test_unverified_handoff_cannot_reach_installation_check(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with patch.object(b.handoff,'verify',side_effect=RuntimeError('wrong anchor')),patch.object(s,'verify') as installed:
+                with self.assertRaisesRegex(RuntimeError,'wrong anchor'):b.inspect_project(Path(temp).resolve(),'reproduction')
+            installed.assert_not_called()
+    def test_unknown_role_never_defaults_to_reproduction(self):
+        with tempfile.TemporaryDirectory() as temp,patch.object(b.handoff,'verify') as check:
+            with self.assertRaisesRegex(RuntimeError,'Unknown build source role'):b.inspect_project(Path(temp).resolve(),'other')
+            check.assert_not_called()
     def test_unchanged_bytes_allowed(self):
         self.assertTrue(b.restore_allowed(b.SETTINGS,b'unchanged',b'unchanged'))
     def test_only_known_empty_standalone_serialization_allowed(self):
