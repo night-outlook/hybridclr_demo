@@ -19,11 +19,12 @@ import subprocess
 import time
 
 import h1_compiler_actions as a
+import h1_bee_macro_domains as domains
 
 FEATURE = "HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW"
 DIAGNOSTIC = "HYBRIDCLR_H1_COUNT_DIAGNOSTICS"
 MACROS = ("IL2CPP_DEBUG", "NDEBUG", "IL2CPP_DEVELOPMENT", FEATURE, DIAGNOSTIC)
-SCHEMA = 1
+SCHEMA = 2
 MAX_GROUPS = 1024
 MAX_FILE_BYTES = 512 * 1024 * 1024
 MAX_TEXT_BYTES = 32 * 1024 * 1024
@@ -169,7 +170,7 @@ def dependency(nodes, consumer_index, producer_index, pch, root):
     if pch in [a.resolve(root, x) for x in node.get("Inputs", [])]:
         return {"kind": "declared-file-input", "consumer": consumer_index, "producer": producer_index, "path": pch}
     def edges(n):
-        keys = [k for k in ("Deps", "Dependencies") if k in n]
+        keys = [k for k in ("Deps", "Dependencies", "ToBuildDependencies") if k in n]
         a.need(len(keys) <= 1, "Ambiguous Bee dependency representation")
         items = n[keys[0]] if keys else []
         a.need(type(items) is list and all(type(x) is int and 0 <= x < len(nodes) for x in items), "Invalid Bee node-index dependencies")
@@ -190,7 +191,6 @@ def plan(graph, root, native, config, responses, feature):
     a.need(type(feature) is bool, "PCH proof requires an explicit feature mode")
     nodes = graph.get("Nodes")
     a.need(type(nodes) is list and 0 < len(nodes) <= 1_000_000, "Invalid Bee graph")
-    stripped = copy.deepcopy(graph)
     units, producers, used = [], {}, set()
     errors = []
     for index, node in enumerate(nodes):
@@ -198,7 +198,7 @@ def plan(graph, root, native, config, responses, feature):
             continue
         args, rsp = a.expand(a.split(node["Action"]), root, responses); used.update(rsp)
         if str(node["Annotation"]).startswith("Link_Mac_arm64"):
-            stripped["Nodes"][index]["Action"] = shlex.join(args); continue
+            continue
         producer = str(node["Annotation"]).startswith("C_Mac_arm64Pch")
         try:
             parsed = parse_action(args, root, producer)
@@ -211,29 +211,30 @@ def plan(graph, root, native, config, responses, feature):
         if producer:
             a.need(Path(parsed["output"]).suffix == ".pch" and parsed["output"] not in producers, "Duplicate/non-PCH producer output")
             producers[parsed["output"]] = row
-        # This copy is used ONLY for old command-line INTENT checks, not PCH proof.
-        stripped["Nodes"][index]["Action"] = shlex.join(parsed["flags"])
     a.need(not errors, "Unsupported native actions:\n" + json.dumps(errors, indent=2))
-    a.need(producers, "No PCH producer found")
     for output in producers:
         owners = [i for i, n in enumerate(nodes) if isinstance(n, dict) and output in [a.resolve(root, p) for p in n.get("Outputs", [])]]
         a.need(owners == [producers[output]["nodeIndex"]], "PCH output has another graph producer")
     consumers, groups = [], {}
     for unit in units:
+        if unit["pch"] is None: continue
+        a.need(unit["pch"] in producers, "Consumed PCH is not produced in this selected graph")
+        edge = dependency(nodes, unit["nodeIndex"], producers[unit["pch"]]["nodeIndex"], unit["pch"], root)
+        consumers.append({"nodeIndex": unit["nodeIndex"], "pch": unit["pch"], "dependency": edge})
+    a.need({c["pch"] for c in consumers} == set(producers), "Unused/missing PCH consumers")
+    derived = domains.derive(graph, root, native, config, units, responses, feature)
+    derived["responseSources"] = sorted(used)
+    for unit in units:
         pch = unit["output"] if unit["producer"] else unit["pch"]
-        if pch is None: continue
-        a.need(pch in producers, "Consumed PCH is not produced in this selected graph")
-        if not unit["producer"]:
-            edge = dependency(nodes, unit["nodeIndex"], producers[pch]["nodeIndex"], pch, root)
-            consumers.append({"nodeIndex": unit["nodeIndex"], "pch": pch, "dependency": edge})
-        # All flag contexts get their own probe; only byte-identical contexts coalesce.
-        context = {"flags": unit["flags"], "language": unit["language"], "pch": pch}
+        a.need(not unit["producer"] or unit["macroDomain"] == domains.RUNTIME,
+               "Only IL2CPP runtime PCH producers are supported")
+        # Every unique context, including headerless external-library and runtime
+        # actions without a PCH, is probed. No source domain disappears.
+        context = {"flags": unit["flags"], "language": unit["language"], "pch": pch,
+                   "macroDomain": unit["macroDomain"]}
         key = sha(canonical(context))
         groups.setdefault(key, {"id": key, **context, "unitIndices": []})["unitIndices"].append(unit["nodeIndex"])
-    a.need(consumers and {c["pch"] for c in consumers} == set(producers), "Unused/missing PCH consumers")
-    a.need(len(groups) <= MAX_GROUPS, "Too many distinct PCH probe contexts")
-    derived = a.derive_graph_evidence(stripped, root, native, config, {}, expected_feature=feature)
-    derived["responseSources"] = sorted(used)
+    a.need(0 < len(groups) <= MAX_GROUPS, "Too many distinct compiler probe contexts")
     return {"schemaVersion": SCHEMA, "units": units, "producers": sorted(producers.values(), key=lambda u: u["output"]),
             "consumers": consumers, "groups": sorted(groups.values(), key=lambda g: g["id"]), "derived": derived}
 
@@ -243,25 +244,45 @@ def expected_macros(blueprint, feature):
     return {"IL2CPP_DEBUG": d["il2cppDebug"], "NDEBUG": d["ndebug"], "IL2CPP_DEVELOPMENT": d["il2cppDevelopment"], FEATURE: "1" if feature else "0", DIAGNOSTIC: "1"}
 
 
+def require_profile(blueprint, cpp):
+    derived = blueprint["derived"]
+    expected = {"Debug": ("1", "0"), "Release": ("0", "1")}.get(cpp)
+    a.need(expected == (derived["il2cppDebug"], derived["ndebug"]) and derived["il2cppDevelopment"] == "0",
+           "Bound runtime compiler profile differs from requested configuration")
+
+
+def group_expectation(blueprint, group):
+    matches = [row for row in blueprint["derived"]["macroDomains"] if row["id"] == group["macroDomain"]]
+    a.need(len(matches) == 1, "Missing or ambiguous compiler macro domain")
+    return matches[0]["expectedMacros"]
+
+
 def probe_source(config_path, expected):
-    a.need(not any(c in str(config_path) for c in ('"', '\\', '\n', '\r')), "Unsafe configuration include path")
-    lines = ['/* H1 PCH state probe v1: after the forced prefix and exact config. */', '#include "' + str(config_path) + '"']
+    a.need(config_path is None or not any(c in str(config_path) for c in ('"', '\\', '\n', '\r')), "Unsafe configuration include path")
+    lines = ['/* H1 compiler-domain probe v2: before the translation-unit body. */']
+    if config_path is not None:
+        lines.append('#include "' + str(config_path) + '"')
     for macro in MACROS:
-        if macro == "NDEBUG":
+        if expected[macro] is None:
+            lines += ['#ifdef ' + macro, '#error H1_DOMAIN_UNEXPECTED_' + macro, '#endif']
+        elif macro == "NDEBUG":
             lines += [("#ifndef " if expected[macro] == "1" else "#ifdef ") + macro, '#error H1_PCH_NDEBUG_DEFINEDNESS', '#endif']
         else:
             lines += ['#if !defined(' + macro + ') || ((' + macro + ') != ' + expected[macro] + ')', '#error H1_PCH_' + macro, '#endif']
     return ("\n".join(lines) + "\n").encode()
 
 
-def dump_state(raw):
+def dump_state(raw, expected=None):
     text = raw.decode("utf-8")
     result = {}
     for name in MACROS:
         a.need(name == "NDEBUG" or not re.search(r"(?m)^#define[ \t]+" + re.escape(name) + r"\(", text), "Function-like effective boolean macro: " + name)
         matches = re.findall(r"(?m)^#define[ \t]+" + re.escape(name) + r"(?:\([^\n]*?\))?(?:[ \t]+([^\n]*))?$", text)
         a.need(len(matches) <= 1, "Duplicate tracked macro in compiler output: " + name)
-        if name == "NDEBUG": result[name] = "1" if matches else "0"
+        if expected is not None and expected[name] is None:
+            a.need(not matches, "Unexpected external-domain IL2CPP macro: " + name)
+            result[name] = None
+        elif name == "NDEBUG": result[name] = "1" if matches else "0"
         else:
             a.need(len(matches) == 1, "Missing effective compiler macro: " + name)
             result[name] = a.boolean_macro(matches[0].strip(), name)
@@ -284,7 +305,7 @@ def pch_headers(raw, root):
 
 
 def commands(group, retained_pch, source_path):
-    prefix = group["flags"] + ["-include-pch", retained_pch, "-x", group["language"]]
+    prefix = group["flags"] + (["-include-pch", retained_pch] if retained_pch is not None else []) + ["-x", group["language"]]
     return {"syntax": prefix + ["-fsyntax-only", source_path], "macros": prefix + ["-E", "-dM", source_path]}
 
 
@@ -299,6 +320,7 @@ def rebuild_command(args, destination):
 
 def capture(blueprint, graph, root, config_path, binding, out, responses=None, timeout=60):
     """Called only as part of a fresh build capture; failure leaves raw attempts."""
+    require_profile(blueprint, binding.get("cppConfiguration"))
     out = Path(out)
     a.need(not out.exists(), "PCH proof directory must be new")
     out.mkdir(parents=True)
@@ -364,16 +386,21 @@ def capture(blueprint, graph, root, config_path, binding, out, responses=None, t
         producers.append({"nodeIndex": producer["nodeIndex"], "pch": pch, "info": info, "headers": rows, "inputs": input_rows,
                           "rebuild": {"execution": rebuilt_run, "output": rebuilt}})
     config = retain(config_path)
+    # External sources are never hidden behind a domain exemption. Record their
+    # exact bytes in the proof (the graph supplies the reviewed path membership).
+    external_sources = [retain(u["source"]) for u in blueprint["units"] if u["macroDomain"] != domains.RUNTIME]
     groups, failures = [], []
     pch_map = {p["pch"]["sourcePath"]: p["pch"]["retainedPath"] for p in producers}
     for group in blueprint["groups"]:
         source_path = out / ("probe-" + group["id"] + ".txt")
-        raw = probe_source(config_path, expected); write(source_path, raw)
-        cmds = commands(group, pch_map[group["pch"]], str(source_path))
+        group_expected = group_expectation(blueprint, group)
+        include_config = config_path if group["macroDomain"] == domains.RUNTIME else None
+        raw = probe_source(include_config, group_expected); write(source_path, raw)
+        cmds = commands(group, pch_map[group["pch"]] if group["pch"] else None, str(source_path))
         results = {kind: execute(argv, group["id"] + "-" + kind, require_success=False) for kind, argv in cmds.items()}
         try:
             a.need(all(r["exitCode"] == 0 and not r.get("timeout") for r in results.values()), "PCH compiler diagnostic failed")
-            a.need(dump_state(load_row(results["macros"]["stdout"])) == expected, "PCH effective macro state differs from requested profile")
+            a.need(dump_state(load_row(results["macros"]["stdout"]), group_expected) == group_expected, "PCH effective macro state differs from requested profile")
         except ValueError as error:
             failures.append({"context": group["id"], "error": str(error)})
         groups.append({"id": group["id"], "source": {"retainedPath": str(source_path), "sha256": sha(raw), "bytes": len(raw)}, **results})
@@ -382,8 +409,8 @@ def capture(blueprint, graph, root, config_path, binding, out, responses=None, t
     a.need(sha(file_bytes(compiler)) == compiler_hash, "Compiler changed during PCH probes")
     proof = {"schemaVersion": SCHEMA, "kind": "H1PchProvenance", "status": "CompilerProbedNotRuntimeAccepted",
         "binding": copy.deepcopy(binding), "plan": copy.deepcopy(blueprint), "compilerSha256": compiler_hash, "config": config,
-        "producers": producers, "groups": groups, "expectedMacros": expected,
-        "scope": "Exact PCH producers and consumer contexts; macros after PCH plus the pinned il2cpp-config.h, before the translation-unit body. Not a claim that arbitrary source code cannot redefine macros.",
+        "producers": producers, "groups": groups, "expectedMacros": expected, "externalSources": external_sources,
+        "scope": "Exhaustive native macro domains and linked objects. Runtime probes include the pinned il2cpp-config.h after any PCH; exact bdwgc/zlib sources use headerless probes with IL2CPP-only macros absent. No claim about macro redefinitions inside arbitrary translation-unit bodies.",
         "humanGatePassed": False, "mayEnterR02": False}
     if failures:
         write(out / "pch-failed-attempt.json", canonical({**proof, "status": "Failed", "failures": failures}) + b"\n")
@@ -400,9 +427,13 @@ def verify(proof, graph, root, native, config, responses, binding, read=load_row
     """
     a.need(type(proof.get("schemaVersion")) is int and proof["schemaVersion"] == SCHEMA and proof.get("kind") == "H1PchProvenance", "Unsupported PCH proof")
     a.need(proof.get("binding") == binding, "PCH proof build/graph binding differs")
+    a.need(proof.get("status") == "CompilerProbedNotRuntimeAccepted", "A partial/failed PCH proof cannot be accepted")
     blueprint = plan(graph, root, native, config, responses, binding["featureEnabled"])
     a.need(proof.get("plan") == blueprint, "PCH producer/consumer plan differs from the raw graph")
     expected = expected_macros(blueprint, binding["featureEnabled"])
+    profile = {"Debug": ("1", "0"), "Release": ("0", "1")}.get(binding.get("cppConfiguration"))
+    a.need(profile == (expected["IL2CPP_DEBUG"], expected["NDEBUG"]) and expected["IL2CPP_DEVELOPMENT"] == "0",
+           "Bound runtime compiler profile differs from requested configuration")
     a.need(proof.get("expectedMacros") == expected, "PCH expected macro profile differs")
     def checked(row):
         raw = read(row)
@@ -439,15 +470,22 @@ def verify(proof, graph, root, native, config, responses, binding, read=load_row
                     a.need(item["toolSha256"] == proof.get("compilerSha256"), "PCH producer compiler identity differs")
             else:
                 a.need(item.get("kind") == "file", "Unknown PCH input role"); checked(item)
+    external_sources = proof.get("externalSources")
+    expected_sources = [u["source"] for u in blueprint["units"] if u["macroDomain"] != domains.RUNTIME]
+    a.need(type(external_sources) is list and [r.get("sourcePath") for r in external_sources] == expected_sources,
+           "External compiler source evidence inventory differs")
+    for row in external_sources: checked(row)
     groups = proof.get("groups")
     a.need(type(groups) is list and len(groups) == len(blueprint["groups"]), "Missing PCH context proofs")
     for group, row in zip(blueprint["groups"], groups):
         a.need(row.get("id") == group["id"], "PCH context proof order differs")
-        a.need(checked(row["source"]) == probe_source(proof["config"]["sourcePath"], expected), "PCH assertion source differs")
-        cmds = commands(group, pch_map[group["pch"]], row["source"]["retainedPath"])
+        group_expected = group_expectation(blueprint, group)
+        include_config = proof["config"]["sourcePath"] if group["macroDomain"] == domains.RUNTIME else None
+        a.need(checked(row["source"]) == probe_source(include_config, group_expected), "PCH assertion source differs")
+        cmds = commands(group, pch_map[group["pch"]] if group["pch"] else None, row["source"]["retainedPath"])
         execution(row["syntax"], cmds["syntax"])
         raw = execution(row["macros"], cmds["macros"])
-        a.need(dump_state(raw) == expected, "Effective PCH macro output differs")
+        a.need(dump_state(raw, group_expected) == group_expected, "Effective PCH macro output differs")
     return blueprint["derived"]
 
 

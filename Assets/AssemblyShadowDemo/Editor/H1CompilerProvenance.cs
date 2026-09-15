@@ -77,6 +77,12 @@ namespace AssemblyShadowDemo.Editor
             const string script = "Tools/AssemblyShadow/h1_native_capture.py";
             const string parser = "Tools/AssemblyShadow/h1_compiler_actions.py";
             const string pchParser = "Tools/AssemblyShadow/h1_pch_provenance.py";
+            const string attemptRecorder = "Tools/AssemblyShadow/h1_capture_attempt.py";
+            const string domainPolicy = "Tools/AssemblyShadow/h1_bee_macro_domains.py";
+            string domainPolicyHash = ShadowHash.File(Path.Combine(projectRoot, domainPolicy));
+            const string census = "Tools/AssemblyShadow/h1_macro_domain_census.py";
+            string attemptRecorderHash = ShadowHash.File(Path.Combine(projectRoot, attemptRecorder));
+            string censusHash = ShadowHash.File(Path.Combine(projectRoot, census));
             string pchParserHash = ShadowHash.File(Path.Combine(projectRoot, pchParser));
             string scriptHash = ShadowHash.File(Path.Combine(projectRoot, script));
             string parserHash = ShadowHash.File(Path.Combine(projectRoot, parser));
@@ -84,7 +90,10 @@ namespace AssemblyShadowDemo.Editor
                 "--evidence-root", Path.GetFullPath(evidenceRoot));
             if (requestHash != ShadowHash.File(requestPath) || scriptHash != ShadowHash.File(Path.Combine(projectRoot, script)) ||
                 parserHash != ShadowHash.File(Path.Combine(projectRoot, parser)) ||
-                pchParserHash != ShadowHash.File(Path.Combine(projectRoot, pchParser)))
+                pchParserHash != ShadowHash.File(Path.Combine(projectRoot, pchParser)) ||
+                attemptRecorderHash != ShadowHash.File(Path.Combine(projectRoot, attemptRecorder)) ||
+                censusHash != ShadowHash.File(Path.Combine(projectRoot, census)) ||
+                domainPolicyHash != ShadowHash.File(Path.Combine(projectRoot, domainPolicy)))
                 throw new BuildFailedException("Provenance inputs changed during capture.");
             evidencePath = Path.Combine(Path.GetFullPath(evidenceRoot), "h1-compiler-provenance.json");
             evidenceSha256 = ShadowHash.File(evidencePath);
