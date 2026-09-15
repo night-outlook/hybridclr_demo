@@ -8,7 +8,8 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "54259ef467e3937fe1879161aa552e42eb7e5854",
+      "codeCommit": "463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9",
+      "codeAnchorPolicy": "Executable inputs are frozen at codeCommit. Following handoff/pin/document commits are metadata-only.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -27,7 +28,9 @@
     "reproduction": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-h1-count-repro",
+      "publishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
       "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
+      "preservationPolicy": "Do not move this branch for the Bee-domain Primary correction. Preserve the unfixed count behavior and existing validation handoff.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,10 +53,18 @@
     "commit": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
+  "primaryValidation": {
+    "workflowRun": 34967358028,
+    "codeCommit": "463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9",
+    "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
+    "testCount": 250,
+    "passed": 250,
+    "scope": "Authenticated Apple Bee graph planning plus portable/host-Clang tool regressions. Not Unity, Apple Player, runtime, or M08 acceptance."
+  },
   "gateState": {
     "name": "H1",
     "status": "InProgress",
-    "technicalReadiness": "BlockedPendingLocalValidation",
+    "technicalReadiness": "BlockedPendingLocalValidationV01ToV05",
     "lastIndependentM08": "FAIL",
     "humanGatePassed": false,
     "mayEnterR02": false
