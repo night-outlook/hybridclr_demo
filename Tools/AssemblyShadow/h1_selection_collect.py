@@ -26,7 +26,11 @@ def refs(value):
         for key,item in value.items():
             if type(item) is str and key.endswith('Path') and key not in ('retainedPath','rawPath'):
                 hash_key=key[:-4]+'Sha256'
-                if hash_key in value:yield item,value[hash_key]
+                if hash_key in value:
+                    # An explicitly empty optional pair is absent. A half-empty
+                    # pair still reaches strict hash/path validation and fails.
+                    if item=='' and value[hash_key]=='': continue
+                    yield item,value[hash_key]
             if key=='sourcePinFile' and 'sourcePinSha256' in value:yield item,value['sourcePinSha256']
             if key in ('inputHashesBefore','inputHashesAfter') and type(item) is dict:
                 for locator,digest in item.items():yield locator,digest

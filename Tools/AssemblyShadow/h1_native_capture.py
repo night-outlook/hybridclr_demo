@@ -15,6 +15,7 @@ import plistlib
 import subprocess
 
 import h1_compiler_actions as actions
+import h1_pch_provenance as pch
 
 
 def unique_pairs(pairs):
@@ -97,7 +98,8 @@ def capture(request: dict, evidence_root: Path) -> dict:
     config_path = canonical_file(request['il2cppConfigPath'])
     raw_config = config_path.read_bytes()
     responses = collect_responses(graph, root)
-    derived = actions.derive_graph_evidence(graph, root, native, raw_config.decode('utf-8'), responses, expected_feature=request.get("featureEnabled"))
+    pch_plan = pch.plan(graph, root, native, raw_config.decode('utf-8'), responses, request.get("featureEnabled")) if pch.has_pch(graph, root, responses) else None
+    derived = pch_plan['derived'] if pch_plan else actions.derive_graph_evidence(graph, root, native, raw_config.decode('utf-8'), responses, expected_feature=request.get("featureEnabled"))
     actions.need(set(derived['responseSources']) == set(responses), 'Response closure differs')
     expected = {'Debug': ('1','0'), 'Release': ('0','1')}
     cpp = request.get('cppConfiguration')
@@ -127,6 +129,13 @@ def capture(request: dict, evidence_root: Path) -> dict:
         write_new(retained, data)
         response_rows.append({'sourcePath': source, 'retainedPath': str(retained),
             'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)})
+    pch_path = pch_hash = ""
+    if pch_plan is not None:
+        binding = {**{k: request[k] for k in pch.BINDINGS}, "graphSha256": hashlib.sha256(raw_graph).hexdigest(),
+                   "projectRoot": str(root), "featureEnabled": request['featureEnabled'], "cppConfiguration": cpp}
+        proof = pch.capture(pch_plan, graph, root, str(config_path), binding, evidence_root / 'pch', responses=responses)
+        pch.verify(proof, graph, root, native, raw_config.decode('utf-8'), responses, binding)
+        pch_path = str(evidence_root / 'pch/pch-proof.json'); pch_hash = digest(Path(pch_path))
     for path, data in [(graph_path, raw_graph), (config_path, raw_config), (sdk_settings, sdk_bytes)]:
         actions.need(digest(path) == hashlib.sha256(data).hexdigest(), 'Build input changed during capture: ' + str(path))
     actions.need(digest(native) == request['nativeLibrarySha256'] and digest(compiler) == compiler_hash, 'Compiler/native artifact changed during capture')
@@ -144,8 +153,8 @@ def capture(request: dict, evidence_root: Path) -> dict:
         'il2cppConfigPath': str(retained_config), 'il2cppConfigSha256': hashlib.sha256(raw_config).hexdigest(),
         'il2cppDebug': derived['il2cppDebug'], 'ndebug': derived['ndebug'],
         'il2cppDevelopment': derived['il2cppDevelopment'],
-        'macroEvidence': 'Per-translation-unit ordered -D/-U and retained transitive response arguments; NDEBUG uses definedness. Link flags do not establish compile macros. Forced includes require additional preprocessing proof.',
-        'responseFiles': response_rows}
+        'macroEvidence': 'Per-unit ordered -D/-U intent; NDEBUG uses definedness. PCH contexts additionally require the bound raw syntax/macro proof when pchProofPath is nonempty. Other forced-input routes remain prohibited.',
+        'projectRoot': str(root), 'responseFiles': response_rows, 'pchProofPath': pch_path, 'pchProofSha256': pch_hash}
 
 
 def main() -> int:

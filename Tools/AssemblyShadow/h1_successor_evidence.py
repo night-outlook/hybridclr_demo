@@ -14,6 +14,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import tarfile
+import h1_pch_provenance as pch
 
 from h1_witness_contract import expected_site_ids, verify_runtime_probe
 
@@ -234,6 +235,7 @@ def validate_provenance_closure(store, builds):
         for r in responses:
             retained=store.ref(r['retainedPath'],r['sha256'])
             exact(retained['sizeBytes'],r['bytes'],'native response size')
+        validate_pch_closure(store,cp,build)
         managed=store.json_row(store.ref(build['managedSourceProvenancePath'],build['managedSourceProvenanceSha256']))
         first=managed['begin']; before=store.json_row(store.ref(first['path'],first['sha256']))
         exact(before.get('kind'),'H1ManagedSourceBegin','managed begin kind')
@@ -248,6 +250,35 @@ def validate_provenance_closure(store, builds):
                 for child in value.values():
                     if type(child) in (dict,list):retained_rows(child)
         retained_rows(before);retained_rows(managed)
+
+
+def validate_pch_closure(store, cp, build):
+    """PCH artifacts are mandatory archive members, not excluded binaries."""
+    graph=store.json_row(store.ref(cp['beeActionGraphPath'],cp['beeActionGraphSha256']))
+    root=Path(cp.get('projectRoot') or str(Path(build.get('sourcePinFile','/ProjectSettings/pins.json')).parent.parent))
+    responses={}
+    for row in cp['responseFiles']:
+        data=Path(store.ref(row['retainedPath'],row['sha256'])['localPath']).read_bytes()
+        need(row['sourcePath'] not in responses,'Duplicate PCH response source')
+        exact(len(data),row['bytes'],'PCH response bytes');responses[row['sourcePath']]=data
+    if not pch.has_pch(graph,root,responses):
+        need(not cp.get('pchProofPath') and not cp.get('pchProofSha256'),'PCH proof without a PCH graph')
+        return
+    need(type(cp.get('projectRoot')) is str and root.is_absolute(),'PCH capture needs its exact project root')
+    proof=store.json_row(store.ref(cp.get('pchProofPath'),cp.get('pchProofSha256')))
+    config=Path(store.ref(cp['il2cppConfigPath'],cp['il2cppConfigSha256'])['localPath']).read_text()
+    def read_row(row):
+        return Path(store.ref(row['retainedPath'],row['sha256'])['localPath']).read_bytes()
+    exact(proof.get('compilerSha256'),cp['compilerSha256'],'PCH compiler hash')
+    derived=pch.verify(proof,graph,root,Path(cp['nativeLibraryPath']),config,responses,
+        pch.binding_from(cp,root,build['featureEnabled'],build['cppConfiguration']),read=read_row)
+    exact(set(derived['responseSources']),set(responses),'PCH response closure')
+    for key in ('compileActionCount','linkActionCount','compilerPath','sdkPath','beeLinkOutputPath','il2cppDebug','ndebug','il2cppDevelopment'):
+        exact(cp.get(key),derived[key],'PCH-derived '+key)
+    for producer in proof['producers']:
+        for item in producer['inputs']:
+            if item['kind']=='toolchain-binary': store.binary_ref(item['toolPath'],item['toolSha256'])
+            elif item['kind']=='bee-sdk-marker':exact(item['sdkSettings']['sha256'],cp['sdkSettingsSha256'],'PCH SDK marker')
 
 
 def validate_count_matrix(store,builds):

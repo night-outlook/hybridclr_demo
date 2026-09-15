@@ -18,13 +18,14 @@ namespace AssemblyShadowDemo.Editor
         [Serializable] public sealed class Capture
         {
             public int schemaVersion;
-            public string buildId, buildGuid, inputSnapshotHash;
+            public string buildId, buildGuid, inputSnapshotHash, projectRoot;
             public string nativeLibraryPath, nativeLibrarySha256, sourcePinSha256;
             public string beeActionGraphPath, beeActionGraphSha256, beeLinkOutputPath;
             public int compileActionCount, linkActionCount;
             public string compilerPath, compilerSha256, compilerVersion;
             public string sdkPath, sdkVersion, sdkSettingsPath, sdkSettingsSha256;
             public string il2cppConfigPath, il2cppConfigSha256;
+            public string pchProofPath, pchProofSha256;
             public string il2cppDebug, ndebug, il2cppDevelopment, macroEvidence;
             public ResponseFile[] responseFiles;
         }
@@ -75,12 +76,15 @@ namespace AssemblyShadowDemo.Editor
             string requestHash = ShadowHash.File(requestPath);
             const string script = "Tools/AssemblyShadow/h1_native_capture.py";
             const string parser = "Tools/AssemblyShadow/h1_compiler_actions.py";
+            const string pchParser = "Tools/AssemblyShadow/h1_pch_provenance.py";
+            string pchParserHash = ShadowHash.File(Path.Combine(projectRoot, pchParser));
             string scriptHash = ShadowHash.File(Path.Combine(projectRoot, script));
             string parserHash = ShadowHash.File(Path.Combine(projectRoot, parser));
-            H1EvidenceProcess.RunPython(projectRoot, script, "--request", requestPath,
+            H1EvidenceProcess.RunPythonWithTimeout(projectRoot, script, 1800000, "--request", requestPath,
                 "--evidence-root", Path.GetFullPath(evidenceRoot));
             if (requestHash != ShadowHash.File(requestPath) || scriptHash != ShadowHash.File(Path.Combine(projectRoot, script)) ||
-                parserHash != ShadowHash.File(Path.Combine(projectRoot, parser)))
+                parserHash != ShadowHash.File(Path.Combine(projectRoot, parser)) ||
+                pchParserHash != ShadowHash.File(Path.Combine(projectRoot, pchParser)))
                 throw new BuildFailedException("Provenance inputs changed during capture.");
             evidencePath = Path.Combine(Path.GetFullPath(evidenceRoot), "h1-compiler-provenance.json");
             evidenceSha256 = ShadowHash.File(evidencePath);
@@ -89,6 +93,9 @@ namespace AssemblyShadowDemo.Editor
                 result.buildId != buildId || result.inputSnapshotHash != inputSnapshotHash ||
                 result.nativeLibrarySha256 != nativeLibrarySha256 || result.sourcePinSha256 != sourcePinSha256)
                 throw new BuildFailedException("Returned compiler provenance does not bind this build.");
+            if (!string.IsNullOrEmpty(result.pchProofPath) &&
+                (string.IsNullOrEmpty(result.pchProofSha256) || ShadowHash.File(result.pchProofPath) != result.pchProofSha256))
+                throw new BuildFailedException("PCH provenance changed after capture.");
             return result;
         }
     }
