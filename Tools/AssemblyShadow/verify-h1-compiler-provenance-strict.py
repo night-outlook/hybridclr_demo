@@ -46,6 +46,30 @@ def mode_for(build):
     return ('On' if feature else 'Off')+'/'+cpp
 
 
+def _verify_macro_domains(derived, *, pch_graph):
+    domains=derived.get('macroDomains')
+    if not pch_graph:
+        need(domains is None, 'Unexpected source-domain proof on the legacy non-PCH path')
+        return None
+    need(derived.get('macroDomainPolicy')=='unity-2022.3-apple-bee-source-domains-v1', 'Apple Bee macro-domain policy differs')
+    need(type(domains) is list and {row.get('id') for row in domains}=={'il2cpp-runtime','external-bdwgc','external-zlib'},
+         'Apple Bee macro-domain inventory differs')
+    indices=[]
+    for row in domains:
+        need(type(row.get('unitIndices')) is list and row['unitIndices'] and all(type(i) is int and i>=0 for i in row['unitIndices']),
+             'Malformed Apple Bee macro-domain membership')
+        need(type(row.get('expectedMacros')) is dict, 'Missing Apple Bee macro-domain expected macros')
+        if row['id']=='il2cpp-runtime':
+            need(row.get('configurationIncludedInProbe') is True, 'Runtime domain must probe pinned IL2CPP configuration')
+        else:
+            need(row.get('configurationIncludedInProbe') is False, 'External domain must not inherit IL2CPP configuration')
+            need(row['expectedMacros'].get('IL2CPP_DEBUG') is None and row['expectedMacros'].get('IL2CPP_DEVELOPMENT') is None,
+                 'External domain must not claim IL2CPP configuration macros')
+        indices.extend(row['unitIndices'])
+    need(len(indices)==derived['compileActionCount'] and len(set(indices))==len(indices), 'Apple Bee macro-domain accounting differs')
+    return domains
+
+
 def verify_receipt(receipt_path: Path) -> dict:
     receipt_path=canonical(str(receipt_path),'build receipt'); root=project_root(receipt_path); build=read(receipt_path); mode=mode_for(build)
     need(build.get('schemaVersion')==1 and build.get('kind')=='H1CountDiagnosticPlayerBuild' and build.get('diagnosticOnly') is True,'Invalid H1 build receipt')
@@ -59,8 +83,8 @@ def verify_receipt(receipt_path: Path) -> dict:
     need(digest(graph_path)==provenance['beeActionGraphSha256'] and digest(config_path)==provenance['il2cppConfigSha256'],'Retained native input hash differs')
     responses=strict.retained_responses(provenance,digest)
     try:
-        graph=read(graph_path)
-        if pch.has_pch(graph,root,responses):
+        graph=read(graph_path); pch_graph=pch.has_pch(graph,root,responses)
+        if pch_graph:
             need(provenance.get('projectRoot')==str(root),'PCH project root differs from the build receipt location')
             proof_path=canonical(provenance.get('pchProofPath',''),'PCH proof'); need(digest(proof_path)==provenance.get('pchProofSha256'),'PCH proof hash differs')
             proof=read(proof_path); need(proof.get('compilerSha256')==provenance['compilerSha256'],'PCH compiler identity differs')
@@ -79,9 +103,7 @@ def verify_receipt(receipt_path: Path) -> dict:
         raise VerificationError(str(error)) from error
     for field in ('compileActionCount','linkActionCount','compilerPath','sdkPath','beeLinkOutputPath','il2cppDebug','ndebug','il2cppDevelopment'):
         need(provenance.get(field)==derived[field],'Bee-derived provenance differs: '+field)
-    domains=derived.get('macroDomains')
-    need(type(domains) is list and {row.get('domain') for row in domains}=={'runtime','bdwgc','zlib'}, 'Apple Bee macro domain inventory differs')
-    need(sum(row.get('count',0) for row in domains)==derived['compileActionCount'] and all(row.get('count',0)>0 for row in domains), 'Apple Bee macro domain accounting differs')
+    domains=_verify_macro_domains(derived,pch_graph=pch_graph)
     compiler=canonical(provenance['compilerPath'],'compiler',allow_symlink=True); need(digest(compiler,allow_symlink=True)==provenance['compilerSha256'],'Compiler bytes differ')
     sdk=canonical(provenance['sdkSettingsPath'],'SDK settings'); need(digest(sdk)==provenance['sdkSettingsSha256'],'SDK settings bytes differ')
     native=canonical(provenance['nativeLibraryPath'],'native library'); need(digest(native)==provenance['nativeLibrarySha256'],'Selected native library bytes differ')
