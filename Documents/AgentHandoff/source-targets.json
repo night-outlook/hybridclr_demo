@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "PrimaryImplementationSourceTargets",
+  "unityVersion": "2022.3.62f2",
+  "target": "StandaloneOSX",
+  "architecture": "arm64",
+  "demoTargets": {
+    "candidate": {
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "codeCommit": "54259ef467e3937fe1879161aa552e42eb7e5854",
+      "runtimePins": {
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+        }
+      }
+    },
+    "reproduction": {
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-h1-count-repro",
+      "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
+      "runtimePins": {
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+        }
+      }
+    }
+  },
+  "performanceReference": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/assembly-shadow-h1-performance-reference",
+    "commit": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
+    "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
+  },
+  "gateState": {
+    "name": "H1",
+    "status": "InProgress",
+    "technicalReadiness": "BlockedPendingLocalValidation",
+    "lastIndependentM08": "FAIL",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  }
+}
