@@ -35,8 +35,10 @@ def run(output):
     class Result(unittest.TextTestResult):
         def __init__(self,*args,**kw):super().__init__(*args,**kw);self.rows=[];self.subfailed=set()
         def addSuccess(self,t):super().addSuccess(t);self.rows.append({'id':t.id(),'result':'Passed'})
-        def addFailure(self,t,e):super().addFailure(t,e);self.rows.append({'id':t.id(),'result':'Failed'})
-        def addError(self,t,e):super().addError(t,e);self.rows.append({'id':t.id(),'result':'Error'})
+        def addFailure(self,t,e):
+            super().addFailure(t,e);self.rows.append({'id':t.id(),'result':'Failed','detail':self._exc_info_to_string(e,t)})
+        def addError(self,t,e):
+            super().addError(t,e);self.rows.append({'id':t.id(),'result':'Error','detail':self._exc_info_to_string(e,t)})
         def addSkip(self,t,r):super().addSkip(t,r);self.rows.append({'id':t.id(),'result':'Skipped','reason':r})
         def addSubTest(self,t,st,e):
             super().addSubTest(t,st,e)
@@ -56,7 +58,9 @@ def run(output):
         'scope':'Pinned Apple graph planning and host-Clang synthetic probes; not Unity/Apple Player validation',
         'UnityCompile':'NotRun','AppleClangExecution':'NotRun','M08':'NotRun','humanGatePassed':False,'mayEnterR02':False}
     (output/'results.json').write_text(json.dumps(report,indent=2)+'\n')
-    print(json.dumps({k:report[k] for k in ('status','testCount','counts')}))
+    summary={k:report[k] for k in ('status','testCount','counts')}
+    summary['nonpasses']=[{k:v for k,v in row.items() if k in ('id','result','detail','reason')} for row in report['tests'] if row['result']!='Passed']
+    print(json.dumps(summary))
     return 0 if passed else 1
 
 
