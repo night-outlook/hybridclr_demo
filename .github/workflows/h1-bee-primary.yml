@@ -1,0 +1,35 @@
+name: H1 Bee primary fixture and tools
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/h1-bee-primary.yml'
+      - 'Tools/AssemblyShadow/h1_bee_*.py'
+      - 'Tools/AssemblyShadow/h1_*capture*.py'
+      - 'Tools/AssemblyShadow/h1_pch*.py'
+      - 'Tools/AssemblyShadow/tests/test_h1_bee*.py'
+      - 'Tools/AssemblyShadow/tests/test_h1_plan_failure_retention.py'
+permissions:
+  contents: read
+jobs:
+  fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Authenticate immutable failure fixture
+        run: python3 Tools/AssemblyShadow/h1_bee_fixture_export.py --output "$RUNNER_TEMP/h1-bee-fixture"
+      - name: Export reviewed source inputs
+        run: |
+          mkdir -p "$RUNNER_TEMP/h1-bee-fixture/source"
+          cp -R Tools/AssemblyShadow "$RUNNER_TEMP/h1-bee-fixture/source/"
+          git rev-parse HEAD > "$RUNNER_TEMP/h1-bee-fixture/source-head.txt"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: h1-bee-primary-${{ github.sha }}
+          path: ${{ runner.temp }}/h1-bee-fixture
+          retention-days: 7
+          if-no-files-found: error
