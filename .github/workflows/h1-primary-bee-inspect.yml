@@ -1,0 +1,76 @@
+name: H1 Primary Bee Inspect
+on:
+  push:
+    branches:
+      - codex/h1-primary-bee-inspect-33543
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect committed failure archive
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, pathlib, shlex, tarfile
+          archive = pathlib.Path('Documents/AgentHandoff/local-validation-20260914-bec2bd1/fresh-smoke-failure-inputs.tar.gz')
+          raw = archive.read_bytes()
+          actual = hashlib.sha256(raw).hexdigest()
+          expected = 'e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8'
+          print('archive_sha256', actual)
+          assert actual == expected, (actual, expected)
+          graph_sha = 'dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181'
+          graph = None
+          graph_name = None
+          with tarfile.open(archive, 'r:gz') as tf:
+              members = [m for m in tf.getmembers() if m.isfile()]
+              print('members', len(members))
+              for m in members:
+                  f = tf.extractfile(m)
+                  if f is None: continue
+                  data = f.read()
+                  if hashlib.sha256(data).hexdigest() == graph_sha:
+                      graph = json.loads(data.decode('utf-8-sig'))
+                      graph_name = m.name
+                      break
+          assert graph is not None, 'graph not found by sha256'
+          print('graph_member', graph_name)
+          nodes = graph['Nodes']
+          target = [151,152] + list(range(154,168))
+          def files_for(node):
+              vals = []
+              for p in node.get('Inputs', []):
+                  low = p.lower()
+                  if low.endswith(('.c','.cc','.cpp','.cxx','.m','.mm','.h','.hpp')):
+                      vals.append(p)
+              return vals
+          print('BEGIN_16')
+          for idx in target:
+              node = nodes[idx]
+              print(json.dumps({
+                  'nodeIndex': idx,
+                  'annotation': node.get('Annotation'),
+                  'sourceLikeInputs': files_for(node),
+                  'inputs': node.get('Inputs', []),
+                  'outputs': node.get('Outputs', []),
+                  'action': node.get('Action'),
+                  'deps': node.get('Deps', node.get('Dependencies', [])),
+              }, sort_keys=True))
+          print('END_16')
+          print('BEGIN_PCH')
+          for idx,node in enumerate(nodes):
+              ann = str(node.get('Annotation',''))
+              if ann.startswith('C_Mac_arm64Pch') or ann.startswith('Link_Mac_arm64'):
+                  print(json.dumps({'nodeIndex':idx,'annotation':ann,'inputs':node.get('Inputs',[]),'outputs':node.get('Outputs',[]),'action':node.get('Action'),'deps':node.get('Deps',node.get('Dependencies',[]))}, sort_keys=True))
+          print('END_PCH')
+          # Path-token census for all compile-source inputs.
+          census = {}
+          for idx,node in enumerate(nodes):
+              if not str(node.get('Annotation','')).startswith('C_Mac_arm64'):
+                  continue
+              srcs = files_for(node)
+              for src in srcs:
+                  key = 'bdwgc' if 'bdwgc' in src.lower() else 'zlib' if 'zlib' in src.lower() else 'libil2cpp' if 'libil2cpp' in src.lower() else 'other'
+                  census[key] = census.get(key,0)+1
+          print('source_token_census', json.dumps(census, sort_keys=True))
+          PY
