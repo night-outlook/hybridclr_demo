@@ -1,0 +1,51 @@
+name: H1 Primary Source Patterns
+on:
+  push:
+    branches:
+      - codex/h1-primary-bee-inspect-33543
+    paths:
+      - .github/workflows/h1-primary-source-patterns.yml
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect authenticated compile source patterns
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,shlex,tarfile,collections,os
+          archive=pathlib.Path('Documents/AgentHandoff/local-validation-20260914-bec2bd1/fresh-smoke-failure-inputs.tar.gz')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8'
+          graph_sha='dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181'
+          graph=None
+          with tarfile.open(archive,'r:gz') as tf:
+              for m in tf.getmembers():
+                  if not m.isfile(): continue
+                  data=tf.extractfile(m).read()
+                  if hashlib.sha256(data).hexdigest()==graph_sha:
+                      graph=json.loads(data.decode('utf-8-sig')); break
+          assert graph
+          roots=collections.Counter(); generated=[]; installed=[]
+          for idx,node in enumerate(graph['Nodes']):
+              if not str(node.get('Annotation','')).startswith('C_Mac_arm64'): continue
+              candidates=[p for p in node.get('Inputs',[]) if pathlib.Path(p).suffix.lower() in ('.c','.cc','.cpp','.cxx','.m','.mm','.h','.hpp','.hh','.hxx')]
+              if len(candidates)!=1:
+                  print('SOURCE_CARDINALITY',idx,len(candidates),candidates); continue
+              src=candidates[0]
+              low=src.lower()
+              if '/hybridclrdata/localil2cppdata-osxeditor/il2cpp/' in low:
+                  installed.append((idx,src)); continue
+              generated.append((idx,src))
+              p=pathlib.PurePosixPath(src)
+              name=p.name
+              suffix='lump.cpp' if name.endswith('.lump.cpp') else p.suffix.lower()
+              roots[(str(p.parent),suffix)] += 1
+          print('installed_count',len(installed),'generated_count',len(generated))
+          print('GENERATED_BEGIN')
+          for idx,src in generated: print(idx,src)
+          print('GENERATED_END')
+          print('PATTERNS_BEGIN')
+          for key,count in sorted(roots.items()): print(count,key)
+          print('PATTERNS_END')
+          PY
