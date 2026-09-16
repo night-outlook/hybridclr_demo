@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalManagedCacheFailureManifest",
+  "sourceState": {
+    "schemaVersion": 1,
+    "kind": "H1LocalValidationSourceState",
+    "observedAt": "2026-09-15T23:47:00-07:00",
+    "candidate": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "handoffHead": "3695905b1981a5cecbd444e27114c34cbc3bf255",
+      "sourceAnchor": "0387feb4344bbe95fd7db524d6e0bae759adc203"
+    },
+    "pins": {
+      "candidateNative": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+      "package": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+      "il2cpp": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "reproductionDemo": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
+      "reproductionNative": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf",
+      "performanceReference": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c"
+    },
+    "authoritySha256": {
+      "WEB_TO_LOCAL.md": "aef9727ff0a9c57fe8d4f363692c8be92123ec4f59b0da970de6fe531984b3c3",
+      "source-targets.json": "e05cdaed3568232bc8fccd372e1bef267b1ea34cc782147de7a30b5b6c29558b",
+      "source-pins.json": "5b5ed1bc189b90a0f1f9eaa25e52dc90ffc245d2d1a553ae348c07e717a855a3"
+    },
+    "preservedUntracked": [
+      "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v7/",
+      "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v8/",
+      "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v9/",
+      "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v10/",
+      "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/"
+    ],
+    "productionSourceChangedLocally": false,
+    "beeCacheCleared": false,
+    "reuseProofUsed": false,
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "result": {
+    "schemaVersion": 1,
+    "kind": "H1LocalValidationResult",
+    "handoffHead": "3695905b1981a5cecbd444e27114c34cbc3bf255",
+    "sourceAnchor": "0387feb4344bbe95fd7db524d6e0bae759adc203",
+    "exit": "Local Validation -> Primary Implementation",
+    "steps": {
+      "V00": {
+        "status": "Passed"
+      },
+      "V01": {
+        "status": "Passed",
+        "beePrimary": "281/281",
+        "h1Python": "459/459",
+        "candidateDemoNUnit": "351/351",
+        "candidatePackageNUnit": "720/720",
+        "reproductionFocusedNUnit": "14/14",
+        "reproductionFullNUnit": "330/342"
+      },
+      "V02": {
+        "status": "Failed",
+        "reason": "Graph-wide response stability rejected unrelated StandaloneOSX_CodeGen mutations",
+        "acceptanceRowsEmitted": 0
+      },
+      "V03": {
+        "status": "Failed",
+        "playerBuild": "Passed",
+        "nativeVerification": "Passed",
+        "managedVerification": "Failed",
+        "remainingBuilds": "BlockedNotRun"
+      },
+      "V04": {
+        "status": "BlockedNotRun"
+      },
+      "V05": {
+        "status": "BlockedNotRun",
+        "independentM08": "NotRun"
+      }
+    },
+    "cache": {
+      "graphSha256": "46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af",
+      "observations": 302,
+      "unchanged": 295,
+      "changed": 7,
+      "requiredAssemblies": 2,
+      "beeCacheCleared": false,
+      "reuseProofUsed": false
+    },
+    "build": {
+      "buildId": "H1Count-On-Debug",
+      "buildGuid": "f6aa5298e2284385a9d458bb58f08e68",
+      "inputSnapshotHash": "ea5f83c1c1de80ce83bc9d121e4138843de8fb6234681e11a38c090d1ed55713",
+      "nativeLibrarySha256": "117e733567a7b6d52742c93281a3842773af2820301dee602264887fdf4b2e85"
+    },
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "archives": [
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-3695905/v02/managed-source-provenance.tar.gz",
+      "sizeBytes": 6794144,
+      "sha256": "3dc8967fc79389a83e2e9fca453fe44644f23344d4b2482795cb8fa56f069cc4"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-3695905/v03/fresh-native-provenance.tar.gz",
+      "sizeBytes": 79614856,
+      "sha256": "c52e39bc207e7736145522830c45ab6deb5ed044be97982409c5565e6f1ab3a9"
+    },
+    {
+      "path": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-3695905/v03/smoke-runner.tar.gz",
+      "sizeBytes": 357370,
+      "sha256": "b3839f62d9a595b331e384734265ca9eb9a50aeac61dab724022a7e75f90e059"
+    }
+  ],
+  "cacheCensus": "v02/managed-cache-census.json",
+  "verifierError": "Cached managed response changed or was unavailable: Library/Bee/artifacts/StandaloneOSX_CodeGen/Unity.Burst.CodeGen.rsp",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

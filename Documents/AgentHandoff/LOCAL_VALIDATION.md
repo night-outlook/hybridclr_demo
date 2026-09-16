@@ -1,6 +1,79 @@
 # Local Validation report
 
-## Current run — 2026-09-15 handoff 8f5bcaa
+## Current run — 2026-09-15 handoff 3695905
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+Fresh V00 and V01 pass. The prioritized candidate ON/Debug Player build completes and passes strict native compiler/PCH/domain/store verification. The required managed cache verifier then fails closed on `Library/Bee/artifacts/StandaloneOSX_CodeGen/Unity.Burst.CodeGen.rsp` before it can emit either `BeeCacheHitBoundToFreshPlayerInput` row.
+
+The normal Bee cache was preserved and `--reuse-proof` was not used. Both required compiler actions are unique in the retained Player DAG. Their assembly-local response files, 201 dependencies per assembly, compiler outputs, reachable downstream DLLs, and exact fresh Player input path/hash/size bindings are unchanged. Seven unrelated graph-wide CodeGen response files legitimately gained the two diagnostic defines staged for the Player build. The implementation retains and checks all 92 DAG response files before selecting an assembly, so the unrelated changes reject both otherwise-complete candidate chains.
+
+Response-file scope and managed acceptance semantics are Primary-owned. No local parser, allowlist, cache, limit, or provenance change was made. The remaining five builds and V04–V05 are `Blocked / NotRun`; independent whole-chain M08 was not commissioned. Human Review Gate is not ready, `humanGatePassed=false`, `mayEnterR02=false`, and R02 was not started.
+
+### Validated source state
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate handoff checkout | `codex/assembly-shadow-r01b-h1` | `3695905b1981a5cecbd444e27114c34cbc3bf255` | `Pass` |
+| Candidate source/implementation anchor | same branch | `0387feb4344bbe95fd7db524d6e0bae759adc203` | `Pass` in source target and source pin |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass`, clean |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass`, clean |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass`, clean |
+| Reproduction demo | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged |
+| Reproduction native | `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged |
+
+The candidate was explicitly pulled with `git pull --ff-only origin codex/assembly-shadow-r01b-h1`. Candidate retained the pre-existing untracked historical `v7`–`v11` directories in addition to this new checkpoint. Reproduction and performance-reference worktrees remained clean and were not repointed or reinstalled.
+
+### Environment
+
+- macOS 26.5.2 (25F84), arm64
+- Unity 2022.3.62f2, StandaloneOSX arm64
+- Apple clang 21.0.0 (`clang-2100.1.1.101`)
+- Python 3.14.6
+- PowerShell 7.6.3
+- Git 2.50.1 (Apple Git-155)
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 authoritative preflight | `Pass` | Exit 0; `SourceTargetVerifiedNotBuildAccepted`; checkout `3695905…`; code source `0387feb…`; native installation false; both gate flags false. |
+| V01 Bee Primary | `Pass` | Fresh exact bounded suite 281/281. |
+| V01 H1 Python | `Pass` | Fresh exact H1 inventory 459/459. Additional broad inventory: 955 passed / 1 skipped platform-path fixture; this is not Unity or Player acceptance. |
+| V01 strict provenance / normal M02 owner / cache controls | `Pass` | 4/4, 15/15, and 8/8. |
+| V01 candidate Unity | `Pass` | Fresh compile; focused NUnit 4/4 and 10/10; full demo Editor regression 351/351; package Editor regression 720/720. |
+| V01 reproduction Unity | `CompletedWithNonPass` | Fresh compile and focused NUnit 14/14 passed. Additional full demo sweep completed 330/342 with the same 12 historical missing managed-source/baseline/linked-input failures. |
+| V02 real Bee cache proof | `Fail` | One unchanged Player DAG, two unique required compiler actions, exact fresh Player inputs, and unchanged assembly-local chains exist. Seven unrelated graph-wide CodeGen responses changed, so no cache-hit acceptance row was emitted. |
+| V03 pinned install / runtime verification | `Pass` | Install passed; 955 source files, 957 installed files, demo source verified, mode `on`, receipt SHA-256 `5d229b965e1b3d67212b5c029555c4d94327318179cb735adcdee4df957271f7`. |
+| V03 candidate ON/Debug Player/native evidence | `Pass` before managed verification | Player build, strict native verifier, independent store verifier, Apple domains/PCH/probes, and exact restoration pass. |
+| V03 managed-source provenance | `Fail` | `Cached managed response changed or was unavailable: .../StandaloneOSX_CodeGen/Unity.Burst.CodeGen.rsp`. |
+| V03 remaining five builds | `Blocked / NotRun` | A valid candidate ON/Debug smoke receipt is required. |
+| V04 runtime/count/startup/performance | `Blocked / NotRun` | No six-build fresh provenance set exists. |
+| V05 successor and independent M08 | `Blocked / NotRun` | Successor inputs are incomplete; M08 was not commissioned. |
+
+### Real cache and fresh build identity
+
+- Cached Player DAG: 9,281,264 bytes, SHA-256 `46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af`.
+- Cache observations: 302 total, 295 `Unchanged`, 7 `Changed`.
+- Bootstrap cached action SHA-256: `147ff4fdd7fb75e65bf9ac1e541096a0a7a72b82bfe1e32ddafab91101cef6a7`; fresh Player input SHA-256 `863743cc1aba2835c5491e01277d9a054e9cf590923059627a4c42667aaa8c39`.
+- Diagnostics cached action SHA-256: `67df1baf137e19ff95e6d36cf579e4065b5c57281ec80b1ed2ee17734ca560cc`; fresh Player input SHA-256 `d8c6a81f7c0f489d8de76c60454e8ebd06c5448d60c9ee67e7940c60cc10dd04`.
+- Build GUID: `f6aa5298e2284385a9d458bb58f08e68`; input snapshot SHA-256 `ea5f83c1c1de80ce83bc9d121e4138843de8fb6234681e11a38c090d1ed55713`.
+- Native Bee graph SHA-256: `d0e34c181592adc10abedf1139104b951ac75bf2e356f352e04888edc297cf57`.
+- `GameAssembly.dylib` SHA-256: `117e733567a7b6d52742c93281a3842773af2820301dee602264887fdf4b2e85`.
+- Native build receipt SHA-256: `ab2cf18d908b302e9de775c35b06bbd824df260dc5d3725fb6d6336e887cd0ae`.
+- Compiler provenance SHA-256: `47bed29c77133de6f001b984a65c45371bac75ffc5ab5484bb9dbf72339a2b18`.
+- Managed capture SHA-256: `a081924a5a08a6d13666e26df43144074db240d9c3940fd5446978faa3d4502e`.
+- Store verification: `StoreVerifiedNotAcceptance`; 451 observations/content/blobs, 318,212,421 logical bytes, 72,612,459 stored bytes; inventory SHA-256 `a66bc38bdf402c5130b95b42ab6b535716236dabbceb9b369da0d9cbf28956c7`.
+- Restoration: `ExactRestorationVerified`.
+
+Portable evidence is under [local-validation-20260915-3695905](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-3695905/README.md). Full unpacked roots remain at `/Users/ah/GitHub/hybridclr/h1-local-validation-20260915-3695905/v03/smoke` and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-27d8ff137d4b40258d6b42dbd83dd99a`.
+
+---
+
+## Historical run — 2026-09-15 handoff 8f5bcaa
 
 ### Exit
 

@@ -1,6 +1,82 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: fresh Player reuses managed Bee actions that capture excludes
+## Current blocker: graph-wide response stability rejects valid assembly-local cache chains
+
+### Symptom
+
+At handoff `3695905b1981a5cecbd444e27114c34cbc3bf255`, source/implementation anchor `0387feb4344bbe95fd7db524d6e0bae759adc203`, V00/V01 pass and the fresh candidate ON/Debug Player plus native provenance pass. Managed verification fails with:
+
+```text
+Blocked: Cached managed response changed or was unavailable: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/Bee/artifacts/StandaloneOSX_CodeGen/Unity.Burst.CodeGen.rsp
+```
+
+The normal Bee cache was preserved; no clean/recompile was forced and `--reuse-proof` was not used. The one retained Player DAG contains exactly one cached compiler action for each required assembly. Both actions have unchanged direct response files, all 201 dependencies, compiler output, reachable downstream DLLs, and exact fresh Player input path/hash/size bindings. The verifier nevertheless emits no `BeeCacheHitBoundToFreshPlayerInput` row.
+
+### Reproduction
+
+After V00/V01 and pinned candidate install/runtime verification, run from the candidate checkout:
+
+```sh
+python3 Tools/AssemblyShadow/h1_count_build_batch.py \
+  --candidate /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  --reproduction /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo \
+  --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
+  --pwsh /usr/local/bin/pwsh \
+  --scope smoke \
+  --output /ABS/NEW/smoke \
+  --execute
+```
+
+The batch exits 1 at `verify-managed.log`. Player/native build and verification complete first, `failed.json` records `candidateAcceptance=false`, and `restored.json` records exact restoration.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260915-3695905](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-3695905/README.md).
+
+- Cached Player DAG: `Library/Bee/200b0aPDevDbg.dag.json`, 9,281,264 bytes, SHA-256 `46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af`.
+- End census: 302 observations, 295 unchanged and 7 changed.
+- Bootstrap action: node 273, SHA-256 `147ff4fdd7fb75e65bf9ac1e541096a0a7a72b82bfe1e32ddafab91101cef6a7`; 33 sources; 201 dependencies; 5 reachable outputs; fresh Player input 567,296 bytes, SHA-256 `863743cc1aba2835c5491e01277d9a054e9cf590923059627a4c42667aaa8c39`.
+- Diagnostics action: node 327, SHA-256 `67df1baf137e19ff95e6d36cf579e4065b5c57281ec80b1ed2ee17734ca560cc`; 7 sources; 201 dependencies; 3 reachable outputs; fresh Player input 111,616 bytes, SHA-256 `d8c6a81f7c0f489d8de76c60454e8ebd06c5448d60c9ee67e7940c60cc10dd04`.
+- The seven changed responses are unrelated `StandaloneOSX_CodeGen` inputs: `Unity.Burst.CodeGen.rsp`, `Unity.Burst.rsp`, `Unity.HybridCLR.AssemblyShadow.CodeGen.rsp`, `UnityEditor.TestRunner.rsp`, `UnityEditor.UI.rsp`, `UnityEngine.TestRunner.rsp`, and `UnityEngine.UI.rsp`.
+- Every before/after diff adds only `ASSEMBLY_SHADOW_H1_COUNT_DIAGNOSTICS` and `ASSEMBLY_SHADOW_R01B_DIAGNOSTICS`.
+- `v02/managed-cache-census.json` records all observations and per-assembly chain material.
+- `v02/managed-source-provenance.tar.gz` retains the complete 36 MiB unpacked managed ledger and blobs, SHA-256 `3dc8967fc79389a83e2e9fca453fe44644f23344d4b2482795cb8fa56f069cc4`.
+- `v03/fresh-native-provenance.tar.gz` retains complete compiler/PCH/domain/store evidence, SHA-256 `c52e39bc207e7736145522830c45ab6deb5ed044be97982409c5565e6f1ab3a9`.
+- `v03/smoke-runner.tar.gz` retains the raw batch failure, native verification, and restoration, SHA-256 `b3839f62d9a595b331e384734265ca9eb9a50aeac61dab724022a7e75f90e059`.
+
+Build GUID is `f6aa5298e2284385a9d458bb58f08e68`; input snapshot SHA-256 is `ea5f83c1c1de80ce83bc9d121e4138843de8fb6234681e11a38c090d1ed55713`; native library SHA-256 is `117e733567a7b6d52742c93281a3842773af2820301dee602264887fdf4b2e85`.
+
+### Root cause
+
+`collect_cache_graphs()` resolves all response files while parsing the full DAG and, when either required compilation is found, attaches every resolved response as `graph_row.responseFiles`. On this real graph that is 92 response files, including unrelated `StandaloneOSX_CodeGen` actions.
+
+`_cache_matches()` validates every graph-level response with `_require_unchanged()` before filtering `graph_row.compilations` by the requested assembly. Staging the two diagnostic defines legitimately rewrites seven CodeGen responses. The first changed row aborts verification, even though neither required compilation references it and both required assembly-local chains are otherwise complete and unchanged.
+
+The bounded eight-test cache suite does not model this real graph shape. Its valid-hit and rejection fixtures prove the intended checks for a small compilation-scoped response set, but do not exercise an unrelated changed response elsewhere in the same DAG.
+
+### Impact
+
+No accepted candidate ON/Debug smoke exists. The remaining five builds, 132 candidate count cells, 8 reproduction cells, startup11, capacity/boundary/performance chain, successor package, and independent whole-chain M08 remain blocked. Human Review Gate is not ready and R02 must remain closed.
+
+The additional broad Python inventory has one platform-path skip, and the reproduction full Editor sweep has the same 12 historical missing-fixture/baseline nonpasses. Required H1 Python, candidate Unity, candidate/package NUnit, reproduction compile, and focused reproduction H1 fixtures pass; those results do not override this Player provenance failure.
+
+### Recommended direction
+
+Primary should make cached response retention and end-observation requirements follow the recursively resolved response closure of each candidate compiler action. Keep the DAG identity, action transcript, source set, compiler/tool/dependency closure, Csc output, reachable downstream DLLs, fresh Player input binding, and uniqueness checks fail closed. Unrelated response files in the same DAG may remain in an audit census, but their mutation should not invalidate a compilation that cannot reach or reference them.
+
+Add a regression fixture with two required unchanged cached compiler chains plus one unrelated response/action in the same DAG that legitimately changes. Require both cache-hit rows to pass while existing changed-response controls still fail when the changed response is in a required action's recursive closure. Also retain controls for ambiguous actions, changed dependencies, stale outputs, output creation after begin, and wrong fresh Player binding.
+
+Do not solve this by allowing any changed response, ignoring response bytes, forcing cache deletion, using `--reuse-proof`, or selecting a candidate by recency/order. Publish a reviewed source anchor and rerun fresh V00–V05.
+
+### Uncertainty
+
+The retained DAG establishes that the seven files are outside both required actions' direct response source lists, and the full per-assembly dependency/output chains are unchanged. Primary should confirm whether Bee has any implicit response inclusion rule beyond the parsed recursive `@response` closure before narrowing the acceptance scope.
+
+---
+
+## Historical blocker addressed by source anchor 0387feb
+
+### Fresh Player reuses managed Bee actions that capture excludes
 
 ### Symptom
 
