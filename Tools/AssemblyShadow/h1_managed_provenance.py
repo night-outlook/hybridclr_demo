@@ -4,6 +4,8 @@ Run begin BEFORE BuildPipeline.BuildPlayer and end after the existing linked
 input capture has succeeded. A managed action may be proved either from a
 changed Bee DAG captured for this build or from an exact pre-build Bee cache
 snapshot that remains byte-identical and is consumed by the fresh Player.
+Cached response stability is scoped to each required compiler action's exact
+recursive @response closure, never to unrelated responses elsewhere in a DAG.
 Neither route claims that the C# compiler executed unless independently proved.
 This tool does not approve H1 or replace the production ILPP/linked verifier.
 """
@@ -169,6 +171,18 @@ def _actual_defines(parsed: dict) -> set[str]:
     return {v for definition in parsed['defines'] for v in re.split('[;,]', definition) if v}
 
 
+def _cache_response_rows(parsed: dict, responses: dict[str,bytes], retained: dict[str,dict],
+                         budget: CacheBudget, output: Path) -> list[dict]:
+    rows=[]
+    for path in parsed['responseSources']:
+        actions.need(path in responses,'Required cached managed response was not discovered: '+path)
+        if path not in retained:
+            row=budget.retain(Path(path),output,'cache-inputs'); row['sourcePath']=path; retained[path]=row
+        rows.append(dict(retained[path]))
+    actions.need(len(rows)==len(parsed['responseSources']),'Duplicate cached managed response closure')
+    return rows
+
+
 def capture_cache_graphs(root: Path, output: Path, assemblies: list, extra: list[str]) -> tuple[list,dict]:
     """Snapshot only exact Player Csc chains that could be reused from Bee cache."""
     bee=root/'Library/Bee'
@@ -183,8 +197,7 @@ def capture_cache_graphs(root: Path, output: Path, assemblies: list, extra: list
         nodes=graph.get('Nodes',[])
         if type(nodes) is not list or not any(type(n) is dict and 'csc' in str(n.get('Action','')).lower() for n in nodes): continue
         responses=collect_managed_responses(graph,root)
-        response_rows={p:budget.retain(Path(p),output,'cache-inputs') for p in sorted(responses)}
-        compilations=[]
+        retained_responses={}; compilations=[]
         for index,node in enumerate(nodes):
             if type(node) is not dict or 'csc' not in str(node.get('Action','')).lower(): continue
             parsed=csc_arguments(node['Action'],root,responses)
@@ -194,6 +207,7 @@ def capture_cache_graphs(root: Path, output: Path, assemblies: list, extra: list
             actions.need(len(names)==1,'One cached compiler action matches multiple required assemblies')
             defines=_actual_defines(parsed)
             if not set(extra)<=defines or 'UNITY_EDITOR' in defines: continue
+            response_files=_cache_response_rows(parsed,responses,retained_responses,budget,output)
             dependencies=[budget.retain(Path(p),output,'cache-inputs') for p in parsed['dependencyPaths']]
             actions.need(Path(parsed['output']).is_file(),'Cached Csc output is absent before build: '+parsed['output'])
             compiler_output=budget.retain(Path(parsed['output']),output,'cache-outputs')
@@ -201,12 +215,11 @@ def capture_cache_graphs(root: Path, output: Path, assemblies: list, extra: list
             actions.need(any(r['logicalPath']==parsed['output'] for r in reachable),'Cached Csc output was not retained in reachable DLL closure')
             compilations.append({'assembly':names[0],'nodeIndex':index,
                 'actionSha256':hashlib.sha256(node['Action'].encode('utf-8')).hexdigest(),
-                **parsed,'dependencies':dependencies,'compilerOutput':compiler_output,
-                'reachableOutputs':reachable})
+                **parsed,'responseFiles':response_files,'dependencies':dependencies,
+                'compilerOutput':compiler_output,'reachableOutputs':reachable})
         if compilations:
             graph_row=budget.retain(path,output,'cache-graphs')
-            graph_row.update(responseFiles=[dict(response_rows[p],sourcePath=p) for p in sorted(response_rows)],
-                             compilations=compilations)
+            graph_row.update(responseAuditSources=sorted(responses),compilations=compilations)
             rows.append(graph_row)
     return rows,budget.report()
 
@@ -230,7 +243,8 @@ def observe_cache_graphs(cache_graphs: list) -> list:
     for graph in cache_graphs:
         values=[graph,*graph.get('responseFiles',[])]
         for compiled in graph.get('compilations',[]):
-            values.extend(compiled.get('dependencies',[])); values.append(compiled['compilerOutput']); values.extend(compiled.get('reachableOutputs',[]))
+            values.extend(compiled.get('responseFiles',[])); values.extend(compiled.get('dependencies',[]))
+            values.append(compiled['compilerOutput']); values.extend(compiled.get('reachableOutputs',[]))
         observations=[]; seen=set()
         for value in values:
             key=(value['path'],value['sha256'],value['sizeBytes'])
@@ -273,7 +287,7 @@ def begin(request: dict, output: Path) -> dict:
         row=retain(path,output,'sources'); row['logicalPath']=str(path); rows.append(row)
     cache_graphs,cache_limits=capture_cache_graphs(root,output,assemblies,extra)
     pins=logical(root,request['sourcePinFile'])
-    record={'schemaVersion':2,'kind':'H1ManagedSourceBegin','projectRoot':str(root),
+    record={'schemaVersion':3,'kind':'H1ManagedSourceBegin','projectRoot':str(root),
         'buildId':request['buildId'], 'sourcePinSha256':digest(pins), 'assemblies':assemblies, 'extraScriptingDefines':extra,
         'sources':rows,'preExistingBeeDlls':existing,'beeGraphsBefore':graph_before,
         'cacheGraphs':cache_graphs,'cacheProofLimits':cache_limits,
@@ -284,7 +298,7 @@ def begin(request: dict, output: Path) -> dict:
 
 def end(request: dict, evidence_root: Path) -> dict:
     before_path=evidence_root/'begin.json'; before=read_json(before_path)
-    actions.need(before.get('kind')=='H1ManagedSourceBegin' and before.get('schemaVersion') in (1,2),'Source begin ledger missing')
+    actions.need(before.get('kind')=='H1ManagedSourceBegin' and before.get('schemaVersion') in (1,2,3),'Source begin ledger missing')
     root=Path(before['projectRoot'])
     actions.need(request['buildId']==before['buildId'] and request['sourcePinSha256']==before['sourcePinSha256'], 'Build source identity changed')
     for row in before['sources']:
@@ -324,8 +338,9 @@ def end(request: dict, evidence_root: Path) -> dict:
         except (OSError,ValueError) as error:
             record['captureError']=str(error); problems.append(str(error))
         graph_rows.append(record)
-    cache_observations=observe_cache_graphs(before.get('cacheGraphs',[])) if before.get('schemaVersion')==2 else []
-    record={'schemaVersion':2,'kind':'H1ManagedSourceCapture','status':'CapturedAwaitingIndependentGraphCheck',
+    cache_observations=observe_cache_graphs(before.get('cacheGraphs',[])) if before.get('schemaVersion') in (2,3) else []
+    capture_schema=3 if before.get('schemaVersion')==3 else 2
+    record={'schemaVersion':capture_schema,'kind':'H1ManagedSourceCapture','status':'CapturedAwaitingIndependentGraphCheck',
         'begin':{'path':str(before_path),'sha256':digest(before_path),'sizeBytes':before_path.stat().st_size},
         'buildId':request['buildId'],'buildGuid':request['buildGuid'],'inputSnapshotHash':request['inputSnapshotHash'],
         'nativeLibrarySha256':request['nativeLibrarySha256'],'sourcePinSha256':request['sourcePinSha256'],
@@ -368,17 +383,33 @@ def _require_unchanged(observations: dict, row: dict, label: str):
                  item.get('observedSizeBytes')==row['sizeBytes'], 'Cached managed '+label+' changed or was unavailable: '+row['path'])
 
 
+def _cached_response_data(before: dict, graph_row: dict, compiled: dict, observations: dict) -> dict[str,bytes]:
+    if before.get('schemaVersion')==3:
+        rows=compiled.get('responseFiles',[])
+        paths=[row.get('sourcePath') for row in rows]
+        actions.need(len(paths)==len(set(paths)) and set(paths)==set(compiled.get('responseSources',[])),
+                     'Cached compiler response closure differs')
+        result={}
+        for row in rows:
+            actions.need(row.get('sourcePath')==row.get('logicalPath'),'Cached response source identity differs')
+            result[row['sourcePath']]=verify_retained(row).read_bytes()
+            _require_unchanged(observations,row,'response')
+        return result
+    result={}
+    for row in graph_row.get('responseFiles',[]):
+        actions.need(row['sourcePath'] not in result,'Duplicate cached managed response')
+        result[row['sourcePath']]=verify_retained(row).read_bytes(); _require_unchanged(observations,row,'response')
+    return result
+
+
 def _cache_matches(value: dict, before: dict, target: dict, expected: dict, sources: dict, root: Path) -> list:
     matches=[]
     for graph_row in before.get('cacheGraphs',[]):
         graph=read_json(verify_retained(graph_row)); observations=_observation_map(value,graph_row)
         _require_unchanged(observations,graph_row,'graph')
-        response_data={}
-        for row in graph_row.get('responseFiles',[]):
-            actions.need(row['sourcePath'] not in response_data,'Duplicate cached managed response')
-            response_data[row['sourcePath']]=verify_retained(row).read_bytes(); _require_unchanged(observations,row,'response')
         for compiled in graph_row.get('compilations',[]):
             if compiled.get('assembly')!=target['name']: continue
+            response_data=_cached_response_data(before,graph_row,compiled,observations)
             parsed=_verify_compilation(graph,graph_row,compiled,before,target,expected,root,response_data)
             if not parsed: continue
             actions.need(all(p in sources for p in parsed['sourcePaths']),'Cached compiler source was not captured before build')
@@ -396,13 +427,14 @@ def _cache_matches(value: dict, before: dict, target: dict, expected: dict, sour
             matches.append({'assembly':target['name'],'evidenceMode':'BeeCacheHitBoundToFreshPlayerInput',
                 'graphSha256':graph_row['sha256'],'compilerActionSha256':compiled['actionSha256'],
                 'compilerOutputSha256':compiled['compilerOutput']['sha256'],'playerInputSha256':target['sha256'],
-                'compilerOutputExistedBeforeBuild':True,'cachedPlayerInputExistedBeforeBuild':True})
+                'compilerOutputExistedBeforeBuild':True,'cachedPlayerInputExistedBeforeBuild':True,
+                'responseClosureSha256':[row['sha256'] for row in compiled.get('responseFiles',[])] if before.get('schemaVersion')==3 else None})
     return matches
 
 
 def verify(path: Path) -> dict:
     value=read_json(path); ref=value['begin']; before_path=Path(ref['path'])
-    actions.need(value.get('kind')=='H1ManagedSourceCapture' and value.get('schemaVersion') in (1,2) and
+    actions.need(value.get('kind')=='H1ManagedSourceCapture' and value.get('schemaVersion') in (1,2,3) and
                  digest(before_path)==ref['sha256'] and before_path.stat().st_size==ref['sizeBytes'], 'Begin ledger differs')
     before=read_json(before_path); root=Path(before['projectRoot'])
     actions.need(value['buildId']==before['buildId'] and value['sourcePinSha256']==before['sourcePinSha256'], 'Source capture binding differs')
@@ -438,15 +470,17 @@ def verify(path: Path) -> dict:
         actions.need(len(direct)<=1,'Ambiguous changed managed action chain for '+target['name'])
         if direct: matches=direct
         else:
-            actions.need(before.get('schemaVersion')==2 and value.get('schemaVersion')==2,'Managed cache proof is unavailable for this capture schema')
+            actions.need(before.get('schemaVersion') in (2,3) and value.get('schemaVersion')==before.get('schemaVersion'),
+                         'Managed cache proof is unavailable for this capture schema')
             matches=_cache_matches(value,before,target,expected,sources,root)
         actions.need(len(matches)==1,'Missing or ambiguous managed action chain for '+target['name'])
         rows.extend(matches)
-    return {'schemaVersion':2,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
+    result_schema=3 if value.get('schemaVersion')==3 else 2
+    return {'schemaVersion':result_schema,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
         'capturePath':str(path),'captureSha256':digest(path),'buildId':value['buildId'],'buildGuid':value['buildGuid'],
         'inputSnapshotHash':value['inputSnapshotHash'],'nativeLibrarySha256':value['nativeLibrarySha256'],
         'sourcePinSha256':value['sourcePinSha256'],'rows':rows,
-        'scope':'Pre-build source bytes plus either a changed managed action graph or a byte-stable pre-build Bee cached-action chain, both bound to the exact DLLs captured as inputs to this fresh Player. Cached-action proof requires unchanged graph, responses, dependencies, Csc output and downstream Player-input bytes. It does not claim fresh Csc execution. ILPP verification and build execution provenance remain separate requirements.',
+        'scope':'Pre-build source bytes plus either a changed managed action graph or a byte-stable pre-build Bee cached-action chain, both bound to the exact DLLs captured as inputs to this fresh Player. Schema-3 cached-action proof requires unchanged graph, each selected compiler action recursive response closure, dependencies, Csc output and downstream Player-input bytes; unrelated DAG responses are audit-only. It does not claim fresh Csc execution. ILPP verification and build execution provenance remain separate requirements.',
         'freshCompilerExecutionClaim':False,'humanGatePassed':False,'mayEnterR02':False}
 
 
@@ -483,7 +517,8 @@ def verify_exact_reuse(path: Path, prior_proof_path: Path) -> dict:
         actions.need(set(result)==REQUIRED_ASSEMBLIES,'Managed reuse input domain differs')
         return result
     actions.need(input_map(current)==input_map(prior),'Actual Player DLLs differ from the proven prior managed compilation')
-    return {'schemaVersion':2,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
+    result_schema=3 if current.get('schemaVersion')==3 else 2
+    return {'schemaVersion':result_schema,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
         'capturePath':str(path),'captureSha256':digest(path),'buildId':current['buildId'],'buildGuid':current['buildGuid'],
         'inputSnapshotHash':current['inputSnapshotHash'],'nativeLibrarySha256':current['nativeLibrarySha256'],
         'sourcePinSha256':current['sourcePinSha256'],'rows':proof['rows'],
