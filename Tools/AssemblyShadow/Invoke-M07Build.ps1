@@ -14,161 +14,50 @@ param(
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot/../../.agents/skills/unity-debug/scripts/UnityDebug.Common.ps1"
 
-function Get-M07BytesHash {
+function Get-M07OuterHash {
     param([byte[]]$Bytes)
     $algorithm = [Security.Cryptography.SHA256]::Create()
     try { return [BitConverter]::ToString($algorithm.ComputeHash($Bytes)).Replace('-', '').ToLowerInvariant() }
     finally { $algorithm.Dispose() }
 }
 
-function Assert-M07RegularPath {
-    param([string]$Path, [switch]$AllowMissingLeaf)
-    $full = [IO.Path]::GetFullPath($Path)
-    $items = if ($AllowMissingLeaf) { @([IO.Path]::GetDirectoryName($full)) } else { @($full, [IO.Path]::GetDirectoryName($full)) }
-    foreach ($item in $items) {
-        if (-not (Test-Path -LiteralPath $item) -or (([IO.File]::GetAttributes($item) -band [IO.FileAttributes]::ReparsePoint) -ne 0)) {
-            throw "M07 evidence must not traverse a filesystem link: $item"
-        }
-    }
-    return $full
-}
-
-function Assert-M07NewChild {
-    param([string]$Path, [string]$Root, [string]$Label)
-    $full = [IO.Path]::GetFullPath($Path)
-    $parent = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
-    if (-not $full.StartsWith($parent, [StringComparison]::Ordinal) -or (Test-Path -LiteralPath $full)) {
-        throw "$Label must be a new path below $Root : $full"
-    }
-    Assert-M07RegularPath -Path $full -AllowMissingLeaf | Out-Null
-    return $full
-}
-
-function Invoke-M07GuardedMethod {
-    param([string]$Method, [string]$Project, [string]$MethodScript, [int]$Timeout, [string]$Target, [string[]]$Arguments)
-    $payload = @{ method = $Method; project = $Project; script = $MethodScript; timeout = $Timeout; target = $Target; arguments = $Arguments } |
-        ConvertTo-Json -Compress
-    $data = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($payload))
-    # Invoke-UnityMethod terminates its host with exit. Run it in an owned child
-    # PowerShell so the outer workflow can always perform structural recovery.
-    $command = '$ErrorActionPreference = ''Stop''; $p = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String(''' + $data + ''')) | ConvertFrom-Json; ' +
-        '$invoke = @{ Method = $p.method; ProjectPath = $p.project; TimeoutSec = $p.timeout; MethodArgs = @($p.arguments) }; ' +
-        'if ($p.target) { $invoke.BuildTarget = $p.target }; & $p.script @invoke'
-    $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($command))
-    $powerShell = (Get-Process -Id $PID).Path
-    & $powerShell -NoLogo -NoProfile -NonInteractive -OutputFormat Text -EncodedCommand $encoded
-    if ($LASTEXITCODE -ne 0) { throw "$Method failed (PowerShell/Unity exit $LASTEXITCODE)." }
-    if (Test-UnityProjectRunning -ProjectPath $Project) { throw "$Method returned before its Unity process exited." }
-}
-
-function Assert-M07PinnedInputs {
-    param([string]$Project)
-    $python = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
-    if (-not $python) { $python = Get-Command python -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1 }
-    if (-not $python) { throw 'Python is required to verify the real pinned M07 build inputs.' }
-    & $python.Source (Join-Path $Project 'Tools/AssemblyShadow/verify-installed-runtime.py') --project $Project --expect-shadow on --json
-    if ($LASTEXITCODE -ne 0) { throw 'M07 source or installation differs from the pinned build inputs; author and commit inputs before building.' }
-}
-
-function Save-M07OriginalSettings {
-    param([string]$Project, [string]$Run)
-    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot capture ProjectSettings while this exact project is open.' }
-    $settingsPath = Assert-M07RegularPath (Join-Path $Project 'ProjectSettings/ProjectSettings.asset')
-    $source = [IO.File]::Open($settingsPath, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::None)
-    try {
-        $backup = [IO.File]::Open((Join-Path $Run 'p05-project-settings.original'), [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
-        try { $source.CopyTo($backup); $backup.Flush($true) }
-        finally { $backup.Dispose() }
-    }
-    finally { $source.Dispose() }
-}
-
-function Restore-M07OriginalSettingsBytes {
-    param([string]$Project, [string]$Run)
-    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot restore settings bytes until the structural Editor exits.' }
-    $settingsPath = Assert-M07RegularPath (Join-Path $Project 'ProjectSettings/ProjectSettings.asset')
-    $backupPath = Assert-M07RegularPath (Join-Path $Run 'p05-project-settings.original')
-    $original = [IO.File]::ReadAllBytes($backupPath)
-    $originalSha = Get-M07BytesHash $original
-    $settings = [IO.File]::Open($settingsPath, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
-    try {
-        $buffer = [IO.MemoryStream]::new()
-        try { $settings.CopyTo($buffer); $currentSha = Get-M07BytesHash $buffer.ToArray() }
-        finally { $buffer.Dispose() }
-        $statePath = Join-Path $Run 'p05-define-state.json'
-        if (-not (Test-Path -LiteralPath $statePath)) {
-            if ($currentSha -cne $originalSha) { throw 'Prepare left no recovery state but settings bytes changed; refusing an unproven overwrite.' }
-            return
-        }
-        $state = Get-Content -Raw -LiteralPath $statePath | ConvertFrom-Json
-        $stateSha = Get-M07BytesHash ([IO.File]::ReadAllBytes($statePath))
-        $restorePath = Join-Path $Run 'p05-restored.json'
-        if (-not (Test-Path -LiteralPath $restorePath)) { throw 'The Unity Restore process produced no verified settings receipt.' }
-        $restored = Get-Content -Raw -LiteralPath $restorePath | ConvertFrom-Json
-        if ($state.schemaVersion -ne 2 -or $state.projectDirectory -cne $Project -or $state.runDirectory -cne $Run -or
-            $state.originalSettingsSha256 -cne $originalSha -or $restored.schemaVersion -ne 2 -or
-            $restored.stateSha256 -cne $stateSha -or $restored.originalDefines -cne $state.originalDefines -or
-            $restored.originalSettingsSha256 -cne $originalSha -or $restored.restoredSettingsSha256 -cnotmatch '^[0-9a-f]{64}$') {
-            throw 'Settings restoration evidence does not bind this M07 run and its original bytes.'
-        }
-        $markerPath = Join-Path $Run 'p05-settings-restored.json'
-        if (Test-Path -LiteralPath $markerPath) {
-            $marker = Get-Content -Raw -LiteralPath $markerPath | ConvertFrom-Json
-            if ($marker.schemaVersion -ne 1 -or $marker.stateSha256 -cne $stateSha -or $marker.originalSettingsSha256 -cne $originalSha -or
-                $marker.restoredSettingsSha256 -cne $restored.restoredSettingsSha256 -or $currentSha -cne $originalSha) {
-                throw 'ProjectSettings changed after the recorded exact-byte restore.'
-            }
-            return
-        }
-        if ($currentSha -cne $restored.restoredSettingsSha256) { throw 'Settings changed after Unity Restore; refusing to overwrite concurrent edits.' }
-        if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'This project opened before the guarded byte restore.' }
-        $settings.Position = 0
-        $settings.Write($original, 0, $original.Length)
-        $settings.SetLength($original.Length)
-        $settings.Flush($true)
-        $receipt = @{ schemaVersion = 1; stateSha256 = $stateSha; originalSettingsSha256 = $originalSha;
-            restoredSettingsSha256 = $restored.restoredSettingsSha256 } | ConvertTo-Json
-        $receiptBytes = [Text.UTF8Encoding]::new($false).GetBytes($receipt)
-        $markerFile = [IO.File]::Open($markerPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
-        try { $markerFile.Write($receiptBytes, 0, $receiptBytes.Length); $markerFile.Flush($true) }
-        finally { $markerFile.Dispose() }
-    }
-    finally { $settings.Dispose() }
-}
-
-function Save-M07WorkflowMutationState {
-    param([string]$Project, [string]$Run)
-    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot snapshot M07 workflow settings while this project is open.' }
+function Save-M07WorkflowInputs {
+    param([string]$Project, [string]$Root)
+    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot snapshot M07 workflow inputs while this project is open.' }
     $specs = @(
-        @{ relative = 'ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset'; backup = 'workflow-assembly-shadow-settings.original' },
-        @{ relative = 'ProjectSettings/EditorBuildSettings.asset'; backup = 'workflow-editor-build-settings.original' }
+        @{ relative = 'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity'; backup = 'm07-bootstrap-scene.original' },
+        @{ relative = 'ProjectSettings/AssemblyShadowSettings.asset'; backup = 'assembly-shadow-settings.original' },
+        @{ relative = 'ProjectSettings/EditorBuildSettings.asset'; backup = 'editor-build-settings.original' }
     )
     $rows = @()
     foreach ($spec in $specs) {
-        $path = Assert-M07RegularPath (Join-Path $Project $spec.relative)
+        $path = [IO.Path]::GetFullPath((Join-Path $Project $spec.relative))
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or (([IO.File]::GetAttributes($path) -band [IO.FileAttributes]::ReparsePoint) -ne 0)) {
+            throw "M07 workflow input is missing or linked: $($spec.relative)"
+        }
         $bytes = [IO.File]::ReadAllBytes($path)
-        $backup = Join-Path $Run $spec.backup
+        $backup = Join-Path $Root $spec.backup
         $stream = [IO.File]::Open($backup, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
         try { $stream.Write($bytes, 0, $bytes.Length); $stream.Flush($true) }
         finally { $stream.Dispose() }
-        $rows += [pscustomobject]@{ relative = $spec.relative; backup = $backup; originalSha256 = Get-M07BytesHash $bytes }
+        $rows += [pscustomobject]@{ relative = $spec.relative; backup = $backup; originalSha256 = Get-M07OuterHash $bytes }
     }
     return @($rows)
 }
 
-function Restore-M07WorkflowMutationState {
-    param([string]$Project, [string]$Run, [object[]]$State)
-    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot restore M07 workflow settings until every owned Unity process exits.' }
-    if ($State.Count -ne 2) { throw 'M07 workflow settings snapshot is incomplete.' }
+function Restore-M07WorkflowInputs {
+    param([string]$Project, [string]$Root, [object[]]$State)
+    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot restore M07 workflow inputs until every owned Unity process exits.' }
+    if ($State.Count -ne 3) { throw 'M07 workflow input snapshot is incomplete.' }
     $rows = @()
     foreach ($entry in $State) {
-        $path = Assert-M07RegularPath (Join-Path $Project $entry.relative)
-        $backup = Assert-M07RegularPath $entry.backup
+        $path = [IO.Path]::GetFullPath((Join-Path $Project $entry.relative))
+        $backup = [IO.Path]::GetFullPath($entry.backup)
+        if (-not (Test-Path -LiteralPath $backup -PathType Leaf)) { throw "M07 workflow backup is missing: $($entry.relative)" }
         $original = [IO.File]::ReadAllBytes($backup)
-        if ((Get-M07BytesHash $original) -cne $entry.originalSha256) { throw "M07 workflow backup changed: $($entry.relative)" }
+        if ((Get-M07OuterHash $original) -cne $entry.originalSha256) { throw "M07 workflow backup changed: $($entry.relative)" }
         $current = [IO.File]::ReadAllBytes($path)
-        $currentSha = Get-M07BytesHash $current
-        $beforeRestore = Join-Path $Run (([IO.Path]::GetFileName($entry.backup)) + '.before-restore')
+        $beforeRestore = Join-Path $Root (([IO.Path]::GetFileName($backup)) + '.before-restore')
         $evidence = [IO.File]::Open($beforeRestore, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
         try { $evidence.Write($current, 0, $current.Length); $evidence.Flush($true) }
         finally { $evidence.Dispose() }
@@ -180,131 +69,56 @@ function Restore-M07WorkflowMutationState {
             $stream.Flush($true)
         }
         finally { $stream.Dispose() }
-        $restoredSha = Get-M07BytesHash ([IO.File]::ReadAllBytes($path))
+        $restored = [IO.File]::ReadAllBytes($path)
+        $restoredSha = Get-M07OuterHash $restored
         if ($restoredSha -cne $entry.originalSha256) { throw "M07 workflow exact-byte restore failed: $($entry.relative)" }
-        $rows += [ordered]@{ path = $entry.relative; originalSha256 = $entry.originalSha256; beforeRestoreSha256 = $currentSha; restoredSha256 = $restoredSha }
+        $rows += [ordered]@{
+            path = $entry.relative
+            originalSha256 = $entry.originalSha256
+            beforeRestoreSha256 = Get-M07OuterHash $current
+            restoredSha256 = $restoredSha
+        }
     }
-    $receipt = [ordered]@{ schemaVersion = 1; kind = 'M07WorkflowSettingsRestoration'; status = 'ExactBytesRestored'; files = $rows }
-    $receiptPath = Join-Path $Run 'workflow-settings-restored.json'
+    $receipt = [ordered]@{ schemaVersion = 1; kind = 'M07OuterFailureRestoration'; status = 'ExactBytesRestored'; files = $rows }
+    $receiptPath = Join-Path $Root 'workflow-inputs-restored.json'
     $bytes = [Text.UTF8Encoding]::new($false).GetBytes(($receipt | ConvertTo-Json -Depth 6) + "`n")
     $file = [IO.File]::Open($receiptPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
     try { $file.Write($bytes, 0, $bytes.Length); $file.Flush($true) }
     finally { $file.Dispose() }
 }
 
-function Find-M07PlayerReceipt {
-    param([string]$Project, [string]$Variant, [string]$Output, [string[]]$ExcludedPaths = @())
-    $excluded = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
-    foreach ($path in $ExcludedPaths) { [void]$excluded.Add([IO.Path]::GetFullPath($path)) }
-    $matches = @()
-    foreach ($file in Get-ChildItem -LiteralPath (Join-Path $Project '_temp/AssemblyShadow') -Filter 'm07-player-build.json' -File -Recurse) {
-        $fullPath = [IO.Path]::GetFullPath($file.FullName)
-        if ($excluded.Contains($fullPath)) { continue }
-        try { $receipt = Get-Content -Raw -LiteralPath $file.FullName | ConvertFrom-Json }
-        catch { continue }
-        if ($receipt.milestone -ceq 'M07' -and $receipt.variant -ceq $Variant -and
-            $receipt.baselineBuildId -ceq $BaselineId -and $receipt.playerOutput -ceq $Output) { $matches += $fullPath }
-    }
-    if ($matches.Count -ne 1) { throw "Expected exactly one $Variant receipt for $Output; found $($matches.Count)." }
-    return [IO.Path]::GetFullPath($matches[0])
-}
-
 $shadowProject = Get-UnityDebugProjectPath -ProjectPath $ProjectPath
-$shadowMethods = Join-Path $shadowProject '.agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1'
-if (-not (Test-Path -LiteralPath $shadowMethods -PathType Leaf)) { throw "Shared Unity method launcher missing: $shadowMethods" }
-if (Test-UnityProjectRunning -ProjectPath $shadowProject) { throw 'This exact project is already open in Unity; no M07 process was started.' }
-if (-not (Get-ConfiguredUnityPath)) { throw 'Configure the pinned Unity executable with Find-Unity first.' }
+if (Test-UnityProjectRunning -ProjectPath $shadowProject) { throw 'This exact project is already open in Unity; no M07 workflow was started.' }
+$evidenceParent = Join-Path $shadowProject '_temp/AssemblyShadow'
+New-Item -ItemType Directory -Force -Path $evidenceParent | Out-Null
+$recoveryRoot = Join-Path $evidenceParent ('M07OuterRecovery-' + [guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $recoveryRoot | Out-Null
+$state = Save-M07WorkflowInputs -Project $shadowProject -Root $recoveryRoot
+$core = Join-Path $PSScriptRoot 'Invoke-M07Build.Core.ps1'
+if (-not (Test-Path -LiteralPath $core -PathType Leaf)) { throw "M07 core workflow is missing: $core" }
+$invoke = @{
+    ProjectPath = $shadowProject
+    BaselineId = $BaselineId
+    TimeoutSec = $TimeoutSec
+    BuildTarget = $BuildTarget
+}
+if ($ResourceOutput) { $invoke.ResourceOutput = $ResourceOutput }
+if ($NativeOnOutput) { $invoke.NativeOnOutput = $NativeOnOutput }
+if ($NativeOffOutput) { $invoke.NativeOffOutput = $NativeOffOutput }
 
-$parent = Join-Path $shadowProject '_temp/AssemblyShadow'
-New-Item -ItemType Directory -Force -Path $parent | Out-Null
-$existingPlayerReceipts = @(Get-ChildItem -LiteralPath $parent -Filter 'm07-player-build.json' -File -Recurse | ForEach-Object { [IO.Path]::GetFullPath($_.FullName) })
-# M07 deliberately reuses M02StructuralPatchCompilation's crash-safe state
-# machine, whose persisted contract requires this exact directory prefix.
-$run = Join-Path $parent ('M02Validation-' + [guid]::NewGuid().ToString('N'))
-New-Item -ItemType Directory -Path $run | Out-Null
-$resourceRoot = Assert-M07NewChild ($(if ($ResourceOutput) { $ResourceOutput } else { Join-Path $parent ('M07ResourceBaseline-' + $BaselineId + '-' + [guid]::NewGuid().ToString('N')) })) $parent 'Resource output'
-$buildRoot = Join-Path $shadowProject 'Builds/AssemblyShadow/M07'
-New-Item -ItemType Directory -Force -Path $buildRoot | Out-Null
-$onOutput = Assert-M07NewChild ($(if ($NativeOnOutput) { $NativeOnOutput } else { Join-Path $buildRoot ($BaselineId + '.app') })) $buildRoot 'Native-ON Player output'
-$offOutput = Assert-M07NewChild ($(if ($NativeOffOutput) { $NativeOffOutput } else { Join-Path $buildRoot ($BaselineId + '-NativeOff.app') })) $buildRoot 'Native-OFF Player output'
-$lockPath = Join-Path $parent 'm07-build.lock'
-$workflowLock = [IO.File]::Open($lockPath, [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
-$workflowState = $null
 $workflowFailure = $null
+$restoreFailure = $null
 try {
-    $workflowState = Save-M07WorkflowMutationState $shadowProject $run
-    if (Test-UnityProjectRunning -ProjectPath $shadowProject) { throw 'This project opened while acquiring the M07 workflow lock.' }
-    Assert-M07PinnedInputs $shadowProject
-    $common = @('-shadowBaselineId', $BaselineId)
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs' $shadowProject $shadowMethods $TimeoutSec $BuildTarget $common
-    Assert-M07PinnedInputs $shadowProject
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildBaselineResources' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowM07ResourceOutput', $resourceRoot))
-    Assert-M07PinnedInputs $shadowProject
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $onOutput))
-    Assert-M07PinnedInputs $shadowProject
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $offOutput))
-    Assert-M07PinnedInputs $shadowProject
-
-    Save-M07OriginalSettings $shadowProject $run
-    $stageFailure = $null
-    $restoreFailure = $null
-    try {
-        Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07StructuralResources.Prepare' $shadowProject $shadowMethods $TimeoutSec $BuildTarget @('-shadowValidationRoot', $run)
-        Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07StructuralResources.Compile' $shadowProject $shadowMethods $TimeoutSec $BuildTarget @('-shadowValidationRoot', $run)
-    }
-    catch { $stageFailure = $_ }
-    finally {
-        try {
-            Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07StructuralResources.Restore' $shadowProject $shadowMethods $TimeoutSec $BuildTarget @('-shadowValidationRoot', $run)
-            Restore-M07OriginalSettingsBytes $shadowProject $run
-        }
+    & $core @invoke
+}
+catch {
+    $workflowFailure = $_
+}
+finally {
+    if ($workflowFailure) {
+        try { Restore-M07WorkflowInputs -Project $shadowProject -Root $recoveryRoot -State $state }
         catch { $restoreFailure = $_ }
     }
-    if ($restoreFailure) { throw "M07 P05 recovery failed. Stage failure: $stageFailure Recovery failure: $restoreFailure" }
-    if ($stageFailure) { throw $stageFailure }
-    Assert-M07PinnedInputs $shadowProject
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07StructuralResources.FinalizeFixtures' $shadowProject $shadowMethods $TimeoutSec $BuildTarget @('-shadowValidationRoot', $run)
-    Assert-M07PinnedInputs $shadowProject
-
-    $settingsPath = Join-Path $shadowProject 'ProjectSettings/ProjectSettings.asset'
-    $backupPath = Join-Path $run 'p05-project-settings.original'
-    if ((Get-M07BytesHash ([IO.File]::ReadAllBytes($settingsPath))) -cne (Get-M07BytesHash ([IO.File]::ReadAllBytes($backupPath)))) {
-        throw 'The completed M07 workflow did not preserve the original ProjectSettings bytes.'
-    }
-    $onReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOn' $onOutput $existingPlayerReceipts
-    $offReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOff' $offOutput $existingPlayerReceipts
-    $fixtureManifest = Join-Path $run 'm07-fixtures.json'
-    $replayReceipt = Join-Path $run 'm07-editor-replay.json'
-    foreach ($required in @($onReceipt, $offReceipt, $fixtureManifest, $replayReceipt)) {
-        if (-not (Test-Path -LiteralPath $required -PathType Leaf)) { throw "M07 workflow output is missing: $required" }
-    }
-    $workflow = [ordered]@{
-        schemaVersion = 1; milestone = 'M07'; result = 'Passed'; baselineBuildId = $BaselineId;
-        projectPath = $shadowProject; buildTarget = $BuildTarget; runDirectory = $run;
-        resourceBaselinePath = $resourceRoot; nativeOnPlayer = $onOutput; nativeOffPlayer = $offOutput;
-        nativeOnReceipt = $onReceipt; nativeOffReceipt = $offReceipt;
-        fixtureManifest = $fixtureManifest; editorReplayReceipt = $replayReceipt;
-        projectSettingsSha256 = Get-M07BytesHash ([IO.File]::ReadAllBytes($settingsPath));
-    }
-    $workflowPath = Join-Path $run 'm07-build-workflow.json'
-    $bytes = [Text.UTF8Encoding]::new($false).GetBytes(($workflow | ConvertTo-Json -Depth 8) + "`n")
-    $file = [IO.File]::Open($workflowPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
-    try { $file.Write($bytes, 0, $bytes.Length); $file.Flush($true) }
-    finally { $file.Dispose() }
-    Write-Host "M07 build workflow completed: $workflowPath"
-    Write-Host "Fixture manifest: $fixtureManifest"
-    Write-Host "Native-ON receipt: $onReceipt"
-    Write-Host "Native-OFF receipt: $offReceipt"
 }
-catch { $workflowFailure = $_; throw }
-finally {
-    $workflowRestoreFailure = $null
-    try {
-        if ($null -ne $workflowState) { Restore-M07WorkflowMutationState $shadowProject $run @($workflowState) }
-    }
-    catch { $workflowRestoreFailure = $_ }
-    finally { $workflowLock.Dispose() }
-    if ($workflowRestoreFailure) {
-        throw "M07 workflow settings recovery failed. Original failure: $workflowFailure Recovery failure: $workflowRestoreFailure"
-    }
-}
+if ($restoreFailure) { throw "M07 workflow failed and outer exact-byte recovery also failed. Workflow: $workflowFailure Recovery: $restoreFailure" }
+if ($workflowFailure) { throw $workflowFailure }
