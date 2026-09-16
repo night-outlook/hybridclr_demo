@@ -2,20 +2,20 @@
 
 ## Objective
 
-Resume HybridCLR Assembly Shadow R01B H1 validation from the declared-input retention repair. The new candidate demo source/implementation anchor is `91ebef56eaa7034ed49a80bced422ea4c067d2fe` on `night-outlook/hybridclr_demo` branch `codex/assembly-shadow-r01b-h1`.
+Resume HybridCLR Assembly Shadow R01B H1 validation from the managed Bee cache provenance repair. The new candidate demo source/implementation anchor is `0387feb4344bbe95fd7db524d6e0bae759adc203` on `night-outlook/hybridclr_demo` branch `codex/assembly-shadow-r01b-h1`.
 
-Local Validation commit `425186b213313eb945571c01a2b060ae701e7bd8` established that the previous source anchor passed V00 and V01, then both retained replay and a fresh candidate ON/Debug Player build stopped during `declared-input-retention` after retaining 337 observations / 267,613,743 unique bytes. The next legitimate generated source would exceed the old fixed 256 MiB aggregate bound. Planning, PCH replay and macro probes were `NotRun`; the Player itself built; exact restoration passed; no accepted provenance/build receipt exists.
+Local Validation commit `7f98084518054bd43e10abb603fe193612cfb321` established that the previous retention repair succeeds on the real Apple replay and fresh native provenance path, but the managed verifier rejects a legitimate unchanged Bee cache hit because it required a changed managed Bee graph. The fresh Player used the required managed DLLs, while the matching Player Csc/ILPP graph and outputs were already present before the build and remained byte-identical.
 
-This Primary successor fixes that storage design without skipping any declared source, broadening Apple Bee source/macro domains, relaxing compiler/PCH checks, changing native count behavior, or rewriting historical evidence. Run fresh V00–V05. H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.
+This successor adds a fail-closed current-build cache proof. It does **not** broaden managed source membership, source-domain allowlists, native provenance, ILPP acceptance, witness rules, runtime behavior, or historical evidence. Run fresh V00–V05. H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.
 
 Read first:
 
 - `Documents/AgentHandoff/LOCAL_VALIDATION.md`
 - `Documents/AgentHandoff/RETURN_TO_WEB.md`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-22eda8b/README.md`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/retention-store-primary-20260915/`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-8f5bcaa/README.md`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/managed-cache-primary-20260915/`
 
-Git is the sole handoff authority. Preserve all prior attempts and evidence. Do not apply chat ZIPs or unpublished patches.
+Git is the sole handoff authority. Preserve all previous evidence and attempts. Do not apply chat ZIPs or unpublished patches.
 
 ## Source targets
 
@@ -23,7 +23,7 @@ Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 
 | Role | Repository / branch | Exact identity |
 | --- | --- | --- |
-| Candidate demo source / implementation anchor | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `91ebef56eaa7034ed49a80bced422ea4c067d2fe` |
+| Candidate demo source / implementation anchor | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `0387feb4344bbe95fd7db524d6e0bae759adc203` |
 | Candidate native | `night-outlook/hybridclr` / `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | Shared package | `night-outlook/hybridclr_unity` / `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | Shared IL2CPP | `night-outlook/il2cpp_plus` / `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -32,58 +32,64 @@ Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 | Unfixed reproduction native | `night-outlook/hybridclr` / `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` |
 | Performance reference — preserve | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` |
 
-Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. `ProjectSettings/AssemblyShadowSourcePins.json` pins candidate demo revision `91ebef56eaa7034ed49a80bced422ea4c067d2fe`. The fetched candidate branch HEAD is a later metadata-only handoff successor; record both checkout HEAD and source anchor. New auxiliary validation checkpoints/raw evidence belong under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/...`, not a new `Documents/AgentHandoff/local-validation-*` directory.
+Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. `ProjectSettings/AssemblyShadowSourcePins.json` must pin candidate demo revision `0387feb4344bbe95fd7db524d6e0bae759adc203`. The fetched branch HEAD is a later metadata-only successor; record both checkout HEAD and source anchor. New auxiliary validation checkpoints/raw evidence belong under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/...`, not under a new `Documents/AgentHandoff/local-validation-*` directory.
 
 ## Implementation
 
-### Root cause and retention contract
+### Managed cached-action proof
 
-The previous capture journal used one 256 MiB ceiling for the raw unique bytes of all declared native inputs. The real 446-action Apple graph deterministically exceeded it before planning. The repair **does not simply drop sources or make the old budget unbounded**. It separates source identity from its physical evidence representation:
+The existing direct changed-graph proof remains preferred whenever exactly one changed managed action chain reaches a required fresh Player input. The new cache route is considered only when no direct chain was found for that required assembly.
 
-- raw content identity is always the original **SHA-256 + raw byte length**;
-- every selected declared native source remains represented in the inventory and recoverable byte-for-byte;
-- generated `.c/.cc/.cpp/.cxx/.m/.mm` source blobs use content-addressed `zlib-v1` storage only when compression is smaller; otherwise they remain `raw-v1`;
-- request, selected DAG, PCH, headers, response files and plist/config semantic evidence remain raw by default;
-- content de-duplicates by raw SHA while preserving every source/role observation;
-- compressed rows bind raw SHA/length **and** stored SHA/length/encoding;
-- decompression is output-bounded and must reproduce the exact raw length/SHA;
-- a successful attempt independently re-reads and authenticates its inventory/store before finalization.
+At **begin**, schema 2 now snapshots only bounded pre-existing Bee Player Csc chains whose source set exactly equals one of the two required assemblies and whose Player defines contain the requested extra defines while excluding `UNITY_EDITOR`. For each candidate it retains:
 
-Four independent limits remain fail-closed:
+- exact Bee DAG bytes and SHA-256;
+- exact Csc action hash and parsed source/dependency/output/define/response transcript;
+- complete recursive response-file closure;
+- compiler/tool/reference dependency bytes;
+- the pre-existing Csc output DLL;
+- bounded reachable downstream DLL outputs under `Library/Bee` that can connect that Csc output to the eventual Player input.
+
+At **end**, the tool observes the same graph, responses, dependencies, Csc output and reachable DLLs. A cache candidate is eligible only if every retained component is still byte-identical and available. The fresh `actualInputs` captured by the existing Unity adapter remain the current-build consumption boundary.
+
+At independent **verify**, the retained graph is reparsed. The verifier requires the Csc action SHA to match, re-derives source/dependency/output/defines/responses, requires every source to have been in the pre-build source ledger, verifies retained dependency/output bytes, and requires exactly one graph path from the retained Csc output to the **exact fresh Player input path, SHA-256 and size**. The accepted row is explicitly labeled `BeeCacheHitBoundToFreshPlayerInput`.
+
+The cache route does **not** claim fresh Csc execution: `freshCompilerExecutionClaim=false`. A cache hit proves a byte-stable pre-build compiler/ILPP action chain whose output is exactly the managed DLL consumed by this fresh Player build. Native build execution, ILPP/witness verification, installed-source proof and Player execution remain separate evidence.
+
+### Fail-closed boundaries
+
+The new cache proof is bounded independently:
 
 | Bound | Value |
 | --- | ---: |
-| Per retained file | 64 MiB |
-| Logical unique raw content | 2 GiB |
-| Physical retained store | 512 MiB |
-| Inventory observations | 4096 |
+| Candidate Bee DAGs | 64 |
+| One retained Bee DAG | 128 MiB |
+| Retained cache observations | 4096 |
+| One retained cache file | 64 MiB |
+| Aggregate retained unique bytes | 512 MiB |
+| Reachable retained DLLs | 128 |
 
-The 2 GiB logical bound is an explicit bounded envelope above the measured 267,613,743-byte partial real attempt; it is not derived dynamically from whatever graph happens to run. The physical store has its own independent 512 MiB ceiling. Exceeding **either** bound is `FailedNotAccepted`; no provenance receipt is published.
+Any changed/missing response, compiler dependency/tool, Csc output, downstream DLL, source/configuration input, changed DAG/action, wrong fresh Player path, output that did not exist at begin, or multiple matching cache chains fails closed. Unknown/implicit compiler input search is still unsupported. Cache proof does not auto-fall back to legacy prior-proof reuse.
 
-`Tools/AssemblyShadow/h1_verify_capture_store.py` independently authenticates one attempt store and reports `StoreVerifiedNotAcceptance`. It verifies reversible bytes and accounting only; it does not replace compiler/PCH provenance, a build receipt, M08, or human approval.
-
-### Provenance semantics retained
-
-The reviewed Apple Bee contract remains unchanged: exact source-owned `il2cpp-runtime` / `external-bdwgc` / `external-zlib` domains, exact Shadow/count definitions on every selected compile action, compiler/SDK identity, object/link coverage, fail-closed unknown external sources, PCH producer/consumer binding, byte-identical PCH replay, per-context compiler probes, and `NDEBUG` definedness semantics. No source-domain allowlist was broadened.
-
-Historical plan-stage failure retention remains intact: the attempt root exists before planning; reached inputs/stages are preserved; unreached replay/probes stay `NotRun`; failed attempts cannot produce accepted receipts.
+Existing `verify_exact_reuse(... --reuse-proof ...)` remains an explicitly selected legacy route only; **do not use it to satisfy the current fresh smoke**. The requested repair must be demonstrated by the direct current-build cache proof.
 
 ### Primary review and bounded tests
 
-Primary CI workflow run **35050737320** at source anchor `91ebef56eaa7034ed49a80bced422ea4c067d2fe` authenticated the existing Apple failure graph SHA-256 `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181` and passed **256/256** tests with zero nonpasses. The suite includes the previous Apple Bee/domain/provenance regressions plus a 446-action-shaped fixture retaining more than the old 256 MiB logical limit, logical/stored-limit failures, compressed-store tamper rejection, corrupt-finalization rejection, and incompressible raw fallback.
+Primary CI workflow run **35061641985** at anchor `0387feb4344bbe95fd7db524d6e0bae759adc203` authenticated the established Apple Bee fixture and passed **281/281** tests, zero nonpasses. The suite now includes legacy managed-provenance tests and eight cache-specific controls: legitimate unchanged cache hit, stale output rejection, ambiguous action rejection, changed source, changed response, changed dependency, wrong fresh Player binding even with identical bytes, and output absent at begin.
 
-CI artifact ID `10428726815`, ZIP SHA-256 `227effe44e29080b0191252b19ca15569b801d4e3d20ad36aca52d397c836015`. This is bounded Primary/tooling evidence, **not** macOS Unity/Apple Player/runtime or M08 acceptance.
+CI artifact ID `10432043605`, ZIP SHA-256 `5492b3051f6e35dfbf1a970932383308788fb6907bb63b5aa1183e133309d536`. This is bounded Primary/tool evidence, not current macOS Unity/Player, runtime, M08, or human acceptance.
+
+The previous retention-store repair remains part of this source anchor. Do not regress or bypass its reversible declared-input store, independent store verifier, Apple macro-domain proof, PCH replay, or fail-closed limits.
 
 ## Local validation
 
-Run fresh **V00–V05**. Previous successful facts remain historical evidence but do not substitute for affected validation of the new code anchor.
+Run fresh **V00–V05**. Prior successful facts remain historical evidence but do not replace affected validation of this source anchor.
 
 ### V00 — authoritative preflight
 
 1. Explicitly `git pull --ff-only origin codex/assembly-shadow-r01b-h1` in candidate.
-2. Record branch, origin, checkout HEAD and dirty/untracked state without reset/clean/stash-away of unrelated evidence.
-3. Confirm `source-targets.json` and source pins both identify candidate anchor `91ebef56eaa7034ed49a80bced422ea4c067d2fe` and all protected identities above.
-4. Run into a new absolute path:
+2. Record branch/origin/checkout HEAD and dirty/untracked state without reset/clean/stash-away of unrelated evidence.
+3. Confirm source targets and source pins identify `0387feb4344bbe95fd7db524d6e0bae759adc203` and protected identities match the table.
+4. Run into a new absolute output path:
 
 ```sh
 python3 Tools/AssemblyShadow/h1_handoff_preflight.py \
@@ -92,103 +98,105 @@ python3 Tools/AssemblyShadow/h1_handoff_preflight.py \
   --output /ABS/NEW/v00/candidate-handoff.json
 ```
 
-Expected: exit 0, `SourceTargetVerifiedNotBuildAccepted`, code commit `91ebef56eaa7034ed49a80bced422ea4c067d2fe`, gate flags false. If V00 fails, stop and return evidence before V01–V05.
+Expected: exit 0, `SourceTargetVerifiedNotBuildAccepted`, code commit `0387feb4344bbe95fd7db524d6e0bae759adc203`, gate flags false. If V00 fails, stop before V01–V05 and return evidence.
 
 ### V01 — affected source/tool/Unity regression
 
-Run the full H1 Python inventory and exact Bee Primary suite, especially `test_h1_capture_attempt`, `test_h1_capture_volume`, native-capture/PCH/provenance, handoff, collector/successor, and normal M02-owner tests. Compile candidate and reproduction in Unity and rerun focused H1 Editor tests plus affected Assembly Shadow regression suites. Preserve exact IDs, Python version, logs, XML, failures and skips.
+Run the full H1 Python inventory and the exact Bee Primary suite, with special attention to `test_h1_managed_provenance` and `test_h1_managed_cache_provenance`, plus strict compiler/native provenance, retention, PCH, handoff, normal M02-owner, collector/successor tests. Compile candidate and reproduction in Unity and rerun focused H1 Editor tests and affected Assembly Shadow regressions. Preserve exact IDs/logs/XML/skips.
 
-The Linux CI 256/256 result is supporting evidence only. Reproduction's previously observed optional full-sweep missing-baseline/fixture failures remain historical facts; do not relabel them.
+Expected: affected regressions pass. The Linux Primary 281/281 result does not replace macOS/Unity execution.
 
-### V02 — real Apple replay, retention volume and fail-closed controls
+### V02 — real unchanged Bee cache proof
 
-First use the exact retained Apple failure inputs from `local-validation-20260915-22eda8b` if those bound source locators/bytes still exist. Otherwise record them `Unavailable` and use a new fresh smoke input; do not rewrite old locators.
+Validate the repair on the real normal cache state, not only synthetic fixtures. The previous checkpoint identified the unchanged Player DAG `Library/Bee/200b0aPDevDbg.dag.json`; use the current actual Player graph identity rather than assuming its hash/path if Unity legitimately regenerates it.
 
-For an executable replay/new capture, require:
+For both required assemblies (`AssemblyShadowDemo.Bootstrap` and `AssemblyShadow.R01BDiagnostics`) require:
 
-1. declared-input retention progresses past the previous 267,613,743-byte / 256 MiB boundary rather than failing there;
-2. every selected declared source observation is retained or an actual missing input is explicitly recorded — no silent source omission;
-3. state records `declaredInputPathCount`, nominal volume, logical unique bytes, physical stored bytes and all four limits;
-4. run the independent store verifier on the completed attempt root:
+1. begin ledger schema 2 and a retained cache candidate whose source set exactly matches the assembly plan;
+2. retained graph/action, recursive response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL identities;
+3. end observations for every retained cache element are `Unchanged` for an accepted cache hit;
+4. fresh Player `actualInputs` are captured normally after this build;
+5. independent managed verification returns exactly one row per assembly and, wherever Bee legitimately reused the chain, `evidenceMode=BeeCacheHitBoundToFreshPlayerInput`;
+6. that row binds the cached downstream DLL to the exact fresh Player input **path + SHA-256 + size** and preserves DAG reachability from the Csc output;
+7. `freshCompilerExecutionClaim=false` for cache proof;
+8. no `reusedFrom`/`--reuse-proof` is used to close this requirement.
 
-```sh
-python3 Tools/AssemblyShadow/h1_verify_capture_store.py \
-  --attempt-root /ABS/ATTEMPT \
-  --output /ABS/NEW/retention-store-verification.json
-```
+If an assembly actually recompiles and has one valid changed graph, `ChangedBeeGraphBoundToFreshPlayerInput` remains acceptable for that assembly. Record which route each assembly used; do not force either result.
 
-Expected: `StoreVerifiedNotAcceptance`; inventory/store accounting matches and all compressed/raw members recover their declared original SHA/length.
+Run the new stale/ambiguous/source/response/dependency/wrong-Player/output-created-after-begin controls. Any ambiguity or stale component must reject rather than pick a candidate by order/recency.
 
-If replay reaches planning, continue to require the established real graph/domain result: 446 compile actions, 444 linked objects, 430 runtime / 2 BDWGC / 14 zlib, six probe contexts, complete selected-link coverage, and appropriate Debug/Release runtime profile. If it reaches PCH execution, require the existing exact PCH replay/probe contract; do not downgrade missing later stages to a retention PASS.
-
-Also run the new fail-closed regression controls: logical limit, physical stored limit, compressed blob tamper, corrupt store at finalization, and incompressible raw fallback. A bound/tamper failure must remain `FailedNotAccepted` and must not publish `h1-compiler-provenance.json`.
-
-**Do not locally raise 2 GiB / 512 MiB / 64 MiB / 4096.** If a real graph reaches any of those bounds, return the complete census, state, inventory and failing file/store metrics to Primary. Do not skip files, switch compression codecs, or externalize bytes ad hoc.
+**Do not delete/clean Bee cache merely to force managed recompilation as the acceptance route.** A clean-build diagnostic may be additional evidence, but this handoff specifically requires validation that legitimate unchanged cache reuse can be proved fail-closed.
 
 ### V03 — fresh provenance-bound Player builds
 
-Reinstall candidate from the new source pins and rerun normal installed-runtime verification with demo-source verification enabled. Execute a new candidate ON/Debug smoke first. Acceptance requires:
+Reinstall candidate from the new source pins and run normal installed-runtime verification with demo-source checking enabled. Execute a fresh candidate ON/Debug smoke first.
+
+Acceptance requires all existing evidence plus managed verification through either the unique changed-action route or the new current-build cache route:
 
 - Player build success;
-- complete native compiler provenance;
-- complete declared-input retention and independent store-verifier result;
-- Apple macro-domain and compiler/PCH probes;
-- managed-source provenance;
+- complete native compiler provenance and independently verified declared-input store;
+- Apple domain / compiler / PCH evidence;
+- managed source begin/end capture;
+- exactly one managed chain for each required assembly;
+- cache-hit rows, if present, bound to the exact fresh Player input as specified above;
+- no legacy `--reuse-proof` substitution for the current smoke;
 - final build receipt and strict single-build verifier PASS;
-- exact generated/project restoration.
+- exact project/generated restoration.
 
-Record logical/stored retention bytes, observation/content/blob counts and retention policy for the fresh smoke. After a valid smoke, run the other candidate ON/OFF × Debug/Release builds and unfixed reproduction ON Debug/Release in fresh immutable roots. Explicit same-source smoke reuse is permitted only through the already committed supported route after revalidation; never choose a result by recency.
+After a valid smoke, run remaining candidate ON/OFF × Debug/Release and unfixed reproduction ON Debug/Release in fresh immutable roots. Record per-build managed evidence mode for both required assemblies. Preserve all failures.
 
-Any new Apple grammar/source-membership/PCH/provenance ambiguity or real retention-bound exhaustion returns to Primary; Local must not alter acceptance semantics.
+If real Bee graph structure uses a legitimate action/response/dependency/ILPP path not expressible by the reviewed cache proof, return full evidence to Primary. Do not broaden parser/allowlists or erase cache locally.
 
 ### V04 — runtime/count/startup/capacity/performance chain
 
-After the six provenance-bound build set exists, run the established current R01B chain: 132 candidate count cells; 8 unfixed reproduction cells; fresh baseline/fixtures/replay and 11 startup modes; ordinary/mixed 8192 lifetime capacity and 8193 rejection; retained failures; >=25% usable encoded-page free capacity; 32 MiB maximum DLL and 512 MiB valid input boundary; lazy/dense/generic/array/reflection/FieldRVA/old-Player and affected M03–M07 checks.
+After six provenance-bound builds exist, execute the current R01B chain: 132 candidate count cells, 8 unfixed reproduction cells, fresh baseline/fixtures/replay and 11 startup modes, ordinary/mixed 8192 lifetime capacity and 8193 rejection, retained failures, >=25% usable encoded-page free capacity, 32 MiB maximum DLL and 512 MiB valid input boundary, lazy/dense/generic/array/reflection/FieldRVA/old-Player and affected M03–M07 regressions.
 
-Run controlled Development performance pairs only against the separate performance-reference checkout on workloads supported by both sides. Do not infer Release/P99/device-RAM acceptance.
+Run controlled Development performance pairs only against the separate performance-reference checkout on common supported workloads. Do not infer Release/P99/device-RAM acceptance.
 
 ### V05 — successor package and independent whole-chain M08
 
-Construct the successor evidence archive/index from explicit source/build/raw locations. Include required compiler/PCH/domain/store-verification/runtime evidence and preserve every unavailable/excluded disposition accurately. Authenticate archive/index bytes, membership and references; run the strict semantic verifiers; then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review.
+Construct the successor evidence archive/index from explicit source/build/raw locations. Include managed source begin/end, cache graph/action/input/output observations, final managed graph verification, native compiler/PCH/store proof and required runtime evidence. Summary PASS artifacts are insufficient.
 
-A tooling/store/CI PASS is not M08 PASS. Only a genuine independent whole-chain M08 PASS can make the package Ready for Human Review Gate. Then stop for explicit human H1 approval.
+Authenticate archive/index bytes, membership and references, run strict semantic verifiers, then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review. A cache/tooling PASS is not M08 PASS.
 
-Commit new auxiliary checkpoint/raw evidence under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/...`. Update/push Local-owned `LOCAL_VALIDATION.md`; place nontrivial issues in `RETURN_TO_WEB.md`.
+Only genuine independent whole-chain M08 PASS may make the package **Ready for Human Review Gate**. Then stop for explicit human H1 approval.
+
+Commit new checkpoint/raw evidence under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/...`. Update and push Local-owned `LOCAL_VALIDATION.md`; return any nontrivial issue through `RETURN_TO_WEB.md`.
 
 ## Failure evidence
 
-For any failure retain the exact repository/branch/checkout HEAD/source anchor/pin bytes, command/cwd/exit/timeout/stdout/stderr, Unity log/XML, selected Bee graph, declared-input census/inventory/state, retention policy and four limits, logical/stored byte counts, failing raw/stored member identity, store-verifier output, response closure, compiler/SDK identity, original/rebuilt PCHs, module-file-info/header bytes, probe source/argv/macro output for reached contexts, native/managed artifact identities, build/preparation/restore state and attempt failure JSON.
+For a managed-cache failure retain exact checkout/source pins, build GUID/input snapshot, before/after managed capture, exact fresh Player inputs, retained Bee DAG bytes/hash, Csc action/transcript, recursive responses, dependency/tool bytes/hashes, Csc output, reachable downstream DLLs, end observations, managed verifier output/error, and evidence mode. Preserve native compiler/PCH/store evidence and Unity/batch logs as usual.
 
-For compressed source rows preserve both raw (`bytes`, `sha256`) and stored (`retainedBytes`, `retainedSha256`, `retainedEncoding`) identities. Do not report compression success as source equivalence unless decompression reproduces the raw SHA/length through the committed verifier.
+For stale or ambiguous cache rejection, identify which precise element changed/duplicated and whether the failure happened at begin, end observation, transcript re-derivation, DAG reachability, fresh Player binding, or uniqueness enforcement.
 
-Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Preserve the 22eda8b retention failures and all earlier v6–v11/c0d3070 evidence unchanged.
+Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Preserve `local-validation-20260915-8f5bcaa`, `local-validation-20260915-22eda8b`, c0d3070, and historical v6–v11 evidence unchanged.
 
 ## Alternatives
 
-The selected production design is reversible content-addressed compression for large generated native sources plus independent logical/physical bounds. This is a storage representation change, not a provenance-domain relaxation.
+The selected route is a **fresh-build-bound cached-action proof**. It proves unchanged pre-build action/input/output bytes are exactly the managed DLL consumed by the current fresh Player; it deliberately does not claim fresh compiler execution.
 
-Do not substitute hash-only source records, omit generated source bytes, disable PCH/PDB, ignore compiler failures, expand source-domain allowlists, repoint reproduction to fixed native code, alter the performance reference, or raise retention limits locally. If actual Apple data shows the selected envelope or codec cannot satisfy the reviewed contract, return the complete evidence to Primary for a new design/anchor.
+The existing explicit prior-proof `--reuse-proof` route remains a separate legacy equivalence mechanism and must not be used as a substitute for validating this new path. Clearing Bee cache to force Csc/ILPP execution also does not validate the requested cache-hit repair.
 
-Diagnostic replay remains investigation-only and cannot satisfy fresh-build acceptance. Explicit same-source smoke reuse remains an optional documented optimization, not fallback acceptance.
+Do not broaden source membership, accept path/hash-only evidence without the retained action/dependency chain, weaken ILPP/witness/native checks, increase cache-proof bounds locally, or change runtime/performance methodology. Such alternatives return to Primary first.
 
 ## Risks
 
-The real Apple generated-source corpus may be larger or less compressible in another build/configuration. That is why logical raw volume and physical stored volume are separately bounded and observable. The current local failure only measured a 267.6 MiB partial raw set; **Primary has not yet demonstrated the complete real corpus under the new 2 GiB/512 MiB envelope.** V02/V03 must establish that empirically.
+Real Unity/Bee graphs may contain additional legitimate response-file, compiler dependency, or ILPP/copy stages not represented in the bounded synthetic cache fixtures. The implementation fails closed on implicit compiler search, excessive graph/file/byte/reachable-DLL volume, ambiguity, changed bytes, and unsupported transcript grammar. A real rejection therefore requires evidence and Primary review rather than a local allowlist expansion.
 
-Compression adds capture CPU/I/O and changes diagnostic storage format. It must not alter raw source identity; independent store verification and tamper tests guard that boundary. Semantic PCH/header/response/config evidence remains raw by default.
+`freshCompilerExecutionClaim=false` is intentional for cache hits. Acceptance depends on fresh Player consumption of an unchanged, source-bound cached chain plus the rest of the independent build/native/runtime evidence; it must not be described as a fresh Csc execution.
 
-The candidate code anchor changed, so affected old build receipts cannot automatically be promoted to this source chain. Historical results remain evidence about previous anchors only unless explicit equivalence rules legitimately apply.
+This source-anchor change invalidates affected old build receipts unless an existing explicit equivalence contract independently permits reuse. Historical results remain historical.
 
 ## Local correction boundary
 
-Local Validation may correct machine-specific paths, executable permissions, invocation syntax, new output-directory choices, isolated test harness setup, and previously documented exact generated-file restoration after preserving before/after bytes.
+Local Validation may correct machine paths, executable permissions, invocation syntax, output-directory choices, isolated test setup, and already-documented exact generated-file restoration after preserving before/after bytes.
 
-Local Validation must not modify retention bounds/codec/storage semantics, source-domain membership, compiler/PCH provenance rules, witness allowlists, source identity exclusions, count behavior, ABI/architecture, performance methodology, or other cross-module design. These are Primary Implementation changes regardless of diff size.
+Local Validation must not change cached-action source selection, cache-proof limits, action/dependency/reachability semantics, managed verification acceptance, prior-proof reuse semantics, retention/native/PCH provenance, witness rules, source identity, count behavior, ABI/architecture, or performance methodology. Those are Primary changes regardless of diff size.
 
-Do not rewrite `WEB_TO_LOCAL.md`. Preserve/append empirical facts in Local-owned reports.
+Do not rewrite `WEB_TO_LOCAL.md`. Preserve and append empirical facts only in Local-owned reports.
 
 ## Human review gate
 
-Current project gate remains H1 as defined by the committed project review documents. State is `InProgress`, technically blocked pending fresh V00–V05; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+Current project gate remains H1. State is `InProgress`, technically blocked pending fresh V00–V05; last independent whole-chain M08 is `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-Only after implementation plus actual Local Validation satisfy the gate definition and a genuine independent whole-chain M08 returns PASS may the package be marked **Ready for Human Review Gate**. Then stop for explicit human H1 approval. Neither agent grants H1. Do not begin R02 before that approval is recorded.
+Only after implementation and actual Local Validation satisfy the current project gate definition **and** a genuine independent whole-chain M08 returns PASS may the package become **Ready for Human Review Gate**. Then stop for explicit human approval. Neither agent may grant H1. Do not begin R02 before that approval is recorded.
