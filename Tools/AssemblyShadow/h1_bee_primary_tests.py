@@ -17,7 +17,8 @@ import unittest
 
 MODULES = (
     'test_h1_bee_macro_domains', 'test_h1_bee_domain_probes',
-    'test_h1_capture_attempt', 'test_h1_macro_domain_census', 'test_h1_failure_bundle_census',
+    'test_h1_capture_attempt', 'test_h1_capture_volume',
+    'test_h1_macro_domain_census', 'test_h1_failure_bundle_census',
     'test_h1_plan_failure_retention', 'test_h1_compiler_actions', 'test_h1_native_capture',
     'test_h1_pch_provenance', 'test_h1_pch_integration', 'test_h1_count_build_batch',
     'test_h1_handoff_preflight', 'test_h1_selection_collect', 'test_h1_successor_evidence',
@@ -55,7 +56,7 @@ def run(output):
     report={'kind':'H1BeePrimaryRegression','status':'PassedBoundedTests' if passed else 'CompletedWithNonPass',
         'testCount':result.testsRun,'counts':counts,'tests':sorted(result.rows,key=lambda r:r['id']),
         'host':platform.platform(),'python':sys.version,'rawLogSha256':hashlib.sha256(log.read_bytes()).hexdigest(),
-        'scope':'Pinned Apple graph planning and host-Clang synthetic probes; not Unity/Apple Player validation',
+        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, and host-Clang synthetic probes; not Unity/Apple Player validation',
         'UnityCompile':'NotRun','AppleClangExecution':'NotRun','M08':'NotRun','humanGatePassed':False,'mayEnterR02':False}
     (output/'results.json').write_text(json.dumps(report,indent=2)+'\n')
     summary={k:report[k] for k in ('status','testCount','counts')}
