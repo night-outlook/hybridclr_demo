@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "0387feb4344bbe95fd7db524d6e0bae759adc203",
-      "implementationCommit": "0387feb4344bbe95fd7db524d6e0bae759adc203",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following handoff/source-target/source-pin and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
+      "codeCommit": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
+      "implementationCommit": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -31,7 +31,7 @@
       "branch": "codex/assembly-shadow-h1-count-repro",
       "publishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
       "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
-      "preservationPolicy": "Do not move this branch for the managed-cache Primary correction. Preserve the unfixed count behavior and existing validation handoff.",
+      "preservationPolicy": "Do not move this branch for the managed-response-scope Primary correction. Preserve the unfixed count behavior and existing validation handoff.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -55,15 +55,15 @@
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35061641985,
-    "implementationCommit": "0387feb4344bbe95fd7db524d6e0bae759adc203",
+    "workflowRun": 35066118142,
+    "implementationCommit": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 281,
-    "passed": 281,
+    "testCount": 283,
+    "passed": 283,
     "nonpasses": 0,
-    "artifactId": 10432043605,
-    "artifactSha256": "5492b3051f6e35dfbf1a970932383308788fb6907bb63b5aa1183e133309d536",
-    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance regressions, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-build managed cache acceptance, runtime, or M08 acceptance."
+    "artifactId": 10434108589,
+    "artifactSha256": "94e4cfc61b62dd01c297a704f97085d1031e56e29986cc281eb6679ccafb1ded",
+    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, action-local recursive response-closure regressions, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-build managed cache acceptance, runtime, or M08 acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -81,7 +81,7 @@
     "returnedByLocalValidationCommit": "7f98084518054bd43e10abb603fe193612cfb321",
     "previousSourceAnchor": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
     "failure": "Fresh native provenance and retention passed, but the managed verifier required a changed Bee graph even when the exact required Player Csc/ILPP chain and DLL outputs were legitimately reused from an unchanged Bee cache.",
-    "policy": "At begin, retain bounded exact reusable Player Csc chains from pre-existing Bee DAGs, including graph/action, response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL bytes. At end, require all retained cache evidence to remain byte-identical and require exactly one chain to reach the exact path/hash/size of the DLL captured as an input to the fresh Player. Prefer a unique changed-graph proof when present. Cache proof never claims fresh Csc execution and is not the legacy prior-proof reuse route.",
+    "policy": "At begin, retain bounded exact reusable Player Csc chains from pre-existing Bee DAGs, including graph/action, recursive response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL bytes. At end, require selected-chain evidence to remain byte-identical and require exactly one chain to reach the exact path/hash/size of the DLL captured as an input to the fresh Player. Prefer a unique changed-graph proof when present. Cache proof never claims fresh Csc execution and is not the legacy prior-proof reuse route.",
     "limits": {
       "maxGraphs": 64,
       "maxGraphBytes": 134217728,
@@ -90,6 +90,13 @@
       "maxTotalBytes": 536870912,
       "maxReachableDlls": 128
     }
+  },
+  "managedResponseScopeRepair": {
+    "returnedByLocalValidationCommit": "dc9116a46097739b634c791ac7213f431b54af22",
+    "previousSourceAnchor": "0387feb4344bbe95fd7db524d6e0bae759adc203",
+    "failure": "Schema-2 cached verification attached every response discovered from every Csc action in a Bee DAG to each required cache graph. Seven unrelated StandaloneOSX_CodeGen response files legitimately changed during staging and incorrectly invalidated two required assembly cache chains whose own recursive response closures, dependencies, outputs, reachability and fresh Player bindings remained unchanged.",
+    "policy": "Schema-3 retains and verifies response stability per matched required compiler action using exactly the recursive responseSources returned by bounded @response expansion. Graph-wide response paths may be recorded as audit-only responseAuditSources but are not acceptance inputs unless they are in that selected action's recursive closure. Graph identity, action transcript, source set, compiler/tool/reference dependencies, Csc output, downstream reachability, exact fresh Player path/hash/size binding, unique-chain selection, pre-existing-output requirements, cache budgets and no-fresh-Csc-execution claim remain unchanged and fail closed.",
+    "schemaVersion": 3
   },
   "gateState": {
     "name": "H1",
