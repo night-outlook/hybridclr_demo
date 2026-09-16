@@ -43,10 +43,25 @@ class ManagedBeeCacheProofTests(unittest.TestCase):
         return h.end(req,self.evidence)
     def proof(self): return h.verify(self.evidence/'h1-managed-source-capture.json')
     def test_unchanged_bee_cache_is_bound_to_fresh_player_inputs(self):
-        b=self.begin(); self.assertEqual(2,sum(len(g['compilations']) for g in b['cacheGraphs']))
+        b=self.begin(); self.assertEqual(3,b['schemaVersion']); self.assertEqual(2,sum(len(g['compilations']) for g in b['cacheGraphs']))
         self.end(); r=self.proof()
         self.assertEqual({'BeeCacheHitBoundToFreshPlayerInput'},{x['evidenceMode'] for x in r['rows']})
         self.assertFalse(r['freshCompilerExecutionClaim'])
+    def test_unrelated_changed_response_in_same_dag_is_audit_only(self):
+        source=self.root/'Assets/unrelated.cs'; source.write_text('class Unrelated {}')
+        rsp=self.root/'Library/Bee/unrelated.rsp'; rsp.write_text('/define:UNRELATED')
+        raw=self.root/'Library/Bee/raw/unrelated.dll'; raw.write_bytes(b'UNRELATED-RAW')
+        action='{} {} /out:{} @{} {}'.format(self.root/'dotnet',self.root/'csc.dll',raw,rsp,source)
+        self.graph['Nodes'].append({'Annotation':'Csc unrelated','Action':action,'Inputs':[str(source),str(rsp)],'Outputs':[str(raw)]})
+        self.save_graph(); before=self.begin(); graph=before['cacheGraphs'][0]
+        canonical=str(rsp.resolve())
+        self.assertIn(canonical,graph['responseAuditSources'])
+        required={row['sourcePath'] for compiled in graph['compilations'] for row in compiled['responseFiles']}
+        self.assertNotIn(canonical,required)
+        rsp.write_text('/define:UNRELATED\n/define:LEGITIMATE_BUILD_STAGE_CHANGE')
+        self.end(); proof=self.proof()
+        self.assertEqual(2,len(proof['rows']))
+        self.assertEqual({'BeeCacheHitBoundToFreshPlayerInput'},{row['evidenceMode'] for row in proof['rows']})
     def test_stale_cached_output_is_rejected(self):
         self.begin(); name=sorted(h.REQUIRED_ASSEMBLIES)[0]; self.paths[name][1].write_bytes(b'STALE-OR-CHANGED')
         self.end()
@@ -68,6 +83,21 @@ class ManagedBeeCacheProofTests(unittest.TestCase):
             if str(node.get('Annotation','')).startswith('Csc '):
                 node['Action']=node['Action'].replace(' /reference:'+str(self.root/'reference.dll'),' @'+str(rsp))
         self.save_graph(); self.begin(); rsp.write_text('/reference:'+str(self.root/'reference.dll')+'\n/define:CHANGED')
+        self.end()
+        with self.assertRaisesRegex(ValueError,'response.*changed|Missing'): self.proof()
+    def test_changed_nested_response_in_required_action_is_rejected(self):
+        outer=self.root/'outer.rsp'; inner=self.root/'inner.rsp'
+        outer.write_text('@'+str(inner)); inner.write_text('/reference:'+str(self.root/'reference.dll'))
+        first=sorted(h.REQUIRED_ASSEMBLIES)[0]
+        for node in self.graph['Nodes']:
+            if node.get('Annotation')=='Csc '+first:
+                node['Action']=node['Action'].replace(' /reference:'+str(self.root/'reference.dll'),' @'+str(outer))
+        self.save_graph(); before=self.begin()
+        compiled=next(c for g in before['cacheGraphs'] for c in g['compilations'] if c['assembly']==first)
+        expected={str(outer.resolve()),str(inner.resolve())}
+        self.assertEqual(expected,set(compiled['responseSources']))
+        self.assertEqual(expected,{r['sourcePath'] for r in compiled['responseFiles']})
+        inner.write_text('/reference:'+str(self.root/'reference.dll')+'\n/define:NESTED_CHANGED')
         self.end()
         with self.assertRaisesRegex(ValueError,'response.*changed|Missing'): self.proof()
     def test_changed_dependency_is_rejected(self):
