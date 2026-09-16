@@ -1,8 +1,12 @@
 """Source-before-build ledger and managed Bee-action-to-Player-input binding.
 
 Run begin BEFORE BuildPipeline.BuildPlayer and end after the existing linked
-input capture has succeeded. Missing managed DAG coverage is recorded as
-Blocked, not repaired by hashing today's sources against an old executable.
+input capture has succeeded. A managed action may be proved either from a
+changed Bee DAG captured for this build or from an exact pre-build Bee cache
+snapshot that remains byte-identical and is consumed by the fresh Player.
+Cached response stability is scoped to each required compiler action's exact
+recursive @response closure, never to unrelated responses elsewhere in a DAG.
+Neither route claims that the C# compiler executed unless independently proved.
 This tool does not approve H1 or replace the production ILPP/linked verifier.
 """
 from __future__ import annotations
@@ -17,6 +21,12 @@ import h1_compiler_actions as actions
 from h1_native_capture import read_json, digest, write_new, unique_pairs
 
 REQUIRED_ASSEMBLIES = frozenset(('AssemblyShadowDemo.Bootstrap', 'AssemblyShadow.R01BDiagnostics'))
+MAX_CACHE_GRAPHS = 64
+MAX_CACHE_GRAPH_BYTES = 128 * 1024 * 1024
+MAX_CACHE_FILES = 4096
+MAX_CACHE_FILE_BYTES = 64 * 1024 * 1024
+MAX_CACHE_TOTAL_BYTES = 512 * 1024 * 1024
+MAX_REACHABLE_DLLS = 128
 
 
 def logical(root: Path, value: str) -> Path:
@@ -47,50 +57,29 @@ def verify_retained(row: dict) -> Path:
     return p
 
 
-def begin(request: dict, output: Path) -> dict:
-    root = Path(request['projectRoot']).resolve(strict=True)
-    actions.need(root.is_dir() and output.is_absolute() and not output.exists() and output == output.resolve(), 'New canonical evidence root required')
-    extra=request.get('extraScriptingDefines', [])
-    actions.need(type(extra) is list and all(type(v) is str for v in extra) and len(extra)==len(set(extra)), 'Invalid extra compiler defines')
-    assemblies=request.get('assemblies')
-    actions.need(type(assemblies) is list and len(assemblies) == len(REQUIRED_ASSEMBLIES) and
-                 {a.get('name') for a in assemblies} == REQUIRED_ASSEMBLIES, 'Both diagnostic managed source domains are required')
-    for a in assemblies:
-        actions.need(type(a.get('sourceFiles')) is list and a['sourceFiles'] and
-                     all(type(p) is str and p.endswith('.cs') for p in a['sourceFiles']), 'Managed source list is empty/invalid')
-        actions.need(type(a.get('defines')) is list and type(a.get('referenceFiles')) is list, 'Compiler source plan is incomplete')
-    paths = set()
-    for a in assemblies:
-        paths.update(logical(root,p) for p in a['sourceFiles'])
-    # The orchestration and exact configuration are part of source provenance,
-    # not included in the declaration that they are compiled into the Player.
-    orchestration = list((root / 'Assets/AssemblyShadowDemo/Editor').glob('*.cs'))
-    orchestration += list((root / 'Tools/AssemblyShadow').glob('*.py'))
-    paths.update(orchestration)
-    for name in ('ProjectSettings/AssemblyShadowSourcePins.json', 'ProjectSettings/AssemblyShadowReflectionBindings.json',
-                 'Packages/manifest.json', 'Packages/packages-lock.json'):
-        p=root/name
-        if p.exists(): paths.add(p)
-    for pattern in ('*.asmdef','*.asmref'):
-        paths.update((root/'Assets').rglob(pattern))
-    paths.update(Path(str(p)+'.meta') for p in tuple(paths) if Path(str(p)+'.meta').is_file())
-    actions.need(len(paths) <= 100000, 'Source ledger exceeds bound')
-    # Pre-existing cache outputs distinguish newly produced compiler outputs
-    # from reused ones. Existing outputs are not deleted to manufacture freshness.
-    bee=root/'Library/Bee'
-    existing=sorted(str(p.resolve()) for p in bee.rglob('*.dll')) if bee.is_dir() else []
-    graph_before={str(p.resolve()):digest(p) for p in bee.glob('*.dag.json')} if bee.is_dir() else {}
-    output.mkdir(parents=True)
-    rows=[]
-    for path in sorted(paths):
-        row=retain(path,output,'sources'); row['logicalPath']=str(path); rows.append(row)
-    pins=logical(root,request['sourcePinFile'])
-    record={'schemaVersion':1,'kind':'H1ManagedSourceBegin','projectRoot':str(root),
-        'buildId':request['buildId'], 'sourcePinSha256':digest(pins), 'assemblies':assemblies, 'extraScriptingDefines':extra,
-        'sources':rows,'preExistingBeeDlls':existing,'beeGraphsBefore':graph_before,
-        'sourceToBinaryVerified':False}
-    write_new(output/'begin.json',(json.dumps(record,indent=2)+'\n').encode())
-    return record
+class CacheBudget:
+    """Bound the pre-build cache proof without omitting any input it accepts."""
+    def __init__(self):
+        self.observations=0; self.unique_bytes=0; self.hashes=set()
+    def retain(self, path: Path, root: Path, category: str) -> dict:
+        path=Path(path).resolve(strict=True)
+        actions.need(path.is_file() and not path.is_symlink(), 'Cached action input must be a regular non-symlink file: '+str(path))
+        size=path.stat().st_size
+        actions.need(size <= MAX_CACHE_FILE_BYTES, 'Cached action input exceeds per-file proof bound: '+str(path))
+        sha=digest(path)
+        new_bytes=0 if sha in self.hashes else size
+        actions.need(self.observations < MAX_CACHE_FILES, 'Cached action proof exceeds file-count bound')
+        actions.need(self.unique_bytes + new_bytes <= MAX_CACHE_TOTAL_BYTES, 'Cached action proof exceeds aggregate byte bound')
+        row=retain(path,root,category)
+        self.observations += 1
+        if sha not in self.hashes:
+            self.hashes.add(sha); self.unique_bytes += size
+        return row
+    def report(self):
+        return {'maxGraphs':MAX_CACHE_GRAPHS,'maxGraphBytes':MAX_CACHE_GRAPH_BYTES,
+                'maxFiles':MAX_CACHE_FILES,'maxFileBytes':MAX_CACHE_FILE_BYTES,
+                'maxTotalBytes':MAX_CACHE_TOTAL_BYTES,'retainedObservations':self.observations,
+                'retainedUniqueBytes':self.unique_bytes}
 
 
 def csc_arguments(action: str, root: Path, responses: dict[str, bytes]) -> dict | None:
@@ -158,9 +147,158 @@ def reaches(nodes, root, start: str, target: str) -> bool:
     return True
 
 
+def reachable_existing_dlls(nodes: list, root: Path, start: str, bee: Path) -> list[Path]:
+    reached={start}; result=set()
+    while True:
+        for value in reached:
+            p=Path(value)
+            try: inside=p.resolve().is_relative_to(bee.resolve())
+            except (OSError,ValueError): inside=False
+            if inside and p.suffix.lower()=='.dll' and p.is_file(): result.add(p.resolve())
+        actions.need(len(result)<=MAX_REACHABLE_DLLS,'Cached action reaches too many DLL outputs')
+        new=set()
+        for node in nodes:
+            if type(node) is not dict: continue
+            inputs={str(logical(root,p)) for p in node.get('Inputs',[])}
+            if inputs & reached: new.update(str(logical(root,p)) for p in node.get('Outputs',[]))
+        if new <= reached: break
+        reached.update(new)
+        actions.need(len(reached)<=100000,'Managed cached-action reachability exceeds bound')
+    return sorted(result)
+
+
+def _actual_defines(parsed: dict) -> set[str]:
+    return {v for definition in parsed['defines'] for v in re.split('[;,]', definition) if v}
+
+
+def _cache_response_rows(parsed: dict, responses: dict[str,bytes], retained: dict[str,dict],
+                         budget: CacheBudget, output: Path) -> list[dict]:
+    rows=[]
+    for path in parsed['responseSources']:
+        actions.need(path in responses,'Required cached managed response was not discovered: '+path)
+        if path not in retained:
+            row=budget.retain(Path(path),output,'cache-inputs'); row['sourcePath']=path; retained[path]=row
+        rows.append(dict(retained[path]))
+    actions.need(len(rows)==len(parsed['responseSources']),'Duplicate cached managed response closure')
+    return rows
+
+
+def capture_cache_graphs(root: Path, output: Path, assemblies: list, extra: list[str]) -> tuple[list,dict]:
+    """Snapshot only exact Player Csc chains that could be reused from Bee cache."""
+    bee=root/'Library/Bee'
+    if not bee.is_dir(): return [], CacheBudget().report()
+    paths=sorted(bee.glob('*.dag.json'))
+    actions.need(len(paths)<=MAX_CACHE_GRAPHS,'Managed Bee graph inventory exceeds cache-proof bound')
+    expected={a['name']:{str(logical(root,p)) for p in a['sourceFiles']} for a in assemblies}
+    budget=CacheBudget(); rows=[]
+    for path in paths:
+        actions.need(path.stat().st_size<=MAX_CACHE_GRAPH_BYTES,'Managed Bee graph exceeds cache-proof bound: '+str(path))
+        graph=read_json(path)
+        nodes=graph.get('Nodes',[])
+        if type(nodes) is not list or not any(type(n) is dict and 'csc' in str(n.get('Action','')).lower() for n in nodes): continue
+        responses=collect_managed_responses(graph,root)
+        retained_responses={}; compilations=[]
+        for index,node in enumerate(nodes):
+            if type(node) is not dict or 'csc' not in str(node.get('Action','')).lower(): continue
+            parsed=csc_arguments(node['Action'],root,responses)
+            if not parsed: continue
+            names=[name for name,sources in expected.items() if set(parsed['sourcePaths'])==sources]
+            if not names: continue
+            actions.need(len(names)==1,'One cached compiler action matches multiple required assemblies')
+            defines=_actual_defines(parsed)
+            if not set(extra)<=defines or 'UNITY_EDITOR' in defines: continue
+            response_files=_cache_response_rows(parsed,responses,retained_responses,budget,output)
+            dependencies=[budget.retain(Path(p),output,'cache-inputs') for p in parsed['dependencyPaths']]
+            actions.need(Path(parsed['output']).is_file(),'Cached Csc output is absent before build: '+parsed['output'])
+            compiler_output=budget.retain(Path(parsed['output']),output,'cache-outputs')
+            reachable=[budget.retain(p,output,'cache-outputs') for p in reachable_existing_dlls(nodes,root,parsed['output'],bee)]
+            actions.need(any(r['logicalPath']==parsed['output'] for r in reachable),'Cached Csc output was not retained in reachable DLL closure')
+            compilations.append({'assembly':names[0],'nodeIndex':index,
+                'actionSha256':hashlib.sha256(node['Action'].encode('utf-8')).hexdigest(),
+                **parsed,'responseFiles':response_files,'dependencies':dependencies,
+                'compilerOutput':compiler_output,'reachableOutputs':reachable})
+        if compilations:
+            graph_row=budget.retain(path,output,'cache-graphs')
+            graph_row.update(responseAuditSources=sorted(responses),compilations=compilations)
+            rows.append(graph_row)
+    return rows,budget.report()
+
+
+def observe(row: dict) -> dict:
+    path=Path(row['path'])
+    result={'path':row['path'],'expectedSha256':row['sha256'],'expectedSizeBytes':row['sizeBytes']}
+    try:
+        if not path.is_absolute() or path.is_symlink() or not path.is_file() or path != path.resolve(strict=True):
+            raise ValueError('not a canonical regular file')
+        size=path.stat().st_size; sha=digest(path)
+        result.update(status='Unchanged' if size==row['sizeBytes'] and sha==row['sha256'] else 'Changed',
+                      observedSha256=sha,observedSizeBytes=size)
+    except (OSError,ValueError) as error:
+        result.update(status='Unavailable',errorType=type(error).__name__,error=str(error))
+    return result
+
+
+def observe_cache_graphs(cache_graphs: list) -> list:
+    rows=[]
+    for graph in cache_graphs:
+        values=[graph,*graph.get('responseFiles',[])]
+        for compiled in graph.get('compilations',[]):
+            values.extend(compiled.get('responseFiles',[])); values.extend(compiled.get('dependencies',[]))
+            values.append(compiled['compilerOutput']); values.extend(compiled.get('reachableOutputs',[]))
+        observations=[]; seen=set()
+        for value in values:
+            key=(value['path'],value['sha256'],value['sizeBytes'])
+            if key in seen: continue
+            seen.add(key); observations.append(observe(value))
+        rows.append({'graphPath':graph['path'],'graphSha256':graph['sha256'],'observations':observations})
+    return rows
+
+
+def begin(request: dict, output: Path) -> dict:
+    root = Path(request['projectRoot']).resolve(strict=True)
+    actions.need(root.is_dir() and output.is_absolute() and not output.exists() and output == output.resolve(), 'New canonical evidence root required')
+    extra=request.get('extraScriptingDefines', [])
+    actions.need(type(extra) is list and all(type(v) is str for v in extra) and len(extra)==len(set(extra)), 'Invalid extra compiler defines')
+    assemblies=request.get('assemblies')
+    actions.need(type(assemblies) is list and len(assemblies) == len(REQUIRED_ASSEMBLIES) and
+                 {a.get('name') for a in assemblies} == REQUIRED_ASSEMBLIES, 'Both diagnostic managed source domains are required')
+    for a in assemblies:
+        actions.need(type(a.get('sourceFiles')) is list and a['sourceFiles'] and
+                     all(type(p) is str and p.endswith('.cs') for p in a['sourceFiles']), 'Managed source list is empty/invalid')
+        actions.need(type(a.get('defines')) is list and type(a.get('referenceFiles')) is list, 'Compiler source plan is incomplete')
+    paths = set()
+    for a in assemblies: paths.update(logical(root,p) for p in a['sourceFiles'])
+    orchestration = list((root / 'Assets/AssemblyShadowDemo/Editor').glob('*.cs'))
+    orchestration += list((root / 'Tools/AssemblyShadow').glob('*.py'))
+    paths.update(orchestration)
+    for name in ('ProjectSettings/AssemblyShadowSourcePins.json', 'ProjectSettings/AssemblyShadowReflectionBindings.json',
+                 'Packages/manifest.json', 'Packages/packages-lock.json'):
+        p=root/name
+        if p.exists(): paths.add(p)
+    for pattern in ('*.asmdef','*.asmref'): paths.update((root/'Assets').rglob(pattern))
+    paths.update(Path(str(p)+'.meta') for p in tuple(paths) if Path(str(p)+'.meta').is_file())
+    actions.need(len(paths) <= 100000, 'Source ledger exceeds bound')
+    bee=root/'Library/Bee'
+    existing=sorted(str(p.resolve()) for p in bee.rglob('*.dll')) if bee.is_dir() else []
+    graph_before={str(p.resolve()):digest(p) for p in bee.glob('*.dag.json')} if bee.is_dir() else {}
+    output.mkdir(parents=True)
+    rows=[]
+    for path in sorted(paths):
+        row=retain(path,output,'sources'); row['logicalPath']=str(path); rows.append(row)
+    cache_graphs,cache_limits=capture_cache_graphs(root,output,assemblies,extra)
+    pins=logical(root,request['sourcePinFile'])
+    record={'schemaVersion':3,'kind':'H1ManagedSourceBegin','projectRoot':str(root),
+        'buildId':request['buildId'], 'sourcePinSha256':digest(pins), 'assemblies':assemblies, 'extraScriptingDefines':extra,
+        'sources':rows,'preExistingBeeDlls':existing,'beeGraphsBefore':graph_before,
+        'cacheGraphs':cache_graphs,'cacheProofLimits':cache_limits,
+        'sourceToBinaryVerified':False}
+    write_new(output/'begin.json',(json.dumps(record,indent=2)+'\n').encode())
+    return record
+
+
 def end(request: dict, evidence_root: Path) -> dict:
     before_path=evidence_root/'begin.json'; before=read_json(before_path)
-    actions.need(before.get('kind')=='H1ManagedSourceBegin','Source begin ledger missing')
+    actions.need(before.get('kind')=='H1ManagedSourceBegin' and before.get('schemaVersion') in (1,2,3),'Source begin ledger missing')
     root=Path(before['projectRoot'])
     actions.need(request['buildId']==before['buildId'] and request['sourcePinSha256']==before['sourcePinSha256'], 'Build source identity changed')
     for row in before['sources']:
@@ -200,19 +338,104 @@ def end(request: dict, evidence_root: Path) -> dict:
         except (OSError,ValueError) as error:
             record['captureError']=str(error); problems.append(str(error))
         graph_rows.append(record)
-    record={'schemaVersion':1,'kind':'H1ManagedSourceCapture','status':'CapturedAwaitingIndependentGraphCheck',
+    cache_observations=observe_cache_graphs(before.get('cacheGraphs',[])) if before.get('schemaVersion') in (2,3) else []
+    capture_schema=3 if before.get('schemaVersion')==3 else 2
+    record={'schemaVersion':capture_schema,'kind':'H1ManagedSourceCapture','status':'CapturedAwaitingIndependentGraphCheck',
         'begin':{'path':str(before_path),'sha256':digest(before_path),'sizeBytes':before_path.stat().st_size},
         'buildId':request['buildId'],'buildGuid':request['buildGuid'],'inputSnapshotHash':request['inputSnapshotHash'],
         'nativeLibrarySha256':request['nativeLibrarySha256'],'sourcePinSha256':request['sourcePinSha256'],
-        'actualInputs':input_rows,'graphs':graph_rows,'captureProblems':problems,
+        'actualInputs':input_rows,'graphs':graph_rows,'cacheObservations':cache_observations,'captureProblems':problems,
         'sourceToBinaryVerified':False,'humanGatePassed':False,'mayEnterR02':False}
     write_new(evidence_root/'h1-managed-source-capture.json',(json.dumps(record,indent=2)+'\n').encode())
     return record
 
 
+def _verify_compilation(graph: dict, graph_row: dict, compiled: dict, before: dict, target: dict, expected: dict, root: Path, response_data: dict):
+    node=graph['Nodes'][compiled['nodeIndex']]
+    if 'actionSha256' in compiled:
+        actions.need(hashlib.sha256(node['Action'].encode('utf-8')).hexdigest()==compiled['actionSha256'],
+                     'Cached managed compiler action bytes differ')
+    parsed=csc_arguments(node['Action'],root,response_data)
+    if not parsed or set(parsed['sourcePaths'])!=expected[target['name']]: return None
+    for k in ('sourcePaths','dependencyPaths','output','defines','responseSources'):
+        actions.need(parsed[k]==compiled[k],'Managed compiler transcript differs: '+k)
+    actual_defines=_actual_defines(parsed)
+    actions.need(set(before.get('extraScriptingDefines', [])) <= actual_defines and 'UNITY_EDITOR' not in actual_defines,
+                 'Required Player compiler defines differ or Editor output selected')
+    return parsed
+
+
+def _observation_map(value: dict, graph_row: dict) -> dict:
+    matches=[x for x in value.get('cacheObservations',[]) if x.get('graphPath')==graph_row['path'] and x.get('graphSha256')==graph_row['sha256']]
+    actions.need(len(matches)==1,'Missing or ambiguous end observation for cached managed graph')
+    result={}
+    for row in matches[0].get('observations',[]):
+        key=(row.get('path'),row.get('expectedSha256'),row.get('expectedSizeBytes'))
+        actions.need(key not in result,'Duplicate cached-action end observation')
+        result[key]=row
+    return result
+
+
+def _require_unchanged(observations: dict, row: dict, label: str):
+    key=(row['path'],row['sha256'],row['sizeBytes'])
+    item=observations.get(key)
+    actions.need(item is not None and item.get('status')=='Unchanged' and item.get('observedSha256')==row['sha256'] and
+                 item.get('observedSizeBytes')==row['sizeBytes'], 'Cached managed '+label+' changed or was unavailable: '+row['path'])
+
+
+def _cached_response_data(before: dict, graph_row: dict, compiled: dict, observations: dict) -> dict[str,bytes]:
+    if before.get('schemaVersion')==3:
+        rows=compiled.get('responseFiles',[])
+        paths=[row.get('sourcePath') for row in rows]
+        actions.need(len(paths)==len(set(paths)) and set(paths)==set(compiled.get('responseSources',[])),
+                     'Cached compiler response closure differs')
+        result={}
+        for row in rows:
+            actions.need(row.get('sourcePath')==row.get('logicalPath'),'Cached response source identity differs')
+            result[row['sourcePath']]=verify_retained(row).read_bytes()
+            _require_unchanged(observations,row,'response')
+        return result
+    result={}
+    for row in graph_row.get('responseFiles',[]):
+        actions.need(row['sourcePath'] not in result,'Duplicate cached managed response')
+        result[row['sourcePath']]=verify_retained(row).read_bytes(); _require_unchanged(observations,row,'response')
+    return result
+
+
+def _cache_matches(value: dict, before: dict, target: dict, expected: dict, sources: dict, root: Path) -> list:
+    matches=[]
+    for graph_row in before.get('cacheGraphs',[]):
+        graph=read_json(verify_retained(graph_row)); observations=_observation_map(value,graph_row)
+        _require_unchanged(observations,graph_row,'graph')
+        for compiled in graph_row.get('compilations',[]):
+            if compiled.get('assembly')!=target['name']: continue
+            response_data=_cached_response_data(before,graph_row,compiled,observations)
+            parsed=_verify_compilation(graph,graph_row,compiled,before,target,expected,root,response_data)
+            if not parsed: continue
+            actions.need(all(p in sources for p in parsed['sourcePaths']),'Cached compiler source was not captured before build')
+            deps={r['logicalPath']:r for r in compiled['dependencies']}
+            actions.need(set(deps)==set(parsed['dependencyPaths']) and len(deps)==len(compiled['dependencies']), 'Cached compiler dependency closure differs')
+            for dep in deps.values(): verify_retained(dep); _require_unchanged(observations,dep,'dependency')
+            verify_retained(compiled['compilerOutput']); _require_unchanged(observations,compiled['compilerOutput'],'compiler output')
+            actions.need(compiled['compilerOutput']['logicalPath']==parsed['output'],'Cached compiler output location differs')
+            outputs={r['logicalPath']:r for r in compiled.get('reachableOutputs',[])}
+            actions.need(len(outputs)==len(compiled.get('reachableOutputs',[])),'Duplicate cached reachable output')
+            for output in outputs.values(): verify_retained(output); _require_unchanged(observations,output,'reachable output')
+            cached=outputs.get(target['sourcePath'])
+            if cached is None or cached['sha256']!=target['sha256'] or cached['sizeBytes']!=target['sizeBytes']: continue
+            if not reaches(graph['Nodes'],root,parsed['output'],target['sourcePath']): continue
+            matches.append({'assembly':target['name'],'evidenceMode':'BeeCacheHitBoundToFreshPlayerInput',
+                'graphSha256':graph_row['sha256'],'compilerActionSha256':compiled['actionSha256'],
+                'compilerOutputSha256':compiled['compilerOutput']['sha256'],'playerInputSha256':target['sha256'],
+                'compilerOutputExistedBeforeBuild':True,'cachedPlayerInputExistedBeforeBuild':True,
+                'responseClosureSha256':[row['sha256'] for row in compiled.get('responseFiles',[])] if before.get('schemaVersion')==3 else None})
+    return matches
+
+
 def verify(path: Path) -> dict:
     value=read_json(path); ref=value['begin']; before_path=Path(ref['path'])
-    actions.need(value.get('kind')=='H1ManagedSourceCapture' and digest(before_path)==ref['sha256'] and before_path.stat().st_size==ref['sizeBytes'], 'Begin ledger differs')
+    actions.need(value.get('kind')=='H1ManagedSourceCapture' and value.get('schemaVersion') in (1,2,3) and
+                 digest(before_path)==ref['sha256'] and before_path.stat().st_size==ref['sizeBytes'], 'Begin ledger differs')
     before=read_json(before_path); root=Path(before['projectRoot'])
     actions.need(value['buildId']==before['buildId'] and value['sourcePinSha256']==before['sourcePinSha256'], 'Source capture binding differs')
     sources={row['logicalPath']:row for row in before['sources']}
@@ -224,21 +447,15 @@ def verify(path: Path) -> dict:
     actions.need(len(inputs)==2 and {r['name'] for r in inputs}==REQUIRED_ASSEMBLIES,'Actual managed input membership differs')
     rows=[]
     for target in inputs:
-        verify_retained(target); matches=[]
+        verify_retained(target); direct=[]
         for graph_row in value['graphs']:
             graph=read_json(verify_retained(graph_row)); response_data={}
             for r in graph_row['responseFiles']:
                 actions.need(r['sourcePath'] not in response_data,'Duplicate retained managed response')
                 response_data[r['sourcePath']]=verify_retained(r).read_bytes()
             for compiled in graph_row['compilations']:
-                node=graph['Nodes'][compiled['nodeIndex']]
-                parsed=csc_arguments(node['Action'],root,response_data)
-                if not parsed or set(parsed['sourcePaths'])!=expected[target['name']]: continue
-                for k in ('sourcePaths','dependencyPaths','output','defines','responseSources'):
-                    actions.need(parsed[k]==compiled[k],'Managed compiler transcript differs: '+k)
-                actual_defines = {v for definition in parsed['defines'] for v in re.split('[;,]', definition) if v}
-                actions.need(set(before.get('extraScriptingDefines', [])) <= actual_defines and 'UNITY_EDITOR' not in actual_defines,
-                             'Required Player compiler defines differ or Editor output selected')
+                parsed=_verify_compilation(graph,graph_row,compiled,before,target,expected,root,response_data)
+                if not parsed: continue
                 actions.need(all(p in sources for p in parsed['sourcePaths']), 'Compiled source was not captured before build')
                 deps={r['logicalPath']:r for r in compiled['dependencies']}
                 actions.need(set(deps)==set(parsed['dependencyPaths']) and len(deps)==len(compiled['dependencies']), 'Compiler dependency closure differs')
@@ -247,29 +464,28 @@ def verify(path: Path) -> dict:
                 verify_retained(compiled['compilerOutput'])
                 actions.need(compiled['compilerOutput']['logicalPath']==parsed['output'], 'Compiler output location differs')
                 if reaches(graph['Nodes'],root,parsed['output'],target['sourcePath']):
-                    matches.append({'assembly':target['name'],'graphSha256':graph_row['sha256'],
-                        'compilerOutputSha256':compiled['compilerOutput']['sha256'],'playerInputSha256':target['sha256'],
-                        'compilerOutputExistedBeforeBuild':parsed['output'] in before['preExistingBeeDlls']})
+                    direct.append({'assembly':target['name'],'evidenceMode':'ChangedBeeGraphBoundToFreshPlayerInput',
+                        'graphSha256':graph_row['sha256'],'compilerOutputSha256':compiled['compilerOutput']['sha256'],
+                        'playerInputSha256':target['sha256'],'compilerOutputExistedBeforeBuild':parsed['output'] in before['preExistingBeeDlls']})
+        actions.need(len(direct)<=1,'Ambiguous changed managed action chain for '+target['name'])
+        if direct: matches=direct
+        else:
+            actions.need(before.get('schemaVersion') in (2,3) and value.get('schemaVersion')==before.get('schemaVersion'),
+                         'Managed cache proof is unavailable for this capture schema')
+            matches=_cache_matches(value,before,target,expected,sources,root)
         actions.need(len(matches)==1,'Missing or ambiguous managed action chain for '+target['name'])
         rows.extend(matches)
-    # This is intentionally narrower than independent M08 or fresh execution proof.
-    return {'schemaVersion':1,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
+    result_schema=3 if value.get('schemaVersion')==3 else 2
+    return {'schemaVersion':result_schema,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
         'capturePath':str(path),'captureSha256':digest(path),'buildId':value['buildId'],'buildGuid':value['buildGuid'],
         'inputSnapshotHash':value['inputSnapshotHash'],'nativeLibrarySha256':value['nativeLibrarySha256'],
         'sourcePinSha256':value['sourcePinSha256'],'rows':rows,
-        'scope':'Pre-build source bytes, retained compiler/dependency/response graph, and actual Player-input binding. Existing ILPP verification and build execution provenance remain separate requirements.',
+        'scope':'Pre-build source bytes plus either a changed managed action graph or a byte-stable pre-build Bee cached-action chain, both bound to the exact DLLs captured as inputs to this fresh Player. Schema-3 cached-action proof requires unchanged graph, each selected compiler action recursive response closure, dependencies, Csc output and downstream Player-input bytes; unrelated DAG responses are audit-only. It does not claim fresh Csc execution. ILPP verification and build execution provenance remain separate requirements.',
         'freshCompilerExecutionClaim':False,'humanGatePassed':False,'mayEnterR02':False}
 
 
-
 def verify_exact_reuse(path: Path, prior_proof_path: Path) -> dict:
-    """Explicit reuse of independently rechecked, byte-identical managed inputs.
-
-    This does not retrofit provenance onto an old unproven build. A complete
-    earlier direct graph proof is required and reverified from retained bytes.
-    A later native build may bind that same managed source/DLL identity without
-    pretending its managed compiler ran again. No automatic fallback occurs.
-    """
+    """Explicit legacy reuse of independently rechecked, byte-identical managed inputs."""
     proof=read_json(prior_proof_path)
     actions.need(proof.get('kind')=='H1ManagedSourceGraphVerification' and proof.get('status')=='SourceGraphBound'
                  and 'reusedFrom' not in proof, 'A direct prior graph proof is required; reuse chains are not accepted')
@@ -286,29 +502,28 @@ def verify_exact_reuse(path: Path, prior_proof_path: Path) -> dict:
                  'Current/prior source pin identity differs')
     for field in ('projectRoot','assemblies','extraScriptingDefines'):
         actions.need(current_begin.get(field)==prior_begin.get(field),'Managed reuse source plan differs: '+field)
-    def source_map(value):
-        rows=value['sources']; result={}
-        for row in rows:
-            verify_retained(row)
-            actions.need(row['logicalPath'] not in result,'Duplicate source identity in reuse')
+    def source_map(v):
+        result={}
+        for row in v['sources']:
+            verify_retained(row);actions.need(row['logicalPath'] not in result,'Duplicate source identity in reuse')
             result[row['logicalPath']]=(row['sha256'],row['sizeBytes'])
         return result
     actions.need(source_map(current_begin)==source_map(prior_begin),'Managed reuse source/configuration bytes differ')
-    def input_map(value):
+    def input_map(v):
         result={}
-        for row in value['actualInputs']:
+        for row in v['actualInputs']:
             verify_retained(row);actions.need(row['name'] not in result,'Duplicate managed input in reuse')
             result[row['name']]=(row['sha256'],row['sizeBytes'])
         actions.need(set(result)==REQUIRED_ASSEMBLIES,'Managed reuse input domain differs')
         return result
     actions.need(input_map(current)==input_map(prior),'Actual Player DLLs differ from the proven prior managed compilation')
-    return {'schemaVersion':1,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
+    result_schema=3 if current.get('schemaVersion')==3 else 2
+    return {'schemaVersion':result_schema,'kind':'H1ManagedSourceGraphVerification','status':'SourceGraphBound',
         'capturePath':str(path),'captureSha256':digest(path),'buildId':current['buildId'],'buildGuid':current['buildGuid'],
         'inputSnapshotHash':current['inputSnapshotHash'],'nativeLibrarySha256':current['nativeLibrarySha256'],
         'sourcePinSha256':current['sourcePinSha256'],'rows':proof['rows'],
-        'reusedFrom':{'path':str(prior_proof_path),'sha256':digest(prior_proof_path),
-                     'capturePath':str(prior_path),'captureSha256':digest(prior_path)},
-        'scope':'Explicit reuse of a reverified direct managed graph proof with identical source/configuration/defines and actual Player DLL bytes. Current native execution remains a separate proof.',
+        'reusedFrom':{'path':str(prior_proof_path),'sha256':digest(prior_proof_path),'capturePath':str(prior_path),'captureSha256':digest(prior_path)},
+        'scope':'Explicit legacy reuse of a reverified direct managed graph proof with identical source/configuration/defines and actual Player DLL bytes. Current native execution remains a separate proof.',
         'freshCompilerExecutionClaim':False,'humanGatePassed':False,'mayEnterR02':False}
 
 

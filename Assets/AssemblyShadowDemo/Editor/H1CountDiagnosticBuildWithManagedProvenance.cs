@@ -41,7 +41,7 @@ namespace AssemblyShadowDemo.Editor
             var settings = AssemblyShadowSettings.Instance;
             string[] defines = ShadowReflectionBindingEvidence.CompilationDefines(new[] {
                 H1CountDiagnosticBuild.DiagnosticDefine, H1CountDiagnosticBuild.R01BDiagnosticsDefine });
-            H1ManagedSourceBuildBinding.Context context = H1ManagedSourceBuildBinding.Begin(
+            H1ManagedSourceProvenance.Context context = H1ManagedSourceProvenance.Begin(
                 projectRoot, settings.sourcePinFile, baselineId, evidenceRoot, defines);
 
             H1CountDiagnosticBuild.BuildDiagnosticPlayer();
@@ -55,7 +55,7 @@ namespace AssemblyShadowDemo.Editor
             Require(captured.buildGuid == receipt.buildGuid && captured.snapshotHash == receipt.inputSnapshotHash &&
                 captured.nativeLibrarySha256 == receipt.nativeLibrarySha256,
                 "The wrapped build receipt and Player input snapshot differ.");
-            string capturePath = H1ManagedSourceBuildBinding.End(context, receipt.inputSnapshot, captured, receipt.sourcePinSha256);
+            string capturePath = H1ManagedSourceProvenance.End(context, receipt.inputSnapshot, captured, receipt.sourcePinSha256);
             string linkPath = Path.Combine(evidenceRoot, "managed-source-link.json");
             var link = new ManagedLink {
                 buildReceiptPath = receiptPath, buildReceiptSha256 = receiptSha,
