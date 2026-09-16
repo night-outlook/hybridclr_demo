@@ -12,18 +12,9 @@
       "implementationCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
       "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
-        "hybridclr": {
-          "url": "https://github.com/night-outlook/hybridclr",
-          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
-        },
-        "hybridclrUnity": {
-          "url": "https://github.com/night-outlook/hybridclr_unity",
-          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
-        },
-        "il2cppPlus": {
-          "url": "https://github.com/night-outlook/il2cpp_plus",
-          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
-        }
+        "hybridclr": {"url": "https://github.com/night-outlook/hybridclr", "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"},
+        "hybridclrUnity": {"url": "https://github.com/night-outlook/hybridclr_unity", "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"},
+        "il2cppPlus": {"url": "https://github.com/night-outlook/il2cpp_plus", "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"}
       }
     },
     "reproduction": {
@@ -33,38 +24,36 @@
       "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
       "preservationPolicy": "The protected reproduction branch/head and its unfixed behavior source/runtime pins must not move. Local Validation runs the same unfixed behavior through the separately authenticated tooling-only successor declared in validationTooling; this does not change reproduction runtime/Player behavior or promote the tooling branch to behavior authority.",
       "runtimePins": {
-        "hybridclr": {
-          "url": "https://github.com/night-outlook/hybridclr",
-          "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf"
-        },
-        "hybridclrUnity": {
-          "url": "https://github.com/night-outlook/hybridclr_unity",
-          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
-        },
-        "il2cppPlus": {
-          "url": "https://github.com/night-outlook/il2cpp_plus",
-          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
-        }
+        "hybridclr": {"url": "https://github.com/night-outlook/hybridclr", "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf"},
+        "hybridclrUnity": {"url": "https://github.com/night-outlook/hybridclr_unity", "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"},
+        "il2cppPlus": {"url": "https://github.com/night-outlook/il2cpp_plus", "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"}
       },
       "validationTooling": {
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
-        "revision": "482a615bb662666f16f861c560f15c6607b82224",
+        "revision": "0c9c2508d94a097dff50028212a01695c8e29c60",
         "candidateToolSourceAnchor": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+          "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
+          "Assets/AssemblyShadowDemo/Editor/H1EvidenceProcess.cs": "f4dccd836bf61076048dba95b4de0c15621bf3be",
+          "Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
           "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
           "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
           "Tools/AssemblyShadow/h1_compiler_actions.py": "e89c97c553793a8866c25b3090972a550f91b751",
           "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+          "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
           "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
           "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
         },
         "overrides": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+          "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
+          "Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
           "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
           "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
           "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+          "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
           "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
           "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
         }
@@ -93,26 +82,14 @@
     "measuredFailedAttemptUniqueBytes": 267613743,
     "previousAggregateLimitBytes": 268435456,
     "policy": "Retain every declared native source by raw SHA-256 and raw length while separating content identity from reversible storage representation. Generated C/C++/ObjC sources use content-addressed zlib-v1 only when smaller; semantic request/DAG/PCH/header/response/plist evidence stays raw by default. Successful attempts independently authenticate the retained store before finalization.",
-    "limits": {
-      "maxFileBytes": 67108864,
-      "maxLogicalUniqueBytes": 2147483648,
-      "maxStoredBytes": 536870912,
-      "maxObservations": 4096
-    }
+    "limits": {"maxFileBytes": 67108864, "maxLogicalUniqueBytes": 2147483648, "maxStoredBytes": 536870912, "maxObservations": 4096}
   },
   "managedCacheRepair": {
     "returnedByLocalValidationCommit": "7f98084518054bd43e10abb603fe193612cfb321",
     "previousSourceAnchor": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
     "failure": "Fresh native provenance and retention passed, but the managed verifier required a changed Bee graph even when the exact required Player Csc/ILPP chain and DLL outputs were legitimately reused from an unchanged Bee cache.",
     "policy": "At begin, retain bounded exact reusable Player Csc chains from pre-existing Bee DAGs, including graph/action, recursive response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL bytes. At end, require selected-chain evidence to remain byte-identical and require exactly one chain to reach the exact path/hash/size of the DLL captured as an input to the fresh Player. Prefer a unique changed-graph proof when present. Cache proof never claims fresh Csc execution and is not the legacy prior-proof reuse route.",
-    "limits": {
-      "maxGraphs": 64,
-      "maxGraphBytes": 134217728,
-      "maxFiles": 4096,
-      "maxFileBytes": 67108864,
-      "maxTotalBytes": 536870912,
-      "maxReachableDlls": 128
-    }
+    "limits": {"maxGraphs": 64, "maxGraphBytes": 134217728, "maxFiles": 4096, "maxFileBytes": 67108864, "maxTotalBytes": 536870912, "maxReachableDlls": 128}
   },
   "managedResponseScopeRepair": {
     "returnedByLocalValidationCommit": "dc9116a46097739b634c791ac7213f431b54af22",
@@ -126,9 +103,9 @@
     "previousCandidateSourceAnchor": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
     "protectedReproductionHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
     "toolingBranch": "codex/assembly-shadow-h1-count-repro-tooling",
-    "toolingRevision": "482a615bb662666f16f861c560f15c6607b82224",
-    "failure": "The protected reproduction Player built successfully, but its project-local older provenance tool applied obsolete global macro equivalence and rejected the real 446-action graph. Candidate-owned diagnostic replay accepted the same graph under the reviewed current macro/PCH/store policy, but replay was not fresh build provenance.",
-    "policy": "Preserve the protected reproduction behavior branch/head, demo source pin, unfixed native pin, package and IL2CPP pins. Execute reproduction validation only from the explicit tooling-only successor. Candidate authority proves its non-metadata delta is exactly the six allowed validation overrides, proves all seven required tool dependency blobs equal the reviewed candidate source anchor, and checks the protected published head has no behavior changes after its source pin. The candidate wrapper enforces this before and after every reproduction build and writes a validation-tooling-binding sidecar bound to the strictly verified build receipt SHA. Diagnostic replay remains non-acceptance evidence."
+    "toolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
+    "failure": "The protected reproduction Player built successfully, but its project-local older native provenance tool applied obsolete global macro equivalence and rejected the real 446-action graph. Its managed capture bridge also predates the current schema-3 cache proof. Candidate-owned diagnostic replay accepted the same native graph under current policy, but replay was not fresh build provenance.",
+    "policy": "Preserve the protected reproduction behavior branch/head, demo source pin, unfixed native pin, package and IL2CPP pins. Execute reproduction validation only from the explicit tooling-only successor. Candidate authority proves its non-metadata delta is exactly nine validation overrides, proves all eleven required native+managed validation tool dependency blobs equal the reviewed candidate source anchor, and checks the protected published head has no behavior changes after its source pin. The candidate wrapper enforces this before and after every reproduction build and writes a validation-tooling-binding sidecar bound to the strictly verified build receipt SHA. Diagnostic replay remains non-acceptance evidence."
   },
   "gateState": {
     "name": "H1",
