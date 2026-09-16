@@ -29,8 +29,12 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
 
     def test_workflow_failure_wrapper_restores_real_scene_and_settings_inputs(self):
         wrapper = (ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
-        core = ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.Core.ps1'
-        self.assertTrue(core.is_file())
+        core_path = ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.Core.ps1'
+        self.assertTrue(core_path.is_file())
+        core = core_path.read_text()
+        self.assertIn("AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs", core)
+        self.assertIn("AssemblyShadowDemo.Editor.M07Build.BuildBaselineResources", core)
+        self.assertNotEqual('PLACEHOLDER', core.strip())
         for value in (
             'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity',
             'ProjectSettings/AssemblyShadowSettings.asset',
