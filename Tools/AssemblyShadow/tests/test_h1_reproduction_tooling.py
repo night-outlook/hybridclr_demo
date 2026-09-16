@@ -96,9 +96,11 @@ class WrapperTests(unittest.TestCase):
             preflight.assert_called_once_with(root,wrapper.AUTHORITY_PROJECT)
             installed.assert_called_once_with(root,demo_source=False,expected_shadow='on')
             self.assertEqual('c'*40,row['validationToolingCommit'])
-    def test_candidate_path_delegates_unchanged(self):
+    def test_candidate_path_delegates_without_changing_source_proof(self):
         with tempfile.TemporaryDirectory() as temp,patch.object(wrapper,'_ORIGINAL_INSPECT',return_value={'candidate':True}) as original:
-            root=Path(temp).resolve();self.assertEqual({'candidate':True},wrapper.inspect_project(root,'candidate'));original.assert_called_once_with(root,'candidate')
+            root=Path(temp).resolve();row=wrapper.inspect_project(root,'candidate')
+            self.assertEqual(True,row['candidate']);self.assertEqual('candidate',row['role'])
+            original.assert_called_once_with(root,'candidate')
 
 
 if __name__=='__main__':unittest.main()
