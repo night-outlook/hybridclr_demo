@@ -28,7 +28,7 @@ Read first:
 
 Git is the handoff authority. Preserve all prior evidence and attempts. Do not apply chat ZIPs or unpublished patches.
 
-## Exact source targets
+## Source targets
 
 | Role | Repository / branch | Exact identity |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ Git is the handoff authority. Preserve all prior evidence and attempts. Do not a
 
 Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. `ProjectSettings/AssemblyShadowSourcePins.json` and `source-targets.json` both pin candidate source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a`. The fetched branch HEAD is expected to be a later metadata-only handoff successor; record both checkout HEAD and source anchor.
 
-## Repair contract
+## Implementation
 
 ### Schema-3 action-local response ownership
 
@@ -78,7 +78,7 @@ For each required assembly, cache acceptance still requires all of the following
 
 Existing schema-1/2 historical evidence remains readable. Schema-2 evidence keeps its historical semantics; it is not retroactively reinterpreted as schema 3.
 
-## Primary review and bounded validation
+### Primary review and bounded validation
 
 Primary source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a` passed workflow run `35066118142` with **283/283** bounded tests and zero nonpasses.
 
@@ -94,7 +94,7 @@ Existing negative coverage for stale output, ambiguous actions, changed source, 
 
 This is bounded Primary/tool evidence only. It is not macOS Unity/Apple Player acceptance, V02/V03 completion, M08 PASS or human approval.
 
-## Local Validation
+## Local validation
 
 ### V00 — authoritative preflight
 
@@ -156,6 +156,14 @@ On any managed-cache failure retain the exact checkout/source anchor/pins, build
 
 Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Preserve all earlier Local checkpoints and historical v6–v11 evidence unchanged.
 
+## Alternatives
+
+Do not bypass V00, clear Bee cache merely to force recompilation, use legacy `--reuse-proof` as a substitute for the current-build cache proof, broaden response/source/dependency allowlists, or relax any native/PCH/managed provenance requirement. If the real Bee graph exposes a legitimate structure outside the reviewed schema-3 contract, preserve the full evidence and return it to Primary for a reviewed successor.
+
+## Risks
+
+The schema-3 implementation has not yet received fresh macOS Unity/Player validation under this handoff because the preceding Local cycle stopped at V00 on the literal-heading contract. Primary's 283/283 result remains bounded tooling evidence only. Fresh V00–V05 must therefore establish the real action-local response behavior, full build/runtime evidence, and independent whole-chain M08 without promoting historical results to the new handoff.
+
 ## Local correction boundary
 
 Local may correct machine-specific paths, executable permissions, invocation syntax, fresh output-directory choices, isolated test harness setup and already-documented exact generated-file restoration after preserving before/after bytes.
@@ -164,7 +172,7 @@ Local must not change response ownership rules, source selection, dependency/rea
 
 Do not rewrite this `WEB_TO_LOCAL.md` during Local Validation.
 
-## Gate
+## Human review gate
 
 H1 is still **InProgress / BlockedPendingFreshV00ToV05**. Last independent M08 remains **FAIL**. `humanGatePassed=false`; `mayEnterR02=false`.
 
