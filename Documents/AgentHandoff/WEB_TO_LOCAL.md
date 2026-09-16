@@ -2,31 +2,31 @@
 
 ## Objective
 
-Resume HybridCLR Assembly Shadow R01B H1 validation from the protected-reproduction validation-tool coupling repair.
+Resume HybridCLR Assembly Shadow R01B H1 validation from the reproduction-tooling Editor-source compatibility repair returned by Local Validation commit `cef1ec761e268ebbb699cc16b6ab037d7bc5a482`.
 
-Authoritative candidate demo source / implementation anchor:
+Authoritative candidate source / implementation anchor:
 
-`1b1cc9fe192b88be2a20fad31ea030b1e30be669`
+`3242b071540278510ea4ae287c70e37fc4c60340`
 
 Repository / branch:
 
 `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1`
 
-Local Validation commit `9dbe8ee7549b105a29a94bd7ec7383b2909ba066` established that candidate V02 and all four candidate V03 modes had current provenance, while the protected reproduction Player built but its older project-local native provenance tool rejected the real 446-action Apple Bee graph. Review also found the protected managed-source bridge predates the current schema-3 cache proof. Candidate-owned replay is diagnostic evidence only and cannot be promoted to fresh build provenance.
+The previous tooling successor correctly authenticated current native+managed provenance tooling but retained the protected historical `Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs`. That stale test referenced removed `H1ManagedSourceProvenance.Capture` API and failed Unity compilation with CS0426 before any reproduction Player build.
 
-Primary resolves the coupling with a separately authenticated **tooling-only reproduction successor** covering the required native and managed validation chain. The protected reproduction branch, unfixed behavior source and all protected runtime pins remain unchanged. Fresh V00–V05 are required. Preserve `local-validation-20260916-9568ea3` and all older evidence unchanged; its candidate V02/V03 results remain valid historical evidence for their original source chain, not fresh acceptance for this candidate anchor.
+Primary publishes a reviewed tooling-only successor that removes that obsolete test and its `.meta`, exactly matching their absence from the candidate source anchor. Protected reproduction behavior/runtime pins and all historical evidence remain unchanged.
 
-H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. **Do not begin R02.**
+Run fresh **V00–V05**. Last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. **Do not begin R02.**
 
 Read first:
 
 - `Documents/AgentHandoff/LOCAL_VALIDATION.md`
 - `Documents/AgentHandoff/RETURN_TO_WEB.md`
 - `Documents/AgentHandoff/source-targets.json`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-9568ea3/README.md`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/reproduction-tooling-primary-20260916/`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-534b03e/README.md`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/reproduction-tooling-compat-primary-20260916/`
 
-Git is the handoff authority. Do not apply chat ZIPs or unpublished patches.
+Git is the authority. Preserve all prior checkpoints/evidence; do not apply unpublished patches or mutate protected branches.
 
 ## Source targets
 
@@ -34,68 +34,85 @@ Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 
 | Role | Repository / branch | Exact identity |
 | --- | --- | --- |
-| Candidate demo source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `1b1cc9fe192b88be2a20fad31ea030b1e30be669` |
+| Candidate source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `3242b071540278510ea4ae287c70e37fc4c60340` |
 | Candidate native | `night-outlook/hybridclr` / `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | Shared package | `night-outlook/hybridclr_unity` / `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | Shared IL2CPP | `night-outlook/il2cpp_plus` / `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
-| **Protected reproduction branch — preserve** | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` |
-| Reproduction unfixed behavior source | same repository/history | `4e3d2035991ab5629265ac663e61bcb2ca62828b` |
-| **Reproduction validation tooling only** | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro-tooling` | `0c9c2508d94a097dff50028212a01695c8e29c60` |
+| Protected reproduction branch — preserve | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` |
+| Unfixed reproduction behavior source | same repository/history | `4e3d2035991ab5629265ac663e61bcb2ca62828b` |
+| Reproduction tooling successor | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro-tooling` | `ba8fee33753a5ebc215b7a98739e343d8e05572e` |
 | Reproduction native | `night-outlook/hybridclr` / `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` |
 | Performance reference — preserve | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` |
 
-Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. Candidate `AssemblyShadowSourcePins.json` pins `1b1cc9fe...`; the reproduction-tooling checkout retains the protected reproduction pin file, including demo behavior revision `4e3d203...` and reproduction native `99cdb1b...`.
+Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**.
 
-The final candidate branch HEAD is expected to be a later metadata-only handoff successor. Record both final checkout HEAD and candidate source anchor. The tooling revision is not a new behavior/source pin and must never replace the protected reproduction identity in runtime/count conclusions.
+Candidate `ProjectSettings/AssemblyShadowSourcePins.json` pins source anchor `3242b071...`. The tooling checkout retains the protected reproduction pin bytes: behavior `4e3d203...`, native `99cdb1b...`, package `0ea633a...`, IL2CPP `6be7f38...`.
+
+The final candidate branch HEAD will be a later metadata-only handoff successor. Record both final checkout HEAD and source anchor. Never use the tooling revision as the reproduction runtime/behavior identity.
 
 ## Implementation
 
-### Split reproduction behavior/tooling identity
+### Exact tooling successor delta
 
-The protected reproduction branch remains historical and unfixed, but its Editor validation wrappers execute project-local tools. Preserving the old project tree therefore preserved obsolete validation policy as well as unfixed runtime behavior.
+Relative to protected reproduction head `352d747...`, tooling successor `ba8fee33...` contains only validation-infrastructure changes:
 
-Primary published a separate tooling-only successor. Candidate authority now proves:
+- the existing **nine** reviewed validation blob replacements from the prior tooling successor;
+- deletion of `Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs`;
+- deletion of `Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs.meta`.
 
-1. behavior source `4e3d203...` → protected head `352d747...` → tooling revision `0c9c250...` ancestry;
-2. the protected published head contains no non-metadata behavior changes after its behavior source pin;
-3. tooling revision non-metadata delta from protected head is **exactly nine validation-only overrides**;
-4. the **complete eleven-file native+managed validation dependency set**, including already-identical `H1EvidenceProcess.cs` and `h1_compiler_actions.py`, has exact Git blob IDs matching candidate source anchor `1b1cc9fe...`;
-5. reproduction pin bytes still identify the original unfixed behavior/native/package/IL2CPP chain;
-6. working bytes match Git and no untracked Unity build inputs are present.
+The complete protected-head → tooling-successor delta is therefore **11 validation-only paths**. No gameplay/runtime/native product source or protected pin is changed.
 
-The authority tool is `Tools/AssemblyShadow/h1_reproduction_tooling.py`; expected V00 status is `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`.
+### Authenticated deletions
 
-The tooling successor includes current native provenance capture plus the current managed build wrapper, managed-source bridge and schema-3 `h1_managed_provenance.py`. It does **not** replace `H1CountDiagnosticBuild`, runtime diagnostic code, unfixed native code or protected pins.
+`h1_reproduction_tooling.py` now treats deletions as first-class authority entries rather than implicit exceptions.
 
-### Fresh build integration
+V00 requires every declared deletion to:
 
-For fresh V03 use candidate-owned `Tools/AssemblyShadow/h1_count_build_batch_tooling.py`.
+1. exist in the protected head;
+2. be absent from the tooling successor;
+3. participate in the exact full changed-build-input set;
+4. be absent from the exact candidate source anchor as well.
 
-Candidate builds use the normal source/provenance flow. Reproduction builds run Unity from the exact tooling-only checkout while installed runtime remains verified against protected reproduction pins. Candidate-owned strict native and managed verifiers verify the resulting fresh receipt, and split identity is re-authenticated after restoration.
+A path cannot be both an override and deletion. Undeclared deletion, extra deletion, wrong blob, runtime-source change or pin drift remains a hard failure.
 
-After strict build verification the wrapper writes `validation-tooling-binding.json` binding exact build-receipt SHA-256, role, protected behavior source, validation checkout/tooling revision, source-pin SHA-256, current `source-targets.json` SHA-256 and complete tool-file map. Its status is `ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted`; it is not runtime/M08/human acceptance.
+### Assembled Editor-source compatibility
 
-Diagnostic replay remains non-acceptance.
+After tree/blob/untracked verification, V00 audits the exact assembled tracked C# set under:
 
-### Primary review
+- `Assets/AssemblyShadowDemo/Editor/`
+- `Assets/AssemblyShadowDemo/Tests/Editor/`
 
-Candidate source anchor `1b1cc9fe192b88be2a20fad31ea030b1e30be669` passed workflow **35081136990** with **294/294** bounded tests, zero nonpasses.
+It rejects retained consumers of the removed historical `H1ManagedSourceProvenance` API, including the `Capture`/`CaptureBeforeBuild`/`RequireUnchanged` surface that caused the CS0426 failure.
 
-- authenticated Apple fixture SHA-256: `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`
-- artifact ID: `10439663711`
-- artifact ZIP SHA-256: `a7ad62cbd34200056448374b69f942c0cd7e9d3515bb7e499fe2d64c44d3dd7d`
+The V00 result now includes:
 
-The tooling branch tree was additionally reviewed against the protected reproduction head: its direct non-metadata delta is the declared nine validation paths. All eleven required dependency blobs are candidate-authenticated by V00. Primary CI is bounded tool evidence only, not macOS Unity reproduction acceptance or M08.
+- `toolDeletions` — exact two deleted paths;
+- `editorSourceCompatibility.status=Compatible`;
+- Editor-source inventory count/hash.
+
+This is a bounded source-compatibility check, not a substitute for V01 Unity compilation.
+
+### Regression and Primary validation
+
+The real disposable-Git regression now constructs the exact failure topology: protected reproduction has the stale Editor test, tooling successor deletes it, candidate source omits it, and the assembled tooling source audit must pass. Negative tests reject undeclared deletion, a legacy API consumer, and a deletion not absent from the candidate anchor.
+
+Candidate source anchor `3242b071540278510ea4ae287c70e37fc4c60340` passed workflow **35093281267** with **298/298**, zero nonpasses.
+
+- authenticated Apple Bee fixture SHA-256: `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`
+- artifact ID: `10444094920`
+- artifact ZIP SHA-256: `336777f8cec845bc2a9557f3a6312d472229cb62e3eed31ec17dde97dd5f4045`
+
+This is bounded Primary/tool evidence only. Fresh Unity compilation and V00–V05 remain mandatory.
 
 ## Local validation
 
-Run fresh **V00–V05**. Follow `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/reproduction-tooling-primary-20260916/LOCAL_VALIDATION_TASKS.md`.
+Follow `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/reproduction-tooling-compat-primary-20260916/LOCAL_VALIDATION_TASKS.md`.
 
-### V00 — dual authority preflight
+### V00 — dual authority and assembled-source preflight
 
-1. Pull candidate `codex/assembly-shadow-r01b-h1`; record final HEAD/source anchor/dirty state.
-2. Run normal candidate `h1_handoff_preflight.py`; require `SourceTargetVerifiedNotBuildAccepted` and source anchor `1b1cc9fe...`.
-3. Use a separate reproduction checkout on `codex/assembly-shadow-h1-count-repro-tooling` at exact `0c9c2508d94a097dff50028212a01695c8e29c60`.
+1. Pull candidate `codex/assembly-shadow-r01b-h1`; record final HEAD, source anchor `3242b071...`, dirty/untracked state and protected sibling heads.
+2. Run normal candidate `h1_handoff_preflight.py`; require `SourceTargetVerifiedNotBuildAccepted`.
+3. Use a separate checkout on `codex/assembly-shadow-h1-count-repro-tooling` at exact `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
 4. From candidate run:
 
 ```sh
@@ -105,72 +122,67 @@ python3 Tools/AssemblyShadow/h1_reproduction_tooling.py \
   --output /ABS/NEW/v00/reproduction-tooling.json
 ```
 
-Require behavior `4e3d203...`, protected head `352d747...`, tooling `0c9c250...`, exact 11-file tool map / 9-file override map, protected pins unchanged and gate flags false. If either preflight fails, stop before V01–V05.
+Require exact behavior/protected/tooling identities, exact eleven-file required tool map, exact nine replacement map, exact two deletion paths, `editorSourceCompatibility.status=Compatible`, protected pins unchanged and gate flags false.
 
-### V01 — source/tool/Unity regressions
+If either V00 check fails, stop before V01–V05.
 
-Run full H1 Python inventory and exact Primary suite, including split-tooling and receipt-binding regressions. Compile candidate and exact reproduction-tooling checkout in Unity 2022.3.62f2; explicitly verify current native provenance wrapper and managed schema-3 bridge compile. Run affected H1/Assembly Shadow Editor tests. Preserve exact logs/XML/nonpasses and both preflight records.
+### V01 — real compile and focused regressions
 
-### V02 — fresh candidate normal-cache proof
+Run full H1 Python inventory and bounded Primary suite. Compile candidate and exact tooling successor under Unity 2022.3.62f2. The historical CS0426 must be absent. Run affected H1/Assembly Shadow Editor NUnit suites in both checkouts and preserve exact test IDs/logs/XML/skips/nonpasses.
 
-Re-run fresh candidate ON/Debug schema-3 normal-cache validation for source anchor `1b1cc9fe...`. Preserve normal Bee cache; require action-local recursive response ownership and all prior graph/action/dependency/output/reachability/fresh-Player-binding controls. Do not use `--reuse-proof` as substitute acceptance.
+Any further assembled tooling Editor-source incompatibility returns to Primary; do not expand the tooling allowlist locally.
 
-Previous candidate V02/V03 evidence from `local-validation-20260916-9568ea3` stays preserved and referenceable, but is not relabeled as fresh evidence for this source anchor.
+### V02 — fresh candidate schema-3 proof
 
-### V03 — fresh six-build set
+Run fresh candidate ON/Debug normal-cache proof for source anchor `3242b071...`. Preserve the normal Bee cache and require current schema-3 action-local response ownership, graph/action/dependency/output/reachability controls, exact fresh Player input binding and no `--reuse-proof` substitution.
 
-Use only:
+Historical V02/V03 results under older anchors remain historical and must not be relabeled.
 
-```sh
-python3 Tools/AssemblyShadow/h1_count_build_batch_tooling.py \
-  --candidate /ABS/CANDIDATE \
-  --reproduction /ABS/REPRO_TOOLING \
-  --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
-  --pwsh /ABS/pwsh \
-  --scope all \
-  --output /ABS/NEW/v03/builds \
-  --execute
-```
+### V03 — fresh six-build provenance set
 
-Do not reuse old-source smoke receipts. Produce fresh candidate ON/OFF × Debug/Release and reproduction ON Debug/Release receipts.
+Use candidate-owned `Tools/AssemblyShadow/h1_count_build_batch_tooling.py` with candidate and exact `ba8fee33...` tooling checkouts. Do not reuse old-source smoke receipts.
 
-Every reproduction build must pass current strict native **and managed** provenance and exact restoration, and produce `validation-tooling-binding.json` with behavior source `4e3d203...`, tooling revision `0c9c250...`, exact receipt SHA, protected pin SHA, current source-target SHA and complete 11-file tool identity map.
+Produce fresh candidate ON/OFF × Debug/Release and reproduction ON Debug/Release. Every reproduction build must pass current strict native+managed provenance and exact restoration. Archive the V00 tooling preflight alongside receipt-bound tooling evidence so the authenticated replacements/deletions and assembled-source compatibility remain in the evidence chain.
 
 ### V04 — runtime/count/startup/capacity/performance
 
-After a valid six-build set, execute the established chain: 132 candidate count cells, 8 unfixed reproduction cells, fresh baseline/fixtures/replay, startup11, 8192/8193 capacity boundary, required lazy/dense/generic/array/reflection/FieldRVA/old-Player and M03–M07 coverage. Run controlled Development performance only against protected reference `88508b59...` on common supported workloads.
+After a valid fresh six-build set, execute the established R01B runtime chain: 132 candidate cells, 8 unfixed reproduction cells, fresh baseline/fixtures/replay, startup11, 8192/8193 capacity boundary, required lazy/dense/generic/array/reflection/FieldRVA/old-Player and M03–M07 coverage, plus controlled Development performance against preserved reference `88508b59...` on common supported workloads.
 
-### V05 — successor package and independent M08
+### V05 — successor and independent whole-chain M08
 
-Archive/index all required fresh raw evidence, including the reproduction-tooling V00 preflight, source-target/pin bytes, exact tooling tree/delta, each reproduction `validation-tooling-binding.json`, bound receipt and raw native+managed/PCH/store evidence. Preserve old candidate V02/V03 evidence with original source identity/disposition.
+Build the successor package only from explicit fresh evidence. Include both V00 authority outputs, exact source-target/pin bytes, tooling tree/delta, `toolDeletions`, `editorSourceCompatibility`, fresh receipts/bindings, raw native+managed/PCH/store evidence, runtime/count/startup/capacity/performance evidence, and historical evidence with original identity/disposition.
 
-Authenticate archive/index bytes and semantic membership, then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review. **Only genuine independent whole-chain M08 PASS** may make the package Ready for Human Review Gate; then stop for explicit human H1 approval.
+Authenticate archive/index bytes and semantic membership. Then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review.
+
+Only a genuine independent whole-chain **M08 PASS** may make the package Ready for Human Review Gate. Then stop for explicit human H1 approval.
 
 ## Failure evidence
 
-For split-tooling failures retain candidate/reproduction checkout HEADs/branches/remotes, candidate `source-targets.json`, reproduction pins, behavior/protected/tooling SHAs, exact tree delta, complete tool blob map, working-tree/untracked state, preflight stdout/stderr/exit/output, Unity logs/XML, build receipt and raw native/managed provenance evidence.
+On V00/V01 failure retain candidate/tooling branches and exact HEADs, source anchor, source-target bytes/hash, protected pin bytes, complete tooling compare/delta, tool replacement/deletion maps, `editorSourceCompatibility`, working-tree/untracked state, Unity compile logs and NUnit XML.
 
-For V03 retain every `validation-tooling-binding.json` even if a later stage fails and identify whether failure occurred at tooling authority, Unity compilation/build, native capture, managed capture, strict verification, receipt binding, restoration/source recheck, runtime validation or later chain stage.
+On V02–V05 failure retain the established raw build/provenance/runtime evidence and identify the exact stage. Do not overwrite or relabel `local-validation-20260916-534b03e`, `local-validation-20260916-9568ea3`, or older checkpoints.
 
-Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Preserve `local-validation-20260916-9568ea3` and all earlier evidence unchanged.
+Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct.
 
 ## Alternatives
 
-Do not move/rewrite the protected reproduction branch, repin it to fixed/current candidate source, copy current runtime/native fixes into reproduction, manually copy validation files outside the declared tooling revision, or promote diagnostic replay to acceptance.
+Do not reintroduce or locally port the historical managed-source test, move/rewrite the protected reproduction branch, repin reproduction to candidate/fixed behavior, copy runtime/native fixes into reproduction, or manually alter the tooling checkout.
 
-A future external candidate-owned tool bundle would require a separate reviewed design that binds exact tool bytes into fresh Unity capture. It is not authorized by this handoff.
+If Unity finds another legitimate Editor dependency not covered by the reviewed successor, preserve evidence and return to Primary for a new reviewed tooling successor.
 
 ## Risks
 
-The tooling-only successor changes Editor/validation infrastructure in the reproduction checkout. Local must empirically prove Unity compilation and fresh reproduction native+managed provenance while confirming protected runtime/Player behavior and pins remain unchanged. Any additional required tooling path means the current allowlist is incomplete and must return to Primary.
+The compatibility audit targets the concrete removed managed-source API that blocked Local Validation; it is not a general C# compiler. Fresh V01 Unity compilation of the exact assembled tooling checkout therefore remains mandatory.
 
-The candidate source anchor changed to add validation infrastructure; prior candidate V02/V03 results are preserved evidence but not fresh current-anchor acceptance. Primary's 294/294 CI does not replace macOS Unity/Player validation.
+Candidate source anchor changed again because authority/deletion logic and regressions changed. Historical candidate V02/V03 evidence remains preserved but is not fresh acceptance for `3242b071...`.
+
+Primary 298/298 does not establish Player, runtime, performance, M08 or Human Review Gate acceptance.
 
 ## Local correction boundary
 
-Local may correct machine paths, executable permissions, invocation syntax, output-directory choices and isolated test setup, and may perform already-documented exact generated-file restoration after preserving before/after bytes.
+Local may correct machine-specific paths, executable permissions, invocation syntax, new output-directory choices and isolated test harness setup, and may perform already-documented exact generated-file restoration after preserving before/after bytes.
 
-Local must not change tooling branch/revision, tool-file/override maps, protected reproduction branch/source pins, native/package/IL2CPP pins, runtime behavior, provenance acceptance semantics, cache/macro/PCH rules, count behavior, ABI/architecture or performance methodology. Such issues return to Primary regardless of diff size.
+Local must not change the tooling revision, replacement/deletion authority, protected behavior/runtime pins, provenance semantics, cache/macro/PCH rules, count behavior, ABI/architecture or performance methodology. Such issues return to Primary regardless of diff size.
 
 Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
@@ -178,6 +190,6 @@ Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
 H1 remains **InProgress / BlockedPendingFreshV00ToV05**. Last independent whole-chain M08 remains **FAIL**. `humanGatePassed=false`; `mayEnterR02=false`.
 
-Fresh V00–V05 and a genuine independent whole-chain M08 PASS are required before **Ready for Human Review Gate**. Then stop for explicit human H1 approval.
+Fresh V00–V05 and genuine independent whole-chain M08 PASS are required before Ready for Human Review Gate. Then stop for explicit human H1 approval.
 
 **Do not begin R02.**
