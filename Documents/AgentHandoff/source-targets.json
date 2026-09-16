@@ -8,8 +8,8 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "3242b071540278510ea4ae287c70e37fc4c60340",
-      "implementationCommit": "3242b071540278510ea4ae287c70e37fc4c60340",
+      "codeCommit": "c8271753f489ba5a104875ee020f572b604c840e",
+      "implementationCommit": "c8271753f489ba5a104875ee020f572b604c840e",
       "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
         "hybridclr": {"url": "https://github.com/night-outlook/hybridclr", "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"},
@@ -32,7 +32,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "3242b071540278510ea4ae287c70e37fc4c60340",
+        "candidateToolSourceAnchor": "c8271753f489ba5a104875ee020f572b604c840e",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -71,15 +71,15 @@
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35093281267,
-    "implementationCommit": "3242b071540278510ea4ae287c70e37fc4c60340",
+    "workflowRun": 35112630161,
+    "implementationCommit": "c8271753f489ba5a104875ee020f572b604c840e",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 298,
-    "passed": 298,
+    "testCount": 300,
+    "passed": 300,
     "nonpasses": 0,
-    "artifactId": 10444094920,
-    "artifactSha256": "336777f8cec845bc2a9557f3a6312d472229cb62e3eed31ec17dde97dd5f4045",
-    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction behavior/tooling source and receipt binding, authenticated tooling deletions, assembled Editor-source compatibility, and portable/host-Clang tool regressions. Not Unity, Apple Player, fresh reproduction build acceptance, runtime, M08, or human acceptance."
+    "artifactId": 10453272042,
+    "artifactSha256": "c7e01dccb9802d1ce87a0008c214b02301afb27db7c3612b73052014ff6075b5",
+    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction tooling, exact M07 fixed-byte/bootstrap policy bridge, M07 workflow-restoration regressions, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-source M07 runtime acceptance, M08, or human acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -117,6 +117,40 @@
     "toolingRevision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
     "failure": "The authenticated first tooling successor combined the current schema-3 H1ManagedSourceProvenance bridge with the protected historical H1ManagedSourceProvenanceTests.cs consumer, which references the removed nested Capture type and fails Unity compilation with CS0426.",
     "policy": "The successor removes the obsolete H1ManagedSourceProvenanceTests.cs and its .meta, exactly matching their absence from the reviewed candidate source anchor. Deletions are explicit authenticated tooling operations, not implicit exceptions. V00 verifies the exact nine replacement plus two deletion delta, verifies each deleted path is absent from the candidate source anchor, authenticates the eleven required tool blobs, and audits the assembled tracked Editor/Test-Editor C# set for removed managed-source API consumers before build acceptance."
+  },
+  "m07FixedBootstrapRepair": {
+    "returnedByLocalValidationCommit": "d8349b3facaa5d420ec41a484854a9bba9e6c1a4",
+    "previousSourceAnchor": "3242b071540278510ea4ae287c70e37fc4c60340",
+    "failure": "Real Unity M07 policy validation rejected AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness as an unapproved bootstrap reflection entrypoint even though its byte acquisition was already authenticated by the FixedAssemblyBytes site h1-count-ordinary-witness-image.",
+    "policy": "Keep the global BootstrapIsolationRule and package pin unchanged. Project dependency policy declares exactly two target-qualified bootstrap entries for the single reviewed callsite: the source/precompile fixed-byte evidence token and the compiled fixed-image SHA-256. A real Unity Editor integration regression binds those entries to the exact schema-4 FixedAssemblyBytes site, method hashes, operation index, provider identity, image path/hash, and configuration hash; a wrong image target remains rejected. No targetless or method-only H1 exemption exists.",
+    "fixedByteSite": {
+      "id": "h1-count-ordinary-witness-image",
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "callSite": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "originalMethodHash": "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e",
+      "additionalMethodHash": "4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e",
+      "operationIndex": 25,
+      "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "sourceEvidenceTarget": "image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4",
+      "compiledEvidenceTarget": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    },
+    "workflowRestoration": {
+      "policy": "Invoke-M07Build snapshots both tracked mutation owners before its first Unity M07 invocation, preserves the pre-restore bytes as evidence, restores original bytes in the outer finally on success or failure, verifies restored SHA-256, and makes recovery failure fatal.",
+      "paths": [
+        "ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset",
+        "ProjectSettings/EditorBuildSettings.asset"
+      ],
+      "receipt": "workflow-settings-restored.json"
+    },
+    "preservedLocalEvidence": {
+      "previousV00ToV03": "Passed",
+      "candidateCount": "132/132 Passed",
+      "reproductionCells": "8 unfixed cells captured",
+      "disposition": "Historical evidence retained under its original source identity; fresh V00-V05 are required for the new source anchor."
+    }
   },
   "gateState": {
     "name": "H1",
