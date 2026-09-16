@@ -2,178 +2,198 @@
 
 ## Objective
 
-Resume HybridCLR Assembly Shadow R01B H1 validation from the managed-cache response-scope repair.
+Resume HybridCLR Assembly Shadow R01B H1 validation from the protected-reproduction validation-tool coupling repair.
 
 Authoritative candidate demo source / implementation anchor:
 
-`5f561abdfbe020d1d480594a2130c5ec846c0e6a`
+`1b1cc9fe192b88be2a20fad31ea030b1e30be669`
 
 Repository / branch:
 
 `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1`
 
-Local Validation return commit `dc9116a46097739b634c791ac7213f431b54af22` proved the previous retention repair and fresh native provenance path, then failed closed in managed verification because schema 2 required every response file from every Csc action in the Bee DAG to remain unchanged. The committed Local census showed seven unrelated `StandaloneOSX_CodeGen/*.rsp` files changed during normal staging while both required cached managed actions retained unchanged recursive response closures, dependencies, outputs, reachability and exact fresh Player bindings.
+Local Validation commit `9dbe8ee7549b105a29a94bd7ec7383b2909ba066` established that candidate V02 and all four candidate V03 build modes had current provenance, while the protected reproduction Player built but its older project-local provenance tool rejected the real 446-action Apple Bee graph under obsolete global macro equivalence. Candidate-owned diagnostic replay accepted the retained reproduction graph, but replay is diagnostic-only and cannot be promoted to fresh build provenance.
 
-Primary repaired that ownership boundary. New captures use managed provenance **schema 3**. Response stability now follows each selected required compiler action's exact recursive `@response` closure. Unrelated DAG response paths are audit-only. No other cache acceptance rule was relaxed.
+Primary resolves the coupling with a separately authenticated **tooling-only reproduction successor**. The protected reproduction branch, unfixed behavior source and all protected runtime pins remain unchanged. Fresh V00–V05 are required. Preserve `local-validation-20260916-9568ea3` and all older evidence unchanged; its candidate V02/V03 results remain valid historical evidence for their original source chain, not fresh acceptance for this candidate anchor.
 
-Run fresh **V00–V05**. H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. **Do not begin R02.**
+H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. **Do not begin R02.**
 
 Read first:
 
 - `Documents/AgentHandoff/LOCAL_VALIDATION.md`
 - `Documents/AgentHandoff/RETURN_TO_WEB.md`
 - `Documents/AgentHandoff/source-targets.json`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-3695905/README.md`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/managed-response-scope-primary-20260915/`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-9568ea3/README.md`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/reproduction-tooling-primary-20260916/`
 
-Git is the handoff authority. Preserve all prior evidence and attempts. Do not apply chat ZIPs or unpublished patches.
+Git is the handoff authority. Do not apply chat ZIPs or unpublished patches.
 
 ## Source targets
 
+Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
+
 | Role | Repository / branch | Exact identity |
 | --- | --- | --- |
-| Candidate demo source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `5f561abdfbe020d1d480594a2130c5ec846c0e6a` |
+| Candidate demo source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `1b1cc9fe192b88be2a20fad31ea030b1e30be669` |
 | Candidate native | `night-outlook/hybridclr` / `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | Shared package | `night-outlook/hybridclr_unity` / `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | Shared IL2CPP | `night-outlook/il2cpp_plus` / `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
-| Reproduction demo published head — preserve | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` |
-| Reproduction demo code anchor | same branch | `4e3d2035991ab5629265ac663e61bcb2ca62828b` |
+| **Protected reproduction branch — preserve** | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` |
+| Reproduction unfixed behavior source | same repository/history | `4e3d2035991ab5629265ac663e61bcb2ca62828b` |
+| **Reproduction validation tooling only** | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-count-repro-tooling` | `482a615bb662666f16f861c560f15c6607b82224` |
 | Reproduction native | `night-outlook/hybridclr` / `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` |
 | Performance reference — preserve | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` |
 
-Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. `ProjectSettings/AssemblyShadowSourcePins.json` and `source-targets.json` both pin candidate source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a`. The fetched branch HEAD is expected to be a later metadata-only handoff successor; record both checkout HEAD and source anchor.
+Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. Candidate `AssemblyShadowSourcePins.json` pins `1b1cc9fe...`; the reproduction-tooling checkout keeps the protected reproduction pin file byte-for-byte, including demo behavior revision `4e3d203...` and reproduction native `99cdb1b...`.
+
+The final candidate branch HEAD is expected to be a later metadata-only handoff successor. Record both final checkout HEAD and candidate source anchor. The tooling revision is **not** a new behavior/source pin and must never replace the protected reproduction identity in runtime/count conclusions.
 
 ## Implementation
 
-### Schema-3 action-local response ownership
+### Split reproduction behavior/tooling identity
 
-The changed-graph proof remains preferred whenever exactly one changed managed action chain reaches a required fresh Player input. The cache route is considered only when no direct changed chain exists for that required assembly.
+The protected reproduction branch must remain historical and unfixed, but its old Editor wrapper always executed project-local validation scripts. That coupled preservation of unfixed behavior to obsolete provenance policy.
 
-For a schema-3 cached candidate, begin capture still retains the exact Bee DAG, action hash/transcript, source set, compiler/tool/reference dependencies, Csc output and bounded downstream DLL closure. The difference is response ownership:
+Primary therefore published a separate tooling-only successor from the protected reproduction head. Candidate authority now proves:
 
-1. the graph is scanned under the existing bounded response parser;
-2. `csc_arguments()` expands the selected compiler action recursively through `@response` and records its exact `responseSources`;
-3. only those response bytes are retained as that compilation's `responseFiles`;
-4. graph-wide discovered response paths may be recorded as `responseAuditSources`, but they are not stability requirements unless also owned by the selected action;
-5. verification requires exact membership equality between that compilation's `responseSources` and `responseFiles`, independently reparses the action from retained response bytes, and requires every owned direct/nested response to remain unchanged.
+1. behavior source `4e3d203...` is an ancestor of protected head `352d747...`, which is an ancestor of tooling revision `482a615...`;
+2. the protected published head contains no non-metadata behavior changes after its behavior source pin;
+3. the tooling revision's non-metadata delta from the protected head is **exactly six validation-tool overrides** and contains no gameplay/runtime product-source substitution;
+4. the **complete seven-file validation dependency set**, including the already-identical `h1_compiler_actions.py`, has exact Git blob IDs matching candidate source anchor `1b1cc9fe...`;
+5. the reproduction pin file still identifies the original unfixed behavior/native/package/IL2CPP chain;
+6. working bytes match Git and no untracked Unity build inputs are present.
 
-Therefore a legitimate mutation of an unrelated CodeGen response does not invalidate either required cached chain, but any mutation of a direct or recursively nested response used by a required action still fails closed.
+The authority tool is:
 
-### Preserved fail-closed requirements
+`Tools/AssemblyShadow/h1_reproduction_tooling.py`
 
-For each required assembly, cache acceptance still requires all of the following:
+Expected V00 status:
 
-- retained Bee graph identity unchanged;
-- exact Csc action SHA and independently reparsed transcript;
-- exact required source set and Player defines; no `UNITY_EDITOR` output;
-- exact compiler/tool/reference dependency closure, all unchanged;
-- Csc output existed at begin, is retained, unchanged and at the same output path;
-- bounded downstream DLL closure retained and unchanged;
-- graph reachability from Csc output to the exact fresh Player input path;
-- exact fresh Player input path, SHA-256 and size;
-- at most one changed-action chain and exactly one accepted chain per required assembly;
-- existing cache limits: 64 graphs, 128 MiB/graph, 4096 observations, 64 MiB/file, 512 MiB aggregate unique bytes, 128 reachable DLLs;
-- `freshCompilerExecutionClaim=false` for a cache hit;
-- no implicit fallback to legacy `--reuse-proof`.
+`BehaviorAndToolingSourcesVerifiedNotBuildAccepted`
 
-Existing schema-1/2 historical evidence remains readable. Schema-2 evidence keeps its historical semantics; it is not retroactively reinterpreted as schema 3.
+### Fresh build integration
 
-### Primary review and bounded validation
+For fresh V03 builds use candidate-owned:
 
-Primary source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a` passed workflow run `35066118142` with **283/283** bounded tests and zero nonpasses.
+`Tools/AssemblyShadow/h1_count_build_batch_tooling.py`
 
-Artifact ID: `10434108589`  
-Artifact ZIP SHA-256: `94e4cfc61b62dd01c297a704f97085d1031e56e29986cc281eb6679ccafb1ded`.
+Candidate builds use the existing normal source/provenance flow. Reproduction builds run Unity from the exact tooling-only checkout but verify installed runtime against the protected reproduction pins. Candidate-owned strict native/managed verifiers then verify the fresh receipt. The split identity is re-authenticated after restoration.
 
-The two new adversarial regressions prove the intended boundary:
+After strict build verification the wrapper writes `validation-tooling-binding.json`, which binds:
 
-- an unrelated Csc response in the same DAG changes after begin and both required cached chains remain valid;
-- a nested response inside a required action's recursive closure changes after begin and verification rejects.
+- exact build-receipt SHA-256;
+- role;
+- protected behavior source;
+- validation checkout/tooling revision;
+- source-pin SHA-256;
+- current authoritative `source-targets.json` SHA-256;
+- complete tool-file identity map.
 
-Existing negative coverage for stale output, ambiguous actions, changed source, changed required response, changed dependency, wrong fresh Player path and output created only after begin remains active.
+Its status is `ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted`; it is not runtime, M08 or human acceptance.
 
-This is bounded Primary/tool evidence only. It is not macOS Unity/Apple Player acceptance, V02/V03 completion, M08 PASS or human approval.
+Diagnostic replay remains diagnostic-only and cannot satisfy reproduction build provenance.
+
+### Primary review
+
+Candidate source anchor `1b1cc9fe192b88be2a20fad31ea030b1e30be669` passed workflow run **35081136990** with **294/294** bounded tests, zero nonpasses.
+
+- authenticated Apple fixture SHA-256: `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`
+- artifact ID: `10439663711`
+- artifact ZIP SHA-256: `a7ad62cbd34200056448374b69f942c0cd7e9d3515bb7e499fe2d64c44d3dd7d`
+
+The suite includes real disposable split-Git topology tests, exact-delta and candidate-blob authentication, runtime-delta/dirty/wrong-blob rejection, wrapper integration and verified-receipt tooling binding. This is bounded Primary/tool evidence only, not macOS Unity reproduction acceptance or M08.
 
 ## Local validation
 
-### V00 — authoritative preflight
+Run fresh **V00–V05**. Follow `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/reproduction-tooling-primary-20260916/LOCAL_VALIDATION_TASKS.md` as the detailed checklist.
 
-1. `git pull --ff-only origin codex/assembly-shadow-r01b-h1`.
-2. Record origin, branch, checkout HEAD and dirty/untracked state without reset/clean/stash-away of evidence.
-3. Confirm pins/targets resolve to source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a` and all protected identities above.
-4. Run the committed candidate handoff preflight into a new absolute evidence path.
+### V00 — dual authority preflight
 
-Expected source status remains `SourceTargetVerifiedNotBuildAccepted`; gate flags remain false. If V00 fails, stop before V01–V05.
+1. Pull candidate `codex/assembly-shadow-r01b-h1`; record final HEAD/source anchor/dirty state.
+2. Run normal candidate `h1_handoff_preflight.py`; require `SourceTargetVerifiedNotBuildAccepted` and source anchor `1b1cc9fe...`.
+3. Use a **separate** reproduction checkout on `codex/assembly-shadow-h1-count-repro-tooling` at exact `482a615bb662666f16f861c560f15c6607b82224`.
+4. From candidate run:
 
-### V01 — affected source/tool/Unity regression
+```sh
+python3 Tools/AssemblyShadow/h1_reproduction_tooling.py \
+  --project /ABS/REPRO_TOOLING \
+  --authority-project /ABS/CANDIDATE \
+  --output /ABS/NEW/v00/reproduction-tooling.json
+```
 
-Run the full H1 Python inventory and exact Bee Primary suite, with explicit coverage of `test_h1_managed_provenance`, `test_h1_managed_cache_provenance`, compiler/native provenance, retention/store verification, PCH provenance, handoff, selection, successor and affected M02-owner tests.
+Require behavior `4e3d203...`, protected head `352d747...`, tooling `482a615...`, protected pins unchanged and gate flags false. If either preflight fails, stop before V01–V05.
 
-Compile candidate and reproduction in Unity and run focused affected Editor tests. Preserve exact IDs, logs, XML, failures and skips. Primary 283/283 is supporting evidence only.
+### V01 — source/tool/Unity regressions
 
-### V02 — real normal-cache action-local proof
+Run full H1 Python inventory and exact Primary suite, including split-tooling and receipt-binding regressions. Compile candidate and exact reproduction-tooling checkout in Unity 2022.3.62f2; run affected H1/Assembly Shadow Editor tests. Preserve exact logs/XML/nonpasses and both preflight records.
 
-This is the key repair validation.
+### V02 — fresh candidate normal-cache proof
 
-- Preserve the normal Bee cache. **Do not clear it merely to force Csc/ILPP recompilation.**
-- Execute a fresh candidate ON/Debug smoke through the managed provenance wrapper.
-- Require fresh managed begin/capture/proof schema 3.
-- For both `AssemblyShadowDemo.Bootstrap` and `AssemblyShadow.R01BDiagnostics`, inspect the selected compilation's `responseSources` and retained `responseFiles`; membership must be exact and recursively complete.
-- Confirm the previously observed unrelated `StandaloneOSX_CodeGen/*.rsp` class of staging changes can occur without becoming acceptance inputs unless a changed path is actually in the selected required action's recursive closure.
-- Confirm every response that *is* in either required action's direct/nested closure is `Unchanged`; any mutation remains a hard failure.
-- Require all preserved graph/action/dependency/output/reachability/uniqueness controls and exact fresh Player input path + SHA-256 + size binding.
-- A legitimate unchanged reuse must emit `evidenceMode=BeeCacheHitBoundToFreshPlayerInput` with `freshCompilerExecutionClaim=false`.
-- If Bee genuinely recompiles an assembly and produces one valid changed graph, `ChangedBeeGraphBoundToFreshPlayerInput` remains valid for that assembly; record the route, do not force cache/recompile behavior.
-- **Do not use `--reuse-proof`** to satisfy this current-build cache requirement.
+Re-run fresh candidate ON/Debug schema-3 normal-cache validation for source anchor `1b1cc9fe...`. Preserve normal Bee cache; require action-local recursive response ownership and all previous graph/action/dependency/output/reachability/fresh-Player-binding controls. Do not use `--reuse-proof` as substitute acceptance.
 
-If the real Bee action has an unsupported response/dependency/ILPP structure, retain the full graph/action/response census and return to Primary. Do not broaden acceptance locally.
+Previous candidate V02/V03 evidence from `local-validation-20260916-9568ea3` stays preserved and referenceable, but is not relabeled as fresh evidence for this source anchor.
 
-### V03 — fresh provenance-bound build set
+### V03 — fresh six-build set
 
-After V02 passes, execute fresh candidate ON/OFF × Debug/Release and reproduction ON Debug/Release in new immutable roots through the established strict flow.
+Use only:
 
-Each accepted build still requires native compiler/PCH/store provenance, managed provenance, exact fresh Player input binding, build/input receipt consistency and exact restoration. Record the managed evidence mode for both required assemblies in every build. Preserve all failures.
+```sh
+python3 Tools/AssemblyShadow/h1_count_build_batch_tooling.py \
+  --candidate /ABS/CANDIDATE \
+  --reproduction /ABS/REPRO_TOOLING \
+  --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
+  --pwsh /ABS/pwsh \
+  --scope all \
+  --output /ABS/NEW/v03/builds \
+  --execute
+```
 
-### V04 — runtime/count/startup/capacity/performance chain
+Do not reuse an old-source smoke receipt. Produce fresh candidate ON/OFF × Debug/Release and reproduction ON Debug/Release receipts.
 
-Run the established current R01B chain, including 132 candidate count cells, 8 unfixed reproduction cells, fresh baseline/fixtures/replay, 11 startup modes, 8192/8193 lifetime-capacity boundary, lazy/dense/generic/array/reflection/FieldRVA/old-Player coverage and affected M03–M07 checks.
+Every reproduction build must pass strict native/managed verification and produce `validation-tooling-binding.json` with exact behavior source `4e3d203...`, exact tooling revision `482a615...`, exact receipt SHA, exact protected pin SHA and current source-target SHA. Exact restoration must pass.
 
-Run controlled Development performance only against the preserved performance reference on common supported workloads. Do not infer unsupported Release/P99/device-RAM conclusions.
+### V04 — runtime/count/startup/capacity/performance
 
-### V05 — successor package and independent whole-chain M08
+After a valid six-build set, execute the established chain: 132 candidate count cells, 8 unfixed reproduction cells, fresh baseline/fixtures/replay, startup11, 8192/8193 capacity boundary, required lazy/dense/generic/array/reflection/FieldRVA/old-Player and M03–M07 coverage. Run controlled Development performance only against protected reference `88508b59...` on common supported workloads.
 
-Build the successor archive/index only from explicit fresh evidence locations. Include raw managed begin/end/cache graph/action/action-local response/dependency/output observations and final managed verification, plus required native/PCH/store/runtime evidence.
+### V05 — successor package and independent M08
 
-Authenticate archive/index bytes and membership, run strict semantic verifiers, then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review.
+Archive/index all required fresh raw evidence. Include the reproduction-tooling V00 preflight, source-target/pin bytes, exact tooling tree/delta, each reproduction `validation-tooling-binding.json`, the receipt it hashes and all raw reproduction native/managed/PCH/store evidence. Preserve old candidate V02/V03 evidence with its original source identity/disposition.
 
-A tooling, CI, V02 or V03 PASS is **not** M08 PASS. Only a genuine independent whole-chain M08 PASS may make the package Ready for Human Review Gate. Then stop for explicit human H1 approval.
-
-Commit new Local checkpoints/raw evidence under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/...`. Update/push Local-owned `LOCAL_VALIDATION.md`; return nontrivial issues through `RETURN_TO_WEB.md`.
+Authenticate archive/index bytes and semantic membership, then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review. **Only genuine independent whole-chain M08 PASS** may make the package Ready for Human Review Gate; then stop for explicit human H1 approval.
 
 ## Failure evidence
 
-On any managed-cache failure retain the exact checkout/source anchor/pins, build GUID/input snapshot, begin/end managed captures, exact fresh Player inputs, retained Bee DAG bytes/hash, selected Csc action/transcript, per-action recursive response closure, dependency/tool bytes/hashes, Csc output, downstream DLLs, end observations and verifier error/output. Distinguish unrelated audit-only responses from selected action-owned responses.
+For any split-tooling failure retain candidate/reproduction checkout HEADs/branches/remotes, candidate `source-targets.json`, reproduction pins, behavior/protected/tooling SHAs, exact tree delta, tool blob map, working-tree/untracked state, preflight stdout/stderr/exit/output, Unity logs/XML, build receipt and raw compiler/managed provenance evidence.
 
-Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Preserve all earlier Local checkpoints and historical v6–v11 evidence unchanged.
+For V03 retain every `validation-tooling-binding.json` even on later-stage failure and identify whether failure occurred at tooling authority, Unity build, strict native/managed verification, receipt binding, restoration/source recheck, runtime validation or later chain stage.
+
+Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Preserve `local-validation-20260916-9568ea3` and all earlier evidence unchanged.
 
 ## Alternatives
 
-Do not bypass V00, clear Bee cache merely to force recompilation, use legacy `--reuse-proof` as a substitute for the current-build cache proof, broaden response/source/dependency allowlists, or relax any native/PCH/managed provenance requirement. If the real Bee graph exposes a legitimate structure outside the reviewed schema-3 contract, preserve the full evidence and return it to Primary for a reviewed successor.
+Do not move or rewrite the protected reproduction branch, repin it to fixed/current candidate source, copy current native fixes into reproduction, or promote diagnostic replay to acceptance. Do not manually copy validation files outside the declared tooling revision.
+
+A future candidate-owned external tool bundle could replace the tooling branch only through a reviewed design that binds exact tool bytes into fresh Unity capture. It is not authorized by this handoff.
 
 ## Risks
 
-The schema-3 implementation has not yet received fresh macOS Unity/Player validation under this handoff because the preceding Local cycle stopped at V00 on the literal-heading contract. Primary's 283/283 result remains bounded tooling evidence only. Fresh V00–V05 must therefore establish the real action-local response behavior, full build/runtime evidence, and independent whole-chain M08 without promoting historical results to the new handoff.
+The tooling-only successor changes Editor/validation infrastructure in the reproduction checkout, so Local must empirically prove Unity compilation and fresh reproduction build provenance while confirming the protected runtime/Player behavior and pins remain unchanged. Any additional required tooling path means the current allowlist is incomplete and must return to Primary rather than being expanded locally.
+
+The candidate source anchor changed to add validation infrastructure; therefore prior candidate V02/V03 results are preserved evidence but not fresh current-anchor acceptance. Primary's 294/294 CI does not replace macOS Unity/Player validation.
 
 ## Local correction boundary
 
-Local may correct machine-specific paths, executable permissions, invocation syntax, fresh output-directory choices, isolated test harness setup and already-documented exact generated-file restoration after preserving before/after bytes.
+Local may correct machine paths, executable permissions, invocation syntax, output-directory choices and isolated test setup, and may perform already-documented exact generated-file restoration after preserving before/after bytes.
 
-Local must not change response ownership rules, source selection, dependency/reachability semantics, cache limits, reuse semantics, retention/native/PCH provenance, witness rules, count behavior, ABI/architecture or performance methodology. Return such issues to Primary regardless of diff size.
+Local must not change the tooling branch/revision, tool-file/override maps, protected reproduction branch/source pins, native/package/IL2CPP pins, runtime behavior, provenance acceptance semantics, cache/macro/PCH rules, count behavior, ABI/architecture or performance methodology. Such issues return to Primary regardless of diff size.
 
-Do not rewrite this `WEB_TO_LOCAL.md` during Local Validation.
+Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
 ## Human review gate
 
-H1 is still **InProgress / BlockedPendingFreshV00ToV05**. Last independent M08 remains **FAIL**. `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains **InProgress / BlockedPendingFreshV00ToV05**. Last independent whole-chain M08 remains **FAIL**. `humanGatePassed=false`; `mayEnterR02=false`.
+
+Fresh V00–V05 and a genuine independent whole-chain M08 PASS are required before **Ready for Human Review Gate**. Then stop for explicit human H1 approval.
 
 **Do not begin R02.**
