@@ -2,19 +2,22 @@
 
 ## Objective
 
-Resume R01B H1 local validation from the reviewed Apple Bee provenance correction. The new candidate code anchor is `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9` on `night-outlook/hybridclr_demo` branch `codex/assembly-shadow-r01b-h1`. **Run V01–V05 again from this anchor and its metadata-only handoff successor. H1 remains InProgress / technically Blocked; the last independent whole-chain M08 is FAIL; humanGatePassed=false; mayEnterR02=false. Do not begin R02.**
+Resume R01B H1 local validation from the repaired authoritative handoff contract. The candidate demo **source anchor** for fresh V00–V05 is `b6db7c2fb2fce364d49458b7dfc78886fd430004` on `night-outlook/hybridclr_demo` branch `codex/assembly-shadow-r01b-h1`. The last executable/tooling implementation anchor remains `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9`.
 
-Git is the sole authority. Do not apply earlier chat ZIPs or unpublished patches. Primary owns this file and nontrivial implementation. Local Validation owns `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`; preserve their existing empirical records and append/supersede only with fresh facts.
+The previous Local Validation return at `b6db7c2…` established that handoff HEAD `c0d3070…` failed before source validation with `Blocked: Incomplete handoff sections`; V01–V05 were therefore `Blocked / NotRun`. This successor repairs that document/preflight contract without weakening the preflight executable, Apple Bee provenance rules, historical evidence, runtime pins, reproduction defect, or performance reference.
 
-The authoritative return input is candidate commit `33543dd39efec42a9480ea976ae3a3684dcd5ffd`: read `LOCAL_VALIDATION.md`, `RETURN_TO_WEB.md`, and `local-validation-20260914-bec2bd1/README.md`. V00/V01 there are reliable historical facts for the prior anchor; the fresh ON/Debug Player build succeeded but provenance failed before a receipt because the old implementation incorrectly required one global IL2CPP debug/assertion state across all 446 Apple Bee compile actions. V02/V03 failure evidence remains historical and must not be relabeled as acceptance.
+Git is the only authoritative handoff state. Read `Documents/AgentHandoff/LOCAL_VALIDATION.md`, `Documents/AgentHandoff/RETURN_TO_WEB.md`, and `Documents/AgentHandoff/local-validation-20260915-c0d3070/README.md` before starting. Preserve those records. Do not apply chat ZIPs or unpublished patches.
+
+H1 remains `InProgress`, technically blocked pending fresh V00–V05; last independent whole-chain M08 is `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.
 
 ## Source targets
 
 Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 
-| Role | Repository / branch | Exact source identity |
+| Role | Repository / branch | Exact identity |
 | --- | --- | --- |
-| Candidate demo code anchor | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9` |
+| Candidate demo source anchor | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `b6db7c2fb2fce364d49458b7dfc78886fd430004` |
+| Candidate executable/tooling implementation anchor | same branch | `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9` |
 | Candidate native | `night-outlook/hybridclr` / `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | Shared package | `night-outlook/hybridclr_unity` / `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | Shared IL2CPP | `night-outlook/il2cpp_plus` / `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -23,117 +26,127 @@ Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 | Unfixed reproduction native | `night-outlook/hybridclr` / `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` |
 | Performance reference — preserve | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` |
 
-Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. `ProjectSettings/AssemblyShadowSourcePins.json` on candidate pins the code anchor, not this metadata-only handoff commit. Resolve the actual handoff commit from the fetched branch and record both checkout HEAD and code anchor. Any later executable/build-input change requires a new Primary-reviewed anchor.
+Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. `ProjectSettings/AssemblyShadowSourcePins.json` must pin candidate demo revision `b6db7c2fb2fce364d49458b7dfc78886fd430004`; runtime pins must match the table. The fetched branch HEAD will be a later metadata-only handoff successor. Record both checkout HEAD and source anchor in fresh evidence.
 
-## Primary correction
+The `b6db7c2…` source anchor intentionally captures the committed `local-validation-20260915-c0d3070` checkpoint so the unchanged source verifier has a complete frozen baseline. **Do not add future auxiliary checkpoint directories under `Documents/AgentHandoff/`.** Put new raw/checkpoint evidence under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/...`, which is the existing metadata-only evidence namespace. Continue to update only the protocol-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` under `Documents/AgentHandoff/`.
 
-### Apple Bee macro domains
+## Implementation
 
-The authenticated failure fixture proves the 16/430 split was real and source-owned, not a reason to weaken provenance:
+### Handoff/preflight contract repair
 
-- `external-bdwgc`: exactly 2 reviewed direct-C sources: `external/bdwgc/extra/gc.c` and `extra/krait_signal_handler.c`;
-- `external-zlib`: exactly 14 reviewed zlib C sources: `adler32`, `crc32`, `deflate`, `gzclose`, `gzlib`, `gzread`, `gzwrite`, `infback`, `inffast`, `inflate`, `inftrees`, `trees`, `uncompr`, `zutil`;
-- `il2cpp-runtime`: every other selected native compile action, including both PCH producers, brotli C and generated C/C++.
+`Tools/AssemblyShadow/h1_handoff_preflight.py` is unchanged. Its authoritative document contract requires these nine literal section headings, all of which are present in this file:
 
-Domain selection is based on exact canonical source ownership. **Observed macro values, action counts, node indices, display names and “is C” are not selectors.** An unknown external source, external PCH use, compiler/SDK drift, nonempty compiler environment, unlinked object, missing link input/argv object, or ambiguous output fails closed.
+- `## Objective`
+- `## Source targets`
+- `## Implementation`
+- `## Local validation`
+- `## Failure evidence`
+- `## Alternatives`
+- `## Risks`
+- `## Local correction boundary`
+- `## Human review gate`
 
-Every selected compile action still requires the exact requested `HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW` and `HYBRIDCLR_H1_COUNT_DIAGNOSTICS` definitions and must be accounted into the selected GameAssembly link. The runtime domain owns `IL2CPP_DEBUG`, `IL2CPP_DEVELOPMENT` and the requested C++ Debug/Release assertion profile and is probed with the pinned IL2CPP configuration. BDWGC/zlib do not inherit that runtime configuration; each external domain is internally consistent and gets a real headerless compiler syntax/macro probe. `NDEBUG` uses definedness. PCH producer/consumer dependency, retained header bytes, exact producer replay and forced-input restrictions remain unchanged.
+The repair changes handoff/source identity metadata only. The preflight must still prove committed handoff bytes, candidate branch/origin, source-target schema, source-pin equality, runtime pins, and demo-source identity. No bypass or relaxed heading check is introduced.
 
-The normal strict verifier independently re-derives the domain ledger from the raw graph; it does not trust a PASS summary. Synthetic graphs may contain only the runtime domain, but the authenticated Apple fixture requires the exact 430 runtime / 2 BDWGC / 14 zlib inventory.
+### Apple Bee provenance implementation retained
 
-### Plan-stage failure retention
+The executable implementation remains the Primary-reviewed `463ec3f…` anchor. It classifies the authenticated Unity Apple Bee graph by exact canonical source ownership:
 
-Fresh capture and explicit diagnostic replay now create a bounded tool-owned attempt root before graph interpretation/planning. They retain the original request/graph/configuration and declared-input/response inventory as stages are reached. A plan-stage failure records the stage and exception while PCH replay/macro probes remain `NotRun` unless child artifacts actually exist. No plan-stage failure creates a successful provenance receipt. Existing output directories are never reused.
+- `il2cpp-runtime`: 430 compile actions, including both PCH producers, generated C/C++, brotli and other runtime-owned sources;
+- `external-bdwgc`: exactly 2 reviewed direct-C sources;
+- `external-zlib`: exactly 14 reviewed direct-C sources.
 
-## Primary review and bounded tests
+All selected compile actions still require exact requested Shadow/count definitions, selected compiler/SDK identity, and complete object/link accounting. Runtime owns the requested `IL2CPP_DEBUG`/`IL2CPP_DEVELOPMENT` and Debug/Release assertion profile. BDWGC/zlib do not inherit the IL2CPP configuration header; each external domain must be internally consistent and receives real headerless syntax/macro probes. Unknown external sources, external PCH use, mixed domain state, compiler/SDK/environment drift, missing link inputs or ambiguous outputs fail closed. `NDEBUG` uses definedness.
 
-Read `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/bee-domain-primary-20260915/` for the static review and local-validation checklist.
+Fresh capture and diagnostic replay create bounded failure roots before planning so plan-stage errors retain request/DAG/config/input inventory, stage and exception; unreached PCH replay/probes remain `NotRun`. No failed attempt becomes a successful receipt.
 
-GitHub read-only CI run **34967358028** authenticated the committed fresh failure fixture and graph SHA-256 `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`, then ran the exact Primary regression suite at code anchor `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9`: **250/250 passed, 0 nonpasses**. The fixture tests assert 446 compile actions, 444 linked objects, exact 430/2/14 domains, six macro-probe groups and actual post-link file edges. This is bounded planning/tool validation on Ubuntu plus synthetic host compiler probes; it is **not** Unity, Apple Clang Player, runtime or M08 acceptance.
+Primary CI workflow run `34967358028` authenticated Bee graph SHA-256 `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181` and passed **250/250** bounded Bee/tool tests at implementation anchor `463ec3f…`. That is not Unity/Apple Player/runtime/M08 acceptance.
 
 ## Local validation
 
-Perform an authoritative preflight first, then fresh **V01–V05**. Batch independent checks to minimize environment switching. Preserve unrelated files and every historical failed attempt.
+Run **fresh V00–V05** from the repaired handoff. V00 is mandatory; do not reuse the failed c0d3070 preflight as a pass.
 
-### Preflight / V00 prerequisite
+### V00 — authoritative preflight
 
-Explicitly fetch/pull candidate `codex/assembly-shadow-r01b-h1` and verify:
+1. Explicitly `git pull --ff-only origin codex/assembly-shadow-r01b-h1` in candidate demo.
+2. Verify branch/origin/HEAD and preserve unrelated working changes. Do not reset, clean, or hide historical untracked evidence.
+3. Confirm candidate source target and source pin both identify `b6db7c2fb2fce364d49458b7dfc78886fd430004`.
+4. Confirm runtime pins, reproduction head/native, and performance reference exactly match the Source targets table.
+5. Run with a **new absolute output path**:
 
-1. fetched checkout HEAD contains this handoff;
-2. candidate code anchor in `source-targets.json` and `AssemblyShadowSourcePins.json` is exactly `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9`;
-3. runtime pins match the table above;
-4. reproduction branch is still exactly `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` and is not modified by this correction;
-5. performance reference remains exactly `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` with its own historical profile.
+```sh
+python3 Tools/AssemblyShadow/h1_handoff_preflight.py \
+  --project /ABS/CANDIDATE/hybridclr_demo \
+  --role candidate \
+  --output /ABS/NEW/v00/candidate-handoff.json
+```
 
-Run the committed handoff/source preflight with a new output. Expected: source target verified, not build accepted. No ZIP/manual patch is authoritative.
+Expected: exit `0`, `status=SourceTargetVerifiedNotBuildAccepted`, `codeCommit=b6db7c2fb2fce364d49458b7dfc78886fd430004`, current checkout HEAD recorded separately, `humanGatePassed=false`, `mayEnterR02=false`.
 
-### V01 — source/tool regression
+If V00 does not pass, stop V01–V05 and return exact evidence to Primary. Do not edit `WEB_TO_LOCAL.md` locally.
 
-On candidate, run the full H1 Python inventory plus the exact Bee Primary regression suite. Compile Unity and run focused H1 Editor tests, including `H1PchEvidenceProcessTests` and `H1EvidenceProcessTests`, then affected existing Assembly Shadow Editor regressions. Re-run the appropriate reproduction regressions without changing its frozen defect source. Record exact test IDs/results, Unity logs and NUnit XML.
+### V01 — source/tool/Unity regression
 
-Expected: no source/test regression. The committed CI 250/250 result is useful Primary evidence but does not replace macOS/Unity execution.
+Run the full affected H1 Python inventory, the exact Bee Primary suite, normal strict compiler-provenance tests and existing normal M02-owner tests. Compile candidate and reproduction in Unity and run focused H1 Editor tests including `H1PchEvidenceProcessTests`, `H1EvidenceProcessTests`, and affected Assembly Shadow regressions. Preserve exact test IDs, logs, NUnit XML and skips.
 
-### V02 — Apple graph / failure-retention verification
+Expected: no regression. Primary CI is supporting evidence only and does not replace macOS/Unity execution.
 
-Use the retained fresh V03 failure fixture or an explicitly selected fresh smoke input to verify planning now classifies the actual graph as:
+### V02 — Apple-domain and failure-retention verification
 
-- total compiler actions: 446;
-- linked object actions: 444;
-- `il2cpp-runtime`: 430;
-- `external-bdwgc`: 2;
-- `external-zlib`: 14;
-- runtime Debug profile `IL2CPP_DEBUG=1`, `NDEBUG` undefined, `IL2CPP_DEVELOPMENT=0` for ON/Debug;
-- all selected actions still carry feature/count definitions and are linked/accounted.
+Against an authenticated retained/fresh Apple Bee input, verify the real domain inventory remains 446 compiler actions / 444 linked object actions / 430 runtime / 2 BDWGC / 14 zlib and six probe contexts, with complete selected-link coverage. Verify ON/Debug runtime profile is `IL2CPP_DEBUG=1`, `NDEBUG` undefined, `IL2CPP_DEVELOPMENT=0` while external library state is independently proved rather than used as runtime assertion evidence.
 
-Then execute a bounded negative planning fixture and verify the tool-owned failure root exists before planning fails, with retained original inputs/stage/failure record and PCH replay/probe status accurately `NotRun` when they were not reached. Do not manufacture old DAG bytes marked Unavailable.
+Execute a bounded negative planning case and confirm the failure root exists before planning fails, retains reached raw inputs/stages, and marks unreached PCH replay/macro probes `NotRun` rather than fabricating failure evidence.
 
 ### V03 — fresh provenance-bound builds
 
-Reinstall candidate from the new source pins and run the normal installed-runtime verifier with demo source verification enabled. Run a **fresh candidate ON/Debug smoke first**. Acceptance requires:
+Reinstall candidate from the new source pins and run normal installed-runtime verification with demo-source checking enabled. Execute a fresh candidate ON/Debug smoke first. Acceptance requires Player success plus complete compiler/PCH/domain provenance, managed-source provenance, final receipt, strict single-build verifier PASS and exact restoration.
 
-- Unity Player build success;
-- complete compiler provenance root;
-- successful exact domain ledger and compiler probes;
-- PCH producer byte-identical replay and proof;
-- managed-source provenance;
-- final build receipt;
-- strict single-build verifier PASS;
-- exact restoration after build.
+After a valid smoke, complete candidate ON/OFF × Debug/Release and unfixed reproduction ON Debug/Release in fresh immutable roots. Use explicit same-source smoke reuse only through the committed supported option; never auto-select a latest result. Preserve every failed attempt.
 
-If smoke passes, execute candidate ON/OFF × Debug/Release and unfixed reproduction ON Debug/Release using fresh immutable roots. An explicitly supplied same-source smoke receipt may be revalidated/reused only through the committed supported route; never auto-select “latest”. Preserve all failed attempts.
+Unknown Apple Bee grammar, source membership, compiler flags, macro semantics, PCH nondeterminism or provenance ambiguity is Primary work. Return it; do not broaden allowlists locally.
 
-Unknown external source membership, changed Apple Bee grammar/flags, PCH nondeterminism, unsupported macro state or provenance semantic ambiguity is **Primary Implementation work**: return it in `RETURN_TO_WEB.md`; do not expand allowlists locally.
+### V04 — runtime/count/startup/performance chain
 
-### V04 — runtime/count/startup/performance evidence
+Using the established project entrypoints and current R01B plan, complete fresh required count/reproduction/startup/capacity/regression coverage: 132 candidate count cells; 8 unfixed reproduction cells; baseline/fixtures/replay and 11 startup modes; ordinary/mixed 8192 lifetime capacity and 8193 rejection; retained failed reservations; >=25% usable encoded-page free capacity; 32 MiB max DLL and 512 MiB valid input boundary; lazy/dense/generic/array/reflection/FieldRVA/old-Player and affected M03–M07 checks.
 
-After all six provenance-bound builds exist, complete the current R01B remediation matrix using existing documented entrypoints:
+Run controlled Development performance pairs against the separate performance-reference checkout only on mutually supported workloads. Do not infer Release/P99/device-RAM acceptance.
 
-- 132 candidate count cells;
-- 8 unfixed reproduction cells with their expected old failure/acceptance classifications;
-- fresh baseline/fixtures/replay and all 11 startup modes;
-- ordinary/mixed 8192 lifetime capacity and 8193 rejection;
-- retained failed reservations, at least 25% usable encoded-page free capacity, 32 MiB per-DLL max and 512 MiB valid input boundary;
-- lazy/dense, generics, arrays, reflection, FieldRVA, old Player and affected M03–M07/M06 regressions;
-- controlled Development performance pairs against the separate performance-reference checkout on workloads supported by both sides.
+### V05 — successor package and independent whole-chain M08
 
-Keep `Passed`, `Failed`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Do not infer Release/P99/device-RAM acceptance from the Development comparison.
+Build a successor archive/index using explicit new source/build/evidence paths. Include raw compiler/PCH/domain proof and all required raw runtime evidence; summary PASS files are insufficient. Authenticate archive/index bytes, membership and references, then run strict semantic verifiers and commission a genuine independent design→source→build→raw-evidence M08 review.
 
-### V05 — successor package and independent whole-chain review
+New auxiliary checkpoint/raw evidence for this validation must be committed under `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/`, not a new `Documents/AgentHandoff/local-validation-*` directory. Update and push `LOCAL_VALIDATION.md`; use `RETURN_TO_WEB.md` for any nontrivial issue returned to Primary.
 
-Build the successor evidence selection/archive/index using explicit paths and the new source/build identities. Include raw compiler/PCH/domain proof inputs; do not substitute summary PASS artifacts. Authenticate archive/index hashes, membership and raw references, then run the existing strict semantic verifiers and commission a **genuine independent whole-chain M08 review** over design → source → builds → raw runtime evidence.
+## Failure evidence
 
-Only independent M08 PASS can make the package **Ready for Human Review Gate**. At that point stop for explicit human H1 approval. Neither agent may self-grant the gate. R02 remains prohibited.
+For every failure retain exact repository/branch/checkout HEAD/source anchor/pin bytes, command, cwd, exit/timeout, stdout/stderr, Unity log/XML, selected Bee DAG, macro-domain census, recursive response bytes, compiler/SDK identity, PCH original/rebuild/module-file-info/header bytes, probe source/argv/macro output for every reached context, native and managed artifact identities, build/preparation/restore state and attempt-stage/failure records.
 
-## Failure evidence to return
+Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Missing bytes are not execution failures. Preserve historical c0d3070 preflight attempts and earlier v6–v11 evidence unchanged.
 
-For any failure, preserve and identify: repo/branch/checkout HEAD/code anchor/pin bytes, exact command/cwd/exit/timeout/stdout/stderr, Unity log/XML, raw selected Bee DAG, macro-domain census, recursive response files, compiler/SDK identity, original/rebuilt PCHs, module-file-info/header bytes, exact probe source/argv/macro output for every reached domain/context, native binary identity, managed capture, build/preparation/restore state, attempt-stage/failure JSON and before/after restoration hashes.
+## Alternatives
 
-Do not delete failed evidence to make space. Absolute local paths are locators, not portable proof. Missing bytes are `Unavailable`; executed mismatches are `Failed`/`InvalidEvidence` as appropriate.
+The acceptance route is the unchanged authoritative preflight followed by fresh strict capture and V01–V05. Explicit diagnostic replay remains investigation-only and cannot close a fresh-build requirement. The supported explicit same-source smoke reuse may avoid one redundant build only after revalidation; it is not automatic fallback.
+
+Do **not** solve a failure by disabling PCH/PDB, ignoring compiler errors, broadening source-domain membership, relaxing witness/provenance checks, repointing reproduction to fixed native code, or replacing the performance-reference profile. Any such nontrivial alternative returns to Primary for design and review first.
+
+## Risks
+
+Apple Bee/Clang may expose legitimate flags, source ownership or PCH behavior not present in Primary’s bounded CI fixture. Conservative parsing/provenance may reject those cases. Treat them as actionable evidence, not justification to bypass checks.
+
+The candidate source anchor now includes the committed c0d3070 Local Validation checkpoint because that checkpoint lives outside the old metadata-only namespace. Future auxiliary checkpoint evidence must use `Docs/AssemblyShadow/...`; otherwise it can again become a demo build-input change and invalidate the source pin.
+
+Publishing this repaired handoff does not prove native installation, Unity compilation, Player execution, runtime matrix, performance, successor packaging or M08. Those remain Local Validation tasks.
 
 ## Local correction boundary
 
-Local Validation may correct explicit machine paths, executable permissions, invocation syntax, output-directory selection and isolated test setup, and may perform already-documented exact generated-file restoration after preserving before/after bytes. Do **not** locally change macro-domain membership, provenance acceptance semantics, PCH requirements, witness allowlists, count behavior, source-identity exclusions, architecture, ABI or performance methodology. Those are nontrivial Primary changes even if the diff would be small.
+Local Validation may correct explicit machine paths, executable permissions, invocation syntax, output-directory choices, isolated test setup, and already-documented exact generated-file restoration after preserving before/after bytes.
 
-## Gate state
+Local Validation must **not** change handoff/preflight acceptance semantics, source-pin policy, macro-domain membership, compiler/PCH provenance requirements, witness allowlists, count behavior, ABI, architecture, source-identity exclusions, performance methodology, or cross-module design. Those are nontrivial Primary changes regardless of diff size.
 
-Current state remains: H1 `InProgress`, technically blocked pending V01–V05; last independent whole-chain M08 `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+Do not rewrite `WEB_TO_LOCAL.md`. Preserve and append empirical facts in Local-owned reports.
+
+## Human review gate
+
+Current project gate is H1 as defined by the committed project review documents. Current state remains `InProgress`; technical readiness is blocked pending fresh V00–V05; last independent whole-chain M08 is `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+
+Only after implementation and actual Local Validation satisfy the current gate definition **and** a genuine independent whole-chain M08 returns PASS may Local Validation mark the package **Ready for Human Review Gate**. Then stop for explicit human approval. Neither agent may grant H1. Do not begin R02 before that approval is recorded.
