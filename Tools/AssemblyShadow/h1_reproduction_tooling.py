@@ -3,7 +3,7 @@
 
 The protected reproduction behaviour/pins remain authoritative. A separate
 checkout may differ from the protected published head only at the exact
-validation-tool override paths committed in candidate source-targets. The
+validation-tool overrides/deletions committed in candidate source-targets. The
 complete required validation-tool set, including already-identical files, must
 also match reviewed candidate Git blobs. This is source/tooling preflight only;
 it does not accept a Player or H1.
@@ -23,7 +23,14 @@ REPOSITORY = 'night-outlook/hybridclr_demo'
 ORIGINS = ('git@github.com:night-outlook/hybridclr_demo.git',
            'https://github.com/night-outlook/hybridclr_demo.git',
            'https://github.com/night-outlook/hybridclr_demo')
-TOOL_PREFIXES = ('Tools/AssemblyShadow/', 'Assets/AssemblyShadowDemo/Editor/')
+TOOL_PREFIXES = ('Tools/AssemblyShadow/', 'Assets/AssemblyShadowDemo/Editor/',
+                 'Assets/AssemblyShadowDemo/Tests/Editor/')
+EDITOR_PREFIXES = ('Assets/AssemblyShadowDemo/Editor/', 'Assets/AssemblyShadowDemo/Tests/Editor/')
+LEGACY_MANAGED_SOURCE_API = (
+    'H1ManagedSourceProvenance.Capture',
+    'H1ManagedSourceProvenance.CaptureBeforeBuild(',
+    'H1ManagedSourceProvenance.RequireUnchanged(',
+)
 
 
 def _sha(value):
@@ -40,13 +47,43 @@ def _valid_tool_map(files):
         isinstance(p,str) and p.startswith(TOOL_PREFIXES) and _sha(oid) for p,oid in files.items())
 
 
-def verify_tree_contract(base_tree, current_tree, overrides):
+def _valid_deletions(paths):
+    return isinstance(paths,list) and len(paths)==len(set(paths)) and all(
+        isinstance(p,str) and p.startswith(TOOL_PREFIXES) for p in paths)
+
+
+def verify_tree_contract(base_tree, current_tree, overrides, deletions=()):
     s.require(_valid_tool_map(overrides), 'Reproduction tooling override allowlist is empty/invalid')
+    s.require(_valid_deletions(list(deletions)), 'Reproduction tooling deletion allowlist is invalid')
+    s.require(set(overrides).isdisjoint(deletions), 'Tooling path cannot be both override and deletion')
     changed=changed_build_inputs(base_tree,current_tree)
-    s.require(changed==set(overrides), 'Reproduction tooling checkout has non-tooling or missing tool changes')
+    expected=set(overrides)|set(deletions)
+    s.require(changed==expected, 'Reproduction tooling checkout has non-tooling or missing tool changes')
     for path,oid in overrides.items():
         s.require(current_tree.get(path)==oid, 'Reproduction tooling blob differs: '+path)
+    for path in deletions:
+        s.require(_sha(base_tree.get(path)) and path not in current_tree,
+                  'Reproduction tooling deletion differs: '+path)
     return changed
+
+
+def editor_source_compatibility(project, current_tree):
+    """Audit the exact assembled Editor/Test Editor source set for removed bridge APIs."""
+    rows=[]
+    for path,oid in sorted(current_tree.items()):
+        if not path.endswith('.cs') or not path.startswith(EDITOR_PREFIXES):
+            continue
+        source=s.safe_file(project,path)
+        try:
+            text=source.read_text(encoding='utf-8-sig')
+        except UnicodeError as error:
+            raise s.VerificationError('Editor source is not UTF-8 compatible: '+path) from error
+        used=[token for token in LEGACY_MANAGED_SOURCE_API if token in text]
+        s.require(not used, 'Assembled tooling Editor source uses removed managed-source API: '+path)
+        rows.append((path,oid))
+    digest=hashlib.sha256(''.join(path+'\0'+oid+'\n' for path,oid in rows).encode()).hexdigest()
+    return {'status':'Compatible','editorSourceCount':len(rows),'editorSourceInventorySha256':digest,
+            'rejectedLegacyManagedSourceApi':list(LEGACY_MANAGED_SOURCE_API)}
 
 
 def _committed_authority(authority):
@@ -72,9 +109,10 @@ def verify(project, authority):
     revision=tooling.get('revision',''); branch=tooling.get('branch',''); candidate_anchor=tooling.get('candidateToolSourceAnchor','')
     s.require(all(_sha(v) for v in (protected,behavior,revision,candidate_anchor)), 'Invalid split reproduction source identity')
     s.require(isinstance(branch,str) and branch, 'Missing reproduction tooling branch')
-    files=tooling.get('files');overrides=tooling.get('overrides')
-    s.require(_valid_tool_map(files) and _valid_tool_map(overrides) and set(overrides)<=set(files),
-              'Missing/invalid reproduction tooling file maps')
+    files=tooling.get('files');overrides=tooling.get('overrides');deletions=tooling.get('deletions',[])
+    s.require(_valid_tool_map(files) and _valid_tool_map(overrides) and set(overrides)<=set(files) and
+              _valid_deletions(deletions) and set(deletions).isdisjoint(files),
+              'Missing/invalid reproduction tooling file/deletion maps')
 
     origin=s.git(project,'remote','get-url','origin').decode().strip()
     s.require(origin in ORIGINS, 'Unexpected reproduction tooling origin')
@@ -97,7 +135,7 @@ def verify(project, authority):
     pinned_build={p:o for p,o in pinned.items() if not s.metadata_only(p)}
     protected_build={p:o for p,o in protected_tree.items() if not s.metadata_only(p)}
     s.require(pinned_build==protected_build, 'Protected reproduction published head changed build behavior after its source pin')
-    verify_tree_contract(protected_tree,current,overrides)
+    verify_tree_contract(protected_tree,current,overrides,deletions)
 
     # Every required tool dependency must match both this checkout and the exact
     # reviewed candidate source blob, even when it needed no override.
@@ -105,6 +143,11 @@ def verify(project, authority):
         s.require(current.get(path)==oid, 'Reproduction required tooling blob differs: '+path)
         source_oid=s.git(authority,'rev-parse',candidate_anchor+':'+path).decode().strip()
         s.require(source_oid==oid, 'Tooling blob is not from the reviewed candidate source anchor: '+path)
+    # A tooling deletion is authenticated only when the reviewed candidate source
+    # also omits the path. This makes removal part of the exact source contract.
+    for path in deletions:
+        candidate_path=s.git(authority,'ls-tree','-r','--name-only',candidate_anchor,'--',path).decode().strip()
+        s.require(candidate_path=='', 'Tooling deletion is not absent from the reviewed candidate source: '+path)
 
     for path,oid in current.items():
         if not s.metadata_only(path): s.verify_blob(s.safe_file(project,path),oid)
@@ -116,11 +159,13 @@ def verify(project, authority):
         for suffix in ('*.cs','*.asmdef'):
             for path in root.rglob(suffix):
                 s.require(path.relative_to(project).as_posix() in current, 'Unpinned Unity code input: '+str(path))
+    compatibility=editor_source_compatibility(project,current)
 
     return {'kind':'ReproductionValidationToolingPreflight','status':'BehaviorAndToolingSourcesVerifiedNotBuildAccepted',
             'repository':REPOSITORY,'branch':actual_branch,'checkoutCommit':head,'behaviorSourceCommit':behavior,
             'protectedPublishedHead':protected,'validationToolingCommit':revision,
             'candidateToolSourceAnchor':candidate_anchor,'toolFiles':files,'toolOverrides':overrides,
+            'toolDeletions':deletions,'editorSourceCompatibility':compatibility,
             'sourceTargetSha256':target_sha,'sourcePinSha256':hashlib.sha256((project/s.PINS).read_bytes()).hexdigest(),
             'nativeInstallationVerified':False,'humanGatePassed':False,'mayEnterR02':False}
 
