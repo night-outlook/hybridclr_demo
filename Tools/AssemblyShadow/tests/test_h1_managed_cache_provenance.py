@@ -74,7 +74,7 @@ class ManagedBeeCacheProofTests(unittest.TestCase):
         self.begin(); (self.root/'reference.dll').write_bytes(b'REFERENCE-v2'); self.end()
         with self.assertRaisesRegex(ValueError,'dependency.*changed|Missing'): self.proof()
     def test_wrong_fresh_player_binding_is_rejected_even_with_identical_bytes(self):
-        self.begin(); name=sorted(h.REQUIRED_ASSEMBLIES)[0]; wrong=self.root/'Library/Bee/unrelated/'+name+'.dll'
+        self.begin(); name=sorted(h.REQUIRED_ASSEMBLIES)[0]; wrong=self.root/'Library/Bee/unrelated'/(name+'.dll')
         wrong.parent.mkdir(parents=True); wrong.write_bytes(self.paths[name][1].read_bytes()); self.end({name:wrong})
         with self.assertRaisesRegex(ValueError,'Missing or ambiguous managed action chain'): self.proof()
     def test_output_missing_at_begin_cannot_be_retroactively_proved(self):
