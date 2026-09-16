@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.0567475">
+  <test-suite type="TestSuite" id="2233" name="AssemblyShadowBaseline" fullname="AssemblyShadowBaseline" runstate="Runnable" testcasecount="1100" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.056748" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="2630" name="AssemblyShadowDemo.EditorTests.dll" fullname="/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo/Library/ScriptAssemblies/AssemblyShadowDemo.EditorTests.dll" runstate="Runnable" testcasecount="342" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.031198" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="43962" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="2631" name="AssemblyShadowDemo" fullname="AssemblyShadowDemo" runstate="Runnable" testcasecount="342" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.030490" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2632" name="EditorTests" fullname="AssemblyShadowDemo.EditorTests" runstate="Runnable" testcasecount="342" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.030054" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2236" name="H1EvidenceProcessTests" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.024442" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2247" name="CompilerCaptureRetainsResponseAndMacroFields" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.CompilerCaptureRetainsResponseAndMacroFields" methodname="CompilerCaptureRetainsResponseAndMacroFields" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="1885190786" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.009471" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2248" name="EmptyCaptureDoesNotCreateProvenance" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.EmptyCaptureDoesNotCreateProvenance" methodname="EmptyCaptureDoesNotCreateProvenance" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="794423746" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.001405" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2241" name="ExplicitArgumentsAreQuoted" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.ExplicitArgumentsAreQuoted" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.002108" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2237" name="ExplicitArgumentsAreQuoted(&quot;&quot;,&quot;\&quot;\&quot;&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.ExplicitArgumentsAreQuoted(&quot;&quot;,&quot;\&quot;\&quot;&quot;)" methodname="ExplicitArgumentsAreQuoted" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="2080506408" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000265" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2238" name="ExplicitArgumentsAreQuoted(&quot;/tmp/build path/test.py&quot;,&quot;\&quot;/tmp/build path/test.py\&quot;&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.ExplicitArgumentsAreQuoted(&quot;/tmp/build path/test.py&quot;,&quot;\&quot;/tmp/build path/test.py\&quot;&quot;)" methodname="ExplicitArgumentsAreQuoted" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="1454319370" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000048" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2239" name="ExplicitArgumentsAreQuoted(&quot;a\&quot;b&quot;,&quot;\&quot;a\\\&quot;b\&quot;&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.ExplicitArgumentsAreQuoted(&quot;a\&quot;b&quot;,&quot;\&quot;a\\\&quot;b\&quot;&quot;)" methodname="ExplicitArgumentsAreQuoted" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="157928265" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000041" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2240" name="ExplicitArgumentsAreQuoted(&quot;a\\b&quot;,&quot;\&quot;a\\\\b\&quot;&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.ExplicitArgumentsAreQuoted(&quot;a\\b&quot;,&quot;\&quot;a\\\\b\&quot;&quot;)" methodname="ExplicitArgumentsAreQuoted" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="100623154" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000042" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2246" name="InvalidArgumentsAreRejected" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.InvalidArgumentsAreRejected" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.002621" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2242" name="InvalidArgumentsAreRejected(null)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.InvalidArgumentsAreRejected(null)" methodname="InvalidArgumentsAreRejected" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="719323461" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.001804" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2243" name="InvalidArgumentsAreRejected(&quot;a\nb&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.InvalidArgumentsAreRejected(&quot;a\nb&quot;)" methodname="InvalidArgumentsAreRejected" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="1391231386" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000070" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2244" name="InvalidArgumentsAreRejected(&quot;a\rb&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.InvalidArgumentsAreRejected(&quot;a\rb&quot;)" methodname="InvalidArgumentsAreRejected" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="714725923" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000047" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2245" name="InvalidArgumentsAreRejected(&quot;a\0b&quot;)" fullname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests.InvalidArgumentsAreRejected(&quot;a\0b&quot;)" methodname="InvalidArgumentsAreRejected" classname="AssemblyShadowDemo.EditorTests.H1EvidenceProcessTests" runstate="Runnable" seed="1114314064" result="Passed" start-time="2026-09-16 08:12:31Z" end-time="2026-09-16 08:12:31Z" duration="0.000046" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

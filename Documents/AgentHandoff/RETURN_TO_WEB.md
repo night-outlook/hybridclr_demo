@@ -1,6 +1,80 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: published schema-3 handoff fails its authoritative preflight
+## Current blocker: protected reproduction invokes obsolete project-local provenance policy
+
+### Symptom
+
+At handoff `9568ea386822b4e8e48ff73e793d4a2cd09092dc`, source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a`, V00–V02 pass and all four candidate V03 modes pass. The fresh protected reproduction ON/Debug Unity Player build reports success, seals input snapshot `7d1349c55854ce6f121eafef0312eb04da6698a7e245cc33b2ece52fa2654073`, and produces native SHA-256 `4ad497816822932021d89879e5f5d7c7f490a4b0ae5fda4994498281a278fae5`. Its mandatory post-build provenance step then fails:
+
+```text
+Failed: Translation units disagree on effective diagnostic macros (link flags are not compile evidence)
+```
+
+No `h1-compiler-provenance.json` or build receipt is published. The batch restores the diagnostic scene/settings exactly and exits 1. Reproduction ON/Release is not run.
+
+### Reproduction
+
+After the accepted V02 smoke, run the handoff-owned continuation exactly:
+
+```sh
+python3 Tools/AssemblyShadow/h1_count_build_batch.py \
+  --candidate /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  --reproduction /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo \
+  --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
+  --pwsh /usr/local/bin/pwsh \
+  --scope all \
+  --reuse-smoke /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-0e2d7991d39e47d3a508b13206945aa2/build-receipt.json \
+  --output /ABS/NEW/v03/all \
+  --execute
+```
+
+The first four candidate results pass. The fifth mode, reproduction ON/Debug, builds the Player and then fails in the reproduction checkout's `Tools/AssemblyShadow/h1_native_capture.py`.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260916-9568ea3](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-9568ea3/README.md).
+
+- `v03/build-runner-results.tar.gz` retains complete runner output and raw Unity logs for every reached mode.
+- `v03/reproduction-on-debug-failure/original-request.json`: exact request, SHA-256 `d0264e40f116445884696ebbd56564622722c2b20ba78835b7e5a741439095e1`.
+- `selected-bee-graph.json`: exact fresh graph, 2,796,905 bytes, SHA-256 `aaaedafc0c9d1a5e5410090d396d906ac1aced72b79965f3fe14d072ee22879d`.
+- `macro-domain-census.json`: 446 compile actions, one unambiguous selected native output, zero graph errors.
+- `failure-identity.json`: build GUID, input snapshot, native/config/request/graph hashes, and restoration status.
+- `tool-identity.json`: candidate/reproduction validation-tool hashes and availability.
+- `candidate-tool-diagnostic-result.json`: `DiagnosticReplayVerifiedNotBuildAccepted`, proof SHA-256 `a4425ebca605487b7c57fa851e6ac5f03f22d0e766da642934b4191b0cd5fc5d`.
+- `candidate-tool-store-verification.json`: 451 retained objects, 317,525,404 logical bytes, 72,486,391 stored bytes, independently verified.
+
+The reproduction project-local `h1_native_capture.py` SHA-256 is `ec09eb58b4b9cf632d8ec68d570c7a0a70a3faf56fc69bb42cf9217ff9c7081a`; the candidate source anchor's current file is `17022d2e55421730a1e280fc43ffc3eb2f4ad6d16458c5d47a61483726e6c1b7`.
+
+### Root cause
+
+`h1_count_build_batch.py` selects the project root per role, and Unity's `H1CompilerProvenance.CaptureAfterBuild` invokes `Tools/AssemblyShadow/h1_native_capture.py` from that target project. The protected reproduction demo is intentionally frozen at published head `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` to preserve unfixed count behavior, so it also retains the old capture implementation that applies one global diagnostic-macro equality predicate before domain-aware PCH probes.
+
+The candidate source anchor contains the reviewed Apple macro-domain and retention implementation. Running that current diagnostic-only tool against the exact failed reproduction request and graph passes all probe/store checks. The reproduction graph is therefore supported by the current policy, but the strict build does not execute that policy because tool selection is coupled to the protected behavior checkout.
+
+The design permits this because build-under-test source selection and acceptance-tool selection share one project root. Freezing the reproduction behavior unintentionally freezes obsolete validation policy as well.
+
+### Impact
+
+The reproduction Player has no valid compiler provenance or build receipt and cannot enter V04. Reproduction ON/Release, the 132 candidate count cells, 8 reproduction cells, startup11, capacity boundaries, replay, performance pairs, successor package, and independent whole-chain M08 are `Blocked / NotRun`. Human Review Gate is not ready and R02 remains closed.
+
+The four candidate builds are valid partial evidence only. They do not substitute for the required reproduction pair or whole-chain M08.
+
+### Recommended direction
+
+Primary should decouple the reviewed validation-tool bundle from the protected behavior source. A durable successor can pin and authenticate one candidate-owned tool bundle for both roles while keeping each role's project, native source, source-pin bytes, Player inputs, and build outputs distinct. The receipt must record tool-bundle identity and target-role identity, and the preflight/batch regressions must reject tool drift or cross-role source substitution.
+
+An alternative is a reviewed reproduction-demo successor that changes only validation tooling while cryptographically preserving the unfixed behavior/native pins and reproduction code anchor. That conflicts with the current `publishedHead` preservation contract unless `source-targets.json` and the handoff are explicitly revised, so Local Validation did not attempt it.
+
+Add an integration fixture that runs the strict all-mode batch with a frozen reproduction behavior checkout whose local tools predate the candidate policy. The fixture should prove the selected current tool bundle is exact, role-specific source bindings remain unchanged, and no diagnostic replay is promoted to a build receipt.
+
+### Uncertainty
+
+The candidate-tool replay proves the exact graph is compatible with current macro/PCH/store diagnostics. It does not prove that a future decoupled invocation is correctly bound into Unity's build receipt or managed provenance chain. That binding requires Primary design and a fresh V03 rerun. The unfixed runtime count behavior remains `NotRun` because the failed Player is unreceipted.
+
+---
+
+
+## Historical blocker addressed by handoff 9568ea3: published schema-3 handoff failed its authoritative preflight
 
 ### Symptom
 

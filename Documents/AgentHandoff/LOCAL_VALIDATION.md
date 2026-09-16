@@ -1,6 +1,77 @@
 # Local Validation report
 
-## Current run — 2026-09-16 handoff 2ca4720
+## Current run — 2026-09-16 handoff 9568ea3
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The candidate branch was explicitly pulled to requested handoff `9568ea386822b4e8e48ff73e793d4a2cd09092dc`. Candidate source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a` and all protected pins match. V00 and V01 pass. V02 provides the first fresh real-Unity schema-3 proof: both required managed assemblies are uniquely bound to the fresh Player through `BeeCacheHitBoundToFreshPlayerInput`, each action's two-file recursive response closure is exact and unchanged, and `freshCompilerExecutionClaim=false`.
+
+All four candidate V03 modes pass strict native compiler/PCH/store provenance, schema-3 managed provenance, exact fresh Player input binding, and restoration. The fresh reproduction ON/Debug Player then succeeds, but the protected reproduction checkout's project-local pre-domain `h1_native_capture.py` rejects its 446-action Apple graph with `Translation units disagree on effective diagnostic macros (link flags are not compile evidence)`. No compiler-provenance output or build receipt is published.
+
+A diagnostic-only replay using the candidate source anchor's current tool passes on the exact failed reproduction request and graph, including Apple macro/PCH probes and independent retained-store verification. It explicitly reports `DiagnosticReplayVerifiedNotBuildAccepted` and cannot repair the failed build. The discrepancy is therefore a tooling-chain/version mismatch, not authority to accept the unreceipted Player locally.
+
+Reproduction ON/Release, V04, and V05 are `Blocked / NotRun`. Independent whole-chain M08 was not commissioned. Human Review Gate is not ready, `humanGatePassed=false`, `mayEnterR02=false`, and R02 was not started.
+
+### Validated source state
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate handoff checkout | `codex/assembly-shadow-r01b-h1` | `9568ea386822b4e8e48ff73e793d4a2cd09092dc` | `Pass` |
+| Candidate source anchor | same branch | `5f561abdfbe020d1d480594a2130c5ec846c0e6a` | `Pass` in source target and pin |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass`, clean |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass`, clean |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass`, clean |
+| Reproduction demo | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged and clean |
+| Reproduction native | `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged and clean |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged and clean |
+
+Pre-existing untracked historical `v7`–`v11` evidence was preserved and excluded. No reset, clean, stash, branch move, or protected-pin change was performed.
+
+### Environment
+
+- macOS 26.5.2 (25F84), arm64
+- Unity 2022.3.62f2, StandaloneOSX arm64
+- Apple clang 21.0.0 (`clang-2100.1.1.101`)
+- Python 3.14.6
+- PowerShell 7.6.3
+- Git 2.50.1 (Apple Git-155)
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 authoritative preflight | `Pass` | Exit 0; `SourceTargetVerifiedNotBuildAccepted`; requested checkout, source anchor, pins, and false gate flags. |
+| V01 Bee Primary | `Pass` | Corrected fresh invocation 283/283. Initial pre-created-output failure is retained. |
+| V01 H1 Python / focused owners | `Pass` | H1 inventory 461/461; managed cache 10/10; managed provenance 17/17; strict provenance 4/4; M02 owner 15/15. |
+| V01 candidate Unity | `Pass` | Compile; focused NUnit 4/4 and 10/10; full demo 351/351; package 720/720. |
+| V01 reproduction Unity | `Pass` for required scope | Compile and focused NUnit 4/4 and 10/10. |
+| V02 pinned install/runtime | `Pass` | 955 source files, 957 installed files, demo source verified, mode `on`, receipt SHA-256 `8b6d04c1e54c57174bae04476814166ff78d52ab5d1af1d048695c4462087f68`. |
+| V02 fresh candidate ON/Debug | `Pass` | Native strict verifier, schema-3 managed verifier, and exact restoration pass. Both required rows are cache hits bound to exact fresh Player inputs. |
+| V02 action-local responses | `Pass` | Two recursive responses per selected action; `responseSources`/retained membership exact; all owned responses unchanged. This run observed zero audit-only response changes. |
+| V02 native store | `Pass` for integrity | `StoreVerifiedNotAcceptance`; 451 objects, 318,212,421 logical bytes, 72,612,459 stored bytes. |
+| V03 candidate ON/OFF × Debug/Release | `Pass` | Four modes pass strict native and schema-3 managed provenance; each mode has two unique cache-hit rows and exact restoration. |
+| V03 reproduction ON/Debug | `Fail` | Player succeeds, then old project-local capture rejects the Apple macro split. No provenance/receipt. Restoration is exact. |
+| V03 candidate-tool replay | `Pass` for diagnosis only | Exact request/graph passes current macro/PCH diagnostics and store verification; no fresh-build or receipt claim. |
+| V03 reproduction ON/Release | `Blocked / NotRun` | Serial strict batch stops at the required ON/Debug failure. |
+| V04 runtime/count/startup/performance | `Blocked / NotRun` | Required six-build provenance set is incomplete. |
+| V05 successor and independent M08 | `Blocked / NotRun` | Acceptance inputs are incomplete; last independent M08 remains `FAIL`. |
+
+The two mistaken runtime-verifier invocations used a duplicate operation argument. One raw failure is retained; the first log was overwritten before checkpointing and is recorded as `Unavailable`. The corrected verifier result is the only accepted runtime-install observation.
+
+### Key evidence
+
+V02 candidate ON/Debug uses build GUID `1d8b8152db7348839de41dbe0206aa2f`, input snapshot `498a47bdffd70f650b51bfd1057a51e6bb2be0e914ba8196dad67ed1c576c2f1`, and native SHA-256 `c5fcf8c9e78632a5d9a1df8319ce7a5cc346526c745823ab72df8ded27d901c0`. The normal Bee cache remained intact; neither cache cleaning nor `--reuse-proof` was used.
+
+The failed reproduction ON/Debug build uses build GUID `44882bc8dac74f538be9e951991d790e`, input snapshot `7d1349c55854ce6f121eafef0312eb04da6698a7e245cc33b2ece52fa2654073`, native SHA-256 `4ad497816822932021d89879e5f5d7c7f490a4b0ae5fda4994498281a278fae5`, request SHA-256 `d0264e40f116445884696ebbd56564622722c2b20ba78835b7e5a741439095e1`, and selected graph SHA-256 `aaaedafc0c9d1a5e5410090d396d906ac1aced72b79965f3fe14d072ee22879d`. The candidate diagnostic replay proof is `a4425ebca605487b7c57fa851e6ac5f03f22d0e766da642934b4191b0cd5fc5d` and remains non-acceptance evidence.
+
+Portable evidence is under [local-validation-20260916-9568ea3](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-9568ea3/README.md). No product code or local policy change was made. The actionable issue is at the top of [RETURN_TO_WEB.md](RETURN_TO_WEB.md).
+
+---
+
+
+## Historical run — 2026-09-16 handoff 2ca4720
 
 ### Exit
 

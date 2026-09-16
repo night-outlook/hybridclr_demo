@@ -1,0 +1,51 @@
+{
+  "kind": "LocalValidationResultsSummary",
+  "handoffHead": "9568ea386822b4e8e48ff73e793d4a2cd09092dc",
+  "sourceAnchor": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
+  "exit": "Local Validation to Primary Implementation",
+  "steps": [
+    {
+      "id": "V00",
+      "result": "Pass",
+      "fact": "Authoritative preflight returned SourceTargetVerifiedNotBuildAccepted"
+    },
+    {
+      "id": "V01",
+      "result": "Pass",
+      "fact": "Bee 283/283; H1 Python 461/461; candidate/reproduction Unity compile and focused tests pass; candidate full demo 351/351 and package 720/720"
+    },
+    {
+      "id": "V02",
+      "result": "Pass",
+      "fact": "Fresh candidate On/Debug schema-3 cache proof bound both required assemblies; independent native store verification passed"
+    },
+    {
+      "id": "V03-candidate",
+      "result": "Pass",
+      "fact": "Candidate On/Off x Debug/Release all have strict native and schema-3 managed provenance"
+    },
+    {
+      "id": "V03-reproduction-on-debug",
+      "result": "Fail",
+      "fact": "Player succeeded, then reproduction project-local old capture rejected the Apple graph with global macro disagreement; exact restoration passed"
+    },
+    {
+      "id": "V03-reproduction-on-release",
+      "result": "BlockedNotRun",
+      "fact": "Serial batch stopped at required reproduction On/Debug failure"
+    },
+    {
+      "id": "V04",
+      "result": "BlockedNotRun",
+      "fact": "Required six-build set is incomplete"
+    },
+    {
+      "id": "V05",
+      "result": "BlockedNotRun",
+      "fact": "V03/V04 inputs incomplete; independent M08 not commissioned"
+    }
+  ],
+  "lastIndependentM08": "FAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

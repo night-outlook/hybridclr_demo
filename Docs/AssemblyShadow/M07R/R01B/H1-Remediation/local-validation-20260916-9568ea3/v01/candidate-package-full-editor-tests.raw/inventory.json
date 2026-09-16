@@ -1,0 +1,4350 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1NUnitLeafInventory",
+  "status": "Passed",
+  "count": 720,
+  "counts": {
+    "Passed": 720
+  },
+  "tests": [
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.CatalogMustBeInstalledAndAnActualCompilerReference",
+      "result": "Passed",
+      "duration": "0.121742",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.ChangedCatalogOrCapturedReferenceBytesRejectProof",
+      "result": "Passed",
+      "duration": "0.044552",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.DuplicateCatalogIdentitiesWithDifferentBytesRejectProof",
+      "result": "Passed",
+      "duration": "0.004696",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.ExternalNestedTypeSpecsAndTypeDefsCannotBypassIdentityRejection",
+      "result": "Passed",
+      "duration": "0.033735",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.ForgedReferenceAssemblyAttributeCannotGrantFrameworkProvenance",
+      "result": "Passed",
+      "duration": "0.021293",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.FrameworkNamePrefixCannotGrantVersionUnification",
+      "result": "Passed",
+      "duration": "0.005663",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.FullIdentityMismatchRejectsStrongNamedV2AgainstUnsignedV1WithBothPaths",
+      "result": "Passed",
+      "duration": "0.005299",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.PrimarySnapshotCopyNeverReceivesFrameworkVersionUnification",
+      "result": "Passed",
+      "duration": "0.011879",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.PublicKeyAndPublicKeyTokenRepresentationsMatchByNormalizedToken",
+      "result": "Passed",
+      "duration": "0.011186",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.RecordedSourcePathCannotGrantFrameworkProvenance",
+      "result": "Passed",
+      "duration": "0.006372",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.RuntimeProfileInsideEditorCannotGrantCompilerFrameworkProvenance",
+      "result": "Passed",
+      "duration": "0.006370",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.SameNameAndIdentityWithChangedBytesCannotReuseFrameworkProof",
+      "result": "Passed",
+      "duration": "0.005834",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.SnapshotTargetPinsHashAndReferenceRoleAreCheckedBeforeProof",
+      "result": "Passed",
+      "duration": "0.005839",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.SuppliedIncompatibleFacadeDestinationIsNeverDeferredAsMissing",
+      "result": "Passed",
+      "duration": "0.012589",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.VerifiedCatalogBytesPermitOnlyVersionUnificationAndProofIsReadOnly",
+      "result": "Passed",
+      "duration": "0.021013",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.AssemblyIdentityTests.VersionCultureTokenAndContentTypeAreMandatoryWithoutProof",
+      "result": "Passed",
+      "duration": "0.018937",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.ContractsPullsEntireRuntimeClosureDependencyFirst",
+      "result": "Passed",
+      "duration": "0.006928",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.CyclesReportClosedPath",
+      "result": "Passed",
+      "duration": "0.000522",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EditorAndTestsNeverEnterClosure",
+      "result": "Passed",
+      "duration": "0.000377",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCallsiteAliasHasTheSameGraphIdentity",
+      "result": "Passed",
+      "duration": "0.001009",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(BuildFiltered,False,False)",
+      "result": "Passed",
+      "duration": "0.000133",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(EditorOnly,False,False)",
+      "result": "Passed",
+      "duration": "0.000101",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(NormalHotUpdate,False,True)",
+      "result": "Passed",
+      "duration": "0.000076",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(NormalHotUpdate,True,False)",
+      "result": "Passed",
+      "duration": "0.000097",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(Reference,False,False)",
+      "result": "Passed",
+      "duration": "0.000072",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(Runtime,False,False)",
+      "result": "Passed",
+      "duration": "0.004556",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(Runtime,True,True)",
+      "result": "Passed",
+      "duration": "0.000079",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.EntrypointCannotPromoteAnIneligibleProvider(TestOnly,False,False)",
+      "result": "Passed",
+      "duration": "0.000081",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.ExplicitRootsCannotHideDetectedChanges",
+      "result": "Passed",
+      "duration": "0.003399",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.ExplicitRuntimeDependencyParticipatesInReverseClosure",
+      "result": "Passed",
+      "duration": "0.000999",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.ExtensibilityPullsInternalAndExternalConsumer",
+      "result": "Passed",
+      "duration": "0.000176",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.FixedBootstrapInReverseClosureFails",
+      "result": "Passed",
+      "duration": "0.000339",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.GeneratorAdapterUsesClosureNotAllCandidates",
+      "result": "Passed",
+      "duration": "0.001774",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.InternalRootDoesNotPullProviders",
+      "result": "Passed",
+      "duration": "0.000143",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.InvalidExplicitEdgesFail(\"Consumer\",\"Provider\",\"DuplicateDependency\")",
+      "result": "Passed",
+      "duration": "0.000067",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.InvalidExplicitEdgesFail(\"Missing\",\"Provider\",\"UnknownAssembly\")",
+      "result": "Passed",
+      "duration": "0.000424",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.InvalidExplicitEdgesFail(\"Provider\",\"Provider\",\"SelfDependency\")",
+      "result": "Passed",
+      "duration": "0.000076",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.NonShadowConsumerReportsWholeReferencePath",
+      "result": "Passed",
+      "duration": "0.000234",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.NormalHotUpdateConsumerIsNotMistakenForAotOrAllowedToEscape",
+      "result": "Passed",
+      "duration": "0.000310",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.OrdinaryHotUpdateEntrypointRetainsItsExplicitRuntimeEdge",
+      "result": "Passed",
+      "duration": "0.001102",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.OrdinaryHotUpdateEntrypointStillRequiresExactCallsiteAndTarget(\"Bootstrap::Other\",\"OrdinaryHotUpdate.Entry, OrdinaryHotUpdate\")",
+      "result": "Passed",
+      "duration": "0.000476",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.OrdinaryHotUpdateEntrypointStillRequiresExactCallsiteAndTarget(\"Bootstrap::Probe\",\"OrdinaryHotUpdate.Other, OrdinaryHotUpdate\")",
+      "result": "Passed",
+      "duration": "0.000117",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.PrecompiledConsumerNeedsExplicitCapability",
+      "result": "Passed",
+      "duration": "0.000293",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.RemovingDeclarationCannotHideBaselineConsumer",
+      "result": "Passed",
+      "duration": "0.000260",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.StableBootstrapCannotChange",
+      "result": "Passed",
+      "duration": "0.000184",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.CallbackOnlyRemovalCannotBeWaived",
+      "result": "Passed",
+      "duration": "0.070550",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.CandidateNormalAndBootstrapConsumersRemainIneligible",
+      "result": "Passed",
+      "duration": "0.054064",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.ChangedCurrentIlOrIdentityCannotUseFrozenLink",
+      "result": "Passed",
+      "duration": "0.041851",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.ChangedCurrentReferencesCannotUseFrozenLink",
+      "result": "Passed",
+      "duration": "0.024611",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.DeclaredAndReflectionDependenciesAreNeverWaived",
+      "result": "Passed",
+      "duration": "0.058031",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.InMemoryIdentityAndIlChangesCannotMintProof",
+      "result": "Passed",
+      "duration": "0.039770",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.MissingPlayerEvidenceCannotCreateProof",
+      "result": "Passed",
+      "duration": "0.012438",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.NormalHotUpdateProviderCannotBecomeACompilerOnlyException",
+      "result": "Passed",
+      "duration": "0.024338",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.ProofCannotBeReusedForAnotherSetOrMutatedRolesMetadataAndEvidence",
+      "result": "Passed",
+      "duration": "0.268704",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.ProtectedCandidateDemotionOrBootstrapRoleSwapCannotGrantEligibility",
+      "result": "Passed",
+      "duration": "0.037257",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.RecompiledFixedAotWithOnlyDifferentMvidCanUseFrozenLink",
+      "result": "Passed",
+      "duration": "0.030127",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.RemovedRawReferenceNeedsProofAndNeverMutatesDescriptors",
+      "result": "Passed",
+      "duration": "0.034795",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.RetainedLinkedReferenceCannotBeWaived",
+      "result": "Passed",
+      "duration": "0.017232",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.TamperedLinkedOrNativeBytesRejectFactory",
+      "result": "Passed",
+      "duration": "0.035813",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.LinkedRuntimeReferenceTests.WrongExpectedSnapshotNativeGuidAndMutableReceiptReject",
+      "result": "Passed",
+      "duration": "0.037800",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.ContractEnumsAndAbiAreStable",
+      "result": "Passed",
+      "duration": "0.001971",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.DiagnosticsParserMirrorsSchemaOneFields",
+      "result": "Passed",
+      "duration": "0.003234",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.DiagnosticsRoundTripPreservesEveryReachableField",
+      "result": "Passed",
+      "duration": "0.001376",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.DiagnosticsSchemaPreservesEveryReachableTypeAndField",
+      "result": "Passed",
+      "duration": "0.001241",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.DiagnosticsUnsignedFieldsMatchNativeContract",
+      "result": "Passed",
+      "duration": "0.001110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.EditorApiDoesNotSimulateNativeRuntime",
+      "result": "Passed",
+      "duration": "0.000727",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.PublicSignaturesUseStableErrorCodeAndExplicitOutValues",
+      "result": "Passed",
+      "duration": "0.000375",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_0",
+      "result": "Passed",
+      "duration": "0.000642",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_1",
+      "result": "Passed",
+      "duration": "0.000325",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000112",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_4294967295",
+      "result": "Passed",
+      "duration": "0.003595",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_4294967296",
+      "result": "Passed",
+      "duration": "0.000152",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_4294967297",
+      "result": "Passed",
+      "duration": "0.000126",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000119",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000120",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000122",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000114",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_thread_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000124",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_0",
+      "result": "Passed",
+      "duration": "0.000501",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_1",
+      "result": "Passed",
+      "duration": "0.000119",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000114",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_4294967295",
+      "result": "Passed",
+      "duration": "0.000115",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_4294967296",
+      "result": "Passed",
+      "duration": "0.000108",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_4294967297",
+      "result": "Passed",
+      "duration": "0.000124",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000126",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000109",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000114",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowBaselineUse_timestamp_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000107",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_0",
+      "result": "Passed",
+      "duration": "0.000108",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_1",
+      "result": "Passed",
+      "duration": "0.000110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000107",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000109",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_4294967295",
+      "result": "Passed",
+      "duration": "0.000105",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_4294967296",
+      "result": "Passed",
+      "duration": "0.000109",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_4294967297",
+      "result": "Passed",
+      "duration": "0.000105",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000178",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000127",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000115",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_generation_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000112",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_0",
+      "result": "Passed",
+      "duration": "0.000529",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_1",
+      "result": "Passed",
+      "duration": "0.000163",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000109",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000106",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_4294967295",
+      "result": "Passed",
+      "duration": "0.000114",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_4294967296",
+      "result": "Passed",
+      "duration": "0.000122",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_4294967297",
+      "result": "Passed",
+      "duration": "0.000108",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000116",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000113",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000109",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_sequence_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_0",
+      "result": "Passed",
+      "duration": "0.000182",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_1",
+      "result": "Passed",
+      "duration": "0.000108",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000107",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000481",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_4294967295",
+      "result": "Passed",
+      "duration": "0.000110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_4294967296",
+      "result": "Passed",
+      "duration": "0.000125",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_4294967297",
+      "result": "Passed",
+      "duration": "0.000114",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000107",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000120",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000106",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000113",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnosticEvent_stagedCount_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000112",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_0",
+      "result": "Passed",
+      "duration": "0.000935",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_1",
+      "result": "Passed",
+      "duration": "0.000106",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000092",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_4294967295",
+      "result": "Passed",
+      "duration": "0.000094",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_4294967296",
+      "result": "Passed",
+      "duration": "0.000087",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_4294967297",
+      "result": "Passed",
+      "duration": "0.000088",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000088",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000090",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000098",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_classEnumerationGeneration_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_0",
+      "result": "Passed",
+      "duration": "0.000119",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_1",
+      "result": "Passed",
+      "duration": "0.000087",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000089",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000087",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_4294967295",
+      "result": "Passed",
+      "duration": "0.000089",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_4294967296",
+      "result": "Passed",
+      "duration": "0.000088",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_4294967297",
+      "result": "Passed",
+      "duration": "0.000091",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000096",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000103",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_enumerationGeneration_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000094",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_0",
+      "result": "Passed",
+      "duration": "0.000105",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_1",
+      "result": "Passed",
+      "duration": "0.000084",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000086",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000082",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_4294967295",
+      "result": "Passed",
+      "duration": "0.000080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_4294967296",
+      "result": "Passed",
+      "duration": "0.000080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_4294967297",
+      "result": "Passed",
+      "duration": "0.000082",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000081",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000079",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_expected_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000084",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_0",
+      "result": "Passed",
+      "duration": "0.002402",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_1",
+      "result": "Passed",
+      "duration": "0.000116",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000086",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_4294967295",
+      "result": "Passed",
+      "duration": "0.000091",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_4294967296",
+      "result": "Passed",
+      "duration": "0.000090",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_4294967297",
+      "result": "Passed",
+      "duration": "0.000083",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000081",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000084",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000104",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_generation_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000084",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_0",
+      "result": "Passed",
+      "duration": "0.000149",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_1",
+      "result": "Passed",
+      "duration": "0.000110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000090",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000090",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_4294967295",
+      "result": "Passed",
+      "duration": "0.000094",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_4294967296",
+      "result": "Passed",
+      "duration": "0.000090",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_4294967297",
+      "result": "Passed",
+      "duration": "0.000163",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000126",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000107",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000092",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_retainedBytes_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000089",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_0",
+      "result": "Passed",
+      "duration": "0.000097",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_1",
+      "result": "Passed",
+      "duration": "0.000083",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_18199233411598851025",
+      "result": "Passed",
+      "duration": "0.000083",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_18446744073709551615",
+      "result": "Passed",
+      "duration": "0.000081",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_4294967295",
+      "result": "Passed",
+      "duration": "0.000087",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_4294967296",
+      "result": "Passed",
+      "duration": "0.000083",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_4294967297",
+      "result": "Passed",
+      "duration": "0.000082",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_9007199254740991",
+      "result": "Passed",
+      "duration": "0.000082",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_9007199254740992",
+      "result": "Passed",
+      "duration": "0.000080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_9007199254740993",
+      "result": "Passed",
+      "duration": "0.000080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_9223372036854775807",
+      "result": "Passed",
+      "duration": "0.000081",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M03RuntimeApiTests.UnsignedToken_AssemblyShadowDiagnostics_staged_9223372036854775808",
+      "result": "Passed",
+      "duration": "0.000082",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.BranchSwitchAndExceptionEntriesCannotBypassTheLiteralProof",
+      "result": "Passed",
+      "duration": "0.441208",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.BranchToTheLiteralStartRemainsAValidFreshConstruction",
+      "result": "Passed",
+      "duration": "0.082093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.ContextualNameNormalizationDoesNotBroadenTypeQualifiedNames",
+      "result": "Passed",
+      "duration": "0.079901",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.ExistingStringConstantPropagationAndPathReceiverProvenanceRemainIntact",
+      "result": "Passed",
+      "duration": "0.162629",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.FileLoadsAndUnknownAliasesCannotBeApprovedByProse",
+      "result": "Passed",
+      "duration": "0.507900",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.FiniteNameProofDoesNotAuthorizeAnAuthenticallyFilteredProvider",
+      "result": "Passed",
+      "duration": "0.160542",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.FrameworkLookalikesWrongSignaturesAndIndirectCallsRemainUnknown",
+      "result": "Passed",
+      "duration": "0.814860",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.LiteralPathSuffixCaseAndDisplayIdentityKeepTheExactApprovalTarget",
+      "result": "Passed",
+      "duration": "0.944888",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.MutableAndEscapedAssemblyNamesAreNeverProven",
+      "result": "Passed",
+      "duration": "0.650416",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.NameProofRejectsMissingMalformedAndAmbiguousInputs",
+      "result": "Passed",
+      "duration": "2.584297",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.NewPathSupportRequiresTheExactCapturedFrameworkIdentity",
+      "result": "Passed",
+      "duration": "0.169990",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M04NameAcquisitionTests.RealLoaderProvesFreshLiteralConstructorAndDownstreamType",
+      "result": "Passed",
+      "duration": "0.167103",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.DuplicateUnknownMissingAndMalformedObjectFormsAreRejected",
+      "result": "Passed",
+      "duration": "0.004128",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.EveryFieldRejectsWrongPrimitiveTypesAndEveryCounterRejectsOverflow",
+      "result": "Passed",
+      "duration": "0.007452",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.FieldOrderWhitespaceAndValidJsonEscapesDoNotChangeValues",
+      "result": "Passed",
+      "duration": "0.036931",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.PointerAvailabilityRequiresOnlyActualNonzeroBoundedTokens",
+      "result": "Passed",
+      "duration": "0.003193",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.RegistryModeAndPhysicalInterpreterKindRemainSeparate",
+      "result": "Passed",
+      "duration": "0.001466",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.RequiredFalseAndZeroValuesParseWithoutDefaultManufacturing",
+      "result": "Passed",
+      "duration": "0.005073",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.TypeResolutionApiHasExactSignatureAndDoesNotSimulateEditorOrMono",
+      "result": "Passed",
+      "duration": "0.000714",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.TypeResolutionDtoPreservesExactlyTheEighteenDeclaredFields",
+      "result": "Passed",
+      "duration": "0.000731",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.UnitySerializerRoundTripPreservesAllFieldsIncludingUnsignedExtremes",
+      "result": "Passed",
+      "duration": "0.006631",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05RuntimeApiTests.UnsignedCounterTokensAndBclRoundTripsRetainTheFullRange",
+      "result": "Passed",
+      "duration": "0.009820",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.ActualAssemblyRefsSatisfyEveryBusinessComponentWithoutInventedEdges",
+      "result": "Passed",
+      "duration": "0.109386",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.AllFiveCandidateAssemblyNamesAcceptRequiredP03GenericLiteralShape",
+      "result": "Passed",
+      "duration": "1.442026",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.AssemblyGetTypeRequiresItsProvenReceiverAndAllGenericArgumentProviders",
+      "result": "Passed",
+      "duration": "0.198399",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.AuthenticatedReferenceFacadeDoesNotNeedInventedBusinessEdges",
+      "result": "Passed",
+      "duration": "0.123550",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.BootstrapMustApproveEverySameProviderTypeWithTheOriginalWholeLiteral",
+      "result": "Passed",
+      "duration": "0.098044",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.BusinessForwarderAndTerminalCandidateBothRequireTruthfulDependencies",
+      "result": "Passed",
+      "duration": "0.100344",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.ClosedNestedGenericDefinitionsRequireCombinedMetadataArity",
+      "result": "Passed",
+      "duration": "0.264778",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.CyclicAmbiguousAndWrongIdentityForwardersRemainUnknown",
+      "result": "Passed",
+      "duration": "0.534790",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.DynamicArgumentsAndConflictingBranchesRemainUnknown",
+      "result": "Passed",
+      "duration": "0.191302",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.ExplicitFullIdentitiesAreComparedWithoutParserNormalization",
+      "result": "Passed",
+      "duration": "0.270217",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.MalformedUnsupportedAndMissingComponentsFailAtomically",
+      "result": "Passed",
+      "duration": "2.854437",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.MetadataArityAndCatalogAmbiguityAreNotGuessedFromNames",
+      "result": "Passed",
+      "duration": "0.445516",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.NestedForwarderChildrenUseActualOuterForwarderIdentity",
+      "result": "Passed",
+      "duration": "0.090859",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.ParserLimitsRejectExcessiveNestingWithoutPartialEvidence",
+      "result": "Passed",
+      "duration": "0.087185",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.ResolverDelegatesIgnoreCaseAndFrameworkLookalikesCannotClaimLiteralProof",
+      "result": "Passed",
+      "duration": "0.540601",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.RuntimeAndFilteredBusinessProvidersNeverAcquireTheReferenceExemption",
+      "result": "Passed",
+      "duration": "0.272562",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M05TypeLiteralAcquisitionTests.StableOuterCannotHideCandidateArgumentAndTruthfulEdgesReachClosure",
+      "result": "Passed",
+      "duration": "0.087699",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06CompilerModeTests.BothExplicitModesBindExactSnapshotAndActualOption",
+      "result": "Passed",
+      "duration": "0.027052",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06CompilerModeTests.CaptureRejectsOptionBooleanMismatchBeforeWriting",
+      "result": "Passed",
+      "duration": "0.000888",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06CompilerModeTests.LegacyEntryPointsRetainDevelopmentWithoutModeCompanion",
+      "result": "Passed",
+      "duration": "0.015619",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06CompilerModeTests.MissingFalseZeroDuplicateUnknownAndWrongModeFieldsFail",
+      "result": "Passed",
+      "duration": "0.006457",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06CompilerModeTests.MissingModeCannotRelabelLegacyCompileAsRelease",
+      "result": "Passed",
+      "duration": "0.000891",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06CompilerModeTests.SnapshotReceiptAndDefinesTamperingFails",
+      "result": "Passed",
+      "duration": "0.002306",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.BootstrapGenericOverOrdinaryValueIsNotBanned",
+      "result": "Passed",
+      "duration": "0.004591",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.BootstrapGenericTypeAndGenericMethodArgumentsAreRejected",
+      "result": "Passed",
+      "duration": "0.008447",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.BoundedStaticInitializerAndUnrelatedOrdinarySideEffectsRemainLegal",
+      "result": "Passed",
+      "duration": "0.004317",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.CandidateBurstBodyAndOrdinaryBurstCandidateCallAreRejectedFromEmittedIl",
+      "result": "Passed",
+      "duration": "0.014258",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.CandidateNativePointerSignaturesAndUnmanagedEntrypointsFailClosed",
+      "result": "Passed",
+      "duration": "0.020034",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.CandidateRawFunctionAddressAndCalliRejectButOrdinaryCAbiCalliRemainsLegal",
+      "result": "Passed",
+      "duration": "0.010523",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.CandidateReachableBurstFunctionPointerCompilationIsRejected",
+      "result": "Passed",
+      "duration": "0.003162",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.CandidateRuntimeInitializeCannotMasqueradeAsOrdinaryModuleInitializer",
+      "result": "Passed",
+      "duration": "0.012500",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.ExistingCompiledValidationAutomaticallyIncludesExecutionBoundaryChecks",
+      "result": "Passed",
+      "duration": "0.009097",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.ImmediateManagedDelegateAndCachedManagedDelegateRetainMethodIdentity",
+      "result": "Passed",
+      "duration": "0.008750",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.ImplicitTypeInitializerEffectsAndDelegateInvocationCannotHideFromModuleInitializer",
+      "result": "Passed",
+      "duration": "0.007522",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.InitializerDirectAndHelperEffectsAreDiagnosedFromActualModuleCctor",
+      "result": "Passed",
+      "duration": "0.022306",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.OrdinaryBurstAndPrimitivePInvokeRemainValid",
+      "result": "Passed",
+      "duration": "0.009578",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.PInvokeRejectsCandidateReturnParameterAndNestedWrapperShape",
+      "result": "Passed",
+      "duration": "0.010761",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.ReflectedMethodHandlePointersRequireIdentityProofOnlyInCandidateDependentConsumers",
+      "result": "Passed",
+      "duration": "0.006396",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06ExecutionPolicyTests.ReverseWrapperRequiresSelectedMonoPInvokeCallbackAndExactDelegateSignature",
+      "result": "Passed",
+      "duration": "0.028391",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.ActualCaseInsensitiveNameCollisionAndPathEscapeReject",
+      "result": "Passed",
+      "duration": "0.014140",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.ActualCompiledReferencesSelectOnlyReverseClosureAndRejectFixedConsumers",
+      "result": "Passed",
+      "duration": "0.024240",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.ActualGeneratedMethodEntriesGuardBeforeDispatchButCalliHasNoInventedMethod",
+      "result": "Passed",
+      "duration": "0.029726",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.AotAndOutputHashesBindExcludedBytesAndOptimizedProof",
+      "result": "Passed",
+      "duration": "0.004364",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.ByteBoundResolverRejectsMutationAndNeverUsesOptionalAmbientFallback",
+      "result": "Passed",
+      "duration": "0.014473",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.CanonicalWireRejectsUnknownDuplicateAndMissingFields",
+      "result": "Passed",
+      "duration": "0.007985",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.CapturedIdentityMvidAndPdbBytesCannotBeChanged",
+      "result": "Passed",
+      "duration": "0.013450",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.EmptyOrdinaryOnlyCollectionDoesNotRequireAnInventedMetadataMethod",
+      "result": "Passed",
+      "duration": "0.010214",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.EqualAbiWithoutExactRuntimeStructNameDoesNotProveCoverage",
+      "result": "Passed",
+      "duration": "0.002116",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.ExactDnlibResolverRejectsWrongFullIdentityEvenWithMatchingSimpleName",
+      "result": "Passed",
+      "duration": "0.008202",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.ExplicitRootsRejectPathDisplayIdentityAndCanonicalCollisions",
+      "result": "Passed",
+      "duration": "0.000530",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.GeneratorOrderingIncludesAssemblyIdentityForEqualDisplaySignatures",
+      "result": "Passed",
+      "duration": "0.016851",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.GenericReferenceWriterUsesExplicitPhysicalAssemblyNames",
+      "result": "Passed",
+      "duration": "0.005985",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.LegacyMenuSignaturesRemainAlongsideExplicitPlanOverloads",
+      "result": "Passed",
+      "duration": "0.000861",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.OptimizedInventoryIsRealImmutableAndDeterministic",
+      "result": "Passed",
+      "duration": "0.011303",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.PlanHashBindsClosureOrderRolesCatalogOrdinaryPdbAndSourceContext",
+      "result": "Passed",
+      "duration": "0.018198",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.PlanReaderRejectsTargetAndSchemaBeforeTouchingSnapshot",
+      "result": "Passed",
+      "duration": "0.009191",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.RuntimeStructMappingsRetainActualNamesAndOptimizerLayout",
+      "result": "Passed",
+      "duration": "0.006750",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.SnapshotCatalogNormalizesAbsentPdbFields",
+      "result": "Passed",
+      "duration": "0.000481",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.StrippedSelectedCollisionRequiresExactExplicitExclusionSet",
+      "result": "Passed",
+      "duration": "0.006919",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.StructuralAbiCoverageIgnoresLocalIdsButRequiresCapacityAndLayout",
+      "result": "Passed",
+      "duration": "0.022923",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06GeneratorTests.SupplementaryMetadataNamesResolveFacadeTypesToPhysicalStrippedProviders",
+      "result": "Passed",
+      "duration": "0.009021",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.AllUnsignedCountersRetainExactIntegerTokens(\"0\")",
+      "result": "Passed",
+      "duration": "0.002869",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.AllUnsignedCountersRetainExactIntegerTokens(\"18446744073709551615\")",
+      "result": "Passed",
+      "duration": "0.000119",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.AllUnsignedCountersRetainExactIntegerTokens(\"4294967297\")",
+      "result": "Passed",
+      "duration": "0.000155",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.AllUnsignedCountersRetainExactIntegerTokens(\"9007199254740993\")",
+      "result": "Passed",
+      "duration": "0.000123",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.AllUnsignedCountersRetainExactIntegerTokens(\"9223372036854775808\")",
+      "result": "Passed",
+      "duration": "0.000118",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"executionMode\",\"\\\"AotBaseline\\\"\")",
+      "result": "Passed",
+      "duration": "0.000105",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"executionModeCode\",\"2\")",
+      "result": "Passed",
+      "duration": "0.000110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"isActive\",\"0\")",
+      "result": "Passed",
+      "duration": "0.000106",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"logicalAssembly\",\"\\\"\\\"\")",
+      "result": "Passed",
+      "duration": "0.000312",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"logicalAssembly\",\"null\")",
+      "result": "Passed",
+      "duration": "0.000113",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"physicalImageKind\",\"\\\"Shadow\\\"\")",
+      "result": "Passed",
+      "duration": "0.000105",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"pointerDetailsAvailable\",\"false\")",
+      "result": "Passed",
+      "duration": "0.000111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"staticStorageAvailable\",\"false\")",
+      "result": "Passed",
+      "duration": "0.000103",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"staticStoragePointer\",\"\\\"0X1234\\\"\")",
+      "result": "Passed",
+      "duration": "0.000104",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"staticStoragePointer\",\"\\\"0x0\\\"\")",
+      "result": "Passed",
+      "duration": "0.000106",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"staticStoragePointer\",\"\\\"0x10000000000000000\\\"\")",
+      "result": "Passed",
+      "duration": "0.000109",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"staticStoragePointer\",\"\\\"0xxyz\\\"\")",
+      "result": "Passed",
+      "duration": "0.000103",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"staticStoragePointer\",\"null\")",
+      "result": "Passed",
+      "duration": "0.000104",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ClassSemanticAndTokenContradictionsAreRejected(\"typeKey\",\"\\\" \\\"\")",
+      "result": "Passed",
+      "duration": "0.000110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.DuplicateUnknownNullAndWrongContainerTokensAreRejected",
+      "result": "Passed",
+      "duration": "0.000749",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.EveryClassFieldIsRequiredEvenWhenItsValueCouldDefault",
+      "result": "Passed",
+      "duration": "0.000888",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.EveryRootFieldIsRequiredEvenWhenItsValueCouldDefault",
+      "result": "Passed",
+      "duration": "0.000786",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ExactPreservedSchemaHasNoLegacyDiagnosticsFieldInjection",
+      "result": "Passed",
+      "duration": "0.000623",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.NativeShapeParsesAndRoundTripsWithoutLosingRows",
+      "result": "Passed",
+      "duration": "0.000500",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.NoCctorClassesMayHaveFinishedFlagWithoutAStartedCctor",
+      "result": "Passed",
+      "duration": "0.000222",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.PublicApiPreservesM06AndExplicitR01Additions",
+      "result": "Passed",
+      "duration": "0.000617",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.ReleaseCanObserveStorageWithoutExposingItsAddress",
+      "result": "Passed",
+      "duration": "0.000285",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"enabled\",\"1\")",
+      "result": "Passed",
+      "duration": "0.000077",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"enabled\",\"\\\"true\\\"\")",
+      "result": "Passed",
+      "duration": "0.000074",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"rejectedBaselineMethods\",\"11\")",
+      "result": "Passed",
+      "duration": "0.000092",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"schemaVersion\",\"2\")",
+      "result": "Passed",
+      "duration": "0.000213",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"schemaVersion\",\"2147483648\")",
+      "result": "Passed",
+      "duration": "0.000121",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"shadowInterpreterTransformations\",\"11\")",
+      "result": "Passed",
+      "duration": "0.000093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"shadowMethodChecks\",\"11\")",
+      "result": "Passed",
+      "duration": "0.000093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"state\",\"\\\"Staged\\\"\")",
+      "result": "Passed",
+      "duration": "0.000097",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.RootSemanticAndTokenContradictionsAreRejected(\"stateCode\",\"10\")",
+      "result": "Passed",
+      "duration": "0.000116",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.StrictStringGrammarAndTryParseFailureContractArePreserved",
+      "result": "Passed",
+      "duration": "0.000660",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"+1\")",
+      "result": "Passed",
+      "duration": "0.003435",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"-1\")",
+      "result": "Passed",
+      "duration": "0.000446",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"01\")",
+      "result": "Passed",
+      "duration": "0.000352",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"1.0\")",
+      "result": "Passed",
+      "duration": "0.001191",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"18446744073709551616\")",
+      "result": "Passed",
+      "duration": "0.000392",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"1e2\")",
+      "result": "Passed",
+      "duration": "0.003579",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"\\\"1\\\"\")",
+      "result": "Passed",
+      "duration": "0.000375",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"null\")",
+      "result": "Passed",
+      "duration": "0.000368",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06RuntimeApiTests.UnsignedCounterCoercionsAndOverflowAreRejected(\"true\")",
+      "result": "Passed",
+      "duration": "0.000455",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.ActualEmittedBodiesAndClosedGenericMethodsValidateWithoutExecution",
+      "result": "Passed",
+      "duration": "0.094680",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.ActualUnitySchemaTwoSerializationRoundTripsWithoutMissingDefaults",
+      "result": "Passed",
+      "duration": "0.122695",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.ArraysAndByrefSignaturesRetainTheirExactShape",
+      "result": "Passed",
+      "duration": "0.072217",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.EmptyNullDuplicateAndOutOfClosureTargetsFail",
+      "result": "Passed",
+      "duration": "0.086011",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.GenericDeclaredInterfaceConstraintsMustActuallyBeImplemented",
+      "result": "Passed",
+      "duration": "0.107251",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.GenericSpecialConstraintsAreValidatedAgainstCapturedTypes",
+      "result": "Passed",
+      "duration": "0.301227",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.LegacyDtoFieldInventoryAndEarlyBuilderValidationRemainSealed",
+      "result": "Passed",
+      "duration": "0.002009",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.LegacyWireSelectionIsByteIdenticalAndVersionOneStillReads",
+      "result": "Passed",
+      "duration": "0.085230",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.ManifestHashAndPdbBindingsCannotBeRepairedByChangingOnlyJsonClaims",
+      "result": "Passed",
+      "duration": "0.083398",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.MethodIdentityIncludesStaticnessReturnParametersAndFullAssemblyIdentity",
+      "result": "Passed",
+      "duration": "0.078674",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.MissingBodyConstructorsAbstractAndNativeMethodsAreRejected",
+      "result": "Passed",
+      "duration": "0.635149",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.NongenericTypeListAndGenericArgumentIdentityAreClosedAndExact",
+      "result": "Passed",
+      "duration": "0.122773",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.RehashedMissingFalseZeroUnknownDuplicateAndNullSchemaTwoFieldsFail",
+      "result": "Passed",
+      "duration": "0.101238",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.SchemaTwoLegacyExtensionsAndUnsignedDllSizesRemainStrict",
+      "result": "Passed",
+      "duration": "0.107445",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.UnsupportedConstructedConstraintsAndVarianceAreNotSilentlyIgnored",
+      "result": "Passed",
+      "duration": "0.197450",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.UnsupportedPointerModifierOpenAndSizedSignaturesFailClosed",
+      "result": "Passed",
+      "duration": "0.466587",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.M06WarmupTests.VersionTwoRoundTripRechecksActualDllBytesAndNeverMutatesArtifact",
+      "result": "Passed",
+      "duration": "0.102360",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.AcquisitionDelegatePointersCannotAvoidOperationEvidence",
+      "result": "Passed",
+      "duration": "0.017231",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety",
+      "result": "Passed",
+      "duration": "0.005920",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence",
+      "result": "Passed",
+      "duration": "0.070121",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse",
+      "result": "Passed",
+      "duration": "0.026188",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation",
+      "result": "Passed",
+      "duration": "0.008248",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages",
+      "result": "Passed",
+      "duration": "0.014827",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning",
+      "result": "Passed",
+      "duration": "0.006121",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate",
+      "result": "Passed",
+      "duration": "0.142573",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver",
+      "result": "Passed",
+      "duration": "0.019093",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate",
+      "result": "Passed",
+      "duration": "0.077424",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode",
+      "result": "Passed",
+      "duration": "0.034080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics",
+      "result": "Passed",
+      "duration": "0.032876",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks",
+      "result": "Passed",
+      "duration": "0.103110",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition",
+      "result": "Passed",
+      "duration": "0.033048",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls",
+      "result": "Passed",
+      "duration": "0.237599",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition",
+      "result": "Passed",
+      "duration": "0.083674",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance",
+      "result": "Passed",
+      "duration": "0.115014",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.CanonicalNamesAndNestedGenericTypeKeysAreStable",
+      "result": "Passed",
+      "duration": "0.001664",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.DiagnosticOnlyLoadDoesNotClaimUnverifiedFacadeDeferrals",
+      "result": "Passed",
+      "duration": "0.006269",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderAllowsOptionalForwardedTypesOnlyInsideFixedPrecompiledRuntimePlugins",
+      "result": "Passed",
+      "duration": "0.008790",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderDefersOnlyUnusedReferenceFacadeTargetsAndResolvesAvailableForwarders",
+      "result": "Passed",
+      "duration": "0.004731",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderDoesNotExemptReceiptDerivedNormalHotUpdateConsumers",
+      "result": "Passed",
+      "duration": "0.010817",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderExcludesOnlyReceiptDerivedBuildFilteredConsumersFromForwardedTypeRequirements",
+      "result": "Passed",
+      "duration": "0.024957",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderNeverDefersAPrimarySnapshotFacade",
+      "result": "Passed",
+      "duration": "0.005135",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderNeverDefersFacadeTargetsAlsoUsedByAnAttributeTypeRef",
+      "result": "Passed",
+      "duration": "0.005419",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderNeverDefersFacadeTargetsAlsoUsedByLinkedResources",
+      "result": "Passed",
+      "duration": "0.006975",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsDuplicateSnapshotSimpleNames",
+      "result": "Passed",
+      "duration": "0.003350",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsFacadeThatDefinesAnOrdinaryType",
+      "result": "Passed",
+      "duration": "0.004287",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsFacadeWithGlobalExecutableCode",
+      "result": "Passed",
+      "duration": "0.004113",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsMissingDirectDependencyFromAnOrdinaryReferenceModule",
+      "result": "Passed",
+      "duration": "0.007355",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsMissingDirectSnapshotDependencyEvenWhenAFacadeAlsoForwardsToIt",
+      "result": "Passed",
+      "duration": "0.009599",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsMissingTypeEvenWhenForwardingTargetAssemblyIsPresent",
+      "result": "Passed",
+      "duration": "0.004502",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRejectsRequiredForwardedTypeWithActualSnapshotRequester",
+      "result": "Passed",
+      "duration": "0.004268",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderReportsUnresolvedReferencesWithRequesterPath",
+      "result": "Passed",
+      "duration": "0.007364",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderRequiresExplicitReferenceAssemblyMetadataForFacadeDeferral",
+      "result": "Passed",
+      "duration": "0.003787",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderResolvesNestedForwardersWithoutRequiringUnusedDestinations",
+      "result": "Passed",
+      "duration": "0.005297",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderStillRequiresDirectReferencesFromBuildFilteredSnapshots",
+      "result": "Passed",
+      "duration": "0.010660",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.LoaderValidatesForwardingChainsFromOrdinarySnapshotProviders",
+      "result": "Passed",
+      "duration": "0.006860",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.ResolveTypeNeverUsesCallerResolverOrHostCoreLibraryForAbsentTargets",
+      "result": "Passed",
+      "duration": "0.018586",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.SemanticCanonicalizationCapturesAttributesMethodSpecsLayoutAndAccessors",
+      "result": "Passed",
+      "duration": "10.031345",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.SemanticMethodBodyAndAttributesAffectHashAndCanBeConfigured",
+      "result": "Passed",
+      "duration": "4.690129",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.SemanticReportIncludesVersionedSectionsAndExcludesMvid",
+      "result": "Passed",
+      "duration": "3.665691",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.MetadataTests.TypeKeysRetainAssemblyIdentityForSameLogicalType",
+      "result": "Passed",
+      "duration": "0.000456",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.CanonicalOutputPathNormalizesLexicalAliasesButRejectsMissingPaths",
+      "result": "Passed",
+      "duration": "0.001080",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.DiagnosticIncludesAllFailuresAndExactExpectedObservedValues",
+      "result": "Passed",
+      "duration": "0.002506",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.EveryOriginalPostprocessPredicateRemainsFailClosedAndNamed",
+      "result": "Passed",
+      "duration": "0.001603",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.FinalPhaseStillRequiresObservedPostprocessAndBothGuids",
+      "result": "Passed",
+      "duration": "0.000947",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.MalformedPreprocessOrChangedAssignedGuidCannotUseTheUnassignedTransition",
+      "result": "Passed",
+      "duration": "0.001430",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.MatchingPostprocessAndFinalPhasesStillPass",
+      "result": "Passed",
+      "duration": "0.000435",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.PostprocessAndFinalGuidsMustBeAssignedAndWellFormed",
+      "result": "Passed",
+      "duration": "0.000878",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.UnassignedGuidNeverPermitsSwappedReportOrOutput",
+      "result": "Passed",
+      "duration": "0.000647",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PlayerCaptureLifecycleTests.UnassignedPreprocessGuidMayBecomeAssignedOnTheSameInvocation",
+      "result": "Passed",
+      "duration": "0.000212",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicySourceTests.CaseDifferentExplicitPathIsNotReplacedByFallback",
+      "result": "Passed",
+      "duration": "0.002938",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicySourceTests.EmptyExplicitTextAssetDoesNotFallBackToPermissiveDefault",
+      "result": "Passed",
+      "duration": "0.002807",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicySourceTests.ExplicitConfiguredFileIsReadInsteadOfFallback",
+      "result": "Passed",
+      "duration": "0.001108",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicySourceTests.MissingDefaultSourceMeansNoOptionalPolicy",
+      "result": "Passed",
+      "duration": "0.000407",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicySourceTests.MissingExplicitSourceDoesNotFallBackToPermissiveDefault",
+      "result": "Passed",
+      "duration": "0.000789",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.AssemblyGetTypeTracksTheLoadedAssemblyReceiver",
+      "result": "Passed",
+      "duration": "0.007639",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.AssemblyLoadByteArrayIsNotAStringDependency",
+      "result": "Passed",
+      "duration": "0.006413",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.BootstrapApprovalMustMatchFullCallsiteAndExactTarget",
+      "result": "Passed",
+      "duration": "0.000532",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.BootstrapApprovalMustMatchResolvedProviderAndType",
+      "result": "Passed",
+      "duration": "0.000356",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.BootstrapApprovalRejectsBlankFields",
+      "result": "Passed",
+      "duration": "0.000225",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.BootstrapMayReferenceStableRuntimeButNotCandidate",
+      "result": "Passed",
+      "duration": "0.000202",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.BootstrapReflectionRequiresApprovedEntrypoint",
+      "result": "Passed",
+      "duration": "0.000203",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.BoundedSerializeReferenceDeclarationDoesNotApproveOtherCallsites",
+      "result": "Passed",
+      "duration": "0.000208",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CandidateCannotBeEditorTestReferenceOrOrdinaryHotUpdate",
+      "result": "Passed",
+      "duration": "0.000164",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompiledReferenceModulesNeedNotBeSnapshotDescriptors",
+      "result": "Passed",
+      "duration": "0.005139",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompilerInventoryPreservesRuntimeAndReferenceRoles",
+      "result": "Passed",
+      "duration": "0.002452",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompilerProductionSetSeparatesTestPluginsWithoutNamingExceptions",
+      "result": "Passed",
+      "duration": "0.001251",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ConflictingBranchConstantsAreUnknown",
+      "result": "Passed",
+      "duration": "0.006086",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ExpiredExtensibilityApprovalIsRejected",
+      "result": "Passed",
+      "duration": "0.009207",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ExplicitSelfDependencyIsRejected",
+      "result": "Passed",
+      "duration": "0.000232",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ExternalInternalReferenceIsRejected",
+      "result": "Passed",
+      "duration": "0.000202",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FilterPolicyClonePreservesReflectionBindingSchemaFieldsAndNulls",
+      "result": "Passed",
+      "duration": "0.002873",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FilterPolicyRejectsCandidatePromotionAndChangedSourceRoles",
+      "result": "Passed",
+      "duration": "0.001160",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FilterPolicyRejectsUnsealedMissingAndModifiedEvidence",
+      "result": "Passed",
+      "duration": "0.000888",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FilterTransitionCapturesOnlyRemovedInputs",
+      "result": "Passed",
+      "duration": "0.000849",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FilterTransitionRejectsInjectedChangedAndProtectedInputs",
+      "result": "Passed",
+      "duration": "0.000443",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FrameworkPrefixCannotHideAnUnresolvedBusinessReference",
+      "result": "Passed",
+      "duration": "0.000117",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.FrozenPlayerFilterPolicySeparatesAuxiliariesAndOrdinaryHotUpdates",
+      "result": "Passed",
+      "duration": "0.000619",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ImportedAssetInventoryDoesNotExpandIntoPhysicalPackageSourceCopies",
+      "result": "Passed",
+      "duration": "0.000429",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ImportedObjectInventoryNeverLoadsSceneObjects(\"Assets/Bootstrap.UNITY\",False)",
+      "result": "Passed",
+      "duration": "0.000071",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ImportedObjectInventoryNeverLoadsSceneObjects(\"Assets/Bootstrap.asset\",True)",
+      "result": "Passed",
+      "duration": "0.000057",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ImportedObjectInventoryNeverLoadsSceneObjects(\"Assets/Bootstrap.prefab\",True)",
+      "result": "Passed",
+      "duration": "0.000059",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ImportedObjectInventoryNeverLoadsSceneObjects(\"Assets/Bootstrap.unity\",False)",
+      "result": "Passed",
+      "duration": "0.000335",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ImportedResourcesAssetWithCandidateScriptIsAutomaticallyRejected",
+      "result": "Passed",
+      "duration": "0.721339",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.LinkedExclusionsPreserveInputsAndRetainedRuntimeRoles",
+      "result": "Passed",
+      "duration": "0.001523",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.LinkedPolicyRejectsMissingStaleAndUnprovedExclusions",
+      "result": "Passed",
+      "duration": "0.001320",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.LinkerExcludedOrdinaryHotUpdateRemainsAConsumer",
+      "result": "Passed",
+      "duration": "0.000811",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.LocalConstantRetainsItsActualReflectionTarget",
+      "result": "Passed",
+      "duration": "0.005975",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.MalformedPackageGuidRemainsFailClosed",
+      "result": "Passed",
+      "duration": "0.001067",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.NonShadowAotConsumerStillRejectsUnknownReflection",
+      "result": "Passed",
+      "duration": "0.000172",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.OptionalPackageFilteringCannotDiscardKnownCandidateReferences",
+      "result": "Passed",
+      "duration": "0.000372",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.OptionalPackageReferencesUseEffectiveCompilerEdges",
+      "result": "Passed",
+      "duration": "0.000194",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.OrdinaryHotUpdatePluginCanDeclareFalseButCannotBecomeShadow",
+      "result": "Passed",
+      "duration": "0.000644",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.PatchPolicyAllowsCandidateDemotionSoGraphReportsTheFullConsumerPath",
+      "result": "Passed",
+      "duration": "0.001275",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.PatchPolicyRejectsPromotionOmissionBootstrapChangeAndRoleChange",
+      "result": "Passed",
+      "duration": "0.001892",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.PoppedApprovedStringCannotApproveUnknownArgument",
+      "result": "Passed",
+      "duration": "0.006275",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ProjectOrCandidateSourceRetainsUnknownReferencesAndRejectsUnknownGuids",
+      "result": "Passed",
+      "duration": "0.000403",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Assets/Editor/Resources/EditorOnly.asset\",False)",
+      "result": "Passed",
+      "duration": "0.000067",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Assets/Game/Resource/NotSpecial.asset\",False)",
+      "result": "Passed",
+      "duration": "0.000066",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Assets/Game/Resources/Unsafe.asset\",True)",
+      "result": "Passed",
+      "duration": "0.000319",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Assets/Game/ResourcesLike/NotSpecial.asset\",False)",
+      "result": "Passed",
+      "duration": "0.000067",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Library/unity default resources\",False)",
+      "result": "Passed",
+      "duration": "0.000063",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Packages/com.example/Editor/Resources/EditorOnly.prefab\",False)",
+      "result": "Passed",
+      "duration": "0.000067",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Packages/com.example/Resources/Sub/Unsafe.prefab\",True)",
+      "result": "Passed",
+      "duration": "0.000078",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.ResourcesPathRecognitionUsesAnExactDirectorySegment(\"Resources/unity_builtin_extra\",False)",
+      "result": "Passed",
+      "duration": "0.000063",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.RuntimeAndOrdinaryHotUpdateCannotReferenceBuildFilteredProvider",
+      "result": "Passed",
+      "duration": "0.000404",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.RuntimePluginCannotExistOnlyAsACompilerReference",
+      "result": "Passed",
+      "duration": "0.000122",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.RuntimePluginRequiresExplicitCapabilityEvenWhenNotShadowCapable",
+      "result": "Passed",
+      "duration": "0.000169",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.SerializeReferenceFieldIsScannedAsAnExplicitUnknownSite",
+      "result": "Passed",
+      "duration": "0.009141",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.StartupSceneBusinessScriptIsRejectedWithoutFilenameConvention",
+      "result": "Passed",
+      "duration": "0.004558",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.TypeGetTypeBooleanOverloadUsesFirstArgumentNotNearbyString",
+      "result": "Passed",
+      "duration": "0.015431",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.TypeOverloadWithoutStringEvidenceIsNotReflectionDependency",
+      "result": "Passed",
+      "duration": "0.000265",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.TypeofCreatesAStaticDependencyThatBootstrapApprovalCannotBypass",
+      "result": "Passed",
+      "duration": "0.006037",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.UnknownAssemblyGetTypeReceiverCannotBeApprovedByAConstantTypeName",
+      "result": "Passed",
+      "duration": "0.005857",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.UnknownReflectionIsFailClosed",
+      "result": "Passed",
+      "duration": "0.000359",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.DuplicateEscapedKeysAreRejectedAtEveryObjectLevel",
+      "result": "Passed",
+      "duration": "0.002051",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.EditorCapabilityOptionsAreReadOnlyAndReportNoNativeCapability",
+      "result": "Passed",
+      "duration": "0.001249",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.FeatureDisabledShortCircuitsMalformedDiagnostics",
+      "result": "Passed",
+      "duration": "0.000144",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.LegacyFallbackRetainsDisabledProfileAndResourceBoundSemantics",
+      "result": "Passed",
+      "duration": "0.002108",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.LiveCapabilitiesDoNotDependOnGrowingDiagnosticSnapshotsOrCacheTruth",
+      "result": "Passed",
+      "duration": "0.067349",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.MalformedTrailingAndWrongTypeDocumentsFailClosed",
+      "result": "Passed",
+      "duration": "0.000468",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.MetadataCapabilityMustMatchTheRequestedProfileExactly",
+      "result": "Passed",
+      "duration": "0.000397",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.MinimalAndFullDiagnosticsNegotiateWithoutUnityJsonUtility",
+      "result": "Passed",
+      "duration": "0.000363",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.MissingRelevantFieldsAndOldSchemaFailClosed",
+      "result": "Passed",
+      "duration": "0.000162",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.NestedFakeCapabilityFieldsDoNotOverrideRootCapabilities",
+      "result": "Passed",
+      "duration": "0.000220",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.OnlyTheExactLegacyUnknownOptionExceptionPermitsFallback",
+      "result": "Passed",
+      "duration": "0.000745",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01EarlyCapabilityNegotiationTests.UnknownValuesHonorDepthAndNumericBounds",
+      "result": "Passed",
+      "duration": "0.000602",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.ConfiguredStartupBootstrapValuesAreGeneratedAsCppStrings",
+      "result": "Passed",
+      "duration": "0.007510",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.DuplicateStartupCandidatesAreRejectedCaseInsensitively",
+      "result": "Passed",
+      "duration": "0.002367",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.EmptyStartupCandidatesLeaveOnlyTheNullTerminator",
+      "result": "Passed",
+      "duration": "0.002647",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.InvalidStartupCandidateNamesAreRejected",
+      "result": "Passed",
+      "duration": "0.005820",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.OrdinaryAndStartupCandidatesAreGeneratedIntoSeparateArrays",
+      "result": "Passed",
+      "duration": "0.002715",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapAssemblyMustMatchDeclaredPhysicalRootExactly",
+      "result": "Passed",
+      "duration": "0.002752",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapDefaultsAreEmpty",
+      "result": "Passed",
+      "duration": "0.002390",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapGenerationReplacesStaleValues",
+      "result": "Passed",
+      "duration": "0.003596",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapMustUseDeclaredBootstrapOrStableAotRoot",
+      "result": "Passed",
+      "duration": "0.001673",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapNamesHonorNativeUtf8ByteLimit",
+      "result": "Passed",
+      "duration": "0.011423",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapPartialConfigurationIsRejected",
+      "result": "Passed",
+      "duration": "0.003393",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapRejectsShadowAndOrdinaryRoles",
+      "result": "Passed",
+      "duration": "0.002560",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupBootstrapUnsafeValuesAreRejected",
+      "result": "Passed",
+      "duration": "0.004079",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupCandidateNamesAreEscapedAsCppLiterals",
+      "result": "Passed",
+      "duration": "0.002711",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Il2CppDefGeneratorTests.StartupCandidateOrderingIsDeterministicAndPreservesSpelling",
+      "result": "Passed",
+      "duration": "0.003800",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.FreshHomogeneousCapacityMatchesEachNativeBucketBoundary",
+      "result": "Passed",
+      "duration": "0.003907",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.FullKindThreeFallsBackToKindTwoWithoutReorderingInputs",
+      "result": "Passed",
+      "duration": "0.001310",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.InvalidSizesFailBeforeMultiplicationAndPublicationGuardNamesFirstMember",
+      "result": "Passed",
+      "duration": "0.001084",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.OrdinaryInputsUseVerifiedFileLengthAndFreshHashInReceiptOrder",
+      "result": "Passed",
+      "duration": "0.002283",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.StressCountsExposeTheSharedBoundedCapacity",
+      "result": "Passed",
+      "duration": "0.001177",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.ThresholdsUseKindThreeTowardZeroFallbackOrder",
+      "result": "Passed",
+      "duration": "0.000287",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01MetadataCapacityTests.VersionOneProfileMatchesNativeEncoding",
+      "result": "Passed",
+      "duration": "0.000173",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.AggregateEnvelopeIsInformationalAndFinalPageFitRemainsUnknown",
+      "result": "Passed",
+      "duration": "0.001894",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.AlreadyReservedImageIdsRemainConsumedOnFailure",
+      "result": "Passed",
+      "duration": "0.000334",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.ArithmeticOverflowBoundaryAndInvalidStateFailClosedWithoutWrapping",
+      "result": "Passed",
+      "duration": "0.000198",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.ImageCountBoundariesAreAllOrNothingAndPreserveOrder",
+      "result": "Passed",
+      "duration": "0.030014",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.NativeProfile2CapacityJsonUsesSchemaTwoAndMinusOneSuccessSentinel",
+      "result": "Passed",
+      "duration": "0.001817",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.OrderedDllSizeBoundariesUseNativeFailurePriority",
+      "result": "Passed",
+      "duration": "0.000380",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.Profile2ConstantsIdentifySparse32AndSeparateAotDomain",
+      "result": "Passed",
+      "duration": "0.000256",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01Profile2PreliminaryTests.RuntimeTransactionAndReservationDefaultsUseProfile2",
+      "result": "Passed",
+      "duration": "0.000141",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.ActiveShadowRecoveryDoesNotRequireBaselineStartupValidation",
+      "result": "Passed",
+      "duration": "0.000753",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.CapabilityNegotiationUsesCapturedDiagnosticsWithoutNewInternalCalls",
+      "result": "Passed",
+      "duration": "0.000664",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.LegacyErrorNumbersRemainStableAndR01CodesAreAdditive",
+      "result": "Passed",
+      "duration": "0.000403",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.MetadataCapacityParserPreservesSchemaOneFields",
+      "result": "Passed",
+      "duration": "0.001814",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.PublicR01MethodsKeepEditorMonoNotSupportedConvention",
+      "result": "Passed",
+      "duration": "0.000455",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.RecoveryParserPreservesDispositionAndStartupGuard",
+      "result": "Passed",
+      "duration": "0.000261",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.R01RuntimeContractTests.StrictParsersRejectMissingAndWrongVersionFields",
+      "result": "Passed",
+      "duration": "0.000703",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.AThrownLocalContainerCannotPublishSelectedHandles",
+      "result": "Passed",
+      "duration": "0.189969",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.ActualDescriptorRolesCannotBeInferredFromConfigurationOrResolverPresence",
+      "result": "Passed",
+      "duration": "1.249036",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.ActualSelectedHandleFieldStorageIsRejected",
+      "result": "Passed",
+      "duration": "0.202211",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.AlreadySelectedTypePlumbingLinqCacheAndBooleanIteratorRemainAllowed",
+      "result": "Passed",
+      "duration": "0.277672",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.BrokerTypeTokenAndReflectiveInvocationCannotHideCandidateDependency",
+      "result": "Passed",
+      "duration": "0.192313",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.CallerOwnedMutableOutputsCannotHideProviderSelection",
+      "result": "Passed",
+      "duration": "2.432003",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.ClosedGenericScalarProjectionAndRecursiveReadOnlyPredicatesRemainAllowed",
+      "result": "Passed",
+      "duration": "0.494605",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.CompositeBrokerTokensRemainForbiddenEvenWithTruthfulProviderEdges",
+      "result": "Passed",
+      "duration": "0.563879",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.CrossBootstrapForwarderCannotHideCandidateDependency",
+      "result": "Passed",
+      "duration": "0.177747",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.CustomDelegateInvokeSignatureCannotPublishSelectedHandles",
+      "result": "Passed",
+      "duration": "0.188727",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.FreshLocalMaterializationAndReadOnlyMutableInputsRemainAllowed",
+      "result": "Passed",
+      "duration": "0.270247",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.GenericMethodSpecForwarderCannotHideCandidateDependency",
+      "result": "Passed",
+      "duration": "0.186861",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.IncomingMetadataOnlyReferencesRequireTruthfulProviderEdges",
+      "result": "Passed",
+      "duration": "1.036486",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.LiteralReflectionOnBrokerRequiresCandidateNotMerelyBrokerDependency",
+      "result": "Passed",
+      "duration": "0.187336",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.MethodProseAndOldBootstrapDeclarationsDoNotAuthorizeRawAcquisition",
+      "result": "Passed",
+      "duration": "0.093326",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.NonBootstrapConsumersStillNeedTruthfulDependencyEdges",
+      "result": "Passed",
+      "duration": "0.339561",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.NonBrokerCompositeTokensDoNotGainSelectorRestrictions",
+      "result": "Passed",
+      "duration": "0.272263",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.OutsideBrokerDelegateCannotHideCandidateDependency",
+      "result": "Passed",
+      "duration": "0.184986",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.OutsideDirectBrokerCallRequiresCandidateDependency",
+      "result": "Passed",
+      "duration": "0.185542",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.OutsideInterfaceDispatchCannotSelectThroughAStoredBootstrapImplementation",
+      "result": "Passed",
+      "duration": "0.191337",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.ProvenReadOnlyCallsAndPrivateAliasMaterializationDoNotPublishRoots",
+      "result": "Passed",
+      "duration": "1.088133",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.PublicationEffectsCrossReceiversReturnsNestedAliasesAndHelperChains",
+      "result": "Passed",
+      "duration": "2.347742",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.PublishingAnEmptyContainerThroughAHelperMustSurviveUntilLaterSelection",
+      "result": "Passed",
+      "duration": "0.168289",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.RealLoaderRequiresTheNewDomainAndAcceptsOnlyItsExactBootstrapOperations",
+      "result": "Passed",
+      "duration": "0.184660",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.SameBootstrapForwarderCannotHideCandidateDependency",
+      "result": "Passed",
+      "duration": "0.186389",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.TruthfulCandidateEdgesPutOutsideSelectorsIntoActualReverseClosure",
+      "result": "Passed",
+      "duration": "1.082137",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.TruthfulNonShadowSelectorIsCaughtByReverseClosure",
+      "result": "Passed",
+      "duration": "0.274156",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.UnconfiguredSiblingEnumerationAndIndirectLookupRemainRejected",
+      "result": "Passed",
+      "duration": "0.184181",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionPolicyTests.WrapperLambdaExportIsRejectedWithoutAnOutsideBootstrapReference",
+      "result": "Passed",
+      "duration": "0.187981",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.CanonicalHashIsIndependentOfJsonFormattingAndSiteOrderButBindsAllFields",
+      "result": "Passed",
+      "duration": "0.026663",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.FiveFiniteSwitchArmsRequireAllTwentyFiveOperationIndices",
+      "result": "Passed",
+      "duration": "5.304713",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.FiveRawApisRemainPresentAndProduceByteBoundImmutableProofs",
+      "result": "Passed",
+      "duration": "0.867121",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.LinkedProofUsesCapturedPerTypeRetargetingAndRejectsBodyOrProfileTamper",
+      "result": "Passed",
+      "duration": "3.251844",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.MissingStaleDuplicateOrAdditionalOperationsAreRejected",
+      "result": "Passed",
+      "duration": "0.369827",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.OptionalNopsAndBranchToLiteralStartAreSafe",
+      "result": "Passed",
+      "duration": "0.279954",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.ProviderForwardersAndMissingPhysicalImagesAreRejected",
+      "result": "Passed",
+      "duration": "0.024309",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.ProviderIdentityTypeAndFrameworkScopesAreExact",
+      "result": "Passed",
+      "duration": "1.031721",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.RawControlNeverDisappearsInEditorAndConflictsFailClosed",
+      "result": "Passed",
+      "duration": "0.000629",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.ReceiverAliasesMutationsAndAlternateEntriesCannotBeApprovedByARehashedConfiguration",
+      "result": "Passed",
+      "duration": "0.999742",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.RehashedInMemoryMetadataCannotPretendToBeCapturedBytes",
+      "result": "Passed",
+      "duration": "0.309836",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.SchemaTwoBindsEachCompilerModeToItsExactMethodHashAndOperationIndex",
+      "result": "Passed",
+      "duration": "0.312365",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.RawTypeAdmissionTests.StrictJsonRequiresEveryFieldAndRejectsUnknownDuplicatesAndWrongTypes",
+      "result": "Passed",
+      "duration": "0.015197",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.AcquisitionSiteAndGuardTamperingFailsClosed",
+      "result": "Passed",
+      "duration": "0.025340",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.ConcurrentCallerMutationCannotChangeTheImageAfterHashing",
+      "result": "Passed",
+      "duration": "0.011692",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.EveryAcquisitionKindHasDeterministicOutputAndRejectsReprocessing",
+      "result": "Passed",
+      "duration": "0.024700",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.EveryAcquisitionRejectsAdditionalCallsAndOverloadChanges",
+      "result": "Passed",
+      "duration": "0.008639",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.FiniteAssembliesAreBuiltFromAnchorsWithoutDomainEnumeration",
+      "result": "Passed",
+      "duration": "0.005690",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.FiniteTypesRejectUnknownReceiverAndNeverEnumerateItsTypes",
+      "result": "Passed",
+      "duration": "0.004400",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.FixedGuardCannotLoadCallerBytesOrBypassTheDigestOrChangeTheHash",
+      "result": "Passed",
+      "duration": "0.015092",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.FixedImageEvidenceRequiresExactBytesAndFullIdentity",
+      "result": "Passed",
+      "duration": "0.001656",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.FixedImageGuardRejectsNullTamperedAndOtherImagesBeforeLoading",
+      "result": "Passed",
+      "duration": "0.007559",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionAcquisitionCodeGenTests.SchemaTwoRejectsMalformedKindsPathsIdentitiesAndCompositeTypes",
+      "result": "Passed",
+      "duration": "0.003106",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.AllowedLookupKeepsOriginalReturnSemanticsAndProviders",
+      "result": "Passed",
+      "duration": "0.011061",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.ConfigRejectsCompositeTargetsAndDuplicateMethods",
+      "result": "Passed",
+      "duration": "0.004375",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.DeniedInputsThrowBeforeAnyAssemblyResolution",
+      "result": "Passed",
+      "duration": "0.003124",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.DenyAllContainsNoLookupAndStillReturnsTypeSignature",
+      "result": "Passed",
+      "duration": "0.002984",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.EditorAndDisabledFeaturesSkipWithoutReadingMachineState",
+      "result": "Passed",
+      "duration": "0.000741",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.ExtraLookupFailsEvenWithUpdatedMethodFingerprint",
+      "result": "Passed",
+      "duration": "0.001982",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.FieldMemberRefUsesTheExistingFieldFingerprintAndBindsNameOwnerAndType",
+      "result": "Passed",
+      "duration": "0.002193",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.FingerprintIgnoresMvidAndMetadataTokensButTracksLocalAndBranchShape",
+      "result": "Passed",
+      "duration": "0.001537",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.FingerprintRejectsMissingSignaturesAndFieldMethodOpcodeMismatches",
+      "result": "Passed",
+      "duration": "0.001214",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.GuardAndSourceTamperingAndExtraGuardReferencesAreRejected",
+      "result": "Passed",
+      "duration": "0.005715",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.IdenticalBindingControlsAreIdempotentButConflictsAndMalformedControlsFailClosed",
+      "result": "Passed",
+      "duration": "0.000584",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.IdenticalOriginalInputsProduceIdenticalPeAndPortablePdb",
+      "result": "Passed",
+      "duration": "0.007099",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedDenyAllStillVerifiesCompleteGuardWithoutLookup",
+      "result": "Passed",
+      "duration": "0.010518",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedProfileHashIsDeterministicAndBindsCapturedDestinationBytes",
+      "result": "Passed",
+      "duration": "0.008323",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedProfileRejectsWrongHashSourceIdentityAndBrokenForwarders",
+      "result": "Passed",
+      "duration": "0.010392",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedVerificationNeverNormalizesCompilerOrStaleConfigurationProof",
+      "result": "Passed",
+      "duration": "0.011565",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedVerificationRejectsEveryGuardTemplateMutation",
+      "result": "Passed",
+      "duration": "0.021900",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedVerificationRejectsSourceCallsiteBodyIdentityAndCardinalityChanges",
+      "result": "Passed",
+      "duration": "0.045549",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedVerificationRejectsWrongProviderVersionTokenAndNonforwardedTypes",
+      "result": "Passed",
+      "duration": "0.024040",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.LinkedVerificationUsesExactPerTypeForwardersIncludingNestedTypes",
+      "result": "Passed",
+      "duration": "0.008891",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.MissingAmbiguousAndAdditionalGeneratedSitesAreRejected",
+      "result": "Passed",
+      "duration": "0.005579",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.RawConfigurationDefineBindsExactBytesAndProjectRoot",
+      "result": "Passed",
+      "duration": "0.005656",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.SchemaFourFixedProviderCompilerVariantsAreCanonicalAndFailClosed",
+      "result": "Passed",
+      "duration": "0.002191",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.SchemaThreeMethodVariantsAreCanonicalHashedAndValidated",
+      "result": "Passed",
+      "duration": "0.001624",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.SchemaThreeSelectsOneFullMethodVariantAndRejectsUnknownCompilerBodies",
+      "result": "Passed",
+      "duration": "0.004521",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.StaleConfigurationReprocessingAndStrongNamesAreRejected",
+      "result": "Passed",
+      "duration": "0.002996",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.VerifyRejectsNewUnguardedLookupInConfiguredMethod",
+      "result": "Passed",
+      "duration": "0.003448",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingCodeGenTests.WrongFingerprintIndexAndOverloadFailClosed",
+      "result": "Passed",
+      "duration": "0.003531",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.BootstrapConsumerProducesBootstrapInClosure",
+      "result": "Passed",
+      "duration": "0.007171",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.DeclarationTargetsOwnAssemblyWithoutAddingSelfEdge",
+      "result": "Passed",
+      "duration": "0.000684",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.ExistingAssemblyReferenceIsNotDuplicatedAsExplicitDependency",
+      "result": "Passed",
+      "duration": "0.000427",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.ExistingManualDeclarationIsNotDuplicatedAndHasNoCallSiteWaiver",
+      "result": "Passed",
+      "duration": "0.000549",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.FixedImageDeclarationAddsProviderWithoutATypeAnchor",
+      "result": "Passed",
+      "duration": "0.009841",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.FixedImageReaderRejectsAHashValidForeignProviderIdentity",
+      "result": "Passed",
+      "duration": "0.002462",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.FixedImageReaderRejectsTamperedAndMissingCapturedBytes",
+      "result": "Passed",
+      "duration": "0.002174",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.FixedImageReaderUsesCapturedBytesNotProjectSourcePath",
+      "result": "Passed",
+      "duration": "0.002741",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.FixedImageSnapshotPathRejectsNonHashPathInput",
+      "result": "Passed",
+      "duration": "0.000382",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.FixedNonShadowAotConsumerReportsFullReferencePath",
+      "result": "Passed",
+      "duration": "0.000738",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.InjectedFiniteBindingDependencyUsesNoCallSiteWaiver",
+      "result": "Passed",
+      "duration": "0.000412",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.InvalidRawConfigurationFailsWithoutTouchingProjectSettings",
+      "result": "Passed",
+      "duration": "0.000249",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.ReservedBindingDefineIsRejectedBeforeProjectConfigurationRead",
+      "result": "Passed",
+      "duration": "0.023555",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionBindingEvidenceTests.ShadowCapableConsumerEnlargesCandidateClosure",
+      "result": "Passed",
+      "duration": "0.000649",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ByteIdenticalReferenceAliasesAreAccepted",
+      "result": "Passed",
+      "duration": "0.003424",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ClassWithNumericValueIsNotRewrittenToNull",
+      "result": "Passed",
+      "duration": "0.001946",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ConflictingDuplicateReferenceIdentityFails",
+      "result": "Passed",
+      "duration": "0.001794",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ConstantValueMutationChangesSnapshot",
+      "result": "Passed",
+      "duration": "0.001613",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.DisposedResolverCannotBeReused",
+      "result": "Passed",
+      "duration": "0.001236",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.DnlibAuthoredFixtureDoesNotRequireAFalseCounterexample",
+      "result": "Passed",
+      "duration": "0.011058",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.EnumUnderlyingValueTypeMustMatchExactly",
+      "result": "Passed",
+      "duration": "0.001229",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ExplicitCompilerReferencesPreserveExternalEnumAndOtherConstants",
+      "result": "Passed",
+      "duration": "0.004469",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.IdenticalInputsAreDeterministic",
+      "result": "Passed",
+      "duration": "0.007209",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.NullClassConstantRemainsUntouched",
+      "result": "Passed",
+      "duration": "0.001254",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.RelativeCompilerReferencesAreRejected",
+      "result": "Passed",
+      "duration": "0.001045",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ResolvedClassSigEnumCanBeNormalizedWithoutChangingValue",
+      "result": "Passed",
+      "duration": "0.001286",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.ResolverDoesNotSubstituteAnotherAssemblyVersion",
+      "result": "Passed",
+      "duration": "0.001068",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbConstantsTests.RouteBIsExplicitAndRetainsEquivalentConstants",
+      "result": "Passed",
+      "duration": "0.006626",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbFailureCaptureTests.CapturesAreUniqueAndDoNotGrantAcceptance",
+      "result": "Passed",
+      "duration": "0.056722",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbFailureCaptureTests.ChangedInputBytesFailHashVerification",
+      "result": "Passed",
+      "duration": "0.019508",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbFailureCaptureTests.ExtraMembersFailMembershipVerification",
+      "result": "Passed",
+      "duration": "0.033986",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbFailureCaptureTests.FullInnerExceptionIsRetained",
+      "result": "Passed",
+      "duration": "0.033802",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbFailureCaptureTests.MissingReferencesRemainUnavailable",
+      "result": "Passed",
+      "duration": "0.019711",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ReflectionPdbFailureCaptureTests.ProjectRelativeCompilerReferenceIsCapturedFromExactRoot",
+      "result": "Passed",
+      "duration": "0.034247",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackBodyChangesRequireReviewButUnchangedCallbacksDoNotBlockCodeOnly",
+      "result": "Passed",
+      "duration": "0.023725",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackCanReadItsExplicitlySerializedPrivateAndInheritedInputs",
+      "result": "Passed",
+      "duration": "0.011727",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackHashPreservesAdjacentFloatAndDoubleOperandBits",
+      "result": "Passed",
+      "duration": "0.010405",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackInheritedInstanceConstructorStateRequiresReview",
+      "result": "Passed",
+      "duration": "0.019829",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackMemberFieldSignatureKeepsReferencedAssemblyIdentity",
+      "result": "Passed",
+      "duration": "0.007463",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackMethodSpecKeepsGenericArgumentAssemblyIdentity",
+      "result": "Passed",
+      "duration": "0.007313",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackNonSerializedInheritedInstanceStateRequiresReview",
+      "result": "Passed",
+      "duration": "0.007303",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackPrivateInstanceConstructorStateRequiresReview",
+      "result": "Passed",
+      "duration": "0.006850",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackReadonlyInstanceConstructorStateRequiresReview",
+      "result": "Passed",
+      "duration": "0.010218",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackStaticFieldReadIncludesHelperTypeInitializer",
+      "result": "Passed",
+      "duration": "0.015499",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.CallbackUnresolvedVirtualAndIndirectDispatchRemainUnknown",
+      "result": "Passed",
+      "duration": "0.008811",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.ChangedTypeMapsToOnlyReferencingBundles",
+      "result": "Passed",
+      "duration": "0.001507",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.EcmaSerializableFlagsAndFieldExclusionsAreReadFromRealMetadata",
+      "result": "Passed",
+      "duration": "0.010353",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.ExactUnityEventLeafIsSupportedButArbitraryEngineClassesRemainRejected",
+      "result": "Passed",
+      "duration": "0.004416",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FormerNameArrayAndManagedReferenceChangesAreDetected",
+      "result": "Passed",
+      "duration": "0.000399",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+      "result": "Passed",
+      "duration": "0.012015",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.HashIsDeterministicAndIgnoresOrdering",
+      "result": "Passed",
+      "duration": "0.000302",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.IndexUsesExactAssemblyAndCaseAndUnreadableResourcesFailClosed",
+      "result": "Passed",
+      "duration": "0.001022",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.InheritedNestedArrayAndListFieldsArePartOfTheContract",
+      "result": "Passed",
+      "duration": "0.000169",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.ListChildAndInheritedDtoAreReachableAndTheirChangesAreDetected",
+      "result": "Passed",
+      "duration": "0.010285",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.ManagedReferenceCandidatesFollowInterfaceInheritanceAndRejectUnityObjects",
+      "result": "Passed",
+      "duration": "0.019211",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.NonSerializedAndPrivateWithoutSerializeFieldAreNotAbiEntries",
+      "result": "Passed",
+      "duration": "0.000429",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.ReadonlyStaticInitializationCanRemainStableButModuleChangesCannot",
+      "result": "Passed",
+      "duration": "0.013132",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.RealIndexGraphMapsDtoBaseAndManagedCandidateToPrefabAndSceneOnly",
+      "result": "Passed",
+      "duration": "0.001368",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.RequestedUnityEnginePrefixedCandidateIsNotAFrameworkBoundary",
+      "result": "Passed",
+      "duration": "0.006188",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.ResourceTypeRemovalRequiresRebuild",
+      "result": "Passed",
+      "duration": "0.000452",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.SerializeReferenceCandidateAndUnknownAreFailClosed",
+      "result": "Passed",
+      "duration": "0.000276",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.SerializedFieldChangesRequireResourceRebuild",
+      "result": "Passed",
+      "duration": "0.000183",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.SharedMethodAndFieldWriterExtractionPreservesAssemblyHashBytes",
+      "result": "Passed",
+      "duration": "0.001512",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.UnityYamlUsesScriptGuidAndFileIdAndManagedReferenceMetadataOnly",
+      "result": "Passed",
+      "duration": "0.000928",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.UnknownTypesFailClosedToAllIndexedBundles",
+      "result": "Passed",
+      "duration": "0.000158",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.UnresolvedSameNamedAssemblyTypeAndEmptyManagedCandidatesFailClosed",
+      "result": "Passed",
+      "duration": "0.004371",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.UnsupportedContainersObjectDecimalAndUnmarkedStructFailClosed",
+      "result": "Passed",
+      "duration": "0.004021",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.BuiltinBackingAndDefiningModuleBytesAreRehashed(False)",
+      "result": "Passed",
+      "duration": "0.772443",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.BuiltinBackingAndDefiningModuleBytesAreRehashed(True)",
+      "result": "Passed",
+      "duration": "0.853112",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.BuiltinEngineSkinIsProvenByBackingBytesAndEngineModulesWithoutSkippingObjects",
+      "result": "Passed",
+      "duration": "1.267381",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.FrozenAssetGuidMustAgreeWithItsMetaEvenWhenRehashed",
+      "result": "Passed",
+      "duration": "0.023835",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.IndexMustComeFromFrozenSourcesEvenWhenItsChecksumIsUpdated",
+      "result": "Passed",
+      "duration": "0.162399",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.MissingBuildProvenanceCannotBeReplacedByAnAbiAndBundleHash",
+      "result": "Passed",
+      "duration": "0.010844",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.NewPlayerSerializedAbiCannotBePairedWithOldBundleReceipt",
+      "result": "Passed",
+      "duration": "0.136277",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.ProjectScriptableObjectTypeCannotBeClassifiedAsEngineOwned",
+      "result": "Passed",
+      "duration": "0.000448",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"duplicate-id\",\"ResourceBuiltinIdentityMismatch\")",
+      "result": "Passed",
+      "duration": "0.923693",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"foreign-guid\",\"ResourceBuiltinIdentityMismatch\")",
+      "result": "Passed",
+      "duration": "0.909459",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"foreign-type\",\"ResourceBuiltinTypeUnproven\")",
+      "result": "Passed",
+      "duration": "0.891356",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"missing-id\",\"ResourceBuiltinIdentityMismatch\")",
+      "result": "Passed",
+      "duration": "0.894960",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"monobehaviour\",\"ResourceBuiltinTypeUnproven\")",
+      "result": "Passed",
+      "duration": "0.921483",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"nonpersistent\",\"ResourceBuiltinIdentityMismatch\")",
+      "result": "Passed",
+      "duration": "0.889305",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RehashedBuiltinProofStillRequiresIdentityAndEngineTypeEvidence(\"unknown-type\",\"ResourceBuiltinTypeUnproven\")",
+      "result": "Passed",
+      "duration": "0.918944",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.RelabelingOldBundlesWithCurrentAbiFailsCompilerProvenanceEvenAfterRehash",
+      "result": "Passed",
+      "duration": "0.166565",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.ResourceMetadataCannotBeReplacedEvenWhenItsReceiptIsRehashed",
+      "result": "Passed",
+      "duration": "0.147003",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.StructuralCompilerDefineWithoutMatchingEditorDomainIsRejected",
+      "result": "Passed",
+      "duration": "0.159500",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.StructuralReplacementResourcesBindTheirExactCompilerDefines",
+      "result": "Passed",
+      "duration": "0.150111",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.TamperedFrozenArtifactsAreRejected(\"Bundles/fixture.bundle\",\"ResourceBundleHashMismatch\")",
+      "result": "Passed",
+      "duration": "0.007877",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.TamperedFrozenArtifactsAreRejected(\"Sources/Assets/Fixture.prefab\",\"ResourceSourceHashMismatch\")",
+      "result": "Passed",
+      "duration": "0.007215",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.TamperedFrozenArtifactsAreRejected(\"Sources/Assets/Fixture.prefab.meta\",\"ResourceSourceHashMismatch\")",
+      "result": "Passed",
+      "duration": "0.007343",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.TamperedFrozenArtifactsAreRejected(\"resource-abi.json\",\"ResourceAbiHashMismatch\")",
+      "result": "Passed",
+      "duration": "0.144186",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.TamperedFrozenArtifactsAreRejected(\"resource-script-index.json\",\"ResourceIndexHashMismatch\")",
+      "result": "Passed",
+      "duration": "0.158017",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.UnrecordedPatchDefineCompilationCannotEstablishANewResourceBaseline",
+      "result": "Passed",
+      "duration": "0.159748",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceReceiptTests.VerifiedReceiptIsPortableAndDoesNotReinspectLiveAssets",
+      "result": "Passed",
+      "duration": "0.295908",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SerializeReferenceDependencyTests.ExactSameAssemblyTypeDomainApprovesOnlyItsField",
+      "result": "Passed",
+      "duration": "0.106092",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SerializeReferenceDependencyTests.SameAssemblyDeclarationIsNotAFalseGraphEdge",
+      "result": "Passed",
+      "duration": "0.000525",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ShadowRawTypeAdmissionEvidenceTests.ChangedConfigInputOrDerivedProofCannotBeAcceptedAsAReceiptClaim",
+      "result": "Passed",
+      "duration": "1.995915",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ShadowRawTypeAdmissionEvidenceTests.ControlledCompiledProofIsDerivedFromActualBytesAndCopiedExactly",
+      "result": "Passed",
+      "duration": "0.597280",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ShadowRawTypeAdmissionEvidenceTests.HistoricalSnapshotWithoutControlRequiresNoRawEvidence",
+      "result": "Passed",
+      "duration": "0.185824",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ShadowRawTypeAdmissionEvidenceTests.MissingUncontrolledAndExtraEvidenceFailClosed",
+      "result": "Passed",
+      "duration": "0.194714",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ShadowRawTypeAdmissionEvidenceTests.RawProofSchemaIsSeparateAndExact",
+      "result": "Passed",
+      "duration": "0.000809",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.ShadowRawTypeAdmissionEvidenceTests.ReservedRawControlsCannotBeSuppliedAndAreVerifiedBeforeRemoval",
+      "result": "Passed",
+      "duration": "0.000363",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.AssemblyReferenceRetargetingAndIdentityHashRemainDistinct",
+      "result": "Passed",
+      "duration": "0.000354",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.AttributeNullStringArrayAndBoxedValueKindsRemainDistinct",
+      "result": "Passed",
+      "duration": "0.002578",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.EmbeddedResourceNameContentAndVisibilityAffectSemantics",
+      "result": "Passed",
+      "duration": "0.002088",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.FieldMemberReferenceDoesNotLoseItsFieldSignatureThroughIMethod",
+      "result": "Passed",
+      "duration": "0.000597",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.FloatingPointIlPreservesExactBitsIncludingSignedZeroAndNaNs",
+      "result": "Passed",
+      "duration": "0.001405",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.IlCallSitesAndTypeSpecificationsUseRecursiveAssemblyQualifiedSignatures",
+      "result": "Passed",
+      "duration": "0.001017",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.ModifiersArrayBoundsAndFunctionPointersRemainSemantic",
+      "result": "Passed",
+      "duration": "7.066228",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.TypeForwardingDestinationAndPropertyConstantsAreSemantic",
+      "result": "Passed",
+      "duration": "0.003218",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SignatureHashTests.UnsignedPublicKeysNormalizeMissingAndEmptyBytes",
+      "result": "Passed",
+      "duration": "0.001279",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.ActualCompilerInputOverridesItsReferenceCopy",
+      "result": "Passed",
+      "duration": "0.006085",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CaptureRejectsCandidateActuallyRemovedByLinker",
+      "result": "Passed",
+      "duration": "0.009140",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CapturedInputCannotBeReclassifiedAsAReferenceByMovingReceiptRows",
+      "result": "Passed",
+      "duration": "0.003897",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CompileOutputCannotBeUsedAsSuccessfulPlayerEvidence",
+      "result": "Passed",
+      "duration": "0.003409",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CompilerSnapshotCannotHideLinkedTreeBehindAnEmptyReceipt",
+      "result": "Passed",
+      "duration": "0.003686",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CompilerSnapshotNullLinkedReceiptRoundTripsAsAbsence",
+      "result": "Passed",
+      "duration": "0.004714",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CompilerSnapshotRejectsCompleteLinkedEvidenceEvenAfterRehash",
+      "result": "Passed",
+      "duration": "0.008988",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.CompilerSnapshotRejectsPartialLinkedClaimsEvenAfterRehash",
+      "result": "Passed",
+      "duration": "0.004045",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.DuplicateActualCompilerInputsAreRejected",
+      "result": "Passed",
+      "duration": "0.003773",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.DuplicateReferenceIdentitiesAreRejectedRatherThanFirstWins",
+      "result": "Passed",
+      "duration": "0.005223",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.LinkedAbsenceAcceptsNullAndClaimlessZeroOrConstructorDefaults",
+      "result": "Passed",
+      "duration": "0.000515",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.LinkedAbsenceRejectsEveryIndividualClaimIncludingMalformedRows",
+      "result": "Passed",
+      "duration": "0.001167",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.LinkedDllAndPdbTamperingAreRejected",
+      "result": "Passed",
+      "duration": "0.009955",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.LinkedProofPreservesDifferentStrippedBytesAndCopiesIndependently",
+      "result": "Passed",
+      "duration": "0.014910",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.LinkedProofRejectsMissingReceiptAndInjectedFiles",
+      "result": "Passed",
+      "duration": "0.009529",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.LinkedProofRejectsMvidRelabellingAndMissingProtectedAssembly",
+      "result": "Passed",
+      "duration": "0.008761",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.PlayerBuildProvenanceCannotBeRelabelledWithNewDemoSources",
+      "result": "Passed",
+      "duration": "0.000817",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.SuccessfulPlayerWithoutLinkedEvidenceIsRejected",
+      "result": "Passed",
+      "duration": "0.003508",
+      "label": ""
+    },
+    {
+      "id": "HybridCLR.Editor.AssemblyShadow.Tests.SnapshotTests.UnlistedDllCannotBeInjectedIntoSnapshot",
+      "result": "Passed",
+      "duration": "0.003912",
+      "label": ""
+    }
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "inputSha256": "7ac063fe015a83bd7ddca2094da2a50f3aaa0d840b9402ee1f9d6341741a47a0",
+  "rootAttributes": {
+    "id": "2",
+    "testcasecount": "720",
+    "result": "Passed",
+    "total": "720",
+    "passed": "720",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-16 08:10:05Z",
+    "end-time": "2026-09-16 08:11:34Z",
+    "duration": "89.3717616"
+  }
+}
