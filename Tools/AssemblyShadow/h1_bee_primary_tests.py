@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Run bounded Primary regressions with exact test IDs and immutable output.
 
 This does not launch Unity, mutate project pins, accept old builds, or approve
@@ -21,8 +22,9 @@ MODULES = (
     'test_h1_macro_domain_census', 'test_h1_failure_bundle_census',
     'test_h1_plan_failure_retention', 'test_h1_compiler_actions', 'test_h1_native_capture',
     'test_h1_pch_provenance', 'test_h1_pch_integration', 'test_h1_count_build_batch',
-    'test_h1_handoff_preflight', 'test_h1_managed_provenance', 'test_h1_managed_cache_provenance',
-    'test_h1_selection_collect', 'test_h1_successor_evidence', 'test_h1_successor_sidecar',
+    'test_h1_reproduction_tooling', 'test_h1_handoff_preflight', 'test_h1_managed_provenance',
+    'test_h1_managed_cache_provenance', 'test_h1_selection_collect', 'test_h1_successor_evidence',
+    'test_h1_successor_sidecar',
 )
 
 
@@ -56,7 +58,7 @@ def run(output):
     report={'kind':'H1BeePrimaryRegression','status':'PassedBoundedTests' if passed else 'CompletedWithNonPass',
         'testCount':result.testsRun,'counts':counts,'tests':sorted(result.rows,key=lambda r:r['id']),
         'host':platform.platform(),'python':sys.version,'rawLogSha256':hashlib.sha256(log.read_bytes()).hexdigest(),
-        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, managed changed-action/cache-hit proof, and host-Clang synthetic probes; not Unity/Apple Player validation',
+        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, managed changed-action/cache-hit proof, split reproduction behavior/tooling source authentication, and host-Clang synthetic probes; not Unity/Apple Player validation',
         'UnityCompile':'NotRun','AppleClangExecution':'NotRun','M08':'NotRun','humanGatePassed':False,'mayEnterR02':False}
     (output/'results.json').write_text(json.dumps(report,indent=2)+'\n')
     summary={k:report[k] for k in ('status','testCount','counts')}
