@@ -3,8 +3,10 @@
 
 The protected reproduction behaviour/pins remain authoritative. A separate
 checkout may differ from the protected published head only at the exact
-validation-tool paths and Git blob IDs committed in candidate source-targets.
-This is source/tooling preflight only; it does not accept a Player or H1.
+validation-tool override paths committed in candidate source-targets. The
+complete required validation-tool set, including already-identical files, must
+also match reviewed candidate Git blobs. This is source/tooling preflight only;
+it does not accept a Player or H1.
 """
 from __future__ import annotations
 
@@ -33,13 +35,16 @@ def changed_build_inputs(base_tree, current_tree):
     return {p for p in paths if not s.metadata_only(p) and base_tree.get(p)!=current_tree.get(p)}
 
 
-def verify_tree_contract(base_tree, current_tree, files):
-    s.require(isinstance(files, dict) and files, 'Reproduction tooling allowlist is empty')
-    s.require(all(isinstance(p,str) and p.startswith(TOOL_PREFIXES) and _sha(oid) for p,oid in files.items()),
-              'Invalid reproduction tooling path/blob allowlist')
+def _valid_tool_map(files):
+    return isinstance(files,dict) and bool(files) and all(
+        isinstance(p,str) and p.startswith(TOOL_PREFIXES) and _sha(oid) for p,oid in files.items())
+
+
+def verify_tree_contract(base_tree, current_tree, overrides):
+    s.require(_valid_tool_map(overrides), 'Reproduction tooling override allowlist is empty/invalid')
     changed=changed_build_inputs(base_tree,current_tree)
-    s.require(changed==set(files), 'Reproduction tooling checkout has non-tooling or missing tool changes')
-    for path,oid in files.items():
+    s.require(changed==set(overrides), 'Reproduction tooling checkout has non-tooling or missing tool changes')
+    for path,oid in overrides.items():
         s.require(current_tree.get(path)==oid, 'Reproduction tooling blob differs: '+path)
     return changed
 
@@ -67,8 +72,9 @@ def verify(project, authority):
     revision=tooling.get('revision',''); branch=tooling.get('branch',''); candidate_anchor=tooling.get('candidateToolSourceAnchor','')
     s.require(all(_sha(v) for v in (protected,behavior,revision,candidate_anchor)), 'Invalid split reproduction source identity')
     s.require(isinstance(branch,str) and branch, 'Missing reproduction tooling branch')
-    files=tooling.get('files')
-    s.require(isinstance(files,dict), 'Missing reproduction tooling file map')
+    files=tooling.get('files');overrides=tooling.get('overrides')
+    s.require(_valid_tool_map(files) and _valid_tool_map(overrides) and set(overrides)<=set(files),
+              'Missing/invalid reproduction tooling file maps')
 
     origin=s.git(project,'remote','get-url','origin').decode().strip()
     s.require(origin in ORIGINS, 'Unexpected reproduction tooling origin')
@@ -91,14 +97,15 @@ def verify(project, authority):
     pinned_build={p:o for p,o in pinned.items() if not s.metadata_only(p)}
     protected_build={p:o for p,o in protected_tree.items() if not s.metadata_only(p)}
     s.require(pinned_build==protected_build, 'Protected reproduction published head changed build behavior after its source pin')
-    verify_tree_contract(protected_tree,current,files)
+    verify_tree_contract(protected_tree,current,overrides)
 
-    # Every allowed blob must also be the exact reviewed candidate-source blob.
+    # Every required tool dependency must match both this checkout and the exact
+    # reviewed candidate source blob, even when it needed no override.
     for path,oid in files.items():
+        s.require(current.get(path)==oid, 'Reproduction required tooling blob differs: '+path)
         source_oid=s.git(authority,'rev-parse',candidate_anchor+':'+path).decode().strip()
         s.require(source_oid==oid, 'Tooling blob is not from the reviewed candidate source anchor: '+path)
 
-    # Authenticate working bytes for every build input, including the tooling overlay.
     for path,oid in current.items():
         if not s.metadata_only(path): s.verify_blob(s.safe_file(project,path),oid)
     untracked=s.git(project,'ls-files','--others','--exclude-standard','-z').decode().split('\0')
@@ -113,7 +120,7 @@ def verify(project, authority):
     return {'kind':'ReproductionValidationToolingPreflight','status':'BehaviorAndToolingSourcesVerifiedNotBuildAccepted',
             'repository':REPOSITORY,'branch':actual_branch,'checkoutCommit':head,'behaviorSourceCommit':behavior,
             'protectedPublishedHead':protected,'validationToolingCommit':revision,
-            'candidateToolSourceAnchor':candidate_anchor,'toolFiles':files,
+            'candidateToolSourceAnchor':candidate_anchor,'toolFiles':files,'toolOverrides':overrides,
             'sourceTargetSha256':target_sha,'sourcePinSha256':hashlib.sha256((project/s.PINS).read_bytes()).hexdigest(),
             'nativeInstallationVerified':False,'humanGatePassed':False,'mayEnterR02':False}
 
