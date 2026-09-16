@@ -4,60 +4,50 @@
 
 Primary Implementation completed for the Local Validation blocker returned at `d8349b3facaa5d420ec41a484854a9bba9e6c1a4`.
 
-Candidate source / implementation anchor:
+Authoritative candidate source / implementation anchor:
 
-`c8271753f489ba5a104875ee020f572b604c840e`
+`29261690798059077e5263de71526867a32bce30`
 
-Protected reproduction/runtime/performance identities remain unchanged.
+The previous Local run proved V00–V03, candidate count 132/132, and all eight unfixed reproduction cells, then real Unity M07 policy validation rejected `AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness` under the global bootstrap rule even though the acquisition site already had a schema-4 `FixedAssemblyBytes` contract.
 
-## Local empirical basis
+## Policy repair
 
-The preceding Local cycle proved V00–V03, candidate count 132/132, and captured all eight unfixed reproduction cells. V04 then failed in real Unity before fresh M07 outputs because the global bootstrap rule rejected:
+The shared `BootstrapIsolationRule` and package pin remain unchanged. The project dependency policy now declares exactly two **target-qualified** bootstrap entries for the one reviewed callsite:
 
-`AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness`
+- source/precompile evidence target `image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4`;
+- compiled fixed-image SHA-256 `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`.
 
-The same acquisition was already authenticated by the schema-4 `FixedAssemblyBytes` site `h1-count-ordinary-witness-image`. This was a policy-join gap, not authority to weaken bootstrap reflection checks.
+The existing `FixedAssemblyBytes` site `h1-count-ordinary-witness-image` remains the byte-acquisition authority. It still binds the exact consumer/type/method signature, original and additional method hashes, operation index 25, provider identity/semantic variants, image path and image SHA. No targetless or method-only H1 bootstrap exemption was added.
 
-The failed M07 workflow also left two tracked project-setting owners mutated until Local manually restored their exact HEAD bytes.
+`M07FixedByteBootstrapPolicyTests` exercises the real Unity policy construction and `ShadowAssemblyPolicyValidator.ValidateBeforeCompile`, binds the two dependency entries back to the exact fixed-byte site, and verifies that another image target is rejected with `BootstrapReflection`.
 
-## Repair
+## Failure restoration
 
-### Exact fixed-byte/bootstrap join
+Review of the first unpublished recovery draft found that it tracked the wrong settings path and did not cover the actual scene mutation observed by Local Validation. The final design therefore separates the proven historical workflow from a narrow outer recovery wrapper:
 
-The package/global validator is unchanged. The project dependency policy now contains exactly two target-qualified bootstrap entries for the one reviewed callsite:
+- `Tools/AssemblyShadow/Invoke-M07Build.Core.ps1` is the proven pre-repair M07 workflow;
+- `Tools/AssemblyShadow/Invoke-M07Build.ps1` snapshots workflow-owned inputs before delegating to the core;
+- on **failure only**, before rethrowing, it restores exact original bytes for:
+  - `Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity`;
+  - `ProjectSettings/AssemblyShadowSettings.asset`;
+  - `ProjectSettings/EditorBuildSettings.asset`;
+- each pre-restore byte set is retained and `workflow-inputs-restored.json` records the exact restoration hashes;
+- successful workflow semantics are unchanged by the outer wrapper.
 
-1. source/precompile evidence target `image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4`;
-2. compiled fixed-image target `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`.
+This addresses the exact mutation pair observed by Local while also preserving Editor build settings changed by scene registration.
 
-Both are limited to consumer `AssemblyShadowDemo.Bootstrap`, provider `AssemblyShadowBaseline.HotUpdate`, type `AssemblyShadowBaseline.HotUpdate.Entry`, and callsite `AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness`.
+## Primary validation
 
-There is no targetless H1 entry and no generic method-name exemption.
-
-`M07FixedByteBootstrapPolicyTests` binds those two entries back to the exact `FixedAssemblyBytes` site: method signature/hash variants, operation index 25, provider assembly identity, image path/hash, and configuration hash. It invokes the real `ShadowAssemblyPolicyValidator.ValidateBeforeCompile` and separately proves an altered image target remains rejected.
-
-### Workflow exact-byte recovery
-
-`Invoke-M07Build.ps1` now snapshots, before its first Unity M07 invocation:
-
-- `ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset`
-- `ProjectSettings/EditorBuildSettings.asset`
-
-Its outer `finally` preserves the current pre-restore bytes as evidence, restores the original bytes on success or failure, verifies SHA-256 equality, emits `workflow-settings-restored.json`, and treats recovery failure as fatal. The existing P05-specific recovery protocol is retained.
-
-## Primary bounded validation
-
-Workflow `35112630161` at source anchor `c8271753f489ba5a104875ee020f572b604c840e` passed **300/300** bounded tests with zero nonpasses.
+Workflow `35135969629` at source anchor `29261690798059077e5263de71526867a32bce30` passed **300/300** bounded tests, zero nonpasses.
 
 - authenticated Apple Bee fixture SHA-256: `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`
-- artifact ID: `10453272042`
-- artifact ZIP SHA-256: `c7e01dccb9802d1ce87a0008c214b02301afb27db7c3612b73052014ff6075b5`
+- artifact ID: `10463420165`
+- artifact SHA-256: `2f1b9707ed745e47461b2f5baa3e8672b4b3d2ecd4ce5380fb085cc125d299e2`
 
-The temporary write-capable patch workflows used to apply/review the transform were removed before this source anchor was frozen and are absent from the anchor tree.
+This is bounded Primary/tool evidence. It is **not** a claim that real Unity M07 now passes. Fresh Local V00–V05 and independent whole-chain M08 remain required.
 
-This is bounded Primary evidence only. It is not Unity/Apple Player, current-source M07 runtime, V04/V05, M08, or human acceptance.
+## Preservation
 
-## Evidence preservation
-
-`local-validation-20260916-e96bc07` and all older checkpoints remain historical evidence under their original source identities. Its V00–V03, 132/132 candidate count result, and eight reproduction cells are preserved; none is relabeled as fresh acceptance for `c8271753...`.
+Protected reproduction behavior/runtime pins, tooling revision `ba8fee33753a5ebc215b7a98739e343d8e05572e`, performance reference `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`, and all historical Local evidence remain unchanged.
 
 H1 remains `InProgress`; last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
