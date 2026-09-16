@@ -8,8 +8,8 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
-      "implementationCommit": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
+      "codeCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
+      "implementationCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
       "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
         "hybridclr": {
@@ -31,7 +31,7 @@
       "branch": "codex/assembly-shadow-h1-count-repro",
       "publishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
       "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
-      "preservationPolicy": "Do not move this branch for the managed-response-scope Primary correction. Preserve the unfixed count behavior and existing validation handoff.",
+      "preservationPolicy": "The protected reproduction branch/head and its unfixed behavior source/runtime pins must not move. Local Validation runs the same unfixed behavior through the separately authenticated tooling-only successor declared in validationTooling; this does not change reproduction runtime/Player behavior or promote the tooling branch to behavior authority.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -45,6 +45,29 @@
           "url": "https://github.com/night-outlook/il2cpp_plus",
           "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
         }
+      },
+      "validationTooling": {
+        "repository": "night-outlook/hybridclr_demo",
+        "branch": "codex/assembly-shadow-h1-count-repro-tooling",
+        "revision": "482a615bb662666f16f861c560f15c6607b82224",
+        "candidateToolSourceAnchor": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
+        "files": {
+          "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+          "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
+          "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
+          "Tools/AssemblyShadow/h1_compiler_actions.py": "e89c97c553793a8866c25b3090972a550f91b751",
+          "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+          "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
+          "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
+        },
+        "overrides": {
+          "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+          "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
+          "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
+          "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+          "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
+          "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
+        }
       }
     }
   },
@@ -55,15 +78,15 @@
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35066118142,
-    "implementationCommit": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
+    "workflowRun": 35081136990,
+    "implementationCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 283,
-    "passed": 283,
+    "testCount": 294,
+    "passed": 294,
     "nonpasses": 0,
-    "artifactId": 10434108589,
-    "artifactSha256": "94e4cfc61b62dd01c297a704f97085d1031e56e29986cc281eb6679ccafb1ded",
-    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, action-local recursive response-closure regressions, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-build managed cache acceptance, runtime, or M08 acceptance."
+    "artifactId": 10439663711,
+    "artifactSha256": "a7ad62cbd34200056448374b69f942c0cd7e9d3515bb7e499fe2d64c44d3dd7d",
+    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction behavior/tooling source and receipt binding, and portable/host-Clang tool regressions. Not Unity, Apple Player, fresh reproduction build acceptance, runtime, M08, or human acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -97,6 +120,15 @@
     "failure": "Schema-2 cached verification attached every response discovered from every Csc action in a Bee DAG to each required cache graph. Seven unrelated StandaloneOSX_CodeGen response files legitimately changed during staging and incorrectly invalidated two required assembly cache chains whose own recursive response closures, dependencies, outputs, reachability and fresh Player bindings remained unchanged.",
     "policy": "Schema-3 retains and verifies response stability per matched required compiler action using exactly the recursive responseSources returned by bounded @response expansion. Graph-wide response paths may be recorded as audit-only responseAuditSources but are not acceptance inputs unless they are in that selected action's recursive closure. Graph identity, action transcript, source set, compiler/tool/reference dependencies, Csc output, downstream reachability, exact fresh Player path/hash/size binding, unique-chain selection, pre-existing-output requirements, cache budgets and no-fresh-Csc-execution claim remain unchanged and fail closed.",
     "schemaVersion": 3
+  },
+  "reproductionToolingRepair": {
+    "returnedByLocalValidationCommit": "9dbe8ee7549b105a29a94bd7ec7383b2909ba066",
+    "previousCandidateSourceAnchor": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
+    "protectedReproductionHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
+    "toolingBranch": "codex/assembly-shadow-h1-count-repro-tooling",
+    "toolingRevision": "482a615bb662666f16f861c560f15c6607b82224",
+    "failure": "The protected reproduction Player built successfully, but its project-local older provenance tool applied obsolete global macro equivalence and rejected the real 446-action graph. Candidate-owned diagnostic replay accepted the same graph under the reviewed current macro/PCH/store policy, but replay was not fresh build provenance.",
+    "policy": "Preserve the protected reproduction behavior branch/head, demo source pin, unfixed native pin, package and IL2CPP pins. Execute reproduction validation only from the explicit tooling-only successor. Candidate authority proves its non-metadata delta is exactly the six allowed validation overrides, proves all seven required tool dependency blobs equal the reviewed candidate source anchor, and checks the protected published head has no behavior changes after its source pin. The candidate wrapper enforces this before and after every reproduction build and writes a validation-tooling-binding sidecar bound to the strictly verified build receipt SHA. Diagnostic replay remains non-acceptance evidence."
   },
   "gateState": {
     "name": "H1",
