@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
-      "implementationCommit": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. The following handoff/source-target/source-pin and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
+      "codeCommit": "0387feb4344bbe95fd7db524d6e0bae759adc203",
+      "implementationCommit": "0387feb4344bbe95fd7db524d6e0bae759adc203",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following handoff/source-target/source-pin and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -31,7 +31,7 @@
       "branch": "codex/assembly-shadow-h1-count-repro",
       "publishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
       "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
-      "preservationPolicy": "Do not move this branch for the retention-store Primary correction. Preserve the unfixed count behavior and existing validation handoff.",
+      "preservationPolicy": "Do not move this branch for the managed-cache Primary correction. Preserve the unfixed count behavior and existing validation handoff.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -55,15 +55,15 @@
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35050737320,
-    "implementationCommit": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
+    "workflowRun": 35061641985,
+    "implementationCommit": "0387feb4344bbe95fd7db524d6e0bae759adc203",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 256,
-    "passed": 256,
+    "testCount": 281,
+    "passed": 281,
     "nonpasses": 0,
-    "artifactId": 10428726815,
-    "artifactSha256": "227effe44e29080b0191252b19ca15569b801d4e3d20ad36aca52d397c836015",
-    "scope": "Authenticated Apple Bee graph planning, reversible >256 MiB declared-input retention, fail-closed logical/stored/tamper controls, and portable/host-Clang tool regressions. Not Unity, Apple Player, runtime, or M08 acceptance."
+    "artifactId": 10432043605,
+    "artifactSha256": "5492b3051f6e35dfbf1a970932383308788fb6907bb63b5aa1183e133309d536",
+    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance regressions, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-build managed cache acceptance, runtime, or M08 acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -75,6 +75,20 @@
       "maxLogicalUniqueBytes": 2147483648,
       "maxStoredBytes": 536870912,
       "maxObservations": 4096
+    }
+  },
+  "managedCacheRepair": {
+    "returnedByLocalValidationCommit": "7f98084518054bd43e10abb603fe193612cfb321",
+    "previousSourceAnchor": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
+    "failure": "Fresh native provenance and retention passed, but the managed verifier required a changed Bee graph even when the exact required Player Csc/ILPP chain and DLL outputs were legitimately reused from an unchanged Bee cache.",
+    "policy": "At begin, retain bounded exact reusable Player Csc chains from pre-existing Bee DAGs, including graph/action, response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL bytes. At end, require all retained cache evidence to remain byte-identical and require exactly one chain to reach the exact path/hash/size of the DLL captured as an input to the fresh Player. Prefer a unique changed-graph proof when present. Cache proof never claims fresh Csc execution and is not the legacy prior-proof reuse route.",
+    "limits": {
+      "maxGraphs": 64,
+      "maxGraphBytes": 134217728,
+      "maxFiles": 4096,
+      "maxFileBytes": 67108864,
+      "maxTotalBytes": 536870912,
+      "maxReachableDlls": 128
     }
   },
   "gateState": {
