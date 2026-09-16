@@ -27,20 +27,22 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
             self.assertIn('h1-count-ordinary-witness-image', row['reason'])
             self.assertTrue(row['target'])
 
-    def test_workflow_restoration_covers_pre_p05_mutations(self):
-        text = (ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
+    def test_workflow_failure_wrapper_restores_real_scene_and_settings_inputs(self):
+        wrapper = (ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
+        core = ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.Core.ps1'
+        self.assertTrue(core.is_file())
         for value in (
-            'ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset',
+            'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity',
+            'ProjectSettings/AssemblyShadowSettings.asset',
             'ProjectSettings/EditorBuildSettings.asset',
-            'workflow-settings-restored.json',
-            'Save-M07WorkflowMutationState',
-            'Restore-M07WorkflowMutationState'):
-            self.assertIn(value, text)
-        save = text.index('$workflowState = Save-M07WorkflowMutationState')
-        first = text.index("Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs'")
-        self.assertLess(save, first)
-        self.assertIn('catch { $workflowFailure = $_; throw }', text)
-        self.assertIn('finally { $workflowLock.Dispose() }', text)
+            'Save-M07WorkflowInputs',
+            'Restore-M07WorkflowInputs',
+            'workflow-inputs-restored.json'):
+            self.assertIn(value, wrapper)
+        self.assertIn("Invoke-M07Build.Core.ps1", wrapper)
+        self.assertIn("if ($workflowFailure)", wrapper)
+        self.assertIn("throw $workflowFailure", wrapper)
+        self.assertNotIn('ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset', wrapper)
 
 if __name__ == '__main__':
     unittest.main()
