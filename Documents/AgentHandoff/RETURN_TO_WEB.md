@@ -1,6 +1,98 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: graph-wide response stability rejects valid assembly-local cache chains
+## Current blocker: published schema-3 handoff fails its authoritative preflight
+
+### Symptom
+
+At published handoff `2ca4720508dc114e9c55756fcb2a068678dff90c`, source/implementation anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a`, the required V00 command exits `1` with:
+
+```text
+Blocked: Incomplete handoff sections
+```
+
+No preflight result JSON is created. Candidate and protected repository identities independently match the handoff, but the executable authority check stops before source-target verification.
+
+### Reproduction
+
+From `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`:
+
+```sh
+git pull --ff-only origin codex/assembly-shadow-r01b-h1
+python3 Tools/AssemblyShadow/h1_handoff_preflight.py \
+  --project /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  --role candidate \
+  --output /ABS/NEW/v00/candidate-handoff.json
+```
+
+The checkout is exactly `2ca4720508dc114e9c55756fcb2a068678dff90c` and contains source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a` in its history.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260916-2ca4720](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-2ca4720/README.md).
+
+- `v00/preflight.stderr.log`: exact error.
+- `v00/preflight.exit-code.txt`: exit `1`.
+- `v00/handoff-section-census.json`: required/present/missing heading census.
+- `source-state.json`: candidate, protected pins, preservation boundaries, and authority hashes.
+- `WEB_TO_LOCAL.md` SHA-256: `33f23574233ddcfba36438bc6c393557ac34df879ed8210f33cb44efdbf8230c`.
+- preflight script SHA-256: `994e6e48c05aa15b2c66207a256ca76dcebdc8075bb9c1350d35e1d6f55263b1`.
+
+The committed preflight requires these exact literal substrings:
+
+```text
+## Objective
+## Source targets
+## Implementation
+## Local validation
+## Failure evidence
+## Alternatives
+## Risks
+## Local correction boundary
+## Human review gate
+```
+
+The published handoff headings are:
+
+```text
+## Objective
+## Exact source targets
+## Repair contract
+## Primary review and bounded validation
+## Local Validation
+## Failure evidence
+## Local correction boundary
+## Gate
+```
+
+Only three required literals are present. The six missing literals are `## Source targets`, `## Implementation`, `## Local validation`, `## Alternatives`, `## Risks`, and `## Human review gate`.
+
+### Root cause
+
+`WEB_TO_LOCAL.md` was reorganized with semantically meaningful headings, but the unchanged preflight uses a case-sensitive substring contract. `## Exact source targets` does not contain the literal `## Source targets`, `## Local Validation` differs by case, and four other required headings were renamed or omitted. The handoff document and its committed validator are incompatible.
+
+The design allows this recurrence because heading compatibility is not validated in Primary's 283-test publication workflow. The same class previously blocked handoff `c0d3070`; the current Primary repair updated the handoff again without an executable preflight result bound to the final published bytes.
+
+### Impact
+
+The handoff explicitly says: “If V00 fails, stop before V01–V05.” Therefore schema-3 Unity/Bee validation, fresh builds, runtime/count/startup/capacity/performance, successor packaging, and independent whole-chain M08 are all `Blocked / NotRun`. Human Review Gate is not ready and R02 remains closed.
+
+### Recommended direction
+
+Preferred: publish a metadata-only successor that preserves all current content while restoring the six exact required heading literals, then run the unchanged preflight against the final committed handoff before returning it to Local Validation.
+
+If the literal-heading contract is intentionally obsolete, update `h1_handoff_preflight.py` and its regression tests as a reviewed executable-input change, publish a new source anchor, and issue a matching handoff. Do not ask Local Validation to bypass or rewrite the authority document.
+
+Add a publication check that executes `h1_handoff_preflight.py` against the final branch HEAD after the last handoff edit. This prevents semantically equivalent heading changes from publishing an unusable Local handoff.
+
+### Uncertainty
+
+The failure occurs before source-target and schema-3 checks. Independently observed heads and pins match, but this run provides no schema-3 Unity/Player evidence and must not be interpreted as a finding about the response-scope implementation itself.
+
+---
+
+## Historical blocker addressed by source anchor 5f561ab
+
+### Graph-wide response stability rejects valid assembly-local cache chains
 
 ### Symptom
 

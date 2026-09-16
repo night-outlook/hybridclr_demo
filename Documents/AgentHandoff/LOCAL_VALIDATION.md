@@ -1,6 +1,49 @@
 # Local Validation report
 
-## Current run — 2026-09-15 handoff 3695905
+## Current run — 2026-09-16 handoff 2ca4720
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The candidate branch was explicitly fast-forwarded to requested handoff `2ca4720508dc114e9c55756fcb2a068678dff90c`. Candidate source anchor `5f561abdfbe020d1d480594a2130c5ec846c0e6a` and every protected native/package/IL2CPP/reproduction/performance identity match the published handoff.
+
+The authoritative V00 preflight fails immediately with `Blocked: Incomplete handoff sections`. The committed preflight requires nine literal, case-sensitive heading substrings. Published `WEB_TO_LOCAL.md` provides only `## Objective`, `## Failure evidence`, and `## Local correction boundary`; it lacks `## Source targets`, `## Implementation`, `## Local validation`, `## Alternatives`, `## Risks`, and `## Human review gate`.
+
+The handoff requires V00 PASS before V01–V05 and forbids Local Validation from rewriting `WEB_TO_LOCAL.md`. V01–V05 are `Blocked / NotRun`. No Unity, Bee-cache, installation, Player, runtime, performance, successor, or M08 command was started for source anchor `5f561ab`. Human Review Gate is not ready, `humanGatePassed=false`, `mayEnterR02=false`, and R02 was not started.
+
+### Validated source state
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate handoff checkout | `codex/assembly-shadow-r01b-h1` | `2ca4720508dc114e9c55756fcb2a068678dff90c` | `Pass` |
+| Candidate source/implementation anchor | same branch | `5f561abdfbe020d1d480594a2130c5ec846c0e6a` | `Pass` in source target and source pin |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass`, clean |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass`, clean |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass`, clean |
+| Reproduction demo | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged |
+| Reproduction native | `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged |
+
+The candidate retained the pre-existing untracked historical `v7`–`v11` directories plus this new checkpoint. Protected worktrees remained clean and were not moved or reinstalled.
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 repository/pin observation | `Pass` | Checkout, source anchor, all protected pins, tool versions, and dirty-state boundaries match. |
+| V00 authoritative preflight | `Fail` | Exit 1; `Blocked: Incomplete handoff sections`; no output JSON created. |
+| V01 affected regressions | `Blocked / NotRun` | Required V00 preflight did not pass. |
+| V02 schema-3 real Bee proof | `Blocked / NotRun` | Required V00 preflight did not pass; normal Bee cache was untouched. |
+| V03 fresh build set | `Blocked / NotRun` | Required V00 preflight did not pass. |
+| V04 runtime/count/startup/performance | `Blocked / NotRun` | No accepted fresh build inputs. |
+| V05 successor and independent M08 | `Blocked / NotRun` | Acceptance chain has no valid new inputs; M08 was not commissioned. |
+
+Portable evidence is under [local-validation-20260916-2ca4720](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-2ca4720/README.md). No bounded local fix was made because the authority document and executable handoff contract are Primary-owned.
+
+---
+
+## Historical run — 2026-09-15 handoff 3695905
 
 ### Exit
 
