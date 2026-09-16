@@ -1,0 +1,282 @@
+name: H1 M07 primary patch
+
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: [.github/workflows/h1-m07-primary-patch.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Apply reviewed M07 source patch
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          root=Path('.')
+          deps_path=root/'ProjectSettings/AssemblyShadowDependencies.json'
+          deps=json.loads(deps_path.read_text())
+          callsite='AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness'
+          source_target='image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4'
+          image_target='9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27'
+          existing=[x for x in deps['bootstrapEntrypoints'] if (x.get('callSite') or x.get('method'))==callsite]
+          if existing:
+              raise SystemExit('H1 fixed-byte bootstrap entries already exist; refuse non-idempotent patch')
+          reason='Derived from FixedAssemblyBytes site h1-count-ordinary-witness-image; exact H1 ordinary witness only. This does not authorize other methods, providers, images, or byte loads.'
+          for target in (source_target,image_target):
+              deps['bootstrapEntrypoints'].append({
+                  'consumer':'AssemblyShadowDemo.Bootstrap',
+                  'provider':'AssemblyShadowBaseline.HotUpdate',
+                  'typeName':'AssemblyShadowBaseline.HotUpdate.Entry',
+                  'method':callsite,
+                  'target':target,
+                  'reason':reason,
+              })
+          deps_path.write_text(json.dumps(deps,indent=2,ensure_ascii=False)+'\n')
+
+          ps_path=root/'Tools/AssemblyShadow/Invoke-M07Build.ps1'
+          ps=ps_path.read_text()
+          marker='function Find-M07PlayerReceipt {'
+          if marker not in ps: raise SystemExit('M07 function insertion marker missing')
+          helpers=r'''function Save-M07WorkflowMutationState {
+              param([string]$Project, [string]$Run)
+              if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot snapshot M07 workflow settings while this project is open.' }
+              $specs = @(
+                  @{ relative = 'ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset'; backup = 'workflow-assembly-shadow-settings.original' },
+                  @{ relative = 'ProjectSettings/EditorBuildSettings.asset'; backup = 'workflow-editor-build-settings.original' }
+              )
+              $rows = @()
+              foreach ($spec in $specs) {
+                  $path = Assert-M07RegularPath (Join-Path $Project $spec.relative)
+                  $bytes = [IO.File]::ReadAllBytes($path)
+                  $backup = Join-Path $Run $spec.backup
+                  $stream = [IO.File]::Open($backup, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+                  try { $stream.Write($bytes, 0, $bytes.Length); $stream.Flush($true) }
+                  finally { $stream.Dispose() }
+                  $rows += [pscustomobject]@{ relative = $spec.relative; backup = $backup; originalSha256 = Get-M07BytesHash $bytes }
+              }
+              return @($rows)
+          }
+
+          function Restore-M07WorkflowMutationState {
+              param([string]$Project, [string]$Run, [object[]]$State)
+              if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot restore M07 workflow settings until every owned Unity process exits.' }
+              if ($State.Count -ne 2) { throw 'M07 workflow settings snapshot is incomplete.' }
+              $rows = @()
+              foreach ($entry in $State) {
+                  $path = Assert-M07RegularPath (Join-Path $Project $entry.relative)
+                  $backup = Assert-M07RegularPath $entry.backup
+                  $original = [IO.File]::ReadAllBytes($backup)
+                  if ((Get-M07BytesHash $original) -cne $entry.originalSha256) { throw "M07 workflow backup changed: $($entry.relative)" }
+                  $current = [IO.File]::ReadAllBytes($path)
+                  $currentSha = Get-M07BytesHash $current
+                  $beforeRestore = Join-Path $Run (([IO.Path]::GetFileName($entry.backup)) + '.before-restore')
+                  $evidence = [IO.File]::Open($beforeRestore, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+                  try { $evidence.Write($current, 0, $current.Length); $evidence.Flush($true) }
+                  finally { $evidence.Dispose() }
+                  $stream = [IO.File]::Open($path, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+                  try {
+                      $stream.Position = 0
+                      $stream.Write($original, 0, $original.Length)
+                      $stream.SetLength($original.Length)
+                      $stream.Flush($true)
+                  }
+                  finally { $stream.Dispose() }
+                  $restoredSha = Get-M07BytesHash ([IO.File]::ReadAllBytes($path))
+                  if ($restoredSha -cne $entry.originalSha256) { throw "M07 workflow exact-byte restore failed: $($entry.relative)" }
+                  $rows += [ordered]@{ path = $entry.relative; originalSha256 = $entry.originalSha256; beforeRestoreSha256 = $currentSha; restoredSha256 = $restoredSha }
+              }
+              $receipt = [ordered]@{ schemaVersion = 1; kind = 'M07WorkflowSettingsRestoration'; status = 'ExactBytesRestored'; files = $rows }
+              $receiptPath = Join-Path $Run 'workflow-settings-restored.json'
+              $bytes = [Text.UTF8Encoding]::new($false).GetBytes(($receipt | ConvertTo-Json -Depth 6) + "`n")
+              $file = [IO.File]::Open($receiptPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+              try { $file.Write($bytes, 0, $bytes.Length); $file.Flush($true) }
+              finally { $file.Dispose() }
+          }
+
+          '''
+          ps=ps.replace(marker,helpers+marker,1)
+          old="$workflowLock = [IO.File]::Open($lockPath, [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)\ntry {"
+          new="$workflowLock = [IO.File]::Open($lockPath, [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)\n$workflowState = $null\n$workflowFailure = $null\ntry {\n    $workflowState = Save-M07WorkflowMutationState $shadowProject $run"
+          if old not in ps: raise SystemExit('M07 outer try marker missing')
+          ps=ps.replace(old,new,1)
+          old_end='''}
+          finally { $workflowLock.Dispose() }
+          '''
+          new_end='''}
+          catch { $workflowFailure = $_; throw }
+          finally {
+              $workflowRestoreFailure = $null
+              try {
+                  if ($null -ne $workflowState) { Restore-M07WorkflowMutationState $shadowProject $run @($workflowState) }
+              }
+              catch { $workflowRestoreFailure = $_ }
+              finally { $workflowLock.Dispose() }
+              if ($workflowRestoreFailure) {
+                  throw "M07 workflow settings recovery failed. Original failure: $workflowFailure Recovery failure: $workflowRestoreFailure"
+              }
+          }
+          '''
+          if not ps.endswith(old_end): raise SystemExit('M07 outer finally marker missing')
+          ps=ps[:-len(old_end)]+new_end
+          ps_path.write_text(ps)
+
+          csharp=r'''using System;
+          using System.IO;
+          using System.Linq;
+          using System.Reflection;
+          using HybridCLR.AssemblyShadow.CodeGen;
+          using HybridCLR.Editor.AssemblyShadow;
+          using NUnit.Framework;
+          using UnityEditor;
+
+          namespace AssemblyShadowDemo.EditorTests
+          {
+              public sealed class M07FixedByteBootstrapPolicyTests
+              {
+                  private const string SiteId = "h1-count-ordinary-witness-image";
+                  private const string Consumer = "AssemblyShadowDemo.Bootstrap";
+                  private const string Provider = "AssemblyShadowBaseline.HotUpdate";
+                  private const string ProviderIdentity = "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
+                  private const string ConsumerType = "AssemblyShadowDemo.H1CountEarlyStartup";
+                  private const string CallSite = ConsumerType + "::LoadOrdinaryWitness";
+                  private const string MethodSignature = "AssemblyShadowDemo.H1CountEarlyStartup/WitnessReceipt AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness()";
+                  private const string MethodHash = "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e";
+                  private const string VariantHash = "4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e";
+                  private const string ImageSha = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27";
+                  private const string ImagePath = "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes";
+                  private const string SourceEvidenceTarget = "image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4";
+
+                  [Test]
+                  public void RealM07PolicyBindsFixedBytesToExactlyTwoBootstrapEvidenceTargets()
+                  {
+                      BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
+                      ShadowPolicyConfiguration policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(target);
+                      ReflectionBindingConfiguration bindings = ReflectionBindingConfiguration.Parse(File.ReadAllBytes(ReflectionBindingConfiguration.ProjectRelativePath));
+                      ReflectionBindingSite site = bindings.sites.Single(value => value.id == SiteId);
+                      Assert.AreEqual(4, bindings.schemaVersion);
+                      Assert.AreEqual("FixedAssemblyBytes", site.kind);
+                      Assert.AreEqual(Consumer, site.assembly);
+                      Assert.AreEqual(ConsumerType, site.typeName);
+                      Assert.AreEqual(MethodSignature, site.methodSignature);
+                      Assert.AreEqual(MethodHash, site.originalMethodHash);
+                      Assert.AreEqual(25, site.operationIndex);
+                      Assert.AreEqual(ImageSha, site.imageSha256);
+                      Assert.AreEqual(ImagePath, site.imagePath);
+                      Assert.AreEqual(ProviderIdentity, site.providerAssemblyIdentity);
+                      Assert.AreEqual(1, site.additionalMethodVariants.Length);
+                      Assert.AreEqual(VariantHash, site.additionalMethodVariants[0].originalMethodHash);
+                      Assert.AreEqual(25, site.additionalMethodVariants[0].operationIndex);
+                      Assert.AreEqual(bindings.ComputeHash(), policy.reflectionBindingConfigurationHash);
+
+                      BootstrapEntrypointDeclaration[] entries = policy.dependencies.bootstrapEntrypoints.Where(value => value != null &&
+                          string.Equals(string.IsNullOrWhiteSpace(value.callSite) ? value.method : value.callSite, CallSite, StringComparison.Ordinal)).ToArray();
+                      Assert.AreEqual(2, entries.Length);
+                      CollectionAssert.AreEquivalent(new[] { SourceEvidenceTarget, ImageSha }, entries.Select(value => value.target).ToArray());
+                      foreach (BootstrapEntrypointDeclaration entry in entries)
+                      {
+                          Assert.AreEqual(Consumer, entry.consumer);
+                          Assert.AreEqual(Provider, entry.provider);
+                          Assert.AreEqual("AssemblyShadowBaseline.HotUpdate.Entry", entry.typeName);
+                          Assert.IsFalse(string.IsNullOrWhiteSpace(entry.target));
+                          StringAssert.Contains(SiteId, entry.reason);
+                      }
+
+                      ShadowPolicyValidationResult real = ShadowAssemblyPolicyValidator.ValidateBeforeCompile(policy, target);
+                      Assert.IsTrue(real.IsValid, real.ToString());
+                  }
+
+                  [Test]
+                  public void BootstrapAdmissionRemainsTargetExactAndRejectsAnotherImage()
+                  {
+                      ShadowPolicyConfiguration source = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(EditorUserBuildSettings.activeBuildTarget);
+                      BootstrapEntrypointDeclaration[] entries = source.dependencies.bootstrapEntrypoints.Where(value => value != null &&
+                          string.Equals(string.IsNullOrWhiteSpace(value.callSite) ? value.method : value.callSite, CallSite, StringComparison.Ordinal)).ToArray();
+                      var policy = new ShadowPolicyConfiguration {
+                          dependencies = new ShadowDependencyConfiguration { schemaVersion = 2, bootstrapEntrypoints = entries },
+                          rejectUnknownReflectionDependencies = true,
+                      };
+                      var bootstrap = new AssemblyPolicyDefinition { name = Consumer, classification = AssemblyClassification.Runtime,
+                          entersPlayer = true, isBootstrap = true, reflectionReferences = new[] { CallSite + "|" + SourceEvidenceTarget, CallSite + "|" + ImageSha } };
+                      var provider = new AssemblyPolicyDefinition { name = Provider, classification = AssemblyClassification.NormalHotUpdate, entersPlayer = true };
+                      Assert.IsTrue(ShadowAssemblyPolicyValidator.ValidateDefinitions(new[] { bootstrap, provider }, policy, DateTime.UtcNow).IsValid);
+                      bootstrap.reflectionReferences = new[] { CallSite + "|image:" + new string('0', 64) };
+                      ShadowPolicyValidationResult rejected = ShadowAssemblyPolicyValidator.ValidateDefinitions(new[] { bootstrap, provider }, policy, DateTime.UtcNow);
+                      Assert.IsFalse(rejected.IsValid);
+                      Assert.IsTrue(rejected.Errors.Any(value => value.Contains("BootstrapReflection")), rejected.ToString());
+                  }
+              }
+          }
+          '''
+          csharp='\n'.join(line[10:] if line.startswith('          ') else line for line in csharp.splitlines())+'\n'
+          test_path=root/'Assets/AssemblyShadowDemo/Tests/Editor/M07FixedByteBootstrapPolicyTests.cs'
+          test_path.write_text(csharp)
+          (root/'Assets/AssemblyShadowDemo/Tests/Editor/M07FixedByteBootstrapPolicyTests.cs.meta').write_text('''fileFormatVersion: 2\nguid: 73c99fd9357049839f65577ef9949cd7\ntimeCreated: 1790000000\nlicenseType: Free\nMonoImporter:\n  externalObjects: {}\n  serializedVersion: 2\n  defaultReferences: []\n  executionOrder: 0\n  icon: {instanceID: 0}\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n''')
+
+          pytest=r'''import json
+          from pathlib import Path
+          import unittest
+
+          ROOT=Path(__file__).resolve().parents[3]
+          CALL='AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness'
+          SOURCE='image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4'
+          IMAGE='9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27'
+
+          class M07FixedBootstrapPolicyTests(unittest.TestCase):
+              def test_dependency_bridge_is_exact_and_binding_owned(self):
+                  deps=json.loads((ROOT/'ProjectSettings/AssemblyShadowDependencies.json').read_text())
+                  bindings=json.loads((ROOT/'ProjectSettings/AssemblyShadowReflectionBindings.json').read_text())
+                  site=next(x for x in bindings['sites'] if x['id']=='h1-count-ordinary-witness-image')
+                  self.assertEqual('FixedAssemblyBytes',site['kind']);self.assertEqual(IMAGE,site['imageSha256'])
+                  self.assertEqual('fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e',site['originalMethodHash'])
+                  self.assertEqual(25,site['operationIndex'])
+                  self.assertEqual([{'originalMethodHash':'4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e','operationIndex':25}],site['additionalMethodVariants'])
+                  self.assertEqual('AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null',site['providerAssemblyIdentity'])
+                  rows=[x for x in deps['bootstrapEntrypoints'] if (x.get('callSite') or x.get('method'))==CALL]
+                  self.assertEqual(2,len(rows));self.assertEqual({SOURCE,IMAGE},{x.get('target') for x in rows})
+                  for row in rows:
+                      self.assertEqual('AssemblyShadowDemo.Bootstrap',row['consumer']);self.assertEqual('AssemblyShadowBaseline.HotUpdate',row['provider'])
+                      self.assertIn('h1-count-ordinary-witness-image',row['reason']);self.assertTrue(row['target'])
+              def test_workflow_restoration_covers_pre_p05_mutations(self):
+                  text=(ROOT/'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
+                  for value in ('ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset','ProjectSettings/EditorBuildSettings.asset','workflow-settings-restored.json','Save-M07WorkflowMutationState','Restore-M07WorkflowMutationState'):
+                      self.assertIn(value,text)
+                  save=text.index('$workflowState = Save-M07WorkflowMutationState')
+                  first=text.index("Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs'")
+                  self.assertLess(save,first)
+                  self.assertIn('catch { $workflowFailure = $_; throw }',text)
+                  self.assertIn('finally { $workflowLock.Dispose() }',text)
+
+          if __name__=='__main__': unittest.main()
+          '''
+          pytest='\n'.join(line[10:] if line.startswith('          ') else line for line in pytest.splitlines())+'\n'
+          (root/'Tools/AssemblyShadow/tests/test_h1_m07_policy_bridge.py').write_text(pytest)
+
+          runner=root/'Tools/AssemblyShadow/h1_bee_primary_tests.py'
+          text=runner.read_text()
+          needle="    'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding',\n    'test_h1_handoff_preflight'"
+          replacement="    'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding', 'test_h1_m07_policy_bridge',\n    'test_h1_handoff_preflight'"
+          if needle not in text: raise SystemExit('Primary runner module marker missing')
+          runner.write_text(text.replace(needle,replacement,1))
+          PY
+      - name: Review generated diff
+        run: |
+          git diff --check
+          python3 -m unittest Tools/AssemblyShadow/tests/test_h1_m07_policy_bridge.py -v
+          git diff --stat
+      - name: Publish source patch
+        run: |
+          git config user.name night-outlook
+          git config user.email wangxingfred.night@outlook.com
+          git add ProjectSettings/AssemblyShadowDependencies.json Tools/AssemblyShadow/Invoke-M07Build.ps1 Tools/AssemblyShadow/h1_bee_primary_tests.py Tools/AssemblyShadow/tests/test_h1_m07_policy_bridge.py Assets/AssemblyShadowDemo/Tests/Editor/M07FixedByteBootstrapPolicyTests.cs Assets/AssemblyShadowDemo/Tests/Editor/M07FixedByteBootstrapPolicyTests.cs.meta
+          git commit -m 'fix(h1): reconcile M07 fixed-byte bootstrap policy'
+          git push origin HEAD:codex/assembly-shadow-r01b-h1
