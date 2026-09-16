@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationResults",
+  "handoffHead": "534b03eb49140eb7f9d9fbdb64217e113a317626",
+  "candidateSourceAnchor": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
+  "steps": [
+    {
+      "id": "V00-candidate",
+      "result": "Pass",
+      "status": "SourceTargetVerifiedNotBuildAccepted"
+    },
+    {
+      "id": "V00-reproduction-tooling",
+      "result": "Pass",
+      "status": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted"
+    },
+    {
+      "id": "V01-h1-python",
+      "result": "Pass",
+      "count": 472
+    },
+    {
+      "id": "V01-bee-primary",
+      "result": "Pass",
+      "count": 294
+    },
+    {
+      "id": "V01-candidate-unity-compile",
+      "result": "Pass",
+      "compilerErrors": 0
+    },
+    {
+      "id": "V01-candidate-focused-nunit",
+      "result": "Pass",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "id": "V01-reproduction-tooling-unity-compile",
+      "result": "Fail",
+      "error": "CS0426 H1ManagedSourceProvenance.Capture does not exist",
+      "file": "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs",
+      "line": 13
+    },
+    {
+      "id": "V01-reproduction-tooling-nunit",
+      "result": "Blocked",
+      "disposition": "NotRun"
+    },
+    {
+      "id": "V02",
+      "result": "Blocked",
+      "disposition": "NotRun"
+    },
+    {
+      "id": "V03",
+      "result": "Blocked",
+      "disposition": "NotRun"
+    },
+    {
+      "id": "V04",
+      "result": "Blocked",
+      "disposition": "NotRun"
+    },
+    {
+      "id": "V05",
+      "result": "Blocked",
+      "disposition": "NotRun"
+    }
+  ],
+  "exit": "Local Validation -> Primary Implementation",
+  "lastIndependentM08": "FAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

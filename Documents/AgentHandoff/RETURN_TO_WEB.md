@@ -1,6 +1,71 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: protected reproduction invokes obsolete project-local provenance policy
+## Current blocker: tooling successor retains an incompatible historical Editor test
+
+### Symptom
+
+At candidate handoff `534b03eb49140eb7f9d9fbdb64217e113a317626`, candidate source anchor `1b1cc9fe192b88be2a20fad31ea030b1e30be669`, and reproduction-tooling revision `0c9c2508d94a097dff50028212a01695c8e29c60`, both V00 authority checks pass. Candidate V01 Python/Bee/Unity/focused NUnit checks pass. The exact reproduction-tooling checkout then fails its first Unity 2022.3.62f2 compilation:
+
+```text
+Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs(13,43): error CS0426: The type name 'Capture' does not exist in the type 'H1ManagedSourceProvenance'
+```
+
+No reproduction-tooling NUnit, Player build, provenance receipt, or `validation-tooling-binding.json` can be produced.
+
+### Reproduction
+
+Use the exact V00-verified tooling checkout and protected sibling pins, then invoke the repository compile helper:
+
+```sh
+cd /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro_tooling/hybridclr_demo
+pwsh -NoProfile -File .agents/skills/unity-debug/scripts/Invoke-UnityCompile.ps1 \
+  -AsJson -TimeoutSec 1800
+```
+
+The process exits 1 after Unity reports the CS0426 compiler error.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260916-534b03e](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-534b03e/README.md).
+
+- `v00/candidate-handoff.json`: candidate `SourceTargetVerifiedNotBuildAccepted`.
+- `v00/reproduction-tooling.json`: exact split authority `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`.
+- `v01/reproduction-tooling-unity-compile.json`: structured failed compile result.
+- `v01/reproduction-tooling-unity-compile.unity.log`: complete Unity import/compiler log.
+- `v01/reproduction-tooling-compile-blob-identity.txt`: exact test/bridge blob identities.
+- `v01/reproduction-tooling-vs-candidate-test.diff`: the candidate source anchor has deleted the historical test path.
+- `v01/reproduction-tooling-postcompile.json`: source/tool authority remains exact after failure.
+- `failure-analysis.json`: direct issue, root cause, design gap, and disposition.
+
+The tooling checkout and protected reproduction head share test blob `635847f71c72fa0f3b191ff53746d6cfe1efc7d1`. The tooling checkout correctly carries candidate bridge blob `2fdddcde4e9f1c62b93cd5f162aa922c67697628`. Candidate source anchor `1b1cc9fe...` has no `Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs` path.
+
+### Root cause
+
+The tooling successor overlays current schema-3 `H1ManagedSourceProvenance.cs` onto the protected historical project, but its exact nine-file override map leaves the tracked historical `H1ManagedSourceProvenanceTests.cs` in place. That test declares `H1ManagedSourceProvenance.Capture` and calls the old two-argument capture API. The current bridge no longer defines the nested type, so the resulting authenticated tree is not compile-compatible.
+
+The design gap is dependency closure: V00 authenticates the declared native/managed validation files and the exact protected-head delta, but does not include or reject protected tracked Editor tests that compile against the overlaid validation APIs. Primary's bounded Python suite did not compile the assembled tooling checkout in Unity.
+
+### Impact
+
+V01 reproduction-tooling Unity/NUnit is incomplete. V02–V05 are `Blocked / NotRun`; no fresh six-build set, reproduction tooling binding, runtime/count/startup/capacity/performance evidence, successor package, or independent M08 can be accepted. Last independent M08 remains `FAIL`; Human Review Gate is not ready; R02 remains closed.
+
+The candidate-only V01 passes are partial regression evidence and do not substitute for reproduction compilation or current-source build acceptance. Historical candidate V02/V03 evidence remains unchanged and is not relabeled.
+
+### Recommended direction
+
+Publish a new tooling-only successor whose reviewed exact delta either deletes the obsolete test path, matching candidate source anchor behavior, or replaces it with a current schema-3 test that compiles against the overlaid bridge. Update `source-targets.json` tool/override authority and split-tooling regressions accordingly.
+
+Add a bounded integration check that constructs the exact protected-head-plus-tooling tree and compiles all tracked Editor sources, or at minimum audits reverse source dependencies of every overlaid C# validation type. This must run before the final handoff bytes are published.
+
+After publication, rerun fresh V00–V05. Do not reuse this failed checkout as acceptance evidence and do not broaden the allowlist in Local Validation.
+
+### Uncertainty
+
+The compile failure occurs before any reproduction Player build, so this run provides no new evidence about receipt binding or runtime behavior. Once the stale test dependency is corrected, fresh V01 compilation and the complete V03 reproduction pair remain necessary to validate the new tooling design.
+
+---
+
+## Historical blocker addressed by tooling handoff 534b03e: protected reproduction invoked obsolete project-local provenance policy
 
 ### Symptom
 

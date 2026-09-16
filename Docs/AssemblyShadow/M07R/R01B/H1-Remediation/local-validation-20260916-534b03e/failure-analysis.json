@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ReproductionToolingCompileFailure",
+  "stage": "V01 Unity compile",
+  "status": "Failed",
+  "compilerError": "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs(13,43): error CS0426: The type name 'Capture' does not exist in the type 'H1ManagedSourceProvenance'",
+  "directIssue": "The tooling successor installs the current schema-3 H1ManagedSourceProvenance.cs but retains a protected historical Editor test that compiles against the removed nested Capture type.",
+  "rootCause": "The exact nine-path tooling override map omits the stale tracked H1ManagedSourceProvenanceTests.cs. The candidate source anchor deletes that test path, while the tooling checkout inherits blob 635847f71c72fa0f3b191ff53746d6cfe1efc7d1 from the protected reproduction head.",
+  "designGap": "V00 authenticates the declared tool files and override delta but does not verify that protected historical Editor tests remain source-compatible with the overlaid current validation bridge.",
+  "localDisposition": "No fix applied. Deleting or replacing the test expands the reviewed tooling delta and allowlist, which the handoff forbids Local Validation from changing.",
+  "recommendedDirection": "Primary should publish a tooling-only successor whose exact reviewed delta removes or updates the stale test and extend split-tooling tests to compile/audit protected tracked Editor test dependencies before handoff.",
+  "candidateAnchorTestPathExists": false,
+  "historicalTestBlob": "635847f71c72fa0f3b191ff53746d6cfe1efc7d1",
+  "currentBridgeBlob": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
+  "postFailureToolingPreflight": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

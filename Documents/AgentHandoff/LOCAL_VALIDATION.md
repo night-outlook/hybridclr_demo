@@ -1,6 +1,56 @@
 # Local Validation report
 
-## Current run — 2026-09-16 handoff 9568ea3
+## Current run — 2026-09-16 handoff 534b03e
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The candidate branch was explicitly fast-forwarded to handoff `534b03eb49140eb7f9d9fbdb64217e113a317626`; candidate source anchor `1b1cc9fe192b88be2a20fad31ea030b1e30be669` and all protected runtime/reproduction/performance pins match. A separate checkout was created for `codex/assembly-shadow-h1-count-repro-tooling` at exact `0c9c2508d94a097dff50028212a01695c8e29c60`. Both V00 authority checks pass.
+
+V01 candidate checks pass: H1 Python 472/472, bounded Bee Primary 294/294, Unity 2022.3.62f2 compilation with zero errors, and focused NUnit 4/4 plus 10/10. The exact reproduction-tooling checkout fails Unity compilation at `Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs(13,43)` with CS0426 because its historical test still references `H1ManagedSourceProvenance.Capture`, a nested type removed by the current schema-3 bridge.
+
+The current bridge blob is correctly authenticated and the post-failure tooling preflight still passes. The stale test blob is inherited unchanged from protected reproduction; the candidate source anchor deletes this path. Removing or updating it would expand the reviewed nine-path tooling delta/allowlist, which Local is explicitly forbidden to change. Tooling NUnit and V02–V05 are therefore `Blocked / NotRun`. Independent M08 was not commissioned; last M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`; R02 was not started.
+
+### Validated source state
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate handoff | `codex/assembly-shadow-r01b-h1` | `534b03eb49140eb7f9d9fbdb64217e113a317626` | `Pass` |
+| Candidate source anchor | same branch | `1b1cc9fe192b88be2a20fad31ea030b1e30be669` | `Pass` in source target and pin |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass`, clean |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass`, clean |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass`, clean |
+| Protected reproduction | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged and clean |
+| Reproduction tooling | `codex/assembly-shadow-h1-count-repro-tooling` | `0c9c2508d94a097dff50028212a01695c8e29c60` | V00 `Pass`; Unity compile `Fail` |
+| Reproduction native | `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged and clean |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged and clean |
+
+Pre-existing untracked historical `v7`–`v11` and all earlier checkpoints were preserved unchanged. No reset, clean, stash, protected branch movement, runtime pin change, or local allowlist expansion was performed.
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 candidate authority | `Pass` | `SourceTargetVerifiedNotBuildAccepted`; handoff/source/pins and false gate flags exact. |
+| V00 reproduction tooling authority | `Pass` | `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`; behavior/protected/tooling ancestry, 11 tool files, 9 overrides, working bytes, pins, and false gate flags exact. |
+| V01 H1 Python | `Pass` | 472/472 exact leaf inventory. |
+| V01 Bee Primary | `Pass` | 294/294, zero nonpasses. |
+| V01 candidate Unity | `Pass` | Fresh compile, zero errors; focused NUnit 4/4 and 10/10. |
+| V01 reproduction-tooling Unity | `Fail` | CS0426: historical managed-source test expects removed nested `Capture` type. |
+| V01 reproduction-tooling NUnit | `Blocked / NotRun` | Project cannot compile. |
+| V02 candidate normal-cache proof | `Blocked / NotRun` | Handoff requires return on an additional tooling dependency; historical V02/V03 evidence remains historical. |
+| V03 fresh six-build set | `Blocked / NotRun` | Reproduction tooling source state cannot compile, so no valid six-build set or tooling binding can be produced. |
+| V04 runtime/count/startup/performance | `Blocked / NotRun` | No valid current six-build set. |
+| V05 successor and independent M08 | `Blocked / NotRun` | Acceptance inputs incomplete; last independent M08 remains `FAIL`. |
+
+The first candidate-preflight shell wrapper used the zsh-reserved variable `status` after the preflight process returned. That recording error is preserved as an unavailable exit-code attempt; the corrected fresh invocation exited 0 and is the accepted V00 observation.
+
+Portable evidence is under [local-validation-20260916-534b03e](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-534b03e/README.md). No product or validation-policy code was changed. The actionable nontrivial issue is at the top of [RETURN_TO_WEB.md](RETURN_TO_WEB.md).
+
+---
+
+## Historical run — 2026-09-16 handoff 9568ea3
 
 ### Exit
 
