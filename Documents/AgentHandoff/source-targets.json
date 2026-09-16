@@ -8,8 +8,8 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
-      "implementationCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
+      "codeCommit": "3242b071540278510ea4ae287c70e37fc4c60340",
+      "implementationCommit": "3242b071540278510ea4ae287c70e37fc4c60340",
       "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
         "hybridclr": {"url": "https://github.com/night-outlook/hybridclr", "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"},
@@ -31,8 +31,8 @@
       "validationTooling": {
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
-        "revision": "0c9c2508d94a097dff50028212a01695c8e29c60",
-        "candidateToolSourceAnchor": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
+        "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+        "candidateToolSourceAnchor": "3242b071540278510ea4ae287c70e37fc4c60340",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -56,7 +56,11 @@
           "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
           "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
           "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
-        }
+        },
+        "deletions": [
+          "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs",
+          "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs.meta"
+        ]
       }
     }
   },
@@ -67,15 +71,15 @@
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35081136990,
-    "implementationCommit": "1b1cc9fe192b88be2a20fad31ea030b1e30be669",
+    "workflowRun": 35093281267,
+    "implementationCommit": "3242b071540278510ea4ae287c70e37fc4c60340",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 294,
-    "passed": 294,
+    "testCount": 298,
+    "passed": 298,
     "nonpasses": 0,
-    "artifactId": 10439663711,
-    "artifactSha256": "a7ad62cbd34200056448374b69f942c0cd7e9d3515bb7e499fe2d64c44d3dd7d",
-    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction behavior/tooling source and receipt binding, and portable/host-Clang tool regressions. Not Unity, Apple Player, fresh reproduction build acceptance, runtime, M08, or human acceptance."
+    "artifactId": 10444094920,
+    "artifactSha256": "336777f8cec845bc2a9557f3a6312d472229cb62e3eed31ec17dde97dd5f4045",
+    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction behavior/tooling source and receipt binding, authenticated tooling deletions, assembled Editor-source compatibility, and portable/host-Clang tool regressions. Not Unity, Apple Player, fresh reproduction build acceptance, runtime, M08, or human acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -86,7 +90,7 @@
   },
   "managedCacheRepair": {
     "returnedByLocalValidationCommit": "7f98084518054bd43e10abb603fe193612cfb321",
-    "previousSourceAnchor": "91ebef56eaa7034ed49a80bced422ea4c067d2fe",
+    "previousSourceAnchor": "91ebef56eaa7034ed49e80bced422ea4c067d2fe",
     "failure": "Fresh native provenance and retention passed, but the managed verifier required a changed Bee graph even when the exact required Player Csc/ILPP chain and DLL outputs were legitimately reused from an unchanged Bee cache.",
     "policy": "At begin, retain bounded exact reusable Player Csc chains from pre-existing Bee DAGs, including graph/action, recursive response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL bytes. At end, require selected-chain evidence to remain byte-identical and require exactly one chain to reach the exact path/hash/size of the DLL captured as an input to the fresh Player. Prefer a unique changed-graph proof when present. Cache proof never claims fresh Csc execution and is not the legacy prior-proof reuse route.",
     "limits": {"maxGraphs": 64, "maxGraphBytes": 134217728, "maxFiles": 4096, "maxFileBytes": 67108864, "maxTotalBytes": 536870912, "maxReachableDlls": 128}
@@ -105,7 +109,14 @@
     "toolingBranch": "codex/assembly-shadow-h1-count-repro-tooling",
     "toolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
     "failure": "The protected reproduction Player built successfully, but its project-local older native provenance tool applied obsolete global macro equivalence and rejected the real 446-action graph. Its managed capture bridge also predates the current schema-3 cache proof. Candidate-owned diagnostic replay accepted the same native graph under current policy, but replay was not fresh build provenance.",
-    "policy": "Preserve the protected reproduction behavior branch/head, demo source pin, unfixed native pin, package and IL2CPP pins. Execute reproduction validation only from the explicit tooling-only successor. Candidate authority proves its non-metadata delta is exactly nine validation overrides, proves all eleven required native+managed validation tool dependency blobs equal the reviewed candidate source anchor, and checks the protected published head has no behavior changes after its source pin. The candidate wrapper enforces this before and after every reproduction build and writes a validation-tooling-binding sidecar bound to the strictly verified build receipt SHA. Diagnostic replay remains non-acceptance evidence."
+    "policy": "Historical repair record. The first tooling successor authenticated nine validation replacements and eleven required validation dependencies while preserving the protected reproduction behavior/runtime pins. It remained subject to fresh Local Validation."
+  },
+  "reproductionToolingCompatibilityRepair": {
+    "returnedByLocalValidationCommit": "cef1ec761e268ebbb699cc16b6ab037d7bc5a482",
+    "previousToolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
+    "toolingRevision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+    "failure": "The authenticated first tooling successor combined the current schema-3 H1ManagedSourceProvenance bridge with the protected historical H1ManagedSourceProvenanceTests.cs consumer, which references the removed nested Capture type and fails Unity compilation with CS0426.",
+    "policy": "The successor removes the obsolete H1ManagedSourceProvenanceTests.cs and its .meta, exactly matching their absence from the reviewed candidate source anchor. Deletions are explicit authenticated tooling operations, not implicit exceptions. V00 verifies the exact nine replacement plus two deletion delta, verifies each deleted path is absent from the candidate source anchor, authenticates the eleven required tool blobs, and audits the assembled tracked Editor/Test-Editor C# set for removed managed-source API consumers before build acceptance."
   },
   "gateState": {
     "name": "H1",
