@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationResults",
+  "status": "ReturnToPrimary",
+  "handoffHead": "e96bc073e66c1ecdf1f461f9286422a7c9d26f82",
+  "sourceAnchor": "3242b071540278510ea4ae287c70e37fc4c60340",
+  "v00": {
+    "status": "Passed",
+    "candidate": "SourceTargetVerifiedNotBuildAccepted",
+    "tooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "toolReplacementCount": 9,
+    "authenticatedDeletionCount": 2,
+    "editorSourceCompatibility": "Compatible"
+  },
+  "v01": {
+    "status": "Passed",
+    "h1Python": "476/476",
+    "beePrimary": "298/298",
+    "candidateUnityCompileErrors": 0,
+    "toolingUnityCompileErrors": 0,
+    "previousCS0426": "Absent",
+    "candidateNUnit": "14/14",
+    "toolingNUnit": "14/14"
+  },
+  "v02": {
+    "status": "Passed",
+    "smokeReceiptSha256": "d46ee5f82b9c3e20de58dc6eaa83815d6467cffd0c4ed5f6b44ff15dee3fbb76",
+    "managedProvenance": "Schema3SourceGraphBound",
+    "requiredManagedAssemblies": 2,
+    "managedDisposition": "BeeCacheHitBoundToFreshPlayerInput",
+    "freshCompilerExecutionClaim": false,
+    "captureStore": {
+      "observations": 451,
+      "uniqueObjects": 451,
+      "storedObjects": 451,
+      "logicalBytes": 318212421,
+      "storedBytes": 72612459,
+      "status": "StoreVerifiedNotAcceptance"
+    }
+  },
+  "v03": {
+    "status": "Passed",
+    "batchStatus": "BuildsAndProvenanceVerifiedNotRuntimeAccepted",
+    "builds": [
+      {
+        "role": "candidate",
+        "feature": "on",
+        "cpp": "Debug",
+        "receiptSha256": "6ca9cf9ff9faad6f911042585cbe5b2e45cdf7612a3c26c671db7f3e5cf6fbdf",
+        "buildGuid": "52c1a03497dd452987cddb46190ae775",
+        "validationToolingBindingSha256": "7baabea9170cf7ec14ece727db9e8d47b07c1a7155bcf61443bfb023ac81e82c"
+      },
+      {
+        "role": "candidate",
+        "feature": "on",
+        "cpp": "Release",
+        "receiptSha256": "dcd5be4445b354144f8d4fd3f82f0bc9f6da0094d909ffb266549dde62ea8955",
+        "buildGuid": "35e672dbab5f46d2bddab79652db776c",
+        "validationToolingBindingSha256": "489075bb32c1d386e4c26e6bc58b0e0e1b63d35528632aefc94b4f26c9bb9e36"
+      },
+      {
+        "role": "candidate",
+        "feature": "off",
+        "cpp": "Debug",
+        "receiptSha256": "2558be1b69d230291228a2fe19a139d7ffbb7856086e3bb19664a07e8f4dcd45",
+        "buildGuid": "692f08d4a22c42c7bbdbf7939621549a",
+        "validationToolingBindingSha256": "71a405988eb4e90add828de0b494df6f6348554ee986a749f8425f3ec9546141"
+      },
+      {
+        "role": "candidate",
+        "feature": "off",
+        "cpp": "Release",
+        "receiptSha256": "e88d4c7d3222f5e9741ebafd3526dcca350a025364b9ed476f4a3e2da4ed4841",
+        "buildGuid": "605956a4b5ae4bcb9370fa17b1995479",
+        "validationToolingBindingSha256": "65e58c75b353d783c838ba8b8286a1e6989df630074c079e658da30df1f4142d"
+      },
+      {
+        "role": "reproduction",
+        "feature": "on",
+        "cpp": "Debug",
+        "receiptSha256": "7cbba8edbcd8515745862c58da031e861ece16cc39153ed8c17ab06f9d41fa03",
+        "buildGuid": "4e4e978c635f4093807867766610a92d",
+        "validationToolingBindingSha256": "b2d44a10facfbae9bf211c67976dd9c641daed7eef5b7b3112a10b33bdd1e284"
+      },
+      {
+        "role": "reproduction",
+        "feature": "on",
+        "cpp": "Release",
+        "receiptSha256": "fa2ec97b3fcb3fd58824fc113397cb018c481c65738ab64e2a7ad27d2af53c30",
+        "buildGuid": "82b9ed3ae6ae4a69873e89dbe02e6117",
+        "validationToolingBindingSha256": "be5b26fe8331dcafe0ea83c1dfddf4dfbcb2b9de7fbf16b27d5f52820913dcd7"
+      }
+    ]
+  },
+  "v04": {
+    "status": "FailedPartial",
+    "candidateCount132": "132/132 Passed",
+    "unfixedReproduction8": {
+      "status": "Classified",
+      "UnexpectedAccepted": 6,
+      "AssertAbort": 2,
+      "candidateAcceptance": false
+    },
+    "freshM07Baseline": "Failed",
+    "failureStage": "AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs",
+    "failureCode": "BootstrapReflection",
+    "failureReference": "AssemblyShadowDemo.Bootstrap -> AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness|9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "startup11": "Blocked / NotRun",
+    "capacity8192_8193": "Blocked / NotRun",
+    "remainingCoverage": "Blocked / NotRun",
+    "performance": "Blocked / NotRun"
+  },
+  "v05": {
+    "status": "Blocked / NotRun",
+    "reason": "Fresh M07 baseline and downstream V04 chain incomplete; no successor or independent M08 commissioned."
+  },
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

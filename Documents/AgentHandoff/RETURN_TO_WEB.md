@@ -1,6 +1,73 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: tooling successor retains an incompatible historical Editor test
+## Current blocker: H1 fixed-byte witness is rejected by frozen M07 bootstrap policy
+
+### Symptom
+
+At candidate handoff `e96bc073e66c1ecdf1f461f9286422a7c9d26f82`, source anchor `3242b071540278510ea4ae287c70e37fc4c60340`, and reproduction-tooling revision `ba8fee33753a5ebc215b7a98739e343d8e05572e`, V00–V03 pass. Candidate count then passes 132/132 and all eight unfixed reproduction cells are freshly classified. The required fresh M07 baseline workflow fails in real Unity 2022.3.62f2 before it can produce baseline fixtures or Players:
+
+```text
+ShadowBuildException: PolicyValidation: BootstrapReflection: Bootstrap reflection reference is not an approved entrypoint: AssemblyShadowDemo.Bootstrap -> AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness|9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27
+  at HybridCLR.Editor.AssemblyShadow.ShadowPolicyValidationResult.ThrowIfInvalid()
+  at AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs()
+```
+
+### Reproduction
+
+After V03 has installed/verified the pinned runtime and produced the six fresh Players, run:
+
+```sh
+pwsh -NoProfile -File Tools/AssemblyShadow/Invoke-M07Build.ps1 \
+  -ProjectPath /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  -BaselineId M07-Baseline-H1-e96bc07-20260916 \
+  -TimeoutSec 28800
+```
+
+`AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs` exits 1 on the policy exception.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260916-e96bc07](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-e96bc07/README.md).
+
+- `v04/m07-baseline/stdout.log`: complete PowerShell and Unity failure output.
+- `v04/m07-baseline/exit-code.txt`: exit 1.
+- `v04/m07-baseline/M07Bootstrap.postfailure.diff.gz` and `AssemblyShadowSettings.postfailure.diff.gz`: exact gzip-preserved workflow-created mutations before restoration.
+- `v04/m07-baseline/restoration.txt`: working and HEAD blob equality after exact two-file restoration.
+- `v04/control-and-fixture-metadata.tar.gz`: post-failure and post-restoration preflight attempts plus all V04 control records.
+- `failure-analysis.json`: machine-readable cause/impact/recommendation.
+- `results-summary.json`: prior passing stages and blocked downstream stages.
+
+Post-restoration candidate preflight again returns `SourceTargetVerifiedNotBuildAccepted`; tooling preflight again returns `BehaviorAndToolingSourcesVerifiedNotBuildAccepted` with exact 9 replacements, 2 authenticated deletions, and `editorSourceCompatibility.status=Compatible`.
+
+### Root cause
+
+`H1CountEarlyStartup.LoadOrdinaryWitness` verifies the exact M00 image SHA-256 and calls `Assembly.Load(byte[])`. `ProjectSettings/AssemblyShadowReflectionBindings.json` declares the exact site as `FixedAssemblyBytes`, including method signature/hash, operation index, image SHA-256, provider identity, semantic variants, and image path.
+
+The M07 compiled-policy scan also emits that acquisition as a bootstrap reflection reference whose target is the image hash. `ShadowAssemblyPolicyValidator.ValidateReflection` sends it through `BootstrapIsolationRule.IsApprovedReflection`, which accepts only a matching `bootstrapEntrypoints` declaration. `ProjectSettings/AssemblyShadowDependencies.json` has no matching H1 fixed-byte entry, so the valid fixed-image contract and the bootstrap-reflection policy model disagree.
+
+The design allowed this because the H1 count build path injects an empty explicit dependency configuration and its focused tests do not run the global M07 `ValidateCompilerInputs` path after introducing the H1 fixed-byte witness. V00/V01 therefore prove source/tool compatibility and focused behavior without exercising this cross-policy integration.
+
+### Impact
+
+Fresh M07 baseline/fixtures/editor replay are unavailable. Startup11, 8192/8193, required lazy/dense/generic/array/reflection/FieldRVA/old-Player and M03–M07 coverage, and controlled Development performance are `Blocked / NotRun`. V05 successor packaging and independent whole-chain M08 are also `Blocked / NotRun`. Last independent M08 remains `FAIL`; Human Review Gate is not ready; R02 remains closed.
+
+The 132 candidate cells, 8 reproduction observations, and V00–V03 evidence remain valid partial evidence only. They do not replace the missing fresh baseline/downstream chain.
+
+### Recommended direction
+
+Define and review how a `FixedAssemblyBytes` bootstrap acquisition participates in global bootstrap policy, then make the reflection-binding contract and `BootstrapIsolationRule` agree without a broad waiver. Add an integration regression that runs M07 `ValidateCompilerInputs` with the exact H1 site and rejects changed method hash, operation index, image hash, provider identity, or undeclared byte-load sites.
+
+Also update `Invoke-M07Build.ps1` to restore its scene/settings mutations in a `finally` path when validation fails. Local captured and exactly restored the two files, but the workflow should guarantee this itself.
+
+Publish a new reviewed source anchor and rerun fresh V00–V05. Do not ask Local Validation to broaden `bootstrapEntrypoints`, bypass the policy check, or reuse the partial V04 chain as whole-chain acceptance.
+
+### Uncertainty
+
+The exception occurs before fresh M07 resources, Players, and replay exist. This run makes no claim about downstream startup, capacity, retained coverage, or performance behavior after the policy models are reconciled.
+
+---
+
+## Historical blocker addressed by tooling handoff ba8fee3: tooling successor retained an incompatible historical Editor test
 
 ### Symptom
 

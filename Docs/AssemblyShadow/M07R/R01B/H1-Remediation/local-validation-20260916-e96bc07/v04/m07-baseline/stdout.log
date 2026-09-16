@@ -1,0 +1,140 @@
+{
+  "unityVersion": "2022.3.62f2",
+  "target": "StandaloneOSX",
+  "sourceFiles": 955,
+  "installedFiles": 957,
+  "demoSourceVerified": true,
+  "configuredShadowMode": "on",
+  "receiptSha256": "bba2389cb1544a792e9dbceb20c322ac5dbe3cfbdae222fe8d79cd808c8a7107"
+}
+[INFO] Unity: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
+[INFO] Project: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo
+[INFO] Method: AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs
+[INFO] Log: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/UnityExec_20260916_070238.log
+
+Aborting batchmode due to failure:
+executeMethod method AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs threw exception.
+
+[FAILED] Unity method failed. ExitCode=1
+
+=== Log Tail ===
+[561/572    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.2D.SpriteShape.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.2D.SpriteShape.Runtime.dll, with 116 defines and 196 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[562/572    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Assembly-CSharp.dll, with 115 defines and 217 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[563/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.2D.Animation.Runtime.pdb
+[564/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.2D.Animation.Runtime.dll
+[565/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.2D.SpriteShape.Runtime.dll
+[566/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.2D.SpriteShape.Runtime.pdb
+[567/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.Collections.dll
+[568/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.Collections.pdb
+[569/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Assembly-CSharp.dll
+[570/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Assembly-CSharp.pdb
+[571/572    2s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyShadowDemo.Bootstrap.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.Bootstrap.dll, with 115 defines and 196 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[572/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/AssemblyShadowDemo.Bootstrap.pdb
+[573/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/AssemblyShadowDemo.Bootstrap.dll
+[574/572    3s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Core.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.Runtime.dll, with 117 defines and 193 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[575/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.RenderPipelines.Core.Runtime.pdb
+[576/572    0s] CopyFiles /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07CompilerPreflight-cdb38f50312a4414853f4a01cae4d8d7/CompilerOutput/Unity.RenderPipelines.Core.Runtime.dll
+[578/572    0s] BuildPlayerDataGenerator Library/BuildPlayerData/Player/RuntimeInitializeOnLoads.json (+1 other)
+*** Tundra build success (7.68 seconds), 356 items updated, 572 evaluated
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(59,31): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(92,61): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Total cache size 278384056
+Total cache size after purge 267354872
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 0.1129ms
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/200b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+info: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 2 is unloading
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly unityeditor.ios.extensions.xcode has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.iOS.Extensions.Xcode.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+info: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved dnlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=50e96378b6e77999 with /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Plugins/dnlib.dll
+info: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst@1.8.21/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 8.7012ms
+ExitCode: 0 Duration: 1s172ms
+[700/946    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[945/946    0s] BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json
+*** Tundra build success (1.14 seconds), 2 items updated, 946 evaluated
+Total cache size 267354872
+Total cache size after purge 267354872
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+ShadowBuildException: PolicyValidation: BootstrapReflection: Bootstrap reflection reference is not an approved entrypoint: AssemblyShadowDemo.Bootstrap -> AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness|9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27
+  at HybridCLR.Editor.AssemblyShadow.ShadowPolicyValidationResult.ThrowIfInvalid () [0x00028] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs:83 
+  at AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs () [0x00084] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs:106 
+
+(Filename: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs Line: 83)
+
+executeMethod method AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs threw exception.
+[Package Manager] Server::Kill -- Server was shutdown
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+info: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 3 is unloading

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationFailureAnalysis",
+  "status": "ReturnToPrimary",
+  "stage": "V04 fresh baseline policy validation",
+  "symptom": "Real Unity 2022.3.62f2 rejects the candidate bootstrap fixed-byte witness as an unapproved bootstrap reflection entrypoint before fresh M07 fixtures/Players/replay are produced.",
+  "error": "AssemblyShadowDemo.Bootstrap -> AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness|9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+  "directIssue": "The M07 policy scan records the H1 fixed ordinary-image Assembly.Load(byte[]) acquisition as a bootstrap reflection reference whose argument is the pinned image SHA-256. BootstrapIsolationRule requires a matching bootstrapEntrypoint declaration, and the frozen dependency policy has no matching H1 entry.",
+  "mostLikelyRootCause": "The separately reviewed FixedAssemblyBytes acquisition contract for H1CountEarlyStartup.LoadOrdinaryWitness is not integrated with the bootstrap reflection approval path used by M07 policy validation. The count-only build path replaces explicit dependency configuration with an empty bootstrap list and therefore did not exercise this M07 validator boundary.",
+  "designGap": "V00/V01 and the 132-cell count runner establish tooling/compile/count behavior, but no regression runs the global M07 compiled policy after adding the H1 fixed-byte witness.",
+  "impact": [
+    "Fresh M07 baseline/fixtures/editor replay unavailable",
+    "startup11 unavailable",
+    "8192/8193 capacity unavailable",
+    "required lazy/dense/generic/array/reflection/FieldRVA/old-Player and M03-M07 coverage unavailable",
+    "controlled performance pairs unavailable",
+    "V05 successor and independent M08 unavailable",
+    "Human Review Gate remains closed"
+  ],
+  "recommendedDirection": [
+    "Primary should define how a FixedAssemblyBytes bootstrap acquisition is represented in the global policy and make the fixed-image contract and BootstrapIsolationRule agree.",
+    "Add a regression that runs M07 ValidateCompilerInputs with the H1CountEarlyStartup fixed-byte site and rejects altered method hash, operation index, image hash, provider identity, and undeclared byte-load sites.",
+    "Ensure Invoke-M07Build restores its scene/settings mutation in a finally path when ValidateCompilerInputs fails.",
+    "Publish a new source anchor and rerun fresh V00-V05."
+  ],
+  "localAction": "No policy, allowlist, provenance, count, runtime, ABI, or protected-pin change was made. The two workflow-created tracked mutations were captured and restored to exact HEAD blobs.",
+  "uncertainty": "This failure occurs before fresh M07 resource generation and Players, so it does not establish downstream startup, capacity, coverage, or performance behavior."
+}

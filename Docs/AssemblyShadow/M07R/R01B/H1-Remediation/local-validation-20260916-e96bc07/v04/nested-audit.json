@@ -1,0 +1,718 @@
+{
+  "caseSet": "all",
+  "cases": [
+    {
+      "caseId": "H1R-N01-a",
+      "expected": {
+        "count": 0,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          0
+        ],
+        "interleaved": false,
+        "variant": "nested-single"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-a, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-a",
+          "groups": [],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 0,
+          "nestedParentSequenceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nestedRelationshipSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nestedRowsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "targetPresentWithZeroChildren": true,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 2
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 0,
+          "nestedParentSequenceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nestedRelationshipSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nestedRowsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "targetPresentWithZeroChildren": true,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 2
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N01-b",
+      "expected": {
+        "count": 1,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          1
+        ],
+        "interleaved": false,
+        "variant": "nested-single"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-b, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-b",
+          "groups": [
+            {
+              "childrenSha256": "666f15016e4220afa91c5ddde3b84ef42707a5a7816ed9d6b52b635a92e5c74e",
+              "count": 1,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 1,
+          "nestedParentSequenceSha256": "978354db0c00fc78c3a5524f462a73bc425df3fb2767e51a5f46352ae26ae6f9",
+          "nestedRelationshipSha256": "6a0adf76d1da8e63ca4d23ece18bf227deb1ce366dd15256bc78965381eee0a5",
+          "nestedRowsSha256": "d3dabae7d9629571d34e25dc29163131b6931ec10d20c1700ea24fe06cf77962",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 3
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "666f15016e4220afa91c5ddde3b84ef42707a5a7816ed9d6b52b635a92e5c74e",
+              "count": 1,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 1,
+          "nestedParentSequenceSha256": "978354db0c00fc78c3a5524f462a73bc425df3fb2767e51a5f46352ae26ae6f9",
+          "nestedRelationshipSha256": "6a0adf76d1da8e63ca4d23ece18bf227deb1ce366dd15256bc78965381eee0a5",
+          "nestedRowsSha256": "d3dabae7d9629571d34e25dc29163131b6931ec10d20c1700ea24fe06cf77962",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 3
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N01-c",
+      "expected": {
+        "count": 65534,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          65534
+        ],
+        "interleaved": false,
+        "variant": "nested-single"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-c, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-c",
+          "groups": [
+            {
+              "childrenSha256": "5d84984ab85c40572d0db43aa10a1937c7dd781b984a42a370ef38e71a6fc039",
+              "count": 65534,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65533",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65534,
+          "nestedParentSequenceSha256": "ee372afb75f16bf4d1548d3aa015c0fe17e369fe4a5af2ea305c72c2f39815ed",
+          "nestedRelationshipSha256": "7a2498be2a16dbe02f22ccba071982ae431e8de44de5de54fa53e94dc4bbd6d8",
+          "nestedRowsSha256": "fd468fa213eef03f7ddb5466d40969c737ee1be8f9e0ef929daf933e4852afd9",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65536
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "5d84984ab85c40572d0db43aa10a1937c7dd781b984a42a370ef38e71a6fc039",
+              "count": 65534,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65533",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65534,
+          "nestedParentSequenceSha256": "ee372afb75f16bf4d1548d3aa015c0fe17e369fe4a5af2ea305c72c2f39815ed",
+          "nestedRelationshipSha256": "7a2498be2a16dbe02f22ccba071982ae431e8de44de5de54fa53e94dc4bbd6d8",
+          "nestedRowsSha256": "fd468fa213eef03f7ddb5466d40969c737ee1be8f9e0ef929daf933e4852afd9",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65536
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N01-d",
+      "expected": {
+        "count": 65535,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          65535
+        ],
+        "interleaved": false,
+        "variant": "nested-single"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-d, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N01-d",
+          "groups": [
+            {
+              "childrenSha256": "a361c3526c1773054a2d61acdb4aa86b3dbe8feba3d948e432781b24bbd98c21",
+              "count": 65535,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65534",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65535,
+          "nestedParentSequenceSha256": "ff3fb5877b65ec9ff8cc2ec8ff342d6897daa7bd9aabbcc89ea7abfcf7f86bfc",
+          "nestedRelationshipSha256": "41298b52261629c070e078664911ada8854ce9ba791dcb4ddbfb4afda747b027",
+          "nestedRowsSha256": "0e6ea9486882c635a5495df5380c18b98f6506f73d47c92f34ca6baddf12c114",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65537
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "a361c3526c1773054a2d61acdb4aa86b3dbe8feba3d948e432781b24bbd98c21",
+              "count": 65535,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65534",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65535,
+          "nestedParentSequenceSha256": "ff3fb5877b65ec9ff8cc2ec8ff342d6897daa7bd9aabbcc89ea7abfcf7f86bfc",
+          "nestedRelationshipSha256": "41298b52261629c070e078664911ada8854ce9ba791dcb4ddbfb4afda747b027",
+          "nestedRowsSha256": "0e6ea9486882c635a5495df5380c18b98f6506f73d47c92f34ca6baddf12c114",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65537
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N02-a",
+      "expected": {
+        "count": 65536,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "ControlledRejected",
+        "groupCounts": [
+          65536
+        ],
+        "interleaved": false,
+        "variant": "nested-single"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N02-a, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N02-a",
+          "groups": [
+            {
+              "childrenSha256": "ef8db5bb7d159eb2c747c5983c29cf97234872c6b0c697fa22882acc92662f71",
+              "count": 65536,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65535",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65536,
+          "nestedParentSequenceSha256": "f4870429482a5da302dc9b52c9a9dc62b08dede2b36c4e6369462b1a498ede44",
+          "nestedRelationshipSha256": "452ce54f71a9ee18c309f0c2c8b50b3f87e9690fe207d950809648d2c3a32f77",
+          "nestedRowsSha256": "6eb11e6a07dcd51697e6ee4f70aee8554af67a1622ebb28ac67e0eb0435d121e",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65538
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "ef8db5bb7d159eb2c747c5983c29cf97234872c6b0c697fa22882acc92662f71",
+              "count": 65536,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65535",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65536,
+          "nestedParentSequenceSha256": "f4870429482a5da302dc9b52c9a9dc62b08dede2b36c4e6369462b1a498ede44",
+          "nestedRelationshipSha256": "452ce54f71a9ee18c309f0c2c8b50b3f87e9690fe207d950809648d2c3a32f77",
+          "nestedRowsSha256": "6eb11e6a07dcd51697e6ee4f70aee8554af67a1622ebb28ac67e0eb0435d121e",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65538
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N02-b",
+      "expected": {
+        "count": 65537,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "ControlledRejected",
+        "groupCounts": [
+          65537
+        ],
+        "interleaved": false,
+        "variant": "nested-single"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N02-b, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N02-b",
+          "groups": [
+            {
+              "childrenSha256": "7502cbb7ed718a80d4b499c62b18cbfafc82a81c6b7fd5dc52051b256b3ba07e",
+              "count": 65537,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65536",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65537,
+          "nestedParentSequenceSha256": "a99ade31955e81847af103cd40452b90bdef9b0349c66ee4004b94df19db0d6c",
+          "nestedRelationshipSha256": "f71d1934d6e427876b2e084f7a93dfaf333e3d081d6b9dd69fbf2dbb41f0105f",
+          "nestedRowsSha256": "6f0c136455d0ce75901c34a82cf25a786ac2bdd27abde642d49cbfe4ae88a7e8",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65539
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "7502cbb7ed718a80d4b499c62b18cbfafc82a81c6b7fd5dc52051b256b3ba07e",
+              "count": 65537,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65536",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65537,
+          "nestedParentSequenceSha256": "a99ade31955e81847af103cd40452b90bdef9b0349c66ee4004b94df19db0d6c",
+          "nestedRelationshipSha256": "f71d1934d6e427876b2e084f7a93dfaf333e3d081d6b9dd69fbf2dbb41f0105f",
+          "nestedRowsSha256": "6f0c136455d0ce75901c34a82cf25a786ac2bdd27abde642d49cbfe4ae88a7e8",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65539
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N03-interleaved",
+      "expected": {
+        "count": 4,
+        "declaringTypes": [
+          "Target",
+          "SiblingB"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          2,
+          2
+        ],
+        "interleaved": true,
+        "variant": "nested-interleaved"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N03-interleaved, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N03-interleaved",
+          "groups": [
+            {
+              "childrenSha256": "b9f7569a49d0fbf70974f081beccd652af7ff0c4462c723b31a76aaf8f9c8ffe",
+              "count": 2,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00001",
+              "parentRid": 2
+            },
+            {
+              "childrenSha256": "9237400753acc45b8bb515ce8db5a9bb17e65068cdb8bf66c955c2a7e526ec1a",
+              "count": 2,
+              "declaringType": "AssemblyShadow.H1Nested.SiblingB",
+              "first": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00000",
+              "last": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00001",
+              "parentRid": 3
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 4,
+          "nestedParentSequenceSha256": "ac82f1c1febd480eb518d9ce105a623e3d88fdb5962dc8d452a5d2bdf529e73f",
+          "nestedRelationshipSha256": "50092ab7cbc20cb5113b2319d1aabfbffd9ce2d94bf05ccd6599b3a1d2b28f9e",
+          "nestedRowsSha256": "bcd93d4824b59c0696f3cae3df280dfd435c9f10adcdc653e3a7a86e2727c508",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 7
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "b9f7569a49d0fbf70974f081beccd652af7ff0c4462c723b31a76aaf8f9c8ffe",
+              "count": 2,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00001",
+              "parentRid": 2
+            },
+            {
+              "childrenSha256": "9237400753acc45b8bb515ce8db5a9bb17e65068cdb8bf66c955c2a7e526ec1a",
+              "count": 2,
+              "declaringType": "AssemblyShadow.H1Nested.SiblingB",
+              "first": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00000",
+              "last": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00001",
+              "parentRid": 3
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 4,
+          "nestedParentSequenceSha256": "ac82f1c1febd480eb518d9ce105a623e3d88fdb5962dc8d452a5d2bdf529e73f",
+          "nestedRelationshipSha256": "50092ab7cbc20cb5113b2319d1aabfbffd9ce2d94bf05ccd6599b3a1d2b28f9e",
+          "nestedRowsSha256": "bcd93d4824b59c0696f3cae3df280dfd435c9f10adcdc653e3a7a86e2727c508",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 7
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N04-adjacent-valid",
+      "expected": {
+        "count": 65536,
+        "declaringTypes": [
+          "Target",
+          "SiblingB"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          1,
+          65535
+        ],
+        "interleaved": false,
+        "variant": "nested-adjacent-valid"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N04-adjacent-valid, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N04-adjacent-valid",
+          "groups": [
+            {
+              "childrenSha256": "666f15016e4220afa91c5ddde3b84ef42707a5a7816ed9d6b52b635a92e5c74e",
+              "count": 1,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "parentRid": 2
+            },
+            {
+              "childrenSha256": "c8a906625da3ce5ae917e50a89ca49a9ee7f71151b893db23ee794f4282f4f17",
+              "count": 65535,
+              "declaringType": "AssemblyShadow.H1Nested.SiblingB",
+              "first": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00000",
+              "last": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild65534",
+              "parentRid": 4
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65536,
+          "nestedParentSequenceSha256": "d30fdc8ee1f113a1bcb17f594da3cdf056e745672d8a6f08103e25c54f0e43da",
+          "nestedRelationshipSha256": "e8c5efb7ff1546a984ada9f14ff11b3f91a985cc8e3944ad288d83d369544b95",
+          "nestedRowsSha256": "083dd86c5e341b1ee4425997d385e88beafc6d361a9d9dee80b2d4762f7954df",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65539
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "666f15016e4220afa91c5ddde3b84ef42707a5a7816ed9d6b52b635a92e5c74e",
+              "count": 1,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "parentRid": 2
+            },
+            {
+              "childrenSha256": "c8a906625da3ce5ae917e50a89ca49a9ee7f71151b893db23ee794f4282f4f17",
+              "count": 65535,
+              "declaringType": "AssemblyShadow.H1Nested.SiblingB",
+              "first": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00000",
+              "last": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild65534",
+              "parentRid": 4
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65536,
+          "nestedParentSequenceSha256": "d30fdc8ee1f113a1bcb17f594da3cdf056e745672d8a6f08103e25c54f0e43da",
+          "nestedRelationshipSha256": "e8c5efb7ff1546a984ada9f14ff11b3f91a985cc8e3944ad288d83d369544b95",
+          "nestedRowsSha256": "083dd86c5e341b1ee4425997d385e88beafc6d361a9d9dee80b2d4762f7954df",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65539
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N04-adjacent-overflow",
+      "expected": {
+        "count": 65537,
+        "declaringTypes": [
+          "Target",
+          "SiblingB"
+        ],
+        "expectedResult": "ControlledRejected",
+        "groupCounts": [
+          1,
+          65536
+        ],
+        "interleaved": false,
+        "variant": "nested-adjacent-overflow"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N04-adjacent-overflow, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N04-adjacent-overflow",
+          "groups": [
+            {
+              "childrenSha256": "666f15016e4220afa91c5ddde3b84ef42707a5a7816ed9d6b52b635a92e5c74e",
+              "count": 1,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "parentRid": 2
+            },
+            {
+              "childrenSha256": "a01985e08cb2e248df062d77d082c29591f1c371a149e941fa0e46e11c35e4cf",
+              "count": 65536,
+              "declaringType": "AssemblyShadow.H1Nested.SiblingB",
+              "first": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00000",
+              "last": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild65535",
+              "parentRid": 4
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65537,
+          "nestedParentSequenceSha256": "df65833654c8c84e983e4b32ab08d4033c36a182c0b2ed2b0ff2bc400d9e9135",
+          "nestedRelationshipSha256": "f1244961ac3ed95ec9cf20bc872a3f9aabe277d31f0660737182937130cbeef3",
+          "nestedRowsSha256": "6a12b0fb29e7df4a3b759350340998a4b497423a17247bea7b74661b450e1c80",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65540
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "666f15016e4220afa91c5ddde3b84ef42707a5a7816ed9d6b52b635a92e5c74e",
+              "count": 1,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "parentRid": 2
+            },
+            {
+              "childrenSha256": "a01985e08cb2e248df062d77d082c29591f1c371a149e941fa0e46e11c35e4cf",
+              "count": 65536,
+              "declaringType": "AssemblyShadow.H1Nested.SiblingB",
+              "first": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild00000",
+              "last": "AssemblyShadow.H1Nested.SiblingB+SiblingBChild65535",
+              "parentRid": 4
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65537,
+          "nestedParentSequenceSha256": "df65833654c8c84e983e4b32ab08d4033c36a182c0b2ed2b0ff2bc400d9e9135",
+          "nestedRelationshipSha256": "f1244961ac3ed95ec9cf20bc872a3f9aabe277d31f0660737182937130cbeef3",
+          "nestedRowsSha256": "6a12b0fb29e7df4a3b759350340998a4b497423a17247bea7b74661b450e1c80",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65540
+        }
+      }
+    },
+    {
+      "caseId": "H1R-N05-final-repeat",
+      "expected": {
+        "count": 65535,
+        "declaringTypes": [
+          "Target"
+        ],
+        "expectedResult": "Accepted",
+        "groupCounts": [
+          65535
+        ],
+        "interleaved": false,
+        "variant": "nested-final-repeat"
+      },
+      "observed": {
+        "ordinary": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Ordinary.H1R-N05-final-repeat, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Ordinary.H1R-N05-final-repeat",
+          "groups": [
+            {
+              "childrenSha256": "a361c3526c1773054a2d61acdb4aa86b3dbe8feba3d948e432781b24bbd98c21",
+              "count": 65535,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65534",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65535,
+          "nestedParentSequenceSha256": "ff3fb5877b65ec9ff8cc2ec8ff342d6897daa7bd9aabbcc89ea7abfcf7f86bfc",
+          "nestedRelationshipSha256": "41298b52261629c070e078664911ada8854ce9ba791dcb4ddbfb4afda747b027",
+          "nestedRowsSha256": "0e6ea9486882c635a5495df5380c18b98f6506f73d47c92f34ca6baddf12c114",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65537
+        },
+        "shadow": {
+          "assemblyFullName": "AssemblyShadow.H1Nested.Target, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null",
+          "assemblyName": "AssemblyShadow.H1Nested.Target",
+          "groups": [
+            {
+              "childrenSha256": "a361c3526c1773054a2d61acdb4aa86b3dbe8feba3d948e432781b24bbd98c21",
+              "count": 65535,
+              "declaringType": "AssemblyShadow.H1Nested.Target",
+              "first": "AssemblyShadow.H1Nested.Target+TargetChild00000",
+              "last": "AssemblyShadow.H1Nested.Target+TargetChild65534",
+              "parentRid": 2
+            }
+          ],
+          "nestedClassSortedDeclared": true,
+          "nestedClassTableCount": 65535,
+          "nestedParentSequenceSha256": "ff3fb5877b65ec9ff8cc2ec8ff342d6897daa7bd9aabbcc89ea7abfcf7f86bfc",
+          "nestedRelationshipSha256": "41298b52261629c070e078664911ada8854ce9ba791dcb4ddbfb4afda747b027",
+          "nestedRowsSha256": "0e6ea9486882c635a5495df5380c18b98f6506f73d47c92f34ca6baddf12c114",
+          "targetPresentWithZeroChildren": false,
+          "targetType": "AssemblyShadow.H1Nested.Target",
+          "targetTypeRid": 2,
+          "typeDefCount": 65537
+        }
+      }
+    }
+  ],
+  "createdAtUtc": "2026-09-16T13:33:19.612788Z",
+  "executedCaseIds": [
+    "H1R-N01-a",
+    "H1R-N01-b",
+    "H1R-N01-c",
+    "H1R-N01-d",
+    "H1R-N02-a",
+    "H1R-N02-b",
+    "H1R-N03-interleaved",
+    "H1R-N04-adjacent-valid",
+    "H1R-N04-adjacent-overflow",
+    "H1R-N05-final-repeat"
+  ],
+  "family": "nested",
+  "generatorInputHashes": {
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/bin/mcs": "806906c527dbb1c2cb89b1ff6528ab8546bd82050750ebcf56428e44945c7620",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/bin/mono": "960bcc6a83274f04d10f06ffcbf8e55894f1f83b0c49a7283704765070e5a285",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/lib/mono/net_4_x-macos/Mono.Cecil.dll": "3c8c2cf8f0d1f46e3ed8e1357e2e02f47854949765f033c064e34f5c7473973f",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/create-h1-count-fixtures.py": "b008546eef3bdc8378d42067ba308a19b1858081bd796433bb9391e23ac09a4c",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1-count-fixture-writer.cs": "aa95893250c5f4dee3759d280fced54fed6bfab61d18d7088dced1c235041f6e",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m04_metadata.py": "e6c9a8e702086cf61bbd9ef9c0dc7c741035b8a9d5402047581d6c88b1856970"
+  },
+  "kind": "H1NestedFixtureShapeAudit",
+  "requestedCaseIds": [
+    "H1R-N01-a",
+    "H1R-N01-b",
+    "H1R-N01-c",
+    "H1R-N01-d",
+    "H1R-N02-a",
+    "H1R-N02-b",
+    "H1R-N03-interleaved",
+    "H1R-N04-adjacent-valid",
+    "H1R-N04-adjacent-overflow",
+    "H1R-N05-final-repeat"
+  ],
+  "result": "Passed",
+  "schemaVersion": 1,
+  "sourceBinding": {
+    "coreAuditPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_count_fixture_audit.py",
+    "coreAuditSha256": "bfff88304d37cc4808aaf43700d1f410490ae7e8dff78dfbbb33f0d0b4644724",
+    "manifestPath": "/Users/ah/GitHub/hybridclr/h1-local-validation-20260916-e96bc07/v04/fixtures/nested/h1-count-fixture-manifest.json",
+    "manifestSha256": "afae6e251d1f79134ca021067e002f5a3e024d74a3f60b35240dacfdca8f143a",
+    "manifestToolPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_nested_manifest.py",
+    "manifestToolSha256": "ab9353bd8333d3840ee5081315854e806db56bf58eae52044acae91f398a1c43",
+    "sharedManifestPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_count_manifest.py",
+    "sharedManifestSha256": "b12a3e8d5cb7f0a7cd06e97a31990f94c22a369608dbe781504b82d4e18d53d0"
+  }
+}

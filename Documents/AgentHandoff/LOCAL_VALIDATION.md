@@ -1,6 +1,61 @@
 # Local Validation report
 
-## Current run — 2026-09-16 handoff 534b03e
+## Current run — 2026-09-16 handoff e96bc07
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The candidate branch was explicitly pulled to handoff `e96bc073e66c1ecdf1f461f9286422a7c9d26f82`; candidate source anchor `3242b071540278510ea4ae287c70e37fc4c60340` and every protected runtime/reproduction/performance pin match. A separate checkout used exact reproduction-tooling revision `ba8fee33753a5ebc215b7a98739e343d8e05572e` while protected reproduction remained at `352d7474dd7c2ffd9b9501d8fa42334a3b236e05`.
+
+V00 passes with the exact 9 replacements, 2 authenticated deletions, and `editorSourceCompatibility.status=Compatible`. V01 passes: H1 Python 476/476, bounded Bee Primary 298/298, both real Unity 2022.3.62f2 compiles have zero errors, the prior `H1ManagedSourceProvenanceTests.cs` CS0426 is absent, and each checkout passes focused NUnit 4/4 plus 10/10.
+
+V02 candidate ON/Debug and all six V03 builds pass strict native provenance, current schema-3 managed provenance, exact fresh Player binding, retained-store verification, validation-tooling binding, and exact restoration. V04 candidate count is 132/132 Passed. All eight fresh unfixed reproduction observations are retained and input-bound: six classify `UnexpectedAccepted`, while Debug N02-a/N02-b terminate on the actual `nested_type_count` assertion with SIGABRT.
+
+Fresh M07 baseline generation then fails its first authoritative real-Unity policy validation. The validator rejects `AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness|9108a239...` as an unapproved bootstrap reflection entrypoint even though the reflection-binding configuration contains the exact `FixedAssemblyBytes` contract for that method/image. This policy/design issue is outside Local's correction boundary. No allowlist, policy, provenance, count, runtime, ABI, or protected-pin change was made.
+
+The failed workflow left two tracked setup mutations. Their complete diffs were preserved, then `Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity` and `ProjectSettings/AssemblyShadowSettings.asset` were restored to exact HEAD blobs. Both authority preflights pass after restoration. Startup11, 8192/8193, remaining required coverage, controlled performance, V05 successor, and independent M08 are `Blocked / NotRun`. Last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`; R02 was not started.
+
+### Validated source state
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate handoff | `codex/assembly-shadow-r01b-h1` | `e96bc073e66c1ecdf1f461f9286422a7c9d26f82` | `Pass` |
+| Candidate source anchor | same branch | `3242b071540278510ea4ae287c70e37fc4c60340` | `Pass` in source target and pin |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass`, clean |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass`, clean |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass`, clean |
+| Protected reproduction | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged and clean |
+| Reproduction tooling | `codex/assembly-shadow-h1-count-repro-tooling` | `ba8fee33753a5ebc215b7a98739e343d8e05572e` | V00–V03 and count reproduction executed |
+| Reproduction native | protected reproduction pin | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged and clean |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged and clean |
+
+Pre-existing untracked historical `v7`–`v11` were preserved unchanged. No reset, broad clean, stash, protected branch movement, or cache clearing was performed. The tooling checkout received only the exact ignored M00 generated files copied from the protected checkout after the first reproduction build proved they were absent; source/destination hashes and unchanged Git status are retained.
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 dual preflight | `Pass` | Candidate `SourceTargetVerifiedNotBuildAccepted`; tooling `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`; exact 9 replacements + 2 deletions; Editor source compatibility `Compatible`. |
+| V01 Python / Primary | `Pass` | H1 476/476; Bee Primary 298/298. |
+| V01 Unity / NUnit | `Pass` | Candidate and tooling compile with zero errors; previous CS0426 absent; each checkout passes 4/4 PCH plus 10/10 evidence tests. |
+| V02 fresh ON/Debug | `Pass` | Receipt `d46ee5f8...`; native strict and schema-3 managed proof pass; both required assemblies are unique `BeeCacheHitBoundToFreshPlayerInput`; `freshCompilerExecutionClaim=false`. |
+| V02 retention store | `Pass` for integrity | 451 observations/unique/stored; 318,212,421 logical bytes and 72,612,459 stored bytes; `StoreVerifiedNotAcceptance`. |
+| V03 six-build set | `Pass` | Candidate ON/OFF × Debug/Release plus reproduction ON Debug/Release all pass strict native/managed provenance, bindings, and restoration. |
+| V04 fresh count fixtures | `Pass` | Parameter and nested generation/audits pass; exact manifests are retained. |
+| V04 candidate count | `Pass` | 132/132 fresh cells pass. |
+| V04 unfixed reproduction | `Pass` as reproduction evidence | 8/8 classified: 6 `UnexpectedAccepted`, 2 Debug `AssertAbort`; not candidate acceptance. |
+| V04 fresh M07 baseline | `Fail` | `M07Build.ValidateCompilerInputs` throws `BootstrapReflection` for H1 fixed ordinary-image witness. |
+| V04 downstream | `Blocked / NotRun` | Fresh M07 baseline/fixtures/replay unavailable; startup11, 8192/8193, required coverage, and controlled performance cannot be accepted. |
+| V05 successor / M08 | `Blocked / NotRun` | Explicit fresh chain incomplete; independent M08 not commissioned. |
+
+Initial machine/invocation/setup failures remain preserved: stale installed-runtime smoke precheck, one duplicate verifier operation, one zsh reserved-variable wrapper error, absent ignored reproduction M00 fixture files, and an output-root contract error. Their corrected reruns are separately identified; none is relabeled as acceptance evidence.
+
+Portable evidence is under [local-validation-20260916-e96bc07](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-e96bc07/README.md). The actionable nontrivial issue is at the top of [RETURN_TO_WEB.md](RETURN_TO_WEB.md).
+
+---
+
+## Historical run — 2026-09-16 handoff 534b03e
 
 ### Exit
 
