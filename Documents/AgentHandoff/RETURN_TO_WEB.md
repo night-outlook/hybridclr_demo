@@ -1,6 +1,84 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: published handoff fails its own preflight
+## Current blocker: real Apple provenance inputs exceed the attempt retention budget
+
+### Symptom
+
+The repaired handoff preflight and V01 candidate validation pass. Both an authenticated retained-graph replay and a fresh candidate ON/Debug Player build then fail before provenance planning with:
+
+```text
+Capture input exceeds retention byte bound: .../UnityEngine.UIElementsModule__7.cpp
+```
+
+The rejected file is 1,498,382 bytes and below the 64 MiB per-file limit. The attempt had already retained 337 input observations and 267,613,743 unique bytes; adding the file would exceed the fixed 256 MiB aggregate limit.
+
+The fresh Unity Player build reports success before `H1CompilerProvenance.CaptureAfterBuild` invokes `h1_native_capture.py`. The provenance attempt is `FailedNotAccepted`, planning/PCH replay/macro probes are all `NotRun`, no provenance/build receipt exists, and exact project restoration passes.
+
+### Reproduction
+
+From candidate handoff checkout `22eda8b9d27c2494cdf66749aefebcbbc8701371`, source anchor `b6db7c2fb2fce364d49458b7dfc78886fd430004`, after the pinned install and strict runtime verification:
+
+```sh
+python3 Tools/AssemblyShadow/h1_count_build_batch.py \
+  --candidate /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  --reproduction /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo \
+  --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
+  --pwsh /usr/local/bin/pwsh \
+  --scope smoke \
+  --output /ABS/NEW/candidate-on-debug-smoke \
+  --execute
+```
+
+The batch exits 1 after the Player build. `failed.json` records `candidateAcceptance=false`; `restored.json` records `ExactRestorationVerified`.
+
+The retained replay independently fails at the same boundary:
+
+```sh
+python3 Tools/AssemblyShadow/h1_pch_diagnose.py \
+  --request /ABS/RETAINED/original-request.json \
+  --graph /ABS/RETAINED/selected-bee-action-graph.json \
+  --output /ABS/NEW/retained-apple-replay
+```
+
+### Evidence
+
+Portable evidence is in [local-validation-20260915-22eda8b](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-22eda8b/README.md).
+
+- `failure-manifest.json` binds source/build identities, aggregate limits, graph, managed-source begin capture, native Player identity, raw archives, and restoration.
+- `v02/retained-apple-replay.tar.gz` is 39,242,521 bytes, SHA-256 `4fce745688f0f0aed77bb70ad39feb4ff6db45701f1909b90137790654136cab`.
+- `v03/candidate-on-debug-failure-inputs.tar.gz` is 45,703,901 bytes, SHA-256 `af3bc51c75334576199d523b493cd026f8249655bd93064cfd1cd5f82539a7a3`.
+- Fresh graph: 2,766,362 bytes, SHA-256 `a1a3eede51e061b4e9da2b9d5a5f4e119b9535434e896db3a55609a7c249ae37`.
+- Fresh native output: 101,101,430 bytes, SHA-256 `f731d42f4ff9a91a240afa80310e126458232bacb5859fecb4efba02823155db`.
+- Attempt input inventory SHA-256: `f01a19f6b49ee2df1ae1c94699903ea47bba6b0eabce79918acbc7660c2b85ac`.
+- Build GUID: `9638639b2bfe41b793b8bb629f1801ff`; input snapshot: `fdcb5eb0bef2eb34567f242de74db10a3b132cfd0d7d9712bca4e1e12cc24d17`.
+
+Unpacked raw roots remain at `/Users/ah/GitHub/hybridclr/h1-local-validation-20260915-22eda8b/v02/retained-apple-replay` and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-fa63d77e368c42d0b558979fecb5fc1b`.
+
+### Root cause
+
+`h1_capture_attempt.Attempt` caps aggregate retained input bytes at 256 MiB. Before domain planning, `retain_declared_inputs()` copies every declared `.c`, `.cpp`, header, PCH, response, and plist input from all selected compile/link nodes into the content-addressed attempt store. The real 446-action Unity Apple graph has more than 256 MiB of unique declared native input bytes, so a legitimate graph deterministically exhausts the budget before the reviewed domain/PCH logic can run.
+
+The Primary 250-test suite validates the graph/domain design and synthetic retention failures, but it does not execute aggregate raw-byte retention over the actual generated Apple source set. The current design therefore allows bounded portable fixtures to pass while the real graph is structurally unable to reach planning.
+
+### Impact
+
+No fresh provenance-bound candidate ON/Debug receipt exists. The remaining candidate ON/OFF Debug/Release builds, reproduction Debug/Release builds, V04 runtime/count/startup/capacity/performance chain, successor package, and independent whole-chain M08 are blocked. The successful Player binary cannot be used for H1 acceptance.
+
+The additional reproduction full Editor sweep has 12 nonpasses from absent reproduction baselines/fixtures; candidate full Editor validation is 351/351 and both required reproduction H1 fixtures pass 14/14. These failures are preserved separately and are not the reason the fresh build chain stops.
+
+### Recommended direction
+
+Primary should redesign or explicitly resize the declared-input retention contract using measured real-graph bounds. Preserve fail-closed graph/request/config/PCH/header/response evidence and a complete source inventory; do not silently skip generated sources or broaden source-domain allowlists. A durable design should separate content identity from raw-byte storage, retain required semantic inputs in full, and use an authenticated chunked/compressed or externally bound store for the larger generated-source set with explicit disk/count/size limits.
+
+Add a regression that executes retention against a byte-volume fixture above 256 MiB while preserving the 446-action domain/linkage shape, plus a limit-exhaustion control that proves no receipt is published. Then issue a new reviewed source anchor and rerun fresh V00–V05.
+
+### Uncertainty
+
+This run proves the exact aggregate-byte failure twice and captures every reached stage. Because both real attempts stop during declared-input retention, it does not establish the current implementation's six Apple probe contexts, 444 linked objects, 430/2/14 domain result, or any later compiler/PCH semantic result on the fresh source anchor. Those remain `NotRun`, not failed probe evidence.
+
+---
+
+## Historical blocker: published c0d3070 handoff failed its own preflight
 
 ### Symptom
 

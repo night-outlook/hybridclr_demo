@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationSummary",
+  "handoffHead": "22eda8b9d27c2494cdf66749aefebcbbc8701371",
+  "sourceAnchor": "b6db7c2fb2fce364d49458b7dfc78886fd430004",
+  "exit": "Local Validation -> Primary Implementation",
+  "steps": {
+    "V00": {
+      "result": "Passed",
+      "status": "SourceTargetVerifiedNotBuildAccepted"
+    },
+    "V01": {
+      "result": "CompletedWithNonPass",
+      "candidatePython": "445/445",
+      "beePrimary": "250/250",
+      "strictProvenance": "4/4",
+      "m02Owner": "15/15",
+      "candidateCompile": "Passed",
+      "candidateEditor": "351/351",
+      "reproductionCompile": "Passed",
+      "reproductionFocused": "14/14",
+      "reproductionFull": "330/342; 12 failed"
+    },
+    "V02": {
+      "result": "Failed",
+      "reason": "Real Apple graph declared-input retention exceeds 256 MiB before planning",
+      "planning": "NotRun",
+      "pchReplay": "NotRun",
+      "macroProbes": "NotRun"
+    },
+    "V03": {
+      "result": "Failed",
+      "install": "Passed",
+      "installedRuntime": "Passed",
+      "playerBuild": "SucceededBeforeProvenanceAdapter",
+      "provenance": "FailedNotAccepted",
+      "restoration": "ExactRestorationVerified",
+      "remainingBuilds": "NotRun"
+    },
+    "V04": {
+      "result": "BlockedNotRun"
+    },
+    "V05": {
+      "result": "BlockedNotRun"
+    }
+  },
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

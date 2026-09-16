@@ -1,6 +1,78 @@
 # Local Validation report
 
-## Current run — 2026-09-15
+## Current run — 2026-09-15 handoff 22eda8b
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The repaired authoritative V00 preflight passed, and fresh V01 candidate validation passed. V02 and the prioritized fresh V03 candidate ON/Debug smoke then independently reached the same new provenance blocker: `h1_capture_attempt.Attempt` exhausts its fixed 256 MiB aggregate retention budget while copying the real Apple Bee graph's declared native inputs. Both attempts stop before planning, PCH replay, or macro probes. The fresh Player build completes, but no compiler-provenance receipt or accepted build receipt exists.
+
+The remaining five builds, V04, V05 successor packaging, and independent whole-chain M08 are therefore `Blocked / NotRun`. Human Review Gate is not ready, `humanGatePassed=false`, `mayEnterR02=false`, and R02 was not started.
+
+### Validated source state
+
+| Role | Branch | Exact observed HEAD | Result |
+| --- | --- | --- | --- |
+| Candidate handoff checkout | `codex/assembly-shadow-r01b-h1` | `22eda8b9d27c2494cdf66749aefebcbbc8701371` | `Pass` |
+| Candidate source anchor | same branch | `b6db7c2fb2fce364d49458b7dfc78886fd430004` | `Pass` in source target and pin file |
+| Candidate implementation anchor | same branch | `463ec3fab5d5e3bdbd09fe1970c21bf90f26ada9` | `Pass` |
+| Candidate native | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` | `Pass`, clean |
+| Shared package | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` | `Pass`, clean |
+| Shared IL2CPP | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` | `Pass`, clean |
+| Reproduction demo | `codex/assembly-shadow-h1-count-repro` | `352d7474dd7c2ffd9b9501d8fa42334a3b236e05` | `Pass`, unchanged |
+| Reproduction native | `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` | `Pass`, unchanged |
+| Performance reference | `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` | `Pass`, unchanged |
+
+The candidate was explicitly pulled with `git pull --ff-only origin codex/assembly-shadow-r01b-h1` and reached the requested handoff. Candidate retained only the pre-existing untracked historical `v7`–`v11` directories. Reproduction and performance-reference worktrees remained clean and were not repointed or reinstalled.
+
+### Environment
+
+- macOS 26.5.2 (25F84), arm64
+- Unity 2022.3.62f2, StandaloneOSX arm64
+- Apple clang 21.0.0 (`clang-2100.1.1.101`)
+- Python 3.14.6
+- PowerShell 7.6.3
+- Git 2.50.1 (Apple Git-155)
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 authoritative preflight | `Pass` | Exit 0; `SourceTargetVerifiedNotBuildAccepted`; checkout `22eda8b…`; code source `b6db7c2…`; native installation false; both gate flags false. |
+| V01 Bee Primary | `Pass` | Fresh exact bounded suite 250/250. |
+| V01 H1 Python | `Pass` | Fresh leaf inventory 445/445. |
+| V01 strict provenance / normal M02 owner | `Pass` | 4/4 and 15/15. |
+| V01 candidate Unity | `Pass` | Fresh batch compile; focused NUnit 4/4 and 10/10; full Editor regression 351/351. |
+| V01 reproduction Unity | `CompletedWithNonPass` | Fresh compile and focused NUnit 14/14 passed. An additional full sweep completed 330/342 with 12 preserved failures: six managed-source setup failures on the reproduction nested asmdef, one missing M01 baseline, and five missing M05 linked inputs. |
+| V02 authenticated graph census | `Pass` for inventory only | Historical failure archive and graph hashes authenticated; 446 compiler actions observed. This inventory does not approve domains or acceptance. |
+| V02 real retained replay | `Fail` | Retained 337 observations / 267,613,743 unique bytes, then exceeded the 256 MiB total bound on `UnityEngine.UIElementsModule__7.cpp`. Stage `declared-input-retention`; planning/PCH replay/macro probes `NotRun`. |
+| V02 bounded negative planning | `Pass` | Synthetic 16/430 split retained request/graph/config, failed at `planning`, and recorded PCH replay/macro probes `NotRun`. |
+| V03 pinned install | `Pass` | Candidate `PinnedSourceInstaller.Install` exited 0. |
+| V03 installed-runtime verification | `Pass` | 955 source files, 957 installed files, `demoSourceVerified=true`, Shadow mode `on`, receipt `3e332c26e8cbcbaf803d82707d7f4937262ddb2dd66d6af1673823184e98da19`. |
+| V03 candidate ON/Debug smoke | `Fail` | Player build completed; mandatory provenance capture failed at the same retention boundary. No provenance or build receipt. Exact restoration verified. |
+| V03 remaining five builds | `Blocked / NotRun` | A valid candidate ON/Debug smoke receipt is required. |
+| V04 runtime/count/startup/performance | `Blocked / NotRun` | No fresh provenance-bound Player set exists. |
+| V05 successor and independent M08 | `Blocked / NotRun` | Successor inputs are incomplete; M08 was not commissioned. |
+
+The first installed-runtime command incorrectly supplied the wrapper's implicit `verify` operation and exited 2; its raw output is preserved. The corrected invocation passed. No production source or acceptance policy was changed locally.
+
+### Fresh smoke failure identity
+
+- Build ID: `H1Count-On-Debug`
+- Build GUID: `9638639b2bfe41b793b8bb629f1801ff`
+- Input snapshot: `fdcb5eb0bef2eb34567f242de74db10a3b132cfd0d7d9712bca4e1e12cc24d17`
+- Fresh Bee DAG: 2,766,362 bytes, SHA-256 `a1a3eede51e061b4e9da2b9d5a5f4e119b9535434e896db3a55609a7c249ae37`
+- `GameAssembly.dylib`: 101,101,430 bytes, SHA-256 `f731d42f4ff9a91a240afa80310e126458232bacb5859fecb4efba02823155db`
+- Attempt inventory: SHA-256 `f01a19f6b49ee2df1ae1c94699903ea47bba6b0eabce79918acbc7660c2b85ac`
+- Failure: `Capture input exceeds retention byte bound: .../UnityEngine.UIElementsModule__7.cpp`
+- Restoration: `ExactRestorationVerified`
+
+Portable evidence is under [local-validation-20260915-22eda8b](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-22eda8b/README.md). The unpacked raw roots remain at `/Users/ah/GitHub/hybridclr/h1-local-validation-20260915-22eda8b/v02/retained-apple-replay` and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-fa63d77e368c42d0b558979fecb5fc1b`.
+
+---
+
+## Historical run — 2026-09-15 c0d3070 handoff
 
 ### Exit
 
