@@ -1,6 +1,81 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: real Apple provenance inputs exceed the attempt retention budget
+## Current blocker: fresh Player reuses managed Bee actions that capture excludes
+
+### Symptom
+
+At handoff `8f5bcaa687e33e8666eacc942b5e414a83b737fc`, source anchor `91ebef56eaa7034ed49a80bced422ea4c067d2fe`, the real retention repair works as designed. Both the retained Apple replay and fresh candidate ON/Debug capture cross the former 267,613,743-byte boundary and independently authenticate 318,212,421 logical bytes stored in 72,612,459 bytes. The fresh Player builds; native compiler provenance, Apple domain/PCH probes, strict native verification, independent store verification, and exact restoration pass.
+
+The subsequent managed-source verifier fails:
+
+```text
+Blocked: Missing or ambiguous managed action chain for AssemblyShadow.R01BDiagnostics
+```
+
+`ManagedSourceProvenance/h1-managed-source-capture.json` contains one newly changed native Bee graph and zero managed compilation rows. The exact `AssemblyShadowDemo.Bootstrap` and `AssemblyShadow.R01BDiagnostics` Player compiler actions are present only in pre-existing `Library/Bee/200b0aPDevDbg.dag.json`; that DAG's SHA-256 is unchanged since the begin capture, and both compiler outputs existed before the build.
+
+### Reproduction
+
+After V00/V01 and the pinned candidate install/runtime verification, run from the candidate checkout:
+
+```sh
+python3 Tools/AssemblyShadow/h1_count_build_batch.py \
+  --candidate /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  --reproduction /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo \
+  --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity \
+  --pwsh /usr/local/bin/pwsh \
+  --scope smoke \
+  --output /ABS/NEW/smoke \
+  --execute
+```
+
+The batch exits 1 at `verify-managed.log` after producing and strictly verifying the native receipt. `failed.json` records `candidateAcceptance=false`; `restored.json` records `ExactRestorationVerified`.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260915-8f5bcaa](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-8f5bcaa/README.md).
+
+- Build GUID: `540065befa904f7f880ab13416c0f852`; input snapshot: `7ddd2f21c4718469ec06998ce3f19e2ff0100cc28eda2c4b5a2431a6eab753d5`.
+- Native library SHA-256: `9acf78528cda4587f0cf97b4a2e565767e57962c863da19f30479276f91c4ba0`.
+- Build receipt SHA-256: `3043f69397cb8cc0dc4a798cbfe851f02f65031a6d8a23f2b31f09dec1ce1a92`.
+- Compiler provenance SHA-256: `13a2fe9f1ce20a8db3d120b38e18e93040117edf94ea8fb8127cd4acbd998109`.
+- Retention inventory SHA-256: `089060a3ca2ea4e9eb162c4f9bf9b90a77819b455bed7faa8119ed6ab45629dc`.
+- Player managed DAG SHA-256: `46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af`; it existed before and did not change during the build.
+- `v03/managed-action-census.json` records all four matching Editor/Player actions, their node indices, source/dependency/response counts, pre-existence, graph freshness, and Player reachability.
+- `v03/candidate-on-debug-managed-provenance-failure.tar.gz` is 81,310,527 bytes, SHA-256 `a82275037f61c3e42e7d298a0f10b5446b1b7fd7cea3cadef80fdef584f76658`.
+- `v02/retained-apple-replay.tar.gz` is 79,418,186 bytes, SHA-256 `a36c324c635911a4c68f814a5d17cc7819f32d57ea76f5b8c7c398aee08632d6`.
+
+Full unpacked roots remain at `/Users/ah/GitHub/hybridclr/h1-local-validation-20260915-8f5bcaa` and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-e347902b06224cbc8af39ec58902fafa`.
+
+### Root cause
+
+`h1_managed_provenance.end()` selects Bee DAGs that are new or whose byte hash differs from `beeGraphsBefore`. Unity legitimately reused cached Player C# outputs for this build, so the authoritative managed compilation DAG and DLLs remained byte-identical. The new native DAG is captured, but it has no C# compiler actions; managed verification therefore has no direct action chain for the two required assemblies.
+
+The existing exact-reuse route does not close this run. It requires a prior direct managed proof for the same source-pin SHA, while the current source anchor changed that SHA. The batch's `--reuse-smoke` path revalidates an entire previously accepted source chain and cannot promote this failed managed capture.
+
+The design allowed this because managed provenance equates “freshly used in this build” with “new or byte-changed during this build.” Bee's valid incremental reuse breaks that implication: an unchanged cached action/output can still be the actual input used by the fresh Player.
+
+### Impact
+
+There is no accepted candidate ON/Debug smoke result even though the Player and native receipt are valid. The other five builds, 132 candidate count cells, 8 reproduction cells, startup11, capacity/boundary/performance chain, successor package, and independent whole-chain M08 remain blocked. Human Review Gate is not ready and R02 must remain closed.
+
+The reproduction optional full Editor sweep again completed 330/342 with the same 12 historical missing-fixture/baseline failures; focused required H1 fixtures passed 14/14. Those preserved nonpasses are separate from this blocker.
+
+### Recommended direction
+
+Primary should define and implement a reviewed fail-closed proof for cached managed Bee action reuse. The proof should bind the exact unchanged DAG action, response files, source/config/dependency bytes, output DLL hash/MVID, Player input binding, build/source pin, and evidence that the selected cached output is the one consumed by the fresh Player. It must distinguish legitimate unchanged reuse from stale or unrelated cached artifacts.
+
+An alternative is to force a scoped managed recompile before the build and capture the resulting changed action/output, provided that the operation and before/after state are deterministic, restored, and provenance-bound. Do not accept all pre-existing DAGs by name or path, and do not waive freshness because matching actions happen to exist.
+
+Add a regression in which native inputs rebuild while the two managed assemblies are valid cache hits, plus stale-output, ambiguous-action, changed-source, changed-response, and wrong-Player-binding rejection controls. Publish a new reviewed source anchor and rerun fresh V00–V05.
+
+### Uncertainty
+
+This run establishes that the matching cached actions reach the Player input and that their files existed unchanged before the build. It does not independently prove why Unity selected those cached outputs or whether a hidden freshness token exists elsewhere in Bee state. Primary review must choose the design-authoritative proof rather than treating the local census as acceptance.
+
+---
+
+## Historical blocker addressed by source anchor 91ebef56
 
 ### Symptom
 

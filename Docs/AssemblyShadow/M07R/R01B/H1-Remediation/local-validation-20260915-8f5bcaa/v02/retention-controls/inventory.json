@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PythonLeafInventory",
+  "status": "Passed",
+  "count": 6,
+  "counts": {
+    "Passed": 6
+  },
+  "tests": [
+    {
+      "id": "test_h1_capture_volume.VolumeRetentionTests.test_446_action_volume_above_old_256_mib_retains_all_declared_bytes",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_capture_volume.VolumeRetentionTests.test_compressed_blob_tamper_is_detected_fail_closed",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_capture_volume.VolumeRetentionTests.test_finish_refuses_corrupt_store_and_records_failure_under_guard",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_capture_volume.VolumeRetentionTests.test_incompressible_request_falls_back_to_raw_without_identity_change",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_capture_volume.VolumeRetentionTests.test_logical_limit_exhaustion_is_failed_not_accepted_without_receipt",
+      "result": "Passed"
+    },
+    {
+      "id": "test_h1_capture_volume.VolumeRetentionTests.test_stored_limit_exhaustion_is_failed_not_accepted_without_receipt",
+      "result": "Passed"
+    }
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "discoveredCount": 6,
+  "logPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260915-8f5bcaa/v02/retention-controls/tests.log",
+  "logSha256": "f3ce7817ee1707ed746045f86cdba954a283177d998b18491f3df04edb87352f"
+}
