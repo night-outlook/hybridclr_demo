@@ -42,12 +42,10 @@ class RealGitSplitIdentityTests(unittest.TestCase):
         self.authority=base/'candidate';self.repro=base/'repro';self.tool='Tools/AssemblyShadow/tool.py'
         runtime={k:{'url':'https://github.com/night-outlook/'+k,'revision':'a'*40,'localPath':'../'+k} for k in ('hybridclr','hybridclrUnity','il2cppPlus')}
         self.runtime=runtime
-
         self.init(self.authority,'codex/assembly-shadow-r01b-h1')
         p=self.authority/self.tool;p.parent.mkdir(parents=True);p.write_text('reviewed-tool\n')
         self.candidate_anchor=self.commit(self.authority,'candidate tool anchor')
         self.candidate_blob=self.git(self.authority,'rev-parse',self.candidate_anchor+':'+self.tool)
-
         self.init(self.repro,'codex/assembly-shadow-h1-count-repro')
         (self.repro/'Assets').mkdir();(self.repro/'Assets/runtime.cs').write_text('// unfixed runtime\n')
         old=self.repro/self.tool;old.parent.mkdir(parents=True);old.write_text('old-tool\n')
@@ -58,18 +56,17 @@ class RealGitSplitIdentityTests(unittest.TestCase):
         self.behavior=self.commit(self.repro,'unfixed behavior source')
         pins['demo']['revision']=self.behavior;(self.repro/s.PINS).write_text(json.dumps(pins))
         self.protected=self.commit(self.repro,'metadata-only protected source pin')
-        self.assertEqual(self.behavior,pins['demo']['revision'])
         self.git(self.repro,'checkout','-qb','codex/assembly-shadow-h1-count-repro-tooling')
         (self.repro/self.tool).write_text('reviewed-tool\n')
         self.tooling=self.commit(self.repro,'tooling successor')
         self.tooling_blob=self.git(self.repro,'rev-parse',self.tooling+':'+self.tool)
         self.assertEqual(self.candidate_blob,self.tooling_blob)
-
         targets={'schemaVersion':1,'kind':'PrimaryImplementationSourceTargets','unityVersion':'2022.3.62f2','target':'StandaloneOSX','architecture':'arm64',
                  'demoTargets':{'reproduction':{'repository':'night-outlook/hybridclr_demo','branch':'codex/assembly-shadow-h1-count-repro',
                     'publishedHead':self.protected,'codeCommit':self.behavior,'runtimePins':runtime,
                     'validationTooling':{'branch':'codex/assembly-shadow-h1-count-repro-tooling','revision':self.tooling,
-                        'candidateToolSourceAnchor':self.candidate_anchor,'files':{self.tool:self.candidate_blob}}}}}
+                        'candidateToolSourceAnchor':self.candidate_anchor,'files':{self.tool:self.candidate_blob},
+                        'overrides':{self.tool:self.candidate_blob}}}}}
         target=self.authority/r.TARGETS;target.parent.mkdir(parents=True);target.write_text(json.dumps(targets));self.commit(self.authority,'tooling authority')
     def tearDown(self):self.tmp.cleanup()
     def test_full_split_identity_preflight(self):
@@ -83,7 +80,7 @@ class RealGitSplitIdentityTests(unittest.TestCase):
     def test_candidate_source_blob_must_match_tooling_blob(self):
         targets=json.loads((self.authority/r.TARGETS).read_text());targets['demoTargets']['reproduction']['validationTooling']['files'][self.tool]='f'*40
         (self.authority/r.TARGETS).write_text(json.dumps(targets));self.commit(self.authority,'wrong blob authority')
-        with self.assertRaisesRegex(RuntimeError,'blob differs|candidate source'):
+        with self.assertRaisesRegex(RuntimeError,'required tooling blob differs|candidate source'):
             r.verify(self.repro,self.authority)
 
 
