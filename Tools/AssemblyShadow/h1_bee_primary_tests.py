@@ -22,7 +22,7 @@ MODULES = (
     'test_h1_macro_domain_census', 'test_h1_failure_bundle_census',
     'test_h1_plan_failure_retention', 'test_h1_compiler_actions', 'test_h1_native_capture',
     'test_h1_pch_provenance', 'test_h1_pch_integration', 'test_h1_count_build_batch',
-    'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding',
+    'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding', 'test_h1_m07_policy_bridge',
     'test_h1_handoff_preflight', 'test_h1_managed_provenance', 'test_h1_managed_cache_provenance',
     'test_h1_selection_collect', 'test_h1_successor_evidence', 'test_h1_successor_sidecar',
 )

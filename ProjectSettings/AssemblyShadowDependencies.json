@@ -741,6 +741,22 @@
       "typeName": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
       "method": "AssemblyShadowDemo.R01EarlyStartup::Witness",
       "reason": "R01 approved bounded early-startup negative experiment resolves only this exact baseline type before Configure; retained first-use evidence must reject Validate, Abort must succeed, and the callback returns nonzero. This entry does not exempt baseline use or permit Commit."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+      "method": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
+      "target": "image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4",
+      "reason": "Derived from FixedAssemblyBytes site h1-count-ordinary-witness-image; exact H1 ordinary witness only. This does not authorize other methods, providers, images, or byte loads."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "typeName": "AssemblyShadowBaseline.HotUpdate.Entry",
+      "method": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
+      "target": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "reason": "Derived from FixedAssemblyBytes site h1-count-ordinary-witness-image; exact H1 ordinary witness only. This does not authorize other methods, providers, images, or byte loads."
     }
   ]
 }
