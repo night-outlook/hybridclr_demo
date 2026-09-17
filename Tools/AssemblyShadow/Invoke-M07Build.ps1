@@ -133,6 +133,11 @@ if ($ResourceOutput) { $invoke.ResourceOutput = $ResourceOutput }
 if ($NativeOnOutput) { $invoke.NativeOnOutput = $NativeOnOutput }
 if ($NativeOffOutput) { $invoke.NativeOffOutput = $NativeOffOutput }
 
+$previousAuthorityRoot = [Environment]::GetEnvironmentVariable('H1_M07_WORKFLOW_AUTHORITY_ROOT', 'Process')
+$previousAuthorityBaseline = [Environment]::GetEnvironmentVariable('H1_M07_WORKFLOW_BASELINE_ID', 'Process')
+$env:H1_M07_WORKFLOW_AUTHORITY_ROOT = $recoveryRoot
+$env:H1_M07_WORKFLOW_BASELINE_ID = $BaselineId
+
 $workflowFailure = $null
 $restoreFailure = $null
 try {
@@ -148,9 +153,17 @@ catch {
     $workflowFailure = $_
 }
 finally {
-    if ($workflowFailure) {
-        try { Restore-M07WorkflowInputs -Project $shadowProject -Root $recoveryRoot -State $state }
-        catch { $restoreFailure = $_ }
+    try {
+        if ($workflowFailure) {
+            try { Restore-M07WorkflowInputs -Project $shadowProject -Root $recoveryRoot -State $state }
+            catch { $restoreFailure = $_ }
+        }
+    }
+    finally {
+        if ($null -eq $previousAuthorityRoot) { Remove-Item Env:H1_M07_WORKFLOW_AUTHORITY_ROOT -ErrorAction SilentlyContinue }
+        else { $env:H1_M07_WORKFLOW_AUTHORITY_ROOT = $previousAuthorityRoot }
+        if ($null -eq $previousAuthorityBaseline) { Remove-Item Env:H1_M07_WORKFLOW_BASELINE_ID -ErrorAction SilentlyContinue }
+        else { $env:H1_M07_WORKFLOW_BASELINE_ID = $previousAuthorityBaseline }
     }
 }
 if ($restoreFailure) { throw "M07 workflow failed and outer exact-byte recovery also failed. Workflow: $workflowFailure Recovery: $restoreFailure" }
