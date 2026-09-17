@@ -1,6 +1,43 @@
 # Local Validation report
 
-## Current run — 2026-09-16 handoff e96bc07
+## Current run — 2026-09-16 handoff a42b205
+
+### Exit
+
+**Local Validation → Primary Implementation**
+
+The candidate branch was explicitly fast-forwarded to handoff `a42b205a8eb5c1cf2565a985bb652de94db4d301`; source anchor `29261690798059077e5263de71526867a32bce30`, reproduction tooling `ba8fee33753a5ebc215b7a98739e343d8e05572e`, and all protected pins match the handoff.
+
+V00 passes: candidate `SourceTargetVerifiedNotBuildAccepted`; tooling `BehaviorAndToolingSourcesVerifiedNotBuildAccepted` with exact 9 replacements, 2 authenticated deletions, and `editorSourceCompatibility.status=Compatible`. V01 H1 Python passes 478/478 and bounded Primary passes 300/300. The unchanged reproduction-tooling checkout compiles successfully in Unity 2022.3.62f2.
+
+The candidate's first real Unity compile fails with one CS0234 error at `M07FixedByteBootstrapPolicyTests.cs(5,17)`. The new test directly imports `HybridCLR.AssemblyShadow.CodeGen`, defined by asmdef `Unity.HybridCLR.AssemblyShadow.CodeGen`, but `AssemblyShadowDemo.EditorTests.asmdef` does not reference that assembly. The captured C# response contains `HybridCLR.Editor.ref.dll` and the test source but no CodeGen reference. Unity asmdef references are not transitive, so the test cannot compile through `HybridCLR.Editor`'s dependency.
+
+Local applied one bounded fix: add the direct `Unity.HybridCLR.AssemblyShadow.CodeGen` reference to the test asmdef. Candidate Unity compilation then passes with zero errors, and `M07FixedByteBootstrapPolicyTests` passes 2/2 in real Unity. The post-fix committed preflight correctly fails closed because source anchor `2926169` does not authenticate the changed asmdef bytes; the fix cannot be promoted to current-anchor acceptance without a new Primary source identity and handoff.
+
+The M07 outer wrapper was exercised with the known non-candidate installed runtime. It failed at the first pinned-runtime check and emitted `ExactBytesRestored` for all three owned files. Their before-restore hashes equal their originals, so this is diagnostic failure-path evidence without mutation-restoration coverage.
+
+V02–V05 remain `Blocked / NotRun`; no accepted current-anchor provenance builds, post-mutation restoration proof, normal M07/runtime/startup/capacity/performance chain, successor, or independent M08 was produced. No policy, allowlist, protected pin, runtime, or product behavior changed. Last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`; R02 was not started.
+
+### Validation results
+
+| Step | Result | Empirical result |
+| --- | --- | --- |
+| V00 dual preflight | `Pass` | Exact candidate/source/tooling/protected identities; 9 replacements, 2 deletions, Editor compatibility `Compatible`. |
+| V01 H1 Python | `Pass` | 478/478. |
+| V01 Bee Primary | `Pass` | 300/300, zero nonpasses. |
+| V01 candidate Unity compile | `Fail` | CS0234: test assembly lacks direct `Unity.HybridCLR.AssemblyShadow.CodeGen` reference. |
+| V01 bounded local fix | `Pass` for correction | Added the direct test-asmdef reference; candidate compile passes with zero errors. |
+| V01 policy NUnit after fix | `Pass` for correction | `M07FixedByteBootstrapPolicyTests` 2/2 in real Unity. |
+| Post-fix authority | `Fail` closed as expected | Working asmdef bytes differ from source anchor `2926169`; no downstream acceptance may use them. |
+| V01 reproduction-tooling compile | `Pass` | Zero compiler errors. |
+| V04 controlled wrapper failure | `Diagnostic partial` | Three files report `ExactBytesRestored`; failure preceded mutation, so mutation-restoration remains `NoCoverage`. |
+| V02–V05 | `Blocked / NotRun` | The corrected asmdef bytes are not authenticated by the current source anchor; the required post-fix preflight fails closed. |
+
+Portable evidence is under [local-validation-20260916-a42b205](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-a42b205/README.md). The actionable issue is at the top of [RETURN_TO_WEB.md](RETURN_TO_WEB.md).
+
+---
+
+## Historical run — 2026-09-16 handoff e96bc07
 
 ### Exit
 

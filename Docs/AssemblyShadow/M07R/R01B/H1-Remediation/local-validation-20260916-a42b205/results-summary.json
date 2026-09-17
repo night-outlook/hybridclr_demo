@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationResults",
+  "status": "ReturnToPrimaryAfterBoundedLocalFix",
+  "handoffHead": "a42b205a8eb5c1cf2565a985bb652de94db4d301",
+  "sourceAnchor": "29261690798059077e5263de71526867a32bce30",
+  "v00": {
+    "status": "Passed",
+    "candidate": "SourceTargetVerifiedNotBuildAccepted",
+    "tooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "toolReplacementCount": 9,
+    "authenticatedDeletionCount": 2,
+    "editorSourceCompatibility": "Compatible"
+  },
+  "v01": {
+    "status": "Failed",
+    "h1Python": "478/478 Passed",
+    "beePrimary": "300/300 Passed",
+    "candidateUnityCompile": "Failed",
+    "candidateCompilerErrorCount": 1,
+    "compilerError": "Assets/AssemblyShadowDemo/Tests/Editor/M07FixedByteBootstrapPolicyTests.cs(5,17): CS0234: namespace HybridCLR.AssemblyShadow.CodeGen is unavailable to AssemblyShadowDemo.EditorTests",
+    "reproductionToolingUnityCompile": "Passed",
+    "M07FixedByteBootstrapPolicyTests": "Initially blocked by candidate compile failure",
+    "boundedLocalFix": "Added direct Unity.HybridCLR.AssemblyShadow.CodeGen asmdef reference",
+    "candidateUnityCompileAfterFix": "Passed with zero compiler errors",
+    "M07FixedByteBootstrapPolicyTestsAfterFix": "2/2 Passed",
+    "postFixSourceAuthority": "FailedClosedWorkingBytesDifferFromPinnedBlob"
+  },
+  "v02": {
+    "status": "Blocked / NotRun"
+  },
+  "v03": {
+    "status": "Blocked / NotRun"
+  },
+  "v04": {
+    "status": "DiagnosticPartial / Blocked",
+    "controlledFailure": {
+      "status": "ExactBytesRestored",
+      "failureStage": "Pre-Unity pinned-runtime check",
+      "files": 3,
+      "mutatedBeforeRestore": 0,
+      "disposition": "DiagnosticOnlyNotCurrentAnchorAcceptance"
+    },
+    "normalChain": "Blocked / NotRun"
+  },
+  "v05": {
+    "status": "Blocked / NotRun",
+    "independentM08": "Not commissioned"
+  },
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

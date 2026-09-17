@@ -1,6 +1,77 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: H1 fixed-byte witness is rejected by frozen M07 bootstrap policy
+## Current blocker: bounded CodeGen asmdef fix requires new Primary source authority
+
+### Symptom
+
+At candidate handoff `a42b205a8eb5c1cf2565a985bb652de94db4d301` and source anchor `29261690798059077e5263de71526867a32bce30`, V00 passes and V01 Python/Primary tests pass 478/478 and 300/300. The first real candidate Unity 2022.3.62f2 compile fails:
+
+```text
+Assets/AssemblyShadowDemo/Tests/Editor/M07FixedByteBootstrapPolicyTests.cs(5,17): error CS0234: The type or namespace name 'AssemblyShadow' does not exist in the namespace 'HybridCLR' (are you missing an assembly reference?)
+```
+
+The published project cannot compile, so `M07FixedByteBootstrapPolicyTests` cannot run under source anchor `2926169`.
+
+### Reproduction
+
+```sh
+pwsh -NoProfile -File .agents/skills/unity-debug/scripts/Invoke-UnityCompile.ps1 \
+  -ProjectPath /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
+  -AsJson -TimeoutSec 1800
+```
+
+The process exits 1 with exactly one compiler error.
+
+### Evidence
+
+Portable evidence is in [local-validation-20260916-a42b205](../../Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-a42b205/README.md).
+
+- `v01/candidate-unity-compile.unity.log`: complete Unity/Bee/C# failure log.
+- `v01/AssemblyShadowDemo.EditorTests.rsp`: exact C# compiler response.
+- `v01/candidate-csc-response-audit.txt`: `HybridCLR.Editor.ref.dll` is present, the new test source is present, and no CodeGen assembly reference exists.
+- `v01/candidate-codegen-reference-audit.txt`: exact source/asmdef blobs and definitions.
+- `v01/candidate-postcompile-preflight.json`: source authority remains exact after failure.
+- `failure-analysis.json`: machine-readable root cause and impact.
+
+### Root cause
+
+`M07FixedByteBootstrapPolicyTests.cs` imports `HybridCLR.AssemblyShadow.CodeGen`. That namespace is defined by asmdef `Unity.HybridCLR.AssemblyShadow.CodeGen`. The test assembly's `AssemblyShadowDemo.EditorTests.asmdef` references `HybridCLR.Editor`, but does not directly reference `Unity.HybridCLR.AssemblyShadow.CodeGen`.
+
+Unity asmdef dependencies are not transitive. Although `HybridCLR.Editor` itself references the CodeGen assembly, that dependency does not expose CodeGen types to `AssemblyShadowDemo.EditorTests`. The emitted compiler response proves the missing direct reference. The asmdef was not changed when the new Unity integration test was added, and Primary's bounded Python suite did not compile the candidate Unity test assembly.
+
+### Bounded local correction
+
+Local added exactly one asmdef reference:
+
+```json
+"Unity.HybridCLR.AssemblyShadow.CodeGen"
+```
+
+After this change, the candidate compiles with zero errors and `M07FixedByteBootstrapPolicyTests` passes 2/2 in real Unity. The committed handoff preflight then correctly fails with:
+
+```text
+Blocked: Working bytes do not match pinned Git blob: .../AssemblyShadowDemo.EditorTests.asmdef
+```
+
+This is expected: the current source anchor does not authenticate the local fix. No policy, allowlist, runtime, protected pin, or product behavior was changed.
+
+The outer M07 wrapper was also exercised against the known non-candidate installed runtime. It emitted `ExactBytesRestored` for all three owned paths, but the failure occurred at the initial pinned-runtime check and all before-restore hashes equaled their originals. This is diagnostic failure-path evidence, not the required post-mutation restoration proof.
+
+### Impact
+
+The real-Unity policy regression passes only on locally corrected, unauthenticated source. V02–V05 remain `Blocked / NotRun`: no accepted current-anchor provenance smoke, six-build set, post-mutation restoration proof, successful M07/runtime/performance chain, successor package, or independent M08 exists. Human Review Gate is not ready and R02 remains closed.
+
+### Recommended direction
+
+Review and retain Local's explicit `Unity.HybridCLR.AssemblyShadow.CodeGen` reference. Publish a new source anchor/source pin/source-target/handoff that authenticates those asmdef bytes, then rerun fresh V00–V05. V04 must still prove restoration after actual mutation and complete the normal successful chain.
+
+### Uncertainty
+
+The two reviewed bootstrap targets pass the focused real-Unity policy tests after the local asmdef correction. This run does not establish accepted current-anchor M07 workflow validation, post-mutation restoration, or the downstream runtime/performance chain.
+
+---
+
+## Historical blocker addressed by source anchor 2926169: H1 fixed-byte witness was rejected by frozen M07 bootstrap policy
 
 ### Symptom
 

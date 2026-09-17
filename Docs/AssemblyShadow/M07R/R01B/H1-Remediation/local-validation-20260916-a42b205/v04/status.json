@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationStageStatus",
+  "stage": "v04",
+  "status": "DiagnosticPartial / Blocked",
+  "reason": "The bounded local asmdef correction compiled and M07FixedByteBootstrapPolicyTests passed 2/2, but the committed source-authority preflight then failed closed because the corrected bytes are not authenticated by source anchor 2926169. The outer M07 wrapper was exercised only through its pre-Unity pinned-runtime failure path.",
+  "controlledFailure": {
+    "status": "ExactBytesRestored",
+    "failureStage": "Pre-Unity pinned-runtime check",
+    "ownedFileCount": 3,
+    "mutatedBeforeRestore": 0,
+    "postMutationRestorationCoverage": "NoCoverage",
+    "disposition": "DiagnosticOnlyNotCurrentAnchorAcceptance"
+  },
+  "normalM07RuntimePerformanceChain": "Blocked / NotRun",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

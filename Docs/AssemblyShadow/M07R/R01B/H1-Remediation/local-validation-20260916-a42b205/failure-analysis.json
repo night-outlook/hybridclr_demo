@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationFailureAnalysis",
+  "status": "BoundedLocalFixVerifiedReturnToPrimary",
+  "stage": "V01 candidate real-Unity compile",
+  "symptom": "Unity 2022.3.62f2 fails AssemblyShadowDemo.EditorTests compilation with CS0234 before M07FixedByteBootstrapPolicyTests can execute.",
+  "directIssue": "M07FixedByteBootstrapPolicyTests.cs directly imports HybridCLR.AssemblyShadow.CodeGen, but AssemblyShadowDemo.EditorTests.asmdef does not reference the defining assembly Unity.HybridCLR.AssemblyShadow.CodeGen.",
+  "evidence": {
+    "testSourceBlob": "51562383af41e28f3496696a89a40a8a3ff70feb",
+    "testAsmdefBlob": "2a83686886671e72a123232f91d920e8a5c18915",
+    "cscResponseSha256": "e243b3ad5607de380b416179be1cdc4678dac3af23b1b81ad336f9901df1d456",
+    "unityLogSha256": "3693f62463cff68db93a642da0cc33a5c951f36937f23afe3bec9cbdb0abe2ef"
+  },
+  "rootCause": "Unity asmdef dependencies are not transitive. HybridCLR.Editor references Unity.HybridCLR.AssemblyShadow.CodeGen, but that does not expose CodeGen types to AssemblyShadowDemo.EditorTests. The captured C# response references HybridCLR.Editor.ref.dll and the new test source but contains no CodeGen assembly reference.",
+  "designGap": "Primary bounded Python tests inspect the source/layout but do not compile the new Unity test assembly. The candidate asmdef was unchanged when the test was added.",
+  "impact": [
+    "Candidate V01 compile failed",
+    "M07FixedByteBootstrapPolicyTests were initially blocked, then passed 2/2 after the bounded local fix",
+    "V02-V05 blocked/not run because post-fix source authority fails closed",
+    "No post-mutation M07 restoration acceptance or successful M07/runtime/performance chain",
+    "No successor or independent M08",
+    "Human Review Gate closed"
+  ],
+  "recommendedDirection": [
+    "Review and retain the bounded direct asmdef reference.",
+    "Publish a new source anchor/source pin/source-target/handoff that authenticates the asmdef bytes.",
+    "Rerun fresh V00-V05; V04 must still exercise a controlled failure after mutation and the full successful M07/runtime/performance chain."
+  ],
+  "localAction": "Added the single direct Unity.HybridCLR.AssemblyShadow.CodeGen reference to AssemblyShadowDemo.EditorTests.asmdef. Candidate Unity compile then passed with zero errors and M07FixedByteBootstrapPolicyTests passed 2/2 in real Unity. No policy, allowlist, runtime, protected pin, or product behavior changed.",
+  "uncertainty": "The local fix proves compilation and both policy tests. Because source authority intentionally fails closed afterward, no V02/V03 acceptance builds were run. The controlled wrapper failure occurred before Unity mutation and does not replace the required post-mutation restoration proof or normal M07 chain.",
+  "remainingBlocker": "The authoritative source anchor and source-pin bytes do not include the bounded local asmdef fix. The committed preflight correctly fails closed on the modified asmdef, so V02-V05 cannot be accepted until Primary reviews/publishes the new source identity and matching handoff.",
+  "diagnosticControlledFailure": "The outer M07 wrapper was exercised with the known non-candidate installed runtime. It failed at the initial pinned-runtime check and emitted ExactBytesRestored for all three owned files. Their before-restore hashes equaled their originals, so this proves the failure path and receipt but provides no mutation-restoration coverage."
+}

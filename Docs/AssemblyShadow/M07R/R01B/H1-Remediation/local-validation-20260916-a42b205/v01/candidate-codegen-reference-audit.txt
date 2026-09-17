@@ -1,0 +1,69 @@
+candidate test source blob:
+51562383af41e28f3496696a89a40a8a3ff70feb
+candidate test asmdef blob:
+2a83686886671e72a123232f91d920e8a5c18915
+source import:
+5:using HybridCLR.AssemblyShadow.CodeGen;
+test asmdef references:
+{
+  "name": "AssemblyShadowDemo.EditorTests",
+  "references": [
+    "AssemblyShadowDemo.Editor",
+    "AssemblyShadowDemo.Bootstrap",
+    "HybridCLR.Editor",
+    "HybridCLR.Runtime",
+    "AssemblyA.Contracts",
+    "AssemblyA.Implementation.Extensibility",
+    "AssemblyA.Implementation.Internal",
+    "AssemblyShadowDemo.ContractsConsumer",
+    "AssemblyShadowDemo.ExtensibilityConsumer",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner"
+  ],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll", "dnlib.dll"],
+  "autoReferenced": false,
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}
+codegen asmdef:
+{
+    "name": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+    "references": [],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["dnlib.dll"],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
+editor asmdef:
+{
+    "name": "HybridCLR.Editor",
+    "rootNamespace": "",
+    "references": [
+        "HybridCLR.Runtime",
+        "Unity.HybridCLR.AssemblyShadow.CodeGen"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
+creation history:
+661a5a4 fix(h1): reconcile M07 fixed-byte bootstrap policy
+asmdef history since prior Local:
