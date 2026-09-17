@@ -1,6 +1,6 @@
 # Primary Implementation → Local Validation
 
-> Documentation and handoff paths were consolidated under `Docs/AssemblyShadow/` after the predecessor handoff. The implementation anchor and protected runtime/reproduction/performance pins remain unchanged.
+> Documentation and handoff paths were consolidated under `Docs/AssemblyShadow/` after the predecessor handoff. The consolidation commit is the current implementation anchor; protected runtime/reproduction/performance pins remain unchanged.
 
 ## Objective
 
@@ -10,7 +10,7 @@ Resume HybridCLR Assembly Shadow R01B H1 validation from Local Validation return
 
 Authoritative candidate source / implementation anchor:
 
-`21d3d5763ce027185d2e7f777f71545d354d44ec`
+`4a83a2222be1ccc44f78ae1644abe9f9084adfaa`
 
 Repository / branch:
 
@@ -40,7 +40,7 @@ Machine-readable authority: `Docs/AssemblyShadow/Handoff/source-targets.json`.
 
 | Role | Repository / branch | Exact identity |
 | --- | --- | --- |
-| Candidate source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `21d3d5763ce027185d2e7f777f71545d354d44ec` |
+| Candidate source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `4a83a2222be1ccc44f78ae1644abe9f9084adfaa` |
 | Candidate native | `night-outlook/hybridclr` / `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | Shared package | `night-outlook/hybridclr_unity` / `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | Shared IL2CPP | `night-outlook/il2cpp_plus` / `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -52,7 +52,7 @@ Machine-readable authority: `Docs/AssemblyShadow/Handoff/source-targets.json`.
 
 Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**.
 
-`ProjectSettings/AssemblyShadowSourcePins.json` pins source anchor `21d3d576...`. The final branch HEAD is a later metadata-only handoff successor; record both checkout HEAD and source anchor.
+`ProjectSettings/AssemblyShadowSourcePins.json` pins source anchor `4a83a2222be1ccc44f78ae1644abe9f9084adfaa`. The final branch HEAD is a later metadata-only handoff successor; record both checkout HEAD and source anchor.
 
 ## Implementation
 
@@ -121,7 +121,7 @@ Follow `Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TAS
 
 ### V00 — authority
 
-1. Pull the final candidate handoff HEAD; record checkout HEAD and source anchor `21d3d576...` separately.
+1. Pull the final candidate handoff HEAD; record checkout HEAD and source anchor `4a83a2222be1ccc44f78ae1644abe9f9084adfaa` separately.
 2. Run candidate `h1_handoff_preflight.py`; require `SourceTargetVerifiedNotBuildAccepted`.
 3. Run split reproduction-tooling preflight at exact `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
 4. Verify every protected reproduction/native/package/IL2CPP/performance identity remains exact.
@@ -134,7 +134,7 @@ Run the complete H1 Python inventory and exact bounded Primary suite, then compi
 
 ### V02 — fresh candidate provenance
 
-Run a fresh candidate ON/Debug schema-3 normal-cache proof under source anchor `21d3d576...`. Preserve normal Bee cache and require strict native compiler/PCH/store/managed/fresh-Player/restoration controls. Do not substitute legacy prior-proof reuse.
+Run a fresh candidate ON/Debug schema-3 normal-cache proof under source anchor `4a83a2222be1ccc44f78ae1644abe9f9084adfaa`. Preserve normal Bee cache and require strict native compiler/PCH/store/managed/fresh-Player/restoration controls. Do not substitute legacy prior-proof reuse.
 
 ### V03 — fresh six-build set
 
