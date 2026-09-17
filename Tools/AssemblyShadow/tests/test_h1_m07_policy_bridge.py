@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parents[3]
 CALL = 'AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness'
 SOURCE = 'image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4'
 IMAGE = '9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27'
+CODEGEN_ASMDEF = 'Unity.HybridCLR.AssemblyShadow.CodeGen'
 
 class M07FixedBootstrapPolicyTests(unittest.TestCase):
     def test_dependency_bridge_is_exact_and_binding_owned(self):
@@ -26,6 +27,15 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
             self.assertEqual('AssemblyShadowBaseline.HotUpdate', row['provider'])
             self.assertIn('h1-count-ordinary-witness-image', row['reason'])
             self.assertTrue(row['target'])
+
+    def test_editor_test_asmdef_directly_references_codegen(self):
+        asmdef = json.loads((ROOT / 'Assets/AssemblyShadowDemo/Tests/Editor/AssemblyShadowDemo.EditorTests.asmdef').read_text())
+        references = asmdef['references']
+        self.assertEqual(1, references.count(CODEGEN_ASMDEF))
+        self.assertIn('HybridCLR.Editor', references)
+        self.assertEqual(['Editor'], asmdef['includePlatforms'])
+        self.assertFalse(asmdef['autoReferenced'])
+        self.assertIn('UNITY_INCLUDE_TESTS', asmdef['defineConstraints'])
 
     def test_workflow_failure_wrapper_restores_real_scene_and_settings_inputs(self):
         wrapper = (ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
