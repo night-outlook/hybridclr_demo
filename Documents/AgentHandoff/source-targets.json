@@ -8,22 +8,13 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "f59b0d8d171340951157b01b583df17e380d6f55",
-      "implementationCommit": "f59b0d8d171340951157b01b583df17e380d6f55",
+      "codeCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
+      "implementationCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
       "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
-        "hybridclr": {
-          "url": "https://github.com/night-outlook/hybridclr",
-          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
-        },
-        "hybridclrUnity": {
-          "url": "https://github.com/night-outlook/hybridclr_unity",
-          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
-        },
-        "il2cppPlus": {
-          "url": "https://github.com/night-outlook/il2cpp_plus",
-          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
-        }
+        "hybridclr": {"url": "https://github.com/night-outlook/hybridclr", "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"},
+        "hybridclrUnity": {"url": "https://github.com/night-outlook/hybridclr_unity", "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"},
+        "il2cppPlus": {"url": "https://github.com/night-outlook/il2cpp_plus", "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"}
       }
     },
     "reproduction": {
@@ -31,26 +22,17 @@
       "branch": "codex/assembly-shadow-h1-count-repro",
       "publishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
       "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
-      "preservationPolicy": "The protected reproduction branch/head and its unfixed behavior source/runtime pins must not move. Local Validation runs the same unfixed behavior through the separately authenticated tooling-only successor declared in validationTooling; this does not change reproduction runtime/Player behavior or promote the tooling branch to behavior authority.",
+      "preservationPolicy": "The protected reproduction branch/head and unfixed behavior/runtime pins must not move. Validation tooling is authenticated separately and never becomes behavior authority.",
       "runtimePins": {
-        "hybridclr": {
-          "url": "https://github.com/night-outlook/hybridclr",
-          "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf"
-        },
-        "hybridclrUnity": {
-          "url": "https://github.com/night-outlook/hybridclr_unity",
-          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
-        },
-        "il2cppPlus": {
-          "url": "https://github.com/night-outlook/il2cpp_plus",
-          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
-        }
+        "hybridclr": {"url": "https://github.com/night-outlook/hybridclr", "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf"},
+        "hybridclrUnity": {"url": "https://github.com/night-outlook/hybridclr_unity", "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"},
+        "il2cppPlus": {"url": "https://github.com/night-outlook/il2cpp_plus", "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"}
       },
       "validationTooling": {
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
+        "candidateToolSourceAnchor": "21d3d5763ce027185d2e7f777f71545d354d44ec",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -86,73 +68,54 @@
     "repository": "night-outlook/hybridclr_demo",
     "branch": "codex/assembly-shadow-h1-performance-reference",
     "commit": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
-    "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
+    "policy": "Preserve its committed old-profile pins; never install candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35179309998,
-    "implementationCommit": "f59b0d8d171340951157b01b583df17e380d6f55",
+    "workflowRun": 35195186054,
+    "implementationCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 302,
-    "passed": 302,
+    "testCount": 311,
+    "passed": 311,
     "nonpasses": 0,
-    "artifactId": 10478699390,
-    "artifactSha256": "28239edbda587ca61f9175ef42b334c588363a28226d955b25198a7219afd258",
-    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction tooling, exact M07 fixed-byte/bootstrap policy bridge, exact M07 outer failure restoration for scene/settings, bounded direct CodeGen test-asmdef dependency, deterministic post-ValidateCompilerInputs controlled failure injection, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-source M07/runtime acceptance, M08, or human acceptance."
+    "artifactId": 10485926242,
+    "artifactSha256": "d2486ad13ab52d41b5fcd19ce7902863c2ef8b242b1747ec9f9b1284402be9a5",
+    "scope": "Bounded Primary/tool validation: authenticated Apple Bee fixture planning, native/store/PCH and managed-cache regressions, reproduction-tooling authority, M07 fixed-byte/bootstrap policy, exact restoration, and post-ValidateCompilerInputs immutable/mutable authority split. Not Unity/Apple Player/runtime/performance/M08/human acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
     "measuredFailedAttemptUniqueBytes": 267613743,
     "previousAggregateLimitBytes": 268435456,
-    "policy": "Retain every declared native source by raw SHA-256 and raw length while separating content identity from reversible storage representation. Generated C/C++/ObjC sources use content-addressed zlib-v1 only when smaller; semantic request/DAG/PCH/header/response/plist evidence stays raw by default. Successful attempts independently authenticate the retained store before finalization.",
-    "limits": {
-      "maxFileBytes": 67108864,
-      "maxLogicalUniqueBytes": 2147483648,
-      "maxStoredBytes": 536870912,
-      "maxObservations": 4096
-    }
+    "policy": "Retain every declared native source by raw identity while separating reversible storage representation; success self-authenticates the retained store.",
+    "limits": {"maxFileBytes": 67108864, "maxLogicalUniqueBytes": 2147483648, "maxStoredBytes": 536870912, "maxObservations": 4096}
   },
   "managedCacheRepair": {
     "returnedByLocalValidationCommit": "7f98084518054bd43e10abb603fe193612cfb321",
     "previousSourceAnchor": "91ebef56eaa7034ed49e80bced422ea4c067d2fe",
-    "failure": "Fresh native provenance and retention passed, but the managed verifier required a changed Bee graph even when the exact required Player Csc/ILPP chain and DLL outputs were legitimately reused from an unchanged Bee cache.",
-    "policy": "At begin, retain bounded exact reusable Player Csc chains from pre-existing Bee DAGs, including graph/action, recursive response closure, compiler dependencies/tools, Csc output, and reachable downstream DLL bytes. At end, require selected-chain evidence to remain byte-identical and require exactly one chain to reach the exact path/hash/size of the DLL captured as an input to the fresh Player. Prefer a unique changed-graph proof when present. Cache proof never claims fresh Csc execution and is not the legacy prior-proof reuse route.",
-    "limits": {
-      "maxGraphs": 64,
-      "maxGraphBytes": 134217728,
-      "maxFiles": 4096,
-      "maxFileBytes": 67108864,
-      "maxTotalBytes": 536870912,
-      "maxReachableDlls": 128
-    }
+    "policy": "Fresh managed provenance may prove a unique changed graph or an unchanged Bee cache chain bound exactly to fresh Player path/hash/size; cache proof never claims fresh Csc execution."
   },
   "managedResponseScopeRepair": {
     "returnedByLocalValidationCommit": "dc9116a46097739b634c791ac7213f431b54af22",
     "previousSourceAnchor": "0387feb4344bbe95fd7db524d6e0bae759adc203",
-    "failure": "Schema-2 cached verification attached every response discovered from every Csc action in a Bee DAG to each required cache graph. Seven unrelated StandaloneOSX_CodeGen response files legitimately changed during staging and incorrectly invalidated two required assembly cache chains whose own recursive response closures, dependencies, outputs, reachability and fresh Player bindings remained unchanged.",
-    "policy": "Schema-3 retains and verifies response stability per matched required compiler action using exactly the recursive responseSources returned by bounded @response expansion. Graph-wide response paths may be recorded as audit-only responseAuditSources but are not acceptance inputs unless they are in that selected action's recursive closure. Graph identity, action transcript, source set, compiler/tool/reference dependencies, Csc output, downstream reachability, exact fresh Player path/hash/size binding, unique-chain selection, pre-existing-output requirements, cache budgets and no-fresh-Csc-execution claim remain unchanged and fail closed.",
-    "schemaVersion": 3
+    "schemaVersion": 3,
+    "policy": "Cached response stability follows exactly each selected required compiler action's recursive response closure; unrelated DAG responses remain audit-only."
   },
   "reproductionToolingRepair": {
     "returnedByLocalValidationCommit": "9dbe8ee7549b105a29a94bd7ec7383b2909ba066",
-    "previousCandidateSourceAnchor": "5f561abdfbe020d1d480594a2130c5ec846c0e6a",
     "protectedReproductionHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
     "toolingBranch": "codex/assembly-shadow-h1-count-repro-tooling",
-    "toolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
-    "failure": "The protected reproduction Player built successfully, but its project-local older native provenance tool applied obsolete global macro equivalence and rejected the real 446-action graph. Its managed capture bridge also predates the current schema-3 cache proof. Candidate-owned diagnostic replay accepted the same native graph under current policy, but replay was not fresh build provenance.",
-    "policy": "Historical repair record. The first tooling successor authenticated nine validation replacements and eleven required validation dependencies while preserving the protected reproduction behavior/runtime pins. It remained subject to fresh Local Validation."
+    "firstToolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
+    "policy": "Separate protected reproduction behavior authority from candidate-authenticated validation tooling and bind fresh reproduction receipts to that tooling identity."
   },
   "reproductionToolingCompatibilityRepair": {
     "returnedByLocalValidationCommit": "cef1ec761e268ebbb699cc16b6ab037d7bc5a482",
     "previousToolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
     "toolingRevision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-    "failure": "The authenticated first tooling successor combined the current schema-3 H1ManagedSourceProvenance bridge with the protected historical H1ManagedSourceProvenanceTests.cs consumer, which references the removed nested Capture type and fails Unity compilation with CS0426.",
-    "policy": "The successor removes the obsolete H1ManagedSourceProvenanceTests.cs and its .meta, exactly matching their absence from the reviewed candidate source anchor. Deletions are explicit authenticated tooling operations, not implicit exceptions. V00 verifies the exact nine replacement plus two deletion delta, verifies each deleted path is absent from the candidate source anchor, authenticates the eleven required tool blobs, and audits the assembled tracked Editor/Test-Editor C# set for removed managed-source API consumers before build acceptance."
+    "policy": "Authenticate nine tooling replacements plus deletion of obsolete H1ManagedSourceProvenanceTests.cs and its .meta; audit assembled Editor source compatibility before build acceptance."
   },
   "m07FixedBootstrapRepair": {
     "returnedByLocalValidationCommit": "d8349b3facaa5d420ec41a484854a9bba9e6c1a4",
     "previousSourceAnchor": "3242b071540278510ea4ae287c70e37fc4c60340",
-    "failure": "Real Unity M07 policy validation rejected AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness as an unapproved bootstrap reflection entrypoint even though its byte acquisition was already authenticated by the FixedAssemblyBytes site h1-count-ordinary-witness-image.",
-    "policy": "Keep the global BootstrapIsolationRule and shared package pin unchanged. The project declares exactly two target-qualified bootstrap entries for the single reviewed callsite: the source/precompile fixed-byte evidence token and the compiled fixed-image SHA-256. The existing schema-4 FixedAssemblyBytes site remains authoritative for method hashes, operation index, provider identity/semantic variants, image path and image SHA. A real Unity Editor integration regression validates the combined policy and rejects another image target; no targetless or method-only H1 exemption exists. Invoke-M07Build.ps1 snapshots the actual M07Bootstrap scene, AssemblyShadowSettings.asset and EditorBuildSettings.asset before the first Unity workflow call and restores those exact bytes only on failure before rethrowing.",
+    "policy": "Keep BootstrapIsolationRule and FixedAssemblyBytes fail-closed; declare only the two target-qualified representations of the exact reviewed H1 fixed-byte callsite.",
     "fixedByteSite": {
       "id": "h1-count-ordinary-witness-image",
       "consumer": "AssemblyShadowDemo.Bootstrap",
@@ -165,19 +128,6 @@
       "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
       "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
       "sourceEvidenceTarget": "image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4"
-    },
-    "workflowFailureRestoration": {
-      "wrapper": "Tools/AssemblyShadow/Invoke-M07Build.ps1",
-      "core": "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
-      "restoreOn": "failure only",
-      "paths": [
-        "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
-        "ProjectSettings/AssemblyShadowSettings.asset",
-        "ProjectSettings/EditorBuildSettings.asset"
-      ],
-      "receipt": "workflow-inputs-restored.json",
-      "controlledFailureSwitch": "ControlledFailureAfterValidateCompilerInputs",
-      "controlledFailureSemantics": "With exact installed candidate pins, the wrapper runs the real Unity M07Build.ValidateCompilerInputs, verifies installed pins again, then deliberately fails before entering the core workflow so outer exact-byte restoration can be proven after actual configuration mutation. V04 acceptance requires observed pre-restore mutation, not merely receipt creation."
     }
   },
   "m07EditorTestAsmdefRepair": {
@@ -186,8 +136,28 @@
     "changedPath": "Assets/AssemblyShadowDemo/Tests/Editor/AssemblyShadowDemo.EditorTests.asmdef",
     "requiredReference": "Unity.HybridCLR.AssemblyShadow.CodeGen",
     "scope": "Editor test assembly only",
-    "localEmpiricalEvidence": "After the bounded one-line asmdef fix, real Unity 2022.3.62f2 candidate compilation passed with zero errors and M07FixedByteBootstrapPolicyTests passed 2/2. The previous source authority then failed closed as expected.",
-    "policy": "Retain the direct CodeGen reference because the M07 integration test directly imports HybridCLR.AssemblyShadow.CodeGen and Unity asmdef references are non-transitive. This does not broaden runtime or Player dependencies. A bounded Primary regression requires exactly one direct CodeGen reference and preserves Editor/test-only asmdef constraints. Fresh V00-V05 remain mandatory under the new source anchor."
+    "policy": "Retain one direct CodeGen reference because Unity asmdef references are non-transitive; preserve Editor/UNITY_INCLUDE_TESTS/autoReferenced=false boundaries."
+  },
+  "m07PostValidationAuthorityRepair": {
+    "returnedByLocalValidationCommit": "e053b1803b2dd94fa818714c4b79e53220f246b8",
+    "previousSourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
+    "failure": "Real ValidateCompilerInputs legitimately mutated the M07 bootstrap scene and AssemblyShadow settings, after which both controlled and normal workflows failed because the full demo-source verifier compared those intentional workflow bytes to the source-anchor blobs.",
+    "policy": "Do not weaken the global verifier. During the outer M07 wrapper lifetime only, pre-mutation checks remain the full generic verifier. After a required workflow-owned mutation, each repeated guard requires both the generic installed-runtime/native/package proof with demo-source skipped and a separate M07 demo authority proof that byte-verifies every non-mutable demo build input, authenticates the saved originals of the exact three mutable paths to source-anchor Git blobs, and requires both baseline-bound mutable files to differ from their originals and contain the requested baseline ID. Partial mutation, wrong baseline, backup tamper, immutable-source tamper, untracked code, or caller-requested demo skip all fail closed.",
+    "mutablePaths": [
+      "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+      "ProjectSettings/AssemblyShadowSettings.asset",
+      "ProjectSettings/EditorBuildSettings.asset"
+    ],
+    "baselineBoundMutationRequired": [
+      "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+      "ProjectSettings/AssemblyShadowSettings.asset"
+    ],
+    "wrapperContext": {
+      "rootEnvironment": "H1_M07_WORKFLOW_AUTHORITY_ROOT",
+      "baselineEnvironment": "H1_M07_WORKFLOW_BASELINE_ID",
+      "scope": "Invoke-M07Build.ps1 process lifetime only"
+    },
+    "controlledExpectedFailure": "Controlled M07 failure after successful ValidateCompilerInputs for exact-byte restoration verification."
   },
   "gateState": {
     "name": "H1",
