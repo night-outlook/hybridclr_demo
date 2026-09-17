@@ -69,10 +69,19 @@ def git(root, *args):
 HANDOFF_PREFIX = "Docs/AssemblyShadow/Handoff/"
 HANDOFF_METADATA = frozenset(HANDOFF_PREFIX + name for name in (
     "WEB_TO_LOCAL.md", "LOCAL_VALIDATION.md", "RETURN_TO_WEB.md", "source-targets.json"))
+# Historical commits used these exact metadata authorities before the
+# Documents -> Docs/AssemblyShadow migration.  Keep the closed set so source
+# comparisons across those commits retain their original meaning; this does
+# not authorize files at the legacy location in the current working tree.
+LEGACY_HANDOFF_METADATA = frozenset("Documents/AgentHandoff/" + name for name in (
+    "WEB_TO_LOCAL.md", "LOCAL_VALIDATION.md", "RETURN_TO_WEB.md", "preflight.json",
+    "source-targets.json"))
 
 
 def metadata_only(path):
     if path == PINS:
+        return True
+    if path in LEGACY_HANDOFF_METADATA:
         return True
     if path.startswith(HANDOFF_PREFIX):
         return path in HANDOFF_METADATA
