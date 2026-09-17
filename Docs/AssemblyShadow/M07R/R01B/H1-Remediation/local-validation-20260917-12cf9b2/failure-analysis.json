@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationFailureAnalysis",
+  "status": "ReturnToPrimary",
+  "stage": "V04 post-ValidateCompilerInputs pin recheck",
+  "symptom": "Both controlled and normal M07 workflows successfully invoke real Unity ValidateCompilerInputs, mutate M07Bootstrap.unity and AssemblyShadowSettings.asset, then fail because verify-installed-runtime.py requires the intentionally mutated scene to equal its pinned Git blob.",
+  "directIssue": "Invoke-M07Build.ps1 performs Assert-M07ControlledPinnedInputs after validation, and Invoke-M07Build.Core.ps1 performs Assert-M07PinnedInputs at line 181 after validation. Both call the full installed-runtime verifier.",
+  "rootCause": "The post-validation source guard does not distinguish immutable compiler/runtime inputs from the three workflow-owned files that ValidateCompilerInputs is designed to mutate and the outer wrapper snapshots/restores.",
+  "designGap": "The new controlled path has no integration regression proving the explicit controlled throw is reachable after the intended Unity mutations, and the normal workflow retains the same incompatible post-validation guard.",
+  "evidence": [
+    "v04/controlled-recovery/stdout.log",
+    "v04/controlled-recovery/stderr.log",
+    "v04/controlled-recovery-root.tar.gz",
+    "v04/normal-m07/stdout.log",
+    "v04/normal-m07/stderr.log",
+    "v04/normal-m07-recovery-root.tar.gz"
+  ],
+  "impact": [
+    "explicit controlled-failure condition not reached",
+    "baseline resources and native ON/OFF Players not built",
+    "startup11 unavailable",
+    "8192/8193 capacity unavailable",
+    "remaining M03-M07 coverage unavailable",
+    "controlled performance unavailable",
+    "V05 successor and independent M08 unavailable"
+  ],
+  "recommendedDirection": "Primary should make post-validation authority checks bind immutable pinned inputs while authenticating the expected workflow-owned mutations against the captured originals and validation outputs. Preserve the outer exact-byte restore contract and add an integration test that reaches the explicit controlled throw and a normal end-to-end M07 workflow.",
+  "localAction": "No local source or policy change; preserved both raw failures and exact restoration receipts.",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

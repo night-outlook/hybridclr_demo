@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationResults",
+  "status": "ReturnToPrimary",
+  "handoffHead": "12cf9b25b71bb6fe819b09958a97ab55fb633d7a",
+  "sourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
+  "v00": {
+    "status": "Passed",
+    "candidate": "SourceTargetVerifiedNotBuildAccepted",
+    "tooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "toolReplacementCount": 9,
+    "authenticatedDeletionCount": 2,
+    "editorSourceCompatibility": "Compatible"
+  },
+  "v01": {
+    "status": "Passed",
+    "h1Python": "480/480",
+    "beePrimary": "302/302",
+    "candidateUnityCompileErrors": 0,
+    "toolingUnityCompileErrors": 0,
+    "policyNUnit": "2/2"
+  },
+  "v02": {
+    "status": "Passed",
+    "receiptSha256": "d8e223879f5582c575590b3b94344fe8e6407cba803750c0a6434f6e08e97268",
+    "buildGuid": "d639b0c9cf014c44bc96d26b5441b318",
+    "managedProvenance": "Schema3SourceGraphBound",
+    "captureStore": {
+      "observations": 451,
+      "uniqueObjects": 451,
+      "storedObjects": 451,
+      "logicalBytes": 318212421,
+      "storedBytes": 72612459,
+      "status": "StoreVerifiedNotAcceptance"
+    }
+  },
+  "v03": {
+    "schemaVersion": 1,
+    "kind": "H1V03IndependentSummary",
+    "status": "Passed",
+    "batchStatus": "BuildsAndProvenanceVerifiedNotRuntimeAccepted",
+    "builds": [
+      {
+        "role": "candidate",
+        "feature": "on",
+        "cpp": "Debug",
+        "receiptSha256": "b0dc60fc4eff19c6445cb5bb67854aba9cf765bb1f4547879d2e26637667714b",
+        "buildGuid": "bd08390415bc4e8584302867cc854629",
+        "nativeStatus": "Passed",
+        "managedStatus": "SourceGraphBound",
+        "toolingBindingStatus": "ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted"
+      },
+      {
+        "role": "candidate",
+        "feature": "on",
+        "cpp": "Release",
+        "receiptSha256": "efeb087d88ebcf9f4e38824c67f76de795645d740c92ac95fd14d2a5c6bd8082",
+        "buildGuid": "9c7b5a905e0c4df48ae50c248696b26a",
+        "nativeStatus": "Passed",
+        "managedStatus": "SourceGraphBound",
+        "toolingBindingStatus": "ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted"
+      },
+      {
+        "role": "candidate",
+        "feature": "off",
+        "cpp": "Debug",
+        "receiptSha256": "ec2b04ad4faf95edab467053298cead7a69a1d9d82dcecaf49d9eb63b08243c1",
+        "buildGuid": "63a251599c924bd88a0c9104c337e993",
+        "nativeStatus": "Passed",
+        "managedStatus": "SourceGraphBound",
+        "toolingBindingStatus": "ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted"
+      },
+      {
+        "role": "candidate",
+        "feature": "off",
+        "cpp": "Release",
+        "receiptSha256": "c663d6f8469fb5b0bdd61b0a8c00cbbc12c7c2c7e9ff96e49155ccebf911f018",
+        "buildGuid": "4f5bf7acca064e87a064c5beca8afd79",
+        "nativeStatus": "Passed",
+        "managedStatus": "SourceGraphBound",
+        "toolingBindingStatus": "ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted"
+      },
+      {
+        "role": "reproduction",
+        "feature": "on",
+        "cpp": "Debug",
+        "receiptSha256": "505249186b7aab356e25b11b95750e3122350afd687d45fa82bc72ac3451a9d0",
+        "buildGuid": "9f91d210e5704fb5ad5eb0135434a8df",
+        "nativeStatus": "Passed",
+        "managedStatus": "SourceGraphBound",
+        "toolingBindingStatus": "ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted"
+      },
+      {
+        "role": "reproduction",
+        "feature": "on",
+        "cpp": "Release",
+        "receiptSha256": "f6bc036b3bd4ed1c6c236cbee3b76c4c225ddabc273d792d977d0382203487ea",
+        "buildGuid": "4e324dcd330d440eaf0208a4f7fbe86c",
+        "nativeStatus": "Passed",
+        "managedStatus": "SourceGraphBound",
+        "toolingBindingStatus": "ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted"
+      }
+    ],
+    "candidateCompilerModes": 4,
+    "reproductionCompilerModes": 2,
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "v04": {
+    "status": "FailedPartial",
+    "candidateCount132": "132/132 Passed",
+    "unfixedReproduction8": {
+      "AssertAbort": 2,
+      "UnexpectedAccepted": 6
+    },
+    "controlledRecovery": {
+      "status": "Failed",
+      "failureStage": "post-ValidateCompilerInputs pinned-input recheck",
+      "observedFailure": "Working bytes do not match pinned Git blob: Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+      "explicitControlledFailureReached": false,
+      "validateCompilerInputs": "Succeeded",
+      "restoration": {
+        "schemaVersion": 1,
+        "kind": "M07OuterFailureRestoration",
+        "status": "ExactBytesRestored",
+        "files": [
+          {
+            "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+            "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+            "beforeRestoreSha256": "82e3b3bb29be3cf82b80150e6071860c93d1560428b316283bc088eb300a84ac",
+            "restoredSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35"
+          },
+          {
+            "path": "ProjectSettings/AssemblyShadowSettings.asset",
+            "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+            "beforeRestoreSha256": "4e736cd079f6c8680969e8abbb301246b3d5d5a51d9f67484dc474644a1a0aad",
+            "restoredSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67"
+          },
+          {
+            "path": "ProjectSettings/EditorBuildSettings.asset",
+            "originalSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35",
+            "beforeRestoreSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35",
+            "restoredSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+          }
+        ]
+      }
+    },
+    "normalM07": {
+      "status": "Failed",
+      "failureStage": "post-ValidateCompilerInputs pinned-input recheck",
+      "validateCompilerInputs": "Succeeded",
+      "baselineResources": "NotRun",
+      "restoration": {
+        "schemaVersion": 1,
+        "kind": "M07OuterFailureRestoration",
+        "status": "ExactBytesRestored",
+        "files": [
+          {
+            "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+            "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+            "beforeRestoreSha256": "854b8619748993216e38943aae32c48f9d3c43d6b1ff383c9efc090607e5b5ff",
+            "restoredSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35"
+          },
+          {
+            "path": "ProjectSettings/AssemblyShadowSettings.asset",
+            "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+            "beforeRestoreSha256": "d3020c91889480ddf263632fe32014f69acf72532b4a9af2a236befc656bce6c",
+            "restoredSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67"
+          },
+          {
+            "path": "ProjectSettings/EditorBuildSettings.asset",
+            "originalSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35",
+            "beforeRestoreSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35",
+            "restoredSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+          }
+        ]
+      }
+    },
+    "startup11": "Blocked / NotRun",
+    "capacity8192_8193": "Blocked / NotRun",
+    "remainingCoverage": "Blocked / NotRun",
+    "performance": "Blocked / NotRun"
+  },
+  "v05": {
+    "status": "Blocked / NotRun",
+    "independentM08": "NotRun",
+    "reason": "V04 controlled and normal M07 chains fail after successful ValidateCompilerInputs."
+  },
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
