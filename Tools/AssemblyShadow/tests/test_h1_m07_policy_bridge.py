@@ -85,12 +85,29 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
         self.assertLess(invoke, restore_env)
         validate = core.index("Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs'")
         resources = core.index("Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildBaselineResources'")
-        player_on = core.index("Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline'")
-        player_off = core.index("Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer'")
+        player_on = core.index("Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline'")
+        player_off = core.index("Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer'")
         self.assertLess(validate, resources)
         self.assertLess(resources, player_on)
         self.assertLess(player_on, player_off)
         self.assertGreaterEqual(core[validate:player_off].count('Assert-M07PinnedInputs $shadowProject'), 3)
+        self.assertIn("$relative = 'Assets/HybridCLRGenerate/link.xml'", core)
+        self.assertEqual(2, core.count("Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.Build"))
+        for value in (
+            "kind = 'M07GeneratedPlayerInputRestoration'",
+            "status = 'ExactBytesRestored'",
+            "generatedSha256 = Get-M07BytesHash $generated",
+            "restoredSha256 = $restoredSha",
+            "if ($stageFailure) { throw $stageFailure }"):
+            self.assertIn(value, core)
+        recovery = core.index('function Invoke-M07PlayerMethodWithGeneratedInputRecovery')
+        snapshot = core.index('$original = [IO.File]::ReadAllBytes($path)', recovery)
+        invoke_player = core.index('Invoke-M07GuardedMethod $Method', snapshot)
+        restore = core.index('$file.Write($saved, 0, $saved.Length)', invoke_player)
+        receipt = core.index("kind = 'M07GeneratedPlayerInputRestoration'", restore)
+        self.assertLess(snapshot, invoke_player)
+        self.assertLess(invoke_player, restore)
+        self.assertLess(restore, receipt)
         verifier = (ROOT / 'Tools/AssemblyShadow/verify-installed-runtime.py').read_text()
         self.assertIn('verify_m07_workflow', verifier)
         self.assertIn('--skip-demo-source', verifier)

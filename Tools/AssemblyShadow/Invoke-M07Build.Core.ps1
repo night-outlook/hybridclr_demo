@@ -61,6 +61,78 @@ function Invoke-M07GuardedMethod {
     if (Test-UnityProjectRunning -ProjectPath $Project) { throw "$Method returned before its Unity process exited." }
 }
 
+function Invoke-M07PlayerMethodWithGeneratedInputRecovery {
+    param(
+        [string]$Method,
+        [string]$Project,
+        [string]$MethodScript,
+        [int]$Timeout,
+        [string]$Target,
+        [string[]]$Arguments,
+        [string]$Run,
+        [ValidateSet('native-on', 'native-off')][string]$Label
+    )
+    if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot snapshot $Label generated input while this project is open." }
+    $relative = 'Assets/HybridCLRGenerate/link.xml'
+    $path = Assert-M07RegularPath (Join-Path $Project $relative)
+    $original = [IO.File]::ReadAllBytes($path)
+    $originalSha = Get-M07BytesHash $original
+    $backupPath = Join-Path $Run ($Label + '-link-xml.original')
+    $backup = [IO.File]::Open($backupPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try { $backup.Write($original, 0, $original.Length); $backup.Flush($true) }
+    finally { $backup.Dispose() }
+
+    $stageFailure = $null
+    $restoreFailure = $null
+    try {
+        Invoke-M07GuardedMethod $Method $Project $MethodScript $Timeout $Target $Arguments
+    }
+    catch { $stageFailure = $_ }
+    finally {
+        try {
+            if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot restore $Label generated input until its Unity process exits." }
+            $saved = [IO.File]::ReadAllBytes($backupPath)
+            if ((Get-M07BytesHash $saved) -cne $originalSha) { throw "$Label generated-input backup changed." }
+            $generated = [IO.File]::ReadAllBytes($path)
+            $generatedPath = Join-Path $Run ($Label + '-link-xml.generated')
+            $evidence = [IO.File]::Open($generatedPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+            try { $evidence.Write($generated, 0, $generated.Length); $evidence.Flush($true) }
+            finally { $evidence.Dispose() }
+            $file = [IO.File]::Open($path, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+            try {
+                $file.Position = 0
+                $file.Write($saved, 0, $saved.Length)
+                $file.SetLength($saved.Length)
+                $file.Flush($true)
+            }
+            finally { $file.Dispose() }
+            $restoredSha = Get-M07BytesHash ([IO.File]::ReadAllBytes($path))
+            if ($restoredSha -cne $originalSha) { throw "$Label generated-input exact-byte restore failed." }
+            $receipt = [ordered]@{
+                schemaVersion = 1
+                kind = 'M07GeneratedPlayerInputRestoration'
+                status = 'ExactBytesRestored'
+                stage = $Label
+                method = $Method
+                path = $relative
+                originalSha256 = $originalSha
+                generatedSha256 = Get-M07BytesHash $generated
+                generatedBytes = $generated.Length
+                changed = (Get-M07BytesHash $generated) -cne $originalSha
+                restoredSha256 = $restoredSha
+            }
+            $receiptPath = Join-Path $Run ($Label + '-link-xml-restored.json')
+            $receiptBytes = [Text.UTF8Encoding]::new($false).GetBytes(($receipt | ConvertTo-Json -Depth 5) + "`n")
+            $receiptFile = [IO.File]::Open($receiptPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+            try { $receiptFile.Write($receiptBytes, 0, $receiptBytes.Length); $receiptFile.Flush($true) }
+            finally { $receiptFile.Dispose() }
+        }
+        catch { $restoreFailure = $_ }
+    }
+    if ($restoreFailure) { throw "$Method failed or completed but $Label generated-input recovery failed. Stage: $stageFailure Recovery: $restoreFailure" }
+    if ($stageFailure) { throw $stageFailure }
+}
+
 function Assert-M07PinnedInputs {
     param([string]$Project)
     $python = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -181,9 +253,9 @@ try {
     Assert-M07PinnedInputs $shadowProject
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildBaselineResources' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowM07ResourceOutput', $resourceRoot))
     Assert-M07PinnedInputs $shadowProject
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $onOutput))
+    Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $onOutput)) $run 'native-on'
     Assert-M07PinnedInputs $shadowProject
-    Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $offOutput))
+    Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $offOutput)) $run 'native-off'
     Assert-M07PinnedInputs $shadowProject
 
     Save-M07OriginalSettings $shadowProject $run
