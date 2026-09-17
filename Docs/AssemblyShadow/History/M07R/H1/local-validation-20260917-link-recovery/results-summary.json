@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationLinkRecoverySummary",
+  "recordedDate": "2026-09-17",
+  "candidateCheckoutCommit": "65d8b25b0d98ef47f63d2a3df8c94ed97eedbe4c",
+  "sourceAnchor": "68df00fe31a199491b313cc17f25575663b7452b",
+  "m07Normal": {
+    "result": "Passed",
+    "baselineId": "M07-Baseline-Consolidation-Recovery-Normal-20260917C",
+    "nativeOn": true,
+    "nativeOff": true,
+    "structuralFixtures": true,
+    "editorReplay": true,
+    "linkXmlRestored": true,
+    "workflowInputsRestored": true
+  },
+  "startup11": {
+    "result": "BlockedPreLaunch",
+    "reason": "Fresh AssemblyShadowDemo.Bootstrap.dll uses #- metadata with 1675 MethodPtr rows; strict verifier rejects pointer tables."
+  },
+  "capacity": {
+    "result": "Blocked",
+    "corpusRecoveredAndVerified": true,
+    "entryCount": 8192,
+    "totalBytes": 536870912,
+    "reason": "Startup/control capsule verifier blocker prevents provenance-bound diagnostic chain."
+  },
+  "retainedNative": {
+    "result": "PassedExceptDenseParserUnavailable",
+    "passed": [
+      "M03",
+      "M03 visibility corrected",
+      "M04",
+      "M05",
+      "M06",
+      "R01B attribute batch",
+      "R01B constraint",
+      "R01B index range",
+      "R01B index runtime",
+      "R01B type cache",
+      "R01B live capability",
+      "R01B codec kernel"
+    ],
+    "unavailable": [
+      "R01B parser dense adjunct"
+    ]
+  },
+  "denseFixtures": {
+    "result": "Unavailable",
+    "reason": "Cleanup archive retained the manifest and historical PASS but omitted both sealed 1 MiB DLL bytes."
+  },
+  "oldPlayer": "NotRunBlockedByFreshCurrentCapsuleChain",
+  "performance": "NotRunBlockedByFreshCurrentCapsuleChain",
+  "v05": "NotRun",
+  "m08": "NotRun",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "rawArchive": {
+    "path": "raw-evidence.tar.gz",
+    "sha256": "bce4e9c4244fed7da831e3fa4357f7a763cbe5132fbdf5f5004703b70c8f89fd",
+    "sizeBytes": 2413163
+  }
+}
