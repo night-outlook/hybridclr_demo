@@ -47,7 +47,7 @@ function Save-M07WorkflowInputs {
 }
 
 function Restore-M07WorkflowInputs {
-    param([string]$Project, [string]$Root, [object[]]$State)
+    param([string]$Project, [string]$Root, [object[]]$State, [bool]$WorkflowFailed)
     if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Cannot restore M07 workflow inputs until every owned Unity process exits.' }
     if ($State.Count -ne 3) { throw 'M07 workflow input snapshot is incomplete.' }
     $rows = @()
@@ -80,7 +80,13 @@ function Restore-M07WorkflowInputs {
             restoredSha256 = $restoredSha
         }
     }
-    $receipt = [ordered]@{ schemaVersion = 1; kind = 'M07OuterFailureRestoration'; status = 'ExactBytesRestored'; files = $rows }
+    $receipt = [ordered]@{
+        schemaVersion = 1
+        kind = $(if ($WorkflowFailed) { 'M07OuterFailureRestoration' } else { 'M07OuterSuccessRestoration' })
+        workflowStatus = $(if ($WorkflowFailed) { 'Failed' } else { 'Passed' })
+        status = 'ExactBytesRestored'
+        files = $rows
+    }
     $receiptPath = Join-Path $Root 'workflow-inputs-restored.json'
     $bytes = [Text.UTF8Encoding]::new($false).GetBytes(($receipt | ConvertTo-Json -Depth 6) + "`n")
     $file = [IO.File]::Open($receiptPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
@@ -154,10 +160,8 @@ catch {
 }
 finally {
     try {
-        if ($workflowFailure) {
-            try { Restore-M07WorkflowInputs -Project $shadowProject -Root $recoveryRoot -State $state }
-            catch { $restoreFailure = $_ }
-        }
+        try { Restore-M07WorkflowInputs -Project $shadowProject -Root $recoveryRoot -State $state -WorkflowFailed ([bool]$workflowFailure) }
+        catch { $restoreFailure = $_ }
     }
     finally {
         if ($null -eq $previousAuthorityRoot) { Remove-Item Env:H1_M07_WORKFLOW_AUTHORITY_ROOT -ErrorAction SilentlyContinue }
@@ -166,5 +170,5 @@ finally {
         else { $env:H1_M07_WORKFLOW_BASELINE_ID = $previousAuthorityBaseline }
     }
 }
-if ($restoreFailure) { throw "M07 workflow failed and outer exact-byte recovery also failed. Workflow: $workflowFailure Recovery: $restoreFailure" }
+if ($restoreFailure) { throw "M07 workflow outer exact-byte recovery failed. Workflow: $workflowFailure Recovery: $restoreFailure" }
 if ($workflowFailure) { throw $workflowFailure }

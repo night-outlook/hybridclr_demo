@@ -37,7 +37,7 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
         self.assertFalse(asmdef['autoReferenced'])
         self.assertIn('UNITY_INCLUDE_TESTS', asmdef['defineConstraints'])
 
-    def test_workflow_failure_wrapper_restores_real_scene_and_settings_inputs(self):
+    def test_workflow_wrapper_restores_real_scene_and_settings_inputs_after_every_exit(self):
         wrapper = (ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
         core_path = ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.Core.ps1'
         self.assertTrue(core_path.is_file())
@@ -54,7 +54,13 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
             'workflow-inputs-restored.json'):
             self.assertIn(value, wrapper)
         self.assertIn("Invoke-M07Build.Core.ps1", wrapper)
-        self.assertIn("if ($workflowFailure)", wrapper)
+        self.assertIn("-WorkflowFailed ([bool]$workflowFailure)", wrapper)
+        self.assertNotIn("if ($workflowFailure) {\n            try { Restore-M07WorkflowInputs", wrapper)
+        self.assertIn("'M07OuterFailureRestoration'", wrapper)
+        self.assertIn("'M07OuterSuccessRestoration'", wrapper)
+        restore = wrapper.index('Restore-M07WorkflowInputs -Project $shadowProject')
+        restore_env = wrapper.index('Remove-Item Env:H1_M07_WORKFLOW_AUTHORITY_ROOT')
+        self.assertLess(restore, restore_env)
         self.assertIn("throw $workflowFailure", wrapper)
         self.assertNotIn('ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset', wrapper)
 
