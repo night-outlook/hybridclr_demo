@@ -1,7 +1,7 @@
 # Current Status
 
 - Published predecessor handoff: `7cb710fa38464b1977a69619fea2b5fc93f79966`
-- Candidate implementation anchor: `4a83a2222be1ccc44f78ae1644abe9f9084adfaa`
+- Candidate implementation anchor: `bbd836747b6d5c8a2d00041d77b2042ca3ccce1b`
 - Gate: `H1 / InProgress / BlockedPendingFreshV00ToV05`
 - Last independent M08: `FAIL`
 - Human gate passed: `false`
