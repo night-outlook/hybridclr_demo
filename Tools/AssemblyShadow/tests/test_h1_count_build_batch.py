@@ -90,14 +90,14 @@ class BatchTests(unittest.TestCase):
 
 class HandoffMetadataTests(unittest.TestCase):
     def test_only_fixed_handoff_files_are_metadata(self):
-        for name in ('WEB_TO_LOCAL.md','LOCAL_VALIDATION.md','RETURN_TO_WEB.md','preflight.json','source-targets.json'):
-            self.assertTrue(s.metadata_only('Documents/AgentHandoff/'+name))
+        for name in ('WEB_TO_LOCAL.md','LOCAL_VALIDATION.md','RETURN_TO_WEB.md','source-targets.json'):
+            self.assertTrue(s.metadata_only('Docs/AssemblyShadow/Handoff/'+name))
     def test_handoff_directory_does_not_hide_code(self):
-        for name in ('runner.py','payload.cs','WEB_TO_LOCAL.md.cs','sub/WEB_TO_LOCAL.md','../WEB_TO_LOCAL.md'):
-            self.assertFalse(s.metadata_only('Documents/AgentHandoff/'+name))
+        for name in ('runner.py','payload.cs','WEB_TO_LOCAL.md.cs','sub/WEB_TO_LOCAL.md','../WEB_TO_LOCAL.md','preflight.json'):
+            self.assertFalse(s.metadata_only('Docs/AssemblyShadow/Handoff/'+name))
     def test_unrelated_documents_and_case_variations_not_exempt(self):
         self.assertFalse(s.metadata_only('Documents/Other.md'))
-        self.assertFalse(s.metadata_only('documents/AgentHandoff/WEB_TO_LOCAL.md'))
+        self.assertFalse(s.metadata_only('docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'))
     def test_previous_pin_and_project_docs_policy_preserved(self):
         self.assertTrue(s.metadata_only(s.PINS));self.assertTrue(s.metadata_only('Docs/AssemblyShadow/existing.json'))
 

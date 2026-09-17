@@ -13,9 +13,7 @@ import h1_count_manifest as manifest
 from shadow_tools import VerificationError
 
 
-FIXTURE_MANIFEST = Path(
-    "/Users/ah/GitHub/hybridclr/h1r-coordination-20260910/"
-    "parameter-fixtures-next/h1-count-fixture-manifest.json")
+FIXTURE_MANIFEST = (Path(__file__).resolve().parent / "fixtures/h1/parameter-count-fixture-manifest.json")
 
 
 def read_fixture_manifest():

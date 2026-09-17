@@ -11,9 +11,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import h1_paired_performance as analysis
 from shadow_tools import VerificationError
 
-ROOT = Path("/Users/ah/GitHub/hybridclr")
-PROTOCOL = ROOT / "h1r-execution-20260910/performance-protocol.preregistered.json"
-SCHEDULE = ROOT / "h1r-coordination-20260910/performance-schedule.preregistered.json"
+FIXTURES = Path(__file__).resolve().parent / "fixtures/h1"
+PROTOCOL = FIXTURES / "performance-protocol.preregistered.json"
+SCHEDULE = FIXTURES / "performance-schedule.preregistered.json"
 
 
 def sha(path):

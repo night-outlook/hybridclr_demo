@@ -12,8 +12,8 @@ from pathlib import Path
 import re
 import shadow_tools as s
 
-WEB='Documents/AgentHandoff/WEB_TO_LOCAL.md'
-TARGETS='Documents/AgentHandoff/source-targets.json'
+WEB='Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+TARGETS='Docs/AssemblyShadow/Handoff/source-targets.json'
 REQUIRED_SECTIONS=('## Objective','## Source targets','## Implementation','## Local validation',
                    '## Failure evidence','## Alternatives','## Risks','## Local correction boundary','## Human review gate')
 

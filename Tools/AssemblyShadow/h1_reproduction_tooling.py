@@ -18,7 +18,7 @@ import re
 
 import shadow_tools as s
 
-TARGETS = 'Documents/AgentHandoff/source-targets.json'
+TARGETS = 'Docs/AssemblyShadow/Handoff/source-targets.json'
 REPOSITORY = 'night-outlook/hybridclr_demo'
 ORIGINS = ('git@github.com:night-outlook/hybridclr_demo.git',
            'https://github.com/night-outlook/hybridclr_demo.git',

@@ -1,6 +1,0 @@
-#ifndef IL2CPP_DEBUG
-#define IL2CPP_DEBUG 0
-#endif
-#ifndef IL2CPP_DEVELOPMENT
-#define IL2CPP_DEVELOPMENT 0
-#endif

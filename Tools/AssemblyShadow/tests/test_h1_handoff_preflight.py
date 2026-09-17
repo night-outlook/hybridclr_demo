@@ -43,7 +43,7 @@ class HandoffTests(unittest.TestCase):
         (self.root/h.WEB).write_text((self.root/h.WEB).read_text()+'\nvalidated note');self.commit()
         h.verify(self.root,'candidate')
     def test_unrecognized_code_in_handoff_not_excluded(self):
-        (self.root/'Documents/AgentHandoff/runner.py').write_text('pass');self.commit()
+        (self.root/'Docs/AssemblyShadow/Handoff/runner.py').write_text('pass');self.commit()
         with self.assertRaisesRegex(RuntimeError,'build-input'):h.verify(self.root,'candidate')
     def test_wrong_origin_blocks(self):
         self.git('remote','set-url','origin','https://github.com/other/demo')

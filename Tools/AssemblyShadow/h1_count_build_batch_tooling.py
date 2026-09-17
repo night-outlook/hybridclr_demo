@@ -64,7 +64,7 @@ def verify_build(project,receipt,out,expected_pin):
     receipt_sha=digest(receipt.read_bytes())
     target_sha=handoff.get('sourceTargetSha256')
     if target_sha is None:
-        target_sha=handoff.get('handoffHashes',{}).get('Documents/AgentHandoff/source-targets.json')
+        target_sha=handoff.get('handoffHashes',{}).get('Docs/AssemblyShadow/Handoff/source-targets.json')
     binding={'schemaVersion':1,'kind':'H1ValidationToolingBinding',
              'status':'ToolingBoundToVerifiedBuildReceiptNotRuntimeAccepted','role':role,
              'buildReceiptPath':str(receipt),'buildReceiptSha256':receipt_sha,

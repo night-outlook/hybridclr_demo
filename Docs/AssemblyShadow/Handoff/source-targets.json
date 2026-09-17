@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "kind": "PrimaryImplementationSourceTargets",
+  "unityVersion": "2022.3.62f2",
+  "target": "StandaloneOSX",
+  "architecture": "arm64",
+  "demoTargets": {
+    "candidate": {
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "codeCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
+      "implementationCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
+      "runtimePins": {
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+        }
+      }
+    },
+    "reproduction": {
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-h1-count-repro",
+      "publishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
+      "codeCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
+      "preservationPolicy": "The protected reproduction branch/head and unfixed behavior/runtime pins must not move. Validation tooling is authenticated separately and never becomes behavior authority.",
+      "runtimePins": {
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+        }
+      },
+      "validationTooling": {
+        "repository": "night-outlook/hybridclr_demo",
+        "branch": "codex/assembly-shadow-h1-count-repro-tooling",
+        "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+        "candidateToolSourceAnchor": "21d3d5763ce027185d2e7f777f71545d354d44ec",
+        "files": {
+          "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+          "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
+          "Assets/AssemblyShadowDemo/Editor/H1EvidenceProcess.cs": "f4dccd836bf61076048dba95b4de0c15621bf3be",
+          "Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
+          "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
+          "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
+          "Tools/AssemblyShadow/h1_compiler_actions.py": "e89c97c553793a8866c25b3090972a550f91b751",
+          "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+          "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
+          "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
+          "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
+        },
+        "overrides": {
+          "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+          "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
+          "Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
+          "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
+          "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
+          "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+          "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
+          "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
+          "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
+        },
+        "deletions": [
+          "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs",
+          "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs.meta"
+        ]
+      }
+    }
+  },
+  "performanceReference": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/assembly-shadow-h1-performance-reference",
+    "commit": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
+    "policy": "Preserve its committed old-profile pins; never install candidate runtime into this reference."
+  },
+  "primaryValidation": {
+    "workflowRun": 35195186054,
+    "implementationCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
+    "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
+    "testCount": 311,
+    "passed": 311,
+    "nonpasses": 0,
+    "artifactId": 10485926242,
+    "artifactSha256": "d2486ad13ab52d41b5fcd19ce7902863c2ef8b242b1747ec9f9b1284402be9a5",
+    "scope": "Bounded Primary/tool validation: authenticated Apple Bee fixture planning, native/store/PCH and managed-cache regressions, reproduction-tooling authority, M07 fixed-byte/bootstrap policy, exact restoration, and post-ValidateCompilerInputs immutable/mutable authority split. Not Unity/Apple Player/runtime/performance/M08/human acceptance."
+  },
+  "retentionRepair": {
+    "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
+    "measuredFailedAttemptUniqueBytes": 267613743,
+    "previousAggregateLimitBytes": 268435456,
+    "policy": "Retain every declared native source by raw identity while separating reversible storage representation; success self-authenticates the retained store.",
+    "limits": {
+      "maxFileBytes": 67108864,
+      "maxLogicalUniqueBytes": 2147483648,
+      "maxStoredBytes": 536870912,
+      "maxObservations": 4096
+    }
+  },
+  "managedCacheRepair": {
+    "returnedByLocalValidationCommit": "7f98084518054bd43e10abb603fe193612cfb321",
+    "previousSourceAnchor": "91ebef56eaa7034ed49e80bced422ea4c067d2fe",
+    "policy": "Fresh managed provenance may prove a unique changed graph or an unchanged Bee cache chain bound exactly to fresh Player path/hash/size; cache proof never claims fresh Csc execution."
+  },
+  "managedResponseScopeRepair": {
+    "returnedByLocalValidationCommit": "dc9116a46097739b634c791ac7213f431b54af22",
+    "previousSourceAnchor": "0387feb4344bbe95fd7db524d6e0bae759adc203",
+    "schemaVersion": 3,
+    "policy": "Cached response stability follows exactly each selected required compiler action's recursive response closure; unrelated DAG responses remain audit-only."
+  },
+  "reproductionToolingRepair": {
+    "returnedByLocalValidationCommit": "9dbe8ee7549b105a29a94bd7ec7383b2909ba066",
+    "protectedReproductionHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
+    "toolingBranch": "codex/assembly-shadow-h1-count-repro-tooling",
+    "firstToolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
+    "policy": "Separate protected reproduction behavior authority from candidate-authenticated validation tooling and bind fresh reproduction receipts to that tooling identity."
+  },
+  "reproductionToolingCompatibilityRepair": {
+    "returnedByLocalValidationCommit": "cef1ec761e268ebbb699cc16b6ab037d7bc5a482",
+    "previousToolingRevision": "0c9c2508d94a097dff50028212a01695c8e29c60",
+    "toolingRevision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+    "policy": "Authenticate nine tooling replacements plus deletion of obsolete H1ManagedSourceProvenanceTests.cs and its .meta; audit assembled Editor source compatibility before build acceptance."
+  },
+  "m07FixedBootstrapRepair": {
+    "returnedByLocalValidationCommit": "d8349b3facaa5d420ec41a484854a9bba9e6c1a4",
+    "previousSourceAnchor": "3242b071540278510ea4ae287c70e37fc4c60340",
+    "policy": "Keep BootstrapIsolationRule and FixedAssemblyBytes fail-closed; declare only the two target-qualified representations of the exact reviewed H1 fixed-byte callsite.",
+    "fixedByteSite": {
+      "id": "h1-count-ordinary-witness-image",
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "callSite": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
+      "provider": "AssemblyShadowBaseline.HotUpdate",
+      "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "originalMethodHash": "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e",
+      "additionalMethodHash": "4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e",
+      "operationIndex": 25,
+      "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+      "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "sourceEvidenceTarget": "image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4"
+    }
+  },
+  "m07EditorTestAsmdefRepair": {
+    "returnedByLocalValidationCommit": "1d0be06d5dc61eb963a13a72061be82f8fd04bf4",
+    "previousSourceAnchor": "29261690798059077e5263de71526867a32bce30",
+    "changedPath": "Assets/AssemblyShadowDemo/Tests/Editor/AssemblyShadowDemo.EditorTests.asmdef",
+    "requiredReference": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+    "scope": "Editor test assembly only",
+    "policy": "Retain one direct CodeGen reference because Unity asmdef references are non-transitive; preserve Editor/UNITY_INCLUDE_TESTS/autoReferenced=false boundaries."
+  },
+  "m07PostValidationAuthorityRepair": {
+    "returnedByLocalValidationCommit": "e053b1803b2dd94fa818714c4b79e53220f246b8",
+    "previousSourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
+    "failure": "Real ValidateCompilerInputs legitimately mutated the M07 bootstrap scene and AssemblyShadow settings, after which both controlled and normal workflows failed because the full demo-source verifier compared those intentional workflow bytes to the source-anchor blobs.",
+    "policy": "Do not weaken the global verifier. During the outer M07 wrapper lifetime only, pre-mutation checks remain the full generic verifier. After a required workflow-owned mutation, each repeated guard requires both the generic installed-runtime/native/package proof with demo-source skipped and a separate M07 demo authority proof that byte-verifies every non-mutable demo build input, authenticates the saved originals of the exact three mutable paths to source-anchor Git blobs, and requires both baseline-bound mutable files to differ from their originals and contain the requested baseline ID. Partial mutation, wrong baseline, backup tamper, immutable-source tamper, untracked code, or caller-requested demo skip all fail closed.",
+    "mutablePaths": [
+      "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+      "ProjectSettings/AssemblyShadowSettings.asset",
+      "ProjectSettings/EditorBuildSettings.asset"
+    ],
+    "baselineBoundMutationRequired": [
+      "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+      "ProjectSettings/AssemblyShadowSettings.asset"
+    ],
+    "wrapperContext": {
+      "rootEnvironment": "H1_M07_WORKFLOW_AUTHORITY_ROOT",
+      "baselineEnvironment": "H1_M07_WORKFLOW_BASELINE_ID",
+      "scope": "Invoke-M07Build.ps1 process lifetime only"
+    },
+    "controlledExpectedFailure": "Controlled M07 failure after successful ValidateCompilerInputs for exact-byte restoration verification."
+  },
+  "gateState": {
+    "name": "H1",
+    "status": "InProgress",
+    "technicalReadiness": "BlockedPendingFreshV00ToV05",
+    "lastIndependentM08": "FAIL",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  }
+}

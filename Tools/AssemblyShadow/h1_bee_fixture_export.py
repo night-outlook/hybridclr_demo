@@ -10,7 +10,7 @@ import json
 from pathlib import Path, PurePosixPath
 import tarfile
 
-ARCHIVE = 'Documents/AgentHandoff/local-validation-20260914-bec2bd1/fresh-smoke-failure-inputs.tar.gz'
+ARCHIVE = 'Docs/AssemblyShadow/Evidence/fixtures/fresh-smoke-failure-inputs.tar.gz'
 EXPECTED = 'e3549743a39b44e865a6015f1f16ed151cb47c038d0542d351d3622d8a5e54d8'
 GRAPH = 'dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181'
 

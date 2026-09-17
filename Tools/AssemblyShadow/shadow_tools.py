@@ -62,14 +62,21 @@ def git(root, *args):
     return command(["git", "-C", str(root), *args])
 
 
-# Exact handoff documents only. Executables, arbitrary JSON/configuration, and
-# path lookalikes under Documents remain pinned build inputs.
-HANDOFF_METADATA = frozenset("Documents/AgentHandoff/" + name for name in (
-    "WEB_TO_LOCAL.md", "LOCAL_VALIDATION.md", "RETURN_TO_WEB.md", "preflight.json", "source-targets.json"))
+# Exact live handoff documents only. The handoff directory is inside the broader
+# documentation tree, so arbitrary files placed beside these four authorities
+# must remain pinned build inputs. Historical project documentation elsewhere
+# under Docs/AssemblyShadow remains metadata-only as before the consolidation.
+HANDOFF_PREFIX = "Docs/AssemblyShadow/Handoff/"
+HANDOFF_METADATA = frozenset(HANDOFF_PREFIX + name for name in (
+    "WEB_TO_LOCAL.md", "LOCAL_VALIDATION.md", "RETURN_TO_WEB.md", "source-targets.json"))
 
 
 def metadata_only(path):
-    return path == PINS or path.startswith("Docs/AssemblyShadow/") or path in HANDOFF_METADATA
+    if path == PINS:
+        return True
+    if path.startswith(HANDOFF_PREFIX):
+        return path in HANDOFF_METADATA
+    return path.startswith("Docs/AssemblyShadow/")
 
 
 def safe_file(root, relative):

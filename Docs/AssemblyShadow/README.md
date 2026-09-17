@@ -1,0 +1,11 @@
+# HybridCLR Assembly Shadow
+
+This directory is the canonical project documentation root.
+
+- `Plan/`: authoritative design, roadmap, stage specifications, and review gates.
+- `Handoff/`: live Primary Implementation and Local Validation contract.
+- `Architecture/`: durable architecture decisions.
+- `History/`: compact historical reports and current H1 summaries.
+- `Evidence/`: Git and local-archive catalogs plus protected pins.
+
+Historical evidence retains its original status. H1 is not approved and R02 must not begin.
