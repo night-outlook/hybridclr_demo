@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Fail-closed M07 post-ValidateCompilerInputs demo-source authority.
+"""Fail-closed M07 workflow authority for intentionally mutable demo inputs.
 
-This verifier is intentionally narrower than generic demo-source verification:
-exactly three workflow-owned files may differ from the pinned demo source after
+Exactly three workflow-owned files may differ from the pinned demo source after
 M07 Configure/ValidateCompilerInputs. Their saved pre-workflow originals must
-still authenticate to the source-anchor Git blobs, while every other demo build
-input remains byte-identical to the source anchor.
+authenticate to the source-anchor Git blobs, while every other demo build input
+remains byte-identical to the source anchor.
 """
 from __future__ import annotations
 
@@ -60,10 +59,9 @@ def _demo_entry(project: Path) -> dict:
     return entry
 
 
-def verify(project: Path, recovery_root: Path, baseline_id: str) -> dict:
+def _context(project: Path, recovery_root: Path):
     project = project.resolve()
     recovery_root = recovery_root.resolve()
-    require(BASELINE_RE.fullmatch(baseline_id) is not None, "Unsafe M07 baseline identity")
     require(project.is_dir() and not project.is_symlink(), "M07 project root is missing or linked")
     require(recovery_root.is_dir() and not recovery_root.is_symlink(), "M07 recovery root is missing or linked")
     actual_root = Path(git(project, "rev-parse", "--show-toplevel").decode().strip()).resolve()
@@ -72,18 +70,49 @@ def verify(project: Path, recovery_root: Path, baseline_id: str) -> dict:
     entry = _demo_entry(project)
     revision = entry["revision"].lower()
     git(project, "merge-base", "--is-ancestor", revision, "HEAD")
-
     pinned = {path: oid for path, oid in tree(project, revision).items() if not metadata_only(path)}
     current = {path: oid for path, oid in tree(project, "HEAD").items() if not metadata_only(path)}
     require(pinned == current, "Demo HEAD contains build-input changes after the source pin")
     require(set(MUTABLE).issubset(pinned), "Pinned demo source is missing an exact M07 mutable input")
 
-    # Source pins are metadata by the general source verifier, but once this M07
-    # workflow starts they are immutable authority input. Bind the working bytes
-    # to the final committed handoff bytes as well.
     head_pins = tree(project, "HEAD").get(PINS)
     require(head_pins is not None, "Final HEAD does not contain AssemblyShadowSourcePins.json")
     verify_blob(_regular_file(project, PINS), head_pins)
+    return project, recovery_root, revision, pinned
+
+
+def authenticate_originals(project: Path, recovery_root: Path) -> dict:
+    project, recovery_root, revision, pinned = _context(project, recovery_root)
+    rows = []
+    for relative, backup_name in MUTABLE.items():
+        backup_path = _regular_file(recovery_root, backup_name)
+        original_sha = verify_blob(backup_path, pinned[relative])
+        current_path = _regular_file(project, relative)
+        current_sha = sha256(current_path.read_bytes())
+        rows.append({
+            "path": relative,
+            "backup": backup_name,
+            "originalSha256": original_sha,
+            "currentSha256": current_sha,
+            "changed": current_sha != original_sha,
+        })
+    return {
+        "project": project,
+        "recoveryRoot": recovery_root,
+        "sourceRevision": revision,
+        "pinned": pinned,
+        "mutablePaths": rows,
+        "requiredMutationObserved": any(row["changed"] and row["path"] in BASELINE_BOUND for row in rows),
+    }
+
+
+def verify(project: Path, recovery_root: Path, baseline_id: str) -> dict:
+    require(BASELINE_RE.fullmatch(baseline_id) is not None, "Unsafe M07 baseline identity")
+    context = authenticate_originals(project, recovery_root)
+    project = context["project"]
+    recovery_root = context["recoveryRoot"]
+    revision = context["sourceRevision"]
+    pinned = context["pinned"]
 
     immutable_count = 0
     for path, oid in pinned.items():
@@ -106,12 +135,12 @@ def verify(project: Path, recovery_root: Path, baseline_id: str) -> dict:
     mutable_rows = []
     changed_required = set()
     baseline_bytes = baseline_id.encode("utf-8")
+    originals = {row["path"]: row for row in context["mutablePaths"]}
     for relative, backup_name in MUTABLE.items():
         current_path = _regular_file(project, relative)
-        backup_path = _regular_file(recovery_root, backup_name)
-        original_sha = verify_blob(backup_path, pinned[relative])
         current_bytes = current_path.read_bytes()
         current_sha = sha256(current_bytes)
+        original_sha = originals[relative]["originalSha256"]
         changed = current_sha != original_sha
         if relative in BASELINE_BOUND:
             require(changed, f"Required M07 workflow mutation did not occur: {relative}")
