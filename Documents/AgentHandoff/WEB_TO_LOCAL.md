@@ -2,21 +2,23 @@
 
 ## Objective
 
-Resume HybridCLR Assembly Shadow R01B H1 validation from the M07 fixed-byte/bootstrap-policy blocker returned by Local Validation commit `d8349b3facaa5d420ec41a484854a9bba9e6c1a4`.
+Resume HybridCLR Assembly Shadow R01B H1 validation from Local Validation return commit:
+
+`1d0be06d5dc61eb963a13a72061be82f8fd04bf4`
 
 Authoritative candidate source / implementation anchor:
 
-`29261690798059077e5263de71526867a32bce30`
+`f59b0d8d171340951157b01b583df17e380d6f55`
 
 Repository / branch:
 
 `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1`
 
-The previous Local cycle empirically passed V00–V03, candidate count 132/132, and captured all eight unfixed reproduction cells. It then failed closed in real Unity M07 policy validation because `AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness` was not represented in the global bootstrap-entrypoint policy even though the exact fixed assembly bytes were already authenticated by `h1-count-ordinary-witness-image`.
+Local correctly added the bounded direct `Unity.HybridCLR.AssemblyShadow.CodeGen` reference to `AssemblyShadowDemo.EditorTests.asmdef`. Real Unity compilation then passed and `M07FixedByteBootstrapPolicyTests` passed 2/2; the previous source authority rejected the changed bytes exactly as designed.
 
-Primary reconciled the two policy layers without changing the shared package/global rule or adding a broad exception. It also corrected M07 failure recovery to restore the exact scene/settings bytes observed mutated by Local.
+Primary reviewed and retained that fix, added a regression that locks its Editor/test-only scope, and added a deterministic V04 controlled-failure path that can prove exact restoration **after real M07 configuration mutation**.
 
-Run fresh **V00–V05**. Preserve every historical checkpoint, including the valid empirical evidence from `local-validation-20260916-e96bc07`, but do not relabel old-source evidence as current-anchor acceptance.
+Run fresh **V00–V05**. Preserve all historical checkpoints/evidence, including the valid Local correction evidence at `local-validation-20260916-a42b205`, but do not relabel old-source results as current-anchor acceptance.
 
 H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. **Do not begin R02.**
 
@@ -25,8 +27,8 @@ Read first:
 - `Documents/AgentHandoff/LOCAL_VALIDATION.md`
 - `Documents/AgentHandoff/RETURN_TO_WEB.md`
 - `Documents/AgentHandoff/source-targets.json`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-e96bc07/README.md`
-- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/m07-fixed-bootstrap-primary-20260916/`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260916-a42b205/`
+- `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/m07-codegen-test-reference-primary-20260916/`
 
 Git is the authority. Do not apply unpublished patches or mutate protected branches/pins.
 
@@ -36,7 +38,7 @@ Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 
 | Role | Repository / branch | Exact identity |
 | --- | --- | --- |
-| Candidate source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `29261690798059077e5263de71526867a32bce30` |
+| Candidate source / implementation | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-r01b-h1` | `f59b0d8d171340951157b01b583df17e380d6f55` |
 | Candidate native | `night-outlook/hybridclr` / `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | Shared package | `night-outlook/hybridclr_unity` / `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | Shared IL2CPP | `night-outlook/il2cpp_plus` / `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -46,130 +48,182 @@ Machine-readable authority: `Documents/AgentHandoff/source-targets.json`.
 | Reproduction native | `night-outlook/hybridclr` / `codex/assembly-shadow-h1-count-repro` | `99cdb1b67e4ed07b70732a2148cb69e079ca41cf` |
 | Performance reference | `night-outlook/hybridclr_demo` / `codex/assembly-shadow-h1-performance-reference` | `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` |
 
-Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**. Candidate `AssemblyShadowSourcePins.json` pins `29261690798059077e5263de71526867a32bce30`. The final branch HEAD is expected to be a later metadata-only handoff successor; record both checkout HEAD and source anchor.
+Unity/target remains **2022.3.62f2 / StandaloneOSX / arm64**.
+
+Candidate `ProjectSettings/AssemblyShadowSourcePins.json` pins source anchor `f59b0d8d...`. The final branch HEAD is a later metadata-only successor; record both checkout HEAD and source anchor.
 
 ## Implementation
 
-### Fixed-byte acquisition + global bootstrap policy
+### Retained direct CodeGen test reference
 
-The existing schema-4 reflection-binding site remains authoritative:
+`Assets/AssemblyShadowDemo/Tests/Editor/AssemblyShadowDemo.EditorTests.asmdef` directly references:
 
-- site: `h1-count-ordinary-witness-image`;
-- consumer: `AssemblyShadowDemo.Bootstrap`;
-- callsite: `AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness`;
-- provider: `AssemblyShadowBaseline.HotUpdate`;
-- original method hash: `fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e`;
-- additional method hash: `4dba51434365b37d22bb2261e1cbea7530fb73a200954039296663c4c94b225e`;
-- operation index: `25`;
-- image path: `Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes`;
-- image SHA-256: `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`;
-- provider identity remains exact.
+`Unity.HybridCLR.AssemblyShadow.CodeGen`
 
-The shared `BootstrapIsolationRule` and package pin are unchanged. `AssemblyShadowDependencies.json` declares **exactly two target-qualified entries** for this one callsite:
+This is required because `M07FixedByteBootstrapPolicyTests.cs` directly imports `HybridCLR.AssemblyShadow.CodeGen`; Unity asmdef references are non-transitive.
 
-1. source/precompile evidence target `image:d60cad840ff603dcfd5d0816196469ecce9576306e5bef2901427a13759d8de4`;
-2. compiled fixed-image target `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`.
+The boundary remains test-only:
 
-No targetless, provider-wide, type-wide, or method-only H1 exemption exists. `M07FixedByteBootstrapPolicyTests` uses the real Unity policy construction/validator, requires the exact binding/entrypoint relationship, and proves another image target remains rejected.
+- platform is exactly `Editor`;
+- `autoReferenced=false`;
+- `UNITY_INCLUDE_TESTS` remains required;
+- exactly one direct CodeGen reference is permitted;
+- no Player/runtime assembly reference was added.
 
-### M07 failure restoration
+Local empirical correction evidence is preserved: after this one-line fix the candidate compiled in real Unity 2022.3.62f2 with zero errors and `M07FixedByteBootstrapPolicyTests` passed **2/2**. That result is correction evidence, not current-anchor V01 acceptance.
 
-`Tools/AssemblyShadow/Invoke-M07Build.ps1` is now a narrow outer failure guard. `Tools/AssemblyShadow/Invoke-M07Build.Core.ps1` retains the proven M07 workflow behavior.
+### Fixed-byte / bootstrap policy remains unchanged
 
-Before invoking the core workflow, the wrapper snapshots exact bytes for:
+The exact two-target H1 fixed-byte/bootstrap bridge from the previous Primary repair remains in force. Do not add another target or broaden `BootstrapIsolationRule`, `FixedAssemblyBytes`, provider/type/method admission, or reflection policy.
+
+### Deterministic controlled post-mutation restoration
+
+`Tools/AssemblyShadow/Invoke-M07Build.ps1` now supports the opt-in switch:
+
+`-ControlledFailureAfterValidateCompilerInputs`
+
+Only in this mode it:
+
+1. snapshots the exact three outer-owned files;
+2. verifies installed candidate runtime/source pins;
+3. executes real Unity `AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs` with the supplied baseline ID;
+4. verifies installed pins again;
+5. deliberately throws before entering the normal core workflow;
+6. restores exact bytes through the existing outer recovery and rethrows.
+
+The three files are:
 
 - `Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity`;
 - `ProjectSettings/AssemblyShadowSettings.asset`;
 - `ProjectSettings/EditorBuildSettings.asset`.
 
-On **failure only**, after owned Unity processes exit, it preserves the current/pre-restore bytes, restores the exact originals, writes `workflow-inputs-restored.json`, and then rethrows the original failure. Recovery failure is itself surfaced explicitly. Successful M07 workflow semantics are unchanged.
+The normal no-switch path continues to delegate unchanged to `Invoke-M07Build.Core.ps1`.
 
 ### Primary bounded validation
 
-Candidate source anchor `29261690798059077e5263de71526867a32bce30` passed workflow `35135969629` with **300/300** bounded tests and zero nonpasses.
+Final source anchor `f59b0d8d171340951157b01b583df17e380d6f55` passed workflow `35179309998`:
 
-- authenticated Apple Bee fixture SHA-256: `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`
-- artifact ID: `10463420165`
-- artifact SHA-256: `2f1b9707ed745e47461b2f5baa3e8672b4b3d2ecd4ce5380fb085cc125d299e2`
+- **302/302 Passed**;
+- zero nonpasses;
+- authenticated Apple Bee graph SHA-256 `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`;
+- artifact ID `10478699390`;
+- artifact SHA-256 `28239edbda587ca61f9175ef42b334c588363a28226d955b25198a7219afd258`.
 
-This is bounded Primary/tool evidence only. It is not real Unity M07 acceptance, runtime acceptance, M08 PASS, or human approval.
+This is bounded Primary/tool evidence only. It is not current-source Unity/Player/M07/runtime/performance acceptance, M08 PASS, or human approval.
 
 ## Local validation
 
-Follow `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/m07-fixed-bootstrap-primary-20260916/LOCAL_VALIDATION_TASKS.md`.
+Follow `Docs/AssemblyShadow/M07R/R01B/H1-Remediation/m07-codegen-test-reference-primary-20260916/LOCAL_VALIDATION_TASKS.md`.
 
 ### V00 — authority
 
-1. Pull candidate branch; record final HEAD, source anchor `29261690798059077e5263de71526867a32bce30`, dirty/untracked state, and sibling protected heads.
+1. Pull the final candidate handoff HEAD; record final checkout HEAD and source anchor `f59b0d8d...` separately.
 2. Run candidate `h1_handoff_preflight.py`; require `SourceTargetVerifiedNotBuildAccepted`.
-3. Run split reproduction-tooling preflight against exact `ba8fee33753a5ebc215b7a98739e343d8e05572e`; require protected behavior/runtime pins and tooling authority unchanged.
+3. Run split reproduction-tooling preflight against exact `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
+4. Verify every protected reproduction/native/package/IL2CPP/performance identity remains exact.
 
-If either preflight fails, stop before V01–V05.
+Stop before V01–V05 on V00 failure.
 
-### V01 — source/tool/Unity regressions
+### V01 — source / Unity / policy integration
 
-Run full H1 Python inventory and bounded Primary suite. Compile candidate and reproduction-tooling checkout in Unity 2022.3.62f2. Run affected H1 Editor tests, explicitly including `M07FixedByteBootstrapPolicyTests`; both real Unity policy tests must pass.
+Run the full H1 Python inventory and exact bounded Primary suite. Compile candidate and reproduction-tooling checkout in real Unity 2022.3.62f2.
 
-### V02 — fresh candidate provenance smoke
+Candidate must have zero compile errors and `M07FixedByteBootstrapPolicyTests` must pass **2/2** using the real policy construction/validator. Retain exact NUnit XML/logs and asmdef bytes.
 
-Run a fresh candidate ON/Debug schema-3 normal-cache proof under source anchor `29261690798059077e5263de71526867a32bce30`. Preserve normal Bee cache and require all strict native/PCH/store/managed/fresh-Player/restoration controls.
+### V02 — fresh candidate provenance
+
+Run a fresh candidate ON/Debug schema-3 normal-cache proof under source anchor `f59b0d8d...`. Preserve normal Bee cache and require all strict native compiler/PCH/store/managed/fresh-Player/restoration controls. Do not substitute legacy `--reuse-proof`.
 
 ### V03 — fresh six-build set
 
-Use `h1_count_build_batch_tooling.py` to produce fresh candidate ON/OFF × Debug/Release and reproduction ON Debug/Release. Require strict native+managed provenance, tooling bindings, and exact restoration for all six accepted builds. Do not reuse old-source smoke receipts.
+Use candidate-owned `h1_count_build_batch_tooling.py` and exact reproduction tooling to produce fresh:
 
-### V04 — fresh count + M07 + runtime/performance chain
+- candidate ON/OFF × Debug/Release;
+- reproduction ON Debug/Release.
 
-Re-run the current-source count matrix even though the previous Local cycle captured candidate 132/132 and all eight reproduction cells; preserve those historical results for comparison only.
+Require strict current native+managed provenance, tooling binding, and exact restoration for every accepted build.
 
-For M07:
+### V04 — fresh count + actual-mutation recovery + successful full chain
 
-1. use a new baseline ID and new outputs;
-2. require real `M07Build.ValidateCompilerInputs` to pass with only the two reviewed target-qualified H1 entries;
-3. preserve `M07FixedByteBootstrapPolicyTests` evidence;
-4. execute a controlled failing M07 invocation and require exact restoration receipts/evidence for the three wrapper-owned files above;
-5. then execute the normal successful M07 baseline/resources/players chain and continue startup11, 8192/8193 capacity boundary, required lazy/dense/generic/array/reflection/FieldRVA/old-Player/M03–M07 coverage;
-6. run controlled Development performance only against protected reference `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` on common supported workloads.
+Re-run candidate 132/132 count cells and all eight unfixed reproduction observations under the current source anchor. Preserve older count evidence only as historical comparison.
 
-If real Unity requires a third bootstrap target or a broader rule, retain the exact source/precompile/compiled policy evidence and return to Primary. Do not broaden locally.
+#### A. Controlled restoration after actual mutation
+
+After fresh V03 has installed the exact candidate runtime, choose a **new** baseline ID and run:
+
+```powershell
+pwsh -NoProfile -File Tools/AssemblyShadow/Invoke-M07Build.ps1 `
+  -ProjectPath /ABS/CANDIDATE `
+  -BaselineId M07-Baseline-H1-<NEW-ID> `
+  -TimeoutSec 28800 `
+  -ControlledFailureAfterValidateCompilerInputs
+```
+
+Require all of the following:
+
+1. real Unity `M07Build.ValidateCompilerInputs` succeeds first;
+2. the observed failure is the explicit controlled post-validation failure—not pin/preflight/Unity-policy failure;
+3. `workflow-inputs-restored.json` has `status=ExactBytesRestored`;
+4. **actual mutation is proved**: the pre-restore hashes for both `M07Bootstrap.unity` and `ProjectSettings/AssemblyShadowSettings.asset` differ from their original hashes; `EditorBuildSettings.asset` may remain unchanged;
+5. all three restored hashes exactly equal originals;
+6. candidate source authority/preflight passes again after restoration.
+
+A failure before real `ValidateCompilerInputs`, or a restoration receipt without the required scene/settings mutation, is `NoCoverage` for this requirement.
+
+#### B. Normal successful M07/runtime/performance chain
+
+Then use another fresh baseline ID and run normal `Invoke-M07Build.ps1` **without** the controlled switch. Complete and retain:
+
+- successful `ValidateCompilerInputs`;
+- baseline resources;
+- native ON/OFF Players;
+- fixtures and Editor replay;
+- startup11;
+- 8192/8193 capacity boundary;
+- required lazy/dense/generic/array/reflection/FieldRVA/old-Player and M03–M07 coverage;
+- controlled Development performance against protected reference `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c` on common supported workloads.
+
+Do not broaden bootstrap/fixed-byte policy locally if a new issue appears.
 
 ### V05 — successor + independent whole-chain M08
 
-Build the successor package only from explicit fresh current-anchor evidence. Include both V00 authority outputs, fresh six-build receipts/provenance, fresh count evidence, M07 policy regression, controlled-failure restoration receipt and pre-restore bytes, successful M07/runtime/startup/capacity/performance evidence, and historical checkpoints under their original identities.
+Build the successor package only from explicit fresh current-anchor evidence. Include V00 authority, V01 Unity/policy evidence, six-build provenance, fresh count evidence, controlled actual-mutation restoration evidence, successful M07/runtime/startup/capacity/performance evidence, and historical checkpoints under their original identities/dispositions.
 
-Authenticate archive/index bytes and semantic membership. Then commission a genuine independent design → source → builds → raw evidence whole-chain M08 review.
+Authenticate archive/index bytes and semantic membership. Then commission a genuine independent design → source → builds → raw-evidence whole-chain M08 review.
 
-Only genuine independent whole-chain **M08 PASS** may make the package Ready for Human Review Gate. Then stop for explicit human H1 approval.
+Only genuine independent whole-chain **M08 PASS** may make H1 Ready for Human Review Gate. Then stop for explicit human H1 approval.
 
 ## Failure evidence
 
-For M07 policy failure retain the exact policy/dependency/reflection-binding bytes and hashes, scanner/compiler snapshot, emitted bootstrap reflection references, fixed-byte site identity, Unity logs and NUnit XML.
+For V00/V01 failures retain exact checkout/source identities, source-target/pin bytes, asmdef bytes, Unity compile logs, NUnit XML, and reproduction-tooling authority outputs.
 
-For M07 workflow failure retain the outer recovery root, each `.original` backup, each `.before-restore` file, `workflow-inputs-restored.json`, original workflow error, post-recovery Git/source preflight, and exact hashes of scene/settings before invocation and after restoration.
+For controlled M07 recovery retain the complete outer recovery root including original snapshots, `.before-restore` bytes, `workflow-inputs-restored.json`, real ValidateCompilerInputs logs, explicit controlled failure, restored hashes, and post-recovery preflight. Do not call it mutation coverage unless the required scene/settings hashes actually changed before restoration.
 
-For all V00–V05 failures preserve the existing strict provenance/runtime evidence contracts and distinguish `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun`, and `NoCoverage`.
+For later V04/V05 failure preserve all raw M07/runtime/startup/capacity/performance/provenance evidence and exact stage disposition.
 
-Do not overwrite, rewrite, or relabel `local-validation-20260916-e96bc07` or older checkpoints.
+Keep `Passed`, `Failed`, `InvalidEvidence`, `Unavailable`, `NotRun` and `NoCoverage` distinct. Do not overwrite or relabel historical Local checkpoints.
 
 ## Alternatives
 
-Do not modify the shared `BootstrapIsolationRule`, add a generic bootstrap-reflection bypass, admit provider/type/method-wide reflection, weaken `FixedAssemblyBytes`, derive acceptance from only the compiled SHA without the method/provider binding, or locally add another target.
+Do not remove the direct CodeGen test reference and do not work around it by making references transitively visible or by moving the integration test into a production assembly.
 
-Do not solve failure cleanup by resetting/cleaning the repository. Recovery must use the wrapper's captured exact bytes and retained evidence.
+Do not add bootstrap targets, weaken fixed-byte bindings, bypass M07 policy, or accept a pre-mutation recovery attempt as evidence.
+
+Do not reset/clean the repository to recover M07 mutations; use the wrapper's exact captured bytes and preserve recovery evidence.
 
 ## Risks
 
-The two target forms are based on the actual project policy scanner's source/precompile and compiled representations of the same fixed-byte acquisition. Fresh V01/V04 must verify that real Unity still emits exactly those forms under this source anchor.
+The direct CodeGen reference is deliberately limited to an Editor test asmdef; any future move of the policy integration test or CodeGen API can change that compile-time dependency and must be reviewed rather than silently broadened.
 
-The outer restoration wrapper is intentionally failure-only so a successful M07 workflow retains its established behavior. Local must empirically verify both the controlled-failure recovery path and the normal successful path.
+The controlled-failure switch proves recovery only when real `ValidateCompilerInputs` succeeds and changes the intended files. Fresh Local empirical validation is therefore mandatory.
 
-Primary's 300/300 result does not establish Unity M07, runtime, performance, M08, or human acceptance.
+Primary 302/302 does not establish real Unity current-anchor acceptance, successful M07 runtime chain, performance, independent M08, or Human Review Gate readiness.
 
 ## Local correction boundary
 
-Local may correct machine-specific absolute paths, executable permissions, invocation syntax, new evidence/output directory choices, and isolated test harness setup.
+Local may correct machine-specific absolute paths, executable permissions, invocation syntax, fresh output/evidence roots, and isolated harness setup.
 
-Local must not change bootstrap targets/entrypoints, fixed-byte binding semantics, recovery file set/logic, protected behavior/runtime/tooling/performance pins, provenance rules, count behavior, ABI/architecture, or performance methodology. Such issues return to Primary regardless of diff size.
+Local must not alter the direct CodeGen dependency boundary, controlled-failure semantics, wrapper recovery file set, bootstrap/fixed-byte policy, protected behavior/runtime/tooling/performance pins, provenance rules, count behavior, ABI/architecture, or performance methodology. Return such issues to Primary regardless of diff size.
 
 Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
