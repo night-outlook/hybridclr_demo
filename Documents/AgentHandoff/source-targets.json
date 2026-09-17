@@ -8,8 +8,8 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "84f29440435d2e49630819413a1105e6b18a8a5a",
-      "implementationCommit": "84f29440435d2e49630819413a1105e6b18a8a5a",
+      "codeCommit": "f59b0d8d171340951157b01b583df17e380d6f55",
+      "implementationCommit": "f59b0d8d171340951157b01b583df17e380d6f55",
       "codeAnchorPolicy": "codeCommit is the authoritative candidate demo source identity for fresh V00-V05. Following source-pin/source-target/handoff and Docs/AssemblyShadow review commits are metadata-only under the committed source verifier.",
       "runtimePins": {
         "hybridclr": {
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "84f29440435d2e49630819413a1105e6b18a8a5a",
+        "candidateToolSourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -89,15 +89,15 @@
     "policy": "Preserve its own committed old-profile pins. Do not install the candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35178902153,
-    "implementationCommit": "84f29440435d2e49630819413a1105e6b18a8a5a",
+    "workflowRun": 35179309998,
+    "implementationCommit": "f59b0d8d171340951157b01b583df17e380d6f55",
     "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 301,
-    "passed": 301,
+    "testCount": 302,
+    "passed": 302,
     "nonpasses": 0,
-    "artifactId": 10479815433,
-    "artifactSha256": "cb9f663975de70f49ae79dbcefa49b43d0b7559e6f4bbc63b914cba177549e92",
-    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction tooling, exact M07 fixed-byte/bootstrap policy bridge, exact M07 outer failure restoration for scene/settings, direct CodeGen test-asmdef dependency regression, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-source M07/runtime acceptance, M08, or human acceptance."
+    "artifactId": 10478699390,
+    "artifactSha256": "28239edbda587ca61f9175ef42b334c588363a28226d955b25198a7219afd258",
+    "scope": "Authenticated Apple Bee graph planning, reversible declared-input retention, fail-closed retention controls, managed changed-action/cache-hit provenance, split reproduction tooling, exact M07 fixed-byte/bootstrap policy bridge, exact M07 outer failure restoration for scene/settings, bounded direct CodeGen test-asmdef dependency, deterministic post-ValidateCompilerInputs controlled failure injection, and portable/host-Clang tool regressions. Not Unity, Apple Player, current-source M07/runtime acceptance, M08, or human acceptance."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -175,7 +175,9 @@
         "ProjectSettings/AssemblyShadowSettings.asset",
         "ProjectSettings/EditorBuildSettings.asset"
       ],
-      "receipt": "workflow-inputs-restored.json"
+      "receipt": "workflow-inputs-restored.json",
+      "controlledFailureSwitch": "ControlledFailureAfterValidateCompilerInputs",
+      "controlledFailureSemantics": "With exact installed candidate pins, the wrapper runs the real Unity M07Build.ValidateCompilerInputs, verifies installed pins again, then deliberately fails before entering the core workflow so outer exact-byte restoration can be proven after actual configuration mutation. V04 acceptance requires observed pre-restore mutation, not merely receipt creation."
     }
   },
   "m07EditorTestAsmdefRepair": {
