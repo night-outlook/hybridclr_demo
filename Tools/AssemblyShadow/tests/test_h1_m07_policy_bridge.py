@@ -58,5 +58,17 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
         self.assertIn("throw $workflowFailure", wrapper)
         self.assertNotIn('ProjectSettings/AssemblyShadow/AssemblyShadowSettings.asset', wrapper)
 
+    def test_controlled_failure_occurs_only_after_real_validate_compiler_inputs(self):
+        wrapper = (ROOT / 'Tools/AssemblyShadow/Invoke-M07Build.ps1').read_text()
+        self.assertIn('[switch]$ControlledFailureAfterValidateCompilerInputs', wrapper)
+        self.assertIn("method = 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs'", wrapper)
+        self.assertIn('Assert-M07ControlledPinnedInputs -Project $shadowProject', wrapper)
+        validate = wrapper.index('Invoke-M07ControlledValidateCompilerInputs -Project $shadowProject')
+        controlled = wrapper.index("throw 'Controlled M07 failure after successful ValidateCompilerInputs")
+        core = wrapper.index('& $core @invoke')
+        self.assertLess(validate, controlled)
+        self.assertLess(controlled, core)
+        self.assertIn('Restore-M07WorkflowInputs -Project $shadowProject', wrapper[controlled:])
+
 if __name__ == '__main__':
     unittest.main()
