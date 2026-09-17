@@ -8,7 +8,8 @@ param(
     [string]$BuildTarget = 'StandaloneOSX',
     [string]$ResourceOutput,
     [string]$NativeOnOutput,
-    [string]$NativeOffOutput
+    [string]$NativeOffOutput,
+    [switch]$ControlledFailureAfterValidateCompilerInputs
 )
 
 $ErrorActionPreference = 'Stop'
@@ -87,6 +88,32 @@ function Restore-M07WorkflowInputs {
     finally { $file.Dispose() }
 }
 
+function Assert-M07ControlledPinnedInputs {
+    param([string]$Project)
+    $python = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $python) { $python = Get-Command python -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1 }
+    if (-not $python) { throw 'Python is required to verify the real pinned M07 build inputs.' }
+    & $python.Source (Join-Path $Project 'Tools/AssemblyShadow/verify-installed-runtime.py') --project $Project --expect-shadow on --json
+    if ($LASTEXITCODE -ne 0) { throw 'Controlled M07 validation source or installation differs from the pinned build inputs.' }
+}
+
+function Invoke-M07ControlledValidateCompilerInputs {
+    param([string]$Project, [string]$Baseline, [int]$Timeout, [string]$Target)
+    $methodScript = Join-Path $Project '.agents/skills/unity-debug/scripts/Invoke-UnityMethod.ps1'
+    if (-not (Test-Path -LiteralPath $methodScript -PathType Leaf)) { throw "Shared Unity method launcher missing: $methodScript" }
+    $payload = @{ method = 'AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs'; project = $Project; script = $methodScript;
+        timeout = $Timeout; target = $Target; arguments = @('-shadowBaselineId', $Baseline) } | ConvertTo-Json -Compress
+    $data = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($payload))
+    $command = '$ErrorActionPreference = ''Stop''; $p = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String(''' + $data + ''')) | ConvertFrom-Json; ' +
+        '$invoke = @{ Method = $p.method; ProjectPath = $p.project; TimeoutSec = $p.timeout; MethodArgs = @($p.arguments) }; ' +
+        'if ($p.target) { $invoke.BuildTarget = $p.target }; & $p.script @invoke'
+    $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($command))
+    $powerShell = (Get-Process -Id $PID).Path
+    & $powerShell -NoLogo -NoProfile -NonInteractive -OutputFormat Text -EncodedCommand $encoded
+    if ($LASTEXITCODE -ne 0) { throw "Controlled M07 ValidateCompilerInputs failed (PowerShell/Unity exit $LASTEXITCODE)." }
+    if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Controlled M07 ValidateCompilerInputs returned before its Unity process exited.' }
+}
+
 $shadowProject = Get-UnityDebugProjectPath -ProjectPath $ProjectPath
 if (Test-UnityProjectRunning -ProjectPath $shadowProject) { throw 'This exact project is already open in Unity; no M07 workflow was started.' }
 $evidenceParent = Join-Path $shadowProject '_temp/AssemblyShadow'
@@ -109,6 +136,12 @@ if ($NativeOffOutput) { $invoke.NativeOffOutput = $NativeOffOutput }
 $workflowFailure = $null
 $restoreFailure = $null
 try {
+    if ($ControlledFailureAfterValidateCompilerInputs) {
+        Assert-M07ControlledPinnedInputs -Project $shadowProject
+        Invoke-M07ControlledValidateCompilerInputs -Project $shadowProject -Baseline $BaselineId -Timeout $TimeoutSec -Target $BuildTarget
+        Assert-M07ControlledPinnedInputs -Project $shadowProject
+        throw 'Controlled M07 failure after successful ValidateCompilerInputs for exact-byte restoration verification.'
+    }
     & $core @invoke
 }
 catch {
