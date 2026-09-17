@@ -1,18 +1,32 @@
-# Local Validation Checkpoint — Documentation Consolidation
+# Local Validation Checkpoint — Consolidated Paths and Fresh M07
 
 Date: 2026-09-17
 
-This checkpoint preserves the fresh validation attempts made after consolidating the active documentation under `Docs/AssemblyShadow/`.
+Candidate checkout `9f7a293d9b57743016b8d76df6c1eeb1d89dfd83` on `codex/assembly-shadow-r01b-h1` was validated against source anchor `bbd836747b6d5c8a2d00041d77b2042ca3ccce1b`. Reproduction tooling remained `ba8fee33753a5ebc215b7a98739e343d8e05572e`; all protected reproduction, native, package, IL2CPP, and performance pins remained unchanged.
 
-## Current disposition
+## Results
 
-- Candidate preflight at handoff `b1c7ed1949f94c9eca9d98b4fecdea06f1c16f9c`: `SourceTargetVerifiedNotBuildAccepted`.
-- The first reproduction command used the reproduction checkout's legacy handoff preflight and failed `Wrong handoff branch`; that command verifies the protected behavior checkout, not the separate tooling checkout.
-- The correct candidate-owned split tooling preflight then failed `Protected reproduction published head changed build behavior after its source pin`.
-- Root cause: documentation consolidation removed the exact legacy handoff metadata classification needed when comparing historical reproduction commits. It did not represent a protected-source change.
-- Bounded correction: retain the five exact historical `Documents/AgentHandoff` metadata paths in `shadow_tools.metadata_only`; arbitrary files under that path remain build inputs. This is an explicit historical old-to-new migration rule, not a live compatibility document or a broader allowlist.
-- Focused regression tests: 35 passed.
-- Correct split reproduction-tooling preflight after correction: `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`; exact tooling commit `ba8fee33753a5ebc215b7a98739e343d8e05572e`; protected published head `352d7474dd7c2ffd9b9501d8fa42334a3b236e05`; behavior source `4e3d2035991ab5629265ac663e61bcb2ca62828b`; editor source compatibility `Compatible`.
-- Complete Python inventory after correction: 986 passed, 28 skipped environment-dependent tests, no failures/errors.
+| Step | Result | Evidence |
+| --- | --- | --- |
+| V00 dual authority | `Pass` | Candidate and split reproduction preflights pass after the bounded historical metadata-path correction. |
+| V01 Python / Unity / NUnit | `Pass` | 986 Python tests pass with 28 environment-dependent skips; real Unity 2022.3.62f2 compilation passes; candidate 19/19 and reproduction 15/15 affected Editor tests pass. |
+| V02 fresh ON/Debug | `Pass` | Strict native and schema-3 managed provenance; both required assemblies are `BeeCacheHitBoundToFreshPlayerInput`; capture store is 318,212,421 logical and 72,612,459 stored bytes across 451 retained observations. |
+| V03 six fresh builds | `Pass` | Candidate ON/OFF × Debug/Release and reproduction ON × Debug/Release pass strict provenance, tooling binding, fresh Player binding, and restoration. |
+| V04 candidate count | `Pass` | Fresh 132/132 matrix. |
+| V04 reproduction | `Pass` as reproduction evidence | Six `UnexpectedAccepted`, two Debug nested `AssertAbort`; no candidate acceptance claim. |
+| V04 controlled M07 | `PassExpectedFailure` | Real `ValidateCompilerInputs`, both required mutations, `M07PostValidationAuthorityVerifiedNotBuildAccepted`, exact deliberate failure, exact three-file restoration, and post-recovery preflight all pass. |
+| V04 normal M07 | `Fail` | Baseline resources and Native-ON Player succeed; the next guard rejects workflow-generated `Assets/HybridCLRGenerate/link.xml`. Native-OFF, structural fixtures, and Editor replay are `NotRun`. |
+| V04 downstream | `Blocked / NotRun` | Startup11, capacity, retained coverage, and performance require a complete normal M07 chain. |
+| V05 successor / M08 | `Blocked / NotRun` | Whole-chain evidence is incomplete. |
 
-The raw failed attempts are retained unchanged under `raw/V00/`. V01 Unity compilation and later V02–V05 work have not yet been claimed by this checkpoint.
+## Controlled M07
+
+Baseline `M07-Baseline-Consolidation-Controlled-20260917A` reached the exact deliberate failure only after post-mutation authority passed. `M07Bootstrap.unity` and `AssemblyShadowSettings.asset` changed and contained the fresh baseline ID. `EditorBuildSettings.asset` remained byte-identical. The wrapper restored all three files to their original SHA-256 values, and candidate preflight returned `SourceTargetVerifiedNotBuildAccepted`.
+
+## Normal M07 blocker
+
+Baseline `M07-Baseline-Consolidation-Normal-20260917A` passed validation, post-validation authority, baseline resources, and Native-ON Player generation. Native-ON build GUID is `4a91f304399c47539f0fc3bd0f5fdaca`; native library SHA-256 is `3da0a85309ac52f76001b0b19aae8c59fc96eb8833b2c11f00be18e6bafe4f3d`.
+
+The next guard failed because `Assets/HybridCLRGenerate/link.xml` changed from the pinned 52-byte blob `071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31` to the generated 1,200-byte blob `498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9`. Local preserved the generated bytes and restored the pinned bytes, but did not add a fourth mutable path or relax authority.
+
+Raw failures, exact restoration bytes, Unity logs, receipts, and machine-readable summaries are retained in `raw-evidence.tar.gz`; `MANIFEST.sha256` authenticates the package. H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.

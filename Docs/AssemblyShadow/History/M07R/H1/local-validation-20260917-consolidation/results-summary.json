@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ConsolidationLocalValidationSummary",
+  "candidateCheckout": "9f7a293d9b57743016b8d76df6c1eeb1d89dfd83",
+  "sourceAnchor": "bbd836747b6d5c8a2d00041d77b2042ca3ccce1b",
+  "results": {
+    "V00": "Passed",
+    "V01": "Passed",
+    "V02": "Passed",
+    "V03": "Passed",
+    "V04CandidateCount": "Passed132Of132",
+    "V04Reproduction": "PassedAsReproductionEvidence",
+    "V04ControlledM07": "PassedExpectedFailure",
+    "V04NormalM07": "FailedPostNativeOnLinkXmlMutation",
+    "V04Downstream": "BlockedNotRun",
+    "V05": "BlockedNotRun",
+    "M08": "FailHistoricalNotRerun"
+  },
+  "blocker": "Native-ON Player generation mutates tracked Assets/HybridCLRGenerate/link.xml; Local authority forbids adding a fourth mutable path.",
+  "rawArchive": "raw-evidence.tar.gz",
+  "rawArchiveSha256": "d90d8c34282c1c17f494b8357fbec748aa8a23d2f2c497c75a851923088472d0",
+  "rawFileCount": 254,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
