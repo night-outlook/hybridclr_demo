@@ -19,14 +19,14 @@
   - reference runtime pins are explicit in `source-targets.json`;
   - `verify-h1-protected-reference.py` authenticates the isolated reference family and measurement-source parity;
   - `freeze-h1-performance-build-map.py` derives comparability only from strict controlled build evidence.
-- Primary executable evidence: workflow `35356780407` at metadata successor `5c57eb32c07ff5e2f716f41e27d006936ca42be8`:
+- Primary executable evidence: workflow `35357027882` at metadata successor `ac8b9f17f2cd98ae671c68ca60b06867085d2790`:
   - bounded Primary suite: **319/319**;
   - committed handoff suite: **11/11**;
   - R01 early capsule: **7/7**;
   - R01 early results: **19/19**;
   - R01 failure pipeline: **17/17**;
   - R01B lazy contract: **8/8**;
-  - artifact `10551884431`, ZIP SHA-256 `9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55`.
+  - artifact `10552945025`, ZIP SHA-256 `81686d1dbf02bfe552bd0e2bdc70e3b690d2f51bafdafc5b7ebc00ad7d99e3db`.
 - Gate: `H1 / InProgress / AwaitingFresh36173aBatch`
 - Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
