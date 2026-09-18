@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "8b1298d6a5979928bdfa30446e2d674d63999b76",
-      "implementationCommit": "8b1298d6a5979928bdfa30446e2d674d63999b76",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity for fresh H1 validation. Later ProjectSettings/AssemblyShadowSourcePins.json, source-target, handoff, status, and Docs/AssemblyShadow evidence commits are metadata-only under the unchanged committed source verifier.",
+      "codeCommit": "50c79913096961636a776ee8254b6631002cdfe5",
+      "implementationCommit": "50c79913096961636a776ee8254b6631002cdfe5",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity for the H1 failure/publication early-admission repair. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "8b1298d6a5979928bdfa30446e2d674d63999b76",
+        "candidateToolSourceAnchor": "50c79913096961636a776ee8254b6631002cdfe5",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -208,5 +208,52 @@
       "denseV2": "two deterministic exact 1 MiB fixtures; native full corpus 8192, dense 2/2, bounded reader 13/13, sanitizer/provenance stability passed",
       "evidencePath": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260917-methodptr-dense/"
     }
+  },
+  "failurePublicationEarlyAdmissionRepair": {
+    "returnedByLocalValidationCommit": "af0d345ce3aa7257e301926d0da652709c09cf54",
+    "previousSourceAnchor": "8b1298d6a5979928bdfa30446e2d674d63999b76",
+    "sourceAnchor": "50c79913096961636a776ee8254b6631002cdfe5",
+    "failure": "The R01 failure/publication launcher omitted the mandatory earliest-startup capsule transport, so the Player refused before R01FailureProbe. The verifier also had no direct module entrypoint.",
+    "design": {
+      "earlyMode": "Baseline",
+      "rationale": "Authenticate the complete current failure-input graph at the native earliest-startup callback without consuming a Shadow transaction; the later R01FailureProbe remains sole owner of Control/Q04/initializer transaction semantics.",
+      "perModeBinding": "Each of the three failure modes gets a deterministic R01FailureEarlyAdmissionBinding JSON included in its capsule prerequisites, making otherwise Baseline-mode capsules non-interchangeable.",
+      "prerequisites": "The capsule binds the P03 closure plus verified failure-fixture and negative-input files. Extra prerequisites already present as closure DLL/PDB inputs are deduplicated to preserve the callback's unique-path invariant.",
+      "launchSchemaVersion": 2,
+      "verifierSchemaVersion": 2,
+      "requiredBinding": "same capsule hash, Baseline early result, callbackReturnCode=0, same PID, exact command, immutable input hashes, then the existing strict failure/publication oracle"
+    },
+    "files": [
+      "Tools/AssemblyShadow/r01_early_capsule.py",
+      "Tools/AssemblyShadow/r01_failure_results.py",
+      "Tools/AssemblyShadow/run-r01-failure-players.py",
+      "Tools/AssemblyShadow/tests/test_r01_early_capsule.py",
+      "Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py",
+      ".github/workflows/h1-bee-primary.yml"
+    ],
+    "primaryValidation": {
+      "workflowRun": 35330989089,
+      "commit": "50c79913096961636a776ee8254b6631002cdfe5",
+      "boundedPrimaryTests": {
+        "passed": 311,
+        "total": 311
+      },
+      "r01EarlyCapsuleTests": {
+        "passed": 7,
+        "total": 7
+      },
+      "r01EarlyResultsTests": {
+        "passed": 19,
+        "total": 19
+      },
+      "r01FailurePipelineTests": {
+        "passed": 16,
+        "total": 16
+      },
+      "artifactId": 10540898558,
+      "artifactZipSha256": "52861f7bca634fa007e4e5fba7cd3774ab8f9dfbf1b39de0c6ca80fba047d139",
+      "scope": "Pure source/tool contract evidence on GitHub Actions; not Unity/IL2CPP Player failure/publication acceptance, V04/V05, M08, or human H1 approval."
+    },
+    "policy": "Do not relax the earliest-startup refusal, verify_demo, M07 authority, failure/publication runtime oracle, or protected pins. Fresh Local validation must build a current-anchor chain and execute the real three-mode Player matrix."
   }
 }
