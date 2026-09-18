@@ -9,3 +9,5 @@ This directory is the canonical project documentation root.
 - `Evidence/`: Git and local-archive catalogs plus protected pins.
 
 Historical evidence retains its original status. H1 is not approved and R02 must not begin.
+
+Workspace and documentation consolidation completed on 2026-09-17. The retained workspace consists of the four owning repositories and the `assembly_shadow_h1r` integration family. Product validation is deferred; cleanup completion does not change the H1 gate.

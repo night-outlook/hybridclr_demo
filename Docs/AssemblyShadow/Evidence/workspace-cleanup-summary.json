@@ -9,13 +9,13 @@
     "inventory": "workspace-inventory-before.reconstructed.json"
   },
   "after": {
-    "usedKiB": 257759936,
-    "availableKiB": 200455296,
-    "capacityPercent": 57,
-    "inventory": "workspace-inventory-after.json"
+    "usedKiB": 243038816,
+    "availableKiB": 215175448,
+    "capacityPercent": 54,
+    "inventory": "finalization-20260917/final-state.json"
   },
   "archiveRoot": "/Users/ah/GitHub/hybridclr/_archives/assembly-shadow/cleanup-20260917",
-  "archiveVerifiedFiles": 24736,
+  "archiveVerifiedFiles": 24738,
   "targetTopLevel": [
     "hybridclr",
     "hybridclr_unity",
@@ -33,5 +33,16 @@
     "Builds",
     "Logs"
   ],
-  "sameVolumeArchiveDoesNotCountAsReclaimedCapacity": true
+  "sameVolumeArchiveDoesNotCountAsReclaimedCapacity": true,
+  "finalization": {
+    "manifest": "finalization-20260917/final-state.json",
+    "removedWorktreeFamilies": [
+      "assembly_shadow_h1r/_validation",
+      "assembly_shadow_h1r_reference"
+    ],
+    "removedOrphanDirectory": "hybridclr_demo_shadow",
+    "obsoleteLaunchdRemoved": true,
+    "registeredWorktreeRootsRemaining": 8,
+    "workspaceFamilyRootsRemaining": 5
+  }
 }
