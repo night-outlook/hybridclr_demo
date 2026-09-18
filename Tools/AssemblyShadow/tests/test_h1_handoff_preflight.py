@@ -4,6 +4,8 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import h1_handoff_preflight as h
 
 class LiveCommittedHandoffTests(unittest.TestCase):
