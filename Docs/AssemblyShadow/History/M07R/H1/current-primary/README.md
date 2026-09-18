@@ -2,109 +2,105 @@
 
 ## Status
 
-Local Validation returned the fresh source-anchor-`8b1298d` cycle at:
+Latest Local return:
 
-`af0d345ce3aa7257e301926d0da652709c09cf54`
+`f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf`
 
-That cycle passed authority, provenance, controlled and normal M07, control capsules, startup11, and the 14-mode M07 Player matrix. It then exposed one remaining Primary-owned integration defect: the separate R01 failure/publication launcher did not supply the mandatory earliest-startup capsule arguments, so the Player correctly refused before host continuation.
+Result: **BLOCKED at V00**.
 
 Current reviewed candidate build-input source anchor:
 
-`50c79913096961636a776ee8254b6631002cdfe5`
+`39c33e259d1ba893e23e3f1aa22529c87524534f`
 
-H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## Failure/publication repair
+## V00 blocker
 
-### Design choice
+The Local candidate preflight failed with:
 
-The failure/publication matrix must satisfy two constraints simultaneously:
+`Blocked: Incomplete handoff sections`
 
-1. authenticate its complete input graph in the native earliest-startup callback;
-2. leave the Shadow transaction unused so `R01FailureProbe` remains the sole owner of the Control, Q04 metadata-failure, and initializer-failure transaction.
+The verifier requires the exact committed headings declared by `h1_handoff_preflight.py.REQUIRED_SECTIONS`. The previous handoff had editorially renamed several headings and omitted two exact headings.
 
-Therefore the launcher uses an **early Baseline capsule** for all three processes.
+Local correctly refused to modify the authoritative Primary handoff.
 
-`Baseline` is admission-only: the early callback reads and hashes closure/prerequisite bytes, records the source-bound receipt, returns success, and performs no Shadow transaction.
+## Correction
 
-Using early `Control` would commit too early. Using early `MetadataFailure` or `InitializerFailure` would intentionally return failure and terminate before the host failure probe. Neither is compatible with the required later transaction oracle.
+The verifier is unchanged.
 
-### Per-mode binding
+`WEB_TO_LOCAL.md` now contains all required exact headings:
 
-Three plain Baseline capsules could otherwise be interchangeable. Each process now gets a deterministic `R01FailureEarlyAdmissionBinding` JSON containing:
+- `## Objective`
+- `## Source targets`
+- `## Implementation`
+- `## Local validation`
+- `## Failure evidence`
+- `## Alternatives`
+- `## Risks`
+- `## Local correction boundary`
+- `## Human review gate`
 
-- failure mode;
-- early mode;
-- baseline/runtime identity;
-- fixture manifest path/hash;
-- Native-ON build receipt path/hash;
-- failure-fixture path/hash;
-- Q04 negative-input path/hash;
-- exact source pins.
+The semantic content from the prior handoff is preserved under those headings.
 
-That binding file is a capsule prerequisite. Its different failure-mode value makes the three capsule bytes/hashes distinct.
+## Regression
 
-The capsule also authenticates the complete verified failure-fixture and negative-input file set. Extra prerequisites that are already closure DLL/PDB inputs are deduplicated, preserving the early callback's unique-path invariant.
+`Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py` now contains a live-repository regression that calls:
 
-### Launch and verification
+`h1_handoff_preflight.verify(<actual repo root>, 'candidate')`
 
-`run-r01-failure-players.py` now:
+against the real committed:
 
-- materializes all three bindings/capsules before freezing the immutable-input hash inventory;
-- launches every mode in a fresh process with `-shadowEarlyCapsule`, `-shadowEarlyCapsuleSha256`, and `-shadowEarlyResult`;
-- requires the early Baseline receipt to be `Passed`, callback code 0, same PID, and exact capsule path/hash;
-- then requires the existing late failure/publication result from that same PID;
-- records binding/capsule/early-result/late-result/log/console hashes in launch schema v2.
+- `WEB_TO_LOCAL.md`;
+- `source-targets.json`;
+- `ProjectSettings/AssemblyShadowSourcePins.json`;
+- Git branch/origin/source-anchor relationship.
 
-`r01_failure_results.py` independently reconstructs each expected binding and capsule from the verified current inputs, verifies the complete immutable inventory, runs the existing strict early receipt verifier, checks the exact executed command and same process identity, then runs the unchanged failure/publication runtime oracle.
+This supplements the existing disposable synthetic repository tests.
 
-The verifier also has a direct `__main__` entrypoint; direct script invocation can no longer succeed without executing verification.
+The Primary workflow now:
 
-## Primary tests
+- triggers when the live handoff, source targets, or source pins change;
+- checks out full Git history so the declared build-input anchor can be inspected by `verify_demo`;
+- explicitly runs the live handoff preflight regression.
 
-GitHub Actions workflow `35330989089` at source anchor `50c79913096961636a776ee8254b6631002cdfe5` passed:
+These regression/workflow changes are why source authority advances from `50c79913...` to `39c33e25...`.
 
-- bounded Primary suite: **311/311**;
-- R01 early-capsule tests: **7/7**;
-- R01 early-results tests: **19/19**;
-- R01 failure-pipeline tests: **16/16**.
+## Preserved prior implementation
 
-Artifact:
+The R01 failure/publication earliest-admission implementation at `50c79913096961636a776ee8254b6631002cdfe5` is unchanged and inherited by `39c33e25...`.
 
-- ID: `10540898558`
-- ZIP SHA-256: `52861f7bca634fa007e4e5fba7cd3774ab8f9dfbf1b39de0c6ca80fba047d139`
+Its Primary executable evidence remains:
 
-The failure-pipeline suite includes missing/stale/substituted/mode-mismatched capsule rejection, same-PID early receipt binding, duplicate-prerequisite handling, exact-command binding, raw/runtime tamper checks, and the direct verifier entrypoint.
+- bounded suite: 311/311;
+- early capsule: 7/7;
+- early results: 19/19;
+- failure pipeline: 16/16;
+- workflow `35330989089`;
+- artifact `10540898558`;
+- artifact ZIP SHA-256 `52861f7bca634fa007e4e5fba7cd3774ab8f9dfbf1b39de0c6ca80fba047d139`.
 
-This is source/tool contract evidence only. It is not real Unity/IL2CPP Player acceptance.
+Real Player acceptance remains Local work.
 
-## Preserved Local evidence
+## Blocked-attempt disposition
 
-The previous Local checkpoint remains immutable:
+The `f8a2766d...` Local attempt is preserved exactly as:
 
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260918-authority8b/`
+- V00 candidate preflight: `Blocked`;
+- reproduction-tooling preflight: `Passed`;
+- protected refs: `Passed`;
+- V01–V05: `NotRun`;
+- M08: historical `FAIL`, not rerun.
 
-It proves the prior `8b1298d...` chain through startup11 and M07 14/14, and records the failure/publication pre-startup refusal. It is historical comparison after the source anchor advances to `50c79913...`; it must not be relabelled as current-anchor V04/V05 acceptance.
+Nothing from that attempt may be relabelled as fresh V00 acceptance.
 
-Earlier MethodPtr/dense evidence also remains under its original identity.
+Evidence remains under:
 
-## Next Local cycle
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260918-authority50c-v00-blocked/`
 
-Because the committed source pin advances to `50c79913...`, regenerate a fresh provenance-bound candidate chain. After normal M07 succeeds:
+## Next cycle
 
-1. generate control capsules;
-2. run startup11;
-3. run M07 14/14;
-4. run the repaired three-mode failure/publication matrix and strict verifier;
-5. regardless of an isolated downstream functional failure, continue other independent V04 cells when source/runtime provenance remains intact;
-6. run capacity/lazy-dense/generic/array/reflection/FieldRVA/old-Player/retained coverage/performance;
-7. retain the complete current-anchor artifact graph before cleanup;
-8. only if acceptance prerequisites are complete, build V05 successor evidence and commission genuine independent whole-chain M08.
+Local must restart from **fresh V00** on the final pushed handoff.
 
-Authority/provenance/source-integrity failures still stop the batch immediately.
-
-## Gate
-
-H1 remains `InProgress`. Only genuine independent whole-chain M08 PASS can make it Ready for Human Review Gate. Human H1 approval must then be explicit.
+If V00 passes, continue the already documented one-batch validation plan through provenance/builds, controlled/normal M07, startup11, M07 14/14, repaired failure/publication, independent remaining V04 cells, retention, and V05/M08 when eligible.
 
 Do not begin R02.
