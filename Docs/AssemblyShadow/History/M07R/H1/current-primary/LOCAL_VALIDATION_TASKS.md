@@ -2,20 +2,20 @@
 
 Candidate build-input source anchor:
 
-`39c33e259d1ba893e23e3f1aa22529c87524534f`
+`af56b841e9ae80be0b1748e546338f9b68da2717`
 
 The previous Local attempt at `f8a2766d...` is **Blocked / V00** evidence only. Do not reuse or relabel it as V00 PASS.
 
 ## V00 — mandatory fresh restart
 
 1. Pull the final pushed `codex/assembly-shadow-r01b-h1` handoff HEAD.
-2. Record checkout HEAD separately from source anchor `39c33e259d1ba893e23e3f1aa22529c87524534f`.
+2. Record checkout HEAD separately from source anchor `af56b841e9ae80be0b1748e546338f9b68da2717`.
 3. Confirm clean tracked state.
 4. Run:
    `python3 Tools/AssemblyShadow/h1_handoff_preflight.py --project <candidate-root> --role candidate --output <new-v00-candidate-output>`
 5. Require:
    - `status=SourceTargetVerifiedNotBuildAccepted`;
-   - `codeCommit=39c33e259d1ba893e23e3f1aa22529c87524534f`;
+   - `codeCommit=af56b841e9ae80be0b1748e546338f9b68da2717`;
    - committed handoff/source-target hashes from this fresh run.
 6. Run exact reproduction-tooling preflight at `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
 7. Verify protected reproduction/runtime/package/IL2CPP/performance refs remain exact.
