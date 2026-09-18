@@ -224,6 +224,14 @@ class FailurePipelineTests(unittest.TestCase):
                     gate.verify_suite(launch)
         write(early_path,saved);write(launch,original)
 
+    def test_failure_probe_uses_shared_profile2_budget_validator(self):
+        source=(Path(gate.__file__).resolve().parents[2] /
+                'Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs').read_text()
+        self.assertIn('ShadowPatchMetadataReservation.ValidateIfDeclared',source)
+        self.assertIn('ReserveMetadataBudget(sizes, budgetProfileVersion)',source)
+        self.assertIn('profileVersion == M07Probe.RuntimeAbiVersion',source)
+        self.assertNotIn('patch.nativeBudgetCapabilityVersion == 1',source)
+
     def test_public_verifier_has_direct_module_entrypoint(self):
         source=Path(gate.__file__).read_text()
         self.assertIn('if __name__ == "__main__":',source)
