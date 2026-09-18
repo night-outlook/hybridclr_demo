@@ -1,3 +1,106 @@
+# Primary Implementation handoff — MethodPtr + dense replacement candidate
+
+## Current objective
+
+Validate Primary fixes for the two non-trivial blockers returned by Local Validation on 2026-09-17. H1 remains in progress. Do not begin R02.
+
+Implementation anchor: `8b1298d6a5979928bdfa30446e2d674d63999b76` on `codex/assembly-shadow-r01b-h1`.
+
+Only `night-outlook/hybridclr_demo` changed in this cycle. The other three repository pins remain:
+- `night-outlook/hybridclr` — `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`
+- `night-outlook/hybridclr_unity` — `0ea633a2c5b936b5af69d944593c55bd2783fca9`
+- `night-outlook/il2cpp_plus` — `6be7f38bec2fa4677d24efc1a4a1294240789933`
+
+## Primary changes
+
+### 1. ECMA-335 `#-` pointer-table verifier support
+
+`Tools/AssemblyShadow/m05_types.py` no longer rejects every non-empty FieldPtr/MethodPtr/ParamPtr/EventPtr/PropertyPtr table.
+
+The verifier now accepts a pointer table only when it is a complete one-to-one permutation of its physical target table:
+- pointer and target row counts must match;
+- every target RID must be non-zero and in range;
+- duplicate target RIDs are rejected;
+- list ranges are interpreted in logical pointer-table order and resolved back to physical rows before ownership/member inspection.
+
+TypeDef field/method ownership and EventMap/PropertyMap member traversal use this indirection. No runtime or HybridCLR acceptance rule was broadened.
+
+`Tools/AssemblyShadow/tests/test_m05_results.py` adds synthetic `#-` coverage for:
+- reordered FieldPtr/MethodPtr;
+- EventPtr/PropertyPtr;
+- duplicate, zero, out-of-range and row-count-mismatch entries;
+- truncated table stream;
+- mixed pointer/non-pointer tables.
+
+### 2. Replacement dense-fixture contract
+
+The historical sealed dense DLL bytes remain **Unavailable** and must not be relabelled.
+
+Primary added:
+- `Tools/AssemblyShadow/r01b-dense-fixture.cs`
+- `Tools/AssemblyShadow/create-r01b-dense-fixtures.py`
+
+The generator uses the pinned Unity 2022.3.62f2 Mono/Cecil toolchain, runs each fixture generation twice, requires byte-identical output, then independently checks PE identity and CLI table shape. It emits two exact 1 MiB assemblies with 4098 TypeDef rows, 4097 MethodDef rows, and a >64 KiB strings heap so RawImage must use 4-byte heap indices.
+
+The v2 manifest explicitly records:
+- `GeneratedDeterministicDenseV2`;
+- `historicalEvidenceReused=false`;
+- old sealed hashes as `UnavailableDoNotRelabel`;
+- fresh generator/tool/input hashes and fresh fixture hashes.
+
+`run-r01b-parser-tests.py` now accepts `--dense-manifest` and distinguishes sealed-v1 from generated-v2 evidence. `native-tests/r01b-parser-dense.cpp` checks the semantic boundary shape instead of historical string-index/RVA constants.
+
+## Required Local Validation
+
+Run in this order. Stop and return to Primary on any non-local semantic/design failure.
+
+1. Pull the branch and verify the implementation anchor is an ancestor of the current handoff HEAD. Preserve the four repository/source pins.
+2. Run the focused Python M05 tests, especially `test_m05_results.py`. Require all prior tests plus the new pointer-table cases to pass.
+3. Feed the exact fresh Unity `AssemblyShadowDemo.Bootstrap.dll` that previously reported 1,675 MethodPtr rows through the updated verifier/capsule/startup11 path. Record:
+   - metadata stream kind;
+   - MethodPtr count;
+   - whether the table is a complete permutation;
+   - selected method witnesses/raw lookup results;
+   - capsule-generation and startup11 result.
+   Any malformed/non-permutation table must still fail closed.
+4. Generate fresh dense v2 fixtures into a new evidence directory:
+   `python3 Tools/AssemblyShadow/create-r01b-dense-fixtures.py --output-root <new-absolute-output>`
+   Require two-run byte identity, exact 1 MiB size, 4098/4097 row counts and >64 KiB strings heap.
+5. Run the native RawImage parser using the fresh manifest:
+   `python3 Tools/AssemblyShadow/run-r01b-parser-tests.py --dense-manifest <new-output>/workload-v3-dense-adjunct-v2.json --output-root <new-parser-output> [--installed-root <exact-installed-root>]`
+   Preserve the new manifest, generator receipt/stdout, fixture hashes, native receipt and sanitizer output.
+6. If steps 2–5 pass, resume only the previously blocked H1 V04 downstream chain: authenticated control capsules, startup11, M07 Player matrix, capacity/lazy/dense/old-Player/performance as applicable. Then proceed to V05 only under the existing H1 contract.
+
+## Expected results
+
+- Fresh Unity `#-` metadata with the 1,675-row MethodPtr table is verified through pointer indirection without weakening malformed-input rejection.
+- Fresh control capsules can be generated from the same authenticated M07 inputs.
+- Dense v2 fixtures establish **new** native/Player evidence; historical sealed-v1 PASS remains historical only.
+- No claim of H1 PASS, M08 PASS, Human Review Gate readiness, or R02 entry is permitted from focused success alone.
+
+## Evidence to return
+
+Update `LOCAL_VALIDATION.md` with exact commands, repository HEADs, Unity/toolchain identity, fresh hashes and status distinctions. Put any non-trivial failure in `RETURN_TO_WEB.md`.
+
+For MethodPtr failure retain the exact fresh DLL/hash, pointer-table rows or summarized permutation proof, verifier error, and capsule/startup trace.
+
+For dense failure retain generator stdout/stderr, compiler/tool hashes, generated file hashes/sizes, manifest and native parser/sanitizer receipts.
+
+## Modification boundary
+
+Local may fix machine paths, executable permissions, invocation syntax and isolated output directories.
+
+Local must not:
+- weaken the pointer-table permutation checks;
+- special-case the known 1,675-row Bootstrap image by hash/name;
+- rewrite TypeDef/member ownership semantics;
+- relabel historical dense-v1 evidence as fresh;
+- change generator shape targets or native parser acceptance semantics merely to obtain PASS;
+- alter runtime ABI/count/capacity rules;
+- begin R02.
+
+---
+
 # Primary Implementation → Local Validation
 
 > Documentation and handoff paths were consolidated under `Docs/AssemblyShadow/` after the predecessor handoff. The consolidation commit is the current implementation anchor; protected runtime/reproduction/performance pins remain unchanged.
