@@ -2,7 +2,7 @@
 
 Candidate build-input source anchor:
 
-`f15b339610c42f340c181bdfffef29bdc4a99ed3`
+`4fff4df26681ab3595bb241bbc972207d032831e`
 
 Latest Local checkpoint:
 
@@ -15,10 +15,10 @@ The goal is one maximal batch. Hard-stop only for source/provenance/shared-input
 ## V00 — fresh authority
 
 1. Pull the final pushed handoff HEAD.
-2. Record checkout HEAD separately from source anchor `f15b339...`.
+2. Record checkout HEAD separately from source anchor `4fff4df...`.
 3. Require clean tracked state.
 4. Run candidate `h1_handoff_preflight.py`.
-5. Require `SourceTargetVerifiedNotBuildAccepted` and exact `codeCommit=f15b339...`.
+5. Require `SourceTargetVerifiedNotBuildAccepted` and exact `codeCommit=4fff4df...`.
 6. Run reproduction-tooling preflight at `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
 7. Verify protected reproduction/runtime/package/IL2CPP/performance refs remain exact.
 
@@ -30,7 +30,7 @@ Run the complete H1 Python inventory and affected focused suites.
 
 Primary CI reference at the source anchor:
 
-- bounded Primary: 316/316;
+- bounded Primary: 319/319;
 - handoff: 11/11;
 - early capsule: 7/7;
 - early results: 19/19;
