@@ -4,7 +4,7 @@
 
 Validate the V04 repair batch at candidate build-input source anchor:
 
-`f15b339610c42f340c181bdfffef29bdc4a99ed3`
+`4fff4df26681ab3595bb241bbc972207d032831e`
 
 Then complete as much remaining H1 evidence as safely possible in one Local cycle:
 
@@ -32,7 +32,7 @@ Candidate identities:
 
 | Repository | Branch | Source/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | build-input anchor `f15b339610c42f340c181bdfffef29bdc4a99ed3` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | build-input anchor `4fff4df26681ab3595bb241bbc972207d032831e` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -55,7 +55,7 @@ Environment:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`
 
-`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` both identify source anchor `f15b339...`.
+`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` both identify source anchor `4fff4df...`.
 
 The final checkout HEAD is expected to be a later metadata-only handoff/documentation successor. Record checkout HEAD and source anchor separately.
 
@@ -166,11 +166,11 @@ The build map is emitted only after `ComparabilityPassed`.
 
 Workflow:
 
-`35355439098`
+`35356780407`
 
-at source anchor `f15b339...` / authority successor `e8241a621cc0310385bb3f8f2a3b3b7532203908` passed:
+at source anchor `4fff4df...` / authority successor `5c57eb32c07ff5e2f716f41e27d006936ca42be8` passed:
 
-- bounded Primary: **316/316**;
+- bounded Primary: **319/319**;
 - committed handoff: **11/11**;
 - R01 early capsule: **7/7**;
 - R01 early results: **19/19**;
@@ -179,8 +179,8 @@ at source anchor `f15b339...` / authority successor `e8241a621cc0310385bb3f8f2a3
 
 Artifact:
 
-- ID `10551697107`;
-- ZIP SHA-256 `2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`.
+- ID `10551884431`;
+- ZIP SHA-256 `9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55`.
 
 This is source/tool evidence only.
 
