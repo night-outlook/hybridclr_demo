@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
-      "implementationCommit": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 profile-2 failure repair, deterministic dense-v2 lazy admission, protected profile-1 reference verifier, authenticated performance build-map freezer, and complete bounded Primary test inventory. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+      "implementationCommit": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 failure/lazy repairs, protected profile-1 reference verifier, authenticated performance build-map freezer, preregistration path binder, and complete bounded Primary test inventory. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+        "candidateToolSourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -282,7 +282,7 @@
   "failurePublicationProfile2Repair": {
     "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
     "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
-    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
     "failure": "Earliest Baseline admission succeeded for all three failure/publication processes, but R01FailureProbe rejected every current patch before its oracle because it hard-coded nativeBudgetCapabilityVersion == 1 while the authenticated current M07 patch contract is profile 2.",
     "correction": {
       "sharedValidator": "ShadowPatchMetadataReservation.ValidateIfDeclared",
@@ -294,7 +294,7 @@
   "lazyDenseV2Repair": {
     "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
     "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
-    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
     "failure": "The lazy Player runner accepted only the unavailable historical sealed-v1 dense manifest while the current deterministic generator emits schema-2 R01BDenseAdjunctManifest; Local therefore had NoCoverage before launch.",
     "correction": {
       "historicalV1Policy": "Still accepted only under its original R01BWorkloadV3DenseMetadataAdjunct / VerifiedSealedV1FixturesOutsideV2Envelope identity.",
@@ -303,7 +303,7 @@
     }
   },
   "protectedReferenceCoordination": {
-    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
     "performanceReferenceHead": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
     "profile1DemoSourceAnchor": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
     "profile1RuntimePins": {
@@ -313,38 +313,12 @@
     },
     "verificationTool": "Tools/AssemblyShadow/verify-h1-protected-reference.py",
     "performanceMapTool": "Tools/AssemblyShadow/freeze-h1-performance-build-map.py",
-    "policy": "Primary now defines and authenticates the old profile-1 reference family and derives the paired-performance build map only from strict controlled build evidence. Local still performs the real isolated reference installation/build/Player execution; it must not reconstruct historical receipts or hand-author comparability claims."
+    "policy": "Primary authenticates the old profile-1 reference family, binds preregistered performance rules into a fresh evidence root without changing pair decisions, and derives the A/B build map only from strict controlled build evidence. Local performs real isolated installation/build/Player/sampling execution; it must not reconstruct historical receipts or hand-author schedule/comparability claims.",
+    "preregistrationTool": "Tools/AssemblyShadow/bind-h1-performance-preregistration.py"
   },
   "v04RepairPrimaryValidation": {
-    "workflowRun": 35355439098,
-    "workflowCommit": "e8241a621cc0310385bb3f8f2a3b3b7532203908",
-    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
-    "boundedPrimaryTests": {
-      "passed": 316,
-      "total": 316
-    },
-    "committedHandoffTests": {
-      "passed": 11,
-      "total": 11
-    },
-    "r01EarlyCapsuleTests": {
-      "passed": 7,
-      "total": 7
-    },
-    "r01EarlyResultsTests": {
-      "passed": 19,
-      "total": 19
-    },
-    "r01FailurePipelineTests": {
-      "passed": 17,
-      "total": 17
-    },
-    "r01bLazyContractTests": {
-      "passed": 8,
-      "total": 8
-    },
-    "artifactId": 10551697107,
-    "artifactZipSha256": "2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a",
-    "scope": "Primary source/tool/contract evidence only. No Unity IL2CPP Player execution for the repaired failure or lazy paths, no protected-reference rebuild, no performance sampling, no V05/M08/human acceptance."
+    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+    "status": "PendingFinalAuthorityConsistentCI",
+    "scope": "Prior 36173a5 CI passed all then-wired suites; final source anchor adds preregistration binding tooling/tests and requires a fresh authority-consistent CI run."
   }
 }
