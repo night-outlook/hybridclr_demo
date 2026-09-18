@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate build-input source anchor: `36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
+- Candidate build-input source anchor: `4fff4df26681ab3595bb241bbc972207d032831e`
 - Latest Local return: `f8e66d092b275173a415776f845182171c4dbc31`.
 - Fresh `af56b841...` Local batch status:
   - V00-V03, controlled M07, normal M07, startup11, M07 14/14: `Passed`;
@@ -19,16 +19,16 @@
   - reference runtime pins are explicit in `source-targets.json`;
   - `verify-h1-protected-reference.py` authenticates the isolated reference family and measurement-source parity;
   - `freeze-h1-performance-build-map.py` derives comparability only from strict controlled build evidence.
-- Primary executable evidence: workflow `35355439098` at metadata successor `e8241a621cc0310385bb3f8f2a3b3b7532203908`:
-  - bounded Primary suite: **316/316**;
+- Primary executable evidence: workflow `35356780407` at metadata successor `5c57eb32c07ff5e2f716f41e27d006936ca42be8`:
+  - bounded Primary suite: **319/319**;
   - committed handoff suite: **11/11**;
   - R01 early capsule: **7/7**;
   - R01 early results: **19/19**;
   - R01 failure pipeline: **17/17**;
   - R01B lazy contract: **8/8**;
-  - artifact `10551697107`, ZIP SHA-256 `2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`.
+  - artifact `10551884431`, ZIP SHA-256 `9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55`.
 - Gate: `H1 / InProgress / AwaitingFresh36173aBatch`
 - Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
 - May enter R02: `false`
-- Required next action: Local restarts at fresh V00 under source anchor `36173a5...`, regenerates the current candidate build/M07 graph, validates repaired failure/publication and lazy paths, regenerates the protected profile-1 reference graph and controlled A/B builds if feasible, maximizes remaining independent V04 coverage, authenticates a checkpoint before cleanup, and proceeds to V05/M08 only when mandatory prerequisites are complete.
+- Required next action: Local restarts at fresh V00 under source anchor `4fff4df...`, regenerates the current candidate build/M07 graph, validates repaired failure/publication and lazy paths, regenerates the protected profile-1 reference graph and controlled A/B builds if feasible, maximizes remaining independent V04 coverage, authenticates a checkpoint before cleanup, and proceeds to V05/M08 only when mandatory prerequisites are complete.
