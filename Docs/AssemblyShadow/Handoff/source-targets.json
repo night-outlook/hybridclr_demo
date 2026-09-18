@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "3a01eae1458dc7028e26c397090314a82ce096f3",
-      "implementationCommit": "3a01eae1458dc7028e26c397090314a82ce096f3",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the profile-2 failure probe repair, deterministic dense-v2 lazy Player admission, protected profile-1 reference verifier, authenticated performance build-map freezer, and their Primary regressions. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+      "implementationCommit": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 profile-2 failure repair, deterministic dense-v2 lazy admission, protected profile-1 reference verifier, authenticated performance build-map freezer, and complete bounded Primary test inventory. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+        "candidateToolSourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -282,7 +282,7 @@
   "failurePublicationProfile2Repair": {
     "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
     "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
-    "sourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
     "failure": "Earliest Baseline admission succeeded for all three failure/publication processes, but R01FailureProbe rejected every current patch before its oracle because it hard-coded nativeBudgetCapabilityVersion == 1 while the authenticated current M07 patch contract is profile 2.",
     "correction": {
       "sharedValidator": "ShadowPatchMetadataReservation.ValidateIfDeclared",
@@ -294,7 +294,7 @@
   "lazyDenseV2Repair": {
     "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
     "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
-    "sourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
     "failure": "The lazy Player runner accepted only the unavailable historical sealed-v1 dense manifest while the current deterministic generator emits schema-2 R01BDenseAdjunctManifest; Local therefore had NoCoverage before launch.",
     "correction": {
       "historicalV1Policy": "Still accepted only under its original R01BWorkloadV3DenseMetadataAdjunct / VerifiedSealedV1FixturesOutsideV2Envelope identity.",
@@ -303,7 +303,7 @@
     }
   },
   "protectedReferenceCoordination": {
-    "sourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
     "performanceReferenceHead": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
     "profile1DemoSourceAnchor": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
     "profile1RuntimePins": {
