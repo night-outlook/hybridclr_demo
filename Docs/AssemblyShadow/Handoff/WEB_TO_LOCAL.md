@@ -4,7 +4,7 @@
 
 Validate the R01 failure/publication earliest-admission repair at candidate build-input source anchor:
 
-`39c33e259d1ba893e23e3f1aa22529c87524534f`
+`af56b841e9ae80be0b1748e546338f9b68da2717`
 
 Then continue the fresh H1 chain as far as safely possible in **one Local batch**: authority → provenance/builds → controlled/normal M07 → startup/M07 matrix → repaired failure/publication → independent remaining V04 coverage → retention → V05/M08 only if mandatory acceptance evidence is complete.
 
@@ -35,7 +35,7 @@ Environment remains:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`.
 
-`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` now bind demo source to `39c33e25...`.
+`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` now bind demo source to `af56b841...`.
 
 Checkout HEAD is a later metadata-only documentation/handoff successor. Record checkout HEAD and build-input source anchor separately.
 
