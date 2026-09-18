@@ -314,5 +314,37 @@
     "verificationTool": "Tools/AssemblyShadow/verify-h1-protected-reference.py",
     "performanceMapTool": "Tools/AssemblyShadow/freeze-h1-performance-build-map.py",
     "policy": "Primary now defines and authenticates the old profile-1 reference family and derives the paired-performance build map only from strict controlled build evidence. Local still performs the real isolated reference installation/build/Player execution; it must not reconstruct historical receipts or hand-author comparability claims."
+  },
+  "v04RepairPrimaryValidation": {
+    "workflowRun": 35355439098,
+    "workflowCommit": "e8241a621cc0310385bb3f8f2a3b3b7532203908",
+    "sourceAnchor": "36173a5b12c74fbc9e5fc56b8d5246b187bce65a",
+    "boundedPrimaryTests": {
+      "passed": 316,
+      "total": 316
+    },
+    "committedHandoffTests": {
+      "passed": 11,
+      "total": 11
+    },
+    "r01EarlyCapsuleTests": {
+      "passed": 7,
+      "total": 7
+    },
+    "r01EarlyResultsTests": {
+      "passed": 19,
+      "total": 19
+    },
+    "r01FailurePipelineTests": {
+      "passed": 17,
+      "total": 17
+    },
+    "r01bLazyContractTests": {
+      "passed": 8,
+      "total": 8
+    },
+    "artifactId": 10551697107,
+    "artifactZipSha256": "2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a",
+    "scope": "Primary source/tool/contract evidence only. No Unity IL2CPP Player execution for the repaired failure or lazy paths, no protected-reference rebuild, no performance sampling, no V05/M08/human acceptance."
   }
 }
