@@ -1,105 +1,233 @@
-# Static Review — H1 Committed Handoff Section Contract Repair
+# Static Review — V04 Failure/Lazy Repair + Protected Reference Coordination
 
 ## Verdict
 
-**PASS for Primary → fresh Local V00 handoff.**
+**PASS for Primary → Local Validation handoff**, subject to fresh real-environment validation.
 
-This review does not establish V00 Local PASS, Unity/Player/runtime/performance acceptance, M08 PASS, or Human Review Gate readiness.
+Reviewed candidate build-input source anchor:
 
-## Returned finding
+`36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
 
-Local at `f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf` found that the authoritative handoff did not satisfy its own verifier contract.
+This review does not claim real Unity/IL2CPP Player acceptance, performance acceptance, V05 completion, independent M08 PASS, or Human Review Gate approval.
 
-The verifier requires exact substrings:
+## Finding A — late failure probe profile mismatch
 
-- `## Objective`
-- `## Source targets`
-- `## Implementation`
-- `## Local validation`
-- `## Failure evidence`
-- `## Alternatives`
-- `## Risks`
-- `## Local correction boundary`
-- `## Human review gate`
+### Previous defect
 
-The prior handoff used editorial variants such as `## Primary implementation` and `## Human Review Gate`, and lacked exact `Risks` and `Local correction boundary` sections.
+The earliest Baseline callback admitted each failure/publication process correctly, but `R01FailureProbe` then required `nativeBudgetCapabilityVersion == 1`.
 
-## Repair invariant
+Current patches are explicit profile 2.
 
-`h1_handoff_preflight.py` was not changed.
+### Repair
 
-No verifier relaxation, case-folding, heading alias, metadata-only expansion, source-path exception, or source-authority bypass was introduced.
+The late probe now delegates metadata contract admission to:
 
-The repair changes the document to match the verifier, not the verifier to match the document.
+`ShadowPatchMetadataReservation.ValidateIfDeclared`
 
-## Live regression
+This is the same fail-closed validator used by the current M07 reservation path.
 
-The previous unit suite only proved a synthetic handoff built from `REQUIRED_SECTIONS`.
+It verifies:
 
-The new regression resolves the actual repository root from the committed test file and runs:
+- declared capability;
+- dormant legacy fields;
+- complete profile-2 encoding contract;
+- complete profile-2 capacity contract;
+- load-order/closure equality;
+- unique names;
+- every declared DLL size against confined/hash-verified real bytes.
 
-`h1_handoff_preflight.verify(root, 'candidate')`
+The returned profile must equal `M07Probe.RuntimeAbiVersion`.
 
-This requires, in one test:
+Reservation uses the returned version rather than a hard-coded number.
 
-- actual committed WEB_TO_LOCAL bytes equal HEAD;
-- actual committed source-target bytes equal HEAD;
-- all required headings are present;
-- actual branch/origin are correct;
-- actual source target and source pin agree;
-- runtime pins agree;
-- `verify_demo` confirms every non-metadata build input matches the declared source anchor.
+### Preserved invariants
 
-The CI workflow uses `fetch-depth: 0` because `verify_demo` must resolve the source-anchor commit beneath metadata-only successors.
+No changes were made to:
 
-## CI trigger coverage
+- earliest Baseline admission;
+- Control/Q04/initializer operation ordering;
+- Q04 byte transformation;
+- initializer failure injection;
+- raw diagnostic/recovery semantics;
+- strict Python result oracle;
+- native runtime implementation.
 
-The Primary workflow now runs when any of these authorities change:
+A simple `== 2` bypass was intentionally not used.
 
-- `Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md`;
-- `Docs/AssemblyShadow/Handoff/source-targets.json`;
-- `ProjectSettings/AssemblyShadowSourcePins.json`;
-- the existing source/test/workflow paths.
+## Finding B — lazy dense-v2 NoCoverage
 
-This closes the specific gap that allowed a committed handoff edit to bypass the synthetic-only regression.
+### Previous defect
 
-## Source authority
+`run-r01b-lazy-player.py` accepted only the historical sealed-v1 dense manifest, while the current supported generator emits deterministic-v2.
 
-The live regression test and workflow trigger are build-input changes, so the candidate source anchor advances to:
+### Repair
 
-`af56b841e9ae80be0b1748e546338f9b68da2717`
+The runner now explicitly supports two identities, not one loose superset.
 
-The underlying failure/publication runtime implementation from `50c79913...` is unchanged.
+#### Sealed-v1
 
-The reproduction-tool candidate source anchor advances consistently; its declared tool blobs remain unchanged.
+Requires the exact old schema/kind/status, source-corpus bindings, parser identity and fixture envelope.
 
-## Blocked-attempt preservation
+#### Deterministic-v2
 
-The Local attempt at `f8a2766d...` remains Blocked at V00. V01–V05 were NotRun. M08 was not rerun.
+Requires:
 
-No evidence state was upgraded by this repair.
+- schema 2;
+- exact v2 kind/status/evidence identity;
+- `historicalEvidenceReused=false`;
+- old sealed hashes preserved only as `UnavailableDoNotRelabel`;
+- exact shape contract;
+- source/launcher/Mono/mcs/Cecil hashes;
+- two-run reproducibility flags and command inventory;
+- exact generated fixture-root confinement;
+- exact 1 MiB fixture sizes;
+- exact 4098 TypeDef / 4097 MethodDef rows;
+- >64 KiB string heap;
+- 4-byte TypeDef/MethodDef row widths;
+- current parser-revalidated assembly identity, MVID and 4097-type inventory.
 
-## Final committed-live-handoff CI
+The runner normalizes only after successful admission.
 
-The exact live handoff version at commit `4338cc989bd01918e012e43b8ecbae983e4862c8` passed GitHub Actions workflow `35333505896`.
+### Player-side independent gate
 
-Results:
+`R01BLazyProbe` independently requires:
 
-- bounded Primary suite: **312/312 Passed**;
-- committed live handoff preflight suite: **11/11 Passed**;
-- R01 early-capsule suite: **7/7 Passed**;
-- R01 early-results suite: **19/19 Passed**;
-- R01 failure-pipeline suite: **16/16 Passed**.
+- recognized v1 or v2 header;
+- no v2 historical-evidence relabelling;
+- exactly fixture IDs 1 and 2;
+- correct assembly names;
+- current hash/size/row envelope;
+- for v2: exact 1 MiB, exact 4098/4097 rows and >64 KiB strings heap.
 
-CI artifact:
+It then executes the existing boundary methods at rows 4095/4096.
 
-- ID: `10542063317`
-- ZIP SHA-256: `63027964602b3e44f34aed7eb77b1ce228b781c2dcf08ed21eaa743e5bd8928b`
+Lazy allocation/reservation semantics were not relaxed.
 
-The 11-test handoff suite includes the regression that executes `h1_handoff_preflight.verify()` against the actual committed checkout. The exact `WEB_TO_LOCAL.md`, `source-targets.json`, and source-pin relationship therefore passed the same source preflight used by Local.
+## Finding C/D — protected profile-1 old-Player/performance evidence unavailable
+
+These were availability problems, not justification to reconstruct historical bytes.
+
+Primary verified that the protected reference commit:
+
+`88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`
+
+still contains:
+
+- an explicit profile-1 reservation implementation;
+- the M07 build workflow;
+- the controlled R00 Development build producer;
+- measurement probe/process-memory/witness bytes identical to the current candidate.
+
+### New protected-reference verifier
+
+`verify-h1-protected-reference.py` is read-only and requires exact:
+
+- demo/reference head;
+- HybridCLR, package and IL2CPP heads;
+- Git origins;
+- clean tracked state;
+- protected source pins;
+- profile-1 source contract;
+- required producers;
+- candidate/reference measurement-source parity.
+
+It reports only `ProtectedReferenceInputsVerifiedNotBuilt`.
+
+It does not install, build, or claim acceptance.
+
+### New performance build-map freezer
+
+`freeze-h1-performance-build-map.py` takes actual controlled build receipts/evidence from sides A/B.
+
+It invokes the existing strict performance analyzer to authenticate:
+
+- Development C++ Release configuration;
+- build GUID/output/executable;
+- native library/metadata;
+- immutable input snapshot;
+- source pins/provenance inventory;
+- measurement source snapshots.
+
+It derives comparability from those authenticated facts.
+
+A build map is written only after `ComparabilityPassed`.
+
+The tool does not accept hand-authored comparability claims and does not claim performance acceptance.
+
+## Regression coverage
+
+Primary regressions now cover:
+
+- failure probe source bound to the shared profile-2 validator;
+- no stale profile-1 equality;
+- unchanged failure pipeline adversarial suite;
+- deterministic-v2 manifest admission and normalization;
+- v2 historical relabelling rejection;
+- Player-side explicit v1/v2 contract;
+- lazy ledger invariants;
+- authenticated performance build-map derivation;
+- controlled evidence tamper rejection;
+- protected reference identity constants and expected runtime differences;
+- committed live handoff preflight.
+
+## Primary executable evidence
+
+Workflow `35355439098` at source anchor `36173a5...` and authority successor `e8241a621cc0310385bb3f8f2a3b3b7532203908` passed:
+
+- bounded Primary: **316/316**;
+- committed handoff: **11/11**;
+- early capsule: **7/7**;
+- early results: **19/19**;
+- failure pipeline: **17/17**;
+- lazy contract: **8/8**.
+
+Artifact ID:
+
+`10551697107`
+
+ZIP SHA-256:
+
+`2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`
+
+## Source-authority review
+
+Only `night-outlook/hybridclr_demo` changed.
+
+Candidate native/package/IL2CPP pins remain:
+
+- HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`;
+- HybridCLR Unity `0ea633a2c5b936b5af69d944593c55bd2783fca9`;
+- IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`.
+
+Candidate source anchor is `36173a5...`.
+
+The protected performance reference remains `88508b59...`; its branches/pins are not moved.
+
+No source-verifier, metadata-only, H1 gate, M07 mutable-path, capacity, runtime ABI, performance-analysis or human-gate policy was weakened.
+
+## Residual empirical requirements
+
+Local must still prove in the real macOS/Unity environment:
+
+1. current source/provenance builds at the new source anchor;
+2. current controlled/normal M07;
+3. repaired late failure Control/Q04/initializer behavior;
+4. deterministic-v2 lazy Player execution;
+5. isolated protected-reference installation integrity;
+6. fresh reference profile-1 M07 graph;
+7. fresh old-Player identity rejection;
+8. fresh candidate/reference controlled Development builds;
+9. build-map comparability;
+10. preregistered pilot/formal performance sampling;
+11. complete checkpoint retention;
+12. V05 and genuine independent M08 only when eligible.
 
 ## Gate
 
-H1 remains `InProgress`; historical M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`.
+
+Historical M08 remains `FAIL`; it was not rerun.
+
+`humanGatePassed=false`; `mayEnterR02=false`.
 
 Do not begin R02.
