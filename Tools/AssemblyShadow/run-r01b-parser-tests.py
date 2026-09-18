@@ -72,6 +72,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-root", required=True, type=Path)
     parser.add_argument("--installed-root", type=Path)
+    parser.add_argument("--dense-manifest", type=Path,
+                        help="Dense adjunct manifest; accepts historical sealed v1 or deterministic replacement v2")
     args = parser.parse_args()
 
     here = Path(__file__).resolve().parent
@@ -84,7 +86,8 @@ def main() -> int:
     external = installed.parent / "external"
     corpus_dir = demo / "_temp/AssemblyShadow/R01B/workload-v2-corpus-512MiB-8192"
     corpus_manifest = corpus_dir / "workload-v2-manifest.json"
-    dense_manifest = demo / "_temp/AssemblyShadow/R01B/workload-v3-dense-adjunct.json"
+    dense_manifest = (args.dense_manifest.resolve() if args.dense_manifest else
+                      demo / "_temp/AssemblyShadow/R01B/workload-v3-dense-adjunct.json")
     full_harness = here / "native-tests/r01b-parser-full.cpp"
     dense_harness = here / "native-tests/r01b-parser-dense.cpp"
     fix_harness = here / "native-tests/r01b-parser-bounds.cpp"
@@ -121,17 +124,27 @@ def main() -> int:
         dense_manifest_data = json.loads(dense_manifest.read_text(encoding="utf-8"))
         verified_corpus = verify_corpus(corpus_dir, full_manifest_data)
         fixtures = dense_manifest_data.get("fixtures", [])
-        if len(fixtures) != 2 or dense_manifest_data.get("status") != "VerifiedSealedV1FixturesOutsideV2Envelope":
-            raise RuntimeError("dense adjunct is not the sealed two-fixture manifest")
+        dense_status = dense_manifest_data.get("status")
+        if len(fixtures) != 2 or dense_status not in (
+                "VerifiedSealedV1FixturesOutsideV2Envelope", "GeneratedDeterministicDenseV2"):
+            raise RuntimeError("dense adjunct is not an accepted two-fixture manifest")
+        if dense_status == "GeneratedDeterministicDenseV2" and dense_manifest_data.get("historicalEvidenceReused") is not False:
+            raise RuntimeError("replacement dense fixtures must not relabel historical evidence")
         dense_inputs = []
         for fixture in fixtures:
             path = Path(fixture["path"]).resolve(strict=True)
             if path.is_symlink() or path.stat().st_size != fixture["sizeBytes"] or digest(path) != fixture["sha256"]:
                 raise RuntimeError(f"dense fixture identity, size, or hash mismatch: {path}")
-            if fixture["typeDefRows"] != 4098 or fixture["methodDefRows"] != 4097 or fixture["stringsHeapBytes"] != 286888:
+            if fixture["typeDefRows"] != 4098 or fixture["methodDefRows"] != 4097:
                 raise RuntimeError(f"dense dimensions mismatch: {path}")
+            if dense_status == "VerifiedSealedV1FixturesOutsideV2Envelope":
+                if fixture["stringsHeapBytes"] != 286888:
+                    raise RuntimeError(f"historical dense strings heap differs: {path}")
+            elif fixture["stringsHeapBytes"] < 65536 or fixture.get("typeDefRowBytes", 0) < 18 or fixture.get("methodDefRowBytes", 0) < 16:
+                raise RuntimeError(f"replacement dense fixture does not exercise 4-byte heap indexes: {path}")
             dense_inputs.append({"id": fixture["id"], "path": str(path),
-                                 "sizeBytes": fixture["sizeBytes"], "sha256": fixture["sha256"]})
+                                 "sizeBytes": fixture["sizeBytes"], "sha256": fixture["sha256"],
+                                 "evidenceIdentity": dense_status})
 
         base_flags: list[Path | str] = ["-std=c++11", "-O1", "-g", "-fno-omit-frame-pointer",
             "-ffunction-sections", "-fdata-sections",
