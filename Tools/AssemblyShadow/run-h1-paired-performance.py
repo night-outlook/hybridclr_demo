@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from shadow_tools import VerificationError, read_json, require
+import h1_paired_performance as analysis
 
 
 _m07_spec = importlib.util.spec_from_file_location(
@@ -28,7 +29,7 @@ _r00_spec = importlib.util.spec_from_file_location(
 _r00 = importlib.util.module_from_spec(_r00_spec)
 _r00_spec.loader.exec_module(_r00)
 
-MODES = tuple(_r00.MODES)
+MODES = tuple(analysis.MODES)
 PHASES = ("pilot", "formal")
 SIDES = ("A", "B")
 RUNNER_PATH = Path(__file__).with_name("run-r00-players.py").resolve()
