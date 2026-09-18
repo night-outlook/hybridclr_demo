@@ -8,7 +8,7 @@ Latest Local return:
 
 Current reviewed candidate build-input source anchor:
 
-`36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
+`4fff4df26681ab3595bb241bbc972207d032831e`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -160,9 +160,9 @@ Local no longer needs to hand-author comparability claims.
 
 ## Primary executable validation
 
-GitHub Actions workflow `35355439098` at source anchor `36173a5...` / authority successor `e8241a62...` passed:
+GitHub Actions workflow `35356780407` at source anchor `4fff4df...` / authority successor `e8241a62...` passed:
 
-- bounded Primary suite: **316/316**;
+- bounded Primary suite: **319/319**;
 - committed live-handoff suite: **11/11**;
 - R01 early-capsule suite: **7/7**;
 - R01 early-results suite: **19/19**;
@@ -171,8 +171,8 @@ GitHub Actions workflow `35355439098` at source anchor `36173a5...` / authority 
 
 Artifact:
 
-- ID: `10551697107`
-- ZIP SHA-256: `2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`
+- ID: `10551884431`
+- ZIP SHA-256: `9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55`
 
 This is source/tool evidence only. Real Unity/IL2CPP validation remains Local work.
 
@@ -184,7 +184,7 @@ The Local checkpoint:
 
 remains immutable historical evidence for source anchor `af56b841...`.
 
-Its Passed cells remain valid as historical observations, but they are not current-anchor `36173a5...` acceptance.
+Its Passed cells remain valid as historical observations, but they are not current-anchor `4fff4df...` acceptance.
 
 The failed failure/publication late-probe evidence and lazy `NoCoverage` evidence must remain under their original status.
 
@@ -192,7 +192,7 @@ The old-Player/performance `Unavailable / NotRun` states must not be replaced by
 
 ## Next Local cycle
 
-Local restarts from fresh V00 under source anchor `36173a5...`.
+Local restarts from fresh V00 under source anchor `4fff4df...`.
 
 The desired one-batch order is:
 
