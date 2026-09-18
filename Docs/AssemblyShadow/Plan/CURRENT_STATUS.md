@@ -1,14 +1,34 @@
 # Current Status
 
-- Candidate build-input source anchor: `af56b841e9ae80be0b1748e546338f9b68da2717`
-- Latest Local return: `f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf` — `Blocked / V00` because the committed WEB_TO_LOCAL heading ABI did not match `h1_handoff_preflight.py.REQUIRED_SECTIONS`.
-- V00 heading-contract repair: `Implemented / PrimaryRegressionAdded / AwaitingFreshLocalV00`
-- Verifier policy: unchanged. `h1_handoff_preflight.py`, `REQUIRED_SECTIONS`, `verify_demo`, metadata-only classification, and protected pins were not weakened.
-- Live regression: `test_h1_handoff_preflight.py` now runs candidate preflight against the actual committed repository handoff/source-target/source-pin state; Primary CI triggers on those authority files and checks out full history.
-- Failure/publication early-admission repair remains inherited from `50c79913096961636a776ee8254b6631002cdfe5`; its Primary source/tool evidence remains 311/311 + 7/7 + 19/19 + 16/16 at workflow `35330989089`.
-- Blocked Local attempt `f8a2766d...`: do not reuse or relabel as V00 PASS; V01–V05 and M08 were NotRun.
-- Gate: `H1 / InProgress / AwaitingFreshV00`
+- Candidate build-input source anchor: `36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
+- Latest Local return: `f8e66d092b275173a415776f845182171c4dbc31`.
+- Fresh `af56b841...` Local batch status:
+  - V00-V03, controlled M07, normal M07, startup11, M07 14/14: `Passed`;
+  - capacity 8192/8193, mixed 512 MiB, parser/FieldRVA/dense-v2, generic/index/cache/capability, retained M03-M06/R01 native: `Passed`;
+  - failure/publication: `Failed` after successful earliest admission because the late probe hard-coded metadata capability 1;
+  - lazy Player: `NoCoverage` because the runner accepted only unavailable sealed-v1 dense manifests;
+  - old-Player rejection: `Unavailable / NotRun` because no fresh protected profile-1 fixture/Player graph was present;
+  - controlled performance: `Unavailable / NotRun` because no fresh protected-reference Development build map was present;
+  - V05/M08: `NotRun`.
+- Primary failure/publication repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
+  - The late probe now reuses `ShadowPatchMetadataReservation.ValidateIfDeclared` and reserves with the validated profile version; no profile-2 shortcut or runtime-oracle weakening was added.
+- Primary lazy repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
+  - Historical sealed-v1 remains historical-only; deterministic dense-v2 is admitted only through its explicit generator/tool/shape/parser contract and cannot relabel v1 evidence.
+- Protected reference coordination: `Prepared / AwaitingLocalExecution`.
+  - profile-1 reference demo head: `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
+  - reference runtime pins are explicit in `source-targets.json`;
+  - `verify-h1-protected-reference.py` authenticates the isolated reference family and measurement-source parity;
+  - `freeze-h1-performance-build-map.py` derives comparability only from strict controlled build evidence.
+- Primary executable evidence: workflow `35355439098` at metadata successor `e8241a621cc0310385bb3f8f2a3b3b7532203908`:
+  - bounded Primary suite: **316/316**;
+  - committed handoff suite: **11/11**;
+  - R01 early capsule: **7/7**;
+  - R01 early results: **19/19**;
+  - R01 failure pipeline: **17/17**;
+  - R01B lazy contract: **8/8**;
+  - artifact `10551697107`, ZIP SHA-256 `2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`.
+- Gate: `H1 / InProgress / AwaitingFresh36173aBatch`
 - Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
 - May enter R02: `false`
-- Required next action: Local restarts from a fresh V00 on the final metadata-only handoff successor, requires `SourceTargetVerifiedNotBuildAccepted` for source anchor `af56b841...`, then follows the existing one-batch V01–V05 instructions if authority passes.
+- Required next action: Local restarts at fresh V00 under source anchor `36173a5...`, regenerates the current candidate build/M07 graph, validates repaired failure/publication and lazy paths, regenerates the protected profile-1 reference graph and controlled A/B builds if feasible, maximizes remaining independent V04 coverage, authenticates a checkpoint before cleanup, and proceeds to V05/M08 only when mandatory prerequisites are complete.
