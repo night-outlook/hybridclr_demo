@@ -1,11 +1,14 @@
 # Current Status
 
-- Candidate build-input source anchor: `8b1298d6a5979928bdfa30446e2d674d63999b76`
-- Source authority advanced after Local return `476925a44613f09774de78f93c017e1a078838b0`; `verify_demo` and metadata-only rules are unchanged.
-- MethodPtr blocker: `PassedFocused` in Local Validation — 113 focused tests passed with one explicit environment-path skip; the retained real Unity `#-` Bootstrap proved a complete 1,675-row MethodPtr permutation and five raw method witnesses.
-- Dense replacement: `Passed` in Local Validation — deterministic dense-v2 generation and native full/dense/bounded parser validation passed; historical dense-v1 remains `UnavailableDoNotRelabel`.
-- Gate: `H1 / InProgress / AwaitingFreshM07Chain`
+- Candidate build-input source anchor: `50c79913096961636a776ee8254b6631002cdfe5`
+- Local return addressed: `af0d345ce3aa7257e301926d0da652709c09cf54`
+- Failure/publication early-admission repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`
+- Primary executable evidence: workflow `35330989089` — 311/311 bounded + 7/7 early-capsule + 19/19 early-results + 16/16 failure-pipeline tests passed.
+- Previous current-anchor Local chain at `8b1298d...`: authority/provenance/M07/startup11/M07-14-of-14 passed; failure/publication was blocked before host continuation by missing early capsule arguments. Preserve as historical evidence only after source-anchor advance.
+- MethodPtr focused blocker: `PassedFocused` under its original evidence identity.
+- Dense-v2 replacement: `Passed` under its original focused evidence identity; historical dense-v1 remains `UnavailableDoNotRelabel`.
+- Gate: `H1 / InProgress / AwaitingFresh50c799Batch`
 - Last independent M08: `FAIL`
 - Human gate passed: `false`
 - May enter R02: `false`
-- Required next action: Local reruns candidate/reproduction authority preflight under source anchor `8b1298d...`, regenerates one fresh normal M07 fixture + Native ON/OFF build + Editor replay set, immediately continues capsule/startup11 and blocked V04 downstream validation, and retains the complete receipt set before any workspace cleanup. Then V05 and a genuine independent whole-chain M08 are required.
+- Required next action: Local runs one fresh source-anchor-`50c799...` batch through authority/provenance/M07, verifies startup11 + M07 matrix + repaired failure/publication matrix, then maximizes independent capacity/lazy/dense/retained/performance coverage before retention/V05. V05 and genuine independent whole-chain M08 require complete mandatory evidence.
