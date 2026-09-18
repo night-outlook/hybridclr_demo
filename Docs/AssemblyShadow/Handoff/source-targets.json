@@ -318,8 +318,36 @@
     "performanceDriverModeOrder": "R00-OFF-NoPatch,R00-ON-NoPatch,R00-ON-P01,R00-ON-P03"
   },
   "v04RepairPrimaryValidation": {
+    "workflowRun": 35356780407,
+    "workflowCommit": "5c57eb32c07ff5e2f716f41e27d006936ca42be8",
     "sourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
-    "status": "PendingFinalAuthorityConsistentCI",
-    "scope": "Final source anchor adds path-bound preregistration and aligns the performance driver with the frozen protocol/analyzer mode order."
+    "status": "PassedPrimarySourceAndContractTests",
+    "boundedPrimaryTests": {
+      "passed": 319,
+      "total": 319
+    },
+    "committedHandoffTests": {
+      "passed": 11,
+      "total": 11
+    },
+    "r01EarlyCapsuleTests": {
+      "passed": 7,
+      "total": 7
+    },
+    "r01EarlyResultsTests": {
+      "passed": 19,
+      "total": 19
+    },
+    "r01FailurePipelineTests": {
+      "passed": 17,
+      "total": 17
+    },
+    "r01bLazyContractTests": {
+      "passed": 8,
+      "total": 8
+    },
+    "artifactId": 10551884431,
+    "artifactZipSha256": "9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55",
+    "scope": "Primary source/tool/contract evidence only. No Unity IL2CPP Player execution for repaired failure/lazy paths, no protected-reference rebuild, no performance sampling, no V05/M08/human acceptance."
   }
 }
