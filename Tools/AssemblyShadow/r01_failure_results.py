@@ -8,10 +8,13 @@ from pathlib import Path
 import m07_results as m07
 import m04_results as m04
 import r01_results as r01
+import r01_early_capsule as early_capsule
 from r00_player_inputs import verify_inputs
 from shadow_tools import require
 
 MODES = ("R01-Failure-P03-Control", "R01-Failure-Q04-Metadata", "R01-Failure-InitializerThrow")
+EARLY_ADMISSION_MODE = "Baseline"
+EARLY_BINDING_KIND = "R01FailureEarlyAdmissionBinding"
 INITIALIZER_ID = "R01-P03-InitializerThrow"
 INITIALIZER_TARGET = "AssemblyA.Implementation.Extensibility"
 INITIALIZER_REASON = "R01-INIT-THROW:" + INITIALIZER_TARGET
@@ -20,7 +23,8 @@ DEFINES = ["ASSEMBLY_SHADOW_P01", "ASSEMBLY_SHADOW_P03", "ASSEMBLY_SHADOW_M03_IN
 RESULT_FIELDS = "schemaVersion kind mode result error resultPath processId mainThreadId unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 baselineManifestPath baselineManifestSha256 failureFixturesPath failureFixturesSha256 negativeInputPath negativeInputSha256 patchId patchManifestPath patchManifestSha256 nativeLibrarySha256 nativeMetadataSha256 inputSnapshotHash il2cpp observerJoined closureLoadOrder observerErrors orderedSizes byteInputs operations diagnostics capacities recovery observerSamples initializerEvents"
 RAW_FIELDS = "phase rawJson rawPath rawSha256 code threadId ticks"
 RECEIPT_FIELDS = "schemaVersion kind result sourcePins baselineManifestPath baselineManifestSha256 baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 initializer replayPatchManifest replayPatchManifestSha256 replayBytesEqual files"
-LAUNCH_FIELDS = "schemaVersion kind projectRoot fixtureManifestPath onBuildReceiptPath offBuildReceiptPath replayReceiptPath failureFixturesPath negativeInputPath sourcePins modes processLaunches resultDirectory inputHashesBefore inputHashesAfter inputsUnchanged"
+LAUNCH_FIELDS = "schemaVersion kind projectRoot fixtureManifestPath onBuildReceiptPath offBuildReceiptPath replayReceiptPath failureFixturesPath negativeInputPath sourcePins modes processLaunches resultDirectory capsuleDirectory inputHashesBefore inputHashesAfter inputsUnchanged"
+PROCESS_FIELDS = "mode command processId startedAtUnix durationSeconds exitCode timedOut passed earlyBindingPath earlyBindingSha256 capsulePath capsuleSha256 earlyResultPath earlyResultSha256 resultPath resultSha256 logPath logSha256 consolePath consoleSha256 error"
 read, exact, fields, digest, bound, canonical = r01.read, r01.exact, r01.fields, r01.digest, r01.bound, r01.canonical
 prior = m07.prior
 
@@ -515,48 +519,156 @@ def verify_result(path, mode, prepared):
     return dict(mode=mode, state=state, terminalFailureCode=terminal, result="Passed", processId=result["processId"], observerSamples=len(samples))
 
 
-def command_for(prepared, mode, paths, result_path, log_path):
+def admission_binding(prepared, mode, paths):
+    require(mode in MODES, "Unknown failure/publication mode")
+    context = prepared["context"]
+    return dict(
+        schemaVersion=1,
+        kind=EARLY_BINDING_KIND,
+        failureMode=mode,
+        earlyMode=EARLY_ADMISSION_MODE,
+        baselineBuildId=context["manifest"]["baselineBuildId"],
+        runtimeAbiHash=context["manifest"]["runtimeAbiHash"],
+        fixtureManifestPath=str(paths["fixtureManifestPath"]),
+        fixtureManifestSha256=digest(paths["fixtureManifestPath"]),
+        onBuildReceiptPath=str(context["on"]["path"]),
+        onBuildReceiptSha256=digest(context["on"]["path"]),
+        failureFixturesPath=str(paths["failureFixturesPath"]),
+        failureFixturesSha256=digest(paths["failureFixturesPath"]),
+        negativeInputPath=str(paths["negativeInputPath"]),
+        negativeInputSha256=digest(paths["negativeInputPath"]),
+        sourcePins=context["sourcePins"],
+    )
+
+
+def admission_capsule(prepared, mode, paths, binding_path):
+    binding_path = Path(binding_path)
+    extras = set(prepared["failures"]["files"]) | set(prepared["negative"]["files"]) | {binding_path}
+    return early_capsule.from_context(
+        prepared["context"], EARLY_ADMISSION_MODE, "P03", paths["fixtureManifestPath"],
+        extra_prerequisites=extras)
+
+
+def materialize_admission_inputs(prepared, paths, root):
+    root = Path(root)
+    require(root.is_absolute() and root == root.resolve() and root.is_dir() and not root.is_symlink(),
+            "Early-admission root must be a canonical directory")
+    require(not any(root.iterdir()), "Early-admission root must be empty")
+    result = {}
+    for mode in MODES:
+        binding_path = root / (mode + ".binding.json")
+        binding = admission_binding(prepared, mode, paths)
+        binding_path.write_text(json.dumps(binding, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        capsule_path = root / (mode + ".capsule")
+        receipt = early_capsule.write_capsule(capsule_path, admission_capsule(prepared, mode, paths, binding_path))
+        result[mode] = dict(bindingPath=binding_path, bindingSha256=digest(binding_path),
+                            capsulePath=capsule_path, capsuleSha256=receipt["sha256"])
+    return result
+
+
+def verify_admission_binding(path, mode, prepared, paths):
+    path = canonical(str(path), Path(path), mode + ".earlyBinding")
+    exact(read(path), admission_binding(prepared, mode, paths), mode + ".earlyBinding")
+    return path
+
+
+def verify_admission_capsule(path, mode, binding_path, prepared, paths):
+    path = canonical(str(path), Path(path), mode + ".earlyCapsule")
+    actual = early_capsule.decode(path.read_bytes())
+    exact(actual, admission_capsule(prepared, mode, paths, binding_path), mode + ".earlyCapsule")
+    exact(actual["mode"], EARLY_ADMISSION_MODE, mode + ".earlyCapsuleMode")
+    return path
+
+
+def command_for(prepared, mode, paths, capsule_path, early_result_path, result_path, log_path):
     build = prepared["context"]["on"]
-    return [str(prepared["runner"].executable_for(build["output"])), "-batchmode", "-nographics", "-shadowR01FailureMode", mode,
+    return [str(prepared["runner"].executable_for(build["output"])), "-batchmode", "-nographics",
+        "-shadowEarlyCapsule", str(capsule_path), "-shadowEarlyCapsuleSha256", digest(capsule_path),
+        "-shadowEarlyResult", str(early_result_path),
+        "-shadowR01FailureMode", mode,
         "-shadowM07Fixtures", str(paths["fixtureManifestPath"]), "-shadowM07PlayerReceipt", str(build["path"]),
         "-shadowR01FailureFixtures", str(paths["failureFixturesPath"]), "-shadowR01NegativeInput", str(paths["negativeInputPath"]),
         "-shadowR01FailureResult", str(result_path), "-logFile", str(log_path)]
 
 
 def verify_suite(launch_path):
+    # Lazy import avoids a module-import cycle: r01_early_results uses this
+    # module's failure-fixture verifier for its own intentional failure modes.
+    import r01_early_results as early_gate
+
     launch_path = canonical(str(launch_path), Path(launch_path), "failure launch")
     launch = fields(read(launch_path), LAUNCH_FIELDS, "failure launch")
-    for key, expected in (("schemaVersion", 1), ("kind", "R01FailureLaunches"), ("modes", list(MODES)), ("inputsUnchanged", True)):
+    for key, expected in (("schemaVersion", 2), ("kind", "R01FailureLaunches"), ("modes", list(MODES)), ("inputsUnchanged", True)):
         exact(launch[key], expected, "launch." + key)
     paths = {key: canonical(launch[key], launch_path, key, key == "projectRoot") for key in
              ("projectRoot", "fixtureManifestPath", "onBuildReceiptPath", "offBuildReceiptPath", "replayReceiptPath", "failureFixturesPath", "negativeInputPath")}
     prepared = prepare(*(paths[key] for key in ("projectRoot", "fixtureManifestPath", "onBuildReceiptPath", "offBuildReceiptPath", "replayReceiptPath", "failureFixturesPath", "negativeInputPath")))
     exact(launch["sourcePins"], prepared["context"]["sourcePins"], "launch.sourcePins")
-    inventory = {str(path): digest(path) for path in sorted(prepared["inventory"])}
-    exact(launch["inputHashesBefore"], inventory, "launch.completeInventory")
-    exact(launch["inputHashesAfter"], inventory, "launch.inputsUnchanged")
     result_dir = canonical(launch["resultDirectory"], launch_path, "result directory", True)
     exact(result_dir, launch_path.parent / "Results", "result directory confinement")
+    capsule_dir = canonical(launch["capsuleDirectory"], launch_path, "capsule directory", True)
+    exact(capsule_dir, launch_path.parent / "EarlyAdmission", "capsule directory confinement")
+
     rows = launch["processLaunches"]
     exact([row["mode"] for row in rows], list(MODES), "complete ordered process matrix")
     require(len({r01.integer(row["processId"], "pid", 1) for row in rows}) == len(MODES), "Failure modes did not use fresh processes")
+
+    admission_files = set()
+    admissions = {}
+    for index, row in enumerate(rows):
+        fields(row, PROCESS_FIELDS, f"launch.process[{index}]")
+        mode = row["mode"]
+        binding = bound(row["earlyBindingPath"], row["earlyBindingSha256"], launch_path, mode + ".earlyBinding")
+        exact(binding, capsule_dir / (mode + ".binding.json"), mode + ".earlyBindingPath")
+        verify_admission_binding(binding, mode, prepared, paths)
+        capsule_path = bound(row["capsulePath"], row["capsuleSha256"], launch_path, mode + ".earlyCapsule")
+        exact(capsule_path, capsule_dir / (mode + ".capsule"), mode + ".earlyCapsulePath")
+        verify_admission_capsule(capsule_path, mode, binding, prepared, paths)
+        admissions[mode] = (binding, capsule_path)
+        admission_files.update((binding, capsule_path))
+
+    inventory = {str(path): digest(path) for path in sorted(set(prepared["inventory"]) | admission_files)}
+    exact(launch["inputHashesBefore"], inventory, "launch.completeInventory")
+    exact(launch["inputHashesAfter"], inventory, "launch.inputsUnchanged")
+
     results = []
     for row in rows:
-        fields(row, "mode command processId startedAtUnix durationSeconds exitCode timedOut passed resultPath resultSha256 logPath consolePath error", "launch process")
         mode = row["mode"]
-        exact(row["exitCode"], 0, mode + ".exitCode"); exact(row["timedOut"], False, mode + ".timedOut"); exact(row["passed"], True, mode + ".passed")
+        exact(row["exitCode"], 0, mode + ".exitCode")
+        exact(row["timedOut"], False, mode + ".timedOut")
+        exact(row["passed"], True, mode + ".passed")
+        exact(row["error"], "", mode + ".error")
         require(isinstance(row["startedAtUnix"], (int, float)) and row["startedAtUnix"] > 0 and
                 isinstance(row["durationSeconds"], (int, float)) and row["durationSeconds"] > 0, "Missing process timing")
+        binding, capsule_path = admissions[mode]
+        early_path = bound(row["earlyResultPath"], row["earlyResultSha256"], launch_path, mode + ".earlyResult")
+        exact(early_path, result_dir / (mode + ".early.json"), mode + ".earlyResultPath")
+        early = early_gate.verify_early_receipt(early_path, capsule_path, EARLY_ADMISSION_MODE,
+                                                row["processId"], prepared["profile"])
+        exact(early["capsule"], admission_capsule(prepared, mode, paths, binding), mode + ".earlyAdmission")
+        exact(early["receipt"]["callbackReturnCode"], 0, mode + ".earlyCallbackReturnCode")
+        exact(early["receipt"]["result"], "Passed", mode + ".earlyResult")
+
         path = bound(row["resultPath"], row["resultSha256"], launch_path, mode + ".result")
-        exact(path, result_dir / (mode + ".json"), "result path")
-        exact(row["logPath"], str(launch_path.parent / (mode + ".unity.log")), "Unity log path")
-        exact(row["consolePath"], str(launch_path.parent / (mode + ".console.log")), "console path")
-        for key in ("logPath", "consolePath"): canonical(row[key], launch_path, key)
-        exact(row["command"], command_for(prepared, mode, paths, path, Path(row["logPath"])), "exact executed command")
-        exact(read(path)["processId"], row["processId"], "producer/process identity")
-        results.append(verify_result(path, mode, prepared))
-    return dict(schemaVersion=1, kind="R01FailureVerification", result="Passed", launchReceipt=str(launch_path),
-                launchReceiptSha256=digest(launch_path), sourcePins=prepared["context"]["sourcePins"], modes=results)
+        exact(path, result_dir / (mode + ".json"), mode + ".resultPath")
+        log_path = bound(row["logPath"], row["logSha256"], launch_path, mode + ".log")
+        console_path = bound(row["consolePath"], row["consoleSha256"], launch_path, mode + ".console")
+        exact(log_path, launch_path.parent / (mode + ".unity.log"), mode + ".logPath")
+        exact(console_path, launch_path.parent / (mode + ".console.log"), mode + ".consolePath")
+        exact(row["command"], command_for(prepared, mode, paths, capsule_path, early_path, path, log_path),
+              mode + ".exactExecutedCommand")
+        exact(read(path)["processId"], row["processId"], mode + ".producerProcessIdentity")
+        result = verify_result(path, mode, prepared)
+        result["earlyAdmissionMode"] = EARLY_ADMISSION_MODE
+        result["earlyReceipt"] = str(early_path)
+        result["earlyReceiptSha256"] = digest(early_path)
+        result["earlyBinding"] = str(binding)
+        result["earlyBindingSha256"] = digest(binding)
+        results.append(result)
+
+    return dict(schemaVersion=2, kind="R01FailureVerification", result="Passed", launchReceipt=str(launch_path),
+                launchReceiptSha256=digest(launch_path), sourcePins=prepared["context"]["sourcePins"],
+                earlyAdmissionMode=EARLY_ADMISSION_MODE, modes=results)
 
 
 def main(argv=None):
@@ -571,4 +683,4 @@ def main(argv=None):
         result = dict(schemaVersion=1, kind="R01FailureVerification", result="Failed", error=str(error))
     args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result))
-    return int(result["result"] != "Passed")
+    return int(result["result"] != "Passed")\n\n\nif __name__ == "__main__":\n    raise SystemExit(main())\n
