@@ -48,8 +48,8 @@ def canonical_repo(value: Path, label: str) -> Path:
     require(value.is_absolute() and not value.is_symlink() and value == value.resolve(strict=True),
             label + " must be a canonical absolute path")
     root = value.resolve(strict=True)
-    require(root.is_dir() and (root / ".git").exists() or
-            run_git(root, "rev-parse", "--is-inside-work-tree") == "true",
+    require(root.is_dir(), label + " must be a directory")
+    require((root / ".git").exists() or run_git(root, "rev-parse", "--is-inside-work-tree") == "true",
             label + " is not a Git worktree")
     top = Path(run_git(root, "rev-parse", "--show-toplevel")).resolve(strict=True)
     require(top == root, label + " must be the Git worktree root")
