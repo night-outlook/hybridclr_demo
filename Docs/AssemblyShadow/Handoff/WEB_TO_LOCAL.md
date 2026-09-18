@@ -4,7 +4,7 @@
 
 Validate the V04 repair batch at candidate build-input source anchor:
 
-`36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
+`f15b339610c42f340c181bdfffef29bdc4a99ed3`
 
 Then complete as much remaining H1 evidence as safely possible in one Local cycle:
 
@@ -32,7 +32,7 @@ Candidate identities:
 
 | Repository | Branch | Source/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | build-input anchor `36173a5b12c74fbc9e5fc56b8d5246b187bce65a` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | build-input anchor `f15b339610c42f340c181bdfffef29bdc4a99ed3` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -55,7 +55,7 @@ Environment:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`
 
-`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` both identify source anchor `36173a5...`.
+`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` both identify source anchor `f15b339...`.
 
 The final checkout HEAD is expected to be a later metadata-only handoff/documentation successor. Record checkout HEAD and source anchor separately.
 
@@ -168,7 +168,7 @@ Workflow:
 
 `35355439098`
 
-at source anchor `36173a5...` / authority successor `e8241a621cc0310385bb3f8f2a3b3b7532203908` passed:
+at source anchor `f15b339...` / authority successor `e8241a621cc0310385bb3f8f2a3b3b7532203908` passed:
 
 - bounded Primary: **316/316**;
 - committed handoff: **11/11**;
@@ -239,7 +239,8 @@ If reference setup is possible in the real environment:
 7. produce fresh controlled Development ON/OFF builds on both reference and candidate through each project's own `R00ControlledBuild`;
 8. freeze the map using `freeze-h1-performance-build-map.py`;
 9. require `ComparabilityPassed`;
-10. run the preregistered performance pilot/formal protocol and retain all attempts.
+10. bind the preregistered protocol/schedule into a fresh evidence root with `bind-h1-performance-preregistration.py` and require its integrity receipt;
+11. run the bound preregistered performance pilot/formal protocol and retain all attempts.
 
 Do not reconstruct old Player or performance receipts from historical summaries.
 
@@ -299,7 +300,7 @@ Do not:
 - weaken the failure/publication strict verifier;
 - relabel sealed-v1 dense evidence;
 - accept arbitrary schema-2 dense JSON without generator/parser bindings;
-- hand-author performance comparability claims;
+- hand-author performance comparability claims or sampling schedules;
 - reuse normal M07 Players as controlled Development performance Players;
 - reconstruct historical old-Player or performance receipts;
 - move protected branches/commits;
