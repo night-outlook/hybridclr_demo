@@ -422,3 +422,6 @@ class FailurePipelineTests(unittest.TestCase):
         row['rawJson']=json.dumps(data);Path(row['rawPath']).write_text(row['rawJson']);row['rawSha256']=gate.digest(Path(row['rawPath']))
         write(path,result);receipt['processLaunches'][2]['resultSha256']=gate.digest(path);write(launch,receipt)
         with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
+
+if __name__ == "__main__":
+    unittest.main()
