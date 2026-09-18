@@ -1,13 +1,11 @@
 # Current Status
 
-- Primary implementation anchor: `8b1298d6a5979928bdfa30446e2d674d63999b76`
-- Primary handoff document updated after the implementation anchor
-- Previous candidate implementation anchor: `68df00fe31a199491b313cc17f25575663b7452b`
-- Workspace and documentation consolidation: `Complete`
-- Gate: `H1 / InProgress / AwaitingLocalValidation`
+- Candidate build-input source anchor: `8b1298d6a5979928bdfa30446e2d674d63999b76`
+- Source authority advanced after Local return `476925a44613f09774de78f93c017e1a078838b0`; `verify_demo` and metadata-only rules are unchanged.
+- MethodPtr blocker: `PassedFocused` in Local Validation — 113 focused tests passed with one explicit environment-path skip; the retained real Unity `#-` Bootstrap proved a complete 1,675-row MethodPtr permutation and five raw method witnesses.
+- Dense replacement: `Passed` in Local Validation — deterministic dense-v2 generation and native full/dense/bounded parser validation passed; historical dense-v1 remains `UnavailableDoNotRelabel`.
+- Gate: `H1 / InProgress / AwaitingFreshM07Chain`
 - Last independent M08: `FAIL`
 - Human gate passed: `false`
 - May enter R02: `false`
-- MethodPtr blocker: Primary candidate implemented; requires focused Local verification against the exact fresh Unity `#-` Bootstrap image and resumed capsule/startup chain.
-- Dense-fixture blocker: historical sealed bytes remain unavailable; Primary added a deterministic replacement-v2 generator/manifest contract requiring entirely fresh native/Player evidence.
-- Required next action: Local follows `Handoff/WEB_TO_LOCAL.md` for focused verifier + dense generation/parser validation, then resumes the blocked H1 V04/V05 chain only if those focused checks pass. Genuine independent whole-chain M08 PASS and explicit human H1 approval are still required before R02.
+- Required next action: Local reruns candidate/reproduction authority preflight under source anchor `8b1298d...`, regenerates one fresh normal M07 fixture + Native ON/OFF build + Editor replay set, immediately continues capsule/startup11 and blocked V04 downstream validation, and retains the complete receipt set before any workspace cleanup. Then V05 and a genuine independent whole-chain M08 are required.
