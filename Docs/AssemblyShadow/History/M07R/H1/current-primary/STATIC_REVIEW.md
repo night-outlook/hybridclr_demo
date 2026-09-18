@@ -2,7 +2,7 @@
 
 ## Verdict
 
-**PASS for Primary → fresh Local V00 handoff**, subject to the final committed-live-handoff CI regression.
+**PASS for Primary → fresh Local V00 handoff.**
 
 This review does not establish V00 Local PASS, Unity/Player/runtime/performance acceptance, M08 PASS, or Human Review Gate readiness.
 
@@ -78,6 +78,25 @@ The reproduction-tool candidate source anchor advances consistently; its declare
 The Local attempt at `f8a2766d...` remains Blocked at V00. V01–V05 were NotRun. M08 was not rerun.
 
 No evidence state was upgraded by this repair.
+
+## Final committed-live-handoff CI
+
+The exact live handoff version at commit `4338cc989bd01918e012e43b8ecbae983e4862c8` passed GitHub Actions workflow `35333505896`.
+
+Results:
+
+- bounded Primary suite: **312/312 Passed**;
+- committed live handoff preflight suite: **11/11 Passed**;
+- R01 early-capsule suite: **7/7 Passed**;
+- R01 early-results suite: **19/19 Passed**;
+- R01 failure-pipeline suite: **16/16 Passed**.
+
+CI artifact:
+
+- ID: `10542063317`
+- ZIP SHA-256: `63027964602b3e44f34aed7eb77b1ce228b781c2dcf08ed21eaa743e5bd8928b`
+
+The 11-test handoff suite includes the regression that executes `h1_handoff_preflight.verify()` against the actual committed checkout. The exact `WEB_TO_LOCAL.md`, `source-targets.json`, and source-pin relationship therefore passed the same source preflight used by Local.
 
 ## Gate
 
