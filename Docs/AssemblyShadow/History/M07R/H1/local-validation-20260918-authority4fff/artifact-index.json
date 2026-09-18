@@ -1,0 +1,35 @@
+{
+  "schema": "AssemblyShadowH1LocalArtifactIndex/v1",
+  "archive": {
+    "path": "raw-evidence.tar.gz",
+    "sha256": "b33e62448bfb5588edd159d7a5ae3d1ae7844c9f5bd3bde6ef28ba8c592fe975",
+    "entryCount": 5060
+  },
+  "artifacts": [
+    {"path": "V00/candidate-preflight.json", "sha256": "cb78ea7705b64f17fa171c2093a0cdd93cefcefc8dc1c4829fc7f7761e664027", "state": "Passed"},
+    {"path": "V00/reproduction-tooling.json", "sha256": "d6b04adeeef968ca7e3227afc9436bcb9da4ffe62210901f65cc6facb8dc267b", "state": "Passed"},
+    {"path": "V01/primary/run/results.json", "sha256": "b1b7dd1427583f0f28dd4b80670e2936d0d9689f635552585220a6d11194e9be", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/M02Validation-9309768b76b8485e934dee1d05ba84a6/m07-build-workflow.json", "sha256": "908c521ef30dbfa049d07ae58b8fe0391322de933d90b27e9dc4c08292deb506", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/M02Validation-9309768b76b8485e934dee1d05ba84a6/m07-fixtures.json", "sha256": "e2f6c1c95896c18424fd6b258956065931c13832767696b0d1e2c818d7c7feb2", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/M02Validation-9309768b76b8485e934dee1d05ba84a6/m07-editor-replay.json", "sha256": "f2136fd0ef9d736deb771c298002d3d801500ef6060b00f3131f1a0339746ee0", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/M07PlayerInputs-bd5ea0ba461e4e138b93a301d2e724e4/m07-player-build.json", "sha256": "c620c8cc175429be7feb646bcca0409fec27de10e39cb5487db01895485ed64c", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/M07PlayerInputs-23f8cf77f6c84d4f9efa6c4d75477990/m07-player-build.json", "sha256": "7dc64b2fe6c6d191b19cc75326231da48b681d94f9e8bc5e5318aed89c05f9af", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-ControlCapsules-20260918A/capsules.json", "sha256": "8aeff83722f9521f5f4b3b1284ce8eab35be26209aafb675ef7f54aab82c8133", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-Startup11-20260918A/r01-early-results.json", "sha256": "388b06f495080c7afe3a3c2bda3d06c5608437c5d54ea69a0687bc91097106cb", "state": "PassedBoundedProfile"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-M07Players14-20260918A/m07-gate3b-results.json", "sha256": "818d52a4c75404fc14be61b532e130223a06817a8817600a030e7e8dd183d824", "state": "PassedGate3B14Of14"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-FailurePlayers-20260918A/r01-failure-launches.json", "sha256": "e345222d332a68e0fdccc6757b3b9fadb1cefd993e41cefb27d2b71a30563aff", "state": "Failed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-FailurePlayers-20260918A/r01-failure-verification.json", "sha256": "ebeb4def22376d037d39b28fe7fe79bb4c964b211ff5341bad65810387e2d8a2", "state": "Failed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-DenseV2-20260918A/workload-v3-dense-adjunct-v2.json", "sha256": "f7c5cc9f450026c642a97f5de9029b2ba617cd0c9928754e45f32499fda32724", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-ParserDenseV2-Retry-20260918A/r01b-parser-receipt.json", "sha256": "7aaf2d755a2fb7112d85fdb0d92993050fff6ed6d06117826aed004bf8353d1a", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-Capacity-CurrentBaseline-20260918A/r01b-capacity-player-launch.json", "sha256": "c9e418eee6ff0d9997abfaf1636746c15193d84c183235e277a1f9795687f414", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-MixedCapacity-CurrentBaseline-20260918A/r01b-mixed-player-launch.json", "sha256": "74fff22d6f602b30233021de22c81790b3b7afed1d41f2a2631956305291b72c", "state": "Passed"},
+    {"archivePath": "_temp/AssemblyShadow/H1Authority4fff-ProtectedReferenceVerification-AfterM07Failure-20260918A.json", "sha256": "451550c733bcd7b38fb39ff7194208c408eb305a81bcbf2f5fecfc4b537a73c6", "state": "PassedAfterRestoration"}
+  ],
+  "omittedPayloadClasses": [
+    "reproducible compiler snapshots",
+    "copied assembly, reference, and linked-player trees",
+    "resource payloads",
+    "Player application bundles",
+    "512 MiB mixed corpus"
+  ]
+}

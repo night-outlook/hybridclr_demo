@@ -1,0 +1,38 @@
+{
+  "schema": "AssemblyShadowH1LocalValidationSummary/v1",
+  "createdDate": "2026-09-18",
+  "candidateDemoCommit": "f480d3a6cccbbc4d3728dc0cf46ad8723f99fb53",
+  "candidateSourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
+  "disposition": "ReturnRequiredAfterV04",
+  "cells": {
+    "V00": "Passed",
+    "V01": "PassedWithIsolatedBroadTestFailure",
+    "V02": "Passed",
+    "V03": "PassedAfterFreshProtectedInput",
+    "V04ControlledM07": "PassedExpectedFailureAndExactRestoration",
+    "V04NormalM07": "Passed",
+    "V04Startup11": "PassedBoundedProfile",
+    "V04M07Players": "PassedGate3B14Of14",
+    "V04FailurePublication": "Failed",
+    "V04Capacity": "Passed",
+    "V04MixedCapacity": "Passed",
+    "V04DenseV2": "Passed",
+    "V04LazyPlayer": "FailedNoCoverage",
+    "V04ParserAndNativeCoverage": "Passed",
+    "V04ProtectedReferenceInstall": "Passed",
+    "V04ProtectedReferenceM07": "Failed",
+    "V04OldPlayer": "UnavailableNotRun",
+    "V04Performance": "UnavailableNotRun",
+    "V05": "BlockedNotRun"
+  },
+  "blockers": [
+    "Failure/publication late probes return BaselineAlreadyUsed after successful same-PID early admission.",
+    "Dense-v2 producer emits four-element generation commands while the lazy verifier requires three.",
+    "Protected profile-1 M07 changes a protected tracked scene before strict source verification."
+  ],
+  "h1Status": "InProgress",
+  "lastIndependentM08": "FAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}
