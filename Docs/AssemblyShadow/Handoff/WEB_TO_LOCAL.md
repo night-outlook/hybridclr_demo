@@ -40,7 +40,7 @@ Checkout HEAD is a later metadata-only documentation/handoff successor. Record c
 
 All declared reproduction-tool blobs were rechecked against candidate anchor `50c79913...`; every expected blob still matches and both authenticated deletion paths remain absent.
 
-## Primary implementation
+## Implementation
 
 ### Failure returned by Local
 
@@ -156,7 +156,7 @@ is valid historical evidence for source anchor `8b1298d...`: it passed through s
 
 MethodPtr/dense checkpoints remain under their original source identities and dispositions.
 
-## Local validation — detailed order
+## Local validation
 
 Canonical task list:
 
@@ -288,7 +288,14 @@ For any source/provenance failure, retain the exact first path/hash/commit misma
 
 Keep `Passed`, `PassedFocused`, `Failed`, `Blocked`, `Unavailable`, `NotRun`, `NoCoverage`, and historical/reused-audited evidence distinct.
 
-## Alternatives / forbidden changes
+## Risks
+
+- The repaired failure/publication path is Primary-tested but still requires real Unity/IL2CPP Player validation under source anchor `50c79913096961636a776ee8254b6631002cdfe5`.
+- Source-pin advancement means prior `8b1298d...` Player/build evidence remains historical comparison only; it must not be promoted to current-anchor acceptance.
+- M07 and downstream outputs remain cleanup-sensitive. Authenticate the Local checkpoint before deleting, consolidating, or regenerating live artifact roots.
+- An authority/provenance/shared-input mismatch invalidates downstream reuse and is a hard stop; isolated fresh-process functional failures may be preserved while independent cells continue only when common authenticated inputs remain intact.
+
+## Alternatives
 
 Local must not:
 
@@ -307,7 +314,17 @@ Machine-specific paths, permissions, invocation syntax, and fresh output directo
 
 Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
-## Human Review Gate
+## Local correction boundary
+
+Local may correct machine-specific absolute paths, executable permissions, invocation syntax, and fresh output/evidence directories.
+
+Local must not change source authority, required handoff headings, metadata-only classification, protected pins, earliest-startup admission semantics, exact command/PID/hash verification, M07 mutable-path policy, runtime transaction/recovery/capacity semantics, or performance methodology.
+
+If a real run requires a non-trivial source/tool change, preserve evidence and return to Primary rather than widening the contract locally.
+
+Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
+
+## Human review gate
 
 H1 remains **InProgress**.
 
