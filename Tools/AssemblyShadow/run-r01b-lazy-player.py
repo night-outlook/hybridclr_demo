@@ -23,6 +23,9 @@ HERE = Path(m07_results.__file__).resolve().parent
 LAZY_SOURCE = HERE / "r01b-lazy-fixture.cs"
 LAZY_LAUNCHER = HERE / "create-r01b-lazy-fixture.py"
 IDENTITY_READER = HERE / "m04_metadata.py"
+TABLE_READER = HERE / "m05_types.py"
+DENSE_SOURCE = HERE / "r01b-dense-fixture.cs"
+DENSE_LAUNCHER = HERE / "create-r01b-dense-fixtures.py"
 MONO = Path("/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/bin/mono")
 COMPILER = Path("/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/bin/mcs")
 CECIL = Path("/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/lib/mono/net_4_x-macos/Mono.Cecil.dll")
@@ -43,6 +46,21 @@ DENSE_FIELDS = frozenset(("fixtures", "kind", "parser", "schemaVersion", "source
 DENSE_SOURCE_FIELDS = frozenset(("manifestSha256", "note", "path", "reparseSha256"))
 DENSE_PARSER_FIELDS = frozenset(("identity", "tables"))
 DENSE_ROW_FIELDS = frozenset(("id", "methodDefRows", "mvid", "name", "path", "sha256", "sizeBytes", "stringsHeapBytes", "typeDefRows", "typeInventoryCount"))
+DENSE_V2_FIELDS = frozenset(("schemaVersion", "kind", "status", "evidenceIdentity", "historicalEvidenceReused",
+                             "fixtures", "shapeContract", "historicalSealedV1", "generator", "createdAtUtc"))
+DENSE_V2_ROW_FIELDS = frozenset(("id", "name", "file", "path", "sha256", "sizeBytes", "mvid", "fullName",
+                                 "typeDefRows", "methodDefRows", "stringsHeapBytes", "typeDefRowBytes", "methodDefRowBytes"))
+DENSE_V2_SHAPE_FIELDS = frozenset(("fixtureCount", "sizeBytesEach", "typeDefRows", "methodDefRows",
+                                   "stringsHeapMinimumBytes", "purpose"))
+DENSE_V2_GENERATOR_FIELDS = frozenset(("sourcePath", "sourceSha256", "launcherPath", "launcherSha256",
+                                       "monoPath", "monoSha256", "monoVersion", "compilerPath", "compilerSha256",
+                                       "compilerVersion", "cecilPath", "cecilSha256", "compileCommand",
+                                       "generateCommands", "inputsUnchanged", "twoFreshRunsByteIdentical"))
+DENSE_V2_HISTORY_FIELDS = frozenset(("id", "sha256", "status"))
+DENSE_V2_HISTORICAL = {
+    1: "14f1fb323db1f1c1ca34840de5ef14eb3434c31e9e1608813ff4c1e398fd1273",
+    2: "e5c88e875c43575b2a3087e466c745b9f8f57366d1247fc469820d53ef295bcf",
+}
 RESULT_FIELDS = frozenset(("schemaVersion", "processId", "passedChecks", "failedAttributeAttempts", "malformedAttributeAttempts", "malformedConstructorCalls", "denseFixtures", "denseBoundaryChecks",
                            "fixtureBytes", "kind", "milestone", "result", "error", "baselineBuildId", "runtimeAbiHash", "unityVersion",
                            "platform", "buildGuid", "resultPath", "fixturePath", "fixtureSha256", "assemblyName", "assemblyFullName", "il2cpp",
@@ -135,47 +153,156 @@ def verify_lazy_receipt(receipt_path: Path) -> tuple[dict, Path, set[Path]]:
     return receipt, lazy_dll, {source, launcher, identity_reader, mono, compiler, cecil}
 
 
-def verify_dense_manifest(manifest_path: Path) -> tuple[dict, set[Path]]:
-    manifest = exact(read_json(manifest_path), DENSE_FIELDS, "dense adjunct manifest")
+def _verify_dense_fixture(path: Path, fixture_id: int, expected: dict, label: str) -> dict:
+    path = canonical_file(path, label + " DLL")
+    require(fixture_id in (1, 2) and path.name == f"AssemblyShadow.Workload.I{fixture_id:04d}.dll",
+            label + ": fixture identity/path differs")
+    require(path.stat().st_size == expected["sizeBytes"] and digest(path) == expected["sha256"],
+            label + ": fixture hash or size differs")
+    identity = read_identity(path)
+    tables = CliTables(path.read_bytes(), path)
+    inventory = tables.type_inventory()
+    require(identity["name"] == expected["name"] and identity["mvid"] == expected["mvid"] and
+            tables.counts[2] == expected["typeDefRows"] and tables.counts[6] == expected["methodDefRows"] and
+            len(tables.streams["#Strings"]) == expected["stringsHeapBytes"],
+            label + ": PE/CLI identity differs")
+    return dict(id=fixture_id, name=identity["name"], path=str(path), sha256=expected["sha256"],
+                sizeBytes=path.stat().st_size, mvid=identity["mvid"], typeDefRows=tables.counts[2],
+                methodDefRows=tables.counts[6], stringsHeapBytes=len(tables.streams["#Strings"]),
+                typeInventoryCount=len(inventory["types"]))
+
+
+def _verify_dense_v1(manifest_path: Path, manifest: dict) -> tuple[dict, set[Path]]:
+    exact(manifest, DENSE_FIELDS, "dense v1 manifest")
     require(manifest["schemaVersion"] == 1 and manifest["kind"] == "R01BWorkloadV3DenseMetadataAdjunct" and
-            manifest["status"] == "VerifiedSealedV1FixturesOutsideV2Envelope", "dense adjunct header differs")
-    source = exact(manifest["sourceCorpus"], DENSE_SOURCE_FIELDS, "dense source corpus")
-    corpus = canonical_directory(source["path"], "dense source corpus directory")
+            manifest["status"] == "VerifiedSealedV1FixturesOutsideV2Envelope", "dense v1 header differs")
+    source = exact(manifest["sourceCorpus"], DENSE_SOURCE_FIELDS, "dense v1 source corpus")
+    corpus = canonical_directory(source["path"], "dense v1 source corpus directory")
     for filename, field in (("workload-manifest.json", "manifestSha256"), ("workload-reparse.json", "reparseSha256")):
-        path = canonical_file(corpus / filename, "dense source corpus " + filename)
-        strict_hash(source[field], "dense source corpus." + field)
-        require(digest(path) == source[field], "dense source corpus hash differs for " + filename)
-    parser = exact(manifest["parser"], DENSE_PARSER_FIELDS, "dense parser provenance")
+        path = canonical_file(corpus / filename, "dense v1 source corpus " + filename)
+        strict_hash(source[field], "dense v1 source corpus." + field)
+        require(digest(path) == source[field], "dense v1 source corpus hash differs for " + filename)
+    parser = exact(manifest["parser"], DENSE_PARSER_FIELDS, "dense v1 parser provenance")
     require(parser["identity"] == "Tools/AssemblyShadow/m04_metadata.py::read_identity_bytes" and
-            parser["tables"] == "Tools/AssemblyShadow/m05_types.py::CliTables", "dense parser provenance differs")
+            parser["tables"] == "Tools/AssemblyShadow/m05_types.py::CliTables", "dense v1 parser provenance differs")
     fixtures = manifest["fixtures"]
-    require(type(fixtures) is list and len(fixtures) == 2, "dense adjunct must contain exactly two fixtures")
+    require(type(fixtures) is list and len(fixtures) == 2, "dense v1 must contain exactly two fixtures")
     inputs = {manifest_path, corpus / "workload-manifest.json", corpus / "workload-reparse.json"}
-    seen = set()
+    normalized, seen = [], set()
     for fixture in fixtures:
-        row = exact(fixture, DENSE_ROW_FIELDS, "dense fixture row")
-        require(type(row["id"]) is int and row["id"] in (1, 2) and row["id"] not in seen and
-                row["name"] == "AssemblyShadow.Workload.I%04d" % row["id"] and
+        row = exact(fixture, DENSE_ROW_FIELDS, "dense v1 fixture row")
+        fixture_id = row["id"]
+        require(type(fixture_id) is int and fixture_id in (1, 2) and fixture_id not in seen and
+                row["name"] == f"AssemblyShadow.Workload.I{fixture_id:04d}" and
                 type(row["sizeBytes"]) is int and row["sizeBytes"] > 0 and
                 type(row["typeDefRows"]) is int and row["typeDefRows"] >= 4098 and
                 type(row["methodDefRows"]) is int and row["methodDefRows"] >= 4097 and
                 type(row["typeInventoryCount"]) is int and row["typeInventoryCount"] >= 4097,
-                "dense fixture envelope differs")
-        strict_hash(row["sha256"], "dense fixture sha256")
-        path = canonical_file(row["path"], "dense fixture DLL")
-        require(path.parent == corpus and path.name == row["name"] + ".dll" and path.stat().st_size == row["sizeBytes"] and
-                digest(path) == row["sha256"], "dense fixture path/hash differs")
+                "dense v1 fixture envelope differs")
+        strict_hash(row["sha256"], "dense v1 fixture sha256")
+        path = canonical_file(row["path"], "dense v1 fixture DLL")
+        require(path.parent == corpus, "dense v1 fixture escaped source corpus")
+        actual = _verify_dense_fixture(path, fixture_id, row, "dense v1 fixture")
+        require(actual["typeInventoryCount"] == row["typeInventoryCount"], "dense v1 type inventory count differs")
+        normalized.append(actual); seen.add(fixture_id); inputs.add(path)
+    require(seen == {1, 2}, "dense v1 fixture IDs differ")
+    return dict(schemaVersion=1, kind=manifest["kind"], status=manifest["status"],
+                evidenceIdentity="historical-sealed-v1", fixtures=normalized), inputs
+
+
+def _verify_dense_v2(manifest_path: Path, manifest: dict) -> tuple[dict, set[Path]]:
+    exact(manifest, DENSE_V2_FIELDS, "dense v2 manifest")
+    require(manifest["schemaVersion"] == 2 and manifest["kind"] == "R01BDenseAdjunctManifest" and
+            manifest["status"] == "GeneratedDeterministicDenseV2" and
+            manifest["evidenceIdentity"] == "replacement-fixtures-require-fresh-native-and-player-evidence" and
+            manifest["historicalEvidenceReused"] is False and type(manifest["createdAtUtc"]) is str and
+            manifest["createdAtUtc"].endswith("Z"), "dense v2 header differs")
+
+    shape = exact(manifest["shapeContract"], DENSE_V2_SHAPE_FIELDS, "dense v2 shape contract")
+    require(shape["fixtureCount"] == 2 and shape["sizeBytesEach"] == 1024 * 1024 and
+            shape["typeDefRows"] == 4098 and shape["methodDefRows"] == 4097 and
+            shape["stringsHeapMinimumBytes"] == 65536 and type(shape["purpose"]) is str and shape["purpose"],
+            "dense v2 shape contract differs")
+
+    history = manifest["historicalSealedV1"]
+    require(type(history) is list and len(history) == 2, "dense v2 historical inventory differs")
+    seen_history = set()
+    for item in history:
+        row = exact(item, DENSE_V2_HISTORY_FIELDS, "dense v2 historical row")
+        fixture_id = row["id"]
+        require(type(fixture_id) is int and fixture_id in (1, 2) and fixture_id not in seen_history and
+                row["sha256"] == DENSE_V2_HISTORICAL[fixture_id] and row["status"] == "UnavailableDoNotRelabel",
+                "dense v2 historical identity differs")
+        seen_history.add(fixture_id)
+    require(seen_history == {1, 2}, "dense v2 historical fixture IDs differ")
+
+    generator = exact(manifest["generator"], DENSE_V2_GENERATOR_FIELDS, "dense v2 generator")
+    bound_tools = ((DENSE_SOURCE, "sourcePath", "sourceSha256"), (DENSE_LAUNCHER, "launcherPath", "launcherSha256"),
+                   (MONO, "monoPath", "monoSha256"), (COMPILER, "compilerPath", "compilerSha256"),
+                   (CECIL, "cecilPath", "cecilSha256"))
+    inputs = {manifest_path, IDENTITY_READER, TABLE_READER}
+    for path, path_field, hash_field in bound_tools:
+        actual = canonical_file(path, "dense v2 generator tool")
+        require(generator[path_field] == str(actual) and generator[hash_field] == digest(actual),
+                "dense v2 generator tool binding differs: " + path_field)
+        inputs.add(actual)
+    require(generator["inputsUnchanged"] is True and generator["twoFreshRunsByteIdentical"] is True and
+            type(generator["monoVersion"]) is str and generator["monoVersion"] and
+            type(generator["compilerVersion"]) is str and generator["compilerVersion"],
+            "dense v2 generator reproducibility contract differs")
+    compile_command = generator["compileCommand"]
+    require(type(compile_command) is list and len(compile_command) >= 6 and compile_command[0] == str(COMPILER) and
+            "-nologo" in compile_command and "-target:exe" in compile_command and
+            sum(type(item) is str and item.startswith("-out:") for item in compile_command) == 1 and
+            sum(type(item) is str and item.startswith("-r:") for item in compile_command) == 1,
+            "dense v2 compile command differs")
+    generate_commands = generator["generateCommands"]
+    require(type(generate_commands) is list and len(generate_commands) == 4 and
+            all(type(command) is list and len(command) == 3 and command[0] == str(MONO) and
+                command[2].endswith(".dll") for command in generate_commands),
+            "dense v2 generation command inventory differs")
+
+    fixture_root = manifest_path.parent / "fixtures"
+    require(fixture_root.is_dir() and not fixture_root.is_symlink(), "dense v2 fixture root is missing")
+    fixtures = manifest["fixtures"]
+    require(type(fixtures) is list and len(fixtures) == 2, "dense v2 must contain exactly two fixtures")
+    normalized, seen = [], set()
+    for fixture in fixtures:
+        row = exact(fixture, DENSE_V2_ROW_FIELDS, "dense v2 fixture row")
+        fixture_id = row["id"]
+        require(type(fixture_id) is int and fixture_id in (1, 2) and fixture_id not in seen and
+                row["name"] == f"AssemblyShadow.Workload.I{fixture_id:04d}" and
+                row["file"] == row["name"] + ".dll" and row["sizeBytes"] == shape["sizeBytesEach"] and
+                row["typeDefRows"] == shape["typeDefRows"] and row["methodDefRows"] == shape["methodDefRows"] and
+                row["stringsHeapBytes"] >= shape["stringsHeapMinimumBytes"] and
+                row["typeDefRowBytes"] >= 18 and row["methodDefRowBytes"] >= 16,
+                "dense v2 fixture envelope differs")
+        strict_hash(row["sha256"], "dense v2 fixture sha256")
+        path = canonical_file(row["path"], "dense v2 fixture DLL")
+        require(path.parent == fixture_root.resolve(strict=True) and path.name == row["file"],
+                "dense v2 fixture escaped generated fixture root")
+        actual = _verify_dense_fixture(path, fixture_id, row, "dense v2 fixture")
         identity = read_identity(path)
         tables = CliTables(path.read_bytes(), path)
-        require(identity["name"] == row["name"] and identity["mvid"] == row["mvid"] and
-                tables.counts[2] == row["typeDefRows"] and tables.counts[6] == row["methodDefRows"] and
-                len(tables.streams["#Strings"]) == row["stringsHeapBytes"] and
-                len(tables.type_inventory()["types"]) == row["typeInventoryCount"],
-                "dense fixture PE/CLI identity differs")
-        seen.add(row["id"])
-        inputs.add(path)
-    require(seen == {1, 2}, "dense adjunct fixture IDs differ")
-    return manifest, inputs
+        require(identity["fullName"] == row["fullName"] and
+                len(tables.type_inventory()["types"]) == 4097 and
+                sum(tables.widths[2]) == row["typeDefRowBytes"] and sum(tables.widths[6]) == row["methodDefRowBytes"],
+                "dense v2 fixture boundary projection differs")
+        normalized.append(actual); seen.add(fixture_id); inputs.add(path)
+    require(seen == {1, 2}, "dense v2 fixture IDs differ")
+    return dict(schemaVersion=2, kind=manifest["kind"], status=manifest["status"],
+                evidenceIdentity=manifest["evidenceIdentity"], fixtures=normalized), inputs
+
+
+def verify_dense_manifest(manifest_path: Path) -> tuple[dict, set[Path]]:
+    manifest_path = canonical_file(manifest_path, "dense adjunct manifest")
+    manifest = read_json(manifest_path)
+    require(type(manifest) is dict, "dense adjunct manifest must be an object")
+    if manifest.get("schemaVersion") == 1:
+        return _verify_dense_v1(manifest_path, manifest)
+    if manifest.get("schemaVersion") == 2:
+        return _verify_dense_v2(manifest_path, manifest)
+    raise ValueError("unsupported dense adjunct manifest schema")
 
 
 def collect_inputs(fixture_manifest: Path, on_build: Path, off_build: Path, replay: Path,
