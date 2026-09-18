@@ -231,3 +231,7 @@ Historical M08 remains `FAIL`; it was not rerun.
 `humanGatePassed=false`; `mayEnterR02=false`.
 
 Do not begin R02.
+
+## Final handoff verification
+
+The exact final live handoff commit `ac8b9f17f2cd98ae671c68ca60b06867085d2790` passed workflow `35357027882` with 319/319 bounded tests plus 11/11 committed-handoff, 7/7 early-capsule, 19/19 early-results, 17/17 failure-pipeline, and 8/8 lazy-contract tests. Artifact `10552945025`, ZIP SHA-256 `81686d1dbf02bfe552bd0e2bdc70e3b690d2f51bafdafc5b7ebc00ad7d99e3db`.
