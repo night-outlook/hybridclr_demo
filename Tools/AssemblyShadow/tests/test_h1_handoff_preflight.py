@@ -6,6 +6,21 @@ import tempfile
 import unittest
 import h1_handoff_preflight as h
 
+class LiveCommittedHandoffTests(unittest.TestCase):
+    def test_actual_committed_candidate_handoff_passes_preflight(self):
+        root=Path(__file__).resolve().parents[3]
+        result=h.verify(root,'candidate')
+        self.assertEqual('SourceTargetVerifiedNotBuildAccepted',result['status'])
+        self.assertEqual('candidate',result['role'])
+        self.assertEqual(self.git(root,'rev-parse','HEAD').strip(),result['checkoutCommit'])
+        text=(root/h.WEB).read_text(encoding='utf-8')
+        for section in h.REQUIRED_SECTIONS:
+            self.assertIn(section,text)
+
+    @staticmethod
+    def git(root,*args):
+        return subprocess.check_output(['git','-C',str(root),*args],stderr=subprocess.DEVNULL,text=True)
+
 class HandoffTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name).resolve()
