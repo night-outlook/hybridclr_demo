@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate build-input source anchor: `39c33e259d1ba893e23e3f1aa22529c87524534f`
+- Candidate build-input source anchor: `af56b841e9ae80be0b1748e546338f9b68da2717`
 - Latest Local return: `f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf` — `Blocked / V00` because the committed WEB_TO_LOCAL heading ABI did not match `h1_handoff_preflight.py.REQUIRED_SECTIONS`.
 - V00 heading-contract repair: `Implemented / PrimaryRegressionAdded / AwaitingFreshLocalV00`
 - Verifier policy: unchanged. `h1_handoff_preflight.py`, `REQUIRED_SECTIONS`, `verify_demo`, metadata-only classification, and protected pins were not weakened.
@@ -11,4 +11,4 @@
 - Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
 - May enter R02: `false`
-- Required next action: Local restarts from a fresh V00 on the final metadata-only handoff successor, requires `SourceTargetVerifiedNotBuildAccepted` for source anchor `39c33e25...`, then follows the existing one-batch V01–V05 instructions if authority passes.
+- Required next action: Local restarts from a fresh V00 on the final metadata-only handoff successor, requires `SourceTargetVerifiedNotBuildAccepted` for source anchor `af56b841...`, then follows the existing one-batch V01–V05 instructions if authority passes.
