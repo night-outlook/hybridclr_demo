@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
-      "implementationCommit": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 failure/lazy repairs, protected profile-1 reference verifier, authenticated performance build-map freezer, preregistration path binder, and complete bounded Primary test inventory. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "4fff4df26681ab3595bb241bbc972207d032831e",
+      "implementationCommit": "4fff4df26681ab3595bb241bbc972207d032831e",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 failure/lazy repairs, protected profile-1 reference verifier, authenticated performance build-map freezer, preregistration path binder, preregistered performance-driver mode ordering, and complete bounded Primary test inventory. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+        "candidateToolSourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -282,7 +282,7 @@
   "failurePublicationProfile2Repair": {
     "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
     "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
-    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+    "sourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
     "failure": "Earliest Baseline admission succeeded for all three failure/publication processes, but R01FailureProbe rejected every current patch before its oracle because it hard-coded nativeBudgetCapabilityVersion == 1 while the authenticated current M07 patch contract is profile 2.",
     "correction": {
       "sharedValidator": "ShadowPatchMetadataReservation.ValidateIfDeclared",
@@ -294,7 +294,7 @@
   "lazyDenseV2Repair": {
     "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
     "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
-    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+    "sourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
     "failure": "The lazy Player runner accepted only the unavailable historical sealed-v1 dense manifest while the current deterministic generator emits schema-2 R01BDenseAdjunctManifest; Local therefore had NoCoverage before launch.",
     "correction": {
       "historicalV1Policy": "Still accepted only under its original R01BWorkloadV3DenseMetadataAdjunct / VerifiedSealedV1FixturesOutsideV2Envelope identity.",
@@ -303,7 +303,7 @@
     }
   },
   "protectedReferenceCoordination": {
-    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+    "sourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
     "performanceReferenceHead": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
     "profile1DemoSourceAnchor": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
     "profile1RuntimePins": {
@@ -314,11 +314,12 @@
     "verificationTool": "Tools/AssemblyShadow/verify-h1-protected-reference.py",
     "performanceMapTool": "Tools/AssemblyShadow/freeze-h1-performance-build-map.py",
     "policy": "Primary authenticates the old profile-1 reference family, binds preregistered performance rules into a fresh evidence root without changing pair decisions, and derives the A/B build map only from strict controlled build evidence. Local performs real isolated installation/build/Player/sampling execution; it must not reconstruct historical receipts or hand-author schedule/comparability claims.",
-    "preregistrationTool": "Tools/AssemblyShadow/bind-h1-performance-preregistration.py"
+    "preregistrationTool": "Tools/AssemblyShadow/bind-h1-performance-preregistration.py",
+    "performanceDriverModeOrder": "R00-OFF-NoPatch,R00-ON-NoPatch,R00-ON-P01,R00-ON-P03"
   },
   "v04RepairPrimaryValidation": {
-    "sourceAnchor": "f15b339610c42f340c181bdfffef29bdc4a99ed3",
+    "sourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
     "status": "PendingFinalAuthorityConsistentCI",
-    "scope": "Prior 36173a5 CI passed all then-wired suites; final source anchor adds preregistration binding tooling/tests and requires a fresh authority-consistent CI run."
+    "scope": "Final source anchor adds path-bound preregistration and aligns the performance driver with the frozen protocol/analyzer mode order."
   }
 }
