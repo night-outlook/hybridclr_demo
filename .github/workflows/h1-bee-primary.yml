@@ -7,6 +7,9 @@ on:
       - 'Tools/AssemblyShadow/h1_*.py'
       - 'Tools/AssemblyShadow/verify-h1-compiler-provenance-strict.py'
       - 'Tools/AssemblyShadow/tests/test_h1_*.py'
+      - 'Tools/AssemblyShadow/r01_*.py'
+      - 'Tools/AssemblyShadow/run-r01-failure-players.py'
+      - 'Tools/AssemblyShadow/tests/test_r01_*.py'
       - 'Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs'
 permissions:
   contents: read
@@ -26,6 +29,13 @@ jobs:
           H1_BEE_FIXTURE_DIR: ${{ runner.temp }}/h1-bee-fixture
           PYTHONPATH: Tools/AssemblyShadow
         run: python3 Tools/AssemblyShadow/h1_bee_primary_tests.py --output "$RUNNER_TEMP/h1-bee-fixture/test-results"
+      - name: Run R01 early and failure/publication contract regressions
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python3 Tools/AssemblyShadow/tests/test_r01_early_capsule.py
+          python3 Tools/AssemblyShadow/tests/test_r01_early_results.py
+          python3 Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py
       - name: Export reviewed source inputs
         if: always()
         run: |
