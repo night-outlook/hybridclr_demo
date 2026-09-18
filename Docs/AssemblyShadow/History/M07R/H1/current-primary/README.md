@@ -81,6 +81,22 @@ Its Primary executable evidence remains:
 
 Real Player acceptance remains Local work.
 
+## Final Primary handoff regression
+
+The exact final live handoff bytes at `4338cc989bd01918e012e43b8ecbae983e4862c8` passed workflow `35333505896`.
+
+The workflow executed:
+
+- 312/312 bounded Primary tests;
+- 11/11 handoff-preflight tests, including the real committed-repository preflight;
+- 7/7 early-capsule tests;
+- 19/19 early-results tests;
+- 16/16 failure-pipeline tests.
+
+Artifact ID `10542063317`; ZIP SHA-256 `63027964602b3e44f34aed7eb77b1ce228b781c2dcf08ed21eaa743e5bd8928b`.
+
+This closes the specific V00 handoff-document regression in Primary. Local must still restart from fresh V00; this CI result is not Local V00 acceptance.
+
 ## Blocked-attempt disposition
 
 The `f8a2766d...` Local attempt is preserved exactly as:
