@@ -83,9 +83,11 @@ namespace AssemblyShadowDemo
             M07Probe.Fixture selected = result.mode == Initializer ? fixtures.initializer : input.fixture;
             M07Probe.ValidateFile(selected.patchManifest, selected.patchManifestSha256);
             var patch = JsonUtility.FromJson<M07Probe.PatchManifest>(File.ReadAllText(selected.patchManifest));
-            Require(patch.nativeBudgetCapabilityVersion == 1 && patch.baselineBuildId == result.baselineBuildId && patch.runtimeAbiHash == result.runtimeAbiHash &&
+            Require(patch != null && patch.baselineBuildId == result.baselineBuildId && patch.runtimeAbiHash == result.runtimeAbiHash &&
                 patch.baselineManifestSha256 == result.baselineManifestSha256 && patch.compileSnapshotHash == selected.compileSnapshotHash &&
-                patch.loadOrder.SequenceEqual(M07Probe.Candidates), "Selected patch is not the complete baseline-bound budgeted closure.");
+                patch.loadOrder != null && patch.loadOrder.SequenceEqual(M07Probe.Candidates),
+                "Selected patch is not the complete baseline-bound budgeted closure.");
+            int budgetProfileVersion = ValidateBudgetContract(patch, selected);
             result.patchId = patch.patchId; result.patchManifestPath = selected.patchManifest; result.patchManifestSha256 = selected.patchManifestSha256;
             result.closureLoadOrder = patch.loadOrder;
             var dlls = new List<byte[]>(); var pdbs = new List<byte[]>();
@@ -136,7 +138,7 @@ namespace AssemblyShadowDemo
             {
                 observer.Start(); observer.Wait(false);
                 Console.SetOut(new InitializerWriter(previous, result));
-                Expect(result, "reserve", AssemblyShadowRuntime.ReserveMetadataBudget(sizes, 2));
+                Expect(result, "reserve", AssemblyShadowRuntime.ReserveMetadataBudget(sizes, budgetProfileVersion));
                 Capture(result, "after-reserve", sizes);
                 for (int index = 0; index < dlls.Count; ++index) {
                     var code = AssemblyShadowRuntime.StageAssembly(dlls[index], pdbs[index]);
@@ -168,6 +170,33 @@ namespace AssemblyShadowDemo
             Require(result.observerJoined && result.observerErrors.Length == 0, "Concurrent observer failed or did not join.");
         }
 
+        private static int ValidateBudgetContract(M07Probe.PatchManifest patch, M07Probe.Fixture selected)
+        {
+            int profileVersion;
+            Dictionary<string, long> verifiedSizes;
+            bool declared = ShadowPatchMetadataReservation.ValidateIfDeclared(
+                patch.nativeBudgetCapabilityVersion,
+                patch.metadataEncodingProfile,
+                patch.metadataCapacityReport,
+                patch.metadataEncodingProfile2,
+                patch.metadataCapacityReport2,
+                patch.loadOrder,
+                patch.closure.Select(item => new ShadowPatchMetadataAssembly { name = item.name, dllSize = item.dllSize }).ToArray(),
+                name => {
+                    M07Probe.PatchAssembly row = patch.closure.Single(item => item.name == name);
+                    string path = M07Probe.Confined(selected.patchDirectory, row.dll);
+                    M07Probe.ValidateFile(path, row.sha256);
+                    return File.ReadAllBytes(path);
+                },
+                out profileVersion,
+                out verifiedSizes);
+            Require(declared && profileVersion == M07Probe.RuntimeAbiVersion &&
+                verifiedSizes.Count == patch.loadOrder.Length &&
+                patch.loadOrder.All(name => verifiedSizes.ContainsKey(name)),
+                "Selected patch metadata budget contract is missing or unsupported.");
+            return profileVersion;
+        }
+
         private static void Expect(Result result, string operation, AssemblyShadowErrorCode code, AssemblyShadowErrorCode expected = AssemblyShadowErrorCode.Success)
         {
             result.operations.Add(new Operation { operation = operation, code = (int)code, name = code.ToString() });
@@ -183,7 +212,7 @@ namespace AssemblyShadowDemo
         {
             result.diagnostics.Add(ReadDiagnostics(phase));
             string json; var code = AssemblyShadowRuntime.GetMetadataCapacityJson(sizes, out json);
-            Require(code == AssemblyShadowErrorCode.Success, "Capacity query failed."); R01MetadataCapacitySnapshot.Parse(json, 2);
+            Require(code == AssemblyShadowErrorCode.Success, "Capacity query failed."); R01MetadataCapacitySnapshot.Parse(json, M07Probe.RuntimeAbiVersion);
             result.capacities.Add(Raw.Create(phase, code, json));
             code = AssemblyShadowRuntime.GetRecoveryInfoJson(out json);
             Require(code == AssemblyShadowErrorCode.Success, "Recovery query failed."); AssemblyShadowRecoveryInfo.Parse(json);
