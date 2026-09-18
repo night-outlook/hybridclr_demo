@@ -86,6 +86,15 @@ class LazyResultLedgerTests(unittest.TestCase):
             self.verify(value)
 
 
+    def test_player_probe_has_explicit_v1_v2_dense_contract(self):
+        source=(TOOLS.parents[1]/'Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs').read_text()
+        self.assertIn('R01BWorkloadV3DenseMetadataAdjunct',source)
+        self.assertIn('VerifiedSealedV1FixturesOutsideV2Envelope',source)
+        self.assertIn('R01BDenseAdjunctManifest',source)
+        self.assertIn('GeneratedDeterministicDenseV2',source)
+        self.assertIn('!manifest.historicalEvidenceReused',source)
+        self.assertIn('seen.SetEquals(new[] { 1, 2 })',source)
+
     def test_deterministic_dense_v2_manifest_is_admitted_and_normalized(self):
         root=Path(self.temp.name).resolve()/'dense-v2';root.mkdir()
         fixtures=root/'fixtures';fixtures.mkdir()
