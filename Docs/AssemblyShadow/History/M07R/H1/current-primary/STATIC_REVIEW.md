@@ -67,7 +67,7 @@ This closes the specific gap that allowed a committed handoff edit to bypass the
 
 The live regression test and workflow trigger are build-input changes, so the candidate source anchor advances to:
 
-`39c33e259d1ba893e23e3f1aa22529c87524534f`
+`af56b841e9ae80be0b1748e546338f9b68da2717`
 
 The underlying failure/publication runtime implementation from `50c79913...` is unchanged.
 
