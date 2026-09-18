@@ -15,7 +15,7 @@
     "inventory": "finalization-20260917/final-state.json"
   },
   "archiveRoot": "/Users/ah/GitHub/hybridclr/_archives/assembly-shadow/cleanup-20260917",
-  "archiveVerifiedFiles": 24754,
+  "archiveVerifiedFiles": 24756,
   "targetTopLevel": [
     "hybridclr",
     "hybridclr_unity",
@@ -49,6 +49,19 @@
       "/Users/ah/GitHub/assembly_shadow_r01",
       "/Users/ah/GitHub/assembly_shadow_r01b",
       "/Users/ah/GitHub/h1r-coordination-20260910"
-    ]
+    ],
+    "ownerDemoCleanup": {
+      "checkout": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+      "removed": [
+        "Documents",
+        "Logs",
+        "_temp"
+      ],
+      "preservedUnrelated": [
+        "Assets/Settings/Renderer2D.asset",
+        "Assets/Editor.meta"
+      ],
+      "manifest": "finalization-20260917/owner-demo-cleanup/manifest.json"
+    }
   }
 }
