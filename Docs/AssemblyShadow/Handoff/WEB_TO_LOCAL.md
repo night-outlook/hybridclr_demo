@@ -4,13 +4,14 @@
 
 Validate the R01 failure/publication earliest-admission repair at candidate build-input source anchor:
 
-`50c79913096961636a776ee8254b6631002cdfe5`
+`39c33e259d1ba893e23e3f1aa22529c87524534f`
 
 Then continue the fresh H1 chain as far as safely possible in **one Local batch**: authority → provenance/builds → controlled/normal M07 → startup/M07 matrix → repaired failure/publication → independent remaining V04 coverage → retention → V05/M08 only if mandatory acceptance evidence is complete.
 
-Local return addressed by this Primary cycle:
+Local returns addressed by the current Primary state:
 
-`af0d345ce3aa7257e301926d0da652709c09cf54`
+- failure/publication implementation return: `af0d345ce3aa7257e301926d0da652709c09cf54`;
+- V00 handoff-section-contract return: `f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf`.
 
 H1 remains `InProgress`; last independent whole-chain M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -34,13 +35,43 @@ Environment remains:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`.
 
-`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` now bind demo source to `50c79913...`.
+`ProjectSettings/AssemblyShadowSourcePins.json` and candidate `source-targets.json` now bind demo source to `39c33e25...`.
 
 Checkout HEAD is a later metadata-only documentation/handoff successor. Record checkout HEAD and build-input source anchor separately.
 
 All declared reproduction-tool blobs were rechecked against candidate anchor `50c79913...`; every expected blob still matches and both authenticated deletion paths remain absent.
 
 ## Implementation
+
+### V00 handoff section-contract repair
+
+Local correctly blocked before V01 because the committed handoff had drifted from `h1_handoff_preflight.py.REQUIRED_SECTIONS`.
+
+The verifier was **not** changed.
+
+The live handoff now contains these exact headings:
+
+- `## Objective`
+- `## Source targets`
+- `## Implementation`
+- `## Local validation`
+- `## Failure evidence`
+- `## Alternatives`
+- `## Risks`
+- `## Local correction boundary`
+- `## Human review gate`
+
+`Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py` now runs `h1_handoff_preflight.verify()` against the actual committed repository checkout in addition to its disposable synthetic repositories.
+
+The Primary CI workflow now:
+
+- triggers when `WEB_TO_LOCAL.md`, `source-targets.json`, or `AssemblyShadowSourcePins.json` changes;
+- checks out full Git history so the declared build-input anchor is resolvable;
+- explicitly executes the committed-live-handoff preflight regression.
+
+The blocked Local attempt at `f8a2766d...` remains `Blocked / V00`. It is not reusable or relabelled.
+
+### Failure/publication implementation
 
 ### Failure returned by Local
 
