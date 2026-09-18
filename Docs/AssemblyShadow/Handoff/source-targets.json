@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "af56b841e9ae80be0b1748e546338f9b68da2717",
-      "implementationCommit": "af56b841e9ae80be0b1748e546338f9b68da2717",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the live committed-handoff preflight regression, CI trigger, and self-contained direct-test import path. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "3a01eae1458dc7028e26c397090314a82ce096f3",
+      "implementationCommit": "3a01eae1458dc7028e26c397090314a82ce096f3",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the profile-2 failure probe repair, deterministic dense-v2 lazy Player admission, protected profile-1 reference verifier, authenticated performance build-map freezer, and their Primary regressions. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
+        "candidateToolSourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -278,5 +278,41 @@
       "ciPolicy": "The Primary workflow now triggers on WEB_TO_LOCAL.md, source-targets.json, and AssemblyShadowSourcePins.json changes and uses full Git history so verify_demo can resolve the declared source anchor."
     },
     "policy": "Do not weaken h1_handoff_preflight.py, REQUIRED_SECTIONS, verify_demo, metadata-only classification, protected pins, or source authority. Fresh Local validation restarts from V00; the blocked attempt is not reusable acceptance evidence."
+  },
+  "failurePublicationProfile2Repair": {
+    "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
+    "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
+    "sourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+    "failure": "Earliest Baseline admission succeeded for all three failure/publication processes, but R01FailureProbe rejected every current patch before its oracle because it hard-coded nativeBudgetCapabilityVersion == 1 while the authenticated current M07 patch contract is profile 2.",
+    "correction": {
+      "sharedValidator": "ShadowPatchMetadataReservation.ValidateIfDeclared",
+      "policy": "The failure probe does not special-case version 2. It reuses the same fail-closed profile/report/closure/DLL-byte validator as the production M07 reservation path, requires profileVersion == M07Probe.RuntimeAbiVersion, then reserves with that validated profile version.",
+      "runtimeOracleUnchanged": true,
+      "earlyAdmissionUnchanged": true
+    }
+  },
+  "lazyDenseV2Repair": {
+    "returnedByLocalValidationCommit": "f8e66d092b275173a415776f845182171c4dbc31",
+    "previousSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
+    "sourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+    "failure": "The lazy Player runner accepted only the unavailable historical sealed-v1 dense manifest while the current deterministic generator emits schema-2 R01BDenseAdjunctManifest; Local therefore had NoCoverage before launch.",
+    "correction": {
+      "historicalV1Policy": "Still accepted only under its original R01BWorkloadV3DenseMetadataAdjunct / VerifiedSealedV1FixturesOutsideV2Envelope identity.",
+      "deterministicV2Policy": "Accepted only as R01BDenseAdjunctManifest / GeneratedDeterministicDenseV2 with historicalEvidenceReused=false, exact generator/tool hashes, reproducible two-run contract, exact 1 MiB/4098/4097 fixture shape, >64 KiB strings heap, parser-revalidated MVID/table widths/inventory, and fixture-root confinement.",
+      "playerPolicy": "The C# diagnostic Player independently distinguishes sealed-v1 from deterministic-v2, rejects historical relabelling, requires exactly fixture IDs 1 and 2, and applies the exact v2 boundary envelope before Assembly.Load."
+    }
+  },
+  "protectedReferenceCoordination": {
+    "sourceAnchor": "3a01eae1458dc7028e26c397090314a82ce096f3",
+    "performanceReferenceHead": "88508b59b7c4ef8c5023cbbe655d43ebfcf5304c",
+    "profile1DemoSourceAnchor": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
+    "profile1RuntimePins": {
+      "hybridclr": "b22fa3d92223645c32663e4a2157eaadf8ea495e",
+      "hybridclrUnity": "b649c499385ea68490a0f652a98b732e060aeb89",
+      "il2cppPlus": "7967b8c7043904fcae130b294defd5ce7aa897c4"
+    },
+    "verificationTool": "Tools/AssemblyShadow/verify-h1-protected-reference.py",
+    "performanceMapTool": "Tools/AssemblyShadow/freeze-h1-performance-build-map.py",
+    "policy": "Primary now defines and authenticates the old profile-1 reference family and derives the paired-performance build map only from strict controlled build evidence. Local still performs the real isolated reference installation/build/Player execution; it must not reconstruct historical receipts or hand-author comparability claims."
   }
 }
