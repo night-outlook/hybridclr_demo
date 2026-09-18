@@ -1,14 +1,14 @@
 # Current Status
 
-- Candidate build-input source anchor: `50c79913096961636a776ee8254b6631002cdfe5`
-- Local return addressed: `af0d345ce3aa7257e301926d0da652709c09cf54`
-- Failure/publication early-admission repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`
-- Primary executable evidence: workflow `35330989089` — 311/311 bounded + 7/7 early-capsule + 19/19 early-results + 16/16 failure-pipeline tests passed.
-- Previous current-anchor Local chain at `8b1298d...`: authority/provenance/M07/startup11/M07-14-of-14 passed; failure/publication was blocked before host continuation by missing early capsule arguments. Preserve as historical evidence only after source-anchor advance.
-- MethodPtr focused blocker: `PassedFocused` under its original evidence identity.
-- Dense-v2 replacement: `Passed` under its original focused evidence identity; historical dense-v1 remains `UnavailableDoNotRelabel`.
-- Gate: `H1 / InProgress / AwaitingFresh50c799Batch`
-- Last independent M08: `FAIL`
+- Candidate build-input source anchor: `39c33e259d1ba893e23e3f1aa22529c87524534f`
+- Latest Local return: `f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf` — `Blocked / V00` because the committed WEB_TO_LOCAL heading ABI did not match `h1_handoff_preflight.py.REQUIRED_SECTIONS`.
+- V00 heading-contract repair: `Implemented / PrimaryRegressionAdded / AwaitingFreshLocalV00`
+- Verifier policy: unchanged. `h1_handoff_preflight.py`, `REQUIRED_SECTIONS`, `verify_demo`, metadata-only classification, and protected pins were not weakened.
+- Live regression: `test_h1_handoff_preflight.py` now runs candidate preflight against the actual committed repository handoff/source-target/source-pin state; Primary CI triggers on those authority files and checks out full history.
+- Failure/publication early-admission repair remains inherited from `50c79913096961636a776ee8254b6631002cdfe5`; its Primary source/tool evidence remains 311/311 + 7/7 + 19/19 + 16/16 at workflow `35330989089`.
+- Blocked Local attempt `f8a2766d...`: do not reuse or relabel as V00 PASS; V01–V05 and M08 were NotRun.
+- Gate: `H1 / InProgress / AwaitingFreshV00`
+- Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
 - May enter R02: `false`
-- Required next action: Local runs one fresh source-anchor-`50c799...` batch through authority/provenance/M07, verifies startup11 + M07 matrix + repaired failure/publication matrix, then maximizes independent capacity/lazy/dense/retained/performance coverage before retention/V05. V05 and genuine independent whole-chain M08 require complete mandatory evidence.
+- Required next action: Local restarts from a fresh V00 on the final metadata-only handoff successor, requires `SourceTargetVerifiedNotBuildAccepted` for source anchor `39c33e25...`, then follows the existing one-batch V01–V05 instructions if authority passes.
