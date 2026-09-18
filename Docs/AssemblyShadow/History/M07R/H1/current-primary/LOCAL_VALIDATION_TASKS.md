@@ -2,7 +2,7 @@
 
 Candidate build-input source anchor:
 
-`36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
+`f15b339610c42f340c181bdfffef29bdc4a99ed3`
 
 Latest Local checkpoint:
 
@@ -15,10 +15,10 @@ The goal is one maximal batch. Hard-stop only for source/provenance/shared-input
 ## V00 — fresh authority
 
 1. Pull the final pushed handoff HEAD.
-2. Record checkout HEAD separately from source anchor `36173a5...`.
+2. Record checkout HEAD separately from source anchor `f15b339...`.
 3. Require clean tracked state.
 4. Run candidate `h1_handoff_preflight.py`.
-5. Require `SourceTargetVerifiedNotBuildAccepted` and exact `codeCommit=36173a5...`.
+5. Require `SourceTargetVerifiedNotBuildAccepted` and exact `codeCommit=f15b339...`.
 6. Run reproduction-tooling preflight at `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
 7. Verify protected reproduction/runtime/package/IL2CPP/performance refs remain exact.
 
@@ -244,10 +244,26 @@ Require the freeze receipt `result=Passed` and strict `ComparabilityPassed`.
 
 The freezer derives comparability from the authenticated evidence. Do not edit its comparability section manually.
 
-Then use the preregistered protocol and schedule in:
+Before sampling, bind the immutable preregistration into a fresh evidence root:
 
-- `Tools/AssemblyShadow/tests/fixtures/h1/performance-protocol.preregistered.json`;
-- `Tools/AssemblyShadow/tests/fixtures/h1/performance-schedule.preregistered.json`.
+~~~text
+python3 Tools/AssemblyShadow/bind-h1-performance-preregistration.py \
+  --output-root <new-performance-preregistration-root>
+~~~
+
+Require the binding receipt to report:
+
+- `result=Passed`;
+- protocol bytes unchanged;
+- schedule semantic fields unchanged;
+- exactly 44 preregistered pairs.
+
+This operation changes only the schedule's transport fields `protocolPath` and `protocolSha256`; pair IDs, phases and A/B order are unchanged.
+
+Use the bound files:
+
+- `<new-performance-preregistration-root>/performance-protocol.preregistered.json`;
+- `<new-performance-preregistration-root>/performance-schedule.bound.json`.
 
 Run `run-h1-paired-performance.py` for the required pilot pairs first. Proceed to formal pairs only under the existing pilot/source-freeze rules. Retain **all** attempts.
 
