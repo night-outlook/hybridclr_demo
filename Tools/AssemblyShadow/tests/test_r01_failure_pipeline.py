@@ -13,6 +13,7 @@ import sys
 import tempfile
 import types
 import unittest
+import uuid
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -21,7 +22,7 @@ import r01_early_capsule as early_capsule
 import r01_results as r01
 import m04_results as m04
 from shadow_tools import VerificationError
-from test_m04_results import diagnostic
+from test_m04_results import diagnostic, make_pe
 from test_r01_metadata_pipeline import patch_fixture
 from test_r01_early_results import emit_receipt
 
@@ -49,8 +50,8 @@ def prepared(root):
     for patchid in ('P03',gate.INITIALIZER_ID):
         directory=root/patchid;directory.mkdir();rows=[]
         for index,name in enumerate(order):
-            dll=directory/(name+'.dll');dll.write_bytes(bytes([index+1])*(100+index))
-            rows.append(dict(name=name,mvid=f'00000000-0000-0000-0000-{index+1:012d}',dll=dll.name,sha256=gate.digest(dll),dllSize=dll.stat().st_size,pdbSha256='',pdb=''))
+            dll=directory/(name+'.dll');mvid=uuid.UUID(int=index+1);dll.write_bytes(make_pe(name,mvid=mvid))
+            rows.append(dict(name=name,mvid=str(mvid),dll=dll.name,sha256=gate.digest(dll),dllSize=dll.stat().st_size,pdbSha256='',pdb=''))
         p=dict(patchId=patchid,loadOrder=order,closure=rows,dllOnly=True);path=write(directory/'patch-manifest.json',p)
         fixtures[patchid]=dict(root=directory,path=path,patch=p)
     negative=root/'negative.dll';negative.write_bytes(b'negative-sidecar'.ljust(100,b'x'))
