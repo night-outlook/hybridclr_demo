@@ -1,148 +1,86 @@
-# Static Review — R01 Failure/Publication Early Admission Repair
+# Static Review — H1 Committed Handoff Section Contract Repair
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff.**
+**PASS for Primary → fresh Local V00 handoff**, subject to the final committed-live-handoff CI regression.
 
-This review covers the source/tool repair returned by Local Validation at `af0d345ce3aa7257e301926d0da652709c09cf54`. It does not establish real Unity/IL2CPP Player acceptance, V04/V05 completion, M08 PASS, or Human Review Gate readiness.
+This review does not establish V00 Local PASS, Unity/Player/runtime/performance acceptance, M08 PASS, or Human Review Gate readiness.
 
-Reviewed build-input anchor:
+## Returned finding
 
-`50c79913096961636a776ee8254b6631002cdfe5`
+Local at `f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf` found that the authoritative handoff did not satisfy its own verifier contract.
 
-## Finding closure
+The verifier requires exact substrings:
 
-### F1 — earliest-startup capsule omission
+- `## Objective`
+- `## Source targets`
+- `## Implementation`
+- `## Local validation`
+- `## Failure evidence`
+- `## Alternatives`
+- `## Risks`
+- `## Local correction boundary`
+- `## Human review gate`
 
-**Closed in source/tooling; real Player validation required.**
+The prior handoff used editorial variants such as `## Primary implementation` and `## Human Review Gate`, and lacked exact `Risks` and `Local correction boundary` sections.
 
-The previous failure launcher invoked the Player without the mandatory `-shadowEarlyCapsule` transport. Native startup correctly refused before managed host continuation.
+## Repair invariant
 
-The repaired launcher always provides:
+`h1_handoff_preflight.py` was not changed.
 
-- `-shadowEarlyCapsule`;
-- `-shadowEarlyCapsuleSha256`;
-- `-shadowEarlyResult`.
+No verifier relaxation, case-folding, heading alias, metadata-only expansion, source-path exception, or source-authority bypass was introduced.
 
-No bypass or disable path was added.
+The repair changes the document to match the verifier, not the verifier to match the document.
 
-### F2 — direct verifier zero-work invocation
+## Live regression
 
-**Closed.**
+The previous unit suite only proved a synthetic handoff built from `REQUIRED_SECTIONS`.
 
-`r01_failure_results.py` now has a direct `__main__` entrypoint. The public wrapper remains valid as well.
+The new regression resolves the actual repository root from the committed test file and runs:
 
-## Design invariants
+`h1_handoff_preflight.verify(root, 'candidate')`
 
-### Early phase authenticates; later probe owns the transaction
+This requires, in one test:
 
-The selected early mode is `Baseline`.
+- actual committed WEB_TO_LOCAL bytes equal HEAD;
+- actual committed source-target bytes equal HEAD;
+- all required headings are present;
+- actual branch/origin are correct;
+- actual source target and source pin agree;
+- runtime pins agree;
+- `verify_demo` confirms every non-metadata build input matches the declared source anchor.
 
-The early callback reads and hashes the P03 closure and all prerequisites but performs no Shadow Configure/Begin/Reserve/Stage/Validate/Commit sequence.
+The CI workflow uses `fetch-depth: 0` because `verify_demo` must resolve the source-anchor commit beneath metadata-only successors.
 
-This is required because:
+## CI trigger coverage
 
-- early `Control` would consume/commit the world before `R01FailureProbe`;
-- early `MetadataFailure` or `InitializerFailure` intentionally returns a non-zero callback and stops before host continuation.
+The Primary workflow now runs when any of these authorities change:
 
-The existing C#/native failure transaction implementation is unchanged.
+- `Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md`;
+- `Docs/AssemblyShadow/Handoff/source-targets.json`;
+- `ProjectSettings/AssemblyShadowSourcePins.json`;
+- the existing source/test/workflow paths.
 
-### Capsules are mode-bound
+This closes the specific gap that allowed a committed handoff edit to bypass the synthetic-only regression.
 
-Each failure mode has an immutable `R01FailureEarlyAdmissionBinding` prerequisite. Therefore the three admission capsules differ even though their early execution mode is Baseline.
+## Source authority
 
-A capsule from another failure mode cannot pass strict reconstruction.
+The live regression test and workflow trigger are build-input changes, so the candidate source anchor advances to:
 
-### Complete failure inputs are authenticated
+`39c33e259d1ba893e23e3f1aa22529c87524534f`
 
-The capsule prerequisite set includes verified failure-fixture and Q04 negative-input files in addition to the ordinary M07 prerequisite graph.
+The underlying failure/publication runtime implementation from `50c79913...` is unchanged.
 
-If an extra prerequisite is already present as a closure DLL/PDB input it is omitted from the prerequisite list, preserving the early callback's no-duplicate-path invariant without dropping byte authentication.
+The reproduction-tool candidate source anchor advances consistently; its declared tool blobs remain unchanged.
 
-### Immutable inventory freezes after admission materialization
+## Blocked-attempt preservation
 
-Bindings and capsules are generated before `inputHashesBefore`.
+The Local attempt at `f8a2766d...` remains Blocked at V00. V01–V05 were NotRun. M08 was not rerun.
 
-The launch receipt records the same full immutable input graph before and after all three processes. The verifier independently recomputes the inventory.
-
-### Same-process chain is mandatory
-
-For each mode, strict verification requires:
-
-1. exact expected binding bytes;
-2. exact reconstructed capsule bytes/hash;
-3. early Baseline receipt from the launch PID;
-4. early result `Passed`, callback code 0;
-5. exact executed command;
-6. later failure/publication result from the same PID;
-7. existing strict raw diagnostics/capacity/recovery/publication oracle.
-
-Rebinding hashes after tampering does not bypass semantic verification.
-
-### Existing runtime safety is unchanged
-
-No C#, HybridCLR, IL2CPP, native transaction, recovery, capacity, MethodPtr, dense-fixture, M07 workflow-authority, or performance behavior changed in this repair.
-
-Protected reproduction/native/package/IL2CPP/performance pins remain unchanged.
-
-## Adversarial regression coverage
-
-The source tests cover:
-
-- missing capsule;
-- stale/hash-mismatched capsule;
-- capsule substitution across failure modes;
-- wrong early mode;
-- early result PID mismatch;
-- early receipt capsule-hash mismatch;
-- duplicate closure/extra-prerequisite overlap;
-- exact command binding;
-- late result PID and build binding;
-- rebound raw diagnostic/capacity/recovery tampering;
-- transaction identity/MVID tampering;
-- initializer completion mislabelling;
-- profile-contract validation;
-- direct verifier entrypoint execution.
-
-## Primary executable evidence
-
-GitHub Actions workflow `35330989089`, commit `50c79913096961636a776ee8254b6631002cdfe5`:
-
-- exact bounded Primary suite: **311/311 Passed**;
-- early capsule: **7/7 Passed**;
-- early results: **19/19 Passed**;
-- failure pipeline: **16/16 Passed**.
-
-Artifact ID `10540898558`, ZIP SHA-256:
-
-`52861f7bca634fa007e4e5fba7cd3774ab8f9dfbf1b39de0c6ca80fba047d139`
-
-The CI workflow itself is part of the reviewed source anchor.
-
-## Source authority review
-
-Candidate source authority is advanced to `50c79913...` because the repair modifies non-metadata Python tooling/tests/workflow files.
-
-The reproduction validation-tool anchor is advanced to the same candidate source anchor. Every declared tooling blob remains byte-identical there and both authenticated deletion paths remain absent.
-
-`shadow_tools.metadata_only()`, `verify_demo()`, and protected refs are unchanged.
-
-All commits after the build-input anchor must remain metadata-only until another explicit Primary source-authority advance.
-
-## Residual empirical requirements
-
-Local must still prove:
-
-- candidate/reproduction preflight under the new source pin;
-- real Unity compilation/provenance required by H1;
-- fresh controlled and normal M07 chain under the new source pin;
-- real earliest Baseline admission for each failure process;
-- later Control/Q04/initializer failure/publication semantics in those same processes;
-- remaining capacity/lazy/dense/retained/performance matrix;
-- evidence retention and V05 successor closure.
+No evidence state was upgraded by this repair.
 
 ## Gate
 
-H1 remains `InProgress`; M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`; historical M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
 Do not begin R02.
