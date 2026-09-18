@@ -6,7 +6,7 @@
 
 Reviewed candidate build-input source anchor:
 
-`36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
+`4fff4df26681ab3595bb241bbc972207d032831e`
 
 This review does not claim real Unity/IL2CPP Player acceptance, performance acceptance, V05 completion, independent M08 PASS, or Human Review Gate approval.
 
@@ -172,9 +172,9 @@ Primary regressions now cover:
 
 ## Primary executable evidence
 
-Workflow `35355439098` at source anchor `36173a5...` and authority successor `e8241a621cc0310385bb3f8f2a3b3b7532203908` passed:
+Workflow `35356780407` at source anchor `4fff4df...` and authority successor `5c57eb32c07ff5e2f716f41e27d006936ca42be8` passed:
 
-- bounded Primary: **316/316**;
+- bounded Primary: **319/319**;
 - committed handoff: **11/11**;
 - early capsule: **7/7**;
 - early results: **19/19**;
@@ -183,11 +183,11 @@ Workflow `35355439098` at source anchor `36173a5...` and authority successor `e8
 
 Artifact ID:
 
-`10551697107`
+`10551884431`
 
 ZIP SHA-256:
 
-`2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`
+`9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55`
 
 ## Source-authority review
 
@@ -199,7 +199,7 @@ Candidate native/package/IL2CPP pins remain:
 - HybridCLR Unity `0ea633a2c5b936b5af69d944593c55bd2783fca9`;
 - IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`.
 
-Candidate source anchor is `36173a5...`.
+Candidate source anchor is `4fff4df...`.
 
 The protected performance reference remains `88508b59...`; its branches/pins are not moved.
 
