@@ -1,92 +1,65 @@
-# R01B H1 — M07 Post-ValidateCompilerInputs Authority Repair
+# R01B H1 — Current Primary Implementation
 
 ## Status
 
-Primary Implementation completed for the Local Validation return at:
+Local Validation returned at:
 
-`e053b1803b2dd94fa818714c4b79e53220f246b8`
+`476925a44613f09774de78f93c017e1a078838b0`
 
-Reviewed candidate source / implementation anchor:
+Current reviewed candidate build-input source anchor:
 
-`21d3d5763ce027185d2e7f777f71545d354d44ec`
+`8b1298d6a5979928bdfa30446e2d674d63999b76`
 
-Local had already established that V00–V03 and candidate count 132/132 pass. The new blocker was narrower: real `M07Build.ValidateCompilerInputs` legitimately mutates the M07 bootstrap scene and AssemblyShadow settings, then the next full installed-runtime source check rejected those intentional workflow bytes against the immutable source-anchor blobs. The same conflict blocked both the controlled-recovery path and the normal M07 workflow.
+The source authority was advanced from `68df00fe31a199491b313cc17f25575663b7452b` after Local independently validated the MethodPtr and deterministic dense-v2 changes. The global `shadow_tools.verify_demo()` contract, metadata-only classification, M07 three-path workflow authority, and protected reproduction/runtime/performance pins were not weakened.
 
-## Reconciled authority model
+## Closed focused findings
 
-The generic source/runtime verifier is not weakened.
+Local Validation established:
 
-Outside the M07 outer-wrapper context, `verify-installed-runtime.py` behaves exactly as before and requires full demo-source identity.
+- focused M05 Python inventory: 113 passed, one explicit environment-path skip;
+- retained real Unity 2022.3.62f2 Bootstrap: `#-`, 469 TypeDef, 1,675 MethodPtr and 1,675 MethodDef rows;
+- all MethodPtr rows form a complete one-to-one permutation and the five raw method witnesses resolve correctly;
+- deterministic dense-v2 generation produces two byte-reproducible exact 1 MiB fixtures;
+- native parser: full corpus 8,192, dense 2/2, bounded reader 13/13, sanitizer clean, provenance stable.
 
-`Invoke-M07Build.ps1` now scopes two process environment values to its own workflow lifetime:
+Historical dense-v1 bytes remain `UnavailableDoNotRelabel`. Focused success does not establish V04/V05, M08, H1 approval, or permission to start R02.
 
-- `H1_M07_WORKFLOW_AUTHORITY_ROOT` — the newly created outer recovery root containing exact pre-workflow snapshots;
-- `H1_M07_WORKFLOW_BASELINE_ID` — the exact requested fresh `M07-Baseline-*` identity.
+Evidence remains under:
 
-Before any required M07 mutation, repeated `Assert-M07PinnedInputs` checks still use the original full verifier.
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260917-methodptr-dense/`
 
-After a required workflow-owned file changes, every existing recheck becomes a conjunction:
+## Source authority advance
 
-1. generic installed-runtime/native/package/source-receipt verification with only demo working-tree comparison skipped;
-2. `h1_m07_workflow_authority.py`, which authenticates the demo working tree under the exact M07 mutable-state contract.
+`ProjectSettings/AssemblyShadowSourcePins.json` and `Docs/AssemblyShadow/Handoff/source-targets.json` now bind candidate demo source to `8b1298d...`.
 
-The core workflow and its repeated guard locations are unchanged.
+All commits after that anchor through the authority update are metadata-only under the existing verifier: live handoff/source-target files, ProjectSettings source pins, plan/status files, and preserved evidence under `Docs/AssemblyShadow/`.
 
-## Exact mutable contract
+The reproduction-tool source anchor was also advanced to `8b1298d...`. Every declared reproduction-tool blob remains byte-identical at that anchor, and the two authenticated deletion paths remain absent.
 
-Only these three paths participate:
+No source-verifier exception was added.
 
-1. `Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity`
-2. `ProjectSettings/AssemblyShadowSettings.asset`
-3. `ProjectSettings/EditorBuildSettings.asset`
+## Remaining blocker
 
-The verifier requires their recovery-root originals to match the exact source-anchor Git blobs. It byte-verifies every other non-metadata demo build input against the source anchor and still rejects untracked/unpinned Unity code.
+The prior successful M07 fixture/build/replay receipts were removed during workspace consolidation. They must not be reconstructed from summaries.
 
-The first two paths are baseline-bound and must both:
+The next Local cycle must regenerate a fresh provenance-bound normal M07 chain under source anchor `8b1298d...`, then immediately continue capsule/startup11 and the blocked V04 downstream chain while those exact inputs still exist.
 
-- differ from their authenticated originals after `ValidateCompilerInputs`;
-- contain the exact requested baseline ID.
+Before any cleanup or handback, retain one complete evidence set containing at minimum:
 
-`EditorBuildSettings.asset` may or may not differ, but it remains inside the exact three-file recovery contract.
+- normal `m07-build-workflow.json`;
+- `m07-fixtures.json`;
+- Native-ON and Native-OFF `m07-player-build.json` receipts;
+- `m07-editor-replay.json`;
+- rejected/failure-fixture and negative-input receipts referenced by the fixture manifest;
+- generated control capsules and `capsules.json`;
+- startup11 launch receipt, results, console logs and Unity logs;
+- exact hashes/paths for all referenced Player/resource/fixture inputs;
+- post-run source-authority/preflight result.
 
-There is no wildcard path, directory-level mutation allowance, policy bypass, or general `--skip-demo-source` acceptance. A caller attempting `--skip-demo-source` while the M07 authority context is active is rejected.
+The Local checkpoint archive must be created before deleting or consolidating `_temp`, `Builds`, or launch-output directories.
 
-## Controlled and normal paths
+## Gate
 
-### Controlled
+H1 remains `InProgress`. Last independent whole-chain M08 remains `FAIL`. `humanGatePassed=false`; `mayEnterR02=false`.
 
-The expected sequence is:
-
-1. full pre-mutation source/runtime verification;
-2. real Unity `M07Build.ValidateCompilerInputs`;
-3. post-mutation installed-runtime + exact M07 demo authority verification;
-4. explicit failure:
-   `Controlled M07 failure after successful ValidateCompilerInputs for exact-byte restoration verification.`
-5. outer exact-byte restoration of all three files;
-6. fresh full post-recovery source authority verification by Local Validation.
-
-### Normal
-
-The normal no-switch path runs `Invoke-M07Build.Core.ps1` unchanged. Its existing post-validation and later `Assert-M07PinnedInputs` calls remain active under the same scoped M07 authority context, so the workflow may proceed through baseline resources, Native-ON/OFF Players, structural fixtures and replay without treating the known workflow-owned bytes as arbitrary source drift.
-
-Any other tracked build-input mutation remains a hard failure.
-
-## Primary bounded validation
-
-Workflow `35195186054` at source anchor `21d3d5763ce027185d2e7f777f71545d354d44ec`:
-
-- **311/311 Passed**
-- zero nonpasses
-- authenticated Apple Bee graph SHA-256: `dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181`
-- artifact ID: `10485926242`
-- artifact ZIP SHA-256: `d2486ad13ab52d41b5fcd19ce7902863c2ef8b242b1747ec9f9b1284402be9a5`
-
-New regressions cover exact mutable backups, baseline binding, immutable-source tamper, backup tamper, partial mutation, wrong baseline, untracked code, pre/post mutation verifier dispatch, caller demo-skip rejection, controlled explicit-failure ordering, and normal core progression with repeated guards retained.
-
-This bounded result is not real Unity M07 acceptance, runtime/performance acceptance, independent M08 PASS, or Human Review Gate approval.
-
-## Preserved evidence and pins
-
-The Local checkpoint `local-validation-20260917-12cf9b2` remains unchanged and retains the valid V00–V03, six-build provenance, 132/132 count, reproduction observations, actual mutation evidence and exact restoration evidence under the previous source identity.
-
-All protected reproduction/runtime/tooling/performance pins remain unchanged. Fresh Local V00–V05 is required under the new source anchor.
+Do not begin R02.
