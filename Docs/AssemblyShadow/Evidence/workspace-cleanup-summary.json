@@ -15,7 +15,7 @@
     "inventory": "finalization-20260917/final-state.json"
   },
   "archiveRoot": "/Users/ah/GitHub/hybridclr/_archives/assembly-shadow/cleanup-20260917",
-  "archiveVerifiedFiles": 24756,
+  "archiveVerifiedFiles": 24763,
   "targetTopLevel": [
     "hybridclr",
     "hybridclr_unity",
@@ -62,6 +62,50 @@
         "Assets/Editor.meta"
       ],
       "manifest": "finalization-20260917/owner-demo-cleanup/manifest.json"
-    }
+    },
+    "ownerRepositories": [
+      {
+        "repository": "hybridclr",
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr",
+        "role": "clean Git owner and M07 baseline",
+        "branch": "codex/assembly-shadow-m07",
+        "head": "a19db144751f4f016769b90e61a80b8c27578678",
+        "upstream": "origin/codex/assembly-shadow-m07",
+        "upstreamRelation": "synchronized",
+        "clean": true
+      },
+      {
+        "repository": "hybridclr_unity",
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_unity",
+        "role": "clean Git owner and M07 baseline",
+        "branch": "codex/assembly-shadow-m07",
+        "head": "2180b99daf39095cd76301da2bdf34ac945ee8b4",
+        "upstream": "origin/codex/assembly-shadow-m07",
+        "upstreamRelation": "synchronized",
+        "clean": true
+      },
+      {
+        "repository": "il2cpp_plus",
+        "path": "/Users/ah/GitHub/hybridclr/il2cpp_plus",
+        "role": "clean Git owner and M07 baseline",
+        "branch": "codex/assembly-shadow-m07",
+        "head": "666f5f4bfa3aa408e6ba4c3552fc4758dcc6bcc8",
+        "upstream": "origin/codex/assembly-shadow-m07",
+        "upstreamRelation": "synchronized",
+        "clean": true
+      },
+      {
+        "repository": "hybridclr_demo",
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "role": "clean Git owner and local main baseline",
+        "branch": "main",
+        "head": "73d95b4064ee23143e0722f6eae127fe61df6c9d",
+        "upstream": "origin/main",
+        "upstreamRelation": "aheadByOneCommit",
+        "clean": true
+      }
+    ],
+    "ownerBaselinePolicy": "Owning checkouts remain clean and baseline-only; active Assembly Shadow work occurs in assembly_shadow_h1r linked worktrees.",
+    "ownerBaselinePrecleanManifest": "finalization-20260917/owner-baselines-preclean/manifest.json"
   }
 }
