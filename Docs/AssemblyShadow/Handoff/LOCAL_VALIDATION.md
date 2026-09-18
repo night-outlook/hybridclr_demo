@@ -1,51 +1,49 @@
 # Local Validation report
 
-## Current run — 2026-09-18 authority `50c79913`
+## Current run — 2026-09-18 authority `af56b841`
 
 ### Exit
 
-**Local Validation → Primary Implementation: BLOCKED at V00**
+**Local Validation → Primary Implementation: RETURN REQUIRED after V04**
 
-The clean candidate checkout was fast-forwarded to the exact requested handoff commit `bd6abcd32880066cc7cb71b2fad349b6a56bd4ca` on `codex/assembly-shadow-r01b-h1`. The declared build-input source anchor is `50c79913096961636a776ee8254b6631002cdfe5`, and it is an ancestor of the checkout.
+The clean candidate checkout was fast-forwarded to exact requested commit `66b4b86570bce92e65e99ba795eb9c4f72582c8c` on `codex/assembly-shadow-r01b-h1`. Fresh V00 established `SourceTargetVerifiedNotBuildAccepted` for exact candidate source anchor `af56b841e9ae80be0b1748e546338f9b68da2717`; no receipt from blocked attempt `f8a2766d...` was reused or relabelled.
 
-The mandatory candidate preflight failed before Unity, IL2CPP, compilation, or Player execution:
+V00–V03, controlled M07, normal M07, startup11, and the strict M07 14-mode matrix passed. The repaired failure/publication launcher successfully created three mode-bound Baseline capsules and obtained successful earliest-admission receipts from the same three Player PIDs, but every late probe failed before its intended Control/Q04/initializer oracle. The public strict verifier therefore returned `Failed`.
 
-```text
-Blocked: Incomplete handoff sections
-```
+### Results
 
-`Tools/AssemblyShadow/h1_handoff_preflight.py` requires these exact committed headings:
-
-| Required heading | Present |
-| --- | --- |
-| `## Objective` | Yes |
-| `## Source targets` | Yes |
-| `## Implementation` | **No** |
-| `## Local validation` | Yes |
-| `## Failure evidence` | Yes |
-| `## Alternatives` | Yes, as a longer heading containing this text |
-| `## Risks` | **No** |
-| `## Local correction boundary` | **No** |
-| `## Human review gate` | **No**; committed heading uses different case |
-
-The committed handoff instead uses `## Primary implementation`, `## Local validation — detailed order`, `## Alternatives / forbidden changes`, and `## Human Review Gate`, and has no exact `## Risks` section. The handoff explicitly prohibits Local from rewriting `WEB_TO_LOCAL.md`, so no bounded correction was made.
-
-### Independent V00 checks
-
-| Check | Result | Evidence |
+| Cell | Result | Evidence / disposition |
 | --- | --- | --- |
-| Candidate source preflight | `Blocked` | `_temp/local-validation-20260918-authority50c/v00-candidate-failure.json`, SHA-256 `2bab589ce7cfeb71b6bc30251acf36f2166f19311f9327bc04272d3d8bbd7e1f` |
-| Reproduction-tooling preflight | `Passed` | `BehaviorAndToolingSourcesVerifiedNotBuildAccepted` at `ba8fee33753a5ebc215b7a98739e343d8e05572e`; receipt SHA-256 `c3d9f7a9253d1093bd1ff3b8582bd4f5e01ad5ea8676a9d9ab5ca3fa2051fcc5` |
-| Protected refs | `Passed` | Live `git ls-remote`: reproduction `352d7474...`, tooling `ba8fee33...`, performance `88508b59...`; receipt SHA-256 `70cc9c527eceb940f275c3d37cad097aa756a956a140c3d064ec0409247f734a` |
-| Runtime checkout commits | `Passed` | HybridCLR `1d2df7c...`, package `0ea633a...`, IL2CPP `6be7f38...` |
-| Tracked working state | `Passed` | All listed checkouts remained clean. |
+| V00 candidate authority | `Passed` | `SourceTargetVerifiedNotBuildAccepted`; checkout `66b4b865...`, source `af56b841...` |
+| V00 reproduction/protected refs | `Passed` | Tooling `ba8fee33...`; protected reproduction `352d7474...`; performance `88508b59...` |
+| V01 Python inventory | `PassedWithSkips` | Broad 969 passed / 28 skipped; H1 463 passed / 27 skipped; bounded Primary 312/312; Unity compile clean; fixed-byte tests 2/2 |
+| V02 candidate smoke | `Passed` | Fresh On/Debug build after stale installed-runtime receipt was corrected by a fresh candidate install |
+| V03 candidate/reproduction | `Passed` | Four candidate modes and two reproduction modes; strict compiler/provenance verification passed |
+| V04 controlled M07 | `PassedExpectedFailureAndExactRestoration` | Deliberate post-validation failure; three guarded files exact-byte restored |
+| V04 normal M07 | `Passed` | Baseline `M07-Baseline-H1-AuthorityAf56-Normal-20260918A`; exact outer restoration |
+| V04 startup11 | `PassedBoundedProfile` | 11 fresh processes; expected positive/rejection exits; inputs unchanged |
+| V04 M07 Player matrix | `PassedGate3B14Of14` | 14 distinct PIDs; strict verifier `resultPassed=true`, no missing modes |
+| V04 failure/publication | `Failed` | Earliest admission passed in all three same-PID processes; all late probes failed `Selected patch is not the complete baseline-bound budgeted closure`; strict verifier failed on Control exit 1 |
+| V04 8192/8193 capacity | `Passed` | Ordinary envelope Player passed; complete before/after hashes unchanged |
+| V04 mixed boundary | `Passed` | Exact 512 MiB mixed workload and Player passed; inputs unchanged |
+| V04 dense / FieldRVA / parser | `Passed` | 8,192 files, 8,196 FieldRVA rows, both deterministic dense-v2 fixtures, bounded BlobReader and sanitizer checks passed |
+| V04 lazy Player | `Failed / NoCoverage` | Fresh dense generator emits schema v2; lazy runner requires unavailable sealed-v1 manifest inventory and rejected it before launch |
+| V04 generic/index/cache/capability | `Passed` | Constraint 34, index range 49, index runtime 157, type cache 77, attribute 4,197+4,197, live capability 16,396 per native feature state plus managed tests |
+| V04 retained M03–M06/R01 native | `Passed` | Fresh M03–M06, visibility, budget/contention/recovery/startup gateway/startup/transaction and codec suites passed with stable inputs |
+| V04 old-Player rejection | `Unavailable / NotRun` | No immutable profile-1 fixture/ON/OFF/replay/Player graph exists in the listed checkout; not reconstructed |
+| V04 controlled performance | `Unavailable / NotRun` | Protected ref is exact, but no protected-reference Development Player/build map exists in the listed checkout; not reconstructed |
+| V05 / M08 | `Blocked / NotRun` | Mandatory failure matrix, lazy, old-Player, and performance prerequisites are incomplete |
 
-A stale local `origin/codex/assembly-shadow-h1-count-repro` tracking ref pointed at `426f00f...`; it was not treated as authority. The live remote check returned the required protected head `352d747...`.
+### Failure root cause
 
-### Not run
+The early-admission repair works: each mode has a schema-v2 binding, distinct Baseline capsule, successful early receipt, exact command/PID binding, late result from the same PID, complete logs, and identical before/after hashes across 17,275 inputs.
 
-V01–V05 and M08 are `NotRun` because the V00 candidate authority gate is a mandatory hard stop. No prior `8b129d...` receipt was relabelled. No Unity, build, runtime, performance, cleanup, or R02 action occurred.
+The late Player probe still hard-codes `patch.nativeBudgetCapabilityVersion == 1` in `R01FailureProbe.cs`. The fresh normal M07 baseline and all selected patches use capability profile 2. Consequently every mode is rejected by the shared pre-oracle closure guard before Control, Q04, or initializer-specific behavior can execute. This is the direct failure and the reason the Primary-tested early-path repair is not Local-accepted.
 
-Evidence is authenticated under [local-validation-20260918-authority50c-v00-blocked](../History/M07R/H1/local-validation-20260918-authority50c-v00-blocked/README.md). The actionable correction is recorded in [RETURN_TO_WEB.md](RETURN_TO_WEB.md).
+The lazy-path tooling has a second independent contract mismatch: `create-r01b-dense-fixtures.py` produces `R01BDenseAdjunctManifest` schema 2, while `run-r01b-lazy-player.py` accepts only the historical `R01BWorkloadV3DenseMetadataAdjunct` schema 1 inventory. The strict native parser does accept and pass the fresh deterministic schema-2 fixtures; the lazy Player has `NoCoverage`.
 
-H1 remains `InProgress`; last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+### Retention checkpoint
+
+The pre-cleanup checkpoint is [local-validation-20260918-authorityaf56](../History/M07R/H1/local-validation-20260918-authorityaf56/README.md). `MANIFEST.sha256` authenticates its report, summary, artifact index, and 49 MiB archive. The archive contains 901 files, including V00–V03 receipts, controlled/normal restoration, the complete current M07 receipt set, control capsules, startup11, 14-mode results/logs, failure binding/capsule/early/late/log evidence, capacity results, dense/lazy inputs, and retained native receipts. Large live Players, compiler snapshots, resources, and 512 MiB corpora were not copied into Git; their complete file hashes remain bound by the archived strict receipts and before/after input maps. No cleanup was performed.
+
+H1 remains `InProgress`; the last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. `WEB_TO_LOCAL.md`, source verification, protected pins, and R02 were not changed.

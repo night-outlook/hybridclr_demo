@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalRetentionArtifactIndex",
+  "sourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
+  "archive": {
+    "path": "raw-evidence.tar.gz",
+    "sha256": "533f0ec8008c117db4ce489e0035948bc4a3a42f219df2c770133bcb1a67440b",
+    "fileCount": 901
+  },
+  "archivedReceiptBindings": {
+    "m07Workflow": "b1a52e80cb44b259366d617b09483ab62ca97eebf7ed97a5e0162df94cc29275",
+    "m07Fixtures": "f9d43274738aea0189376aed430d578aed1a0fdd84c7b28d6dacdc833e169a0b",
+    "m07NativeOnBuild": "5763b26030601d231cca1a140543b041325122c43020332e506a3d89d34b6a51",
+    "m07NativeOffBuild": "ffe6c5dead691bc7f6ab344c3bee1fb57ea089830eb8070baa6cc39e88d4554e",
+    "m07EditorReplay": "2ede72008f21cb6ff3ad362229a79be783144101cea8cf8738a5b7347a804e60",
+    "controlCapsules": "399d8a8675d08873fe71b9b1f9a2d7c2d132b8444f9527c11ff9fd387d51023a",
+    "startup11": "4271875123bca4bfe58cacd9cfe790bfe36be0bbfc5beb4e26aa8c39cc13fc68",
+    "m07Launches": "6eb549ded3a1890f6391e6e3e81ca1ef511045d6cfd92acbf8591224338fc984",
+    "m07StrictVerification": "dbcb94ed0cc38b96c9d7445846bab647d6fa33bea9a6f7dd313f20f08d82b6c2",
+    "failureFixtures": "903c7bb94feb6627f93e767d6f8254d2c03ce36b5d4355c07e76e8537948901a",
+    "q04NegativeInput": "311f4fb8939a105422d1054a0b50091926bb0d84928fb23e62165096d10838af",
+    "failureLaunches": "14d2089a797a9e6f10153eae1aca4dce7316029116a738bceb88e81338192013",
+    "failureStrictVerification": "ebeb4def22376d037d39b28fe7fe79bb4c964b211ff5341bad65810387e2d8a2",
+    "capacityLaunch": "48a393fc624fc9e9511a4b515f6336bddf34a3e667436cb3ee663422b7ea2d57",
+    "mixedCapacityLaunch": "04be36107f0b791dd4b43c9b07ab1d542749e1970e04bc715dedd4bdf3104a43",
+    "denseFieldRvaParser": "7599bd693fdffd30d69700f5590193b3f1f0adb3e9c30ba854c29875b8746a3c"
+  },
+  "liveHashBoundRoots": [
+    {
+      "path": "Builds/AssemblyShadow/M07/M07-Baseline-H1-AuthorityAf56-Normal-20260918A.app",
+      "binding": "archived Native-ON build receipt plus startup/M07/failure complete before-after input maps"
+    },
+    {
+      "path": "Builds/AssemblyShadow/M07/M07-Baseline-H1-AuthorityAf56-Normal-20260918A-NativeOff.app",
+      "binding": "archived Native-OFF build receipt plus M07 complete before-after input maps"
+    },
+    {
+      "path": "_temp/AssemblyShadow/M02Validation-266df67dafd04612919bfa85817bec79",
+      "binding": "archived workflow, fixture, replay, launcher, and strict-verifier receipts"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01B/workload-v2-corpus-512MiB-8192",
+      "binding": "archived ordinary and mixed capacity launch receipts with complete before-after hashes"
+    },
+    {
+      "path": "_temp/AssemblyShadow/R01BMixedWorkload-af56-20260918A/corpus",
+      "binding": "archived mixed workload manifest and mixed capacity complete before-after hashes"
+    },
+    {
+      "path": "Builds/AssemblyShadow/R01B/r01b-diagnostic-af56-20260918A.app",
+      "binding": "archived diagnostic build, capacity, mixed-capacity, and parser receipts"
+    }
+  ],
+  "cleanupPerformed": false
+}
