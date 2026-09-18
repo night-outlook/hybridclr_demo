@@ -4,119 +4,213 @@
 
 Latest Local return:
 
-`f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf`
-
-Result: **BLOCKED at V00**.
+`f8e66d092b275173a415776f845182171c4dbc31`
 
 Current reviewed candidate build-input source anchor:
 
-`af56b841e9ae80be0b1748e546338f9b68da2717`
+`36173a5b12c74fbc9e5fc56b8d5246b187bce65a`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## V00 blocker
+## Local findings at `af56b841...`
 
-The Local candidate preflight failed with:
+The previous Local batch successfully established a fresh current-source chain through:
 
-`Blocked: Incomplete handoff sections`
+- authority/source preflight;
+- Unity compilation;
+- candidate/reproduction provenance and build set;
+- controlled M07 restoration;
+- normal M07 fixture/ON/OFF/replay graph;
+- startup11;
+- M07 Player 14/14;
+- 8192/8193 capacity;
+- 512 MiB mixed boundary;
+- parser/FieldRVA/dense-v2;
+- generic/index/cache/capability;
+- retained M03-M06/R01 native coverage.
 
-The verifier requires the exact committed headings declared by `h1_handoff_preflight.py.REQUIRED_SECTIONS`. The previous handoff had editorially renamed several headings and omitted two exact headings.
+It then exposed two source/tool defects and two missing reference-artifact families.
 
-Local correctly refused to modify the authoritative Primary handoff.
+### Finding A — failure/publication late probe still profile 1
 
-## Correction
+Earliest Baseline admission succeeded for all three processes and bound the correct PIDs/capsules. The late `R01FailureProbe` then rejected every patch because it required:
 
-The verifier is unchanged.
+`patch.nativeBudgetCapabilityVersion == 1`
 
-`WEB_TO_LOCAL.md` now contains all required exact headings:
+The authenticated current M07 patch contract is profile 2.
 
-- `## Objective`
-- `## Source targets`
-- `## Implementation`
-- `## Local validation`
-- `## Failure evidence`
-- `## Alternatives`
-- `## Risks`
-- `## Local correction boundary`
-- `## Human review gate`
+### Finding B — lazy Player runner accepted only sealed-v1 dense input
 
-The semantic content from the prior handoff is preserved under those headings.
+The deterministic dense-v2 generator and native parser evidence passed, but `run-r01b-lazy-player.py` required the unavailable historical schema-1 sealed-v1 manifest. The lazy Player never launched.
 
-## Regression
+### Finding C — old-Player evidence unavailable
 
-`Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py` now contains a live-repository regression that calls:
+No immutable profile-1 fixture + Native ON/OFF + replay + Player graph was present in the active workspace.
 
-`h1_handoff_preflight.verify(<actual repo root>, 'candidate')`
+### Finding D — controlled performance reference build map unavailable
 
-against the real committed:
+The protected performance-reference commit was exact, but no fresh reference Development Players/controlled build evidence existed to construct the A/B frozen build map.
 
-- `WEB_TO_LOCAL.md`;
-- `source-targets.json`;
-- `ProjectSettings/AssemblyShadowSourcePins.json`;
-- Git branch/origin/source-anchor relationship.
+V05 and M08 therefore remained `NotRun`.
 
-This supplements the existing disposable synthetic repository tests.
+## Repair A — shared profile-2 failure admission
 
-The Primary workflow now:
+The late failure probe no longer owns a separate metadata-profile policy.
 
-- triggers when the live handoff, source targets, or source pins change;
-- checks out full Git history so the declared build-input anchor can be inspected by `verify_demo`;
-- explicitly runs the live handoff preflight regression.
+It calls:
 
-These regression/workflow changes are why source authority advances from `50c79913...` to `af56b841...`.
+`ShadowPatchMetadataReservation.ValidateIfDeclared`
 
-## Preserved prior implementation
+with the exact selected patch:
 
-The R01 failure/publication earliest-admission implementation at `50c79913096961636a776ee8254b6631002cdfe5` is unchanged and inherited by `af56b841...`.
+- native capability version;
+- dormant legacy profile/report;
+- profile-2 profile/report;
+- load order;
+- closure names and declared DLL sizes;
+- independently confined/hash-verified DLL bytes.
 
-Its Primary executable evidence remains:
+The helper must return a declared profile whose version equals `M07Probe.RuntimeAbiVersion`, and every load-order member must have a verified byte-size entry.
 
-- bounded suite: 311/311;
-- early capsule: 7/7;
-- early results: 19/19;
-- failure pipeline: 16/16;
-- workflow `35330989089`;
-- artifact `10540898558`;
-- artifact ZIP SHA-256 `52861f7bca634fa007e4e5fba7cd3774ab8f9dfbf1b39de0c6ca80fba047d139`.
+Only then does the late probe call:
 
-Real Player acceptance remains Local work.
+`AssemblyShadowRuntime.ReserveMetadataBudget(sizes, budgetProfileVersion)`
 
-## Final Primary handoff regression
+The Control/Q04/initializer transaction oracle, earliest Baseline admission, process binding, raw diagnostics/recovery checks, and strict Python verifier are unchanged.
 
-The exact final live handoff bytes at `4338cc989bd01918e012e43b8ecbae983e4862c8` passed workflow `35333505896`.
+This avoids both the stale profile-1 equality and an ad-hoc `== 2` replacement.
 
-The workflow executed:
+## Repair B — explicit sealed-v1 / deterministic-v2 lazy contract
 
-- 312/312 bounded Primary tests;
-- 11/11 handoff-preflight tests, including the real committed-repository preflight;
-- 7/7 early-capsule tests;
-- 19/19 early-results tests;
-- 16/16 failure-pipeline tests.
+The Python lazy runner now has two independent admission paths.
 
-Artifact ID `10542063317`; ZIP SHA-256 `63027964602b3e44f34aed7eb77b1ce228b781c2dcf08ed21eaa743e5bd8928b`.
+### Historical sealed-v1
 
-This closes the specific V00 handoff-document regression in Primary. Local must still restart from fresh V00; this CI result is not Local V00 acceptance.
+Accepted only as:
 
-## Blocked-attempt disposition
+- schema 1;
+- kind `R01BWorkloadV3DenseMetadataAdjunct`;
+- status `VerifiedSealedV1FixturesOutsideV2Envelope`;
+- authenticated source corpus/parser/fixture envelope.
 
-The `f8a2766d...` Local attempt is preserved exactly as:
+No historical v1 evidence is synthesized or relabelled.
 
-- V00 candidate preflight: `Blocked`;
-- reproduction-tooling preflight: `Passed`;
-- protected refs: `Passed`;
-- V01–V05: `NotRun`;
-- M08: historical `FAIL`, not rerun.
+### Deterministic-v2
 
-Nothing from that attempt may be relabelled as fresh V00 acceptance.
+Accepted only as:
 
-Evidence remains under:
+- schema 2;
+- kind `R01BDenseAdjunctManifest`;
+- status `GeneratedDeterministicDenseV2`;
+- evidence identity `replacement-fixtures-require-fresh-native-and-player-evidence`;
+- `historicalEvidenceReused=false`;
+- exact old-v1 hashes retained as `UnavailableDoNotRelabel`;
+- exact generator/source/Mono/mcs/Cecil hashes;
+- two-run reproducibility contract;
+- two exact 1 MiB fixtures;
+- exact 4098 TypeDef / 4097 MethodDef shape;
+- >64 KiB strings heap and 4-byte metadata table widths;
+- current parser-revalidated identity, MVID, inventory and confinement.
 
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260918-authority50c-v00-blocked/`
+The runtime C# diagnostic probe independently checks the v1/v2 header, rejects v2 historical relabelling, requires exactly fixture IDs `{1,2}`, and applies the v2 boundary envelope before `Assembly.Load`.
 
-## Next cycle
+The runtime lazy semantics themselves are unchanged.
 
-Local must restart from **fresh V00** on the final pushed handoff.
+## Protected profile-1 reference coordination
 
-If V00 passes, continue the already documented one-batch validation plan through provenance/builds, controlled/normal M07, startup11, M07 14/14, repaired failure/publication, independent remaining V04 cells, retention, and V05/M08 when eligible.
+The protected performance reference is usable as a fresh profile-1 evidence producer.
+
+Reference identities:
+
+- demo HEAD: `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
+- demo build-input source anchor: `f1c923cbaa814e1b63f3c5b9f8303c90616de726`;
+- HybridCLR: `b22fa3d92223645c32663e4a2157eaadf8ea495e`;
+- HybridCLR Unity: `b649c499385ea68490a0f652a98b732e060aeb89`;
+- IL2CPP: `7967b8c7043904fcae130b294defd5ce7aa897c4`.
+
+The reference still contains:
+
+- profile-1 `ShadowPatchMetadataReservation`;
+- the M07 build workflow;
+- `R00ControlledBuild`;
+- the same performance probe, process-memory implementation and witness bytes as the candidate.
+
+Primary added:
+
+### `verify-h1-protected-reference.py`
+
+Read-only verifier for an isolated reference family. It requires:
+
+- exact four Git heads/origins;
+- clean tracked state;
+- exact reference source pins;
+- profile-1 reservation source contract;
+- required M07/performance producers;
+- byte-identical measurement sources between reference and candidate.
+
+Result is `ProtectedReferenceInputsVerifiedNotBuilt`; it does not claim installation/build/runtime acceptance.
+
+### `freeze-h1-performance-build-map.py`
+
+Takes actual A/B controlled ON/OFF build receipts and `R00ControlledBuildEvidence`, plus each side's fixture/replay receipts.
+
+It authenticates them using the existing strict `h1_paired_performance` analyzer, derives comparability facts from the verified artifacts, requires `ComparabilityPassed`, and only then emits `H1ControlledBuildMap`.
+
+Local no longer needs to hand-author comparability claims.
+
+## Primary executable validation
+
+GitHub Actions workflow `35355439098` at source anchor `36173a5...` / authority successor `e8241a62...` passed:
+
+- bounded Primary suite: **316/316**;
+- committed live-handoff suite: **11/11**;
+- R01 early-capsule suite: **7/7**;
+- R01 early-results suite: **19/19**;
+- R01 failure-pipeline suite: **17/17**;
+- R01B lazy-contract suite: **8/8**.
+
+Artifact:
+
+- ID: `10551697107`
+- ZIP SHA-256: `2fed1be31722ab8b67435f264d293cf56fe62f68af0ce28f7a5feb4dd437ba0a`
+
+This is source/tool evidence only. Real Unity/IL2CPP validation remains Local work.
+
+## Evidence preservation
+
+The Local checkpoint:
+
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260918-authorityaf56/`
+
+remains immutable historical evidence for source anchor `af56b841...`.
+
+Its Passed cells remain valid as historical observations, but they are not current-anchor `36173a5...` acceptance.
+
+The failed failure/publication late-probe evidence and lazy `NoCoverage` evidence must remain under their original status.
+
+The old-Player/performance `Unavailable / NotRun` states must not be replaced by summaries. Only fresh regenerated reference artifacts may close them.
+
+## Next Local cycle
+
+Local restarts from fresh V00 under source anchor `36173a5...`.
+
+The desired one-batch order is:
+
+1. current candidate V00-V03 authority/provenance/builds;
+2. current controlled + normal M07;
+3. startup11 + M07 14/14;
+4. repaired failure/publication matrix;
+5. capacity/mixed/parser/dense/current retained cells;
+6. fresh deterministic dense-v2 + current diagnostic Player + repaired lazy Player;
+7. isolated protected profile-1 reference family authentication;
+8. fresh reference M07 graph;
+9. old-Player rejection using current profile-2 inputs and fresh reference profile-1 Player graph;
+10. fresh controlled Development ON/OFF builds for reference and candidate;
+11. freeze/authenticate A/B build map;
+12. preregistered paired performance pilot/formal execution if comparability passes;
+13. checkpoint retention;
+14. V05/M08 only if mandatory evidence is complete.
+
+Authority/provenance/common-input corruption remains a hard stop. After foundations pass, isolated fresh-process functional failures should be preserved while independent cells continue when the authenticated common inputs remain valid.
 
 Do not begin R02.
