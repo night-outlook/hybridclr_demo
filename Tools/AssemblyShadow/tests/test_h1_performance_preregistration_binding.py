@@ -19,6 +19,11 @@ spec.loader.exec_module(binder)
 
 
 class PerformancePreregistrationBindingTests(unittest.TestCase):
+    def test_driver_mode_order_matches_preregistered_analyzer(self):
+        self.assertEqual(tuple(binder.analysis.MODES), tuple(binder._runner.MODES))
+        protocol=json.loads(binder.SOURCE_PROTOCOL.read_text())
+        self.assertEqual(list(binder._runner.MODES), protocol['modes'])
+
     def test_binds_only_protocol_path_and_hash(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve() / "bound"
