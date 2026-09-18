@@ -10,6 +10,12 @@ on:
       - 'Tools/AssemblyShadow/r01_*.py'
       - 'Tools/AssemblyShadow/run-r01-failure-players.py'
       - 'Tools/AssemblyShadow/tests/test_r01_*.py'
+      - 'Tools/AssemblyShadow/r01b_*.py'
+      - 'Tools/AssemblyShadow/run-r01b-lazy-player.py'
+      - 'Tools/AssemblyShadow/tests/test_r01b_*.py'
+      - 'Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs'
+      - 'Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs'
+      - 'Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs'
       - 'Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs'
       - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
       - 'Docs/AssemblyShadow/Handoff/source-targets.json'
@@ -43,6 +49,10 @@ jobs:
           python3 Tools/AssemblyShadow/tests/test_r01_early_capsule.py
           python3 Tools/AssemblyShadow/tests/test_r01_early_results.py
           python3 Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py
+      - name: Run R01B lazy contract regressions
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 Tools/AssemblyShadow/tests/test_r01b_lazy_result.py
       - name: Export reviewed source inputs
         if: always()
         run: |
