@@ -214,3 +214,18 @@ The desired one-batch order is:
 Authority/provenance/common-input corruption remains a hard stop. After foundations pass, isolated fresh-process functional failures should be preserved while independent cells continue when the authenticated common inputs remain valid.
 
 Do not begin R02.
+
+## Final committed handoff CI
+
+The exact final `WEB_TO_LOCAL.md` state at `ac8b9f17f2cd98ae671c68ca60b06867085d2790` passed workflow `35357027882`:
+
+- bounded Primary: **319/319**;
+- committed handoff: **11/11**;
+- R01 early capsule: **7/7**;
+- R01 early results: **19/19**;
+- R01 failure pipeline: **17/17**;
+- R01B lazy contract: **8/8**.
+
+Artifact `10552945025`, ZIP SHA-256 `81686d1dbf02bfe552bd0e2bdc70e3b690d2f51bafdafc5b7ebc00ad7d99e3db`.
+
+This remains Primary source/tool evidence, not Local V04 acceptance.
