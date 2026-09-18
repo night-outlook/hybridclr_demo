@@ -39,7 +39,6 @@ class CliTables:
                 require(self.counts[index] <= 10_000_000, f"{label}: oversized CLI table")
         require(self.counts[0] == self.counts[32] == 1, f"{label}: requires one Module and Assembly")
         require(0 < self.counts[2] <= 1_000_000, f"{label}: invalid TypeDef count")
-        require(not any(self.counts[n] for n in (3, 5, 7, 19, 22)), f"{label}: unsupported pointer tables")
 
         def width(column):
             if isinstance(column, int): return 4 if self.counts[column] >= 65536 else 2
@@ -54,6 +53,32 @@ class CliTables:
             self.offsets.append(cursor); self.widths.append(sizes)
             size = self.counts[index] * sum(sizes)
             t.block(cursor, size); cursor += size
+
+        # ECMA-335 unoptimized metadata (#-) may carry pointer tables.  The
+        # list columns in TypeDef/MethodDef/EventMap/PropertyMap then index the
+        # pointer table, whose rows identify the physical target table rows.
+        # Accept only a complete one-to-one permutation: this preserves the
+        # strict byte proof while allowing deterministic Unity-produced #- data.
+        self.pointer_tables = {}
+        for target, pointer in ((4, 3), (6, 5), (8, 7), (20, 19), (23, 22)):
+            if not self.counts[pointer]:
+                continue
+            require(self.counts[pointer] == self.counts[target],
+                    f"{label}: pointer table {pointer} row count differs from target table {target}")
+            values = tuple(self.row(pointer, rid)[0] for rid in range(1, self.counts[pointer] + 1))
+            require(all(1 <= rid <= self.counts[target] for rid in values),
+                    f"{label}: pointer table {pointer} target RID out of bounds")
+            require(len(set(values)) == len(values), f"{label}: pointer table {pointer} contains duplicate target RID")
+            self.pointer_tables[target] = values
+
+    def list_count(self, table):
+        return len(self.pointer_tables.get(table, ())) or self.counts[table]
+
+    def list_rid(self, table, rid):
+        require(type(rid) is int and 1 <= rid <= self.list_count(table),
+                f"{self.label}: table {table} list RID out of bounds")
+        values = self.pointer_tables.get(table)
+        return values[rid - 1] if values else rid
 
     def row(self, table, rid):
         require(type(rid) is int and 1 <= rid <= self.counts[table], f"{self.label}: table {table} RID out of bounds")
@@ -96,8 +121,9 @@ class CliTables:
         require(all(name and "\r" not in name and "\n" not in name for name in names.values()), f"{self.label}: invalid TypeDef name")
         require(all("\r" not in ns and "\n" not in ns for ns in namespaces.values()), f"{self.label}: invalid TypeDef namespace")
         for column, table in ((4, 4), (5, 6)):
-            starts = [row[column] for row in definitions.values()] + [self.counts[table] + 1]
-            require(starts[0] == 1 and starts == sorted(starts) and all(1 <= n <= self.counts[table] + 1 for n in starts),
+            count = self.list_count(table)
+            starts = [row[column] for row in definitions.values()] + [count + 1]
+            require(starts[0] == 1 and starts == sorted(starts) and all(1 <= n <= count + 1 for n in starts),
                     f"{self.label}: TypeDef field/method range is invalid")
         parents = {}
         for rid in range(1, self.counts[41] + 1):
@@ -253,9 +279,9 @@ class MethodProof:
         for rid in range(1, self.tables.counts[2] + 1): type_name(rid)
         for rid in range(1, self.tables.counts[2] + 1):
             row = self.tables.row(2, rid)
-            following = self.tables.row(2, rid + 1) if rid < self.tables.counts[2] else [0, 0, 0, 0, self.tables.counts[4] + 1, self.tables.counts[6] + 1]
-            for index in range(row[4], following[4]): self.field_owners[index] = rid
-            for index in range(row[5], following[5]): self.method_owners[index] = rid
+            following = self.tables.row(2, rid + 1) if rid < self.tables.counts[2] else [0, 0, 0, 0, self.tables.list_count(4) + 1, self.tables.list_count(6) + 1]
+            for index in range(row[4], following[4]): self.field_owners[self.tables.list_rid(4, index)] = rid
+            for index in range(row[5], following[5]): self.method_owners[self.tables.list_rid(6, index)] = rid
 
     def type_identity(self, table, rid, seen=()):
         require((table, rid) not in seen and len(seen) < 256, f"{self.label}: cyclic type signature")
@@ -489,11 +515,11 @@ class MethodProof:
         for map_table, table, kind in ((21, 23, "property"), (18, 20, "event")):
             for rid in range(1, self.tables.counts[map_table] + 1):
                 parent, start = self.tables.row(map_table, rid)
-                stop = self.tables.row(map_table, rid + 1)[1] if rid < self.tables.counts[map_table] else self.tables.counts[table] + 1
-                require(1 <= start <= stop <= self.tables.counts[table] + 1 and 1 <= parent <= self.tables.counts[2], f"{self.label}: invalid member map range")
+                stop = self.tables.row(map_table, rid + 1)[1] if rid < self.tables.counts[map_table] else self.tables.list_count(table) + 1
+                require(1 <= start <= stop <= self.tables.list_count(table) + 1 and 1 <= parent <= self.tables.counts[2], f"{self.label}: invalid member map range")
                 if parent != owner: continue
                 for member_rid in range(start, stop):
-                    _, name, signature = self.tables.row(table, member_rid)
+                    _, name, signature = self.tables.row(table, self.tables.list_rid(table, member_rid))
                     name = self.tables.string(name)
                     if kind == "property":
                         property_type, parameters = self.reflection_signature(signature, property_signature=True)
