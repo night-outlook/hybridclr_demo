@@ -17,7 +17,7 @@ from test_m04_results import make_pe, SyntheticRuntimeSuite
 import m05_results as v
 
 
-def make_type_pe(types, name="Types", reference_assembly="mscorlib", nested=None, generic_rows=None, extra_refs=(), type_specs=()):
+def make_type_pe(types, name="Types", reference_assembly="mscorlib", nested=None, generic_rows=None, extra_refs=(), type_specs=(), pointer_tables=None, table_stream="#~"):
     strings, blobs = bytearray(b"\0"), bytearray(b"\0")
     def string(value):
         p = len(strings); strings.extend(value.encode() + b"\0"); return p
@@ -53,12 +53,15 @@ def make_type_pe(types, name="Types", reference_assembly="mscorlib", nested=None
             for event in t["events"]: rows[20].append(struct.pack("<HHH", 0, string(event["name"]), event["type"]))
     if nested is not None: rows[41] = [struct.pack("<HH", *row) for row in nested]
     if generic_rows is not None: rows[42] = [struct.pack("<HHHH", number, 0, owner, string("T")) for number, owner in generic_rows]
+    for table, values in (pointer_tables or {}).items():
+        assert table in (3, 5, 7, 19, 22)
+        rows[table] = [struct.pack("<H", value) for value in values]
     rows = {table: items for table, items in rows.items() if items}
     valid = sum(1 << table for table in rows)
     tables = struct.pack("<IBBBBQQ", 0, 2, 0, 0, 1, valid, 0)
     tables += b"".join(struct.pack("<I", len(rows[table])) for table in sorted(rows))
     tables += b"".join(b"".join(rows[table]) for table in sorted(rows))
-    streams = [("#~", tables), ("#Strings", bytes(strings)), ("#Blob", bytes(blobs)), ("#GUID", bytes(range(16)))]
+    streams = [(table_stream, tables), ("#Strings", bytes(strings)), ("#Blob", bytes(blobs)), ("#GUID", bytes(range(16)))]
     root = struct.pack("<IHHII", 0x424a5342, 1, 1, 0, 12) + b"v4.0.30319\0\0" + struct.pack("<HH", 0, len(streams))
     offset = len(root) + sum(8 + ((len(n) + 4) & ~3) for n, _ in streams)
     headers, content = b"", b""
@@ -183,6 +186,56 @@ class TypeMetadataTests(unittest.TestCase):
             with self.assertRaises(VerificationError): read_type_inventory_bytes(data)
         data = bytearray(valid); position = valid.index(b"Example\0"); data[position] = 0xff
         with self.assertRaises(VerificationError): read_type_inventory_bytes(data)
+
+    def test_unoptimized_pointer_tables_resolve_reordered_physical_rows(self):
+        data = make_type_pe([
+            dict(name="A", fields=[dict(name="A1"), dict(name="A2")],
+                 methods=[dict(name="A1"), dict(name="A2")]),
+            dict(name="B", fields=[dict(name="B1"), dict(name="B2")],
+                 methods=[dict(name="B1"), dict(name="B2")]),
+        ], pointer_tables={3: [2, 1, 4, 3], 5: [2, 1, 4, 3]}, table_stream="#-")
+        proof = MethodProof(data, "pointer fixture")
+        self.assertEqual(proof.tables.list_rid(4, 1), 2)
+        self.assertEqual(proof.tables.list_rid(6, 1), 2)
+        self.assertEqual([row["name"] for row in proof.fields("Example.A")], ["A2", "A1"])
+        self.assertEqual(proof.member(6, 2)["owner"], "Example.A")
+        self.assertEqual(proof.member(6, 4)["owner"], "Example.B")
+        self.assertEqual(read_type_inventory_bytes(data)["assemblyName"], "Types")
+
+    def test_unoptimized_property_and_event_pointer_tables_resolve(self):
+        data = make_type_pe([
+            dict(name="Owner",
+                 properties=[dict(name="P1", signature=b"\x08\x00\x08"), dict(name="P2", signature=b"\x08\x00\x08")],
+                 events=[dict(name="E1", type=5), dict(name="E2", type=5)])
+        ], pointer_tables={19: [2, 1], 22: [2, 1]}, table_stream="#-")
+        proof = MethodProof(data, "member pointer fixture")
+        rows = proof.reflection_members("Example.Owner")
+        self.assertEqual([(row["memberKind"], row["memberName"]) for row in rows],
+                         [("property", "P2"), ("property", "P1"), ("event", "E2"), ("event", "E1")])
+
+    def test_pointer_tables_reject_malformed_indirection(self):
+        cases = [
+            ({5: [1]}, "row count differs"),
+            ({5: [1, 1]}, "duplicate target RID"),
+            ({5: [0, 2]}, "target RID out of bounds"),
+            ({5: [3, 1]}, "target RID out of bounds"),
+        ]
+        types = [dict(name="Owner", methods=[dict(name="M1"), dict(name="M2")])]
+        for pointers, error in cases:
+            with self.subTest(pointers=pointers):
+                with self.assertRaisesRegex(VerificationError, error):
+                    CliTables(make_type_pe(types, pointer_tables=pointers, table_stream="#-"), "bad pointer fixture")
+
+    def test_mixed_pointer_tables_remain_strict_and_independent(self):
+        data = make_type_pe([
+            dict(name="Owner", fields=[dict(name="F1"), dict(name="F2")],
+                 methods=[dict(name="M1"), dict(name="M2")])
+        ], pointer_tables={3: [2, 1]}, table_stream="#-")
+        proof = MethodProof(data, "mixed pointer fixture")
+        self.assertEqual(proof.tables.list_rid(4, 1), 2)
+        self.assertEqual(proof.tables.list_rid(6, 1), 1)
+        self.assertEqual([row["name"] for row in proof.fields("Example.Owner")], ["F2", "F1"])
+        self.assertEqual(proof.member(6, 1)["name"], "M1")
 
     def test_type_inventory_hash_and_path_are_actual(self):
         with tempfile.TemporaryDirectory() as tmp:
