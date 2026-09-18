@@ -683,4 +683,8 @@ def main(argv=None):
         result = dict(schemaVersion=1, kind="R01FailureVerification", result="Failed", error=str(error))
     args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result))
-    return int(result["result"] != "Passed")\n\n\nif __name__ == "__main__":\n    raise SystemExit(main())\n
+    return int(result["result"] != "Passed")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
