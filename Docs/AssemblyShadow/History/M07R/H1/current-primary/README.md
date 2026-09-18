@@ -10,7 +10,7 @@ Result: **BLOCKED at V00**.
 
 Current reviewed candidate build-input source anchor:
 
-`39c33e259d1ba893e23e3f1aa22529c87524534f`
+`af56b841e9ae80be0b1748e546338f9b68da2717`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -63,11 +63,11 @@ The Primary workflow now:
 - checks out full Git history so the declared build-input anchor can be inspected by `verify_demo`;
 - explicitly runs the live handoff preflight regression.
 
-These regression/workflow changes are why source authority advances from `50c79913...` to `39c33e25...`.
+These regression/workflow changes are why source authority advances from `50c79913...` to `af56b841...`.
 
 ## Preserved prior implementation
 
-The R01 failure/publication earliest-admission implementation at `50c79913096961636a776ee8254b6631002cdfe5` is unchanged and inherited by `39c33e25...`.
+The R01 failure/publication earliest-admission implementation at `50c79913096961636a776ee8254b6631002cdfe5` is unchanged and inherited by `af56b841...`.
 
 Its Primary executable evidence remains:
 
