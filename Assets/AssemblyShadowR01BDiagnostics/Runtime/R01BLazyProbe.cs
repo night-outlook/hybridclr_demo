@@ -181,14 +181,17 @@ namespace AssemblyShadowDemo
             manifestPath = Path.GetFullPath(manifestPath);
             Check("dense-manifest-exists", File.Exists(manifestPath), "The optional dense adjunct manifest is missing.");
             DenseManifest manifest = JsonUtility.FromJson<DenseManifest>(File.ReadAllText(manifestPath));
-            Check("dense-manifest-shape", manifest != null && manifest.fixtures != null && manifest.fixtures.Length == 2,
-                "The optional dense adjunct manifest does not contain exactly two fixtures.");
+            Check("dense-manifest-shape", IsAcceptedDenseManifestContract(manifest),
+                "The optional dense adjunct manifest is not an accepted sealed-v1 or deterministic-v2 contract.");
+            var seen = new HashSet<int>();
             foreach (DenseFixture fixture in manifest.fixtures)
             {
                 string path = Path.GetFullPath(fixture.path);
                 byte[] bytes = File.ReadAllBytes(path);
-                Check("dense-input-" + fixture.id, fixture.id > 0 && fixture.typeDefRows >= 4098 && fixture.methodDefRows >= 4097 &&
-                    Hash(bytes) == fixture.sha256, "Dense adjunct hash or metadata envelope differs for fixture " + fixture.id + ".");
+                Check("dense-input-" + fixture.id,
+                    seen.Add(fixture.id) && IsAcceptedDenseFixtureContract(manifest, fixture, bytes.LongLength) &&
+                    Hash(bytes) == fixture.sha256,
+                    "Dense adjunct hash or metadata envelope differs for fixture " + fixture.id + ".");
                 Assembly assembly = Assembly.Load(bytes);
                 string stem = "DenseType_" + fixture.id.ToString("D4") + "_";
                 string suffix = "_MetadataBoundary_0123456789abcdef0123456789abcdef";
@@ -201,7 +204,33 @@ namespace AssemblyShadowDemo
                 ++active.denseFixtures;
                 active.denseBoundaryChecks += 2;
             }
+            Check("dense-fixture-ids", seen.SetEquals(new[] { 1, 2 }), "Dense adjunct fixture IDs differ.");
             Snapshot("after-dense-adjunct");
+        }
+
+        private static bool IsAcceptedDenseManifestContract(DenseManifest manifest)
+        {
+            if (manifest == null || manifest.fixtures == null || manifest.fixtures.Length != 2) return false;
+            bool sealedV1 = manifest.schemaVersion == 1 &&
+                manifest.kind == "R01BWorkloadV3DenseMetadataAdjunct" &&
+                manifest.status == "VerifiedSealedV1FixturesOutsideV2Envelope";
+            bool generatedV2 = manifest.schemaVersion == 2 &&
+                manifest.kind == "R01BDenseAdjunctManifest" &&
+                manifest.status == "GeneratedDeterministicDenseV2" &&
+                !manifest.historicalEvidenceReused;
+            return sealedV1 || generatedV2;
+        }
+
+        private static bool IsAcceptedDenseFixtureContract(DenseManifest manifest, DenseFixture fixture, long actualLength)
+        {
+            if (manifest == null || fixture == null || fixture.id < 1 || fixture.id > 2 ||
+                fixture.name != "AssemblyShadow.Workload.I" + fixture.id.ToString("D4") ||
+                fixture.typeDefRows < 4098 || fixture.methodDefRows < 4097 ||
+                fixture.sizeBytes <= 0 || actualLength != fixture.sizeBytes) return false;
+            if (manifest.schemaVersion == 2)
+                return fixture.sizeBytes == 1024 * 1024 && fixture.typeDefRows == 4098 &&
+                    fixture.methodDefRows == 4097 && fixture.stringsHeapBytes >= 65536;
+            return true;
         }
 
         private static int InvokeInt(Type type, string method, params object[] arguments)
@@ -329,13 +358,17 @@ namespace AssemblyShadowDemo
         [Serializable, Preserve]
         private sealed class DenseManifest
         {
+            [Preserve] public int schemaVersion;
+            [Preserve] public string kind, status;
+            [Preserve] public bool historicalEvidenceReused;
             [Preserve] public DenseFixture[] fixtures;
         }
 
         [Serializable, Preserve]
         private sealed class DenseFixture
         {
-            [Preserve] public int id, typeDefRows, methodDefRows;
+            [Preserve] public int id, typeDefRows, methodDefRows, stringsHeapBytes;
+            [Preserve] public long sizeBytes;
             [Preserve] public string path, name, sha256;
         }
     }
