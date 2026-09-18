@@ -141,7 +141,7 @@ def validate(data):
         _hash(row["sha256"], row["path"])
 
 
-def from_context(context, mode, patch_id="P03", fixture_path=None, replacement=None):
+def from_context(context, mode, patch_id="P03", fixture_path=None, replacement=None, extra_prerequisites=()):
     """Materialize only after verify_inputs or failure.prepare succeeds.
 
     replacement is a verified failure fixture/negative substitution supplied by
@@ -175,6 +175,8 @@ def from_context(context, mode, patch_id="P03", fixture_path=None, replacement=N
         data["ordinaryPath"], data["ordinarySha256"] = ordinary["path"], ordinary["sha256"]
     paths = {Path(manifest["baselineManifestPath"]), Path(selected["path"]), Path(on["path"])}
     if fixture_path is not None: paths.add(Path(fixture_path))
+    for path in extra_prerequisites:
+        paths.add(Path(path))
     resources = Path(manifest["baselineManifestPath"]).parent / baseline["resourceBaselinePath"]
     resource_receipt = resources / "resource-build-receipt.json"
     paths.add(resource_receipt)
