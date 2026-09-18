@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1Authority8bLocalValidationSummary",
+  "candidateCheckout": "dc64f250c1c47f260625fe60bac80fd26f0c7cdc",
+  "sourceAnchor": "8b1298d6a5979928bdfa30446e2d674d63999b76",
+  "baselineBuildId": "M07-Baseline-H1-Authority8b-Normal-20260918A",
+  "results": {
+    "V00": "Passed",
+    "V01": "PassedWith27CountCoordinationSkips",
+    "V02": "Passed",
+    "V03": "PassedSixFreshPlayers",
+    "V04ControlledM07": "PassedExpectedFailureAndExactRestoration",
+    "V04NormalM07": "Passed",
+    "V04Startup11": "PassedBoundedProfile",
+    "V04M07PlayerMatrix": "PassedGate3B14Of14",
+    "V04FailurePublication": "FailedMissingAuthenticatedEarlyCapsuleContract",
+    "V04Remaining": "BlockedNotRun",
+    "V05": "BlockedNotRun",
+    "M08": "FailHistoricalNotRerun"
+  },
+  "blocker": "The separate failure/publication launcher and strict verifier omit the authenticated early-capsule arguments required by the advanced Player startup contract; P03 control is refused before host continuation.",
+  "receiptHashes": {
+    "m07Workflow": "1b3301d22a2d30109f6ba1f57e00b53284873b71620bb80f2f43ce9b43282b8b",
+    "m07Fixtures": "0e4036bc803504e9452dbb1881b7390df09f5e8bc7e8fef4db8d5c728ec465fd",
+    "m07NativeOnBuild": "b5afad2b527d594f4e81ecda85fc673e0a0a888000673b54c14d58d9689dfc5f",
+    "m07NativeOffBuild": "e60aaf47a83fd5c8d85d7abf688234c98a27e1b92e3286b55970d27614fd271c",
+    "m07EditorReplay": "f258aa16b83fe9b57f50b961c73feb268ab27eacb1393f8b9fefd5b4b26665ec",
+    "capsules": "17625693999627566962258a26c50797712aac9ab7a9527edcbc7b952e9d114e",
+    "startup11Launch": "cdf86a0b7a33053c190a9f36f6988366980f6083b903a14b79c0c71fa14d6b84",
+    "startup11Result": "cd322f083c4f50f98af2cdcb0a2937f3e8965435992e54de43236c9f4106902e",
+    "m07PlayerLaunch": "ac309890901742ff357ae4b8abfd9586a143f214c9e0567e42c31eccd1af76bc",
+    "m07PlayerResult": "ccf24653f696f7d1ef52b6dc1e0d576c8b669cab112e35d42c466f0d45b9d87d",
+    "failureLaunch": "b28d88e6f3614d27709be569e39c90220117649e2fb3ab094e0706f9b5f8cd28",
+    "failureResult": "ebeb4def22376d037d39b28fe7fe79bb4c964b211ff5341bad65810387e2d8a2"
+  },
+  "rawArchive": "raw-evidence.tar.gz",
+  "rawArchiveSha256": "ad5a67fce188b60a861e88e8d034c8f4385c8431472d849140040475440f252d",
+  "rawFileCount": 765,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

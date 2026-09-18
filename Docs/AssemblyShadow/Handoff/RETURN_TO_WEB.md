@@ -1,49 +1,57 @@
 # Local Validation → Primary Implementation
 
-## Blocker 1: candidate build inputs are outside the committed source anchor
+## Blocker: failure/publication Player contract omits required early capsules
 
 ### Symptom
 
-At clean candidate HEAD `7e91c42d7baf1d9045d3fd924b7ad2d176f599e9`, implementation anchor `8b1298d6a5979928bdfa30446e2d674d63999b76` is present and the four repository pins match the handoff. The authoritative candidate preflight nevertheless fails before Unity:
+Fresh authority `8b1298d...`, controlled/normal M07, startup11, and the capsule-backed 14-mode M07 Player matrix pass. The next separate failure/publication gate launches all three cases, but the advanced Player refuses before host continuation:
 
 ```text
-Blocked: Demo HEAD contains build-input changes after the source pin
+[AssemblyShadowStartup] Failed: Bootstrap explicitly refused startup
+[AssemblyShadowStartup] Terminating process before host continuation (exit=1)
 ```
 
-`ProjectSettings/AssemblyShadowSourcePins.json` and `source-targets.json` still identify `68df00fe31a199491b313cc17f25575663b7452b`, while the repaired `m05_types.py`, dense generator, native dense harness, parser launcher, and focused tests are later build inputs.
+The strict verifier result is:
 
-### Root cause and impact
+```text
+R01-Failure-P03-Control.exitCode: expected 0, got 1
+```
 
-Primary published a new implementation anchor but did not advance the candidate source-authority contract. The generic source verifier is correctly fail-closed. Fresh Unity, capsule/Player, V04 downstream, successor packaging, and M08 cannot form a provenance-bound chain from the current handoff.
+Evidence:
+
+- launch receipt: `_temp/AssemblyShadow/R01FailurePlayers-Authority8b-20260918A/r01-failure-launches.json`, SHA `b28d88e6f3614d27709be569e39c90220117649e2fb3ab094e0706f9b5f8cd28`;
+- strict result: `_temp/local-validation-20260917-authority8b/v04-failure-results.json`, SHA `ebeb4def22376d037d39b28fe7fe79bb4c964b211ff5341bad65810387e2d8a2`;
+- per-mode Unity and console logs are beside the launch receipt;
+- authenticated portable copy: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260918-authority8b/raw-evidence.tar.gz`.
+
+### Exact reproduction
+
+Run `Tools/AssemblyShadow/run-r01-failure-players.py` with the fresh normal-M07 fixture, ON/OFF receipts, replay receipt, failure-fixtures receipt, Q04 negative-input receipt, and a new direct child of `_temp/AssemblyShadow` as the output root. Then invoke `r01_failure_results.main()` on the resulting `r01-failure-launches.json`.
+
+The recorded `processLaunches[*].command` and `r01_failure_results.command_for()` contain `-shadowR01FailureMode`, fixture/build/failure/negative paths, result path, and log path, but do not contain `-shadowEarlyCapsule`, `-shadowEarlyCapsuleSha256`, or `-shadowEarlyResult`.
+
+### Root cause and affected scope
+
+The advanced source-authority Player enforces authenticated earliest-startup acquisition before host continuation. `run-m07-players.py` already supports this through `--early-capsule-root`, and the corrected M07 run passed 14/14. The separate failure launcher predates or bypasses that contract and does not materialize/authenticate a mode-bound capsule. The verifier encodes the same obsolete command, so a manual extra argument would fail exact-command verification and cannot be used as an acceptance workaround.
+
+This blocks the failure/publication prerequisite and therefore the remaining capacity 8192/8193, lazy/dense/generic/array/reflection/FieldRVA/old-Player, retained M03–M07, performance, V05, and M08 chain in this Local run.
+
+A secondary harness defect exists: `Tools/AssemblyShadow/r01_failure_results.py` defines `main()` but has no `if __name__ == "__main__"` entrypoint, so direct script execution exits 0 without producing an output. Local invoked the unchanged `main()` through Python import to obtain the strict failed result.
 
 ### Recommended implementation direction
 
-Primary should bind the reviewed candidate source target and demo source pin to the intended MethodPtr/dense implementation anchor (or a reviewed successor), update all source-authority hashes consistently, and run the strict preflight before returning the branch. Do not relax `verify_demo`, add a path exception, or classify these code files as metadata-only.
+Update the failure launcher and strict verifier as one contract change:
+
+1. Materialize the authenticated early capsule(s) before the immutable-input snapshot, using the same current source-pinned capsule machinery as startup11.
+2. Add capsule and early-result files to the complete input inventory and launch receipt.
+3. Add exact `-shadowEarlyCapsule`, `-shadowEarlyCapsuleSha256`, and `-shadowEarlyResult` arguments to each failure command.
+4. Extend `r01_failure_results.command_for()` and verification to bind the capsule bytes, early result, process identity, and expected early outcome before accepting the failure/publication result.
+5. Add the missing module entrypoint and focused positive/negative tests that prove the verifier rejects missing, stale, substituted, or mode-mismatched capsules.
+
+Do not weaken startup refusal, bypass exact-command comparison, reuse a startup11 result as the failure result, or relabel the current failed launches.
 
 ### Validation still required
 
-After the authority repair, rerun candidate preflight, regenerate current M07 fixture/build/replay receipts, and resume the blocked capsule/startup11 and V04 downstream chain. Focused results from this cycle remain evidence for the exact retained inputs only.
+After the fix, rerun the three-case failure/publication launcher and strict gate from the retained fresh M07 chain or from a newly regenerated equivalent chain if any bound input changes. Only after it passes should Local continue the remaining V04 chain, retention update, V05 successor package, and genuinely independent whole-chain M08 review.
 
-## Blocker 2: current capsule/startup receipts were not retained
-
-### Symptom
-
-The retained fresh Bootstrap DLL and full PlayerInputs snapshot are present and pass the repaired compiled+linked raw-admission verifier. The exact `m07-fixtures.json`, Native ON/OFF `m07-player-build.json`, and `m07-editor-replay.json` paths recorded by the prior workflow were removed during workspace consolidation. Capsule generation and startup11 therefore cannot be invoked without fabricating or relabelling inputs.
-
-### Root cause and impact
-
-Consolidation retained the baseline assemblies and summarized workflow evidence but not the complete authenticated launch contract. This independently prevents the requested capsule/startup11 proof even though the MethodPtr verifier now accepts the real 1,675-row permutation.
-
-### Recommended implementation direction
-
-After repairing candidate source authority, regenerate a fresh normal M07 chain and retain its fixture, ON/OFF build, replay, failure-fixture, and negative-input receipts as one provenance-bound set. Do not reconstruct acceptance receipts from summaries or historical paths.
-
-## Closed focused findings
-
-- MethodPtr verifier: `PassedFocused`; malformed zero, duplicate, out-of-range, count-mismatch, truncated, and mixed pointer-table cases remain fail-closed in the 113-test M05 run.
-- Real Bootstrap raw lookup: `PassedFocused`; all five method witnesses resolve through pointer indirection and match configured hashes.
-- Dense replacement: `Passed`; fresh deterministic v2 fixtures and native parser/sanitizer validation pass. Historical sealed-v1 evidence remains `UnavailableDoNotRelabel`.
-
-## Current gate state
-
-H1 is `InProgress`. Whole-chain M08 is still `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Return the authority and receipt-retention issues to Primary. Do not begin R02.
+H1 remains `InProgress`; M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.
