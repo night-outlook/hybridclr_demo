@@ -226,6 +226,19 @@ class TypeMetadataTests(unittest.TestCase):
                 with self.assertRaisesRegex(VerificationError, error):
                     CliTables(make_type_pe(types, pointer_tables=pointers, table_stream="#-"), "bad pointer fixture")
 
+    def test_pointer_table_stream_truncation_fails_closed(self):
+        data = make_type_pe([dict(name="Owner", methods=[dict(name="M1"), dict(name="M2")])],
+                            pointer_tables={5: [2, 1]}, table_stream="#-")
+        parsed = CliTables(data, "pointer truncation baseline")
+        table_start = data.index(parsed.reader.data)
+        encoded_size = struct.pack("<I", len(parsed.reader.data))
+        size_field = data.rfind(encoded_size, 0, table_start)
+        self.assertGreaterEqual(size_field, 0)
+        corrupt = bytearray(data)
+        struct.pack_into("<I", corrupt, size_field, len(parsed.reader.data) - 2)
+        with self.assertRaises(VerificationError):
+            CliTables(bytes(corrupt), "truncated pointer table stream")
+
     def test_mixed_pointer_tables_remain_strict_and_independent(self):
         data = make_type_pe([
             dict(name="Owner", fields=[dict(name="F1"), dict(name="F2")],
