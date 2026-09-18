@@ -24,6 +24,7 @@ MODULES = (
     'test_h1_pch_provenance', 'test_h1_pch_integration', 'test_h1_count_build_batch',
     'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding', 'test_h1_m07_policy_bridge',
     'test_h1_m07_workflow_authority',
+    'test_h1_performance_build_map_freezer', 'test_h1_protected_reference_contract',
     'test_h1_handoff_preflight', 'test_h1_managed_provenance', 'test_h1_managed_cache_provenance',
     'test_h1_selection_collect', 'test_h1_successor_evidence', 'test_h1_successor_sidecar',
 )
@@ -59,7 +60,7 @@ def run(output):
     report={'kind':'H1BeePrimaryRegression','status':'PassedBoundedTests' if passed else 'CompletedWithNonPass',
         'testCount':result.testsRun,'counts':counts,'tests':sorted(result.rows,key=lambda r:r['id']),
         'host':platform.platform(),'python':sys.version,'rawLogSha256':hashlib.sha256(log.read_bytes()).hexdigest(),
-        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, managed changed-action/cache-hit proof, split reproduction behavior/tooling source and receipt binding, exact M07 fixed-byte/bootstrap policy plus workflow-restoration and post-validation authority regressions, and host-Clang synthetic probes; not Unity/Apple Player validation',
+        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, managed changed-action/cache-hit proof, split reproduction behavior/tooling source and receipt binding, exact M07 fixed-byte/bootstrap policy plus workflow-restoration and post-validation authority regressions, protected-reference coordination and authenticated performance build-map freezing, and host-Clang synthetic probes; not Unity/Apple Player validation',
         'UnityCompile':'NotRun','AppleClangExecution':'NotRun','M08':'NotRun','humanGatePassed':False,'mayEnterR02':False}
     (output/'results.json').write_text(json.dumps(report,indent=2)+'\n')
     summary={k:report[k] for k in ('status','testCount','counts')}
