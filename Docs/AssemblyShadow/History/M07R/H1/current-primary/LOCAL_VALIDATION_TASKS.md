@@ -12,7 +12,7 @@ Stop on any V00 failure. Do not weaken `verify_demo` or expand metadata-only pat
 
 ## V01 — source / focused regressions
 
-Run the complete H1 Python inventory and the affected source-authority / MethodPtr / dense tests. The previous focused MethodPtr/dense result may be retained as historical comparison, but current source preflight must be fresh.
+Run the complete H1 Python inventory and source-authority tests required by the current H1 matrix. The MethodPtr/dense checkpoint from `local-validation-20260917-methodptr-dense` is exact evidence for build-input anchor `8b1298d...` and may be reused for those focused claims because no build-input file changed after that anchor. It does **not** substitute for fresh source-pin/provenance, Unity, Player, capsule, startup, or V04/V05 evidence.
 
 Real Unity 2022.3.62f2 compilation remains required where called for by the H1 matrix.
 
