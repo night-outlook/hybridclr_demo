@@ -11,6 +11,9 @@ on:
       - 'Tools/AssemblyShadow/run-r01-failure-players.py'
       - 'Tools/AssemblyShadow/tests/test_r01_*.py'
       - 'Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs'
+      - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
+      - 'Docs/AssemblyShadow/Handoff/source-targets.json'
+      - 'ProjectSettings/AssemblyShadowSourcePins.json'
 permissions:
   contents: read
 jobs:
@@ -21,7 +24,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Authenticate immutable failure fixture
         run: python3 Tools/AssemblyShadow/h1_bee_fixture_export.py --output "$RUNNER_TEMP/h1-bee-fixture"
       - name: Run exact Primary regression suite
@@ -29,6 +32,10 @@ jobs:
           H1_BEE_FIXTURE_DIR: ${{ runner.temp }}/h1-bee-fixture
           PYTHONPATH: Tools/AssemblyShadow
         run: python3 Tools/AssemblyShadow/h1_bee_primary_tests.py --output "$RUNNER_TEMP/h1-bee-fixture/test-results"
+      - name: Verify committed live H1 handoff
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py
       - name: Run R01 early and failure/publication contract regressions
         env:
           PYTHONDONTWRITEBYTECODE: '1'
