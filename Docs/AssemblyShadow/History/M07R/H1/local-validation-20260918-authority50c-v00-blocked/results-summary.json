@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1Authority50cV00BlockedSummary",
+  "candidateCheckout": "bd6abcd32880066cc7cb71b2fad349b6a56bd4ca",
+  "sourceAnchor": "50c79913096961636a776ee8254b6631002cdfe5",
+  "results": {
+    "V00Candidate": "BlockedIncompleteHandoffSections",
+    "V00ReproductionTooling": "Passed",
+    "V00ProtectedRefs": "PassedLiveRemoteCheck",
+    "V01": "NotRun",
+    "V02": "NotRun",
+    "V03": "NotRun",
+    "V04": "NotRun",
+    "V05": "NotRun",
+    "M08": "FailHistoricalNotRerun"
+  },
+  "blocker": "Committed WEB_TO_LOCAL headings do not satisfy the committed h1_handoff_preflight REQUIRED_SECTIONS contract.",
+  "evidenceHashes": {
+    "candidateFailure": "2bab589ce7cfeb71b6bc30251acf36f2166f19311f9327bc04272d3d8bbd7e1f",
+    "reproductionTooling": "c3d9f7a9253d1093bd1ff3b8582bd4f5e01ad5ea8676a9d9ab5ca3fa2051fcc5",
+    "protectedRefs": "70cc9c527eceb940f275c3d37cad097aa756a956a140c3d064ec0409247f734a"
+  },
+  "rawArchive": "raw-evidence.tar.gz",
+  "rawArchiveSha256": "8a77cbc58d1b4d0af2481e70e02222315c7801c7ad148c9201f348adcf4c2552",
+  "rawFileCount": 3,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
