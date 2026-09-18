@@ -175,8 +175,12 @@ def from_context(context, mode, patch_id="P03", fixture_path=None, replacement=N
         data["ordinaryPath"], data["ordinarySha256"] = ordinary["path"], ordinary["sha256"]
     paths = {Path(manifest["baselineManifestPath"]), Path(selected["path"]), Path(on["path"])}
     if fixture_path is not None: paths.add(Path(fixture_path))
+    input_paths = {Path(row[prefix + "Path"]) for row in data["inputs"] for prefix in ("dll", "pdb")
+                   if row[prefix + "Path"]}
     for path in extra_prerequisites:
-        paths.add(Path(path))
+        candidate = Path(path)
+        if candidate not in input_paths:
+            paths.add(candidate)
     resources = Path(manifest["baselineManifestPath"]).parent / baseline["resourceBaselinePath"]
     resource_receipt = resources / "resource-build-receipt.json"
     paths.add(resource_receipt)
