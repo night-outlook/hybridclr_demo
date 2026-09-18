@@ -89,4 +89,28 @@ class CapsuleBoundaryTests(unittest.TestCase):
             self.assertEqual(data, capsule.decode(capsule.encode(data)))
 
 
+    def test_extra_prerequisites_bind_new_files_without_repeating_closure_inputs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory).resolve()
+            def file(name,value=b'fixture'):
+                path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(value);return path
+            baseline=file('baseline.json');patch_path=file('patch.json');player=file('player.json');fixture_path=file('fixtures.json')
+            dll=file('A.dll');extra=file('mode-binding.json',b'{"mode":"failure"}')
+            resources=root/'ResourceInputs';resources.mkdir()
+            catalog=file('ResourceInputs/resource-build-receipt.json',json.dumps({'bundleDirectory':'Bundles','bundles':[]}).encode())
+            patch=dict(patchId='P03',loadOrder=['A'],dllOnly=True,closure=[
+                dict(name='A',dll='A.dll',sha256=capsule.digest(dll),pdb='',pdbSha256='')])
+            context=dict(manifest=dict(baselineBuildId='baseline',runtimeAbiHash='a'*64,candidateNames=['A'],
+                stableAotNames=['Bootstrap'],baselineManifestPath=str(baseline)),
+                baseline=dict(resourceBaselinePath='ResourceInputs'),on=dict(path=player),
+                fixtures={'P03':dict(patch=patch,root=root,path=patch_path)})
+            data=capsule.from_context(context,'Baseline',fixture_path=fixture_path,
+                                      extra_prerequisites=(dll,extra,extra))
+            prerequisites=[row['path'] for row in data['prerequisiteFiles']]
+            self.assertIn(str(extra),prerequisites)
+            self.assertNotIn(str(dll),prerequisites)
+            self.assertEqual(1,prerequisites.count(str(extra)))
+            self.assertEqual(data,capsule.decode(capsule.encode(data)))
+
+
 if __name__=='__main__':unittest.main()
