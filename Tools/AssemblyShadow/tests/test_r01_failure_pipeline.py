@@ -17,11 +17,13 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import r01_failure_results as gate
+import r01_early_capsule as early_capsule
 import r01_results as r01
 import m04_results as m04
 from shadow_tools import VerificationError
 from test_m04_results import diagnostic
 from test_r01_metadata_pipeline import patch_fixture
+from test_r01_early_results import emit_receipt
 
 
 def write(path, value):
@@ -49,16 +51,27 @@ def prepared(root):
         for index,name in enumerate(order):
             dll=directory/(name+'.dll');dll.write_bytes(bytes([index+1])*(100+index))
             rows.append(dict(name=name,mvid=f'00000000-0000-0000-0000-{index+1:012d}',dll=dll.name,sha256=gate.digest(dll),dllSize=dll.stat().st_size,pdbSha256='',pdb=''))
-        p=dict(patchId=patchid,loadOrder=order,closure=rows);path=write(directory/'patch-manifest.json',p)
+        p=dict(patchId=patchid,loadOrder=order,closure=rows,dllOnly=True);path=write(directory/'patch-manifest.json',p)
         fixtures[patchid]=dict(root=directory,path=path,patch=p)
     negative=root/'negative.dll';negative.write_bytes(b'negative-sidecar'.ljust(100,b'x'))
+    baseline_path=write(root/'baseline.json',{})
+    resource_root=root/'resource';resource_root.mkdir()
+    write(resource_root/'resource-build-receipt.json',dict(bundleDirectory='Bundles',bundles=[]))
     manifest=dict(unityVersion='2022.3.62f2',baselineBuildId='failure-test',runtimeAbiHash='1'*64,
-                  baselineManifestPath=str(write(root/'baseline.json',{})),baselineManifestSha256=gate.digest(root/'baseline.json'))
+                  baselineManifestPath=str(baseline_path),baselineManifestSha256=gate.digest(baseline_path),
+                  candidateNames=order,stableAotNames=['AssemblyShadowDemo.Bootstrap','mscorlib'])
     player=dict(buildGuid='a'*32,nativeLibrarySha256='2'*64,nativeMetadataSha256='3'*64,inputSnapshotHash='4'*64)
-    context=dict(manifest=manifest,on=dict(path=paths['onBuildReceiptPath'],output=app,player=player),fixtures=fixtures,sourcePins={'fixture':'explicit-synthetic'})
-    failures=dict(path=paths['failureFixturesPath'],initializer=fixtures[gate.INITIALIZER_ID],data=dict(fixtureManifestPath=str(paths['fixtureManifestPath']),fixtureManifestSha256=gate.digest(paths['fixtureManifestPath'])))
-    return dict(context=context,failures=failures,negative=dict(path=paths['negativeInputPath'],data=dict(outputPath=str(negative))),
-                runner=types.SimpleNamespace(executable_for=lambda output:exe),inventory={p for p in root.rglob('*') if p.is_file()}),paths
+    context=dict(manifest=manifest,baseline=dict(resourceBaselinePath='resource'),
+                 on=dict(path=paths['onBuildReceiptPath'],output=app,player=player),
+                 fixtures=fixtures,sourcePins={'fixture':'explicit-synthetic'})
+    failures=dict(path=paths['failureFixturesPath'],initializer=fixtures[gate.INITIALIZER_ID],
+                  data=dict(fixtureManifestPath=str(paths['fixtureManifestPath']),fixtureManifestSha256=gate.digest(paths['fixtureManifestPath'])),
+                  files={paths['failureFixturesPath']})
+    negative_info=dict(path=paths['negativeInputPath'],data=dict(outputPath=str(negative)),
+                       files={paths['negativeInputPath'],negative})
+    return dict(context=context,profile=1,failures=failures,negative=negative_info,
+                runner=types.SimpleNamespace(executable_for=lambda output:exe),
+                inventory={p for p in root.rglob('*') if p.is_file()}),paths
 
 
 def produce(path,mode,p,process_id):
@@ -130,8 +143,15 @@ class FailurePipelineTests(unittest.TestCase):
     def tearDown(self):self.temp.cleanup()
     def launch(self):
         def process(command,project,console,timeout):
-            self.pid+=1;mode=command[command.index('-shadowR01FailureMode')+1];path=Path(command[command.index('-shadowR01FailureResult')+1])
-            produce(path,mode,self.prepared,self.pid);Path(command[-1]).write_text('synthetic Unity log');console.write_text('synthetic console')
+            self.pid+=1
+            mode=command[command.index('-shadowR01FailureMode')+1]
+            path=Path(command[command.index('-shadowR01FailureResult')+1])
+            capsule_path=Path(command[command.index('-shadowEarlyCapsule')+1])
+            early_path=Path(command[command.index('-shadowEarlyResult')+1])
+            data=early_capsule.decode(capsule_path.read_bytes())
+            write(early_path,emit_receipt(data,capsule_path,early_path,pid=self.pid))
+            produce(path,mode,self.prepared,self.pid)
+            Path(command[-1]).write_text('synthetic Unity log');console.write_text('synthetic console')
             return dict(processId=self.pid,startedAtUnix=1000.0+self.pid,durationSeconds=1.0,exitCode=0,timedOut=False)
         args=[]
         for option,key in [('project-root','projectRoot'),('fixture-manifest','fixtureManifestPath'),('on-build','onBuildReceiptPath'),('off-build','offBuildReceiptPath'),('replay-receipt','replayReceiptPath'),('failure-fixtures','failureFixturesPath'),('negative-input','negativeInputPath')]:args += ['--'+option,str(self.paths[key])]
@@ -145,6 +165,69 @@ class FailurePipelineTests(unittest.TestCase):
             result=gate.verify_suite(path)
             self.assertEqual(result['result'],'Passed');self.assertEqual(len(result['modes']),3)
             output=self.output/'strict.json';self.assertEqual(gate.main(['--launch-receipt',str(path),'--output',str(output)]),0)
+    def test_failure_admission_capsules_are_mode_bound_baseline_inputs(self):
+        launch=self.launch();receipt=gate.read(launch)
+        hashes=set()
+        for row in receipt['processLaunches']:
+            data=early_capsule.decode(Path(row['capsulePath']).read_bytes())
+            self.assertEqual(gate.EARLY_ADMISSION_MODE,data['mode'])
+            binding=gate.read(Path(row['earlyBindingPath']))
+            self.assertEqual(row['mode'],binding['failureMode'])
+            self.assertEqual(gate.EARLY_ADMISSION_MODE,binding['earlyMode'])
+            self.assertIn(str(Path(row['earlyBindingPath'])),[item['path'] for item in data['prerequisiteFiles']])
+            hashes.add(row['capsuleSha256'])
+        self.assertEqual(len(gate.MODES),len(hashes))
+
+    def test_missing_stale_substituted_and_mode_mismatched_capsules_reject(self):
+        launch=self.launch();original=gate.read(launch)
+        row=original['processLaunches'][1]
+        capsule_path=Path(row['capsulePath']);saved=capsule_path.read_bytes()
+
+        capsule_path.unlink()
+        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+            gate.verify_suite(launch)
+        capsule_path.write_bytes(saved)
+
+        bad=copy.deepcopy(original);bad['processLaunches'][1]['capsuleSha256']='0'*64;write(launch,bad)
+        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+            gate.verify_suite(launch)
+
+        source=Path(original['processLaunches'][0]['capsulePath'])
+        capsule_path.write_bytes(source.read_bytes())
+        substituted=copy.deepcopy(original);new_hash=gate.digest(capsule_path)
+        substituted['processLaunches'][1]['capsuleSha256']=new_hash
+        command=substituted['processLaunches'][1]['command'];index=command.index('-shadowEarlyCapsuleSha256')+1;command[index]=new_hash
+        write(launch,substituted)
+        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+            gate.verify_suite(launch)
+
+        capsule_path.write_bytes(saved)
+        data=early_capsule.decode(saved);data['mode']='Control';capsule_path.write_bytes(early_capsule.encode(data))
+        mismatch=copy.deepcopy(original);new_hash=gate.digest(capsule_path)
+        mismatch['processLaunches'][1]['capsuleSha256']=new_hash
+        command=mismatch['processLaunches'][1]['command'];index=command.index('-shadowEarlyCapsuleSha256')+1;command[index]=new_hash
+        write(launch,mismatch)
+        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+            gate.verify_suite(launch)
+
+        capsule_path.write_bytes(saved);write(launch,original)
+
+    def test_early_receipt_must_bind_same_process_and_capsule(self):
+        launch=self.launch();original=gate.read(launch);row=original['processLaunches'][2]
+        early_path=Path(row['earlyResultPath']);saved=gate.read(early_path)
+        for key,value in [('processId',999999),('capsuleSha256','f'*64),('mode','Control')]:
+            with self.subTest(key=key):
+                changed=copy.deepcopy(saved);changed[key]=value;write(early_path,changed)
+                receipt=copy.deepcopy(original);receipt['processLaunches'][2]['earlyResultSha256']=gate.digest(early_path);write(launch,receipt)
+                with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+                    gate.verify_suite(launch)
+        write(early_path,saved);write(launch,original)
+
+    def test_public_verifier_has_direct_module_entrypoint(self):
+        source=Path(gate.__file__).read_text()
+        self.assertIn('if __name__ == "__main__":',source)
+        self.assertIn('raise SystemExit(main())',source)
+
     def test_rebound_result_tampering_is_rejected(self):
         launch=self.launch();original=gate.read(launch)
         cases=[('processId',999),('buildGuid','b'*32),('orderedSizes',[1]*5),('observerJoined',False),('observerSamples',[]),('operations',[]),('patchManifestSha256','f'*64)]
