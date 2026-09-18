@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "39c33e259d1ba893e23e3f1aa22529c87524534f",
-      "implementationCommit": "39c33e259d1ba893e23e3f1aa22529c87524534f",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the live committed-handoff preflight regression and CI trigger. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "af56b841e9ae80be0b1748e546338f9b68da2717",
+      "implementationCommit": "af56b841e9ae80be0b1748e546338f9b68da2717",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the live committed-handoff preflight regression, CI trigger, and self-contained direct-test import path. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "39c33e259d1ba893e23e3f1aa22529c87524534f",
+        "candidateToolSourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -259,7 +259,7 @@
   "handoffSectionContractRepair": {
     "returnedByLocalValidationCommit": "f8a2766d4ff8de3c6bb4d0900780ef0eccb48bbf",
     "previousSourceAnchor": "50c79913096961636a776ee8254b6631002cdfe5",
-    "sourceAnchor": "39c33e259d1ba893e23e3f1aa22529c87524534f",
+    "sourceAnchor": "af56b841e9ae80be0b1748e546338f9b68da2717",
     "failure": "V00 candidate preflight blocked because WEB_TO_LOCAL.md no longer contained the exact required heading contract.",
     "correction": {
       "verifierChanged": false,
@@ -274,7 +274,7 @@
         "## Local correction boundary",
         "## Human review gate"
       ],
-      "liveRegression": "Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py now calls h1_handoff_preflight.verify() against the actual committed repository checkout.",
+      "liveRegression": "Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py calls h1_handoff_preflight.verify() against the actual committed repository checkout and configures its own Tools/AssemblyShadow import path for direct execution.",
       "ciPolicy": "The Primary workflow now triggers on WEB_TO_LOCAL.md, source-targets.json, and AssemblyShadowSourcePins.json changes and uses full Git history so verify_demo can resolve the declared source anchor."
     },
     "policy": "Do not weaken h1_handoff_preflight.py, REQUIRED_SECTIONS, verify_demo, metadata-only classification, protected pins, or source authority. Fresh Local validation restarts from V00; the blocked attempt is not reusable acceptance evidence."
