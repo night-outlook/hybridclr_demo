@@ -24,7 +24,8 @@ MODULES = (
     'test_h1_pch_provenance', 'test_h1_pch_integration', 'test_h1_count_build_batch',
     'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding', 'test_h1_m07_policy_bridge',
     'test_h1_m07_workflow_authority',
-    'test_h1_performance_build_map_freezer', 'test_h1_protected_reference_contract',
+    'test_h1_performance_build_map_freezer', 'test_h1_performance_preregistration_binding',
+    'test_h1_protected_reference_contract',
     'test_h1_handoff_preflight', 'test_h1_managed_provenance', 'test_h1_managed_cache_provenance',
     'test_h1_selection_collect', 'test_h1_successor_evidence', 'test_h1_successor_sidecar',
 )
