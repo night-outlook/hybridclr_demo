@@ -1,85 +1,148 @@
-# Static Review — M07 Post-Validation Authority Repair
+# Static Review — R01 Failure/Publication Early Admission Repair
 
 ## Verdict
 
 **PASS for Primary → Local Validation handoff.**
 
-This is a bounded source/tool review only. It does not establish current-source Unity M07/runtime/performance acceptance, independent M08 PASS, or Human Review Gate readiness.
+This review covers the source/tool repair returned by Local Validation at `af0d345ce3aa7257e301926d0da652709c09cf54`. It does not establish real Unity/IL2CPP Player acceptance, V04/V05 completion, M08 PASS, or Human Review Gate readiness.
 
-## Reviewed invariants
+Reviewed build-input anchor:
 
-### Global source/runtime verification is not broadened
+`50c79913096961636a776ee8254b6631002cdfe5`
 
-Without `H1_M07_WORKFLOW_AUTHORITY_ROOT` and `H1_M07_WORKFLOW_BASELINE_ID`, `verify-installed-runtime.py` preserves its original full verification path.
+## Finding closure
 
-Within the scoped M07 context:
+### F1 — earliest-startup capsule omission
 
-- before required mutation, the original full verifier still runs;
-- after mutation, generic installed-runtime verification still checks native/package/IL2CPP repositories, install receipt/inventory/hashes, package identity, Unity/target pins and requested Shadow mode;
-- demo-source skipping is only an internal half of a conjunction with `h1_m07_workflow_authority.py`;
-- a caller-supplied `--skip-demo-source` is rejected.
+**Closed in source/tooling; real Player validation required.**
 
-### Mutable set is exactly three paths
+The previous failure launcher invoked the Player without the mandatory `-shadowEarlyCapsule` transport. Native startup correctly refused before managed host continuation.
 
-No wildcard or directory allowlist exists. The only mutable paths are the three already owned by outer exact-byte recovery:
+The repaired launcher always provides:
 
-- `Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity`
-- `ProjectSettings/AssemblyShadowSettings.asset`
-- `ProjectSettings/EditorBuildSettings.asset`
+- `-shadowEarlyCapsule`;
+- `-shadowEarlyCapsuleSha256`;
+- `-shadowEarlyResult`.
 
-Each saved original must authenticate to the corresponding source-anchor Git blob.
+No bypass or disable path was added.
 
-### Immutable demo build inputs remain exact
+### F2 — direct verifier zero-work invocation
 
-Every other non-metadata demo build input is byte-verified against the source anchor. Untracked build inputs and unpinned `.cs`/`.asmdef` files still fail.
+**Closed.**
 
-`ProjectSettings/AssemblyShadowSourcePins.json` is also verified against the final committed HEAD bytes during the M07 context.
+`r01_failure_results.py` now has a direct `__main__` entrypoint. The public wrapper remains valid as well.
 
-### Mutation state is not accepted merely because a path is named mutable
+## Design invariants
 
-Both baseline-bound paths — scene and AssemblyShadow settings — must differ from their authenticated originals and contain the exact requested `M07-Baseline-*` value. Partial mutation and wrong-baseline state fail closed.
+### Early phase authenticates; later probe owns the transaction
 
-### Core workflow guards remain
+The selected early mode is `Baseline`.
 
-`Invoke-M07Build.Core.ps1` was not modified by this repair. Its repeated `Assert-M07PinnedInputs` checks remain between real `ValidateCompilerInputs`, baseline resources, Native-ON Player, Native-OFF Player, structural work and fixture finalization.
+The early callback reads and hashes the P03 closure and all prerequisites but performs no Shadow Configure/Begin/Reserve/Stage/Validate/Commit sequence.
 
-The wrapper only scopes the M07 authority context around controlled or normal execution and restores the prior process environment afterward.
+This is required because:
 
-### Three-file exact restoration remains unchanged
+- early `Control` would consume/commit the world before `R01FailureProbe`;
+- early `MetadataFailure` or `InitializerFailure` intentionally returns a non-zero callback and stops before host continuation.
 
-The outer recovery still snapshots/restores the same three exact files and writes `workflow-inputs-restored.json`. No reset, clean, wildcard overwrite or extra recovery path was introduced.
+The existing C#/native failure transaction implementation is unchanged.
 
-## Regression coverage
+### Capsules are mode-bound
 
-The new bounded regressions prove:
+Each failure mode has an immutable `R01FailureEarlyAdmissionBinding` prerequisite. Therefore the three admission capsules differ even though their early execution mode is Baseline.
 
-- exact backups + exact baseline-bound mutation pass;
-- immutable demo source tampering fails;
-- backup tampering fails;
-- only one required path changing fails;
-- wrong baseline binding fails;
-- untracked Unity code fails;
-- pre-mutation M07 context still uses the full generic verifier;
-- post-mutation recheck invokes runtime/native proof plus exact M07 demo authority;
-- caller-provided demo-source skip is rejected;
-- controlled path orders post-validation authority before its explicit controlled failure;
-- normal core executes inside the scoped authority and retains repeated pin checks.
+A capsule from another failure mode cannot pass strict reconstruction.
 
-Final bounded CI at `21d3d5763ce027185d2e7f777f71545d354d44ec` is **311/311 Passed**, workflow `35195186054`, artifact `10485926242`, artifact SHA-256 `d2486ad13ab52d41b5fcd19ce7902863c2ef8b242b1747ec9f9b1284402be9a5`.
+### Complete failure inputs are authenticated
+
+The capsule prerequisite set includes verified failure-fixture and Q04 negative-input files in addition to the ordinary M07 prerequisite graph.
+
+If an extra prerequisite is already present as a closure DLL/PDB input it is omitted from the prerequisite list, preserving the early callback's no-duplicate-path invariant without dropping byte authentication.
+
+### Immutable inventory freezes after admission materialization
+
+Bindings and capsules are generated before `inputHashesBefore`.
+
+The launch receipt records the same full immutable input graph before and after all three processes. The verifier independently recomputes the inventory.
+
+### Same-process chain is mandatory
+
+For each mode, strict verification requires:
+
+1. exact expected binding bytes;
+2. exact reconstructed capsule bytes/hash;
+3. early Baseline receipt from the launch PID;
+4. early result `Passed`, callback code 0;
+5. exact executed command;
+6. later failure/publication result from the same PID;
+7. existing strict raw diagnostics/capacity/recovery/publication oracle.
+
+Rebinding hashes after tampering does not bypass semantic verification.
+
+### Existing runtime safety is unchanged
+
+No C#, HybridCLR, IL2CPP, native transaction, recovery, capacity, MethodPtr, dense-fixture, M07 workflow-authority, or performance behavior changed in this repair.
+
+Protected reproduction/native/package/IL2CPP/performance pins remain unchanged.
+
+## Adversarial regression coverage
+
+The source tests cover:
+
+- missing capsule;
+- stale/hash-mismatched capsule;
+- capsule substitution across failure modes;
+- wrong early mode;
+- early result PID mismatch;
+- early receipt capsule-hash mismatch;
+- duplicate closure/extra-prerequisite overlap;
+- exact command binding;
+- late result PID and build binding;
+- rebound raw diagnostic/capacity/recovery tampering;
+- transaction identity/MVID tampering;
+- initializer completion mislabelling;
+- profile-contract validation;
+- direct verifier entrypoint execution.
+
+## Primary executable evidence
+
+GitHub Actions workflow `35330989089`, commit `50c79913096961636a776ee8254b6631002cdfe5`:
+
+- exact bounded Primary suite: **311/311 Passed**;
+- early capsule: **7/7 Passed**;
+- early results: **19/19 Passed**;
+- failure pipeline: **16/16 Passed**.
+
+Artifact ID `10540898558`, ZIP SHA-256:
+
+`52861f7bca634fa007e4e5fba7cd3774ab8f9dfbf1b39de0c6ca80fba047d139`
+
+The CI workflow itself is part of the reviewed source anchor.
+
+## Source authority review
+
+Candidate source authority is advanced to `50c79913...` because the repair modifies non-metadata Python tooling/tests/workflow files.
+
+The reproduction validation-tool anchor is advanced to the same candidate source anchor. Every declared tooling blob remains byte-identical there and both authenticated deletion paths remain absent.
+
+`shadow_tools.metadata_only()`, `verify_demo()`, and protected refs are unchanged.
+
+All commits after the build-input anchor must remain metadata-only until another explicit Primary source-authority advance.
 
 ## Residual empirical requirements
 
-Local Validation must still prove on real Unity/macOS that:
+Local must still prove:
 
-1. the controlled path reaches the explicit controlled-failure text after the post-validation authority recheck;
-2. exact restoration then returns all three files to originals and full candidate preflight passes;
-3. a separate normal M07 run proceeds beyond the former guard into baseline resources and completes the required Player/fixture/replay chain;
-4. no additional tracked demo input needs to mutate. If one does, return to Primary rather than widening the mutable set locally.
+- candidate/reproduction preflight under the new source pin;
+- real Unity compilation/provenance required by H1;
+- fresh controlled and normal M07 chain under the new source pin;
+- real earliest Baseline admission for each failure process;
+- later Control/Q04/initializer failure/publication semantics in those same processes;
+- remaining capacity/lazy/dense/retained/performance matrix;
+- evidence retention and V05 successor closure.
 
-## Gate disposition
+## Gate
 
-H1 remains `InProgress / BlockedPendingFreshV00ToV05`.
+H1 remains `InProgress`; M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-Last independent whole-chain M08 remains `FAIL`.
-
-`humanGatePassed=false`; `mayEnterR02=false`.
+Do not begin R02.
