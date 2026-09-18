@@ -56,6 +56,53 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
+        public void DenseManifestAcceptsHistoricalV1AndDeterministicV2Only()
+        {
+            Type probe = ProbeType();
+            Type manifestType = probe.GetNestedType("DenseManifest", BindingFlags.NonPublic);
+            Type fixtureType = probe.GetNestedType("DenseFixture", BindingFlags.NonPublic);
+            MethodInfo accepted = PrivateMethod(probe, "IsAcceptedDenseManifestContract", manifestType);
+
+            object v1 = DenseManifest(manifestType, fixtureType, 1,
+                "R01BWorkloadV3DenseMetadataAdjunct", "VerifiedSealedV1FixturesOutsideV2Envelope", false);
+            Assert.IsTrue((bool)accepted.Invoke(null, new[] { v1 }));
+
+            object v2 = DenseManifest(manifestType, fixtureType, 2,
+                "R01BDenseAdjunctManifest", "GeneratedDeterministicDenseV2", false);
+            Assert.IsTrue((bool)accepted.Invoke(null, new[] { v2 }));
+
+            object relabelled = DenseManifest(manifestType, fixtureType, 2,
+                "R01BDenseAdjunctManifest", "GeneratedDeterministicDenseV2", true);
+            Assert.IsFalse((bool)accepted.Invoke(null, new[] { relabelled }));
+
+            object wrongKind = DenseManifest(manifestType, fixtureType, 2,
+                "R01BWorkloadV3DenseMetadataAdjunct", "GeneratedDeterministicDenseV2", false);
+            Assert.IsFalse((bool)accepted.Invoke(null, new[] { wrongKind }));
+        }
+
+        [Test]
+        public void DenseV2FixtureRequiresExactGeneratedBoundaryEnvelope()
+        {
+            Type probe = ProbeType();
+            Type manifestType = probe.GetNestedType("DenseManifest", BindingFlags.NonPublic);
+            Type fixtureType = probe.GetNestedType("DenseFixture", BindingFlags.NonPublic);
+            object manifest = DenseManifest(manifestType, fixtureType, 2,
+                "R01BDenseAdjunctManifest", "GeneratedDeterministicDenseV2", false);
+            object fixture = DenseFixture(fixtureType, 1, 4098, 4097, 70000, 1024L * 1024L);
+            MethodInfo accepted = PrivateMethod(probe, "IsAcceptedDenseFixtureContract",
+                manifestType, fixtureType, typeof(long));
+
+            Assert.IsTrue((bool)accepted.Invoke(null, new[] { manifest, fixture, (object)(1024L * 1024L) }));
+
+            fixtureType.GetField("stringsHeapBytes", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                .SetValue(fixture, 65535);
+            Assert.IsFalse((bool)accepted.Invoke(null, new[] { manifest, fixture, (object)(1024L * 1024L) }));
+
+            fixture = DenseFixture(fixtureType, 1, 4098, 4097, 70000, 1024L * 1024L);
+            Assert.IsFalse((bool)accepted.Invoke(null, new[] { manifest, fixture, (object)(1024L * 1024L - 1) }));
+        }
+
+        [Test]
         public void RepeatedFixtureInvokeChecksUseUniqueNames()
         {
             Type probe = ProbeType();
@@ -87,6 +134,43 @@ namespace AssemblyShadowDemo.EditorTests
         public static class EchoFixture<T>
         {
             public static T Echo(T value) { return value; }
+        }
+
+        private static object DenseManifest(Type manifestType, Type fixtureType, int schemaVersion,
+            string kind, string status, bool historicalEvidenceReused)
+        {
+            object manifest = Activator.CreateInstance(manifestType, true);
+            SetField(manifest, "schemaVersion", schemaVersion);
+            SetField(manifest, "kind", kind);
+            SetField(manifest, "status", status);
+            SetField(manifest, "historicalEvidenceReused", historicalEvidenceReused);
+            Array fixtures = Array.CreateInstance(fixtureType, 2);
+            fixtures.SetValue(DenseFixture(fixtureType, 1, 4098, 4097, 70000, 1024L * 1024L), 0);
+            fixtures.SetValue(DenseFixture(fixtureType, 2, 4098, 4097, 70000, 1024L * 1024L), 1);
+            SetField(manifest, "fixtures", fixtures);
+            return manifest;
+        }
+
+        private static object DenseFixture(Type fixtureType, int id, int typeDefs, int methodDefs,
+            int stringsHeapBytes, long sizeBytes)
+        {
+            object fixture = Activator.CreateInstance(fixtureType, true);
+            SetField(fixture, "id", id);
+            SetField(fixture, "typeDefRows", typeDefs);
+            SetField(fixture, "methodDefRows", methodDefs);
+            SetField(fixture, "stringsHeapBytes", stringsHeapBytes);
+            SetField(fixture, "sizeBytes", sizeBytes);
+            SetField(fixture, "name", "AssemblyShadow.Workload.I" + id.ToString("D4"));
+            SetField(fixture, "path", "/fixture/AssemblyShadow.Workload.I" + id.ToString("D4") + ".dll");
+            SetField(fixture, "sha256", new string('a', 64));
+            return fixture;
+        }
+
+        private static void SetField(object value, string name, object fieldValue)
+        {
+            FieldInfo field = value.GetType().GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            Assert.IsNotNull(field, value.GetType().FullName + "." + name);
+            field.SetValue(value, fieldValue);
         }
 
         private static object NewResult(Type probe)
