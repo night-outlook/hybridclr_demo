@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "99ef65db13341f54cf610e18453dddf197ee86e4",
-      "implementationCommit": "99ef65db13341f54cf610e18453dddf197ee86e4",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity for the early-owned failure/publication repair, deterministic dense-v2 lazy command-schema repair, candidate-owned external M07 split-authority repair, protected-reference producer authentication, and their complete Primary regressions. Later authority/handoff/status/evidence commits are metadata-only under the unchanged verifier.",
+      "codeCommit": "7e7b191f80055df46293feaed0ed4dc7975a9930",
+      "implementationCommit": "7e7b191f80055df46293feaed0ed4dc7975a9930",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including terminal-Q04 post-host first-use scoping, dense-v2 runtime identity repair, graph-bound controlled performance M07 generation, strict fixture/replay-to-controlled-Player validation, and corresponding Primary regressions. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "99ef65db13341f54cf610e18453dddf197ee86e4",
+        "candidateToolSourceAnchor": "7e7b191f80055df46293feaed0ed4dc7975a9930",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -378,36 +378,44 @@
     "correction": "Invoke-M07Build.Core.ps1 always calls the coordinator checkout's current verify-installed-runtime.py, never the target project's historical verifier. The outer H1_M07_WORKFLOW_* environment and current verifier own full pre-mutation vs split post-mutation dispatch through h1_m07_workflow_authority.py."
   },
   "currentPrimaryValidation": {
-    "sourceAnchor": "99ef65db13341f54cf610e18453dddf197ee86e4",
-    "status": "PassedPrimarySourceAndContractTests",
-    "workflowRun": 35411286564,
-    "workflowCommit": "9913bc69a7407298cd8dae1024db1315499933ac",
-    "boundedPrimaryTests": {
-      "passed": 320,
-      "total": 320
-    },
-    "committedHandoffTests": {
-      "passed": 11,
-      "total": 11
-    },
-    "r01EarlyCapsuleTests": {
-      "passed": 7,
-      "total": 7
-    },
-    "r01EarlyResultsTests": {
-      "passed": 19,
-      "total": 19
-    },
-    "r01FailurePipelineTests": {
-      "passed": 16,
-      "total": 16
-    },
-    "r01bLazyContractTests": {
-      "passed": 9,
-      "total": 9
-    },
-    "artifactId": 10574492806,
-    "artifactZipSha256": "96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079",
-    "scope": "Primary source/tool/contract evidence only. Real Unity/IL2CPP validation of continued early failure modes, lazy-v2 Player, protected external M07, old-Player, performance, V05/M08/human approval remains Local/Human work."
+    "sourceAnchor": "7e7b191f80055df46293feaed0ed4dc7975a9930",
+    "status": "PendingAuthorityConsistentCI"
+  },
+  "q04PostHostHistoryRepair": {
+    "returnedByLocalValidationCommit": "f829db516b3e5d0a9fef4d5539ec097dfb9867b3",
+    "previousSourceAnchor": "99ef65db13341f54cf610e18453dddf197ee86e4",
+    "sourceAnchor": "7e7b191f80055df46293feaed0ed4dc7975a9930",
+    "failure": "Strict Q04 late persistence verification rejected selected-closure baseline first-use records after the earliest transaction had already sealed Failed.",
+    "correction": {
+      "policy": "Selected-closure candidate baseline first-use remains forbidden during an eligible transaction and for published Control/initializer states. Only the dedicated post-terminal Q04 continuation may append selected candidate baseline uses after the early terminal failure; unknown/non-candidate identities remain forbidden.",
+      "preserved": "Early transaction history stays immutable, native terminal Failed/recovery state must remain unchanged, and published paths still require exact no-late-baseline-use equality."
+    }
+  },
+  "lazyDenseRuntimeIdentityRepair": {
+    "returnedByLocalValidationCommit": "f829db516b3e5d0a9fef4d5539ec097dfb9867b3",
+    "previousSourceAnchor": "99ef65db13341f54cf610e18453dddf197ee86e4",
+    "sourceAnchor": "7e7b191f80055df46293feaed0ed4dc7975a9930",
+    "failure": "Dense diagnostic Player reached execution but looked up generated types under AssemblyShadow.Workload while the generator emits AssemblyShadow.Dense; its return oracle also expected fixtureId even though generated ReturnId emits fixtureId*10000+row.",
+    "correction": {
+      "namespace": "AssemblyShadow.Dense",
+      "typeFormula": "DenseType_{fixtureId:D4}_{row:D4}_MetadataBoundary_0123456789abcdef0123456789abcdef",
+      "returnFormula": "fixtureId * 10000 + row",
+      "rows": [
+        4095,
+        4096
+      ]
+    }
+  },
+  "performanceGraphBindingRepair": {
+    "returnedByLocalValidationCommit": "f829db516b3e5d0a9fef4d5539ec097dfb9867b3",
+    "previousSourceAnchor": "99ef65db13341f54cf610e18453dddf197ee86e4",
+    "sourceAnchor": "7e7b191f80055df46293feaed0ed4dc7975a9930",
+    "failure": "The frozen map authenticated controlled Player comparability but did not bind each side's fixture/replay graph to those same controlled baseline IDs; pilot 1 failed before launch on both sides.",
+    "correction": {
+      "validator": "h1_paired_performance validates fixture/replay baselineBuildId/runtimeAbiHash/platform and exact controlled NativeOn receipt path/hash/GUID/native library before ComparabilityPassed.",
+      "runner": "run-h1-paired-performance requires the strict authenticated build-map validator before any Player launch.",
+      "producer": "Invoke-M07Build.ps1 adds -ControlledPerformanceBuilds. The existing M07 workflow builds resources, controlled Development ON/OFF Players via R00ControlledBuild under one baseline, then finalizes fixtures/replay from that same controlled NativeOn world.",
+      "invariant": "A mismatched normal-M07 fixture graph can no longer be frozen or sampled."
+    }
   }
 }
