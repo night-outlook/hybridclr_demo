@@ -1,34 +1,28 @@
 # Current Status
 
-- Candidate build-input source anchor: `4fff4df26681ab3595bb241bbc972207d032831e`
-- Latest Local return: `f8e66d092b275173a415776f845182171c4dbc31`.
-- Fresh `af56b841...` Local batch status:
-  - V00-V03, controlled M07, normal M07, startup11, M07 14/14: `Passed`;
-  - capacity 8192/8193, mixed 512 MiB, parser/FieldRVA/dense-v2, generic/index/cache/capability, retained M03-M06/R01 native: `Passed`;
-  - failure/publication: `Failed` after successful earliest admission because the late probe hard-coded metadata capability 1;
-  - lazy Player: `NoCoverage` because the runner accepted only unavailable sealed-v1 dense manifests;
-  - old-Player rejection: `Unavailable / NotRun` because no fresh protected profile-1 fixture/Player graph was present;
-  - controlled performance: `Unavailable / NotRun` because no fresh protected-reference Development build map was present;
-  - V05/M08: `NotRun`.
-- Primary failure/publication repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
-  - The late probe now reuses `ShadowPatchMetadataReservation.ValidateIfDeclared` and reserves with the validated profile version; no profile-2 shortcut or runtime-oracle weakening was added.
-- Primary lazy repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
-  - Historical sealed-v1 remains historical-only; deterministic dense-v2 is admitted only through its explicit generator/tool/shape/parser contract and cannot relabel v1 evidence.
-- Protected reference coordination: `Prepared / AwaitingLocalExecution`.
-  - profile-1 reference demo head: `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
-  - reference runtime pins are explicit in `source-targets.json`;
-  - `verify-h1-protected-reference.py` authenticates the isolated reference family and measurement-source parity;
-  - `freeze-h1-performance-build-map.py` derives comparability only from strict controlled build evidence.
-- Primary executable evidence: workflow `35357027882` at metadata successor `ac8b9f17f2cd98ae671c68ca60b06867085d2790`:
-  - bounded Primary suite: **319/319**;
-  - committed handoff suite: **11/11**;
-  - R01 early capsule: **7/7**;
-  - R01 early results: **19/19**;
-  - R01 failure pipeline: **17/17**;
-  - R01B lazy contract: **8/8**;
-  - artifact `10552945025`, ZIP SHA-256 `81686d1dbf02bfe552bd0e2bdc70e3b690d2f51bafdafc5b7ebc00ad7d99e3db`.
-- Gate: `H1 / InProgress / AwaitingFresh36173aBatch`
+- Candidate build-input source anchor: `99ef65db13341f54cf610e18453dddf197ee86e4`
+- Latest Local return: `7a627afc7d3615430772cd1f5e6978d5106f34c7`.
+- Fresh `4fff4df...` Local batch status:
+  - V00-V03, controlled/normal M07, startup11, M07 14/14: `Passed`;
+  - capacity 8192/8193, mixed 512 MiB, dense-v2 producer, parser/FieldRVA, generic/index/cache/capability, retained M03-M06/R01 native: `Passed`;
+  - failure/publication: `Failed` because an early admission-only callback returned before normal host startup used candidate baselines, so the later transaction was rejected `BaselineAlreadyUsed`;
+  - lazy Player: `NoCoverage` because the v2 verifier expected the wrong generator command arity;
+  - protected profile-1 installation: `Passed`;
+  - protected profile-1 M07: `Failed` because its historical core called the historical full source verifier after workflow-owned tracked mutations;
+  - old-Player/performance/V05/M08: `NotRun`.
+- Failure/publication repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
+  - Control, metadata failure and initializer failure transactions are now owned by the earliest callback.
+  - Dedicated `MetadataFailureContinue` / `InitializerFailureContinue` modes execute the same strict early failure oracle but return callback code 0 only for the dedicated failure/publication matrix.
+  - The late `R01FailureProbe` is verification-only: it authenticates the same process/capsule/receipt/current inputs and proves post-host diagnostics/capacity/recovery persistence. It performs no Configure/Begin/Reserve/Stage/Validate/Commit calls.
+- Lazy-v2 command-schema repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
+  - The verifier now requires the producer's actual four-field commands: mono, generator exe, fixture id, output DLL, in deterministic 1/run1, 1/run2, 2/run1, 2/run2 order.
+- Protected-reference M07 authority repair: `Implemented / PrimaryTested / AwaitingLocalExecution`.
+  - Current `Invoke-M07Build.Core.ps1` always uses the coordinator checkout's current `verify-installed-runtime.py`; the current verifier owns full pre-mutation vs split post-mutation authority using `h1_m07_workflow_authority.py`.
+  - The protected project supplies Unity producers and pinned runtime/source only; its historical wrapper/verifier are not used as coordinator policy.
+- Most recent complete Primary run before final protected-producer cleanup: workflow `35411171891` — bounded **320/320**, handoff **11/11**, early capsule **7/7**, early results **19/19**, failure pipeline **16/16**, lazy contract **9/9**.
+- Final source-anchor CI: `Pending`.
+- Gate: `H1 / InProgress / AwaitingFresh99ef65Batch`
 - Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
 - May enter R02: `false`
-- Required next action: Local restarts at fresh V00 under source anchor `4fff4df...`, regenerates the current candidate build/M07 graph, validates repaired failure/publication and lazy paths, regenerates the protected profile-1 reference graph and controlled A/B builds if feasible, maximizes remaining independent V04 coverage, authenticates a checkpoint before cleanup, and proceeds to V05/M08 only when mandatory prerequisites are complete.
+- Required next action: after final Primary CI passes, Local restarts fresh V00 at source anchor `99ef65db...`, validates current candidate failure/lazy paths, then invokes the current candidate M07 coordinator against the authenticated protected profile-1 worktree and continues old-Player/performance/V05/M08 only if prerequisites close.
