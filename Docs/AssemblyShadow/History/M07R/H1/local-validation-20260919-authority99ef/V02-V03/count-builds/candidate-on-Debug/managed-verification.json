@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 3,
+  "kind": "H1ManagedSourceGraphVerification",
+  "status": "SourceGraphBound",
+  "capturePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-996bbcaef685448dac47b8d30ad0e84d/ManagedSourceProvenance/h1-managed-source-capture.json",
+  "captureSha256": "765cf00b09cb63b2783157181ea0f96f1b5144dc658cdd7e68235f7a4ad9a409",
+  "buildId": "H1Count-On-Debug",
+  "buildGuid": "ea3d546bdf9a4a44817ff275a50b917a",
+  "inputSnapshotHash": "b89a735fa6386b0829928505842e899d80a6fbeea3c1c9ac05e9c41848c28968",
+  "nativeLibrarySha256": "c12b56b7f21e19cc2f2a04d3ce36606c4e279fb54c79bf99e3cd7c8b7455dd61",
+  "sourcePinSha256": "27e644399ae4efd8af744acb5ed3d7b9909eec4a0aea4bc51e4efb2155a97542",
+  "rows": [
+    {
+      "assembly": "AssemblyShadow.R01BDiagnostics",
+      "evidenceMode": "ChangedBeeGraphBoundToFreshPlayerInput",
+      "graphSha256": "46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af",
+      "compilerOutputSha256": "cfd71992923c17bcbc995133b809afac1d6149ed3c903352ef8d1b0a0e708e6f",
+      "playerInputSha256": "cfd71992923c17bcbc995133b809afac1d6149ed3c903352ef8d1b0a0e708e6f",
+      "compilerOutputExistedBeforeBuild": true
+    },
+    {
+      "assembly": "AssemblyShadowDemo.Bootstrap",
+      "evidenceMode": "ChangedBeeGraphBoundToFreshPlayerInput",
+      "graphSha256": "46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af",
+      "compilerOutputSha256": "64e740e637af755bb8cec66c6a818a404e7bba2db033f05fefecec444aaaec6f",
+      "playerInputSha256": "ca91ab9796e584889d530f4c1d38a01f9262f2e63ce2fcfaa0fbdb087533eaa3",
+      "compilerOutputExistedBeforeBuild": true
+    }
+  ],
+  "scope": "Pre-build source bytes plus either a changed managed action graph or a byte-stable pre-build Bee cached-action chain, both bound to the exact DLLs captured as inputs to this fresh Player. Schema-3 cached-action proof requires unchanged graph, each selected compiler action recursive response closure, dependencies, Csc output and downstream Player-input bytes; unrelated DAG responses are audit-only. It does not claim fresh Csc execution. ILPP verification and build execution provenance remain separate requirements.",
+  "freshCompilerExecutionClaim": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

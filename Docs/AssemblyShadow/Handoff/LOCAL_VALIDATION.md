@@ -1,56 +1,58 @@
 # Local Validation report
 
-## Current run — 2026-09-18 authority `4fff4df2`
+## Current run — 2026-09-19 authority `99ef65db`
 
 ### Exit
 
 **Local Validation → Primary Implementation: RETURN REQUIRED after V04**
 
-Fresh V00 validated candidate checkout `f480d3a6cccbbc4d3728dc0cf46ad8723f99fb53` and exact source anchor `4fff4df26681ab3595bb241bbc972207d032831e`. Candidate authority returned `SourceTargetVerifiedNotBuildAccepted`; reproduction tooling, protected refs, and a freshly installed candidate runtime passed strict checks. No historical attempt was relabelled.
+Fresh V00 validated candidate checkout `fe441e3e73f68bd1f237fe1264c93fb358004cbd` and exact source anchor `99ef65db13341f54cf610e18453dddf197ee86e4`. Candidate authority returned `SourceTargetVerifiedNotBuildAccepted`; reproduction tooling, protected refs, and freshly verified installed runtimes passed strict checks. No earlier attempt was reused or relabelled.
 
-V00–V03, controlled and normal M07, startup11, the M07 14-mode matrix, current capacity/parser/index/native coverage, and the fresh deterministic dense-v2 producer passed. Two independent V04 contracts failed: all three failure/publication late probes returned `BaselineAlreadyUsed` after successful same-PID early admission, and the lazy verifier rejected the producer's four-element `generator.generateCommands` entries because it requires three elements. The protected profile-1 runtime was installed and verified, but its own M07 workflow modified the protected tracked scene before invoking strict source verification and therefore failed closed. Old-Player and performance work remain `Unavailable / NotRun`.
+V00–V03, controlled and normal M07, startup11, the M07 14-mode matrix, ordinary and exact-mixed capacity execution, deterministic dense-v2 generation, parser/FieldRVA/native coverage, the protected profile-1 M07 graph, and old-Player rejection passed. Four controlled Development Players also passed provenance capture, and the A/B freezer returned `ComparabilityPassed`. Three independent V04 contracts nevertheless failed: strict failure/publication verification rejected Q04 history, the lazy Player threw before dense execution, and the first performance pilot found that both controlled Player baselines differ from their supplied fixture graphs. V05/M08 therefore did not run.
 
 ### Results
 
 | Cell | Result | Evidence / disposition |
 | --- | --- | --- |
-| V00 candidate authority | `Passed` | `SourceTargetVerifiedNotBuildAccepted`; candidate `f480d3a6...`, source `4fff4df2...` |
-| V00 reproduction/protected refs | `Passed` | `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`; exact protected refs; fresh installed-runtime receipt SHA-256 `12a118df...` |
-| V01 Python and direct suites | `PassedWithSkips` | Full Python 1008 passed / 28 skipped; bounded Primary 319/319; handoff 11/11; capsule 7/7; early results 19/19; failure pipeline 17/17; lazy contract 8/8 |
-| V01 Unity compile | `Passed` | Fresh batch compile clean |
-| V01 broad EditMode | `FailedIsolatedBroadTest` | 1074/1075; stale expected temp-root literal in `WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors`; affected focused suite subsequently passed 24/24 |
-| V02/V03 candidate builds | `Passed` | Candidate ON/OFF Debug/Release all passed with exact restoration |
-| V02/V03 reproduction builds | `PassedAfterFreshProtectedInput` | Initial missing/generated M00 attempts retained as failed; exact protected fixed input restored; ON Debug/Release passed |
-| V04 controlled M07 | `PassedExpectedFailureAndExactRestoration` | Baseline `M07-Baseline-H1-Authority4fff-Controlled-20260918A`; deliberate failure after compiler inputs; `ExactBytesRestored` |
-| V04 normal M07 | `Passed` | Baseline `M07-Baseline-H1-Authority4fff-Normal-20260918A`; fresh fixture/ON/OFF/replay graph and exact outer restoration |
-| V04 control capsules | `Passed` | 13 current capsules; `capsules.json` SHA-256 `8aeff837...` |
-| V04 startup11 | `PassedBoundedProfile` | 11 fresh processes with expected success/rejection results; inputs unchanged |
-| V04 M07 Player matrix | `PassedGate3B14Of14` | Strict 14/14, no missing modes; result SHA-256 `818d52a4...` |
-| V04 failure/publication | `Failed` | Three mode-bound capsules and successful same-PID early receipts; every late result was `BaselineAlreadyUsed`; strict verifier failed on Control's exit 1 |
-| V04 ordinary capacity | `Passed` | 8192/8193-envelope Player passed in 521 seconds; before/after hashes unchanged |
-| V04 exact mixed boundary | `Passed` | 536,733,184 ordinary + 137,728 shadow = 536,870,912 bytes; Player passed in 540 seconds; inputs unchanged |
-| V04 dense-v2 producer | `Passed` | Deterministic IDs 1 and 2; manifest SHA-256 `f7c5cc9f...` |
-| V04 lazy Player | `Failed / NoCoverage` | Fresh current-baseline diagnostic Player built; runner rejected dense-v2 command inventory before Player launch: producer emits four fields, verifier requires three |
-| V04 parser / FieldRVA | `Passed` | 8,192-file corpus, 8,196 FieldRVA rows, both dense IDs, bounded reader, and sanitizer checks passed |
-| V04 capacity/index/generic/cache | `Passed` | Index range 49; index runtime 157; generic constraint 34; type cache 77 |
-| V04 capability/attribute | `Passed` | 16,396 checks per native feature state plus managed coverage; attribute 4,197 Release + 4,197 ASan |
-| V04 retained M03–M06/R01 native | `Passed` | Fresh M03–M06, budget 2,684, recovery 498, contention 35,328, startup gateway, startup, and transaction suites passed |
-| V04 protected profile-1 install | `Passed` | Isolated exact reference worktrees; protected source and installed-runtime verification passed, installed receipt SHA-256 `54bfe84c...` |
-| V04 protected profile-1 M07 | `Failed` | Workflow generated the new baseline into protected tracked `M07Bootstrap.unity`, then its strict source verifier correctly rejected the changed bytes; tracked bytes restored and protected verification passed again |
-| V04 old-Player rejection | `Unavailable / NotRun` | Fresh protected profile-1 M07/Player graph was not established |
-| V04 controlled performance | `Unavailable / NotRun` | Four authenticated Development builds, frozen build map, and preregistration binding could not be created without the profile-1 M07 graph |
-| V05 / M08 | `Blocked / NotRun` | Mandatory failure, lazy, old-Player, and performance prerequisites are incomplete |
+| V00 candidate authority | `Passed` | `SourceTargetVerifiedNotBuildAccepted`; candidate `fe441e3e...`, source `99ef65db...` |
+| V00 reproduction/protected refs | `Passed` | `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`; exact protected refs; candidate and protected installed runtimes verified with Shadow ON |
+| V01 Python and direct suites | `PassedWithIsolatedStaleExpectation` | Full Python 1008/1009 passed with 28 skips; the lone failure expects the pre-repair 11-mode inventory. Bounded Primary 320/320 and all requested direct suites passed |
+| V01 Unity compile | `Passed` | Fresh Unity 2022.3.62f2 batch compile clean |
+| V01 broad EditMode | `FailedIsolatedBroadTest` | 1074/1075; one stale temp-root literal expectation; focused affected coverage passed separately |
+| V02/V03 provenance builds | `Passed` | Fresh current-anchor and reproduction-tooling builds passed with exact restoration; wrong-pwsh failure retained |
+| V04 controlled M07 | `PassedExpectedFailureAndExactRestoration` | Deliberate recovery failure reached only after authority checks; workflow-owned bytes restored exactly |
+| V04 normal M07 | `Passed` | Baseline `M07-Baseline-H1-Authority99ef-Normal-20260919A`; fresh fixture/ON/OFF/replay graph and exact outer restoration |
+| V04 control capsules | `Passed` | 13 current capsules; `capsules.json` SHA-256 `9ce3dbb9...` |
+| V04 startup11 | `PassedBoundedProfile` | 11 fresh processes; strict result SHA-256 `9242101c...` |
+| V04 M07 Player matrix | `PassedGate3B14Of14` | Strict 14/14; result SHA-256 `a0364af3...` |
+| V04 failure/publication | `Failed` | All three earliest-owned transactions launched with bound capsule/PID/log/hash evidence; strict verifier rejected Q04 `firstUseHistory` for selected-closure or non-candidate baseline use |
+| V04 ordinary capacity | `Passed` | 8192-entry / 536,870,912-byte Player passed in 530 seconds; 8193 refusal and exact accounting verified |
+| V04 exact mixed boundary | `Passed` | 536,733,184 ordinary + 137,728 shadow = 536,870,912 bytes; Player exit 0 in 596.7 seconds; strict receipt retained |
+| V04 dense-v2 producer | `Passed` | Deterministic IDs 1 and 2; each generator command has the corrected four-field contract |
+| V04 lazy Player | `FailedRuntimeNoDenseCoverage` | Diagnostic Player launched and 51 preconditions passed, then dense boundary type lookup resolved against `mscorlib` and threw `TypeLoadException`; `denseFixtures=0` |
+| V04 parser / FieldRVA | `Passed` | 8,192-file corpus, 8,196 FieldRVA rows, both dense IDs, bounded readers, and sanitizer checks passed |
+| V04 capacity/index/generic/cache | `Passed` | Fresh index-range/runtime, generic constraint, type-cache, capability, attribute, codec, overflow, and live-capability coverage passed |
+| V04 retained M03–M06/R01 native | `Passed` | Fresh M03–M06, budget, contention, recovery, startup, transaction, attribute, constraint, and count suites passed |
+| V04 protected profile-1 install | `Passed` | Isolated exact reference family; source and installed-runtime verification passed before and after workflow/builds |
+| V04 protected profile-1 M07 | `Passed` | Current candidate coordinator ran with `-ProjectPath <reference-demo>` and produced a fresh profile-1 fixture/ON/OFF/replay graph with exact outer restoration |
+| V04 old-Player rejection | `PassedExpectedRejection` | Profile-1 Baseline admitted early; profile-2 inputs were refused before Configure; verification result `Passed` |
+| V04 controlled Development builds | `PassedFourOfFour` | Current and reference ON/OFF builds each passed provenance capture, Release native compilation, Low stripping, OptimizeSpeed, no debugger/profiler |
+| V04 frozen build map | `ComparabilityPassed` | Common measurement and witness hashes matched; expected ABI/source-pin differences were authenticated |
+| V04 preregistration | `Passed` | Protocol bytes unchanged, schedule semantic fields unchanged, 44 pairs retained |
+| V04 performance pilot | `FailedBeforePlayerLaunch` | Pilot 1 failed closed on both sides: controlled Player baseline IDs differ from the supplied fresh M07 fixture baseline IDs; no performance sample was taken |
+| V04 formal performance | `Blocked / NotRun` | Four successful pilots are mandatory; formal sampling correctly refused to begin |
+| V05 / M08 | `Blocked / NotRun` | Mandatory failure, lazy, and performance prerequisites are incomplete |
 
 ### Failure analysis
 
-The failure/publication repair proves the new earliest-admission layer: each mode has a mode-bound schema-v2 binding, Baseline capsule, successful early receipt, exact command/PID binding, late result from the same PID, logs, and immutable before/after hashes. The late phase nevertheless attempts a transaction after early Baseline admission has consumed the one-use baseline state, so all three modes terminate as `BaselineAlreadyUsed` before their Control/Q04/initializer oracle. The strict verifier correctly rejects the matrix.
+The failure/publication repair moved transaction ownership to the earliest callback as intended, and the late probe is persistence-only evidence. Control and initializer evidence remained coherent, but strict Q04 verification found a selected-closure or non-candidate baseline use in `postHost.firstUseHistory`. That is an isolated runtime-oracle failure, not an authority or shared-input failure.
 
-The lazy path has an independent producer/verifier schema mismatch. The fresh dense-v2 manifest records each generation command as four values (`mono`, generator executable, fixture ID, output DLL), while the lazy verifier requires exactly three. It fails closed before starting the otherwise valid current-baseline diagnostic Player; this is `NoCoverage`, not a runtime pass or failure.
+The corrected dense-v2 contract reached the diagnostic Player. The runner authenticated 51 setup/input checks, but the Player attempted to resolve `AssemblyShadow.Workload.DenseType_0001_4095_MetadataBoundary_...` from `mscorlib`, raised `TypeLoadException`, and executed zero dense fixtures. This is a real runtime failure, not `NoCoverage` from a prelaunch schema guard.
 
-The protected profile-1 workflow also fails closed for a separate sequencing defect: it writes the requested new baseline ID to the protected tracked scene before running its source-integrity verifier. The verifier detects that mutation as designed. After exact restoration, both protected-ref and installed-runtime verification pass again, but no reference M07 graph exists, so old-Player and A/B performance evidence cannot be generated.
+The protected-reference M07 sequencing repair worked: the current candidate wrapper drove the protected project and restored it exactly. All four later controlled Development builds also passed. The strict freezer, however, accepted the normal-M07 fixture/replay graphs alongside controlled Players built under new immutable performance baseline IDs. Pilot 1 independently reconstructed the inputs and rejected both sides before launch: profile 1 expected `M07-Baseline-H1-ProtectedProfile1-20260919A` but received `M07-Baseline-H1-Perf-Reference-20260919A`; profile 2 expected `M07-Baseline-H1-Authority99ef-Normal-20260919A` but received `M07-Baseline-H1-Perf-Current-20260919A`. Formal sampling did not begin.
 
 ### Retention checkpoint
 
-The authenticated pre-cleanup checkpoint is [local-validation-20260918-authority4fff](../History/M07R/H1/local-validation-20260918-authority4fff/README.md). `MANIFEST.sha256` binds the report, summary, artifact index, and 46 MiB raw-evidence archive. The archive contains 5,060 entries covering V00–V03 and the current M07 fixture/build/replay/capsule/startup contract, failure evidence, dense/lazy evidence, capacity receipts, native coverage, and protected-reference receipts. Large reproducible compiler snapshots, copied assembly/reference trees, resource payloads, Player bundles, and the 512 MiB corpus remain in the live validation workspaces and are hash-bound by retained receipts; no cleanup was performed.
+The authenticated pre-cleanup checkpoint is [local-validation-20260919-authority99ef](../History/M07R/H1/local-validation-20260919-authority99ef/README.md). `MANIFEST.sha256` binds this report, the summary, artifact index, and raw-evidence archive. The archive retains the complete bounded launch contract and failed states; large reproducible payloads remain live and receipt-bound. No cleanup was performed.
 
 H1 remains `InProgress`; the last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. `WEB_TO_LOCAL.md`, source/preflight verification, protected pins, and R02 were not modified.

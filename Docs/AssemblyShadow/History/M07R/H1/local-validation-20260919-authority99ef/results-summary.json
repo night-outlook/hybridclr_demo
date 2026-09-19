@@ -1,0 +1,41 @@
+{
+  "schema": "AssemblyShadowH1LocalValidationSummary/v1",
+  "createdDate": "2026-09-19",
+  "candidateDemoCommit": "fe441e3e73f68bd1f237fe1264c93fb358004cbd",
+  "candidateSourceAnchor": "99ef65db13341f54cf610e18453dddf197ee86e4",
+  "disposition": "ReturnRequiredAfterV04",
+  "cells": {
+    "V00": "Passed",
+    "V01": "PassedWithIsolatedStaleExpectationFailures",
+    "V02": "Passed",
+    "V03": "Passed",
+    "V04ControlledM07": "PassedExpectedFailureAndExactRestoration",
+    "V04NormalM07": "Passed",
+    "V04Startup11": "PassedBoundedProfile",
+    "V04M07Players": "PassedGate3B14Of14",
+    "V04FailurePublication": "Failed",
+    "V04Capacity": "Passed",
+    "V04MixedCapacity": "Passed",
+    "V04DenseV2": "Passed",
+    "V04LazyPlayer": "FailedRuntimeNoDenseCoverage",
+    "V04ParserAndNativeCoverage": "Passed",
+    "V04ProtectedReferenceInstall": "Passed",
+    "V04ProtectedReferenceM07": "Passed",
+    "V04OldPlayer": "PassedExpectedRejection",
+    "V04ControlledBuilds": "PassedFourOfFour",
+    "V04BuildMap": "ComparabilityPassed",
+    "V04PerformancePilot": "FailedBeforePlayerLaunch",
+    "V04PerformanceFormal": "BlockedNotRun",
+    "V05": "BlockedNotRun"
+  },
+  "blockers": [
+    "Failure/publication Q04 strict verification observed selected-closure or non-candidate baseline use in firstUseHistory.",
+    "The lazy Player resolved the dense boundary type against mscorlib and threw TypeLoadException; dense coverage remained zero.",
+    "The frozen performance map did not reject fixture/controlled-Player baseline-ID mismatches; pilot 1 failed closed on both sides before Player launch."
+  ],
+  "h1Status": "InProgress",
+  "lastIndependentM08": "FAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}
