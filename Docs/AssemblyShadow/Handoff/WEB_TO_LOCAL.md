@@ -154,7 +154,7 @@ Authority-consistent workflow `35411171891` passed before the final protected pr
 
 Artifact `10573647440`, ZIP SHA-256 `6b6cc55adf33447829af1b680c738970e81d2f06db6a50ec0fd8f65540a72e11`.
 
-A final CI run on source anchor `99ef65db...` is required and will be recorded before handoff completion.
+Final authority-consistent workflow `35411286564` passed on source anchor `99ef65db...`: bounded 320/320, handoff 11/11, early capsule 7/7, early results 19/19, failure pipeline 16/16, lazy 9/9. Artifact `10574492806`, ZIP SHA-256 `96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079`.
 
 ## Local validation
 
