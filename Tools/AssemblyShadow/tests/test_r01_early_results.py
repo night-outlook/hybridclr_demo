@@ -262,14 +262,14 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                     event("initializer-begin", a["name"]); a["moduleInitializerAttempted"] = True
                     if semantic == "InitializerFailure":
                         result["initializerEvents"].append(dict(name=a["name"], diagnostics=sample("initializer", d, 1, 20 + len(result["initializerEvents"]))))
-                    if mode == "InitializerFailure" and a["name"] == "AssemblyA.Implementation.Extensibility":
+                    if semantic == "InitializerFailure" and a["name"] == "AssemblyA.Implementation.Extensibility":
                         event("initializer-failed", a["name"]); state("FailedAfterCommit"); terminal = 19
                         d["lastError"] = 19; d["detail"] = "R01-INIT-THROW:AssemblyA.Implementation.Extensibility"; break
                     a["moduleInitializerRan"] = True; d["commitOrder"].append(a["name"]); event("initializer-complete", a["name"])
                 if not terminal: state("Committed"); event("transaction-committed")
                 snap("after-commit")
     if mode in FAILURES:
-        code, text, final_op = (2, "InvalidState", "begin-after-failure") if mode == "MetadataFailure" else (18, "AlreadyCommitted", "begin-after-commit")
+        code, text, final_op = (2, "InvalidState", "begin-after-failure") if semantic == "MetadataFailure" else (18, "AlreadyCommitted", "begin-after-commit")
         op("abort", code, text); op(final_op, code, text)
         d["detail"] = "Operation is not allowed in the current transaction state."
         snap("after-rejected-operations")
