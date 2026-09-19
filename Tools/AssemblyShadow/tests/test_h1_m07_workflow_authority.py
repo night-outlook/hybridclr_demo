@@ -157,6 +157,14 @@ class M07ControlledPerformanceWorkflowContractTests(unittest.TestCase):
         self.assertIn('cannot run together', outer)
 
 
+    def test_unity_workflow_test_tracks_outer_and_core_contracts(self):
+        source=(ROOT/'Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs').read_text()
+        self.assertIn('WorkflowCoreSource = "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1"', source)
+        self.assertIn('string outer = File.ReadAllText(WorkflowSource)', source)
+        self.assertIn('string core = File.ReadAllText(WorkflowCoreSource)', source)
+        self.assertIn('"R00ControlledBuild.BuildPlayer"', source)
+
+
 class M07InstalledRuntimeDispatchTests(unittest.TestCase):
     def test_pre_mutation_keeps_full_generic_verifier(self):
         module = load_runtime_wrapper()
