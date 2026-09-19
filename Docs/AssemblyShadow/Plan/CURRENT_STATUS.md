@@ -1,28 +1,40 @@
 # Current Status
 
-- Candidate build-input source anchor: `99ef65db13341f54cf610e18453dddf197ee86e4`
-- Latest Local return: `7a627afc7d3615430772cd1f5e6978d5106f34c7`.
-- Fresh `4fff4df...` Local batch status:
-  - V00-V03, controlled/normal M07, startup11, M07 14/14: `Passed`;
-  - capacity 8192/8193, mixed 512 MiB, dense-v2 producer, parser/FieldRVA, generic/index/cache/capability, retained M03-M06/R01 native: `Passed`;
-  - failure/publication: `Failed` because an early admission-only callback returned before normal host startup used candidate baselines, so the later transaction was rejected `BaselineAlreadyUsed`;
-  - lazy Player: `NoCoverage` because the v2 verifier expected the wrong generator command arity;
-  - protected profile-1 installation: `Passed`;
-  - protected profile-1 M07: `Failed` because its historical core called the historical full source verifier after workflow-owned tracked mutations;
-  - old-Player/performance/V05/M08: `NotRun`.
-- Failure/publication repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
-  - Control, metadata failure and initializer failure transactions are now owned by the earliest callback.
-  - Dedicated `MetadataFailureContinue` / `InitializerFailureContinue` modes execute the same strict early failure oracle but return callback code 0 only for the dedicated failure/publication matrix.
-  - The late `R01FailureProbe` is verification-only: it authenticates the same process/capsule/receipt/current inputs and proves post-host diagnostics/capacity/recovery persistence. It performs no Configure/Begin/Reserve/Stage/Validate/Commit calls.
-- Lazy-v2 command-schema repair: `Implemented / PrimaryTested / AwaitingRealPlayerValidation`.
-  - The verifier now requires the producer's actual four-field commands: mono, generator exe, fixture id, output DLL, in deterministic 1/run1, 1/run2, 2/run1, 2/run2 order.
-- Protected-reference M07 authority repair: `Implemented / PrimaryTested / AwaitingLocalExecution`.
-  - Current `Invoke-M07Build.Core.ps1` always uses the coordinator checkout's current `verify-installed-runtime.py`; the current verifier owns full pre-mutation vs split post-mutation authority using `h1_m07_workflow_authority.py`.
-  - The protected project supplies Unity producers and pinned runtime/source only; its historical wrapper/verifier are not used as coordinator policy.
-- Most recent complete Primary run before final protected-producer cleanup: workflow `35411171891` — bounded **320/320**, handoff **11/11**, early capsule **7/7**, early results **19/19**, failure pipeline **16/16**, lazy contract **9/9**.
-- Final source-anchor CI: workflow `35411286564` passed bounded **320/320**, handoff **11/11**, early capsule **7/7**, early results **19/19**, failure pipeline **16/16**, lazy **9/9**; artifact `10574492806`, ZIP SHA-256 `96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079`.
-- Gate: `H1 / InProgress / AwaitingFresh99ef65Batch`
-- Last independent M08: `FAIL` (historical; not rerun)
-- Human gate passed: `false`
-- May enter R02: `false`
-- Required next action: after final Primary CI passes, Local restarts fresh V00 at source anchor `99ef65db...`, validates current candidate failure/lazy paths, then invokes the current candidate M07 coordinator against the authenticated protected profile-1 worktree and continues old-Player/performance/V05/M08 only if prerequisites close.
+- Candidate build-input source anchor: `925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`.
+- Latest Local return: `f829db516b3e5d0a9fef4d5539ec097dfb9867b3`.
+- Fresh `99ef65db...` Local batch:
+  - V00-V03: `Passed`;
+  - controlled + normal M07: `Passed`;
+  - startup11: `PassedBoundedProfile`;
+  - M07 Player matrix: `PassedGate3B14Of14`;
+  - ordinary capacity, exact 512 MiB mixed boundary, parser/FieldRVA/native/index/cache/capability: `Passed`;
+  - protected profile-1 installation + M07 through the current coordinator: `Passed`;
+  - old-Player rejection: `PassedExpectedRejection`;
+  - four controlled Development builds: `PassedFourOfFour`;
+  - frozen build map: `ComparabilityPassed`;
+  - preregistration binding: `Passed`;
+  - failure/publication: `Failed` only at strict Q04 post-host first-use-history scope;
+  - lazy Player: `FailedRuntimeNoDenseCoverage` after Player launch because the runtime probe used the wrong generated namespace/return oracle;
+  - performance pilot: `FailedBeforePlayerLaunch` because fixture/replay baselines differed from the controlled Player baselines;
+  - formal performance / V05 / M08: `NotRun`.
+- Q04 post-host history repair: `Implemented / PrimaryTested / AwaitingPlayerValidation`.
+  - selected-closure candidate first-use remains forbidden during eligible transactions and published worlds;
+  - only the dedicated post-terminal Q04 continuation may append candidate baseline uses after the early transaction is already sealed `Failed`;
+  - unknown/non-candidate identities remain forbidden and early history remains immutable.
+- Dense-v2 runtime identity repair: `Implemented / PrimaryTested / AwaitingPlayerValidation`.
+  - generated namespace: `AssemblyShadow.Dense`;
+  - boundary rows: 4095 / 4096;
+  - expected `ReturnId`: `fixtureId * 10000 + row`.
+- Controlled-performance graph repair: `Implemented / PrimaryTested / AwaitingLocalExecution`.
+  - build-map comparability now authenticates fixture/replay baseline/runtime/platform and the exact controlled NativeOn receipt;
+  - the paired-performance runner re-runs strict build-map validation before launching any Player;
+  - `Invoke-M07Build.ps1 -ControlledPerformanceBuilds` creates resources, controlled Development ON/OFF Players, fixtures and replay under the same baseline.
+- Stale broad-test repairs:
+  - early default-mode test now excludes Baseline plus continuation-only modes by semantics;
+  - `M07BuildTests.WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors` now checks outer-wrapper and core responsibilities separately.
+- Primary authority-consistent CI for the final source anchor: pending.
+- Gate: `H1 / InProgress / AwaitingFresh925e84dBatch`.
+- Last independent M08: `FAIL` (historical; not rerun).
+- Human gate passed: `false`.
+- May enter R02: `false`.
+- Next action: Local restarts at fresh V00 under `925e84d...`, validates Q04 + dense runtime fixes, creates graph-bound controlled-performance M07 worlds on both sides, runs pilots/formal sampling if strict comparability passes, checkpoints evidence, then proceeds to V05/M08 only when mandatory V04 is complete.
