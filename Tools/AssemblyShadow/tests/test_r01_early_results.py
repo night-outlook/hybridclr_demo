@@ -281,6 +281,23 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
 
 
 class EarlyReceiptTests(unittest.TestCase):
+    def test_first_use_history_allows_selected_candidates_only_when_explicitly_post_terminal(self):
+        data = {
+            "candidates": ["AssemblyA.Contracts", "AssemblyA.Implementation.Internal"],
+            "inputs": [{"name": "AssemblyA.Contracts"}, {"name": "AssemblyA.Implementation.Internal"}],
+        }
+        row = dict(name="AssemblyA.Contracts", kind="AssemblyReflection",
+                   detail="Image::ClassFromName.input FirstUseSequence=1",
+                   type="", thread=7, timestamp=11)
+        with self.assertRaises(VerificationError):
+            gate.verify_first_use_history([row], [], data, "eligible")
+        gate.verify_first_use_history(
+            [row], [], data, "post-terminal", allow_selected_closure=True)
+        bad = dict(row); bad["name"] = "Unregistered.Assembly"
+        with self.assertRaises(VerificationError):
+            gate.verify_first_use_history(
+                [bad], [], data, "post-terminal-unknown", allow_selected_closure=True)
+
     def create(self, root, mode, patch_id=None):
         data = make_capsule(root, mode)
         if patch_id is not None:
