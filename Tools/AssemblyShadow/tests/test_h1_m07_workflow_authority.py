@@ -135,6 +135,28 @@ class M07CoreDispatchContractTests(unittest.TestCase):
         self.assertIn('verify_m07_workflow',wrapper)
 
 
+class M07ControlledPerformanceWorkflowContractTests(unittest.TestCase):
+    def test_controlled_performance_mode_builds_players_before_fixture_finalize(self):
+        outer=(TOOLS/'Invoke-M07Build.ps1').read_text()
+        core=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn('[switch]$ControlledPerformanceBuilds', outer)
+        self.assertIn('[switch]$ControlledPerformanceBuilds', core)
+        self.assertIn("'AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer'", core)
+        self.assertIn("'-shadowR00Feature', 'on'", core)
+        self.assertIn("'-shadowR00Feature', 'off'", core)
+        self.assertIn("'-shadowR00BuildEvidence'", core)
+        self.assertIn("controlledPerformanceBuilds = [bool]$ControlledPerformanceBuilds", core)
+        self.assertIn("nativeOnControlledEvidence = $onControlledEvidence", core)
+        self.assertIn("nativeOffControlledEvidence = $offControlledEvidence", core)
+        self.assertLess(core.index("'AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer'"),
+                        core.index("'AssemblyShadowDemo.Editor.M07StructuralResources.FinalizeFixtures'"))
+
+    def test_controlled_performance_and_forced_failure_modes_are_mutually_exclusive(self):
+        outer=(TOOLS/'Invoke-M07Build.ps1').read_text()
+        self.assertIn('$ControlledFailureAfterValidateCompilerInputs -and $ControlledPerformanceBuilds', outer)
+        self.assertIn('cannot run together', outer)
+
+
 class M07InstalledRuntimeDispatchTests(unittest.TestCase):
     def test_pre_mutation_keeps_full_generic_verifier(self):
         module = load_runtime_wrapper()
