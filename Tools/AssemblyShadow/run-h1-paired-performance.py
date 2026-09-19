@@ -141,6 +141,10 @@ def _validate_build(build_map_path: Path, protocol: dict[str, Any]) -> dict[str,
     value = read_json(build_map_path)
     require(value.get("schemaVersion") == 1 and value.get("kind") == "H1ControlledBuildMap" and
             value.get("status") == "Frozen", "Build map must be a frozen H1ControlledBuildMap")
+    strict = analysis.validate_build_map(value)
+    require(strict.get("status") == "ComparabilityPassed",
+            "Build map failed strict authenticated comparability: " +
+            "; ".join(strict.get("reasons", [])))
     require(value.get("protocolId") == protocol.get("protocolId"), "Build map protocol identity mismatch")
     require(value.get("target") == "StandaloneOSX" and value.get("architecture") == "arm64",
             "Build map platform mismatch")
