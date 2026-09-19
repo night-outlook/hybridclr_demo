@@ -2,7 +2,7 @@
 
 ## Verdict
 
-**PASS for Primary → Local handoff**, subject to final authority-consistent CI on source anchor:
+**PASS for Primary → Local handoff.** Reviewed source anchor:
 
 `99ef65db13341f54cf610e18453dddf197ee86e4`
 
@@ -121,7 +121,7 @@ workflow `35411171891`:
 - failure pipeline: **16/16**;
 - lazy: **9/9**.
 
-Final source-anchor CI after protected producer cleanup is still required.
+Final source-anchor workflow `35411286564` passed 320/320 bounded tests plus 11/11 handoff, 7/7 early capsule, 19/19 early results, 16/16 failure pipeline and 9/9 lazy tests. Artifact `10574492806`, ZIP SHA-256 `96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079`.
 
 ## Source authority
 
