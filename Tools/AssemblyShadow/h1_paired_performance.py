@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Any, Callable
 
 import r00_results
-import r00_player_inputs
 from shadow_tools import VerificationError, require
 
 
@@ -320,6 +319,59 @@ def _validate_controlled_build(project: Path, side: str, flavor: str,
             "measurementSources": measurement_sources}
 
 
+def _validate_side_graph(item: dict[str, Any], side: str,
+                         on: dict[str, Any], off: dict[str, Any]) -> dict[str, Any]:
+    fixture_path, fixture_sha = _receipt_binding(
+        item.get("fixtureManifest"), side + ".fixtureManifest")
+    replay_path, replay_sha = _receipt_binding(
+        item.get("replayReceipt"), side + ".replayReceipt")
+    manifest = read_json(fixture_path)
+    replay = read_json(replay_path)
+
+    require(manifest.get("schemaVersion") == 1 and manifest.get("milestone") == "M07",
+            side + " fixture manifest header mismatch")
+    baseline = manifest.get("baselineBuildId")
+    runtime_abi = manifest.get("runtimeAbiHash")
+    require(type(baseline) is str and baseline and type(runtime_abi) is str and runtime_abi,
+            side + " fixture manifest baseline/runtime identity is missing")
+    require(baseline == on["receipt"]["baselineBuildId"] == off["receipt"]["baselineBuildId"],
+            side + " fixture graph baseline differs from controlled Players")
+    require(runtime_abi == on["receipt"]["runtimeAbiHash"] == off["receipt"]["runtimeAbiHash"],
+            side + " fixture graph runtime ABI differs from controlled Players")
+    require(manifest.get("unityVersion") == on["receipt"]["unityVersion"] == off["receipt"]["unityVersion"] and
+            manifest.get("target") == on["receipt"]["target"] == off["receipt"]["target"] and
+            manifest.get("architecture") == on["receipt"]["architecture"] == off["receipt"]["architecture"],
+            side + " fixture graph platform identity differs from controlled Players")
+    require(manifest.get("playerBuildReceiptPath") == on["path"] and
+            manifest.get("playerBuildReceiptSha256") == on["sha256"],
+            side + " fixture manifest is not bound to the controlled NativeOn receipt")
+
+    require(replay.get("schemaVersion") == 1 and replay.get("milestone") == "M07" and
+            replay.get("result") == "Passed", side + " replay receipt header mismatch")
+    expected = {
+        "fixtureManifestPath": str(fixture_path),
+        "fixtureManifestSha256": fixture_sha,
+        "playerBuildReceiptPath": on["path"],
+        "playerBuildReceiptSha256": on["sha256"],
+        "baselineBuildId": baseline,
+        "runtimeAbiHash": runtime_abi,
+        "playerBuildGuid": on["receipt"]["buildGuid"],
+        "nativeLibrarySha256": on["receipt"]["nativeLibrarySha256"],
+        "unityVersion": on["receipt"]["unityVersion"],
+        "target": on["receipt"]["target"],
+        "architecture": on["receipt"]["architecture"],
+    }
+    for field, value in expected.items():
+        require(replay.get(field) == value,
+                side + " replay receipt differs from controlled graph: " + field)
+    return {
+        "fixtureManifest": {"path": str(fixture_path), "sha256": fixture_sha},
+        "replayReceipt": {"path": str(replay_path), "sha256": replay_sha},
+        "baselineBuildId": baseline,
+        "runtimeAbiHash": runtime_abi,
+    }
+
+
 def _build_bindings(build_map: dict[str, Any]) -> tuple[dict[str, dict[str, dict[str, Any]]], dict[str, dict[str, Any]]]:
     sides = build_map.get("sides")
     require(type(sides) is dict and set(sides) == {"A", "B"},
@@ -340,26 +392,7 @@ def _build_bindings(build_map: dict[str, Any]) -> tuple[dict[str, dict[str, dict
             "OFF": _validate_controlled_build(project, side, "off", builds["off"]),
         }
         on, off = bindings[side]["ON"], bindings[side]["OFF"]
-
-        fixture_path, fixture_sha = _receipt_binding(
-            item.get("fixtureManifest"), side + ".fixtureManifest")
-        replay_path, replay_sha = _receipt_binding(
-            item.get("replayReceipt"), side + ".replayReceipt")
-        graph = r00_player_inputs.verify_inputs(
-            project, fixture_path, Path(on["path"]), Path(off["path"]), replay_path)
-        manifest = graph["manifest"]
-        require(manifest.get("baselineBuildId") == on["receipt"]["baselineBuildId"] ==
-                off["receipt"]["baselineBuildId"],
-                side + " fixture/replay graph baseline differs from controlled Players")
-        require(manifest.get("runtimeAbiHash") == on["receipt"]["runtimeAbiHash"] ==
-                off["receipt"]["runtimeAbiHash"],
-                side + " fixture/replay graph runtime ABI differs from controlled Players")
-        bindings[side]["graph"] = {
-            "fixtureManifest": {"path": str(fixture_path), "sha256": fixture_sha},
-            "replayReceipt": {"path": str(replay_path), "sha256": replay_sha},
-            "baselineBuildId": manifest["baselineBuildId"],
-            "runtimeAbiHash": manifest["runtimeAbiHash"],
-        }
+        bindings[side]["graph"] = _validate_side_graph(item, side, on, off)
 
         require(on["receipt"]["runtimeAbiHash"] == off["receipt"]["runtimeAbiHash"],
                 side + " ON/OFF runtime ABI hashes differ")
