@@ -138,8 +138,45 @@ function Assert-M07PinnedInputs {
     $python = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
     if (-not $python) { $python = Get-Command python -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1 }
     if (-not $python) { throw 'Python is required to verify the real pinned M07 build inputs.' }
-    & $python.Source (Join-Path $Project 'Tools/AssemblyShadow/verify-installed-runtime.py') --project $Project --expect-shadow on --json
-    if ($LASTEXITCODE -ne 0) { throw 'M07 source or installation differs from the pinned build inputs; author and commit inputs before building.' }
+
+    $verifyTool = Join-Path $PSScriptRoot 'verify-installed-runtime.py'
+    $authorityTool = Join-Path $PSScriptRoot 'h1_m07_workflow_authority.py'
+    $authorityRoot = [Environment]::GetEnvironmentVariable('H1_M07_WORKFLOW_AUTHORITY_ROOT', 'Process')
+    $authorityBaseline = [Environment]::GetEnvironmentVariable('H1_M07_WORKFLOW_BASELINE_ID', 'Process')
+
+    if ([string]::IsNullOrEmpty($authorityRoot) -or [string]::IsNullOrEmpty($authorityBaseline)) {
+        & $python.Source $verifyTool --project $Project --expect-shadow on --json
+        if ($LASTEXITCODE -ne 0) { throw 'M07 source or installation differs from the pinned build inputs.' }
+        return
+    }
+
+    $specs = @(
+        @{ relative = 'Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity'; backup = 'm07-bootstrap-scene.original' },
+        @{ relative = 'ProjectSettings/AssemblyShadowSettings.asset'; backup = 'assembly-shadow-settings.original' },
+        @{ relative = 'ProjectSettings/EditorBuildSettings.asset'; backup = 'editor-build-settings.original' }
+    )
+    $changed = 0
+    foreach ($spec in $specs) {
+        $current = Assert-M07RegularPath (Join-Path $Project $spec.relative)
+        $backup = Assert-M07RegularPath (Join-Path $authorityRoot $spec.backup)
+        if ((Get-M07BytesHash ([IO.File]::ReadAllBytes($current))) -cne
+            (Get-M07BytesHash ([IO.File]::ReadAllBytes($backup)))) { ++$changed }
+    }
+
+    if ($changed -eq 0) {
+        # Before ValidateCompilerInputs the exact Git source must still match.
+        & $python.Source $verifyTool --project $Project --expect-shadow on --json
+        if ($LASTEXITCODE -ne 0) { throw 'M07 pre-mutation source or installation differs from pinned inputs.' }
+        return
+    }
+
+    # After the workflow-owned mutation, installed runtime/package/native bytes
+    # remain fully verified while demo-source authority is proven separately
+    # against the exact authenticated originals plus the requested baseline.
+    & $python.Source $verifyTool --project $Project --expect-shadow on --skip-demo-source --json
+    if ($LASTEXITCODE -ne 0) { throw 'M07 installed runtime differs after workflow mutation.' }
+    & $python.Source $authorityTool --project $Project --recovery-root $authorityRoot --baseline-id $authorityBaseline --json
+    if ($LASTEXITCODE -ne 0) { throw 'M07 post-mutation demo authority differs from the authenticated workflow contract.' }
 }
 
 function Save-M07OriginalSettings {
