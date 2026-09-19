@@ -222,7 +222,7 @@ class FailurePipelineTests(unittest.TestCase):
 
     def test_rebound_result_tampering_is_rejected(self):
         launch=self.launch();original=gate.read(launch)
-        cases=[('processId',999),('buildGuid','b'*32),('orderedSizes',[1]*5),('observerJoined',False),('observerSamples',[]),('operations',[]),('patchManifestSha256','f'*64)]
+        cases=[('processId',999),('buildGuid','b'*32),('orderedSizes',[1]*5),('earlyMode','Baseline'),('capsuleSha256','f'*64),('patchManifestSha256','f'*64)]
         row=original['processLaunches'][1];path=Path(row['resultPath']);saved=gate.read(path)
         for key,value in cases:
             with self.subTest(key=key):
