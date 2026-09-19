@@ -125,7 +125,7 @@ class LazyResultLedgerTests(unittest.TestCase):
                 compilerPath=str(compiler),compilerSha256=runner.digest(compiler),compilerVersion='fixture mcs',
                 cecilPath=str(cecil),cecilSha256=runner.digest(cecil),
                 compileCommand=[str(compiler),'-nologo','-target:exe','-out:'+str(root/'g.exe'),'-r:'+str(cecil),str(runner.DENSE_SOURCE)],
-                generateCommands=[[str(mono),str(root/'g.exe'),str(root/f'I{fixture_id:04d}-run{run_index}.dll')]
+                generateCommands=[[str(mono),str(root/'g.exe'),str(fixture_id),str(root/f'I{fixture_id:04d}-run{run_index}.dll')]
                                   for fixture_id in (1,2) for run_index in (1,2)],
                 inputsUnchanged=True,twoFreshRunsByteIdentical=True),
             createdAtUtc='2026-09-18T00:00:00Z')
@@ -151,6 +151,16 @@ class LazyResultLedgerTests(unittest.TestCase):
         self.assertEqual([1,2],[row['id'] for row in normalized['fixtures']])
         self.assertIn(manifest,inputs)
         self.assertTrue(all(Path(row['path']) in inputs for row in normalized['fixtures']))
+
+    def test_deterministic_dense_v2_rejects_wrong_generator_command_schema(self):
+        root=Path(self.temp.name).resolve()/'dense-v2-command';root.mkdir()
+        fixtures=root/'fixtures';fixtures.mkdir()
+        # This focused check pins the production schema: mono, generator exe,
+        # fixture id, output path. A legacy three-field command must fail.
+        source=(TOOLS/'run-r01b-lazy-player.py').read_text()
+        self.assertIn('len(command) == 4',source)
+        self.assertIn('command[2] == str(fixture_id)',source)
+        self.assertIn('I{fixture_id:04d}-run{run_index}.dll',source)
 
     def test_deterministic_dense_v2_rejects_historical_relabel(self):
         root=Path(self.temp.name).resolve()/'dense-v2-relabel';root.mkdir()
