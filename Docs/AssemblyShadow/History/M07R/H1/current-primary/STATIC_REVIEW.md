@@ -1,159 +1,101 @@
-# Static Review — Early Failure Ownership / Lazy Command / Protected M07 Repair
+# Static Review — V04 Closure Repairs after Local `f829db51...`
 
 ## Verdict
 
-**PASS for Primary → Local handoff.** Reviewed source anchor:
+**PASS for Primary → Local Validation handoff**, subject to the final authority-consistent CI and real Unity/IL2CPP validation.
 
-`99ef65db13341f54cf610e18453dddf197ee86e4`
+Reviewed source anchor:
 
-This review is source/tooling only. It does not establish real Unity/IL2CPP Player acceptance, performance acceptance, V05, M08 PASS, or human H1 approval.
+`925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`
 
-## Failure/publication ownership
+No claim is made here for V04 runtime completion, performance acceptance, V05, M08 PASS, or Human Review Gate approval.
 
-### Root cause
+## Q04 history review
 
-The prior design used an admission-only Baseline earliest callback, then attempted the real transaction from `R01FailureProbe` after normal host continuation.
+The early Q04 terminal transaction remains unchanged.
 
-That contradicts the first-use contract: host startup may legitimately use candidate baselines before the later MonoBehaviour probe runs.
+The only semantic adjustment is to late observation:
 
-`BaselineAlreadyUsed` was therefore correct.
+- before terminal failure / in an eligible transaction: selected closure use remains forbidden;
+- after Q04 has already sealed `Failed`: normal host baseline use of registered candidates is observable and may be appended;
+- non-candidate identities are always invalid;
+- existing first-use records cannot change;
+- Control and initializer published worlds do not receive this exception.
 
-### Corrected ownership
+This is consistent with the process-lifetime first-use registry: a late host observation after terminal pre-publication failure cannot retroactively make the already failed transaction invalid for a second reason.
 
-The transaction now runs entirely in `R01EarlyStartup`.
+## Dense runtime review
 
-Dedicated continuation-only modes were added:
+Generator and Player now agree exactly on:
 
-- `MetadataFailureContinue`;
-- `InitializerFailureContinue`.
+- namespace `AssemblyShadow.Dense`;
+- type-name formula;
+- rows 4095/4096;
+- return formula `fixtureId * 10000 + row`.
 
-They reuse the exact failure transaction implementation and strict receipt schema.
+The Player still requires the manifest to pass the deterministic-v2 admission contract before loading either assembly.
 
-Only callback termination differs:
+## Performance review
 
-- normal failure startup modes → callback 1 / terminal native gateway;
-- continuation-only modes → callback 0 / dedicated failure-publication handoff continues.
+### Previous gap
 
-The generic early launcher rejects continuation-only modes.
+Comparability checked four controlled Player builds but did not authenticate the side fixture/replay graph against those exact baselines.
 
-### Late probe
+### New fail-closed boundary
 
-`R01FailureProbe` is schema-2, read-only handoff evidence.
+The build-map validator now binds:
 
-Static inspection confirms it does not call:
+- graph baseline/runtime/platform;
+- graph controlled NativeOn path/hash;
+- replay graph identity;
+- controlled ON/OFF receipts.
 
-- `AssemblyShadowRuntime.ConfigureCandidates`;
-- `BeginTransaction`;
-- `ReserveMetadataBudget`;
-- `StageAssembly`;
-- `ValidateTransaction`;
-- `CommitTransaction`.
+The runner calls the strict validator before sampling.
 
-It still independently verifies:
+### New producer path
 
-- current fixture/failure/Q04 provenance;
-- shared profile-2 budget contract;
-- exact capsule/early receipt/current PID;
-- selected patch/closure/actual DLL/PDB bytes.
+`-ControlledPerformanceBuilds` creates the controlled ON/OFF Players before fixture finalization, under one baseline ID, so M07's existing fixture/replay producer naturally binds the controlled NativeOn world.
 
-It then queries post-host diagnostics/capacity/recovery and requires stable transaction state.
+No performance thresholds, sample schedule, outlier rule, operation inventory, memory semantics or expected A/B differences changed.
 
-The Python strict gate uses the early receipt as authoritative transaction evidence and the late result only for post-host persistence/provenance.
+## Stale-test review
 
-## Lazy deterministic-v2
+The two broad-suite failures reported by Local were stale ownership assumptions.
 
-The producer/verifier command schema now agrees.
-
-Exactly four generator records are required:
-
-`[mono, generator.exe, fixtureId, output.dll]`
-
-with deterministic IDs/output names for the two runs of fixture 1 followed by the two runs of fixture 2.
-
-All prior v2 generator/tool/hash/shape/parser and sealed-v1 non-relabel rules remain.
-
-## Protected reference M07
-
-The historical protected project had a valid profile-1 source/runtime but an obsolete coordinator verifier policy.
-
-The reusable current core now always calls the current coordinator's:
-
-`Tools/AssemblyShadow/verify-installed-runtime.py`
-
-via `$PSScriptRoot`, even when `-ProjectPath` is an external protected worktree.
-
-The outer wrapper supplies authenticated originals and baseline through `H1_M07_WORKFLOW_*`.
-
-The current Python verifier already has tested dispatch:
-
-- no required mutation observed → full generic verifier;
-- mutation observed → runtime/package/native verification plus exact `h1_m07_workflow_authority`.
-
-This avoids modifying the protected source and avoids importing its obsolete verification policy.
-
-`verify-h1-protected-reference.py` authenticates the reference-side Unity producers actually used by the current coordinator, not the old wrapper.
-
-## Regression coverage
-
-Primary regressions cover:
-
-- continued failure capsule codec;
-- continued failure receipt semantics and callback 0;
-- terminal failure modes remain callback 1;
-- same-process early receipt/capsule binding;
-- no late transaction mutation calls;
-- post-host diagnostics/capacity/recovery tamper rejection;
-- early transaction identity tamper rejection;
-- dense-v2 four-field generator schema;
-- protected M07 core uses current coordinator verifier;
-- current verifier pre/post mutation dispatch;
-- protected reference identity/producer contract;
-- live committed handoff/source preflight.
-
-Most recent complete pre-cleanup run:
-
-workflow `35411171891`:
-
-- bounded: **320/320**;
-- handoff: **11/11**;
-- early capsule: **7/7**;
-- early results: **19/19**;
-- failure pipeline: **16/16**;
-- lazy: **9/9**.
-
-Final source-anchor workflow `35411286564` passed 320/320 bounded tests plus 11/11 handoff, 7/7 early capsule, 19/19 early results, 16/16 failure pipeline and 9/9 lazy tests. Artifact `10574492806`, ZIP SHA-256 `96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079`.
+They are replaced with semantic/owner-aware tests rather than deleted or skipped.
 
 ## Source authority
 
-Only `hybridclr_demo` changes in this Primary cycle.
+Only `hybridclr_demo` changes.
 
-Candidate native/package/IL2CPP pins remain unchanged.
+HybridCLR, HybridCLR Unity and IL2CPP candidate pins remain unchanged.
 
-Protected profile-1 heads remain unchanged.
+Protected profile-1 pins remain unchanged.
 
-No metadata-only expansion, verifier weakening, runtime ABI/capacity/index relaxation, performance protocol change, or gate-state promotion was introduced.
+No expansion of `metadata_only`, no weakening of `verify_demo`, runtime ABI/capacity/index rules, protected refs, or H1 gate conditions.
 
-## Residual empirical work
+## Residual Local evidence
 
-Local still must prove:
+Local must still prove:
 
-1. fresh current source/provenance/M07;
-2. real early-owned Control/Q04/initializer transactions with callback 0 only for dedicated continuation modes;
-3. same-PID late post-host persistence;
-4. lazy-v2 real diagnostic Player;
-5. protected project driven by current candidate M07 coordinator;
-6. fresh profile-1 M07 graph;
-7. old-Player rejection;
-8. controlled A/B Development builds and performance;
-9. checkpoint retention;
-10. V05 + genuine independent M08 when eligible.
+1. broad test suites are clean at the new source;
+2. Q04 post-host strict verification passes while early terminal state stays unchanged;
+3. dense fixtures execute all four boundary methods;
+4. both controlled-performance M07 workflows produce self-consistent graph receipts;
+5. the strict freezer passes only those graphs;
+6. all pilots pass;
+7. formal sampling/analysis completes;
+8. checkpoint retention is complete;
+9. V05 + independent M08 only after V04 closes.
 
 ## Gate
 
-H1 remains `InProgress`.
+H1: `InProgress`.
 
-Historical M08 remains `FAIL`.
+Historical M08: `FAIL`.
 
-`humanGatePassed=false`; `mayEnterR02=false`.
+`humanGatePassed=false`.
+
+`mayEnterR02=false`.
 
 Do not begin R02.
