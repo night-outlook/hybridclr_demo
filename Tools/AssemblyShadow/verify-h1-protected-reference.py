@@ -29,7 +29,8 @@ MEASUREMENT_SOURCES = (
     "Assets/AssemblyShadowDemo/AssemblyA/Implementation/Internal/R00PerformanceWitness.cs",
 )
 REQUIRED_REFERENCE_PRODUCERS = (
-    "Tools/AssemblyShadow/Invoke-M07Build.ps1",
+    "Assets/AssemblyShadowDemo/Editor/M07Build.cs",
+    "Assets/AssemblyShadowDemo/Editor/M07StructuralResources.cs",
     "Assets/AssemblyShadowDemo/Editor/R00ControlledBuild.cs",
     "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs",
 )
