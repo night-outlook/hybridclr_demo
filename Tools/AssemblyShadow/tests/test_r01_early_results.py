@@ -38,7 +38,9 @@ P01_BASELINE_USES = [
 ]
 
 GUARDS = {"Type", "Object", "Cctor", "NativeScript"}
-FAILURES = {"MetadataFailure", "InitializerFailure"}
+TERMINAL_FAILURES = {"MetadataFailure", "InitializerFailure"}
+CONTINUED_FAILURES = {"MetadataFailureContinue", "InitializerFailureContinue"}
+FAILURES = TERMINAL_FAILURES | CONTINUED_FAILURES
 POSITIVES = {"Control", "OrdinaryFirst", "OrdinaryAfterReserve"}
 
 # Exact pinned M00 payload, compressed for self-contained offline tests.
@@ -89,7 +91,7 @@ def make_capsule(root, mode="Control"):
     ordinary = root / "ordinary.dll"
     ordinary.write_bytes(FIXED_ORDINARY)
     return dict(mode=mode, baselineBuildId="baseline", runtimeAbiHash="a" * 64,
-                patchId="R01-P03-InitializerThrow" if mode == "InitializerFailure" else "P03",
+                patchId="R01-P03-InitializerThrow" if gate.semantic_failure_mode(mode) == "InitializerFailure" else "P03",
                 candidates=ORDER, stableAotNames=["assemblyshadowdemo.bootstrap", "mscorlib"], inputs=inputs,
                 ordinaryPath=str(ordinary) if mode.startswith("Ordinary") else "",
                 ordinarySha256=capsule.digest(ordinary) if mode.startswith("Ordinary") else "",
@@ -99,11 +101,12 @@ def make_capsule(root, mode="Control"):
 
 def emit_receipt(data, capsule_path, result_path, pid=1234):
     mode = data["mode"]
+    semantic = gate.semantic_failure_mode(mode)
     rows = data["inputs"]
     names = [row["name"] for row in rows]
     sizes = [row["dllLength"] for row in rows]
     derived = []
-    if mode == "Oversize":
+    if semantic == "Oversize":
         sizes[-1] = 64 * 1024 * 1024
         raw = Path(rows[-1]["dllPath"]).read_bytes()
         h = hashlib.sha256(raw)
@@ -131,9 +134,10 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                   capsulePath=str(capsule_path), capsuleSha256=capsule.digest(capsule_path),
                   resultPath=str(result_path), baselineBuildId=data["baselineBuildId"],
                   runtimeAbiHash=data["runtimeAbiHash"], patchId=data["patchId"],
-                  result="PassedExpectedFailure" if mode in FAILURES else
+                  result="PassedExpectedFailureContinued" if mode in CONTINUED_FAILURES else
+                         "PassedExpectedFailure" if mode in TERMINAL_FAILURES else
                          "PassedExpectedRejection" if mode not in POSITIVES | {"Baseline"} else "Passed",
-                  error="", callbackReturnCode=0 if mode in POSITIVES | {"Baseline"} else 1,
+                  error="", callbackReturnCode=0 if mode in POSITIVES | CONTINUED_FAILURES | {"Baseline"} else 1,
                   inputReadCount=read_count, byteInputs=byte_inputs, operations=[], snapshots=[],
                   observerJoined=False, observerErrors=[], observerSamples=[], observerDroppedBefore=0,
                   observerDroppedAfter=0, initializerEvents=[])
@@ -187,16 +191,16 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
             capacityJson=json.dumps(capacity), orderedSizes=sizes.copy()))
 
     snap("before-startup-ops")
-    if mode in ("Control", "MetadataFailure", "InitializerFailure"):
+    if semantic in ("Control", "MetadataFailure", "InitializerFailure"):
         result["observerJoined"] = True
-    if mode == "Baseline": return result
-    if mode == "OrdinaryFirst":
+    if semantic == "Baseline": return result
+    if semantic == "OrdinaryFirst":
         op("ordinary-before-configure"); ordinary += 1
         cursors = budget.evaluate_budget(cursors, [Path(data["ordinaryPath"]).stat().st_size])["finalCursors"]
         d["ordinaryAssemblies"].append(dict(name=gate.ORDINARY, isInterpreter=True))
         snap("after-ordinary-before-configure")
-    if mode in GUARDS:
-        op("preconfigure-" + mode.lower())
+    if semantic in GUARDS:
+        op("preconfigure-" + semantic.lower())
         d["baselineUses"] = [dict(name=gate.INTERNAL, kind="AssemblyReflection",
             detail="Image::ClassFromName.input FirstUseSequence=1", type="", thread=777, timestamp=888)]
         snap("after-preconfigure-witness")
@@ -208,18 +212,18 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                            published=False, moduleInitializerAttempted=False, moduleInitializerRan=False) for n in names]
     event("transaction-begun"); snap("after-begin")
     if result["observerJoined"]: result["observerSamples"].append(sample("before", d))
-    if mode == "Oversize":
+    if semantic == "Oversize":
         op("reserve", 23, "MetadataCapacityExceeded"); d["detail"] = "Metadata capacity rejected before Stage: " + names[-1]
         snap("after-failed-reserve")
     else:
         op("reserve"); cursors = budget.evaluate_budget(cursors, sizes)["finalCursors"]; reserved += len(names)
         event("metadata-budget-reserved"); snap("after-reserve")
         if result["observerJoined"]: result["observerSamples"].append(sample("before", d, ticks=10))
-        if mode == "OrdinaryAfterReserve":
+        if semantic == "OrdinaryAfterReserve":
             op("ordinary-after-reserve"); ordinary += 1
             cursors = budget.evaluate_budget(cursors, [Path(data["ordinaryPath"]).stat().st_size])["finalCursors"]
             d["ordinaryAssemblies"].append(dict(name=gate.ORDINARY, isInterpreter=True)); snap("after-ordinary-after-reserve")
-        if mode == "Mismatch":
+        if semantic == "Mismatch":
             raw = Path(rows[0]["dllPath"]).read_bytes() + b"\0"
             result["byteInputs"].append(dict(name=names[0], path=rows[0]["dllPath"], length=len(raw),
                 sha256=hashlib.sha256(raw).hexdigest(), kind="mismatch-dll"))
@@ -232,9 +236,9 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                 d["staged"] += 1; shadow += 1; d["retainedBytes"] += row["dllLength"] + row["pdbLength"]
                 event("skeleton-created", row["name"])
             state("Staged"); snap("after-stage")
-            if mode in GUARDS:
+            if semantic in GUARDS:
                 op("validate", 15, "BaselineAlreadyUsed"); d["detail"] = gate.INTERNAL
-            elif mode == "MetadataFailure":
+            elif semantic == "MetadataFailure":
                 op("validate", 13, "ReferenceResolutionFailed"); state("Failed"); terminal = 13
                 event("metadata-begin", names[0]); d["detail"] = "AssemblyA.Contracts: Image::ReadType invalid type"
             else:
@@ -242,12 +246,12 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                 for a in d["assemblies"]:
                     event("metadata-begin", a["name"]); a["runtimeMetadataInitialized"] = True; event("metadata-ready", a["name"])
                 state("Validated"); event("transaction-validated")
-                if mode == "Control" and data["patchId"] == "P01":
+                if semantic == "Control" and data["patchId"] == "P01":
                     d["baselineUses"] = copy.deepcopy(P01_BASELINE_USES)
             snap("after-validate")
-            if mode in POSITIVES | {"InitializerFailure"}:
-                op("commit", 19 if mode == "InitializerFailure" else 0,
-                   "ModuleInitializerFailed" if mode == "InitializerFailure" else "Success")
+            if semantic in POSITIVES | {"InitializerFailure"}:
+                op("commit", 19 if semantic == "InitializerFailure" else 0,
+                   "ModuleInitializerFailed" if semantic == "InitializerFailure" else "Success")
                 # During initializer execution, the previous successful Validate is the mutable error.
                 d["lastError"] = 0
                 state("Committing"); d["generation"] = d["enumerationGeneration"] = d["classEnumerationGeneration"] = 1
@@ -256,7 +260,7 @@ def emit_receipt(data, capsule_path, result_path, pid=1234):
                 event("active-published")
                 for a in d["assemblies"]:
                     event("initializer-begin", a["name"]); a["moduleInitializerAttempted"] = True
-                    if mode == "InitializerFailure":
+                    if semantic == "InitializerFailure":
                         result["initializerEvents"].append(dict(name=a["name"], diagnostics=sample("initializer", d, 1, 20 + len(result["initializerEvents"]))))
                     if mode == "InitializerFailure" and a["name"] == "AssemblyA.Implementation.Extensibility":
                         event("initializer-failed", a["name"]); state("FailedAfterCommit"); terminal = 19
