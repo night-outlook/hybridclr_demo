@@ -22,6 +22,7 @@ on:
       - 'Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs'
       - 'Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs'
       - 'Assets/AssemblyShadowDemo/Tests/Editor/R01EarlyStartupTests.cs'
+      - 'Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs'
       - 'Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs'
       - 'Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs'
       - 'Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs'
@@ -55,6 +56,7 @@ jobs:
           PYTHONDONTWRITEBYTECODE: '1'
         run: |
           python3 Tools/AssemblyShadow/tests/test_r01_early_capsule.py
+          python3 Tools/AssemblyShadow/tests/test_r01_early_launch.py
           python3 Tools/AssemblyShadow/tests/test_r01_early_results.py
           python3 Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py
       - name: Run R01B lazy contract regressions
