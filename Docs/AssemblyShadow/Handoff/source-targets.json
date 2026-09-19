@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "4fff4df26681ab3595bb241bbc972207d032831e",
-      "implementationCommit": "4fff4df26681ab3595bb241bbc972207d032831e",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 failure/lazy repairs, protected profile-1 reference verifier, authenticated performance build-map freezer, preregistration path binder, preregistered performance-driver mode ordering, and complete bounded Primary test inventory. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "5337dadc909aac1430bf32abce39358c8c3880c4",
+      "implementationCommit": "5337dadc909aac1430bf32abce39358c8c3880c4",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including earliest-startup ownership of failure/publication transactions, deterministic dense-v2 lazy command-schema repair, split M07 workflow authority for external/protected projects, and corresponding Primary regressions. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
+        "candidateToolSourceAnchor": "5337dadc909aac1430bf32abce39358c8c3880c4",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -349,5 +349,36 @@
     "artifactId": 10551884431,
     "artifactZipSha256": "9e0629b135ee99962735f0667d81f167ce6dde07fe49a83dc2654f52746acb55",
     "scope": "Primary source/tool/contract evidence only. No Unity IL2CPP Player execution for repaired failure/lazy paths, no protected-reference rebuild, no performance sampling, no V05/M08/human acceptance."
+  },
+  "failurePublicationEarlyTransactionRepair": {
+    "returnedByLocalValidationCommit": "7a627afc7d3615430772cd1f5e6978d5106f34c7",
+    "previousSourceAnchor": "4fff4df26681ab3595bb241bbc972207d032831e",
+    "sourceAnchor": "5337dadc909aac1430bf32abce39358c8c3880c4",
+    "failure": "Mode-bound Baseline admission succeeded, but the later R01FailureProbe transaction was rejected BaselineAlreadyUsed because normal host startup had already consumed candidate baseline assemblies.",
+    "correction": {
+      "owner": "R01EarlyStartup earliest callback",
+      "controlMode": "Control",
+      "metadataMode": "MetadataFailureContinue",
+      "initializerMode": "InitializerFailureContinue",
+      "continuationPolicy": "Failure transactions execute completely before host continuation but return callback code 0 only in the dedicated continued modes. Historical MetadataFailure/InitializerFailure remain terminal callback-code-1 startup tests.",
+      "lateProbe": "R01FailureProbe is verification-only: authenticate same-process early receipt/capsule/current inputs and capture post-host diagnostics/capacity/recovery; no Configure/Begin/Reserve/Stage/Validate/Commit calls.",
+      "strictVerifier": "Early receipt is authoritative transaction evidence; late result proves same-process post-host persistence."
+    }
+  },
+  "lazyDenseV2CommandSchemaRepair": {
+    "returnedByLocalValidationCommit": "7a627afc7d3615430772cd1f5e6978d5106f34c7",
+    "sourceAnchor": "5337dadc909aac1430bf32abce39358c8c3880c4",
+    "failure": "The deterministic-v2 producer records four-field commands [mono, generator, fixtureId, output], but lazy admission incorrectly required three fields.",
+    "correction": "Require exactly four commands in deterministic order (1/run1, 1/run2, 2/run1, 2/run2) with [mono, absolute generator exe, exact fixture id, exact output basename]."
+  },
+  "protectedReferenceM07AuthorityRepair": {
+    "returnedByLocalValidationCommit": "7a627afc7d3615430772cd1f5e6978d5106f34c7",
+    "sourceAnchor": "5337dadc909aac1430bf32abce39358c8c3880c4",
+    "failure": "The protected project old M07 core called its own old full source verifier after ValidateCompilerInputs mutated baseline-bound tracked inputs.",
+    "correction": "Current candidate Invoke-M07Build.Core.ps1 now dispatches through candidate-owned verify-installed-runtime.py and h1_m07_workflow_authority.py. Pre-mutation uses full source verification; post-mutation uses installed-runtime verification with demo source skipped plus exact authenticated-original/baseline-bound authority. Unity methods still execute in the protected project; the outer wrapper restores exact tracked bytes."
+  },
+  "currentPrimaryValidation": {
+    "sourceAnchor": "5337dadc909aac1430bf32abce39358c8c3880c4",
+    "status": "PendingAuthorityConsistentCI"
   }
 }
