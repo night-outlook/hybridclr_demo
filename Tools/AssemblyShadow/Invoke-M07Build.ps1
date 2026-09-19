@@ -9,7 +9,8 @@ param(
     [string]$ResourceOutput,
     [string]$NativeOnOutput,
     [string]$NativeOffOutput,
-    [switch]$ControlledFailureAfterValidateCompilerInputs
+    [switch]$ControlledFailureAfterValidateCompilerInputs,
+    [switch]$ControlledPerformanceBuilds
 )
 
 $ErrorActionPreference = 'Stop'
@@ -120,6 +121,10 @@ function Invoke-M07ControlledValidateCompilerInputs {
     if (Test-UnityProjectRunning -ProjectPath $Project) { throw 'Controlled M07 ValidateCompilerInputs returned before its Unity process exited.' }
 }
 
+if ($ControlledFailureAfterValidateCompilerInputs -and $ControlledPerformanceBuilds) {
+    throw 'Controlled failure and controlled performance modes cannot run together.'
+}
+
 $shadowProject = Get-UnityDebugProjectPath -ProjectPath $ProjectPath
 if (Test-UnityProjectRunning -ProjectPath $shadowProject) { throw 'This exact project is already open in Unity; no M07 workflow was started.' }
 $evidenceParent = Join-Path $shadowProject '_temp/AssemblyShadow'
@@ -138,6 +143,7 @@ $invoke = @{
 if ($ResourceOutput) { $invoke.ResourceOutput = $ResourceOutput }
 if ($NativeOnOutput) { $invoke.NativeOnOutput = $NativeOnOutput }
 if ($NativeOffOutput) { $invoke.NativeOffOutput = $NativeOffOutput }
+if ($ControlledPerformanceBuilds) { $invoke.ControlledPerformanceBuilds = $true }
 
 $previousAuthorityRoot = [Environment]::GetEnvironmentVariable('H1_M07_WORKFLOW_AUTHORITY_ROOT', 'Process')
 $previousAuthorityBaseline = [Environment]::GetEnvironmentVariable('H1_M07_WORKFLOW_BASELINE_ID', 'Process')
