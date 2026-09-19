@@ -20,7 +20,7 @@ MAX_COUNT = 65536
 MAX_STRING = 16384
 MAX_CAPSULE = 16 * 1024 * 1024
 MODES = ("Control", "OrdinaryFirst", "OrdinaryAfterReserve", "Oversize", "Mismatch", "Type", "Object", "Cctor", "NativeScript",
-         "MetadataFailure", "InitializerFailure", "Baseline")
+         "MetadataFailure", "InitializerFailure", "MetadataFailureContinue", "InitializerFailureContinue", "Baseline")
 FIXED_IMAGE_SHA = "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
 
 
@@ -151,7 +151,7 @@ def from_context(context, mode, patch_id="P03", fixture_path=None, replacement=N
     require(mode in MODES, "Unsupported early mode")
     manifest, baseline, on = context["manifest"], context["baseline"], context["on"]
     selected = context["fixtures"][patch_id]
-    if mode == "InitializerFailure":
+    if mode in ("InitializerFailure", "InitializerFailureContinue"):
         require(replacement is not None and "initializer" in replacement, "Verified initializer fixture required")
         selected = replacement["initializer"]
     patch, patch_root = selected["patch"], selected["root"]
@@ -162,7 +162,7 @@ def from_context(context, mode, patch_id="P03", fixture_path=None, replacement=N
     for name in patch["loadOrder"]:
         row = by_name[name]
         dll = _file(patch_root / row["dll"], row["sha256"])
-        if mode == "MetadataFailure" and row["name"] == "AssemblyA.Contracts":
+        if mode in ("MetadataFailure", "MetadataFailureContinue") and row["name"] == "AssemblyA.Contracts":
             require(replacement is not None and "negative" in replacement, "Verified Q04 negative input required")
             negative = replacement["negative"]["data"]
             dll = _file(negative["outputPath"], negative["outputSha256"])
