@@ -54,7 +54,8 @@ def prepared(root):
             rows.append(dict(name=name,mvid=str(mvid),dll=dll.name,sha256=gate.digest(dll),dllSize=dll.stat().st_size,pdbSha256='',pdb=''))
         p=dict(patchId=patchid,loadOrder=order,closure=rows,dllOnly=True);path=write(directory/'patch-manifest.json',p)
         fixtures[patchid]=dict(root=directory,path=path,patch=p)
-    negative=root/'negative.dll';negative.write_bytes(b'negative-sidecar'.ljust(100,b'x'))
+    negative=root/'negative.dll'
+    negative.write_bytes((fixtures['P03']['root']/'AssemblyA.Contracts.dll').read_bytes())
     baseline_path=write(root/'baseline.json',{})
     resource_root=root/'resource';resource_root.mkdir()
     write(resource_root/'resource-build-receipt.json',dict(bundleDirectory='Bundles',bundles=[]))
@@ -75,65 +76,42 @@ def prepared(root):
                 inventory={p for p in root.rglob('*') if p.is_file()}),paths
 
 
-def produce(path,mode,p,process_id):
-    c=p['context'];b=c['on'];m=c['manifest'];f=p['failures'];n=p['negative'];patch=c['fixtures'][gate.INITIALIZER_ID if mode==gate.MODES[2] else 'P03']
-    order=patch['patch']['loadOrder'];q04=mode==gate.MODES[1];init=mode==gate.MODES[2];terminal=13 if q04 else 19 if init else 0
-    final='Failed' if q04 else 'FailedAfterCommit' if init else 'Committed'
-    result={key:'' for key in gate.RESULT_FIELDS.split()}
-    result.update(schemaVersion=1,kind='R01FailureResult',mode=mode,result='Passed',error='',resultPath=str(path),processId=process_id,mainThreadId=1,
-        unityVersion=m['unityVersion'],platform='OSXPlayer',buildGuid=b['player']['buildGuid'],playerDataPath=str(b['output']/'Contents'),baselineBuildId=m['baselineBuildId'],runtimeAbiHash=m['runtimeAbiHash'],
-        fixtureManifestPath=f['data']['fixtureManifestPath'],fixtureManifestSha256=f['data']['fixtureManifestSha256'],playerBuildReceiptPath=str(b['path']),playerBuildReceiptSha256=gate.digest(b['path']),
-        baselineManifestPath=m['baselineManifestPath'],baselineManifestSha256=m['baselineManifestSha256'],failureFixturesPath=str(f['path']),failureFixturesSha256=gate.digest(f['path']),
-        negativeInputPath=str(n['path']),negativeInputSha256=gate.digest(n['path']),patchId=patch['patch']['patchId'],patchManifestPath=str(patch['path']),patchManifestSha256=gate.digest(patch['path']),
-        nativeLibrarySha256=b['player']['nativeLibrarySha256'],nativeMetadataSha256=b['player']['nativeMetadataSha256'],inputSnapshotHash=b['player']['inputSnapshotHash'],
-        il2cpp=True,observerJoined=True,closureLoadOrder=order,observerErrors=[],byteInputs=[],operations=[],diagnostics=[],capacities=[],recovery=[],observerSamples=[],initializerEvents=[])
+def produce(path,mode,p,process_id,capsule_path,early_path):
+    c=p['context'];b=c['on'];m=c['manifest'];f=p['failures'];n=p['negative']
+    patch=c['fixtures'][gate.INITIALIZER_ID if mode==gate.MODES[2] else 'P03']
+    order=patch['patch']['loadOrder']
+    early=gate.read(early_path);final=early['snapshots'][-1]
+    expected_inputs=[]
     for row in patch['patch']['closure']:
-        source=patch['root']/row['dll'];actual=Path(n['data']['outputPath']) if q04 and row['name']=='AssemblyA.Contracts' else source
-        result['byteInputs'].append(dict(name=row['name'],sourcePath=str(source),sourceSha256=row['sha256'],actualPath=str(actual),actualSha256=gate.digest(actual),length=actual.stat().st_size,pdbSha256=''))
-    sizes=[row['length'] for row in result['byteInputs']];result['orderedSizes']=sizes
-    def op(name,code=0,text='Success'):result['operations'].append(dict(operation=name,code=code,name=text))
-    op('configure');op('begin');op('reserve')
-    for name in order:op('stage:'+name)
-    op('validate',13 if q04 else 0,'ReferenceResolutionFailed' if q04 else 'Success')
-    if not q04:op('commit',terminal,'ModuleInitializerFailed' if init else 'Success')
-    if terminal:
-        for name in ('abort-rejected','begin-rejected'):op(name,2 if q04 else 18,'InvalidState' if q04 else 'AlreadyCommitted')
-    phases=['before-reserve','after-reserve','after-stage','after-validate']+([] if q04 else ['after-commit'])+(['after-rejected-operations'] if terminal else [])
+        source=patch['root']/row['dll']
+        actual=Path(n['data']['outputPath']) if mode==gate.MODES[1] and row['name']=='AssemblyA.Contracts' else source
+        expected_inputs.append(dict(name=row['name'],sourcePath=str(source),sourceSha256=row['sha256'],
+            actualPath=str(actual),actualSha256=gate.digest(actual),length=actual.stat().st_size,pdbSha256=''))
     counter=0
-    def raw(phase,data,thread=1):
+    def raw(label,text):
         nonlocal counter
-        counter+=1;rawpath=path.with_name(path.stem+'.raw-'+str(counter)+'.json');text=json.dumps(data);rawpath.write_text(text)
-        return dict(phase=phase,rawJson=text,rawPath=str(rawpath),rawSha256=gate.digest(rawpath),code=0,threadId=thread,ticks=counter)
-    def diag(state,staged,published,metadata=False):
-        value=diagnostic();value.update(state=state,stateCode=m04.STATE_CODES[state],lastError=terminal if state==final else 0,
-            startupCandidateSchemaVersion=1,startupCandidateNames=order,startupObservationMode='EarlyTracking',metadataBudgetCapabilityVersion=1,recoveryCapabilityVersion=1,
-            generation=int(published),enumerationGeneration=int(published),classEnumerationGeneration=int(published),retainedBytes=sum(sizes) if staged else 0,
-            expected=len(order) if state!='Disabled' else 0,staged=len(order) if staged else 0,
-            baselineBuildId=m['baselineBuildId'] if state!='Disabled' else '',patchId=patch['patch']['patchId'] if state!='Disabled' else '',
-            closureLoadOrder=order if state!='Disabled' else [])
-        if q04 and state=='Failed':value['detail']='AssemblyA.Contracts: Image::ReadType invalid type'
-        value['ordinaryAssemblies']=[dict(name=name,isInterpreter=False) for name in order]+([dict(name=name,isInterpreter=True) for name in order] if published else [])
-        if state!='Disabled':value['assemblies']=[dict(name=name,mvid=patch['patch']['closure'][i]['mvid'] if staged else '',skeletonBuilt=staged,runtimeMetadataInitialized=metadata,
-            published=published,moduleInitializerAttempted=init and published and i<=1,moduleInitializerRan=init and published and i<1) for i,name in enumerate(order)]
-        if state in ('Failed','Validated','Committed','FailedAfterCommit','Committing'):
-            value['events']=[dict(sequence=1,kind='metadata-begin',name=order[0],generation=0,stagedCount=len(order))]
-        return value
-    before=r01.evaluate_budget([64,0,0,0],sizes)
-    for i,phase in enumerate(phases):
-        state=('Disabled','Staging','Staged','Failed' if q04 else 'Validated')[i] if i<4 else final
-        published=not q04 and i>=4;d=diag(state,i>=2,published,not q04 and i>=3)
-        result['diagnostics'].append(raw(phase,d))
-        cap=r01.evaluate_budget([64,0,0,0] if i==0 else before['finalCursors'],sizes)
-        cap.update(schemaVersion=1,enabled=True,profileVersion=1,indexBits=22,kindBits=2,remainingSlots=r01.remaining_slots(cap['cursors']),
-            ordinaryAllocatedCount=0,shadowAllocatedCount=0 if i<2 else 5,reservedImageCount=0 if i==0 else 5)
-        result['capacities'].append(raw(phase,cap))
-        rec=dict(schemaVersion=1,enabled=True,capabilityVersion=1,stateCode=m04.STATE_CODES[state],state=state,published=published,abortAllowed=False,
-            dispositionCode=0 if terminal else 4,disposition='RestartRequired' if terminal else 'ActiveShadow',terminalFailureCode=terminal,
-            reason=('AssemblyA.Contracts: Image::ReadType invalid type' if q04 else 'R01-INIT-THROW:AssemblyA.Implementation.Extensibility') if terminal else '',retainedBytes=sum(sizes) if i>=2 else 0,baselineEligibilityRequiresStartupValidation=bool(terminal))
-        result['recovery'].append(raw(phase,rec))
-    result['observerSamples']=[raw('before',diag('Staging',False,False),2),raw('after',diag(final,True,not q04,not q04),2)]
-    if init:
-        for name in order[:2]:result['initializerEvents'].append(dict(name=name,diagnostics=raw('initializer',diag('Committing',True,True,True))))
+        counter+=1;raw_path=path.with_name(path.stem+'.raw-'+str(counter)+'.json')
+        raw_path.write_text(text)
+        return dict(phase='after-host-continuation',rawJson=text,rawPath=str(raw_path),
+                    rawSha256=gate.digest(raw_path),code=0,threadId=1,ticks=counter)
+    result=dict(schemaVersion=2,kind='R01FailureHandoffResult',mode=mode,result='Passed',error='',
+        resultPath=str(path),processId=process_id,mainThreadId=1,
+        unityVersion=m['unityVersion'],platform='OSXPlayer',buildGuid=b['player']['buildGuid'],
+        playerDataPath=str(b['output']/'Contents'),baselineBuildId=m['baselineBuildId'],runtimeAbiHash=m['runtimeAbiHash'],
+        fixtureManifestPath=f['data']['fixtureManifestPath'],fixtureManifestSha256=f['data']['fixtureManifestSha256'],
+        playerBuildReceiptPath=str(b['path']),playerBuildReceiptSha256=gate.digest(b['path']),
+        baselineManifestPath=m['baselineManifestPath'],baselineManifestSha256=m['baselineManifestSha256'],
+        failureFixturesPath=str(f['path']),failureFixturesSha256=gate.digest(f['path']),
+        negativeInputPath=str(n['path']),negativeInputSha256=gate.digest(n['path']),
+        patchId=patch['patch']['patchId'],patchManifestPath=str(patch['path']),patchManifestSha256=gate.digest(patch['path']),
+        nativeLibrarySha256=b['player']['nativeLibrarySha256'],nativeMetadataSha256=b['player']['nativeMetadataSha256'],
+        inputSnapshotHash=b['player']['inputSnapshotHash'],il2cpp=True,closureLoadOrder=order,
+        orderedSizes=[row['length'] for row in expected_inputs],byteInputs=expected_inputs,
+        earlyMode=gate.early_mode(mode),earlyReceiptPath=str(early_path),earlyReceiptSha256=gate.digest(early_path),
+        capsulePath=str(capsule_path),capsuleSha256=gate.digest(capsule_path),
+        postHostDiagnostics=raw('diagnostics',final['diagnosticsJson']),
+        postHostCapacity=raw('capacity',final['capacityJson']),
+        postHostRecovery=raw('recovery',final['recoveryJson']))
     write(path,result);return result
 
 
@@ -151,7 +129,7 @@ class FailurePipelineTests(unittest.TestCase):
             early_path=Path(command[command.index('-shadowEarlyResult')+1])
             data=early_capsule.decode(capsule_path.read_bytes())
             write(early_path,emit_receipt(data,capsule_path,early_path,pid=self.pid))
-            produce(path,mode,self.prepared,self.pid)
+            produce(path,mode,self.prepared,self.pid,capsule_path,early_path)
             Path(command[-1]).write_text('synthetic Unity log');console.write_text('synthetic console')
             return dict(processId=self.pid,startedAtUnix=1000.0+self.pid,durationSeconds=1.0,exitCode=0,timedOut=False)
         args=[]
@@ -171,10 +149,10 @@ class FailurePipelineTests(unittest.TestCase):
         hashes=set()
         for row in receipt['processLaunches']:
             data=early_capsule.decode(Path(row['capsulePath']).read_bytes())
-            self.assertEqual(gate.EARLY_ADMISSION_MODE,data['mode'])
+            self.assertEqual(gate.early_mode(row['mode']),data['mode'])
             binding=gate.read(Path(row['earlyBindingPath']))
             self.assertEqual(row['mode'],binding['failureMode'])
-            self.assertEqual(gate.EARLY_ADMISSION_MODE,binding['earlyMode'])
+            self.assertEqual(gate.early_mode(row['mode']),binding['earlyMode'])
             self.assertIn(str(Path(row['earlyBindingPath'])),[item['path'] for item in data['prerequisiteFiles']])
             hashes.add(row['capsuleSha256'])
         self.assertEqual(len(gate.MODES),len(hashes))
@@ -224,12 +202,17 @@ class FailurePipelineTests(unittest.TestCase):
                     gate.verify_suite(launch)
         write(early_path,saved);write(launch,original)
 
-    def test_failure_probe_uses_shared_profile2_budget_validator(self):
+    def test_failure_probe_adopts_early_transaction_without_late_mutation(self):
         source=(Path(gate.__file__).resolve().parents[2] /
                 'Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs').read_text()
         self.assertIn('ShadowPatchMetadataReservation.ValidateIfDeclared',source)
-        self.assertIn('ReserveMetadataBudget(sizes, budgetProfileVersion)',source)
-        self.assertIn('profileVersion == M07Probe.RuntimeAbiVersion',source)
+        self.assertIn('R01EarlyStartup.LastReceiptJson',source)
+        self.assertIn('MetadataFailureContinue',source)
+        self.assertIn('InitializerFailureContinue',source)
+        self.assertIn('CapturePostHost',source)
+        for call in ('ConfigureCandidates(', 'BeginTransaction(', 'ReserveMetadataBudget(',
+                     'StageAssembly(', 'ValidateTransaction(', 'CommitTransaction('):
+            self.assertNotIn('AssemblyShadowRuntime.'+call,source)
         self.assertNotIn('patch.nativeBudgetCapabilityVersion == 1',source)
 
     def test_public_verifier_has_direct_module_entrypoint(self):
@@ -246,60 +229,43 @@ class FailurePipelineTests(unittest.TestCase):
                 bad=copy.deepcopy(saved);bad[key]=value;write(path,bad);receipt=copy.deepcopy(original);receipt['processLaunches'][1]['resultSha256']=gate.digest(path);write(launch,receipt)
                 with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
         write(path,saved);write(launch,original)
-    def test_raw_tampering_after_rebinding_all_hashes_is_rejected(self):
+    def test_post_host_raw_tampering_after_rebinding_hashes_is_rejected(self):
         launch=self.launch();initial=gate.read(launch)
-        cases=[('diagnostics',3,'lastError',9),('diagnostics',3,'retainedBytes',0),('capacities',3,'cursors',[64,0,0,0]),
-               ('recovery',-1,'baselineEligibilityRequiresStartupValidation',False),('recovery',-1,'terminalFailureCode',2),('recovery',-1,'disposition','BaselineEligibleAfterAbort'),
-               ('observerSamples',-1,'enumerationGeneration',1),('observerSamples',-1,'classEnumerationGeneration',1)]
-        path=Path(initial['processLaunches'][1]['resultPath']);saved=gate.read(path)
-        for group,index,key,value in cases:
+        process=initial['processLaunches'][1];path=Path(process['resultPath']);saved=gate.read(path)
+        cases=[('postHostDiagnostics','state','Committed'),('postHostDiagnostics','patchId','wrong'),
+               ('postHostCapacity','lifetimeReservedImageCount',999),
+               ('postHostRecovery','terminalFailureCode',0),
+               ('postHostRecovery','disposition','ActiveShadow')]
+        for group,key,value in cases:
             with self.subTest(group=group,key=key):
-                result=copy.deepcopy(saved);row=result[group][index];raw_path=Path(row['rawPath']);old=raw_path.read_text();data=json.loads(row['rawJson']);data[key]=value
-                row['rawJson']=json.dumps(data);raw_path.write_text(row['rawJson']);row['rawSha256']=gate.digest(raw_path);write(path,result)
-                receipt=copy.deepcopy(initial);receipt['processLaunches'][1]['resultSha256']=gate.digest(path);write(launch,receipt)
-                with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
+                result=copy.deepcopy(saved);row=result[group];raw_path=Path(row['rawPath']);old=raw_path.read_text()
+                data=json.loads(row['rawJson']);data[key]=value
+                row['rawJson']=json.dumps(data);raw_path.write_text(row['rawJson']);row['rawSha256']=gate.digest(raw_path)
+                write(path,result);receipt=copy.deepcopy(initial);receipt['processLaunches'][1]['resultSha256']=gate.digest(path);write(launch,receipt)
+                with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+                    gate.verify_suite(launch)
                 raw_path.write_text(old)
-        write(path,saved)
-    def test_recovery_startup_validation_flag_matches_native_disposition(self):
-        launch=self.launch();initial=gate.read(launch)
-        for mode_index,process in enumerate(initial['processLaunches']):
-            path=Path(process['resultPath']);saved=gate.read(path)
-            terminal_index=3 if mode_index==1 else 4
-            for index in range(terminal_index,len(saved['recovery'])):
-                with self.subTest(mode=mode_index,index=index):
-                    result=copy.deepcopy(saved);row=result['recovery'][index];raw_path=Path(row['rawPath']);old=raw_path.read_text()
-                    data=json.loads(row['rawJson']);data['baselineEligibilityRequiresStartupValidation']=mode_index==0
-                    row['rawJson']=json.dumps(data);raw_path.write_text(row['rawJson']);row['rawSha256']=gate.digest(raw_path)
-                    write(path,result);receipt=copy.deepcopy(initial);receipt['processLaunches'][mode_index]['resultSha256']=gate.digest(path);write(launch,receipt)
-                    with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
-                    raw_path.write_text(old)
-            write(path,saved)
-        write(launch,initial)
+        write(path,saved);write(launch,initial)
 
-    def test_native_transaction_identity_tampering_with_rebound_hashes_is_rejected(self):
-        launch=self.launch();initial=gate.read(launch)
-        cases=[('baselineBuildId','unrelated-baseline'),('patchId','unrelated-patch'),
-               ('closureLoadOrder',['unrelated-closure']),('mvid','unrelated-mvid')]
-        for mode_index,process in enumerate(initial['processLaunches']):
-            path=Path(process['resultPath']);saved=gate.read(path)
-            locations=[(group,index) for group in ('diagnostics','observerSamples') for index in range(len(saved[group]))]
-            locations += [('initializerEvents',index) for index in range(len(saved['initializerEvents']))]
-            for group,index in locations:
-                for key,value in cases:
-                    with self.subTest(mode=mode_index,group=group,index=index,key=key):
-                        result=copy.deepcopy(saved);row=result[group][index]
-                        if group=='initializerEvents':row=row['diagnostics']
-                        raw_path=Path(row['rawPath']);old=raw_path.read_text();data=json.loads(row['rawJson'])
-                        if key=='mvid':
-                            if not data['assemblies']:continue
-                            data['assemblies'][0]['mvid']=value
-                        else:data[key]=value
-                        row['rawJson']=json.dumps(data);raw_path.write_text(row['rawJson']);row['rawSha256']=gate.digest(raw_path)
-                        write(path,result);receipt=copy.deepcopy(initial);receipt['processLaunches'][mode_index]['resultSha256']=gate.digest(path);write(launch,receipt)
-                        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
-                        raw_path.write_text(old)
-            write(path,saved)
-        write(launch,initial)
+    def test_early_transaction_identity_is_authoritative(self):
+        launch=self.launch();initial=gate.read(launch);row=initial['processLaunches'][2]
+        early_path=Path(row['earlyResultPath']);saved=gate.read(early_path)
+        changed=copy.deepcopy(saved);changed['patchId']='wrong-early-patch';write(early_path,changed)
+        receipt=copy.deepcopy(initial);receipt['processLaunches'][2]['earlyResultSha256']=gate.digest(early_path);write(launch,receipt)
+        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+            gate.verify_suite(launch)
+        write(early_path,saved);write(launch,initial)
+
+    def test_initializer_publication_cannot_be_relabelled_post_host(self):
+        launch=self.launch();initial=gate.read(launch);row=initial['processLaunches'][2]
+        path=Path(row['resultPath']);saved=gate.read(path);result=copy.deepcopy(saved)
+        raw_row=result['postHostDiagnostics'];raw_path=Path(raw_row['rawPath']);old=raw_path.read_text()
+        data=json.loads(raw_row['rawJson']);data['assemblies'][1]['moduleInitializerRan']=True
+        raw_row['rawJson']=json.dumps(data);raw_path.write_text(raw_row['rawJson']);raw_row['rawSha256']=gate.digest(raw_path)
+        write(path,result);initial['processLaunches'][2]['resultSha256']=gate.digest(path);write(launch,initial)
+        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):
+            gate.verify_suite(launch)
+        raw_path.write_text(old)
 
     def test_launch_provenance_tampering_is_rejected(self):
         path=self.launch();original=gate.read(path)
@@ -425,12 +391,6 @@ class FailurePipelineTests(unittest.TestCase):
         bad = copy.deepcopy(context); bad['baseline'].pop('metadataCapacityReport2')
         with self.assertRaises(VerificationError): gate.metadata_profile(bad)
 
-    def test_initializer_failure_cannot_be_relabelled_as_complete_initialization(self):
-        launch=self.launch();receipt=gate.read(launch);path=Path(receipt['processLaunches'][2]['resultPath']);result=gate.read(path)
-        row=result['diagnostics'][-1];data=json.loads(row['rawJson']);data['assemblies'][1]['moduleInitializerRan']=True
-        row['rawJson']=json.dumps(data);Path(row['rawPath']).write_text(row['rawJson']);row['rawSha256']=gate.digest(Path(row['rawPath']))
-        write(path,result);receipt['processLaunches'][2]['resultSha256']=gate.digest(path);write(launch,receipt)
-        with patch.object(gate,'prepare',return_value=self.prepared),self.assertRaises(VerificationError):gate.verify_suite(launch)
 
 if __name__ == "__main__":
     unittest.main()
