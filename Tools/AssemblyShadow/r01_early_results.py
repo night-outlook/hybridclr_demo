@@ -26,11 +26,16 @@ from shadow_tools import require, unique_object
 
 
 MODES = tuple(capsule.MODES)
-DEFAULT_MODES = MODES[:-1]
 POSITIVE_MODES = frozenset(("Control", "OrdinaryFirst", "OrdinaryAfterReserve"))
-REJECTION_MODES = frozenset(set(MODES) - set(POSITIVE_MODES) - {"Baseline"})
-FAILURE_MODES = frozenset(("MetadataFailure", "InitializerFailure"))
+CONTINUED_FAILURE_MODES = frozenset(("MetadataFailureContinue", "InitializerFailureContinue"))
+TERMINAL_FAILURE_MODES = frozenset(("MetadataFailure", "InitializerFailure"))
+FAILURE_MODES = frozenset(set(TERMINAL_FAILURE_MODES) | set(CONTINUED_FAILURE_MODES))
+DEFAULT_MODES = tuple(mode for mode in MODES if mode not in CONTINUED_FAILURE_MODES and mode != "Baseline")
+REJECTION_MODES = frozenset(set(MODES) - set(POSITIVE_MODES) - set(CONTINUED_FAILURE_MODES) - {"Baseline"})
 DIAGNOSTIC_MODES = frozenset(MODES)
+
+def semantic_failure_mode(mode: str) -> str:
+    return mode[:-len("Continue")] if mode in CONTINUED_FAILURE_MODES else mode
 DEFAULT_M07_MODE = "T07-03-FullClosure-P03"
 M07_MODE = DEFAULT_M07_MODE
 EARLY_KIND = "R01EarlyStartupReceipt"
@@ -170,6 +175,7 @@ def _json(value: Any, label: str) -> dict[str, Any]:
 
 
 def _expected_operations(mode: str, closure: list[str]) -> list[tuple[str, str, int]]:
+    mode = semantic_failure_mode(mode)
     stage = [("stage:" + name, "Success", 0) for name in closure]
     if mode == "Baseline":
         return []
@@ -210,6 +216,7 @@ def _expected_operations(mode: str, closure: list[str]) -> list[tuple[str, str, 
 
 
 def _expected_snapshots(mode: str, closure: list[str]) -> list[str]:
+    mode = semantic_failure_mode(mode)
     if mode == "Baseline":
         return ["before-startup-ops"]
     phases = ["before-startup-ops"]
@@ -495,7 +502,7 @@ def _verify_timeline(parsed: list[dict[str, Any]], phases: list[str], data: dict
     and Begin overwrite lastError, while terminal recovery and retained owners
     remain unchanged. Capacity arithmetic reuses the independent R01 oracle.
     """
-    mode = data["mode"]
+    mode = semantic_failure_mode(data["mode"])
     closure = [row["name"] for row in data["inputs"]]
     sizes = _ordered_sizes(data, mode)
     identities = {row["name"]: read_identity(Path(row["dllPath"]))["mvid"] for row in data["inputs"]}
@@ -708,7 +715,7 @@ OBSERVER_MODES = frozenset(("Control", "MetadataFailure", "InitializerFailure"))
 
 def _verify_observers(receipt: dict[str, Any], data: dict[str, Any], parsed: list[dict[str, Any]],
                       profile: int = 1) -> None:
-    mode = data["mode"]
+    mode = semantic_failure_mode(data["mode"])
     samples, initializers = receipt["observerSamples"], receipt["initializerEvents"]
     require(type(samples) is list and type(initializers) is list, "early.observer arrays")
     exact(receipt["observerErrors"], [], "early.observerErrors")
@@ -875,7 +882,8 @@ def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str,
     exact(receipt["kind"], EARLY_KIND, "early.kind")
     exact(receipt["mode"], expected_mode, "early.mode")
     expected_result = "Passed" if expected_mode in POSITIVE_MODES or expected_mode == "Baseline" else \
-        "PassedExpectedFailure" if expected_mode in FAILURE_MODES else "PassedExpectedRejection"
+        "PassedExpectedFailureContinued" if expected_mode in CONTINUED_FAILURE_MODES else \
+        "PassedExpectedFailure" if expected_mode in TERMINAL_FAILURE_MODES else "PassedExpectedRejection"
     exact(receipt["result"], expected_result, "early.result")
     exact(receipt["error"], "", "early.error")
     exact(receipt["capsulePath"], str(capsule_path), "early.capsulePath")
@@ -890,7 +898,7 @@ def verify_early_receipt(path: Path, capsule_path: Path, expected_mode: str,
     integer(receipt["stopwatchFrequency"], "early.stopwatchFrequency", 1)
     integer(receipt["elapsedTicks"], "early.elapsedTicks")
     callback = integer(receipt["callbackReturnCode"], "early.callbackReturnCode")
-    expected_callback = 0 if expected_mode in POSITIVE_MODES or expected_mode == "Baseline" else 1
+    expected_callback = 0 if expected_mode in POSITIVE_MODES or expected_mode == "Baseline" or expected_mode in CONTINUED_FAILURE_MODES else 1
     exact(callback, expected_callback, "early.callbackReturnCode")
     verify_byte_inputs(receipt, data, "early")
     operations = receipt["operations"]
@@ -1008,6 +1016,7 @@ def verify_suite(launch_path: Path) -> dict[str, Any]:
     require(m07_mode in m07.MODES and m07_mode != "T07-14-FeatureOff", "launch.m07Mode is not an ON M07 mode")
     requested = launch["requestedModes"]
     require(type(requested) is list and requested and all(mode in MODES for mode in requested), "launch.requestedModes")
+    require(not set(requested).intersection(CONTINUED_FAILURE_MODES), "Continuation failure modes require the dedicated failure/publication launcher")
     require(requested == list(dict.fromkeys(requested)), "launch.requestedModes contains duplicates")
     if m07_mode != DEFAULT_M07_MODE:
         exact(requested, ["Control"], "launch.m07Mode diagnostic scope")
