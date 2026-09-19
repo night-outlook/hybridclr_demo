@@ -178,3 +178,19 @@ Workflow `35449924454` at source anchor `925e84d7...` passed:
 Artifact `10586344220`; ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
 
 This is Primary source/tool evidence only; real Player/performance acceptance remains Local work.
+
+## Final committed handoff CI
+
+The exact live `WEB_TO_LOCAL.md` state at commit `08f805da9ea8e479801f10d3a4fbb7af0a70a123` passed workflow `35450199014`:
+
+- bounded Primary: **323/323**;
+- committed handoff: **11/11**;
+- early capsule: **7/7**;
+- early launch: **20/20**;
+- early results: **20/20**;
+- failure pipeline: **16/16**;
+- lazy contract: **10/10**.
+
+Artifact `10586482880`; ZIP SHA-256 `676152ab0de591d0012b2d7f6a96cbac16dce37b5cca0d894c5b482b12835e1d`.
+
+This remains Primary source/tool evidence, not Local V04 closure.
