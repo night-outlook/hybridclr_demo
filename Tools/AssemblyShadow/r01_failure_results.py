@@ -13,14 +13,26 @@ from r00_player_inputs import verify_inputs
 from shadow_tools import require
 
 MODES = ("R01-Failure-P03-Control", "R01-Failure-Q04-Metadata", "R01-Failure-InitializerThrow")
-EARLY_ADMISSION_MODE = "Baseline"
 EARLY_BINDING_KIND = "R01FailureEarlyAdmissionBinding"
+EARLY_MODE_BY_FAILURE = {
+    MODES[0]: "Control",
+    MODES[1]: "MetadataFailureContinue",
+    MODES[2]: "InitializerFailureContinue",
+}
+
+def early_mode(mode):
+    require(mode in EARLY_MODE_BY_FAILURE, "Unknown failure/publication mode")
+    return EARLY_MODE_BY_FAILURE[mode]
+
+def expected_early_result(mode):
+    return "Passed" if mode == MODES[0] else "PassedExpectedFailureContinued"
+
 INITIALIZER_ID = "R01-P03-InitializerThrow"
 INITIALIZER_TARGET = "AssemblyA.Implementation.Extensibility"
 INITIALIZER_REASON = "R01-INIT-THROW:" + INITIALIZER_TARGET
 DEFINES = ["ASSEMBLY_SHADOW_P01", "ASSEMBLY_SHADOW_P03", "ASSEMBLY_SHADOW_M03_INITIALIZERS",
            "ASSEMBLY_SHADOW_M03_P03", "ASSEMBLY_SHADOW_R01_INITIALIZER_THROW"]
-RESULT_FIELDS = "schemaVersion kind mode result error resultPath processId mainThreadId unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 baselineManifestPath baselineManifestSha256 failureFixturesPath failureFixturesSha256 negativeInputPath negativeInputSha256 patchId patchManifestPath patchManifestSha256 nativeLibrarySha256 nativeMetadataSha256 inputSnapshotHash il2cpp observerJoined closureLoadOrder observerErrors orderedSizes byteInputs operations diagnostics capacities recovery observerSamples initializerEvents"
+RESULT_FIELDS = "schemaVersion kind mode result error resultPath processId mainThreadId unityVersion platform buildGuid playerDataPath baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 playerBuildReceiptPath playerBuildReceiptSha256 baselineManifestPath baselineManifestSha256 failureFixturesPath failureFixturesSha256 negativeInputPath negativeInputSha256 patchId patchManifestPath patchManifestSha256 nativeLibrarySha256 nativeMetadataSha256 inputSnapshotHash il2cpp closureLoadOrder orderedSizes byteInputs earlyMode earlyReceiptPath earlyReceiptSha256 capsulePath capsuleSha256 postHostDiagnostics postHostCapacity postHostRecovery"
 RAW_FIELDS = "phase rawJson rawPath rawSha256 code threadId ticks"
 RECEIPT_FIELDS = "schemaVersion kind result sourcePins baselineManifestPath baselineManifestSha256 baselineBuildId runtimeAbiHash fixtureManifestPath fixtureManifestSha256 initializer replayPatchManifest replayPatchManifestSha256 replayBytesEqual files"
 LAUNCH_FIELDS = "schemaVersion kind projectRoot fixtureManifestPath onBuildReceiptPath offBuildReceiptPath replayReceiptPath failureFixturesPath negativeInputPath sourcePins modes processLaunches resultDirectory capsuleDirectory inputHashesBefore inputHashesAfter inputsUnchanged"
@@ -369,164 +381,146 @@ def ordinary(value, patch, baseline_id, label, begun=True, profile=1):
     return g, e, c
 
 
-def verify_result(path, mode, prepared):
-    path = canonical(str(path), Path(path), "result")
+def expected_byte_inputs(mode, prepared):
+    context, failures, negative = (prepared[key] for key in ("context", "failures", "negative"))
+    fixture = failures["initializer"] if mode == MODES[2] else context["fixtures"]["P03"]
+    rows = []
+    for row in fixture["patch"]["closure"]:
+        source = prior._rel(fixture["root"], row["dll"], fixture["path"], "source DLL")
+        actual = Path(negative["data"]["outputPath"]) if mode == MODES[1] and row["name"] == "AssemblyA.Contracts" else source
+        rows.append(dict(
+            name=row["name"], sourcePath=str(source), sourceSha256=row["sha256"],
+            actualPath=str(actual), actualSha256=digest(actual), length=actual.stat().st_size,
+            pdbSha256=row["pdbSha256"] or ""))
+    return fixture, rows
+
+
+def _verify_post_host_diagnostics(value, mode, prepared, early):
+    context = prepared["context"]
+    profile = prepared["profile"]
+    fixture, _ = expected_byte_inputs(mode, prepared)
+    patch = fixture["patch"]
+    closure = patch["loadOrder"]
+    fields(value, m04.R01_DIAGNOSTIC_FIELDS, mode + ".postHostDiagnostics")
+    m04._diagnostic(value, mode + ".postHostDiagnostics", expected_abi=profile)
+
+    expected_state = "Committed" if mode == MODES[0] else "Failed" if mode == MODES[1] else "FailedAfterCommit"
+    expected_state_code = 6 if mode == MODES[0] else 8 if mode == MODES[1] else 9
+    expected_generation = 0 if mode == MODES[1] else 1
+    expected_last_error = 0 if mode == MODES[0] else 2 if mode == MODES[1] else 18
+
+    for key, expected in (
+        ("enabled", True), ("runtimeAbiVersion", profile),
+        ("metadataBudgetCapabilityVersion", profile), ("recoveryCapabilityVersion", 1),
+        ("startupCandidateSchemaVersion", 1), ("startupObservationMode", "EarlyTracking"),
+        ("startupCandidateNames", context["manifest"]["candidateNames"]),
+        ("state", expected_state), ("stateCode", expected_state_code),
+        ("lastError", expected_last_error),
+        ("baselineBuildId", context["manifest"]["baselineBuildId"]),
+        ("patchId", patch["patchId"]), ("closureLoadOrder", closure),
+        ("expected", len(closure)), ("staged", len(closure)),
+        ("generation", expected_generation), ("enumerationGeneration", expected_generation),
+        ("classEnumerationGeneration", expected_generation),
+    ):
+        exact(value[key], expected, mode + ".postHost." + key)
+
+    require(value["retainedBytes"] >= sum(row["length"] for row in expected_byte_inputs(mode, prepared)[1]),
+            mode + ".postHost.retainedBytes")
+    exact([row["name"] for row in value["assemblies"]], closure, mode + ".postHost.assemblies")
+    by_name = {row["name"]: row for row in patch["closure"]}
+    published = mode != MODES[1]
+    for row in value["assemblies"]:
+        source = by_name[row["name"]]
+        exact(row["mvid"], source["mvid"], mode + ".postHost.mvid." + row["name"])
+        exact(row["skeletonBuilt"], True, mode + ".postHost.skeleton." + row["name"])
+        exact(row["runtimeMetadataInitialized"], mode != MODES[1],
+              mode + ".postHost.metadata." + row["name"])
+        exact(row["published"], published, mode + ".postHost.published." + row["name"])
+
+    early_final = early["snapshots"][-1]["diagnostics"]
+    import r01_early_results as early_gate
+    early_gate.verify_first_use_history(
+        value["baselineUses"], early_final["baselineUses"], early["capsule"],
+        mode + ".postHost.firstUseHistory")
+    if published:
+        # Any post-publication physical baseline use would seal the runtime and
+        # contradict the required Committed/FailedAfterCommit state.
+        exact(value["baselineUses"], early_final["baselineUses"], mode + ".postHost.noLateBaselineUse")
+    return value
+
+
+def verify_handoff_result(path, mode, prepared, early, capsule_path, early_path):
+    path = canonical(str(path), Path(path), "failure handoff result")
     result = fields(read(path), RESULT_FIELDS, str(path))
     context, failures, negative = (prepared[key] for key in ("context", "failures", "negative"))
-    profile = prepared.get("profile")
-    if profile is None:
-        # Focused producer tests substitute a deliberately minimal prepared
-        # context; those fixtures are the historical profile-1 contract.
-        profile = 1
     manifest, build = context["manifest"], context["on"]
-    fixture = failures["initializer"] if mode == MODES[2] else context["fixtures"]["P03"]
+    fixture, expected_inputs = expected_byte_inputs(mode, prepared)
     closure = fixture["patch"]["loadOrder"]
-    for key, expected in dict(schemaVersion=1, kind="R01FailureResult", mode=mode, result="Passed", error="", resultPath=str(path),
-        il2cpp=True, observerJoined=True, observerErrors=[], closureLoadOrder=closure, unityVersion=manifest["unityVersion"],
-        platform="OSXPlayer", buildGuid=build["player"]["buildGuid"], baselineBuildId=manifest["baselineBuildId"], runtimeAbiHash=manifest["runtimeAbiHash"],
-        fixtureManifestPath=failures["data"]["fixtureManifestPath"], fixtureManifestSha256=failures["data"]["fixtureManifestSha256"],
+
+    expected = dict(
+        schemaVersion=2, kind="R01FailureHandoffResult", mode=mode, result="Passed", error="",
+        resultPath=str(path), unityVersion=manifest["unityVersion"], platform="OSXPlayer",
+        buildGuid=build["player"]["buildGuid"], baselineBuildId=manifest["baselineBuildId"],
+        runtimeAbiHash=manifest["runtimeAbiHash"],
+        fixtureManifestPath=failures["data"]["fixtureManifestPath"],
+        fixtureManifestSha256=failures["data"]["fixtureManifestSha256"],
         playerBuildReceiptPath=str(build["path"]), playerBuildReceiptSha256=digest(build["path"]),
-        baselineManifestPath=manifest["baselineManifestPath"], baselineManifestSha256=manifest["baselineManifestSha256"],
-        failureFixturesPath=str(failures["path"]), failureFixturesSha256=digest(failures["path"]), negativeInputPath=str(negative["path"]),
-        negativeInputSha256=digest(negative["path"]), patchId=fixture["patch"]["patchId"], patchManifestPath=str(fixture["path"]),
-        patchManifestSha256=digest(fixture["path"]), nativeLibrarySha256=build["player"]["nativeLibrarySha256"],
-        nativeMetadataSha256=build["player"]["nativeMetadataSha256"], inputSnapshotHash=build["player"]["inputSnapshotHash"]).items():
-        exact(result[key], expected, mode + "." + key)
-    r01.integer(result["processId"], "result.processId", 1); r01.integer(result["mainThreadId"], "result.mainThreadId", 1)
-    data_path = canonical(result["playerDataPath"], path, "Player data", True)
-    require(data_path.is_relative_to(build["output"]), "Result came from a different Player")
-    expected_inputs = []
-    for row in fixture["patch"]["closure"]:
-        source = prior._rel(fixture["root"], row["dll"], path, "source DLL")
-        actual = Path(negative["data"]["outputPath"]) if mode == MODES[1] and row["name"] == "AssemblyA.Contracts" else source
-        expected_inputs.append(dict(name=row["name"], sourcePath=str(source), sourceSha256=row["sha256"], actualPath=str(actual),
-            actualSha256=digest(actual), length=actual.stat().st_size, pdbSha256=row["pdbSha256"] or ""))
-    exact(result["byteInputs"], expected_inputs, "actual Stage bytes")
-    sizes = [row["length"] for row in expected_inputs]; exact(result["orderedSizes"], sizes, "ordered reservation sizes")
-    q04, initializer = mode == MODES[1], mode == MODES[2]
-    terminal, state, state_code = (13, "Failed", 8) if q04 else (19, "FailedAfterCommit", 9) if initializer else (0, "Committed", 6)
-    codes = [("configure", 0, "Success"), ("begin", 0, "Success"), ("reserve", 0, "Success")]
-    codes += [("stage:" + name, 0, "Success") for name in closure]
-    codes += [("validate", 13 if q04 else 0, "ReferenceResolutionFailed" if q04 else "Success")]
-    if not q04: codes += [("commit", terminal, "ModuleInitializerFailed" if initializer else "Success")]
-    if terminal: codes += [("abort-rejected", 2 if q04 else 18, "InvalidState" if q04 else "AlreadyCommitted"),
-                            ("begin-rejected", 2 if q04 else 18, "InvalidState" if q04 else "AlreadyCommitted")]
-    exact(result["operations"], [dict(operation=op, code=code, name=name) for op, code, name in codes], "ordered runtime operations")
-    phases = ["before-reserve", "after-reserve", "after-stage", "after-validate"]
-    if not q04: phases += ["after-commit"]
-    if terminal: phases += ["after-rejected-operations"]
-    parsed = {}
-    raw_paths = []
-    for group in ("diagnostics", "capacities", "recovery"):
-        exact([row["phase"] for row in result[group]], phases, group + " phases")
-        parsed[group] = [raw(row, path, group + "." + row["phase"]) for row in result[group]]
-        raw_paths += [row["rawPath"] for row in result[group]]
-        require(all(row["threadId"] == result["mainThreadId"] for row in result[group]), "Main snapshots used another thread")
-        require([row["ticks"] for row in result[group]] == sorted(row["ticks"] for row in result[group]), "Snapshot time regressed")
-    for i, value in enumerate(parsed["diagnostics"]):
-        ordinary(value, fixture["patch"], manifest["baselineBuildId"], "diagnostics." + phases[i], begun=i > 0,
-                 profile=profile)
-        expected_state = ("Disabled", "Staging", "Staged", "Failed" if q04 else "Validated")[i] if i < 4 else state
-        exact(value["state"], expected_state, "diagnostic state")
-        if i < 2: exact(value["retainedBytes"], 0, "premature retained owner")
-        else:
-            require(value["retainedBytes"] >= sum(sizes), "Stage did not retain real DLL owners")
-            exact(value["staged"], len(closure), "incomplete staged closure")
-            exact([row["name"] for row in value["assemblies"]], closure, "diagnostic closure")
-            require(all(row["skeletonBuilt"] for row in value["assemblies"]), "Missing genuine skeleton")
-        published = not q04 and phases[i] in ("after-commit", "after-rejected-operations")
-        exact(value["generation"], int(published), "diagnostic publication")
-        if i >= 2: exact([row["published"] for row in value["assemblies"]], [published] * len(closure), "atomic publication")
-        if not published: require(not any(row["moduleInitializerAttempted"] for row in value["assemblies"]), "Private initializer ran")
-        if phases[i] in ("after-validate", "after-commit", "after-rejected-operations") and not q04:
-            require(all(row["runtimeMetadataInitialized"] for row in value["assemblies"]), "Uninitialized publication metadata")
-    if q04:
-        failure = parsed["diagnostics"][3]
-        exact(failure["lastError"], 13, "Q04 exact failure")
-        require(all(not row["runtimeMetadataInitialized"] for row in failure["assemblies"]), "Q04 failure did not stop at the first provider")
-        require(failure["detail"].startswith("AssemblyA.Contracts:") and "Image::ReadType invalid type" in failure["detail"],
-                "Q04 did not fail at the intended production method-signature parser")
-        exact([(row["name"], row["stagedCount"]) for row in failure["events"] if row["kind"] == "metadata-begin"],
-              [("AssemblyA.Contracts", len(closure))], "Q04 real metadata initializer entry")
-        require(not any(row["kind"] == "metadata-ready" for row in failure["events"]), "Q04 reported completed provider metadata")
-    if initializer: exact(parsed["diagnostics"][-2]["lastError"], 19, "initializer exact failure")
-    capacities = parsed["capacities"]
-    if profile == 1:
-        for value in capacities:
-            fields(value, "schemaVersion enabled profileVersion indexBits kindBits cursors remainingSlots requiredImages acceptedImages firstFailingIndex firstFailingSize failureReason fits allocations finalCursors ordinaryAllocatedCount shadowAllocatedCount reservedImageCount", "capacity raw")
-            model = r01.evaluate_budget(value["cursors"], sizes)
-            for key in model: exact(value[key], model[key], "capacity dry-run." + key)
-            exact(value["remainingSlots"], r01.remaining_slots(value["cursors"]), "capacity remaining slots")
-            for key, expected in (("schemaVersion", 1), ("enabled", True), ("profileVersion", 1), ("indexBits", 22), ("kindBits", 2)):
-                exact(value[key], expected, "capacity." + key)
-        exact(capacities[1]["cursors"], capacities[0]["finalCursors"], "reservation advanced exact planned cursors")
-        exact(capacities[1]["reservedImageCount"], capacities[0]["reservedImageCount"] + len(sizes), "complete reserved budget")
-        for value in capacities[1:]:
-            exact(value["cursors"], capacities[1]["cursors"], "retained budget cursor cannot roll back")
-            exact(value["ordinaryAllocatedCount"], capacities[0]["ordinaryAllocatedCount"], "unexpected ordinary image")
-            exact(value["reservedImageCount"], capacities[1]["reservedImageCount"], "reservation discarded")
-        for value in capacities[2:]: exact(value["shadowAllocatedCount"], capacities[1]["shadowAllocatedCount"] + len(sizes), "staged reserved slots consumed exactly once")
-    else:
-        for value in capacities:
-            verify_profile2_capacity(value, sizes, "capacity raw")
-        exact(capacities[1]["lifetimeReservedImageCount"], capacities[0]["lifetimeReservedImageCount"] + len(sizes),
-             "profile2 reservation advanced exact image count")
-        for value in capacities[1:]:
-            exact(value["lifetimeReservedImageCount"], capacities[1]["lifetimeReservedImageCount"],
-                  "profile2 reservation count cannot roll back")
-            exact(value["ordinaryAllocatedCount"], capacities[0]["ordinaryAllocatedCount"],
-                  "profile2 unexpected ordinary image")
-    for value in parsed["recovery"]:
-        fields(value, "schemaVersion enabled capabilityVersion stateCode state published abortAllowed dispositionCode disposition terminalFailureCode reason retainedBytes baselineEligibilityRequiresStartupValidation", "recovery raw")
-        for key in ("enabled", "published", "abortAllowed", "baselineEligibilityRequiresStartupValidation"): r01.boolean(value[key], "recovery." + key)
-        r01.integer(value["retainedBytes"], "recovery.retainedBytes")
-    for value in parsed["diagnostics"][2:]:
-        exact(value["retainedBytes"], parsed["diagnostics"][2]["retainedBytes"], "retained owner lifetime")
-    terminal_index = phases.index("after-validate" if q04 else "after-commit")
-    for value in parsed["recovery"][terminal_index:]:
-        for key, expected in dict(schemaVersion=1, enabled=True, capabilityVersion=1, state=state, stateCode=state_code,
-            published=not q04, abortAllowed=False, disposition="RestartRequired" if terminal else "ActiveShadow",
-            dispositionCode=0 if terminal else 4, terminalFailureCode=terminal, baselineEligibilityRequiresStartupValidation=bool(terminal)).items():
-            exact(value[key], expected, "durable recovery." + key)
-        require(value["retainedBytes"] >= sum(sizes), "Recovery lost genuine owner retention")
-        if terminal:
-            expected_reason = "Image::ReadType invalid type" if q04 else INITIALIZER_REASON
-            require(expected_reason in value["reason"], "Terminal recovery lost the actual injected failure reason")
-    if terminal:
-        exact(parsed["recovery"][-1], parsed["recovery"][terminal_index], "rejected operations rewrote terminal recovery")
-    samples = result["observerSamples"]
-    require(samples and {row["phase"] for row in samples} == {"before", "after"}, "Missing actual observer samples on both sides")
-    require(len(samples) <= 32 and len({row["threadId"] for row in samples}) == 1 and samples[0]["threadId"] != result["mainThreadId"], "Observer did not execute on a separate bounded thread")
-    previous = (0, 0, 0)
-    for row in samples:
-        value = raw(row, path, "observer"); raw_paths.append(row["rawPath"])
-        current = ordinary(value, fixture["patch"], manifest["baselineBuildId"], "observer", profile=profile)
-        require(all(a <= b for a, b in zip(previous, current)), "Observer generations regressed"); previous = current
-        if row["phase"] == "after": exact(value["state"], state, "observer final state"); exact(current, (0, 0, 0) if q04 else (1, 1, 1), "observer final publication")
-    require(any(raw(row, path, "observer initial")["enumerationGeneration"] == 0 for row in samples if row["phase"] == "before"), "No actual pre-publication sample")
-    if initializer:
-        attempted = closure[:closure.index(INITIALIZER_TARGET) + 1]
-        exact([row["name"] for row in result["initializerEvents"]], attempted, "actual throwing initializer order")
-        for row in result["initializerEvents"]:
-            value = raw(row["diagnostics"], path, "initializer reentrant"); raw_paths.append(row["diagnostics"]["rawPath"])
-            exact(value["state"], "Committing", "initializer reentrant state"); exact(ordinary(value, fixture["patch"], manifest["baselineBuildId"], "initializer", profile=profile), (1, 1, 1), "initializer complete publication")
-        final_rows = parsed["diagnostics"][-1]["assemblies"]
-        exact([row["moduleInitializerAttempted"] for row in final_rows], [name in attempted for name in closure], "initializer attempts")
-        exact([row["moduleInitializerRan"] for row in final_rows], [name in attempted[:-1] for name in closure], "initializer completion")
-    else: exact(result["initializerEvents"], [], "unexpected initializer fixture")
-    require(len(set(raw_paths)) == len(raw_paths), "Raw responses reused across observations")
-    exact({str(file) for file in path.parent.glob(path.stem + ".raw-*.json")}, set(raw_paths), "complete raw response inventory")
-    return dict(mode=mode, state=state, terminalFailureCode=terminal, result="Passed", processId=result["processId"], observerSamples=len(samples))
+        baselineManifestPath=manifest["baselineManifestPath"],
+        baselineManifestSha256=manifest["baselineManifestSha256"],
+        failureFixturesPath=str(failures["path"]), failureFixturesSha256=digest(failures["path"]),
+        negativeInputPath=str(negative["path"]), negativeInputSha256=digest(negative["path"]),
+        patchId=fixture["patch"]["patchId"], patchManifestPath=str(fixture["path"]),
+        patchManifestSha256=digest(fixture["path"]),
+        nativeLibrarySha256=build["player"]["nativeLibrarySha256"],
+        nativeMetadataSha256=build["player"]["nativeMetadataSha256"],
+        inputSnapshotHash=build["player"]["inputSnapshotHash"], il2cpp=True,
+        closureLoadOrder=closure, orderedSizes=[row["length"] for row in expected_inputs],
+        byteInputs=expected_inputs, earlyMode=early_mode(mode),
+        earlyReceiptPath=str(early_path), earlyReceiptSha256=digest(early_path),
+        capsulePath=str(capsule_path), capsuleSha256=digest(capsule_path),
+    )
+    for key, wanted in expected.items():
+        exact(result[key], wanted, mode + "." + key)
+
+    pid = r01.integer(result["processId"], mode + ".processId", 1)
+    exact(pid, early["pid"], mode + ".sameProcess")
+    r01.integer(result["mainThreadId"], mode + ".mainThreadId", 1)
+    data_path = canonical(result["playerDataPath"], path, mode + ".playerDataPath", True)
+    require(data_path.is_relative_to(build["output"]), mode + ": result came from a different Player")
+
+    diagnostics = raw(result["postHostDiagnostics"], path, mode + ".postHostDiagnostics")
+    capacity = raw(result["postHostCapacity"], path, mode + ".postHostCapacity")
+    recovery = raw(result["postHostRecovery"], path, mode + ".postHostRecovery")
+    _verify_post_host_diagnostics(diagnostics, mode, prepared, early)
+
+    # Host continuation must not mutate the process-lifetime metadata ledger or
+    # durable recovery classification established by the early transaction.
+    exact(capacity, early["snapshots"][-1]["capacity"], mode + ".postHost.capacityStable")
+    exact(recovery, early["snapshots"][-1]["recovery"], mode + ".postHost.recoveryStable")
+    exact(result["postHostDiagnostics"]["threadId"], result["mainThreadId"], mode + ".postHost.diagThread")
+    exact(result["postHostCapacity"]["threadId"], result["mainThreadId"], mode + ".postHost.capacityThread")
+    exact(result["postHostRecovery"]["threadId"], result["mainThreadId"], mode + ".postHost.recoveryThread")
+
+    raw_paths = [
+        result["postHostDiagnostics"]["rawPath"],
+        result["postHostCapacity"]["rawPath"],
+        result["postHostRecovery"]["rawPath"],
+    ]
+    require(len(set(raw_paths)) == 3, mode + ": post-host raw responses reused")
+    exact({str(file) for file in path.parent.glob(path.stem + ".raw-*.json")},
+          set(raw_paths), mode + ".completePostHostRawInventory")
+    return dict(mode=mode, result="Passed", processId=pid,
+                earlyMode=early_mode(mode), postHostState=diagnostics["state"])
 
 
 def admission_binding(prepared, mode, paths):
     require(mode in MODES, "Unknown failure/publication mode")
     context = prepared["context"]
     return dict(
-        schemaVersion=1,
+        schemaVersion=2,
         kind=EARLY_BINDING_KIND,
         failureMode=mode,
-        earlyMode=EARLY_ADMISSION_MODE,
+        earlyMode=early_mode(mode),
         baselineBuildId=context["manifest"]["baselineBuildId"],
         runtimeAbiHash=context["manifest"]["runtimeAbiHash"],
         fixtureManifestPath=str(paths["fixtureManifestPath"]),
@@ -544,23 +538,28 @@ def admission_binding(prepared, mode, paths):
 def admission_capsule(prepared, mode, paths, binding_path):
     binding_path = Path(binding_path)
     extras = set(prepared["failures"]["files"]) | set(prepared["negative"]["files"]) | {binding_path}
+    replacement = {
+        "initializer": prepared["failures"]["initializer"],
+        "negative": prepared["negative"],
+    }
     return early_capsule.from_context(
-        prepared["context"], EARLY_ADMISSION_MODE, "P03", paths["fixtureManifestPath"],
-        extra_prerequisites=extras)
+        prepared["context"], early_mode(mode), "P03", paths["fixtureManifestPath"],
+        replacement=replacement, extra_prerequisites=extras)
 
 
 def materialize_admission_inputs(prepared, paths, root):
     root = Path(root)
     require(root.is_absolute() and root == root.resolve() and root.is_dir() and not root.is_symlink(),
-            "Early-admission root must be a canonical directory")
-    require(not any(root.iterdir()), "Early-admission root must be empty")
+            "Early transaction root must be a canonical directory")
+    require(not any(root.iterdir()), "Early transaction root must be empty")
     result = {}
     for mode in MODES:
         binding_path = root / (mode + ".binding.json")
         binding = admission_binding(prepared, mode, paths)
         binding_path.write_text(json.dumps(binding, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         capsule_path = root / (mode + ".capsule")
-        receipt = early_capsule.write_capsule(capsule_path, admission_capsule(prepared, mode, paths, binding_path))
+        receipt = early_capsule.write_capsule(
+            capsule_path, admission_capsule(prepared, mode, paths, binding_path))
         result[mode] = dict(bindingPath=binding_path, bindingSha256=digest(binding_path),
                             capsulePath=capsule_path, capsuleSha256=receipt["sha256"])
     return result
@@ -576,7 +575,7 @@ def verify_admission_capsule(path, mode, binding_path, prepared, paths):
     path = canonical(str(path), Path(path), mode + ".earlyCapsule")
     actual = early_capsule.decode(path.read_bytes())
     exact(actual, admission_capsule(prepared, mode, paths, binding_path), mode + ".earlyCapsule")
-    exact(actual["mode"], EARLY_ADMISSION_MODE, mode + ".earlyCapsuleMode")
+    exact(actual["mode"], early_mode(mode), mode + ".earlyCapsuleMode")
     return path
 
 
@@ -592,28 +591,31 @@ def command_for(prepared, mode, paths, capsule_path, early_result_path, result_p
 
 
 def verify_suite(launch_path):
-    # Lazy import avoids a module-import cycle: r01_early_results uses this
-    # module's failure-fixture verifier for its own intentional failure modes.
     import r01_early_results as early_gate
 
     launch_path = canonical(str(launch_path), Path(launch_path), "failure launch")
     launch = fields(read(launch_path), LAUNCH_FIELDS, "failure launch")
-    for key, expected in (("schemaVersion", 2), ("kind", "R01FailureLaunches"), ("modes", list(MODES)), ("inputsUnchanged", True)):
+    for key, expected in (("schemaVersion", 3), ("kind", "R01FailureLaunches"),
+                          ("modes", list(MODES)), ("inputsUnchanged", True)):
         exact(launch[key], expected, "launch." + key)
     paths = {key: canonical(launch[key], launch_path, key, key == "projectRoot") for key in
-             ("projectRoot", "fixtureManifestPath", "onBuildReceiptPath", "offBuildReceiptPath", "replayReceiptPath", "failureFixturesPath", "negativeInputPath")}
-    prepared = prepare(*(paths[key] for key in ("projectRoot", "fixtureManifestPath", "onBuildReceiptPath", "offBuildReceiptPath", "replayReceiptPath", "failureFixturesPath", "negativeInputPath")))
+             ("projectRoot", "fixtureManifestPath", "onBuildReceiptPath", "offBuildReceiptPath",
+              "replayReceiptPath", "failureFixturesPath", "negativeInputPath")}
+    prepared = prepare(*(paths[key] for key in
+                         ("projectRoot", "fixtureManifestPath", "onBuildReceiptPath", "offBuildReceiptPath",
+                          "replayReceiptPath", "failureFixturesPath", "negativeInputPath")))
     exact(launch["sourcePins"], prepared["context"]["sourcePins"], "launch.sourcePins")
     result_dir = canonical(launch["resultDirectory"], launch_path, "result directory", True)
     exact(result_dir, launch_path.parent / "Results", "result directory confinement")
     capsule_dir = canonical(launch["capsuleDirectory"], launch_path, "capsule directory", True)
-    exact(capsule_dir, launch_path.parent / "EarlyAdmission", "capsule directory confinement")
+    exact(capsule_dir, launch_path.parent / "EarlyTransactions", "capsule directory confinement")
 
     rows = launch["processLaunches"]
     exact([row["mode"] for row in rows], list(MODES), "complete ordered process matrix")
-    require(len({r01.integer(row["processId"], "pid", 1) for row in rows}) == len(MODES), "Failure modes did not use fresh processes")
+    require(len({r01.integer(row["processId"], "pid", 1) for row in rows}) == len(MODES),
+            "Failure modes did not use fresh processes")
 
-    admission_files = set()
+    transaction_files = set()
     admissions = {}
     for index, row in enumerate(rows):
         fields(row, PROCESS_FIELDS, f"launch.process[{index}]")
@@ -625,9 +627,9 @@ def verify_suite(launch_path):
         exact(capsule_path, capsule_dir / (mode + ".capsule"), mode + ".earlyCapsulePath")
         verify_admission_capsule(capsule_path, mode, binding, prepared, paths)
         admissions[mode] = (binding, capsule_path)
-        admission_files.update((binding, capsule_path))
+        transaction_files.update((binding, capsule_path))
 
-    inventory = {str(path): digest(path) for path in sorted(set(prepared["inventory"]) | admission_files)}
+    inventory = {str(path): digest(path) for path in sorted(set(prepared["inventory"]) | transaction_files)}
     exact(launch["inputHashesBefore"], inventory, "launch.completeInventory")
     exact(launch["inputHashesAfter"], inventory, "launch.inputsUnchanged")
 
@@ -639,15 +641,17 @@ def verify_suite(launch_path):
         exact(row["passed"], True, mode + ".passed")
         exact(row["error"], "", mode + ".error")
         require(isinstance(row["startedAtUnix"], (int, float)) and row["startedAtUnix"] > 0 and
-                isinstance(row["durationSeconds"], (int, float)) and row["durationSeconds"] > 0, "Missing process timing")
+                isinstance(row["durationSeconds"], (int, float)) and row["durationSeconds"] > 0,
+                "Missing process timing")
+
         binding, capsule_path = admissions[mode]
         early_path = bound(row["earlyResultPath"], row["earlyResultSha256"], launch_path, mode + ".earlyResult")
         exact(early_path, result_dir / (mode + ".early.json"), mode + ".earlyResultPath")
-        early = early_gate.verify_early_receipt(early_path, capsule_path, EARLY_ADMISSION_MODE,
-                                                row["processId"], prepared["profile"])
-        exact(early["capsule"], admission_capsule(prepared, mode, paths, binding), mode + ".earlyAdmission")
+        early = early_gate.verify_early_receipt(
+            early_path, capsule_path, early_mode(mode), row["processId"], prepared["profile"])
+        exact(early["capsule"], admission_capsule(prepared, mode, paths, binding), mode + ".earlyTransaction")
         exact(early["receipt"]["callbackReturnCode"], 0, mode + ".earlyCallbackReturnCode")
-        exact(early["receipt"]["result"], "Passed", mode + ".earlyResult")
+        exact(early["receipt"]["result"], expected_early_result(mode), mode + ".earlyResult")
 
         path = bound(row["resultPath"], row["resultSha256"], launch_path, mode + ".result")
         exact(path, result_dir / (mode + ".json"), mode + ".resultPath")
@@ -658,17 +662,17 @@ def verify_suite(launch_path):
         exact(row["command"], command_for(prepared, mode, paths, capsule_path, early_path, path, log_path),
               mode + ".exactExecutedCommand")
         exact(read(path)["processId"], row["processId"], mode + ".producerProcessIdentity")
-        result = verify_result(path, mode, prepared)
-        result["earlyAdmissionMode"] = EARLY_ADMISSION_MODE
-        result["earlyReceipt"] = str(early_path)
-        result["earlyReceiptSha256"] = digest(early_path)
+        result = verify_handoff_result(path, mode, prepared, early, capsule_path, early_path)
         result["earlyBinding"] = str(binding)
         result["earlyBindingSha256"] = digest(binding)
         results.append(result)
 
-    return dict(schemaVersion=2, kind="R01FailureVerification", result="Passed", launchReceipt=str(launch_path),
-                launchReceiptSha256=digest(launch_path), sourcePins=prepared["context"]["sourcePins"],
-                earlyAdmissionMode=EARLY_ADMISSION_MODE, modes=results)
+    return dict(schemaVersion=3, kind="R01FailureVerification", result="Passed",
+                launchReceipt=str(launch_path), launchReceiptSha256=digest(launch_path),
+                sourcePins=prepared["context"]["sourcePins"],
+                transactionOwnership="EarliestStartup",
+                modes=results)
+
 
 
 def main(argv=None):
@@ -680,7 +684,7 @@ def main(argv=None):
     try:
         result = verify_suite(args.launch_receipt)
     except Exception as error:
-        result = dict(schemaVersion=1, kind="R01FailureVerification", result="Failed", error=str(error))
+        result = dict(schemaVersion=3, kind="R01FailureVerification", result="Failed", error=str(error))
     args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result))
     return int(result["result"] != "Passed")
