@@ -1,305 +1,322 @@
-# Local Validation Tasks — V04 Repair + Protected Reference Batch
+# Local Validation Tasks — Early-Owned Failure / Lazy-v2 / Protected M07 Batch
 
 Candidate build-input source anchor:
 
-`4fff4df26681ab3595bb241bbc972207d032831e`
+`99ef65db13341f54cf610e18453dddf197ee86e4`
 
 Latest Local checkpoint:
 
-`f8e66d092b275173a415776f845182171c4dbc31`
+`7a627afc7d3615430772cd1f5e6978d5106f34c7`
 
-The previous `af56b841...` results remain historical. Restart fresh V00; do not relabel prior build/Player receipts as current-anchor acceptance.
+Restart from fresh V00. Previous `4fff4df...` receipts remain historical and must not be relabelled.
 
-The goal is one maximal batch. Hard-stop only for source/provenance/shared-input corruption. Once foundations are valid, preserve isolated fresh-process functional failures and continue independent cells when the same authenticated common inputs remain valid.
+The goal is one maximal batch. Hard-stop on authority/provenance/shared-input corruption. After foundations pass, preserve isolated functional failures and continue independent cells when common authenticated inputs remain valid.
 
 ## V00 — fresh authority
 
-1. Pull the final pushed handoff HEAD.
-2. Record checkout HEAD separately from source anchor `4fff4df...`.
+1. Pull final handoff HEAD.
+2. Record checkout HEAD separately from source anchor `99ef65db...`.
 3. Require clean tracked state.
-4. Run candidate `h1_handoff_preflight.py`.
-5. Require `SourceTargetVerifiedNotBuildAccepted` and exact `codeCommit=4fff4df...`.
-6. Run reproduction-tooling preflight at `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
-7. Verify protected reproduction/runtime/package/IL2CPP/performance refs remain exact.
+4. Run candidate handoff preflight and require `SourceTargetVerifiedNotBuildAccepted`.
+5. Require exact candidate source `99ef65db...`.
+6. Run reproduction tooling preflight at `ba8fee33753a5ebc215b7a98739e343d8e05572e`.
+7. Verify protected reproduction/runtime/package/IL2CPP/performance refs.
 
-Stop on any V00 failure.
+Stop on V00 failure.
 
-## V01 — source tests and Unity compilation
+## V01 — source tests + Unity compile
 
-Run the complete H1 Python inventory and affected focused suites.
+Run the complete H1 Python inventory and real Unity compilation/EditMode tests.
 
-Primary CI reference at the source anchor:
+Focused expectations include:
 
-- bounded Primary: 319/319;
-- handoff: 11/11;
-- early capsule: 7/7;
-- early results: 19/19;
-- failure pipeline: 17/17;
-- lazy contract: 8/8.
+- `R01EarlyStartupTests` accepts the two continuation-only capsule modes;
+- failure pipeline tests cover early-owned transactions + late read-only handoff;
+- lazy tests cover four-field deterministic-v2 generator commands;
+- M07 workflow-authority tests prove the core uses the coordinator's current verifier.
 
-Run real Unity 2022.3.62f2 compilation/tests required by the H1 matrix. In particular retain results for:
+Primary CI reference will be recorded in `CURRENT_STATUS.md` after final run.
 
-- failure fixture / failure probe compile path;
-- `R01BLazyDiagnosticTests`;
-- current M07 policy/authority tests.
+## V02 / V03 — current candidate provenance/builds
 
-## V02 / V03 — fresh candidate/reproduction provenance
+Regenerate current-anchor candidate ON/OFF × Debug/Release and reproduction ON Debug/Release evidence.
 
-Regenerate the required current-anchor candidate ON/OFF × Debug/Release and reproduction ON Debug/Release evidence.
+Do not reuse `4fff4df...` build receipts as current acceptance.
 
-Do not reuse `af56b841...` build receipts as current acceptance.
+## V04.A — current controlled + normal M07
 
-## V04.A — controlled + normal current M07
+Run a fresh controlled restoration case and a separate normal M07 baseline through the current candidate coordinator.
 
-Run a fresh controlled M07 restoration case, then a separate normal M07 baseline.
+Retain:
 
-Retain the complete current graph:
+- workflow receipt;
+- fixtures;
+- ON/OFF Player receipts;
+- editor replay;
+- failure fixtures/Q04 negative input;
+- restoration receipts.
 
-- `m07-build-workflow.json`;
-- `m07-fixtures.json`;
-- Native ON/OFF `m07-player-build.json`;
-- `m07-editor-replay.json`;
-- failure fixture / Q04 negative input;
-- resource and restoration receipts.
-
-Keep the graph live through all current-candidate V04 cells.
+Keep this graph live through current-candidate V04.
 
 ## V04.B — startup11 + M07 14/14
 
-Generate build-bound control capsules from the fresh normal M07 graph.
+Generate fresh control capsules from the current normal graph.
 
-Run startup11, then the complete M07 Player matrix with the matching capsule root.
+Run startup11 and M07 14/14 with the matching capsule root.
 
-Require the existing strict gates and preserve all launch/results/log evidence.
+Require the existing strict gates.
 
-## V04.C — repaired failure/publication matrix
+## V04.C — failure/publication with earliest transaction ownership
 
-Run the three-mode failure/publication launcher and direct public verifier against the same current M07 graph.
-
-The expected implementation behavior is:
-
-1. earliest Baseline admission succeeds;
-2. the late probe validates the patch through `ShadowPatchMetadataReservation.ValidateIfDeclared`;
-3. validated profile version equals `M07Probe.RuntimeAbiVersion`;
-4. late reservation uses that validated version;
-5. Control reaches committed success;
-6. Q04 reaches the intended metadata/reference failure oracle;
-7. initializer mode reaches the intended post-publication initializer failure oracle;
-8. strict verifier returns `Passed` for all three same-PID chains.
-
-If the failure probe again reports unsupported metadata capability, retain the exact patch manifest/profile/report and return it to Primary.
-
-## V04.D — current capacity/parser/index/retained coverage
-
-Rerun the required current-anchor independent cells, including:
-
-- 8192 / 8193 capacity boundary;
-- 512 MiB mixed boundary;
-- parser + FieldRVA + bounded reader + sanitizer;
-- generic/array/reflection/index/cache/capability;
-- retained M03-M07/R01 native/runtime coverage.
-
-Historical `af56...` results remain comparison only.
-
-## V04.E — deterministic dense-v2 + repaired lazy Player
-
-Generate a **fresh** deterministic dense-v2 contract:
+Run:
 
 ~~~text
-python3 Tools/AssemblyShadow/create-r01b-dense-fixtures.py   --output-root <new-dense-v2-root>
+python3 Tools/AssemblyShadow/run-r01-failure-players.py \
+  --project-root <candidate> \
+  --fixture-manifest <current-m07-fixtures> \
+  --on-build <current-on> \
+  --off-build <current-off> \
+  --replay-receipt <current-replay> \
+  --failure-fixtures <current-failure-fixtures> \
+  --negative-input <current-q04-negative-input> \
+  --output-root <new-direct-child-of-candidate-_temp/AssemblyShadow>
 ~~~
 
-Run the parser/native dense validation with that exact v2 manifest.
-
-Generate a fresh standalone lazy fixture:
+Then:
 
 ~~~text
-python3 Tools/AssemblyShadow/create-r01b-lazy-fixture.py   --output-root <new-lazy-fixture-root>
+python3 Tools/AssemblyShadow/verify-r01-failure-results.py \
+  --launch-receipt <failure-output>/r01-failure-launches.json \
+  --output <new-strict-verification.json>
+~~~
+
+Expected launch schema: 3.
+
+Expected ownership:
+
+| Failure mode | Early mode | Early result | Callback |
+| --- | --- | --- | ---: |
+| P03 Control | `Control` | `Passed` | 0 |
+| Q04 Metadata | `MetadataFailureContinue` | `PassedExpectedFailureContinued` | 0 |
+| Initializer | `InitializerFailureContinue` | `PassedExpectedFailureContinued` | 0 |
+
+The early receipt is the authoritative transaction evidence.
+
+The late probe must:
+
+- run in the same PID;
+- bind exact early receipt/capsule/current patch bytes;
+- perform **no** mutation operations;
+- report post-host state:
+  - Control → `Committed`;
+  - Metadata → `Failed`;
+  - Initializer → `FailedAfterCommit`;
+- preserve the early final capacity and recovery classification;
+- pass strict verifier with `transactionOwnership=EarliestStartup`.
+
+Historical terminal modes `MetadataFailure` and `InitializerFailure` remain callback-1 native startup-termination tests and are not replaced.
+
+If `BaselineAlreadyUsed` appears in the dedicated failure/publication late result, retain exact early receipt + late result/logs and return to Primary.
+
+## V04.D — independent current matrix
+
+Rerun required current-anchor cells, including:
+
+- 8192/8193 capacity;
+- exact 512 MiB mixed boundary;
+- parser / FieldRVA / bounded reader / sanitizer;
+- generic / array / reflection / index / cache / capability;
+- retained M03-M07/R01 native/runtime.
+
+Continue independent cells after isolated failures when shared provenance remains intact.
+
+## V04.E — fresh deterministic-v2 lazy Player
+
+Generate fresh dense-v2:
+
+~~~text
+python3 Tools/AssemblyShadow/create-r01b-dense-fixtures.py \
+  --output-root <new-dense-v2-root>
+~~~
+
+Run native/parser dense validation against that exact manifest.
+
+Generate fresh lazy fixture:
+
+~~~text
+python3 Tools/AssemblyShadow/create-r01b-lazy-fixture.py \
+  --output-root <new-lazy-fixture-root>
 ~~~
 
 Build a fresh current diagnostic Player through:
 
 `AssemblyShadowDemo.Editor.R01BDiagnosticBuild.BuildDiagnosticPlayer`
 
-using the current normal-M07 fixture manifest and current Native-ON receipt. Preserve the new diagnostic build receipt.
+with the current M07 fixture manifest and Native-ON receipt.
 
-Run:
+Then run the exact current CLI:
 
 ~~~text
-python3 Tools/AssemblyShadow/run-r01b-lazy-player.py   --project-root <candidate>   --diagnostic-build-receipt <fresh-diagnostic-build-receipt>   --fixture-receipt <new-lazy-fixture-root>/r01b-lazy-fixture-receipt.json   --dense-manifest <new-dense-v2-root>/workload-v3-dense-adjunct-v2.json   --output-root <new-lazy-output>
+python3 Tools/AssemblyShadow/run-r01b-lazy-player.py \
+  --project-root <candidate> \
+  --fixture-manifest <current-m07-fixtures> \
+  --on-build <current-on> \
+  --off-build <current-off> \
+  --replay-receipt <current-replay> \
+  --diagnostic-build <fresh-r01b-diagnostic-build-receipt> \
+  --lazy-fixture-receipt <new-lazy-fixture-root>/r01b-lazy-fixture-receipt.json \
+  --dense-manifest <new-dense-v2-root>/workload-v3-dense-adjunct-v2.json \
+  --output-root <new-direct-child-of-candidate-_temp/AssemblyShadow>
 ~~~
 
-Require:
+Require the v2 producer command inventory to bind four fields per command:
 
-- Python v2 admission succeeds;
-- v2 manifest remains `historicalEvidenceReused=false`;
-- both dense fixture IDs are exactly 1 and 2;
-- diagnostic Player launches;
-- two dense assemblies load and rows 4095/4096 execute;
-- lazy operations do not create unintended extra image reservations;
-- strict lazy result verification passes.
+`mono / generator exe / fixture id / output DLL`
 
-Do not reconstruct or relabel sealed-v1.
+in order 1/run1, 1/run2, 2/run1, 2/run2.
 
-## V04.F — create/authenticate isolated protected profile-1 reference family
+Then require real lazy Player success and unchanged input hashes.
 
-Use a new sibling worktree family, not the candidate working copies.
+Do not reconstruct sealed-v1 evidence.
 
-Exact protected identities:
+## V04.F — authenticate protected profile-1 family
 
-- demo: `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
-- HybridCLR: `b22fa3d92223645c32663e4a2157eaadf8ea495e`;
-- HybridCLR Unity: `b649c499385ea68490a0f652a98b732e060aeb89`;
-- IL2CPP: `7967b8c7043904fcae130b294defd5ce7aa897c4`.
+Use the exact isolated reference family:
 
-Preserve the layout expected by the protected source pins:
+- demo HEAD `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
+- demo source anchor `f1c923cbaa814e1b63f3c5b9f8303c90616de726`;
+- HybridCLR `b22fa3d92223645c32663e4a2157eaadf8ea495e`;
+- HybridCLR Unity `b649c499385ea68490a0f652a98b732e060aeb89`;
+- IL2CPP `7967b8c7043904fcae130b294defd5ce7aa897c4`.
+
+Run current candidate:
 
 ~~~text
-<reference-root>/hybridclr_demo
-<reference-root>/hybridclr
-<reference-root>/hybridclr_unity
-<reference-root>/il2cpp_plus
-~~~
-
-Use detached worktrees or equivalent isolated read-only-source checkouts. Do not move protected branches.
-
-Before installation/build, run from the current candidate tools:
-
-~~~text
-python3 Tools/AssemblyShadow/verify-h1-protected-reference.py   --reference-demo <reference-root>/hybridclr_demo   --reference-hybridclr <reference-root>/hybridclr   --reference-hybridclr-unity <reference-root>/hybridclr_unity   --reference-il2cpp-plus <reference-root>/il2cpp_plus   --candidate-demo <candidate>   --output <new-reference-verification.json>
+python3 <candidate>/Tools/AssemblyShadow/verify-h1-protected-reference.py \
+  --reference-demo <reference-demo> \
+  --reference-hybridclr <reference-hybridclr> \
+  --reference-hybridclr-unity <reference-hybridclr-unity> \
+  --reference-il2cpp-plus <reference-il2cpp-plus> \
+  --candidate-demo <candidate> \
+  --output <new-reference-verification.json>
 ~~~
 
 Require `ProtectedReferenceInputsVerifiedNotBuilt`.
 
-Install the profile-1 runtime into the reference project using the same project-local HybridCLR installation flow already used for H1 runtime swaps. Do not install it into the candidate project.
-
-Then require the reference project's own:
+Require the already-installed profile-1 runtime through the **current candidate verifier**:
 
 ~~~text
-python3 <reference-demo>/Tools/AssemblyShadow/verify-installed-runtime.py   --project <reference-demo> --expect-shadow on --json
+python3 <candidate>/Tools/AssemblyShadow/verify-installed-runtime.py \
+  --project <reference-demo> --expect-shadow on --json
 ~~~
 
-Retain the installation receipt/inventory and re-run the protected-reference verifier after any setup that could touch tracked files.
+## V04.G — protected profile-1 M07 using current coordinator
 
-## V04.G — fresh profile-1 M07 graph + old-Player rejection
+Do **not** invoke the protected project's historical `Invoke-M07Build.ps1`.
 
-In the authenticated reference project, run its own protected `Invoke-M07Build.ps1` with a new reference baseline ID.
-
-Require a fresh profile-1:
-
-- fixture manifest;
-- Native-ON receipt/Player;
-- Native-OFF receipt/Player;
-- Editor replay receipt.
-
-Verify the reference graph remains profile 1.
-
-Then use the **current candidate** runner:
+Invoke the current candidate coordinator against the protected project:
 
 ~~~text
-python3 Tools/AssemblyShadow/run-r01b-old-player-rejection.py   --project-root <candidate>   --fixture-manifest <current-m07-fixtures>   --on-build <current-on>   --off-build <current-off>   --replay-receipt <current-replay>   --old-fixture-manifest <reference-m07-fixtures>   --old-on-build <reference-on>   --old-off-build <reference-off>   --old-replay-receipt <reference-replay>   --output-root <new-old-player-output>
+pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
+  -ProjectPath <reference-demo> \
+  -BaselineId M07-Baseline-H1-ProtectedProfile1-<unique-id> \
+  -TimeoutSec 28800 \
+  -BuildTarget StandaloneOSX
 ~~~
 
-Require the old Player to pass its Baseline early admission and then refuse the profile-2 current input **before Configure/Stage** for the expected embedded baseline/runtime ABI identity mismatch.
+The coordinator must:
 
-No historical old-Player receipt may substitute for this fresh graph.
+1. fully verify protected source/runtime before mutation;
+2. snapshot the exact three workflow-owned tracked paths;
+3. run protected `M07Build.ValidateCompilerInputs`;
+4. after mutation use current split authority:
+   - installed runtime/package/native verified;
+   - `h1_m07_workflow_authority` verifies exact originals + requested baseline;
+5. build reference resources / Native ON / Native OFF;
+6. perform structural Prepare/Compile/Restore/Finalize;
+7. restore exact tracked bytes on outer completion;
+8. leave a fresh reference fixture/ON/OFF/replay graph;
+9. finish with protected source/runtime verification passing again.
 
-## V04.H — fresh protected-reference and candidate controlled Development builds
+Retain outer recovery/authority receipts.
 
-For both side A = protected profile-1 reference and side B = current candidate:
+A failure from the protected project's **historical verifier** indicates the wrong coordinator was invoked.
 
-1. start from the corresponding freshly verified normal M07 baseline/fixture/replay graph;
-2. invoke that project's own `AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer` twice:
-   - `-shadowR00Feature on`;
-   - `-shadowR00Feature off`;
-3. use fresh Development Player output paths;
-4. use fresh `-shadowR00BuildEvidence` JSON paths;
-5. preserve the generated M07 receipts and controlled build evidence.
+## V04.H — old-Player rejection
 
-Each controlled build must independently report:
-
-- `result=Passed`;
-- `provenanceComplete=true`;
-- source pins unchanged;
-- measurement sources unchanged;
-- Development=true;
-- IL2CPP;
-- C++ Release;
-- Low stripping;
-- OptimizeSpeed;
-- no debugging/profiler/deep profiling;
-- exact Player executable/native library/native metadata/input snapshot bindings.
-
-Do not reuse normal-M07 production Players as controlled performance Players.
-
-## V04.I — freeze authenticated A/B build map and run preregistered performance
-
-Use the new Primary tool:
+Once the fresh protected profile-1 graph exists, run current:
 
 ~~~text
-python3 Tools/AssemblyShadow/freeze-h1-performance-build-map.py   --side-a-project <reference-demo>   --side-a-fixture-manifest <reference-fixtures>   --side-a-replay-receipt <reference-replay>   --side-a-on-receipt <reference-controlled-on-receipt>   --side-a-on-evidence <reference-controlled-on-evidence>   --side-a-off-receipt <reference-controlled-off-receipt>   --side-a-off-evidence <reference-controlled-off-evidence>   --side-b-project <candidate>   --side-b-fixture-manifest <current-fixtures>   --side-b-replay-receipt <current-replay>   --side-b-on-receipt <candidate-controlled-on-receipt>   --side-b-on-evidence <candidate-controlled-on-evidence>   --side-b-off-receipt <candidate-controlled-off-receipt>   --side-b-off-evidence <candidate-controlled-off-evidence>   --output <new-frozen-build-map.json>
+python3 Tools/AssemblyShadow/run-r01b-old-player-rejection.py \
+  --project-root <candidate> \
+  --fixture-manifest <current-fixtures> \
+  --on-build <current-on> \
+  --off-build <current-off> \
+  --replay-receipt <current-replay> \
+  --old-fixture-manifest <reference-fixtures> \
+  --old-on-build <reference-on> \
+  --old-off-build <reference-off> \
+  --old-replay-receipt <reference-replay> \
+  --output-root <new-old-player-output>
 ~~~
 
-Require the freeze receipt `result=Passed` and strict `ComparabilityPassed`.
+Require profile-1 Baseline early admission and expected pre-Configure identity refusal of profile-2 current inputs.
 
-The freezer derives comparability from the authenticated evidence. Do not edit its comparability section manually.
+## V04.I — controlled Development A/B performance
 
-Before sampling, bind the immutable preregistration into a fresh evidence root:
+Build fresh controlled ON/OFF Development Players in both projects through each project's own:
 
-~~~text
-python3 Tools/AssemblyShadow/bind-h1-performance-preregistration.py \
-  --output-root <new-performance-preregistration-root>
-~~~
+`AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer`
 
-Require the binding receipt to report:
+Use fresh outputs/evidence.
 
-- `result=Passed`;
+Freeze the strict A/B map using:
+
+`Tools/AssemblyShadow/freeze-h1-performance-build-map.py`
+
+Require `ComparabilityPassed`.
+
+Bind the preregistration into a fresh evidence root using:
+
+`Tools/AssemblyShadow/bind-h1-performance-preregistration.py`
+
+Require:
+
 - protocol bytes unchanged;
 - schedule semantic fields unchanged;
-- exactly 44 preregistered pairs.
+- 44 pairs;
+- only protocol path/hash transport fields changed.
 
-This operation changes only the schedule's transport fields `protocolPath` and `protocolSha256`; pair IDs, phases and A/B order are unchanged.
+Run pilot pairs first, then formal pairs only under existing source-freeze/pilot rules.
 
-Use the bound files:
+Retain all attempts and analyze with `analyze-h1-paired-performance.py`.
 
-- `<new-performance-preregistration-root>/performance-protocol.preregistered.json`;
-- `<new-performance-preregistration-root>/performance-schedule.bound.json`.
+## Retention checkpoint
 
-Run `run-h1-paired-performance.py` for the required pilot pairs first. Proceed to formal pairs only under the existing pilot/source-freeze rules. Retain **all** attempts.
+Before any cleanup, authenticate a new checkpoint containing/hash-binding:
 
-Analyze the final sample index using `analyze-h1-paired-performance.py`.
+- V00-V03 current evidence;
+- current controlled/normal M07;
+- startup11 / M07 14/14;
+- three early failure transaction capsules/receipts + late handoff results/raw files;
+- dense-v2/parser/lazy fixture/diagnostic Player/lazy result;
+- protected family verification/install;
+- protected outer recovery + fresh M07 graph;
+- old-Player rejection;
+- four controlled Development build receipts/evidence;
+- frozen build map;
+- preregistration binding;
+- every performance attempt + analysis.
 
-No latency-based deletion or selective retry is allowed.
+Missing evidence remains `Unavailable`; failed evidence remains `Failed`.
 
-## Retention checkpoint — mandatory before cleanup
-
-Before deleting/consolidating any candidate or reference artifacts, authenticate a new Local checkpoint.
-
-In addition to the normal current-candidate evidence, retain/hash-bind:
-
-- repaired failure/publication binding/capsule/early/late results;
-- fresh dense-v2 manifest + generator/tool hashes;
-- lazy fixture receipt + diagnostic build receipt + lazy launch/result;
-- protected-reference verifier result;
-- exact four reference Git heads/source-pin bytes;
-- reference installed-runtime receipt/inventory;
-- reference M07 workflow/fixture/ON/OFF/replay;
-- old-Player rejection evidence;
-- both sides' controlled ON/OFF receipts/evidence;
-- frozen performance build map + freeze receipt;
-- protocol/schedule hashes;
-- every paired performance attempt;
-- final performance analysis.
-
-A failed or unavailable cell retains that status. Do not reconstruct acceptance.
-
-## V05 — successor + independent whole-chain M08
+## V05 / M08
 
 Proceed only if mandatory V04 prerequisites are complete.
 
-Build/authenticate successor evidence and commission a genuinely independent design → source → builds → raw-evidence whole-chain M08 review.
+Build/authenticate successor evidence and commission a genuine independent whole-chain M08.
 
-Only genuine independent whole-chain **M08 PASS** may make H1 Ready for Human Review Gate.
+Only genuine **M08 PASS** may make H1 Ready for Human Review Gate.
 
 Then stop for explicit human approval.
 
