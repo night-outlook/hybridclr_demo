@@ -162,3 +162,19 @@ The new source requires fresh evidence.
 14. V05 + genuinely independent M08 only after mandatory V04 completion.
 
 Do not begin R02.
+
+## Final Primary executable validation
+
+Workflow `35449924454` at source anchor `925e84d7...` passed:
+
+- bounded Primary: **323/323**;
+- committed handoff: **11/11**;
+- early capsule: **7/7**;
+- early launch: **20/20**;
+- early results: **20/20**;
+- failure pipeline: **16/16**;
+- lazy contract: **10/10**.
+
+Artifact `10586344220`; ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
+
+This is Primary source/tool evidence only; real Player/performance acceptance remains Local work.
