@@ -103,3 +103,7 @@ Do not begin R02.
 ## Final Primary CI
 
 Authority-consistent workflow `35449924454` passed 323/323 bounded tests plus 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline and 10/10 lazy-contract tests. Artifact `10586344220`; ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
+
+## Final committed handoff verification
+
+The exact live handoff commit `08f805da9ea8e479801f10d3a4fbb7af0a70a123` passed workflow `35450199014` with 323/323 bounded tests plus 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline and 10/10 lazy-contract tests. Artifact `10586482880`, ZIP SHA-256 `676152ab0de591d0012b2d7f6a96cbac16dce37b5cca0d894c5b482b12835e1d`.
