@@ -20,7 +20,7 @@
   - Current `Invoke-M07Build.Core.ps1` always uses the coordinator checkout's current `verify-installed-runtime.py`; the current verifier owns full pre-mutation vs split post-mutation authority using `h1_m07_workflow_authority.py`.
   - The protected project supplies Unity producers and pinned runtime/source only; its historical wrapper/verifier are not used as coordinator policy.
 - Most recent complete Primary run before final protected-producer cleanup: workflow `35411171891` — bounded **320/320**, handoff **11/11**, early capsule **7/7**, early results **19/19**, failure pipeline **16/16**, lazy contract **9/9**.
-- Final source-anchor CI: `Pending`.
+- Final source-anchor CI: workflow `35411286564` passed bounded **320/320**, handoff **11/11**, early capsule **7/7**, early results **19/19**, failure pipeline **16/16**, lazy **9/9**; artifact `10574492806`, ZIP SHA-256 `96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079`.
 - Gate: `H1 / InProgress / AwaitingFresh99ef65Batch`
 - Last independent M08: `FAIL` (historical; not rerun)
 - Human gate passed: `false`
