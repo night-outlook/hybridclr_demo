@@ -444,7 +444,8 @@ def _verify_post_host_diagnostics(value, mode, prepared, early):
     import r01_early_results as early_gate
     early_gate.verify_first_use_history(
         value["baselineUses"], early_final["baselineUses"], early["capsule"],
-        mode + ".postHost.firstUseHistory")
+        mode + ".postHost.firstUseHistory",
+        allow_selected_closure=(mode == MODES[1]))
     if published:
         # Any post-publication physical baseline use would seal the runtime and
         # contradict the required Committed/FailedAfterCommit state.
