@@ -127,11 +127,12 @@ class M07CoreDispatchContractTests(unittest.TestCase):
     def test_core_uses_current_coordinator_verifier_for_external_projects(self):
         source=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
         self.assertIn("Join-Path $PSScriptRoot 'verify-installed-runtime.py'",source)
-        self.assertIn("Join-Path $PSScriptRoot 'h1_m07_workflow_authority.py'",source)
-        self.assertIn('--skip-demo-source',source)
         self.assertNotIn("Join-Path $Project 'Tools/AssemblyShadow/verify-installed-runtime.py'",source)
-        self.assertIn('H1_M07_WORKFLOW_AUTHORITY_ROOT',source)
-        self.assertIn('H1_M07_WORKFLOW_BASELINE_ID',source)
+        self.assertNotIn('--skip-demo-source',source)
+        self.assertIn('--expect-shadow on --json',source)
+        wrapper=(TOOLS/'verify-installed-runtime.py').read_text()
+        self.assertIn('H1_M07_WORKFLOW_AUTHORITY_ROOT',wrapper)
+        self.assertIn('verify_m07_workflow',wrapper)
 
 
 class M07InstalledRuntimeDispatchTests(unittest.TestCase):
