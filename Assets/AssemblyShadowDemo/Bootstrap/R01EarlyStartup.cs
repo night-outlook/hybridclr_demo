@@ -94,7 +94,8 @@ namespace AssemblyShadowDemo
                 }
                 long[] sizes = BudgetSizes(closure);
 
-                if (capsule.mode == "Control" || capsule.mode == "MetadataFailure" || capsule.mode == "InitializerFailure")
+                if (capsule.mode == "Control" || capsule.mode == "MetadataFailure" || capsule.mode == "InitializerFailure" ||
+                    capsule.mode == "MetadataFailureContinue" || capsule.mode == "InitializerFailureContinue")
                 {
                     previousConsole = Console.Out;
                     initializerCapture = new R01EarlyInitializerCapture(previousConsole);
@@ -168,6 +169,18 @@ namespace AssemblyShadowDemo
                     RunFailureTransaction(receipt, capsule, closure, sizes, true, startObserver);
                     receipt.result = "PassedExpectedFailure";
                     receipt.callbackReturnCode = 1;
+                }
+                else if (capsule.mode == "MetadataFailureContinue")
+                {
+                    RunFailureTransaction(receipt, capsule, closure, sizes, false, startObserver);
+                    receipt.result = "PassedExpectedFailureContinued";
+                    receipt.callbackReturnCode = 0;
+                }
+                else if (capsule.mode == "InitializerFailureContinue")
+                {
+                    RunFailureTransaction(receipt, capsule, closure, sizes, true, startObserver);
+                    receipt.result = "PassedExpectedFailureContinued";
+                    receipt.callbackReturnCode = 0;
                 }
                 else
                 {
@@ -588,7 +601,7 @@ namespace AssemblyShadowDemo
 
         private static void ValidateCapsule(Capsule capsule)
         {
-            string[] modes = { "Control", "OrdinaryFirst", "OrdinaryAfterReserve", "Oversize", "Mismatch", "Type", "Object", "Cctor", "NativeScript", "MetadataFailure", "InitializerFailure", "Baseline" };
+            string[] modes = { "Control", "OrdinaryFirst", "OrdinaryAfterReserve", "Oversize", "Mismatch", "Type", "Object", "Cctor", "NativeScript", "MetadataFailure", "InitializerFailure", "MetadataFailureContinue", "InitializerFailureContinue", "Baseline" };
             Require(Array.IndexOf(modes, capsule.mode) >= 0, "Unsupported R01 early mode.");
             Require(!string.IsNullOrEmpty(capsule.baselineBuildId) && !string.IsNullOrEmpty(capsule.runtimeAbiHash) && !string.IsNullOrEmpty(capsule.patchId), "R01 capsule identity is incomplete.");
             Require(IsLowerSha(capsule.runtimeAbiHash), "R01 runtime ABI hash is malformed.");
