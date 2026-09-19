@@ -86,6 +86,16 @@ class LazyResultLedgerTests(unittest.TestCase):
             self.verify(value)
 
 
+    def test_player_probe_dense_type_and_return_contract_matches_generator(self):
+        probe=(TOOLS.parents[1]/'Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs').read_text()
+        generator=(TOOLS/'r01b-dense-fixture.cs').read_text()
+        self.assertIn('private const string DenseNamespace = "AssemblyShadow.Dense"',probe)
+        self.assertIn('return DenseNamespace + ".DenseType_"',probe)
+        self.assertIn('return checked(fixtureId * 10000 + row)',probe)
+        self.assertIn('private const string Namespace = "AssemblyShadow.Dense"',generator)
+        self.assertIn('il.Emit(OpCodes.Ldc_I4, id * 10000 + index)',generator)
+        self.assertNotIn('"AssemblyShadow.Workload." + stem',probe)
+
     def test_player_probe_has_explicit_v1_v2_dense_contract(self):
         source=(TOOLS.parents[1]/'Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs').read_text()
         self.assertIn('R01BWorkloadV3DenseMetadataAdjunct',source)
