@@ -2,7 +2,7 @@
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to the final authority-consistent CI and real Unity/IL2CPP validation.
+**PASS for Primary → Local Validation handoff**, subject to real Unity/IL2CPP validation.
 
 Reviewed source anchor:
 
@@ -99,3 +99,7 @@ Historical M08: `FAIL`.
 `mayEnterR02=false`.
 
 Do not begin R02.
+
+## Final Primary CI
+
+Authority-consistent workflow `35449924454` passed 323/323 bounded tests plus 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline and 10/10 lazy-contract tests. Artifact `10586344220`; ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
