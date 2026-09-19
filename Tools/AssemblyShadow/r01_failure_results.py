@@ -438,6 +438,9 @@ def _verify_post_host_diagnostics(value, mode, prepared, early):
         exact(row["published"], published, mode + ".postHost.published." + row["name"])
 
     early_final = early["snapshots"][-1]["diagnostics"]
+    exact(value["assemblies"], early_final["assemblies"], mode + ".postHost.transactionAssembliesStable")
+    exact(value["commitOrder"], early_final["commitOrder"], mode + ".postHost.commitOrderStable")
+    exact(value["events"], early_final["events"], mode + ".postHost.eventsStable")
     import r01_early_results as early_gate
     early_gate.verify_first_use_history(
         value["baselineUses"], early_final["baselineUses"], early["capsule"],
