@@ -16,6 +16,7 @@ namespace AssemblyShadowDemo.EditorTests
         private const string StructuralSource = "Assets/AssemblyShadowDemo/Editor/M07StructuralResources.cs";
         private const string ReplaySource = "Assets/AssemblyShadowDemo/Editor/M07EditorValidation.cs";
         private const string WorkflowSource = "Tools/AssemblyShadow/Invoke-M07Build.ps1";
+        private const string WorkflowCoreSource = "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1";
 
         [Test]
         public void CanonicalBundleMapIsExactAndOutsideResources()
@@ -139,19 +140,27 @@ namespace AssemblyShadowDemo.EditorTests
         [Test]
         public void WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors()
         {
-            string source = File.ReadAllText(WorkflowSource);
-            StringAssert.Contains("'M02Validation-' + [guid]::NewGuid().ToString('N')", source);
-            foreach (string method in new[] { "M07Build.ValidateCompilerInputs", "M07Build.BuildBaselineResources", "M07Build.BuildPlayerBaseline",
-                "M07Build.BuildFeatureDisabledPlayer", "M07StructuralResources.Prepare", "M07StructuralResources.Compile",
+            string outer = File.ReadAllText(WorkflowSource);
+            string core = File.ReadAllText(WorkflowCoreSource);
+            StringAssert.Contains("Invoke-M07Build.Core.ps1", outer);
+            StringAssert.Contains("H1_M07_WORKFLOW_AUTHORITY_ROOT", outer);
+            StringAssert.Contains("Restore-M07WorkflowInputs", outer);
+
+            StringAssert.Contains("'M02Validation-' + [guid]::NewGuid().ToString('N')", core);
+            foreach (string method in new[] { "M07Build.ValidateCompilerInputs", "M07Build.BuildBaselineResources",
+                "M07Build.BuildPlayerBaseline", "M07Build.BuildFeatureDisabledPlayer", "R00ControlledBuild.BuildPlayer",
+                "M07StructuralResources.Prepare", "M07StructuralResources.Compile",
                 "M07StructuralResources.Restore", "M07StructuralResources.FinalizeFixtures" })
-                StringAssert.Contains(method, source);
-            StringAssert.Contains("p05-project-settings.original", source);
-            StringAssert.Contains("p05-settings-restored.json", source);
-            StringAssert.Contains("[IO.FileMode]::CreateNew", source);
-            StringAssert.Contains("Test-UnityProjectRunning", source);
-            StringAssert.Contains("m07-build.lock", source);
-            StringAssert.Contains("$existingPlayerReceipts", source);
-            StringAssert.Contains("$excluded.Contains($fullPath)", source);
+                StringAssert.Contains(method, core);
+            StringAssert.Contains("p05-project-settings.original", core);
+            StringAssert.Contains("p05-settings-restored.json", core);
+            StringAssert.Contains("[IO.FileMode]::CreateNew", outer);
+            StringAssert.Contains("[IO.FileMode]::CreateNew", core);
+            StringAssert.Contains("Test-UnityProjectRunning", outer);
+            StringAssert.Contains("Test-UnityProjectRunning", core);
+            StringAssert.Contains("m07-build.lock", core);
+            StringAssert.Contains("$existingPlayerReceipts", core);
+            StringAssert.Contains("$excluded.Contains($fullPath)", core);
         }
 
         [TestCase(false)]
