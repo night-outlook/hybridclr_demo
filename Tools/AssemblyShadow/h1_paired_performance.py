@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 import r00_results
+import r00_player_inputs
 from shadow_tools import VerificationError, require
 
 
@@ -339,6 +340,27 @@ def _build_bindings(build_map: dict[str, Any]) -> tuple[dict[str, dict[str, dict
             "OFF": _validate_controlled_build(project, side, "off", builds["off"]),
         }
         on, off = bindings[side]["ON"], bindings[side]["OFF"]
+
+        fixture_path, fixture_sha = _receipt_binding(
+            item.get("fixtureManifest"), side + ".fixtureManifest")
+        replay_path, replay_sha = _receipt_binding(
+            item.get("replayReceipt"), side + ".replayReceipt")
+        graph = r00_player_inputs.verify_inputs(
+            project, fixture_path, Path(on["path"]), Path(off["path"]), replay_path)
+        manifest = graph["manifest"]
+        require(manifest.get("baselineBuildId") == on["receipt"]["baselineBuildId"] ==
+                off["receipt"]["baselineBuildId"],
+                side + " fixture/replay graph baseline differs from controlled Players")
+        require(manifest.get("runtimeAbiHash") == on["receipt"]["runtimeAbiHash"] ==
+                off["receipt"]["runtimeAbiHash"],
+                side + " fixture/replay graph runtime ABI differs from controlled Players")
+        bindings[side]["graph"] = {
+            "fixtureManifest": {"path": str(fixture_path), "sha256": fixture_sha},
+            "replayReceipt": {"path": str(replay_path), "sha256": replay_sha},
+            "baselineBuildId": manifest["baselineBuildId"],
+            "runtimeAbiHash": manifest["runtimeAbiHash"],
+        }
+
         require(on["receipt"]["runtimeAbiHash"] == off["receipt"]["runtimeAbiHash"],
                 side + " ON/OFF runtime ABI hashes differ")
         require(on["sourcePinsSha256"] == off["sourcePinsSha256"],
