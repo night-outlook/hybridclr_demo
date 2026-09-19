@@ -173,6 +173,31 @@ class H1PairedPerformanceTests(unittest.TestCase):
                                              "evidencePath": evidence_path,
                                              "evidenceBinding": builds[flavor]["controlledEvidence"],
                                              "livePins": pins, "snapshotPins": Path(provenance["sourcePinFile"])}
+            controlled_on = refs[side]["ON"]["receipt"]
+            write(fixture, {
+                "schemaVersion": 1, "milestone": "M07",
+                "baselineBuildId": controlled_on["baselineBuildId"],
+                "runtimeAbiHash": controlled_on["runtimeAbiHash"],
+                "unityVersion": controlled_on["unityVersion"],
+                "target": controlled_on["target"],
+                "architecture": controlled_on["architecture"],
+                "playerBuildReceiptPath": str(refs[side]["ON"]["receiptPath"]),
+                "playerBuildReceiptSha256": sha(refs[side]["ON"]["receiptPath"]),
+            })
+            write(replay, {
+                "schemaVersion": 1, "milestone": "M07", "result": "Passed",
+                "fixtureManifestPath": str(fixture),
+                "fixtureManifestSha256": sha(fixture),
+                "playerBuildReceiptPath": str(refs[side]["ON"]["receiptPath"]),
+                "playerBuildReceiptSha256": sha(refs[side]["ON"]["receiptPath"]),
+                "baselineBuildId": controlled_on["baselineBuildId"],
+                "runtimeAbiHash": controlled_on["runtimeAbiHash"],
+                "playerBuildGuid": controlled_on["buildGuid"],
+                "nativeLibrarySha256": controlled_on["nativeLibrarySha256"],
+                "unityVersion": controlled_on["unityVersion"],
+                "target": controlled_on["target"],
+                "architecture": controlled_on["architecture"],
+            })
             sides[side] = {"projectRoot": str(project), "fixtureManifest": bind(fixture),
                            "replayReceipt": bind(replay), "builds": builds}
             facts[side] = {"developmentCppRelease": True, "unity": analysis.UNITY_VERSION,
@@ -238,6 +263,18 @@ class H1PairedPerformanceTests(unittest.TestCase):
                 result = analysis.validate_build_map(build_map)
                 self.assertEqual(result["status"], "ComparabilityFailed")
                 self.assertIn(reason, result["reasons"][0])
+
+    def test_controlled_build_map_rejects_fixture_baseline_mismatch_before_sampling(self):
+        build_map, _ = self.build_map(self.temp("h1-baseline-mismatch-"))
+        side = build_map["sides"]["B"]
+        fixture_path = Path(side["fixtureManifest"]["path"])
+        fixture = json.loads(fixture_path.read_text())
+        fixture["baselineBuildId"] = "M07-Baseline-unrelated"
+        write(fixture_path, fixture)
+        side["fixtureManifest"]["sha256"] = sha(fixture_path)
+        result = analysis.validate_build_map(build_map)
+        self.assertEqual("ComparabilityFailed", result["status"])
+        self.assertIn("fixture graph baseline differs from controlled Players", result["reasons"][0])
 
     def test_minimal_or_claim_only_build_map_cannot_pass(self):
         value = {"schemaVersion": 1, "kind": "H1ControlledBuildMap", "status": "Frozen",
