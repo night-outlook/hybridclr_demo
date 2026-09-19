@@ -32,7 +32,7 @@
 - Stale broad-test repairs:
   - early default-mode test now excludes Baseline plus continuation-only modes by semantics;
   - `M07BuildTests.WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors` now checks outer-wrapper and core responsibilities separately.
-- Primary authority-consistent CI for the final source anchor: pending.
+- Primary authority-consistent CI: workflow `35449924454` passed bounded **323/323**, handoff **11/11**, early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, lazy **10/10**; artifact `10586344220`, ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
 - Gate: `H1 / InProgress / AwaitingFresh925e84dBatch`.
 - Last independent M08: `FAIL` (historical; not rerun).
 - Human gate passed: `false`.
