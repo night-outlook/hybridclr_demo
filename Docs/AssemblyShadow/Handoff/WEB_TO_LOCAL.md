@@ -2,21 +2,21 @@
 
 ## Objective
 
-Validate the repair batch at candidate build-input source anchor:
+Validate the final V04 closure repair batch at candidate build-input source anchor:
 
-`99ef65db13341f54cf610e18453dddf197ee86e4`
+`925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`
 
-Then complete as much remaining H1 evidence as safely possible in one Local cycle:
+Then complete as much remaining H1 evidence as possible in one Local cycle:
 
-fresh authority/builds → current M07 → startup/M07 matrix → early-owned failure/publication → current independent matrix → lazy-v2 Player → protected profile-1 M07 driven by current coordinator → old-Player → controlled A/B performance → retention → V05/M08 if eligible.
+fresh authority/builds → current M07/startup matrix → Q04 post-terminal verification → dense-v2 real boundary execution → graph-bound controlled-performance M07 on profile 1 and profile 2 → strict build-map freeze → pilots/formal performance → retention → V05/M08 only if eligible.
 
 Latest Local return:
 
-`7a627afc7d3615430772cd1f5e6978d5106f34c7`
+`f829db516b3e5d0a9fef4d5539ec097dfb9867b3`
 
 H1 remains `InProgress`.
 
-Historical independent M08 remains `FAIL`; it was not rerun.
+Historical independent M08 remains `FAIL`.
 
 `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -28,268 +28,295 @@ Machine authority:
 
 `Docs/AssemblyShadow/Handoff/source-targets.json`
 
-Candidate:
+Candidate identities:
 
-| Repository | Branch | Identity |
+| Repository | Branch | Source/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `99ef65db13341f54cf610e18453dddf197ee86e4` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `925e84d7b653bc7434482e6f4fbde39a4d9fcd0e` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
 
-Protected identities remain:
+Protected H1 identities remain exact:
 
-- reproduction published head `352d7474dd7c2ffd9b9501d8fa42334a3b236e05`;
-- reproduction tooling `ba8fee33753a5ebc215b7a98739e343d8e05572e`;
-- performance reference demo HEAD `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
-- profile-1 reference HybridCLR `b22fa3d92223645c32663e4a2157eaadf8ea495e`;
-- profile-1 HybridCLR Unity `b649c499385ea68490a0f652a98b732e060aeb89`;
-- profile-1 IL2CPP `7967b8c7043904fcae130b294defd5ce7aa897c4`.
+- reproduction published head: `352d7474dd7c2ffd9b9501d8fa42334a3b236e05`;
+- reproduction tooling: `ba8fee33753a5ebc215b7a98739e343d8e05572e`;
+- performance-reference demo HEAD: `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
+- profile-1 HybridCLR: `b22fa3d92223645c32663e4a2157eaadf8ea495e`;
+- profile-1 HybridCLR Unity: `b649c499385ea68490a0f652a98b732e060aeb89`;
+- profile-1 IL2CPP: `7967b8c7043904fcae130b294defd5ce7aa897c4`.
 
 Environment:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`
 
-Final checkout HEAD will be a later metadata-only handoff/status successor. Record it separately from source anchor.
+The final checkout HEAD is expected to be a later metadata-only handoff/status successor. Record checkout HEAD and source anchor separately.
 
 ## Implementation
 
-### 1. Failure/publication transaction ownership corrected
+### Local result being addressed
 
-The `4fff4df...` run proved that “early admission only → late transaction” is invalid.
+The `99ef65db...` Local cycle passed:
 
-After the earliest callback returned, normal host startup used candidate baseline assemblies. A later Begin/Validate therefore correctly failed `BaselineAlreadyUsed`.
+- V00-V03;
+- controlled + normal M07;
+- startup11;
+- M07 14/14;
+- ordinary and mixed capacity;
+- dense-v2 generation/parser/native verification;
+- generic/index/cache/capability/attribute/native retained matrix;
+- protected profile-1 install and fresh M07 through the current coordinator;
+- old-Player expected rejection;
+- four controlled Development builds;
+- build-map comparability;
+- preregistration binding.
 
-The dedicated failure/publication matrix now executes the full transaction in the earliest callback.
+Three independent contracts remained incomplete.
 
-Mapping:
+### Repair 1 — Q04 post-terminal first-use scope
 
-| Matrix mode | Early mode | Callback |
-| --- | --- | ---: |
-| `R01-Failure-P03-Control` | `Control` | 0 |
-| `R01-Failure-Q04-Metadata` | `MetadataFailureContinue` | 0 |
-| `R01-Failure-InitializerThrow` | `InitializerFailureContinue` | 0 |
+The earliest Q04 transaction had already sealed `Failed`.
 
-The continued modes reuse the exact existing failure transaction implementation.
+After callback return 0, normal host continuation legitimately recorded physical candidate-baseline uses.
 
-Historical startup modes remain unchanged:
+The strict verifier incorrectly reused the eligible-transaction rule.
 
-- `MetadataFailure` → callback 1 / terminal gateway;
-- `InitializerFailure` → callback 1 / terminal gateway.
+The corrected rule is explicit:
 
-Continuation-only modes are rejected by the generic early suite and are owned by the dedicated failure/publication launcher.
+- selected-closure use remains forbidden during an eligible transaction;
+- published Control/initializer worlds still require exact no-late-baseline-use equality;
+- only the dedicated **post-terminal Q04** persistence check may append registered candidate baseline uses after the early transaction is already `Failed`;
+- unknown/non-candidate identities remain forbidden;
+- prior first-use rows remain immutable;
+- registry order, sequence and timestamp invariants remain strict.
 
-### Late handoff is read-only
+No native transaction or recovery behavior changed.
 
-`R01FailureProbe` is now verification-only.
+### Repair 2 — dense-v2 runtime identity
 
-It:
+The generator emits:
 
-- verifies the same current fixture/failure/Q04 graph;
-- validates the profile-2 budget contract;
-- requires early receipt file == `R01EarlyStartup.LastReceiptJson`;
-- binds current PID, capsule hash, mode, baseline/runtime/patch/closure and actual staged DLL/PDB bytes;
-- queries post-host diagnostics/capacity/recovery only.
+- namespace `AssemblyShadow.Dense`;
+- `DenseType_{fixtureId:D4}_{row:D4}_MetadataBoundary_0123456789abcdef0123456789abcdef`;
+- `ReturnId = fixtureId * 10000 + row`.
 
-It contains no calls to Configure/Begin/Reserve/Stage/Validate/Commit.
+The Player had used `AssemblyShadow.Workload` and expected only `fixtureId`.
 
-Expected post-host states:
+The runtime probe now matches the generator exactly.
 
-- Control → `Committed`;
-- Metadata → `Failed`;
-- Initializer → `FailedAfterCommit`.
+Required boundary values:
 
-Launch/verification schema is v3; strict result records `transactionOwnership=EarliestStartup`.
+- fixture 1 / row 4095 → 14095;
+- fixture 1 / row 4096 → 14096;
+- fixture 2 / row 4095 → 24095;
+- fixture 2 / row 4096 → 24096.
 
-The early receipt is transaction evidence. The late schema-2 handoff result is post-host persistence/provenance evidence.
+All deterministic-v2 manifest/tool/hash/parser/shape rules remain unchanged.
 
-### 2. Lazy deterministic-v2 command schema corrected
+### Repair 3 — graph-bound controlled performance
 
-The producer writes four-field generation records:
+The prior frozen build map proved controlled Player comparability but did not bind each side's fixture/replay graph to those exact controlled Player baselines.
 
-`[mono, generator.exe, fixtureId, output.dll]`
+The strict build-map validator now requires per side:
 
-The verifier now requires exactly four commands in deterministic order:
+- fixture baseline/runtime/platform == controlled ON/OFF;
+- fixture exact NativeOn receipt path/hash == controlled NativeOn;
+- replay exact fixture path/hash;
+- replay exact controlled NativeOn path/hash;
+- replay baseline/runtime/build GUID/native library/platform == controlled NativeOn.
 
-1. 1 / run1;
-2. 1 / run2;
-3. 2 / run1;
-4. 2 / run2.
+`run-h1-paired-performance.py` calls the strict build-map validator before any Player launch.
 
-All existing v2 generator hashes, reproducibility, shape, parser, fixture confinement and sealed-v1 non-relabel requirements remain.
+### Controlled-performance M07 producer
 
-### 3. Protected profile-1 M07 uses current coordinator policy
+The current M07 coordinator now exposes:
 
-The protected profile-1 installation was valid. Its historical wrapper policy was not suitable for current H1: it re-ran historical full demo-source verification after a workflow-owned mutation.
+`-ControlledPerformanceBuilds`
 
-The current candidate core now always invokes the coordinator checkout's:
+With that switch it creates one self-consistent baseline world:
 
-`Tools/AssemblyShadow/verify-installed-runtime.py`
+1. compiler/source validation;
+2. baseline resources;
+3. controlled Development NativeOn via `R00ControlledBuild.BuildPlayer`;
+4. controlled Development NativeOff via the same producer;
+5. controlled evidence for both;
+6. structural fixture workflow;
+7. fixture manifest + replay finalized from the controlled NativeOn world;
+8. normal outer source restoration.
 
-rather than `<target-project>/Tools/.../verify-installed-runtime.py`.
+The workflow receipt includes:
 
-The current verifier owns split dispatch under the outer `H1_M07_WORKFLOW_*` context:
+- `controlledPerformanceBuilds=true`;
+- NativeOn/NativeOff receipts;
+- NativeOn/NativeOff controlled-evidence paths;
+- fixture manifest;
+- Editor replay.
 
-- pre-mutation → full source/runtime verification;
-- post-mutation → installed runtime/package/native verification plus `h1_m07_workflow_authority` against authenticated originals and the exact requested baseline.
+Use this mode separately on profile 1 and profile 2.
 
-The current outer wrapper still snapshots/restores the three tracked mutable paths byte-for-byte.
+### Stale broad-test cleanup
 
-For the protected reference, Local must therefore run the **current candidate** `Invoke-M07Build.ps1` with `-ProjectPath <reference-demo>`.
+Two prior non-runtime failures were corrected:
 
-Do not run the protected project's historical wrapper.
+- `test_r01_early_launch` now derives the default matrix by excluding Baseline and continuation-only modes rather than assuming `MODES[:-1]`;
+- `M07BuildTests.WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors` now validates the outer wrapper and core script according to their current ownership split.
 
-`verify-h1-protected-reference.py` now authenticates the actual reference-side Unity producers used by this coordinator, not the obsolete wrapper.
+The early-launch suite is now directly run by Primary CI.
 
-### Primary tests
+### Primary executable validation
 
-Authority-consistent workflow `35411171891` passed before the final protected producer-list cleanup:
+Authority-consistent workflow:
 
-- bounded **320/320**;
-- handoff **11/11**;
-- early capsule **7/7**;
-- early results **19/19**;
-- failure pipeline **16/16**;
-- lazy **9/9**.
+`35449924454`
 
-Artifact `10573647440`, ZIP SHA-256 `6b6cc55adf33447829af1b680c738970e81d2f06db6a50ec0fd8f65540a72e11`.
+passed:
 
-Final authority-consistent workflow `35411286564` passed on source anchor `99ef65db...`: bounded 320/320, handoff 11/11, early capsule 7/7, early results 19/19, failure pipeline 16/16, lazy 9/9. Artifact `10574492806`, ZIP SHA-256 `96e2043424077871e1af6007922aaee74b894d6ed39e7fe1319eb9ba6cf9b079`.
+- bounded Primary: **323/323**;
+- committed live handoff: **11/11**;
+- R01 early capsule: **7/7**;
+- R01 early launch: **20/20**;
+- R01 early results: **20/20**;
+- R01 failure pipeline: **16/16**;
+- R01B lazy contract: **10/10**.
+
+Artifact:
+
+- ID `10586344220`;
+- ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
+
+This is Primary source/tool evidence only.
 
 ## Local validation
 
-Detailed executable plan:
+Detailed executable sequence:
 
 `Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md`
 
 Run it in order.
 
+### Mandatory priorities
+
+1. fresh V00/V01, including full Python and broad EditMode suites;
+2. fresh current provenance + normal M07/startup11/14-of-14;
+3. failure/publication strict rerun, especially Q04 post-terminal history;
+4. fresh dense-v2 diagnostic Player with all four boundary calls;
+5. current independent retained matrix;
+6. graph-bound profile-1 controlled-performance M07;
+7. graph-bound profile-2 controlled-performance M07;
+8. current-anchor old-Player check;
+9. strict frozen build map from those two graph-bound workflows;
+10. bound preregistration;
+11. all pilot pairs;
+12. formal pairs and analysis only after pilots pass;
+13. authenticated checkpoint;
+14. V05/M08 only if mandatory V04 closes.
+
+### Graph-bound performance rule
+
+Do not combine a normal-M07 fixture manifest with separately rebuilt controlled Players.
+
+For each side, run:
+
+~~~text
+<candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 -ControlledPerformanceBuilds
+~~~
+
+under a unique baseline ID and use **that workflow receipt's** fixture, replay, controlled ON/OFF receipts and controlled evidence together.
+
+The freezer must reject any baseline mismatch before sampling.
+
 ### Batch stop/continue policy
 
 Hard-stop on:
 
-- source authority mismatch;
+- source-authority failure;
 - wrong runtime/package/native installation;
-- tracked source drift not owned by the current M07 authority contract;
-- invalid shared current/reference M07 graph;
+- tracked source drift;
+- invalid shared M07 graph;
 - provenance corruption.
 
-After shared foundations pass, retain isolated functional failures and continue independent cells when common authenticated inputs remain unchanged.
+After foundations pass, retain isolated functional failures and continue independent cells whose authenticated common inputs remain valid.
 
-Never promote a failed prerequisite to acceptance.
-
-### Priority validation
-
-The next batch must specifically close:
-
-1. real early-owned Control/Q04/initializer transaction execution;
-2. same-PID late read-only persistence verification;
-3. real lazy-v2 Player launch/execution;
-4. protected profile-1 M07 through current coordinator;
-5. fresh old-Player rejection;
-6. protected/candidate controlled Development performance if reference M07 closes.
-
-### Protected project invocation
-
-Use:
-
-~~~text
-pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
-  -ProjectPath <reference-demo> \
-  -BaselineId M07-Baseline-H1-ProtectedProfile1-<unique-id> \
-  -TimeoutSec 28800 \
-  -BuildTarget StandaloneOSX
-~~~
-
-The protected project's historical `Invoke-M07Build.ps1` must not be invoked for this H1 cycle.
-
-### Retention
-
-Authenticate a fresh checkpoint before cleanup.
-
-Retain/hash-bind the complete current and protected graphs, including early failure transaction evidence, late handoff raw results, lazy-v2 generator/Player evidence, protected outer recovery/authority, old-Player and performance artifacts.
+Never relabel historical evidence.
 
 ## Failure evidence
 
-For failure/publication retain per process:
+For Q04 retain:
 
-- failure binding;
-- early transaction capsule;
-- early receipt;
-- late schema-2 handoff result;
-- three post-host raw responses;
-- exact PID/command/start time;
-- Unity/console logs;
-- strict schema-v3 verification.
+- early capsule/receipt;
+- early final baseline-use history;
+- late handoff result;
+- post-host baseline-use history;
+- diagnostics/capacity/recovery raw JSON;
+- exact PID/command/logs;
+- strict verifier result.
 
-For lazy retain:
+For dense-v2 retain:
 
-- v2 manifest;
-- all four producer commands;
-- tool/generator hashes;
+- manifest + generator/tool hashes;
 - parser receipt;
-- lazy fixture;
-- diagnostic Player build;
-- launch/result/logs.
+- diagnostic build receipt;
+- Player result/log;
+- exact attempted type names;
+- four ReturnId observations;
+- image/page snapshots.
 
-For protected M07 retain:
+For performance retain:
 
-- protected verification;
-- current coordinator command;
-- outer authenticated originals;
-- split-authority receipts;
-- exact restoration receipt;
-- workflow/fixture/ON/OFF/replay outputs;
-- post-run clean source/runtime verification.
+- both controlled-performance M07 workflow receipts;
+- four controlled Player receipts/evidence;
+- both graph-bound fixture manifests/replays;
+- strict freezer receipt;
+- preregistration binding;
+- every pilot/formal attempt;
+- final analysis.
 
-Keep `Passed`, `PassedFocused`, `Failed`, `Blocked`, `Unavailable`, `NotRun`, `NoCoverage` and historical evidence identities distinct.
+Preserve `Passed`, `Failed`, `Blocked`, `Unavailable`, `NotRun`, `NoCoverage`, and historical/reused states exactly.
 
 ## Alternatives
 
 Do not:
 
-- start the failure transaction after host continuation;
-- replace the new early transaction with Baseline admission-only;
-- weaken terminal startup modes to callback 0;
-- add a runtime exception for `BaselineAlreadyUsed`;
-- weaken strict early/late process/hash binding;
-- accept three-field dense-v2 commands;
-- relax v2 generator/parser/historical evidence rules;
-- modify the protected project to embed current coordinator policy;
-- invoke the protected historical M07 wrapper and then bypass its verifier;
-- hand-author old-Player/performance evidence;
-- weaken `verify_demo`, `metadata_only`, performance comparability or sampling policy;
+- permit selected-closure first use before Q04 terminal failure;
+- permit unknown/non-candidate post-host uses;
+- weaken Control/initializer published-world baseline-use rules;
+- special-case the dense runtime failure without matching the generator identity;
+- bypass dense parser/manifest admission;
+- reuse mismatched normal-M07 graphs for controlled performance;
+- hand-edit build-map comparability or fixture bindings;
+- skip the strict build-map validator before sampling;
+- change the preregistered schedule or delete slow/failed samples;
+- weaken source/runtime/protected authority;
 - begin R02.
 
 ## Risks
 
-- `MetadataFailureContinue` and `InitializerFailureContinue` deliberately continue normal host startup from terminal Shadow failure states only for the dedicated diagnostic matrix. Real Player validation must prove the expected late probe can run without altering terminal state.
-- The initializer case publishes a generation before module-initializer failure; post-host persistence must remain `FailedAfterCommit`.
-- Protected M07 now depends on candidate coordinator tooling driving historical Unity producers; exact pre/post source verification and outer restoration are mandatory.
-- Old-Player/performance remain unavailable if a fresh protected M07 graph cannot be produced.
-- All Player/reference/performance outputs are cleanup-sensitive.
+- Q04 host continuation occurs from a terminal unpublished Shadow state; Local must prove only observation history changes while terminal diagnostics/recovery remain stable.
+- Dense fixtures are deliberately large metadata-boundary images; Player execution is the remaining proof after parser success.
+- `-ControlledPerformanceBuilds` performs two expensive Development IL2CPP builds plus fixture generation per side.
+- Formal paired sampling can be lengthy; all attempts remain evidence.
+- Performance graph artifacts are baseline-specific and cannot be substituted across workflows.
 
 ## Local correction boundary
 
 Local may adjust:
 
-- absolute worktree paths;
+- absolute paths;
 - fresh baseline IDs;
+- fresh output/evidence directory names;
 - executable permissions;
-- invocation syntax;
-- fresh evidence/output directory names;
-- bounded environment setup for already pinned runtime installation.
+- bounded machine-specific invocation syntax.
 
-Local must not alter:
+Local must not change:
 
 - source anchor;
-- early failure ownership/mode/callback semantics;
-- late probe read-only boundary;
-- dense-v2 schema;
-- split M07 authority semantics;
+- Q04 terminal-history semantics;
+- dense type/return identity;
+- controlled-performance graph binding;
+- performance protocol/schedule/statistics;
 - protected commits;
-- runtime ABI/capacity/index constants;
-- performance protocol/schedule/comparability policy.
+- runtime ABI/capacity/index rules;
+- source/verifier policy.
 
 Any non-trivial source/tool change returns to Primary.
 
@@ -299,10 +326,10 @@ Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
 H1 remains **InProgress**.
 
-Fresh mandatory V04 evidence and V05 successor closure are required before a genuine independent whole-chain M08 rerun.
+Mandatory V04 evidence must close before V05 and a genuinely independent whole-chain M08 rerun.
 
 Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**.
 
-Human H1 approval must then be explicit.
+Human approval must then be explicit.
 
 **Do not begin R02.**
