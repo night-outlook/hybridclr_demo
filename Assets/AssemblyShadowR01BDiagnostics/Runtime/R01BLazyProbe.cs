@@ -18,6 +18,7 @@ namespace AssemblyShadowDemo
     {
         private const string FixtureName = "AssemblyShadow.R01BLazyFixture";
         private const string Prefix = "AssemblyShadow.R01B.";
+        private const string DenseNamespace = "AssemblyShadow.Dense";
         private static Result active;
         private static string output;
 
@@ -193,12 +194,11 @@ namespace AssemblyShadowDemo
                     Hash(bytes) == fixture.sha256,
                     "Dense adjunct hash or metadata envelope differs for fixture " + fixture.id + ".");
                 Assembly assembly = Assembly.Load(bytes);
-                string stem = "DenseType_" + fixture.id.ToString("D4") + "_";
-                string suffix = "_MetadataBoundary_0123456789abcdef0123456789abcdef";
                 foreach (int row in new[] { 4095, 4096 })
                 {
-                    Type type = assembly.GetType("AssemblyShadow.Workload." + stem + row.ToString("D4") + suffix, true);
-                    Check("dense-row-" + fixture.id + "-" + row, InvokeInt(type, "ReturnId") == fixture.id,
+                    Type type = assembly.GetType(DenseTypeName(fixture.id, row), true);
+                    Check("dense-row-" + fixture.id + "-" + row,
+                        InvokeInt(type, "ReturnId") == DenseReturnId(fixture.id, row),
                         "Dense metadata boundary method returned the wrong identity.");
                 }
                 ++active.denseFixtures;
@@ -206,6 +206,17 @@ namespace AssemblyShadowDemo
             }
             Check("dense-fixture-ids", seen.SetEquals(new[] { 1, 2 }), "Dense adjunct fixture IDs differ.");
             Snapshot("after-dense-adjunct");
+        }
+
+        private static string DenseTypeName(int fixtureId, int row)
+        {
+            return DenseNamespace + ".DenseType_" + fixtureId.ToString("D4") + "_" +
+                row.ToString("D4") + "_MetadataBoundary_0123456789abcdef0123456789abcdef";
+        }
+
+        private static int DenseReturnId(int fixtureId, int row)
+        {
+            return checked(fixtureId * 10000 + row);
         }
 
         private static bool IsAcceptedDenseManifestContract(DenseManifest manifest)
