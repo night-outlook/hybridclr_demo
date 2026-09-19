@@ -69,7 +69,8 @@ def prepared(root):
     failures=dict(path=paths['failureFixturesPath'],initializer=fixtures[gate.INITIALIZER_ID],
                   data=dict(fixtureManifestPath=str(paths['fixtureManifestPath']),fixtureManifestSha256=gate.digest(paths['fixtureManifestPath'])),
                   files={paths['failureFixturesPath']})
-    negative_info=dict(path=paths['negativeInputPath'],data=dict(outputPath=str(negative)),
+    negative_info=dict(path=paths['negativeInputPath'],
+                       data=dict(outputPath=str(negative),outputSha256=gate.digest(negative)),
                        files={paths['negativeInputPath'],negative})
     return dict(context=context,profile=1,failures=failures,negative=negative_info,
                 runner=types.SimpleNamespace(executable_for=lambda output:exe),
