@@ -25,7 +25,7 @@ namespace AssemblyShadowDemo.EditorTests
         [Test]
         public void CapsuleCodecAcceptsBudgetAndNativeScriptModes()
         {
-            foreach (string mode in new[] { "Oversize", "Mismatch", "NativeScript" })
+            foreach (string mode in new[] { "Oversize", "Mismatch", "NativeScript", "MetadataFailureContinue", "InitializerFailureContinue" })
             {
                 R01EarlyStartup.Capsule capsule = R01EarlyStartup.CapsuleCodec.Parse(Encode(mode, ordinary: false));
                 Assert.AreEqual(mode, capsule.mode);
