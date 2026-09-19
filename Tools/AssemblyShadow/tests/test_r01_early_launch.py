@@ -56,9 +56,14 @@ class EarlyLaunchTests(unittest.TestCase):
                                        "T07-01-Prefab-P01")
             self.assertEqual(command[command.index("-shadowM07Mode") + 1], "T07-01-Prefab-P01")
 
-    def test_default_matrix_excludes_unsupported_baseline(self):
-        self.assertEqual(gate.DEFAULT_MODES, gate.MODES[:-1])
+    def test_default_matrix_excludes_baseline_and_dedicated_continuation_modes(self):
+        expected = tuple(mode for mode in gate.MODES
+                         if mode not in gate.CONTINUED_FAILURE_MODES and mode != "Baseline")
+        self.assertEqual(gate.DEFAULT_MODES, expected)
         self.assertNotIn("Baseline", gate.DEFAULT_MODES)
+        self.assertTrue(gate.CONTINUED_FAILURE_MODES.isdisjoint(gate.DEFAULT_MODES))
+        self.assertIn("MetadataFailure", gate.DEFAULT_MODES)
+        self.assertIn("InitializerFailure", gate.DEFAULT_MODES)
         self.assertIn("Oversize", gate.DEFAULT_MODES)
         self.assertIn("Mismatch", gate.DEFAULT_MODES)
         self.assertIn("NativeScript", gate.DEFAULT_MODES)
