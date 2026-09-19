@@ -257,10 +257,17 @@ def _verify_dense_v2(manifest_path: Path, manifest: dict) -> tuple[dict, set[Pat
             sum(type(item) is str and item.startswith("-r:") for item in compile_command) == 1,
             "dense v2 compile command differs")
     generate_commands = generator["generateCommands"]
-    require(type(generate_commands) is list and len(generate_commands) == 4 and
-            all(type(command) is list and len(command) == 3 and command[0] == str(MONO) and
-                command[2].endswith(".dll") for command in generate_commands),
-            "dense v2 generation command inventory differs")
+    expected_runs = [(1, 1), (1, 2), (2, 1), (2, 2)]
+    require(type(generate_commands) is list and len(generate_commands) == len(expected_runs),
+            "dense v2 generation command count differs")
+    for command, (fixture_id, run_index) in zip(generate_commands, expected_runs):
+        require(type(command) is list and len(command) == 4 and
+                command[0] == str(MONO) and
+                Path(command[1]).is_absolute() and Path(command[1]).name.endswith(".exe") and
+                command[2] == str(fixture_id) and
+                Path(command[3]).is_absolute() and
+                Path(command[3]).name == f"I{fixture_id:04d}-run{run_index}.dll",
+                "dense v2 generation command inventory differs")
 
     fixture_root = manifest_path.parent / "fixtures"
     require(fixture_root.is_dir() and not fixture_root.is_symlink(), "dense v2 fixture root is missing")
