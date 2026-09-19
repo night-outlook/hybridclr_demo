@@ -420,13 +420,17 @@ BASELINE_USE_KINDS = frozenset((
 
 
 def verify_first_use_history(current: list[dict[str, Any]], previous: list[dict[str, Any]],
-                             data: dict[str, Any], label: str, *, witness: bool = False) -> None:
-    """Retain the whole generated registry history, scoped to the selected closure.
+                             data: dict[str, Any], label: str, *, witness: bool = False,
+                             allow_selected_closure: bool = False) -> None:
+    """Retain the complete generated candidate first-use history.
 
-    ResolvePrivate intentionally uses physical AOT for unchanged candidates.
-    Those records remain observable and do not make a different selected member
-    ineligible. This is the established M07 rule, with the R01 first-use sequence
-    and immutable record contract checked as well.
+    During an eligible transaction, selected-closure baseline use is forbidden.
+    After a terminal pre-publication failure (the dedicated Q04 continuation
+    probe), host startup is deliberately allowed to continue in the baseline
+    world; those later candidate uses are observational and cannot retroactively
+    change the already-sealed terminal transaction. Callers must opt into that
+    post-terminal rule explicitly. Unknown/non-candidate identities remain
+    forbidden in every mode.
     """
     candidates = data["candidates"]
     closure = {row["name"] for row in data["inputs"]}
@@ -434,7 +438,8 @@ def verify_first_use_history(current: list[dict[str, Any]], previous: list[dict[
     for use in current:
         fields(use, "name kind detail type thread timestamp", label)
         name = use["name"]
-        require(name in candidates and (witness or name not in closure),
+        require(name in candidates and
+                (witness or allow_selected_closure or name not in closure),
                 label + ": selected closure or non-candidate baseline use observed")
         require(use["kind"] in BASELINE_USE_KINDS, label + ".invalidKind")
         integer(use["thread"], label + ".thread", 1)
