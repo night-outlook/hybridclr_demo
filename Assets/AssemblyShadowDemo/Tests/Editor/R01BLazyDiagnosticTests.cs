@@ -103,6 +103,23 @@ namespace AssemblyShadowDemo.EditorTests
         }
 
         [Test]
+        public void DenseBoundaryIdentityMatchesGeneratorContract()
+        {
+            Type probe = ProbeType();
+            MethodInfo typeName = PrivateMethod(probe, "DenseTypeName", typeof(int), typeof(int));
+            MethodInfo returnId = PrivateMethod(probe, "DenseReturnId", typeof(int), typeof(int));
+
+            Assert.AreEqual(
+                "AssemblyShadow.Dense.DenseType_0001_4095_MetadataBoundary_0123456789abcdef0123456789abcdef",
+                typeName.Invoke(null, new object[] { 1, 4095 }));
+            Assert.AreEqual(14095, returnId.Invoke(null, new object[] { 1, 4095 }));
+            Assert.AreEqual(
+                "AssemblyShadow.Dense.DenseType_0002_4096_MetadataBoundary_0123456789abcdef0123456789abcdef",
+                typeName.Invoke(null, new object[] { 2, 4096 }));
+            Assert.AreEqual(24096, returnId.Invoke(null, new object[] { 2, 4096 }));
+        }
+
+        [Test]
         public void RepeatedFixtureInvokeChecksUseUniqueNames()
         {
             Type probe = ProbeType();
