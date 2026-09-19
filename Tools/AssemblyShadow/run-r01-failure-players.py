@@ -67,13 +67,13 @@ def main(argv=None):
 
     prepared = gate.prepare(*(paths[key] for key in keys))
 
-    # The earliest-startup callback must authenticate the complete failure input
-    # graph without consuming the failure transaction. A Baseline capsule is
-    # therefore used as an admission-only transport; a deterministic per-mode
-    # binding file makes the three capsules non-interchangeable.
+    # The complete failure/publication transaction is owned by the earliest
+    # startup callback. The later managed probe only verifies same-process
+    # persistence after normal host continuation. Per-mode binding files keep
+    # all three early transaction capsules non-interchangeable.
     output.mkdir()
     result_dir = output / "Results"; result_dir.mkdir()
-    admission_dir = output / "EarlyAdmission"; admission_dir.mkdir()
+    admission_dir = output / "EarlyTransactions"; admission_dir.mkdir()
     admissions = gate.materialize_admission_inputs(prepared, paths, admission_dir)
 
     inventory = set(prepared["inventory"])
@@ -98,8 +98,8 @@ def main(argv=None):
         expected_guid = prepared["context"]["on"]["player"]["buildGuid"]
         early_passed = (
             early_outcome is not None and
-            early_outcome.get("result") == "Passed" and
-            early_outcome.get("mode") == gate.EARLY_ADMISSION_MODE and
+            early_outcome.get("result") == gate.expected_early_result(mode) and
+            early_outcome.get("mode") == gate.early_mode(mode) and
             early_outcome.get("callbackReturnCode") == 0 and
             early_outcome.get("processId") == row["processId"] and
             early_outcome.get("capsulePath") == str(admission["capsulePath"]) and
@@ -115,7 +115,7 @@ def main(argv=None):
         passed = (row["exitCode"] == 0 and not row["timedOut"] and early_passed and result_passed)
         error = ""
         if not early_passed:
-            error = early_error or (early_outcome or {}).get("error", "Early admission result mismatch")
+            error = early_error or (early_outcome or {}).get("error", "Early transaction result mismatch")
         elif not result_passed:
             error = result_error or (outcome or {}).get("error", "Failure/publication result mismatch")
 
@@ -141,7 +141,7 @@ def main(argv=None):
 
     after = {str(path): gate.digest(path) for path in sorted(inventory)}
     receipt = dict(
-        schemaVersion=2,
+        schemaVersion=3,
         kind="R01FailureLaunches",
         **{key: str(value) for key, value in paths.items()},
         sourcePins=prepared["context"]["sourcePins"],
