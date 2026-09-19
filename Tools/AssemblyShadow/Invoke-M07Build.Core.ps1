@@ -8,7 +8,8 @@ param(
     [string]$BuildTarget = 'StandaloneOSX',
     [string]$ResourceOutput,
     [string]$NativeOnOutput,
-    [string]$NativeOffOutput
+    [string]$NativeOffOutput,
+    [switch]$ControlledPerformanceBuilds
 )
 
 $ErrorActionPreference = 'Stop'
@@ -262,9 +263,27 @@ try {
     Assert-M07PinnedInputs $shadowProject
     Invoke-M07GuardedMethod 'AssemblyShadowDemo.Editor.M07Build.BuildBaselineResources' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowM07ResourceOutput', $resourceRoot))
     Assert-M07PinnedInputs $shadowProject
-    Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $onOutput)) $run 'native-on'
-    Assert-M07PinnedInputs $shadowProject
-    Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $offOutput)) $run 'native-off'
+
+    $onControlledEvidence = ''
+    $offControlledEvidence = ''
+    if ($ControlledPerformanceBuilds) {
+        $controlledEvidenceRoot = Join-Path $run 'ControlledPerformanceBuilds'
+        New-Item -ItemType Directory -Path $controlledEvidenceRoot | Out-Null
+        $onControlledEvidence = Join-Path $controlledEvidenceRoot 'native-on-controlled-evidence.json'
+        $offControlledEvidence = Join-Path $controlledEvidenceRoot 'native-off-controlled-evidence.json'
+        Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget (
+            $common + @('-shadowBuildOutput', $onOutput, '-shadowR00Feature', 'on', '-shadowR00BuildEvidence', $onControlledEvidence)
+        ) $run 'native-on-controlled'
+        Assert-M07PinnedInputs $shadowProject
+        Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.R00ControlledBuild.BuildPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget (
+            $common + @('-shadowBuildOutput', $offOutput, '-shadowR00Feature', 'off', '-shadowR00BuildEvidence', $offControlledEvidence)
+        ) $run 'native-off-controlled'
+    }
+    else {
+        Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildPlayerBaseline' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $onOutput)) $run 'native-on'
+        Assert-M07PinnedInputs $shadowProject
+        Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.BuildFeatureDisabledPlayer' $shadowProject $shadowMethods $TimeoutSec $BuildTarget ($common + @('-shadowBuildOutput', $offOutput)) $run 'native-off'
+    }
     Assert-M07PinnedInputs $shadowProject
 
     Save-M07OriginalSettings $shadowProject $run
@@ -297,7 +316,9 @@ try {
     $offReceipt = Find-M07PlayerReceipt $shadowProject 'NativeOff' $offOutput $existingPlayerReceipts
     $fixtureManifest = Join-Path $run 'm07-fixtures.json'
     $replayReceipt = Join-Path $run 'm07-editor-replay.json'
-    foreach ($required in @($onReceipt, $offReceipt, $fixtureManifest, $replayReceipt)) {
+    $requiredOutputs = @($onReceipt, $offReceipt, $fixtureManifest, $replayReceipt)
+    if ($ControlledPerformanceBuilds) { $requiredOutputs += @($onControlledEvidence, $offControlledEvidence) }
+    foreach ($required in $requiredOutputs) {
         if (-not (Test-Path -LiteralPath $required -PathType Leaf)) { throw "M07 workflow output is missing: $required" }
     }
     $workflow = [ordered]@{
@@ -305,6 +326,8 @@ try {
         projectPath = $shadowProject; buildTarget = $BuildTarget; runDirectory = $run;
         resourceBaselinePath = $resourceRoot; nativeOnPlayer = $onOutput; nativeOffPlayer = $offOutput;
         nativeOnReceipt = $onReceipt; nativeOffReceipt = $offReceipt;
+        controlledPerformanceBuilds = [bool]$ControlledPerformanceBuilds;
+        nativeOnControlledEvidence = $onControlledEvidence; nativeOffControlledEvidence = $offControlledEvidence;
         fixtureManifest = $fixtureManifest; editorReplayReceipt = $replayReceipt;
         projectSettingsSha256 = Get-M07BytesHash ([IO.File]::ReadAllBytes($settingsPath));
     }
