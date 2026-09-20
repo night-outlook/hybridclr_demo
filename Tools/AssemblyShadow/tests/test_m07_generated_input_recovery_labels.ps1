@@ -83,8 +83,9 @@ catch {
     if ($_.Exception.Message -ceq 'M07_RECOVERY_BINDER_BODY_ENTERED') {
         throw 'Unknown recovery label entered the helper body.'
     }
-    if ($_.Exception -is [System.Management.Automation.ParameterBindingValidationException] -or
-        $_.Exception.Message -match 'ValidateSet') {
+    $errorId = [string]$_.FullyQualifiedErrorId
+    if ($errorId -like 'ParameterArgumentValidationError*' -or
+        $_.Exception.Message -match 'ValidateSet|does not belong to the set') {
         $invalidRejected = $true
     }
     else {
