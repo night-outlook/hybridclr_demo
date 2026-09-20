@@ -157,6 +157,18 @@ class M07ControlledPerformanceWorkflowContractTests(unittest.TestCase):
         self.assertIn('cannot run together', outer)
 
 
+    def test_generated_input_recovery_accepts_all_real_stage_labels(self):
+        core=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn(
+            "[ValidateSet('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled')]",
+            core)
+        binder=(TOOLS/'tests/test_m07_generated_input_recovery_labels.ps1').read_text()
+        for label in ('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled'):
+            self.assertIn("'" + label + "'", binder)
+        self.assertIn('M07_RECOVERY_BINDER_BODY_ENTERED', binder)
+        self.assertIn('ParameterBindingValidationException', binder)
+
+
     def test_unity_workflow_test_tracks_outer_and_core_contracts(self):
         source=(ROOT/'Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs').read_text()
         self.assertIn('WorkflowCoreSource = "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1"', source)
