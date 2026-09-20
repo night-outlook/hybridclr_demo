@@ -1,58 +1,52 @@
 # Local Validation report
 
-## Current run — 2026-09-19 authority `99ef65db`
+## Current run — 2026-09-19 authority `925e84d7`
 
 ### Exit
 
 **Local Validation → Primary Implementation: RETURN REQUIRED after V04**
 
-Fresh V00 validated candidate checkout `fe441e3e73f68bd1f237fe1264c93fb358004cbd` and exact source anchor `99ef65db13341f54cf610e18453dddf197ee86e4`. Candidate authority returned `SourceTargetVerifiedNotBuildAccepted`; reproduction tooling, protected refs, and freshly verified installed runtimes passed strict checks. No earlier attempt was reused or relabelled.
+Fresh V00 authenticated candidate checkout `2bd1a86904f8cfeeadf55693641bc27f014538e9` and exact source anchor `925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`. Candidate authority returned `SourceTargetVerifiedNotBuildAccepted`; reproduction tooling, the exact protected family, and both installed runtimes passed. No prior attempt was reused or relabelled.
 
-V00–V03, controlled and normal M07, startup11, the M07 14-mode matrix, ordinary and exact-mixed capacity execution, deterministic dense-v2 generation, parser/FieldRVA/native coverage, the protected profile-1 M07 graph, and old-Player rejection passed. Four controlled Development Players also passed provenance capture, and the A/B freezer returned `ComparabilityPassed`. Three independent V04 contracts nevertheless failed: strict failure/publication verification rejected Q04 history, the lazy Player threw before dense execution, and the first performance pilot found that both controlled Player baselines differ from their supplied fixture graphs. V05/M08 therefore did not run.
+V00–V03, normal M07, startup11, M07 14/14, strict failure/publication, deterministic dense-v2 real Player execution, ordinary and mixed capacity, and the retained parser/native matrix passed. The two requested graph-bound controlled-performance workflows both failed before their first controlled Player build at the same current-code parameter validation defect. The build map, preregistration, pilots, formal samples, analysis, V05, and M08 therefore did not run.
 
 ### Results
 
 | Cell | Result | Evidence / disposition |
 | --- | --- | --- |
-| V00 candidate authority | `Passed` | `SourceTargetVerifiedNotBuildAccepted`; candidate `fe441e3e...`, source `99ef65db...` |
-| V00 reproduction/protected refs | `Passed` | `BehaviorAndToolingSourcesVerifiedNotBuildAccepted`; exact protected refs; candidate and protected installed runtimes verified with Shadow ON |
-| V01 Python and direct suites | `PassedWithIsolatedStaleExpectation` | Full Python 1008/1009 passed with 28 skips; the lone failure expects the pre-repair 11-mode inventory. Bounded Primary 320/320 and all requested direct suites passed |
-| V01 Unity compile | `Passed` | Fresh Unity 2022.3.62f2 batch compile clean |
-| V01 broad EditMode | `FailedIsolatedBroadTest` | 1074/1075; one stale temp-root literal expectation; focused affected coverage passed separately |
-| V02/V03 provenance builds | `Passed` | Fresh current-anchor and reproduction-tooling builds passed with exact restoration; wrong-pwsh failure retained |
-| V04 controlled M07 | `PassedExpectedFailureAndExactRestoration` | Deliberate recovery failure reached only after authority checks; workflow-owned bytes restored exactly |
-| V04 normal M07 | `Passed` | Baseline `M07-Baseline-H1-Authority99ef-Normal-20260919A`; fresh fixture/ON/OFF/replay graph and exact outer restoration |
-| V04 control capsules | `Passed` | 13 current capsules; `capsules.json` SHA-256 `9ce3dbb9...` |
-| V04 startup11 | `PassedBoundedProfile` | 11 fresh processes; strict result SHA-256 `9242101c...` |
-| V04 M07 Player matrix | `PassedGate3B14Of14` | Strict 14/14; result SHA-256 `a0364af3...` |
-| V04 failure/publication | `Failed` | All three earliest-owned transactions launched with bound capsule/PID/log/hash evidence; strict verifier rejected Q04 `firstUseHistory` for selected-closure or non-candidate baseline use |
-| V04 ordinary capacity | `Passed` | 8192-entry / 536,870,912-byte Player passed in 530 seconds; 8193 refusal and exact accounting verified |
-| V04 exact mixed boundary | `Passed` | 536,733,184 ordinary + 137,728 shadow = 536,870,912 bytes; Player exit 0 in 596.7 seconds; strict receipt retained |
-| V04 dense-v2 producer | `Passed` | Deterministic IDs 1 and 2; each generator command has the corrected four-field contract |
-| V04 lazy Player | `FailedRuntimeNoDenseCoverage` | Diagnostic Player launched and 51 preconditions passed, then dense boundary type lookup resolved against `mscorlib` and threw `TypeLoadException`; `denseFixtures=0` |
-| V04 parser / FieldRVA | `Passed` | 8,192-file corpus, 8,196 FieldRVA rows, both dense IDs, bounded readers, and sanitizer checks passed |
-| V04 capacity/index/generic/cache | `Passed` | Fresh index-range/runtime, generic constraint, type-cache, capability, attribute, codec, overflow, and live-capability coverage passed |
-| V04 retained M03–M06/R01 native | `Passed` | Fresh M03–M06, budget, contention, recovery, startup, transaction, attribute, constraint, and count suites passed |
-| V04 protected profile-1 install | `Passed` | Isolated exact reference family; source and installed-runtime verification passed before and after workflow/builds |
-| V04 protected profile-1 M07 | `Passed` | Current candidate coordinator ran with `-ProjectPath <reference-demo>` and produced a fresh profile-1 fixture/ON/OFF/replay graph with exact outer restoration |
-| V04 old-Player rejection | `PassedExpectedRejection` | Profile-1 Baseline admitted early; profile-2 inputs were refused before Configure; verification result `Passed` |
-| V04 controlled Development builds | `PassedFourOfFour` | Current and reference ON/OFF builds each passed provenance capture, Release native compilation, Low stripping, OptimizeSpeed, no debugger/profiler |
-| V04 frozen build map | `ComparabilityPassed` | Common measurement and witness hashes matched; expected ABI/source-pin differences were authenticated |
-| V04 preregistration | `Passed` | Protocol bytes unchanged, schedule semantic fields unchanged, 44 pairs retained |
-| V04 performance pilot | `FailedBeforePlayerLaunch` | Pilot 1 failed closed on both sides: controlled Player baseline IDs differ from the supplied fresh M07 fixture baseline IDs; no performance sample was taken |
-| V04 formal performance | `Blocked / NotRun` | Four successful pilots are mandatory; formal sampling correctly refused to begin |
-| V05 / M08 | `Blocked / NotRun` | Mandatory failure, lazy, and performance prerequisites are incomplete |
+| V00 candidate authority | `Passed` | `SourceTargetVerifiedNotBuildAccepted`; checkout `2bd1a869...`, source `925e84d7...` |
+| V00 reproduction/protected refs | `Passed` | Reproduction-tooling authority and the exact protected four-repository family verified; candidate and protected installed runtimes matched source with Shadow ON |
+| V01 complete Python inventory | `PassedWithExplicitSkips` | 1,015 discovered: 987 passed, 28 explicit skips, no failures |
+| V01 bounded Primary | `Passed` | 323/323 |
+| V01 broad Unity EditMode | `Passed` | 1,076/1,076, no failures or skips |
+| V02/V03 provenance builds | `Passed` | Six fresh candidate/reproduction debug/release/ON/OFF cells, both strict compiler verifiers, and exact restoration passed |
+| V04 normal M07 | `Passed` | `M07-Baseline-H1-925e-Normal-20260919A`; fresh fixture, ON/OFF, replay, link-input restoration, and outer restoration receipts |
+| V04 startup11 | `PassedBoundedProfile` | 11 fresh PIDs; strict result passed |
+| V04 M07 Player matrix | `PassedGate3B14Of14` | All 14 modes passed; no missing modes |
+| V04 failure/publication | `Passed` | Schema v3; `transactionOwnership=EarliestStartup`; Control `Committed`, Q04 `Failed`, initializer `FailedAfterCommit`; bindings/capsules/early/late/raw/log hashes retained |
+| V04 dense-v2 producer/parser | `Passed` | Two deterministic fixtures; dense native parser and bounded-reader sanitizer matrix passed |
+| V04 dense-v2 diagnostic Player | `Passed` | 62 checks, `denseFixtures=2`, `denseBoundaryChecks=4`; ReturnIds 14095, 14096, 24095, 24096; capacity monotonic and inputs unchanged |
+| V04 retained native matrix | `Passed` | M03–M06, budget, contention, recovery, startup, gateway, transaction, attribute, constraint, index-range/runtime, live capability, type cache, and codec kernel passed |
+| V04 ordinary capacity | `Passed` | 8,192 assemblies / 536,870,912 bytes; 8,193rd refusal; real Player 516.1 s; strict verification passed |
+| V04 exact mixed capacity | `Passed` | 536,733,184 ordinary + 137,728 Shadow = 536,870,912 bytes; five Shadow images, three retained failed reservations; real Player 537.4 s; strict verification passed |
+| V04 protected profile-1 authentication | `Passed` | Protected commits and source anchor authenticated; runtime matched source before and after the failed workflow; worktree restored exactly |
+| V04 controlled performance — profile 1 | `FailedBeforeControlledPlayerBuild` | Compiler authority and resource baseline passed, then `native-on-controlled` was rejected by the helper's `Label` `ValidateSet`; no controlled Player or workflow receipt produced |
+| V04 controlled performance — profile 2 | `FailedBeforeControlledPlayerBuild` | Same exact current-code failure after authority and resource baseline; no controlled Player or workflow receipt produced; exact outer restoration and runtime re-verification passed |
+| V04 old-Player current-anchor check | `Blocked / NotRun` | Required fresh profile-1 and profile-2 graphs do not exist |
+| V04 frozen build map | `Blocked / NotRun` | Four controlled receipt/evidence pairs do not exist; `ComparabilityPassed` was not claimed |
+| V04 preregistration / pilots / formal / analysis | `Blocked / NotRun` | Build-map prerequisite absent; no performance process or sample was launched |
+| V05 / M08 | `Blocked / NotRun` | Mandatory V04 performance evidence is incomplete |
 
 ### Failure analysis
 
-The failure/publication repair moved transaction ownership to the earliest callback as intended, and the late probe is persistence-only evidence. Control and initializer evidence remained coherent, but strict Q04 verification found a selected-closure or non-candidate baseline use in `postHost.firstUseHistory`. That is an isolated runtime-oracle failure, not an authority or shared-input failure.
+The direct failure is in `Tools/AssemblyShadow/Invoke-M07Build.Core.ps1`: `Invoke-M07PlayerMethodWithGeneratedInputRecovery` declares `Label` with `ValidateSet('native-on', 'native-off')`, while the `-ControlledPerformanceBuilds` branch calls it with `native-on-controlled` and `native-off-controlled`. PowerShell rejects the first value before `R00ControlledBuild.BuildPlayer` starts. The protected and candidate executions reproduced the same defect independently.
 
-The corrected dense-v2 contract reached the diagnostic Player. The runner authenticated 51 setup/input checks, but the Player attempted to resolve `AssemblyShadow.Workload.DenseType_0001_4095_MetadataBoundary_...` from `mscorlib`, raised `TypeLoadException`, and executed zero dense fixtures. This is a real runtime failure, not `NoCoverage` from a prelaunch schema guard.
+The design allowed the defect because broad and focused source tests validated workflow intent and graph binding without executing PowerShell's runtime parameter binder for this branch. The durable repair is to make the recovery helper's accepted stage vocabulary consistent with every real caller and add a direct PowerShell integration test that enters both controlled labels before Unity work, while retaining the existing exact-byte recovery contract.
 
-The protected-reference M07 sequencing repair worked: the current candidate wrapper drove the protected project and restored it exactly. All four later controlled Development builds also passed. The strict freezer, however, accepted the normal-M07 fixture/replay graphs alongside controlled Players built under new immutable performance baseline IDs. Pilot 1 independently reconstructed the inputs and rejected both sides before launch: profile 1 expected `M07-Baseline-H1-ProtectedProfile1-20260919A` but received `M07-Baseline-H1-Perf-Reference-20260919A`; profile 2 expected `M07-Baseline-H1-Authority99ef-Normal-20260919A` but received `M07-Baseline-H1-Perf-Current-20260919A`. Formal sampling did not begin.
+Both failures occurred after source/runtime authority and resource baseline creation. The outer recovery receipts prove exact restoration; post-failure installed-runtime verification passed in both projects. They are functional workflow failures, not authority, provenance, shared-input corruption, or environmental unavailability.
 
 ### Retention checkpoint
 
-The authenticated pre-cleanup checkpoint is [local-validation-20260919-authority99ef](../History/M07R/H1/local-validation-20260919-authority99ef/README.md). `MANIFEST.sha256` binds this report, the summary, artifact index, and raw-evidence archive. The archive retains the complete bounded launch contract and failed states; large reproducible payloads remain live and receipt-bound. No cleanup was performed.
+The authenticated pre-cleanup checkpoint is [local-validation-20260919-authority925e](../History/M07R/H1/local-validation-20260919-authority925e/README.md). `MANIFEST.sha256` binds the report, summary, artifact index, and raw-evidence archive. Large payloads remain live and receipt-bound. No cleanup was performed.
 
 H1 remains `InProgress`; the last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. `WEB_TO_LOCAL.md`, source/preflight verification, protected pins, and R02 were not modified.

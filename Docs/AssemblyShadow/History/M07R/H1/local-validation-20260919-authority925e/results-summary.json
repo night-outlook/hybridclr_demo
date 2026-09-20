@@ -1,0 +1,42 @@
+{
+  "schema": "AssemblyShadowH1LocalValidationSummary/v1",
+  "createdDate": "2026-09-19",
+  "candidateDemoCommit": "2bd1a86904f8cfeeadf55693641bc27f014538e9",
+  "candidateSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+  "disposition": "ReturnRequiredAfterV04",
+  "cells": {
+    "V00": "Passed",
+    "V01Python": "PassedWith28ExplicitSkips",
+    "V01Primary": "Passed323Of323",
+    "V01BroadEditMode": "Passed1076Of1076",
+    "V02": "Passed",
+    "V03": "Passed",
+    "V04NormalM07": "Passed",
+    "V04Startup11": "PassedBoundedProfile",
+    "V04M07Players": "PassedGate3B14Of14",
+    "V04FailurePublication": "PassedSchemaV3",
+    "V04DenseV2": "PassedRealPlayerBoundary",
+    "V04LazyPlayer": "Passed62Checks",
+    "V04ParserAndNativeCoverage": "Passed",
+    "V04Capacity": "Passed",
+    "V04MixedCapacity": "Passed",
+    "V04ProtectedReferenceAuthentication": "Passed",
+    "V04ControlledPerformanceReference": "FailedBeforeControlledPlayerBuild",
+    "V04ControlledPerformanceCandidate": "FailedBeforeControlledPlayerBuild",
+    "V04OldPlayer": "BlockedNotRun",
+    "V04BuildMap": "BlockedNotRun",
+    "V04Preregistration": "BlockedNotRun",
+    "V04PerformancePilot": "BlockedNotRun",
+    "V04PerformanceFormal": "BlockedNotRun",
+    "V04PerformanceAnalysis": "BlockedNotRun",
+    "V05": "BlockedNotRun"
+  },
+  "blockers": [
+    "Invoke-M07Build.Core.ps1 passes native-on-controlled to Invoke-M07PlayerMethodWithGeneratedInputRecovery, but that function's Label ValidateSet accepts only native-on and native-off. Both protected profile-1 and current profile-2 workflows fail at this exact boundary before either controlled Player is built."
+  ],
+  "h1Status": "InProgress",
+  "lastIndependentM08": "FAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}

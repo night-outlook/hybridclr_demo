@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ControlledPerformanceWorkflowBlocker",
+  "result": "Failed",
+  "candidateSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+  "failedBoundary": "Invoke-M07PlayerMethodWithGeneratedInputRecovery parameter binding",
+  "directCause": "Invoke-M07Build.Core.ps1 passes native-on-controlled while the Label parameter ValidateSet accepts only native-on and native-off.",
+  "reference": {
+    "baselineBuildId": "M07-Baseline-H1-Perf-Reference-925e-20260919A",
+    "status": "FailedBeforeControlledPlayerBuild",
+    "compilerAuthorityPassed": true,
+    "resourceBaselineProduced": true,
+    "controlledPlayersProduced": false,
+    "exactOuterRestorationPassed": true,
+    "installedRuntimeReverified": true
+  },
+  "candidate": {
+    "baselineBuildId": "M07-Baseline-H1-Perf-Current-925e-20260919A",
+    "status": "FailedBeforeControlledPlayerBuild",
+    "compilerAuthorityPassed": true,
+    "resourceBaselineProduced": true,
+    "controlledPlayersProduced": false,
+    "exactOuterRestorationPassed": true,
+    "installedRuntimeReverified": true
+  },
+  "downstream": {
+    "oldPlayerFreshGraphCheck": "BlockedNotRun",
+    "frozenBuildMap": "BlockedNotRun",
+    "preregistrationBinding": "BlockedNotRun",
+    "pilots": "BlockedNotRun",
+    "formalSampling": "BlockedNotRun",
+    "performanceAnalysis": "BlockedNotRun",
+    "V05": "BlockedNotRun"
+  },
+  "cleanupPerformed": false
+}

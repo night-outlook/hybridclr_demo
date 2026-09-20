@@ -1,0 +1,155 @@
+{
+  "candidate": {
+    "head": "2bd1a86904f8cfeeadf55693641bc27f014538e9",
+    "pins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+        "localPath": "."
+      }
+    },
+    "sourcePinSha256": "9661d0c87096127959ecbcf12175287a92fbfa18753aa52891ea32495adbdd95",
+    "installed": {
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "sourceFiles": 955,
+      "installedFiles": 957,
+      "demoSourceVerified": true,
+      "configuredShadowMode": "on",
+      "receiptSha256": "62b0b71b84726163301b76f98bcd6f92b705973ce8ae819644543ed379f369d9"
+    },
+    "handoff": {
+      "kind": "PrimaryHandoffPreflight",
+      "status": "SourceTargetVerifiedNotBuildAccepted",
+      "role": "candidate",
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "checkoutCommit": "2bd1a86904f8cfeeadf55693641bc27f014538e9",
+      "codeCommit": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+      "handoffHashes": {
+        "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md": "ccad2e06dcf9afa6f42a8b2948e2de5645efa902b8f10e36d973e80f46730271",
+        "Docs/AssemblyShadow/Handoff/source-targets.json": "06b2a364e3b3e0c6dddf06e6268e267f839afe9f2ad4117701025cc4627e7ed6"
+      },
+      "sourcePinSha256": "9661d0c87096127959ecbcf12175287a92fbfa18753aa52891ea32495adbdd95",
+      "nativeInstallationVerified": false,
+      "humanGatePassed": false,
+      "mayEnterR02": false
+    },
+    "role": "candidate"
+  },
+  "reproduction": {
+    "head": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+    "pins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "99cdb1b67e4ed07b70732a2148cb69e079ca41cf",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
+        "localPath": "."
+      }
+    },
+    "sourcePinSha256": "c4c3840cff412cc1dc33921d6a4c40bc9ef5d5b4d7bfd60320e59120d7727d23",
+    "installed": {
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "sourceFiles": 955,
+      "installedFiles": 957,
+      "demoSourceVerified": false,
+      "configuredShadowMode": "on",
+      "receiptSha256": "9bc67b11d27ebf2e6bcb35f42051e31ced95f6ab68ba4c139220447b4fb6678b"
+    },
+    "handoff": {
+      "kind": "ReproductionValidationToolingPreflight",
+      "status": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+      "repository": "night-outlook/hybridclr_demo",
+      "branch": "codex/assembly-shadow-h1-count-repro-tooling",
+      "checkoutCommit": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+      "behaviorSourceCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
+      "protectedPublishedHead": "352d7474dd7c2ffd9b9501d8fa42334a3b236e05",
+      "validationToolingCommit": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+      "candidateToolSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+      "toolFiles": {
+        "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+        "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
+        "Assets/AssemblyShadowDemo/Editor/H1EvidenceProcess.cs": "f4dccd836bf61076048dba95b4de0c15621bf3be",
+        "Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
+        "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
+        "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
+        "Tools/AssemblyShadow/h1_compiler_actions.py": "e89c97c553793a8866c25b3090972a550f91b751",
+        "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+        "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
+        "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
+        "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
+      },
+      "toolOverrides": {
+        "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
+        "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
+        "Assets/AssemblyShadowDemo/Editor/H1ManagedSourceProvenance.cs": "2fdddcde4e9f1c62b93cd5f162aa922c67697628",
+        "Tools/AssemblyShadow/h1_bee_macro_domains.py": "6c87c3134a2ae63fbf933687afdd28ed51b6bfc2",
+        "Tools/AssemblyShadow/h1_capture_attempt.py": "1cd7b993234ef3d39e5a69f98d55a207adeb1dd2",
+        "Tools/AssemblyShadow/h1_macro_domain_census.py": "b89059a7d50fdb4026bad3d6f0bef09c2d0f62f7",
+        "Tools/AssemblyShadow/h1_managed_provenance.py": "0f2d158cb93ca01be8d5cc6e288efddd7dbd8063",
+        "Tools/AssemblyShadow/h1_native_capture.py": "d1e1153de9c0784e4d202a573cb31c81ac888ef7",
+        "Tools/AssemblyShadow/h1_pch_provenance.py": "42019759411a076a982149dd654f6347c0e6c65b"
+      },
+      "toolDeletions": [
+        "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs",
+        "Assets/AssemblyShadowDemo/Tests/Editor/H1ManagedSourceProvenanceTests.cs.meta"
+      ],
+      "editorSourceCompatibility": {
+        "status": "Compatible",
+        "editorSourceCount": 86,
+        "editorSourceInventorySha256": "f04e2fb48f739bfcb9c5b5d14b2a2606865c3d76e0384e283851162e3f341b79",
+        "rejectedLegacyManagedSourceApi": [
+          "H1ManagedSourceProvenance.Capture",
+          "H1ManagedSourceProvenance.CaptureBeforeBuild(",
+          "H1ManagedSourceProvenance.RequireUnchanged("
+        ]
+      },
+      "sourceTargetSha256": "06b2a364e3b3e0c6dddf06e6268e267f839afe9f2ad4117701025cc4627e7ed6",
+      "sourcePinSha256": "c4c3840cff412cc1dc33921d6a4c40bc9ef5d5b4d7bfd60320e59120d7727d23",
+      "nativeInstallationVerified": false,
+      "humanGatePassed": false,
+      "mayEnterR02": false
+    },
+    "behaviorSourceCommit": "4e3d2035991ab5629265ac663e61bcb2ca62828b",
+    "validationToolingCommit": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+    "role": "reproduction"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 3,
+  "kind": "H1ManagedSourceGraphVerification",
+  "status": "SourceGraphBound",
+  "capturePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1CountBuild-d725033823ea4703834eb0f065e645d6/ManagedSourceProvenance/h1-managed-source-capture.json",
+  "captureSha256": "27126b8a0e2b1735621c596f735cd3297a321edbd7688fbda114941a571c5fd6",
+  "buildId": "H1Count-Off-Debug",
+  "buildGuid": "f24c9a33a11d4e6b9bcc3f1acdc2ec08",
+  "inputSnapshotHash": "828de8edf2a547fdee8337666371953883d0a8bf3db65584fc592d7cd914d1b5",
+  "nativeLibrarySha256": "c5238e136344166b038308a0f4a2310c4757510a48ec8d02d2e0335f12b658c6",
+  "sourcePinSha256": "9661d0c87096127959ecbcf12175287a92fbfa18753aa52891ea32495adbdd95",
+  "rows": [
+    {
+      "assembly": "AssemblyShadow.R01BDiagnostics",
+      "evidenceMode": "BeeCacheHitBoundToFreshPlayerInput",
+      "graphSha256": "46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af",
+      "compilerActionSha256": "67df1baf137e19ff95e6d36cf579e4065b5c57281ec80b1ed2ee17734ca560cc",
+      "compilerOutputSha256": "df796f416e6bb969b7b280c21ac10984efc253767c69e609c9792fb1dafd8f7d",
+      "playerInputSha256": "df796f416e6bb969b7b280c21ac10984efc253767c69e609c9792fb1dafd8f7d",
+      "compilerOutputExistedBeforeBuild": true,
+      "cachedPlayerInputExistedBeforeBuild": true,
+      "responseClosureSha256": [
+        "90c6e79990654121602fd05a1ec93e03a55d37dab0874f282b73ff562ce4e08b",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ]
+    },
+    {
+      "assembly": "AssemblyShadowDemo.Bootstrap",
+      "evidenceMode": "BeeCacheHitBoundToFreshPlayerInput",
+      "graphSha256": "46997e81b065cdd57c5d93913e076192fdc79e809d6757e9045e1bafef5080af",
+      "compilerActionSha256": "147ff4fdd7fb75e65bf9ac1e541096a0a7a72b82bfe1e32ddafab91101cef6a7",
+      "compilerOutputSha256": "64e740e637af755bb8cec66c6a818a404e7bba2db033f05fefecec444aaaec6f",
+      "playerInputSha256": "ca91ab9796e584889d530f4c1d38a01f9262f2e63ce2fcfaa0fbdb087533eaa3",
+      "compilerOutputExistedBeforeBuild": true,
+      "cachedPlayerInputExistedBeforeBuild": true,
+      "responseClosureSha256": [
+        "18ded2b1c0d9e1cffd8f6a8b8c42ac884f0d1b22a875a3e79d82835da51786b4",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      ]
+    }
+  ],
+  "scope": "Pre-build source bytes plus either a changed managed action graph or a byte-stable pre-build Bee cached-action chain, both bound to the exact DLLs captured as inputs to this fresh Player. Schema-3 cached-action proof requires unchanged graph, each selected compiler action recursive response closure, dependencies, Csc output and downstream Player-input bytes; unrelated DAG responses are audit-only. It does not claim fresh Csc execution. ILPP verification and build execution provenance remain separate requirements.",
+  "freshCompilerExecutionClaim": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
