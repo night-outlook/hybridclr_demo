@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "5618d125f39229f6ec0464a559dd8919299025d5",
-      "implementationCommit": "5618d125f39229f6ec0464a559dd8919299025d5",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the controlled-performance generated-input recovery label repair, direct PowerShell parameter-binder regression, and its Primary CI wiring. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "d96ec01121e484ef5719c1590c0b63f9f92ef45b",
+      "implementationCommit": "d96ec01121e484ef5719c1590c0b63f9f92ef45b",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the controlled-performance recovery-label repair, executable PowerShell binder regression, and corrected binder-test syntax. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "5618d125f39229f6ec0464a559dd8919299025d5",
+        "candidateToolSourceAnchor": "d96ec01121e484ef5719c1590c0b63f9f92ef45b",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -378,7 +378,7 @@
     "correction": "Invoke-M07Build.Core.ps1 always calls the coordinator checkout's current verify-installed-runtime.py, never the target project's historical verifier. The outer H1_M07_WORKFLOW_* environment and current verifier own full pre-mutation vs split post-mutation dispatch through h1_m07_workflow_authority.py."
   },
   "currentPrimaryValidation": {
-    "sourceAnchor": "5618d125f39229f6ec0464a559dd8919299025d5",
+    "sourceAnchor": "d96ec01121e484ef5719c1590c0b63f9f92ef45b",
     "status": "PendingAuthorityConsistentCI"
   },
   "q04PostHostHistoryRepair": {
@@ -428,7 +428,7 @@
   "controlledPerformanceRecoveryLabelRepair": {
     "returnedByLocalValidationCommit": "075f8a25f44b7fe5fef397be566b8a5f4f7e447f",
     "previousSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
-    "sourceAnchor": "5618d125f39229f6ec0464a559dd8919299025d5",
+    "sourceAnchor": "d96ec01121e484ef5719c1590c0b63f9f92ef45b",
     "failure": "Both profile-1 and profile-2 -ControlledPerformanceBuilds workflows passed authority/resource setup but PowerShell rejected native-on-controlled before R00ControlledBuild.BuildPlayer because Invoke-M07PlayerMethodWithGeneratedInputRecovery's Label ValidateSet accepted only native-on/native-off.",
     "correction": {
       "acceptedLabels": [
@@ -438,7 +438,7 @@
         "native-off-controlled"
       ],
       "recoverySemantics": "All four labels use the same exact link.xml backup/generated-evidence/restore/receipt path; only evidence filenames/stage labels differ.",
-      "directRegression": "Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1 extracts and loads the actual production helper function via the PowerShell AST, invokes all four real labels, proves each reaches the helper body before Unity work, and proves an unknown label is rejected by parameter binding.",
+      "directRegression": "Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1 parses and loads the actual production helper function through the PowerShell AST, invokes all four real labels via splatting, proves each reaches the helper body before Unity work, and proves an unknown label is rejected by parameter binding.",
       "ci": "GitHub Actions executes the PowerShell binder regression directly under pwsh in addition to bounded static contract coverage."
     }
   }
