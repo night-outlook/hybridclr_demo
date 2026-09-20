@@ -11,6 +11,7 @@ on:
       - 'Tools/AssemblyShadow/verify-h1-protected-reference.py'
       - 'Tools/AssemblyShadow/verify-h1-compiler-provenance-strict.py'
       - 'Tools/AssemblyShadow/tests/test_h1_*.py'
+      - 'Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1'
       - 'Tools/AssemblyShadow/r01_*.py'
       - 'Tools/AssemblyShadow/run-r01-failure-players.py'
       - 'Tools/AssemblyShadow/tests/test_r01_*.py'
@@ -59,6 +60,9 @@ jobs:
           python3 Tools/AssemblyShadow/tests/test_r01_early_launch.py
           python3 Tools/AssemblyShadow/tests/test_r01_early_results.py
           python3 Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py
+      - name: Run M07 PowerShell recovery-label binder regression
+        shell: pwsh
+        run: ./Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1
       - name: Run R01B lazy contract regressions
         env:
           PYTHONDONTWRITEBYTECODE: '1'
