@@ -1,109 +1,135 @@
-# Static Review — V04 Closure Repairs after Local `f829db51...`
+# Static Review — Controlled Performance Recovery-Label Repair
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real Unity/IL2CPP validation.
+**PASS for Primary → Local Validation handoff**, subject to real controlled-performance execution.
 
 Reviewed source anchor:
 
-`925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`
+`316894a83873c46ffd3eefa57222311ae03da214`
 
-No claim is made here for V04 runtime completion, performance acceptance, V05, M08 PASS, or Human Review Gate approval.
+This review does not establish performance acceptance, V05 completion, independent M08 PASS, or Human Review Gate approval.
 
-## Q04 history review
+## Returned Local finding
 
-The early Q04 terminal transaction remains unchanged.
+The `925e84d7...` Local cycle passed all requested runtime work through:
 
-The only semantic adjustment is to late observation:
+- failure/publication;
+- dense-v2 real Player boundary;
+- ordinary/mixed capacity;
+- protected-reference authentication.
 
-- before terminal failure / in an eligible transaction: selected closure use remains forbidden;
-- after Q04 has already sealed `Failed`: normal host baseline use of registered candidates is observable and may be appended;
-- non-candidate identities are always invalid;
-- existing first-use records cannot change;
-- Control and initializer published worlds do not receive this exception.
+Both graph-bound performance workflows then failed at the same boundary before their first controlled Player build.
 
-This is consistent with the process-lifetime first-use registry: a late host observation after terminal pre-publication failure cannot retroactively make the already failed transaction invalid for a second reason.
+The failing production call labels were:
 
-## Dense runtime review
+- `native-on-controlled`;
+- `native-off-controlled`.
 
-Generator and Player now agree exactly on:
+The helper accepted only:
 
-- namespace `AssemblyShadow.Dense`;
-- type-name formula;
-- rows 4095/4096;
-- return formula `fixtureId * 10000 + row`.
+- `native-on`;
+- `native-off`.
 
-The Player still requires the manifest to pass the deterministic-v2 admission contract before loading either assembly.
+PowerShell `ValidateSet` rejected the controlled label before the helper body.
 
-## Performance review
+## Repair review
 
-### Previous gap
+The accepted vocabulary is now exactly:
 
-Comparability checked four controlled Player builds but did not authenticate the side fixture/replay graph against those exact baselines.
+`native-on / native-off / native-on-controlled / native-off-controlled`.
 
-### New fail-closed boundary
+No new branch was introduced into recovery behavior.
 
-The build-map validator now binds:
+The label is used only to distinguish evidence filenames and stage names. All four cases retain the same:
 
-- graph baseline/runtime/platform;
-- graph controlled NativeOn path/hash;
-- replay graph identity;
-- controlled ON/OFF receipts.
+- pre-Unity link.xml snapshot;
+- SHA-256 binding;
+- immutable backup;
+- generated-byte capture;
+- finally-path exact restore;
+- restored SHA-256 validation;
+- restoration receipt schema.
 
-The runner calls the strict validator before sampling.
+Unknown labels still fail closed.
 
-### New producer path
+## Executable binder regression
 
-`-ControlledPerformanceBuilds` creates the controlled ON/OFF Players before fixture finalization, under one baseline ID, so M07's existing fixture/replay producer naturally binds the controlled NativeOn world.
+A source-text assertion alone would repeat the gap that caused the Local failure.
 
-No performance thresholds, sample schedule, outlier rule, operation inventory, memory semantics or expected A/B differences changed.
+The new PowerShell regression instead parses the real core script AST and loads the actual production helper definition.
 
-## Stale-test review
+For each valid label, it supplies all real parameters and replaces the first Unity-dependent call with a sentinel. Reaching the sentinel proves parameter binding succeeded and helper-body execution began.
 
-The two broad-suite failures reported by Local were stale ownership assumptions.
+For an invalid label, the test requires a PowerShell parameter-validation error and proves the sentinel was not reached.
 
-They are replaced with semantic/owner-aware tests rather than deleted or skipped.
+The test does not depend on Unity installation and is executed directly in GitHub Actions using `pwsh`.
 
-## Source authority
+## Primary evidence
 
-Only `hybridclr_demo` changes.
+Workflow:
 
-HybridCLR, HybridCLR Unity and IL2CPP candidate pins remain unchanged.
+`35492692165`
 
-Protected profile-1 pins remain unchanged.
+passed:
 
-No expansion of `metadata_only`, no weakening of `verify_demo`, runtime ABI/capacity/index rules, protected refs, or H1 gate conditions.
+- bounded Primary: **324/324**;
+- committed handoff: **11/11**;
+- R01 early capsule: **7/7**;
+- R01 early launch: **20/20**;
+- R01 early results: **20/20**;
+- R01 failure pipeline: **16/16**;
+- direct PowerShell binder regression: **Passed**;
+- R01B lazy contract: **10/10**.
 
-## Residual Local evidence
+Artifact:
 
-Local must still prove:
+- `10599209690`;
+- ZIP SHA-256 `7e4fd0b9ae99c1c929966364ec15a98403953e6b629e09ef07f81b2b03e50a40`.
 
-1. broad test suites are clean at the new source;
-2. Q04 post-host strict verification passes while early terminal state stays unchanged;
-3. dense fixtures execute all four boundary methods;
-4. both controlled-performance M07 workflows produce self-consistent graph receipts;
-5. the strict freezer passes only those graphs;
-6. all pilots pass;
-7. formal sampling/analysis completes;
-8. checkpoint retention is complete;
-9. V05 + independent M08 only after V04 closes.
+## Scope / regression analysis
+
+The functional product delta relative to broad-runtime source anchor `925e84d7...` is confined to the M07 PowerShell coordinator's accepted stage labels.
+
+There are no changes to:
+
+- managed runtime or Bootstrap behavior;
+- native runtime;
+- package/IL2CPP source;
+- transaction/recovery semantics;
+- metadata capacity/indexing;
+- dense metadata behavior;
+- R00 benchmark operations;
+- build-map comparability;
+- preregistered schedule/statistics.
+
+The historical `925e84d7...` runtime PASS evidence is therefore relevant comparison evidence, but normative H1 version-binding means it is not automatically current-anchor PASS evidence.
+
+Local may record those cells as `ReusedAuditedFrom925e` only after independently proving the exact source-scope delta. A source-scope mismatch requires fresh validation of the affected domain.
+
+## Residual empirical requirements
+
+Local must still execute:
+
+1. fresh source authority and test admission;
+2. the repaired profile-1 controlled-performance workflow;
+3. the repaired profile-2 controlled-performance workflow;
+4. current-anchor old-Player rejection from fresh graphs;
+5. strict build-map freeze;
+6. preregistration;
+7. complete pilot sampling;
+8. complete formal sampling and analysis if pilots pass;
+9. authenticated checkpoint retention;
+10. V05 + genuinely independent M08 if mandatory V04 closes.
 
 ## Gate
 
-H1: `InProgress`.
+H1 remains `InProgress`.
 
-Historical M08: `FAIL`.
+Historical M08 remains `FAIL`.
 
 `humanGatePassed=false`.
 
 `mayEnterR02=false`.
 
 Do not begin R02.
-
-## Final Primary CI
-
-Authority-consistent workflow `35449924454` passed 323/323 bounded tests plus 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline and 10/10 lazy-contract tests. Artifact `10586344220`; ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
-
-## Final committed handoff verification
-
-The exact live handoff commit `08f805da9ea8e479801f10d3a4fbb7af0a70a123` passed workflow `35450199014` with 323/323 bounded tests plus 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline and 10/10 lazy-contract tests. Artifact `10586482880`, ZIP SHA-256 `676152ab0de591d0012b2d7f6a96cbac16dce37b5cca0d894c5b482b12835e1d`.
