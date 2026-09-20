@@ -71,7 +71,7 @@ function Invoke-M07PlayerMethodWithGeneratedInputRecovery {
         [string]$Target,
         [string[]]$Arguments,
         [string]$Run,
-        [ValidateSet('native-on', 'native-off')][string]$Label
+        [ValidateSet('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled')][string]$Label
     )
     if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot snapshot $Label generated input while this project is open." }
     $relative = 'Assets/HybridCLRGenerate/link.xml'
