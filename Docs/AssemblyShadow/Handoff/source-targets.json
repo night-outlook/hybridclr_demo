@@ -379,7 +379,52 @@
   },
   "currentPrimaryValidation": {
     "sourceAnchor": "316894a83873c46ffd3eefa57222311ae03da214",
-    "status": "PendingAuthorityConsistentCI"
+    "status": "PassedPrimarySourceAndContractTests",
+    "workflowRun": 35492692165,
+    "workflowCommit": "5ce893caafb80018eee01e9618abbdf944f8dc04",
+    "boundedPrimaryTests": {
+      "passed": 324,
+      "total": 324
+    },
+    "committedHandoffTests": {
+      "passed": 11,
+      "total": 11
+    },
+    "r01EarlyCapsuleTests": {
+      "passed": 7,
+      "total": 7
+    },
+    "r01EarlyLaunchTests": {
+      "passed": 20,
+      "total": 20
+    },
+    "r01EarlyResultsTests": {
+      "passed": 20,
+      "total": 20
+    },
+    "r01FailurePipelineTests": {
+      "passed": 16,
+      "total": 16
+    },
+    "m07PowerShellRecoveryLabelBinder": {
+      "result": "Passed",
+      "kind": "M07GeneratedInputRecoveryLabelBinderTest",
+      "acceptedLabels": [
+        "native-on",
+        "native-off",
+        "native-on-controlled",
+        "native-off-controlled"
+      ],
+      "invalidLabelRejected": true,
+      "unityInvoked": false
+    },
+    "r01bLazyContractTests": {
+      "passed": 10,
+      "total": 10
+    },
+    "artifactId": 10599209690,
+    "artifactZipSha256": "7e4fd0b9ae99c1c929966364ec15a98403953e6b629e09ef07f81b2b03e50a40",
+    "scope": "Primary source/tool/contract evidence only. Fresh Local evidence remains required for the repaired controlled-performance workflows, old-Player current-anchor check, build-map freeze, paired performance, retention, V05/M08, and human H1 approval."
   },
   "q04PostHostHistoryRepair": {
     "returnedByLocalValidationCommit": "f829db516b3e5d0a9fef4d5539ec097dfb9867b3",
