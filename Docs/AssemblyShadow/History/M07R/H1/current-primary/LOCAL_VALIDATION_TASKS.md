@@ -1,272 +1,320 @@
-# Local Validation Tasks — V04 Closure Batch after `f829db51...`
+# Local Validation Tasks — Controlled Performance Closure after `075f8a25...`
 
 Candidate build-input source anchor:
 
-`925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`
+`316894a83873c46ffd3eefa57222311ae03da214`
 
-Latest Local checkpoint:
+Latest authenticated broad-runtime checkpoint:
 
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority99ef/`
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/`
 
-Restart from fresh V00. Prior `99ef65db...` evidence remains historical.
+Latest Local return:
 
-The goal is one maximal batch. Stop only for authority/provenance/shared-input corruption. After foundations pass, preserve isolated functional failures and continue independent cells when their authenticated inputs remain valid.
+`075f8a25f44b7fe5fef397be566b8a5f4f7e447f`
 
-## V00 — fresh authority
+The previous cycle passed all requested runtime V04 cells and stopped only because both controlled-performance workflows were rejected by the helper's PowerShell `ValidateSet` before the first controlled Player build.
+
+This cycle should maximize closure without repeating unaffected 500-second capacity workloads by default.
+
+## V00 — fresh current authority
 
 1. Pull the final pushed handoff HEAD.
-2. Record checkout HEAD separately from source anchor `925e84d...`.
+2. Record checkout HEAD separately from source anchor `316894a8...`.
 3. Require clean tracked state.
 4. Run candidate `h1_handoff_preflight.py`.
 5. Require `SourceTargetVerifiedNotBuildAccepted` and exact source anchor.
-6. Run reproduction-tooling and protected-ref checks.
-7. Verify candidate + protected installed runtimes before build work.
+6. Run reproduction-tooling preflight.
+7. Authenticate the protected profile-1 family.
+8. Verify installed runtime in candidate and protected project before controlled builds.
 
-Hard-stop on failure.
+Hard-stop on source/runtime/protected-ref mismatch.
 
-## V01 — broad source and Unity tests
+## V01 — current source/tool regression
 
-Run the complete Python inventory, bounded Primary suite and broad Unity EditMode suite.
+Run:
 
-The two stale expectations from the prior cycle must now be clean:
-
-- early default matrix excludes Baseline and the continuation-only failure modes by semantics;
-- `M07BuildTests.WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors` validates outer-wrapper and core ownership separately.
-
-Primary reference:
-
-- bounded: **323/323**;
-- committed handoff: **11/11**;
-- early capsule: **7/7**;
-- early launch: **20/20**;
-- early results: **20/20**;
-- failure pipeline: **16/16**;
-- lazy contract: **10/10**.
-
-## V02 / V03 — current provenance/builds
-
-Regenerate the current candidate/reproduction evidence required by H1.
-
-Do not reuse prior source-anchor build acceptance.
-
-## V04.A — fresh current normal M07
-
-Produce a fresh normal profile-2 M07 graph with the current coordinator.
-
-Retain:
-
-- workflow receipt;
-- fixture manifest;
-- Native ON/OFF receipts;
-- Editor replay;
-- failure fixtures/Q04 negative input;
-- outer recovery/restoration receipts.
-
-Run startup11 and M07 14/14 against this exact graph.
-
-## V04.B — failure/publication strict rerun
-
-Run the dedicated failure/publication launcher and strict verifier against the fresh current graph.
-
-Expected transaction ownership remains `EarliestStartup`.
-
-For Q04 specifically:
-
-- the early transaction must still terminate `Failed` at the intended metadata oracle;
-- early first-use history remains immutable;
-- post-host first-use history may append **registered candidate** baseline uses because the transaction is already terminal and unpublished;
-- unknown/non-candidate identities remain forbidden;
-- diagnostics/recovery/capacity must remain the same terminal transaction;
-- Control and initializer still require no late physical baseline use in their published worlds.
-
-Require schema-v3 strict verification `Passed`.
-
-A Q04 failure should retain the exact early and post-host baseline-use arrays.
-
-## V04.C — dense-v2 real runtime boundary
-
-Generate a new deterministic dense-v2 adjunct:
+- complete Python discovery;
+- bounded Primary suite;
+- committed live-handoff preflight;
+- direct R01 suites;
+- direct lazy contract suite;
+- direct PowerShell binder regression:
 
 ~~~text
-python3 Tools/AssemblyShadow/create-r01b-dense-fixtures.py \
-  --output-root <new-dense-v2-root>
+pwsh -NoProfile -File   Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1
 ~~~
-
-Run the current parser/native dense validation first.
-
-Build a fresh diagnostic Player and run `run-r01b-lazy-player.py` with the exact fresh v2 manifest.
-
-The Player must resolve:
-
-- `AssemblyShadow.Dense.DenseType_0001_4095_MetadataBoundary_0123456789abcdef0123456789abcdef`;
-- `AssemblyShadow.Dense.DenseType_0001_4096_MetadataBoundary_0123456789abcdef0123456789abcdef`;
-- corresponding fixture-2 names.
-
-Expected `ReturnId`:
-
-- 14095;
-- 14096;
-- 24095;
-- 24096.
 
 Require:
 
-- `denseFixtures=2`;
-- `denseBoundaryChecks=4`;
-- all required lazy checks pass;
-- capacity accounting remains monotonic;
-- no unintended extra interpreter-image allocation beyond the established contract.
+- all four real labels accepted;
+- invalid label rejected;
+- `unityInvoked=false`.
 
-## V04.D — current independent retained matrix
+Run broad Unity EditMode once for current checkout sanity.
 
-Rerun required current-anchor capacity/parser/index/generic/cache/capability/native cells.
+Primary reference at this source:
 
-The previous passed results are historical comparison only.
+- bounded: 324/324;
+- handoff: 11/11;
+- early capsule: 7/7;
+- early launch: 20/20;
+- early results: 20/20;
+- failure pipeline: 16/16;
+- PowerShell binder: Passed;
+- lazy: 10/10.
 
-## V04.E — graph-bound profile-1 controlled-performance M07
+## V01A — source-scope reuse audit
 
-Authenticate the exact protected profile-1 family first.
+Produce and retain a source-scope audit comparing:
 
-Then use the **current candidate** coordinator:
+`925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`
+
+to:
+
+`316894a83873c46ffd3eefa57222311ae03da214`
+
+Record the complete `git diff --name-status` plus hashes for changed non-metadata files.
+
+Expected non-metadata source/test/CI delta:
+
+- `.github/workflows/h1-bee-primary.yml`;
+- `Tools/AssemblyShadow/Invoke-M07Build.Core.ps1`;
+- `Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py`;
+- `Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1`.
+
+The only functional orchestration change is the recovery helper's accepted Label vocabulary.
+
+Require no change to:
+
+- runtime/Bootstrap C#;
+- diagnostic Player C#;
+- HybridCLR native source;
+- HybridCLR Unity;
+- IL2CPP;
+- performance analyzer/protocol/schedule;
+- capacity/index constants;
+- transaction/recovery code.
+
+If this exact scope does **not** hold, stop audited reuse and widen validation for the affected domain.
+
+If it holds, retain the `925e84d7...` runtime PASS cells only as:
+
+`ReusedAuditedFrom925e`
+
+with the source-scope receipt linked.
+
+Do not relabel them fresh `Passed` at the current anchor.
+
+## V02/V03 — affected-path provenance
+
+Freshly verify:
+
+- candidate source pins;
+- candidate installed runtime;
+- protected source pins/runtime;
+- M07 coordinator authority;
+- current controlled-build provenance tooling.
+
+The six prior compiler-count cells may remain `ReusedAuditedFrom925e` if V01A proves no compiler/native/runtime input change. If any compiler/runtime input differs, rerun the affected V02/V03 cells.
+
+## V04.A — profile-1 graph-bound controlled-performance workflow
+
+Use the current candidate coordinator against the exact protected profile-1 demo:
 
 ~~~text
-pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
-  -ProjectPath <reference-demo> \
-  -BaselineId M07-Baseline-H1-Perf-Reference-<unique-id> \
-  -TimeoutSec 28800 \
-  -BuildTarget StandaloneOSX \
-  -ControlledPerformanceBuilds
+pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1   -ProjectPath <reference-demo>   -BaselineId M07-Baseline-H1-Perf-Reference-<unique-id>   -TimeoutSec 28800   -BuildTarget StandaloneOSX   -ControlledPerformanceBuilds
 ~~~
 
-Do not invoke the protected historical wrapper.
+This is the first real-environment proof of the repaired labels.
 
-The workflow receipt must report:
+Require both recovery stages to execute:
+
+- `native-on-controlled`;
+- `native-off-controlled`.
+
+For each stage retain:
+
+- original `link.xml` SHA-256;
+- generated bytes/hash;
+- exact restored SHA-256;
+- `M07GeneratedPlayerInputRestoration` receipt.
+
+Require workflow completion and:
 
 - `controlledPerformanceBuilds=true`;
-- fresh NativeOn receipt;
-- fresh NativeOff receipt;
+- NativeOn controlled Player receipt;
+- NativeOff controlled Player receipt;
 - NativeOn controlled evidence;
 - NativeOff controlled evidence;
 - fixture manifest;
-- Editor replay receipt.
+- Editor replay;
+- exact outer restoration.
 
-All six artifacts must share the same requested profile-1 baseline world.
+Run the current candidate installed-runtime verifier against the protected project after completion.
 
-Require exact outer restoration and post-workflow protected source/runtime verification.
+## V04.B — profile-2 graph-bound controlled-performance workflow
 
-## V04.F — graph-bound profile-2 controlled-performance M07
-
-Run the same current coordinator against the candidate:
-
-~~~text
-pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
-  -ProjectPath <candidate> \
-  -BaselineId M07-Baseline-H1-Perf-Current-<unique-id> \
-  -TimeoutSec 28800 \
-  -BuildTarget StandaloneOSX \
-  -ControlledPerformanceBuilds
-~~~
-
-Require the same workflow inventory and one internally consistent profile-2 baseline world.
-
-These performance workflows are separate from the normal M07 graph.
-
-## V04.G — old-Player current-anchor check
-
-Use fresh profile-2 and profile-1 graphs to rerun the old-Player rejection contract.
-
-Require the profile-1 Player to admit its own Baseline and reject the incompatible profile-2 input before Configure/Stage.
-
-## V04.H — freeze graph-bound performance map
-
-Use only the two `-ControlledPerformanceBuilds` workflow outputs.
-
-For side A = profile-1 reference and side B = current candidate:
+Run the same current coordinator against the candidate project:
 
 ~~~text
-python3 Tools/AssemblyShadow/freeze-h1-performance-build-map.py \
-  --side-a-project <reference-demo> \
-  --side-a-fixture-manifest <reference-workflow.fixtureManifest> \
-  --side-a-replay-receipt <reference-workflow.editorReplayReceipt> \
-  --side-a-on-receipt <reference-workflow.nativeOnReceipt> \
-  --side-a-on-evidence <reference-workflow.nativeOnControlledEvidence> \
-  --side-a-off-receipt <reference-workflow.nativeOffReceipt> \
-  --side-a-off-evidence <reference-workflow.nativeOffControlledEvidence> \
-  --side-b-project <candidate> \
-  --side-b-fixture-manifest <candidate-workflow.fixtureManifest> \
-  --side-b-replay-receipt <candidate-workflow.editorReplayReceipt> \
-  --side-b-on-receipt <candidate-workflow.nativeOnReceipt> \
-  --side-b-on-evidence <candidate-workflow.nativeOnControlledEvidence> \
-  --side-b-off-receipt <candidate-workflow.nativeOffReceipt> \
-  --side-b-off-evidence <candidate-workflow.nativeOffControlledEvidence> \
-  --output <new-frozen-build-map.json>
+pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1   -ProjectPath <candidate>   -BaselineId M07-Baseline-H1-Perf-Current-<unique-id>   -TimeoutSec 28800   -BuildTarget StandaloneOSX   -ControlledPerformanceBuilds
 ~~~
 
-The freezer must fail if a fixture/replay baseline differs from either controlled Player.
+Require the same complete workflow inventory and exact generated-input restoration for both controlled labels.
+
+Run installed-runtime verification afterward.
+
+## V04.C — validate each performance graph before freezing
+
+For each side independently require:
+
+- fixture `baselineBuildId` equals controlled ON and OFF;
+- fixture `runtimeAbiHash` equals controlled ON and OFF;
+- fixture Unity/target/architecture equals controlled ON and OFF;
+- fixture `playerBuildReceiptPath/Sha256` equals its controlled NativeOn receipt;
+- replay fixture binding matches;
+- replay NativeOn receipt path/hash matches;
+- replay baseline/runtime/build GUID/native library/platform matches NativeOn.
+
+A mismatch is a failed workflow graph; do not edit the receipt or build map.
+
+## V04.D — current-anchor old-Player rejection
+
+Use the fresh profile-1 and profile-2 workflow graphs in the current old-Player runner.
+
+Require:
+
+- old profile-1 Player admits its own Baseline;
+- incompatible profile-2 current input is rejected before Configure/Stage;
+- strict verification passes.
+
+This produces fresh current-anchor evidence rather than promoting an older rejection result.
+
+## V04.E — freeze strict A/B build map
+
+Use only artifacts from V04.A/B.
+
+~~~text
+python3 Tools/AssemblyShadow/freeze-h1-performance-build-map.py   --side-a-project <reference-demo>   --side-a-fixture-manifest <reference-workflow.fixtureManifest>   --side-a-replay-receipt <reference-workflow.editorReplayReceipt>   --side-a-on-receipt <reference-workflow.nativeOnReceipt>   --side-a-on-evidence <reference-workflow.nativeOnControlledEvidence>   --side-a-off-receipt <reference-workflow.nativeOffReceipt>   --side-a-off-evidence <reference-workflow.nativeOffControlledEvidence>   --side-b-project <candidate>   --side-b-fixture-manifest <candidate-workflow.fixtureManifest>   --side-b-replay-receipt <candidate-workflow.editorReplayReceipt>   --side-b-on-receipt <candidate-workflow.nativeOnReceipt>   --side-b-on-evidence <candidate-workflow.nativeOnControlledEvidence>   --side-b-off-receipt <candidate-workflow.nativeOffReceipt>   --side-b-off-evidence <candidate-workflow.nativeOffControlledEvidence>   --output <new-frozen-build-map.json>
+~~~
 
 Require `ComparabilityPassed`.
 
-## V04.I — preregistration + all pilots
+The map must fail closed if any graph baseline differs from either controlled Player.
 
-Bind the preregistered protocol/schedule into a fresh evidence root:
+## V04.F — bind preregistration
 
 ~~~text
-python3 Tools/AssemblyShadow/bind-h1-performance-preregistration.py \
-  --output-root <new-preregistration-root>
+python3 Tools/AssemblyShadow/bind-h1-performance-preregistration.py   --output-root <new-preregistration-root>
 ~~~
+
+Require:
+
+- protocol bytes unchanged;
+- schedule semantic fields unchanged;
+- 44 pairs;
+- only protocol path/hash transport fields rebound.
+
+## V04.G — complete all pilots
 
 Use:
 
 - bound protocol;
 - bound schedule;
-- new frozen build map.
+- fresh frozen build map.
 
-Run every pilot pair via `run-h1-paired-performance.py`.
-
-For each pair use a new output root and increasing `--attempt`. Chain the returned sample index with `--prior-index` as required by the runner.
-
-Do not proceed to formal sampling until all mandatory pilots pass under the unchanged build map/protocol/schedule.
-
-Retain every failed/retried attempt.
-
-## V04.J — formal paired performance
-
-If all pilots pass, execute every formal pair in the preregistered schedule.
-
-Then analyze:
+Run the next pilot with:
 
 ~~~text
-python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py \
-  --sample-index <final-sample-index.json> \
-  --output <new-performance-analysis.json>
+python3 Tools/AssemblyShadow/run-h1-paired-performance.py   --protocol <bound-protocol>   --schedule <bound-schedule>   --build-map <frozen-map>   --output-root <new-pilot-root>   --phase pilot   --attempt 1   [--prior-index <previous-sample-index>]
 ~~~
 
-No latency-based deletion, selective retry, schedule edit, build-map edit or manual comparability edit is allowed.
+Omit `--pair-id` for a new pair; the runner selects the next incomplete preregistered pilot.
+
+Chain each new `sample-index.json` as the next `--prior-index`.
+
+If a pair legitimately requires retry under the existing protocol, retain the failed attempt and invoke the same pair with:
+
+- `--pair-id <same-pair-id>`;
+- incremented `--attempt`;
+- previous sample index.
+
+All mandatory pilot pairs must pass before formal sampling.
+
+## V04.H — complete formal sampling
+
+After pilots are complete, continue with:
+
+~~~text
+python3 Tools/AssemblyShadow/run-h1-paired-performance.py   --protocol <bound-protocol>   --schedule <bound-schedule>   --build-map <frozen-map>   --output-root <new-formal-root>   --phase formal   --attempt 1   --prior-index <previous-sample-index>
+~~~
+
+Omit `--pair-id` to select the next incomplete formal pair.
+
+Continue until the preregistered formal inventory is complete.
+
+No latency-based deletion, selective retry, schedule edit, build-map edit, or sample omission is allowed.
+
+## V04.I — performance analysis
+
+~~~text
+python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py   --sample-index <final-sample-index.json>   --output <new-performance-analysis.json>
+~~~
+
+Retain the full result even if thresholds fail.
+
+A real threshold failure returns to Primary/Human review as evidence; do not tune the protocol after observing results.
+
+## Current-anchor runtime cells outside performance
+
+If V01A source-scope audit passes, the following `925e84d7...` evidence may be included in the new checkpoint as `ReusedAuditedFrom925e`:
+
+- normal M07;
+- startup11;
+- M07 14/14;
+- failure/publication;
+- dense-v2 real Player;
+- ordinary capacity;
+- exact mixed capacity;
+- parser/FieldRVA/native/index/generic/cache/capability matrix.
+
+Their original receipts/hashes remain authoritative historical evidence.
+
+Do not copy their status to `PassedCurrentAnchor`.
+
+If any new fresh evidence contradicts a reused cell, the new evidence wins and the contradiction must be returned to Primary.
 
 ## Retention checkpoint
 
-Before cleanup, authenticate a new Local checkpoint containing or hash-binding:
+Before cleanup, authenticate a new current-anchor checkpoint containing/hash-binding:
 
-- fresh V00-V03 evidence;
-- normal current M07 + startup/M07 matrix;
-- failure/publication early + post-host evidence;
-- dense-v2 generator/parser/Player evidence;
-- retained current independent matrix;
+- fresh V00/V01;
+- V01A source-scope audit;
+- fresh candidate/protected installed-runtime receipts;
 - both graph-bound controlled-performance workflow receipts;
-- four controlled build/evidence pairs;
-- old-Player result;
-- frozen map + freeze receipt;
+- four controlled Player receipts/evidence;
+- four controlled-label restoration receipts;
+- fresh old-Player result;
+- strict build map + freeze receipt;
 - preregistration binding;
 - every pilot/formal attempt;
-- final performance analysis.
+- final analysis;
+- explicit catalog of `ReusedAuditedFrom925e` cells and their original checkpoint hashes.
 
-Keep `Passed`, `Failed`, `Blocked`, `Unavailable`, `NotRun`, and historical evidence distinct.
+Do not clean live artifacts before this checkpoint is authenticated.
 
 ## V05 / M08
 
-Proceed only if mandatory V04 evidence is complete.
+Proceed only if:
 
-Build/authenticate successor evidence and commission a genuinely independent whole-chain M08 review.
+1. fresh affected-path evidence passes;
+2. all mandatory performance evidence completes;
+3. source-scope audit justifies any `ReusedAuditedFrom925e` cells;
+4. no fresh result contradicts historical evidence.
+
+Then prepare V05 successor evidence and commission a genuinely independent whole-chain M08 review.
+
+M08 must explicitly review the audited-reuse justification; it may require a fresh rerun if the reuse argument is insufficient.
 
 Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**.
 
