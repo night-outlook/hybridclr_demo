@@ -45,3 +45,5 @@
 - Human gate passed: `false`.
 - May enter R02: `false`.
 - Required next action: fresh V00/V01 and source-scope audit, then fresh profile-1 + profile-2 `-ControlledPerformanceBuilds` workflows, current-anchor old-Player check, strict build-map freeze, preregistration, all pilots/formal analysis, authenticated checkpoint, and V05/M08 only when mandatory V04 is complete.
+
+- Exact final live-handoff CI: workflow `35492912802` at handoff commit `16755d156ccf00c1fa9f2b0168c63f42a06cb01e` passed bounded **324/324**, handoff **11/11**, early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, direct PowerShell recovery-label binder **Passed**, lazy **10/10**; artifact `10599344201`, ZIP SHA-256 `de83de6ede1d6d277c96e667eeb14c2cc292891ef4e394793ee02abd56011e9d`.
