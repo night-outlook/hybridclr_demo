@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationSummary",
+  "candidateCheckout": "9b4eccd0159b41b5172f7b192130eb4d4c380445",
+  "candidateSourceAnchor": "316894a83873c46ffd3eefa57222311ae03da214",
+  "result": "ReturnRequiredAfterV04",
+  "cells": {
+    "V00CandidateAuthority": "Passed",
+    "V00ReproductionTooling": "Passed",
+    "V00ProtectedReference": "Passed",
+    "V00InstalledRuntimes": "PassedAfterCandidateReceiptRefresh",
+    "V01Python": "PassedWithExplicitSkips988Of1016And28Skipped",
+    "V01BoundedPrimary": "Passed324Of324",
+    "V01PowerShellBinder": "Passed",
+    "V01DirectContracts": "Passed",
+    "V01BroadEditMode": "Passed1076Of1076",
+    "V01ASourceScopeAudit": "PassedExactExpectedScope",
+    "V02V03CompilerCells": "ReusedAuditedFrom925e",
+    "V04UnaffectedRuntimeCells": "ReusedAuditedFrom925e",
+    "V04Profile1ControlledPerformance": "FailedAfterNativeOnControlledSuccessBeforeNativeOff",
+    "V04Profile2ControlledPerformance": "FailedDuringNativeOnControlledBeforePlayerCompletion",
+    "V04OldPlayer": "BlockedNotRun",
+    "V04BuildMap": "BlockedNotRun",
+    "V04Preregistration": "BlockedNotRun",
+    "V04PilotsFormalAnalysis": "BlockedNotRun",
+    "V05M08": "BlockedNotRun"
+  },
+  "blockers": [
+    "Profile-1 Native ON succeeded, but Unity materialized ProjectSettings.asset il2cppCodeGeneration.Standalone and the controlled settings restore preserved semantic value without exact pinned bytes. The next source guard failed before Native OFF.",
+    "Profile-2 Native ON failed in its build preprocessor because H1BuildInputProvenance invoked verify-installed-runtime.py with --skip-demo-source while inheriting the active M07 workflow authority environment, which rejects that combination."
+  ],
+  "restoration": {
+    "declaredOuterPaths": "ExactBytesRestored",
+    "nativeOnLinkXml": "ExactBytesRestoredBothSides",
+    "undeclaredProjectSettingsAsset": "PreservedThenManuallyExactRestoredBothSides",
+    "candidateInstalledRuntimeAfter": "Passed",
+    "referenceInstalledRuntimeAfter": "Passed"
+  },
+  "gateState": {
+    "H1": "InProgress",
+    "lastIndependentM08": "FAIL",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  }
+}

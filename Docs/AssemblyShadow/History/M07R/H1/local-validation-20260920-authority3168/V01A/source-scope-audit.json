@@ -1,0 +1,1390 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1SourceScopeReuseAudit",
+  "status": "PassedExactExpectedScope",
+  "oldSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+  "newSourceAnchor": "316894a83873c46ffd3eefa57222311ae03da214",
+  "changedPaths": [
+    {
+      "status": "M",
+      "path": ".github/workflows/h1-bee-primary.yml",
+      "metadataOnly": false,
+      "oldSha256": "caa5cef05aa5aa34f2b2d2454b6accfb2f18c6b2c388c4862ab3ba4b620bc70b",
+      "newSha256": "38aef1de56ae7ef168eea1c4c9a5ce5f342e1211251ba4b45f04efa5be9e0656"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md",
+      "metadataOnly": true,
+      "oldSha256": "d20f9b176792b8ca41516e5ff8c538e4943ebd0d2759960c1ef39015d2defe03",
+      "newSha256": "cb8f06d757962ddd366878543b2bb75aade49f8b27b165cf7d9eb984652a3d54"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+      "metadataOnly": true,
+      "oldSha256": "37d2775f608b74765f1f6990bb60724b68d77b288af59e7267d0be97b042970f",
+      "newSha256": "ccad2e06dcf9afa6f42a8b2948e2de5645efa902b8f10e36d973e80f46730271"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/Handoff/source-targets.json",
+      "metadataOnly": true,
+      "oldSha256": "72b0217fd8b91d112004a1463c73dcdb38a009ebaed67393e0fef871f368fc00",
+      "newSha256": "9aa0fd43376fea2b9e6e830e511090b9bb981da26cf675a8291871ced648fa83"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md",
+      "metadataOnly": true,
+      "oldSha256": "936c67b147b6fb30568c11531b9c0a177e9568b697129bf10eed2e8642336470",
+      "newSha256": "8822c59c184f694f0a8053a274b9bdfc4b435c01ef04a57f35df4b7d0ebcd097"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/current-primary/README.md",
+      "metadataOnly": true,
+      "oldSha256": "c4da8e4fa50d1782637deb2e18dd9a9fea2ced71fa28b25c5e9a4901de7b05fc",
+      "newSha256": "0d68e843dbd07a460bb958aaee6e57e5477befe96c6f658346a7f1075a658c8b"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/current-primary/STATIC_REVIEW.md",
+      "metadataOnly": true,
+      "oldSha256": "e753a9051dded95203d4b7acb392e1c643c4a95365f0730e8acf99e04ea0bf01",
+      "newSha256": "bef8ae6a25235eff5cb08e14a0f6f33735b9df1e2eaf401bd812ce6ffba88eb3"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/MANIFEST.sha256",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "7ed2a62ea13f9d4935e2838a2a6cb55ccb5976aec7178ce5fa513ed571fa63e4"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/README.md",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2872a77b90952154e3ec0fa4870a7f4f689d1a29720c8b3a56fc47ba97c4a457"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/candidate-installed-runtime-after-install.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ba2c75ebfeb06f2c5372580fd569f68d21ce4f30c8bfe056f510810aa72f728d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/candidate-installed-runtime-rerun.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/candidate-installed-runtime.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/candidate-preflight.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "46d730b02909fff8d2eb55084de18a9864fda9cc856652616e0debbe9fc5138e"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/protected-reference.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b41c4dba05b972d1fb15a40b9182188e1b6300ff7bd45144f79e86a33702e491"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/reference-installed-runtime-rerun.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "82d9ce2d144ff1bbe0712841b83738cb69f1af6cc31d04e51901621599eb6168"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/reference-installed-runtime.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V00/reproduction-tooling.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b658b83b431c9113b6e3bc04f9d95fcff7fc1003fd67675d82ba0bcce39ea26c"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V01/primary-results/results.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e6c518e7fa9bfaa58b73f6d01ea520f47aa2bcbe612d34c5f8e0a6e83e2c9c27"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V01/python-full-results.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "6c5b7a2a010c1140496931647955cae9110c0112f5c29423c9de7a2f79bf79b0"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V01/unity-editmode-results.xml",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "29272d41318cd5d842efd89e2ec7d428c64e9afb5bd3d144cfebd7c5bef35483"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/batch-result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "425cc98ca84f75ec98c26ecf7dac491eafa9c3f7c5048bfa516bffcfbe37db71"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-compiler-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "331d39fd2a1967d1ef8893521d8d91d72853852b0ffcaa5985fca1e1f880b411"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-compiler-verification.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ac17fab4d34d366774b849e1b31597e79dbc44e61b88c3ad9c5fe95198c29812"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/742a1ec210110eb5.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c7bb1cc1c564d02611dceb5e3356decfef12f47cc8b3d47988233d09213ff9ba"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/742a1ec210110eb5.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/before.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "d48aa16c770ed2becbb7fd89c3331af34ace7f01926e6f36edf76e2e126218ec"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/f1db76edbe0068cc.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/f1db76edbe0068cc.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/managed-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "190353621ef279641c2a9c4546a21277c300a098ca0afdb59f78628d905e5233"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/native-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "89eb5bcd9ff8a62b589ec37174850c7a9ed59970b94b46060c1683ed5ea454c7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/ownership-build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "69cb2e913d7d89a301511a1bc33765fc7272575c6685fec4e5b891039c6fe830"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/ownership-prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "9e7c96d96a37a66875a749626617854b9d50305a201f794f823571ead24b6568"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/ownership-recovery.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "afe44b2a1672af72ba3879b4a940d445eaa6615ce22490b8b384fa7398823ca3"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/ownership-restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2fce6f31d9bbb8d723c0f99e58c91c2226f526a88e9306da704d3027340b99a6"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b2678bd96470a0c89be04a787d51a1428ee8f2cd221d1d1288372ead65edabb9"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/restoration-check.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "26775ded5496a882490dabac6c538424d64530282e2d02ac6bdc1dd83316d9ca"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ba3cb0b1db9035ba76e9eb452fc265116ab18b93c14681d7d4801a08ddd9d619"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "aba0017a266012f18b832cec28bf647d3bce22953f68b83d6667a3c8ec283768"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/validation-tooling-binding.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "5c8a4c9d80cbd80a01061626afab909bc000b29a479b413de4b675cd42e3d7b0"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/verify-managed.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "06c32efbe636ef1e02e178df013c892713604eba944da2d716945ae687c9a185"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Debug/verify-native.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "14f36d675c79c9daa38f432f3188bc577ce5f8e4e286d28f34c12b2c26d8f1f0"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/742a1ec210110eb5.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "6698070358b81f9b39cb219c516859b1df9a70acb91ff613d96aeb007286ace5"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/742a1ec210110eb5.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/before.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "6f5b90c0fbc4ca52c227bf32776daa2e43583178a1b0e2b1031027f70c2ad0c1"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/f1db76edbe0068cc.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/f1db76edbe0068cc.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/managed-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "78c9a002d1022df44385704842ce854969fcc6398ad116af17acafebfcfbe371"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/native-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "fedf107aba5fb3d41ab5e3a2e0531190d6b52a4a3d3c2034a4e4bf8b7ecdcac3"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/ownership-build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f36ec3acb699ba59dcdf1da83e81acba2c87a3dff4a171cfac3badcd1091dbea"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/ownership-prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2cf70aff652e6519f2d8a7593ac89a89582d92b58c49668f7eeb80f720df15c9"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/ownership-recovery.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "9b6bbea2de07495977552143b411c14ed9fb9aa6511efb97f2ff85f358383776"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/ownership-restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "be18cdb410e6a63d8c3fa6cf6a2a8a1d567e030ee640903853923695e290b567"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0c6b6728b4857bd508f1aeeb15ab69c6c38e2dbdf06ce4e57a9ae47d4c4338c3"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/restoration-check.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "fea6c13662b130c902eac996b73924746b86bfe19832fa2eb845992c28fd39a6"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "477d340071098b764059ba0a7f1a3a07816d09dd5cc4d1f42ba393d63000637a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "cda8e7cbf0053a548b842cdf33274038598a58527692834a3dc42fec8478102f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/validation-tooling-binding.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "a4207fd3bdaf3018cd342dea49b34e521b3fcdc7fb0d84e875b2897bacdd1b81"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/verify-managed.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "49b24d9eed7d6663a8c720cdb05656856e66e99dbe0dca0aec8d1e5416d1bdce"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-off-Release/verify-native.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0348fbeaf016ea2ef3dc647da0534a18ca8b9f0b710c7c1a1b07876f32704e58"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/742a1ec210110eb5.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "4e113897627c375c001c79a4a0d24006edcb69e599c8306c2c21bf3e26a2e718"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/742a1ec210110eb5.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/before.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c3b8144208a58bd85caf3349cb6b8f933fae792983acba8892ccc635df97feef"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/f1db76edbe0068cc.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/f1db76edbe0068cc.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/managed-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "9f01857fe979dfff90c8d270a7e430f58da08b75dbe0f1be54cd5e72accb18f7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/native-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "38c0c07ecc2bf962f4c5979ca12e50741d00edb11ba97e60af59c15806ec8e85"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/ownership-build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ec7c876ea22f0dee029ad97ba76cafadb07b9413e409b03cff28f4b64115f6a5"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/ownership-prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e646ac34f560e50231424700997907c101d3f28bf820d1c484f56f274e467d79"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/ownership-recovery.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "67fa23c7eb318fff23790fe95db52596f200fffe2a42f3ab7525f37deef496c0"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/ownership-restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "110ea4e86f1984b8fd69be83b93eedf30498c82b14ded0274ce7d360866a255a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "6f62a89aa64c14997cf53c65e70fc751bef2b64b044e7e13736e0cb73c91734e"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/restoration-check.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "240bf842addbb606ab84f3115ebaf02d64fd6dafe777c884680a5ccac253dd8d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "90be15347a5694b43eb2dd07f5e9489bb62818dc41f0bc93c902881a9fe58d7c"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c932ba4ecaf519f8b453a593ecde5cc28dcee2ea4f8b605287ada312a2de1d74"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/validation-tooling-binding.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "183727950979f72d137e22a068840ebcc72131c2246b42d8c4f2ed2bc5d2f0dc"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/verify-managed.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "56dbe7f1a1b0f2f8e7d340c33b34519d2406cd16fd8a09c54590f51b1548ed10"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Debug/verify-native.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "7857c5879a87f5b7e5b05d9a97a0f834e007c0f76c41ef0ca72542291010e529"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/742a1ec210110eb5.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "582eefa5764d06ca4a043e9bd96e0b797257b698f62bf47b4f79652fe3b25ea1"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/742a1ec210110eb5.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/before.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "de0bbc431c1848e67f71e8b6637f957af37e94afe30795c7d643b7c1c02348df"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/f1db76edbe0068cc.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/f1db76edbe0068cc.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/managed-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "6afc343d5b64ebbd62941780cf007aaf6d955f78e4e8934f2373e72b42e650ad"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/native-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "fb168ccf748434819bee78e3fdfc0e30ca3d8c0f302cf9cfe4c592a4e8b1dd65"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/ownership-build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "1071e1dbcda46272a4d8d4b4410aa25f1002dffa6d95c9064420bb5f9ded8a9d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/ownership-prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f6af9b76fba5de2f5636a1972e2244aa72fa6fdf97391c92d4c9c58c441019be"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/ownership-recovery.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "1306c16f1c2f126afabbdc0b29a4f6056e521ec6648c730bce4513e0f7dbf27d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/ownership-restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "dd6c2d3cadb9ee9a06d5a6d48e0cc864bb62a9788059a1e5de3ddc04f8ec75b7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "92ef477688406d41c36315d813ecef4bbfbc26d037b36fcb546e75e7caff1af1"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/restoration-check.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "a5f038834c071fe972b2dd12864f5f024e1cf63db4b1b89a229d715e5ead5014"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "49fb2bcdc5801658bf0c28fe0d7cc23bfeee373e79d4c6f5fb5f222df2ec305f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "020ad9c7016dfd1d2b54128e397aaa6f18a5c035197a8941ef665c1cf56c7bb7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/validation-tooling-binding.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ac5a694f740608780099e14293936e5679b61a0527a9e03e850b08dc3f835c8d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/verify-managed.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "22f7c466cf5211d7c7bad742b585f9093b4fcc0d5abe6e98244a8adce55584d3"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-on-Release/verify-native.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "68a0dd910009f7544b6e52900fdb30d54d94ce1202fe5d86b52ffc752a71ff94"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/plan.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c6b2c043afe3fea1d870ceef81810ca52da93a06be23a3d12c60be5ec974cc14"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-compiler-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "39ece7d3c3ee050a49095af69c03023f248cd151aa39fc2edb9b3e96ef6e657d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-compiler-verification.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f6313db290c2054b09ec8603dc7060445787a3b73f4d4778f1be548d540fa095"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/742a1ec210110eb5.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f5f4f6ad98c998c4fd9c8400df89812ef25c819b1ad7f730b1e899cda2b4c5f6"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/742a1ec210110eb5.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "1980109bc8bb9b3c4a59a9ec67dd486adfa03be69636b155d3793362d79e8132"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/before.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e00a2bee31958e31022a1c28b29ff805b9b09da3b6314c0faaeb6af1d46da2d7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "7bcf5cf58e35270313478da8ae249d045133469863edc45113be2c92807fe396"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/f1db76edbe0068cc.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/f1db76edbe0068cc.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/managed-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "582190088b3eec17606f280d585de8f9f714568571631a65c4416f50a19bbef2"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/native-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "65ef29789af971cd5b334d3f2d763f9576dee6adb875587ab25d587e43d8cea8"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/ownership-build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0e4bfb295b798eccdcaa6549ecdc7f80daf9a279f10f784d52e44d65c6edf1f6"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/ownership-prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "63b6c23ad97fdf9a85dae48fe2481f46f748057d7fac927cc8af53fc60aa652e"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/ownership-recovery.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "a325f071b4321e492fb169e2029277f7c6cc261e74dc49082eff4ef1c19845d7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/ownership-restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ce19e4332c5b5a1d25cfbea16a462f68bb333fbbffe8f8dc80ccf20c94ac8ec0"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "bff5cd7baa13330d0968fa9bd3349b87f11a71b4bcceb59512418f5b1e987963"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/restoration-check.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "1d9acbb806be204d0d303c7f5ee37ffe324571e3cde98282fe702363c5e28f19"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "d7aab882ff73d59e1bcc8132deb580ca8422b4e46357ff2eb38200958366d96a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0101cd5f743dcde398ec19e5e226c630aedf1e81b980a6bdfad3e6a5597ce54f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "27d3e4f6b5c6f73a96536ef98f053bc24461dc4a32b066c086942992bb34ff2f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/validation-tooling-binding.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "d9bfd844b60f9f7a783a694e507e04993a5daa970425f9e69b9443a9bbcdeb8e"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/verify-managed.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ec2355eea5afd75f438423e5dc6ed7cfd937108eefccc96093dd5d93f028bb43"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Debug/verify-native.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "694b0a2c706d5990264511b66cb612398755e6b4af7c96bc2f034386604419ec"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/742a1ec210110eb5.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "234680e584e8b87808b8d3e7c33abcab4b72856f9cd4e8c33a22091c40e9469c"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/742a1ec210110eb5.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "1980109bc8bb9b3c4a59a9ec67dd486adfa03be69636b155d3793362d79e8132"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/before.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e00a2bee31958e31022a1c28b29ff805b9b09da3b6314c0faaeb6af1d46da2d7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "1aa3955aa42c973343b406f1071e8b2a8634681814acf58f091fd9fb3664ac06"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/f1db76edbe0068cc.after.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/f1db76edbe0068cc.before.bin",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/managed-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "5be7a7fa67c45f0d5ffb2dbe0927489719209591aef35a7d2f80e6d2dd2f1588"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/native-verification.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "65fcc6f85664a28b888352f35882e0a8bcd442f9bf512ded8b0d3203dcf1ddab"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/ownership-build.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "410b7c73f92125e09d9d41c837a412b981fa76d7e08c7a4459c494a2975f7fad"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/ownership-prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "47da5a701587aee85d4f30df66b414d03b6c957cf305a4f9cbb76735cc892e9c"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/ownership-recovery.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "dd0f4a60f85dd9f5f768d15c7350da512c61f2eb068ba1104681964531644f6d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/ownership-restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e45bf6f7eaeafde70aa49b3aaaee68c3c44260ec1e762fb72f0a85043ee2f0b5"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/prepare.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "371c44b1b5f89207759e3bff63a3020e614e329b107fc1f2916b58859f2ee468"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/restoration-check.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "bd850fe5b9a79c444f6978ed67bfb317f7b8bd067789a12089aaadc5fe5b6c20"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/restore.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "d26897dae55c5d3fccd76f9e9b68e63126f465a5d44e87fecda3a6bccca55596"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0101cd5f743dcde398ec19e5e226c630aedf1e81b980a6bdfad3e6a5597ce54f"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/result.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "7ec71da4ba10686724b37476f1c2f6845fa9a844c717edc07b8b6225f6136fbd"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/validation-tooling-binding.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c15af17b0c038adea39d1f33655c24b3df5683212837253a40eb457f09429d52"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/verify-managed.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "35cf9029b998400cffc94c9f1ad7bf3186ce0d0a64b4ddfdb8115d0d23f33362"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-on-Release/verify-native.log.execution.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "88ab2cfbee6cbfde5aef04ba169bf902db3f25e4a371ead866bc6512672b2efc"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/source-preflight.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "7215485bdf119842e6de895db2b8318013b65f2548812e5263302903026f6809"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/candidate-installed-runtime-after-performance-failure.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ba2c75ebfeb06f2c5372580fd569f68d21ce4f30c8bfe056f510810aa72f728d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-blocker.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "088070f47e464290e6f2d9085f9ad5ceaf89ec588356b64ebcbb47c9d7f264b5"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/resource/manifest.sha256",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "382c5a2154e896575513c76a5b36c94c03875981ade9e74f378ff1daf4622d98"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/resource/resource-abi.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "fdea3c94871ab4e72b3e8e078f20522c2185b9f07540c60860628d03fe3daa67"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/resource/resource-build-receipt.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0d72d0a9ea5e931fdde016b18babffd2c4f1d8d883c80004c2f14e27102913df"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/resource/resource-script-index.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "d8f76d7b1ef308c2a1b3c5f3beec3f80b68cd9efff007722daae439c810bbc03"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/assembly-shadow-settings.original",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/assembly-shadow-settings.original.before-restore",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "92330ed73eaa19e3c536f3ab3b5b29c1eb284bc614d3d9d49e43c23594e5b2c1"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/editor-build-settings.original",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/editor-build-settings.original.before-restore",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/m07-bootstrap-scene.original",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/m07-bootstrap-scene.original.before-restore",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "f6b1942db45563ef89897a162d35cbd9047d0020a6a625394ae5b42f7c6acea7"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/current/restoration/workflow-inputs-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "5121daf89121170d3ea3e058bfd17bcbbbfa6d4b5113057934bd5c07ba32c357"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/resource/manifest.sha256",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "fe65ff57b108f93372ef1af7302a6bd41e9f50bbc3dc09de0675cbdd9cbd104a"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/resource/resource-abi.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "fdea3c94871ab4e72b3e8e078f20522c2185b9f07540c60860628d03fe3daa67"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/resource/resource-build-receipt.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "0e60f73e11a61d7fc872532bb87cb208c45938957f87c8387877bcdc86f914bc"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/resource/resource-script-index.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "d8f76d7b1ef308c2a1b3c5f3beec3f80b68cd9efff007722daae439c810bbc03"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/assembly-shadow-settings.original",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "62ef96796fc4f685baee4e324a24dc210da66aa4a1f773306cd00c39315438c9"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/assembly-shadow-settings.original.before-restore",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "ba8b3e765a2e852ae50d6f9aac6122d43b3c1e9940f79d8a000458e1231708ce"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/editor-build-settings.original",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/editor-build-settings.original.before-restore",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/m07-bootstrap-scene.original",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "064d79125f4ee69cc619801872d89a4f2b02271257b2a6495c6fc96f62082ec8"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/m07-bootstrap-scene.original.before-restore",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "587b5d5f99912844ac6b095e732cb63660facd3e924b1d3b48346a6d2083c4bb"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/controlled-performance-failures/reference/restoration/workflow-inputs-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "72d752437f638955c3bf4780fb3df2e6794361805e9fa00d4b5f55d3d343ed03"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/m07-build-workflow.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "c31128e197393d16d306b2ed9968827abe00ebd169f4f56873553284188885c3"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/m07-editor-replay.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "852331c4a48917085f0629c8d366818852accf7294dfba96123b04414c51b9b0"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/m07-fixtures.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "491ec97c3d2e6779328d75e018af466712707efa1e9d59de83e114bd79f921b8"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/native-off-link-xml-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "be7b172927e84cf97203571b965d57760fa3ece635153be77704678059ceaa36"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/native-off-m07-player-build.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "23c393fcdeab091a3e8e3dcc61a9e0055fa254717d9098e070f4738cbd74bd0d"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/native-on-link-xml-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "51e7db82ed3e17dd1f05e78f6bcfac7c7e2498f1b92c0c7566972b628ea28be6"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/native-on-m07-player-build.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "301b8a41cbea80dec0bbbd520ecd6a819b18feb22d6c4cda3b686b519b677c11"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/outer-workflow-inputs-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e6fa6a2c564f3e14fc3916211f2624085d0dff10575523a5bacff849cb31b3ca"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/p05-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "3491080a8a3ce982c50f528949d0a00784fa7224c778d38ba5de24af64750990"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/p05-settings-restored.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "4b21eeb11d3730a7ba75f4bbcbfc3a14d400e51411db157998d6478201d89c72"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/protected-installed-runtime-after-performance-failure.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "82d9ce2d144ff1bbe0712841b83738cb69f1af6cc31d04e51901621599eb6168"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/protected-installed-runtime-before-performance-B.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/protected-installed-runtime-before-performance-C.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "82d9ce2d144ff1bbe0712841b83738cb69f1af6cc31d04e51901621599eb6168"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/protected-installed-runtime-before-performance.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/protected-reference-before-performance.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "b41c4dba05b972d1fb15a40b9182188e1b6300ff7bd45144f79e86a33702e491"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/artifact-index.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "506aaa7e1b4787ec9d8893d7b6f4266b98c1dc486c65c17534f7b02ef274acf2"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/raw-evidence.tar.gz",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "2ecb3d04cdd093c469717d4c2959ec416ec8d0745c51c2a4ba37c82f9bc253e8"
+    },
+    {
+      "status": "A",
+      "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/results-summary.json",
+      "metadataOnly": true,
+      "oldSha256": null,
+      "newSha256": "e16fb73d949365682bb3b372a9a3fcdb8c25f7d4abed57baa6712b6e6273c20d"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/Plan/CURRENT_STATUS.md",
+      "metadataOnly": true,
+      "oldSha256": "c21d21abd26ee777a7a7081c958935aac19b8238fc67ff20b0a9326587cba7eb",
+      "newSha256": "b603ca3dabda57892f9dc16a70f5d7a653e22117fc0057ead61e477f51fce3a5"
+    },
+    {
+      "status": "M",
+      "path": "Docs/AssemblyShadow/Plan/plan-manifest.json",
+      "metadataOnly": true,
+      "oldSha256": "cdd7e7e2ca8425d5d1a2e5d09e73230aac3a00a8d1d957f059ae54716756a90c",
+      "newSha256": "a151167d1435b48ecd5c17ff58e057254976b80928fe184ea041e5a6961abbaf"
+    },
+    {
+      "status": "M",
+      "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+      "metadataOnly": true,
+      "oldSha256": "630e3e9c63dbdfa8541ecea36cb4120195769856594fbede49828f82f577a62f",
+      "newSha256": "41200993627eb95046f9d7fd556e524e04dab4299f51b3b3a301a0439520c9e0"
+    },
+    {
+      "status": "M",
+      "path": "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
+      "metadataOnly": false,
+      "oldSha256": "981319f3d9eeef37b56e1690f2dd3b6dc28060606271b286e1fe844ac61ccb67",
+      "newSha256": "d29ff5bcb5d9b753a8874f896196e9e3d2aed8d8789af4fc88892692399fbed4"
+    },
+    {
+      "status": "M",
+      "path": "Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py",
+      "metadataOnly": false,
+      "oldSha256": "fdfc94acb4661f6428cdb38fabe0350ab2155bb89a662dcd1167b6672977f14c",
+      "newSha256": "a35cb89dfea5d6aee0b9b8de2c8b19b57c616f2e803209f7c9e3e9f57a98cab6"
+    },
+    {
+      "status": "A",
+      "path": "Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1",
+      "metadataOnly": false,
+      "oldSha256": null,
+      "newSha256": "342aa95a8b22e89def4946bfe7e5e1bee15f4de78f6a9016e8bba421939bc14c"
+    }
+  ],
+  "nonMetadataPaths": [
+    ".github/workflows/h1-bee-primary.yml",
+    "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
+    "Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py",
+    "Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1"
+  ],
+  "expectedNonMetadataPaths": [
+    ".github/workflows/h1-bee-primary.yml",
+    "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
+    "Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py",
+    "Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1"
+  ],
+  "runtimeManagedChanged": false,
+  "nativeRepositoriesChanged": false,
+  "performanceProtocolOrAnalyzerChanged": false,
+  "auditedReuseState": "ReusedAuditedFrom925e"
+}
