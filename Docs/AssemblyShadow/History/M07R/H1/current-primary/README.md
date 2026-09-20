@@ -201,3 +201,20 @@ Historical M08 remains `FAIL`.
 `mayEnterR02=false`.
 
 Do not begin R02.
+
+## Final committed handoff CI
+
+The exact live `WEB_TO_LOCAL.md` state at commit `16755d156ccf00c1fa9f2b0168c63f42a06cb01e` passed workflow `35492912802`:
+
+- bounded Primary: **324/324**;
+- committed handoff: **11/11**;
+- early capsule: **7/7**;
+- early launch: **20/20**;
+- early results: **20/20**;
+- failure pipeline: **16/16**;
+- direct M07 PowerShell recovery-label binder: **Passed**;
+- lazy contract: **10/10**.
+
+Artifact `10599344201`; ZIP SHA-256 `de83de6ede1d6d277c96e667eeb14c2cc292891ef4e394793ee02abd56011e9d`.
+
+This remains Primary source/tool evidence; real controlled-performance execution remains Local work.
