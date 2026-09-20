@@ -4,193 +4,200 @@
 
 Latest Local return:
 
-`f829db516b3e5d0a9fef4d5539ec097dfb9867b3`
+`075f8a25f44b7fe5fef397be566b8a5f4f7e447f`
 
 Candidate build-input source anchor:
 
-`925e84d7b653bc7434482e6f4fbde39a4d9fcd0e`
+`316894a83873c46ffd3eefa57222311ae03da214`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## What Local closed at source `99ef65db...`
+## What the `925e84d7...` Local cycle closed
 
-The previous cycle established substantially more H1 evidence:
+The previous Local cycle completed almost all remaining V04 runtime work:
 
-- V00-V03 source/provenance builds passed;
-- controlled + normal M07 passed;
-- startup11 and M07 14/14 passed;
-- ordinary 8192/8193 and exact mixed 512 MiB capacity passed;
-- dense-v2 generation and parser/native boundary coverage passed;
-- generic/index/cache/capability/attribute/native retained coverage passed;
-- the protected profile-1 runtime and fresh M07 graph passed under the current candidate coordinator;
-- old-Player rejection passed;
-- all four controlled Development Players passed provenance/configuration checks;
-- build-map comparability and preregistration binding passed.
+- fresh V00-V03 authority/provenance;
+- normal M07;
+- startup11;
+- M07 Player 14/14;
+- schema-v3 earliest-owned failure/publication;
+- deterministic dense-v2 real Player execution with 62 checks and all four 4095/4096 boundary calls;
+- ordinary 8192/8193 capacity;
+- exact 512 MiB mixed capacity;
+- parser/FieldRVA/native/index/generic/cache/capability retained matrix;
+- protected profile-1 authentication.
 
-Only three independent V04 contracts remained incomplete.
+The only functional blocker was encountered when starting the two graph-bound controlled-performance workflows.
 
-## Repair 1 — Q04 post-terminal first-use history
+Both profile-1 and profile-2 independently reached:
 
-### Observed failure
+1. source/runtime authority;
+2. baseline mutation authority;
+3. baseline resource generation;
 
-The Q04 transaction itself had already failed in the earliest callback and sealed native state as `Failed`.
+then failed **before the first controlled Player build**.
 
-Normal host continuation then recorded candidate baseline first-use entries.
+## Root cause
 
-The strict late verifier reused the eligible-transaction rule and rejected any selected-closure use, even though the transaction was already terminal and could no longer become eligible.
+`Invoke-M07Build.Core.ps1` calls:
 
-### Corrected rule
+- `native-on-controlled`;
+- `native-off-controlled`;
 
-`verify_first_use_history` now has an explicit `allow_selected_closure` option, default `false`.
+when `-ControlledPerformanceBuilds` is active.
 
-It is enabled only for the dedicated post-host Q04 persistence check.
+The common recovery helper still declared:
 
-Therefore:
+`[ValidateSet('native-on', 'native-off')]`
 
-- eligible transactions still reject selected-closure baseline use;
-- Control and initializer published worlds still require exact no-late-baseline-use equality;
-- the Q04 early receipt/history remains immutable;
-- only candidate identities may appear after Q04 terminal failure;
-- unknown/non-candidate identities remain invalid;
-- registry order, complete first-use sequence, timestamps and previous-record immutability remain verified.
+for its `Label` parameter.
 
-This changes the observation rule after terminal failure; it does not weaken transaction eligibility.
+PowerShell rejected the controlled label during parameter binding, before `R00ControlledBuild.BuildPlayer` or any Unity process could start.
 
-## Repair 2 — dense-v2 runtime identity
+This was a current-code orchestration defect, not:
 
-The deterministic generator source defines:
+- a Unity environment failure;
+- source/runtime provenance failure;
+- protected-reference incompatibility;
+- controlled-build implementation failure;
+- performance comparison failure.
 
-- namespace: `AssemblyShadow.Dense`;
-- type: `DenseType_{fixtureId:D4}_{row:D4}_MetadataBoundary_0123456789abcdef0123456789abcdef`;
-- method result: `fixtureId * 10000 + row`.
+Exact outer restoration and installed-runtime re-verification passed on both failed attempts.
 
-The Player probe incorrectly used namespace `AssemblyShadow.Workload` and expected only `fixtureId`.
+## Primary repair
 
-The probe now derives both the generated type name and return value through dedicated helpers shared by the two 4095/4096 checks.
+The production helper now accepts exactly:
 
-Expected boundary results are:
+- `native-on`;
+- `native-off`;
+- `native-on-controlled`;
+- `native-off-controlled`.
 
-- fixture 1: 14095 / 14096;
-- fixture 2: 24095 / 24096.
+All four labels use the same existing generated-input recovery implementation:
 
-The existing manifest/generator/hash/parser/size/table-width checks are unchanged.
+1. read and hash the original `Assets/HybridCLRGenerate/link.xml`;
+2. create an immutable backup;
+3. invoke the requested Unity build method;
+4. retain the generated bytes as evidence;
+5. restore the original bytes exactly;
+6. verify the restored SHA-256;
+7. emit `M07GeneratedPlayerInputRestoration`.
 
-## Repair 3 — graph-bound controlled performance
+No recovery semantics were forked for performance mode.
 
-### Observed failure
+Unknown stage labels remain rejected by PowerShell binding.
 
-The previous freezer authenticated four controlled Development Players and their build-time comparability, but accepted fixture/replay graphs produced under different normal-M07 baseline IDs.
+## Direct PowerShell regression
 
-Pilot 1 independently reconstructed R00 inputs and failed before either Player launched.
+Primary added:
 
-### Strict build-map correction
+`Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1`
 
-Each side now has to prove before `ComparabilityPassed`:
+It does not launch Unity.
 
-- fixture manifest schema/milestone;
-- fixture `baselineBuildId` equals both controlled ON/OFF receipts;
-- fixture `runtimeAbiHash` equals both controlled ON/OFF receipts;
-- Unity/target/architecture equality;
-- fixture's exact `playerBuildReceiptPath/Sha256` is the controlled NativeOn receipt;
-- replay binds the same fixture, NativeOn receipt, baseline, runtime ABI, build GUID, native library and platform.
+The test:
 
-`run-h1-paired-performance.py` now invokes this strict validator before launching a Player.
+1. parses `Invoke-M07Build.Core.ps1` through the PowerShell AST;
+2. extracts the actual production `Invoke-M07PlayerMethodWithGeneratedInputRecovery` definition;
+3. loads that exact function;
+4. stubs the first Unity-dependent operation with a sentinel;
+5. invokes all four production labels;
+6. proves each label passes PowerShell parameter binding and reaches the helper body;
+7. invokes an unknown label;
+8. proves it is rejected by the real `ValidateSet` before helper-body entry.
 
-A normal-M07 graph paired with a separately rebuilt controlled Player can no longer reach sampling.
+The regression reports:
 
-### Graph-bound producer
+`M07GeneratedInputRecoveryLabelBinderTest / Passed / unityInvoked=false`.
 
-`Invoke-M07Build.ps1` now exposes:
+GitHub Actions runs this test directly under `pwsh`.
 
-`-ControlledPerformanceBuilds`
+## Primary executable validation
 
-In this mode the existing workflow:
+Authority-consistent workflow:
 
-1. validates compiler inputs;
-2. builds the baseline resource set;
-3. builds NativeOn through `R00ControlledBuild.BuildPlayer` under the requested baseline;
-4. builds NativeOff through the same controlled producer and baseline;
-5. retains both controlled-evidence receipts;
-6. runs structural Prepare/Compile/Restore;
-7. finalizes fixtures/replay after the controlled NativeOn world exists;
-8. publishes one M07 workflow receipt containing the graph and controlled evidence;
-9. retains the existing outer exact-byte restoration contract.
+`35492692165`
 
-Controlled-performance mode is mutually exclusive with the deliberate controlled-failure mode.
+at source anchor `316894a8...` / authority successor `5ce893caafb80018eee01e9618abbdf944f8dc04` passed:
 
-This path is usable both for the current profile-2 candidate and the protected profile-1 project via `-ProjectPath`.
+- bounded Primary: **324/324**;
+- committed live handoff: **11/11**;
+- R01 early capsule: **7/7**;
+- R01 early launch: **20/20**;
+- R01 early results: **20/20**;
+- R01 failure pipeline: **16/16**;
+- direct M07 PowerShell recovery-label binder: **Passed**;
+- R01B lazy contract: **10/10**.
 
-## Broad-test drift closed
+Artifact:
 
-Local also identified two stale expectations unrelated to runtime behavior:
+- ID: `10599209690`;
+- ZIP SHA-256: `7e4fd0b9ae99c1c929966364ec15a98403953e6b629e09ef07f81b2b03e50a40`.
 
-- `test_r01_early_launch` assumed `DEFAULT_MODES == MODES[:-1]`; it now derives the default inventory by excluding Baseline and dedicated continuation-only modes;
-- `M07BuildTests.WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors` read only the outer wrapper while asserting core-owned strings; it now checks the outer and core files independently.
+This is Primary source/tool evidence only.
 
-Primary CI directly executes the early-launch suite, and bounded M07 tests pin the Unity test's ownership model.
+## Source-scope audit boundary
 
-## Evidence preservation
+The last broad real-runtime checkpoint is:
 
-The prior checkpoint remains immutable:
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/`
 
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority99ef/`
+Relative to source anchor `925e84d7...`, the new functional product change is confined to:
 
-Its failure states are not relabelled:
+`Tools/AssemblyShadow/Invoke-M07Build.Core.ps1`
 
-- Q04 strict verification: `Failed`;
-- lazy Player: `FailedRuntimeNoDenseCoverage`;
-- pilot 1: `FailedBeforePlayerLaunch`;
-- formal performance: `Blocked / NotRun`.
+and specifically to the accepted recovery-stage vocabulary.
 
-The new source requires fresh evidence.
+Other non-metadata changes are test/CI coverage.
+
+There are no changes in this repair to:
+
+- Assembly Shadow managed runtime/Bootstrap C#;
+- diagnostic Player code;
+- HybridCLR native runtime;
+- HybridCLR Unity package;
+- IL2CPP;
+- capacity/index constants;
+- failure transaction semantics;
+- dense-v2 semantics;
+- performance analyzer/statistics/protocol/schedule.
+
+Therefore the prior runtime PASS cells may be carried into the next checkpoint only as an explicit audited historical classification such as:
+
+`ReusedAuditedFrom925e`
+
+after Local independently verifies this source-scope diff.
+
+They must not be rewritten as fresh `Passed` evidence at `316894a8...`.
 
 ## Next Local cycle
 
-1. fresh V00/V01 and broad Python/EditMode confirmation;
-2. fresh current candidate provenance + M07;
-3. startup/M07 matrix and Q04/Control/initializer strict verification;
-4. fresh dense-v2 diagnostic Player and 4 boundary method calls;
-5. fresh protected profile-1 verification;
-6. graph-bound controlled-performance M07 workflow on profile 1;
-7. graph-bound controlled-performance M07 workflow on profile 2;
-8. strict freeze of those two matching graphs;
+The next cycle should concentrate fresh real-environment effort where the source changed and where previous execution was blocked:
+
+1. fresh V00 authority;
+2. full Python/bounded + direct PowerShell binder regression;
+3. broad EditMode sanity;
+4. independent source-scope diff audit from `925e84d7...` to `316894a8...`;
+5. fresh protected profile-1 `-ControlledPerformanceBuilds`;
+6. fresh candidate profile-2 `-ControlledPerformanceBuilds`;
+7. fresh current-anchor old-Player rejection from the two resulting graphs;
+8. strict A/B map freeze;
 9. preregistration binding;
-10. all pilot pairs;
-11. formal paired performance only if pilots pass;
-12. old-Player current-anchor check where required;
-13. checkpoint before cleanup;
-14. V05 + genuinely independent M08 only after mandatory V04 completion.
+10. all pilots;
+11. all formal pairs and analysis when pilots pass;
+12. authenticated checkpoint;
+13. V05 and genuinely independent M08 only if mandatory V04 evidence is complete.
+
+If the source-scope audit finds any unexpected runtime/build-input change, do not use audited reuse; widen Local validation accordingly.
+
+## Gate
+
+H1 remains `InProgress`.
+
+Historical M08 remains `FAIL`.
+
+`humanGatePassed=false`.
+
+`mayEnterR02=false`.
 
 Do not begin R02.
-
-## Final Primary executable validation
-
-Workflow `35449924454` at source anchor `925e84d7...` passed:
-
-- bounded Primary: **323/323**;
-- committed handoff: **11/11**;
-- early capsule: **7/7**;
-- early launch: **20/20**;
-- early results: **20/20**;
-- failure pipeline: **16/16**;
-- lazy contract: **10/10**.
-
-Artifact `10586344220`; ZIP SHA-256 `a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e`.
-
-This is Primary source/tool evidence only; real Player/performance acceptance remains Local work.
-
-## Final committed handoff CI
-
-The exact live `WEB_TO_LOCAL.md` state at commit `08f805da9ea8e479801f10d3a4fbb7af0a70a123` passed workflow `35450199014`:
-
-- bounded Primary: **323/323**;
-- committed handoff: **11/11**;
-- early capsule: **7/7**;
-- early launch: **20/20**;
-- early results: **20/20**;
-- failure pipeline: **16/16**;
-- lazy contract: **10/10**.
-
-Artifact `10586482880`; ZIP SHA-256 `676152ab0de591d0012b2d7f6a96cbac16dce37b5cca0d894c5b482b12835e1d`.
-
-This remains Primary source/tool evidence, not Local V04 closure.
