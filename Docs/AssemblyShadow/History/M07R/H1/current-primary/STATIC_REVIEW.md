@@ -133,3 +133,7 @@ Historical M08 remains `FAIL`.
 `mayEnterR02=false`.
 
 Do not begin R02.
+
+## Final committed handoff verification
+
+The exact live handoff commit `16755d156ccf00c1fa9f2b0168c63f42a06cb01e` passed workflow `35492912802` with 324/324 bounded tests, 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline, the direct PowerShell recovery-label binder, and 10/10 lazy-contract tests. Artifact `10599344201`; ZIP SHA-256 `de83de6ede1d6d277c96e667eeb14c2cc292891ef4e394793ee02abd56011e9d`.
