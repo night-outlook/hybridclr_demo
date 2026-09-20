@@ -166,7 +166,8 @@ class M07ControlledPerformanceWorkflowContractTests(unittest.TestCase):
         for label in ('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled'):
             self.assertIn("'" + label + "'", binder)
         self.assertIn('M07_RECOVERY_BINDER_BODY_ENTERED', binder)
-        self.assertIn('ParameterBindingValidationException', binder)
+        self.assertIn('ParameterArgumentValidationError', binder)
+        self.assertIn('does not belong to the set', binder)
 
 
     def test_unity_workflow_test_tracks_outer_and_core_contracts(self):
