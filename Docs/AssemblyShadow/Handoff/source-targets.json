@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
-      "implementationCommit": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including Q04 terminal-history scoping, dense-v2 runtime identity repair, graph-bound controlled-performance M07 generation, strict graph-to-Player validation, stale broad-test expectation repairs, and complete Primary regression wiring. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "5618d125f39229f6ec0464a559dd8919299025d5",
+      "implementationCommit": "5618d125f39229f6ec0464a559dd8919299025d5",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the controlled-performance generated-input recovery label repair, direct PowerShell parameter-binder regression, and its Primary CI wiring. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -50,7 +50,7 @@
         "repository": "night-outlook/hybridclr_demo",
         "branch": "codex/assembly-shadow-h1-count-repro-tooling",
         "revision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
-        "candidateToolSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+        "candidateToolSourceAnchor": "5618d125f39229f6ec0464a559dd8919299025d5",
         "files": {
           "Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs": "b92a8cdb045c563d8339aad5c358e170e5a081ca",
           "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs": "faf90624cf9812efcfc50a817369a26ead231eb0",
@@ -378,41 +378,8 @@
     "correction": "Invoke-M07Build.Core.ps1 always calls the coordinator checkout's current verify-installed-runtime.py, never the target project's historical verifier. The outer H1_M07_WORKFLOW_* environment and current verifier own full pre-mutation vs split post-mutation dispatch through h1_m07_workflow_authority.py."
   },
   "currentPrimaryValidation": {
-    "sourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
-    "status": "PassedPrimarySourceAndContractTests",
-    "workflowRun": 35449924454,
-    "workflowCommit": "9491aaee21c3750d07ca3b9c73acd0c3791749fb",
-    "boundedPrimaryTests": {
-      "passed": 323,
-      "total": 323
-    },
-    "committedHandoffTests": {
-      "passed": 11,
-      "total": 11
-    },
-    "r01EarlyCapsuleTests": {
-      "passed": 7,
-      "total": 7
-    },
-    "r01EarlyLaunchTests": {
-      "passed": 20,
-      "total": 20
-    },
-    "r01EarlyResultsTests": {
-      "passed": 20,
-      "total": 20
-    },
-    "r01FailurePipelineTests": {
-      "passed": 16,
-      "total": 16
-    },
-    "r01bLazyContractTests": {
-      "passed": 10,
-      "total": 10
-    },
-    "artifactId": 10586344220,
-    "artifactZipSha256": "a7f8d4f910057383d56635330e71db27107bd1314d218d32e80e6f08b133347e",
-    "scope": "Primary source/tool/contract evidence only. Real Unity/IL2CPP validation remains for Q04 post-terminal history, dense-v2 runtime boundary execution, graph-bound controlled performance worlds, pilots/formal sampling, V05/M08, and human H1 approval."
+    "sourceAnchor": "5618d125f39229f6ec0464a559dd8919299025d5",
+    "status": "PendingAuthorityConsistentCI"
   },
   "q04PostHostHistoryRepair": {
     "returnedByLocalValidationCommit": "f829db516b3e5d0a9fef4d5539ec097dfb9867b3",
@@ -457,5 +424,22 @@
     "python": "test_r01_early_launch now derives DEFAULT_MODES by excluding Baseline and dedicated continuation-only failure modes rather than assuming MODES[:-1].",
     "unity": "M07BuildTests.WorkflowRestoresExactProjectSettingsBytesAcrossFreshEditors now reads both outer Invoke-M07Build.ps1 and Invoke-M07Build.Core.ps1 and asserts responsibilities in their current owner.",
     "ci": "The early-launch suite is executed directly by Primary CI; bounded M07 authority tests pin the Unity test's outer/core contract."
+  },
+  "controlledPerformanceRecoveryLabelRepair": {
+    "returnedByLocalValidationCommit": "075f8a25f44b7fe5fef397be566b8a5f4f7e447f",
+    "previousSourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+    "sourceAnchor": "5618d125f39229f6ec0464a559dd8919299025d5",
+    "failure": "Both profile-1 and profile-2 -ControlledPerformanceBuilds workflows passed authority/resource setup but PowerShell rejected native-on-controlled before R00ControlledBuild.BuildPlayer because Invoke-M07PlayerMethodWithGeneratedInputRecovery's Label ValidateSet accepted only native-on/native-off.",
+    "correction": {
+      "acceptedLabels": [
+        "native-on",
+        "native-off",
+        "native-on-controlled",
+        "native-off-controlled"
+      ],
+      "recoverySemantics": "All four labels use the same exact link.xml backup/generated-evidence/restore/receipt path; only evidence filenames/stage labels differ.",
+      "directRegression": "Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1 extracts and loads the actual production helper function via the PowerShell AST, invokes all four real labels, proves each reaches the helper body before Unity work, and proves an unknown label is rejected by parameter binding.",
+      "ci": "GitHub Actions executes the PowerShell binder regression directly under pwsh in addition to bounded static contract coverage."
+    }
   }
 }
