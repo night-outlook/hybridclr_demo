@@ -41,15 +41,17 @@ function Test-UnityProjectRunning {
 function Assert-M07AcceptedRecoveryLabel {
     param([string]$Label)
     try {
-        Invoke-M07PlayerMethodWithGeneratedInputRecovery \
-            -Method 'BinderProbe' \
-            -Project '/tmp/m07-binder-probe' \
-            -MethodScript '/tmp/unused.ps1' \
-            -Timeout 1 \
-            -Target 'StandaloneOSX' \
-            -Arguments @() \
-            -Run '/tmp/m07-binder-probe-run' \
-            -Label $Label
+        $invoke = @{
+            Method = 'BinderProbe'
+            Project = '/tmp/m07-binder-probe'
+            MethodScript = '/tmp/unused.ps1'
+            Timeout = 1
+            Target = 'StandaloneOSX'
+            Arguments = @()
+            Run = '/tmp/m07-binder-probe-run'
+            Label = $Label
+        }
+        Invoke-M07PlayerMethodWithGeneratedInputRecovery @invoke
         throw "Accepted label '$Label' did not reach the binder-body sentinel."
     }
     catch {
@@ -65,15 +67,17 @@ foreach ($label in @('native-on', 'native-off', 'native-on-controlled', 'native-
 
 $invalidRejected = $false
 try {
-    Invoke-M07PlayerMethodWithGeneratedInputRecovery \
-        -Method 'BinderProbe' \
-        -Project '/tmp/m07-binder-probe' \
-        -MethodScript '/tmp/unused.ps1' \
-        -Timeout 1 \
-        -Target 'StandaloneOSX' \
-        -Arguments @() \
-        -Run '/tmp/m07-binder-probe-run' \
-        -Label 'native-on-unknown'
+    $invalidInvoke = @{
+        Method = 'BinderProbe'
+        Project = '/tmp/m07-binder-probe'
+        MethodScript = '/tmp/unused.ps1'
+        Timeout = 1
+        Target = 'StandaloneOSX'
+        Arguments = @()
+        Run = '/tmp/m07-binder-probe-run'
+        Label = 'native-on-unknown'
+    }
+    Invoke-M07PlayerMethodWithGeneratedInputRecovery @invalidInvoke
 }
 catch {
     if ($_.Exception.Message -ceq 'M07_RECOVERY_BINDER_BODY_ENTERED') {
