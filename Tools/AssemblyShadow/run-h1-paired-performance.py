@@ -34,6 +34,24 @@ PHASES = ("pilot", "formal")
 SIDES = ("A", "B")
 RUNNER_PATH = Path(__file__).with_name("run-r00-players.py").resolve()
 RUNNER_OVERHEAD_SECONDS = 30
+PILOT_VERIFICATION_KIND = "H1PilotVerificationReceipt"
+PILOT_VERIFICATION_SCHEMA = 1
+PILOT_VERIFIER_PATHS = tuple(
+    Path(__file__).with_name(name).resolve()
+    for name in (
+        "run-h1-paired-performance.py",
+        "seal-h1-pilot-verification.py",
+        "h1_paired_performance.py",
+        "r00_results.py",
+        "r00_player_inputs.py",
+        "run-r00-players.py",
+        "run-m07-players.py",
+        "m07_results.py",
+        "r01_early_results.py",
+        "r01_early_capsule.py",
+        "shadow_tools.py",
+    )
+)
 
 
 class OwnedProcessGroupError(VerificationError):
@@ -240,29 +258,213 @@ def _verify_prior_launch(value: Any, side: dict[str, Any], mode: str, label: str
             verified.get("executedModeIds") == [mode], label + " R00 verification failed")
 
 
-def _successful_pilots(attempts: list[dict[str, Any]], schedule: list[dict[str, Any]], build: dict[str, Any]) -> set[str]:
-    successful = set()
-    scheduled = {row["pairId"]: row for row in schedule}
-    for row in attempts:
-        if row.get("phase") != "pilot" or row.get("status") != "Passed":
-            continue
-        pair = scheduled.get(row.get("pairId"))
-        if pair is None:
-            continue
-        try:
-            for side_name in SIDES:
-                require(type(row.get(side_name)) is dict and row[side_name].get("status") == "Passed",
-                        "Pilot side is not marked Passed")
-                _verify_prior_launch(row[side_name].get("launchReceipt"), build["sides"][side_name],
-                                     pair["mode"], "Pilot " + side_name)
-            successful.add(row.get("pairId"))
-        except (VerificationError, OSError, KeyError, TypeError, ValueError):
-            continue
-    return {row["pairId"] for row in schedule if row["phase"] == "pilot" and row["pairId"] in successful}
+def _json_digest(value: Any) -> str:
+    encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _pilot_attempts(attempts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [row for row in attempts if row.get("phase") == "pilot"]
+
+
+def _pilot_attempt_digest(attempts: list[dict[str, Any]]) -> str:
+    return _json_digest(_pilot_attempts(attempts))
+
+
+def _selected_pilot_attempts(attempts: list[dict[str, Any]],
+                             schedule: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    selected = []
+    for pair in [row for row in schedule if row.get("phase") == "pilot"]:
+        rows = [row for row in attempts if row.get("pairId") == pair.get("pairId")]
+        require(rows, "Missing pilot attempt: " + str(pair.get("pairId")))
+        latest = max(rows, key=lambda row: row.get("attempt", 0))
+        require(latest.get("status") == "Passed",
+                "Latest retained pilot attempt is not Passed: " + str(pair.get("pairId")))
+        require(latest.get("mode") == pair.get("mode") and latest.get("phase") == "pilot",
+                "Pilot attempt schedule identity mismatch: " + str(pair.get("pairId")))
+        for side in SIDES:
+            require(type(latest.get(side)) is dict and latest[side].get("status") == "Passed" and
+                    type(latest[side].get("launchReceipt")) is dict,
+                    "Selected pilot side is not a passed launch: " + str(pair.get("pairId")) + "." + side)
+        selected.append(latest)
+    require(len(selected) == len(MODES) and {row.get("mode") for row in selected} == set(MODES),
+            "Formal sampling requires exactly one latest passed pilot for every mode")
+    return selected
+
+
+def _verifier_bindings() -> list[dict[str, str]]:
+    return [binding(path) for path in PILOT_VERIFIER_PATHS]
+
+
+def _guarded_file(value: str | Path, label: str) -> Path:
+    raw = Path(value)
+    require(raw.is_absolute() and not raw.is_symlink(), label + " must be an absolute non-symlink file")
+    path = raw.resolve(strict=True)
+    require(path == raw and path.is_file() and not path.is_symlink(), label + " must be a canonical regular file")
+    return path
+
+
+def _stat_guard(path: Path) -> dict[str, int]:
+    path = _guarded_file(path, "Pilot guarded input")
+    stat = path.stat()
+    return {
+        "device": int(stat.st_dev),
+        "inode": int(stat.st_ino),
+        "mode": int(stat.st_mode),
+        "size": int(stat.st_size),
+        "mtimeNs": int(stat.st_mtime_ns),
+        "ctimeNs": int(stat.st_ctime_ns),
+    }
+
+
+def _register_expected_file(files: dict[str, str], value: str | Path, sha256: Any, label: str) -> None:
+    require(type(sha256) is str and len(sha256) == 64 and
+            all(character in "0123456789abcdef" for character in sha256.lower()),
+            label + " SHA-256 is invalid")
+    path = _guarded_file(value, label)
+    key = str(path)
+    expected = sha256.lower()
+    if key in files:
+        require(files[key] == expected, label + " has inconsistent immutable hashes")
+    else:
+        files[key] = expected
+
+
+def _pilot_expected_files(selected: list[dict[str, Any]]) -> dict[str, str]:
+    files: dict[str, str] = {}
+    for attempt in selected:
+        pair_id = str(attempt.get("pairId"))
+        for side in SIDES:
+            launch_path, launch_binding = bound_file(
+                attempt[side].get("launchReceipt"), "Pilot " + pair_id + "." + side + ".launchReceipt")
+            _register_expected_file(files, launch_path, launch_binding["sha256"],
+                                    "Pilot " + pair_id + "." + side + " launch receipt")
+            launch = read_json(launch_path)
+            before = launch.get("inputHashesBefore")
+            after = launch.get("inputHashesAfter")
+            require(type(before) is dict and before and before == after,
+                    "Pilot " + pair_id + "." + side + " immutable input inventory is absent or changed")
+            for file_path, sha256 in before.items():
+                _register_expected_file(files, file_path, sha256,
+                                        "Pilot " + pair_id + "." + side + " immutable input")
+            launches = launch.get("processLaunches")
+            require(type(launches) is list and launches,
+                    "Pilot " + pair_id + "." + side + " process launch inventory is empty")
+            for process in launches:
+                require(type(process) is dict, "Pilot process launch row is invalid")
+                for path_key, sha_key in (
+                    ("resultPath", "resultSha256"),
+                    ("earlyCapsulePath", "earlyCapsuleSha256"),
+                    ("earlyResultPath", "earlyResultSha256"),
+                ):
+                    file_path = process.get(path_key)
+                    sha256 = process.get(sha_key)
+                    if file_path:
+                        _register_expected_file(files, file_path, sha256,
+                                                "Pilot " + pair_id + "." + side + " " + path_key)
+    return files
+
+
+def _selected_pilot_summary(selected: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        {
+            "pairId": row["pairId"],
+            "attempt": row["attempt"],
+            "mode": row["mode"],
+            "A": {"launchReceipt": row["A"]["launchReceipt"]},
+            "B": {"launchReceipt": row["B"]["launchReceipt"]},
+        }
+        for row in selected
+    ]
+
+
+def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[str, Any]],
+                            build: dict[str, Any], protocol_path: Path, schedule_path: Path,
+                            build_map_path: Path, source_index_path: Path) -> dict[str, Any]:
+    selected = _selected_pilot_attempts(attempts, schedule)
+    expected = _pilot_expected_files(selected)
+    before = {path: _stat_guard(Path(path)) for path in sorted(expected)}
+    deep_verifications = 0
+    for attempt in selected:
+        pair = next(row for row in schedule if row.get("pairId") == attempt.get("pairId"))
+        for side in SIDES:
+            _verify_prior_launch(attempt[side].get("launchReceipt"), build["sides"][side],
+                                 pair["mode"], "Pilot " + str(pair["pairId"]) + "." + side)
+            deep_verifications += 1
+    after = {path: _stat_guard(Path(path)) for path in sorted(expected)}
+    require(before == after, "Pilot immutable file identity changed during strict verification; refusing to seal cache")
+    files = [
+        {"path": path, "sha256": expected[path], "guard": after[path]}
+        for path in sorted(expected)
+    ]
+    return {
+        "schemaVersion": PILOT_VERIFICATION_SCHEMA,
+        "kind": PILOT_VERIFICATION_KIND,
+        "status": "PassedStrictReconstructionAndStatGuardSealed",
+        "protocol": binding(protocol_path),
+        "schedule": binding(schedule_path),
+        "buildMap": binding(build_map_path),
+        "sourcePilotIndex": binding(source_index_path),
+        "verifierBindings": _verifier_bindings(),
+        "pilotAttemptsSha256": _pilot_attempt_digest(attempts),
+        "selectedPilots": _selected_pilot_summary(selected),
+        "deepLaunchVerificationCount": deep_verifications,
+        "fileCount": len(files),
+        "totalBytes": sum(row["guard"]["size"] for row in files),
+        "fileInventorySha256": _json_digest(
+            [{"path": row["path"], "sha256": row["sha256"]} for row in files]),
+        "guardInventorySha256": _json_digest(files),
+        "guardSemantics": (
+            "Strict R00 reconstruction hashes the complete graph once while file identity is stable. "
+            "Formal admission re-hashes control receipts/tools and requires unchanged canonical path, "
+            "device, inode, mode, size, mtimeNs, and ctimeNs for every sealed immutable file. "
+            "Any guard change fails closed and requires a new strict seal."
+        ),
+        "files": files,
+    }
+
+
+def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]],
+                              schedule: list[dict[str, Any]], protocol_path: Path,
+                              schedule_path: Path, build_map_path: Path) -> dict[str, str]:
+    receipt_path = _m07.canonical_file(receipt_path)
+    value = read_json(receipt_path)
+    require(value.get("schemaVersion") == PILOT_VERIFICATION_SCHEMA and
+            value.get("kind") == PILOT_VERIFICATION_KIND and
+            value.get("status") == "PassedStrictReconstructionAndStatGuardSealed",
+            "Invalid pilot verification receipt")
+    for key, path in (("protocol", protocol_path), ("schedule", schedule_path), ("buildMap", build_map_path)):
+        require(value.get(key) == binding(path), "Pilot verification " + key + " binding mismatch")
+    require(value.get("verifierBindings") == _verifier_bindings(),
+            "Pilot verification implementation changed; strict reseal is required")
+    require(value.get("pilotAttemptsSha256") == _pilot_attempt_digest(attempts),
+            "Pilot attempt history changed after strict sealing")
+    selected = _selected_pilot_attempts(attempts, schedule)
+    require(value.get("selectedPilots") == _selected_pilot_summary(selected),
+            "Selected pilot launch receipts changed after strict sealing")
+
+    expected = _pilot_expected_files(selected)
+    rows = value.get("files")
+    require(type(rows) is list and len(rows) == value.get("fileCount") == len(expected),
+            "Pilot verification file inventory count mismatch")
+    cached_pairs = [{"path": row.get("path"), "sha256": row.get("sha256")} for row in rows
+                    if type(row) is dict]
+    require(len(cached_pairs) == len(rows) and value.get("fileInventorySha256") == _json_digest(cached_pairs),
+            "Pilot verification file inventory digest mismatch")
+    require(value.get("guardInventorySha256") == _json_digest(rows),
+            "Pilot verification guard inventory digest mismatch")
+    require(cached_pairs == [{"path": path, "sha256": expected[path]} for path in sorted(expected)],
+            "Pilot verification immutable path/hash inventory differs from current pilot receipts")
+    for row in rows:
+        path = _guarded_file(row["path"], "Pilot verification cached file")
+        require(row.get("guard") == _stat_guard(path),
+                "Pilot verification cache invalidated by changed file identity: " + str(path))
+    return binding(receipt_path)
 
 
 def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, build_map_path: Path,
-                schedule: list[dict[str, Any]], phase: str, build: dict[str, Any]) -> list[dict[str, Any]]:
+                schedule: list[dict[str, Any]], phase: str, build: dict[str, Any],
+                pilot_verification_path: Path | None = None) -> list[dict[str, Any]]:
     if path is None:
         require(phase == "pilot", "Formal pair requires --prior-index with completed pilots")
         return []
@@ -295,9 +497,15 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
             if launch_receipt is not None:
                 bound_file(launch_receipt, "Prior " + side + " launch receipt")
     if phase == "formal":
-        pilot_ids = {row["pairId"] for row in schedule if row["phase"] == "pilot"}
-        require(_successful_pilots(attempts, schedule, build) == pilot_ids,
-                "Formal sampling requires all four completed pilot pair receipts")
+        require(pilot_verification_path is not None,
+                "Formal sampling requires --pilot-verification-receipt sealed by strict pilot reconstruction")
+        cache_binding = verify_pilot_verification(
+            pilot_verification_path, attempts, schedule, protocol_path, schedule_path, build_map_path)
+        prior_cache = value.get("pilotVerification")
+        if prior_cache is not None:
+            require(prior_cache == cache_binding, "Prior formal index pilot verification binding mismatch")
+    else:
+        require(pilot_verification_path is None, "Pilot sampling must not consume a formal pilot verification receipt")
     return attempts
 
 
@@ -469,6 +677,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--pair-id")
     parser.add_argument("--attempt", required=True, type=_positive)
     parser.add_argument("--prior-index", type=_m07.canonical_file)
+    parser.add_argument("--pilot-verification-receipt", type=_m07.canonical_file)
     parser.add_argument("--timeout", type=_positive, default=900)
     args = parser.parse_args(argv)
     protocol_path = args.protocol
@@ -477,7 +686,8 @@ def main(argv: list[str] | None = None) -> int:
     protocol = _validate_protocol(protocol_path)
     schedule = _validate_schedule(schedule_path, protocol_path, protocol)
     build = _validate_build(build_map_path, protocol)
-    prior = _load_prior(args.prior_index, protocol_path, schedule_path, build_map_path, schedule, args.phase, build)
+    prior = _load_prior(args.prior_index, protocol_path, schedule_path, build_map_path, schedule, args.phase, build,
+                        args.pilot_verification_receipt)
     row = _select_pair(schedule, args.phase, args.pair_id, prior)
     require(not any(item.get("pairId") == row["pairId"] and item.get("attempt") == args.attempt for item in prior),
             "The requested pair attempt already exists in the prior index")
@@ -518,6 +728,8 @@ def main(argv: list[str] | None = None) -> int:
     attempts.append(record)
     sample = {"schemaVersion": 1, "kind": "H1ControlledSamples", "protocol": binding(protocol_path),
               "schedule": binding(schedule_path), "buildMap": binding(build_map_path), "attempts": attempts}
+    if args.pilot_verification_receipt is not None:
+        sample["pilotVerification"] = binding(args.pilot_verification_receipt)
     output_path = output_root / "sample-index.json"
     with output_path.open("x", encoding="utf-8") as stream:
         json.dump(sample, stream, indent=2)
