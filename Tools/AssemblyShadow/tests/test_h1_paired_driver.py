@@ -127,6 +127,139 @@ class H1PairedDriverTests(unittest.TestCase):
                 driver._load_prior(prior, protocol, schedule, build_map, schedule_rows, "formal",
                                    {"sides": {"A": {}, "B": {}}})
 
+    def _pilot_cache_fixture(self, root):
+        protocol = write_json(root / "protocol.json", {"kind": "protocol"})
+        schedule_rows = [
+            {"pairId": "pilot-" + str(index), "mode": mode, "phase": "pilot", "order": ["A", "B"]}
+            for index, mode in enumerate(driver.MODES)
+        ] + [
+            {"pairId": "formal-" + str(index), "mode": driver.MODES[index % len(driver.MODES)],
+             "phase": "formal", "order": ["A", "B"]}
+            for index in range(40)
+        ]
+        schedule = write_json(root / "schedule.json", {"pairs": schedule_rows})
+        build_map = write_json(root / "build-map.json", {"kind": "map"})
+        build = {"sides": {}}
+        attempts = []
+        launch_paths = []
+        graph_paths = []
+        for side in driver.SIDES:
+            project = root / ("project-" + side)
+            project.mkdir()
+            fixture = write_json(root / ("fixture-" + side + ".json"), {})
+            replay = write_json(root / ("replay-" + side + ".json"), {})
+            on = write_json(root / ("on-" + side + ".json"), {})
+            off = write_json(root / ("off-" + side + ".json"), {})
+            graph = root / ("graph-" + side + ".bin")
+            graph.write_bytes(("graph-" + side).encode())
+            graph_paths.append(graph)
+            build["sides"][side] = {
+                "projectRoot": project,
+                "fixtureManifest": fixture,
+                "replayReceipt": replay,
+                "builds": {"on": {"receipt": on}, "off": {"receipt": off}},
+            }
+        for pair in schedule_rows[:len(driver.MODES)]:
+            row = {"pairId": pair["pairId"], "attempt": 1, "mode": pair["mode"],
+                   "phase": "pilot", "status": "Passed"}
+            for side in driver.SIDES:
+                side_build = build["sides"][side]
+                result = write_json(root / (pair["pairId"] + "-" + side + "-result.json"), {"passed": True})
+                graph = root / ("graph-" + side + ".bin")
+                launch = write_json(root / (pair["pairId"] + "-" + side + "-launch.json"), {
+                    "projectRoot": str(side_build["projectRoot"]),
+                    "fixtureManifestPath": str(side_build["fixtureManifest"]),
+                    "nativeOnReceipt": str(side_build["builds"]["on"]["receipt"]),
+                    "nativeOffReceipt": str(side_build["builds"]["off"]["receipt"]),
+                    "editorReplayReceipt": str(side_build["replayReceipt"]),
+                    "inputHashesBefore": {str(graph): sha(graph)},
+                    "inputHashesAfter": {str(graph): sha(graph)},
+                    "processLaunches": [{"resultPath": str(result), "resultSha256": sha(result),
+                                         "earlyCapsulePath": "", "earlyCapsuleSha256": "",
+                                         "earlyResultPath": "", "earlyResultSha256": ""}],
+                })
+                launch_paths.append(launch)
+                row[side] = {"status": "Passed", "runner": driver.runner_binding(),
+                             "launchReceipt": {"path": str(launch), "sha256": sha(launch)}}
+            attempts.append(row)
+        prior = write_json(root / "prior.json", {
+            "schemaVersion": 1, "kind": "H1ControlledSamples",
+            "protocol": {"path": str(protocol), "sha256": sha(protocol)},
+            "schedule": {"path": str(schedule), "sha256": sha(schedule)},
+            "buildMap": {"path": str(build_map), "sha256": sha(build_map)},
+            "attempts": attempts,
+        })
+        verifier_paths = []
+        for index in range(2):
+            verifier = root / ("verifier-" + str(index) + ".py")
+            verifier.write_text("VERIFIER = " + str(index) + "\n", encoding="utf-8")
+            verifier_paths.append(verifier)
+        return {
+            "protocol": protocol, "schedule": schedule, "scheduleRows": schedule_rows,
+            "buildMap": build_map, "build": build, "attempts": attempts, "prior": prior,
+            "launchPaths": launch_paths, "graphPaths": graph_paths,
+            "verifierPaths": tuple(verifier_paths),
+        }
+
+    def _seal_test_cache(self, fixture, root):
+        cache = root / "pilot-verification.json"
+        def verified(_path, expected_mode=None):
+            return {"result": "Passed", "requestedModeIds": [expected_mode],
+                    "executedModeIds": [expected_mode]}
+        with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+             mock.patch.object(driver._r00, "verify_suite", side_effect=verified) as deep:
+            receipt = driver.seal_pilot_verification(
+                fixture["attempts"], fixture["scheduleRows"], fixture["build"],
+                fixture["protocol"], fixture["schedule"], fixture["buildMap"], fixture["prior"])
+            write_json(cache, receipt)
+            self.assertEqual(deep.call_count, 8)
+            driver.verify_pilot_verification(
+                cache, fixture["attempts"], fixture["scheduleRows"],
+                fixture["protocol"], fixture["schedule"], fixture["buildMap"])
+        return cache
+
+    def test_forty_formal_admissions_reuse_strict_pilot_seal_without_deep_rescan(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            fixture = self._pilot_cache_fixture(root)
+            cache = self._seal_test_cache(fixture, root)
+            with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+                 mock.patch.object(driver._r00, "verify_suite",
+                                   side_effect=AssertionError("formal admission repeated deep pilot verification")) as deep:
+                for _ in range(40):
+                    loaded = driver._load_prior(
+                        fixture["prior"], fixture["protocol"], fixture["schedule"], fixture["buildMap"],
+                        fixture["scheduleRows"], "formal", fixture["build"], cache)
+                    self.assertEqual(len(loaded), len(driver.MODES))
+                deep.assert_not_called()
+
+    def test_pilot_seal_fails_closed_on_every_bound_mutation_class(self):
+        mutation_names = ("pilotReceipt", "boundArtifact", "protocol", "schedule", "buildMap", "verifier")
+        for mutation_name in mutation_names:
+            with self.subTest(mutation=mutation_name), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory).resolve()
+                fixture = self._pilot_cache_fixture(root)
+                cache = self._seal_test_cache(fixture, root)
+                if mutation_name == "pilotReceipt":
+                    fixture["launchPaths"][0].write_text('{"changed":true}', encoding="utf-8")
+                elif mutation_name == "boundArtifact":
+                    fixture["graphPaths"][0].write_bytes(b"changed")
+                elif mutation_name == "protocol":
+                    fixture["protocol"].write_text('{"changed":true}', encoding="utf-8")
+                elif mutation_name == "schedule":
+                    fixture["schedule"].write_text('{"changed":true}', encoding="utf-8")
+                elif mutation_name == "buildMap":
+                    fixture["buildMap"].write_text('{"changed":true}', encoding="utf-8")
+                elif mutation_name == "verifier":
+                    fixture["verifierPaths"][0].write_text("VERIFIER = 'changed'\n", encoding="utf-8")
+                with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+                     mock.patch.object(driver._r00, "verify_suite",
+                                       side_effect=AssertionError("mutation path must not deep-rescan")):
+                    with self.assertRaises(VerificationError):
+                        driver._load_prior(
+                            fixture["prior"], fixture["protocol"], fixture["schedule"], fixture["buildMap"],
+                            fixture["scheduleRows"], "formal", fixture["build"], cache)
+
     def test_failure_receipt_is_new_only(self):
         with tempfile.TemporaryDirectory() as root:
             path = Path(root) / "failure.json"
