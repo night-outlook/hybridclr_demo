@@ -25,7 +25,7 @@ MODULES = (
     'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding', 'test_h1_m07_policy_bridge',
     'test_h1_m07_workflow_authority',
     'test_h1_performance_build_map_freezer', 'test_h1_performance_preregistration_binding',
-    'test_h1_paired_driver',
+    'test_h1_paired_driver', 'test_h1_graph_reuse',
     'test_h1_protected_reference_contract',
     'test_h1_handoff_preflight', 'test_h1_managed_provenance', 'test_h1_managed_cache_provenance',
     'test_h1_selection_collect', 'test_h1_successor_evidence', 'test_h1_successor_sidecar',
