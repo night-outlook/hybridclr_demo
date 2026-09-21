@@ -2,23 +2,15 @@
 
 ## Objective
 
-Validate the controlled-performance recovery-label repair at candidate source anchor:
+Validate the two V04 controlled-workflow boundary repairs at candidate build-input source anchor:
 
-`316894a83873c46ffd3eefa57222311ae03da214`
+`2d44ee4eef735cf9dc5c2295fb8c0df71834743f`
 
-Then complete the remaining H1 V04 performance chain in one Local batch:
+in one Local batch:
 
-fresh authority/tests → source-scope audit → profile-1 controlled-performance M07 → profile-2 controlled-performance M07 → current-anchor old-Player check → strict A/B map → preregistration → pilots → formal analysis → retention → V05/M08 if eligible.
+fresh authority/tests → protected profile-1 controlled Native ON/OFF → candidate profile-2 controlled Native ON/OFF → old-Player check → strict A/B map → preregistration → pilots → formal analysis → retention → V05/M08 if eligible.
 
-Latest Local return:
-
-`075f8a25f44b7fe5fef397be566b8a5f4f7e447f`
-
-H1 remains `InProgress`.
-
-Historical independent M08 remains `FAIL`.
-
-`humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
 **Do not begin R02.**
 
@@ -30,14 +22,14 @@ Machine authority:
 
 Candidate identities:
 
-| Repository | Branch | Identity |
+| Repository | Branch | Build/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `316894a83873c46ffd3eefa57222311ae03da214` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `2d44ee4eef735cf9dc5c2295fb8c0df71834743f` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
 
-Protected profile-1 family remains exact:
+Protected profile-1 family remains unchanged:
 
 - demo HEAD `88508b59b7c4ef8c5023cbbe655d43ebfcf5304c`;
 - demo source anchor `f1c923cbaa814e1b63f3c5b9f8303c90616de726`;
@@ -45,134 +37,81 @@ Protected profile-1 family remains exact:
 - HybridCLR Unity `b649c499385ea68490a0f652a98b732e060aeb89`;
 - IL2CPP `7967b8c7043904fcae130b294defd5ce7aa897c4`.
 
-Environment:
+Environment target:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`
 
-The final checkout HEAD will be a later metadata-only successor. Record checkout HEAD separately from source anchor.
+The branch checkout HEAD may be a later metadata-only successor. Record checkout HEAD separately from the source anchor.
 
 ## Implementation
 
-### Local result being addressed
+Latest Local return:
 
-The `925e84d7...` Local cycle passed:
+`8788d123ca7769396cf14c707f8df13ac764223b`
 
-- V00-V03;
-- normal M07;
-- startup11;
-- M07 Player 14/14;
-- schema-v3 failure/publication;
-- deterministic dense-v2 real Player boundary execution;
-- ordinary 8192/8193 capacity;
-- exact 512 MiB mixed capacity;
-- parser/FieldRVA/native/index/generic/cache/capability matrix;
-- protected profile-1 authentication.
+The prior label repair is proven in real Unity. Two later blockers were returned.
 
-The only blocker occurred in both graph-bound controlled-performance workflows.
+### Repair 1 — exact controlled Player settings restoration
 
-Both profile-1 and profile-2 passed source/runtime authority and baseline resource generation, then failed **before the first controlled Player build**.
+The controlled Native ON build changed:
 
-### Root cause
+`ProjectSettings/ProjectSettings.asset`
 
-`Invoke-M07Build.Core.ps1` calls the recovery helper with:
+from its pinned empty `il2cppCodeGeneration` map to an explicit `Standalone: 0` representation after semantic restore. The next exact source guard correctly stopped.
 
-- `native-on-controlled`;
-- `native-off-controlled`.
+`Invoke-M07PlayerMethodWithGeneratedInputRecovery` now owns an exact-byte transaction for **both**:
 
-The production `Label` parameter still had:
+- `Assets/HybridCLRGenerate/link.xml`;
+- `ProjectSettings/ProjectSettings.asset`.
 
-`[ValidateSet('native-on', 'native-off')]`
+For every `native-on`, `native-off`, `native-on-controlled`, and `native-off-controlled` stage it:
 
-PowerShell rejected the controlled labels during parameter binding.
+1. captures original bytes/hash before Unity;
+2. creates immutable per-input backups;
+3. invokes the Player build;
+4. preserves post-build bytes;
+5. restores both originals in the finally path;
+6. verifies exact SHA equality;
+7. emits per-input receipts;
+8. returns only after restoration, so the existing source guard sees pinned bytes.
 
-Unity did not start for either controlled Player.
+Recovery attempts both inputs even when another recovery operation fails. If recovery succeeds and the build failed, the original build failure is rethrown.
 
-### Repair
+Receipt kinds:
 
-The production parameter now accepts exactly:
+- link.xml: `M07GeneratedPlayerInputRestoration`;
+- ProjectSettings.asset: `M07ControlledPlayerSettingsRestoration`.
 
-- `native-on`;
-- `native-off`;
-- `native-on-controlled`;
-- `native-off-controlled`.
+### Repair 2 — nested native provenance execution scope
 
-There is no new recovery branch.
+`H1BuildInputProvenance.CaptureAfterGenerate` performs a native-only installed-runtime verification with `--skip-demo-source`.
 
-All four labels execute the same existing exact-byte recovery path:
+The nested child process now removes only:
 
-1. read/hash original `Assets/HybridCLRGenerate/link.xml`;
-2. create immutable backup;
-3. invoke Unity build method;
-4. retain generated bytes as evidence;
-5. restore original bytes in `finally`;
-6. verify restored SHA-256;
-7. emit `M07GeneratedPlayerInputRestoration`.
+- `H1_M07_WORKFLOW_AUTHORITY_ROOT`;
+- `H1_M07_WORKFLOW_BASELINE_ID`;
 
-Unknown labels remain rejected.
+from its own `ProcessStartInfo.EnvironmentVariables`.
 
-### Direct executable PowerShell regression
+The parent Unity/coordinator environment is unchanged. The outer M07 pinned-input guard therefore retains the complete workflow/demo-source authority immediately after each Player stage. `verify-installed-runtime.py` itself was not weakened and still rejects a caller that supplies `--skip-demo-source` while M07 authority is active.
 
-Primary added:
+Provenance evidence records:
 
-`Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1`
+`verificationEnvironmentScope=NativeOnlyWithoutOuterM07WorkflowAuthority`
 
-The regression:
+### Primary regression support
 
-1. parses the production core through the PowerShell AST;
-2. extracts the actual `Invoke-M07PlayerMethodWithGeneratedInputRecovery` function;
-3. loads that exact definition;
-4. stubs the first Unity-dependent operation;
-5. invokes all four production labels;
-6. proves every valid label passes real PowerShell binding and reaches helper-body entry;
-7. invokes an unknown label and proves it is rejected before body entry.
+Added/updated:
 
-The test reports:
+- `Tools/AssemblyShadow/tests/test_m07_player_input_recovery.ps1`;
+- `Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1`;
+- `Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py`;
+- `Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs`;
+- `.github/workflows/h1-bee-primary.yml`.
 
-`M07GeneratedInputRecoveryLabelBinderTest / Passed / unityInvoked=false`.
+The direct recovery test extracts the actual production helper, mutates both files, and proves exact restoration on success and simulated stage failure without launching Unity.
 
-GitHub Actions executes it directly with `pwsh`.
-
-### Primary executable validation
-
-Authority-consistent workflow:
-
-`35492692165`
-
-at source anchor `316894a8...` / authority successor `5ce893caafb80018eee01e9618abbdf944f8dc04` passed:
-
-- bounded Primary: **324/324**;
-- committed handoff: **11/11**;
-- R01 early capsule: **7/7**;
-- R01 early launch: **20/20**;
-- R01 early results: **20/20**;
-- R01 failure pipeline: **16/16**;
-- direct M07 PowerShell recovery-label binder: **Passed**;
-- R01B lazy contract: **10/10**.
-
-Artifact:
-
-- ID `10599209690`;
-- ZIP SHA-256 `7e4fd0b9ae99c1c929966364ec15a98403953e6b629e09ef07f81b2b03e50a40`.
-
-This is Primary source/tool evidence only.
-
-### Scope relative to the broad runtime checkpoint
-
-The last broad real-runtime checkpoint is:
-
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/`
-
-The functional product change after `925e84d7...` is limited to:
-
-`Tools/AssemblyShadow/Invoke-M07Build.Core.ps1`
-
-and specifically the accepted recovery-stage vocabulary.
-
-Other non-metadata changes are test/CI coverage.
-
-No managed runtime, native runtime, diagnostic Player, capacity/index, failure/dense behavior, performance analyzer, protocol, or schedule changed.
-
-This permits an explicit audited-reuse analysis; it does **not** automatically convert prior evidence into current-anchor PASS.
+No HybridCLR native, HybridCLR Unity, IL2CPP, performance protocol/schedule/analyzer, capacity/index, dense metadata, or runtime transaction semantics changed.
 
 ## Local validation
 
@@ -182,38 +121,16 @@ Detailed executable plan:
 
 Run it in order.
 
-### Fresh mandatory work
+### Fresh mandatory admission
 
-At minimum perform fresh:
+1. Fresh V00 candidate/reproduction/protected authority.
+2. Candidate and protected installed-runtime verification.
+3. Complete current Python/bounded regressions.
+4. Both direct PowerShell recovery tests.
+5. Broad Unity EditMode sanity.
+6. Source-scope audit from `316894a8...` to `2d44ee4e...`.
 
-1. V00 source/reproduction/protected authority;
-2. full Python/bounded/direct PowerShell binder validation;
-3. broad EditMode sanity;
-4. source-scope audit from `925e84d7...` to `316894a8...`;
-5. profile-1 `-ControlledPerformanceBuilds`;
-6. profile-2 `-ControlledPerformanceBuilds`;
-7. current-anchor old-Player rejection;
-8. strict A/B build-map freeze;
-9. preregistration binding;
-10. every pilot pair;
-11. every formal pair and final analysis if pilots pass;
-12. authenticated checkpoint.
-
-### Audited reuse rule
-
-If and only if the source-scope audit confirms the expected narrow delta, prior `925e84d7...` runtime PASS cells may be cataloged in the new checkpoint as:
-
-`ReusedAuditedFrom925e`
-
-They remain linked to their original receipt/hashes.
-
-They must not be labelled fresh `Passed` at the current source anchor.
-
-If any unexpected runtime/compiler/build-input change is found, disable reuse and rerun the affected domain.
-
-### Controlled-performance invocation
-
-Profile 1:
+### Profile-1 controlled workflow
 
 ~~~text
 pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
@@ -224,7 +141,18 @@ pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
   -ControlledPerformanceBuilds
 ~~~
 
-Profile 2:
+Native ON and Native OFF must both complete.
+
+For each controlled label verify both:
+
+- `<label>-link-xml-restored.json`;
+- `<label>-project-settings-restored.json`;
+
+with `status=ExactBytesRestored` and `originalSha256 == restoredSha256`.
+
+The exact pinned-input guard immediately following Native ON must pass.
+
+### Profile-2 controlled workflow
 
 ~~~text
 pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
@@ -235,98 +163,87 @@ pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
   -ControlledPerformanceBuilds
 ~~~
 
-Both must produce controlled ON/OFF Players, controlled evidence, fixture manifest, replay receipt, and exact generated-input restoration receipts under one baseline per side.
+Require the same two-input restoration for Native ON/OFF.
 
-### Performance progression
+Candidate controlled evidence must show successful native provenance with `verificationEnvironmentScope=NativeOnlyWithoutOuterM07WorkflowAuthority`. No nested `M07 workflow authority cannot be invoked with --skip-demo-source` failure is acceptable.
 
-Freeze only those two self-consistent workflow graphs.
+The subsequent outer source-authority guard must still run and pass.
 
-Require `ComparabilityPassed`.
+### Continue the performance chain
 
-Bind the immutable preregistration.
+Only after both complete graphs pass:
 
-Run all pilots before formal pairs.
+1. current-anchor old-Player rejection;
+2. strict A/B build-map freeze with `ComparabilityPassed`;
+3. preregistration binding;
+4. every pilot pair;
+5. every formal pair when pilots pass;
+6. final paired analysis;
+7. authenticated checkpoint;
+8. V05 and genuinely independent M08 only when mandatory V04 is complete.
 
-Retain every attempt, including failures/retries.
-
-Do not modify protocol, schedule, build map, threshold, or samples after observing timings.
+Historical runtime evidence may be referenced only under its original hashes/classification, e.g. `ReusedAuditedFrom925e` when the source-scope audit justifies reuse. Do not relabel it fresh current-anchor PASS.
 
 ## Failure evidence
 
-If either controlled workflow fails, retain:
+If either repaired boundary fails, retain before cleanup/manual recovery:
 
-- exact label;
-- PowerShell exception/error ID;
-- workflow phase;
-- link.xml original/generated/restored hashes if helper-body entry occurred;
-- restoration receipt if produced;
-- resource receipt;
-- installed-runtime verification;
-- exact command/log.
+- exact command, stage, and label;
+- complete coordinator and Unity logs;
+- tracked-state diff;
+- original/generated/restored hashes for both mutable Player inputs;
+- both restoration receipts when helper-body entry occurred;
+- controlled Player receipt/evidence if produced;
+- native provenance capture including verifier argv/stdout/stderr/environment-scope field;
+- source/runtime verification before and after;
+- outer workflow restoration receipt;
+- failed bytes for any path the workflow itself did not restore.
 
-A recurrence of parameter-binding rejection for either controlled label is a direct return to Primary.
-
-For successful performance closure retain:
-
-- both workflow receipts;
-- four controlled Player receipts;
-- four controlled-build evidence files;
-- four controlled-label link.xml restoration receipts;
-- both fixture/replay graphs;
-- fresh old-Player result;
-- frozen map + freeze receipt;
-- preregistration binding;
-- every pilot/formal sample index and launch receipt;
-- final analysis.
-
-Keep `Passed`, `Failed`, `Blocked`, `NotRun`, `Unavailable`, `ReusedAuditedFrom925e`, and historical evidence distinct.
+Return non-trivial failures to Primary via `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`.
 
 ## Alternatives
 
 Do not:
 
-- remove `ValidateSet`;
-- accept arbitrary label strings;
-- bypass generated-input recovery for controlled builds;
-- rename controlled labels to disguise the defect;
-- modify protected source to avoid the current coordinator;
-- mix normal-M07 fixtures with controlled Players;
-- hand-edit comparability/build-map bindings;
-- alter preregistered protocol/schedule;
-- delete slow or failed samples;
-- promote historical evidence to current PASS without audited scope;
-- weaken source/runtime authority;
+- weaken or bypass the exact source guard;
+- add `ProjectSettings.asset` to the outer three-path M07 mutable-authority exception;
+- rely on semantic Unity setters as exact-byte recovery;
+- remove `--skip-demo-source` from the nested native-only proof and thereby broaden it into a conflicting full-source check;
+- alter `verify-installed-runtime.py` to allow caller demo-source skipping under M07 authority;
+- clear M07 authority variables from the parent coordinator/Unity process;
+- hand-edit controlled receipts/build maps;
+- change preregistered performance protocol, schedule, thresholds, or samples;
 - begin R02.
 
 ## Risks
 
-- The new binder regression proves parameter entry, not Unity Player completion; real profile-1/profile-2 controlled workflows remain mandatory.
-- Controlled workflows each perform two Development IL2CPP builds and can be expensive.
-- Performance sampling is intentionally long and all attempts are evidence.
-- Audited reuse is a review input, not a substitute for version-bound proof; independent M08 may require fresh reruns.
-- Live controlled-performance artifacts are cleanup-sensitive.
+- The new PowerShell test proves real transaction behavior without Unity, but real Unity serialization/build behavior remains Local evidence.
+- Exact-byte recovery assumes the owned Unity process has exited; the helper retains this guard.
+- The nested scope change is intentionally child-only; Local must prove the outer authority recheck still executes afterward.
+- Controlled workflows perform expensive IL2CPP builds and produce cleanup-sensitive evidence.
+- Historical audited reuse remains review input, not fresh current-anchor acceptance.
 
 ## Local correction boundary
 
-Local may adjust:
+Local may adjust only:
 
-- absolute paths;
+- absolute local paths;
 - fresh baseline IDs;
-- fresh output/evidence roots;
+- fresh evidence/output roots;
 - executable permissions;
 - bounded machine-specific invocation syntax.
 
 Local must not alter:
 
-- accepted production label vocabulary;
-- generated-input recovery semantics;
-- source anchor;
-- protected commits;
+- the two controlled mutable-input transaction paths;
+- restoration semantics or receipt requirements;
+- nested verifier child environment scope;
+- outer source/verifier policy;
+- source anchor or protected pins;
 - controlled-performance graph binding;
-- performance protocol/schedule/statistics;
-- source/verifier policy.
+- protocol/schedule/statistics.
 
-Any non-trivial source/tool fix returns to Primary.
+Any non-trivial source/tool correction returns to Primary.
 
 Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
@@ -336,10 +253,6 @@ H1 remains **InProgress**.
 
 Mandatory V04 performance evidence must close before V05 and a genuinely independent whole-chain M08 review.
 
-M08 must explicitly review any `ReusedAuditedFrom925e` justification.
-
-Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**.
-
-Human approval must then be explicit.
+Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**. Human approval must then be explicit.
 
 **Do not begin R02.**
