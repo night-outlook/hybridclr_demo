@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate build-input source anchor: `01cdd033665400eba9fa0533fe17c12f9da92746`.
+- Candidate build-input source anchor: `1a87a393e7a0ee312f39647532d80bfc603c7b23`.
 - Latest Local return: `fa23a0ddcf45eabc870e7e7742d2d18a78a52d49`.
 - Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/`.
 - Gate: `H1 / InProgress / AwaitingFormalSamplingClosure`.
@@ -30,7 +30,7 @@ This is an orchestration scalability blocker, not a failed performance observati
 
 ## Current Primary repair
 
-Source anchor `01cdd033665400eba9fa0533fe17c12f9da92746` adds a strict pilot verification seal:
+Source anchor `1a87a393e7a0ee312f39647532d80bfc603c7b23` adds a strict pilot verification seal:
 
 - `seal-h1-pilot-verification.py` performs the expensive eight-side reconstruction exactly once after all four pilots pass;
 - it binds protocol, schedule, frozen build map, retained pilot-attempt history, selected launch receipts, and verifier/tool hashes;
@@ -44,7 +44,7 @@ The preregistered protocol/schedule/statistics and `run-r00-players.py` were not
 
 ## Next action
 
-Local Validation should first audit the source delta from `69130bbb...` to `01cdd033...`. If and only if it confirms that no Player/runtime/build-map/protocol/schedule/runner input changed and the retained artifact hashes still match, reuse the already-passed controlled graphs, build map, preregistration, and pilots.
+Local Validation should first audit the source delta from `69130bbb...` to `1a87a393...`. If and only if it confirms that no Player/runtime/build-map/protocol/schedule/runner input changed and the retained artifact hashes still match, reuse the already-passed controlled graphs, build map, preregistration, and pilots.
 
 Then seal the retained pilot set once, run all forty formal pairs using the same receipt, run final paired analysis, close the generated-prerequisite Python/EditMode inventories, authenticate a new checkpoint, and proceed to V05/independent M08 only when mandatory V04 is complete.
 
