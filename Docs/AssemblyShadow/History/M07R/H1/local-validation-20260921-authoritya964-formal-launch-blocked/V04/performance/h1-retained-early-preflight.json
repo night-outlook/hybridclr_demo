@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1RetainedEarlyReusePreflight",
+  "result": "Passed",
+  "scope": "Read-only strict bridge-aware verification of retained candidate side-B ON pilots. Exercises R01EarlyStartup Baseline and Control capsule reconstruction before the full pilot seal.",
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "pilotIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+  },
+  "graphReuseBridge": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authoritya964-formal/V04/performance/h1-graph-reuse-bridge.json",
+    "sha256": "b6e97f573938757d712c632a765fb58b8cb82ff9e360733158de998f980a25e0"
+  },
+  "modes": [
+    {
+      "mode": "R00-ON-NoPatch",
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 2,
+      "side": "B",
+      "launchReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-B-R00-ON-NoPatch-pilot-01-2/r00-player-launches.json",
+        "sha256": "cdb6b3657fa40510b3f4b5957ec40123844e8738464e2103ae95cbadf1b24f2c"
+      },
+      "result": "Passed",
+      "durationSeconds": 586.4428269863129,
+      "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+          "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+          "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+          "url": "https://github.com/night-outlook/hybridclr_demo",
+          "revision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+          "localPath": "."
+        }
+      }
+    },
+    {
+      "mode": "R00-ON-P01",
+      "pairId": "R00-ON-P01-pilot-01",
+      "attempt": 1,
+      "side": "B",
+      "launchReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-B-R00-ON-P01-pilot-01-1/r00-player-launches.json",
+        "sha256": "be8f421130d0ec62439e2b53a87e10390cb1ff4b404015ec93b378fda787047c"
+      },
+      "result": "Passed",
+      "durationSeconds": 588.5627267360687,
+      "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+          "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+          "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+          "url": "https://github.com/night-outlook/hybridclr_demo",
+          "revision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+          "localPath": "."
+        }
+      }
+    },
+    {
+      "mode": "R00-ON-P03",
+      "pairId": "R00-ON-P03-pilot-01",
+      "attempt": 1,
+      "side": "B",
+      "launchReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-B-R00-ON-P03-pilot-01-1/r00-player-launches.json",
+        "sha256": "5e14137e3f49faf8de2d18546c7c440448e99e84e241a7d7f31790834636ff2c"
+      },
+      "result": "Passed",
+      "durationSeconds": 588.6159818172455,
+      "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+          "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+          "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+          "url": "https://github.com/night-outlook/hybridclr_demo",
+          "revision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+          "localPath": "."
+        }
+      }
+    }
+  ],
+  "modeCount": 3,
+  "durationSeconds": 1763.6496040821075
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationSummary",
+  "status": "BlockedAtFormalFreshCandidateLaunchAuthority",
+  "checkoutCommit": "7ff70be81c7b1a1dd73b3a02b79494acf5035d19",
+  "sourceAnchor": "a964f79d6ceba866c5956741a4a32e38ff8a6b5f",
+  "v00": {
+    "candidateAuthority": "SourceTargetVerifiedNotBuildAccepted",
+    "reproductionTooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "protectedReference": "ProtectedReferenceInputsVerifiedNotBuilt",
+    "candidateInstalledRuntime": "PassedAfterReceiptRefresh",
+    "candidateInstallReceiptSha256": "d65b6328c4081180a3bb4787fb70a4572b4c1a5fafa2cd198f482349a666528e",
+    "protectedInstalledRuntime": "Passed",
+    "protectedInstallReceiptSha256": "54bfe84c6e1fb72a73c675c257f05b81ee8719fd5c2650f0044edea45314c64a"
+  },
+  "v01": {
+    "boundedPrimary": "353/353",
+    "graphReuse": "11/11",
+    "retainedEarlyPreflight": "2/2",
+    "pairedDriver": "12/12",
+    "formalBatch": "2/2",
+    "earlyCapsule": "7/7",
+    "earlyLaunch": "20/20",
+    "earlyResults": "20/20",
+    "failurePipeline": "16/16",
+    "lazy": "10/10",
+    "powerShellRecovery": "PassedBoth"
+  },
+  "inventories": {
+    "python": {"status": "CompletedWithExplainedEnvironmentSkips", "total": 1038, "passed": 1010, "skipped": 28, "failed": 0, "errors": 0},
+    "unityEditMode": {"status": "Passed", "total": 1076, "passed": 1076, "skipped": 0, "failed": 0}
+  },
+  "sourceAudits": {"previousPrimaryToCurrentPaths": 9, "retainedGraphToCurrentPaths": 17, "status": "PassedExactSets"},
+  "reuseAudit": {
+    "status": "Passed",
+    "selectedLaunchReceiptsVerified": 8,
+    "boundFilesVerified": 33792,
+    "boundBytesVerified": 1606993133,
+    "mismatches": 0
+  },
+  "graphReuseBridge": {"status": "AuthenticatedToolOnlySuccessor", "side": "B", "sha256": "b6e97f573938757d712c632a765fb58b8cb82ff9e360733158de998f980a25e0"},
+  "retainedEarlyPreflight": {"result": "Passed", "modeCount": 3, "durationSeconds": 1763.6496040821075, "sha256": "64b269d383cde3b6ead1e72d026b3fd407628061a0e1ad0bef778e9f7d6fc89c"},
+  "pilotSeal": {"status": "PassedStrictReconstructionAndStatGuardSealed", "deepLaunchVerificationCount": 8, "fileCount": 33792, "totalBytes": 1606993133, "sha256": "5dc313824e9b034475a4d6f105b5d29801ef796f1553881d8b3b3699f9f65935"},
+  "formal": {
+    "admissionToFirstSideStartSeconds": 14.746193885803223,
+    "pairId": "R00-OFF-NoPatch-formal-01",
+    "attempt1": {"status": "Failed", "sideA": "Passed", "sideB": "FailedBeforePlayerLaunchCurrentPairing", "sampleIndexSha256": "7e6e39b9b03643e79bcd0f6ace74a87b2bddd630ce2793e058002fac6cd23f22"},
+    "attempt2": {"status": "FailedReproduced", "sideA": "Passed", "sideB": "FailedBeforePlayerLaunchCurrentPairing", "sampleIndexSha256": "b161cfed5edec94db167ebd15c85ba8b11335ccd8bf8a65e1421bfd3484ef9e0"},
+    "acceptedPairs": 0,
+    "requiredPairs": 40,
+    "error": "R00 baseline: source pins differ from baseline provenance"
+  },
+  "finalAnalysis": "NotRun",
+  "v05": "Ineligible",
+  "independentM08": "NotRunLastResultRemainsFAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1GraphReuseBridge",
+  "status": "AuthenticatedToolOnlySuccessor",
+  "side": "B",
+  "projectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "graphSourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+      "localPath": "."
+    }
+  },
+  "graphSourcePinsSha256": "a3f603b4e4f02687a24fc8d100137a53f53bf2dd74042f9b993df3edc75c23a8",
+  "currentSourcePins": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+    "sha256": "773647ae08aac7cb96f988735aaaf1313cd44e31e85acfa876e69876592d039e"
+  },
+  "currentSourcePinsObjectSha256": "ac8a593cb08e73f1f2c2ac691594e62970e54df43fb5e6cf9414bc64afc63cc1",
+  "transition": {
+    "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
+    "graphDemoRevision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "currentDemoRevision": "a964f79d6ceba866c5956741a4a32e38ff8a6b5f",
+    "graphSourcePinsSha256": "a3f603b4e4f02687a24fc8d100137a53f53bf2dd74042f9b993df3edc75c23a8",
+    "currentSourcePinsSha256": "ac8a593cb08e73f1f2c2ac691594e62970e54df43fb5e6cf9414bc64afc63cc1",
+    "nonMetadataDelta": [
+      {
+        "path": ".github/workflows/h1-bee-primary.yml",
+        "oldBlob": "4179b14cd8c7390985ead14f127e3ece240c2daf",
+        "newBlob": "6c070b7c7311188e00d74273e8df512d2dab8ee0",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/README.md",
+        "oldBlob": "ca73bf85666beb5ea268d9e49b9694e0f27fb929",
+        "newBlob": "eb67e40123ef0883d0cf60ca5324f84142796d84",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/analyze-h1-paired-performance.py",
+        "oldBlob": "02378db57422f84c2a0ff8d9e53309c5b2a79f65",
+        "newBlob": "7c78b80c6bdda9e71b98cbd7fb66527872b4baca",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
+        "oldBlob": null,
+        "newBlob": "ecade2a41b0a09156b19f7a8c3ae5b5bb4d33c4c",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+        "oldBlob": "227d9947caa46ae7d5ee29175b8f3c3726af0533",
+        "newBlob": "31e0279871983c744cd7af263095be70e3931836",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/h1_graph_reuse.py",
+        "oldBlob": null,
+        "newBlob": "7a2be8087a1348fba824f5dc823babb661220552",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/r00_player_inputs.py",
+        "oldBlob": "05ea0c8edfcdf631a54fceeb591cf456e2fe2a92",
+        "newBlob": "045994c3da982d351d523bf7b7f6444704739d79",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/r00_results.py",
+        "oldBlob": "5fe62e2e5eb8834b83e92ff59bebee71af2ef052",
+        "newBlob": "b64f25a0a6abd97ad35a9c4bae21a0b367b531a9",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/r01_early_results.py",
+        "oldBlob": "75df690ef89ba1a689176104d4a52b31c988fb04",
+        "newBlob": "f951c3007e982b2f4d015771b750c500b8cd50f2",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/run-h1-formal-batch.py",
+        "oldBlob": null,
+        "newBlob": "5beb3273f150e07294b730d35d69dcc29bbe19c1",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/run-h1-paired-performance.py",
+        "oldBlob": "acbfc329bc57669f5cdd6bf6966a8d7286b3e0e2",
+        "newBlob": "322d709f1bd0b994e5d05e24de633fa5aa350b56",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+        "oldBlob": null,
+        "newBlob": "dc56822f08daec139506cd447b089e195f931143",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/tests/test_h1_formal_batch.py",
+        "oldBlob": null,
+        "newBlob": "692944db069e2006ebc4c852b97359b5eea10bca",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+        "oldBlob": null,
+        "newBlob": "61b107fa06cbf1e59cf9ce6f35f5cdcb1ad8035d",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
+        "oldBlob": "df1e23f9ba762151e4788635de5d4df4298f6ffa",
+        "newBlob": "1e869f281ea3f07bc7f50ae3f39aa27a4b231b63",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
+        "oldBlob": null,
+        "newBlob": "b85841bb587579a55a564ff3c0379776bee0535c",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py",
+        "oldBlob": null,
+        "newBlob": "486f5060aa44e423353a33b378c314ad65823908",
+        "status": "Added"
+      }
+    ],
+    "nonMetadataDeltaSha256": "667bd30d83b32c52d176f9f775caaac870f13e6377e9d68f36fcd5a4d96941bb"
+  },
+  "verifierBindings": [
+    {
+      "path": "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "sha256": "1d520626d9da314870f0c396b68b5eec801b775e6edb9e7f58de4444d1a121f2"
+    },
+    {
+      "path": "Tools/AssemblyShadow/r00_player_inputs.py",
+      "sha256": "d00ecba8dcd9238c3905025e8fdd50ffbde89ee87676de82901e5f558bb933d0"
+    },
+    {
+      "path": "Tools/AssemblyShadow/r00_results.py",
+      "sha256": "b1bfeed66c76992d906c4496fea016c6206b04324602f3f52b64cfdbfd3f1c7b"
+    },
+    {
+      "path": "Tools/AssemblyShadow/r01_early_results.py",
+      "sha256": "6aa9bdda518da2caedcb180fd0feae9525b211d4a79e4821caf47e3a404bf3b5"
+    },
+    {
+      "path": "Tools/AssemblyShadow/m07_results.py",
+      "sha256": "aab72ac311785fe8774d8c8e21feb1c63fda422c56f8a73ca6fe4a2896022f87"
+    },
+    {
+      "path": "Tools/AssemblyShadow/shadow_tools.py",
+      "sha256": "bdfc7ae0d1fda50f352da12f3c23370785c73e7ac99d4453a5d4d0bb862db607"
+    }
+  ],
+  "installedRuntimeVerification": {
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "sourceFiles": 955,
+    "installedFiles": 957,
+    "demoSourceVerified": true,
+    "configuredShadowMode": "on",
+    "receiptSha256": "d65b6328c4081180a3bb4787fb70a4572b4c1a5fafa2cd198f482349a666528e"
+  },
+  "scope": "Permits strict verification of the retained 69130bbb candidate performance graph under its original complete source-pin DTO only after authenticating the reviewed tool-only successor. Does not alter normal R00 current-pairing verification, Player bytes, protocol, schedule, map, measurements, or protected profile-1 side A."
+}

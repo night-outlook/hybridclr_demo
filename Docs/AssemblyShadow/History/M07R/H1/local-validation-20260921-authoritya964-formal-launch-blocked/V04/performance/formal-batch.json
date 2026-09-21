@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1FormalBatchRun",
+  "status": "StoppedOnFailedWholePair",
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "graphReuseBridge": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authoritya964-formal/V04/performance/h1-graph-reuse-bridge.json",
+    "sha256": "b6e97f573938757d712c632a765fb58b8cb82ff9e360733158de998f980a25e0"
+  },
+  "pilotVerification": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authoritya964-formal/V04/performance/h1-pilot-verification.json",
+    "sha256": "5dc313824e9b034475a4d6f105b5d29801ef796f1553881d8b3b3699f9f65935"
+  },
+  "initialPriorIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+  },
+  "finalSampleIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authoritya964-formal/V04/performance/formal-batch-01/01-R00-OFF-NoPatch-formal-01-attempt-1/sample-index.json",
+    "sha256": "7e6e39b9b03643e79bcd0f6ace74a87b2bddd630ce2793e058002fac6cd23f22"
+  },
+  "formalPairCount": 40,
+  "formalPairsPassed": 0,
+  "formalPairsStartedByThisBatch": 1,
+  "failure": "A formal pair failed and was retained. Diagnose it and perform an explicit whole-pair retry before resuming the batch from the retry sample index.",
+  "runs": [
+    {
+      "pairId": "R00-OFF-NoPatch-formal-01",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authoritya964-formal/V04/performance/formal-batch-01/01-R00-OFF-NoPatch-formal-01-attempt-1",
+      "exitCode": 1,
+      "startedAtUnix": 1790011198.4192462,
+      "finishedAtUnix": 1790011576.4423869,
+      "durationSeconds": 378.023140668869,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authoritya964-formal/V04/performance/formal-batch-01/01-R00-OFF-NoPatch-formal-01-attempt-1/sample-index.json",
+        "sha256": "7e6e39b9b03643e79bcd0f6ace74a87b2bddd630ce2793e058002fac6cd23f22"
+      }
+    }
+  ]
+}
