@@ -421,6 +421,29 @@ binding, verifier hashes, and installed-runtime verification.
 It does **not** edit `AssemblyShadowSourcePins.json`, graph receipts, Players,
 or `r00_player_inputs.require_current_pairing`.
 
+### 1A. Preflight retained ON early reconstruction
+
+Before the full 8-side seal, run the read-only bridge-aware early preflight:
+
+```sh
+python3 Tools/AssemblyShadow/verify-h1-retained-early-reuse.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --pilot-index <completed-pilot-sample-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-retained-early-preflight.json>
+```
+
+The preflight fully reauthenticates the bridge, then strict-verifies candidate
+side B for exactly `R00-ON-NoPatch`, `R00-ON-P01`, and `R00-ON-P03`.
+This crosses the nested `R01EarlyStartup` capsule reconstruction with both
+`Baseline` and `Control` early modes before the expensive full seal. It is
+diagnostic evidence only and does not replace the 8-side pilot seal.
+
+Any failure is a hard stop before sealing. Do not fall back to outer-only graph
+verification or scope-audit-only reuse.
+
 ### 2. Strictly seal the completed pilots once
 
 Create exactly one pilot verification receipt:
