@@ -1,139 +1,61 @@
-# Static Review — Controlled Performance Recovery-Label Repair
+# Static Review — V04 Controlled Workflow Boundary Repairs
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real controlled-performance execution.
+**PASS for Primary → Local Validation handoff**, subject to real Unity/IL2CPP controlled-workflow execution.
 
-Reviewed source anchor:
-
-`316894a83873c46ffd3eefa57222311ae03da214`
+Reviewed build-input source anchor: `2d44ee4eef735cf9dc5c2295fb8c0df71834743f`.
 
 This review does not establish performance acceptance, V05 completion, independent M08 PASS, or Human Review Gate approval.
 
-## Returned Local finding
+## Finding 1 — ProjectSettings exact-byte drift
 
-The `925e84d7...` Local cycle passed all requested runtime work through:
+The Local evidence shows the controlled Native ON build itself succeeded, then the next source guard rejected `ProjectSettings/ProjectSettings.asset` because Unity's semantic restore changed its serialization.
 
-- failure/publication;
-- dense-v2 real Player boundary;
-- ordinary/mixed capacity;
-- protected-reference authentication.
+The repair is correctly placed in the outer Player-stage transaction rather than weakening the guard or relying on `R00ControlledBuild.RestoreSettings`. This is required because the same current coordinator must operate against the protected historical reference project.
 
-Both graph-bound performance workflows then failed at the same boundary before their first controlled Player build.
+The helper now snapshots/restores both tracked inputs and attempts recovery for each even if another recovery item fails. Post-build bytes are retained before overwrite. Exact SHA equality is required before return.
 
-The failing production call labels were:
+## Finding 2 — nested native verifier inherited outer authority
 
-- `native-on-controlled`;
-- `native-off-controlled`.
+The native provenance subprocess deliberately passes `--skip-demo-source`; the top-level M07 verifier deliberately rejects that option when outer workflow authority is active. Both behaviors are individually correct.
 
-The helper accepted only:
+The repair scopes only the nested child process by removing the two M07 authority variables from that child's environment. It does not mutate the parent environment and does not alter `verify-installed-runtime.py`. Therefore the outer coordinator's source/workflow authority remains fail-closed.
 
-- `native-on`;
-- `native-off`.
+## Regression review
 
-PowerShell `ValidateSet` rejected the controlled label before the helper body.
+Coverage now exercises:
 
-## Repair review
+- PowerShell parameter binding for all four labels;
+- real production helper restoration of `link.xml` and `ProjectSettings.asset` without Unity;
+- success and failing-stage recovery paths;
+- per-input receipts and original failure preservation;
+- source contract for child-only environment scoping;
+- retained verifier rejection of caller demo-source skipping under M07 context;
+- Unity Editor source-contract assertions.
 
-The accepted vocabulary is now exactly:
+## Scope
 
-`native-on / native-off / native-on-controlled / native-off-controlled`.
+Functional changes are limited to:
 
-No new branch was introduced into recovery behavior.
+- `Tools/AssemblyShadow/Invoke-M07Build.Core.ps1`;
+- `Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs`.
 
-The label is used only to distinguish evidence filenames and stage names. All four cases retain the same:
+Other changes are tests/CI/authority metadata. The three runtime repositories remain pinned unchanged.
 
-- pre-Unity link.xml snapshot;
-- SHA-256 binding;
-- immutable backup;
-- generated-byte capture;
-- finally-path exact restore;
-- restored SHA-256 validation;
-- restoration receipt schema.
+## Required empirical closure
 
-Unknown labels still fail closed.
+Local must freshly prove:
 
-## Executable binder regression
+1. V00 candidate/reproduction/protected authority;
+2. current source/tool regressions and broad EditMode;
+3. protected profile-1 controlled Native ON + Native OFF with two-input exact restoration each;
+4. candidate profile-2 controlled Native ON + Native OFF with nested provenance succeeding;
+5. post-workflow runtime/source verification;
+6. current-anchor old-Player rejection;
+7. strict build-map freeze and `ComparabilityPassed`;
+8. preregistration, all pilots, all formal samples, analysis;
+9. authenticated checkpoint;
+10. V05 and genuinely independent M08 only if V04 closes.
 
-A source-text assertion alone would repeat the gap that caused the Local failure.
-
-The new PowerShell regression instead parses the real core script AST and loads the actual production helper definition.
-
-For each valid label, it supplies all real parameters and replaces the first Unity-dependent call with a sentinel. Reaching the sentinel proves parameter binding succeeded and helper-body execution began.
-
-For an invalid label, the test requires a PowerShell parameter-validation error and proves the sentinel was not reached.
-
-The test does not depend on Unity installation and is executed directly in GitHub Actions using `pwsh`.
-
-## Primary evidence
-
-Workflow:
-
-`35492692165`
-
-passed:
-
-- bounded Primary: **324/324**;
-- committed handoff: **11/11**;
-- R01 early capsule: **7/7**;
-- R01 early launch: **20/20**;
-- R01 early results: **20/20**;
-- R01 failure pipeline: **16/16**;
-- direct PowerShell binder regression: **Passed**;
-- R01B lazy contract: **10/10**.
-
-Artifact:
-
-- `10599209690`;
-- ZIP SHA-256 `7e4fd0b9ae99c1c929966364ec15a98403953e6b629e09ef07f81b2b03e50a40`.
-
-## Scope / regression analysis
-
-The functional product delta relative to broad-runtime source anchor `925e84d7...` is confined to the M07 PowerShell coordinator's accepted stage labels.
-
-There are no changes to:
-
-- managed runtime or Bootstrap behavior;
-- native runtime;
-- package/IL2CPP source;
-- transaction/recovery semantics;
-- metadata capacity/indexing;
-- dense metadata behavior;
-- R00 benchmark operations;
-- build-map comparability;
-- preregistered schedule/statistics.
-
-The historical `925e84d7...` runtime PASS evidence is therefore relevant comparison evidence, but normative H1 version-binding means it is not automatically current-anchor PASS evidence.
-
-Local may record those cells as `ReusedAuditedFrom925e` only after independently proving the exact source-scope delta. A source-scope mismatch requires fresh validation of the affected domain.
-
-## Residual empirical requirements
-
-Local must still execute:
-
-1. fresh source authority and test admission;
-2. the repaired profile-1 controlled-performance workflow;
-3. the repaired profile-2 controlled-performance workflow;
-4. current-anchor old-Player rejection from fresh graphs;
-5. strict build-map freeze;
-6. preregistration;
-7. complete pilot sampling;
-8. complete formal sampling and analysis if pilots pass;
-9. authenticated checkpoint retention;
-10. V05 + genuinely independent M08 if mandatory V04 closes.
-
-## Gate
-
-H1 remains `InProgress`.
-
-Historical M08 remains `FAIL`.
-
-`humanGatePassed=false`.
-
-`mayEnterR02=false`.
-
-Do not begin R02.
-
-## Final committed handoff verification
-
-The exact live handoff commit `16755d156ccf00c1fa9f2b0168c63f42a06cb01e` passed workflow `35492912802` with 324/324 bounded tests, 11/11 handoff, 7/7 early-capsule, 20/20 early-launch, 20/20 early-results, 16/16 failure-pipeline, the direct PowerShell recovery-label binder, and 10/10 lazy-contract tests. Artifact `10599344201`; ZIP SHA-256 `de83de6ede1d6d277c96e667eeb14c2cc292891ef4e394793ee02abd56011e9d`.
+H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
