@@ -47,7 +47,7 @@ Only the sealer and final analyzer obtain that authority from bridge verificatio
 
 Primary tests cover the real old-source/current-successor Git boundary rather than only synthetic data, plus negative runtime-pin/revision cases, current-only default R00 behavior, side-B-only authority injection, seal binding, formal bridge-switch rejection, and final-analysis bridge binding.
 
-Primary CI at the authority successor passed 346/346 bounded tests and all existing H1 contract suites.
+Primary CI at the authority successor passed 348/348 bounded tests and all existing H1 contract suites.
 
 ## Residual empirical requirements
 
