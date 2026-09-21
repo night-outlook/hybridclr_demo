@@ -2,7 +2,7 @@
 
 Candidate build-input/tool source anchor:
 
-`01cdd033665400eba9fa0533fe17c12f9da92746`
+`1a87a393e7a0ee312f39647532d80bfc603c7b23`
 
 Latest Local return:
 
@@ -21,7 +21,7 @@ Validate the sealed pilot-admission optimization, reuse the already-passed contr
 ## V00 — fresh current authority
 
 1. Pull the final pushed `codex/assembly-shadow-r01b-h1` checkout and require clean tracked state.
-2. Record checkout HEAD separately from source anchor `01cdd033665400eba9fa0533fe17c12f9da92746`.
+2. Record checkout HEAD separately from source anchor `1a87a393e7a0ee312f39647532d80bfc603c7b23`.
 3. Run candidate handoff/source preflight and require `SourceTargetVerifiedNotBuildAccepted` for the exact source anchor.
 4. Reauthenticate reproduction tooling and protected profile-1 pins.
 5. Verify candidate and protected installed runtimes.
@@ -55,7 +55,7 @@ Compare executable/tool source from:
 
 to:
 
-`01cdd033665400eba9fa0533fe17c12f9da92746`
+`1a87a393e7a0ee312f39647532d80bfc603c7b23`
 
 Expected executable/tool/test/CI delta:
 
