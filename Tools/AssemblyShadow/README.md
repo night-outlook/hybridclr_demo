@@ -449,9 +449,31 @@ inventory.
 For a fresh graph whose source pins already equal its project pins,
 `--graph-reuse-bridge` may be omitted; the normal strict path is unchanged.
 
-### 3. Run all formal pairs with the same bridge and seal
+### 3. Run the remaining formal pairs with the same bridge and seal
 
-Every formal pair for the retained graph must use both receipts:
+Use the batch runner for the normal path. It sequentially executes every
+unattempted preregistered formal pair and chains each immutable sample index into
+the next pair:
+
+```sh
+python3 Tools/AssemblyShadow/run-h1-formal-batch.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --prior-index <latest-sample-index.json> \
+  --output-root <new-formal-batch-root> \
+  --timeout 900
+```
+
+A successful batch writes `formal-batch.json` with
+`status=PassedAllFormalPairs` and binds the final cumulative sample index.
+
+The batch **never retries a failed pair automatically**. On the first failed
+whole-pair attempt it retains that sample index, writes
+`status=StoppedOnFailedWholePair`, and stops. Diagnose the failure and, only
+when the preregistered retry policy permits it, retry that same pair explicitly:
 
 ```sh
 python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
@@ -460,21 +482,26 @@ python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
   --build-map <retained-frozen-build-map.json> \
   --graph-reuse-bridge <new-graph-reuse-bridge.json> \
   --pilot-verification-receipt <new-pilot-verification.json> \
-  --prior-index <latest-sample-index.json> \
-  --output-root <new-pair-output-root> \
+  --prior-index <failed-pair-sample-index.json> \
+  --output-root <new-retry-output-root> \
   --phase formal \
-  --attempt 1
+  --pair-id <same-failed-pair-id> \
+  --attempt <next-attempt-number> \
+  --timeout 900
 ```
 
-The formal driver re-hashes compact control receipts/tools, re-derives the
-current pilot immutable path/hash inventory, verifies the sealed
-path/device/inode/mode/size/mtime/ctime guard, and verifies the graph-reuse
-bridge's compact current bindings. It does not repeat the eight deep pilot graph
-scans.
+Then start a **new** batch output root with the successful retry index as
+`--prior-index`. The batch refuses to skip an unresolved failed formal pair.
+
+Both the single-pair driver and batch path re-hash compact control receipts/tools,
+re-derive the current pilot immutable path/hash inventory, verify the sealed
+path/device/inode/mode/size/mtime/ctime guard, and verify the graph-reuse bridge's
+compact current bindings. They do not repeat the eight deep pilot graph scans.
 
 Each formal attempt records both `pilotVerification` and
 `graphReuseBridge`. A cumulative chain cannot switch either authority.
-Any mismatch fails closed; no automatic reseal or fallback deep scan occurs.
+No automatic reseal, fallback deep scan, side-only retry, or latency-based
+sample deletion is allowed.
 
 Whole-pair retry, preregistered order, retained attempts, timeouts, and
 measurement semantics are unchanged.
