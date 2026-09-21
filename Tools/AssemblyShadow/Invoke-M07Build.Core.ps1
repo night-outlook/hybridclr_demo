@@ -73,64 +73,87 @@ function Invoke-M07PlayerMethodWithGeneratedInputRecovery {
         [string]$Run,
         [ValidateSet('native-on', 'native-off', 'native-on-controlled', 'native-off-controlled')][string]$Label
     )
-    if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot snapshot $Label generated input while this project is open." }
-    $relative = 'Assets/HybridCLRGenerate/link.xml'
-    $path = Assert-M07RegularPath (Join-Path $Project $relative)
-    $original = [IO.File]::ReadAllBytes($path)
-    $originalSha = Get-M07BytesHash $original
-    $backupPath = Join-Path $Run ($Label + '-link-xml.original')
-    $backup = [IO.File]::Open($backupPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
-    try { $backup.Write($original, 0, $original.Length); $backup.Flush($true) }
-    finally { $backup.Dispose() }
+    if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot snapshot $Label mutable build inputs while this project is open." }
+
+    $inputs = @(
+        [ordered]@{
+            key = 'link-xml'
+            relative = 'Assets/HybridCLRGenerate/link.xml'
+            receiptKind = 'M07GeneratedPlayerInputRestoration'
+        },
+        [ordered]@{
+            key = 'project-settings'
+            relative = 'ProjectSettings/ProjectSettings.asset'
+            receiptKind = 'M07ControlledPlayerSettingsRestoration'
+        }
+    )
+    foreach ($input in $inputs) {
+        $input.path = Assert-M07RegularPath (Join-Path $Project $input.relative)
+        $input.original = [IO.File]::ReadAllBytes($input.path)
+        $input.originalSha = Get-M07BytesHash $input.original
+        $input.backupPath = Join-Path $Run ($Label + '-' + $input.key + '.original')
+        $backup = [IO.File]::Open($input.backupPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+        try { $backup.Write($input.original, 0, $input.original.Length); $backup.Flush($true) }
+        finally { $backup.Dispose() }
+    }
 
     $stageFailure = $null
-    $restoreFailure = $null
+    $restoreFailures = @()
     try {
         Invoke-M07GuardedMethod $Method $Project $MethodScript $Timeout $Target $Arguments
     }
     catch { $stageFailure = $_ }
     finally {
-        try {
-            if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot restore $Label generated input until its Unity process exits." }
-            $saved = [IO.File]::ReadAllBytes($backupPath)
-            if ((Get-M07BytesHash $saved) -cne $originalSha) { throw "$Label generated-input backup changed." }
-            $generated = [IO.File]::ReadAllBytes($path)
-            $generatedPath = Join-Path $Run ($Label + '-link-xml.generated')
-            $evidence = [IO.File]::Open($generatedPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
-            try { $evidence.Write($generated, 0, $generated.Length); $evidence.Flush($true) }
-            finally { $evidence.Dispose() }
-            $file = [IO.File]::Open($path, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+        foreach ($input in $inputs) {
             try {
-                $file.Position = 0
-                $file.Write($saved, 0, $saved.Length)
-                $file.SetLength($saved.Length)
-                $file.Flush($true)
+                if (Test-UnityProjectRunning -ProjectPath $Project) { throw "Cannot restore $Label mutable build input until its Unity process exits: $($input.relative)" }
+                $saved = [IO.File]::ReadAllBytes($input.backupPath)
+                if ((Get-M07BytesHash $saved) -cne $input.originalSha) { throw "$Label $($input.key) backup changed." }
+
+                $generated = [IO.File]::ReadAllBytes($input.path)
+                $generatedSha = Get-M07BytesHash $generated
+                $generatedPath = Join-Path $Run ($Label + '-' + $input.key + '.generated')
+                $evidence = [IO.File]::Open($generatedPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+                try { $evidence.Write($generated, 0, $generated.Length); $evidence.Flush($true) }
+                finally { $evidence.Dispose() }
+
+                $file = [IO.File]::Open($input.path, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+                try {
+                    $file.Position = 0
+                    $file.Write($saved, 0, $saved.Length)
+                    $file.SetLength($saved.Length)
+                    $file.Flush($true)
+                }
+                finally { $file.Dispose() }
+
+                $restoredSha = Get-M07BytesHash ([IO.File]::ReadAllBytes($input.path))
+                if ($restoredSha -cne $input.originalSha) { throw "$Label $($input.key) exact-byte restore failed." }
+                $receipt = [ordered]@{
+                    schemaVersion = 1
+                    kind = $input.receiptKind
+                    status = 'ExactBytesRestored'
+                    stage = $Label
+                    method = $Method
+                    path = $input.relative
+                    originalSha256 = $input.originalSha
+                    generatedSha256 = $generatedSha
+                    generatedBytes = $generated.Length
+                    changed = $generatedSha -cne $input.originalSha
+                    restoredSha256 = $restoredSha
+                }
+                $receiptPath = Join-Path $Run ($Label + '-' + $input.key + '-restored.json')
+                $receiptBytes = [Text.UTF8Encoding]::new($false).GetBytes(($receipt | ConvertTo-Json -Depth 5) + "`n")
+                $receiptFile = [IO.File]::Open($receiptPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+                try { $receiptFile.Write($receiptBytes, 0, $receiptBytes.Length); $receiptFile.Flush($true) }
+                finally { $receiptFile.Dispose() }
             }
-            finally { $file.Dispose() }
-            $restoredSha = Get-M07BytesHash ([IO.File]::ReadAllBytes($path))
-            if ($restoredSha -cne $originalSha) { throw "$Label generated-input exact-byte restore failed." }
-            $receipt = [ordered]@{
-                schemaVersion = 1
-                kind = 'M07GeneratedPlayerInputRestoration'
-                status = 'ExactBytesRestored'
-                stage = $Label
-                method = $Method
-                path = $relative
-                originalSha256 = $originalSha
-                generatedSha256 = Get-M07BytesHash $generated
-                generatedBytes = $generated.Length
-                changed = (Get-M07BytesHash $generated) -cne $originalSha
-                restoredSha256 = $restoredSha
-            }
-            $receiptPath = Join-Path $Run ($Label + '-link-xml-restored.json')
-            $receiptBytes = [Text.UTF8Encoding]::new($false).GetBytes(($receipt | ConvertTo-Json -Depth 5) + "`n")
-            $receiptFile = [IO.File]::Open($receiptPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
-            try { $receiptFile.Write($receiptBytes, 0, $receiptBytes.Length); $receiptFile.Flush($true) }
-            finally { $receiptFile.Dispose() }
+            catch { $restoreFailures += $_ }
         }
-        catch { $restoreFailure = $_ }
     }
-    if ($restoreFailure) { throw "$Method failed or completed but $Label generated-input recovery failed. Stage: $stageFailure Recovery: $restoreFailure" }
+    if ($restoreFailures.Count -ne 0) {
+        $details = ($restoreFailures | ForEach-Object { $_.Exception.Message }) -join ' | '
+        throw "$Method failed or completed but $Label mutable-build-input recovery failed. Stage: $stageFailure Recovery: $details"
+    }
     if ($stageFailure) { throw $stageFailure }
 }
 
