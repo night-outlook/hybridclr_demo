@@ -50,6 +50,10 @@ Pilot 仍按本协议完整执行且全部排除在 formal 统计之外。四个
 
 bridge 验证通过后，默认 R00 contract 仍保持 current-pairing-only。只有 seal/final analyzer 从该 receipt 得到的显式 `H1AuthenticatedGraphReuseAuthority` 可以在 retained candidate side B 上把 expected source pairing 设为旧 graph DTO。protected side A 和其它 R00 调用继续走默认严格路径。
 
+retained candidate 的 ON performance launch 使用 `R01EarlyStartup` 时，outer R00 graph 验证与 nested early-capsule reconstruction 必须使用**同一个已经 bridge-authenticated 的 authority**。该 authority 只允许通过 R00 verifier 传入内部 `_prepare`，并且 nested reuse scope 只允许 `Baseline` / `Control` 两种 performance early mode。direct early verifier、Ordinary、failure、guard mode 保持 current-pairing-only 或直接拒绝 retained authority；不得增加通用 historical-pairing CLI override。
+
+在完整 8-side seal 前，Local 必须先运行 read-only retained-early preflight，对 candidate side B 的 `R00-ON-NoPatch`、`R00-ON-P01`、`R00-ON-P03` 做 strict bridge-aware R00 verification，从而提前覆盖 Baseline 与 Control 的 nested capsule reconstruction。preflight 只作诊断门，不替代完整 pilot seal；失败时必须在 seal 前停止。
+
 `H1PilotVerificationReceipt` 必须绑定 graph-reuse bridge；每个 formal attempt 也必须绑定相同 bridge。正式采样链不能切换 bridge。最终 analyzer 必须再次执行 bridge 的 full authentication，再用该 authority 验证 retained side B；不能用 pilot seal 或 scope audit 替代最终 strict evidence reconstruction。
 
 任何 current source-pin、allowed-tool verifier、build map、bridge receipt 或 Git delta 变化都会使 bridge 失效。失效时只能重新做完整 bridge authentication（若仍满足同一规范）或重建 current-pairing graph；不能自动降级为“scope audit 已通过”。
