@@ -1,61 +1,51 @@
-# Static Review — V04 Controlled Workflow Boundary Repairs
+# Static Review — Formal Pilot Verification Seal
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real Unity/IL2CPP controlled-workflow execution.
+**PASS for Primary → Local Validation handoff**, subject to Local execution of one strict pilot seal and all formal pairs.
 
-Reviewed build-input source anchor: `69130bbb3a6df516916dddb5ad263799a7c6e5e3`.
+Reviewed build-input/tool source anchor: `01cdd033665400eba9fa0533fe17c12f9da92746`.
 
-This review does not establish performance acceptance, V05 completion, independent M08 PASS, or Human Review Gate approval.
+## Returned issue
 
-## Finding 1 — ProjectSettings exact-byte drift
+The prior formal driver used `_successful_pilots` during every formal admission. That function called `_verify_prior_launch` for A/B across all four successful pilots, which invokes `r00_results.verify_suite`. The same immutable graph was therefore fully re-collected and re-hashed before every formal pair.
 
-The Local evidence shows the controlled Native ON build itself succeeded, then the next source guard rejected `ProjectSettings/ProjectSettings.asset` because Unity's semantic restore changed its serialization.
+The observed 47:39 pre-launch run confirms this is not a theoretical cost.
 
-The repair is correctly placed in the outer Player-stage transaction rather than weakening the guard or relying on `R00ControlledBuild.RestoreSettings`. This is required because the same current coordinator must operate against the protected historical reference project.
+## Review of repair
 
-The helper now snapshots/restores both tracked inputs and attempts recovery for each even if another recovery item fails. Post-build bytes are retained before overwrite. Exact SHA equality is required before return.
+The repair preserves the strict-verification boundary rather than removing it.
 
-## Finding 2 — nested native verifier inherited outer authority
+- Deep verification still occurs once for all eight pilot sides.
+- The seal is created only after the latest retained attempt for every pilot mode is Passed.
+- The immutable file set comes from launch receipts whose complete input inventory is itself checked by deep verification.
+- Pre/post filesystem identity stability closes the race between deep verification and sealing without a second full content-hash pass.
+- Formal reuse is content-bound to protocol/schedule/map/launch receipts/verifier code and identity-bound to every sealed immutable file.
+- A guard mismatch is a hard failure requiring reseal; it is not an automatic cache miss.
+- The cache cannot change across cumulative formal indexes.
+- Final paired analysis is untouched and still performs full strict evidence reconstruction.
 
-The native provenance subprocess deliberately passes `--skip-demo-source`; the top-level M07 verifier deliberately rejects that option when outer workflow authority is active. Both behaviors are individually correct.
-
-The repair scopes only the nested child process by removing the two M07 authority variables from that child's environment. It does not mutate the parent environment and does not alter `verify-installed-runtime.py`. Therefore the outer coordinator's source/workflow authority remains fail-closed.
+Using device/inode/ctime in addition to size/mtime is deliberate: an in-place rewrite or file replacement that attempts to preserve common timestamp/size fields still invalidates the seal on the target Local filesystem.
 
 ## Regression review
 
-Coverage now exercises:
+The bounded regression models the exact operational requirement: one seal causes eight deep validations; forty later admissions cause zero deep validations. Six mutation classes independently fail closed.
 
-- PowerShell parameter binding for all four labels;
-- real production helper restoration of `link.xml` and `ProjectSettings.asset` without Unity;
-- success and failing-stage recovery paths;
-- per-input receipts and original failure preservation;
-- source contract for child-only environment scoping;
-- retained verifier rejection of caller demo-source skipping under M07 context;
-- Unity Editor source-contract assertions.
+## Reuse boundary
 
-## Scope
+The new source changes only performance admission orchestration, sealing, tests, CI enrollment, and documentation. It does not change the already-built Player graphs or the preregistered measurement contract.
 
-Functional changes are limited to:
+Local must independently verify that scope and all retained hashes before reusing the existing graph/map/preregistration/pilot evidence.
 
-- `Tools/AssemblyShadow/Invoke-M07Build.Core.ps1`;
-- `Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs`.
+## Residual empirical requirements
 
-Other changes are tests/CI/authority metadata. The three runtime repositories remain pinned unchanged.
+- run the strict sealer against retained real pilot evidence;
+- measure seal completion and cached admission cost;
+- run 40 formal pairs;
+- retain retries/failures unchanged;
+- run the unchanged final analyzer;
+- rerun/close complete Python and EditMode inventories after required generated prerequisites are present;
+- authenticate a new checkpoint;
+- V05 and independent M08 only after V04 closure.
 
-## Required empirical closure
-
-Local must freshly prove:
-
-1. V00 candidate/reproduction/protected authority;
-2. current source/tool regressions and broad EditMode;
-3. protected profile-1 controlled Native ON + Native OFF with two-input exact restoration each;
-4. candidate profile-2 controlled Native ON + Native OFF with nested provenance succeeding;
-5. post-workflow runtime/source verification;
-6. current-anchor old-Player rejection;
-7. strict build-map freeze and `ComparabilityPassed`;
-8. preregistration, all pilots, all formal samples, analysis;
-9. authenticated checkpoint;
-10. V05 and genuinely independent M08 only if V04 closes.
-
-H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`. Do not begin R02.
