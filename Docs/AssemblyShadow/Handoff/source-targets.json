@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
-      "implementationCommit": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo executable/tool identity including the V04 controlled-workflow repairs plus the formal-admission pilot verification seal/cache. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "48b44fff297d229cef5d9f8642900e974a201040",
+      "implementationCommit": "48b44fff297d229cef5d9f8642900e974a201040",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including the controlled-workflow repairs, sealed formal admission, and the authenticated retained-graph reuse bridge. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -546,5 +546,39 @@
     },
     "regression": "Bounded Primary regression seals with exactly eight deep verifications, performs forty formal admissions with zero deep rescans, and rejects pilot-receipt, bound-artifact, protocol, schedule, build-map, and verifier mutations.",
     "reusePolicy": "Existing Local-validated controlled graphs, frozen map, preregistration, and pilots may be retained only after Local independently confirms the source delta is limited to orchestration/verifier-cache tooling/tests/CI and all bound hashes remain unchanged."
+  },
+  "v04RetainedGraphReuseBridgeRepair": {
+    "returnedByLocalValidationCommit": "9045d54e3a1c365ac8c15a3cb5ca791ad13d7501",
+    "previousSourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
+    "retainedGraphSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "sourceAnchor": "48b44fff297d229cef5d9f8642900e974a201040",
+    "failure": "The first real strict pilot seal failed before receipt because the retained candidate graph binds demo revision 69130bbb while the current project source pin had advanced to 1a87a393. The unchanged R00 current-pairing gate correctly rejected the mismatch.",
+    "design": {
+      "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
+      "bridgeTool": "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
+      "bridgeModule": "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "receiptKind": "H1GraphReuseBridge",
+      "scope": "Candidate performance side B only; protected side A and all normal R00 calls remain current-pairing-only.",
+      "transitionProof": "Require the retained graph demo revision exactly 69130bbb; require identical Unity/target/architecture and identical HybridCLR/HybridCLR-Unity/IL2CPP pins; require 69130bbb to be an ancestor of the current source anchor; require the exact non-metadata Git delta to equal the reviewed twelve-path CI/AssemblyShadow-tooling allowlist.",
+      "strictBoundary": "r00_player_inputs.require_current_pairing is unchanged. A separate authenticated authority supplies the historical complete source-pin DTO only to retained side B during pilot sealing and final analysis.",
+      "sealBinding": "The graph-reuse bridge is bound into H1PilotVerificationReceipt and every formal attempt. Formal admission compactly revalidates the bridge and cannot switch it mid-chain.",
+      "finalAnalysis": "analyze-h1-paired-performance.py requires the same pilot seal and graph bridge, fully reauthenticates the bridge, then runs the original strict launch/evidence reconstruction with the authenticated authority only for candidate side B.",
+      "normalFreshGraphPath": "Bridge remains optional for fresh graphs whose graph source pins equal the current project pins."
+    },
+    "expectedNonMetadataPaths": [
+      ".github/workflows/h1-bee-primary.yml",
+      "Tools/AssemblyShadow/README.md",
+      "Tools/AssemblyShadow/analyze-h1-paired-performance.py",
+      "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
+      "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+      "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "Tools/AssemblyShadow/r00_player_inputs.py",
+      "Tools/AssemblyShadow/r00_results.py",
+      "Tools/AssemblyShadow/run-h1-paired-performance.py",
+      "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+      "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+      "Tools/AssemblyShadow/tests/test_h1_paired_driver.py"
+    ],
+    "regression": "Primary regression uses the real 69130bbb Git/source transition, proves default R00 pairing remains unchanged, proves retained authority injection is side-B-only, binds bridge through seal/formal chain, rejects bridge switching, and proves final analyzer requires the same bridge/seal."
   }
 }
