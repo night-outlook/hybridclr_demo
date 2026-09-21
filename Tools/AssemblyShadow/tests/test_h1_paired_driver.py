@@ -260,6 +260,31 @@ class H1PairedDriverTests(unittest.TestCase):
                             fixture["prior"], fixture["protocol"], fixture["schedule"], fixture["buildMap"],
                             fixture["scheduleRows"], "formal", fixture["build"], cache)
 
+    def test_formal_attempt_chain_rejects_pilot_seal_switch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            fixture = self._pilot_cache_fixture(root)
+            cache = self._seal_test_cache(fixture, root)
+            prior_value = json.loads(fixture["prior"].read_text())
+            prior_value["attempts"].append({
+                "pairId": fixture["scheduleRows"][len(driver.MODES)]["pairId"],
+                "attempt": 1,
+                "mode": fixture["scheduleRows"][len(driver.MODES)]["mode"],
+                "phase": "formal",
+                "status": "Failed",
+                "pilotVerification": {"path": str(cache), "sha256": "0" * 64},
+                "A": {"status": "Failed", "runner": driver.runner_binding(), "launchReceipt": None},
+                "B": {"status": "Failed", "runner": driver.runner_binding(), "launchReceipt": None},
+            })
+            write_json(fixture["prior"], prior_value)
+            with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+                 mock.patch.object(driver._r00, "verify_suite",
+                                   side_effect=AssertionError("formal chain must use cache only")):
+                with self.assertRaises(VerificationError):
+                    driver._load_prior(
+                        fixture["prior"], fixture["protocol"], fixture["schedule"], fixture["buildMap"],
+                        fixture["scheduleRows"], "formal", fixture["build"], cache)
+
     def test_failure_receipt_is_new_only(self):
         with tempfile.TemporaryDirectory() as root:
             path = Path(root) / "failure.json"
