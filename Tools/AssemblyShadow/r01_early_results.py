@@ -946,6 +946,9 @@ def _load_runner():
 def _prepare(project: Path, fixture: Path, on: Path, off: Path, replay: Path,
              failure_path: Path | None, negative_path: Path | None, modes: list[str],
              pairing_authority: dict[str, Any] | None = None) -> dict[str, Any]:
+    if pairing_authority is not None:
+        require(set(modes).issubset({"Baseline", "Control"}),
+                "Retained graph pairing authority is limited to R00 performance Baseline/Control early modes")
     context = (
         verify_inputs(project, fixture, on, off, replay)
         if pairing_authority is None
