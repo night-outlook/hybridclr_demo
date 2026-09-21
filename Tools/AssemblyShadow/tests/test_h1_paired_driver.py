@@ -218,6 +218,71 @@ class H1PairedDriverTests(unittest.TestCase):
                 fixture["protocol"], fixture["schedule"], fixture["buildMap"])
         return cache
 
+    def test_bridge_authority_is_side_b_only_and_sealed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            fixture = self._pilot_cache_fixture(root)
+            bridge = write_json(root / "graph-reuse-bridge.json", {"kind": "bridge"})
+            authority = {
+                "kind": driver.graph_reuse.AUTHORITY_KIND,
+                "projectRoot": str(fixture["build"]["sides"]["B"]["projectRoot"]),
+                "graphSourcePins": {"schemaVersion": 1},
+                "currentSourcePins": {"schemaVersion": 1},
+                "bridgeReceipt": {"path": str(bridge), "sha256": sha(bridge)},
+            }
+            calls = []
+            def verified(path, expected_mode=None, pairing_authority=None):
+                calls.append((Path(path).name, pairing_authority))
+                return {"result": "Passed", "requestedModeIds": [expected_mode],
+                        "executedModeIds": [expected_mode]}
+            cache = root / "pilot-verification-bridge.json"
+            with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+                 mock.patch.object(driver._r00, "verify_suite", side_effect=verified):
+                receipt = driver.seal_pilot_verification(
+                    fixture["attempts"], fixture["scheduleRows"], fixture["build"],
+                    fixture["protocol"], fixture["schedule"], fixture["buildMap"], fixture["prior"],
+                    authority, bridge)
+                write_json(cache, receipt)
+            self.assertEqual(receipt["graphReuseBridge"], {"path": str(bridge), "sha256": sha(bridge)})
+            self.assertEqual(len(calls), 8)
+            self.assertEqual(sum(item[1] is authority for item in calls), 4)
+            self.assertEqual(sum(item[1] is None for item in calls), 4)
+
+    def test_formal_admission_requires_same_bridge_bound_by_seal(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            fixture = self._pilot_cache_fixture(root)
+            bridge = write_json(root / "bridge.json", {"schemaVersion": 1})
+            other = write_json(root / "bridge-other.json", {"schemaVersion": 1, "other": True})
+            authority = {
+                "kind": driver.graph_reuse.AUTHORITY_KIND,
+                "projectRoot": str(fixture["build"]["sides"]["B"]["projectRoot"]),
+                "graphSourcePins": {"schemaVersion": 1},
+                "currentSourcePins": {"schemaVersion": 1},
+                "bridgeReceipt": {"path": str(bridge), "sha256": sha(bridge)},
+            }
+            def verified(_path, expected_mode=None, pairing_authority=None):
+                return {"result": "Passed", "requestedModeIds": [expected_mode],
+                        "executedModeIds": [expected_mode]}
+            cache = root / "pilot-verification-bridge.json"
+            with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+                 mock.patch.object(driver._r00, "verify_suite", side_effect=verified):
+                receipt = driver.seal_pilot_verification(
+                    fixture["attempts"], fixture["scheduleRows"], fixture["build"],
+                    fixture["protocol"], fixture["schedule"], fixture["buildMap"], fixture["prior"],
+                    authority, bridge)
+                write_json(cache, receipt)
+            with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
+                 mock.patch.object(driver.graph_reuse, "verify_bridge_compact", return_value=authority):
+                loaded = driver._load_prior(
+                    fixture["prior"], fixture["protocol"], fixture["schedule"], fixture["buildMap"],
+                    fixture["scheduleRows"], "formal", fixture["build"], cache, bridge)
+                self.assertEqual(len(loaded), len(driver.MODES))
+                with self.assertRaises(VerificationError):
+                    driver._load_prior(
+                        fixture["prior"], fixture["protocol"], fixture["schedule"], fixture["buildMap"],
+                        fixture["scheduleRows"], "formal", fixture["build"], cache, other)
+
     def test_forty_formal_admissions_reuse_strict_pilot_seal_without_deep_rescan(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
