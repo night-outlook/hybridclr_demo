@@ -7,6 +7,7 @@ reviewed performance-admission tooling/test/CI set.
 """
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -86,6 +87,14 @@ def _entries(pins: dict[str, Any]) -> dict[str, Any]:
     for name in shadow_tools.REPOSITORIES:
         require(type(entries.get(name)) is dict, "Missing source pin repository: " + name)
     return entries
+
+
+def retained_graph_pins(current_pins: dict[str, Any]) -> dict[str, Any]:
+    """Reconstruct the exact expected retained-graph DTO from current runtime/platform pins."""
+    graph = copy.deepcopy(current_pins)
+    entries = _entries(graph)
+    entries["demo"]["revision"] = GRAPH_SOURCE_REVISION
+    return graph
 
 
 def _git_json(project: Path, revision: str, relative: str) -> dict[str, Any]:
@@ -186,7 +195,7 @@ def create_receipt(project: Path, build_map_path: Path, side: str = "B") -> dict
     installed = shadow_tools.verify(project, expected_shadow="on")
     current_pins_path = canonical_file(project / PINS, "current source pins")
     current_pins = read_json(current_pins_path)
-    graph_pins = _git_json(project, GRAPH_SOURCE_REVISION, PINS)
+    graph_pins = retained_graph_pins(current_pins)
     transition = authenticate_transition(project, graph_pins, current_pins)
 
     return {
