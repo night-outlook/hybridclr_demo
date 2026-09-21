@@ -12,6 +12,11 @@ sys.path.insert(0, str(TOOLS))
 import h1_graph_reuse as reuse
 import r00_player_inputs
 import shadow_tools
+
+_analyzer_spec = __import__("importlib.util").util.spec_from_file_location(
+    "h1_reuse_analyzer_test", TOOLS / "analyze-h1-paired-performance.py")
+analyzer = __import__("importlib.util").util.module_from_spec(_analyzer_spec)
+_analyzer_spec.loader.exec_module(analyzer)
 from shadow_tools import PINS, VerificationError
 
 
@@ -99,6 +104,51 @@ class H1GraphReuseTests(unittest.TestCase):
         self.assertIn("m07.exact(captured, expected, label + \".sourcePins\")", body)
         self.assertNotIn("reuse", body.lower())
         self.assertNotIn("override", body.lower())
+
+    def test_analyzer_prepare_reuse_binds_same_seal_and_bridge(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            project = root / "project"
+            project.mkdir()
+            build_map = root / "build-map.json"
+            build_map.write_text("{}", encoding="utf-8")
+            bridge = root / "bridge.json"
+            bridge.write_text(json.dumps({"projectRoot": str(project)}), encoding="utf-8")
+            pilot = root / "pilot.json"
+            pilot.write_text(json.dumps({
+                "kind": "H1PilotVerificationReceipt",
+                "status": "PassedStrictReconstructionAndStatGuardSealed",
+                "graphReuseBridge": analyzer._binding(bridge),
+            }), encoding="utf-8")
+            sample = root / "sample.json"
+            attempt = {
+                "phase": "formal",
+                "pilotVerification": analyzer._binding(pilot),
+                "graphReuseBridge": analyzer._binding(bridge),
+            }
+            sample.write_text(json.dumps({
+                "buildMap": analyzer._binding(build_map),
+                "attempts": [attempt],
+            }), encoding="utf-8")
+            authority = {
+                "kind": reuse.AUTHORITY_KIND,
+                "projectRoot": str(project),
+                "graphSourcePins": {"schemaVersion": 1},
+                "currentSourcePins": {"schemaVersion": 1},
+                "bridgeReceipt": analyzer._binding(bridge),
+            }
+            with mock.patch.object(analyzer.graph_reuse, "verify_bridge_full", return_value=authority):
+                prepared = analyzer._prepare_reuse(sample, pilot, bridge)
+            self.assertEqual(prepared["authority"], authority)
+            self.assertEqual(prepared["pilotVerification"], analyzer._binding(pilot))
+            self.assertEqual(prepared["graphReuseBridge"], analyzer._binding(bridge))
+
+            value = json.loads(sample.read_text())
+            value["attempts"][0]["graphReuseBridge"] = {"path": str(bridge), "sha256": "0" * 64}
+            sample.write_text(json.dumps(value), encoding="utf-8")
+            with self.assertRaises(VerificationError):
+                analyzer._prepare_reuse(sample, pilot, bridge)
 
     def test_analyzer_requires_explicit_bridge_and_seal(self):
         source = (TOOLS / "analyze-h1-paired-performance.py").read_text()
