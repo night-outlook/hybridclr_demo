@@ -4,7 +4,7 @@
 
 Latest Local return: `8788d123ca7769396cf14c707f8df13ac764223b`.
 
-Candidate build-input source anchor: `2d44ee4eef735cf9dc5c2295fb8c0df71834743f`.
+Candidate build-input source anchor: `4d6bc15d97b0b7b9bdadff81419abeab76262d50`.
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
