@@ -203,7 +203,7 @@ class H1PairedDriverTests(unittest.TestCase):
 
     def _seal_test_cache(self, fixture, root):
         cache = root / "pilot-verification.json"
-        def verified(_path, expected_mode=None):
+        def verified(_path, expected_mode=None, pairing_authority=None):
             return {"result": "Passed", "requestedModeIds": [expected_mode],
                     "executedModeIds": [expected_mode]}
         with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]), \
