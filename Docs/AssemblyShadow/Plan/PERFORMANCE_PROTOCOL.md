@@ -35,6 +35,24 @@ Pilot 仍按本协议完整执行且全部排除在 formal 统计之外。四个
 
 该机制只消除重复的 **formal pre-launch pilot reconstruction**。它不改变 build-map comparability、pair ordering、whole-pair retry、样本保留、正式统计或最终 analyzer。最终 analyzer 仍对全部选中 pilot/formal launch evidence 执行原有严格验证，pilot seal 不能替代最终证据审计。
 
+## P2B. Retained graph 的 source-pairing bridge
+
+若已通过的 performance graph 来自较早 demo source anchor，而当前 source anchor 只增加了与 Player 构建/运行无关的 performance admission tooling，则不得直接把旧 graph 当作 current-pairing graph，也不得修改 `r00_player_inputs.require_current_pairing`、重写旧 receipt 或移动 source pin。
+
+本 H1 允许的唯一 retained profile-2 graph 是 demo revision `69130bbb3a6df516916dddb5ad263799a7c6e5e3`。复用前必须生成新的 `H1GraphReuseBridge`，并同时满足：
+
+1. current candidate source/runtime authority 通过原有全局 verifier；
+2. graph 与 current 的 Unity version、target、architecture 完全一致；
+3. graph 与 current 的 HybridCLR、HybridCLR Unity、IL2CPP pin 完全一致；
+4. graph demo revision 必须精确为 `69130bbb...`，且它必须是 current source anchor 的 Git ancestor；
+5. 忽略现有 metadata-only 规则后，`69130bbb... → current anchor` 的 Git tree delta 必须**精确等于**人工 review 的 CI / `Tools/AssemblyShadow` admission-tooling allowlist；不能是 subset，也不能出现 Assets、Packages、runtime/native、measurement source、protocol/schedule/map producer 等额外路径；
+6. bridge 绑定 current source-pin file、frozen build map、完整 old/current source-pin DTO、每个 changed Git blob、bridge/verifier implementation hash 和 current installed-runtime verification。
+
+bridge 验证通过后，默认 R00 contract 仍保持 current-pairing-only。只有 seal/final analyzer 从该 receipt 得到的显式 `H1AuthenticatedGraphReuseAuthority` 可以在 retained candidate side B 上把 expected source pairing 设为旧 graph DTO。protected side A 和其它 R00 调用继续走默认严格路径。
+
+`H1PilotVerificationReceipt` 必须绑定 graph-reuse bridge；每个 formal attempt 也必须绑定相同 bridge。正式采样链不能切换 bridge。最终 analyzer 必须再次执行 bridge 的 full authentication，再用该 authority 验证 retained side B；不能用 pilot seal 或 scope audit 替代最终 strict evidence reconstruction。
+
+任何 current source-pin、allowed-tool verifier、build map、bridge receipt 或 Git delta 变化都会使 bridge 失效。失效时只能重新做完整 bridge authentication（若仍满足同一规范）或重建 current-pairing graph；不能自动降级为“scope audit 已通过”。
 ## P3. 可比性
 
 | 项目 | 必需处理 |
