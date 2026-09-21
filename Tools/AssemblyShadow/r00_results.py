@@ -311,9 +311,10 @@ def verify_suite(launch_path, expected_mode=None, pairing_authority=None):
     profile = declared_profile(context)
     validate_launch_profile(schema_version, early_strategy, profile)
     if strict_modern and early_strategy == "legacy-explicit-no-capsule":
-        prepared = early._prepare(Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
-                                  Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
-                                  Path(launch["editorReplayReceipt"]), None, None, [])
+        prepared = early._prepare(
+            Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
+            Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
+            Path(launch["editorReplayReceipt"]), None, None, [], pairing_authority)
         validate_strategy_profile(early_strategy, prepared["profile"])
     m07_runner_path = Path(__file__).with_name("run-m07-players.py")
     if not m07_runner_path.is_file():
@@ -332,9 +333,10 @@ def verify_suite(launch_path, expected_mode=None, pairing_authority=None):
         if "R00-ON-NoPatch" in expected_modes:
             early_modes.append("Baseline")
         if early_modes:
-            prepared = early._prepare(Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
-                                      Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
-                                      Path(launch["editorReplayReceipt"]), None, None, early_modes)
+            prepared = early._prepare(
+                Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
+                Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
+                Path(launch["editorReplayReceipt"]), None, None, early_modes, pairing_authority)
         for row in launch["processLaunches"]:
             if row["mode"] == OFF_MODE:
                 continue
