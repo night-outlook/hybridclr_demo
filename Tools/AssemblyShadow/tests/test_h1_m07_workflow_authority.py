@@ -170,6 +170,30 @@ class M07ControlledPerformanceWorkflowContractTests(unittest.TestCase):
         self.assertIn('does not belong to the set', binder)
 
 
+    def test_controlled_player_recovery_restores_link_and_project_settings(self):
+        core=(TOOLS/'Invoke-M07Build.Core.ps1').read_text()
+        self.assertIn("'Assets/HybridCLRGenerate/link.xml'", core)
+        self.assertIn("'ProjectSettings/ProjectSettings.asset'", core)
+        self.assertIn("'M07GeneratedPlayerInputRestoration'", core)
+        self.assertIn("'M07ControlledPlayerSettingsRestoration'", core)
+        self.assertIn("$Label + '-' + $input.key + '-restored.json'", core)
+        transaction=(TOOLS/'tests/test_m07_player_input_recovery.ps1').read_text()
+        self.assertIn("Invoke-RecoveryCase -FailStage $false", transaction)
+        self.assertIn("Invoke-RecoveryCase -FailStage $true", transaction)
+        self.assertIn("'ProjectSettings/ProjectSettings.asset'", transaction)
+        self.assertIn("'M07_RECOVERY_STAGE_FAILURE'", transaction)
+
+    def test_nested_native_provenance_does_not_inherit_outer_m07_authority(self):
+        source=(ROOT/'Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs').read_text()
+        self.assertIn('M07WorkflowAuthorityRootEnvironment = "H1_M07_WORKFLOW_AUTHORITY_ROOT"', source)
+        self.assertIn('M07WorkflowBaselineEnvironment = "H1_M07_WORKFLOW_BASELINE_ID"', source)
+        self.assertIn('info.EnvironmentVariables.Remove(M07WorkflowAuthorityRootEnvironment)', source)
+        self.assertIn('info.EnvironmentVariables.Remove(M07WorkflowBaselineEnvironment)', source)
+        self.assertIn('NativeOnlyWithoutOuterM07WorkflowAuthority', source)
+        verifier=(TOOLS/'verify-installed-runtime.py').read_text()
+        self.assertIn('M07 workflow authority cannot be invoked with --skip-demo-source', verifier)
+
+
     def test_unity_workflow_test_tracks_outer_and_core_contracts(self):
         source=(ROOT/'Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs').read_text()
         self.assertIn('WorkflowCoreSource = "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1"', source)
