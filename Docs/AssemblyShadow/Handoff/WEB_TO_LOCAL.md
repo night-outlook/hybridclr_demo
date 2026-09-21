@@ -2,13 +2,17 @@
 
 ## Objective
 
-Validate the two V04 controlled-workflow boundary repairs at candidate build-input source anchor:
+Validate the formal-admission pilot verification seal at candidate build-input/tool source anchor:
 
-`69130bbb3a6df516916dddb5ad263799a7c6e5e3`
+`01cdd033665400eba9fa0533fe17c12f9da92746`
 
-in one Local batch:
+Then, if the retained V04 graph/map/preregistration/pilot evidence remains hash-identical and the source-scope audit confirms no affected Player/runtime input, complete in one Local cycle:
 
-fresh authority/tests → protected profile-1 controlled Native ON/OFF → candidate profile-2 controlled Native ON/OFF → old-Player check → strict A/B map → preregistration → pilots → formal analysis → retention → V05/M08 if eligible.
+fresh authority/tool tests → retained V04 reuse audit → one strict pilot seal → all 40 formal pairs → final analysis → Python/EditMode prerequisite closure → authenticated checkpoint → V05/M08 if eligible.
+
+Latest Local return:
+
+`fa23a0ddcf45eabc870e7e7742d2d18a78a52d49`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -24,7 +28,7 @@ Candidate identities:
 
 | Repository | Branch | Build/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `69130bbb3a6df516916dddb5ad263799a7c6e5e3` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `01cdd033665400eba9fa0533fe17c12f9da92746` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -41,77 +45,108 @@ Environment target:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`
 
-The branch checkout HEAD may be a later metadata-only successor. Record checkout HEAD separately from the source anchor.
+The branch checkout HEAD may be a later metadata-only successor. Record checkout HEAD separately from source anchor.
+
+Retained V04 evidence root:
+
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/`
 
 ## Implementation
 
-Latest Local return:
+### Local result being addressed
 
-`8788d123ca7769396cf14c707f8df13ac764223b`
+The latest Local cycle closed both previous controlled-workflow blockers in real Unity/IL2CPP and completed:
 
-The prior label repair is proven in real Unity. Two later blockers were returned.
+- protected profile-1 controlled Native ON/OFF;
+- candidate profile-2 controlled Native ON/OFF;
+- exact `link.xml` + `ProjectSettings.asset` restoration;
+- nested native-only provenance scoping plus outer authority checks;
+- old-Player rejection;
+- strict A/B map freeze with `ComparabilityPassed`;
+- unchanged preregistration;
+- all four pilot pairs.
 
-### Repair 1 — exact controlled Player settings restoration
+Formal pair 1 did not launch. Every formal driver invocation re-entered `_successful_pilots`, which called `r00_results.verify_suite` on A/B for all four pilots. The observed pre-launch verification remained active for 47 minutes 39 seconds while hashing/reconstructing eight already-passed pilot graphs.
 
-The controlled Native ON build changed:
+This is an admission-orchestration scalability defect, not a failed performance sample.
 
-`ProjectSettings/ProjectSettings.asset`
+### Strict pilot verification seal
 
-from its pinned empty `il2cppCodeGeneration` map to an explicit `Standalone: 0` representation after semantic restore. The next exact source guard correctly stopped.
+Primary added:
 
-`Invoke-M07PlayerMethodWithGeneratedInputRecovery` now owns an exact-byte transaction for **both**:
+`Tools/AssemblyShadow/seal-h1-pilot-verification.py`
 
-- `Assets/HybridCLRGenerate/link.xml`;
-- `ProjectSettings/ProjectSettings.asset`.
+After all pilots pass, the sealer:
 
-For every `native-on`, `native-off`, `native-on-controlled`, and `native-off-controlled` stage it:
+1. selects the latest retained successful attempt for every pilot mode;
+2. derives each launch receipt's complete `inputHashesBefore == inputHashesAfter` inventory plus result/early evidence;
+3. snapshots canonical filesystem identity for the union of those files;
+4. executes the unchanged deep `r00_results.verify_suite` reconstruction for all eight A/B pilot launches exactly once;
+5. requires the complete identity inventory to remain unchanged after deep verification;
+6. binds:
+   - protocol;
+   - schedule;
+   - frozen build map;
+   - full retained pilot-attempt history;
+   - selected pilot launch receipts;
+   - formal/seal verifier/tool implementations;
+7. writes `H1PilotVerificationReceipt`.
 
-1. captures original bytes/hash before Unity;
-2. creates immutable per-input backups;
-3. invokes the Player build;
-4. preserves post-build bytes;
-5. restores both originals in the finally path;
-6. verifies exact SHA equality;
-7. emits per-input receipts;
-8. returns only after restoration, so the existing source guard sees pinned bytes.
+The filesystem guard records canonical path plus device, inode, mode, size, mtimeNs, and ctimeNs.
 
-Recovery attempts both inputs even when another recovery operation fails. If recovery succeeds and the build failed, the original build failure is rethrown.
+### Cached formal admission
 
-Receipt kinds:
+`run-h1-paired-performance.py` formal phase now requires:
 
-- link.xml: `M07GeneratedPlayerInputRestoration`;
-- ProjectSettings.asset: `M07ControlledPlayerSettingsRestoration`.
+`--pilot-verification-receipt <sealed-receipt>`
 
-### Repair 2 — nested native provenance execution scope
+For every formal pair it:
 
-`H1BuildInputProvenance.CaptureAfterGenerate` performs a native-only installed-runtime verification with `--skip-demo-source`.
+- re-hashes compact protocol/schedule/map/launch/tool controls;
+- requires the retained pilot-attempt digest and selected launch bindings to be unchanged;
+- re-derives the current immutable path/hash set from current pilot launch receipts;
+- requires every sealed filesystem identity guard to match;
+- fails closed on any mismatch;
+- never silently deep-rescans or rebuilds the seal.
 
-The nested child process now removes only:
+The cumulative formal `sample-index.json` carries the same `pilotVerification` path/hash. A later formal invocation cannot switch to another seal.
 
-- `H1_M07_WORKFLOW_AUTHORITY_ROOT`;
-- `H1_M07_WORKFLOW_BASELINE_ID`;
+### What is deliberately unchanged
 
-from its own `ProcessStartInfo.EnvironmentVariables`.
+This repair does not change:
 
-The parent Unity/coordinator environment is unchanged. The outer M07 pinned-input guard therefore retains the complete workflow/demo-source authority immediately after each Player stage. `verify-installed-runtime.py` itself was not weakened and still rejects a caller that supplies `--skip-demo-source` while M07 authority is active.
+- any Player/runtime/Bootstrap C#;
+- HybridCLR native;
+- HybridCLR Unity;
+- IL2CPP;
+- `run-r00-players.py`;
+- `r00_results.py`;
+- `r00_player_inputs.py`;
+- frozen graph/build-map semantics;
+- performance protocol JSON;
+- bound schedule JSON;
+- preregistration;
+- pair order;
+- whole-pair retry;
+- timing/statistics;
+- final paired analyzer.
 
-Provenance evidence records:
+Final analysis remains fully strict and uncached.
 
-`verificationEnvironmentScope=NativeOnlyWithoutOuterM07WorkflowAuthority`
+### Primary regression coverage
 
-### Primary regression support
+`Tools/AssemblyShadow/tests/test_h1_paired_driver.py` now proves:
 
-Added/updated:
+- strict sealing performs exactly **8** deep pilot-side verifications;
+- **40** formal admissions perform **0** deep pilot rescans;
+- changed pilot receipt fails;
+- changed bound graph artifact fails;
+- changed protocol fails;
+- changed schedule fails;
+- changed build map fails;
+- changed verifier implementation fails.
 
-- `Tools/AssemblyShadow/tests/test_m07_player_input_recovery.ps1`;
-- `Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1`;
-- `Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py`;
-- `Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs`;
-- `.github/workflows/h1-bee-primary.yml`.
-
-The direct recovery test extracts the actual production helper, mutates both files, and proves exact restoration on success and simulated stage failure without launching Unity.
-
-No HybridCLR native, HybridCLR Unity, IL2CPP, performance protocol/schedule/analyzer, capacity/index, dense metadata, or runtime transaction semantics changed.
+The paired-driver module is now part of the bounded Primary regression suite.
 
 ## Local validation
 
@@ -121,127 +156,157 @@ Detailed executable plan:
 
 Run it in order.
 
-### Fresh mandatory admission
+### Fresh admission
 
 1. Fresh V00 candidate/reproduction/protected authority.
-2. Candidate and protected installed-runtime verification.
-3. Complete current Python/bounded regressions.
-4. Both direct PowerShell recovery tests.
-5. Broad Unity EditMode sanity.
-6. Source-scope audit from `316894a8...` to `69130bbb...`.
+2. Candidate/protected installed-runtime verification.
+3. Bounded Primary and live-handoff tests.
+4. Direct paired-driver regression.
+5. Source-scope audit from `69130bbb...` to `01cdd033...`.
 
-### Profile-1 controlled workflow
+### Required reuse audit
 
-~~~text
-pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
-  -ProjectPath <reference-demo> \
-  -BaselineId M07-Baseline-H1-Perf-Reference-<unique-id> \
-  -TimeoutSec 28800 \
-  -BuildTarget StandaloneOSX \
-  -ControlledPerformanceBuilds
-~~~
+Expected executable/tool/test/CI delta is exactly:
 
-Native ON and Native OFF must both complete.
+- `Tools/AssemblyShadow/run-h1-paired-performance.py`;
+- `Tools/AssemblyShadow/seal-h1-pilot-verification.py`;
+- `Tools/AssemblyShadow/tests/test_h1_paired_driver.py`;
+- `Tools/AssemblyShadow/h1_bee_primary_tests.py`;
+- `.github/workflows/h1-bee-primary.yml`.
 
-For each controlled label verify both:
+If any Player/runtime/runner/protocol/schedule/map/preregistration/analyzer input changed, do not reuse the retained V04 artifacts.
 
-- `<label>-link-xml-restored.json`;
-- `<label>-project-settings-restored.json`;
+If scope matches, authenticate the prior V04 checkpoint and all live bound graph/map/protocol/schedule/pilot hashes before reuse.
 
-with `status=ExactBytesRestored` and `originalSha256 == restoredSha256`.
-
-The exact pinned-input guard immediately following Native ON must pass.
-
-### Profile-2 controlled workflow
+### Seal pilots once
 
 ~~~text
-pwsh -NoProfile -File <candidate>/Tools/AssemblyShadow/Invoke-M07Build.ps1 \
-  -ProjectPath <candidate> \
-  -BaselineId M07-Baseline-H1-Perf-Current-<unique-id> \
-  -TimeoutSec 28800 \
-  -BuildTarget StandaloneOSX \
-  -ControlledPerformanceBuilds
+python3 Tools/AssemblyShadow/seal-h1-pilot-verification.py \
+  --protocol <bound-protocol> \
+  --schedule <bound-schedule> \
+  --build-map <frozen-build-map> \
+  --pilot-index <retained-pilot-sample-index> \
+  --output <new-pilot-verification.json>
 ~~~
 
-Require the same two-input restoration for Native ON/OFF.
+Require:
 
-Candidate controlled evidence must show successful native provenance with `verificationEnvironmentScope=NativeOnlyWithoutOuterM07WorkflowAuthority`. No nested `M07 workflow authority cannot be invoked with --skip-demo-source` failure is acceptable.
+- `kind=H1PilotVerificationReceipt`;
+- `status=PassedStrictReconstructionAndStatGuardSealed`;
+- `deepLaunchVerificationCount=8`;
+- all four pilot modes selected;
+- verifier/control bindings exact;
+- no pre/post file-identity change.
 
-The subsequent outer source-authority guard must still run and pass.
+Record seal duration and receipt `fileCount/totalBytes`.
 
-### Continue the performance chain
+### Run all formal pairs with the same seal
 
-Only after both complete graphs pass:
+First formal pair:
 
-1. current-anchor old-Player rejection;
-2. strict A/B build-map freeze with `ComparabilityPassed`;
-3. preregistration binding;
-4. every pilot pair;
-5. every formal pair when pilots pass;
-6. final paired analysis;
-7. authenticated checkpoint;
-8. V05 and genuinely independent M08 only when mandatory V04 is complete.
+~~~text
+python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
+  --protocol <bound-protocol> \
+  --schedule <bound-schedule> \
+  --build-map <frozen-build-map> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --prior-index <retained-pilot-sample-index> \
+  --output-root <new-formal-pair-root> \
+  --phase formal \
+  --attempt 1
+~~~
 
-Historical runtime evidence may be referenced only under its original hashes/classification, e.g. `ReusedAuditedFrom925e` when the source-scope audit justifies reuse. Do not relabel it fresh current-anchor PASS.
+Chain each produced `sample-index.json` into the next pair's `--prior-index`.
+
+For a legitimate retry, retain the failed attempt and rerun the same pair with explicit `--pair-id` and incremented `--attempt`. Never rerun only one side.
+
+All formal sample indexes must carry the same pilot-verification path/hash.
+
+For formal pair 1, record pre-launch admission duration and prove the old 47:39 repeated pilot reconstruction does not recur.
+
+### Final analysis and inventory closure
+
+After all forty formal pair IDs complete:
+
+~~~text
+python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py \
+  --sample-index <final-sample-index.json> \
+  --output <new-performance-analysis.json>
+~~~
+
+Do not use the pilot seal as a substitute for this analyzer.
+
+Before V05 eligibility, freshly rerun:
+
+- complete Python inventory after the policy-pinned M00 fixed prerequisite is present;
+- broad Unity EditMode after required generated M00/M01/M05 prerequisites are present.
+
+Prior generated-prerequisite failures are not Passed evidence.
 
 ## Failure evidence
 
-If either repaired boundary fails, retain before cleanup/manual recovery:
+If sealing or formal admission fails, retain:
 
-- exact command, stage, and label;
-- complete coordinator and Unity logs;
-- tracked-state diff;
-- original/generated/restored hashes for both mutable Player inputs;
-- both restoration receipts when helper-body entry occurred;
-- controlled Player receipt/evidence if produced;
-- native provenance capture including verifier argv/stdout/stderr/environment-scope field;
-- source/runtime verification before and after;
-- outer workflow restoration receipt;
-- failed bytes for any path the workflow itself did not restore.
+- exact command and phase;
+- source/checkout identity;
+- pilot verification receipt or sealing failure output;
+- protocol/schedule/map hashes;
+- pilot attempt digest;
+- selected launch receipt bindings;
+- first invalidated file path and cached/current guard;
+- verifier binding mismatch when applicable;
+- cumulative prior sample index;
+- any formal side output/launch receipt if launch already began;
+- owned-process cleanup evidence.
 
-Return non-trivial failures to Primary via `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`.
+If a formal pair fails after launch, retain the complete failed whole-pair attempt and follow the preregistered retry policy.
+
+Do not clean the retained V04 live graph/pilot artifacts until the new checkpoint is authenticated.
 
 ## Alternatives
 
 Do not:
 
-- weaken or bypass the exact source guard;
-- add `ProjectSettings.asset` to the outer three-path M07 mutable-authority exception;
-- rely on semantic Unity setters as exact-byte recovery;
-- remove `--skip-demo-source` from the nested native-only proof and thereby broaden it into a conflicting full-source check;
-- alter `verify-installed-runtime.py` to allow caller demo-source skipping under M07 authority;
-- clear M07 authority variables from the parent coordinator/Unity process;
-- hand-edit controlled receipts/build maps;
-- change preregistered performance protocol, schedule, thresholds, or samples;
+- remove strict pilot verification;
+- trust only the pilot index status without reconstructing the pilot graphs once;
+- cache solely on path or size;
+- auto-reseal after a guard mismatch;
+- silently fall back to repeated deep scans inside formal admission;
+- change `r00_results.py` semantics to make admission faster;
+- weaken final analyzer verification;
+- alter protocol/schedule/map/preregistration after observed timings;
+- delete failed/retried samples;
+- rebuild already-passed controlled graphs unless the source/hash reuse audit requires it;
 - begin R02.
 
 ## Risks
 
-- The new PowerShell test proves real transaction behavior without Unity, but real Unity serialization/build behavior remains Local evidence.
-- Exact-byte recovery assumes the owned Unity process has exited; the helper retains this guard.
-- The nested scope change is intentionally child-only; Local must prove the outer authority recheck still executes afterward.
-- Controlled workflows perform expensive IL2CPP builds and produce cleanup-sensitive evidence.
-- Historical audited reuse remains review input, not fresh current-anchor acceptance.
+- Initial strict sealing still performs the expensive eight-side reconstruction once; this is intentional evidence creation.
+- Filesystem identity guards are valid only while the retained live artifacts remain untouched; cleanup/copy/rewrite requires resealing after strict verification.
+- Forty formal pairs remain intrinsically long because each pair executes two real Players.
+- Final analysis remains intentionally expensive because it independently verifies selected evidence.
+- Complete Python/EditMode acceptance still requires generated prerequisites that were absent during the previous early V01 run.
 
 ## Local correction boundary
 
 Local may adjust only:
 
 - absolute local paths;
-- fresh baseline IDs;
-- fresh evidence/output roots;
+- new output/evidence roots;
 - executable permissions;
-- bounded machine-specific invocation syntax.
+- bounded invocation syntax;
+- pair retry attempt numbers when the preregistered whole-pair policy permits retry.
 
 Local must not alter:
 
-- the two controlled mutable-input transaction paths;
-- restoration semantics or receipt requirements;
-- nested verifier child environment scope;
-- outer source/verifier policy;
-- source anchor or protected pins;
-- controlled-performance graph binding;
-- protocol/schedule/statistics.
+- seal schema/guard semantics;
+- selected pilot semantics;
+- verifier bindings;
+- source anchor/protected pins;
+- retained graph/map/protocol/schedule identities;
+- pair ordering/retry policy;
+- statistics/analyzer;
+- source/verifier authority.
 
 Any non-trivial source/tool correction returns to Primary.
 
@@ -251,7 +316,7 @@ Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
 H1 remains **InProgress**.
 
-Mandatory V04 performance evidence must close before V05 and a genuinely independent whole-chain M08 review.
+Formal performance, final analysis, complete inventory closure, V05, and a genuinely independent M08 remain required.
 
 Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**. Human approval must then be explicit.
 
