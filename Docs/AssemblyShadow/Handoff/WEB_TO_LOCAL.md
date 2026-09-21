@@ -2,17 +2,17 @@
 
 ## Objective
 
-Validate the formal-admission pilot verification seal at candidate build-input/tool source anchor:
+Validate the authenticated retained-graph reuse bridge at candidate build-input/tool source anchor:
 
-`1a87a393e7a0ee312f39647532d80bfc603c7b23`
+`6dd964c045034240ea53dd15ba7c0b33e9f2ad17`
 
-Then, if the retained V04 graph/map/preregistration/pilot evidence remains hash-identical and the source-scope audit confirms no affected Player/runtime input, complete in one Local cycle:
+Then, if the bridge and strict pilot seal pass, complete in one Local cycle:
 
-fresh authority/tool tests → retained V04 reuse audit → one strict pilot seal → all 40 formal pairs → final analysis → Python/EditMode prerequisite closure → authenticated checkpoint → V05/M08 if eligible.
+fresh authority/tests → exact source/reuse audit → retained evidence reauthentication → graph-reuse bridge → strict pilot seal → all 40 formal pairs through the sequential batch runner → bridge-aware final strict analysis → authenticated checkpoint → V05/M08 if eligible.
 
 Latest Local return:
 
-`fa23a0ddcf45eabc870e7e7742d2d18a78a52d49`
+`9045d54e3a1c365ac8c15a3cb5ca791ad13d7501`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -28,7 +28,7 @@ Candidate identities:
 
 | Repository | Branch | Build/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `1a87a393e7a0ee312f39647532d80bfc603c7b23` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `6dd964c045034240ea53dd15ba7c0b33e9f2ad17` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -45,108 +45,191 @@ Environment target:
 
 `Unity 2022.3.62f2 / StandaloneOSX / arm64`
 
-The branch checkout HEAD may be a later metadata-only successor. Record checkout HEAD separately from source anchor.
+The branch checkout HEAD may be a later metadata-only successor. Record checkout HEAD separately from the source anchor.
 
-Retained V04 evidence root:
+Retained V04 graph/pilot checkpoint:
 
 `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/`
 
+Latest blocked-formal checkpoint:
+
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority1a87-formal-blocked/`
+
+Primary source/tool CI after source authority advance:
+
+- workflow `35595508673`;
+- commit `1273dea49f0e091888cbd0d5fd5267be8897008a`;
+- bounded **348/348**;
+- committed handoff **11/11**;
+- R01 early capsule **7/7**;
+- early launch **20/20**;
+- early results **20/20**;
+- failure pipeline **16/16**;
+- both M07 PowerShell recovery regressions **Passed**;
+- R01B lazy **10/10**;
+- artifact `10636615987`, SHA-256 `6f3049b8d48994189abf83a3ac0dca131c71e2de7d244c7d90b4ecd4ac57fd83`.
+
+This is Primary source/tool evidence only.
+
 ## Implementation
 
-### Local result being addressed
+### Returned Local finding
 
-The latest Local cycle closed both previous controlled-workflow blockers in real Unity/IL2CPP and completed:
+The previous one-time strict pilot seal reached the unchanged R00 graph verifier and failed after 390.81 seconds with:
 
-- protected profile-1 controlled Native ON/OFF;
-- candidate profile-2 controlled Native ON/OFF;
-- exact `link.xml` + `ProjectSettings.asset` restoration;
-- nested native-only provenance scoping plus outer authority checks;
-- old-Player rejection;
-- strict A/B map freeze with `ComparabilityPassed`;
-- unchanged preregistration;
-- all four pilot pairs.
+`R00 baseline: source pins differ from baseline provenance`
 
-Formal pair 1 did not launch. Every formal driver invocation re-entered `_successful_pilots`, which called `r00_results.verify_suite` on A/B for all four pilots. The observed pre-launch verification remained active for 47 minutes 39 seconds while hashing/reconstructing eight already-passed pilot graphs.
+The retained current/profile-2 graph correctly records demo source revision:
 
-This is an admission-orchestration scalability defect, not a failed performance sample.
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3`
 
-### Strict pilot verification seal
+while current project authority had advanced to:
 
-Primary added:
+`1a87a393e7a0ee312f39647532d80bfc603c7b23`.
 
-`Tools/AssemblyShadow/seal-h1-pilot-verification.py`
+The default `r00_player_inputs.require_current_pairing` correctly rejected the complete source-pin DTO mismatch. No seal/formal Player was produced.
 
-After all pilots pass, the sealer:
+Local also independently closed the generated-prerequisite inventories:
 
-1. selects the latest retained successful attempt for every pilot mode;
-2. derives each launch receipt's complete `inputHashesBefore == inputHashesAfter` inventory plus result/early evidence;
-3. snapshots canonical filesystem identity for the union of those files;
-4. executes the unchanged deep `r00_results.verify_suite` reconstruction for all eight A/B pilot launches exactly once;
-5. requires the complete identity inventory to remain unchanged after deep verification;
-6. binds:
-   - protocol;
-   - schedule;
-   - frozen build map;
-   - full retained pilot-attempt history;
-   - selected pilot launch receipts;
-   - formal/seal verifier/tool implementations;
-7. writes `H1PilotVerificationReceipt`.
+- Python: 993 passed, 28 explicit environment skips, zero failure/error;
+- Unity EditMode: 1076/1076 passed, zero skips.
 
-The filesystem guard records canonical path plus device, inode, mode, size, mtimeNs, and ctimeNs.
+### Repair 1 — authenticated retained-graph source-pairing bridge
 
-### Cached formal admission
+Primary did **not** weaken the default R00 pairing gate.
 
-`run-h1-paired-performance.py` formal phase now requires:
+New:
 
-`--pilot-verification-receipt <sealed-receipt>`
+- `Tools/AssemblyShadow/h1_graph_reuse.py`;
+- `Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py`.
 
-For every formal pair it:
+The only reusable profile-2 graph is the retained candidate graph at `69130bbb...`.
 
-- re-hashes compact protocol/schedule/map/launch/tool controls;
-- requires the retained pilot-attempt digest and selected launch bindings to be unchanged;
-- re-derives the current immutable path/hash set from current pilot launch receipts;
-- requires every sealed filesystem identity guard to match;
-- fails closed on any mismatch;
-- never silently deep-rescans or rebuilds the seal.
+`H1GraphReuseBridge` requires:
 
-The cumulative formal `sample-index.json` carries the same `pilotVerification` path/hash. A later formal invocation cannot switch to another seal.
+1. current candidate source/runtime authority through the unchanged global verifier;
+2. graph/current Unity version, target, and architecture equality;
+3. exact equality of HybridCLR, HybridCLR Unity, and IL2CPP pins;
+4. graph demo revision exactly `69130bbb...`;
+5. `69130bbb...` is a Git ancestor of current source anchor;
+6. after the repository's existing metadata-only classification, the complete graph→current delta is **exactly** this 14-path allowlist:
 
-### What is deliberately unchanged
+   - `.github/workflows/h1-bee-primary.yml`
+   - `Tools/AssemblyShadow/README.md`
+   - `Tools/AssemblyShadow/analyze-h1-paired-performance.py`
+   - `Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py`
+   - `Tools/AssemblyShadow/h1_bee_primary_tests.py`
+   - `Tools/AssemblyShadow/h1_graph_reuse.py`
+   - `Tools/AssemblyShadow/r00_player_inputs.py`
+   - `Tools/AssemblyShadow/r00_results.py`
+   - `Tools/AssemblyShadow/run-h1-formal-batch.py`
+   - `Tools/AssemblyShadow/run-h1-paired-performance.py`
+   - `Tools/AssemblyShadow/seal-h1-pilot-verification.py`
+   - `Tools/AssemblyShadow/tests/test_h1_formal_batch.py`
+   - `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`
+   - `Tools/AssemblyShadow/tests/test_h1_paired_driver.py`
 
-This repair does not change:
+A subset or superset fails.
 
-- any Player/runtime/Bootstrap C#;
-- HybridCLR native;
-- HybridCLR Unity;
-- IL2CPP;
-- `run-r00-players.py`;
-- `r00_results.py`;
-- `r00_player_inputs.py`;
-- frozen graph/build-map semantics;
-- performance protocol JSON;
-- bound schedule JSON;
-- preregistration;
-- pair order;
-- whole-pair retry;
-- timing/statistics;
-- final paired analyzer.
+The bridge binds:
 
-Final analysis remains fully strict and uncached.
+- retained graph source-pin DTO;
+- current source-pin bytes/DTO;
+- every changed Git blob;
+- frozen build map;
+- bridge/verifier implementation;
+- current installed-runtime verification.
+
+### Strict R00 contract remains default
+
+`r00_player_inputs.require_current_pairing` retains the original strict complete-DTO comparison.
+
+Default `verify_inputs` remains current-pairing-only.
+
+A separate `verify_inputs_with_reuse` requires an explicit `H1AuthenticatedGraphReuseAuthority`.
+
+Only bridge-authenticated seal/final-analysis paths may provide that authority, and only exact candidate side B receives it. Protected side A and ordinary R00 verification remain on the default path.
+
+No arbitrary historical source-pin CLI override exists.
+
+### Repair 2 — bridge-bound seal and formal chain
+
+The pilot seal accepts:
+
+`--graph-reuse-bridge <bridge>`
+
+and fully reauthenticates the bridge before deep verification.
+
+During the 8 side-graph seal checks:
+
+- candidate side B uses the authenticated retained graph pairing;
+- protected side A uses default strict current pairing.
+
+`H1PilotVerificationReceipt` binds the bridge.
+
+Every formal attempt binds both:
+
+- `pilotVerification`;
+- `graphReuseBridge`.
+
+A cumulative formal chain cannot switch either authority.
+
+Cached formal admission still performs zero repeated 8-graph deep rescans and fails closed on any bridge/seal/file/tool mismatch.
+
+Fresh current-pairing graphs remain supported without a bridge.
+
+### Repair 3 — bridge-aware final strict analyzer
+
+`analyze-h1-paired-performance.py` now explicitly requires:
+
+- final sample index;
+- pilot verification receipt;
+- graph-reuse bridge.
+
+It full-reauthenticates the bridge, requires every formal attempt to bind the same bridge+seal, and then runs the existing strict launch/raw/evidence analyzer.
+
+Historical pairing authority is applied only to retained candidate side B. Protected side A remains default-current.
+
+The bridge and pilot seal do **not** replace final strict evidence verification.
+
+### Repair 4 — Primary-owned sequential formal batch runner
+
+New:
+
+`Tools/AssemblyShadow/run-h1-formal-batch.py`
+
+It removes forty-step manual chaining from Local Validation.
+
+The batch:
+
+- validates the same protocol/schedule/map/bridge/seal/prior index;
+- selects each next unattempted formal pair in preregistered order;
+- invokes the existing single-pair driver;
+- chains each produced sample index into the next pair;
+- writes `H1FormalBatchRun`;
+- never retries automatically;
+- stops on the first failed whole pair;
+- refuses to resume while an unresolved failed pair exists.
+
+A protocol-valid retry must be performed explicitly with the single-pair driver. A new batch may then resume from the successful retry sample index.
 
 ### Primary regression coverage
 
-`Tools/AssemblyShadow/tests/test_h1_paired_driver.py` now proves:
+The bounded suite now includes real repository and orchestration coverage:
 
-- strict sealing performs exactly **8** deep pilot-side verifications;
-- **40** formal admissions perform **0** deep pilot rescans;
-- changed pilot receipt fails;
-- changed bound graph artifact fails;
-- changed protocol fails;
-- changed schedule fails;
-- changed build map fails;
-- changed verifier implementation fails.
-
-The paired-driver module is now part of the bounded Primary regression suite.
+- real `69130bbb... → current` Git transition must equal the exact allowlist;
+- changed runtime pin rejected;
+- wrong retained graph revision rejected;
+- default R00 pairing remains current-only;
+- untrusted reuse authority rejected;
+- bridge authority applied only to candidate side B;
+- bridge bound into strict pilot seal;
+- formal bridge/seal switching rejected;
+- final analyzer bridge/seal binding enforced;
+- one strict seal = 8 deep verifications;
+- forty cached formal admissions = zero deep pilot rescans;
+- sequential batch chains forty formal pair indexes;
+- batch stops on first failed whole pair and never auto-retries/skips it.
 
 ## Local validation
 
@@ -156,157 +239,165 @@ Detailed executable plan:
 
 Run it in order.
 
-### Fresh admission
+### Before bridge creation
 
-1. Fresh V00 candidate/reproduction/protected authority.
-2. Candidate/protected installed-runtime verification.
-3. Bounded Primary and live-handoff tests.
-4. Direct paired-driver regression.
-5. Source-scope audit from `69130bbb...` to `1a87a393...`.
+Complete all setup/authority activity first:
 
-### Required reuse audit
+1. fresh V00 candidate/reproduction/protected authority;
+2. sanctioned candidate installed-runtime receipt refresh if the new source pin requires it;
+3. candidate/protected installed-runtime verification;
+4. current Primary/Python regressions;
+5. preferably fresh broad Unity EditMode;
+6. exact source audit;
+7. retained checkpoint/Player/map/protocol/schedule/pilot hash verification.
 
-Expected executable/tool/test/CI delta is exactly:
+After bridge+seal creation, do not run setup/build/test activity that can rewrite sealed graph/pilot inputs.
 
-- `Tools/AssemblyShadow/run-h1-paired-performance.py`;
-- `Tools/AssemblyShadow/seal-h1-pilot-verification.py`;
-- `Tools/AssemblyShadow/tests/test_h1_paired_driver.py`;
-- `Tools/AssemblyShadow/h1_bee_primary_tests.py`;
-- `.github/workflows/h1-bee-primary.yml`.
+### Create the graph-reuse bridge
 
-If any Player/runtime/runner/protocol/schedule/map/preregistration/analyzer input changed, do not reuse the retained V04 artifacts.
+~~~text
+python3 Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py \
+  --project <candidate> \
+  --build-map <retained-live-frozen-build-map.json> \
+  --output <new-graph-reuse-bridge.json>
+~~~
 
-If scope matches, authenticate the prior V04 checkpoint and all live bound graph/map/protocol/schedule/pilot hashes before reuse.
+Require the exact old/current source identities, exact 14-path delta, current installed-runtime proof, and frozen-map binding.
 
-### Seal pilots once
+### Seal pilots using the bridge
 
 ~~~text
 python3 Tools/AssemblyShadow/seal-h1-pilot-verification.py \
   --protocol <bound-protocol> \
   --schedule <bound-schedule> \
-  --build-map <frozen-build-map> \
-  --pilot-index <retained-pilot-sample-index> \
+  --build-map <retained-live-frozen-build-map.json> \
+  --pilot-index <retained-live-pilot-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
   --output <new-pilot-verification.json>
 ~~~
 
-Require:
+Require `deepLaunchVerificationCount=8`, exact bridge binding, and complete stat/file guard sealing.
 
-- `kind=H1PilotVerificationReceipt`;
-- `status=PassedStrictReconstructionAndStatGuardSealed`;
-- `deepLaunchVerificationCount=8`;
-- all four pilot modes selected;
-- verifier/control bindings exact;
-- no pre/post file-identity change.
+This must close the previous real source-pin mismatch.
 
-Record seal duration and receipt `fileCount/totalBytes`.
-
-### Run all formal pairs with the same seal
-
-First formal pair:
+### Run formal sampling as one batch
 
 ~~~text
-python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
+python3 Tools/AssemblyShadow/run-h1-formal-batch.py \
   --protocol <bound-protocol> \
   --schedule <bound-schedule> \
-  --build-map <frozen-build-map> \
+  --build-map <retained-live-frozen-build-map.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
   --pilot-verification-receipt <new-pilot-verification.json> \
-  --prior-index <retained-pilot-sample-index> \
-  --output-root <new-formal-pair-root> \
-  --phase formal \
-  --attempt 1
+  --prior-index <retained-live-pilot-index.json> \
+  --output-root <new-formal-batch-root> \
+  --timeout 900
 ~~~
 
-Chain each produced `sample-index.json` into the next pair's `--prior-index`.
+A full pass must report `PassedAllFormalPairs / 40 of 40`.
 
-For a legitimate retry, retain the failed attempt and rerun the same pair with explicit `--pair-id` and incremented `--attempt`. Never rerun only one side.
+If it stops on a failed whole pair, preserve the failure. Retry that exact pair manually only when the unchanged preregistered policy permits it, then resume with a new batch root from the retry index.
 
-All formal sample indexes must carry the same pilot-verification path/hash.
+No automatic retry, side-only retry, pair skipping, sample deletion, or schedule/protocol/map/bridge/seal modification is allowed.
 
-For formal pair 1, record pre-launch admission duration and prove the old 47:39 repeated pilot reconstruction does not recur.
-
-### Final analysis and inventory closure
-
-After all forty formal pair IDs complete:
+### Final strict analysis
 
 ~~~text
 python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py \
   --sample-index <final-sample-index.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
   --output <new-performance-analysis.json>
 ~~~
 
-Do not use the pilot seal as a substitute for this analyzer.
+Retain the complete result even if performance/comparability is unfavorable.
 
-Before V05 eligibility, freshly rerun:
-
-- complete Python inventory after the policy-pinned M00 fixed prerequisite is present;
-- broad Unity EditMode after required generated M00/M01/M05 prerequisites are present.
-
-Prior generated-prerequisite failures are not Passed evidence.
+Proceed to V05/independent M08 only when the entire mandatory chain is complete.
 
 ## Failure evidence
 
-If sealing or formal admission fails, retain:
+On bridge failure retain:
 
-- exact command and phase;
-- source/checkout identity;
-- pilot verification receipt or sealing failure output;
-- protocol/schedule/map hashes;
-- pilot attempt digest;
-- selected launch receipt bindings;
-- first invalidated file path and cached/current guard;
-- verifier binding mismatch when applicable;
-- cumulative prior sample index;
-- any formal side output/launch receipt if launch already began;
-- owned-process cleanup evidence.
+- exact old/current source-pin DTOs;
+- exact Git delta/allowlist diagnostic;
+- current installed-runtime verification;
+- frozen build-map binding;
+- verifier bindings;
+- bridge command/stdout/stderr.
 
-If a formal pair fails after launch, retain the complete failed whole-pair attempt and follow the preregistered retry policy.
+On seal failure retain:
 
-Do not clean the retained V04 live graph/pilot artifacts until the new checkpoint is authenticated.
+- bridge receipt;
+- selected pilot bindings;
+- exact failing side/mode;
+- strict R00 error;
+- file/hash/guard diagnostic;
+- seal stdout/stderr and elapsed time.
+
+On formal failure retain:
+
+- formal-batch receipt;
+- failed cumulative sample index;
+- both side logs/output;
+- bridge/seal binding;
+- owned-process cleanup evidence;
+- any explicit retry and its separate sample index.
+
+On analysis failure retain the analyzer failure receipt plus final sample/bridge/seal bindings.
+
+Do not clean retained V04 graph/pilot data or new formal data before the new checkpoint is authenticated.
 
 ## Alternatives
 
 Do not:
 
-- remove strict pilot verification;
-- trust only the pilot index status without reconstructing the pilot graphs once;
-- cache solely on path or size;
-- auto-reseal after a guard mismatch;
-- silently fall back to repeated deep scans inside formal admission;
-- change `r00_results.py` semantics to make admission faster;
-- weaken final analyzer verification;
-- alter protocol/schedule/map/preregistration after observed timings;
-- delete failed/retried samples;
-- rebuild already-passed controlled graphs unless the source/hash reuse audit requires it;
+- weaken or edit `r00_player_inputs.require_current_pairing`;
+- add a general historical source-pin override;
+- rewrite retained graph/Player/replay receipts;
+- move current or protected source pins backward;
+- accept a scope audit without a bridge receipt;
+- broaden the 14-path allowlist locally;
+- inject retained pairing authority into protected side A;
+- auto-reseal after bridge/guard mismatch;
+- silently rebuild the bridge mid-formal-chain;
+- auto-retry a failed formal pair;
+- retry only one side;
+- delete slow/failed samples;
+- modify protocol, schedule, build map, thresholds, or final statistics after observing performance;
 - begin R02.
+
+If the bridge cannot authenticate honestly, the fallback is a fresh profile-2 controlled graph/map/preregistration/pilot rebuild at the current source anchor—not verifier weakening.
 
 ## Risks
 
-- Initial strict sealing still performs the expensive eight-side reconstruction once; this is intentional evidence creation.
-- Filesystem identity guards are valid only while the retained live artifacts remain untouched; cleanup/copy/rewrite requires resealing after strict verification.
-- Forty formal pairs remain intrinsically long because each pair executes two real Players.
-- Final analysis remains intentionally expensive because it independently verifies selected evidence.
-- Complete Python/EditMode acceptance still requires generated prerequisites that were absent during the previous early V01 run.
+- Bridge creation performs full current source/runtime and Git transition authentication and may require a sanctioned installed-runtime receipt refresh first.
+- The initial strict pilot seal remains expensive because it deliberately reconstructs all eight pilot side graphs once.
+- Forty formal A/B pairs are intrinsically long-running Player work even after admission optimization.
+- Any mutation of sealed graph/pilot files invalidates the seal.
+- Any current source-pin/tool change invalidates the bridge.
+- Final analysis remains intentionally expensive because it re-verifies all selected evidence strictly.
+- The 28 Python skips from the previous Local cycle are environment-bound and must remain explicit; they are not passes.
 
 ## Local correction boundary
 
 Local may adjust only:
 
 - absolute local paths;
-- new output/evidence roots;
+- new bridge/seal/batch/analysis evidence roots;
 - executable permissions;
 - bounded invocation syntax;
-- pair retry attempt numbers when the preregistered whole-pair policy permits retry.
+- explicit same-pair retry attempt number when the unchanged protocol permits retry.
 
 Local must not alter:
 
-- seal schema/guard semantics;
-- selected pilot semantics;
-- verifier bindings;
-- source anchor/protected pins;
-- retained graph/map/protocol/schedule identities;
-- pair ordering/retry policy;
-- statistics/analyzer;
-- source/verifier authority.
+- bridge policy/allowlist;
+- retained graph source revision;
+- source/runtime pins;
+- default R00 pairing semantics;
+- bridge/seal schema or verification rules;
+- frozen graph/map/protocol/schedule/preregistration identities;
+- pair ordering/retry/statistics;
+- final analyzer semantics.
 
 Any non-trivial source/tool correction returns to Primary.
 
@@ -316,7 +407,16 @@ Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
 
 H1 remains **InProgress**.
 
-Formal performance, final analysis, complete inventory closure, V05, and a genuinely independent M08 remain required.
+The authenticated bridge, strict pilot seal, all 40 formal pairs, final analysis, V05, and a genuinely independent whole-chain M08 remain required.
+
+M08 must explicitly review:
+
+- retained-graph bridge proof and exact source allowlist;
+- default strict R00 pairing preservation;
+- pilot seal/cache proof;
+- formal batch/retry chain;
+- final performance analysis;
+- any reused versus fresh Python/Unity evidence.
 
 Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**. Human approval must then be explicit.
 
