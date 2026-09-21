@@ -16,14 +16,15 @@ from shadow_tools import PINS, VerificationError
 
 
 class H1GraphReuseTests(unittest.TestCase):
-    def real_old_pins(self):
-        return reuse._git_json(ROOT, reuse.GRAPH_SOURCE_REVISION, PINS)
-
     def successor_pins_at_head(self):
-        pins = copy.deepcopy(self.real_old_pins())
+        pins = shadow_tools.read_json(ROOT / PINS)
+        pins = copy.deepcopy(pins)
         entries = pins.get("repositories", pins)
         entries["demo"]["revision"] = shadow_tools.git(ROOT, "rev-parse", "HEAD").decode().strip()
         return pins
+
+    def real_old_pins(self):
+        return reuse.retained_graph_pins(self.successor_pins_at_head())
 
     def test_real_69130_graph_to_current_tool_only_successor_matches_exact_policy(self):
         old_pins = self.real_old_pins()
