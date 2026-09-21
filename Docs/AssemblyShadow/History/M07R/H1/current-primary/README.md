@@ -2,81 +2,83 @@
 
 ## Status
 
-Latest Local return: `8788d123ca7769396cf14c707f8df13ac764223b`.
+Latest Local return: `fa23a0ddcf45eabc870e7e7742d2d18a78a52d49`.
 
-Candidate build-input source anchor: `69130bbb3a6df516916dddb5ad263799a7c6e5e3`.
+Candidate build-input source anchor: `01cdd033665400eba9fa0533fe17c12f9da92746`.
 
-H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## Returned V04 blockers
+## Local result received
 
-The 2026-09-20 Local cycle proved the prior controlled-label repair in real Unity: protected profile-1 completed Native ON. Two later boundaries then failed.
+The latest Local cycle successfully completed both controlled Native ON/OFF graphs, exact stage restoration, nested native provenance, old-Player rejection, strict A/B map freeze, unchanged preregistration, and all four pilots.
 
-1. **Exact settings restoration:** `R00ControlledBuild.RestoreSettings` restored the semantic IL2CPP code-generation value, but Unity serialized `ProjectSettings/ProjectSettings.asset` differently (`il2cppCodeGeneration: {}` became an explicit `Standalone: 0`). The next exact source guard correctly rejected the byte drift.
-2. **Nested provenance authority:** current profile-2 entered `H1BuildInputProvenance.CaptureAfterGenerate`, whose native-only verifier passes `--skip-demo-source`. The child inherited the outer M07 authority environment, so the verifier correctly rejected that unsupported combination.
+Formal sampling was operationally blocked before formal pair 1 launched because every driver invocation reconstructed and re-hashed all eight pilot side graphs. One such precondition remained active for 47:39.
 
 ## Primary implementation
 
-### Controlled Player mutable-input transaction
+The formal admission path now has an explicit two-stage contract.
 
-`Invoke-M07PlayerMethodWithGeneratedInputRecovery` now owns two tracked inputs for every Native ON/OFF Player stage:
+### 1. Strict pilot seal
 
-- `Assets/HybridCLRGenerate/link.xml`;
-- `ProjectSettings/ProjectSettings.asset`.
+`Tools/AssemblyShadow/seal-h1-pilot-verification.py` accepts the bound protocol/schedule/map and the completed pilot index.
 
-For each input it:
+It:
 
-1. requires the project to be closed;
-2. captures original bytes and SHA-256;
-3. writes an immutable per-stage backup;
-4. invokes the owned Unity Player build;
-5. retains post-build bytes;
-6. exact-byte restores the original in the finally path;
-7. verifies the restored SHA-256;
-8. emits a per-input restoration receipt.
+1. selects the latest retained successful attempt for each of the four pilot modes;
+2. derives every launch receipt's complete immutable `inputHashesBefore == inputHashesAfter` inventory plus result/early evidence;
+3. snapshots filesystem identity for the union of those files;
+4. runs the unchanged deep `r00_results.verify_suite` reconstruction for all eight pilot side launches;
+5. requires filesystem identity to be identical after verification;
+6. binds all verifier/tool implementations and control artifacts;
+7. writes `H1PilotVerificationReceipt`.
 
-Recovery runs on both success and failure. A restore failure takes precedence; otherwise the original stage failure is preserved. The source-authority guard remains unchanged and runs only after the transaction returns.
+### 2. Formal admission
 
-Existing `link.xml` receipt kind remains `M07GeneratedPlayerInputRestoration`. Project settings uses `M07ControlledPlayerSettingsRestoration`.
+Every formal invocation now requires `--pilot-verification-receipt`.
 
-### Nested native-only provenance scope
+It verifies:
 
-`H1BuildInputProvenance` still invokes the verifier with `--skip-demo-source`, because this subprocess is only proving the installed native/runtime graph.
+- exact protocol/schedule/build-map hashes;
+- exact pilot-attempt subset and selected launch-receipt bindings;
+- current verifier/tool hashes;
+- current launch-derived immutable path/hash inventory;
+- canonical file identity guard: device, inode, mode, size, mtimeNs, ctimeNs.
 
-Immediately before starting that child process, its `ProcessStartInfo.EnvironmentVariables` removes:
+A mismatch fails closed. Formal admission does not silently deep-rescan or regenerate the seal.
 
-- `H1_M07_WORKFLOW_AUTHORITY_ROOT`;
-- `H1_M07_WORKFLOW_BASELINE_ID`.
-
-Only the child is scoped this way. The Unity process and outer coordinator keep the M07 authority environment, and the unchanged outer pinned-input check still performs fail-closed demo-source/workflow authority after each controlled Player stage.
-
-The provenance capture records `verificationEnvironmentScope=NativeOnlyWithoutOuterM07WorkflowAuthority`.
+The produced formal sample index carries the same pilot-verification binding so the cumulative chain cannot switch seals.
 
 ## Regression coverage
 
-Primary added/updated:
+`test_h1_paired_driver.py` now verifies that:
 
-- `Tools/AssemblyShadow/tests/test_m07_player_input_recovery.ps1`: extracts the production PowerShell helper and verifies exact restoration of both inputs on success and on a simulated stage failure, including receipts and original failure preservation; no Unity required.
-- `Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1`: retains direct real-binder coverage for all four stage labels.
-- `Tools/AssemblyShadow/tests/test_h1_m07_workflow_authority.py`: locks both repaired contracts and confirms the global verifier still rejects caller `--skip-demo-source` under M07 authority.
-- `Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs`: asserts the controlled settings transaction is present in the Unity-visible workflow source.
-- `.github/workflows/h1-bee-primary.yml`: runs both direct PowerShell regressions and triggers on `H1BuildInputProvenance.cs`.
+- seal creation executes exactly eight deep launch reconstructions;
+- forty formal admissions reuse the seal with zero calls to the deep R00 verifier;
+- pilot launch-receipt mutation is rejected;
+- bound graph-file mutation is rejected;
+- protocol mutation is rejected;
+- schedule mutation is rejected;
+- build-map mutation is rejected;
+- verifier implementation mutation is rejected.
 
-No HybridCLR native, HybridCLR Unity, IL2CPP, runtime transaction, capacity/index, dense metadata, performance protocol, schedule, or analyzer code changed.
+The paired-driver tests are now part of the bounded Primary suite.
 
-## Local validation objective
+## Scope
 
-Restart fresh V00. Then validate both complete `-ControlledPerformanceBuilds` workflows in one batch.
+Executable/tool changes relative to `69130bbb...` are limited to:
 
-For each controlled label require **both** restoration receipts:
+- `Tools/AssemblyShadow/run-h1-paired-performance.py`;
+- `Tools/AssemblyShadow/seal-h1-pilot-verification.py`;
+- `Tools/AssemblyShadow/tests/test_h1_paired_driver.py`;
+- `Tools/AssemblyShadow/h1_bee_primary_tests.py`;
+- `.github/workflows/h1-bee-primary.yml`.
 
-- `<label>-link-xml-restored.json`;
-- `<label>-project-settings-restored.json`.
+No Player source, HybridCLR native, HybridCLR Unity, IL2CPP, `run-r00-players.py`, `r00_results.py`, performance protocol JSON, schedule JSON, map freezer, preregistration binder, timing/statistics, or final analyzer changed.
 
-Both receipts must report `ExactBytesRestored`, with original and restored hashes equal. Candidate controlled evidence must also show the native provenance capture succeeded with the new nested verification scope.
-
-Only after both profile graphs complete may Local continue to current-anchor old-Player rejection, build-map freeze, preregistration, pilots, formal samples, analysis, V05, and independent M08.
+Therefore the retained controlled graphs/map/preregistration/pilots are eligible for audited reuse only after Local independently proves that exact scope and re-verifies their bound hashes.
 
 ## Gate
 
-H1 remains `InProgress`. Do not begin R02.
+Mandatory formal samples and final analysis remain absent. V05/M08 remain ineligible until those close and the generated-prerequisite inventory nonpasses are resolved/re-executed.
+
+Do not begin R02.
