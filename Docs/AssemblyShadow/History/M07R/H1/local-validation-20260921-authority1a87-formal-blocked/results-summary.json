@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationSummary",
+  "status": "BlockedAtStrictPilotSeal",
+  "checkoutCommit": "3fd718784ed582100bb47a0b28b2204343af9cb8",
+  "sourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
+  "v00": {
+    "candidateAuthority": "SourceTargetVerifiedNotBuildAccepted",
+    "reproductionTooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "protectedReference": "ProtectedReferenceInputsVerifiedNotBuilt",
+    "candidateInstalledRuntime": "PassedAfterReceiptRefresh",
+    "protectedInstalledRuntime": "Passed"
+  },
+  "v01": {
+    "boundedPrimary": "336/336",
+    "pairedDriver": "10/10",
+    "handoff": "11/11",
+    "earlyCapsule": "7/7",
+    "earlyLaunch": "20/20",
+    "earlyResults": "20/20",
+    "failurePipeline": "16/16",
+    "lazy": "10/10",
+    "powerShellRecovery": "PassedBoth"
+  },
+  "reuseAudit": {
+    "functionalDelta": "PassedExpectedFivePaths",
+    "priorCheckpointManifest": "Passed",
+    "livePlayerArtifacts": "Passed",
+    "strictCurrentPairing": "FailedDemoRevisionMismatch"
+  },
+  "pilotSeal": {
+    "status": "FailedBeforeReceipt",
+    "durationSeconds": 390.81,
+    "error": "R00 baseline: source pins differ from baseline provenance",
+    "receiptCreated": false,
+    "formalPlayerLaunched": false
+  },
+  "formalPairs": {
+    "status": "NotRun",
+    "completed": 0,
+    "required": 40
+  },
+  "finalAnalysis": "NotRun",
+  "inventories": {
+    "python": {
+      "total": 1021,
+      "passed": 993,
+      "skipped": 28,
+      "failed": 0,
+      "errors": 0
+    },
+    "unityEditMode": {
+      "total": 1076,
+      "passed": 1076,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "v05": "Ineligible",
+  "independentM08": "NotRunLastResultRemainsFAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}

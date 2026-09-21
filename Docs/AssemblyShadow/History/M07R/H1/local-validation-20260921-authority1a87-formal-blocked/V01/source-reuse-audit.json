@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalSourceReuseAudit",
+  "status": "ExpectedFunctionalScopeButRetainedCandidateGraphNotCurrentPairing",
+  "checkoutCommit": "3fd718784ed582100bb47a0b28b2204343af9cb8",
+  "previousSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+  "sourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
+  "expectedFunctionalDelta": [
+    ".github/workflows/h1-bee-primary.yml",
+    "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+    "Tools/AssemblyShadow/run-h1-paired-performance.py",
+    "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+    "Tools/AssemblyShadow/tests/test_h1_paired_driver.py"
+  ],
+  "unexpectedNonDocumentDelta": [],
+  "unchangedRequiredInputs": [
+    "Player/runtime/Bootstrap C#",
+    "HybridCLR native",
+    "HybridCLR Unity",
+    "IL2CPP",
+    "Tools/AssemblyShadow/run-r00-players.py",
+    "Tools/AssemblyShadow/r00_results.py",
+    "Tools/AssemblyShadow/r00_player_inputs.py",
+    "M07 graph/build receipts",
+    "performance protocol",
+    "bound schedule",
+    "build-map freezer",
+    "preregistration binder",
+    "timing/statistics logic",
+    "final paired analyzer"
+  ],
+  "priorCheckpoint": {
+    "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary",
+    "manifestSha256": "76b4af548142220411ce18c191d6326e1293256efb9bd59a06b22b19d7ad6bf8",
+    "playerArtifactsManifestSha256": "2f4af85f10dab5a9790a81bf072dece34198c418aaccd2b17eb158b314ac12f5",
+    "manifestVerification": "Passed",
+    "livePlayerArtifactVerification": "Passed"
+  },
+  "retainedBindings": {
+    "protocolSha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc",
+    "scheduleSha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a",
+    "buildMapSha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19",
+    "pilotIndexSha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf",
+    "pilotAttemptsSha256": "32e62a12205737cd0ed946524f8d82ecd98f4cf8783663d46b34580c99bfcec4"
+  },
+  "retainedCandidateDemoRevision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+  "currentCandidateDemoRevision": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
+  "strictCurrentPairingResult": "Failed",
+  "reason": "The executable delta is within the declared reuse scope, but r00_player_inputs.require_current_pairing requires the live source-pin DTO to equal the retained baseline, Native ON/OFF snapshots, and Editor replay. The retained candidate graph is bound to 69130bbb while the authoritative live source pin is 1a87a393. No compatibility bridge exists in the submitted seal implementation."
+}

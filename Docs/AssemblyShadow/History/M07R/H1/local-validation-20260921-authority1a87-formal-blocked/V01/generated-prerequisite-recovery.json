@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1GeneratedPrerequisiteRecovery",
+  "status": "RecoveredExactTreesAndReranInventories",
+  "sourceProject": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "destinationProject": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+  "overwriteUsed": false,
+  "trees": [
+    {
+      "path": "BaselineArtifacts/StandaloneOSX/M01-Baseline-v1",
+      "files": 93,
+      "bytes": 178192,
+      "inventorySha256": "beac5291d1550549205a7c044ae36400f50d5c963c559804069172ddee5d4384"
+    },
+    {
+      "path": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+      "files": 527,
+      "bytes": 50677301,
+      "inventorySha256": "ff8e4ba9c2cac90ca2eaa2c4c15ce7dd93d29a752debe289752de4fd0d849e60"
+    },
+    {
+      "path": "HybridCLRData/AssemblyShadow/ResourceBaselines/StandaloneOSX/M02-Baseline-36ca3c767e2bc9c3",
+      "files": 526,
+      "bytes": 48729350,
+      "inventorySha256": "bf9d91be266f3d360ea2d94ed86800f77fce49b1c17843c7f2dbb01292f381ca"
+    },
+    {
+      "path": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M05-Baseline-v6",
+      "files": 456,
+      "bytes": 34320019,
+      "inventorySha256": "c88a3607b7b08e162b887a11fc8e89cf4eacb07ed5150d45f04479dde5610d25"
+    }
+  ],
+  "initialPythonInventory": {
+    "count": 1021,
+    "passed": 987,
+    "skipped": 28,
+    "failed": 1,
+    "errors": 5
+  },
+  "finalPythonInventory": {
+    "count": 1021,
+    "passed": 993,
+    "skipped": 28,
+    "failed": 0,
+    "errors": 0,
+    "skipBoundary": "27 require the absent explicit H1R coordination corpus; one requires explicit real M05 compiler/configuration paths."
+  },
+  "initialUnityInventory": {
+    "count": 1076,
+    "passed": 1071,
+    "failed": 5,
+    "skipped": 0
+  },
+  "finalUnityInventory": {
+    "count": 1076,
+    "passed": 1076,
+    "failed": 0,
+    "skipped": 0
+  }
+}

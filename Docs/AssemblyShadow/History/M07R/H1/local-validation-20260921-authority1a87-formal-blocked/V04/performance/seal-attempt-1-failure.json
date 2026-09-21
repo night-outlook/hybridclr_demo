@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PilotVerificationSealAttempt",
+  "status": "FailedBeforeReceipt",
+  "phase": "StrictPilotReconstruction",
+  "checkoutCommit": "3fd718784ed582100bb47a0b28b2204343af9cb8",
+  "sourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
+  "durationSeconds": 390.81,
+  "exitCode": 1,
+  "stdout": "[FAIL] R00 baseline: source pins differ from baseline provenance",
+  "receiptCreated": false,
+  "formalOutputCreated": false,
+  "playerLaunched": false,
+  "residualOwnedProcess": false,
+  "command": [
+    "python3",
+    "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+    "--protocol",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "--schedule",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "--build-map",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "--pilot-index",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority1a87-formal/V04/performance/h1-pilot-verification-receipt.json"
+  ],
+  "protocolSha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc",
+  "scheduleSha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a",
+  "buildMapSha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19",
+  "pilotIndexSha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf",
+  "pilotAttemptsSha256": "32e62a12205737cd0ed946524f8d82ecd98f4cf8783663d46b34580c99bfcec4",
+  "selectedPilots": [
+    {
+      "pairId": "R00-OFF-NoPatch-pilot-01",
+      "attempt": 1,
+      "A": "c8947a374702b0873f21eeeacff99380e6705d99f04499493d79d18afa55101b",
+      "B": "c60685b35c358b32ed37419f0215f0369129165c811198a629be21594ec22307"
+    },
+    {
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 2,
+      "A": "4559dca6af33cd69952419c0acb46f5cb2793e7401fe94a37ac79d9e51b5cee7",
+      "B": "cdb6b3657fa40510b3f4b5957ec40123844e8738464e2103ae95cbadf1b24f2c"
+    },
+    {
+      "pairId": "R00-ON-P01-pilot-01",
+      "attempt": 1,
+      "A": "b7bf75e6fc843834ea543d14f4eaaa3872f54bceace148afb19afd3a8c13e2c3",
+      "B": "be8f421130d0ec62439e2b53a87e10390cb1ff4b404015ec93b378fda787047c"
+    },
+    {
+      "pairId": "R00-ON-P03-pilot-01",
+      "attempt": 1,
+      "A": "58e7156816dab8d66ce388f411595b94704949443335fd2c412753ff3c0b72a5",
+      "B": "5e14137e3f49faf8de2d18546c7c440448e99e84e241a7d7f31790834636ff2c"
+    }
+  ],
+  "verifierBindings": {
+    "run-h1-paired-performance.py": "606dacb5460aa18f88cc2127c05ddedfb5d5cf616c1d7682dd308c292967622c",
+    "seal-h1-pilot-verification.py": "439d062820f747be1672cc070589ce2c56951ae2db3da721042984d25b449c5e"
+  },
+  "rootCause": "The retained profile-2 baseline, Player snapshots, and replay bind demo revision 69130bbb, while the authoritative current source-pin DTO binds 1a87a393. Strict R00 verification rejects that mismatch before a seal can be created."
+}
