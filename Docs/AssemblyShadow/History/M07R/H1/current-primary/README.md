@@ -4,7 +4,7 @@
 
 Latest Local return: `9045d54e3a1c365ac8c15a3cb5ca791ad13d7501`.
 
-Candidate build-input/tool source anchor: `48b44fff297d229cef5d9f8642900e974a201040`.
+Candidate build-input/tool source anchor: `6dd964c045034240ea53dd15ba7c0b33e9f2ad17`.
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
@@ -59,7 +59,11 @@ The bounded suite now includes real-transition and wiring coverage:
 
 ## Source scope
 
-The full retained-graph non-metadata delta `69130bbb... → current` is exactly the 12 paths encoded in `source-targets.json` and `h1_graph_reuse.py`. No Assets/Packages/runtime/native/measurement source/protocol/schedule/build-map producer changed.
+The full retained-graph non-metadata delta `69130bbb... → current` is exactly the 14 paths encoded in `source-targets.json` and `h1_graph_reuse.py`. No Assets/Packages/runtime/native/measurement source/protocol/schedule/build-map producer changed.
+
+## Formal batch orchestration
+
+Primary additionally supplies `Tools/AssemblyShadow/run-h1-formal-batch.py`. It sequentially chains all unattempted formal pairs with the same bridge+seal, never auto-retries, stops on the first failed whole pair, and resumes only after an explicit protocol-valid same-pair retry.
 
 ## Next Local cycle
 
