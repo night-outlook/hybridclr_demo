@@ -4,7 +4,7 @@
 
 **PASS for Primary → Local Validation handoff**, subject to real Unity/IL2CPP controlled-workflow execution.
 
-Reviewed build-input source anchor: `4d6bc15d97b0b7b9bdadff81419abeab76262d50`.
+Reviewed build-input source anchor: `69130bbb3a6df516916dddb5ad263799a7c6e5e3`.
 
 This review does not establish performance acceptance, V05 completion, independent M08 PASS, or Human Review Gate approval.
 
