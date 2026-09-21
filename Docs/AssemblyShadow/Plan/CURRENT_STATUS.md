@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate build-input/tool source anchor: `48b44fff297d229cef5d9f8642900e974a201040`.
+- Candidate build-input/tool source anchor: `6dd964c045034240ea53dd15ba7c0b33e9f2ad17`.
 - Latest Local return: `9045d54e3a1c365ac8c15a3cb5ca791ad13d7501`.
 - Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority1a87-formal-blocked/`.
 - Prior reusable V04 graph/pilot checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/`.
@@ -25,7 +25,7 @@ The retained profile-2 graph correctly binds demo revision `69130bbb...`; the cu
 
 ## Current Primary repair
 
-Source anchor `48b44fff297d229cef5d9f8642900e974a201040` adds a narrow authenticated retained-graph pairing bridge.
+Source anchor `6dd964c045034240ea53dd15ba7c0b33e9f2ad17` adds a narrow authenticated retained-graph pairing bridge.
 
 - `r00_player_inputs.require_current_pairing` is unchanged.
 - Normal R00 verification remains current-pairing-only.
@@ -42,7 +42,7 @@ Primary workflow `35594627659` at authority successor `eb53550a...` passed bound
 
 ## Required next action
 
-Local Validation must refresh candidate installed-runtime authority to the new source pin if needed, independently confirm the exact source-scope/retained-artifact hashes, create one real graph-reuse bridge, and use it to create the strict pilot seal. If sealing passes, execute all forty formal pairs with the same bridge+seal, then run the bridge-aware final strict analyzer.
+Local Validation must refresh candidate installed-runtime authority to the new source pin if needed, independently confirm the exact source-scope/retained-artifact hashes, create one real graph-reuse bridge, and use it to create the strict pilot seal. If sealing passes, execute all forty formal pairs with the same bridge+seal, preferably through the Primary-owned sequential formal batch runner, then run the bridge-aware final strict analyzer.
 
 Fresh complete Python tooling regression is required because Python tooling changed. The prior 1076/1076 Unity inventory may only be reused with an explicit audited-unaffected classification; a fresh broad Unity run is preferred before sealing when batch budget allows, so M08 receives current-anchor evidence without reopening the sealed file identities afterward.
 
