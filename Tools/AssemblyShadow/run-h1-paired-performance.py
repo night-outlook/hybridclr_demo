@@ -18,6 +18,7 @@ from typing import Any
 
 from shadow_tools import VerificationError, read_json, require
 import h1_paired_performance as analysis
+import h1_graph_reuse as graph_reuse
 
 
 _m07_spec = importlib.util.spec_from_file_location(
@@ -42,6 +43,7 @@ PILOT_VERIFIER_PATHS = tuple(
         "run-h1-paired-performance.py",
         "seal-h1-pilot-verification.py",
         "h1_paired_performance.py",
+        "h1_graph_reuse.py",
         "r00_results.py",
         "r00_player_inputs.py",
         "run-r00-players.py",
@@ -242,7 +244,8 @@ def _index_bindings(index: dict[str, Any], protocol_path: Path, schedule_path: P
         require(item == binding(path), "Prior index " + key + " binding mismatch")
 
 
-def _verify_prior_launch(value: Any, side: dict[str, Any], mode: str, label: str) -> None:
+def _verify_prior_launch(value: Any, side: dict[str, Any], mode: str, label: str,
+                         pairing_authority: dict[str, Any] | None = None) -> None:
     launch_path, _ = bound_file(value, label + ".launchReceipt")
     launch = read_json(launch_path)
     expected_build = side["builds"]["off" if mode == "R00-OFF-NoPatch" else "on"]["receipt"]
@@ -253,7 +256,7 @@ def _verify_prior_launch(value: Any, side: dict[str, Any], mode: str, label: str
             launch.get("editorReplayReceipt") == str(side["replayReceipt"]),
             label + " launch receipt is not bound to the frozen build map")
     require(expected_build.is_file(), label + " selected M07 receipt is missing")
-    verified = _r00.verify_suite(launch_path, expected_mode=mode)
+    verified = _r00.verify_suite(launch_path, expected_mode=mode, pairing_authority=pairing_authority)
     require(verified.get("result") == "Passed" and verified.get("requestedModeIds") == [mode] and
             verified.get("executedModeIds") == [mode], label + " R00 verification failed")
 
@@ -380,7 +383,9 @@ def _selected_pilot_summary(selected: list[dict[str, Any]]) -> list[dict[str, An
 
 def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[str, Any]],
                             build: dict[str, Any], protocol_path: Path, schedule_path: Path,
-                            build_map_path: Path, source_index_path: Path) -> dict[str, Any]:
+                            build_map_path: Path, source_index_path: Path,
+                            graph_reuse_authority: dict[str, Any] | None = None,
+                            graph_reuse_bridge_path: Path | None = None) -> dict[str, Any]:
     selected = _selected_pilot_attempts(attempts, schedule)
     expected = _pilot_expected_files(selected)
     before = {path: _stat_guard(Path(path)) for path in sorted(expected)}
@@ -388,8 +393,11 @@ def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[
     for attempt in selected:
         pair = next(row for row in schedule if row.get("pairId") == attempt.get("pairId"))
         for side in SIDES:
-            _verify_prior_launch(attempt[side].get("launchReceipt"), build["sides"][side],
-                                 pair["mode"], "Pilot " + str(pair["pairId"]) + "." + side)
+            side_authority = graph_reuse.authority_for_project(
+                graph_reuse_authority, build["sides"][side]["projectRoot"])
+            _verify_prior_launch(
+                attempt[side].get("launchReceipt"), build["sides"][side], pair["mode"],
+                "Pilot " + str(pair["pairId"]) + "." + side, side_authority)
             deep_verifications += 1
     after = {path: _stat_guard(Path(path)) for path in sorted(expected)}
     require(before == after, "Pilot immutable file identity changed during strict verification; refusing to seal cache")
@@ -405,6 +413,7 @@ def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[
         "schedule": binding(schedule_path),
         "buildMap": binding(build_map_path),
         "sourcePilotIndex": binding(source_index_path),
+        "graphReuseBridge": binding(graph_reuse_bridge_path) if graph_reuse_bridge_path is not None else None,
         "verifierBindings": _verifier_bindings(),
         "pilotAttemptsSha256": _pilot_attempt_digest(attempts),
         "selectedPilots": _selected_pilot_summary(selected),
@@ -426,7 +435,8 @@ def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[
 
 def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]],
                               schedule: list[dict[str, Any]], protocol_path: Path,
-                              schedule_path: Path, build_map_path: Path) -> dict[str, str]:
+                              schedule_path: Path, build_map_path: Path,
+                              graph_reuse_bridge_path: Path | None = None) -> dict[str, str]:
     receipt_path = _m07.canonical_file(receipt_path)
     value = read_json(receipt_path)
     require(value.get("schemaVersion") == PILOT_VERIFICATION_SCHEMA and
@@ -437,6 +447,13 @@ def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]]
         require(value.get(key) == binding(path), "Pilot verification " + key + " binding mismatch")
     require(value.get("verifierBindings") == _verifier_bindings(),
             "Pilot verification implementation changed; strict reseal is required")
+    expected_bridge = binding(graph_reuse_bridge_path) if graph_reuse_bridge_path is not None else None
+    require(value.get("graphReuseBridge") == expected_bridge,
+            "Pilot verification graph reuse bridge binding mismatch")
+    if graph_reuse_bridge_path is not None:
+        build_map = read_json(build_map_path)
+        project = graph_reuse._build_map_side_project(build_map, "B")
+        graph_reuse.verify_bridge_compact(graph_reuse_bridge_path, project, build_map_path)
     require(value.get("pilotAttemptsSha256") == _pilot_attempt_digest(attempts),
             "Pilot attempt history changed after strict sealing")
     selected = _selected_pilot_attempts(attempts, schedule)
@@ -464,7 +481,8 @@ def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]]
 
 def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, build_map_path: Path,
                 schedule: list[dict[str, Any]], phase: str, build: dict[str, Any],
-                pilot_verification_path: Path | None = None) -> list[dict[str, Any]]:
+                pilot_verification_path: Path | None = None,
+                graph_reuse_bridge_path: Path | None = None) -> list[dict[str, Any]]:
     if path is None:
         require(phase == "pilot", "Formal pair requires --prior-index with completed pilots")
         return []
@@ -499,14 +517,21 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
     if phase == "formal":
         require(pilot_verification_path is not None,
                 "Formal sampling requires --pilot-verification-receipt sealed by strict pilot reconstruction")
+        require(graph_reuse_bridge_path is not None,
+                "Formal sampling of the retained candidate graph requires --graph-reuse-bridge")
         cache_binding = verify_pilot_verification(
-            pilot_verification_path, attempts, schedule, protocol_path, schedule_path, build_map_path)
+            pilot_verification_path, attempts, schedule, protocol_path, schedule_path, build_map_path,
+            graph_reuse_bridge_path)
+        bridge_binding = binding(graph_reuse_bridge_path)
         for prior_attempt in attempts:
             if prior_attempt.get("phase") == "formal":
                 require(prior_attempt.get("pilotVerification") == cache_binding,
                         "Prior formal attempt pilot verification binding mismatch")
+                require(prior_attempt.get("graphReuseBridge") == bridge_binding,
+                        "Prior formal attempt graph reuse bridge binding mismatch")
     else:
         require(pilot_verification_path is None, "Pilot sampling must not consume a formal pilot verification receipt")
+        require(graph_reuse_bridge_path is None, "Pilot sampling must not consume a graph reuse bridge")
     return attempts
 
 
@@ -679,6 +704,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--attempt", required=True, type=_positive)
     parser.add_argument("--prior-index", type=_m07.canonical_file)
     parser.add_argument("--pilot-verification-receipt", type=_m07.canonical_file)
+    parser.add_argument("--graph-reuse-bridge", type=_m07.canonical_file)
     parser.add_argument("--timeout", type=_positive, default=900)
     args = parser.parse_args(argv)
     protocol_path = args.protocol
@@ -687,8 +713,9 @@ def main(argv: list[str] | None = None) -> int:
     protocol = _validate_protocol(protocol_path)
     schedule = _validate_schedule(schedule_path, protocol_path, protocol)
     build = _validate_build(build_map_path, protocol)
-    prior = _load_prior(args.prior_index, protocol_path, schedule_path, build_map_path, schedule, args.phase, build,
-                        args.pilot_verification_receipt)
+    prior = _load_prior(
+        args.prior_index, protocol_path, schedule_path, build_map_path, schedule, args.phase, build,
+        args.pilot_verification_receipt, args.graph_reuse_bridge)
     row = _select_pair(schedule, args.phase, args.pair_id, prior)
     require(not any(item.get("pairId") == row["pairId"] and item.get("attempt") == args.attempt for item in prior),
             "The requested pair attempt already exists in the prior index")
@@ -728,6 +755,8 @@ def main(argv: list[str] | None = None) -> int:
               "A": sides["A"], "B": sides["B"]}
     if args.pilot_verification_receipt is not None:
         record["pilotVerification"] = binding(args.pilot_verification_receipt)
+    if args.graph_reuse_bridge is not None:
+        record["graphReuseBridge"] = binding(args.graph_reuse_bridge)
     attempts.append(record)
     sample = {"schemaVersion": 1, "kind": "H1ControlledSamples", "protocol": binding(protocol_path),
               "schedule": binding(schedule_path), "buildMap": binding(build_map_path), "attempts": attempts}
