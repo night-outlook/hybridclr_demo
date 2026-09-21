@@ -89,11 +89,11 @@
     "policy": "Preserve its committed old-profile pins; never install candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35558065875,
-    "handoffCommit": "8d1c44a274e5a5535959293162c303f38ba0c38f",
-    "implementationCommit": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
-    "testCount": 326,
-    "passed": 326,
+    "workflowRun": 35588684667,
+    "handoffCommit": "a8d1dff097099e5486b8ab14eb341688bb77af48",
+    "implementationCommit": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
+    "testCount": 336,
+    "passed": 336,
     "nonpasses": 0,
     "handoffTests": "11/11",
     "r01EarlyCapsuleTests": "7/7",
@@ -103,10 +103,11 @@
     "m07RecoveryLabelBinder": "Passed",
     "m07MutableInputRecovery": "Passed",
     "r01bLazyTests": "10/10",
-    "artifactId": 10620649436,
-    "artifactSha256": "bc976529b93e1f789b87179bed2a24a84b63c534a0811986aa43f2a9749cdd56",
-    "artifactBytes": 12662038,
-    "scope": "Primary source/tool validation only: bounded regressions, live handoff preflight, R01/lazy contracts, and direct no-Unity M07 recovery transactions. Not Unity/IL2CPP controlled Player acceptance, performance acceptance, V05, M08, or human H1 approval."
+    "pairedDriverCacheRegression": "Passed; one strict seal=8 deep verifications; forty formal admissions=0 deep rescans; six mutation classes plus seal-switch rejection fail closed",
+    "artifactId": 10633671976,
+    "artifactSha256": "50cd13d41ada1023acbb845a845ac852b08de7a270fcb70629af35ff5fe9f385",
+    "artifactBytes": 12686022,
+    "scope": "Primary source/tool validation only. Covers sealed pilot formal-admission orchestration and regressions, live handoff/source authority, R01/lazy contracts, and M07 recovery tests. Not real Local pilot sealing, formal Player sampling, final performance analysis, V05, M08, or human H1 approval."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
