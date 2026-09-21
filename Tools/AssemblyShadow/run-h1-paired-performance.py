@@ -451,8 +451,8 @@ def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]]
     require(value.get("graphReuseBridge") == expected_bridge,
             "Pilot verification graph reuse bridge binding mismatch")
     if graph_reuse_bridge_path is not None:
-        build_map = read_json(build_map_path)
-        project = graph_reuse._build_map_side_project(build_map, "B")
+        bridge = read_json(graph_reuse_bridge_path)
+        project = canonical_dir(bridge.get("projectRoot", ""), "graph reuse bridge project")
         graph_reuse.verify_bridge_compact(graph_reuse_bridge_path, project, build_map_path)
     require(value.get("pilotAttemptsSha256") == _pilot_attempt_digest(attempts),
             "Pilot attempt history changed after strict sealing")
