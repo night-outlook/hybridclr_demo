@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ControlledBuildMap",
+  "status": "Frozen",
+  "protocolId": "H1R-Development-Paired-v1",
+  "target": "StandaloneOSX",
+  "architecture": "arm64",
+  "configuration": {
+    "development": true,
+    "nativeCompilerConfiguration": "Release",
+    "nativeAssertions": false
+  },
+  "comparability": {
+    "developmentCppRelease": {
+      "A": true,
+      "B": true
+    },
+    "unity": {
+      "A": "2022.3.62f2",
+      "B": "2022.3.62f2"
+    },
+    "architecture": {
+      "A": "arm64",
+      "B": "arm64"
+    },
+    "strip": {
+      "A": "Low",
+      "B": "Low"
+    },
+    "codegen": {
+      "A": "OptimizeSpeed",
+      "B": "OptimizeSpeed"
+    },
+    "startup": {
+      "A": "R01EarlyStartup",
+      "B": "R01EarlyStartup"
+    },
+    "commonMeasurementCoreSha256": {
+      "A": "d53d566a48c5af46d2ad0ca84d486a1703cd6f10664afba5d8cde31859ac9ea0",
+      "B": "d53d566a48c5af46d2ad0ca84d486a1703cd6f10664afba5d8cde31859ac9ea0"
+    },
+    "witnessSha256": {
+      "A": "c395b12191fafd0d8dd3ec935f1e48829a16fab88b1e78eec48ab3c7ad96af33",
+      "B": "c395b12191fafd0d8dd3ec935f1e48829a16fab88b1e78eec48ab3c7ad96af33"
+    },
+    "runtimeAbiHash": {
+      "A": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
+      "B": "60fe5d11a142be32ad5fefc0137022e7c9cc70962b5dac3f48067c3c23a7e35a"
+    },
+    "sourcePins": {
+      "A": "8d32ea572be1c23e235b64eaaa00cee1bc769a4717929e59f703714e0d0d4dbd",
+      "B": "541e08880bfc43e2bd7f70d7f4e24871523281595936704483974d3456984558"
+    }
+  },
+  "sides": {
+    "A": {
+      "projectRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+      "fixtureManifest": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+        "sha256": "59d03551fc58c769bcdb6609663511e2e4bb3eb1edae1c04f7e1644c0b7412c5"
+      },
+      "replayReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+        "sha256": "60c37f17b7594548b7d9ec570230be136751dd571489854202358605ac5c02b6"
+      },
+      "builds": {
+        "on": {
+          "feature": "on",
+          "development": true,
+          "nativeCompilerConfiguration": "Release",
+          "buildGuid": "78936bf024434cb8b328f40ce7dd97bb",
+          "playerOutput": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-H1-Perf-Reference-6913-20260920A.app",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+            "sha256": "c0d2e0f7da558019fb9bfb797f527bd78eee0bbe4e0638b0fd8a9dcfa7f7ef7b"
+          },
+          "controlledEvidence": {
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/ControlledPerformanceBuilds/native-on-controlled-evidence.json",
+            "sha256": "21e85aa71c14617d470db92defa8bbc11547e8eda6343a4823ee6a369993de0b"
+          }
+        },
+        "off": {
+          "feature": "off",
+          "development": true,
+          "nativeCompilerConfiguration": "Release",
+          "buildGuid": "5722f1a804bc45d096eedc58bb18b081",
+          "playerOutput": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-H1-Perf-Reference-6913-20260920A-NativeOff.app",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+            "sha256": "26f0e6037775723817c9ceffb390a1cce42dcd1a70d00ef7319bc69fe3eb275a"
+          },
+          "controlledEvidence": {
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/ControlledPerformanceBuilds/native-off-controlled-evidence.json",
+            "sha256": "23466ee734d95b5c582e89df16c9178b967b5d0489ea13a7fa730ea89afbd000"
+          }
+        }
+      }
+    },
+    "B": {
+      "projectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+      "fixtureManifest": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+        "sha256": "640e7d057146a05d4f0f2e6bb431e2d616ce5f7e592a90160d2c0d681c95a8a9"
+      },
+      "replayReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+        "sha256": "ec6d52922deda734d9111e77a2a1dfb46281355ad3dc5799630e84bb15a714bd"
+      },
+      "builds": {
+        "on": {
+          "feature": "on",
+          "development": true,
+          "nativeCompilerConfiguration": "Release",
+          "buildGuid": "7e4d6b8717324b20bc57b06b9d9eebad",
+          "playerOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-H1-Perf-Current-6913-20260920C.app",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+            "sha256": "995faab3e7360bd1d0dff77af941ce4c6ce6d745651d02eaccaa75b42edd609c"
+          },
+          "controlledEvidence": {
+            "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/ControlledPerformanceBuilds/native-on-controlled-evidence.json",
+            "sha256": "8a6d38184e823f2cddf343e156118882f68c08343d17e90e917da703d5c65a1e"
+          }
+        },
+        "off": {
+          "feature": "off",
+          "development": true,
+          "nativeCompilerConfiguration": "Release",
+          "buildGuid": "02f5e40f1f7540b19a9674e9f32511c8",
+          "playerOutput": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-H1-Perf-Current-6913-20260920C-NativeOff.app",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+            "sha256": "65384f3852a5a839eb941ea8660bff7e1f9e86e6539d85f5d0349e91b6d97ae5"
+          },
+          "controlledEvidence": {
+            "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/ControlledPerformanceBuilds/native-off-controlled-evidence.json",
+            "sha256": "20f9edbaaac2f9112bd8dc3a3d65acd3fd51675f128617e7842613cb8f24c9dc"
+          }
+        }
+      }
+    }
+  }
+}

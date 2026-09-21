@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ControlledBuildMapFreezeReceipt",
+  "result": "Passed",
+  "protocolId": "H1R-Development-Paired-v1",
+  "matchedFields": {
+    "developmentCppRelease": true,
+    "unity": "2022.3.62f2",
+    "architecture": "arm64",
+    "strip": "Low",
+    "codegen": "OptimizeSpeed",
+    "startup": "R01EarlyStartup",
+    "commonMeasurementCoreSha256": "d53d566a48c5af46d2ad0ca84d486a1703cd6f10664afba5d8cde31859ac9ea0",
+    "witnessSha256": "c395b12191fafd0d8dd3ec935f1e48829a16fab88b1e78eec48ab3c7ad96af33"
+  },
+  "expectedDifferent": {
+    "runtimeAbiHash": {
+      "A": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
+      "B": "60fe5d11a142be32ad5fefc0137022e7c9cc70962b5dac3f48067c3c23a7e35a"
+    },
+    "sourcePins": {
+      "A": "8d32ea572be1c23e235b64eaaa00cee1bc769a4717929e59f703714e0d0d4dbd",
+      "B": "541e08880bfc43e2bd7f70d7f4e24871523281595936704483974d3456984558"
+    }
+  },
+  "acceptanceClaimed": false,
+  "scope": "Authenticated build comparability only; no performance samples or H1 acceptance.",
+  "buildMapPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+  "buildMapSha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+}
