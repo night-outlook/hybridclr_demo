@@ -441,6 +441,13 @@ every pilot mode (8 side graphs total). Candidate side B is checked against the
 bridge-authenticated historical graph pairing; protected side A continues to use
 the normal current-pairing path.
 
+For retained candidate ON launches using `R01EarlyStartup`, that exact same
+authenticated authority is propagated through nested
+`r01_early_results._prepare` and early-capsule reconstruction. Reuse authority
+at that nested boundary is deliberately limited to the performance
+`Baseline` / `Control` modes; failure, ordinary, and guard early modes reject
+it instead of entering an unreviewed historical-pairing path.
+
 The seal binds protocol/schedule/build map, the complete retained pilot-attempt
 history, launch receipts, graph-reuse bridge, verifier implementations, and a
 stable filesystem identity guard for the complete immutable input/evidence
