@@ -11,6 +11,8 @@ sys.path.insert(0, str(TOOLS))
 
 import h1_graph_reuse as reuse
 import r00_player_inputs
+import r00_results
+import r01_early_results as early_results
 import shadow_tools
 
 _analyzer_spec = __import__("importlib.util").util.spec_from_file_location(
@@ -104,6 +106,73 @@ class H1GraphReuseTests(unittest.TestCase):
         self.assertIn("m07.exact(captured, expected, label + \".sourcePins\")", body)
         self.assertNotIn("reuse", body.lower())
         self.assertNotIn("override", body.lower())
+
+    def test_real_transition_on_pilot_nested_early_prepare_preserves_authenticated_authority(self):
+        current = self.successor_pins_at_head()
+        graph = reuse.retained_graph_pins(current)
+        transition = reuse.authenticate_transition(ROOT, graph, current)
+        self.assertEqual(transition["graphDemoRevision"], reuse.GRAPH_SOURCE_REVISION)
+        authority = {
+            "kind": reuse.AUTHORITY_KIND,
+            "projectRoot": str(ROOT.resolve()),
+            "graphSourcePins": graph,
+            "currentSourcePins": current,
+            "bridgeReceipt": {"path": "/tmp/h1-graph-reuse-bridge.json", "sha256": "1" * 64},
+            "policyId": reuse.POLICY_ID,
+        }
+        context = {
+            "baseline": {"nativeBudgetCapabilityVersion": 2},
+            "sourcePins": graph,
+        }
+
+        class Runner:
+            @staticmethod
+            def collect_inputs(_fixture, _replay, _builds):
+                return {Path("/tmp/on-pilot-input")}
+
+        with mock.patch.object(
+                early_results, "verify_inputs",
+                side_effect=AssertionError("nested early prepare fell back to current-pairing verification")), \
+             mock.patch.object(
+                early_results, "verify_inputs_with_reuse",
+                return_value=context) as reuse_verify, \
+             mock.patch.object(early_results.failures, "metadata_profile", return_value=2), \
+             mock.patch.object(early_results, "_load_runner", return_value=Runner()), \
+             mock.patch.object(
+                early_results.m07, "verify_inputs",
+                return_value=({}, {}, [], [], {"resource": "bound"})):
+            prepared = early_results._prepare(
+                ROOT.resolve(), Path("/tmp/fixture"), Path("/tmp/on"), Path("/tmp/off"),
+                Path("/tmp/replay"), None, None, ["Baseline"], authority)
+
+        reuse_verify.assert_called_once_with(
+            ROOT.resolve(), Path("/tmp/fixture"), Path("/tmp/on"), Path("/tmp/off"),
+            Path("/tmp/replay"), authority)
+        self.assertIs(prepared["context"], context)
+        self.assertEqual(prepared["profile"], 2)
+        self.assertEqual(prepared["baselineResources"], {"resource": "bound"})
+
+    def test_r00_and_direct_early_verifiers_thread_same_authority_into_prepare(self):
+        r00_source = (TOOLS / "r00_results.py").read_text()
+        self.assertGreaterEqual(
+            r00_source.count("None, None, early_modes, pairing_authority"), 1)
+        self.assertGreaterEqual(
+            r00_source.count("None, None, [], pairing_authority"), 1)
+
+        early_source = (TOOLS / "r01_early_results.py").read_text()
+        self.assertIn(
+            "negative_path, requested, pairing_authority)", early_source)
+        self.assertIn(
+            "verify_inputs_with_reuse(project, fixture, on, off, replay, pairing_authority)",
+            early_source)
+        start = early_source.index("def _prepare")
+        end = early_source.index("\n\ndef _capsule_for", start)
+        prepare_body = early_source[start:end]
+        self.assertIn("if pairing_authority is None", prepare_body)
+        self.assertIn("verify_inputs(project, fixture, on, off, replay)", prepare_body)
+        self.assertIn(
+            "verify_inputs_with_reuse(project, fixture, on, off, replay, pairing_authority)",
+            prepare_body)
 
     def test_analyzer_prepare_reuse_binds_same_seal_and_bridge(self):
         import tempfile
