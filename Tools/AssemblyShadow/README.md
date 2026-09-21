@@ -390,28 +390,75 @@ Builds, caches, patch DLLs and dSYM files are reproducible local artifacts, not
 checked-in source. Windows/Android results must never be inferred from macOS.
 
 
-## H1 paired performance — sealed pilot admission
+## H1 paired performance — retained-graph bridge and sealed pilot admission
 
-Formal sampling must not repeatedly reconstruct and re-hash all eight pilot side graphs. After all four preregistered pilot pairs have passed, create exactly one strict pilot verification receipt:
+The retained profile-2 V04 graph was built at demo source revision
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3`. Later H1 work changed only
+reviewed performance-admission tooling/tests/CI, so the graph can be reused only
+through an explicit authenticated bridge. Normal R00 verification remains
+current-pairing-only.
+
+### 1. Create the retained-graph bridge
+
+After current source/runtime authority and the retained frozen build map have
+been authenticated, create one new bridge receipt:
+
+```sh
+python3 Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py \
+  --project <absolute-candidate-project> \
+  --build-map <retained-frozen-build-map.json> \
+  --output <new-graph-reuse-bridge.json>
+```
+
+The bridge is intentionally limited to candidate side B and the retained
+`69130bbb...` graph. It verifies the current installed runtime and current demo
+source authority, requires unchanged Unity/target/architecture plus identical
+HybridCLR/HybridCLR-Unity/IL2CPP pins, and requires the complete non-metadata Git
+delta to equal the reviewed CI/AssemblyShadow-tooling allowlist. It records the
+old graph pairing, current source-pin binding, exact Git blob delta, build-map
+binding, verifier hashes, and installed-runtime verification.
+
+It does **not** edit `AssemblyShadowSourcePins.json`, graph receipts, Players,
+or `r00_player_inputs.require_current_pairing`.
+
+### 2. Strictly seal the completed pilots once
+
+Create exactly one pilot verification receipt:
 
 ```sh
 python3 Tools/AssemblyShadow/seal-h1-pilot-verification.py \
   --protocol <bound-performance-protocol.json> \
   --schedule <bound-performance-schedule.json> \
-  --build-map <frozen-build-map.json> \
+  --build-map <retained-frozen-build-map.json> \
   --pilot-index <completed-pilot-sample-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
   --output <new-pilot-verification.json>
 ```
 
-The sealer performs the existing full `r00_results.verify_suite` reconstruction for the latest passed A/B launch of every pilot mode (8 side graphs total), binds the protocol/schedule/build map, pilot attempt history, launch receipts, and verifier implementation, and captures a stable filesystem identity guard for the complete immutable input/evidence inventory.
+The sealer fully reauthenticates the bridge, then performs the existing strict
+`r00_results.verify_suite` reconstruction for the latest passed A/B launch of
+every pilot mode (8 side graphs total). Candidate side B is checked against the
+bridge-authenticated historical graph pairing; protected side A continues to use
+the normal current-pairing path.
 
-Every formal pair must then use that exact receipt:
+The seal binds protocol/schedule/build map, the complete retained pilot-attempt
+history, launch receipts, graph-reuse bridge, verifier implementations, and a
+stable filesystem identity guard for the complete immutable input/evidence
+inventory.
+
+For a fresh graph whose source pins already equal its project pins,
+`--graph-reuse-bridge` may be omitted; the normal strict path is unchanged.
+
+### 3. Run all formal pairs with the same bridge and seal
+
+Every formal pair for the retained graph must use both receipts:
 
 ```sh
 python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
   --protocol <bound-performance-protocol.json> \
   --schedule <bound-performance-schedule.json> \
-  --build-map <frozen-build-map.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
   --pilot-verification-receipt <new-pilot-verification.json> \
   --prior-index <latest-sample-index.json> \
   --output-root <new-pair-output-root> \
@@ -419,6 +466,39 @@ python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
   --attempt 1
 ```
 
-The formal driver re-hashes only compact control receipts/tools and checks the sealed path/device/inode/mode/size/mtime/ctime identity for every immutable file. Any changed pilot attempt, launch receipt, bound artifact, protocol, schedule, build map, verifier tool, or filesystem guard fails closed and requires a new strict seal. It never silently rebuilds the cache.
+The formal driver re-hashes compact control receipts/tools, re-derives the
+current pilot immutable path/hash inventory, verifies the sealed
+path/device/inode/mode/size/mtime/ctime guard, and verifies the graph-reuse
+bridge's compact current bindings. It does not repeat the eight deep pilot graph
+scans.
 
-The seal changes only formal pre-launch admission cost. Whole-pair retry, schedule order, sample retention, and the final paired analyzer remain unchanged. The final analyzer still performs full strict launch/evidence reconstruction.
+Each formal attempt records both `pilotVerification` and
+`graphReuseBridge`. A cumulative chain cannot switch either authority.
+Any mismatch fails closed; no automatic reseal or fallback deep scan occurs.
+
+Whole-pair retry, preregistered order, retained attempts, timeouts, and
+measurement semantics are unchanged.
+
+### 4. Run final strict analysis
+
+After all formal pairs are complete:
+
+```sh
+python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py \
+  --sample-index <final-sample-index.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-performance-analysis.json>
+```
+
+The analyzer first fully reauthenticates the bridge and requires every formal
+attempt to bind the same bridge and pilot seal. It then performs the original
+strict per-launch/evidence reconstruction; only candidate side B receives the
+authenticated historical pairing authority. The pilot cache does not replace
+final evidence verification.
+
+A bridge mismatch, current source-pin change, changed allowed-tool verifier,
+unexpected Git delta, graph artifact mutation, or seal identity change is a hard
+failure and requires explicit diagnosis. Do not rewrite receipts, move source
+pins, or weaken the normal R00 pairing gate.
+
