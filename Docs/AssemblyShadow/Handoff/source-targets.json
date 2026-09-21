@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
-      "implementationCommit": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including the controlled-workflow repairs, sealed formal admission, and the authenticated retained-graph reuse bridge. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
+      "codeCommit": "ebb0afe6c77e7a11fbf04a5da0d3ad4516340342",
+      "implementationCommit": "ebb0afe6c77e7a11fbf04a5da0d3ad4516340342",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including the controlled-workflow repairs, authenticated retained-graph bridge, bridge-bound nested R01EarlyStartup authority propagation, pilot sealing/cache, formal batch, and bridge-aware final analyzer. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -553,7 +553,7 @@
     "returnedByLocalValidationCommit": "9045d54e3a1c365ac8c15a3cb5ca791ad13d7501",
     "previousSourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
     "retainedGraphSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
-    "sourceAnchor": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
+    "sourceAnchor": "ebb0afe6c77e7a11fbf04a5da0d3ad4516340342",
     "failure": "The first real strict pilot seal failed before receipt because the retained candidate graph binds demo revision 69130bbb while the current project source pin had advanced to 1a87a393. The unchanged R00 current-pairing gate correctly rejected the mismatch.",
     "design": {
       "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
@@ -577,6 +577,7 @@
       "Tools/AssemblyShadow/h1_graph_reuse.py",
       "Tools/AssemblyShadow/r00_player_inputs.py",
       "Tools/AssemblyShadow/r00_results.py",
+      "Tools/AssemblyShadow/r01_early_results.py",
       "Tools/AssemblyShadow/run-h1-formal-batch.py",
       "Tools/AssemblyShadow/run-h1-paired-performance.py",
       "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
@@ -585,5 +586,25 @@
       "Tools/AssemblyShadow/tests/test_h1_paired_driver.py"
     ],
     "regression": "Primary regression uses the real 69130bbb Git/source transition, proves default R00 pairing remains unchanged, proves retained authority injection is side-B-only, binds bridge through seal/formal chain, rejects bridge switching, and proves final analyzer requires the same bridge/seal."
+  },
+  "v04NestedEarlyAuthorityPropagationRepair": {
+    "returnedByLocalValidationCommit": "21caaecc315623ec10c779af04d563ed7badeac2",
+    "previousSourceAnchor": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
+    "sourceAnchor": "ebb0afe6c77e7a11fbf04a5da0d3ad4516340342",
+    "failure": "A real H1GraphReuseBridge passed, and outer R00 retained-graph verification passed, but the strict seal failed during R01EarlyStartup capsule reconstruction because r01_early_results._prepare unconditionally re-entered default current-pairing verification.",
+    "correction": {
+      "r01EarlyPrepare": "_prepare accepts an optional already-authenticated pairing authority. With no authority it preserves the original verify_inputs current-pairing path; with an authority it uses verify_inputs_with_reuse.",
+      "r00Propagation": "r00_results.verify_suite passes the exact pairing_authority object into both legacy and strict-modern calls to r01_early_results._prepare.",
+      "directEarlyPropagation": "r01_early_results.verify_suite also threads its optional programmatic authority into _prepare; no CLI historical-pairing option was added.",
+      "scopeRestriction": "A retained authority is accepted by _prepare only when the requested early-mode set is a subset of Baseline/Control, which are the performance early modes. Ordinary, failure, and guard early modes fail closed.",
+      "bridgeInvalidation": "r01_early_results.py is now both an H1GraphReuseBridge verifier binding and a member of the exact retained-graph non-metadata allowlist, so any future change invalidates/requires recreation of the bridge.",
+      "defaultGate": "r00_player_inputs.require_current_pairing is unchanged; default R00 and protected side A remain current-pairing-only."
+    },
+    "regression": {
+      "realTransition": "Uses the real 69130bbb-to-current Git transition and authenticated authority, then executes the actual nested r01_early_results._prepare for the ON/Baseline early path while asserting default verify_inputs is not called.",
+      "callChain": "Pins both r00_results and direct r01_early_results call sites to pass the same authority into _prepare.",
+      "negativeScope": "OrdinaryFirst, MetadataFailure, and Type reject retained authority before any nested verifier work."
+    },
+    "retainedGraphAllowlistCount": 15
   }
 }
