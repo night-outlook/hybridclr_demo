@@ -143,7 +143,8 @@ class H1GraphReuseTests(unittest.TestCase):
                 return_value=({}, {}, [], [], {"resource": "bound"})):
             prepared = early_results._prepare(
                 ROOT.resolve(), Path("/tmp/fixture"), Path("/tmp/on"), Path("/tmp/off"),
-                Path("/tmp/replay"), None, None, ["Baseline"], authority)
+                Path("/tmp/replay"), None, None, ["Baseline"],
+                pairing_authority=authority)
 
         reuse_verify.assert_called_once_with(
             ROOT.resolve(), Path("/tmp/fixture"), Path("/tmp/on"), Path("/tmp/off"),
@@ -166,29 +167,36 @@ class H1GraphReuseTests(unittest.TestCase):
                         VerificationError, "limited to R00 performance Baseline/Control"):
                     early_results._prepare(
                         ROOT.resolve(), Path("/tmp/fixture"), Path("/tmp/on"), Path("/tmp/off"),
-                        Path("/tmp/replay"), None, None, [mode], authority)
+                        Path("/tmp/replay"), None, None, [mode],
+                        pairing_authority=authority)
 
-    def test_r00_and_direct_early_verifiers_thread_same_authority_into_prepare(self):
+    def test_r00_threads_authority_while_direct_early_verifier_stays_current_pairing_only(self):
         r00_source = (TOOLS / "r00_results.py").read_text()
         self.assertGreaterEqual(
-            r00_source.count("None, None, early_modes, pairing_authority"), 1)
-        self.assertGreaterEqual(
-            r00_source.count("None, None, [], pairing_authority"), 1)
+            r00_source.count("pairing_authority=pairing_authority"), 2)
 
         early_source = (TOOLS / "r01_early_results.py").read_text()
-        self.assertIn(
-            "negative_path, requested, pairing_authority)", early_source)
+        self.assertIn("def verify_suite(launch_path: Path) -> dict[str, Any]:", early_source)
+        self.assertNotIn(
+            "def verify_suite(launch_path: Path, pairing_authority", early_source)
         self.assertIn(
             "verify_inputs_with_reuse(project, fixture, on, off, replay, pairing_authority)",
             early_source)
+
         start = early_source.index("def _prepare")
         end = early_source.index("\n\ndef _capsule_for", start)
         prepare_body = early_source[start:end]
+        self.assertIn("*, pairing_authority:", prepare_body)
         self.assertIn("if pairing_authority is None", prepare_body)
         self.assertIn("verify_inputs(project, fixture, on, off, replay)", prepare_body)
         self.assertIn(
             "verify_inputs_with_reuse(project, fixture, on, off, replay, pairing_authority)",
             prepare_body)
+
+        verify_start = early_source.index("def verify_suite(launch_path: Path)")
+        verify_end = early_source.find("\n\ndef ", verify_start + 1)
+        verify_body = early_source[verify_start:verify_end if verify_end >= 0 else len(early_source)]
+        self.assertNotIn("pairing_authority=", verify_body)
 
     def test_analyzer_prepare_reuse_binds_same_seal_and_bridge(self):
         import tempfile
