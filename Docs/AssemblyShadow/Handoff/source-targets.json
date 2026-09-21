@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
-      "implementationCommit": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input identity including the V04 controlled-Player exact-byte settings recovery, nested native-only provenance environment scoping, and their executable/static regressions. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
+      "codeCommit": "01cdd033665400eba9fa0533fe17c12f9da92746",
+      "implementationCommit": "01cdd033665400eba9fa0533fe17c12f9da92746",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo executable/tool identity including the V04 controlled-workflow repairs plus the formal-admission pilot verification seal/cache. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -513,5 +513,37 @@
       "nestedVerifierPolicy": "Remove H1_M07_WORKFLOW_AUTHORITY_ROOT and H1_M07_WORKFLOW_BASELINE_ID from the native-only verifier child ProcessStartInfo only. The parent coordinator keeps the outer authority context and performs the unchanged post-build fail-closed source check."
     },
     "validationBoundary": "Primary CI/source tests only; real Unity controlled Native ON/OFF workflows remain mandatory Local Validation."
+  },
+  "v04FormalAdmissionCacheRepair": {
+    "returnedByLocalValidationCommit": "fa23a0ddcf45eabc870e7e7742d2d18a78a52d49",
+    "previousSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "sourceAnchor": "01cdd033665400eba9fa0533fe17c12f9da92746",
+    "failure": "Every formal pair admission re-ran r00_results.verify_suite over all eight successful pilot-side graphs, rehashing roughly 0.7 GiB per side and blocking before formal launch.",
+    "design": {
+      "sealTool": "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+      "receiptKind": "H1PilotVerificationReceipt",
+      "strictSeal": "Deep-verify the latest passed A/B launch receipts for all four pilot modes exactly once, while proving the complete immutable file identity is stable before/after the scan.",
+      "boundControls": [
+        "protocol",
+        "schedule",
+        "frozen build map",
+        "complete retained pilot-attempt history",
+        "selected pilot launch receipts",
+        "formal/seal verifier implementations"
+      ],
+      "immutableGuard": [
+        "canonical path",
+        "device",
+        "inode",
+        "mode",
+        "size",
+        "mtimeNs",
+        "ctimeNs"
+      ],
+      "formalAdmission": "Re-hash compact control receipts/tools, derive the current immutable path/hash inventory from launch receipts, require exact cache identity guards, and fail closed on any difference without silently rebuilding the cache.",
+      "finalAnalysis": "Unchanged. Final analyzer still performs full strict launch/evidence verification."
+    },
+    "regression": "Bounded Primary regression seals with exactly eight deep verifications, performs forty formal admissions with zero deep rescans, and rejects pilot-receipt, bound-artifact, protocol, schedule, build-map, and verifier mutations.",
+    "reusePolicy": "Existing Local-validated controlled graphs, frozen map, preregistration, and pilots may be retained only after Local independently confirms the source delta is limited to orchestration/verifier-cache tooling/tests/CI and all bound hashes remain unchanged."
   }
 }
