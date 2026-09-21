@@ -15,6 +15,8 @@ namespace AssemblyShadowDemo.Editor
     public static class H1BuildInputProvenance
     {
         private const int VerificationTimeoutMilliseconds = 120000;
+        private const string M07WorkflowAuthorityRootEnvironment = "H1_M07_WORKFLOW_AUTHORITY_ROOT";
+        private const string M07WorkflowBaselineEnvironment = "H1_M07_WORKFLOW_BASELINE_ID";
         private static readonly string[] GeneratedFiles = {
             "hybridclr/generated/AssemblyManifest.cpp",
             "hybridclr/generated/MethodBridge.cpp",
@@ -138,6 +140,7 @@ namespace AssemblyShadowDemo.Editor
                 pythonExecutableSha256 = pythonExecutableSha256,
                 verificationArgv = argv,
                 verificationExitCode = result.exitCode,
+                verificationEnvironmentScope = "NativeOnlyWithoutOuterM07WorkflowAuthority",
                 verificationStdout = result.stdout,
                 verificationStderr = result.stderr,
                 installedFiles = snapshotInstalledInventory.files,
@@ -391,6 +394,12 @@ namespace AssemblyShadowDemo.Editor
                 RedirectStandardError = true,
                 CreateNoWindow = true,
             };
+            // This subprocess validates only the installed native/runtime graph. The outer M07
+            // coordinator retains full demo-source authority in its own process and rechecks it
+            // after the controlled build. Do not let this nested native-only verification inherit
+            // the outer workflow authority context because it intentionally passes --skip-demo-source.
+            info.EnvironmentVariables.Remove(M07WorkflowAuthorityRootEnvironment);
+            info.EnvironmentVariables.Remove(M07WorkflowBaselineEnvironment);
             using (var process = new Process { StartInfo = info })
             {
                 try { Require(process.Start(), "Could not start native verification tool."); }
@@ -491,6 +500,7 @@ namespace AssemblyShadowDemo.Editor
             public string liveVerificationSupportToolPath, liveVerificationSupportToolSha256;
             public string[] verificationArgv;
             public int verificationExitCode;
+            public string verificationEnvironmentScope;
             public string verificationStdout, verificationStderr, installedInventorySha256, externalInventorySha256;
             public string liveInstalledInventorySha256, liveExternalInventorySha256;
             public FileEntry[] snapshotFiles, installedFiles, externalFiles;
