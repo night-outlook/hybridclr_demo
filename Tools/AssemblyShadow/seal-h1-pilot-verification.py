@@ -24,7 +24,7 @@ def main(argv=None) -> int:
     parser.add_argument("--schedule", required=True, type=driver._m07.canonical_file)
     parser.add_argument("--build-map", required=True, type=driver._m07.canonical_file)
     parser.add_argument("--pilot-index", required=True, type=driver._m07.canonical_file)
-    parser.add_argument("--graph-reuse-bridge", required=True, type=driver._m07.canonical_file)
+    parser.add_argument("--graph-reuse-bridge", type=driver._m07.canonical_file)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args(argv)
 
@@ -39,9 +39,11 @@ def main(argv=None) -> int:
     build = driver._validate_build(args.build_map, protocol)
     attempts = driver._load_prior(
         args.pilot_index, args.protocol, args.schedule, args.build_map, schedule, "pilot", build)
-    candidate_project = build["sides"]["B"]["projectRoot"]
-    reuse_authority = graph_reuse.verify_bridge_full(
-        args.graph_reuse_bridge, candidate_project, args.build_map)
+    reuse_authority = None
+    if args.graph_reuse_bridge is not None:
+        candidate_project = build["sides"]["B"]["projectRoot"]
+        reuse_authority = graph_reuse.verify_bridge_full(
+            args.graph_reuse_bridge, candidate_project, args.build_map)
 
     receipt = driver.seal_pilot_verification(
         attempts, schedule, build, args.protocol, args.schedule, args.build_map, args.pilot_index,
