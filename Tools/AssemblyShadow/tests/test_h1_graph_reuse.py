@@ -152,6 +152,22 @@ class H1GraphReuseTests(unittest.TestCase):
         self.assertEqual(prepared["profile"], 2)
         self.assertEqual(prepared["baselineResources"], {"resource": "bound"})
 
+    def test_nested_early_reuse_authority_rejects_nonperformance_modes(self):
+        authority = {
+            "kind": reuse.AUTHORITY_KIND,
+            "projectRoot": str(ROOT.resolve()),
+            "graphSourcePins": self.real_old_pins(),
+            "currentSourcePins": self.successor_pins_at_head(),
+            "bridgeReceipt": {"path": "/tmp/h1-graph-reuse-bridge.json", "sha256": "1" * 64},
+        }
+        for mode in ("OrdinaryFirst", "MetadataFailure", "Type"):
+            with self.subTest(mode=mode):
+                with self.assertRaisesRegex(
+                        VerificationError, "limited to R00 performance Baseline/Control"):
+                    early_results._prepare(
+                        ROOT.resolve(), Path("/tmp/fixture"), Path("/tmp/on"), Path("/tmp/off"),
+                        Path("/tmp/replay"), None, None, [mode], authority)
+
     def test_r00_and_direct_early_verifiers_thread_same_authority_into_prepare(self):
         r00_source = (TOOLS / "r00_results.py").read_text()
         self.assertGreaterEqual(
