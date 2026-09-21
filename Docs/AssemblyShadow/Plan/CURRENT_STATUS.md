@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate build-input source anchor: `4d6bc15d97b0b7b9bdadff81419abeab76262d50`.
+- Candidate build-input source anchor: `69130bbb3a6df516916dddb5ad263799a7c6e5e3`.
 - Latest Local return: `8788d123ca7769396cf14c707f8df13ac764223b`.
 - Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260920-authority3168/`.
 - Gate: `H1 / InProgress / AwaitingFreshControlledWorkflowClosure`.
@@ -21,7 +21,7 @@ Both projects were manually restored to exact pinned tracked bytes and their ins
 
 ## Current Primary repair
 
-Source anchor `4d6bc15d97b0b7b9bdadff81419abeab76262d50` contains:
+Source anchor `69130bbb3a6df516916dddb5ad263799a7c6e5e3` contains:
 
 - controlled Player exact-byte transaction extended from `link.xml` to both:
   - `Assets/HybridCLRGenerate/link.xml`;
