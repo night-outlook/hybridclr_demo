@@ -1,51 +1,63 @@
-# Static Review — Formal Pilot Verification Seal
+# Static Review — Authenticated Retained-Graph Reuse Bridge
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to Local execution of one strict pilot seal and all formal pairs.
+**PASS for Primary → Local Validation handoff**, subject to real bridge creation, strict pilot sealing, formal Player sampling, and final analysis.
 
-Reviewed build-input/tool source anchor: `1a87a393e7a0ee312f39647532d80bfc603c7b23`.
+Reviewed build-input/tool source anchor: `48b44fff297d229cef5d9f8642900e974a201040`.
 
-## Returned issue
+## Returned finding
 
-The prior formal driver used `_successful_pilots` during every formal admission. That function called `_verify_prior_launch` for A/B across all four successful pilots, which invokes `r00_results.verify_suite`. The same immutable graph was therefore fully re-collected and re-hashed before every formal pair.
+The retained candidate graph is internally authentic but records demo source revision `69130bbb...`. Current project authority had advanced. The strict R00 gate therefore rejected the baseline/source provenance before pilot sealing.
 
-The observed 47:39 pre-launch run confirms this is not a theoretical cost.
+Local explicitly prohibited weakening `require_current_pairing`, rewriting receipts, moving pins, or relying on a scope audit alone. The Primary repair follows that boundary.
 
-## Review of repair
+## Review of the bridge
 
-The repair preserves the strict-verification boundary rather than removing it.
+The implementation separates three authorities:
 
-- Deep verification still occurs once for all eight pilot sides.
-- The seal is created only after the latest retained attempt for every pilot mode is Passed.
-- The immutable file set comes from launch receipts whose complete input inventory is itself checked by deep verification.
-- Pre/post filesystem identity stability closes the race between deep verification and sealing without a second full content-hash pass.
-- Formal reuse is content-bound to protocol/schedule/map/launch receipts/verifier code and identity-bound to every sealed immutable file.
-- A guard mismatch is a hard failure requiring reseal; it is not an automatic cache miss.
-- The cache cannot change across cumulative formal indexes.
-- Final paired analysis is untouched and still performs full strict evidence reconstruction.
+1. **current project authority** — unchanged global source/runtime verifier;
+2. **retained graph authority** — exact historical complete source-pin DTO, reconstructed only with demo revision `69130bbb...` and otherwise identical current platform/runtime pins;
+3. **reuse proof** — exact Git/tree/verifier/build-map evidence proving the graph→current transition is limited to the reviewed admission-tooling scope.
 
-Using device/inode/ctime in addition to size/mtime is deliberate: an in-place rewrite or file replacement that attempts to preserve common timestamp/size fields still invalidates the seal on the target Local filesystem.
+The bridge must satisfy all three before it emits `H1AuthenticatedGraphReuseAuthority`.
+
+The exact non-metadata path allowlist is closed and includes only CI and `Tools/AssemblyShadow` Python/tool documentation. It contains no Unity C#/asmdef, Assets/Packages payload, native runtime, measurement source, protocol/schedule JSON, build-map producer, or Player runner.
+
+## Strict verifier preservation
+
+`r00_player_inputs.require_current_pairing` is unchanged and contains no reuse/override branch.
+
+`verify_inputs` remains the default current-pairing path.
+
+`verify_inputs_with_reuse` is a separate function requiring an authenticated authority bound to the candidate project/current pins/bridge receipt. `r00_results.verify_suite` takes no historical pairing unless its caller explicitly supplies that authority.
+
+Only the sealer and final analyzer obtain that authority from bridge verification. This prevents a normal R00 CLI caller from declaring an arbitrary historical pin.
+
+## Seal/formal/analyzer chain
+
+- full bridge authentication occurs before the eight deep pilot-side seal verifications;
+- only retained candidate side B receives the old pairing during deep verification;
+- bridge hash is part of the seal;
+- formal cached admission revalidates the bridge compactly and requires every formal attempt to retain the same bridge/seal bindings;
+- final analyzer full-verifies the bridge again and performs the original strict per-launch evidence reconstruction;
+- bridge/cache do not change pair ordering, whole-pair retry, measurement timing, statistics, or final evidence semantics.
 
 ## Regression review
 
-The bounded regression models the exact operational requirement: one seal causes eight deep validations; forty later admissions cause zero deep validations. Six mutation classes independently fail closed.
+Primary tests cover the real old-source/current-successor Git boundary rather than only synthetic data, plus negative runtime-pin/revision cases, current-only default R00 behavior, side-B-only authority injection, seal binding, formal bridge-switch rejection, and final-analysis bridge binding.
 
-## Reuse boundary
-
-The new source changes only performance admission orchestration, sealing, tests, CI enrollment, and documentation. It does not change the already-built Player graphs or the preregistered measurement contract.
-
-Local must independently verify that scope and all retained hashes before reusing the existing graph/map/preregistration/pilot evidence.
+Primary CI at the authority successor passed 346/346 bounded tests and all existing H1 contract suites.
 
 ## Residual empirical requirements
 
-- run the strict sealer against retained real pilot evidence;
-- measure seal completion and cached admission cost;
-- run 40 formal pairs;
-- retain retries/failures unchanged;
-- run the unchanged final analyzer;
-- rerun/close complete Python and EditMode inventories after required generated prerequisites are present;
-- authenticate a new checkpoint;
-- V05 and independent M08 only after V04 closure.
+- sanctioned current installed-runtime receipt refresh if required by the new source pin;
+- independent Local source/allowlist audit;
+- creation of a real `H1GraphReuseBridge` over the retained build map;
+- successful real strict pilot seal (8 side graphs);
+- all 40 formal pairs and any retained whole-pair retries;
+- final bridge-aware strict analysis;
+- authenticated checkpoint and V05;
+- genuinely independent M08 review.
 
 H1 remains `InProgress`. Do not begin R02.
