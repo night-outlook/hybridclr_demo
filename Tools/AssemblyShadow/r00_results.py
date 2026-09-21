@@ -7,7 +7,7 @@ from pathlib import Path
 
 import m07_results as m07
 import r01_early_results as early
-from r00_player_inputs import verify_inputs
+from r00_player_inputs import verify_inputs, verify_inputs_with_reuse
 from shadow_tools import VerificationError, require
 
 MODES = ("R00-ON-NoPatch", "R00-ON-P01", "R00-ON-P03", "R00-OFF-NoPatch")
@@ -285,7 +285,7 @@ def verify_result(result, mode, context, launch_row, early_strategy, strict_mode
             "operations": verify_operations(result["operations"], mode)}
 
 
-def verify_suite(launch_path, expected_mode=None):
+def verify_suite(launch_path, expected_mode=None, pairing_authority=None):
     launch_path = Path(launch_path).resolve(strict=True)
     launch = read(launch_path)
     schema_version = launch["schemaVersion"]
@@ -298,8 +298,15 @@ def verify_suite(launch_path, expected_mode=None):
     early_strategy = launch.get("earlyStartupStrategy", "legacy-historical")
     if strict_modern:
         require(early_strategy in ("R01EarlyStartup", "legacy-explicit-no-capsule"), "R00 unknown early startup strategy")
-    context = verify_inputs(Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
-                            Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]), Path(launch["editorReplayReceipt"]))
+    if pairing_authority is None:
+        context = verify_inputs(Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
+                                Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
+                                Path(launch["editorReplayReceipt"]))
+    else:
+        context = verify_inputs_with_reuse(
+            Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
+            Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
+            Path(launch["editorReplayReceipt"]), pairing_authority)
     equal(launch["sourcePins"], context["sourcePins"], "R00 current source pairing")
     profile = declared_profile(context)
     validate_launch_profile(schema_version, early_strategy, profile)
