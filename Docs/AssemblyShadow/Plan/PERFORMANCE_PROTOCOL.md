@@ -14,6 +14,27 @@ M00 记录问题、四模式、方法、采样单位、最小样本、无效样�
 
 正式采样前冻结 protocol、source/build map、case/operation set、balanced schedule 和 hash。protocol 不包含自身 hash 或后生成 schedule 的 hash；schedule 可引用 protocol，最后由 sample index 绑定 protocol/schedule/build map，避免循环。pilot 仅用于链路、分辨率及可比性检查，原始 pilot 保留并预先排除正式统计。需要调整两边测量代码/iterations 时重新版本化并返回受影响 freeze/build/retest，不用正式快慢结果选择方法。
 
+## P2A. Pilot 严格验证封存与 Formal admission
+
+Pilot 仍按本协议完整执行且全部排除在 formal 统计之外。四个 pilot pair 全部完成后，在任何 formal Player 启动前必须执行一次独立的严格封存步骤：
+
+1. 对每个被选择的最新成功 pilot pair 的 A/B launch receipt 重新执行现有 `r00_results.verify_suite` 完整重建，共 8 个 side graph；
+2. 封存 protocol、schedule、frozen build map、pilot attempt history、每个 pilot launch receipt 和 verifier/tool 实现的内容 hash；
+3. 从已经通过严格重建的 launch receipt 中取得完整 `inputHashesBefore == inputHashesAfter` immutable input inventory，并补充 result / early capsule / early result evidence；
+4. 在完整严格重建前后记录每个 immutable file 的 canonical path 及 filesystem identity guard（device、inode、mode、size、mtimeNs、ctimeNs），要求前后完全一致；
+5. 输出新的 `H1PilotVerificationReceipt`。任何封存过程中发生的 identity 变化都使封存失败。
+
+后续每个 formal admission **不得再次重跑 8 个 pilot graph 的全量内容 hash/reconstruction**。它只允许：
+
+- 内容 hash 验证 protocol、schedule、build map、pilot launch receipt、sealing/formal verifier tools；
+- 验证当前 pilot attempt 子集与封存时完全一致；
+- 验证从当前 launch receipts 推导的 immutable path/hash inventory 与封存 inventory 完全一致；
+- 对每个 sealed immutable file 验证 canonical path 和 filesystem identity guard 未改变。
+
+任一 path/hash/tool/guard 改变都必须 fail closed，并要求重新执行一次完整严格 pilot seal；不得自动把 stat mismatch 当作可接受的 cache miss，也不得在 formal admission 中静默重新生成 seal。
+
+该机制只消除重复的 **formal pre-launch pilot reconstruction**。它不改变 build-map comparability、pair ordering、whole-pair retry、样本保留、正式统计或最终 analyzer。最终 analyzer 仍对全部选中 pilot/formal launch evidence 执行原有严格验证，pilot seal 不能替代最终证据审计。
+
 ## P3. 可比性
 
 | 项目 | 必需处理 |
