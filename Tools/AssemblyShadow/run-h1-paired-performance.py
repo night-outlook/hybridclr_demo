@@ -517,12 +517,10 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
     if phase == "formal":
         require(pilot_verification_path is not None,
                 "Formal sampling requires --pilot-verification-receipt sealed by strict pilot reconstruction")
-        require(graph_reuse_bridge_path is not None,
-                "Formal sampling of the retained candidate graph requires --graph-reuse-bridge")
         cache_binding = verify_pilot_verification(
             pilot_verification_path, attempts, schedule, protocol_path, schedule_path, build_map_path,
             graph_reuse_bridge_path)
-        bridge_binding = binding(graph_reuse_bridge_path)
+        bridge_binding = binding(graph_reuse_bridge_path) if graph_reuse_bridge_path is not None else None
         for prior_attempt in attempts:
             if prior_attempt.get("phase") == "formal":
                 require(prior_attempt.get("pilotVerification") == cache_binding,
