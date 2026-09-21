@@ -4,7 +4,7 @@
 
 Validate the formal-admission pilot verification seal at candidate build-input/tool source anchor:
 
-`01cdd033665400eba9fa0533fe17c12f9da92746`
+`1a87a393e7a0ee312f39647532d80bfc603c7b23`
 
 Then, if the retained V04 graph/map/preregistration/pilot evidence remains hash-identical and the source-scope audit confirms no affected Player/runtime input, complete in one Local cycle:
 
@@ -28,7 +28,7 @@ Candidate identities:
 
 | Repository | Branch | Build/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `01cdd033665400eba9fa0533fe17c12f9da92746` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `1a87a393e7a0ee312f39647532d80bfc603c7b23` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -162,7 +162,7 @@ Run it in order.
 2. Candidate/protected installed-runtime verification.
 3. Bounded Primary and live-handoff tests.
 4. Direct paired-driver regression.
-5. Source-scope audit from `69130bbb...` to `01cdd033...`.
+5. Source-scope audit from `69130bbb...` to `1a87a393...`.
 
 ### Required reuse audit
 
