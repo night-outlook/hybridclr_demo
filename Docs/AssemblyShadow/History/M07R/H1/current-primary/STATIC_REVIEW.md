@@ -4,7 +4,7 @@
 
 **PASS for Primary → Local Validation handoff**, subject to real bridge creation, strict pilot sealing, formal Player sampling, and final analysis.
 
-Reviewed build-input/tool source anchor: `48b44fff297d229cef5d9f8642900e974a201040`.
+Reviewed build-input/tool source anchor: `6dd964c045034240ea53dd15ba7c0b33e9f2ad17`.
 
 ## Returned finding
 
