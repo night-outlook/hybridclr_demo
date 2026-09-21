@@ -97,20 +97,21 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
         self.assertLess(resources, player_on)
         self.assertLess(player_on, player_off)
         self.assertGreaterEqual(core[validate:player_off].count('Assert-M07PinnedInputs $shadowProject'), 3)
-        self.assertIn("$relative = 'Assets/HybridCLRGenerate/link.xml'", core)
+        self.assertIn("relative = 'Assets/HybridCLRGenerate/link.xml'", core)
+        self.assertIn("relative = 'ProjectSettings/ProjectSettings.asset'", core)
         self.assertEqual(2, core.count("Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.Build"))
         for value in (
             "kind = 'M07GeneratedPlayerInputRestoration'",
             "status = 'ExactBytesRestored'",
-            "generatedSha256 = Get-M07BytesHash $generated",
+            "generatedSha256 = $generatedSha",
             "restoredSha256 = $restoredSha",
             "if ($stageFailure) { throw $stageFailure }"):
             self.assertIn(value, core)
         recovery = core.index('function Invoke-M07PlayerMethodWithGeneratedInputRecovery')
-        snapshot = core.index('$original = [IO.File]::ReadAllBytes($path)', recovery)
+        snapshot = core.index('$input.original = [IO.File]::ReadAllBytes($input.path)', recovery)
         invoke_player = core.index('Invoke-M07GuardedMethod $Method', snapshot)
         restore = core.index('$file.Write($saved, 0, $saved.Length)', invoke_player)
-        receipt = core.index("kind = 'M07GeneratedPlayerInputRestoration'", restore)
+        receipt = core.index("$receiptPath = Join-Path $Run ($Label + '-' + $input.key + '-restored.json')", restore)
         self.assertLess(snapshot, invoke_player)
         self.assertLess(invoke_player, restore)
         self.assertLess(restore, receipt)
