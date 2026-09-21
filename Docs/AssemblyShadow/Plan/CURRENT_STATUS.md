@@ -32,13 +32,13 @@ Source anchor `6dd964c045034240ea53dd15ba7c0b33e9f2ad17` adds a narrow authentic
 - `H1GraphReuseBridge` is limited to retained candidate side B and graph demo revision `69130bbb...`.
 - The bridge requires identical Unity/target/architecture and identical HybridCLR/HybridCLR-Unity/IL2CPP pins.
 - It requires `69130bbb...` to be an ancestor of the current source anchor.
-- The complete non-metadata Git delta must equal the exact reviewed 12-path `.github` / `Tools/AssemblyShadow` allowlist; Assets/Packages/runtime/native/measurement/protocol/schedule/map changes cannot pass.
+- The complete non-metadata Git delta must equal the exact reviewed 14-path `.github` / `Tools/AssemblyShadow` allowlist; Assets/Packages/runtime/native/measurement/protocol/schedule/map changes cannot pass.
 - The bridge binds current source pins, frozen build map, old/current pairing DTOs, changed Git blobs, verifier implementations, and current installed-runtime verification.
 - A bridge-authenticated authority may supply the historical graph pairing only to retained candidate side B during strict pilot sealing and final analysis; protected side A remains on the default path.
 - The bridge is bound into the pilot seal and every formal attempt; bridge switching is rejected.
 - Final analysis fully reauthenticates the bridge and still performs the existing strict launch/evidence reconstruction.
 
-Primary workflow `35594627659` at authority successor `eb53550a...` passed bounded **346/346**, handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 PowerShell recovery regressions, and lazy **10/10**.
+Primary workflow `35595508673` at authority successor `1273dea4...` passed bounded **348/348**, handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 PowerShell recovery regressions, and lazy **10/10**.
 
 ## Required next action
 
