@@ -4,7 +4,7 @@
 
 Validate the two V04 controlled-workflow boundary repairs at candidate build-input source anchor:
 
-`4d6bc15d97b0b7b9bdadff81419abeab76262d50`
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3`
 
 in one Local batch:
 
@@ -24,7 +24,7 @@ Candidate identities:
 
 | Repository | Branch | Build/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `4d6bc15d97b0b7b9bdadff81419abeab76262d50` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source anchor `69130bbb3a6df516916dddb5ad263799a7c6e5e3` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -128,7 +128,7 @@ Run it in order.
 3. Complete current Python/bounded regressions.
 4. Both direct PowerShell recovery tests.
 5. Broad Unity EditMode sanity.
-6. Source-scope audit from `316894a8...` to `4d6bc15d...`.
+6. Source-scope audit from `316894a8...` to `69130bbb...`.
 
 ### Profile-1 controlled workflow
 
