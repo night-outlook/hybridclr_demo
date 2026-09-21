@@ -26,7 +26,7 @@ The bridge is not a relaxation of normal source pairing. It is a new evidence ob
 2. current source/runtime authority must pass the unchanged global verifier;
 3. Unity/target/architecture and all three runtime repository pins must equal the retained graph pairing;
 4. the old revision must be a Git ancestor of current authority;
-5. after the existing metadata-only exclusions, the old→current tree delta must equal the exact reviewed 12-path CI/AssemblyShadow-tooling allowlist;
+5. after the existing metadata-only exclusions, the old→current tree delta must equal the exact reviewed 14-path CI/AssemblyShadow-tooling allowlist;
 6. the bridge binds every changed Git blob, current source-pin bytes, frozen build map, verifier code, and installed-runtime verification.
 
 `r00_player_inputs.require_current_pairing` remains byte-for-byte logically unchanged. A separate `verify_inputs_with_reuse` entry accepts only an `H1AuthenticatedGraphReuseAuthority`; default `verify_inputs` still uses the live project pins.
