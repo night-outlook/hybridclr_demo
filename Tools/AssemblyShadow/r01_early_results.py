@@ -19,7 +19,7 @@ import m07_results as m07
 import m04_results as m04
 from m04_metadata import read_identity
 import r01_early_capsule as capsule
-from r00_player_inputs import verify_inputs
+from r00_player_inputs import verify_inputs, verify_inputs_with_reuse
 import r01_failure_results as failures
 import r01_results
 from shadow_tools import require, unique_object
@@ -944,8 +944,13 @@ def _load_runner():
 
 
 def _prepare(project: Path, fixture: Path, on: Path, off: Path, replay: Path,
-             failure_path: Path | None, negative_path: Path | None, modes: list[str]) -> dict[str, Any]:
-    context = verify_inputs(project, fixture, on, off, replay)
+             failure_path: Path | None, negative_path: Path | None, modes: list[str],
+             pairing_authority: dict[str, Any] | None = None) -> dict[str, Any]:
+    context = (
+        verify_inputs(project, fixture, on, off, replay)
+        if pairing_authority is None
+        else verify_inputs_with_reuse(project, fixture, on, off, replay, pairing_authority)
+    )
     profile = failures.metadata_profile(context, "R01 early")
     if profile == 1:
         r01_results.require_r01_inputs(context)
@@ -1012,7 +1017,7 @@ def verify_imported_snapshots(early: dict[str, Any], m07_result: dict[str, Any])
               "early.handoff.importedDiagnostics." + target_phase)
 
 
-def verify_suite(launch_path: Path) -> dict[str, Any]:
+def verify_suite(launch_path: Path, pairing_authority: dict[str, Any] | None = None) -> dict[str, Any]:
     launch_path = canonical(launch_path, launch_path, "early launch receipt")
     launch = fields(read(launch_path), LAUNCH_FIELDS, str(launch_path))
     exact(launch["schemaVersion"], 1, "launch.schemaVersion")
@@ -1038,7 +1043,8 @@ def verify_suite(launch_path: Path) -> dict[str, Any]:
     negative_path = Path(launch["negativeInputPath"]) if launch["negativeInputPath"] else None
     if failure_path is not None: failure_path = canonical(failure_path, launch_path, "launch.failureFixturesPath")
     if negative_path is not None: negative_path = canonical(negative_path, launch_path, "launch.negativeInputPath")
-    prepared = _prepare(project, fixture, on, off, replay, failure_path, negative_path, requested)
+    prepared = _prepare(
+        project, fixture, on, off, replay, failure_path, negative_path, requested, pairing_authority)
     exact(launch["sourcePins"], prepared["context"]["sourcePins"], "launch.sourcePins")
     rows = launch["processLaunches"]
     require(type(rows) is list and len(rows) == len(requested), "launch.processLaunches")
