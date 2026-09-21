@@ -501,9 +501,10 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
                 "Formal sampling requires --pilot-verification-receipt sealed by strict pilot reconstruction")
         cache_binding = verify_pilot_verification(
             pilot_verification_path, attempts, schedule, protocol_path, schedule_path, build_map_path)
-        prior_cache = value.get("pilotVerification")
-        if prior_cache is not None:
-            require(prior_cache == cache_binding, "Prior formal index pilot verification binding mismatch")
+        for prior_attempt in attempts:
+            if prior_attempt.get("phase") == "formal":
+                require(prior_attempt.get("pilotVerification") == cache_binding,
+                        "Prior formal attempt pilot verification binding mismatch")
     else:
         require(pilot_verification_path is None, "Pilot sampling must not consume a formal pilot verification receipt")
     return attempts
@@ -725,11 +726,11 @@ def main(argv: list[str] | None = None) -> int:
     record = {"pairId": row["pairId"], "attempt": args.attempt, "mode": row["mode"], "phase": row["phase"],
               "order": row["order"], "status": status, "retryOf": args.attempt - 1 if args.attempt > 1 else None,
               "A": sides["A"], "B": sides["B"]}
+    if args.pilot_verification_receipt is not None:
+        record["pilotVerification"] = binding(args.pilot_verification_receipt)
     attempts.append(record)
     sample = {"schemaVersion": 1, "kind": "H1ControlledSamples", "protocol": binding(protocol_path),
               "schedule": binding(schedule_path), "buildMap": binding(build_map_path), "attempts": attempts}
-    if args.pilot_verification_receipt is not None:
-        sample["pilotVerification"] = binding(args.pilot_verification_receipt)
     output_path = output_root / "sample-index.json"
     with output_path.open("x", encoding="utf-8") as stream:
         json.dump(sample, stream, indent=2)
