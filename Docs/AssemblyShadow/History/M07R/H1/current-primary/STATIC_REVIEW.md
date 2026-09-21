@@ -4,7 +4,7 @@
 
 **PASS for Primary → Local Validation handoff**, subject to Local execution of one strict pilot seal and all formal pairs.
 
-Reviewed build-input/tool source anchor: `01cdd033665400eba9fa0533fe17c12f9da92746`.
+Reviewed build-input/tool source anchor: `1a87a393e7a0ee312f39647532d80bfc603c7b23`.
 
 ## Returned issue
 
