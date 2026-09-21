@@ -314,7 +314,8 @@ def verify_suite(launch_path, expected_mode=None, pairing_authority=None):
         prepared = early._prepare(
             Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
             Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
-            Path(launch["editorReplayReceipt"]), None, None, [], pairing_authority)
+            Path(launch["editorReplayReceipt"]), None, None, [],
+            pairing_authority=pairing_authority)
         validate_strategy_profile(early_strategy, prepared["profile"])
     m07_runner_path = Path(__file__).with_name("run-m07-players.py")
     if not m07_runner_path.is_file():
@@ -336,7 +337,8 @@ def verify_suite(launch_path, expected_mode=None, pairing_authority=None):
             prepared = early._prepare(
                 Path(launch["projectRoot"]), Path(launch["fixtureManifestPath"]),
                 Path(launch["nativeOnReceipt"]), Path(launch["nativeOffReceipt"]),
-                Path(launch["editorReplayReceipt"]), None, None, early_modes, pairing_authority)
+                Path(launch["editorReplayReceipt"]), None, None, early_modes,
+                pairing_authority=pairing_authority)
         for row in launch["processLaunches"]:
             if row["mode"] == OFF_MODE:
                 continue
