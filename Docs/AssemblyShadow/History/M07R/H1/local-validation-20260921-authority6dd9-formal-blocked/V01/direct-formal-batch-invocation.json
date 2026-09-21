@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1DirectFormalBatchTestInvocation",
+  "status": "PassedAfterExplicitRepositoryModulePath",
+  "firstInvocation": {
+    "command": [
+      "python3",
+      "Tools/AssemblyShadow/tests/test_h1_formal_batch.py",
+      "-v"
+    ],
+    "result": "InvocationFailedBeforeTests",
+    "error": "ModuleNotFoundError: No module named 'shadow_tools'"
+  },
+  "secondInvocation": {
+    "environment": {
+      "PYTHONPATH": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow"
+    },
+    "command": [
+      "python3",
+      "Tools/AssemblyShadow/tests/test_h1_formal_batch.py",
+      "-v"
+    ],
+    "result": "Passed",
+    "passed": 2,
+    "failed": 0
+  },
+  "sourceModified": false,
+  "acceptanceClaimed": false
+}

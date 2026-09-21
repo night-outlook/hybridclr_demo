@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PilotVerificationFailure",
+  "status": "FailedBeforeReceipt",
+  "checkoutCommit": "1c6cdda260e2bf91e07e672aa261dcc38b3a5aa8",
+  "sourceAnchor": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
+  "observedDurationSeconds": 1104.2,
+  "error": "R00 baseline: source pins differ from baseline provenance",
+  "receiptCreated": false,
+  "formalPlayerLaunched": false,
+  "command": [
+    "python3",
+    "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+    "--protocol",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "--schedule",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "--build-map",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "--pilot-index",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "--graph-reuse-bridge",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority6dd9-formal/V04/performance/h1-graph-reuse-bridge.json",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority6dd9-formal/V04/performance/h1-pilot-verification-receipt.json"
+  ],
+  "bindings": {
+    "protocolSha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc",
+    "scheduleSha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a",
+    "buildMapSha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19",
+    "pilotIndexSha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf",
+    "graphReuseBridgeSha256": "088a338632a9d2a9970c0bc61aaa9b218b4ca93e080a1734539b68317fa1a89e"
+  },
+  "focusedDiagnostic": {
+    "outerBridgeAwareR00Verification": "Passed",
+    "nestedEarlyPrepare": "FailedAsObserved",
+    "nestedError": "R00 baseline: source pins differ from baseline provenance",
+    "directCause": "r00_results.verify_suite accepts pairing_authority for its outer verify_inputs_with_reuse call, but strict R01EarlyStartup capsule reconstruction calls r01_early_results._prepare, which calls default verify_inputs without the authenticated reuse authority.",
+    "rootCause": "The bridge authority is not propagated through the nested early-startup reconstruction path used by strict retained pilot verification."
+  },
+  "disposition": "ReturnToPrimaryForFailClosedAuthorityPropagationRepair",
+  "formalPairsStarted": 0,
+  "v05Eligible": false,
+  "m08Eligible": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

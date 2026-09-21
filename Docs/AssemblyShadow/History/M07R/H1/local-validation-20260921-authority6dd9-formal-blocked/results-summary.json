@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationSummary",
+  "status": "BlockedAtStrictPilotSealNestedPairingAuthority",
+  "checkoutCommit": "1c6cdda260e2bf91e07e672aa261dcc38b3a5aa8",
+  "sourceAnchor": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
+  "v00": {
+    "candidateAuthority": "SourceTargetVerifiedNotBuildAccepted",
+    "reproductionTooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "protectedReference": "ProtectedReferenceInputsVerifiedNotBuilt",
+    "candidateInstalledRuntime": "PassedAfterReceiptRefresh",
+    "candidateInstallReceiptSha256": "df751fe21303bdca4795f87f4c328a00082d0c665e1aa931f8673a12e1c1d673",
+    "protectedInstalledRuntime": "Passed",
+    "protectedInstallReceiptSha256": "54bfe84c6e1fb72a73c675c257f05b81ee8719fd5c2650f0044edea45314c64a"
+  },
+  "v01": {
+    "boundedPrimary": "348/348",
+    "graphReuse": "8/8",
+    "pairedDriver": "12/12",
+    "formalBatch": "2/2AfterExplicitRepositoryModulePath",
+    "earlyCapsule": "7/7",
+    "earlyLaunch": "20/20",
+    "earlyResults": "20/20",
+    "failurePipeline": "16/16",
+    "lazy": "10/10",
+    "powerShellRecovery": "PassedBoth"
+  },
+  "inventories": {
+    "python": {
+      "status": "CompletedWithExplainedEnvironmentSkips",
+      "total": 1033,
+      "passed": 1005,
+      "skipped": 28,
+      "failed": 0,
+      "errors": 0
+    },
+    "unityEditMode": {
+      "status": "Passed",
+      "total": 1076,
+      "passed": 1076,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "reuseAudit": {
+    "exactNonMetadataPaths": 14,
+    "previousPrimaryToCurrent": "Passed",
+    "retainedGraphToCurrent": "Passed",
+    "retainedCheckpointManifest": "Passed",
+    "livePlayerArtifacts": "Passed",
+    "priorBlockedCheckpointManifest": "Passed",
+    "selectedLaunchReceiptsVerified": 8,
+    "boundFilesVerified": 33784,
+    "boundBytesVerified": 1521688590
+  },
+  "graphReuseBridge": {
+    "status": "AuthenticatedToolOnlySuccessor",
+    "side": "B",
+    "sha256": "088a338632a9d2a9970c0bc61aaa9b218b4ca93e080a1734539b68317fa1a89e"
+  },
+  "pilotSeal": {
+    "status": "FailedBeforeReceipt",
+    "observedDurationSeconds": 1104.2,
+    "error": "R00 baseline: source pins differ from baseline provenance",
+    "outerBridgeAwareR00Verification": "Passed",
+    "nestedEarlyPrepare": "FailedAsObserved",
+    "receiptCreated": false,
+    "formalPlayerLaunched": false
+  },
+  "formalPairs": {
+    "status": "NotRun",
+    "completed": 0,
+    "required": 40
+  },
+  "finalAnalysis": "NotRun",
+  "v05": "Ineligible",
+  "independentM08": "NotRunLastResultRemainsFAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}
