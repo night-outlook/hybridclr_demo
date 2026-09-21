@@ -154,6 +154,9 @@ namespace AssemblyShadowDemo.EditorTests
                 StringAssert.Contains(method, core);
             StringAssert.Contains("p05-project-settings.original", core);
             StringAssert.Contains("p05-settings-restored.json", core);
+            StringAssert.Contains("'ProjectSettings/ProjectSettings.asset'", core);
+            StringAssert.Contains("'M07ControlledPlayerSettingsRestoration'", core);
+            StringAssert.Contains("$Label + '-' + $input.key + '-restored.json'", core);
             StringAssert.Contains("[IO.FileMode]::CreateNew", outer);
             StringAssert.Contains("[IO.FileMode]::CreateNew", core);
             StringAssert.Contains("Test-UnityProjectRunning", outer);
