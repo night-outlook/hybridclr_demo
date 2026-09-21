@@ -2,7 +2,7 @@
 
 Candidate build-input source anchor:
 
-`4d6bc15d97b0b7b9bdadff81419abeab76262d50`
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3`
 
 Latest Local return:
 
@@ -17,7 +17,7 @@ Validate both returned V04 boundary repairs and, if they pass, continue the rema
 ## V00 — fresh authority
 
 1. Pull the final pushed `codex/assembly-shadow-r01b-h1` checkout and require clean tracked state.
-2. Record checkout HEAD separately from source anchor `4d6bc15d97b0b7b9bdadff81419abeab76262d50`.
+2. Record checkout HEAD separately from source anchor `69130bbb3a6df516916dddb5ad263799a7c6e5e3`.
 3. Run candidate handoff/source preflight; require `SourceTargetVerifiedNotBuildAccepted` at the exact source anchor.
 4. Authenticate reproduction tooling and protected profile-1 pins.
 5. Verify candidate and protected installed runtimes before any controlled build.
@@ -45,7 +45,7 @@ Audit from the prior candidate source anchor:
 
 to:
 
-`4d6bc15d97b0b7b9bdadff81419abeab76262d50`
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3`
 
 Expected functional changes:
 
