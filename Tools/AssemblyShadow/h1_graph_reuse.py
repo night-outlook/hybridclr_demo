@@ -256,7 +256,9 @@ def _verify_common(receipt_path: Path, project: Path, build_map_path: Path,
             "Graph reuse bridge build-map project changed")
 
     if full:
-        shadow_tools.verify(project, expected_shadow="on")
+        installed = shadow_tools.verify(project, expected_shadow="on")
+        require(value.get("installedRuntimeVerification") == installed,
+                "Graph reuse installed-runtime verification changed after bridge creation")
         actual = authenticate_transition(project, graph_pins, current_pins)
         require(transition == actual, "Graph reuse transition proof no longer matches current Git/source state")
 
