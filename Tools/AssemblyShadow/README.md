@@ -388,3 +388,37 @@ M00 Player, build, install and Editor results go under _temp/AssemblyShadow.
 Accepted results and review records are archived under Docs/AssemblyShadow.
 Builds, caches, patch DLLs and dSYM files are reproducible local artifacts, not
 checked-in source. Windows/Android results must never be inferred from macOS.
+
+
+## H1 paired performance — sealed pilot admission
+
+Formal sampling must not repeatedly reconstruct and re-hash all eight pilot side graphs. After all four preregistered pilot pairs have passed, create exactly one strict pilot verification receipt:
+
+```sh
+python3 Tools/AssemblyShadow/seal-h1-pilot-verification.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <frozen-build-map.json> \
+  --pilot-index <completed-pilot-sample-index.json> \
+  --output <new-pilot-verification.json>
+```
+
+The sealer performs the existing full `r00_results.verify_suite` reconstruction for the latest passed A/B launch of every pilot mode (8 side graphs total), binds the protocol/schedule/build map, pilot attempt history, launch receipts, and verifier implementation, and captures a stable filesystem identity guard for the complete immutable input/evidence inventory.
+
+Every formal pair must then use that exact receipt:
+
+```sh
+python3 Tools/AssemblyShadow/run-h1-paired-performance.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <frozen-build-map.json> \
+  --pilot-verification-receipt <new-pilot-verification.json> \
+  --prior-index <latest-sample-index.json> \
+  --output-root <new-pair-output-root> \
+  --phase formal \
+  --attempt 1
+```
+
+The formal driver re-hashes only compact control receipts/tools and checks the sealed path/device/inode/mode/size/mtime/ctime identity for every immutable file. Any changed pilot attempt, launch receipt, bound artifact, protocol, schedule, build map, verifier tool, or filesystem guard fails closed and requires a new strict seal. It never silently rebuilds the cache.
+
+The seal changes only formal pre-launch admission cost. Whole-pair retry, schedule order, sample retention, and the final paired analyzer remain unchanged. The final analyzer still performs full strict launch/evidence reconstruction.
