@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py", line 170, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py", line 54, in main
+    context = verify_inputs(project, args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/r00_player_inputs.py", line 49, in verify_inputs
+    return _verify_inputs(project, fixture_manifest, on_path, off_path, replay_path, pins)
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/r00_player_inputs.py", line 23, in _verify_inputs
+    require_current_pairing(expected_pins, baseline["sourcePins"], "R00 baseline")
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/r00_player_inputs.py", line 14, in require_current_pairing
+    m07.prior._pins(captured, label, expected)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/m04_results.py", line 81, in _pins
+    _verify_source_pins(value, path, expected)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/m02_results.py", line 950, in _verify_source_pins
+    _need(_normal(pins) == _normal(expected), path, "source pins differ from baseline provenance")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/m02_results.py", line 59, in _need
+    require(condition, f"{path}: {message}")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/shadow_tools.py", line 32, in require
+    raise VerificationError(message)
+shadow_tools.VerificationError: R00 baseline: source pins differ from baseline provenance
