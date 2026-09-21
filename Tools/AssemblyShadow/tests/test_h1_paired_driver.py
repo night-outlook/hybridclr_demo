@@ -252,8 +252,9 @@ class H1PairedDriverTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
             fixture = self._pilot_cache_fixture(root)
-            bridge = write_json(root / "bridge.json", {"schemaVersion": 1})
-            other = write_json(root / "bridge-other.json", {"schemaVersion": 1, "other": True})
+            project_b = fixture["build"]["sides"]["B"]["projectRoot"]
+            bridge = write_json(root / "bridge.json", {"schemaVersion": 1, "projectRoot": str(project_b)})
+            other = write_json(root / "bridge-other.json", {"schemaVersion": 1, "projectRoot": str(project_b), "other": True})
             authority = {
                 "kind": driver.graph_reuse.AUTHORITY_KIND,
                 "projectRoot": str(fixture["build"]["sides"]["B"]["projectRoot"]),
