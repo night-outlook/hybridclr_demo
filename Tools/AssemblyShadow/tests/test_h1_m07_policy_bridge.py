@@ -101,7 +101,8 @@ class M07FixedBootstrapPolicyTests(unittest.TestCase):
         self.assertIn("relative = 'ProjectSettings/ProjectSettings.asset'", core)
         self.assertEqual(2, core.count("Invoke-M07PlayerMethodWithGeneratedInputRecovery 'AssemblyShadowDemo.Editor.M07Build.Build"))
         for value in (
-            "kind = 'M07GeneratedPlayerInputRestoration'",
+            "receiptKind = 'M07GeneratedPlayerInputRestoration'",
+            "receiptKind = 'M07ControlledPlayerSettingsRestoration'",
             "status = 'ExactBytesRestored'",
             "generatedSha256 = $generatedSha",
             "restoredSha256 = $restoredSha",
