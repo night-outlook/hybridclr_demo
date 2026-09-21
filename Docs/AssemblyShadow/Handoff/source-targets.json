@@ -89,15 +89,24 @@
     "policy": "Preserve its committed old-profile pins; never install candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35195186054,
-    "implementationCommit": "21d3d5763ce027185d2e7f777f71545d354d44ec",
-    "authenticatedBeeGraphSha256": "dbf1deae4c537fed4c9da57b942d14fb9c1823f5e40dc077a66914648a3be181",
-    "testCount": 311,
-    "passed": 311,
+    "workflowRun": 35558065875,
+    "handoffCommit": "8d1c44a274e5a5535959293162c303f38ba0c38f",
+    "implementationCommit": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "testCount": 326,
+    "passed": 326,
     "nonpasses": 0,
-    "artifactId": 10485926242,
-    "artifactSha256": "d2486ad13ab52d41b5fcd19ce7902863c2ef8b242b1747ec9f9b1284402be9a5",
-    "scope": "Bounded Primary/tool validation: authenticated Apple Bee fixture planning, native/store/PCH and managed-cache regressions, reproduction-tooling authority, M07 fixed-byte/bootstrap policy, exact restoration, and post-ValidateCompilerInputs immutable/mutable authority split. Not Unity/Apple Player/runtime/performance/M08/human acceptance."
+    "handoffTests": "11/11",
+    "r01EarlyCapsuleTests": "7/7",
+    "r01EarlyLaunchTests": "20/20",
+    "r01EarlyResultsTests": "20/20",
+    "r01FailurePipelineTests": "16/16",
+    "m07RecoveryLabelBinder": "Passed",
+    "m07MutableInputRecovery": "Passed",
+    "r01bLazyTests": "10/10",
+    "artifactId": 10620649436,
+    "artifactSha256": "bc976529b93e1f789b87179bed2a24a84b63c534a0811986aa43f2a9749cdd56",
+    "artifactBytes": 12662038,
+    "scope": "Primary source/tool validation only: bounded regressions, live handoff preflight, R01/lazy contracts, and direct no-Unity M07 recovery transactions. Not Unity/IL2CPP controlled Player acceptance, performance acceptance, V05, M08, or human H1 approval."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
