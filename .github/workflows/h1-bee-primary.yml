@@ -12,6 +12,7 @@ on:
       - 'Tools/AssemblyShadow/verify-h1-compiler-provenance-strict.py'
       - 'Tools/AssemblyShadow/tests/test_h1_*.py'
       - 'Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1'
+      - 'Tools/AssemblyShadow/tests/test_m07_player_input_recovery.ps1'
       - 'Tools/AssemblyShadow/r01_*.py'
       - 'Tools/AssemblyShadow/run-r01-failure-players.py'
       - 'Tools/AssemblyShadow/tests/test_r01_*.py'
@@ -27,6 +28,7 @@ on:
       - 'Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs'
       - 'Assets/AssemblyShadowDemo/Tests/Editor/R01BLazyDiagnosticTests.cs'
       - 'Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs'
+      - 'Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs'
       - 'Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md'
       - 'Docs/AssemblyShadow/Handoff/source-targets.json'
       - 'ProjectSettings/AssemblyShadowSourcePins.json'
@@ -60,9 +62,11 @@ jobs:
           python3 Tools/AssemblyShadow/tests/test_r01_early_launch.py
           python3 Tools/AssemblyShadow/tests/test_r01_early_results.py
           python3 Tools/AssemblyShadow/tests/test_r01_failure_pipeline.py
-      - name: Run M07 PowerShell recovery-label binder regression
+      - name: Run M07 PowerShell recovery regressions
         shell: pwsh
-        run: ./Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1
+        run: |
+          ./Tools/AssemblyShadow/tests/test_m07_generated_input_recovery_labels.ps1
+          ./Tools/AssemblyShadow/tests/test_m07_player_input_recovery.ps1
       - name: Run R01B lazy contract regressions
         env:
           PYTHONDONTWRITEBYTECODE: '1'
