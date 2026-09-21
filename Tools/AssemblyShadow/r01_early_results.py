@@ -945,7 +945,7 @@ def _load_runner():
 
 def _prepare(project: Path, fixture: Path, on: Path, off: Path, replay: Path,
              failure_path: Path | None, negative_path: Path | None, modes: list[str],
-             pairing_authority: dict[str, Any] | None = None) -> dict[str, Any]:
+             *, pairing_authority: dict[str, Any] | None = None) -> dict[str, Any]:
     if pairing_authority is not None:
         require(set(modes).issubset({"Baseline", "Control"}),
                 "Retained graph pairing authority is limited to R00 performance Baseline/Control early modes")
@@ -1020,7 +1020,7 @@ def verify_imported_snapshots(early: dict[str, Any], m07_result: dict[str, Any])
               "early.handoff.importedDiagnostics." + target_phase)
 
 
-def verify_suite(launch_path: Path, pairing_authority: dict[str, Any] | None = None) -> dict[str, Any]:
+def verify_suite(launch_path: Path) -> dict[str, Any]:
     launch_path = canonical(launch_path, launch_path, "early launch receipt")
     launch = fields(read(launch_path), LAUNCH_FIELDS, str(launch_path))
     exact(launch["schemaVersion"], 1, "launch.schemaVersion")
@@ -1047,7 +1047,7 @@ def verify_suite(launch_path: Path, pairing_authority: dict[str, Any] | None = N
     if failure_path is not None: failure_path = canonical(failure_path, launch_path, "launch.failureFixturesPath")
     if negative_path is not None: negative_path = canonical(negative_path, launch_path, "launch.negativeInputPath")
     prepared = _prepare(
-        project, fixture, on, off, replay, failure_path, negative_path, requested, pairing_authority)
+        project, fixture, on, off, replay, failure_path, negative_path, requested)
     exact(launch["sourcePins"], prepared["context"]["sourcePins"], "launch.sourcePins")
     rows = launch["processLaunches"]
     require(type(rows) is list and len(rows) == len(requested), "launch.processLaunches")
