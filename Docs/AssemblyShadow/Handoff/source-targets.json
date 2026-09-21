@@ -597,7 +597,7 @@
     "correction": {
       "r01EarlyPrepare": "_prepare accepts an optional already-authenticated pairing authority. With no authority it preserves the original verify_inputs current-pairing path; with an authority it uses verify_inputs_with_reuse.",
       "r00Propagation": "r00_results.verify_suite passes the exact pairing_authority object into both legacy and strict-modern calls to r01_early_results._prepare.",
-      "directEarlyPropagation": "r01_early_results.verify_suite also threads its optional programmatic authority into _prepare; no CLI historical-pairing option was added.",
+      "directEarlyPropagation": "Direct r01_early_results.verify_suite remains current-pairing-only and exposes no pairing_authority parameter. Only the already bridge-aware r00_results path may supply retained authority to the keyword-only internal _prepare parameter; no CLI historical-pairing option was added.",
       "scopeRestriction": "A retained authority is accepted by _prepare only when the requested early-mode set is a subset of Baseline/Control, which are the performance early modes. Ordinary, failure, and guard early modes fail closed.",
       "bridgeInvalidation": "r01_early_results.py is now both an H1GraphReuseBridge verifier binding and a member of the exact retained-graph non-metadata allowlist, so any future change invalidates/requires recreation of the bridge.",
       "defaultGate": "r00_player_inputs.require_current_pairing is unchanged; default R00 and protected side A remain current-pairing-only.",
@@ -606,7 +606,7 @@
     },
     "regression": {
       "realTransition": "Uses the real 69130bbb-to-current Git transition and authenticated authority, then executes the actual nested r01_early_results._prepare for the ON/Baseline early path while asserting default verify_inputs is not called.",
-      "callChain": "Pins both r00_results and direct r01_early_results call sites to pass the same authority into _prepare.",
+      "callChain": "Pins r00_results to pass pairing_authority by explicit keyword into both nested _prepare call sites, while separately asserting direct r01_early_results.verify_suite exposes no retained-authority surface and calls _prepare without one.",
       "negativeScope": "OrdinaryFirst, MetadataFailure, and Type reject retained authority before any nested verifier work."
     },
     "retainedGraphAllowlistCount": 17
