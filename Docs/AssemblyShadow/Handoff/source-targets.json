@@ -89,11 +89,11 @@
     "policy": "Preserve its committed old-profile pins; never install candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35595848007,
-    "handoffCommit": "57c3db2c442a82d7b2083f84dae9e9d746503b07",
-    "implementationCommit": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
-    "testCount": 348,
-    "passed": 348,
+    "workflowRun": 35615122645,
+    "handoffCommit": "5a6e0f7b7591f26891dca75745a3738910a947a1",
+    "implementationCommit": "a964f79d6ceba866c5956741a4a32e38ff8a6b5f",
+    "testCount": 353,
+    "passed": 353,
     "nonpasses": 0,
     "handoffTests": "11/11",
     "r01EarlyCapsuleTests": "7/7",
@@ -103,13 +103,14 @@
     "m07RecoveryLabelBinder": "Passed",
     "m07MutableInputRecovery": "Passed",
     "r01bLazyTests": "10/10",
-    "graphReuseRegression": "Passed; real 69130bbb-to-current Git transition exactly matches the closed 14-path allowlist; runtime-pin/revision negatives fail; default R00 remains current-pairing-only; authenticated retained authority is side-B-only and bound through seal/formal/final analysis.",
+    "graphReuseRegression": "Passed; real 69130bbb-to-current transition exactly matches the closed 17-path allowlist; default R00 remains current-pairing-only; r01_early_results.py is bridge-bound; actual nested _prepare uses the same authenticated authority only for Baseline/Control; ordinary/failure/guard modes reject retained authority.",
+    "retainedEarlyPreflightRegression": "Passed; read-only preflight selects exactly candidate side-B R00-ON-NoPatch, R00-ON-P01, and R00-ON-P03 with one authenticated authority, covering Baseline and Control nested early-capsule reconstruction; incomplete ON inventory fails before strict verification.",
     "pairedDriverCacheRegression": "Passed; one strict seal performs 8 deep pilot-side verifications; 40 cached formal admissions perform 0 repeated deep pilot rescans; bridge/seal/file/tool mutation and authority switching fail closed.",
     "formalBatchRegression": "Passed; sequential runner chains 40 formal pair sample indexes, never auto-retries, stops on the first failed whole pair, and refuses resume until an explicit same-pair retry resolves the failure.",
-    "artifactId": 10635584788,
-    "artifactSha256": "8f037309e69634c679f25dbed37c3fa05ce5273a79350d97e95c3029d66033ce",
-    "artifactBytes": 12736336,
-    "scope": "Primary source/tool validation only. Covers authenticated retained-graph reuse, pilot seal/cache/formal batch/final-analysis wiring, live handoff/source authority, R01/lazy contracts, and M07 recovery tests. Not real Local bridge creation, strict seal, formal Player sampling, final performance analysis, V05, M08, or human H1 approval."
+    "artifactId": 10646575965,
+    "artifactSha256": "50da99f7757ef258904f878d73ac4d50944acf34278e675d0c4129eb78f02ee9",
+    "artifactBytes": 12755271,
+    "scope": "Primary source/tool validation only. Covers nested retained authority propagation, retained-ON early preflight, authenticated graph reuse, pilot seal/cache/formal batch/final-analysis wiring, live handoff/source authority, R01/lazy contracts, and M07 recovery tests. Not real Local new bridge/preflight/seal, formal Player sampling, final performance analysis, V05, M08, or human H1 approval."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
