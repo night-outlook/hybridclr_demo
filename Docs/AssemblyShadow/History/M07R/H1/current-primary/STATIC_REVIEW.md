@@ -1,63 +1,125 @@
-# Static Review — Authenticated Retained-Graph Reuse Bridge
+# Static Review — Nested Early Retained-Authority Propagation
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real bridge creation, strict pilot sealing, formal Player sampling, and final analysis.
+**PASS for Primary → Local Validation handoff**, subject to real bridge/preflight/seal/formal execution.
 
-Reviewed build-input/tool source anchor: `6dd964c045034240ea53dd15ba7c0b33e9f2ad17`.
+Reviewed source/tool anchor:
 
-## Returned finding
+`a964f79d6ceba866c5956741a4a32e38ff8a6b5f`
 
-The retained candidate graph is internally authentic but records demo source revision `69130bbb...`. Current project authority had advanced. The strict R00 gate therefore rejected the baseline/source provenance before pilot sealing.
+## Finding
 
-Local explicitly prohibited weakening `require_current_pairing`, rewriting receipts, moving pins, or relying on a scope audit alone. The Primary repair follows that boundary.
+The previous bridge implementation correctly authenticated retained graph reuse and correctly supplied its authority to outer `r00_results.verify_suite`.
 
-## Review of the bridge
+However, strict modern ON verification has a second graph-admission boundary: `r01_early_results._prepare` reconstructs the exact early capsule.
 
-The implementation separates three authorities:
+That function used default `verify_inputs`, so the retained authority was dropped and current-pairing equality was reapplied.
 
-1. **current project authority** — unchanged global source/runtime verifier;
-2. **retained graph authority** — exact historical complete source-pin DTO, reconstructed only with demo revision `69130bbb...` and otherwise identical current platform/runtime pins;
-3. **reuse proof** — exact Git/tree/verifier/build-map evidence proving the graph→current transition is limited to the reviewed admission-tooling scope.
+The real Local failure and focused reproduction identify this boundary directly.
 
-The bridge must satisfy all three before it emits `H1AuthenticatedGraphReuseAuthority`.
+## Review of correction
 
-The exact non-metadata path allowlist is closed and includes only CI and `Tools/AssemblyShadow` Python/tool documentation. It contains no Unity C#/asmdef, Assets/Packages payload, native runtime, measurement source, protocol/schedule JSON, build-map producer, or Player runner.
+The correction is deliberately narrow.
 
-## Strict verifier preservation
+### Default semantics preserved
 
-`r00_player_inputs.require_current_pairing` is unchanged and contains no reuse/override branch.
+`r00_player_inputs.require_current_pairing` is unchanged.
 
-`verify_inputs` remains the default current-pairing path.
+`r00_player_inputs.verify_inputs` remains default current-pairing admission.
 
-`verify_inputs_with_reuse` is a separate function requiring an authenticated authority bound to the candidate project/current pins/bridge receipt. `r00_results.verify_suite` takes no historical pairing unless its caller explicitly supplies that authority.
+Direct `r01_early_results.verify_suite` remains current-pairing-only.
 
-Only the sealer and final analyzer obtain that authority from bridge verification. This prevents a normal R00 CLI caller from declaring an arbitrary historical pin.
+No CLI can specify a historical source pairing.
 
-## Seal/formal/analyzer chain
+### Internal propagation only
 
-- full bridge authentication occurs before the eight deep pilot-side seal verifications;
-- only retained candidate side B receives the old pairing during deep verification;
-- bridge hash is part of the seal;
-- formal cached admission revalidates the bridge compactly and requires every formal attempt to retain the same bridge/seal bindings;
-- final analyzer full-verifies the bridge again and performs the original strict per-launch evidence reconstruction;
-- bridge/cache do not change pair ordering, whole-pair retry, measurement timing, statistics, or final evidence semantics.
+`r01_early_results._prepare` accepts a keyword-only `pairing_authority`.
+
+The only production retained-performance caller is the already bridge-aware `r00_results.verify_suite`, which passes its same authority object into nested preparation.
+
+No second bridge lookup or authority construction occurs below that boundary.
+
+### Scope restriction
+
+When authority is non-null, `_prepare` requires the requested modes to be a subset of:
+
+- `Baseline`;
+- `Control`.
+
+This matches the R00 performance early-capsule path.
+
+Any ordinary/failure/guard early mode rejects the retained authority before graph verification.
+
+### Bridge invalidation
+
+Because the early verifier now participates in retained historical pairing, `r01_early_results.py` is added to both the bridge verifier binding and exact source-transition allowlist.
+
+Therefore a future change cannot silently reuse an old bridge.
 
 ## Regression review
 
-Primary tests cover the real old-source/current-successor Git boundary rather than only synthetic data, plus negative runtime-pin/revision cases, current-only default R00 behavior, side-B-only authority injection, seal binding, formal bridge-switch rejection, and final-analysis bridge binding.
+Primary includes a real-transition test that:
 
-Primary CI at the authority successor passed 348/348 bounded tests and all existing H1 contract suites.
+1. authenticates the actual `69130bbb...` retained transition;
+2. constructs the corresponding bridge-style authority;
+3. executes the actual nested `r01_early_results._prepare` with the performance `Baseline` mode;
+4. forces default `verify_inputs` to raise if called;
+5. proves `verify_inputs_with_reuse` receives the exact authority.
+
+Additional source-contract checks require R00 to pass authority by explicit keyword and require direct early verification to expose no historical authority parameter.
+
+Negative tests reject `OrdinaryFirst`, `MetadataFailure`, and `Type`.
+
+## Diagnostic improvement
+
+The new read-only retained-ON preflight full-reauthenticates the real bridge and strict-verifies candidate side B for NoPatch/P01/P03.
+
+This empirically crosses both `Baseline` and `Control` nested early paths before the expensive full seal.
+
+Its regression ensures:
+
+- exactly those three ON modes;
+- side B only;
+- one common authority;
+- missing ON inventory fails before strict verification.
+
+## Scope audit
+
+The previous source-anchor delta is exactly 9 non-metadata tooling/test/CI paths.
+
+The full retained-graph transition is exactly 17 non-metadata paths, still confined to CI and `Tools/AssemblyShadow`.
+
+No Unity C#/asmdef, Player/runtime/native code, measurement source, protocol, schedule, map producer, preregistration producer, or R00 Player runner changed.
+
+## Primary validation
+
+Workflow `35614424960` at authority successor `76577900...` passed:
+
+- bounded Primary: **353/353**;
+- live committed handoff: **11/11**;
+- R01 early capsule: **7/7**;
+- early launch: **20/20**;
+- early results: **20/20**;
+- failure pipeline: **16/16**;
+- M07 recovery-label binder: Passed;
+- M07 mutable-input recovery: Passed;
+- R01B lazy: **10/10**.
 
 ## Residual empirical requirements
 
-- sanctioned current installed-runtime receipt refresh if required by the new source pin;
-- independent Local source/allowlist audit;
-- creation of a real `H1GraphReuseBridge` over the retained build map;
-- successful real strict pilot seal (8 side graphs);
-- all 40 formal pairs and any retained whole-pair retries;
-- final bridge-aware strict analysis;
-- authenticated checkpoint and V05;
-- genuinely independent M08 review.
+Local must prove the new path against the retained real evidence:
 
-H1 remains `InProgress`. Do not begin R02.
+- new current installed-runtime authority;
+- exact source audits;
+- new graph bridge;
+- 3-mode retained-ON preflight;
+- new 8-side strict pilot seal;
+- 40 formal pairs;
+- final strict paired analysis;
+- authenticated checkpoint;
+- V05 and genuinely independent M08.
+
+H1 remains `InProgress`.
+
+Do not begin R02.
