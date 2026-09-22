@@ -263,6 +263,28 @@ class H1PairedDriverTests(unittest.TestCase):
                 fixture["protocol"], fixture["schedule"], fixture["buildMap"])
         return cache
 
+    def test_seal_records_cross_remount_guard_contract_and_rejects_old_guard_schema(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            fixture = self._pilot_cache_fixture(root)
+            cache = self._seal_test_cache(fixture, root)
+            value = json.loads(cache.read_text())
+            self.assertEqual(value["guardKind"], driver.PILOT_GUARD_KIND)
+            self.assertEqual(value["guardVersion"], driver.PILOT_GUARD_VERSION)
+            self.assertEqual(value["guardFields"], list(driver.PILOT_GUARD_FIELDS))
+            self.assertTrue(all("device" not in row["guard"] for row in value["files"]))
+
+            old = json.loads(json.dumps(value))
+            old["guardVersion"] = 1
+            old["guardFields"] = ["device"] + list(driver.PILOT_GUARD_FIELDS)
+            old_path = write_json(root / "old-device-bound-seal.json", old)
+            with mock.patch.object(driver, "PILOT_VERIFIER_PATHS", fixture["verifierPaths"]):
+                with self.assertRaisesRegex(
+                        VerificationError, "stat guard contract changed"):
+                    driver.verify_pilot_verification(
+                        old_path, fixture["attempts"], fixture["scheduleRows"],
+                        fixture["protocol"], fixture["schedule"], fixture["buildMap"])
+
     def test_bridge_authority_is_side_b_only_and_sealed(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
