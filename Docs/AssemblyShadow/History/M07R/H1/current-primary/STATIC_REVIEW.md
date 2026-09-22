@@ -1,125 +1,123 @@
-# Static Review — Nested Early Retained-Authority Propagation
+# Static Review — Formal Side-B Subprocess Authority
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real bridge/preflight/seal/formal execution.
+**PASS for Primary → Local Validation handoff**, subject to real formal candidate subprocess execution.
 
-Reviewed source/tool anchor:
-
-`a964f79d6ceba866c5956741a4a32e38ff8a6b5f`
+Reviewed source/tool anchor: `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
 
 ## Finding
 
-The previous bridge implementation correctly authenticated retained graph reuse and correctly supplied its authority to outer `r00_results.verify_suite`.
+The prior bridge/seal/admission path was correct, but formal execution crossed a process boundary.
 
-However, strict modern ON verification has a second graph-admission boundary: `r01_early_results._prepare` reconstructs the exact early capsule.
+`run-h1-paired-performance.py` validated the bridge and seal in the parent process. It then launched public `run-r00-players.py` with only project/graph input arguments.
 
-That function used default `verify_inputs`, so the retained authority was dropped and current-pairing equality was reapplied.
+The child therefore used its default current-pairing verifier and rejected the retained candidate graph before Player launch.
 
-The real Local failure and focused reproduction identify this boundary directly.
+The two identical Local whole-pair failures prove this is the missing boundary.
 
 ## Review of correction
 
-The correction is deliberately narrow.
+### No generic historical override
 
-### Default semantics preserved
+The child runner still has no raw revision/source-pin option.
 
-`r00_player_inputs.require_current_pairing` is unchanged.
+Its retained path accepts only an `H1FormalSideLaunchAuthority` receipt.
 
-`r00_player_inputs.verify_inputs` remains default current-pairing admission.
+That receipt can only authenticate the fixed H1 retained graph through the existing graph bridge policy.
 
-Direct `r01_early_results.verify_suite` remains current-pairing-only.
+### Exact formal binding
 
-No CLI can specify a historical source pairing.
+The authority binds:
 
-### Internal propagation only
+- side B;
+- pairId and attempt;
+- mode and AB/BA order;
+- exact candidate project;
+- exact runner output root;
+- protocol and schedule;
+- frozen build map;
+- bridge and pilot seal;
+- exact fixture, ON/OFF receipts, replay;
+- current formal-authority/parent-runner/R00/early verifier hashes.
 
-`r01_early_results._prepare` accepts a keyword-only `pairing_authority`.
+Build-map side B and schedule row are independently rechecked when the authority is created and when the child consumes it.
 
-The only production retained-performance caller is the already bridge-aware `r00_results.verify_suite`, which passes its same authority object into nested preparation.
+### Child reauthentication
 
-No second bridge lookup or authority construction occurs below that boundary.
+Before graph preparation, the child:
 
-### Scope restriction
+- validates the authority receipt;
+- validates bridge/seal/map/input/tool bindings;
+- obtains pairing authority from the same compact bridge verification;
+- calls `verify_inputs_with_reuse`.
 
-When authority is non-null, `_prepare` requires the requested modes to be a subset of:
+For ON modes, the exact same authority reaches nested Baseline/Control early preparation.
 
-- `Baseline`;
-- `Control`.
+Without the authority receipt, the original current-pairing path remains unchanged.
 
-This matches the R00 performance early-capsule path.
+### Side isolation
 
-Any ordinary/failure/guard early mode rejects the retained authority before graph verification.
+Protected side A is authority-free.
 
-### Bridge invalidation
+Only formal retained side B receives an authority receipt.
 
-Because the early verifier now participates in retained historical pairing, `r01_early_results.py` is added to both the bridge verifier binding and exact source-transition allowlist.
+### Parent fail-closed behavior
 
-Therefore a future change cannot silently reuse an old bridge.
+A real runner launch can pass only if its launch receipt echoes the exact parent-issued authority.
+
+If the child exits before writing an R00 receipt, the parent preserves the original failure and the authority evidence but cannot mark that side Passed.
+
+### Retry / final analysis
+
+Prior formal indexes hash-bind side-B authorities.
+
+A bridge-bound resumed chain requires authority evidence for every non-skipped candidate formal attempt.
+
+Final analysis revalidates every authority with pair/attempt/output/input/bridge/seal/tool identity and requires side A to have none.
+
+Failed pre-launch attempts are representable without fake launch receipts.
 
 ## Regression review
 
-Primary includes a real-transition test that:
+The most important new regression crosses the exact returned boundary:
 
-1. authenticates the actual `69130bbb...` retained transition;
-2. constructs the corresponding bridge-style authority;
-3. executes the actual nested `r01_early_results._prepare` with the performance `Baseline` mode;
-4. forces default `verify_inputs` to raise if called;
-5. proves `verify_inputs_with_reuse` receives the exact authority.
+1. paired driver constructs the actual child command;
+2. that argv is passed to actual `run-r00-players.main`;
+3. formal authority verification returns the bridge-authenticated pairing;
+4. default `verify_inputs` is forced to throw if touched;
+5. `verify_inputs_with_reuse` must receive the authority;
+6. only the actual Player process is mocked.
 
-Additional source-contract checks require R00 to pass authority by explicit keyword and require direct early verification to expose no historical authority parameter.
+Separate receipt tests reject mode, input-hash, and tool-hash tampering.
 
-Negative tests reject `OrdinaryFirst`, `MetadataFailure`, and `Type`.
+Analyzer tests cover successful and failed-pre-launch formal authority evidence.
 
-## Diagnostic improvement
+## Scope
 
-The new read-only retained-ON preflight full-reauthenticates the real bridge and strict-verifies candidate side B for NoPatch/P01/P03.
+`a964f79d... → f1266a4d...`: exactly 11 non-metadata paths.
 
-This empirically crosses both `Baseline` and `Control` nested early paths before the expensive full seal.
+`69130bbb... → f1266a4d...`: exactly 20 non-metadata paths.
 
-Its regression ensures:
+The new retained paths are the formal authority module, public R00 runner modification, and formal authority regression.
 
-- exactly those three ON modes;
-- side B only;
-- one common authority;
-- missing ON inventory fails before strict verification.
-
-## Scope audit
-
-The previous source-anchor delta is exactly 9 non-metadata tooling/test/CI paths.
-
-The full retained-graph transition is exactly 17 non-metadata paths, still confined to CI and `Tools/AssemblyShadow`.
-
-No Unity C#/asmdef, Player/runtime/native code, measurement source, protocol, schedule, map producer, preregistration producer, or R00 Player runner changed.
-
-## Primary validation
-
-Workflow `35614424960` at authority successor `76577900...` passed:
-
-- bounded Primary: **353/353**;
-- live committed handoff: **11/11**;
-- R01 early capsule: **7/7**;
-- early launch: **20/20**;
-- early results: **20/20**;
-- failure pipeline: **16/16**;
-- M07 recovery-label binder: Passed;
-- M07 mutable-input recovery: Passed;
-- R01B lazy: **10/10**.
+No runtime/Player/measurement/Unity asset/native code changed.
 
 ## Residual empirical requirements
 
-Local must prove the new path against the retained real evidence:
+Local must:
 
-- new current installed-runtime authority;
-- exact source audits;
-- new graph bridge;
-- 3-mode retained-ON preflight;
-- new 8-side strict pilot seal;
-- 40 formal pairs;
-- final strict paired analysis;
-- authenticated checkpoint;
-- V05 and genuinely independent M08.
+- refresh current installed-runtime source authority;
+- verify exact 11/20 path sets;
+- reauthenticate retained graph/pilot evidence;
+- create a new bridge;
+- create a new strict 8-side seal;
+- start a new formal series from the retained pilot index;
+- prove pair 1 candidate side B creates and consumes the authority, then actually launches a Player;
+- complete 40 formal pairs;
+- run final strict analysis;
+- checkpoint / V05 / independent M08.
 
-H1 remains `InProgress`.
+The previous a964 attempts remain historical and are not part of the new source series.
 
-Do not begin R02.
+H1 remains `InProgress`. Do not begin R02.
