@@ -528,6 +528,27 @@ re-derive the current pilot immutable path/hash inventory, verify the sealed
 path/device/inode/mode/size/mtime/ctime guard, and verify the graph-reuse bridge's
 compact current bindings. They do not repeat the eight deep pilot graph scans.
 
+For retained candidate side B, the paired driver also creates one
+`H1FormalSideLaunchAuthority` per formal attempt. That receipt binds the exact
+pair ID/attempt/mode/order, candidate project, fixture, ON/OFF receipts, replay,
+protocol, schedule, frozen map, graph-reuse bridge, pilot seal, and current
+runner/verifier hashes. The parent then invokes `run-r00-players.py` with the
+internal `--h1-formal-launch-authority` receipt.
+
+The R00 runner does not accept a raw historical revision or generic source-pin
+override. When this receipt is present it revalidates the exact formal authority,
+reconstructs the pairing authority from the same bridge, uses retained input
+verification for candidate side B, and passes that same authority into
+Baseline/Control early preparation for ON modes. Without the receipt,
+`run-r00-players.py` remains current-pairing-only.
+
+The runner echoes the authority binding into its R00 launch receipt. The parent
+requires that exact echo before a side can count as Passed. Final analysis
+revalidates every launched formal side-B authority against its pair/attempt and
+requires protected side A to have no retained authority. Failed side-B attempts
+that stop before an R00 launch receipt still retain and validate their parent
+authority receipt.
+
 Each formal attempt records both `pilotVerification` and
 `graphReuseBridge`. A cumulative chain cannot switch either authority.
 No automatic reseal, fallback deep scan, side-only retry, or latency-based
