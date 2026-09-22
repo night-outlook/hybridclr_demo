@@ -117,7 +117,7 @@ No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-product
 
 ## Primary validation
 
-Workflow `35730535436` at `465e97be...` passed:
+Exact live handoff workflow `35731096138` at `7093ea03...` passed:
 
 - bounded Primary: **368/368**;
 - live handoff: **11/11**;
@@ -128,7 +128,7 @@ Workflow `35730535436` at `465e97be...` passed:
 - both M07 PowerShell recovery regressions: Passed;
 - R01B lazy: **10/10**.
 
-Artifact `10695057616`, SHA-256 `d30e3676419c05fcf22f728aff299823df2129a018efa24c614c539484e356fc`.
+Artifact `10695328184`, SHA-256 `e939d91da81895d9dfb5d8d19aa3fc48ff6bc1189ef3bc4528cc00218689f513`.
 
 ## Required next action
 
