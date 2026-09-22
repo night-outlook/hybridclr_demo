@@ -64,6 +64,22 @@ def _bound(value: Any, label: str) -> Path:
     return path
 
 
+def _output_root(value: str | Path, project: Path, *, require_new: bool) -> Path:
+    raw = Path(value)
+    parent = (project / "_temp/AssemblyShadow").resolve(strict=True)
+    require(raw.is_absolute() and not raw.is_symlink() and raw.parent == parent,
+            "Formal launch output root must be a direct child of candidate _temp/AssemblyShadow")
+    resolved = raw.resolve(strict=False)
+    require(resolved == raw, "Formal launch output root must be canonical")
+    if require_new:
+        require(not raw.exists() and not raw.is_symlink(),
+                "Formal launch output root must be new when authority is created")
+    elif raw.exists():
+        require(raw.is_dir() and not raw.is_symlink(),
+                "Formal launch output root must remain a non-symlink directory")
+    return raw
+
+
 def _tool_bindings(project: Path) -> list[dict[str, str]]:
     rows = []
     for relative in TOOL_PATHS:
@@ -126,7 +142,7 @@ def _verify_seal(seal_path: Path, protocol_path: Path, schedule_path: Path,
 def create_receipt(project: Path, pair_id: str, attempt: int, mode: str, order: list[str],
                    protocol_path: Path, schedule_path: Path, build_map_path: Path,
                    bridge_path: Path, seal_path: Path, fixture: Path,
-                   on: Path, off: Path, replay: Path) -> dict[str, Any]:
+                   on: Path, off: Path, replay: Path, output_root: Path) -> dict[str, Any]:
     project = canonical_dir(project, "formal candidate project")
     require(type(pair_id) is str and pair_id, "Formal launch pairId is required")
     require(type(attempt) is int and not isinstance(attempt, bool) and attempt > 0,
@@ -143,6 +159,7 @@ def create_receipt(project: Path, pair_id: str, attempt: int, mode: str, order: 
     on = canonical_file(on, "formal ON receipt")
     off = canonical_file(off, "formal OFF receipt")
     replay = canonical_file(replay, "formal replay")
+    output_root = _output_root(output_root, project, require_new=True)
 
     _schedule_row(schedule_path, pair_id, mode, order)
     _map_side_b(build_map_path, project, fixture, on, off, replay)
@@ -159,6 +176,7 @@ def create_receipt(project: Path, pair_id: str, attempt: int, mode: str, order: 
         "mode": mode,
         "pairOrder": order,
         "projectRoot": str(project),
+        "runnerOutputRoot": str(output_root),
         "protocol": binding(protocol_path),
         "schedule": binding(schedule_path),
         "buildMap": binding(build_map_path),
@@ -180,7 +198,7 @@ def create_receipt(project: Path, pair_id: str, attempt: int, mode: str, order: 
 
 
 def verify_receipt(receipt_path: Path, project: Path, mode: str,
-                   fixture: Path, on: Path, off: Path, replay: Path,
+                   fixture: Path, on: Path, off: Path, replay: Path, output_root: Path,
                    *, expected_pair_id: str | None = None,
                    expected_attempt: int | None = None) -> dict[str, Any]:
     receipt_path = canonical_file(receipt_path, "formal launch authority")
@@ -195,6 +213,9 @@ def verify_receipt(receipt_path: Path, project: Path, mode: str,
             value.get("status") == STATUS and value.get("side") == SIDE,
             "Invalid H1 formal side launch authority")
     require(value.get("projectRoot") == str(project), "Formal launch authority project mismatch")
+    output_root = _output_root(output_root, project, require_new=False)
+    require(value.get("runnerOutputRoot") == str(output_root),
+            "Formal launch authority output root mismatch")
     require(value.get("mode") == mode, "Formal launch authority mode mismatch")
     require(type(value.get("pairId")) is str and value["pairId"], "Formal launch authority pairId is missing")
     require(type(value.get("attempt")) is int and not isinstance(value["attempt"], bool) and value["attempt"] > 0,
@@ -237,6 +258,7 @@ def verify_receipt(receipt_path: Path, project: Path, mode: str,
         "attempt": value["attempt"],
         "mode": mode,
         "pairOrder": value["pairOrder"],
+        "runnerOutputRoot": str(output_root),
         "buildMap": binding(build_map_path),
         "graphReuseBridge": binding(bridge_path),
         "pilotVerification": binding(seal_path),
