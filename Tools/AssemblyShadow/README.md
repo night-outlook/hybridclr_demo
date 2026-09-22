@@ -444,6 +444,33 @@ diagnostic evidence only and does not replace the 8-side pilot seal.
 Any failure is a hard stop before sealing. Do not fall back to outer-only graph
 verification or scope-audit-only reuse.
 
+### 1B. Preflight retained pilot runner provenance
+
+Before the expensive 8-side seal, authenticate the retained pilot index itself:
+
+```sh
+python3 Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py \
+  --protocol <bound-performance-protocol.json> \
+  --schedule <bound-performance-schedule.json> \
+  --build-map <retained-frozen-build-map.json> \
+  --pilot-index <completed-pilot-sample-index.json> \
+  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
+  --output <new-retained-pilot-admission.json>
+```
+
+This preflight fully authenticates the bridge, derives the only accepted
+historical `run-r00-players.py` provenance directly from Git anchor
+`69130bbb...`, loads the retained pilot history, and selects all four latest
+passed pilot pairs. It performs **no** deep R00 launch reconstruction.
+
+The recorded pilot runner path/hash must equal the bridge-derived retained
+runner exactly. A missing bridge, another path/hash, or bridge switching fails
+before the 1.6 GB seal reconstruction. This exception is pilot provenance only;
+new formal attempts still require the current runner.
+
+The preflight writes `H1RetainedPilotAdmissionPreflight`. It is a diagnostic
+gate and does not replace the strict 8-side seal.
+
 ### 2. Strictly seal the completed pilots once
 
 Create exactly one pilot verification receipt:
