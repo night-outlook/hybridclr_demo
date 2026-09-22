@@ -86,9 +86,9 @@ No Player/runtime/native/measurement/Unity build input changed.
 
 ## Primary validation
 
-Workflow `35730535436` at `465e97be...` passed bounded **368/368**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
+Exact live handoff workflow `35731096138` at `7093ea03...` passed bounded **368/368**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
 
-Artifact `10695057616` has SHA-256 `d30e3676419c05fcf22f728aff299823df2129a018efa24c614c539484e356fc`.
+Artifact `10695328184` has SHA-256 `e939d91da81895d9dfb5d8d19aa3fc48ff6bc1189ef3bc4528cc00218689f513`.
 
 ## Residual empirical requirements
 
