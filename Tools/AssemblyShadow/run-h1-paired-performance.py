@@ -38,6 +38,9 @@ RUNNER_PATH = Path(__file__).with_name("run-r00-players.py").resolve()
 RUNNER_OVERHEAD_SECONDS = 30
 PILOT_VERIFICATION_KIND = "H1PilotVerificationReceipt"
 PILOT_VERIFICATION_SCHEMA = 1
+PILOT_GUARD_KIND = "CrossRemountStableStatGuard"
+PILOT_GUARD_VERSION = 2
+PILOT_GUARD_FIELDS = ("inode", "mode", "size", "mtimeNs", "ctimeNs")
 PILOT_VERIFIER_PATHS = tuple(
     Path(__file__).with_name(name).resolve()
     for name in (
@@ -309,17 +312,20 @@ def _guarded_file(value: str | Path, label: str) -> Path:
     return path
 
 
-def _stat_guard(path: Path) -> dict[str, int]:
-    path = _guarded_file(path, "Pilot guarded input")
-    stat = path.stat()
+def _stable_stat_guard(stat: Any) -> dict[str, int]:
+    """Cross-remount stable file identity fields; st_dev is diagnostic topology, not acceptance identity."""
     return {
-        "device": int(stat.st_dev),
         "inode": int(stat.st_ino),
         "mode": int(stat.st_mode),
         "size": int(stat.st_size),
         "mtimeNs": int(stat.st_mtime_ns),
         "ctimeNs": int(stat.st_ctime_ns),
     }
+
+
+def _stat_guard(path: Path) -> dict[str, int]:
+    path = _guarded_file(path, "Pilot guarded input")
+    return _stable_stat_guard(path.stat())
 
 
 def _register_expected_file(files: dict[str, str], value: str | Path, sha256: Any, label: str) -> None:
@@ -417,6 +423,13 @@ def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[
         "sourcePilotIndex": binding(source_index_path),
         "graphReuseBridge": binding(graph_reuse_bridge_path) if graph_reuse_bridge_path is not None else None,
         "verifierBindings": _verifier_bindings(),
+        "guardKind": PILOT_GUARD_KIND,
+        "guardVersion": PILOT_GUARD_VERSION,
+        "guardFields": list(PILOT_GUARD_FIELDS),
+        "deviceIdentityPolicy": (
+            "st_dev is excluded from acceptance because it identifies a mount/filesystem instance and may "
+            "change across remounts while the same canonical file, content and stable stat identity remain unchanged."
+        ),
         "pilotAttemptsSha256": _pilot_attempt_digest(attempts),
         "selectedPilots": _selected_pilot_summary(selected),
         "deepLaunchVerificationCount": deep_verifications,
@@ -427,9 +440,10 @@ def seal_pilot_verification(attempts: list[dict[str, Any]], schedule: list[dict[
         "guardInventorySha256": _json_digest(files),
         "guardSemantics": (
             "Strict R00 reconstruction hashes the complete graph once while file identity is stable. "
-            "Formal admission re-hashes control receipts/tools and requires unchanged canonical path, "
-            "device, inode, mode, size, mtimeNs, and ctimeNs for every sealed immutable file. "
-            "Any guard change fails closed and requires a new strict seal."
+            "Formal admission re-hashes control receipts/tools and requires unchanged canonical path plus "
+            "inode, mode, size, mtimeNs, and ctimeNs for every sealed immutable file. st_dev is deliberately "
+            "excluded because it is mount-instance topology and can change across a remount without changing "
+            "the file. Any acceptance guard change still fails closed and requires a new strict seal."
         ),
         "files": files,
     }
@@ -449,6 +463,10 @@ def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]]
         require(value.get(key) == binding(path), "Pilot verification " + key + " binding mismatch")
     require(value.get("verifierBindings") == _verifier_bindings(),
             "Pilot verification implementation changed; strict reseal is required")
+    require(value.get("guardKind") == PILOT_GUARD_KIND and
+            value.get("guardVersion") == PILOT_GUARD_VERSION and
+            value.get("guardFields") == list(PILOT_GUARD_FIELDS),
+            "Pilot verification stat guard contract changed; strict reseal is required")
     expected_bridge = binding(graph_reuse_bridge_path) if graph_reuse_bridge_path is not None else None
     require(value.get("graphReuseBridge") == expected_bridge,
             "Pilot verification graph reuse bridge binding mismatch")
@@ -595,6 +613,13 @@ def _select_pair(schedule: list[dict[str, Any]], phase: str, pair_id: str | None
         require(remaining, "No unattempted pair remains in the selected phase")
         row = remaining[0]
     return row
+
+
+def _output_run_id(output_root: Path) -> str:
+    """Collision-resistant local runner identity derived from the full canonical output path."""
+    output_root = output_root.resolve(strict=True)
+    short_hash = hashlib.sha256(str(output_root).encode("utf-8")).hexdigest()[:12]
+    return _safe_name(output_root.name) + "-" + short_hash
 
 
 def _safe_name(value: str) -> str:
@@ -791,7 +816,7 @@ def main(argv: list[str] | None = None) -> int:
             not output_root.is_symlink(), "Output root must be a new canonical absolute path")
     require(output_root.parent.is_dir() and not output_root.parent.is_symlink(), "Output root parent is unavailable")
     output_root.mkdir()
-    run_id = _safe_name(output_root.name)
+    run_id = _output_run_id(output_root)
     attempts = list(prior)
     sides: dict[str, dict[str, Any]] = {}
     for side_name in row["order"]:
