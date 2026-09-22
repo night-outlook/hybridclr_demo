@@ -1,55 +1,35 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: strict seal rejects the authenticated retained pilot runner before bridge use
+## Current blocker: strict pilot seal invalidated after 14/40 formal pairs by `st_dev` drift
 
-Fresh Local Validation at checkout `0733534d8112a7a0b1e05bb5d904e945b6ed24cc`, source/tool anchor `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`, passed current/protected authority, current Python validation, exact 11-path and 20-path source audits, and complete retained artifact reauthentication.
+Fresh Local Validation at checkout `bb2bf106c172c985e9330de9cc0e2f58b24f096b`, source/tool anchor `91ac4db31cec704551c7db05bd918c8d5695ce83`, passed current/protected authority, current Python validation, exact 9-path and 22-path source audits, complete retained artifact reauthentication, a new retained-runner-aware bridge, the retained-pilot admission preflight, and a new 8/8 strict pilot seal.
 
-The new side-B `H1GraphReuseBridge` passed and binds the current formal-authority and R00 runner implementations. Its SHA-256 is `3962cdd9fbd2d81de2d1f2918bc802c9e6e10151f8ae41ec01d40d388ae76004`.
+The new bridge SHA-256 is `b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2`. The admission preflight SHA-256 is `111c897d2925f0fb85a2b33d941e2a342a7984ba630c5b00ec1ed3f702608898`. The strict seal SHA-256 is `25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc` and records `deepLaunchVerificationCount=8`.
 
-The mandatory production seal failed immediately:
+A new formal series started from the retained pilot index only. Pair 1 passed the focused authority gate: protected A had no formal authority; candidate B used the current runner and a valid current `H1FormalSideLaunchAuthority`; the child consumed it, passed graph preparation, launched the Player, and echoed the exact authority/bridge/seal/map in its R00 receipt. Formal pairs 1–14 passed: all 10 OFF-NoPatch pairs and four ON-NoPatch pairs.
 
-`Prior A diagnostic runner binding mismatch`
+Pair 15 never produced a protocol output root or sample index before a supervising terminal interruption, so it remains attempt 1. Resume from the authenticated pair-14 sample index then failed before pair 15 with:
 
-The retained pilot index correctly binds the runner that created it, SHA-256 `afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c`; this is exactly the `run-r00-players.py` blob at `69130bbb...` and `a964f79d...`. The current repair changed that runner to `a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280`.
+`Pilot verification cache invalidated by changed file identity`
 
-### Direct cause
+The affected protected OFF `GameAssembly.dylib` is byte-identical:
 
-`seal-h1-pilot-verification.py` loads the retained pilot index through `run-h1-paired-performance.py::_load_prior` before it authenticates the supplied bridge. `_load_prior` unconditionally compares every historical pilot diagnostic runner to the current `runner_binding()`. The exact retained pilot provenance is therefore rejected before bridge-aware reconstruction; no strict receipt exists and zero deep sides ran.
+- sealed SHA-256: `ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d`;
+- current SHA-256: `ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d`;
+- unchanged: size, inode, mode, mtime, ctime;
+- changed: `device` from `16777229` to `16777230`.
 
-This is not retained artifact drift:
+The verifier therefore failed closed exactly as implemented. Local did not weaken it or reseal/relabel the partial formal series.
 
-- retained V04 manifest: passed;
-- Player-artifact manifest: passed;
-- latest a964 checkpoint manifest: passed;
-- exact live protocol/schedule/map/pilot hashes: unchanged;
-- selected launch receipts: 8/8 bound;
-- complete file rehash: 33,792 files / 1,606,993,133 bytes / zero mismatches;
-- source audits: exact 11-path and 20-path sets;
-- new current bridge: passed.
+## Required Primary decision
 
-### Required correction
+Decide whether `st_dev` is intentionally acceptance-critical for the multi-hour formal seal:
 
-Add a narrowly scoped bridge-aware retained-pilot loader for seal creation. Authenticate the recorded historical runner as the exact retained-anchor runner and authenticate the reviewed bridge transition to the current runner, while preserving:
+1. If yes, require a stable mount, issue a new source-authoritative handoff, create a new bridge/seal, and restart all 40 formal pairs from the retained pilot index. The current 14/40 series remains historical only.
+2. If no, implement and test a narrow stable cross-remount identity contract while preserving content hashes and the remaining immutable stat guard. Return that source/tool change to Local for a fresh V00 and a wholly new formal series.
 
-- current runner binding for every new formal attempt;
-- protected side A and direct R00 current-pairing behavior;
-- no generic historical runner or pairing override;
-- exact bridge/map/protocol/schedule identities;
-- tamper rejection for any non-anchor historical hash;
-- current final-analysis authority checks.
+This cycle also preserved the initial pre-launch batch output-name collision and the terminal interruption as non-protocol failures. Neither was relabelled as a formal attempt.
 
-Add an end-to-end regression through the actual seal entrypoint using a retained-style pilot index whose runner hash is the retained-anchor hash. The positive test must reach eight deep verifications; negative tests must reject missing bridge, wrong anchor hash, wrong path, or bridge switching.
+Evidence is retained at `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260922-authority91ac-formal-seal-invalidated/`.
 
-## Independent closure completed
-
-- V00 candidate, reproduction, protected family, and both installed runtimes passed after the sanctioned candidate receipt refresh.
-- Bounded Primary passed 359/359; all focused repaired-boundary suites passed.
-- Full Python inventory recorded 1,016 passed and 28 explicit environment skips with no failures/errors.
-- Prior Unity 1,076/1,076 and retained-ON 3/3 are classified only `ReusedAuditedFromD18` after the exact audit.
-- Retained manifests, controls, eight selected launches, and 33,792 bound files reauthenticated.
-- A new current-source graph bridge passed.
-- No a964 bridge, seal, or failed formal index was reused.
-
-Evidence is retained at `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority24a0-pilot-seal-blocked/`.
-
-The new formal series, final analysis, V05, and independent M08 were not run. H1 remains `InProgress`; last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.
+Final strict analysis, V05, and independent M08 were not run. H1 remains `InProgress`; last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.

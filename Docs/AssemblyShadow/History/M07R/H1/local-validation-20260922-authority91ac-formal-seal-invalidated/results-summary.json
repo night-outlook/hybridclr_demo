@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationCheckpointSummary",
+  "status": "ReturnedToPrimaryAfterSealFilesystemIdentityInvalidation",
+  "candidateCheckout": "bb2bf106c172c985e9330de9cc0e2f58b24f096b",
+  "sourceToolAnchor": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+  "authorityStatus": "SourceTargetVerifiedNotBuildAccepted",
+  "boundedPrimary": {
+    "status": "Passed",
+    "passed": 364,
+    "total": 364
+  },
+  "pythonInventory": {
+    "status": "CompletedWithExplainedEnvironmentSkips",
+    "passed": 1021,
+    "skipped": 28,
+    "failed": 0,
+    "errors": 0,
+    "total": 1049
+  },
+  "unityEditMode": {
+    "status": "ReusedAuditedFromD18",
+    "historicalPassed": 1076,
+    "historicalTotal": 1076,
+    "fresh": false
+  },
+  "sourceAudit": {
+    "status": "PassedExactSets",
+    "previousSourcePathCount": 9,
+    "retainedGraphPathCount": 22
+  },
+  "retainedEvidence": {
+    "status": "PassedRetainedEvidenceReauthentication",
+    "fileCount": 33792,
+    "totalBytes": 1606993133,
+    "hashMismatches": 0
+  },
+  "graphReuseBridge": {
+    "status": "AuthenticatedToolOnlySuccessor",
+    "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2",
+    "retainedPilotRunnerSha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c",
+    "currentRunnerSha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+  },
+  "retainedPilotAdmission": {
+    "status": "Passed",
+    "retainedAttempts": 5,
+    "selectedPilots": 4,
+    "deepReconstructionCount": 0,
+    "sha256": "111c897d2925f0fb85a2b33d941e2a342a7984ba630c5b00ec1ed3f702608898"
+  },
+  "pilotSeal": {
+    "initialStatus": "PassedStrictReconstructionAndStatGuardSealed",
+    "deepLaunchVerificationCount": 8,
+    "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc",
+    "resumeStatus": "InvalidatedByFilesystemDeviceIdentityChange"
+  },
+  "formalSeries": {
+    "status": "PartialPassedThenBlocked",
+    "passedPairs": 14,
+    "requiredPairs": 40,
+    "passedByMode": {
+      "R00-OFF-NoPatch": 10,
+      "R00-ON-NoPatch": 4,
+      "R00-ON-P01": 0,
+      "R00-ON-P03": 0
+    },
+    "nextPairId": "R00-ON-NoPatch-formal-05",
+    "nextPairProtocolAttempt": 1,
+    "pair15ProtocolAttemptStarted": false
+  },
+  "sealInvalidation": {
+    "pathSuffix": "NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+    "sealedSha256": "ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d",
+    "currentSha256": "ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d",
+    "sealedDevice": 16777229,
+    "currentDevice": 16777230,
+    "otherGuardFieldsChanged": false
+  },
+  "rawEvidenceArchiveSha256": "b9d0dd1b26dbff6089c54169cfb4f0a2e4f1fedac4f035faa9d501f728b77ed4",
+  "formalSideEvidenceArchiveSha256": "e67e04b711c5f5cbcc060ce6e4e2c97cd80daf0609138e495ae89af76dee0abc",
+  "finalAnalysis": "NotRun",
+  "v05": "IneligibleNotRun",
+  "m08": "IneligibleNotRun",
+  "h1Status": "InProgress",
+  "lastIndependentM08": "FAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

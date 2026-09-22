@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PilotVerificationCacheInvalidation",
+  "status": "FailedBeforeFormalPair15",
+  "commandResult": "Pilot verification cache invalidated by changed file identity",
+  "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/Builds/AssemblyShadow/M07/M07-Baseline-H1-Perf-Reference-6913-20260920A-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+  "sealedSha256": "ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d",
+  "currentSha256": "ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d",
+  "sealedGuard": {
+    "device": 16777229,
+    "inode": 31320969,
+    "mode": 33261,
+    "size": 62100550,
+    "mtimeNs": 1789963760708831000,
+    "ctimeNs": 1789963761108817790
+  },
+  "currentGuard": {
+    "device": 16777230,
+    "inode": 31320969,
+    "mode": 33261,
+    "size": 62100550,
+    "mtimeNs": 1789963760708831000,
+    "ctimeNs": 1789963761108817790
+  },
+  "difference": [
+    "device"
+  ],
+  "contentChanged": false,
+  "formalPairsPassedBeforeInvalidation": 14,
+  "nextPairId": "R00-ON-NoPatch-formal-05",
+  "nextAttempt": 1,
+  "disposition": "Return to Primary. Do not weaken the strict seal, do not reseal and relabel the existing formal series, and do not proceed to final analysis, V05, M08, or R02."
+}

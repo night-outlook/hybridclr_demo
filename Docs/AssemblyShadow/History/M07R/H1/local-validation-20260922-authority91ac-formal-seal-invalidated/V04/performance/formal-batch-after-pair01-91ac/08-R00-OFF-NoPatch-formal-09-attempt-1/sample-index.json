@@ -1,0 +1,1520 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ControlledSamples",
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "attempts": [
+    {
+      "pairId": "R00-OFF-NoPatch-pilot-01",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-A-R00-OFF-NoPatch-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "300"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-A-R00-OFF-NoPatch-pilot-01-1",
+        "startedAtUnix": 1789969957.3431392,
+        "finishedAtUnix": 1789970183.023669,
+        "durationSeconds": 225.68052983283997,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-A-R00-OFF-NoPatch-pilot-01-1/r00-player-launches.json",
+          "sha256": "c8947a374702b0873f21eeeacff99380e6705d99f04499493d79d18afa55101b"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-A-R00-OFF-NoPatch-pilot-01-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 56699
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-B-R00-OFF-NoPatch-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "300"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-B-R00-OFF-NoPatch-pilot-01-1",
+        "startedAtUnix": 1789970183.0675461,
+        "finishedAtUnix": 1789970413.359602,
+        "durationSeconds": 230.29205584526062,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-B-R00-OFF-NoPatch-pilot-01-1/r00-player-launches.json",
+          "sha256": "c60685b35c358b32ed37419f0215f0369129165c811198a629be21594ec22307"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-B-R00-OFF-NoPatch-pilot-01-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 56747
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Failed",
+      "retryOf": null,
+      "A": {
+        "status": "Failed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-1-A-R00-ON-NoPatch-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-NoPatch",
+          "--timeout",
+          "300"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-1-A-R00-ON-NoPatch-pilot-01-1",
+        "startedAtUnix": 1789970450.844373,
+        "finishedAtUnix": 1789970795.876441,
+        "durationSeconds": 345.0320680141449,
+        "exitCode": -15,
+        "timedOut": true,
+        "launchReceipt": null,
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-1-A-R00-ON-NoPatch-pilot-01-1.A.driver.console.log",
+        "error": "Could not kill owned runner process group: [Errno 1] Operation not permitted",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 56837,
+        "stopBeforeNextSide": true
+      },
+      "B": {
+        "status": "Failed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-1-B-R00-ON-NoPatch-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-NoPatch",
+          "--timeout",
+          "300"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-1-B-R00-ON-NoPatch-pilot-01-1",
+        "startedAtUnix": 1789970795.879912,
+        "finishedAtUnix": 1789970795.879912,
+        "durationSeconds": 0.0,
+        "exitCode": -1,
+        "timedOut": false,
+        "launchReceipt": null,
+        "consolePath": null,
+        "error": "Skipped because the previous runner process group could not be proven gone.",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "skipped": true
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 2,
+      "mode": "R00-ON-NoPatch",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": 1,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-A-R00-ON-NoPatch-pilot-01-2",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-A-R00-ON-NoPatch-pilot-01-2",
+        "startedAtUnix": 1789970842.707702,
+        "finishedAtUnix": 1789971441.8050292,
+        "durationSeconds": 599.0973272323608,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-A-R00-ON-NoPatch-pilot-01-2/r00-player-launches.json",
+          "sha256": "4559dca6af33cd69952419c0acb46f5cb2793e7401fe94a37ac79d9e51b5cee7"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-A-R00-ON-NoPatch-pilot-01-2.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 56933
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-B-R00-ON-NoPatch-pilot-01-2",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-B-R00-ON-NoPatch-pilot-01-2",
+        "startedAtUnix": 1789971441.850191,
+        "finishedAtUnix": 1789972048.783511,
+        "durationSeconds": 606.9333198070526,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-B-R00-ON-NoPatch-pilot-01-2/r00-player-launches.json",
+          "sha256": "cdb6b3657fa40510b3f4b5957ec40123844e8738464e2103ae95cbadf1b24f2c"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-B-R00-ON-NoPatch-pilot-01-2.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 57021
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-A-R00-ON-P01-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-P01",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-A-R00-ON-P01-pilot-01-1",
+        "startedAtUnix": 1789972063.448904,
+        "finishedAtUnix": 1789972661.996018,
+        "durationSeconds": 598.5471138954163,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-A-R00-ON-P01-pilot-01-1/r00-player-launches.json",
+          "sha256": "b7bf75e6fc843834ea543d14f4eaaa3872f54bceace148afb19afd3a8c13e2c3"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-A-R00-ON-P01-pilot-01-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 57198
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-B-R00-ON-P01-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-P01",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-B-R00-ON-P01-pilot-01-1",
+        "startedAtUnix": 1789972662.040378,
+        "finishedAtUnix": 1789973270.5070999,
+        "durationSeconds": 608.4667217731476,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-B-R00-ON-P01-pilot-01-1/r00-player-launches.json",
+          "sha256": "be8f421130d0ec62439e2b53a87e10390cb1ff4b404015ec93b378fda787047c"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-B-R00-ON-P01-pilot-01-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 57288
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "pilot",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-A-R00-ON-P03-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-P03",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-A-R00-ON-P03-pilot-01-1",
+        "startedAtUnix": 1789973897.492061,
+        "finishedAtUnix": 1789974499.166729,
+        "durationSeconds": 601.6746680736542,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-A-R00-ON-P03-pilot-01-1/r00-player-launches.json",
+          "sha256": "58e7156816dab8d66ce388f411595b94704949443335fd2c412753ff3c0b72a5"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-A-R00-ON-P03-pilot-01-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 57676
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-B-R00-ON-P03-pilot-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-ON-P03",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-B-R00-ON-P03-pilot-01-1",
+        "startedAtUnix": 1789973284.9803278,
+        "finishedAtUnix": 1789973897.44809,
+        "durationSeconds": 612.4677622318268,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-B-R00-ON-P03-pilot-01-1/r00-player-launches.json",
+          "sha256": "5e14137e3f49faf8de2d18546c7c440448e99e84e241a7d7f31790834636ff2c"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-B-R00-ON-P03-pilot-01-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "processId": 57462
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-01",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-A-R00-OFF-NoPatch-formal-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-A-R00-OFF-NoPatch-formal-01-1",
+        "startedAtUnix": 1790051360.5127869,
+        "finishedAtUnix": 1790051585.995334,
+        "durationSeconds": 225.48254704475403,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-A-R00-OFF-NoPatch-formal-01-1/r00-player-launches.json",
+          "sha256": "a3ceb217a43e2d95041df987197acbdee78696be68a1f2c7f024b00d939ffbe0"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-A-R00-OFF-NoPatch-formal-01-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 92299
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-B-R00-OFF-NoPatch-formal-01-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-B-R00-OFF-NoPatch-formal-01-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-B-R00-OFF-NoPatch-formal-01-1",
+        "startedAtUnix": 1790051586.408671,
+        "finishedAtUnix": 1790051818.456665,
+        "durationSeconds": 232.0479941368103,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-B-R00-OFF-NoPatch-formal-01-1/r00-player-launches.json",
+          "sha256": "ca76f3e716bda3c90adb186d1aec1d3294aa9d0704afbce9f28cd15c3ee8d496"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-B-R00-OFF-NoPatch-formal-01-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-formal-pair-01-authority91ac-B-R00-OFF-NoPatch-formal-01-1.formal-launch-authority.json",
+          "sha256": "6cb7cae2d6535c7d5bf016bf01394d7618df61fb55c7c38a17b927bf349db993"
+        },
+        "processId": 92341
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-02",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-A-R00-OFF-NoPatch-formal-02-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-A-R00-OFF-NoPatch-formal-02-1",
+        "startedAtUnix": 1790052202.037814,
+        "finishedAtUnix": 1790052429.9713368,
+        "durationSeconds": 227.933522939682,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-A-R00-OFF-NoPatch-formal-02-1/r00-player-launches.json",
+          "sha256": "6388b262c43d8f255087d34a7728cd110752d71c61ed5a216df39ce6b633aad0"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-A-R00-OFF-NoPatch-formal-02-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 92493
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-B-R00-OFF-NoPatch-formal-02-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-B-R00-OFF-NoPatch-formal-02-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-B-R00-OFF-NoPatch-formal-02-1",
+        "startedAtUnix": 1790051970.55264,
+        "finishedAtUnix": 1790052201.996584,
+        "durationSeconds": 231.44394397735596,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-B-R00-OFF-NoPatch-formal-02-1/r00-player-launches.json",
+          "sha256": "a800fa11b231dfd65b91ba0cdfadeda92401b44ced0f81305666aac460b2d262"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-B-R00-OFF-NoPatch-formal-02-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-01-R00-OFF-NoPatch-formal-02-attempt-1-B-R00-OFF-NoPatch-formal-02-1.formal-launch-authority.json",
+          "sha256": "bdba25263b5cf1b7549535621908c27b3541e8b6ddfe0ee6080ee455cd6dc12b"
+        },
+        "processId": 92431
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-03",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-A-R00-OFF-NoPatch-formal-03-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-A-R00-OFF-NoPatch-formal-03-1",
+        "startedAtUnix": 1790052458.93348,
+        "finishedAtUnix": 1790052684.162858,
+        "durationSeconds": 225.2293779850006,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-A-R00-OFF-NoPatch-formal-03-1/r00-player-launches.json",
+          "sha256": "6bd80b4eecd3707047331e526af3c62f0637ccd6ab827bf1766541da1b274df0"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-A-R00-OFF-NoPatch-formal-03-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 92539
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-B-R00-OFF-NoPatch-formal-03-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-B-R00-OFF-NoPatch-formal-03-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-B-R00-OFF-NoPatch-formal-03-1",
+        "startedAtUnix": 1790052684.568803,
+        "finishedAtUnix": 1790052916.9636962,
+        "durationSeconds": 232.39489316940308,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-B-R00-OFF-NoPatch-formal-03-1/r00-player-launches.json",
+          "sha256": "af9bb013c92da87c3bf1382c125dbbdd7c8cc7d361261c5c2c00642e4f513407"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-B-R00-OFF-NoPatch-formal-03-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-02-R00-OFF-NoPatch-formal-03-attempt-1-B-R00-OFF-NoPatch-formal-03-1.formal-launch-authority.json",
+          "sha256": "949f4b7255d34b3ed63a7281d548f05af5beab859b57b45e508b449826acd75c"
+        },
+        "processId": 92588
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-04",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-A-R00-OFF-NoPatch-formal-04-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-A-R00-OFF-NoPatch-formal-04-1",
+        "startedAtUnix": 1790053175.681201,
+        "finishedAtUnix": 1790053404.928246,
+        "durationSeconds": 229.24704504013062,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-A-R00-OFF-NoPatch-formal-04-1/r00-player-launches.json",
+          "sha256": "6c0cfcce046156acfa252d848e7860ae60dba18edd9ab593f0e12c3067d790d5"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-A-R00-OFF-NoPatch-formal-04-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 92713
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-B-R00-OFF-NoPatch-formal-04-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-B-R00-OFF-NoPatch-formal-04-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-B-R00-OFF-NoPatch-formal-04-1",
+        "startedAtUnix": 1790052946.368093,
+        "finishedAtUnix": 1790053175.638881,
+        "durationSeconds": 229.27078795433044,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-B-R00-OFF-NoPatch-formal-04-1/r00-player-launches.json",
+          "sha256": "a09a17a15df8ec89a03ad2d92e7485eaf4b99ecc873e3c8b182721a943b23b1c"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-B-R00-OFF-NoPatch-formal-04-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-03-R00-OFF-NoPatch-formal-04-attempt-1-B-R00-OFF-NoPatch-formal-04-1.formal-launch-authority.json",
+          "sha256": "d0294cf715c1304355f4de5cf9778922376827a24cfe064e27e8199b04e8ab7a"
+        },
+        "processId": 92661
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-05",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-A-R00-OFF-NoPatch-formal-05-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-A-R00-OFF-NoPatch-formal-05-1",
+        "startedAtUnix": 1790053434.14222,
+        "finishedAtUnix": 1790053662.450639,
+        "durationSeconds": 228.30841898918152,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-A-R00-OFF-NoPatch-formal-05-1/r00-player-launches.json",
+          "sha256": "dfadb5cb2377206ccaaba825a133b7e4869ffb73397859574b4276334b81e67e"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-A-R00-OFF-NoPatch-formal-05-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 92751
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-B-R00-OFF-NoPatch-formal-05-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-B-R00-OFF-NoPatch-formal-05-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-B-R00-OFF-NoPatch-formal-05-1",
+        "startedAtUnix": 1790053662.848365,
+        "finishedAtUnix": 1790053894.1133351,
+        "durationSeconds": 231.2649700641632,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-B-R00-OFF-NoPatch-formal-05-1/r00-player-launches.json",
+          "sha256": "620465a4b3ca66ac2f15e769614a3f4740bd6de7be76e3bb621610ca3c106ba9"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-B-R00-OFF-NoPatch-formal-05-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-04-R00-OFF-NoPatch-formal-05-attempt-1-B-R00-OFF-NoPatch-formal-05-1.formal-launch-authority.json",
+          "sha256": "d566d93ba50040c6ded647ebe24a172da0e82686140f6ebed7c1fe6d84d6f88b"
+        },
+        "processId": 92783
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-06",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-A-R00-OFF-NoPatch-formal-06-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-A-R00-OFF-NoPatch-formal-06-1",
+        "startedAtUnix": 1790054151.86313,
+        "finishedAtUnix": 1790054378.789948,
+        "durationSeconds": 226.92681789398193,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-A-R00-OFF-NoPatch-formal-06-1/r00-player-launches.json",
+          "sha256": "2037a37aca551329f8ab4b3b1d40e0f17944a66caf9c62afc7bd294079dc753a"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-A-R00-OFF-NoPatch-formal-06-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 92911
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-B-R00-OFF-NoPatch-formal-06-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-B-R00-OFF-NoPatch-formal-06-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-B-R00-OFF-NoPatch-formal-06-1",
+        "startedAtUnix": 1790053923.632938,
+        "finishedAtUnix": 1790054151.820701,
+        "durationSeconds": 228.18776297569275,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-B-R00-OFF-NoPatch-formal-06-1/r00-player-launches.json",
+          "sha256": "c5870a614870e31044ddcfee396e7cb1ee3220a5a10a928056f0691fa3b24647"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-B-R00-OFF-NoPatch-formal-06-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-05-R00-OFF-NoPatch-formal-06-attempt-1-B-R00-OFF-NoPatch-formal-06-1.formal-launch-authority.json",
+          "sha256": "d56749f337c682f09d01c87ea8635ad86730e8f73302de11d3ce4b7b19e4ee79"
+        },
+        "processId": 92849
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-07",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-A-R00-OFF-NoPatch-formal-07-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-A-R00-OFF-NoPatch-formal-07-1",
+        "startedAtUnix": 1790054638.2492,
+        "finishedAtUnix": 1790054864.850538,
+        "durationSeconds": 226.6013379096985,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-A-R00-OFF-NoPatch-formal-07-1/r00-player-launches.json",
+          "sha256": "4cd312d53a2767fe3340c9dd2727f2225b393ace1c2346ef2c9c01c98abc0ee0"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-A-R00-OFF-NoPatch-formal-07-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 93010
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-B-R00-OFF-NoPatch-formal-07-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-B-R00-OFF-NoPatch-formal-07-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-B-R00-OFF-NoPatch-formal-07-1",
+        "startedAtUnix": 1790054408.498794,
+        "finishedAtUnix": 1790054638.206781,
+        "durationSeconds": 229.70798683166504,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-B-R00-OFF-NoPatch-formal-07-1/r00-player-launches.json",
+          "sha256": "587a778ebe08c62ee11260129923b187c2d1e459ce78427ed013b8b7f6c7e735"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-B-R00-OFF-NoPatch-formal-07-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-06-R00-OFF-NoPatch-formal-07-attempt-1-B-R00-OFF-NoPatch-formal-07-1.formal-launch-authority.json",
+          "sha256": "715ec33adb80d821bb1ae1380150891886efc43258c533d7b810d20842feaf7a"
+        },
+        "processId": 92956
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-08",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-A-R00-OFF-NoPatch-formal-08-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-A-R00-OFF-NoPatch-formal-08-1",
+        "startedAtUnix": 1790055124.975779,
+        "finishedAtUnix": 1790055351.685945,
+        "durationSeconds": 226.71016597747803,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-A-R00-OFF-NoPatch-formal-08-1/r00-player-launches.json",
+          "sha256": "ee14be21ac428a1cccf1168aae34cf9906afed2bcb6118e567763d98feed0adb"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-A-R00-OFF-NoPatch-formal-08-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 93111
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-B-R00-OFF-NoPatch-formal-08-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-B-R00-OFF-NoPatch-formal-08-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-B-R00-OFF-NoPatch-formal-08-1",
+        "startedAtUnix": 1790054894.512874,
+        "finishedAtUnix": 1790055124.932023,
+        "durationSeconds": 230.41914916038513,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-B-R00-OFF-NoPatch-formal-08-1/r00-player-launches.json",
+          "sha256": "316a98de2101b95d59762dc49e2525ae957a215e28d50192c5bd2c145d15d296"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-B-R00-OFF-NoPatch-formal-08-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-07-R00-OFF-NoPatch-formal-08-attempt-1-B-R00-OFF-NoPatch-formal-08-1.formal-launch-authority.json",
+          "sha256": "2bd92a5d24103df413a17eade67dc59005d7c6361f50f07baeb3d2590718450f"
+        },
+        "processId": 93057
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-09",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "status": "Passed",
+      "retryOf": null,
+      "A": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a77b656cd6cf433f9f66221d564213e3/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-ebd5fa49fcfc4c35830fc922b63d6a3f/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/M02Validation-b5584b5f5e6142399fa11aaa6541b09c/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-A-R00-OFF-NoPatch-formal-09-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-A-R00-OFF-NoPatch-formal-09-1",
+        "startedAtUnix": 1790055382.310368,
+        "finishedAtUnix": 1790055609.776818,
+        "durationSeconds": 227.4664499759674,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-A-R00-OFF-NoPatch-formal-09-1/r00-player-launches.json",
+          "sha256": "32b579bbe27b4b3230077f3386316b2ff20bed4c4ac53c55651064a0d51feed5"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-A-R00-OFF-NoPatch-formal-09-1.A.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": null,
+        "processId": 93162
+      },
+      "B": {
+        "status": "Passed",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "--project-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+          "--fixture-manifest",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-fixtures.json",
+          "--on-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-727f02c3260145aa892d086ed1ad4c03/m07-player-build.json",
+          "--off-build",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-36ebb7b3c92046438ab018e886f74651/m07-player-build.json",
+          "--replay-receipt",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/M02Validation-5155383f44174161b5b474a1f1585362/m07-editor-replay.json",
+          "--output-root",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-B-R00-OFF-NoPatch-formal-09-1",
+          "--early-startup-strategy",
+          "R01EarlyStartup",
+          "--mode",
+          "R00-OFF-NoPatch",
+          "--timeout",
+          "900",
+          "--h1-formal-launch-authority",
+          "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-B-R00-OFF-NoPatch-formal-09-1.formal-launch-authority.json"
+        ],
+        "cwd": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+        "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-B-R00-OFF-NoPatch-formal-09-1",
+        "startedAtUnix": 1790055610.178945,
+        "finishedAtUnix": 1790055841.227566,
+        "durationSeconds": 231.04862093925476,
+        "exitCode": 0,
+        "timedOut": false,
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-B-R00-OFF-NoPatch-formal-09-1/r00-player-launches.json",
+          "sha256": "420057eb02063374775f836ab33ca13f3215f7d6939659f32880fdae5d494ca3"
+        },
+        "consolePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-B-R00-OFF-NoPatch-formal-09-1.B.driver.console.log",
+        "error": "",
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+        },
+        "formalLaunchAuthority": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-08-R00-OFF-NoPatch-formal-09-attempt-1-B-R00-OFF-NoPatch-formal-09-1.formal-launch-authority.json",
+          "sha256": "0da2a171bc5994f4e832640ec989cee9cdad0f126434f313480d4b5a4607747a"
+        },
+        "processId": 93203
+      },
+      "pilotVerification": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-pilot-verification.json",
+        "sha256": "25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc"
+      },
+      "graphReuseBridge": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority91ac-formal/V04/performance/h1-graph-reuse-bridge.json",
+        "sha256": "b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2"
+      }
+    }
+  ]
+}
