@@ -56,6 +56,12 @@ retained candidate 的 ON performance launch 使用 `R01EarlyStartup` 时，oute
 
 `H1PilotVerificationReceipt` 必须绑定 graph-reuse bridge；每个 formal attempt 也必须绑定相同 bridge。正式采样链不能切换 bridge。最终 analyzer 必须再次执行 bridge 的 full authentication，再用该 authority 验证 retained side B；不能用 pilot seal 或 scope audit 替代最终 strict evidence reconstruction。
 
+retained pilot index 中的 `runner` 字段属于**生成该历史 pilot 的不可变 provenance**，不等同于 current formal runner implementation。若 current source 的 `run-r00-players.py` 已因 H1 tooling 修复而变化，seal admission 不能直接要求历史 pilot runner hash 等于 current runner hash。
+
+允许的唯一 historical runner provenance 必须由当前 `H1GraphReuseBridge` 自 Git anchor `69130bbb...:Tools/AssemblyShadow/run-r00-players.py` 重新计算并写入 bridge；调用者不得传入 arbitrary historical path/hash。bridge verification 必须再次计算并匹配该 binding。只有 bridge-authenticated retained **pilot** row 可使用该 historical runner binding；所有新的 formal attempt 仍必须绑定 current runner。
+
+在完整 8-side seal 前必须先运行 `H1RetainedPilotAdmissionPreflight`：full-authenticate bridge，使用其 Git-derived retained runner 验证完整 retained pilot history，并选出四个最新 Passed pilot pair，但不做 deep R00 reconstruction。缺少 bridge、runner path/hash 不等于固定 anchor、或 bridge switching 都必须在 seal 前 fail closed。该 preflight 不能替代 strict seal。
+
 任何 current source-pin、allowed-tool verifier、build map、bridge receipt 或 Git delta 变化都会使 bridge 失效。失效时只能重新做完整 bridge authentication（若仍满足同一规范）或重建 current-pairing graph；不能自动降级为“scope audit 已通过”。
 ## P2C. Formal fresh-launch subprocess authority
 
