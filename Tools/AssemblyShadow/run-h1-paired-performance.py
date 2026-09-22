@@ -19,6 +19,7 @@ from typing import Any
 from shadow_tools import VerificationError, read_json, require
 import h1_paired_performance as analysis
 import h1_graph_reuse as graph_reuse
+import h1_formal_launch_authority as formal_authority
 
 
 _m07_spec = importlib.util.spec_from_file_location(
@@ -44,6 +45,7 @@ PILOT_VERIFIER_PATHS = tuple(
         "seal-h1-pilot-verification.py",
         "h1_paired_performance.py",
         "h1_graph_reuse.py",
+        "h1_formal_launch_authority.py",
         "r00_results.py",
         "r00_player_inputs.py",
         "run-r00-players.py",
@@ -555,16 +557,21 @@ def _safe_name(value: str) -> str:
     return result
 
 
-def build_command(project: Path, mode: str, side: dict[str, Any], output_root: Path, timeout: int) -> list[str]:
+def build_command(project: Path, mode: str, side: dict[str, Any], output_root: Path, timeout: int,
+                  formal_launch_authority: Path | None = None) -> list[str]:
     canonical_dir(project, "project")
     script = _m07.canonical_file(RUNNER_PATH)
     on = side["builds"]["on"]["receipt"]
     off = side["builds"]["off"]["receipt"]
-    return [sys.executable, str(script), "--project-root", str(project),
-            "--fixture-manifest", str(side["fixtureManifest"]), "--on-build", str(on),
-            "--off-build", str(off), "--replay-receipt", str(side["replayReceipt"]),
-            "--output-root", str(output_root), "--early-startup-strategy", "R01EarlyStartup",
-            "--mode", mode, "--timeout", str(timeout)]
+    command = [sys.executable, str(script), "--project-root", str(project),
+               "--fixture-manifest", str(side["fixtureManifest"]), "--on-build", str(on),
+               "--off-build", str(off), "--replay-receipt", str(side["replayReceipt"]),
+               "--output-root", str(output_root), "--early-startup-strategy", "R01EarlyStartup",
+               "--mode", mode, "--timeout", str(timeout)]
+    if formal_launch_authority is not None:
+        authority = _m07.canonical_file(formal_launch_authority)
+        command.extend(["--h1-formal-launch-authority", str(authority)])
+    return command
 
 
 def _write_failure_receipt(path: Path, mode: str, error: str) -> None:
@@ -613,11 +620,13 @@ def _terminate_owned_group(process_id: int) -> None:
 
 
 def _run_side(side_name: str, side: dict[str, Any], mode: str, output_root: Path,
-              project_output: Path, timeout: int) -> dict[str, Any]:
+              project_output: Path, timeout: int,
+              formal_launch_authority: Path | None = None) -> dict[str, Any]:
     output_root_parent = project_output / "_temp/AssemblyShadow"
     require(output_root_parent.is_dir() and not output_root_parent.is_symlink(),
             side_name + " project output parent is unavailable")
-    command = build_command(side["projectRoot"], mode, side, output_root, timeout)
+    command = build_command(
+        side["projectRoot"], mode, side, output_root, timeout, formal_launch_authority)
     console = output_root_parent / (output_root.name + "." + side_name + ".driver.console.log")
     started = time.time()
     process = None
@@ -666,7 +675,9 @@ def _run_side(side_name: str, side: dict[str, Any], mode: str, output_root: Path
             "startedAtUnix": started, "finishedAtUnix": ended, "durationSeconds": duration, "exitCode": exit_code,
             "timedOut": timed_out, "launchReceipt": binding(launch_path) if had_launch_receipt else None,
             "consolePath": str(console), "error": error or row.get("error", ""),
-            "runner": runner_binding()}
+            "runner": runner_binding(),
+            "formalLaunchAuthority": binding(formal_launch_authority)
+                if formal_launch_authority is not None else None}
     if process is not None:
         value["processId"] = process.pid
     if cleanup_error is not None:
@@ -734,7 +745,32 @@ def main(argv: list[str] | None = None) -> int:
             "H1Pair-" + run_id + "-" + side_name + "-" + _safe_name(row["pairId"]) + "-" + str(args.attempt))
         require(not project_output.exists() and not project_output.is_symlink(),
                 "Per-side output must be new: " + str(project_output))
-        sides[side_name] = _run_side(side_name, side, row["mode"], project_output, side["projectRoot"], args.timeout)
+        launch_authority_path = None
+        if (args.phase == "formal" and side_name == "B" and
+                args.graph_reuse_bridge is not None and args.pilot_verification_receipt is not None):
+            launch_authority_path = project_output.parent / (
+                project_output.name + ".formal-launch-authority.json")
+            require(launch_authority_path.is_absolute() and
+                    launch_authority_path == launch_authority_path.resolve() and
+                    not launch_authority_path.exists() and not launch_authority_path.is_symlink(),
+                    "Formal side-B launch authority must be a new canonical path")
+            launch_authority = formal_authority.create_receipt(
+                side["projectRoot"], row["pairId"], args.attempt, row["mode"], row["order"],
+                protocol_path, schedule_path, build_map_path, args.graph_reuse_bridge,
+                args.pilot_verification_receipt, side["fixtureManifest"],
+                side["builds"]["on"]["receipt"], side["builds"]["off"]["receipt"],
+                side["replayReceipt"])
+            with launch_authority_path.open("x", encoding="utf-8") as stream:
+                json.dump(launch_authority, stream, indent=2)
+                stream.write("\n")
+            formal_authority.verify_receipt(
+                launch_authority_path, side["projectRoot"], row["mode"],
+                side["fixtureManifest"], side["builds"]["on"]["receipt"],
+                side["builds"]["off"]["receipt"], side["replayReceipt"],
+                expected_pair_id=row["pairId"], expected_attempt=args.attempt)
+        sides[side_name] = _run_side(
+            side_name, side, row["mode"], project_output, side["projectRoot"], args.timeout,
+            launch_authority_path)
         if sides[side_name].get("stopBeforeNextSide"):
             other = "B" if side_name == "A" else "A"
             if other not in sides:
