@@ -96,9 +96,9 @@ No Unity/runtime/native/measurement/protocol/schedule/controlled-build source ch
 
 ## Primary validation
 
-Workflow `35680306116` at `4732dc82...` passed bounded **364/364**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
+Exact live handoff workflow `35680823080` at `6d27e9bf...` passed bounded **364/364**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
 
-Artifact `10675141839` has SHA-256 `726abdb0692a25cad6c9942321fc3e5eb3e48bb4f191d00629816560f32328ce`.
+Artifact `10674618336` has SHA-256 `3ee6730b7a92e185bf9f3f990ba2c1266780ddccfa305e984f463d86803dd6c0`.
 
 ## Residual empirical requirements
 
