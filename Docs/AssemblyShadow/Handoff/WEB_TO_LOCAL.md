@@ -347,6 +347,18 @@ Do not:
 
 If the fixed historical provenance cannot authenticate honestly, return to Primary; the fallback remains rebuilding a fresh current-pairing graph, not rewriting provenance.
 
+## Risks
+
+- Current source pin changes require a fresh candidate installed-runtime receipt before bridge creation.
+- The retained-pilot admission preflight is cheap relative to the seal but does not replace deep graph verification.
+- The strict 8-side seal remains intentionally expensive and must run after the admission preflight.
+- Historical pilot runner provenance is valid only for retained pilot diagnostics; any leakage into new formal rows is a hard failure.
+- New formal attempts must use the current runner and current per-attempt formal authority.
+- Any source/tool/verifier change invalidates the current bridge and any seal/formal authorities derived from it.
+- Forty formal A/B pairs and final strict analysis remain intrinsically long-running.
+- Reused Unity/retained-ON evidence must remain explicitly classified as reused, not fresh current-source execution.
+- Environment-bound Python skips remain non-Passed evidence.
+
 ## Local correction boundary
 
 Local may adjust only paths/output roots, permissions/PYTHONPATH, bounded command syntax, and protocol-valid whole-pair retry numbers.
