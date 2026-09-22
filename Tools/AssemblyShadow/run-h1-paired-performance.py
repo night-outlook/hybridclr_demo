@@ -520,7 +520,8 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
             require(row["A"].get("formalLaunchAuthority") is None,
                     "Prior protected formal side A must not carry retained launch authority")
             b_authority = row["B"].get("formalLaunchAuthority")
-            if row["B"].get("skipped") is True and launch_receipt is None:
+            b_launch = row["B"].get("launchReceipt")
+            if row["B"].get("skipped") is True and b_launch is None:
                 require(b_authority is None,
                         "Skipped prior formal side B must not fabricate retained launch authority")
             elif b_authority is not None:
@@ -538,6 +539,13 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
                         "Prior formal attempt pilot verification binding mismatch")
                 require(prior_attempt.get("graphReuseBridge") == bridge_binding,
                         "Prior formal attempt graph reuse bridge binding mismatch")
+                b = prior_attempt["B"]
+                if bridge_binding is not None and not (
+                        b.get("skipped") is True and b.get("launchReceipt") is None):
+                    require(type(b.get("formalLaunchAuthority")) is dict,
+                            "Prior retained formal side B is missing launch authority")
+                    bound_file(b["formalLaunchAuthority"],
+                               "Prior retained formal side B launch authority")
     else:
         require(pilot_verification_path is None, "Pilot sampling must not consume a formal pilot verification receipt")
         require(graph_reuse_bridge_path is None, "Pilot sampling must not consume a graph reuse bridge")
