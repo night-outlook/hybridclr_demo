@@ -110,10 +110,12 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
                 value = authority.create_receipt(
                     ROOT.resolve(), fx["pairId"], 2, fx["mode"], fx["order"],
                     fx["protocol"], fx["schedule"], fx["buildMap"], fx["bridge"], fx["seal"],
-                    fx["fixture"], fx["on"], fx["off"], fx["replay"])
+                    fx["fixture"], fx["on"], fx["off"], fx["replay"],
+                    ROOT / "_temp/AssemblyShadow/formal-authority-test-output")
                 receipt = write_json(root / "authority.json", value)
                 verified = authority.verify_receipt(
                     receipt, ROOT.resolve(), fx["mode"], fx["fixture"], fx["on"], fx["off"], fx["replay"],
+                    ROOT / "_temp/AssemblyShadow/formal-authority-test-output",
                     expected_pair_id=fx["pairId"], expected_attempt=2)
 
             self.assertEqual(value["kind"], authority.KIND)
@@ -136,7 +138,8 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
                 value = authority.create_receipt(
                     ROOT.resolve(), fx["pairId"], 1, fx["mode"], fx["order"],
                     fx["protocol"], fx["schedule"], fx["buildMap"], fx["bridge"], fx["seal"],
-                    fx["fixture"], fx["on"], fx["off"], fx["replay"])
+                    fx["fixture"], fx["on"], fx["off"], fx["replay"],
+                    ROOT / "_temp/AssemblyShadow/formal-authority-test-output")
 
             mutations = [
                 lambda v: v.update(mode="R00-ON-NoPatch"),
@@ -155,6 +158,7 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
                             authority.verify_receipt(
                                 receipt, ROOT.resolve(), fx["mode"], fx["fixture"],
                                 fx["on"], fx["off"], fx["replay"],
+                                ROOT / "_temp/AssemblyShadow/formal-authority-test-output",
                                 expected_pair_id=fx["pairId"], expected_attempt=1)
 
     def test_real_formal_command_boundary_uses_retained_verifier_only_for_authorized_side_b(self):
