@@ -23,9 +23,9 @@ AUTHORITY_KIND = "H1AuthenticatedGraphReuseAuthority"
 RETAINED_PILOT_RUNNER_RELATIVE = "Tools/AssemblyShadow/run-r00-players.py"
 
 # Exact non-metadata delta permitted between the retained profile-2 graph source
-# and the current source anchor.  No Assets/, Packages/, runtime/native source,
-# performance protocol/schedule/map producer, Player runner, or measurement
-# source is in this set.
+# and the current source anchor.  Only reviewed H1 tooling/tests/CI may appear:
+# no Assets/, Packages/, runtime/native code, Player binary/measurement source,
+# or performance protocol/schedule/map producer is in this set.
 ALLOWED_NON_METADATA_PATHS = frozenset({
     ".github/workflows/h1-bee-primary.yml",
     "Tools/AssemblyShadow/README.md",
