@@ -24,6 +24,11 @@ _seal_spec = importlib.util.spec_from_file_location(
 seal = importlib.util.module_from_spec(_seal_spec)
 _seal_spec.loader.exec_module(seal)
 
+_admission_spec = importlib.util.spec_from_file_location(
+    "h1_retained_pilot_admission", TOOLS / "verify-h1-retained-pilot-admission.py")
+admission = importlib.util.module_from_spec(_admission_spec)
+_admission_spec.loader.exec_module(admission)
+
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -148,6 +153,38 @@ class H1RetainedPilotRunnerTests(unittest.TestCase):
             "authority": authority,
             "retainedRunner": retained_runner,
         }
+
+    def test_actual_admission_preflight_accepts_exact_retained_runner_without_deep_scan(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            fx = self.fixture(root)
+            output = root / "pilot-admission.json"
+            with mock.patch.object(admission.driver, "_validate_protocol", return_value={}), \
+                 mock.patch.object(admission.driver, "_validate_schedule", return_value=fx["scheduleRows"]), \
+                 mock.patch.object(admission.driver, "_validate_build", return_value=fx["build"]), \
+                 mock.patch.object(
+                     admission.graph_reuse, "verify_bridge_full",
+                     return_value=fx["authority"]) as full_bridge, \
+                 mock.patch.object(
+                     admission.driver._r00, "verify_suite",
+                     side_effect=AssertionError("admission preflight must not deep-verify R00")):
+                code = admission.main([
+                    "--protocol", str(fx["protocol"]),
+                    "--schedule", str(fx["schedule"]),
+                    "--build-map", str(fx["buildMap"]),
+                    "--pilot-index", str(fx["prior"]),
+                    "--graph-reuse-bridge", str(fx["bridge"]),
+                    "--output", str(output),
+                ])
+
+            self.assertEqual(code, 0)
+            full_bridge.assert_called_once_with(
+                fx["bridge"], ROOT.resolve(), fx["buildMap"])
+            receipt = json.loads(output.read_text())
+            self.assertEqual(receipt["kind"], "H1RetainedPilotAdmissionPreflight")
+            self.assertEqual(receipt["result"], "Passed")
+            self.assertEqual(receipt["selectedPilotCount"], 4)
+            self.assertEqual(receipt["retainedPilotRunner"], fx["retainedRunner"])
 
     def test_actual_seal_entry_accepts_exact_retained_runner_and_reaches_eight_deep_sides(self):
         with tempfile.TemporaryDirectory() as directory:
