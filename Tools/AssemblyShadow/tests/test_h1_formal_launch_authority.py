@@ -85,6 +85,11 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
             "buildMap": bind(build_map),
             "graphReuseBridge": bind(bridge),
         })
+        output_parent = ROOT / "_temp/AssemblyShadow"
+        output_parent.mkdir(parents=True, exist_ok=True)
+        output_root = output_parent / ("formal-authority-" + root.name)
+        if output_root.exists():
+            raise RuntimeError("Unexpected existing formal authority test output: " + str(output_root))
         pairing = {
             "kind": "H1AuthenticatedGraphReuseAuthority",
             "projectRoot": str(ROOT.resolve()),
@@ -97,7 +102,7 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
             "protocol": protocol, "schedule": schedule, "buildMap": build_map,
             "fixture": fixture, "replay": replay, "on": on, "off": off,
             "bridge": bridge, "seal": seal, "pairing": pairing,
-            "pairId": pair_id, "mode": mode, "order": order,
+            "pairId": pair_id, "mode": mode, "order": order, "outputRoot": output_root,
         }
 
     def test_receipt_binds_formal_pair_map_bridge_seal_inputs_and_tools(self):
@@ -111,11 +116,11 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
                     ROOT.resolve(), fx["pairId"], 2, fx["mode"], fx["order"],
                     fx["protocol"], fx["schedule"], fx["buildMap"], fx["bridge"], fx["seal"],
                     fx["fixture"], fx["on"], fx["off"], fx["replay"],
-                    ROOT / "_temp/AssemblyShadow/formal-authority-test-output")
+                    fx["outputRoot"])
                 receipt = write_json(root / "authority.json", value)
                 verified = authority.verify_receipt(
                     receipt, ROOT.resolve(), fx["mode"], fx["fixture"], fx["on"], fx["off"], fx["replay"],
-                    ROOT / "_temp/AssemblyShadow/formal-authority-test-output",
+                    fx["outputRoot"],
                     expected_pair_id=fx["pairId"], expected_attempt=2)
 
             self.assertEqual(value["kind"], authority.KIND)
