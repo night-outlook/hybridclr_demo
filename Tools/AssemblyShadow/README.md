@@ -536,6 +536,13 @@ python3 Tools/AssemblyShadow/run-h1-formal-batch.py \
 A successful batch writes `formal-batch.json` with
 `status=PassedAllFormalPairs` and binds the final cumulative sample index.
 
+Each paired invocation derives its internal per-project output namespace from
+the **full canonical requested output path** (including a short SHA-256 suffix),
+not only the leaf directory name. Preserved historical batches may therefore
+reuse the same pair IDs/attempt numbers without colliding in
+`_temp/AssemblyShadow`. The externally requested evidence root remains
+new-only and unchanged in the sample/batch receipts.
+
 The batch **never retries a failed pair automatically**. On the first failed
 whole-pair attempt it retains that sample index, writes
 `status=StoppedOnFailedWholePair`, and stops. Diagnose the failure and, only
@@ -561,8 +568,12 @@ Then start a **new** batch output root with the successful retry index as
 
 Both the single-pair driver and batch path re-hash compact control receipts/tools,
 re-derive the current pilot immutable path/hash inventory, verify the sealed
-path/device/inode/mode/size/mtime/ctime guard, and verify the graph-reuse bridge's
-compact current bindings. They do not repeat the eight deep pilot graph scans.
+canonical-path + inode/mode/size/mtime/ctime guard, and verify the graph-reuse
+bridge's compact current bindings. `st_dev` is deliberately excluded from
+acceptance because it identifies the mount/filesystem instance and may change
+across a remount while the same file bytes and stable identity remain unchanged.
+Any accepted guard field change still fails closed and requires a new seal.
+They do not repeat the eight deep pilot graph scans.
 
 For retained candidate side B, the paired driver also creates one
 `H1FormalSideLaunchAuthority` per formal attempt. That receipt binds the exact
