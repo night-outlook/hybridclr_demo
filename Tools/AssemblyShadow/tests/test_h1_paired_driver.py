@@ -229,6 +229,7 @@ class H1PairedDriverTests(unittest.TestCase):
                 "graphSourcePins": {"schemaVersion": 1},
                 "currentSourcePins": {"schemaVersion": 1},
                 "bridgeReceipt": {"path": str(bridge), "sha256": sha(bridge)},
+                "retainedPilotRunner": driver.runner_binding(),
             }
             calls = []
             def verified(path, expected_mode=None, pairing_authority=None):
