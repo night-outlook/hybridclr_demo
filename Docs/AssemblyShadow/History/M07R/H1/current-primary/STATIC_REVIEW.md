@@ -1,118 +1,108 @@
-# Static Review — Bridge-Aware Retained Pilot Runner Admission
+# Static Review — Cross-Remount Seal Guard v2
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real current bridge, admission preflight, strict seal, and subsequent formal execution.
+**PASS for Primary → Local Validation handoff**, subject to a real guard-v2 seal and fresh formal series.
 
 Reviewed source/tool anchor:
 
-`91ac4db31cec704551c7db05bd918c8d5695ce83`
+`27df1a3d60811dc121f296ab561ae313a382b363`
 
-## Finding
+## Returned finding
 
-The retained pilot index is immutable historical evidence.
+The old seal identity guard included `st_dev`.
 
-Its A/B diagnostic `runner` fields correctly identify the `run-r00-players.py` implementation that produced those pilots.
+Local observed an actual remount where:
 
-After the formal subprocess repair, the current runner changed. The old loader compared historical pilot provenance to the current runner before authenticating the supplied bridge.
+- canonical path unchanged;
+- SHA-256 unchanged;
+- inode unchanged;
+- mode unchanged;
+- size unchanged;
+- mtime unchanged;
+- ctime unchanged;
+- only `st_dev` changed.
 
-That conflated provenance identity with current execution identity.
+Therefore `st_dev` was measuring filesystem/mount topology rather than immutable artifact identity.
 
-## Review of correction
+## Review of semantic change
 
-### Fixed-anchor derivation
+The change removes **only** `st_dev`.
 
-No API accepts a historical runner hash.
+It does not add a hash fallback, stat tolerance, automatic reseal, or cache-miss retry.
 
-`h1_graph_reuse.retained_pilot_runner_binding(project)` derives the only accepted runner from Git:
+The new acceptance guard is:
 
-- revision: `69130bbb3a6df516916dddb5ad263799a7c6e5e3`;
-- path: `Tools/AssemblyShadow/run-r00-players.py`;
-- expected SHA-256: `afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c`.
+- inode;
+- mode;
+- size;
+- mtimeNs;
+- ctimeNs.
 
-The path in the resulting binding remains the canonical current project path, matching retained receipt provenance.
+Canonical path remains independently required.
 
-### Bridge binding
+Any mismatch in those fields remains fail-closed.
 
-`H1GraphReuseBridge` contains `retainedPilotRunner`.
+Immutable content remains SHA-256-bound through the strict pilot evidence and current immutable inventory.
 
-Both full and compact bridge verification recompute it from Git and require equality.
+## Explicit schema boundary
 
-Therefore a caller cannot make an arbitrary historical runner acceptable by editing the pilot index or bridge JSON.
+New seals carry guard kind/version/field metadata.
 
-### Loader phase isolation
+Old seals lack guard v2 and are rejected before cached admission.
 
-For a row whose phase is `pilot`:
+This prevents reinterpretation of an existing 14-pair series under changed verifier semantics.
 
-- authenticated retained authority present → exact `retainedPilotRunner` is required;
-- authority absent → current `runner_binding()` is required.
+## Output collision review
 
-For a row whose phase is `formal`:
+Previous internal project-output identity used only the requested output leaf.
 
-- current `runner_binding()` is always required.
+Separate batch roots can legitimately reuse the same pair/attempt leaf, causing a collision with preserved project-local evidence.
 
-The historical exception therefore cannot authorize old runners for new measurements.
+The new ID includes SHA-256(full canonical output path), so two external roots map to distinct internal directories.
 
-### Bridge-before-loader seal ordering
-
-The sealer now full-authenticates the bridge before calling `_load_prior`.
-
-This directly fixes the returned ordering defect.
-
-Formal resume derives only compact bridge authority before validating retained pilot rows.
-
-### Preflight
-
-`verify-h1-retained-pilot-admission.py` provides a cheap fail-closed gate.
-
-It verifies the current bridge and retained pilot history/selection but deliberately does not invoke `r00_results.verify_suite`.
-
-The full 8-side strict seal remains mandatory.
+The external evidence path remains unchanged and new-only.
 
 ## Regression review
 
-The new regression locks the exact historical SHA from real Git.
+New tests cover:
 
-The positive test executes the actual seal entrypoint and reaches 8 deep verification calls.
+- same stat identity with different device;
+- every remaining field mutation;
+- guard-v2 receipt metadata;
+- old schema rejection;
+- deterministic full-path output ID;
+- actual two-run preserved-project-output coexistence.
 
-Negative coverage:
-
-- no bridge authority;
-- wrong historical SHA;
-- wrong historical path;
-- bridge switching.
-
-A separate actual preflight test asserts four-pilot admission with zero deep calls.
-
-Existing formal subprocess, bridge, nested early, cache, batch, and final-analysis regressions remain active.
+Existing formal/pilot/bridge authority suites remain active.
 
 ## Scope
 
-`24a0d3af... → 91ac4db3...`: exactly 9 non-metadata paths.
+`91ac4db3... → 27df1a3d...`: exactly 3 non-metadata paths.
 
-`69130bbb... → 91ac4db3...`: exactly 22 non-metadata paths.
+`69130bbb... → 27df1a3d...`: exactly 22 non-metadata paths.
 
-No Unity/runtime/native/measurement/protocol/schedule/controlled-build source changed.
+No Player/runtime/native/measurement/Unity build input changed.
 
 ## Primary validation
 
-Exact live handoff workflow `35680823080` at `6d27e9bf...` passed bounded **364/364**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
+Workflow `35730535436` at `465e97be...` passed bounded **368/368**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
 
-Artifact `10674618336` has SHA-256 `3ee6730b7a92e185bf9f3f990ba2c1266780ddccfa305e984f463d86803dd6c0`.
+Artifact `10695057616` has SHA-256 `d30e3676419c05fcf22f728aff299823df2129a018efa24c614c539484e356fc`.
 
 ## Residual empirical requirements
 
-Local must prove the path on real retained evidence:
+Local must:
 
-- refreshed current authority;
-- exact 9/22 path audits;
-- new graph bridge containing the Git-derived retained runner;
-- new retained-pilot admission preflight;
-- new strict 8-side seal;
-- new formal series;
-- first-pair formal subprocess authority closure;
-- all 40 formal pairs;
-- final analysis;
+- refresh current authority;
+- verify exact 3/22 path sets;
+- reauthenticate retained evidence;
+- create a new bridge;
+- run retained-pilot admission preflight;
+- create a new guard-v2 strict seal;
+- start a new 40-pair formal series;
+- prove preserved historical outputs no longer collide;
+- complete final strict analysis;
 - checkpoint / V05 / independent M08.
 
 H1 remains `InProgress`. Do not begin R02.
