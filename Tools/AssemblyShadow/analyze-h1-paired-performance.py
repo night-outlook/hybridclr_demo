@@ -81,22 +81,29 @@ def _prepare_reuse(sample_index: Path, pilot_verification: Path,
         authority_path = Path(b_authority.get("path", "")).resolve(strict=True)
         require(b_authority == _binding(authority_path),
                 "formal side-B launch authority binding changed")
+        authority_value = read_json(authority_path)
+        verified_authority = formal_authority.verify_receipt(
+            authority_path, Path(authority_value["projectRoot"]).resolve(strict=True), row["mode"],
+            Path(authority_value["fixtureManifest"]["path"]),
+            Path(authority_value["nativeOnReceipt"]["path"]),
+            Path(authority_value["nativeOffReceipt"]["path"]),
+            Path(authority_value["editorReplayReceipt"]["path"]),
+            expected_pair_id=row["pairId"], expected_attempt=row["attempt"])
+        require(verified_authority.get("graphReuseBridge") == bridge_binding and
+                verified_authority.get("pilotVerification") == pilot_binding,
+                "formal side-B authority switched bridge or pilot seal")
         launch_binding = b.get("launchReceipt")
-        require(type(launch_binding) is dict, "formal side B launch receipt is missing")
+        if launch_binding is None:
+            require(b.get("status") != "Passed",
+                    "passed formal side B cannot omit its R00 launch receipt")
+            continue
+        require(type(launch_binding) is dict, "formal side B launch receipt binding is invalid")
         launch_path = Path(launch_binding.get("path", "")).resolve(strict=True)
         require(launch_binding == _binding(launch_path),
                 "formal side B launch receipt binding changed")
         launch = read_json(launch_path)
         require(launch.get("formalLaunchAuthority") == b_authority,
                 "formal side-B runner receipt authority differs from pair attempt")
-        verified_authority = formal_authority.verify_receipt(
-            authority_path, Path(launch["projectRoot"]).resolve(strict=True), row["mode"],
-            Path(launch["fixtureManifestPath"]), Path(launch["nativeOnReceipt"]),
-            Path(launch["nativeOffReceipt"]), Path(launch["editorReplayReceipt"]),
-            expected_pair_id=row["pairId"], expected_attempt=row["attempt"])
-        require(verified_authority.get("graphReuseBridge") == bridge_binding and
-                verified_authority.get("pilotVerification") == pilot_binding,
-                "formal side-B authority switched bridge or pilot seal")
     return {
         "authority": authority,
         "pilotVerification": pilot_binding,
