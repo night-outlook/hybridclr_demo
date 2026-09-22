@@ -57,6 +57,28 @@ retained candidate 的 ON performance launch 使用 `R01EarlyStartup` 时，oute
 `H1PilotVerificationReceipt` 必须绑定 graph-reuse bridge；每个 formal attempt 也必须绑定相同 bridge。正式采样链不能切换 bridge。最终 analyzer 必须再次执行 bridge 的 full authentication，再用该 authority 验证 retained side B；不能用 pilot seal 或 scope audit 替代最终 strict evidence reconstruction。
 
 任何 current source-pin、allowed-tool verifier、build map、bridge receipt 或 Git delta 变化都会使 bridge 失效。失效时只能重新做完整 bridge authentication（若仍满足同一规范）或重建 current-pairing graph；不能自动降级为“scope audit 已通过”。
+## P2C. Formal fresh-launch subprocess authority
+
+bridge/seal/formal admission 通过并不自动授权新的 R00 runner 子进程读取 retained candidate graph。formal side B 的 fresh execution 必须通过单独的、pair/attempt-bound `H1FormalSideLaunchAuthority` 跨越 parent → subprocess 边界；不得给 `run-r00-players.py` 增加 raw historical revision / source-pin override。
+
+每个 retained candidate formal attempt 的 side B 在启动 runner 前由 paired driver 生成一个新的 authority receipt。receipt 必须绑定：
+
+- pairId、attempt、mode、AB/BA order；
+- candidate project；
+- protocol、schedule、frozen build map；
+- graph-reuse bridge、pilot verification seal；
+- fixture manifest、Native ON/OFF receipt、Editor replay；
+- formal-authority module、paired driver、R00 runner、R00 input/results verifier、early verifier 等当前 tool hash。
+
+`run-r00-players.py` 只有在收到该 H1-specific receipt 时才允许 retained side-B 路径；它必须重新验证 receipt、same bridge/seal/map/input/tool bindings，并从 bridge 重新得到 `H1AuthenticatedGraphReuseAuthority`。随后 outer input verification 使用 `verify_inputs_with_reuse`；ON mode 的 nested Baseline/Control early preparation继续使用同一个 authority。无 receipt 时 runner 行为保持 current-pairing-only。
+
+protected side A 不得携带 retained formal authority。parent 只有在 runner 生成的 R00 launch receipt 回显完全相同 authority binding 时才能把该 side 标为 Passed。
+
+formal attempt diagnostics 必须保留 `formalLaunchAuthority` binding。若 side B 在生成 R00 launch receipt 前失败，authority receipt 仍作为失败 attempt evidence 保留；retry 不得覆盖旧 authority。resumed formal chain 对所有实际启动/准备过的 retained side-B attempt 必须保持可验证 authority binding。
+
+final analyzer 必须在统计前重新验证每个 formal side-B authority 的 pairId/attempt/input/bridge/seal/tool bindings，并确认 side A 没有 retained authority。successful R00 receipt 还必须回显同一 authority。authority receipt 不能替代原有 launch/raw evidence verification。
+
+source/tool 变化会使旧 bridge、seal 和 formal authority 一并失效；新的 source series 必须重新创建 bridge/seal，并从 retained pilot index 开始新的 formal chain。旧 source 下失败的 formal attempts 作为历史 evidence 保留，但不得混入新 source 的累计 sample index。
 ## P3. 可比性
 
 | 项目 | 必需处理 |
