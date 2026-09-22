@@ -93,7 +93,7 @@ No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-product
 
 ## Primary validation
 
-Workflow `35680306116` passed bounded **364/364** plus all live handoff, R01, M07 recovery, and lazy suites.
+Exact live handoff workflow `35680823080` at commit `6d27e9bf...` passed bounded **364/364**, handoff **11/11**, all R01/failure suites, both M07 recovery regressions, and lazy **10/10**. Artifact `10674618336`, SHA-256 `3ee6730b7a92e185bf9f3f990ba2c1266780ddccfa305e984f463d86803dd6c0`.
 
 ## Next Local cycle
 
