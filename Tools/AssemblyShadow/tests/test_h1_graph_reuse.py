@@ -219,8 +219,11 @@ class H1GraphReuseTests(unittest.TestCase):
             off = root / "off.json"; off.write_text("{}", encoding="utf-8")
             replay = root / "replay.json"; replay.write_text("{}", encoding="utf-8")
             formal_authority = root / "formal-authority.json"
+            formal_output = project / "_temp/AssemblyShadow/formal-01-B"
+            formal_output.parent.mkdir(parents=True)
             formal_authority.write_text(json.dumps({
                 "projectRoot": str(project),
+                "runnerOutputRoot": str(formal_output),
                 "fixtureManifest": analyzer._binding(fixture),
                 "nativeOnReceipt": analyzer._binding(on),
                 "nativeOffReceipt": analyzer._binding(off),
@@ -282,7 +285,7 @@ class H1GraphReuseTests(unittest.TestCase):
             self.assertEqual(prepared["graphReuseBridge"], analyzer._binding(bridge))
             formal_verify.assert_called_once_with(
                 formal_authority, project, "R00-OFF-NoPatch",
-                fixture, on, off, replay,
+                fixture, on, off, replay, formal_output,
                 expected_pair_id="formal-01", expected_attempt=1)
 
             value = json.loads(sample.read_text())
@@ -310,8 +313,11 @@ class H1GraphReuseTests(unittest.TestCase):
             off = root / "off.json"; off.write_text("{}", encoding="utf-8")
             replay = root / "replay.json"; replay.write_text("{}", encoding="utf-8")
             auth = root / "authority.json"
+            failed_output = project / "_temp/AssemblyShadow/formal-failed-B"
+            failed_output.parent.mkdir(parents=True)
             auth.write_text(json.dumps({
                 "projectRoot": str(project),
+                "runnerOutputRoot": str(failed_output),
                 "fixtureManifest": analyzer._binding(fixture),
                 "nativeOnReceipt": analyzer._binding(on),
                 "nativeOffReceipt": analyzer._binding(off),
