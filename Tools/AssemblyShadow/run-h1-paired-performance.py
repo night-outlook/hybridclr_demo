@@ -516,6 +516,15 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
             launch_receipt = row[side].get("launchReceipt")
             if launch_receipt is not None:
                 bound_file(launch_receipt, "Prior " + side + " launch receipt")
+        if row["phase"] == "formal":
+            require(row["A"].get("formalLaunchAuthority") is None,
+                    "Prior protected formal side A must not carry retained launch authority")
+            b_authority = row["B"].get("formalLaunchAuthority")
+            if row["B"].get("skipped") is True and launch_receipt is None:
+                require(b_authority is None,
+                        "Skipped prior formal side B must not fabricate retained launch authority")
+            elif b_authority is not None:
+                bound_file(b_authority, "Prior formal side B launch authority")
     if phase == "formal":
         require(pilot_verification_path is not None,
                 "Formal sampling requires --pilot-verification-receipt sealed by strict pilot reconstruction")
