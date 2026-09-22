@@ -464,6 +464,15 @@ every pilot mode (8 side graphs total). Candidate side B is checked against the
 bridge-authenticated historical graph pairing; protected side A continues to use
 the normal current-pairing path.
 
+The retained pilot index also preserves the exact `run-r00-players.py` binding
+that produced those historical pilot diagnostics. A current bridge now binds
+that historical runner provenance directly from Git anchor `69130bbb...`.
+During seal admission, pilot rows may use that historical runner only after the
+bridge has been fully authenticated. Missing bridge authority, any other runner
+path/hash, or bridge switching fails before deep reconstruction. This exception
+applies only to retained **pilot provenance**; every new formal attempt must use
+the current runner binding.
+
 For retained candidate ON launches using `R01EarlyStartup`, that exact same
 authenticated authority is propagated through nested
 `r01_early_results._prepare` and early-capsule reconstruction. Reuse authority
