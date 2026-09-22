@@ -785,14 +785,14 @@ def main(argv: list[str] | None = None) -> int:
                 protocol_path, schedule_path, build_map_path, args.graph_reuse_bridge,
                 args.pilot_verification_receipt, side["fixtureManifest"],
                 side["builds"]["on"]["receipt"], side["builds"]["off"]["receipt"],
-                side["replayReceipt"])
+                side["replayReceipt"], project_output)
             with launch_authority_path.open("x", encoding="utf-8") as stream:
                 json.dump(launch_authority, stream, indent=2)
                 stream.write("\n")
             formal_authority.verify_receipt(
                 launch_authority_path, side["projectRoot"], row["mode"],
                 side["fixtureManifest"], side["builds"]["on"]["receipt"],
-                side["builds"]["off"]["receipt"], side["replayReceipt"],
+                side["builds"]["off"]["receipt"], side["replayReceipt"], project_output,
                 expected_pair_id=row["pairId"], expected_attempt=args.attempt)
         sides[side_name] = _run_side(
             side_name, side, row["mode"], project_output, side["projectRoot"], args.timeout,
