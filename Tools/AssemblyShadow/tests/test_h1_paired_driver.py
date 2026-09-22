@@ -42,7 +42,7 @@ class H1PairedDriverTests(unittest.TestCase):
                 (project / "_temp/AssemblyShadow").mkdir(parents=True)
             row = {"pairId": "pilot", "mode": "R00-ON-NoPatch",
                    "phase": "pilot", "order": ["A", "B"]}
-            def run_side(side_name, side, mode, output, project, timeout):
+            def run_side(side_name, side, mode, output, project, timeout, formal_launch_authority=None):
                 output.mkdir()
                 return {"status": "Passed" if side_name == "A" else "Failed",
                         "stopBeforeNextSide": side_name == "B", "launchReceipt": None,
