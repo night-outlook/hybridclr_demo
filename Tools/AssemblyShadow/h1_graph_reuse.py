@@ -48,6 +48,7 @@ ALLOWED_NON_METADATA_PATHS = frozenset({
     "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
     "Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py",
     "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py",
+    "Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py",
 })
 
 VERIFIER_PATHS = (
