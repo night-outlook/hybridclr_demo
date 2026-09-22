@@ -7,9 +7,10 @@ from pathlib import Path
 import subprocess
 import time
 
-from r00_player_inputs import verify_inputs
+from r00_player_inputs import verify_inputs, verify_inputs_with_reuse
 from r00_results import MODES, OFF_MODE, validate_strategy_profile
 import r01_early_results as early
+import h1_formal_launch_authority as formal_authority
 
 _m07_path = Path(__file__).with_name("run-m07-players.py")
 if not _m07_path.is_file():
@@ -46,12 +47,31 @@ def main(argv=None):
     parser.add_argument("--mode", choices=MODES,
                         help="Run one R00 mode; omit this option for the complete four-mode matrix.")
     parser.add_argument("--timeout", type=int, default=900)
+    parser.add_argument("--h1-formal-launch-authority", type=m07.canonical_file,
+                        help="H1 retained candidate formal side-B authority receipt; not a generic historical pin override.")
     args = parser.parse_args(argv)
     project = args.project_root
     m07.require(project.is_absolute() and project == project.resolve(strict=True), "Canonical project required")
     output = m07.canonical_new_child(args.output_root, project / "_temp/AssemblyShadow", "R00 output")
     m07.require(1 <= args.timeout <= 3600, "Timeout must be 1-3600 seconds")
-    context = verify_inputs(project, args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
+    pairing_authority = None
+    formal_launch = None
+    if args.h1_formal_launch_authority is not None:
+        m07.require(args.mode is not None,
+                    "H1 formal launch authority requires an explicit single R00 mode")
+        m07.require(args.early_startup_strategy == "R01EarlyStartup",
+                    "H1 formal launch authority requires R01EarlyStartup")
+        formal_launch = formal_authority.verify_receipt(
+            args.h1_formal_launch_authority, project, args.mode,
+            args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
+        pairing_authority = formal_launch["pairingAuthority"]
+    context = (
+        verify_inputs(project, args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
+        if pairing_authority is None else
+        verify_inputs_with_reuse(
+            project, args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt,
+            pairing_authority)
+    )
     inputs = m07.collect_inputs(args.fixture_manifest, args.replay_receipt, (args.on_build, args.off_build))
     requested_modes = select_modes(args.mode)
     legacy = args.early_startup_strategy == "legacy-explicit-no-capsule"
@@ -68,8 +88,10 @@ def main(argv=None):
         if "R00-ON-NoPatch" in requested_modes:
             early_modes.append("Baseline")
         if early_modes:
-            prepared = early._prepare(project, args.fixture_manifest, args.on_build, args.off_build,
-                                      args.replay_receipt, None, None, early_modes)
+            prepared = early._prepare(
+                project, args.fixture_manifest, args.on_build, args.off_build,
+                args.replay_receipt, None, None, early_modes,
+                pairing_authority=pairing_authority)
             for mode, early_mode, patch_id in (("R00-ON-P01", "Control", "P01"),
                                                 ("R00-ON-P03", "Control", "P03"),
                                                 ("R00-ON-NoPatch", "Baseline", "P03")):
@@ -83,8 +105,10 @@ def main(argv=None):
             inputs.update(early_capsules.values())
             before = {str(path): m07.digest(path) for path in sorted(inputs)}
     else:
-        prepared = early._prepare(project, args.fixture_manifest, args.on_build, args.off_build,
-                                  args.replay_receipt, None, None, [])
+        prepared = early._prepare(
+            project, args.fixture_manifest, args.on_build, args.off_build,
+            args.replay_receipt, None, None, [],
+            pairing_authority=pairing_authority)
         validate_strategy_profile(args.early_startup_strategy, prepared["profile"])
     launches = []
     for mode in requested_modes:
@@ -156,6 +180,10 @@ def main(argv=None):
                "nativeOffReceipt": str(args.off_build), "editorReplayReceipt": str(args.replay_receipt),
                "requestedModes": requested_modes, "processLaunches": launches,
                "earlyStartupStrategy": args.early_startup_strategy,
+               "formalLaunchAuthority": formal_launch["receipt"] if formal_launch is not None else None,
+               "graphReuseBridge": formal_launch["graphReuseBridge"] if formal_launch is not None else None,
+               "pilotVerification": formal_launch["pilotVerification"] if formal_launch is not None else None,
+               "buildMap": formal_launch["buildMap"] if formal_launch is not None else None,
                "inputHashesBefore": before, "inputHashesAfter": after, "inputsUnchanged": before == after,
                "resultDirectory": str(results)}
     if args.mode is not None:
