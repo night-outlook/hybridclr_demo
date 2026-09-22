@@ -46,6 +46,7 @@ ALLOWED_NON_METADATA_PATHS = frozenset({
     "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
     "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
     "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
+    "Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py",
     "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py",
 })
 
