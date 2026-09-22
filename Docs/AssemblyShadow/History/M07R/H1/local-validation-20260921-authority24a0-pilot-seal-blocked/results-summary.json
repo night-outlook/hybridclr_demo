@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationSummary",
+  "status": "BlockedAtRetainedPilotSealRunnerAdmission",
+  "checkoutCommit": "0733534d8112a7a0b1e05bb5d904e945b6ed24cc",
+  "sourceAnchor": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+  "v00": {
+    "candidateAuthority": "SourceTargetVerifiedNotBuildAccepted",
+    "reproductionTooling": "BehaviorAndToolingSourcesVerifiedNotBuildAccepted",
+    "protectedReference": "ProtectedReferenceInputsVerifiedNotBuilt",
+    "candidateInstalledRuntime": "PassedAfterReceiptRefresh",
+    "candidateInstallReceiptSha256": "2a40ef6ad6084286b86471925e1ab656870733b626ed0f2d32f50d06d4b96d2f",
+    "protectedInstalledRuntime": "Passed",
+    "protectedInstallReceiptSha256": "54bfe84c6e1fb72a73c675c257f05b81ee8719fd5c2650f0044edea45314c64a"
+  },
+  "v01": {
+    "boundedPrimary": "359/359",
+    "formalLaunchAuthority": "5/5",
+    "graphReuse": "12/12",
+    "pairedDriver": "12/12",
+    "formalBatch": "2/2",
+    "retainedEarlyPreflight": "2/2",
+    "handoffPreflight": "11/11",
+    "earlyCapsule": "7/7",
+    "earlyLaunch": "20/20",
+    "earlyResults": "20/20",
+    "failurePipeline": "16/16",
+    "lazy": "10/10",
+    "powerShellRecovery": "PassedBoth"
+  },
+  "inventories": {
+    "python": {"status": "CompletedWithExplainedEnvironmentSkips", "total": 1044, "passed": 1016, "skipped": 28, "failed": 0, "errors": 0},
+    "unityEditMode": {"status": "ReusedAuditedFromD18", "historicalTotal": 1076, "historicalPassed": 1076, "freshCurrentExecution": false}
+  },
+  "sourceAudits": {"previousPrimaryToCurrentPaths": 11, "retainedGraphToCurrentPaths": 20, "status": "PassedExactSets"},
+  "reuseAudit": {
+    "status": "PassedArtifactReauthentication",
+    "selectedLaunchReceiptsVerified": 8,
+    "boundFilesVerified": 33792,
+    "boundBytesVerified": 1606993133,
+    "mismatches": 0
+  },
+  "retainedEarlyPreflight": {"status": "ReusedAuditedFromD18", "historicalModeCount": 3, "freshCurrentBridgeExecution": false},
+  "graphReuseBridge": {"status": "AuthenticatedToolOnlySuccessor", "side": "B", "sha256": "3962cdd9fbd2d81de2d1f2918bc802c9e6e10151f8ae41ec01d40d388ae76004"},
+  "pilotSeal": {
+    "status": "FailedBeforeDeepVerification",
+    "error": "Prior A diagnostic runner binding mismatch",
+    "retainedRunnerSha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c",
+    "currentRunnerSha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280",
+    "deepLaunchVerificationCount": 0,
+    "receiptCreated": false
+  },
+  "formal": {"status": "NotRunMandatorySealAbsent", "acceptedPairs": 0, "requiredPairs": 40, "historicalFailedIndicesReused": false},
+  "finalAnalysis": "NotRun",
+  "v05": "Ineligible",
+  "independentM08": "NotRunLastResultRemainsFAIL",
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "cleanupPerformed": false
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PilotVerificationFailure",
+  "status": "FailedBeforeDeepVerification",
+  "stage": "RetainedPilotIndexAdmission",
+  "error": "Prior A diagnostic runner binding mismatch",
+  "exitCode": 1,
+  "deepLaunchVerificationCount": 0,
+  "pilotSealCreated": false,
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "pilotIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+  },
+  "graphReuseBridge": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260921-authority24a0-formal/V04/performance/h1-graph-reuse-bridge.json",
+    "sha256": "3962cdd9fbd2d81de2d1f2918bc802c9e6e10151f8ae41ec01d40d388ae76004"
+  },
+  "runnerBindings": {
+    "retainedPilotSideA": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+      "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+    },
+    "currentRequired": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+      "sha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+    }
+  },
+  "directCause": "seal-h1-pilot-verification.py calls run-h1-paired-performance._load_prior before graph bridge authentication; _load_prior unconditionally requires every retained pilot diagnostic runner binding to equal the current runner binding.",
+  "impact": "The authoritative retained pilot index cannot be consumed to create the mandatory new strict eight-side seal after the intentional formal-subprocess runner change. Formal sampling, final analysis, V05, and M08 are ineligible.",
+  "localCorrectionApplied": false
+}

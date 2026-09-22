@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1RetainedGraphSourceDeltaAudit",
+  "status": "PassedExactSets",
+  "metadataClassifier": "shadow_tools.metadata_only",
+  "previousPrimaryToCurrent": {
+    "from": "a964f79d6ceba866c5956741a4a32e38ff8a6b5f",
+    "to": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+    "nonMetadataPathCount": 11,
+    "nonMetadataPaths": [
+      ".github/workflows/h1-bee-primary.yml",
+      "Tools/AssemblyShadow/README.md",
+      "Tools/AssemblyShadow/analyze-h1-paired-performance.py",
+      "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+      "Tools/AssemblyShadow/h1_formal_launch_authority.py",
+      "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "Tools/AssemblyShadow/run-h1-paired-performance.py",
+      "Tools/AssemblyShadow/run-r00-players.py",
+      "Tools/AssemblyShadow/tests/test_h1_formal_launch_authority.py",
+      "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+      "Tools/AssemblyShadow/tests/test_h1_paired_driver.py"
+    ],
+    "exactExpectedSet": true
+  },
+  "retainedGraphToCurrent": {
+    "from": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "to": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+    "nonMetadataPathCount": 20,
+    "nonMetadataPaths": [
+      ".github/workflows/h1-bee-primary.yml",
+      "Tools/AssemblyShadow/README.md",
+      "Tools/AssemblyShadow/analyze-h1-paired-performance.py",
+      "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
+      "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+      "Tools/AssemblyShadow/h1_formal_launch_authority.py",
+      "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "Tools/AssemblyShadow/r00_player_inputs.py",
+      "Tools/AssemblyShadow/r00_results.py",
+      "Tools/AssemblyShadow/r01_early_results.py",
+      "Tools/AssemblyShadow/run-h1-formal-batch.py",
+      "Tools/AssemblyShadow/run-h1-paired-performance.py",
+      "Tools/AssemblyShadow/run-r00-players.py",
+      "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+      "Tools/AssemblyShadow/tests/test_h1_formal_batch.py",
+      "Tools/AssemblyShadow/tests/test_h1_formal_launch_authority.py",
+      "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+      "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
+      "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
+      "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py"
+    ],
+    "exactExpectedSet": true
+  },
+  "forbiddenRuntimeOrProducerDelta": false
+}

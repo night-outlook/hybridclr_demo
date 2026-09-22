@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1RetainedV04EvidenceAudit",
+  "status": "PassedRetainedEvidenceReauthenticationWithCurrentLoaderIncompatibility",
+  "retainedCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary",
+  "retainedCheckpointManifest": "Passed",
+  "playerArtifactsManifest": "Passed",
+  "latestBlockedCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authoritya964-formal-launch-blocked",
+  "latestBlockedCheckpointManifest": "Passed",
+  "liveBindings": {
+    "protocolSha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc",
+    "scheduleSha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a",
+    "buildMapSha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19",
+    "pilotIndexSha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf",
+    "pilotAttemptsSha256": "32e62a12205737cd0ed946524f8d82ecd98f4cf8783663d46b34580c99bfcec4"
+  },
+  "protocolScheduleBuildMapValidation": "Passed",
+  "pilotAttempts": 5,
+  "selectedSuccessfulPilotPairs": 4,
+  "selectedLaunchReceiptsVerified": 8,
+  "boundFilesVerified": 33792,
+  "boundBytesVerified": 1606993133,
+  "boundFileHashMismatches": 0,
+  "retainedFailedTimeoutAndWholePairRetryPresent": true,
+  "retainedInputsModified": false,
+  "currentLoaderCompatibility": {
+    "status": "Failed",
+    "error": "Prior A diagnostic runner binding mismatch",
+    "retainedRunR00PlayersSha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c",
+    "currentRunR00PlayersSha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280",
+    "impact": "The production seal entrypoint calls _load_prior before bridge authentication and therefore cannot consume the authoritative retained pilot index after the intentional formal-subprocess runner change."
+  },
+  "historicalAuthorityNotReused": {
+    "a964BridgeSha256": "b6e97f573938757d712c632a765fb58b8cb82ff9e360733158de998f980a25e0",
+    "a964SealSha256": "5dc313824e9b034475a4d6f105b5d29801ef796f1553881d8b3b3699f9f65935",
+    "a964FormalAttempts": [1, 2]
+  },
+  "acceptanceClaimed": false
+}
