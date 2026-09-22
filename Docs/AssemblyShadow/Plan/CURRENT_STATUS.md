@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate build-input/tool source anchor: `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`.
+- Candidate build-input/tool source anchor: `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`.
 - Latest Local return: `d18a1fb15c43f918c9d3bba1ed641e87a58b32b0`.
 - Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authoritya964-formal-launch-blocked/`.
 - Reusable graph/pilot checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/`.
@@ -31,7 +31,7 @@ The failure is not bridge/seal drift, nested early reconstruction, timeout, clea
 
 ## Current Primary repair
 
-Source anchor `f1266a4d7f39a49523186b3dc63f9add9cc0e64c` adds a formal side-B subprocess authority boundary.
+Source anchor `24a0d3af7d5b5b664d063a75d85deb4f11aa2915` adds a formal side-B subprocess authority boundary.
 
 ### H1FormalSideLaunchAuthority
 
@@ -97,9 +97,9 @@ Before statistics, final analysis now:
 
 ## Source scope
 
-Previous Primary source `a964f79d... → f1266a4d...` is exactly **11 non-metadata paths**.
+Previous Primary source `a964f79d... → 24a0d3af...` is exactly **11 non-metadata paths**.
 
-Retained graph `69130bbb... → f1266a4d...` is exactly **20 non-metadata paths**.
+Retained graph `69130bbb... → 24a0d3af...` is exactly **20 non-metadata paths**.
 
 No Unity Assets/Packages/C#/asmdef, native runtime, measurement source, protocol, schedule, graph producer, or Player binary source changed.
 
