@@ -89,7 +89,7 @@ No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-product
 
 ## Primary validation
 
-Authority-updated workflow `35673645036` passed **358/358** bounded Primary tests plus all existing live handoff/R01/M07 recovery/lazy suites. Artifact `10672720137`, SHA-256 `3d2c82e8972776945efe92dbee5efb70e451088ee37bbe11cfa087221d690a8f`.
+Exact handoff workflow `35674279287` at commit `a143b955...` passed **359/359** bounded Primary tests plus all existing live handoff/R01/M07 recovery/lazy suites. Artifact `10672286770`, SHA-256 `5ca3ccbcf185f5d189b0f0175dde53fd8976968d9db05a32e642f6a6d82fdcc6`.
 
 ## Next Local cycle
 
