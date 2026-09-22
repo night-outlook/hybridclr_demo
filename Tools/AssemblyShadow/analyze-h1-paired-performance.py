@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 import h1_graph_reuse as graph_reuse
+import h1_formal_launch_authority as formal_authority
 import r00_results
 from h1_paired_performance import analyze_sample_index
 from shadow_tools import VerificationError, read_json, require
@@ -52,6 +53,10 @@ def _prepare_reuse(sample_index: Path, pilot_verification: Path,
     require(seal.get("graphReuseBridge") == bridge_binding,
             "pilot verification seal graph reuse bridge binding mismatch")
 
+    bridge = read_json(bridge_path)
+    project = Path(bridge.get("projectRoot", "")).resolve(strict=True)
+    authority = graph_reuse.verify_bridge_full(bridge_path, project, build_map)
+
     attempts = index.get("attempts")
     require(type(attempts) is list, "sample index attempts are missing")
     formal = [row for row in attempts if type(row) is dict and row.get("phase") == "formal"]
@@ -61,10 +66,37 @@ def _prepare_reuse(sample_index: Path, pilot_verification: Path,
                 "formal attempt switched pilot verification seal")
         require(row.get("graphReuseBridge") == bridge_binding,
                 "formal attempt switched graph reuse bridge")
-
-    bridge = read_json(bridge_path)
-    project = Path(bridge.get("projectRoot", "")).resolve(strict=True)
-    authority = graph_reuse.verify_bridge_full(bridge_path, project, build_map)
+        a = row.get("A")
+        b = row.get("B")
+        require(type(a) is dict and type(b) is dict, "formal attempt side diagnostics are missing")
+        require(a.get("formalLaunchAuthority") is None,
+                "protected formal side A must not carry retained launch authority")
+        b_authority = b.get("formalLaunchAuthority")
+        if b.get("skipped") is True and b.get("launchReceipt") is None:
+            require(b_authority is None,
+                    "skipped formal side B must not fabricate retained launch authority")
+            continue
+        require(type(b_authority) is dict,
+                "launched formal side B is missing retained launch authority")
+        authority_path = Path(b_authority.get("path", "")).resolve(strict=True)
+        require(b_authority == _binding(authority_path),
+                "formal side-B launch authority binding changed")
+        launch_binding = b.get("launchReceipt")
+        require(type(launch_binding) is dict, "formal side B launch receipt is missing")
+        launch_path = Path(launch_binding.get("path", "")).resolve(strict=True)
+        require(launch_binding == _binding(launch_path),
+                "formal side B launch receipt binding changed")
+        launch = read_json(launch_path)
+        require(launch.get("formalLaunchAuthority") == b_authority,
+                "formal side-B runner receipt authority differs from pair attempt")
+        verified_authority = formal_authority.verify_receipt(
+            authority_path, Path(launch["projectRoot"]).resolve(strict=True), row["mode"],
+            Path(launch["fixtureManifestPath"]), Path(launch["nativeOnReceipt"]),
+            Path(launch["nativeOffReceipt"]), Path(launch["editorReplayReceipt"]),
+            expected_pair_id=row["pairId"], expected_attempt=row["attempt"])
+        require(verified_authority.get("graphReuseBridge") == bridge_binding and
+                verified_authority.get("pilotVerification") == pilot_binding,
+                "formal side-B authority switched bridge or pilot seal")
     return {
         "authority": authority,
         "pilotVerification": pilot_binding,
