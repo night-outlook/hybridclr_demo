@@ -4,7 +4,7 @@
 
 Validate the formal candidate side-B subprocess authority repair at candidate source/tool anchor:
 
-`f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+`24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 Then, if the fresh bridge/seal and first formal subprocess pass, continue in one Local batch through all 40 formal pairs, final strict analysis, checkpoint, V05, and independent M08 when eligible.
 
@@ -26,7 +26,7 @@ Candidate identities:
 
 | Repository | Branch | Build/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source/tool anchor `f1266a4d7f39a49523186b3dc63f9add9cc0e64c` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | source/tool anchor `24a0d3af7d5b5b664d063a75d85deb4f11aa2915` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
@@ -297,13 +297,13 @@ A new Unity run is optional before bridge creation.
 
 Previous Primary source:
 
-`a964f79d6ceba866c5956741a4a32e38ff8a6b5f → f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+`a964f79d6ceba866c5956741a4a32e38ff8a6b5f → 24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 must equal exactly **11** non-metadata paths.
 
 Retained graph:
 
-`69130bbb3a6df516916dddb5ad263799a7c6e5e3 → f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+`69130bbb3a6df516916dddb5ad263799a7c6e5e3 → 24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 must equal exactly **20** non-metadata paths.
 
