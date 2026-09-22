@@ -2,122 +2,107 @@
 
 ## Status
 
-Latest Local return:
+Latest Local return: `d18a1fb15c43f918c9d3bba1ed641e87a58b32b0`
 
-`21caaecc315623ec10c779af04d563ed7badeac2`
-
-Candidate build-input/tool source anchor:
-
-`a964f79d6ceba866c5956741a4a32e38ff8a6b5f`
+Candidate source/tool anchor: `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## Returned Local blocker
+## Returned blocker
 
-The real graph-reuse bridge passed and authenticated the retained candidate graph correctly.
+The prior nested early-authority repair is empirically closed.
 
-The strict seal still failed before a seal receipt because bridge authority was lost after the outer R00 input check. A retained candidate ON launch with `R01EarlyStartup` entered `r01_early_results._prepare`, which called default current-pairing `verify_inputs` and reproduced:
+Local created a valid bridge, passed all three retained-ON early modes, and passed the full 8-side strict seal.
 
-`R00 baseline: source pins differ from baseline provenance`
+The first formal pair then exposed a separate subprocess authority boundary.
 
-Local's focused diagnostic proved outer reuse verification passed first.
+The parent formal driver had bridge/seal authority, but child `run-r00-players.py` started as a fresh process with only graph input paths. It called default current-pairing `verify_inputs`, so candidate side B failed before Player launch.
 
-No formal Player or performance observation exists from that attempt.
+The entire pair was explicitly retried per protocol and reproduced exactly.
 
-## Primary correction
+## Primary design
 
-### Nested early authority
+### Pair-specific subprocess authority
 
-`r01_early_results._prepare` now has one optional keyword-only internal authority parameter.
+New `h1_formal_launch_authority.py` defines `H1FormalSideLaunchAuthority`.
 
-When absent, behavior is unchanged.
+The paired driver creates it only for retained candidate side B in formal phase.
 
-When present, it delegates graph admission to the existing `verify_inputs_with_reuse` authority-aware path.
+The receipt binds pair identity, attempt number, mode/order, project, exact runner output root, protocol/schedule/map, bridge, seal, fixture/on/off/replay inputs, and current tool hashes.
 
-`r00_results.verify_suite` threads the exact already-authenticated authority through nested early preparation.
+It is not a general historical-pairing token.
 
-This is not a new bridge creation point and not a new CLI option.
+### Public runner contract
 
-### Restricted scope
+`run-r00-players.py` remains current-pairing-only by default.
 
-Retained authority at the nested early boundary is valid only for:
+The only retained path is the H1-specific `--h1-formal-launch-authority` receipt.
 
-- `Baseline`;
-- `Control`.
+The child validates the receipt and reconstructs authority from the same graph bridge. It never accepts a raw revision or caller-supplied source-pin DTO.
 
-Those are exactly the early modes used by the retained performance ON observations.
+The retained path uses `verify_inputs_with_reuse`; ON modes pass the same authority through nested Baseline/Control early preparation.
 
-`OrdinaryFirst`, failures, and guard modes fail closed if a retained authority is supplied.
+### Protected side
 
-Direct `r01_early_results.verify_suite` remains current-pairing-only.
+Side A never receives a retained authority.
 
-### Bridge binding
+Parent diagnostics and final analysis reject any retained authority on protected side A.
 
-`r01_early_results.py` is now in both:
+### Evidence chain
 
-- the exact retained-graph source-transition allowlist;
-- `H1GraphReuseBridge.verifierBindings`.
+For candidate side B:
 
-The new retained-graph allowlist contains exactly 17 non-metadata paths.
+- parent attempt records the authority binding;
+- child R00 launch receipt must echo it;
+- parent requires the echo before Passed;
+- retries retain separate authority receipts;
+- failed pre-launch attempts preserve authority evidence without fabricating an R00 launch;
+- final analyzer revalidates pair/attempt/output/input/bridge/seal/tool bindings.
 
-### Read-only early preflight
+### Replay protection
 
-Primary added `verify-h1-retained-early-reuse.py`.
+Each authority binds the exact R00 output root.
 
-It full-verifies the current bridge then strictly reconstructs candidate side B for all three ON pilot modes:
+The child validates it before output creation; final analysis validates the same path after it exists.
 
-1. `R00-ON-NoPatch` — early `Baseline`;
-2. `R00-ON-P01` — early `Control`;
-3. `R00-ON-P03` — early `Control`.
+## Regression coverage
 
-This is an early diagnostic gate before paying the full 8-side seal cost.
+Primary includes:
 
-It does not replace or weaken the pilot seal.
+- authority receipt binding and tamper rejection;
+- exact parent `build_command → run-r00-players.main → verify_inputs_with_reuse` boundary regression;
+- default `verify_inputs` is forbidden in the authorized candidate-side test;
+- direct runner without authority remains current-pairing-only;
+- parent runner-receipt authority echo requirement;
+- resumed formal side-B authority binding;
+- final-analysis authority verification;
+- failed pre-launch authority evidence without an R00 receipt;
+- all previous bridge/preflight/seal/cache/formal-batch regressions.
 
-## Source scope
+## Scope
 
-Previous Primary source `6dd964c0... → a964f79d...` has exactly 9 non-metadata paths:
+Previous source delta: exactly 11 non-metadata paths.
 
-- `.github/workflows/h1-bee-primary.yml`;
-- `Tools/AssemblyShadow/README.md`;
-- `Tools/AssemblyShadow/h1_bee_primary_tests.py`;
-- `Tools/AssemblyShadow/h1_graph_reuse.py`;
-- `Tools/AssemblyShadow/r00_results.py`;
-- `Tools/AssemblyShadow/r01_early_results.py`;
-- `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`;
-- `Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py`;
-- `Tools/AssemblyShadow/verify-h1-retained-early-reuse.py`.
+Full retained graph delta: exactly 20 non-metadata paths.
 
-The full retained graph transition `69130bbb... → a964f79d...` has exactly 17 paths defined by machine authority and bridge code.
-
-No Player/runtime/measurement/protocol/schedule/build-map source changed.
-
-## Validation support
-
-Bounded Primary: **353/353**.
-
-New tests prove:
-
-- real source-transition authority;
-- nested actual `_prepare` retained path;
-- no fallback to current pairing in that path;
-- explicit-keyword propagation from R00;
-- direct early verifier remains strict current;
-- negative mode restrictions;
-- exact three-mode retained-ON preflight;
-- all previous seal-cache/formal-batch/final-analysis contracts.
+No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-production source changed.
 
 ## Next Local cycle
 
-Fresh authority and inventories happen before bridge creation.
+Fresh source/runtime authority and Python tooling checks occur before bridge creation.
+
+Unity 1076/1076 from d18 may be classified `ReusedAuditedFromD18` after the exact 11-path audit because no Unity C#/asmdef/resource input changed; a fresh run remains optional before bridge creation.
 
 Then:
 
-1. new bridge;
-2. 3-mode retained-ON early preflight;
-3. new 8-side pilot seal;
-4. 40 formal pairs via batch runner;
-5. final bridge-aware strict analysis;
-6. checkpoint / V05 / independent M08 if eligible.
+1. new graph bridge;
+2. new 8-side strict seal;
+3. new formal series from retained pilot index;
+4. inspect pair 1 side-B formal authority and real Player launch;
+5. continue all 40 pairs if successful;
+6. final bridge-aware analysis;
+7. checkpoint / V05 / independent M08 if eligible.
+
+The old a964 bridge, seal, preflight, and two failed formal attempts remain historical evidence.
 
 Do not begin R02.
