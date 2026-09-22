@@ -219,7 +219,13 @@ class H1GraphReuseTests(unittest.TestCase):
             off = root / "off.json"; off.write_text("{}", encoding="utf-8")
             replay = root / "replay.json"; replay.write_text("{}", encoding="utf-8")
             formal_authority = root / "formal-authority.json"
-            formal_authority.write_text("{}", encoding="utf-8")
+            formal_authority.write_text(json.dumps({
+                "projectRoot": str(project),
+                "fixtureManifest": analyzer._binding(fixture),
+                "nativeOnReceipt": analyzer._binding(on),
+                "nativeOffReceipt": analyzer._binding(off),
+                "editorReplayReceipt": analyzer._binding(replay),
+            }), encoding="utf-8")
             authority_binding = analyzer._binding(formal_authority)
             launch_a = root / "launch-a.json"
             launch_a.write_text(json.dumps({"formalLaunchAuthority": None}), encoding="utf-8")
@@ -286,6 +292,63 @@ class H1GraphReuseTests(unittest.TestCase):
                 with self.assertRaisesRegex(VerificationError, "protected formal side A"):
                     analyzer._prepare_reuse(sample, pilot, bridge)
 
+    def test_analyzer_retains_failed_formal_side_b_authority_without_launch_receipt(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            project = root / "project"; project.mkdir()
+            build_map = root / "build-map.json"; build_map.write_text("{}", encoding="utf-8")
+            bridge = root / "bridge.json"; bridge.write_text(json.dumps({"projectRoot": str(project)}), encoding="utf-8")
+            pilot = root / "pilot.json"
+            pilot.write_text(json.dumps({
+                "kind": "H1PilotVerificationReceipt",
+                "status": "PassedStrictReconstructionAndStatGuardSealed",
+                "graphReuseBridge": analyzer._binding(bridge),
+            }), encoding="utf-8")
+            fixture = root / "fixture.json"; fixture.write_text("{}", encoding="utf-8")
+            on = root / "on.json"; on.write_text("{}", encoding="utf-8")
+            off = root / "off.json"; off.write_text("{}", encoding="utf-8")
+            replay = root / "replay.json"; replay.write_text("{}", encoding="utf-8")
+            auth = root / "authority.json"
+            auth.write_text(json.dumps({
+                "projectRoot": str(project),
+                "fixtureManifest": analyzer._binding(fixture),
+                "nativeOnReceipt": analyzer._binding(on),
+                "nativeOffReceipt": analyzer._binding(off),
+                "editorReplayReceipt": analyzer._binding(replay),
+            }), encoding="utf-8")
+            auth_binding = analyzer._binding(auth)
+            sample = root / "sample.json"
+            sample.write_text(json.dumps({
+                "buildMap": analyzer._binding(build_map),
+                "attempts": [{
+                    "pairId": "formal-failed",
+                    "attempt": 1,
+                    "mode": "R00-OFF-NoPatch",
+                    "phase": "formal",
+                    "pilotVerification": analyzer._binding(pilot),
+                    "graphReuseBridge": analyzer._binding(bridge),
+                    "A": {"formalLaunchAuthority": None, "launchReceipt": None, "status": "Passed"},
+                    "B": {"formalLaunchAuthority": auth_binding, "launchReceipt": None, "status": "Failed"},
+                }],
+            }), encoding="utf-8")
+            pairing = {
+                "kind": reuse.AUTHORITY_KIND,
+                "projectRoot": str(project),
+                "graphSourcePins": {},
+                "currentSourcePins": {},
+                "bridgeReceipt": analyzer._binding(bridge),
+            }
+            verified = {
+                "graphReuseBridge": analyzer._binding(bridge),
+                "pilotVerification": analyzer._binding(pilot),
+                "pairingAuthority": pairing,
+            }
+            with mock.patch.object(analyzer.graph_reuse, "verify_bridge_full", return_value=pairing), \
+                 mock.patch.object(analyzer.formal_authority, "verify_receipt", return_value=verified) as verify:
+                prepared = analyzer._prepare_reuse(sample, pilot, bridge)
+            self.assertEqual(prepared["authority"], pairing)
+            verify.assert_called_once()
 
     def test_analyzer_requires_explicit_bridge_and_seal(self):
         source = (TOOLS / "analyze-h1-paired-performance.py").read_text()
