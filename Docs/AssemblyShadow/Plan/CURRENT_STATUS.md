@@ -144,7 +144,7 @@ Authority-updated workflow `35680306116` at commit `4732dc82...` passed:
 - both M07 PowerShell recovery regressions: Passed;
 - R01B lazy: **10/10**.
 
-Artifact `10675141839`, SHA-256 `726abdb0692a25cad6c9942321fc3e5eb3e48bb4f191d00629816560f32328ce`.
+Authority-updated artifact `10675141839`, SHA-256 `726abdb0692a25cad6c9942321fc3e5eb3e48bb4f191d00629816560f32328ce`. Exact live handoff workflow `35680823080` at `6d27e9bf...` subsequently passed the same **364/364** bounded result plus all auxiliary suites; artifact `10674618336`, SHA-256 `3ee6730b7a92e185bf9f3f990ba2c1266780ddccfa305e984f463d86803dd6c0`.
 
 ## Required next action
 
