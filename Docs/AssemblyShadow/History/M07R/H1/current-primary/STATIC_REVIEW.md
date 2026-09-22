@@ -103,6 +103,12 @@ The new retained paths are the formal authority module, public R00 runner modifi
 
 No runtime/Player/measurement/Unity asset/native code changed.
 
+## Primary validation
+
+Authority-updated workflow `35673645036` at commit `5e88c18a...` passed bounded **358/358**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 PowerShell recovery regressions, and lazy **10/10**.
+
+Artifact `10672720137` has SHA-256 `3d2c82e8972776945efe92dbee5efb70e451088ee37bbe11cfa087221d690a8f`.
+
 ## Residual empirical requirements
 
 Local must:
