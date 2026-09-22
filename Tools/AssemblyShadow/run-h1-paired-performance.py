@@ -484,7 +484,8 @@ def verify_pilot_verification(receipt_path: Path, attempts: list[dict[str, Any]]
 def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, build_map_path: Path,
                 schedule: list[dict[str, Any]], phase: str, build: dict[str, Any],
                 pilot_verification_path: Path | None = None,
-                graph_reuse_bridge_path: Path | None = None) -> list[dict[str, Any]]:
+                graph_reuse_bridge_path: Path | None = None,
+                retained_pilot_authority: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     if path is None:
         require(phase == "pilot", "Formal pair requires --prior-index with completed pilots")
         return []
@@ -494,6 +495,25 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
     _index_bindings(value, protocol_path, schedule_path, build_map_path)
     attempts = value.get("attempts")
     require(type(attempts) is list, "Prior sample index attempts must be an array")
+
+    pilot_authority = retained_pilot_authority
+    if phase == "formal" and graph_reuse_bridge_path is not None and pilot_authority is None:
+        bridge = read_json(graph_reuse_bridge_path)
+        project = canonical_dir(bridge.get("projectRoot", ""), "graph reuse bridge project")
+        pilot_authority = graph_reuse.verify_bridge_compact(
+            graph_reuse_bridge_path, project, build_map_path)
+    if pilot_authority is not None:
+        require(pilot_authority.get("kind") == graph_reuse.AUTHORITY_KIND,
+                "Retained pilot admission requires an authenticated graph reuse authority")
+        retained_runner = pilot_authority.get("retainedPilotRunner")
+        require(type(retained_runner) is dict and set(retained_runner) == {"path", "sha256"},
+                "Authenticated graph reuse authority lacks retained pilot runner provenance")
+        if graph_reuse_bridge_path is not None:
+            require(pilot_authority.get("bridgeReceipt") == binding(graph_reuse_bridge_path),
+                    "Retained pilot authority bridge binding mismatch")
+    else:
+        retained_runner = None
+
     seen: set[tuple[str, int]] = set()
     scheduled = {row["pairId"]: row for row in schedule}
     formal_started = False
@@ -511,7 +531,11 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
             require(not formal_started, "Prior pilots must precede formal attempts")
         for side in SIDES:
             require(type(row.get(side)) is dict, "Prior attempt lacks " + side + " diagnostic")
-            require(row[side].get("runner") == runner_binding(),
+            expected_runner = (
+                retained_runner if row["phase"] == "pilot" and retained_runner is not None
+                else runner_binding()
+            )
+            require(row[side].get("runner") == expected_runner,
                     "Prior " + side + " diagnostic runner binding mismatch")
             launch_receipt = row[side].get("launchReceipt")
             if launch_receipt is not None:
@@ -548,7 +572,12 @@ def _load_prior(path: Path | None, protocol_path: Path, schedule_path: Path, bui
                                "Prior retained formal side B launch authority")
     else:
         require(pilot_verification_path is None, "Pilot sampling must not consume a formal pilot verification receipt")
-        require(graph_reuse_bridge_path is None, "Pilot sampling must not consume a graph reuse bridge")
+        if graph_reuse_bridge_path is not None:
+            require(pilot_authority is not None,
+                    "Retained pilot loading with a graph bridge requires prior full bridge authentication")
+        else:
+            require(pilot_authority is None,
+                    "Pilot sampling without a graph bridge cannot consume retained pilot authority")
     return attempts
 
 
