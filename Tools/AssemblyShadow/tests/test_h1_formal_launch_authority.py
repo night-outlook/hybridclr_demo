@@ -264,6 +264,108 @@ class H1FormalLaunchAuthorityTests(unittest.TestCase):
             self.assertEqual(launch["pilotVerification"], formal_verified["pilotVerification"])
             self.assertEqual(launch["sourcePins"], pairing["graphSourcePins"])
 
+    def test_authorized_formal_on_runner_threads_same_authority_into_early_prepare(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            project = root / "candidate"
+            temp = project / "_temp/AssemblyShadow"
+            temp.mkdir(parents=True)
+            fixture = write_json(root / "fixture.json", {})
+            replay = write_json(root / "replay.json", {})
+            on = write_json(root / "on.json", {})
+            off = write_json(root / "off.json", {})
+            authority_receipt = write_json(root / "authority.json", {"kind": authority.KIND})
+            output = temp / "formal-on-side-b"
+            mode = "R00-ON-NoPatch"
+            side = {
+                "fixtureManifest": fixture,
+                "replayReceipt": replay,
+                "builds": {"on": {"receipt": on}, "off": {"receipt": off}},
+            }
+            command = driver.build_command(project, mode, side, output, 30, authority_receipt)
+            pairing = {
+                "kind": "H1AuthenticatedGraphReuseAuthority",
+                "projectRoot": str(project),
+                "graphSourcePins": {"demo": {"revision": "69130bbb"}},
+                "currentSourcePins": {"demo": {"revision": "current"}},
+                "bridgeReceipt": {"path": str(root / "bridge.json"), "sha256": "1" * 64},
+            }
+            formal_verified = {
+                "receipt": bind(authority_receipt),
+                "pairId": "R00-ON-NoPatch-formal-01",
+                "attempt": 1,
+                "mode": mode,
+                "pairOrder": ["B", "A"],
+                "runnerOutputRoot": str(output),
+                "buildMap": {"path": str(root / "map.json"), "sha256": "2" * 64},
+                "graphReuseBridge": {"path": str(root / "bridge.json"), "sha256": "1" * 64},
+                "pilotVerification": {"path": str(root / "seal.json"), "sha256": "3" * 64},
+                "pairingAuthority": pairing,
+            }
+            context = {
+                "sourcePins": pairing["graphSourcePins"],
+                "off": {"player": {"playerOutput": str(root / "off.app"), "buildGuid": "off-guid"}},
+                "on": {"player": {"playerOutput": str(root / "on.app"), "buildGuid": "on-guid"}},
+            }
+            prepared = {"profile": 2}
+            prepare_calls = []
+
+            def prepare(*args, **kwargs):
+                prepare_calls.append((args, kwargs))
+                self.assertIs(kwargs.get("pairing_authority"), pairing)
+                self.assertEqual(args[-1], ["Baseline"])
+                return prepared
+
+            def capsule_for(_prepared, _early_mode, _fixture, capsule_path, _patch_id):
+                Path(capsule_path).write_bytes(b"capsule")
+                return {}
+
+            class FakeProcess:
+                pid = 43211
+                def __init__(self, argv):
+                    result = Path(argv[argv.index("-shadowR00Result") + 1])
+                    result.parent.mkdir(parents=True, exist_ok=True)
+                    result.write_text(json.dumps({
+                        "mode": mode,
+                        "result": "Passed",
+                        "processId": self.pid,
+                        "buildGuid": "on-guid",
+                    }), encoding="utf-8")
+                    early_result = Path(argv[argv.index("-shadowEarlyResult") + 1])
+                    early_result.write_text("{}", encoding="utf-8")
+                def wait(self, timeout=None):
+                    return 0
+                def terminate(self):
+                    pass
+                def kill(self):
+                    pass
+
+            with mock.patch.object(
+                    runner.formal_authority, "verify_receipt",
+                    return_value=formal_verified), \
+                 mock.patch.object(
+                    runner, "verify_inputs",
+                    side_effect=AssertionError("authorized ON formal side B fell back to current pairing")), \
+                 mock.patch.object(
+                    runner, "verify_inputs_with_reuse",
+                    return_value=context) as reuse_verify, \
+                 mock.patch.object(runner.early, "_prepare", side_effect=prepare), \
+                 mock.patch.object(runner.early, "_capsule_for", side_effect=capsule_for), \
+                 mock.patch.object(runner.m07, "collect_inputs", return_value=set()), \
+                 mock.patch.object(runner.m07, "executable_for", return_value=Path("/bin/true")), \
+                 mock.patch.object(
+                    runner.subprocess, "Popen",
+                    side_effect=lambda argv, **_kwargs: FakeProcess(argv)):
+                code = runner.main(command[2:])
+
+            self.assertEqual(code, 0)
+            reuse_verify.assert_called_once_with(project, fixture, on, off, replay, pairing)
+            self.assertEqual(len(prepare_calls), 1)
+            launch = json.loads((output / "r00-player-launches.json").read_text())
+            self.assertEqual(launch["formalLaunchAuthority"], bind(authority_receipt))
+            self.assertEqual(launch["sourcePins"], pairing["graphSourcePins"])
+            self.assertEqual(launch["requestedModes"], [mode])
+
     def test_direct_runner_without_formal_authority_remains_current_pairing(self):
         source = (TOOLS / "run-r00-players.py").read_text()
         self.assertIn("if args.h1_formal_launch_authority is not None:", source)
