@@ -4,7 +4,7 @@
 
 **PASS for Primary → Local Validation handoff**, subject to real formal candidate subprocess execution.
 
-Reviewed source/tool anchor: `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+Reviewed source/tool anchor: `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 ## Finding
 
@@ -95,9 +95,9 @@ Analyzer tests cover successful and failed-pre-launch formal authority evidence.
 
 ## Scope
 
-`a964f79d... → f1266a4d...`: exactly 11 non-metadata paths.
+`a964f79d... → 24a0d3af...`: exactly 11 non-metadata paths.
 
-`69130bbb... → f1266a4d...`: exactly 20 non-metadata paths.
+`69130bbb... → 24a0d3af...`: exactly 20 non-metadata paths.
 
 The new retained paths are the formal authority module, public R00 runner modification, and formal authority regression.
 
