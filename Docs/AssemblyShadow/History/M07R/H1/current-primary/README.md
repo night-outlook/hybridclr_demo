@@ -2,111 +2,114 @@
 
 ## Status
 
-Latest Local return: `d18a1fb15c43f918c9d3bba1ed641e87a58b32b0`
+Latest Local return: `65f47f6bf62fe8889a3b71ed629f9fd06f3a489a`
 
-Candidate source/tool anchor: `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
+Candidate source/tool anchor: `91ac4db31cec704551c7db05bd918c8d5695ce83`
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
 ## Returned blocker
 
-The prior nested early-authority repair is empirically closed.
+The source `24a0d3af...` Local cycle passed current authority, current Python regression, exact source audits, complete retained artifact authentication, and a new graph bridge.
 
-Local created a valid bridge, passed all three retained-ON early modes, and passed the full 8-side strict seal.
+The strict seal failed before deep reconstruction because retained pilot rows bind the historical runner that actually produced them, while `_load_prior` compared them against the current runner.
 
-The first formal pair then exposed a separate subprocess authority boundary.
+Historical retained runner:
 
-The parent formal driver had bridge/seal authority, but child `run-r00-players.py` started as a fresh process with only graph input paths. It called default current-pairing `verify_inputs`, so candidate side B failed before Player launch.
+`afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c`
 
-The entire pair was explicitly retried per protocol and reproduced exactly.
+Current runner at that Local cycle:
+
+`a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280`
+
+Both identities are legitimate but serve different roles.
 
 ## Primary design
 
-### Pair-specific subprocess authority
+### Immutable historical runner provenance
 
-New `h1_formal_launch_authority.py` defines `H1FormalSideLaunchAuthority`.
+The current graph bridge now binds `retainedPilotRunner`.
 
-The paired driver creates it only for retained candidate side B in formal phase.
+It is reconstructed from the Git blob at fixed retained graph revision `69130bbb...`; it is not supplied by Local or by a sample index.
 
-The receipt binds pair identity, attempt number, mode/order, project, exact runner output root, protocol/schedule/map, bridge, seal, fixture/on/off/replay inputs, and current tool hashes.
+Bridge creation records it and bridge verification recomputes it.
 
-It is not a general historical-pairing token.
+### Current runner remains mandatory for new work
 
-### Public runner contract
+The historical binding is accepted only for retained rows whose phase is `pilot`.
 
-`run-r00-players.py` remains current-pairing-only by default.
+Every new formal attempt continues to require the current runner binding, including the H1 formal side-B subprocess-authority path from the previous repair.
 
-The only retained path is the H1-specific `--h1-formal-launch-authority` receipt.
+### Seal ordering
 
-The child validates the receipt and reconstructs authority from the same graph bridge. It never accepts a raw revision or caller-supplied source-pin DTO.
+The production seal entrypoint now performs full bridge authentication before retained-pilot loading.
 
-The retained path uses `verify_inputs_with_reuse`; ON modes pass the same authority through nested Baseline/Control early preparation.
+Thus the exception cannot be reached from an unauthenticated pilot index.
 
-### Protected side
+### Formal resume
 
-Side A never receives a retained authority.
+A new formal series starts from the retained pilot index.
 
-Parent diagnostics and final analysis reject any retained authority on protected side A.
+During formal prior-index validation, compact bridge authentication supplies the exact historical pilot-runner provenance for pilot rows.
 
-### Evidence chain
+Any formal row still requires the current runner.
 
-For candidate side B:
+### Fast preflight
 
-- parent attempt records the authority binding;
-- child R00 launch receipt must echo it;
-- parent requires the echo before Passed;
-- retries retain separate authority receipts;
-- failed pre-launch attempts preserve authority evidence without fabricating an R00 launch;
-- final analyzer revalidates pair/attempt/output/input/bridge/seal/tool bindings.
+New `verify-h1-retained-pilot-admission.py` performs only bridge + pilot-history admission.
 
-### Replay protection
+It selects the four latest Passed pilots and records their exact historical runner/launch bindings without rehashing/reconstructing the eight R00 graphs.
 
-Each authority binds the exact R00 output root.
-
-The child validates it before output creation; final analysis validates the same path after it exists.
+Run it before the expensive seal.
 
 ## Regression coverage
 
-Primary includes:
+Primary added a real retained-style pilot fixture based on the Git-derived runner at `69130bbb...`.
 
-- authority receipt binding and tamper rejection;
-- exact parent `build_command → run-r00-players.main → verify_inputs_with_reuse` boundary regression;
-- default `verify_inputs` is forbidden in the authorized candidate-side test;
-- direct runner without authority remains current-pairing-only;
-- parent runner-receipt authority echo requirement;
-- resumed formal side-B authority binding;
-- final-analysis authority verification;
-- failed pre-launch authority evidence without an R00 receipt;
-- all previous bridge/preflight/seal/cache/formal-batch regressions.
+Tests prove:
 
-## Scope
+- the exact historical SHA is `afc0b649...`;
+- it differs from the current runner;
+- the actual seal entrypoint accepts it only with authenticated bridge authority;
+- the actual seal reaches 8 deep verifications;
+- no bridge rejects it;
+- wrong hash rejects it;
+- wrong path rejects it;
+- bridge switching rejects it;
+- the admission preflight accepts it without invoking deep R00 verification.
 
-Previous source delta: exactly 11 non-metadata paths.
+## Source scope
 
-Full retained graph delta: exactly 20 non-metadata paths.
+Previous Primary delta: exactly 9 non-metadata paths.
+
+Full retained graph delta: exactly 22 non-metadata paths.
+
+The two new retained paths relative to the last cycle are:
+
+- `Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py`;
+- `Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py`.
 
 No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-production source changed.
 
 ## Primary validation
 
-Exact handoff workflow `35674279287` at commit `a143b955...` passed **359/359** bounded Primary tests plus all existing live handoff/R01/M07 recovery/lazy suites. Artifact `10672286770`, SHA-256 `5ca3ccbcf185f5d189b0f0175dde53fd8976968d9db05a32e642f6a6d82fdcc6`.
+Workflow `35680306116` passed bounded **364/364** plus all live handoff, R01, M07 recovery, and lazy suites.
 
 ## Next Local cycle
 
-Fresh source/runtime authority and Python tooling checks occur before bridge creation.
+Run:
 
-Unity 1076/1076 from d18 may be classified `ReusedAuditedFromD18` after the exact 11-path audit because no Unity C#/asmdef/resource input changed; a fresh run remains optional before bridge creation.
+1. fresh authority / current Python;
+2. exact 9/22 path audits;
+3. retained evidence audit;
+4. new graph bridge;
+5. **retained pilot admission preflight**;
+6. new strict 8-side seal;
+7. new formal series from retained pilot index;
+8. all 40 formal pairs;
+9. final strict analysis;
+10. checkpoint / V05 / independent M08 if eligible.
 
-Then:
-
-1. new graph bridge;
-2. new 8-side strict seal;
-3. new formal series from retained pilot index;
-4. inspect pair 1 side-B formal authority and real Player launch;
-5. continue all 40 pairs if successful;
-6. final bridge-aware analysis;
-7. checkpoint / V05 / independent M08 if eligible.
-
-The old a964 bridge, seal, preflight, and two failed formal attempts remain historical evidence.
+Prior source bridges/seals/failed formal attempts remain historical only.
 
 Do not begin R02.
