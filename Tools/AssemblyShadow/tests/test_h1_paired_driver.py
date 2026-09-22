@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from types import SimpleNamespace
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -30,6 +31,50 @@ class H1PairedDriverTests(unittest.TestCase):
     def test_runner_is_the_single_mode_r00_harness(self):
         self.assertEqual(driver.RUNNER_PATH.name, "run-r00-players.py")
         self.assertNotEqual(driver.RUNNER_PATH, Path(driver.__file__).resolve())
+
+
+    def test_cross_remount_guard_excludes_device_but_keeps_stable_stat_identity(self):
+        base = SimpleNamespace(
+            st_dev=100, st_ino=200, st_mode=0o100755, st_size=4096,
+            st_mtime_ns=123456789, st_ctime_ns=223456789)
+        remounted = SimpleNamespace(
+            st_dev=101, st_ino=200, st_mode=0o100755, st_size=4096,
+            st_mtime_ns=123456789, st_ctime_ns=223456789)
+        self.assertEqual(driver._stable_stat_guard(base), driver._stable_stat_guard(remounted))
+        self.assertEqual(
+            tuple(driver._stable_stat_guard(base).keys()), driver.PILOT_GUARD_FIELDS)
+        self.assertNotIn("device", driver._stable_stat_guard(base))
+
+        mutations = {
+            "inode": {"st_ino": 201},
+            "mode": {"st_mode": 0o100644},
+            "size": {"st_size": 4097},
+            "mtimeNs": {"st_mtime_ns": 123456790},
+            "ctimeNs": {"st_ctime_ns": 223456790},
+        }
+        for name, changes in mutations.items():
+            with self.subTest(field=name):
+                values = dict(
+                    st_dev=100, st_ino=200, st_mode=0o100755, st_size=4096,
+                    st_mtime_ns=123456789, st_ctime_ns=223456789)
+                values.update(changes)
+                self.assertNotEqual(
+                    driver._stable_stat_guard(base),
+                    driver._stable_stat_guard(SimpleNamespace(**values)))
+
+    def test_output_run_id_is_deterministic_and_collision_resistant_across_batch_roots(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            first = root / "batch-a" / "01-R00-OFF-NoPatch-formal-01-attempt-1"
+            second = root / "batch-b" / "01-R00-OFF-NoPatch-formal-01-attempt-1"
+            first.mkdir(parents=True)
+            second.mkdir(parents=True)
+            first_id = driver._output_run_id(first)
+            second_id = driver._output_run_id(second)
+            self.assertEqual(first_id, driver._output_run_id(first))
+            self.assertNotEqual(first_id, second_id)
+            self.assertTrue(first_id.startswith("01-R00-OFF-NoPatch-formal-01-attempt-1-"))
+            self.assertEqual(len(first_id.rsplit("-", 1)[-1]), 12)
 
 
     def test_second_side_cleanup_failure_retains_both_attempts(self):
