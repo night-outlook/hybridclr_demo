@@ -74,7 +74,7 @@ Full retained-graph delta remains exactly 22 paths.
 
 ## Primary validation
 
-Workflow `35730535436` passed bounded **368/368** plus all live handoff/R01/M07 recovery/lazy suites.
+Exact live handoff workflow `35731096138` at `7093ea03...` passed bounded **368/368** plus all live handoff/R01/M07 recovery/lazy suites. Artifact `10695328184`, SHA-256 `e939d91da81895d9dfb5d8d19aa3fc48ff6bc1189ef3bc4528cc00218689f513`.
 
 ## Next Local cycle
 
