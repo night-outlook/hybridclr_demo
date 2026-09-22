@@ -37,13 +37,17 @@ def main(argv=None) -> int:
     protocol = driver._validate_protocol(args.protocol)
     schedule = driver._validate_schedule(args.schedule, args.protocol, protocol)
     build = driver._validate_build(args.build_map, protocol)
-    attempts = driver._load_prior(
-        args.pilot_index, args.protocol, args.schedule, args.build_map, schedule, "pilot", build)
+
     reuse_authority = None
     if args.graph_reuse_bridge is not None:
         candidate_project = build["sides"]["B"]["projectRoot"]
         reuse_authority = graph_reuse.verify_bridge_full(
             args.graph_reuse_bridge, candidate_project, args.build_map)
+
+    attempts = driver._load_prior(
+        args.pilot_index, args.protocol, args.schedule, args.build_map, schedule, "pilot", build,
+        graph_reuse_bridge_path=args.graph_reuse_bridge,
+        retained_pilot_authority=reuse_authority)
 
     receipt = driver.seal_pilot_verification(
         attempts, schedule, build, args.protocol, args.schedule, args.build_map, args.pilot_index,
