@@ -198,7 +198,7 @@ class H1GraphReuseTests(unittest.TestCase):
         verify_body = early_source[verify_start:verify_end if verify_end >= 0 else len(early_source)]
         self.assertNotIn("pairing_authority=", verify_body)
 
-    def test_analyzer_prepare_reuse_binds_same_seal_and_bridge(self):
+    def test_analyzer_prepare_reuse_binds_same_seal_bridge_and_formal_side_authority(self):
         import tempfile
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
@@ -214,11 +214,40 @@ class H1GraphReuseTests(unittest.TestCase):
                 "status": "PassedStrictReconstructionAndStatGuardSealed",
                 "graphReuseBridge": analyzer._binding(bridge),
             }), encoding="utf-8")
+            fixture = root / "fixture.json"; fixture.write_text("{}", encoding="utf-8")
+            on = root / "on.json"; on.write_text("{}", encoding="utf-8")
+            off = root / "off.json"; off.write_text("{}", encoding="utf-8")
+            replay = root / "replay.json"; replay.write_text("{}", encoding="utf-8")
+            formal_authority = root / "formal-authority.json"
+            formal_authority.write_text("{}", encoding="utf-8")
+            authority_binding = analyzer._binding(formal_authority)
+            launch_a = root / "launch-a.json"
+            launch_a.write_text(json.dumps({"formalLaunchAuthority": None}), encoding="utf-8")
+            launch_b = root / "launch-b.json"
+            launch_b.write_text(json.dumps({
+                "projectRoot": str(project),
+                "fixtureManifestPath": str(fixture),
+                "nativeOnReceipt": str(on),
+                "nativeOffReceipt": str(off),
+                "editorReplayReceipt": str(replay),
+                "formalLaunchAuthority": authority_binding,
+            }), encoding="utf-8")
             sample = root / "sample.json"
             attempt = {
+                "pairId": "formal-01",
+                "attempt": 1,
+                "mode": "R00-OFF-NoPatch",
                 "phase": "formal",
                 "pilotVerification": analyzer._binding(pilot),
                 "graphReuseBridge": analyzer._binding(bridge),
+                "A": {
+                    "formalLaunchAuthority": None,
+                    "launchReceipt": analyzer._binding(launch_a),
+                },
+                "B": {
+                    "formalLaunchAuthority": authority_binding,
+                    "launchReceipt": analyzer._binding(launch_b),
+                },
             }
             sample.write_text(json.dumps({
                 "buildMap": analyzer._binding(build_map),
@@ -231,17 +260,32 @@ class H1GraphReuseTests(unittest.TestCase):
                 "currentSourcePins": {"schemaVersion": 1},
                 "bridgeReceipt": analyzer._binding(bridge),
             }
-            with mock.patch.object(analyzer.graph_reuse, "verify_bridge_full", return_value=authority):
+            verified_formal = {
+                "graphReuseBridge": analyzer._binding(bridge),
+                "pilotVerification": analyzer._binding(pilot),
+                "pairingAuthority": authority,
+            }
+            with mock.patch.object(
+                    analyzer.graph_reuse, "verify_bridge_full", return_value=authority), \
+                 mock.patch.object(
+                    analyzer.formal_authority, "verify_receipt",
+                    return_value=verified_formal) as formal_verify:
                 prepared = analyzer._prepare_reuse(sample, pilot, bridge)
             self.assertEqual(prepared["authority"], authority)
             self.assertEqual(prepared["pilotVerification"], analyzer._binding(pilot))
             self.assertEqual(prepared["graphReuseBridge"], analyzer._binding(bridge))
+            formal_verify.assert_called_once_with(
+                formal_authority, project, "R00-OFF-NoPatch",
+                fixture, on, off, replay,
+                expected_pair_id="formal-01", expected_attempt=1)
 
             value = json.loads(sample.read_text())
-            value["attempts"][0]["graphReuseBridge"] = {"path": str(bridge), "sha256": "0" * 64}
+            value["attempts"][0]["A"]["formalLaunchAuthority"] = authority_binding
             sample.write_text(json.dumps(value), encoding="utf-8")
-            with self.assertRaises(VerificationError):
-                analyzer._prepare_reuse(sample, pilot, bridge)
+            with mock.patch.object(analyzer.graph_reuse, "verify_bridge_full", return_value=authority):
+                with self.assertRaisesRegex(VerificationError, "protected formal side A"):
+                    analyzer._prepare_reuse(sample, pilot, bridge)
+
 
     def test_analyzer_requires_explicit_bridge_and_seal(self):
         source = (TOOLS / "analyze-h1-paired-performance.py").read_text()
