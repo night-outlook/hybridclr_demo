@@ -87,6 +87,10 @@ Full retained graph delta: exactly 20 non-metadata paths.
 
 No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-production source changed.
 
+## Primary validation
+
+Authority-updated workflow `35673645036` passed **358/358** bounded Primary tests plus all existing live handoff/R01/M07 recovery/lazy suites. Artifact `10672720137`, SHA-256 `3d2c82e8972776945efe92dbee5efb70e451088ee37bbe11cfa087221d690a8f`.
+
 ## Next Local cycle
 
 Fresh source/runtime authority and Python tooling checks occur before bridge creation.
