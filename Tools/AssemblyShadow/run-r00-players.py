@@ -63,7 +63,8 @@ def main(argv=None):
                     "H1 formal launch authority requires R01EarlyStartup")
         formal_launch = formal_authority.verify_receipt(
             args.h1_formal_launch_authority, project, args.mode,
-            args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
+            args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt,
+            args.output_root)
         pairing_authority = formal_launch["pairingAuthority"]
     context = (
         verify_inputs(project, args.fixture_manifest, args.on_build, args.off_build, args.replay_receipt)
