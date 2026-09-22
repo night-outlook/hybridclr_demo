@@ -109,6 +109,57 @@ class H1PairedDriverTests(unittest.TestCase):
             self.assertEqual(attempt["B"]["marker"], "B")
 
 
+    def test_same_pair_under_different_batch_roots_avoids_preserved_project_output_collision(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            protocol = write_json(root / "protocol.json", {})
+            schedule_path = write_json(root / "schedule.json", {})
+            build_map = write_json(root / "build-map.json", {})
+            projects = {side: root / side for side in ("A", "B")}
+            for project in projects.values():
+                (project / "_temp/AssemblyShadow").mkdir(parents=True)
+            row = {
+                "pairId": "pilot-same",
+                "mode": "R00-OFF-NoPatch",
+                "phase": "pilot",
+                "order": ["A", "B"],
+            }
+            seen = []
+
+            def run_side(side_name, side, mode, output, project, timeout, formal_launch_authority=None):
+                output.mkdir()
+                seen.append((side_name, output))
+                return {"status": "Passed", "stopBeforeNextSide": False,
+                        "launchReceipt": None, "formalLaunchAuthority": None}
+
+            for batch_name in ("batch-a", "batch-b"):
+                parent = root / batch_name
+                parent.mkdir()
+                output_root = parent / "same-pair-output"
+                with mock.patch.object(driver, "_validate_protocol", return_value={}), \
+                     mock.patch.object(driver, "_validate_schedule", return_value=[row]), \
+                     mock.patch.object(driver, "_validate_build", return_value={
+                         "sides": {side: {"projectRoot": path} for side, path in projects.items()}}), \
+                     mock.patch.object(driver, "_load_prior", return_value=[]), \
+                     mock.patch.object(driver, "_run_side", side_effect=run_side):
+                    code = driver.main([
+                        "--protocol", str(protocol),
+                        "--schedule", str(schedule_path),
+                        "--build-map", str(build_map),
+                        "--output-root", str(output_root),
+                        "--phase", "pilot",
+                        "--pair-id", row["pairId"],
+                        "--attempt", "1",
+                    ])
+                self.assertEqual(code, 0)
+
+            first = {side: path for side, path in seen[:2]}
+            second = {side: path for side, path in seen[2:]}
+            self.assertNotEqual(first["A"], second["A"])
+            self.assertNotEqual(first["B"], second["B"])
+            self.assertTrue(first["A"].is_dir() and second["A"].is_dir())
+            self.assertNotEqual(first["A"].name, second["A"].name)
+
     def test_pair_selection_is_one_pair_and_preserves_explicit_order(self):
         rows = [
             {"pairId": "pilot-a", "mode": "R00-OFF-NoPatch", "phase": "pilot", "order": ["B", "A"]},
