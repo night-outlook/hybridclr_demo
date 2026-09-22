@@ -2,114 +2,92 @@
 
 ## Status
 
-Latest Local return: `65f47f6bf62fe8889a3b71ed629f9fd06f3a489a`
+Latest Local return: `421f221156f4e9a71aab3363fd4e49a91cbaba68`
 
-Candidate source/tool anchor: `91ac4db31cec704551c7db05bd918c8d5695ce83`
+Candidate source/tool anchor: `27df1a3d60811dc121f296ab561ae313a382b363`
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
 ## Returned blocker
 
-The source `24a0d3af...` Local cycle passed current authority, current Python regression, exact source audits, complete retained artifact authentication, and a new graph bridge.
+The previous cycle reached 14/40 formal pairs and proved the entire retained-pilot → seal → current formal subprocess chain.
 
-The strict seal failed before deep reconstruction because retained pilot rows bind the historical runner that actually produced them, while `_load_prior` compared them against the current runner.
+Resume then failed because one sealed file's `st_dev` changed across a remount while SHA-256, canonical path, inode, mode, size, mtime and ctime remained unchanged.
 
-Historical retained runner:
+That behavior was fail-closed but made long-running formal series mount-instance-dependent.
 
-`afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c`
+A separate first-batch launch also encountered a deterministic internal project-output name already preserved from historical evidence.
 
-Current runner at that Local cycle:
+## Primary decision
 
-`a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280`
+Filesystem device identity is not immutable artifact identity.
 
-Both identities are legitimate but serve different roles.
+`st_dev` is removed from acceptance while all stable stat fields remain strict.
 
-## Primary design
+The change is versioned as seal guard v2 so no old seal is silently reinterpreted.
 
-### Immutable historical runner provenance
+## Guard v2
 
-The current graph bridge now binds `retainedPilotRunner`.
+New acceptance guard:
 
-It is reconstructed from the Git blob at fixed retained graph revision `69130bbb...`; it is not supplied by Local or by a sample index.
+- inode;
+- mode;
+- size;
+- mtimeNs;
+- ctimeNs.
 
-Bridge creation records it and bridge verification recomputes it.
+Canonical path remains separately required.
 
-### Current runner remains mandatory for new work
+New seals bind:
 
-The historical binding is accepted only for retained rows whose phase is `pilot`.
+- `guardKind=CrossRemountStableStatGuard`;
+- `guardVersion=2`;
+- exact guard field list;
+- explicit device-ID exclusion policy.
 
-Every new formal attempt continues to require the current runner binding, including the H1 formal side-B subprocess-authority path from the previous repair.
+Old device-bound seals fail the new contract and require resealing.
 
-### Seal ordering
+## Output collision repair
 
-The production seal entrypoint now performs full bridge authentication before retained-pilot loading.
+The project-local run ID now combines:
 
-Thus the exception cannot be reached from an unauthenticated pilot index.
+- safe leaf name;
+- first 12 hex chars of SHA-256(full canonical requested output path).
 
-### Formal resume
-
-A new formal series starts from the retained pilot index.
-
-During formal prior-index validation, compact bridge authentication supplies the exact historical pilot-runner provenance for pilot rows.
-
-Any formal row still requires the current runner.
-
-### Fast preflight
-
-New `verify-h1-retained-pilot-admission.py` performs only bridge + pilot-history admission.
-
-It selects the four latest Passed pilots and records their exact historical runner/launch bindings without rehashing/reconstructing the eight R00 graphs.
-
-Run it before the expensive seal.
+A new batch root therefore produces a new project-local side output even when pair ID and attempt are the same as preserved historical evidence.
 
 ## Regression coverage
 
-Primary added a real retained-style pilot fixture based on the Git-derived runner at `69130bbb...`.
-
 Tests prove:
 
-- the exact historical SHA is `afc0b649...`;
-- it differs from the current runner;
-- the actual seal entrypoint accepts it only with authenticated bridge authority;
-- the actual seal reaches 8 deep verifications;
-- no bridge rejects it;
-- wrong hash rejects it;
-- wrong path rejects it;
-- bridge switching rejects it;
-- the admission preflight accepts it without invoking deep R00 verification.
+- `st_dev` drift alone is accepted;
+- every remaining stat field remains acceptance-critical;
+- old guard schema is rejected;
+- same pair leaf under two batch roots persists in distinct project-local directories;
+- existing bridge/pilot/formal authority contracts remain unchanged.
 
 ## Source scope
 
-Previous Primary delta: exactly 9 non-metadata paths.
+Previous Primary delta: exactly 3 non-metadata paths.
 
-Full retained graph delta: exactly 22 non-metadata paths.
-
-The two new retained paths relative to the last cycle are:
-
-- `Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py`;
-- `Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py`.
-
-No Player/runtime/native/Unity asset/measurement/protocol/schedule/graph-production source changed.
+Full retained-graph delta remains exactly 22 paths.
 
 ## Primary validation
 
-Exact live handoff workflow `35680823080` at commit `6d27e9bf...` passed bounded **364/364**, handoff **11/11**, all R01/failure suites, both M07 recovery regressions, and lazy **10/10**. Artifact `10674618336`, SHA-256 `3ee6730b7a92e185bf9f3f990ba2c1266780ddccfa305e984f463d86803dd6c0`.
+Workflow `35730535436` passed bounded **368/368** plus all live handoff/R01/M07 recovery/lazy suites.
 
 ## Next Local cycle
 
-Run:
-
 1. fresh authority / current Python;
-2. exact 9/22 path audits;
+2. exact 3/22 source audits;
 3. retained evidence audit;
 4. new graph bridge;
-5. **retained pilot admission preflight**;
-6. new strict 8-side seal;
-7. new formal series from retained pilot index;
-8. all 40 formal pairs;
-9. final strict analysis;
-10. checkpoint / V05 / independent M08 if eligible.
+5. retained-pilot admission preflight;
+6. new guard-v2 8-side seal;
+7. new 40-pair formal series from retained pilot index;
+8. final strict analysis;
+9. checkpoint / V05 / independent M08 if eligible.
 
-Prior source bridges/seals/failed formal attempts remain historical only.
+The old 14/40 series remains historical and must not be mixed into the new series.
 
 Do not begin R02.
