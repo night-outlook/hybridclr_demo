@@ -105,9 +105,9 @@ No runtime/Player/measurement/Unity asset/native code changed.
 
 ## Primary validation
 
-Authority-updated workflow `35673645036` at commit `5e88c18a...` passed bounded **358/358**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 PowerShell recovery regressions, and lazy **10/10**.
+Exact handoff workflow `35674279287` at commit `a143b955...` passed bounded **359/359**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 PowerShell recovery regressions, and lazy **10/10**.
 
-Artifact `10672720137` has SHA-256 `3d2c82e8972776945efe92dbee5efb70e451088ee37bbe11cfa087221d690a8f`.
+Artifact `10672286770` has SHA-256 `5ca3ccbcf185f5d189b0f0175dde53fd8976968d9db05a32e642f6a6d82fdcc6`.
 
 ## Residual empirical requirements
 
