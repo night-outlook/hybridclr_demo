@@ -88,6 +88,7 @@ def _prepare_reuse(sample_index: Path, pilot_verification: Path,
             Path(authority_value["nativeOnReceipt"]["path"]),
             Path(authority_value["nativeOffReceipt"]["path"]),
             Path(authority_value["editorReplayReceipt"]["path"]),
+            Path(authority_value["runnerOutputRoot"]),
             expected_pair_id=row["pairId"], expected_attempt=row["attempt"])
         require(verified_authority.get("graphReuseBridge") == bridge_binding and
                 verified_authority.get("pilotVerification") == pilot_binding,
