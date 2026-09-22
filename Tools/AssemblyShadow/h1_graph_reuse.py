@@ -20,6 +20,7 @@ GRAPH_SOURCE_REVISION = "69130bbb3a6df516916dddb5ad263799a7c6e5e3"
 POLICY_ID = "H1V04RetainedGraphToolOnlySuccessor-v1"
 RECEIPT_KIND = "H1GraphReuseBridge"
 AUTHORITY_KIND = "H1AuthenticatedGraphReuseAuthority"
+RETAINED_PILOT_RUNNER_RELATIVE = "Tools/AssemblyShadow/run-r00-players.py"
 
 # Exact non-metadata delta permitted between the retained profile-2 graph source
 # and the current source anchor.  No Assets/, Packages/, runtime/native source,
@@ -106,6 +107,20 @@ def retained_graph_pins(current_pins: dict[str, Any]) -> dict[str, Any]:
     entries = _entries(graph)
     entries["demo"]["revision"] = GRAPH_SOURCE_REVISION
     return graph
+
+
+def retained_pilot_runner_binding(project: Path) -> dict[str, str]:
+    """Bind the exact runner provenance recorded by retained 69130bbb pilot attempts."""
+    project = canonical_dir(project, "retained pilot runner project")
+    current_path = canonical_file(
+        project / RETAINED_PILOT_RUNNER_RELATIVE, "current R00 runner")
+    raw = shadow_tools.git(
+        project, "show", GRAPH_SOURCE_REVISION + ":" + RETAINED_PILOT_RUNNER_RELATIVE)
+    require(raw, "Retained R00 runner blob is empty or unavailable")
+    return {
+        "path": str(current_path),
+        "sha256": hashlib.sha256(raw).hexdigest(),
+    }
 
 
 def _git_json(project: Path, revision: str, relative: str) -> dict[str, Any]:
@@ -221,6 +236,7 @@ def create_receipt(project: Path, build_map_path: Path, side: str = "B") -> dict
         "currentSourcePins": binding(current_pins_path),
         "currentSourcePinsObjectSha256": json_digest(current_pins),
         "transition": transition,
+        "retainedPilotRunner": retained_pilot_runner_binding(project),
         "verifierBindings": _tool_bindings(project),
         "installedRuntimeVerification": installed,
         "scope": (
@@ -245,6 +261,9 @@ def _verify_common(receipt_path: Path, project: Path, build_map_path: Path,
     require(value.get("buildMap") == binding(build_map_path), "Graph reuse bridge build-map binding mismatch")
     require(value.get("verifierBindings") == _tool_bindings(project),
             "Graph reuse bridge verifier implementation changed")
+    retained_runner = retained_pilot_runner_binding(project)
+    require(value.get("retainedPilotRunner") == retained_runner,
+            "Graph reuse bridge retained pilot runner provenance changed")
 
     current_pins_path = canonical_file(project / PINS, "current source pins")
     current_pins = read_json(current_pins_path)
@@ -280,6 +299,7 @@ def _verify_common(receipt_path: Path, project: Path, build_map_path: Path,
         "currentSourcePins": current_pins,
         "bridgeReceipt": binding(receipt_path),
         "policyId": POLICY_ID,
+        "retainedPilotRunner": retained_runner,
     }
 
 
