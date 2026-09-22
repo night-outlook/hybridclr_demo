@@ -4,7 +4,7 @@
 
 Latest Local return: `d18a1fb15c43f918c9d3bba1ed641e87a58b32b0`
 
-Candidate source/tool anchor: `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+Candidate source/tool anchor: `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
