@@ -685,8 +685,14 @@ def _run_side(side_name: str, side: dict[str, Any], mode: str, output_root: Path
     launch = read_json(launch_path)
     rows = launch.get("processLaunches")
     row = rows[0] if type(rows) is list and len(rows) == 1 else {}
+    expected_authority = (
+        binding(formal_launch_authority) if formal_launch_authority is not None else None)
+    authority_ok = launch.get("formalLaunchAuthority") == expected_authority
+    if not authority_ok and not error:
+        error = "R00 runner formal launch authority binding mismatch"
     passed = (not error and not timed_out and exit_code == 0 and launch.get("milestone") == "R00" and
-              launch.get("inputsUnchanged") is True and row.get("mode") == mode and row.get("passed") is True)
+              launch.get("inputsUnchanged") is True and row.get("mode") == mode and row.get("passed") is True and
+              authority_ok)
     value = {"status": "Passed" if passed else "Failed", "command": command, "cwd": str(side["projectRoot"]),
             "outputRoot": str(output_root),
             "startedAtUnix": started, "finishedAtUnix": ended, "durationSeconds": duration, "exitCode": exit_code,
