@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
-      "implementationCommit": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including authenticated retained-graph reuse, nested early authority propagation, retained-ON preflight, output-root-bound formal side-B subprocess authority, pilot sealing/cache, formal batch, and bridge-aware final analysis. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
+      "codeCommit": "d5f013201a7a33b0dfbff75fa9afc5065eae4f90",
+      "implementationCommit": "d5f013201a7a33b0dfbff75fa9afc5065eae4f90",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including authenticated retained-graph reuse, bridge-authenticated retained pilot runner provenance, nested early authority propagation, formal side-B subprocess authority, pilot sealing/cache, formal batch, and bridge-aware final analysis. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -556,7 +556,7 @@
     "returnedByLocalValidationCommit": "9045d54e3a1c365ac8c15a3cb5ca791ad13d7501",
     "previousSourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
     "retainedGraphSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
-    "sourceAnchor": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+    "sourceAnchor": "d5f013201a7a33b0dfbff75fa9afc5065eae4f90",
     "failure": "The first real strict pilot seal failed before receipt because the retained candidate graph binds demo revision 69130bbb while the current project source pin had advanced to 1a87a393. The unchanged R00 current-pairing gate correctly rejected the mismatch.",
     "design": {
       "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
@@ -591,6 +591,7 @@
       "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
       "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
       "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
+      "Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py",
       "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py"
     ],
     "regression": "Primary regression uses the real 69130bbb Git/source transition, proves default R00 pairing remains unchanged, proves retained authority injection is side-B-only, binds bridge through seal/formal chain, rejects bridge switching, and proves final analyzer requires the same bridge/seal."
@@ -598,7 +599,7 @@
   "v04NestedEarlyAuthorityPropagationRepair": {
     "returnedByLocalValidationCommit": "21caaecc315623ec10c779af04d563ed7badeac2",
     "previousSourceAnchor": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
-    "sourceAnchor": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+    "sourceAnchor": "d5f013201a7a33b0dfbff75fa9afc5065eae4f90",
     "failure": "A real H1GraphReuseBridge passed, and outer R00 retained-graph verification passed, but the strict seal failed during R01EarlyStartup capsule reconstruction because r01_early_results._prepare unconditionally re-entered default current-pairing verification.",
     "correction": {
       "r01EarlyPrepare": "_prepare accepts an optional already-authenticated pairing authority. With no authority it preserves the original verify_inputs current-pairing path; with an authority it uses verify_inputs_with_reuse.",
@@ -620,7 +621,7 @@
   "v04FormalSubprocessAuthorityRepair": {
     "returnedByLocalValidationCommit": "d18a1fb15c43f918c9d3bba1ed641e87a58b32b0",
     "previousSourceAnchor": "a964f79d6ceba866c5956741a4a32e38ff8a6b5f",
-    "sourceAnchor": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+    "sourceAnchor": "d5f013201a7a33b0dfbff75fa9afc5065eae4f90",
     "failure": "Bridge creation, retained-ON preflight, strict 8-side seal, and cached formal admission passed. The first formal pair then failed on candidate side B before Player launch because the child run-r00-players.py process had no authenticated retained authority and called default current-pairing verify_inputs.",
     "correction": {
       "authorityKind": "H1FormalSideLaunchAuthority",
@@ -658,7 +659,34 @@
       "finalAnalysis": "Tests bind successful formal runner authority into final analysis and retain failed pre-launch authority evidence without fabricating an R00 launch receipt.",
       "formalOnBoundary": "A second real subprocess regression runs R00-ON-NoPatch through actual run-r00-players.main, proves verify_inputs_with_reuse receives the same formal authority, and proves the child passes that authority into Baseline early preparation before the mocked Player launch."
     },
-    "previousPrimaryDeltaCount": 11,
-    "retainedGraphAllowlistCount": 20
+    "previousPrimaryDeltaCount": 7,
+    "retainedGraphAllowlistCount": 21
+  },
+  "v04RetainedPilotRunnerAdmissionRepair": {
+    "returnedByLocalValidationCommit": "65f47f6bf62fe8889a3b71ed629f9fd06f3a489a",
+    "previousSourceAnchor": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
+    "sourceAnchor": "d5f013201a7a33b0dfbff75fa9afc5065eae4f90",
+    "retainedGraphSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "failure": "A new current bridge passed, but strict seal admission rejected retained pilot diagnostics before deep verification because _load_prior required their immutable historical run-r00-players.py binding to equal the current runner implementation.",
+    "correction": {
+      "bridgeProvenance": "H1GraphReuseBridge now binds retainedPilotRunner, derived only from Git show of Tools/AssemblyShadow/run-r00-players.py at retained graph anchor 69130bbb. Bridge verification recomputes and requires that exact binding.",
+      "sealOrdering": "seal-h1-pilot-verification.py fully authenticates the graph bridge before loading retained pilot history.",
+      "loader": "_load_prior accepts historical runner provenance only for rows whose phase is pilot and only when an authenticated graph reuse authority supplies retainedPilotRunner. New formal rows still require current runner_binding().",
+      "formalResume": "Bridge-bound formal loading performs compact bridge authentication before validating retained pilot rows, while formal rows remain current-runner-only.",
+      "noGenericOverride": "No caller may supply an arbitrary historical runner path/hash; the accepted provenance originates only from the authenticated fixed-anchor bridge.",
+      "currentFormalRunner": "Every new formal attempt continues to use and bind the current run-r00-players.py implementation."
+    },
+    "regression": {
+      "retainedRunnerSha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c",
+      "actualSealEntry": "Actual seal-h1-pilot-verification.py entrypoint consumes a retained-style pilot index using the real Git-derived retained runner binding and reaches eight deep side verifications.",
+      "negatives": [
+        "missing authenticated bridge authority",
+        "tampered retained runner SHA-256",
+        "tampered retained runner path",
+        "bridge switching"
+      ]
+    },
+    "previousPrimaryDeltaCount": 7,
+    "retainedGraphAllowlistCount": 21
   }
 }
