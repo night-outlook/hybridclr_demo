@@ -2,7 +2,7 @@
 
 Candidate source/tool anchor:
 
-`f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+`24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 Latest Local return:
 
@@ -30,7 +30,7 @@ The two failed `a964f79d...` formal attempts are historical evidence only. Do no
 
 1. Pull final pushed `codex/assembly-shadow-r01b-h1`.
 2. Require clean tracked state.
-3. Record checkout HEAD separately from source/tool anchor `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`.
+3. Record checkout HEAD separately from source/tool anchor `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`.
 4. Run committed candidate handoff/source preflight and require `SourceTargetVerifiedNotBuildAccepted`.
 5. Reauthenticate reproduction tooling and the exact protected profile-1 family.
 6. If candidate installed-runtime receipt still binds the prior demo revision, refresh it through:
@@ -94,7 +94,7 @@ Compare:
 
 to:
 
-`f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+`24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 After metadata-only classification, the exact non-metadata set must contain **11 paths**:
 
@@ -120,7 +120,7 @@ Compare:
 
 to:
 
-`f1266a4d7f39a49523186b3dc63f9add9cc0e64c`
+`24a0d3af7d5b5b664d063a75d85deb4f11aa2915`
 
 After metadata-only classification, the complete set must equal exactly these **20 paths**:
 
@@ -200,7 +200,7 @@ Require:
 - `status=AuthenticatedToolOnlySuccessor`;
 - side B only;
 - retained graph revision exactly `69130bbb...`;
-- current demo revision exactly `f1266a4d7f39a49523186b3dc63f9add9cc0e64c`;
+- current demo revision exactly `24a0d3af7d5b5b664d063a75d85deb4f11aa2915`;
 - exact 20-path transition;
 - current installed-runtime binding;
 - exact map/source/verifier bindings;
