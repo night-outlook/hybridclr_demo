@@ -21,8 +21,9 @@ Pilot 仍按本协议完整执行且全部排除在 formal 统计之外。四个
 1. 对每个被选择的最新成功 pilot pair 的 A/B launch receipt 重新执行现有 `r00_results.verify_suite` 完整重建，共 8 个 side graph；
 2. 封存 protocol、schedule、frozen build map、pilot attempt history、每个 pilot launch receipt 和 verifier/tool 实现的内容 hash；
 3. 从已经通过严格重建的 launch receipt 中取得完整 `inputHashesBefore == inputHashesAfter` immutable input inventory，并补充 result / early capsule / early result evidence；
-4. 在完整严格重建前后记录每个 immutable file 的 canonical path 及 filesystem identity guard（device、inode、mode、size、mtimeNs、ctimeNs），要求前后完全一致；
-5. 输出新的 `H1PilotVerificationReceipt`。任何封存过程中发生的 identity 变化都使封存失败。
+4. 在完整严格重建前后记录每个 immutable file 的 canonical path 及 cross-remount-stable filesystem identity guard（inode、mode、size、mtimeNs、ctimeNs），要求前后完全一致；
+5. `st_dev` 不属于 acceptance guard：它表示当前 mount/filesystem instance，可在 remount 后变化而文件 canonical path、bytes、inode 和其它稳定 stat identity 完全不变；
+6. 输出新的 `H1PilotVerificationReceipt`，并绑定 `guardKind=CrossRemountStableStatGuard`、`guardVersion=2` 和精确 guard field 列表。旧 device-bound seal 不得按新语义继续使用，必须重新 seal。
 
 后续每个 formal admission **不得再次重跑 8 个 pilot graph 的全量内容 hash/reconstruction**。它只允许：
 
@@ -31,7 +32,7 @@ Pilot 仍按本协议完整执行且全部排除在 formal 统计之外。四个
 - 验证从当前 launch receipts 推导的 immutable path/hash inventory 与封存 inventory 完全一致；
 - 对每个 sealed immutable file 验证 canonical path 和 filesystem identity guard 未改变。
 
-任一 path/hash/tool/guard 改变都必须 fail closed，并要求重新执行一次完整严格 pilot seal；不得自动把 stat mismatch 当作可接受的 cache miss，也不得在 formal admission 中静默重新生成 seal。
+任一 path/hash/tool/acceptance-guard 改变都必须 fail closed，并要求重新执行一次完整严格 pilot seal；不得自动把 acceptance stat mismatch 当作可接受的 cache miss，也不得在 formal admission 中静默重新生成 seal。仅 `st_dev` 变化不构成 guard mismatch；其它字段仍严格 fail closed。
 
 该机制只消除重复的 **formal pre-launch pilot reconstruction**。它不改变 build-map comparability、pair ordering、whole-pair retry、样本保留、正式统计或最终 analyzer。最终 analyzer 仍对全部选中 pilot/formal launch evidence 执行原有严格验证，pilot seal 不能替代最终证据审计。
 
