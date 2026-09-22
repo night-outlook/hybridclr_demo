@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "91ac4db31cec704551c7db05bd918c8d5695ce83",
-      "implementationCommit": "91ac4db31cec704551c7db05bd918c8d5695ce83",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including authenticated retained-graph reuse, Git-derived retained pilot runner provenance, retained-pilot admission preflight, nested early authority propagation, formal side-B subprocess authority, pilot sealing/cache, formal batch, and bridge-aware final analysis. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
+      "codeCommit": "27df1a3d60811dc121f296ab561ae313a382b363",
+      "implementationCommit": "27df1a3d60811dc121f296ab561ae313a382b363",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity including authenticated retained-graph/pilot provenance, cross-remount-stable pilot seal guard v2, collision-resistant paired output namespaces, formal side-B subprocess authority, pilot sealing/cache, formal batch, and bridge-aware final analysis. Later source-pin/source-target/handoff/status/history/evidence commits are metadata-only under the unchanged demo source verifier.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -541,7 +541,6 @@
       ],
       "immutableGuard": [
         "canonical path",
-        "device",
         "inode",
         "mode",
         "size",
@@ -549,7 +548,8 @@
         "ctimeNs"
       ],
       "formalAdmission": "Re-hash compact control receipts/tools, derive the current immutable path/hash inventory from launch receipts, require exact cache identity guards, and fail closed on any difference without silently rebuilding the cache.",
-      "finalAnalysis": "Unchanged. Final analyzer still performs full strict launch/evidence verification."
+      "finalAnalysis": "Unchanged. Final analyzer still performs full strict launch/evidence verification.",
+      "deviceIdentityPolicy": "st_dev is excluded from acceptance because it identifies the mount/filesystem instance and can change across remounts while the same file remains byte-identical. Any canonical path/inode/mode/size/mtimeNs/ctimeNs change remains fail-closed."
     },
     "regression": "Bounded Primary regression seals with exactly eight deep verifications, performs forty formal admissions with zero deep rescans, and rejects pilot-receipt, bound-artifact, protocol, schedule, build-map, and verifier mutations.",
     "reusePolicy": "Existing Local-validated controlled graphs, frozen map, preregistration, and pilots may be retained only after Local independently confirms the source delta is limited to orchestration/verifier-cache tooling/tests/CI and all bound hashes remain unchanged."
@@ -558,7 +558,7 @@
     "returnedByLocalValidationCommit": "9045d54e3a1c365ac8c15a3cb5ca791ad13d7501",
     "previousSourceAnchor": "1a87a393e7a0ee312f39647532d80bfc603c7b23",
     "retainedGraphSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
-    "sourceAnchor": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+    "sourceAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
     "failure": "The first real strict pilot seal failed before receipt because the retained candidate graph binds demo revision 69130bbb while the current project source pin had advanced to 1a87a393. The unchanged R00 current-pairing gate correctly rejected the mismatch.",
     "design": {
       "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
@@ -602,7 +602,7 @@
   "v04NestedEarlyAuthorityPropagationRepair": {
     "returnedByLocalValidationCommit": "21caaecc315623ec10c779af04d563ed7badeac2",
     "previousSourceAnchor": "6dd964c045034240ea53dd15ba7c0b33e9f2ad17",
-    "sourceAnchor": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+    "sourceAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
     "failure": "A real H1GraphReuseBridge passed, and outer R00 retained-graph verification passed, but the strict seal failed during R01EarlyStartup capsule reconstruction because r01_early_results._prepare unconditionally re-entered default current-pairing verification.",
     "correction": {
       "r01EarlyPrepare": "_prepare accepts an optional already-authenticated pairing authority. With no authority it preserves the original verify_inputs current-pairing path; with an authority it uses verify_inputs_with_reuse.",
@@ -624,7 +624,7 @@
   "v04FormalSubprocessAuthorityRepair": {
     "returnedByLocalValidationCommit": "d18a1fb15c43f918c9d3bba1ed641e87a58b32b0",
     "previousSourceAnchor": "a964f79d6ceba866c5956741a4a32e38ff8a6b5f",
-    "sourceAnchor": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+    "sourceAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
     "failure": "Bridge creation, retained-ON preflight, strict 8-side seal, and cached formal admission passed. The first formal pair then failed on candidate side B before Player launch because the child run-r00-players.py process had no authenticated retained authority and called default current-pairing verify_inputs.",
     "correction": {
       "authorityKind": "H1FormalSideLaunchAuthority",
@@ -662,13 +662,13 @@
       "finalAnalysis": "Tests bind successful formal runner authority into final analysis and retain failed pre-launch authority evidence without fabricating an R00 launch receipt.",
       "formalOnBoundary": "A second real subprocess regression runs R00-ON-NoPatch through actual run-r00-players.main, proves verify_inputs_with_reuse receives the same formal authority, and proves the child passes that authority into Baseline early preparation before the mocked Player launch."
     },
-    "previousPrimaryDeltaCount": 9,
+    "previousPrimaryDeltaCount": 3,
     "retainedGraphAllowlistCount": 22
   },
   "v04RetainedPilotRunnerAdmissionRepair": {
     "returnedByLocalValidationCommit": "65f47f6bf62fe8889a3b71ed629f9fd06f3a489a",
     "previousSourceAnchor": "24a0d3af7d5b5b664d063a75d85deb4f11aa2915",
-    "sourceAnchor": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+    "sourceAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
     "retainedGraphSourceAnchor": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
     "failure": "A new current bridge passed, but strict seal admission rejected retained pilot diagnostics before deep verification because _load_prior required their immutable historical run-r00-players.py binding to equal the current runner implementation.",
     "correction": {
@@ -691,7 +691,43 @@
       ],
       "admissionPreflight": "Actual preflight entrypoint accepts the Git-derived retained runner with an authenticated bridge and is asserted not to call the deep R00 verifier."
     },
-    "previousPrimaryDeltaCount": 9,
+    "previousPrimaryDeltaCount": 3,
     "retainedGraphAllowlistCount": 22
+  },
+  "v04CrossRemountSealGuardRepair": {
+    "returnedByLocalValidationCommit": "421f221156f4e9a71aab3363fd4e49a91cbaba68",
+    "previousSourceAnchor": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+    "sourceAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
+    "failure": "After 14/40 passed formal pairs, cached seal admission failed solely because st_dev changed from 16777229 to 16777230 after a filesystem remount. Canonical path, SHA-256, inode, mode, size, mtimeNs and ctimeNs were unchanged.",
+    "decision": "st_dev is mount-instance topology, not immutable artifact identity, and is not acceptance-critical for multi-hour/multi-day formal runs.",
+    "guardContract": {
+      "kind": "CrossRemountStableStatGuard",
+      "version": 2,
+      "acceptanceFields": [
+        "canonical path",
+        "inode",
+        "mode",
+        "size",
+        "mtimeNs",
+        "ctimeNs"
+      ],
+      "excludedField": "st_dev",
+      "excludedReason": "Device identity may change across remounts without changing file bytes or stable file identity.",
+      "contentIntegrity": "The sealed immutable inventory remains SHA-256-bound through pilot launch/input evidence; control receipts/tools are re-hashed on formal admission.",
+      "oldSealPolicy": "Old device-bound seals lack guardVersion=2 / guardFields and are rejected; Local must create a new bridge and new seal under the new source."
+    },
+    "outputCollisionRepair": {
+      "failure": "A fresh batch could reuse the same pair/attempt leaf name and collide with preserved historical per-project _temp/AssemblyShadow output.",
+      "correction": "Internal project output run IDs now include a 12-hex SHA-256 suffix of the full canonical requested output path, so different batch roots produce different per-project side directories while external evidence paths remain unchanged/new-only."
+    },
+    "regression": {
+      "deviceDrift": "Two stat records differing only in st_dev produce identical acceptance guards.",
+      "stableFields": "inode, mode, size, mtimeNs and ctimeNs mutations each change the guard.",
+      "sealSchema": "New seals record CrossRemountStableStatGuard v2 and old device-bound guard schemas are rejected.",
+      "collision": "Same pair/attempt leaf under two different batch roots produces distinct persisted per-project output paths; both runs can coexist."
+    },
+    "previousPrimaryDeltaCount": 3,
+    "retainedGraphAllowlistCount": 22,
+    "historicalPartialSeries": "The 14/40 series under source 91ac4db3 remains historical only because every formal attempt binds the old seal/source authority. It is not chained into the new guard-v2 source series."
   }
 }
