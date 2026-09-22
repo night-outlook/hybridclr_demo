@@ -111,7 +111,7 @@ The new paths relative to the previous retained allowlist are:
 
 ## Primary validation
 
-The final pre-pin source run executed **357/357 functional bounded tests** successfully. Its only nonpass was the intentionally stale source-pin live-handoff preflight; authority-updated CI is the next gate.
+Authority-updated workflow `35673645036` at commit `5e88c18a...` passed **358/358 bounded tests**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 PowerShell recovery regressions, and lazy **10/10**. Artifact `10672720137`, SHA-256 `3d2c82e8972776945efe92dbee5efb70e451088ee37bbe11cfa087221d690a8f`.
 
 ## Next action
 
