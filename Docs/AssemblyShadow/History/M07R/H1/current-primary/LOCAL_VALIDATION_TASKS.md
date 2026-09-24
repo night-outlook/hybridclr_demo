@@ -30,6 +30,27 @@ fresh current source/Python → exact analysis-only source audit → reauthentic
 
 The completed 40/40 formal series is immutable execution evidence. Do not create a new bridge, seal, Player, pilot, formal pair, or retry unless the compatibility proof fails because of a genuine non-analysis evidence problem and the task returns to Primary.
 
+## V00.R — source-authority repair prerequisite
+
+Before the existing V00 sequence, authenticate the final pushed checkout after Primary's source-authority repair:
+
+1. require branch `codex/assembly-shadow-r01b-h1` and the final handoff HEAD;
+2. verify these nine paths are byte-identical to `7aa6f61994da354b04464e38ddfc8552cc5c3055`:
+   - `.agents/skills/agent-collaboration/SKILL.md`
+   - `.agents/skills/agent-collaboration/scripts/Get-GateReviewMode.ps1`
+   - `.agents/skills/agent-collaboration/tests/Test-AgentCollaborationGatePolicy.Tests.ps1`
+   - `.codex/agents/code-debugger.toml`
+   - `.codex/agents/code-explorer.toml`
+   - `.codex/agents/code-gate-reviewer.toml`
+   - `.codex/agents/code-general.toml`
+   - `.codex/agents/code-reviewer.toml`
+   - `.codex/agents/code-worker.toml`
+3. require the complete `7aa6f619... → HEAD` non-metadata delta, under the unchanged `shadow_tools.metadata_only` policy, to be empty;
+4. require the complete `27df1a3d... → HEAD` non-metadata delta to remain exactly the existing five analysis-only paths;
+5. do not alter metadata classification, source pins, or the historical-analysis allowlist locally.
+
+Then run the committed `h1_handoff_preflight.py` V00 step. If any of the above fails, stop and return to Primary before bounded tests or historical evidence work.
+
 ## V00 — current analysis authority
 
 1. Pull final pushed `codex/assembly-shadow-r01b-h1`.
