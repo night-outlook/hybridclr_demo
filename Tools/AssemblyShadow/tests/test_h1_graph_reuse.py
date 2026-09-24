@@ -370,6 +370,130 @@ class H1GraphReuseTests(unittest.TestCase):
                     str(worktree),
                 ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
 
+    def test_compatibility_routes_current_delta_to_designated_analysis_checkout(self):
+        with tempfile.TemporaryDirectory(prefix="h1-compat-routing-") as directory:
+            root = Path(directory).resolve()
+            analysis_root = root / "analysis"
+            historical_root = root / "historical"
+            analysis_root.mkdir()
+            historical_root.mkdir()
+            build_map = root / "build-map.json"; build_map.write_text("{}", encoding="utf-8")
+            sample = root / "sample.json"
+            seal = root / "seal.json"; seal.write_text("{}", encoding="utf-8")
+            bridge = root / "bridge.json"
+            batch = root / "batch.json"; batch.write_text("{}", encoding="utf-8")
+            sample.write_text(json.dumps({"buildMap": historical.binding(build_map)}), encoding="utf-8")
+            bridge.write_text(json.dumps({"projectRoot": str(historical_root)}), encoding="utf-8")
+
+            analysis_pins = copy.deepcopy(shadow_tools.read_json(ROOT / PINS))
+            historical_pins = historical._git_json(
+                ROOT, historical.HISTORICAL_CHECKOUT_REVISION, PINS)
+            graph_pins = copy.deepcopy(historical_pins)
+            historical._entries(graph_pins)["demo"]["revision"] = historical.RETAINED_GRAPH_REVISION
+            analysis_info = {
+                "projectRoot": str(analysis_root),
+                "checkoutCommit": "a" * 40,
+                "sourceRevision": historical._entries(analysis_pins)["demo"]["revision"],
+                "sourcePins": analysis_pins,
+                "sourcePinsBinding": {"path": str(analysis_root / PINS), "sha256": "1" * 64},
+                "toolBinding": {"path": str(analysis_root / "tool.py"), "sha256": "2" * 64},
+            }
+            fixed = {
+                sample: historical.HISTORICAL_FINAL_SAMPLE_SHA256,
+                seal: historical.HISTORICAL_SEAL_SHA256,
+                bridge: historical.HISTORICAL_BRIDGE_SHA256,
+                batch: historical.HISTORICAL_FORMAL_BATCH_SHA256,
+            }
+            real_digest = historical.digest
+
+            def digest_for(path):
+                path = Path(path)
+                return fixed[path] if path in fixed else real_digest(path)
+
+            bridge_info = {
+                "historicalBridge": historical.binding(bridge),
+                "historicalEvidenceProjectRoot": str(historical_root),
+                "graphSourcePins": graph_pins,
+                "historicalCurrentSourcePins": historical_pins,
+                "analysisSourcePins": analysis_pins,
+                "retainedPilotRunner": {"path": "runner", "sha256": "3" * 64},
+                "installedRuntimeVerification": {"demoSourceVerified": True},
+                "transitionSha256": "4" * 64,
+            }
+            with mock.patch.object(
+                    historical, "_analysis_source_authority", return_value=analysis_info), \
+                 mock.patch.object(historical, "digest", side_effect=digest_for), \
+                 mock.patch.object(
+                    historical, "authenticate_analysis_delta",
+                    return_value={"policyId": historical.POLICY_ID}) as delta, \
+                 mock.patch.object(
+                    historical, "verify_historical_bridge",
+                    return_value=bridge_info) as verify_bridge, \
+                 mock.patch.object(
+                    historical, "verify_historical_seal",
+                    return_value={"historicalSeal": historical.binding(seal)}), \
+                 mock.patch.object(
+                    historical, "verify_historical_formal_batch",
+                    return_value={"historicalFormalBatch": historical.binding(batch)}), \
+                 mock.patch.object(
+                    historical, "verify_historical_sample_chain",
+                    return_value={"historicalSampleIndex": historical.binding(sample)}):
+                result = historical.authenticate_compatibility(
+                    sample, seal, bridge, batch, analysis_root)
+
+            delta.assert_called_once_with(
+                analysis_root, historical._entries(analysis_pins)["demo"]["revision"])
+            verify_bridge.assert_called_once_with(
+                bridge, build_map, historical_root, analysis_pins)
+            self.assertEqual(result["analysisProjectRoot"], str(analysis_root))
+            self.assertEqual(result["historicalProjectRoot"], str(historical_root))
+            self.assertEqual(
+                result["pairingAuthority"]["currentSourcePins"], historical_pins)
+            self.assertEqual(
+                result["pairingAuthority"]["analysisSourcePins"], analysis_pins)
+
+    def test_historical_verified_launch_scopes_and_restores_input_override(self):
+        with tempfile.TemporaryDirectory(prefix="h1-historical-launch-") as directory:
+            root = Path(directory).resolve()
+            historical_root = root / "historical"; historical_root.mkdir()
+            launch = root / "launch.json"
+            launch.write_text(json.dumps({"projectRoot": str(historical_root)}), encoding="utf-8")
+            authority = {
+                "kind": historical.PAIRING_AUTHORITY_KIND,
+                "projectRoot": str(historical_root),
+                "graphSourcePins": {"schemaVersion": 1},
+                "currentSourcePins": {"schemaVersion": 1},
+                "historicalSourcePins": {"schemaVersion": 1},
+                "analysisSourcePins": {"schemaVersion": 1},
+                "bridgeReceipt": {"path": "bridge", "sha256": "1" * 64},
+                "policyId": historical.POLICY_ID,
+            }
+            compatibility = {
+                "pairingAuthority": authority,
+                "historicalProjectRoot": str(historical_root),
+                "historicalBridge": {
+                    "installedRuntimeVerification": {"demoSourceVerified": True},
+                },
+            }
+            original_r00 = r00_results.verify_inputs_with_reuse
+            original_early = r00_results.early.verify_inputs_with_reuse
+
+            def fake_verify_suite(path, expected_mode=None, pairing_authority=None):
+                self.assertEqual(Path(path), launch)
+                self.assertEqual(pairing_authority, authority)
+                self.assertIsNot(r00_results.verify_inputs_with_reuse, original_r00)
+                self.assertIs(
+                    r00_results.verify_inputs_with_reuse,
+                    r00_results.early.verify_inputs_with_reuse)
+                return {"requestedModeIds": [expected_mode], "executedModeIds": [expected_mode]}
+
+            with mock.patch.object(r00_results, "verify_suite", side_effect=fake_verify_suite):
+                result = historical._historical_verified_launch(compatibility)(
+                    launch, "R00-ON-NoPatch")
+            self.assertEqual(result["requestedModeIds"], ["R00-ON-NoPatch"])
+            self.assertIs(r00_results.verify_inputs_with_reuse, original_r00)
+            self.assertIs(r00_results.early.verify_inputs_with_reuse, original_early)
+
     def test_historical_seal_requires_exact_old_verifier_inventory(self):
         import tempfile
         with tempfile.TemporaryDirectory() as directory:
