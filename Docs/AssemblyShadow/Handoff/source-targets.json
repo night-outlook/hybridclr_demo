@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
-      "implementationCommit": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
-      "codeAnchorPolicy": "Authoritative H1 analysis/test/V05 evidence-tool source. The source-27df -> current non-metadata set remains exactly the seven-path H1HistoricalPerformanceReanalysis-v2 policy. V05 packaging is analysis-only and does not create or relabel Player execution.",
+      "codeCommit": "27e67920c6d8445895c1b9db647d733371a067c0",
+      "implementationCommit": "27e67920c6d8445895c1b9db647d733371a067c0",
+      "codeAnchorPolicy": "Authoritative H1 analysis/test/V05 evidence-tool source. Source-27df -> current remains the exact seven-path H1HistoricalPerformanceReanalysis-v2 set; retained 69130 -> current remains the exact 25-path H1V04RetainedGraphToolOnlySuccessor-v2 set. V05 packages evidence only and never creates or relabels Player execution.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -950,19 +950,19 @@
     }
   },
   "currentRequiredValidation": {
-    "sourceAnchor": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
+    "sourceAnchor": "27e67920c6d8445895c1b9db647d733371a067c0",
     "handoffDocument": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
     "detailedPlan": "Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md",
     "boundedPrimary": {
-      "requiredLeafCount": 385,
-      "requiredPassed": 385,
+      "requiredLeafCount": 387,
+      "requiredPassed": 387,
       "allowedNonPasses": 0
     },
     "fullPython": {
-      "expectedLeafCount": 1069,
+      "expectedLeafCount": 1071,
       "requiredFailed": 0,
       "requiredErrors": 0,
-      "expectedPassedIfSkipSetUnchanged": 1041,
+      "expectedPassedIfSkipSetUnchanged": 1043,
       "expectedSkippedIfEnvironmentUnchanged": 28,
       "skipCountIsExpectationOnly": true
     },
@@ -1018,7 +1018,7 @@
   },
   "v05AnalysisOnlySuccessorContract": {
     "policyId": "H1AnalysisOnlySuccessorEvidence-v1",
-    "sourceAnchor": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
+    "sourceAnchor": "27e67920c6d8445895c1b9db647d733371a067c0",
     "tool": "Tools/AssemblyShadow/h1_historical_reanalysis.py",
     "mode": "--v05-package",
     "requiredArguments": [
@@ -1051,7 +1051,25 @@
     "performanceAcceptance": "NotClaimedNoSLA",
     "m08Passed": false,
     "humanGatePassed": false,
-    "mayEnterR02": false
+    "mayEnterR02": false,
+    "exactCardinalities": {
+      "boundedPrimaryLeaves": 387,
+      "fullPythonLeaves": 1071,
+      "source27dfCheckpointManifestEntries": 92,
+      "sealedFiles": 33792,
+      "sealedBytes": 1606993133
+    },
+    "requiredPlanAndReviewBindings": [
+      "Docs/AssemblyShadow/Plan/DESIGN.md",
+      "Docs/AssemblyShadow/Plan/EVIDENCE_CONTRACT.md",
+      "Docs/AssemblyShadow/Plan/HUMAN_REVIEW_GATES.md",
+      "Docs/AssemblyShadow/Plan/PERFORMANCE_PROTOCOL.md",
+      "Docs/AssemblyShadow/Plan/VALIDATION_MATRIX.md",
+      "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+      "Docs/AssemblyShadow/Handoff/source-targets.json",
+      "Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md",
+      ".codex/agents/code-gate-reviewer.toml"
+    ]
   },
   "independentH1M08Contract": {
     "mechanism": "code-gate-reviewer",
@@ -1085,5 +1103,12 @@
     "passDoesNotMeanHumanApproval": true,
     "humanGatePassed": false,
     "mayEnterR02": false
+  },
+  "v05EvidenceCardinalityRepair": {
+    "previousSourceAnchor": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
+    "sourceAnchor": "27e67920c6d8445895c1b9db647d733371a067c0",
+    "correction": "V05 now requires exact source-specific bounded/full-Python counts, exact 92-entry source-27df checkpoint manifest, and exact 33,792 sealed files / 1,606,993,133 bytes rather than accepting internally self-consistent smaller inventories.",
+    "regressionCountAdded": 2,
+    "sourcePolicyImpact": "None; only h1_historical_reanalysis.py and test_h1_graph_reuse.py changed, both already in the exact seven-path/25-path policies."
   }
 }
