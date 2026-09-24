@@ -23,7 +23,7 @@ from shadow_tools import PINS, VerificationError, metadata_only, read_json, requ
 HISTORICAL_SOURCE_REVISION = "27df1a3d60811dc121f296ab561ae313a382b363"
 HISTORICAL_CHECKOUT_REVISION = "f5e34235641c212c715aef3405925ddd4cf28ee6"
 RETAINED_GRAPH_REVISION = "69130bbb3a6df516916dddb5ad263799a7c6e5e3"
-POLICY_ID = "H1HistoricalPerformanceReanalysis-v1"
+POLICY_ID = "H1HistoricalPerformanceReanalysis-v2"
 HISTORICAL_BRIDGE_SHA256 = "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c"
 HISTORICAL_SEAL_SHA256 = "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631"
 HISTORICAL_FINAL_SAMPLE_SHA256 = "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
@@ -33,15 +33,18 @@ SEAL_KIND = "H1PilotVerificationReceipt"
 FORMAL_AUTHORITY_KIND = "H1FormalSideLaunchAuthority"
 PAIRING_AUTHORITY_KIND = "H1AuthenticatedGraphReuseAuthority"
 
-# Exact analysis-only successor scope from the completed 27df formal series.
-# No runner, measurement, graph, protocol, schedule, Player or native source may
-# change under this compatibility policy.
+# Exact analysis/test-only successor scope from the completed 27df formal series.
+# The two additional v2 paths are bounded-regression/test-fixture code only. No
+# execution runner, measurement, graph, protocol, schedule, Player or native
+# source may change under this compatibility policy.
 ALLOWED_ANALYSIS_DELTA = frozenset({
     "Tools/AssemblyShadow/README.md",
+    "Tools/AssemblyShadow/h1_bee_primary_tests.py",
     "Tools/AssemblyShadow/h1_graph_reuse.py",
     "Tools/AssemblyShadow/h1_historical_reanalysis.py",
     "Tools/AssemblyShadow/h1_paired_performance.py",
     "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+    "Tools/AssemblyShadow/tests/test_h1_paired_performance.py",
 })
 
 HISTORICAL_BRIDGE_VERIFIER_PATHS = frozenset({
