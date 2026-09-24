@@ -4,7 +4,7 @@
 
 Current source anchor:
 
-`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+`27e67920c6d8445895c1b9db647d733371a067c0`
 
 V05 policy:
 
@@ -32,6 +32,17 @@ Therefore V05 is an evidence-binding stage:
 - source-27df Player/runtime execution remains historical and reused-authenticated;
 - V04 performance is a current reanalysis of historical execution;
 - no new Player execution is implied or required.
+
+## Exact source-specific cardinalities
+
+For source anchor `27e67920c6d8445895c1b9db647d733371a067c0`, V05 fails closed unless the bound evidence contains:
+
+- bounded Primary: 387/387 Passed;
+- full Python discovery: exactly 1,071 leaves with zero Failed/Error;
+- immutable source-27df checkpoint manifest: exactly 92 members;
+- sealed-live authentication: exactly 33,792 files and 1,606,993,133 bytes with zero missing/content/stable-stat mismatch.
+
+These are source-specific evidence identities, not adjustable thresholds.
 
 ## Required pre-V05 closure checkpoint
 
