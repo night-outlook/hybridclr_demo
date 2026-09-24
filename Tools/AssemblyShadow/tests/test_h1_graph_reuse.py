@@ -10,6 +10,8 @@ TOOLS = ROOT / "Tools/AssemblyShadow"
 sys.path.insert(0, str(TOOLS))
 
 import h1_graph_reuse as reuse
+import h1_historical_reanalysis as historical
+import h1_paired_performance as paired
 import r00_player_inputs
 import r00_results
 import r01_early_results as early_results
@@ -32,6 +34,90 @@ class H1GraphReuseTests(unittest.TestCase):
 
     def real_old_pins(self):
         return reuse.retained_graph_pins(self.successor_pins_at_head())
+
+    def test_returned_analysis_failure_is_exact_real_producer_shape(self):
+        diagnosis_path = (
+            ROOT / "Docs/AssemblyShadow/History/M07R/H1/"
+            "local-validation-20260923-authority27df-formal-analysis-blocked/"
+            "V04/performance/final-analysis-contract-failure.json"
+        )
+        diagnosis = json.loads(diagnosis_path.read_text())
+        contract = diagnosis["contractDiagnosis"]
+        self.assertTrue(contract["rawTopLevelBaselineBuildIdPresent"])
+        self.assertTrue(contract["rawTopLevelRuntimeAbiHashPresent"])
+        self.assertFalse(contract["rawPlayerBuildReceiptBaselineBuildIdPresent"])
+        self.assertFalse(contract["rawPlayerBuildReceiptRuntimeAbiHashPresent"])
+        self.assertEqual(
+            contract["analyzerRequiresNestedFields"],
+            ["buildGuid", "baselineBuildId", "runtimeAbiHash"])
+
+    def test_analyzer_build_binding_matches_real_r00_producer_contract(self):
+        expected = {
+            "path": "/tmp/m07-player-build.json",
+            "sha256": "a" * 64,
+            "receipt": {
+                "buildGuid": "build-guid",
+                "baselineBuildId": "baseline-id",
+                "runtimeAbiHash": "b" * 64,
+            },
+        }
+        raw = {
+            "buildGuid": "build-guid",
+            "baselineBuildId": "baseline-id",
+            "runtimeAbiHash": "b" * 64,
+            "playerBuildReceipt": {
+                "path": expected["path"],
+                "sha256": expected["sha256"],
+                "buildGuid": "build-guid",
+            },
+        }
+        paired._check_build_binding(raw, expected)
+
+        for field, bad_value in (
+            ("buildGuid", "other-guid"),
+            ("baselineBuildId", "other-baseline"),
+            ("runtimeAbiHash", "c" * 64),
+        ):
+            with self.subTest(topLevelField=field):
+                changed = copy.deepcopy(raw)
+                changed[field] = bad_value
+                with self.assertRaisesRegex(
+                        VerificationError, "top-level build field differs: " + field):
+                    paired._check_build_binding(changed, expected)
+
+        for field in ("baselineBuildId", "runtimeAbiHash"):
+            with self.subTest(missingTopLevelField=field):
+                changed = copy.deepcopy(raw)
+                del changed[field]
+                with self.assertRaisesRegex(
+                        VerificationError, "top-level build field differs: " + field):
+                    paired._check_build_binding(changed, expected)
+
+        for field, bad_value in (
+            ("baselineBuildId", "nested-wrong"),
+            ("runtimeAbiHash", "d" * 64),
+        ):
+            with self.subTest(conflictingOptionalNestedField=field):
+                changed = copy.deepcopy(raw)
+                changed["playerBuildReceipt"][field] = bad_value
+                with self.assertRaisesRegex(
+                        VerificationError, "nested build field differs: " + field):
+                    paired._check_build_binding(changed, expected)
+
+    def test_historical_reanalysis_delta_is_exact_analysis_only_successor(self):
+        current = shadow_tools.git(ROOT, "rev-parse", "HEAD").decode().strip()
+        result = historical.authenticate_analysis_delta(ROOT, current)
+        self.assertEqual(result["policyId"], historical.POLICY_ID)
+        self.assertEqual(
+            {row["path"] for row in result["nonMetadataDelta"]},
+            set(historical.ALLOWED_ANALYSIS_DELTA))
+        forbidden = (
+            "run-r00-players.py", "r00_results.py", "r00_player_inputs.py",
+            "run-h1-paired-performance.py", "seal-h1-pilot-verification.py",
+        )
+        self.assertTrue(all(
+            not any(row["path"].endswith(name) for name in forbidden)
+            for row in result["nonMetadataDelta"]))
 
     def test_real_69130_graph_to_current_tool_only_successor_matches_exact_policy(self):
         old_pins = self.real_old_pins()
