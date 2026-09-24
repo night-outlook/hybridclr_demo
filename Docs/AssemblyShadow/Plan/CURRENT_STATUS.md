@@ -1,140 +1,142 @@
 # Current Status
 
-- Candidate analysis/test source anchor: `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`.
-- Previous analysis/test source anchor: `d239d9d00784ea2df22133cb8c938ec25035f5a0`.
-- Latest Local return: `57d51ac4b1d09eb190a7e95235a7ec6ff5ed1357`.
-- Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd239-compatibility-project-blocked/`.
+- Candidate analysis/test/V05 source anchor: `25cd25f675c0caaf5009fd1aa3136aa0d98302d8`.
+- Previous source anchor: `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`.
+- Latest Local return: `5f8db436e31df017dbff396b375547394c396ad5`.
+- Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`.
 - Completed formal execution source: `27df1a3d60811dc121f296ab561ae313a382b363`.
 - Retained graph source: `69130bbb3a6df516916dddb5ad263799a7c6e5e3`.
-- Historical compatibility policy: `H1HistoricalPerformanceReanalysis-v2` / exact 7 paths.
-- Retained-graph policy: `H1V04RetainedGraphToolOnlySuccessor-v2` / exact 25 paths.
-- Gate: `H1 / InProgress / AwaitingSplitCheckoutCompatibilityValidation`.
-- Last independent M08: `FAIL` (historical; not rerun).
+- Historical compatibility: `H1HistoricalPerformanceReanalysis-v2` / exact 7 paths.
+- Retained graph compatibility: `H1V04RetainedGraphToolOnlySuccessor-v2` / exact 25 paths.
+- V05 policy: `H1AnalysisOnlySuccessorEvidence-v1`.
+- Gate: `H1 / InProgress / AwaitingV05AndIndependentM08`.
+- Last independent M08: `FAIL` (historical; new review not yet run).
 - Human gate passed: `false`.
 - May enter R02: `false`.
 
-## Latest Local result
+## Latest Local closure
 
-The d239 v2 cycle passed every prerequisite before V04.AF:
+Local completed the full d61 validation chain through V04:
 
-- V00 source authority and exact seven/25-path audits;
-- bounded Primary **377/377**;
-- full Python discovery **1,033 Passed / 28 explicit Skipped / 0 Failed / 0 Error** across 1,061 leaves;
-- source-27df checkpoint manifest **92/92**;
-- all four fixed historical input SHA-256s;
-- complete read-only reauthentication of **33,792/33,792 sealed live files**, 1,606,993,133 bytes, with zero unresolved content/stable-stat mismatches.
+- V00 four-repository/source authority: Passed.
+- V01 bounded Primary: **381/381 Passed**.
+- V01 full Python: **1,065 leaves; 1,037 Passed; 28 explicit environment Skipped; 0 Failed/Error**.
+- V01 source audits: exact 7-path, 25-path and d239→d61 3-path sets.
+- V02 historical checkpoint manifest: **92/92**.
+- V02 complete sealed-live reauthentication: **33,792/33,792 files**, **1,606,993,133 bytes**, zero unresolved mismatches.
+- V04.AF: `AuthenticatedAnalysisOnlySuccessor`.
+- V04.AG: `Passed / ComparabilityPassed`.
+- V04.AH: authenticated 24-entry closure checkpoint.
+- No Player was rerun.
 
-No Player was rerun.
+The V04 analysis retained 45 historical attempts: 44 valid/analyzable, exactly one preserved invalid ON-NoPatch pilot attempt, and all 40 formal attempts valid.
 
-V04.AF then failed before semantic bridge/seal/formal-authority analysis because the compatibility tool read current source pins from the historical bridge checkout. That checkout still pins `7aa6f619...`; the designated validation checkout pins `d239d9d0...`. The tool therefore saw the older five-path authority and reported the two v2 test paths missing.
+## Performance disposition
 
-This is a checkout-selection defect, not an evidence hash failure.
+`ComparabilityPassed` establishes measurement comparability only.
 
-## Primary correction
+There is no approved H1 performance SLA. The measured results include stable regressions and higher candidate memory. These values remain mandatory independent-review inputs and are not converted to a PASS by V05 packaging.
 
-The new source anchor is:
+The complete performance JSON remains the authority for the measured values.
 
-`d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`
+## V05 resolution
 
-Only three existing v2 paths changed relative to d239:
+The prior Local cycle correctly stopped because V05 had no runnable analysis-only contract.
+
+Primary has now defined:
+
+`H1AnalysisOnlySuccessorEvidence-v1`
+
+implemented in:
+
+`Tools/AssemblyShadow/h1_historical_reanalysis.py --v05-package`
+
+V05 is an evidence-binding stage, not an execution stage.
+
+Required classifications:
+
+- current source regression: `FreshCurrentSourceValidation`;
+- source-27df execution: `ReusedAuthenticatedFromSource27df`;
+- historical performance: `ReanalyzedImmutableHistoricalExecution`;
+- fresh current-source Player execution: `false`;
+- V05 Player rerun: `false`.
+
+A successful V05 result is:
+
+`SuccessorEvidenceBoundForIndependentM08`
+
+It does not claim runtime acceptance, M08 PASS, human approval, or R02 permission.
+
+## Independent M08
+
+The established independent mechanism is:
+
+`.codex/agents/code-gate-reviewer.toml`
+
+It must run read-only in a genuinely independent context with Gate type `MILESTONE`.
+
+Allowed verdicts:
+
+- PASS;
+- FAIL;
+- BLOCKED.
+
+M08 must review the full evidence chain, including unfavorable performance/memory results and the distinction between Fresh and ReusedAuthenticated evidence.
+
+M08 PASS yields only:
+
+`ReadyForHumanReviewGate`
+
+It does not set `humanGatePassed=true` and does not permit R02.
+
+## Source scope
+
+The new source anchor `25cd25f...` still satisfies the same exact source policies.
+
+Source-27df → current remains exactly the existing seven non-metadata analysis/test paths.
+
+Retained 69130 → current remains exactly the existing 25-path tool/test/CI set.
+
+d61 → current changes exactly three already-authorized paths:
 
 - `Tools/AssemblyShadow/README.md`;
 - `Tools/AssemblyShadow/h1_historical_reanalysis.py`;
 - `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`.
 
-Therefore the exact source-27df seven-path policy and retained-graph 25-path policy remain unchanged.
+No Player runner, shared R00 verifier, runtime/native source, measurement code, protocol, schedule, or graph producer changed.
 
-### Split source authority
+## Regression additions
 
-`h1_historical_reanalysis.py` now requires:
+Four V05 fail-closed regression leaves were added to `test_h1_graph_reuse.py`:
 
-`--analysis-project <current-validation-checkout>`
+1. checkpoint manifest tamper rejection;
+2. successful analysis-only V05 binding with truthful Fresh/Reused classifications;
+3. rejection of non-Passed/non-ComparabilityPassed V04 analysis;
+4. rejection of invalid no-Player evidence.
 
-The designated analysis checkout is authenticated independently:
+Expected next counts:
 
-- canonical Git root;
-- committed `ProjectSettings/AssemblyShadowSourcePins.json`;
-- expected `night-outlook/hybridclr_demo` repository identity;
-- demo `localPath=.`;
-- complete non-metadata tree equals the pinned revision;
-- running historical-reanalysis tool bytes equal the designated checkout's tool bytes.
+- bounded Primary: **385**;
+- full Python: **1,069** leaves;
+- if the same environment skip set remains: **1,041 Passed / 28 Skipped / 0 Failed / 0 Error**.
 
-The historical bridge's `projectRoot` remains historical evidence authority only.
-
-### Strict historical analysis
-
-Candidate-side historical R00 verification no longer treats the mutable historical evidence checkout as today's source authority.
-
-The historical reanalysis tool locally reconstructs the immutable M07/R00 input graph using:
-
-- historical graph source pins;
-- historical source-27df pin DTO;
-- original fixture/build/replay paths;
-- immutable bridge-installed verification receipt.
-
-Normal `r00_player_inputs.py`, `r00_results.py`, and `r01_early_results.py` are unchanged. The temporary historical-input callback is scoped to one candidate-side verification and is restored in `finally`.
-
-### Regression coverage added
-
-Four new bounded/full-Python leaves cover:
-
-1. real split-checkout bridge verification using a detached stale historical worktree and the designated current analysis checkout;
-2. rejection of a wrong committed current source pin;
-3. direct routing of current source delta vs historical evidence roots through `authenticate_compatibility`;
-4. candidate-side historical verifier override scope and restoration.
-
-The split-checkout test also mutates historical build-map binding and requires fail-closed rejection.
-
-Expected current counts:
-
-- bounded Primary: **381**;
-- complete Python: **1,065** leaves;
-- if the same environment skip set remains: **1,037 Passed / 28 Skipped / 0 Failed / 0 Error**.
-
-These are expectations only; fresh Local evidence is required.
-
-## Immutable execution evidence
-
-The source-27df execution evidence remains unchanged:
-
-- 40/40 formal pairs Passed;
-- 10 pairs per mode;
-- zero formal retries.
-
-Fixed hashes remain:
-
-- bridge: `c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c`;
-- seal: `bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631`;
-- formal batch: `97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667`;
-- final sample index: `a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021`.
-
-## Primary validation status
-
-No GitHub Actions run was available for the new source commits in this Primary environment.
-
-Current fresh empirical status is therefore:
-
-- bounded 381: `NotRun`;
-- full Python 1,065: `NotRun`;
-- V04.AF split-checkout compatibility: `NotRun`;
-- V04.AG strict analysis: `NotRun`;
-- Unity/IL2CPP/Players: `NotRun` and should remain unnecessary if historical compatibility succeeds.
+Fresh Local evidence is required.
 
 ## Required next action
 
-Local must run the complete repaired sequence in one cycle:
+Local must execute one consolidated cycle:
 
-1. V00 source authority at the final pushed handoff HEAD;
-2. bounded Primary 381/381;
-3. complete Python discovery with zero failures/errors;
-4. exact seven-path and 25-path audits;
-5. complete source-27df live evidence reauthentication;
-6. V04.AF using explicit `--analysis-project`;
-7. V04.AG using the same explicit analysis checkout;
-8. analysis-only checkpoint authentication;
-9. V05;
-10. genuinely independent M08 if eligible.
+1. V00 source authority at the final pushed handoff HEAD.
+2. V01 bounded **385/385** and full Python zero Failed/Error.
+3. Exact 7-path / 25-path / d61→25cd 3-path audits.
+4. Repeat complete V02 historical live reauthentication.
+5. Re-run V04.AF / V04.AG because the analysis tool changed within the authorized seven-path successor.
+6. Create and authenticate a pre-V05 V04 closure checkpoint.
+7. Run `H1AnalysisOnlySuccessorEvidence-v1`.
+8. If V05 succeeds, run genuinely independent M08 through `code-gate-reviewer`.
+9. On M08 PASS, stop at `ReadyForHumanReviewGate` for explicit human H1 approval.
+10. On M08 FAIL/BLOCKED, return to Primary with the independent findings/evidence.
 
 Do not rerun Players as a workaround.
 
-H1 remains `InProgress`. Do not begin R02.
+Do not begin R02.
