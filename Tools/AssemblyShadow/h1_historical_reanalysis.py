@@ -51,6 +51,32 @@ HISTORICAL_BRIDGE_VERIFIER_PATHS = frozenset({
     "Tools/AssemblyShadow/shadow_tools.py",
 })
 
+HISTORICAL_SEAL_VERIFIER_PATHS = frozenset({
+    "Tools/AssemblyShadow/run-h1-paired-performance.py",
+    "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+    "Tools/AssemblyShadow/h1_paired_performance.py",
+    "Tools/AssemblyShadow/h1_graph_reuse.py",
+    "Tools/AssemblyShadow/h1_formal_launch_authority.py",
+    "Tools/AssemblyShadow/r00_results.py",
+    "Tools/AssemblyShadow/r00_player_inputs.py",
+    "Tools/AssemblyShadow/run-r00-players.py",
+    "Tools/AssemblyShadow/run-m07-players.py",
+    "Tools/AssemblyShadow/m07_results.py",
+    "Tools/AssemblyShadow/r01_early_results.py",
+    "Tools/AssemblyShadow/r01_early_capsule.py",
+    "Tools/AssemblyShadow/shadow_tools.py",
+})
+
+HISTORICAL_FORMAL_AUTHORITY_TOOL_PATHS = frozenset({
+    "Tools/AssemblyShadow/h1_formal_launch_authority.py",
+    "Tools/AssemblyShadow/h1_graph_reuse.py",
+    "Tools/AssemblyShadow/run-h1-paired-performance.py",
+    "Tools/AssemblyShadow/run-r00-players.py",
+    "Tools/AssemblyShadow/r00_player_inputs.py",
+    "Tools/AssemblyShadow/r00_results.py",
+    "Tools/AssemblyShadow/r01_early_results.py",
+})
+
 
 def digest(path: Path) -> str:
     require(path.is_file() and not path.is_symlink(), "Expected regular file: " + str(path))
@@ -308,7 +334,7 @@ def verify_historical_seal(seal_path: Path, bridge_path: Path,
             "Historical pilot seal guard-v2 contract mismatch")
     _verify_historical_tool_rows(
         project, value.get("verifierBindings"), "Historical pilot seal",
-        absolute_paths=True)
+        exact_paths=set(HISTORICAL_SEAL_VERIFIER_PATHS), absolute_paths=True)
     source_pilot = value.get("sourcePilotIndex")
     require(type(source_pilot) is dict, "Historical seal source pilot index is missing")
     source_pilot_path = canonical_file(source_pilot.get("path", ""), "historical source pilot index")
@@ -373,7 +399,8 @@ def _verify_historical_formal_authority(authority_binding: dict[str, Any],
     require(output_root.is_absolute(), "Historical formal authority output root is invalid")
 
     _verify_historical_tool_rows(
-        project, value.get("toolBindings"), "Historical formal authority")
+        project, value.get("toolBindings"), "Historical formal authority",
+        exact_paths=set(HISTORICAL_FORMAL_AUTHORITY_TOOL_PATHS))
     require(value.get("pairingPolicyId") == "H1V04RetainedGraphToolOnlySuccessor-v1" and
             value.get("graphSourcePins") == graph_pins and
             value.get("currentSourcePins") == historical_pins,
