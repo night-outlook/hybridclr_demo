@@ -640,6 +640,7 @@ Use the fixed-source compatibility tool:
 
 ```sh
 python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --analysis-project <current-validation-checkout> \
   --sample-index <27df-final-sample-index.json> \
   --pilot-verification-receipt <27df-pilot-verification.json> \
   --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
@@ -647,6 +648,8 @@ python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
   --output <new-compatibility-preflight.json> \
   --preflight-only
 ```
+
+The historical live receipts keep their original absolute evidence project root. Current analysis authority is deliberately separate: `--analysis-project` must identify the canonical current validation checkout, whose committed source pins, complete non-metadata tree, repository identity, and running reanalysis-tool bytes are verified before the historical evidence graph is interpreted. The historical checkout's present-day source pin is never used as current analysis authority.
 
 The preflight authenticates:
 
@@ -666,6 +669,7 @@ series:
 
 ```sh
 python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --analysis-project <current-validation-checkout> \
   --sample-index <27df-final-sample-index.json> \
   --pilot-verification-receipt <27df-pilot-verification.json> \
   --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
@@ -685,8 +689,15 @@ analysis/test-only successor set. Relative to v1, the only added paths are the
 bounded Primary regression runner and the paired-performance synthetic fixture;
 no execution/runtime/measurement source is added. The retained-graph transition
 uses `H1V04RetainedGraphToolOnlySuccessor-v2` with the corresponding exact
-25-path tool/test/CI allowlist. Any execution runner, measurement, protocol,
-schedule, graph producer, Player, native, or execution-verifier source change
-makes the historical path ineligible and requires normal current-source evidence
-instead.
+25-path tool/test/CI allowlist.
+
+For strict reanalysis, candidate-side historical R00 verification uses an
+analysis-local historical-input adapter: it reconstructs the immutable M07/R00
+input graph from the original historical paths and source-pin DTOs without
+requiring the mutable historical evidence checkout to represent today's source
+authority. Normal `r00_player_inputs.py` and `r00_results.py` behavior remains
+unchanged outside this historical reanalysis callback. Any execution runner,
+measurement, protocol, schedule, graph producer, Player, native, or
+execution-verifier source change makes the historical path ineligible and
+requires normal current-source evidence instead.
 
