@@ -317,6 +317,9 @@ class H1PairedPerformanceTests(unittest.TestCase):
     def raw(self, mode, expected):
         receipt = expected["receipt"]
         return {"mode": mode, "result": "Passed",
+                "buildGuid": receipt["buildGuid"],
+                "baselineBuildId": receipt["baselineBuildId"],
+                "runtimeAbiHash": receipt["runtimeAbiHash"],
                 "playerBuildReceipt": {"path": str(expected["receiptPath"]), "sha256": sha(expected["receiptPath"]),
                                        "buildGuid": receipt["buildGuid"], "baselineBuildId": receipt["baselineBuildId"],
                                        "runtimeAbiHash": receipt["runtimeAbiHash"]},
