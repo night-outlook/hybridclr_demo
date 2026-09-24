@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
-      "implementationCommit": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate analysis/test-tool identity for the split-checkout H1HistoricalPerformanceReanalysis-v2 repair. Relative to completed source 27df1a3d the exact seven-path analysis/test-only set is unchanged; no execution/runtime/measurement source is added. Historical evidence paths remain bound to their original checkout while current analysis authority is explicitly supplied by the designated validation checkout.",
+      "codeCommit": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
+      "implementationCommit": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
+      "codeAnchorPolicy": "Authoritative H1 analysis/test/V05 evidence-tool source. The source-27df -> current non-metadata set remains exactly the seven-path H1HistoricalPerformanceReanalysis-v2 policy. V05 packaging is analysis-only and does not create or relabel Player execution.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -244,7 +244,7 @@
   "gateState": {
     "name": "H1",
     "status": "InProgress",
-    "technicalReadiness": "AwaitingSplitCheckoutCompatibilityValidation",
+    "technicalReadiness": "AwaitingV05AnalysisOnlySuccessorEvidence",
     "lastIndependentM08": "FAIL",
     "humanGatePassed": false,
     "mayEnterR02": false
@@ -950,19 +950,19 @@
     }
   },
   "currentRequiredValidation": {
-    "sourceAnchor": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+    "sourceAnchor": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
     "handoffDocument": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
     "detailedPlan": "Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md",
     "boundedPrimary": {
-      "requiredLeafCount": 381,
-      "requiredPassed": 381,
+      "requiredLeafCount": 385,
+      "requiredPassed": 385,
       "allowedNonPasses": 0
     },
     "fullPython": {
-      "expectedLeafCount": 1065,
+      "expectedLeafCount": 1069,
       "requiredFailed": 0,
       "requiredErrors": 0,
-      "expectedPassedIfSkipSetUnchanged": 1037,
+      "expectedPassedIfSkipSetUnchanged": 1041,
       "expectedSkippedIfEnvironmentUnchanged": 28,
       "skipCountIsExpectationOnly": true
     },
@@ -971,21 +971,119 @@
       "historicalAnalysisPathCount": 7,
       "retainedGraphPolicy": "H1V04RetainedGraphToolOnlySuccessor-v2",
       "retainedGraphPathCount": 25,
+      "previousAnchor": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
       "previousAnchorRepairPathCount": 3
     },
-    "compatibility": {
-      "requiresAnalysisProjectArgument": true,
-      "analysisProjectPurpose": "Current analysis-source authority only",
-      "historicalProjectPurpose": "Immutable historical evidence path authority only",
-      "preflightRequired": true,
-      "strictAnalysisRequiredAfterPreflight": true,
-      "playerRerunForbiddenAsWorkaround": true
+    "stages": [
+      "V00 current source authority",
+      "V01 bounded/full Python",
+      "V01A exact source audits",
+      "V02 complete live historical reauthentication",
+      "V04.AF compatibility revalidation",
+      "V04.AG strict historical analysis revalidation",
+      "V04.AH authenticated closure checkpoint",
+      "V05 H1AnalysisOnlySuccessorEvidence-v1 binding",
+      "genuinely independent H1 M08 via code-gate-reviewer",
+      "Human Review Gate only if M08 PASS"
+    ],
+    "playerRerunForbiddenAsWorkaround": true
+  },
+  "latestLocalV04Closure": {
+    "returnedByLocalValidationCommit": "5f8db436e31df017dbff396b375547394c396ad5",
+    "handoffCheckoutCommit": "0bed47e981e5b3b4ac8b9ed2b4c423e11aa88b31",
+    "analysisSourceRevision": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/",
+    "checkpointManifestSha256": "04ca3e24a1f16f21cbbde7e62493070529ffce4720beebac2c1f1615ab3b3553",
+    "checkpointManifestEntries": 24,
+    "boundedPrimary": "381/381 Passed",
+    "fullPython": "1065 leaves; 1037 Passed; 28 explicit environment Skipped; 0 Failed/Error",
+    "liveReauthentication": "33792/33792 sealed files; 1606993133 bytes; zero unresolved mismatches",
+    "v04AF": "AuthenticatedAnalysisOnlySuccessor",
+    "v04AG": "Passed / ComparabilityPassed",
+    "v04AH": "PassedAuthenticatedCheckpoint",
+    "v05PreviousAssessment": "NotEligibleUnderCurrentHandoff",
+    "independentM08": "NotRun; historical result remains FAIL",
+    "noPlayerRerun": true,
+    "performanceDisposition": "ComparabilityPassed only; no approved performance SLA. Unfavorable timing/RSS results remain required H1 review inputs."
+  },
+  "connectorWriteSmokeTestV05Contract": {
+    "transport": "GitHub Connector",
+    "repository": "night-outlook/hybridclr_demo",
+    "baseBranch": "codex/assembly-shadow-r01b-h1",
+    "smokeBranch": "codex/connector-smoke-primary-20260924-e",
+    "commit": "ccc34f73ffc4d7693be2f75c505c87775032f57f",
+    "readbackMatched": true,
+    "cleanup": "Connector branch-delete capability unavailable; disposable smoke branch remains non-authoritative.",
+    "purpose": "Operational transport readiness only; not product acceptance evidence."
+  },
+  "v05AnalysisOnlySuccessorContract": {
+    "policyId": "H1AnalysisOnlySuccessorEvidence-v1",
+    "sourceAnchor": "25cd25f675c0caaf5009fd1aa3136aa0d98302d8",
+    "tool": "Tools/AssemblyShadow/h1_historical_reanalysis.py",
+    "mode": "--v05-package",
+    "requiredArguments": [
+      "--analysis-project <current-validation-checkout>",
+      "--current-checkpoint <authenticated-current-v04-closure-checkpoint>",
+      "--historical-checkpoint <authenticated-source-27df-execution-checkpoint>",
+      "--output <new-v05-successor-evidence.json>"
+    ],
+    "requiredCurrentCheckpointMembers": [
+      "V00/source-authority.json",
+      "V00/handoff-preflight.json",
+      "V01/bounded-primary/results.json",
+      "V01/python-inventory.json",
+      "V02/live-evidence-reauthentication.json",
+      "V02/direct-binding-semantics-audit.json",
+      "V04/historical-compatibility.json",
+      "V04/historical-performance-analysis.json",
+      "V04/analysis-validation.json",
+      "V04/no-player-proof.json"
+    ],
+    "requiredHistoricalExecutionSource": "27df1a3d60811dc121f296ab561ae313a382b363",
+    "classifications": {
+      "currentSourceRegression": "FreshCurrentSourceValidation",
+      "historicalExecution": "ReusedAuthenticatedFromSource27df",
+      "historicalPerformance": "ReanalyzedImmutableHistoricalExecution",
+      "freshCurrentSourcePlayerExecution": false,
+      "playerRerunForV05": false
     },
-    "subsequentStages": [
-      "V04.AH analysis-only checkpoint",
-      "V05",
-      "genuinely independent M08",
-      "Human Review Gate if M08 passes"
-    ]
+    "successStatus": "SuccessorEvidenceBoundForIndependentM08",
+    "performanceAcceptance": "NotClaimedNoSLA",
+    "m08Passed": false,
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "independentH1M08Contract": {
+    "mechanism": "code-gate-reviewer",
+    "configPath": ".codex/agents/code-gate-reviewer.toml",
+    "mode": "read-only independent context",
+    "gateType": "MILESTONE",
+    "prerequisites": [
+      "fresh current-source V00/V01 at current source anchor",
+      "complete V02 live historical reauthentication",
+      "V04.AF AuthenticatedAnalysisOnlySuccessor",
+      "V04.AG Passed / ComparabilityPassed",
+      "V04.AH authenticated closure checkpoint",
+      "V05 H1AnalysisOnlySuccessorEvidence-v1 status SuccessorEvidenceBoundForIndependentM08"
+    ],
+    "requiredReviewScope": [
+      "canonical H1 Human Review Gate criteria",
+      "canonical evidence contract and validation matrix",
+      "source-27df execution provenance vs current analysis/test source",
+      "complete V04 performance analysis including unfavorable measurements",
+      "preserved invalid historical pilot and 40 valid formal attempts",
+      "V05 Fresh/Reused classifications and no-Player boundary",
+      "current source diff and historical compatibility/reanalysis implementation",
+      "all prior H1 findings relevant to current scope"
+    ],
+    "allowedVerdicts": [
+      "PASS",
+      "FAIL",
+      "BLOCKED"
+    ],
+    "passDisposition": "ReadyForHumanReviewGate",
+    "passDoesNotMeanHumanApproval": true,
+    "humanGatePassed": false,
+    "mayEnterR02": false
   }
 }
