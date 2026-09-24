@@ -37,6 +37,152 @@ class H1GraphReuseTests(unittest.TestCase):
     def real_old_pins(self):
         return reuse.retained_graph_pins(self.successor_pins_at_head())
 
+    def _v05_fixture(self, root):
+        current = root / "current"; current.mkdir()
+        historical_root = root / "historical"; historical_root.mkdir()
+        pins = copy.deepcopy(shadow_tools.read_json(ROOT / PINS))
+        revision = historical._entries(pins)["demo"]["revision"]
+        repositories = {
+            "hybridclr": {"head": historical._entries(pins)["hybridclr"]["revision"]},
+            "hybridclr_unity": {"head": historical._entries(pins)["hybridclrUnity"]["revision"]},
+            "il2cpp_plus": {"head": historical._entries(pins)["il2cppPlus"]["revision"]},
+        }
+        files = {
+            "V00/source-authority.json": {
+                "kind": "H1LocalSourceAuthorityAudit",
+                "sourcePins": pins,
+                "repositories": repositories,
+            },
+            "V00/handoff-preflight.json": {
+                "kind": "PrimaryHandoffPreflight",
+                "status": "SourceTargetVerifiedNotBuildAccepted",
+                "codeCommit": revision,
+            },
+            "V01/bounded-primary/results.json": {
+                "kind": "H1BeePrimaryRegression",
+                "status": "PassedBoundedTests",
+                "testCount": 3,
+                "counts": {"Passed": 3},
+            },
+            "V01/python-inventory.json": {
+                "kind": "H1PythonLeafInventory",
+                "count": 4,
+                "discoveredCount": 4,
+                "counts": {"Passed": 3, "Skipped": 1},
+            },
+            "V02/live-evidence-reauthentication.json": {
+                "kind": "H1CurrentLiveHistoricalEvidenceAudit",
+                "checkpointManifest": {"allPassed": True, "entries": 92},
+                "fixedLiveEvidence": {
+                    "bridge": {
+                        "expectedSha256": historical.HISTORICAL_BRIDGE_SHA256,
+                        "actualSha256": historical.HISTORICAL_BRIDGE_SHA256,
+                        "matches": True,
+                    },
+                    "seal": {
+                        "expectedSha256": historical.HISTORICAL_SEAL_SHA256,
+                        "actualSha256": historical.HISTORICAL_SEAL_SHA256,
+                        "matches": True,
+                    },
+                    "formalBatch": {
+                        "expectedSha256": historical.HISTORICAL_FORMAL_BATCH_SHA256,
+                        "actualSha256": historical.HISTORICAL_FORMAL_BATCH_SHA256,
+                        "matches": True,
+                    },
+                    "finalSampleIndex": {
+                        "expectedSha256": historical.HISTORICAL_FINAL_SAMPLE_SHA256,
+                        "actualSha256": historical.HISTORICAL_FINAL_SAMPLE_SHA256,
+                        "matches": True,
+                    },
+                },
+                "sealedInventory": {
+                    "expectedFiles": 2, "verifiedFiles": 2,
+                    "expectedBytes": 10, "verifiedBytes": 10,
+                    "guardMismatches": 0, "contentMismatches": 0, "missing": 0,
+                },
+            },
+            "V02/direct-binding-semantics-audit.json": {
+                "unresolvedMismatchCount": 0,
+                "unresolved": [],
+            },
+            "V04/historical-compatibility.json": {
+                "kind": "H1HistoricalAnalysisCompatibility",
+                "status": "AuthenticatedAnalysisOnlySuccessor",
+                "policyId": historical.POLICY_ID,
+                "analysisSourceAuthority": {"sourceRevision": revision},
+                "analysisDelta": {"currentSourceRevision": revision},
+            },
+            "V04/historical-performance-analysis.json": {
+                "kind": "H1ControlledPairedPerformanceSummary",
+                "result": "Passed",
+                "status": "ComparabilityPassed",
+                "attempts": [{} for _ in range(45)],
+                "historicalAnalysisCompatibility": {
+                    "status": "AuthenticatedAnalysisOnlySuccessor",
+                    "policyId": historical.POLICY_ID,
+                    "analysisDelta": {"currentSourceRevision": revision},
+                },
+            },
+            "V04/no-player-proof.json": {
+                "kind": "H1LocalNoPlayerRerunEvidence",
+                "result": "NoPlayerCommandIssuedByLocal",
+                "commands": [{
+                    "command": ["python3", "Tools/AssemblyShadow/h1_historical_reanalysis.py"],
+                }],
+                "scopeLimit": "Synthetic test scope only.",
+            },
+        }
+        for relative, value in files.items():
+            target = current / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(json.dumps(value), encoding="utf-8")
+        performance = current / "V04/historical-performance-analysis.json"
+        validation = {
+            "kind": "H1HistoricalStrictAnalysisValidation",
+            "passed": True,
+            "checks": {"kind": True, "result": True, "status": True},
+            "analysisSha256": historical.digest(performance),
+        }
+        target = current / "V04/analysis-validation.json"
+        target.write_text(json.dumps(validation), encoding="utf-8")
+
+        current_entries = {}
+        for relative in historical.V05_REQUIRED_CURRENT_MEMBERS:
+            target = current / relative
+            current_entries[relative] = historical.digest(target)
+        current_manifest = current / "MANIFEST.sha256"
+        current_manifest.write_text(
+            "".join(current_entries[relative] + "  " + relative + "\n"
+                    for relative in sorted(current_entries)),
+            encoding="utf-8")
+
+        historical_manifest = historical_root / "MANIFEST.sha256"
+        historical_manifest.write_text("synthetic historical manifest\n", encoding="utf-8")
+        historical_entries = dict(historical.V05_HISTORICAL_EXPECTED)
+
+        current_checkpoint = {
+            "root": current,
+            "manifest": current_manifest,
+            "manifestSha256": historical.digest(current_manifest),
+            "entries": current_entries,
+        }
+        historical_checkpoint = {
+            "root": historical_root,
+            "manifest": historical_manifest,
+            "manifestSha256": historical.digest(historical_manifest),
+            "entries": historical_entries,
+        }
+        analysis = {
+            "projectRoot": str(ROOT.resolve()),
+            "checkoutCommit": shadow_tools.git(ROOT, "rev-parse", "HEAD").decode().strip(),
+            "sourceRevision": revision,
+            "sourcePins": pins,
+            "sourcePinsBinding": historical.binding(ROOT / PINS),
+            "toolBinding": historical.binding(
+                ROOT / "Tools/AssemblyShadow/h1_historical_reanalysis.py"),
+        }
+        return current, historical_root, current_checkpoint, historical_checkpoint, analysis
+
     def test_historical_reanalysis_evidence_hashes_match_authenticated_checkpoint_manifest(self):
         manifest = (
             ROOT / "Docs/AssemblyShadow/History/M07R/H1/"
@@ -493,6 +639,96 @@ class H1GraphReuseTests(unittest.TestCase):
             self.assertEqual(result["requestedModeIds"], ["R00-ON-NoPatch"])
             self.assertIs(r00_results.verify_inputs_with_reuse, original_r00)
             self.assertIs(r00_results.early.verify_inputs_with_reuse, original_early)
+
+    def test_v05_checkpoint_manifest_detects_member_tamper(self):
+        with tempfile.TemporaryDirectory(prefix="h1-v05-manifest-") as directory:
+            root = Path(directory).resolve() / "checkpoint"; root.mkdir()
+            item = root / "evidence.json"; item.write_text("{}", encoding="utf-8")
+            manifest = root / "MANIFEST.sha256"
+            manifest.write_text(
+                historical.digest(item) + "  evidence.json\n", encoding="utf-8")
+            authenticated = historical.authenticate_checkpoint(root, "synthetic")
+            self.assertEqual(authenticated["entries"]["evidence.json"], historical.digest(item))
+            item.write_text('{"changed":true}', encoding="utf-8")
+            with self.assertRaisesRegex(
+                    VerificationError, "manifest member hash mismatch"):
+                historical.authenticate_checkpoint(root, "synthetic")
+
+    def test_v05_analysis_only_successor_binds_without_fresh_player_claim(self):
+        with tempfile.TemporaryDirectory(prefix="h1-v05-positive-") as directory:
+            root = Path(directory).resolve()
+            current, historical_root, current_cp, historical_cp, analysis = self._v05_fixture(root)
+            def checkpoint(path, label):
+                return current_cp if Path(path) == current else historical_cp
+            with mock.patch.object(
+                    historical, "_analysis_source_authority", return_value=analysis), \
+                 mock.patch.object(
+                    historical, "authenticate_checkpoint", side_effect=checkpoint):
+                result = historical.build_v05_successor_evidence(
+                    ROOT, current, historical_root)
+            self.assertEqual(result["kind"], historical.V05_KIND)
+            self.assertEqual(result["policyId"], historical.V05_POLICY_ID)
+            self.assertEqual(result["status"], "SuccessorEvidenceBoundForIndependentM08")
+            self.assertEqual(
+                result["executionClassifications"]["currentSourceRegression"],
+                "FreshCurrentSourceValidation")
+            self.assertEqual(
+                result["executionClassifications"]["historicalExecution"],
+                "ReusedAuthenticatedFromSource27df")
+            self.assertFalse(
+                result["executionClassifications"]["freshCurrentSourcePlayerExecution"])
+            self.assertEqual(
+                result["performanceDisposition"]["performanceAcceptance"],
+                "NotClaimedNoSLA")
+            self.assertTrue(result["v05Complete"])
+            self.assertTrue(result["independentM08Eligible"])
+            self.assertFalse(result["M08Passed"])
+            self.assertFalse(result["humanGatePassed"])
+            self.assertFalse(result["mayEnterR02"])
+
+    def test_v05_rejects_nonpassing_historical_analysis(self):
+        with tempfile.TemporaryDirectory(prefix="h1-v05-analysis-negative-") as directory:
+            root = Path(directory).resolve()
+            current, historical_root, current_cp, historical_cp, analysis = self._v05_fixture(root)
+            path = current / "V04/historical-performance-analysis.json"
+            value = json.loads(path.read_text()); value["status"] = "ComparabilityIncomplete"
+            path.write_text(json.dumps(value), encoding="utf-8")
+            current_cp["entries"]["V04/historical-performance-analysis.json"] = historical.digest(path)
+            validation_path = current / "V04/analysis-validation.json"
+            validation = json.loads(validation_path.read_text())
+            validation["analysisSha256"] = historical.digest(path)
+            validation_path.write_text(json.dumps(validation), encoding="utf-8")
+            current_cp["entries"]["V04/analysis-validation.json"] = historical.digest(validation_path)
+            def checkpoint(path, label):
+                return current_cp if Path(path) == current else historical_cp
+            with mock.patch.object(
+                    historical, "_analysis_source_authority", return_value=analysis), \
+                 mock.patch.object(
+                    historical, "authenticate_checkpoint", side_effect=checkpoint):
+                with self.assertRaisesRegex(
+                        VerificationError, "performance analysis is incomplete"):
+                    historical.build_v05_successor_evidence(
+                        ROOT, current, historical_root)
+
+    def test_v05_rejects_invalid_no_player_evidence(self):
+        with tempfile.TemporaryDirectory(prefix="h1-v05-player-negative-") as directory:
+            root = Path(directory).resolve()
+            current, historical_root, current_cp, historical_cp, analysis = self._v05_fixture(root)
+            path = current / "V04/no-player-proof.json"
+            value = json.loads(path.read_text())
+            value["commands"][0]["command"] = ["python3", "run-r00-players.py"]
+            path.write_text(json.dumps(value), encoding="utf-8")
+            current_cp["entries"]["V04/no-player-proof.json"] = historical.digest(path)
+            def checkpoint(path, label):
+                return current_cp if Path(path) == current else historical_cp
+            with mock.patch.object(
+                    historical, "_analysis_source_authority", return_value=analysis), \
+                 mock.patch.object(
+                    historical, "authenticate_checkpoint", side_effect=checkpoint):
+                with self.assertRaisesRegex(
+                        VerificationError, "Player/formal runner command"):
+                    historical.build_v05_successor_evidence(
+                        ROOT, current, historical_root)
 
     def test_historical_seal_requires_exact_old_verifier_inventory(self):
         import tempfile
