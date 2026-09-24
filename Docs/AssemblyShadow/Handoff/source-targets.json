@@ -244,7 +244,7 @@
   "gateState": {
     "name": "H1",
     "status": "InProgress",
-    "technicalReadiness": "AwaitingHistoricalFinalReanalysis",
+    "technicalReadiness": "AwaitingSplitCheckoutCompatibilityValidation",
     "lastIndependentM08": "FAIL",
     "humanGatePassed": false,
     "mayEnterR02": false
@@ -948,5 +948,44 @@
       "expectedFullPythonErrors": 0,
       "scope": "Fresh Local evidence required at the new source anchor. No GitHub Actions run was available in Primary for the source commits."
     }
+  },
+  "currentRequiredValidation": {
+    "sourceAnchor": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+    "handoffDocument": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+    "detailedPlan": "Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md",
+    "boundedPrimary": {
+      "requiredLeafCount": 381,
+      "requiredPassed": 381,
+      "allowedNonPasses": 0
+    },
+    "fullPython": {
+      "expectedLeafCount": 1065,
+      "requiredFailed": 0,
+      "requiredErrors": 0,
+      "expectedPassedIfSkipSetUnchanged": 1037,
+      "expectedSkippedIfEnvironmentUnchanged": 28,
+      "skipCountIsExpectationOnly": true
+    },
+    "sourceAudits": {
+      "historicalAnalysisPolicy": "H1HistoricalPerformanceReanalysis-v2",
+      "historicalAnalysisPathCount": 7,
+      "retainedGraphPolicy": "H1V04RetainedGraphToolOnlySuccessor-v2",
+      "retainedGraphPathCount": 25,
+      "previousAnchorRepairPathCount": 3
+    },
+    "compatibility": {
+      "requiresAnalysisProjectArgument": true,
+      "analysisProjectPurpose": "Current analysis-source authority only",
+      "historicalProjectPurpose": "Immutable historical evidence path authority only",
+      "preflightRequired": true,
+      "strictAnalysisRequiredAfterPreflight": true,
+      "playerRerunForbiddenAsWorkaround": true
+    },
+    "subsequentStages": [
+      "V04.AH analysis-only checkpoint",
+      "V05",
+      "genuinely independent M08",
+      "Human Review Gate if M08 passes"
+    ]
   }
 }
