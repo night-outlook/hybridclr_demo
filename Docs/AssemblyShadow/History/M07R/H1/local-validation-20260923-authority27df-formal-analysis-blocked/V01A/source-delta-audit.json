@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1RetainedGraphSourceDeltaAudit",
+  "status": "PassedExactSets",
+  "metadataClassifier": "shadow_tools.metadata_only",
+  "previousPrimaryToCurrent": {
+    "from": "91ac4db31cec704551c7db05bd918c8d5695ce83",
+    "to": "27df1a3d60811dc121f296ab561ae313a382b363",
+    "changedPathCount": 69,
+    "nonMetadataPathCount": 3,
+    "nonMetadataPaths": [
+      "Tools/AssemblyShadow/README.md",
+      "Tools/AssemblyShadow/run-h1-paired-performance.py",
+      "Tools/AssemblyShadow/tests/test_h1_paired_driver.py"
+    ],
+    "exactExpectedSet": true
+  },
+  "retainedGraphToCurrent": {
+    "from": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+    "to": "27df1a3d60811dc121f296ab561ae313a382b363",
+    "changedPathCount": 240,
+    "nonMetadataPathCount": 22,
+    "nonMetadataPaths": [
+      ".github/workflows/h1-bee-primary.yml",
+      "Tools/AssemblyShadow/README.md",
+      "Tools/AssemblyShadow/analyze-h1-paired-performance.py",
+      "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
+      "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+      "Tools/AssemblyShadow/h1_formal_launch_authority.py",
+      "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "Tools/AssemblyShadow/r00_player_inputs.py",
+      "Tools/AssemblyShadow/r00_results.py",
+      "Tools/AssemblyShadow/r01_early_results.py",
+      "Tools/AssemblyShadow/run-h1-formal-batch.py",
+      "Tools/AssemblyShadow/run-h1-paired-performance.py",
+      "Tools/AssemblyShadow/run-r00-players.py",
+      "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+      "Tools/AssemblyShadow/tests/test_h1_formal_batch.py",
+      "Tools/AssemblyShadow/tests/test_h1_formal_launch_authority.py",
+      "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+      "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
+      "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
+      "Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py",
+      "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py",
+      "Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py"
+    ],
+    "exactExpectedSet": true
+  },
+  "forbiddenRuntimeOrProducerDelta": false
+}

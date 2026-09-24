@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "checkpointKind": "H1LocalValidationCheckpoint",
+  "createdUtc": "2026-09-23T23:58:00Z",
+  "status": "ReturnedToPrimaryAfterFinalAnalyzerReceiptShapeFailure",
+  "candidate": {
+    "checkoutCommit": "f5e34235641c212c715aef3405925ddd4cf28ee6",
+    "sourceToolAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
+    "authorityStatus": "SourceTargetVerifiedNotBuildAccepted"
+  },
+  "validation": {
+    "boundedPrimary": {
+      "passed": 368,
+      "total": 368
+    },
+    "focused": {
+      "passed": 126,
+      "total": 126
+    },
+    "pythonInventory": {
+      "passed": 1025,
+      "environmentSkipped": 28,
+      "failed": 0,
+      "errors": 0,
+      "total": 1053,
+      "logSha256": "a4573d159acfa4f1c3b6efa80d8bb83eaa7b3e63fa034aa93ee485612075a6e8"
+    },
+    "unityEditMode": {
+      "status": "ReusedAuditedFromD18",
+      "historicalPassed": 1076,
+      "historicalTotal": 1076,
+      "fresh": false
+    },
+    "sourceDeltaAudit": {
+      "previousSourcePathCount": 3,
+      "retainedGraphPathCount": 22,
+      "sha256": "762db99b7ecb12846d5f924475edfa69b5a43c5bb3e4b7a06e72a9e47d4647f6"
+    },
+    "retainedEvidence": {
+      "fileCount": 33792,
+      "byteCount": 1606993133,
+      "mismatchCount": 0,
+      "sha256": "e2093430edbc45a85858221b0a410972702293406bd0bb8ddb64b4d11c5e098a"
+    }
+  },
+  "performance": {
+    "graphBridge": {
+      "status": "AuthenticatedToolOnlySuccessor",
+      "sha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c",
+      "retainedPilotRunnerSha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c",
+      "currentRunnerSha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+    },
+    "retainedPilotAdmission": {
+      "status": "Passed",
+      "attemptCount": 5,
+      "selectedPilotCount": 4,
+      "deepReconstructionCount": 0,
+      "sha256": "cbfc6faf8512a214ff97fa939bc6335b05a36362d66b539ff22e954c61529ed1"
+    },
+    "pilotSeal": {
+      "status": "PassedStrictReconstructionAndStatGuardSealed",
+      "guardKind": "CrossRemountStableStatGuard",
+      "guardVersion": 2,
+      "guardFields": [
+        "inode",
+        "mode",
+        "size",
+        "mtimeNs",
+        "ctimeNs"
+      ],
+      "containsDeviceField": false,
+      "deepLaunchVerificationCount": 8,
+      "sealedFileCount": 33792,
+      "sha256": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631"
+    },
+    "formalSeries": {
+      "status": "PassedAllFormalPairs",
+      "namespaceSuffix": "7cafb9c53434",
+      "passedPairs": 40,
+      "requiredPairs": 40,
+      "retries": 0,
+      "pairsPerMode": {
+        "R00-OFF-NoPatch": 10,
+        "R00-ON-NoPatch": 10,
+        "R00-ON-P01": 10,
+        "R00-ON-P03": 10
+      },
+      "batchReceiptSha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667",
+      "finalSampleIndexSha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+    },
+    "finalAnalysis": {
+      "result": "Incomplete",
+      "status": "ComparabilityIncomplete",
+      "buildMapComparability": "ComparabilityPassed",
+      "cumulativeAttemptCount": 45,
+      "validAttemptCount": 0,
+      "invalidAttemptCount": 45,
+      "receiptShapeMismatchAttemptCount": 44,
+      "preservedHistoricalProcessCleanupFailureCount": 1,
+      "commonError": "R00 raw build field differs: baselineBuildId",
+      "sha256": "cadbd356fb72f1079c2c01b3456c2364783485f577f749ea3656ca3283765665",
+      "diagnosisSha256": "6bc6b7678b828c9dedb947bf888790f7e4b00cf6f3cb51562b160042c234227c"
+    }
+  },
+  "archives": {
+    "rawEvidence": {
+      "sha256": "a249f70307d7fa04576a2ccdc0c3da7e21e8873a3e922a9d17cb3f62b3d6d2ea",
+      "sizeBytes": 2788172
+    },
+    "formalSideEvidence": {
+      "aggregateSha256": "fda8226ee124ecc7d6687e2bbbab30d2166c838fd5fc7225b9972d949982f75f",
+      "parts": [
+        {
+          "path": "formal-side-evidence.tar.gz.part-00",
+          "sha256": "99eb6676fc2797dd2b6a9220f77a3702095278a09998b282d097b91a7abb27d6",
+          "sizeBytes": 94371840
+        },
+        {
+          "path": "formal-side-evidence.tar.gz.part-01",
+          "sha256": "cf9d6809940c4bc0666b130f48a4f55122b1ceb820b072372401181eb9d7ac94",
+          "sizeBytes": 61787400
+        }
+      ]
+    }
+  },
+  "progression": {
+    "v05Eligible": false,
+    "independentM08Eligible": false,
+    "h1Status": "InProgress",
+    "lastIndependentM08": "FAIL",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  }
+}

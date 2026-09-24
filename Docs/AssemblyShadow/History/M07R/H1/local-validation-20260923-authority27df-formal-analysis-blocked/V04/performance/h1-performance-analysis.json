@@ -1,0 +1,1658 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1ControlledPairedPerformanceSummary",
+  "result": "Incomplete",
+  "status": "ComparabilityIncomplete",
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "requirements": {
+    "formalPairsPerMode": {
+      "R00-OFF-NoPatch": 0,
+      "R00-ON-NoPatch": 0,
+      "R00-ON-P01": 0,
+      "R00-ON-P03": 0
+    },
+    "pilotPairsPerMode": {
+      "R00-OFF-NoPatch": 0,
+      "R00-ON-NoPatch": 0,
+      "R00-ON-P01": 0,
+      "R00-ON-P03": 0
+    },
+    "formalStartupObservationsPerMode": {
+      "R00-OFF-NoPatch": 0,
+      "R00-ON-NoPatch": 0,
+      "R00-ON-P01": 0,
+      "R00-ON-P03": 0
+    },
+    "formalComplete": false,
+    "pilotsComplete": false,
+    "startupComplete": false,
+    "chronologyComplete": true,
+    "globalIntervalsResolved": true,
+    "globalIntervalsNonOverlapping": true,
+    "pilotsBeforeFormalByTimestamp": true
+  },
+  "comparability": {
+    "status": "ComparabilityPassed",
+    "reasons": [],
+    "matchedFields": {
+      "developmentCppRelease": true,
+      "unity": "2022.3.62f2",
+      "architecture": "arm64",
+      "strip": "Low",
+      "codegen": "OptimizeSpeed",
+      "startup": "R01EarlyStartup",
+      "commonMeasurementCoreSha256": "d53d566a48c5af46d2ad0ca84d486a1703cd6f10664afba5d8cde31859ac9ea0",
+      "witnessSha256": "c395b12191fafd0d8dd3ec935f1e48829a16fab88b1e78eec48ab3c7ad96af33"
+    },
+    "expectedDifferent": {
+      "runtimeAbiHash": {
+        "A": "46814a65339ab321eb2c35ac2b8edd9ff180ce60039a13d650d4bf3f4f3bcc00",
+        "B": "60fe5d11a142be32ad5fefc0137022e7c9cc70962b5dac3f48067c3c23a7e35a"
+      },
+      "sourcePins": {
+        "A": "8d32ea572be1c23e235b64eaaa00cee1bc769a4717929e59f703714e0d0d4dbd",
+        "B": "541e08880bfc43e2bd7f70d7f4e24871523281595936704483974d3456984558"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "pairId": "R00-OFF-NoPatch-pilot-01",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "Could not kill owned runner process group: [Errno 1] Operation not permitted"
+        },
+        "B": {
+          "valid": false,
+          "error": "Skipped because the previous runner process group could not be proven gone."
+        }
+      },
+      "errors": {
+        "A": "Could not kill owned runner process group: [Errno 1] Operation not permitted",
+        "B": "Skipped because the previous runner process group could not be proven gone."
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 2,
+      "mode": "R00-ON-NoPatch",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "pilot",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "pilot",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-01",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-02",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-03",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-04",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-05",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-06",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-07",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-08",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-09",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-10",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-01",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-02",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-03",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-04",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-05",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-06",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-07",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-08",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-09",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-10",
+      "attempt": 1,
+      "mode": "R00-ON-NoPatch",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-01",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-02",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-03",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-04",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-05",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-06",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-07",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-08",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-09",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-10",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-01",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-02",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-03",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-04",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-05",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-06",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-07",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-08",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-09",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "B",
+        "A"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-10",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "phase": "formal",
+      "order": [
+        "A",
+        "B"
+      ],
+      "valid": false,
+      "sides": {
+        "A": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        },
+        "B": {
+          "valid": false,
+          "error": "R00 raw build field differs: baselineBuildId"
+        }
+      },
+      "errors": {
+        "A": "R00 raw build field differs: baselineBuildId",
+        "B": "R00 raw build field differs: baselineBuildId"
+      }
+    }
+  ],
+  "statistics": {
+    "R00-OFF-NoPatch": {
+      "formalPairCount": 0,
+      "operations": {
+        "allocation": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        }
+      },
+      "memory": {
+        "A": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        },
+        "metadataMatch": {
+          "before-benchmark": true,
+          "after-benchmark": true
+        },
+        "B": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        }
+      },
+      "readinessMilliseconds": {
+        "A": {
+          "n": 0
+        },
+        "B": {
+          "n": 0
+        }
+      }
+    },
+    "R00-ON-NoPatch": {
+      "formalPairCount": 0,
+      "operations": {
+        "allocation": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        }
+      },
+      "memory": {
+        "A": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        },
+        "metadataMatch": {
+          "before-benchmark": true,
+          "after-benchmark": true
+        },
+        "B": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        }
+      },
+      "readinessMilliseconds": {
+        "A": {
+          "n": 0
+        },
+        "B": {
+          "n": 0
+        }
+      }
+    },
+    "R00-ON-P01": {
+      "formalPairCount": 0,
+      "operations": {
+        "allocation": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        }
+      },
+      "memory": {
+        "A": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        },
+        "metadataMatch": {
+          "before-benchmark": true,
+          "after-benchmark": true
+        },
+        "B": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        }
+      },
+      "readinessMilliseconds": {
+        "A": {
+          "n": 0
+        },
+        "B": {
+          "n": 0
+        }
+      }
+    },
+    "R00-ON-P03": {
+      "formalPairCount": 0,
+      "operations": {
+        "allocation": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "n": 0
+          },
+          "warmup": {
+            "n": 0
+          },
+          "repeat10": {
+            "n": 0
+          },
+          "repeat10000": {
+            "n": 0
+          }
+        }
+      },
+      "memory": {
+        "A": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        },
+        "metadataMatch": {
+          "before-benchmark": true,
+          "after-benchmark": true
+        },
+        "B": {
+          "before-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          },
+          "after-benchmark": {
+            "currentRssBytes": {
+              "n": 0
+            },
+            "managedBytes": {
+              "n": 0
+            },
+            "lifetimePeakRssBytes": {
+              "n": 0
+            },
+            "metadata": []
+          }
+        }
+      },
+      "readinessMilliseconds": {
+        "A": {
+          "n": 0
+        },
+        "B": {
+          "n": 0
+        }
+      }
+    }
+  },
+  "pilotVerification": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+    "sha256": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631"
+  },
+  "graphReuseBridge": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+    "sha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c"
+  }
+}

@@ -1,35 +1,28 @@
 # Local Validation → Primary Implementation
 
-## Current blocker: strict pilot seal invalidated after 14/40 formal pairs by `st_dev` drift
+## Current blocker: final analyzer rejects the complete 40/40 series because the nested R00 build receipt omits two required fields
 
-Fresh Local Validation at checkout `bb2bf106c172c985e9330de9cc0e2f58b24f096b`, source/tool anchor `91ac4db31cec704551c7db05bd918c8d5695ce83`, passed current/protected authority, current Python validation, exact 9-path and 22-path source audits, complete retained artifact reauthentication, a new retained-runner-aware bridge, the retained-pilot admission preflight, and a new 8/8 strict pilot seal.
+Fresh Local Validation at checkout `f5e34235641c212c715aef3405925ddd4cf28ee6`, source/tool anchor `27df1a3d60811dc121f296ab561ae313a382b363`, passed current/protected authority, current Python validation, exact 3-path and 22-path source audits, complete retained artifact reauthentication, a new graph bridge, retained-pilot admission, and a new guard-v2 8/8 strict pilot seal.
 
-The new bridge SHA-256 is `b207fe8a91c15650d00670dd593207b00fed9a0e05cf618d13982b18402437a2`. The admission preflight SHA-256 is `111c897d2925f0fb85a2b33d941e2a342a7984ba630c5b00ec1ed3f702608898`. The strict seal SHA-256 is `25a768a7fd05e7d103aab31d42d2fcbc121423afbeeae73ffb180a7281d794cc` and records `deepLaunchVerificationCount=8`.
+The bridge SHA-256 is `c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c`. The admission SHA-256 is `cbfc6faf8512a214ff97fa939bc6335b05a36362d66b539ff22e954c61529ed1`. The seal SHA-256 is `bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631`; it records `guardKind=CrossRemountStableStatGuard`, `guardVersion=2`, exact fields `[inode, mode, size, mtimeNs, ctimeNs]`, no device field, and `deepLaunchVerificationCount=8`.
 
-A new formal series started from the retained pilot index only. Pair 1 passed the focused authority gate: protected A had no formal authority; candidate B used the current runner and a valid current `H1FormalSideLaunchAuthority`; the child consumed it, passed graph preparation, launched the Player, and echoed the exact authority/bridge/seal/map in its R00 receipt. Formal pairs 1–14 passed: all 10 OFF-NoPatch pairs and four ON-NoPatch pairs.
+A wholly new formal series started only from the retained pilot index. Pair 1 used automatic path-hash namespace `7cafb9c53434` without colliding with preserved outputs. Protected A had no formal launch authority; candidate B consumed a valid current `H1FormalSideLaunchAuthority`, launched the Player, and emitted an R00 receipt echoing the same authority, bridge, seal, and build map.
 
-Pair 15 never produced a protocol output root or sample index before a supervising terminal interruption, so it remains attempt 1. Resume from the authenticated pair-14 sample index then failed before pair 15 with:
+All 40 formal pairs passed on attempt 1: 10 OFF-NoPatch, 10 ON-NoPatch, 10 ON-P01, and 10 ON-P03. No whole-pair retry was required. The formal batch receipt SHA-256 is `97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667` and the final sample-index SHA-256 is `a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021`.
 
-`Pilot verification cache invalidated by changed file identity`
+The bridge-aware final strict analyzer completed but returned `Incomplete` / `ComparabilityIncomplete`: 44 of 45 cumulative pilot/formal attempts were invalidated with `R00 raw build field differs: baselineBuildId`. The remaining item is the already-preserved historical `R00-ON-NoPatch-pilot-01` failure where the A runner process group could not be proven gone and B was skipped.
 
-The affected protected OFF `GameAssembly.dylib` is byte-identical:
+The raw R00 top-level `baselineBuildId` and `runtimeAbiHash` are correct. Its nested `playerBuildReceipt` has the correct path, hash, and build GUID, but omits `baselineBuildId` and `runtimeAbiHash`; the analyzer requires both fields there. This identical producer/analyzer contract mismatch affects protected and candidate, pilots and formals. It is not a pair-level runtime failure, so protocol retries would not correct it.
 
-- sealed SHA-256: `ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d`;
-- current SHA-256: `ae75b36f20a8adf323a821ee2f2f585ae0bfc664e8e81063f8b3cc0ec4023b8d`;
-- unchanged: size, inode, mode, mtime, ctime;
-- changed: `device` from `16777229` to `16777230`.
+## Required Primary correction
 
-The verifier therefore failed closed exactly as implemented. Local did not weaken it or reseal/relabel the partial formal series.
+Reconcile the R00 producer and final-analyzer schema, with fail-closed tests:
 
-## Required Primary decision
+1. Have the producer include `baselineBuildId` and `runtimeAbiHash` in the nested `playerBuildReceipt`; or
+2. Deliberately revise the analyzer to bind the authenticated top-level fields instead.
 
-Decide whether `st_dev` is intentionally acceptance-critical for the multi-hour formal seal:
+Primary must then decide whether the immutable 40/40 raw series may be reanalyzed under the corrected contract or whether acceptance requires a fresh series. Local did not make that semantic change, modify `WEB_TO_LOCAL.md`, or relabel evidence.
 
-1. If yes, require a stable mount, issue a new source-authoritative handoff, create a new bridge/seal, and restart all 40 formal pairs from the retained pilot index. The current 14/40 series remains historical only.
-2. If no, implement and test a narrow stable cross-remount identity contract while preserving content hashes and the remaining immutable stat guard. Return that source/tool change to Local for a fresh V00 and a wholly new formal series.
+Evidence is retained and authenticated at `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/`. The checkpoint includes all 40 sample indexes and referenced side evidence, the analyzer output/log, and a machine-readable failure diagnosis.
 
-This cycle also preserved the initial pre-launch batch output-name collision and the terminal interruption as non-protocol failures. Neither was relabelled as a formal attempt.
-
-Evidence is retained at `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260922-authority91ac-formal-seal-invalidated/`.
-
-Final strict analysis, V05, and independent M08 were not run. H1 remains `InProgress`; last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.
+V05 and independent M08 are ineligible. H1 remains `InProgress`; last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. Do not begin R02.

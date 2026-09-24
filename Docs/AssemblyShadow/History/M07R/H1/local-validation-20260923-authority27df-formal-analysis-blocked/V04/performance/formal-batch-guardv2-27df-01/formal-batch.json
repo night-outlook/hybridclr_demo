@@ -1,0 +1,759 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1FormalBatchRun",
+  "status": "PassedAllFormalPairs",
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "graphReuseBridge": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+    "sha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c"
+  },
+  "pilotVerification": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+    "sha256": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631"
+  },
+  "initialPriorIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+  },
+  "finalSampleIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+    "sha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+  },
+  "formalPairCount": 40,
+  "formalPairsPassed": 40,
+  "formalPairsStartedByThisBatch": 40,
+  "failure": "",
+  "runs": [
+    {
+      "pairId": "R00-OFF-NoPatch-formal-01",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/01-R00-OFF-NoPatch-formal-01-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790090025.1932192,
+      "finishedAtUnix": 1790090489.422822,
+      "durationSeconds": 464.2296028137207,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/01-R00-OFF-NoPatch-formal-01-attempt-1/sample-index.json",
+        "sha256": "5dd6dda2d857044c062bcc52a91c939b75fa31f0cc2d87afb9f8d9600305c019"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-02",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/02-R00-OFF-NoPatch-formal-02-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790090503.057191,
+      "finishedAtUnix": 1790090967.2958531,
+      "durationSeconds": 464.2386622428894,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/02-R00-OFF-NoPatch-formal-02-attempt-1/sample-index.json",
+        "sha256": "27ede8f94b678235a06d7aa18f6120749dc34fab42e98226afa8ddbfa0ebc87e"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-03",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/03-R00-OFF-NoPatch-formal-03-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790090980.833588,
+      "finishedAtUnix": 1790091444.9777012,
+      "durationSeconds": 464.14411330223083,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/03-R00-OFF-NoPatch-formal-03-attempt-1/sample-index.json",
+        "sha256": "397ea92a84813887f1e993bfb34077bcc878cf0a2374ea82b03ad69fe6b639ad"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-04",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/04-R00-OFF-NoPatch-formal-04-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790091458.5503218,
+      "finishedAtUnix": 1790091922.529838,
+      "durationSeconds": 463.9795162677765,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/04-R00-OFF-NoPatch-formal-04-attempt-1/sample-index.json",
+        "sha256": "def5bc23dc9b3b2382780187149ece230dea40f53de613c888d6c2b796645138"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-05",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/05-R00-OFF-NoPatch-formal-05-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790091936.165175,
+      "finishedAtUnix": 1790092411.2947898,
+      "durationSeconds": 475.1296148300171,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/05-R00-OFF-NoPatch-formal-05-attempt-1/sample-index.json",
+        "sha256": "3d8d6767d44f064248c2fc9fb9b5b9723f64befc00d21ccfa03cece0216e0a2c"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-06",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/06-R00-OFF-NoPatch-formal-06-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790092425.070304,
+      "finishedAtUnix": 1790092888.368324,
+      "durationSeconds": 463.2980201244354,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/06-R00-OFF-NoPatch-formal-06-attempt-1/sample-index.json",
+        "sha256": "ba40179289c7bf9ccb88deae7bdbecac3317deeaef30089f51e8c85e60fa705f"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-07",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/07-R00-OFF-NoPatch-formal-07-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790092901.9899101,
+      "finishedAtUnix": 1790093366.9775171,
+      "durationSeconds": 464.9876070022583,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/07-R00-OFF-NoPatch-formal-07-attempt-1/sample-index.json",
+        "sha256": "f02077dd4979feec54cd8938b4bfcb9cefc84d1e7a48d90f787059115c22dbe7"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-08",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/08-R00-OFF-NoPatch-formal-08-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790093380.5961778,
+      "finishedAtUnix": 1790093844.876735,
+      "durationSeconds": 464.28055715560913,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/08-R00-OFF-NoPatch-formal-08-attempt-1/sample-index.json",
+        "sha256": "a6f8ea3655befb6750b145e6d36737b8a7f357dc6eb5319985cd2d58ada6512e"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-09",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/09-R00-OFF-NoPatch-formal-09-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790093858.577468,
+      "finishedAtUnix": 1790094321.899831,
+      "durationSeconds": 463.32236313819885,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/09-R00-OFF-NoPatch-formal-09-attempt-1/sample-index.json",
+        "sha256": "83e3844e68597e5f5e255b2af1fab411be6ee7d768f18eeba1e1e509a0cc9aad"
+      }
+    },
+    {
+      "pairId": "R00-OFF-NoPatch-formal-10",
+      "mode": "R00-OFF-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/10-R00-OFF-NoPatch-formal-10-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790094335.702389,
+      "finishedAtUnix": 1790094801.123074,
+      "durationSeconds": 465.4206850528717,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/10-R00-OFF-NoPatch-formal-10-attempt-1/sample-index.json",
+        "sha256": "cf31175eba9f234b5f83b30447a803834ad1a68cb4fe96d3a7728ca5af25eb6a"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-01",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/11-R00-ON-NoPatch-formal-01-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790094814.937195,
+      "finishedAtUnix": 1790096016.1044521,
+      "durationSeconds": 1201.1672570705414,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/11-R00-ON-NoPatch-formal-01-attempt-1/sample-index.json",
+        "sha256": "05d00418470ff8bfdb93f73bb0b765c447a9a83a58733e296050485fb80690ad"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-02",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/12-R00-ON-NoPatch-formal-02-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790096029.984732,
+      "finishedAtUnix": 1790097226.580826,
+      "durationSeconds": 1196.5960941314697,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/12-R00-ON-NoPatch-formal-02-attempt-1/sample-index.json",
+        "sha256": "371c10e8676f6dcac482b3ee200f4b3fc09f5cd2e5c6b7f175c5a490b1b27626"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-03",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/13-R00-ON-NoPatch-formal-03-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790097240.4476318,
+      "finishedAtUnix": 1790098440.042769,
+      "durationSeconds": 1199.5951371192932,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/13-R00-ON-NoPatch-formal-03-attempt-1/sample-index.json",
+        "sha256": "26ba42600a760a47641944277ff4c9e51a3f9d8a7127190e281055119ba539a5"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-04",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/14-R00-ON-NoPatch-formal-04-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790098453.872131,
+      "finishedAtUnix": 1790099655.3750389,
+      "durationSeconds": 1201.5029077529907,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/14-R00-ON-NoPatch-formal-04-attempt-1/sample-index.json",
+        "sha256": "5c0f816c2d7a831fe19478edabd8f6a23de50f6e4088ab311b9d29e50f702ce5"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-05",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/15-R00-ON-NoPatch-formal-05-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790099669.2274659,
+      "finishedAtUnix": 1790100865.6565068,
+      "durationSeconds": 1196.4290409088135,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/15-R00-ON-NoPatch-formal-05-attempt-1/sample-index.json",
+        "sha256": "c6c7824aab11a456f508482e144c73dba18d61b582267a245792acffd0852917"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-06",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/16-R00-ON-NoPatch-formal-06-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790100879.464468,
+      "finishedAtUnix": 1790102075.4962828,
+      "durationSeconds": 1196.031814813614,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/16-R00-ON-NoPatch-formal-06-attempt-1/sample-index.json",
+        "sha256": "39b2870ff338498222c863f1c204735ff2dbae55c55f23c12676e4a7197d5c21"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-07",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/17-R00-ON-NoPatch-formal-07-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790102089.3757482,
+      "finishedAtUnix": 1790103291.2203462,
+      "durationSeconds": 1201.8445980548859,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/17-R00-ON-NoPatch-formal-07-attempt-1/sample-index.json",
+        "sha256": "ff69c1b131b9a1678c99c616d8e2a89c1bfc084a4e48aa82ecac8c48039850f5"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-08",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/18-R00-ON-NoPatch-formal-08-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790103305.131875,
+      "finishedAtUnix": 1790104503.4445498,
+      "durationSeconds": 1198.3126747608185,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/18-R00-ON-NoPatch-formal-08-attempt-1/sample-index.json",
+        "sha256": "3ae138595276bb1072265fc3018146c81042929270edcfc340c11dc8d186238f"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-09",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/19-R00-ON-NoPatch-formal-09-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790104517.471804,
+      "finishedAtUnix": 1790105720.85549,
+      "durationSeconds": 1203.3836860656738,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/19-R00-ON-NoPatch-formal-09-attempt-1/sample-index.json",
+        "sha256": "d0923ae2e7ae2cda970eaefe07c644cd401fe7898b760b78f782c7edc4cdb831"
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-formal-10",
+      "mode": "R00-ON-NoPatch",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/20-R00-ON-NoPatch-formal-10-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790105734.771326,
+      "finishedAtUnix": 1790106935.212373,
+      "durationSeconds": 1200.4410469532013,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/20-R00-ON-NoPatch-formal-10-attempt-1/sample-index.json",
+        "sha256": "16b97b312e62fd0ed5486b1cf0614fac0185df9322cfd9478f8bb2679c184094"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-01",
+      "mode": "R00-ON-P01",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/21-R00-ON-P01-formal-01-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790106949.1521091,
+      "finishedAtUnix": 1790108148.276721,
+      "durationSeconds": 1199.1246118545532,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/21-R00-ON-P01-formal-01-attempt-1/sample-index.json",
+        "sha256": "c7c91cbbf0dbec5f1835bbde0e6e236a66780e6f8ebdfd98ec39f32236e394bf"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-02",
+      "mode": "R00-ON-P01",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/22-R00-ON-P01-formal-02-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790108162.2619462,
+      "finishedAtUnix": 1790109362.3066812,
+      "durationSeconds": 1200.044734954834,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/22-R00-ON-P01-formal-02-attempt-1/sample-index.json",
+        "sha256": "5b81918882c91dd2a2d3d73bb3196cf5a6d82447074b0cf539941f8a9c0ee445"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-03",
+      "mode": "R00-ON-P01",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/23-R00-ON-P01-formal-03-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790109376.350108,
+      "finishedAtUnix": 1790110571.701531,
+      "durationSeconds": 1195.3514230251312,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/23-R00-ON-P01-formal-03-attempt-1/sample-index.json",
+        "sha256": "7831d9c33c2fd7da4dc48203f50b9901d785b1efbce0bf5f4a8336481613c2df"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-04",
+      "mode": "R00-ON-P01",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/24-R00-ON-P01-formal-04-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790110585.799156,
+      "finishedAtUnix": 1790111785.461961,
+      "durationSeconds": 1199.6628050804138,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/24-R00-ON-P01-formal-04-attempt-1/sample-index.json",
+        "sha256": "cb0383c85ccbb955c02768e12428f7463c4c728cac9cb1a0b56e90d611f7d7b2"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-05",
+      "mode": "R00-ON-P01",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/25-R00-ON-P01-formal-05-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790111799.60961,
+      "finishedAtUnix": 1790113001.190619,
+      "durationSeconds": 1201.5810089111328,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/25-R00-ON-P01-formal-05-attempt-1/sample-index.json",
+        "sha256": "81bdbe052d2428981a9fbbcae0ccebc3d062ef1831e7e18c51ae29976256bb27"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-06",
+      "mode": "R00-ON-P01",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/26-R00-ON-P01-formal-06-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790113015.4214022,
+      "finishedAtUnix": 1790114215.1469219,
+      "durationSeconds": 1199.725519657135,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/26-R00-ON-P01-formal-06-attempt-1/sample-index.json",
+        "sha256": "fc6293cf20794c2a216d4cdb849215cc05ed209614df9561c37bd929cf1a492f"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-07",
+      "mode": "R00-ON-P01",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/27-R00-ON-P01-formal-07-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790114229.230484,
+      "finishedAtUnix": 1790115432.855289,
+      "durationSeconds": 1203.6248049736023,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/27-R00-ON-P01-formal-07-attempt-1/sample-index.json",
+        "sha256": "4bf0217da5ed0c3aea18c5d38fd7d1f52d4e3e2f05cf7c6e0c83bf2b226fafaf"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-08",
+      "mode": "R00-ON-P01",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/28-R00-ON-P01-formal-08-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790115447.017178,
+      "finishedAtUnix": 1790116647.311844,
+      "durationSeconds": 1200.2946660518646,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/28-R00-ON-P01-formal-08-attempt-1/sample-index.json",
+        "sha256": "bc332f19662b63f56834597d93fc9abeffa1c7debd4e58ffd7bd0508d554c907"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-09",
+      "mode": "R00-ON-P01",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/29-R00-ON-P01-formal-09-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790116661.480916,
+      "finishedAtUnix": 1790117859.761131,
+      "durationSeconds": 1198.2802150249481,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/29-R00-ON-P01-formal-09-attempt-1/sample-index.json",
+        "sha256": "37bef4dba5c06d28f313ab44cdba562157ef4f29c9e491b6c27f9070fb23ea7f"
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-formal-10",
+      "mode": "R00-ON-P01",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/30-R00-ON-P01-formal-10-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790117873.96795,
+      "finishedAtUnix": 1790119073.535606,
+      "durationSeconds": 1199.567655801773,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/30-R00-ON-P01-formal-10-attempt-1/sample-index.json",
+        "sha256": "5b81033499f60aff8ee74e101c432e756d73d600d532bb16b18355575d00856a"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-01",
+      "mode": "R00-ON-P03",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/31-R00-ON-P03-formal-01-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790119087.6497312,
+      "finishedAtUnix": 1790120292.227262,
+      "durationSeconds": 1204.5775308609009,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/31-R00-ON-P03-formal-01-attempt-1/sample-index.json",
+        "sha256": "2ae07ba5528c0e432b9d84c49e2d2abdf6688fb1a36badb6decf2cbbda47ddf8"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-02",
+      "mode": "R00-ON-P03",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/32-R00-ON-P03-formal-02-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790120306.524757,
+      "finishedAtUnix": 1790121508.319485,
+      "durationSeconds": 1201.7947280406952,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/32-R00-ON-P03-formal-02-attempt-1/sample-index.json",
+        "sha256": "9703247ef4b62fa662fee517187445449643b57e912edeff6c8d1e1e63441cd2"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-03",
+      "mode": "R00-ON-P03",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/33-R00-ON-P03-formal-03-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790121522.579593,
+      "finishedAtUnix": 1790122723.502971,
+      "durationSeconds": 1200.9233779907227,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/33-R00-ON-P03-formal-03-attempt-1/sample-index.json",
+        "sha256": "30e69fbcf724555d939ddcb2743c57ee11e338e56af6f67fb8637d7de20ce35e"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-04",
+      "mode": "R00-ON-P03",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/34-R00-ON-P03-formal-04-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790122737.86978,
+      "finishedAtUnix": 1790123943.516546,
+      "durationSeconds": 1205.646765947342,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/34-R00-ON-P03-formal-04-attempt-1/sample-index.json",
+        "sha256": "639ed937ae845527f104680b525c8dbaec196a3b99ea55bf54a0c0de6d6d35b0"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-05",
+      "mode": "R00-ON-P03",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/35-R00-ON-P03-formal-05-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790123957.813194,
+      "finishedAtUnix": 1790125156.634738,
+      "durationSeconds": 1198.821543931961,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/35-R00-ON-P03-formal-05-attempt-1/sample-index.json",
+        "sha256": "d4c27b40f5a7e81790e4506867d24e57f35bfacdd68432db2bc12327afde767c"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-06",
+      "mode": "R00-ON-P03",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/36-R00-ON-P03-formal-06-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790125170.8973079,
+      "finishedAtUnix": 1790126372.491068,
+      "durationSeconds": 1201.5937600135803,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/36-R00-ON-P03-formal-06-attempt-1/sample-index.json",
+        "sha256": "a0beccdb6ba9a92f7791cf669e93fe8a7eaa9b16187c849a7011b1981b07a667"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-07",
+      "mode": "R00-ON-P03",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/37-R00-ON-P03-formal-07-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790126386.667491,
+      "finishedAtUnix": 1790127579.317729,
+      "durationSeconds": 1192.6502380371094,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/37-R00-ON-P03-formal-07-attempt-1/sample-index.json",
+        "sha256": "3c9a2619cd36f7b9137880bafaa4dcc3814604dfbfff10b1f5800eff6dc30bf5"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-08",
+      "mode": "R00-ON-P03",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/38-R00-ON-P03-formal-08-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790127593.558489,
+      "finishedAtUnix": 1790128798.280671,
+      "durationSeconds": 1204.7221817970276,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/38-R00-ON-P03-formal-08-attempt-1/sample-index.json",
+        "sha256": "dca38579eb6aced21bfe17716cdb576c8a5ae89fffc724b555f7490d4e1b059e"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-09",
+      "mode": "R00-ON-P03",
+      "order": [
+        "B",
+        "A"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/39-R00-ON-P03-formal-09-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790128812.3956869,
+      "finishedAtUnix": 1790130114.346993,
+      "durationSeconds": 1301.95130610466,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/39-R00-ON-P03-formal-09-attempt-1/sample-index.json",
+        "sha256": "b20a0cf19e6b65d8ad95fb681b232072aaf5fd4c797b3cdb6dde14de3db434ca"
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-formal-10",
+      "mode": "R00-ON-P03",
+      "order": [
+        "A",
+        "B"
+      ],
+      "attempt": 1,
+      "outputRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1",
+      "exitCode": 0,
+      "startedAtUnix": 1790130128.669641,
+      "finishedAtUnix": 1790131431.436786,
+      "durationSeconds": 1302.7671449184418,
+      "sampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+        "sha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+      }
+    }
+  ]
+}

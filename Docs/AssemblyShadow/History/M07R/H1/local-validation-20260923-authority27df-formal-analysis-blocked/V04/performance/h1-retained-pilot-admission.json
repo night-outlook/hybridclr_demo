@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1RetainedPilotAdmissionPreflight",
+  "result": "Passed",
+  "scope": "Bridge-authenticated retained pilot history admission only. Does not replace 8-side strict R00 reconstruction or the pilot seal.",
+  "protocol": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-protocol.preregistered.json",
+    "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+  },
+  "schedule": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/preregistration/performance-schedule.bound.json",
+    "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+  },
+  "buildMap": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/h1-performance-build-map.json",
+    "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+  },
+  "pilotIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+    "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+  },
+  "graphReuseBridge": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+    "sha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c"
+  },
+  "retainedPilotRunner": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+    "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+  },
+  "pilotAttemptCount": 5,
+  "selectedPilotCount": 4,
+  "selectedPilots": [
+    {
+      "pairId": "R00-OFF-NoPatch-pilot-01",
+      "attempt": 1,
+      "mode": "R00-OFF-NoPatch",
+      "A": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-A-R00-OFF-NoPatch-pilot-01-1/r00-player-launches.json",
+          "sha256": "c8947a374702b0873f21eeeacff99380e6705d99f04499493d79d18afa55101b"
+        }
+      },
+      "B": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-01-attempt-1-B-R00-OFF-NoPatch-pilot-01-1/r00-player-launches.json",
+          "sha256": "c60685b35c358b32ed37419f0215f0369129165c811198a629be21594ec22307"
+        }
+      }
+    },
+    {
+      "pairId": "R00-ON-NoPatch-pilot-01",
+      "attempt": 2,
+      "mode": "R00-ON-NoPatch",
+      "A": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-A-R00-ON-NoPatch-pilot-01-2/r00-player-launches.json",
+          "sha256": "4559dca6af33cd69952419c0acb46f5cb2793e7401fe94a37ac79d9e51b5cee7"
+        }
+      },
+      "B": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-02-attempt-2-B-R00-ON-NoPatch-pilot-01-2/r00-player-launches.json",
+          "sha256": "cdb6b3657fa40510b3f4b5957ec40123844e8738464e2103ae95cbadf1b24f2c"
+        }
+      }
+    },
+    {
+      "pairId": "R00-ON-P01-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-P01",
+      "A": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-A-R00-ON-P01-pilot-01-1/r00-player-launches.json",
+          "sha256": "b7bf75e6fc843834ea543d14f4eaaa3872f54bceace148afb19afd3a8c13e2c3"
+        }
+      },
+      "B": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-03-attempt-1-B-R00-ON-P01-pilot-01-1/r00-player-launches.json",
+          "sha256": "be8f421130d0ec62439e2b53a87e10390cb1ff4b404015ec93b378fda787047c"
+        }
+      }
+    },
+    {
+      "pairId": "R00-ON-P03-pilot-01",
+      "attempt": 1,
+      "mode": "R00-ON-P03",
+      "A": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-A-R00-ON-P03-pilot-01-1/r00-player-launches.json",
+          "sha256": "58e7156816dab8d66ce388f411595b94704949443335fd2c412753ff3c0b72a5"
+        }
+      },
+      "B": {
+        "runner": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+          "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+        },
+        "launchReceipt": {
+          "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/H1Pair-pilot-04-attempt-1-B-R00-ON-P03-pilot-01-1/r00-player-launches.json",
+          "sha256": "5e14137e3f49faf8de2d18546c7c440448e99e84e241a7d7f31790834636ff2c"
+        }
+      }
+    }
+  ]
+}

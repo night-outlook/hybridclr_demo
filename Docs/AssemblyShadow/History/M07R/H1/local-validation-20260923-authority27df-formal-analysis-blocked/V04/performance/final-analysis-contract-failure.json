@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1FinalAnalysisContractFailure",
+  "status": "ReturnedToPrimary",
+  "candidateCheckout": "f5e34235641c212c715aef3405925ddd4cf28ee6",
+  "sourceToolAnchor": "27df1a3d60811dc121f296ab561ae313a382b363",
+  "formalBatch": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+    "sha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667",
+    "status": "PassedAllFormalPairs",
+    "formalPairsPassed": 40,
+    "formalPairsRequired": 40,
+    "retries": 0
+  },
+  "finalSampleIndex": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+    "sha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+  },
+  "strictAnalysis": {
+    "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-performance-analysis.json",
+    "sha256": "cadbd356fb72f1079c2c01b3456c2364783485f577f749ea3656ca3283765665",
+    "result": "Incomplete",
+    "status": "ComparabilityIncomplete",
+    "attemptCount": 45,
+    "validAttemptCount": 0,
+    "invalidAttemptCount": 45,
+    "commonError": "R00 raw build field differs: baselineBuildId"
+  },
+  "contractDiagnosis": {
+    "buildMapComparability": "ComparabilityPassed",
+    "rawTopLevelBaselineBuildIdPresent": true,
+    "rawTopLevelRuntimeAbiHashPresent": true,
+    "rawPlayerBuildReceiptBaselineBuildIdPresent": false,
+    "rawPlayerBuildReceiptRuntimeAbiHashPresent": false,
+    "analyzerRequiresNestedFields": [
+      "buildGuid",
+      "baselineBuildId",
+      "runtimeAbiHash"
+    ],
+    "example": {
+      "pairId": "R00-OFF-NoPatch-formal-01",
+      "sideAExpectedAndTopLevelBaselineBuildId": "M07-Baseline-H1-Perf-Reference-6913-20260920A",
+      "sideBExpectedAndTopLevelBaselineBuildId": "M07-Baseline-H1-Perf-Current-6913-20260920C",
+      "sideANestedBaselineBuildId": null,
+      "sideBNestedBaselineBuildId": null
+    }
+  },
+  "disposition": {
+    "sourceOrToolCorrectionRequired": true,
+    "formalPairsMustNotBeRelabelled": true,
+    "v05Eligible": false,
+    "independentM08Eligible": false,
+    "mayEnterR02": false
+  }
+}
