@@ -4,9 +4,13 @@
 
 Latest Local return:
 
-`c3fe9620f9f6b494184b8ff76cbb377757591585`
+`144a26adf37bc0ecd5222499d328d1d1560910a0`
 
-Candidate source/tool anchor:
+Current analysis/test source anchor:
+
+`d239d9d00784ea2df22133cb8c938ec25035f5a0`
+
+Previous analysis source anchor:
 
 `7aa6f61994da354b04464e38ddfc8552cc5c3055`
 
@@ -16,136 +20,96 @@ Completed formal execution source:
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## Source-authority coherence repair
+## Returned Local failure
 
-The latest Local cycle stopped at V00 because nine agent-configuration files under `.agents/skills/agent-collaboration` and `.codex/agents` had changed after source anchor `7aa6f619...`.
+V00.R and committed V00 passed on the repaired 7aa handoff. Bounded Primary passed 376/376.
 
-Primary restored all nine files to their exact `7aa6f619` Git blobs. This is intentionally a tree-coherence restoration, not a verifier-policy change:
+Full Python discovery then ran 1,061 leaves and produced:
 
-- `shadow_tools.metadata_only` remains unchanged;
-- `.agents/` and `.codex/` are not broadly exempted;
-- source anchor remains `7aa6f619...`;
-- the exact five-file `H1HistoricalPerformanceReanalysis-v1` boundary is unchanged;
-- the immutable source-27df 40/40 evidence is untouched.
+- 1,032 Passed;
+- 28 environment-bound Skipped;
+- 1 Failed.
 
-Local must rerun V00 on the final pushed checkout before continuing any analysis work.
+The failed leaf was:
 
-## Local result received
+`test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive`
 
-The source-27df formal run is complete:
+Its synthetic raw-result fixture omitted top-level build GUID, baseline build ID, and runtime ABI hash. The corrected production analyzer correctly rejected that stale fixture.
 
-- bridge: Passed;
-- retained-pilot admission: Passed;
-- guard-v2 8-side seal: Passed;
-- formal batch: **40/40 Passed, zero retries**;
-- build-map comparability: Passed;
-- chronology: Passed.
+Local demonstrated in memory that adding those three fields makes the positive case pass.
 
-Final analysis returned Incomplete because the analyzer required two duplicate identity fields in a nested summary that the R00 producer never emitted.
+## Primary correction
 
-The raw top-level build identity is correct and already verified by R00.
+### Synthetic fixture
 
-## Primary design decision
+`Tools/AssemblyShadow/tests/test_h1_paired_performance.py::raw()` now emits the authenticated top-level R00 build identity while retaining the nested receipt binding.
 
-Do not mutate the producer and do not rerun 40 Players.
+Production analyzer behavior is unchanged and remains fail-closed.
 
-Correct the analyzer to match the existing authenticated producer contract.
+### Bounded suite
 
-Then reanalyze the exact immutable 27df evidence only through a fixed historical-analysis compatibility policy.
+`Tools/AssemblyShadow/h1_bee_primary_tests.py` now explicitly loads the previously missed positive leaf.
 
-## Corrected R00 build binding
+Expected bounded leaf count: **377**.
 
-Required against the frozen M07 receipt:
+### Historical successor v2
 
-### Raw result top level
+`H1HistoricalPerformanceReanalysis-v2` authenticates an exact seven-path source-27df → current analysis/test-only delta.
 
-- `buildGuid`;
-- `baselineBuildId`;
-- `runtimeAbiHash`.
+Relative to v1, the only added paths are:
 
-### Nested playerBuildReceipt
+- `Tools/AssemblyShadow/h1_bee_primary_tests.py`;
+- `Tools/AssemblyShadow/tests/test_h1_paired_performance.py`.
 
-Required:
+No execution/runtime/measurement source is added.
 
-- path;
-- SHA-256;
-- build GUID.
+### Retained graph v2
 
-Optional:
+`H1V04RetainedGraphToolOnlySuccessor-v2` requires the exact prior 24-path retained-graph set plus the paired-performance test fixture, for **25 paths** total.
 
-- baseline build ID;
-- runtime ABI hash.
+Historical v1 bridge/seal/formal-authority evidence is not relabelled.
 
-If optional nested copies exist, they must match.
+## Source authority
 
-## Historical reanalysis compatibility
+The source anchor is frozen at:
 
-New:
+`d239d9d00784ea2df22133cb8c938ec25035f5a0`
 
-`Tools/AssemblyShadow/h1_historical_reanalysis.py`
+All later Primary commits in this cycle are metadata/handoff only.
 
-Policy:
+`ProjectSettings/AssemblyShadowSourcePins.json` and `Docs/AssemblyShadow/Handoff/source-targets.json` point to this anchor.
 
-`H1HistoricalPerformanceReanalysis-v1`
+## Primary evidence
 
-It is fixed to:
+No fresh GitHub Actions execution was visible for the new anchor.
 
-- historical source `27df1a3d...`;
-- historical checkout `f5e34235...`;
-- retained graph `69130bbb...`;
-- exact old bridge;
-- exact old guard-v2 seal;
-- exact 40/40 batch receipt;
-- exact final cumulative index.
+Do not reuse old 376/376 as current validation.
 
-It authenticates all historical tool hashes from Git rather than accepting current-tool substitutions.
+Required Local empirical validation:
 
-The exact current delta contains only five analysis files.
+- bounded 377/377;
+- full Python 1,061 leaves with zero failures/errors;
+- exact 7-path and 25-path audits;
+- completed source-27df live evidence reauthentication;
+- historical compatibility v2;
+- corrected historical analysis.
 
-No execution authority is granted.
-
-## Regression coverage
-
-Tests now cover:
-
-- the actual Local failure diagnosis;
-- real producer-shaped raw build receipt;
-- missing/wrong top-level build identity rejection;
-- conflicting optional nested identity rejection;
-- exact five-file Git analysis delta;
-- historical bridge reconstruction from Git;
-- exact historical seal verifier inventory;
-- fixed checkpoint bridge/seal/batch/final-index SHA-256s;
-- synthetic 4-pilot + 40-formal authority chain;
-- retained-pilot vs current-formal runner split;
-- formal batch 40/40 binding and unsuccessful-run rejection.
-
-## Primary validation
-
-Workflow `35942350651` passed bounded **376/376** and all live handoff/R01/M07 recovery/lazy suites.
+No Player rerun is required when those checks pass.
 
 ## Next Local cycle
 
-No Player execution.
-
 Run:
 
-1. current source/Python and exact analysis-only audit;
-2. checkpoint/live evidence reauthentication;
-3. `h1_historical_reanalysis.py --preflight-only`;
-4. full `h1_historical_reanalysis.py`;
-5. analysis-only checkpoint;
-6. V05 / independent M08 if the result is Passed.
+1. final source preflight;
+2. bounded 377;
+3. full Python discovery;
+4. exact source audits;
+5. completed evidence reauthentication;
+6. historical compatibility preflight v2;
+7. historical strict analysis;
+8. analysis-only checkpoint;
+9. V05 / genuinely independent M08 if eligible.
 
-Expected final analysis:
-
-- `result=Passed`;
-- `status=ComparabilityPassed`;
-- 10 formal pairs/mode;
-- 1 valid pilot/mode;
-- complete startup and chronology;
-- one retained historical failed pilot attempt remains invalid and non-selected.
-
-Do not rerun formal Players unless compatibility fails because of a genuine non-analysis source/evidence mismatch.
+Only genuine M08 PASS may make H1 Ready for Human Review Gate.
 
 Do not begin R02.
