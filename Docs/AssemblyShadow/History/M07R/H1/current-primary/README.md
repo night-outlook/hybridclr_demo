@@ -8,7 +8,7 @@ Latest Local return:
 
 Current analysis/test/V05 source anchor:
 
-`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+`27e67920c6d8445895c1b9db647d733371a067c0`
 
 Completed formal execution source:
 
@@ -118,7 +118,7 @@ Human H1 approval remains explicit and separate.
 
 New source anchor:
 
-`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+`27e67920c6d8445895c1b9db647d733371a067c0`
 
 The exact seven-path historical analysis policy and 25-path retained-graph policy remain unchanged.
 
@@ -130,18 +130,18 @@ Relative to d61, only these already-authorized paths changed:
 
 ## New regression coverage
 
-Four V05 leaves cover:
+Six V05 leaves cover:
 
 - checkpoint manifest tamper;
 - positive V05 analysis-only evidence binding and classifications;
 - nonpassing V04 analysis rejection;
-- invalid no-Player evidence rejection.
+- invalid no-Player evidence rejection;\n- incomplete bounded/full-source cardinality rejection;\n- truncated sealed-live inventory rejection.
 
 Expected next counts:
 
-- bounded: 385;
-- full Python: 1,069;
-- expected with unchanged environment skips: 1,041 Passed / 28 Skipped / 0 Failed/Error.
+- bounded: 387;
+- full Python: 1,071;
+- expected with unchanged environment skips: 1,043 Passed / 28 Skipped / 0 Failed/Error.
 
 Fresh Local execution remains required.
 
