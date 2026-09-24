@@ -578,9 +578,21 @@ def _check_build_binding(raw: dict[str, Any], expected: dict[str, Any]) -> None:
     require(actual.get("path") == expected["path"], "R00 raw build receipt path is not the frozen side build")
     require(actual.get("sha256") == expected["sha256"], "R00 raw build receipt hash is not the frozen side build")
     frozen = expected["receipt"]
+
+    # R00's producer contract places build identity at the result top level.
+    # playerBuildReceipt is a bound summary and is not required to duplicate
+    # baselineBuildId/runtimeAbiHash.  This mirrors r00_results.verify_result.
     for field in ("buildGuid", "baselineBuildId", "runtimeAbiHash"):
         if field in frozen:
-            require(actual.get(field) == frozen[field], "R00 raw build field differs: " + field)
+            require(raw.get(field) == frozen[field],
+                    "R00 raw top-level build field differs: " + field)
+
+    require(actual.get("buildGuid") == frozen.get("buildGuid"),
+            "R00 raw nested build field differs: buildGuid")
+    for field in ("baselineBuildId", "runtimeAbiHash"):
+        if field in actual:
+            require(actual.get(field) == frozen.get(field),
+                    "R00 raw nested build field differs: " + field)
 
 
 def _verify_raw(raw: dict[str, Any], mode: str) -> dict[str, Any]:
