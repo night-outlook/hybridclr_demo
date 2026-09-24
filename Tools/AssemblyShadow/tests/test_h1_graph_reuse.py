@@ -291,6 +291,63 @@ class H1GraphReuseTests(unittest.TestCase):
                 historical.verify_historical_seal(
                     seal, bridge, sample, ROOT.resolve())
 
+    def test_historical_formal_batch_requires_exact_40_successful_runs_and_final_index(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            protocol = root / "protocol.json"; protocol.write_text("{}", encoding="utf-8")
+            schedule = root / "schedule.json"; schedule.write_text("{}", encoding="utf-8")
+            build_map = root / "build-map.json"; build_map.write_text("{}", encoding="utf-8")
+            bridge = root / "bridge.json"; bridge.write_text("{}", encoding="utf-8")
+            seal = root / "seal.json"; seal.write_text("{}", encoding="utf-8")
+            sample = root / "sample.json"; sample.write_text("{}", encoding="utf-8")
+            sample_value = {
+                "protocol": historical.binding(protocol),
+                "schedule": historical.binding(schedule),
+                "buildMap": historical.binding(build_map),
+            }
+            batch = root / "batch.json"
+            value = {
+                "schemaVersion": 1,
+                "kind": "H1FormalBatchRun",
+                "status": "PassedAllFormalPairs",
+                "protocol": sample_value["protocol"],
+                "schedule": sample_value["schedule"],
+                "buildMap": sample_value["buildMap"],
+                "graphReuseBridge": historical.binding(bridge),
+                "pilotVerification": historical.binding(seal),
+                "finalSampleIndex": historical.binding(sample),
+                "formalPairCount": 40,
+                "formalPairsPassed": 40,
+                "runs": [
+                    {
+                        "pairId": f"formal-{index:02d}",
+                        "exitCode": 0,
+                        "sampleIndex": {"path": f"/tmp/sample-{index}", "sha256": "1" * 64},
+                    }
+                    for index in range(40)
+                ],
+            }
+            batch.write_text(json.dumps(value), encoding="utf-8")
+            with mock.patch.object(
+                    historical, "HISTORICAL_FORMAL_BATCH_SHA256",
+                    historical.digest(batch)):
+                result = historical.verify_historical_formal_batch(
+                    batch, sample, seal, bridge, sample_value)
+            self.assertEqual(result["formalPairCount"], 40)
+            self.assertEqual(result["formalPairsPassed"], 40)
+
+            changed = json.loads(batch.read_text())
+            changed["runs"][12]["exitCode"] = 1
+            batch.write_text(json.dumps(changed), encoding="utf-8")
+            with mock.patch.object(
+                    historical, "HISTORICAL_FORMAL_BATCH_SHA256",
+                    historical.digest(batch)):
+                with self.assertRaisesRegex(
+                        VerificationError, "unsuccessful or unbound run"):
+                    historical.verify_historical_formal_batch(
+                        batch, sample, seal, bridge, sample_value)
+
     def test_historical_sample_chain_authenticates_40_formals_and_runner_split(self):
         import hashlib
         import tempfile
