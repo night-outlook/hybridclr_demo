@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
-      "implementationCommit": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate demo build-input/tool identity for the corrected final analyzer and fixed-source 27df historical reanalysis compatibility path. The 27df completed formal series remains immutable historical execution evidence; no current execution/runtime source changed in this successor.",
+      "codeCommit": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
+      "implementationCommit": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate analysis/test-tool identity for H1HistoricalPerformanceReanalysis-v2. Relative to completed source 27df1a3d it permits exactly seven reviewed non-metadata analysis/test paths; no execution/runtime/measurement source is added. The immutable 27df completed formal series remains historical execution evidence.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -827,5 +827,87 @@
       "formalBatch": "Historical batch verification requires PassedAllFormalPairs, 40/40, exact final sample/bridge/seal/protocol/schedule/map bindings and 40 successful bound runs."
     },
     "retainedGraphAllowlistCount": 24
+  },
+  "connectorWriteSmokeTestFixtureSuccessor": {
+    "transport": "GitHub Connector",
+    "repository": "night-outlook/hybridclr_demo",
+    "baseBranch": "codex/assembly-shadow-r01b-h1",
+    "smokeBranch": "codex/connector-smoke-primary-20260923-b",
+    "commit": "0e193fc13d2b3652241f0324869b285159baf425",
+    "readbackMatched": true,
+    "cleanup": "Connector branch-delete capability unavailable; disposable smoke branch remains non-authoritative.",
+    "purpose": "Operational transport readiness only; not product acceptance evidence."
+  },
+  "v04HistoricalAnalysisTestFixtureRepair": {
+    "returnedByLocalValidationCommit": "144a26adf37bc0ecd5222499d328d1d1560910a0",
+    "previousSourceAnchor": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
+    "sourceAnchor": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
+    "failure": "Complete Python discovery failed because the positive paired-performance synthetic raw fixture omitted buildGuid, baselineBuildId, and runtimeAbiHash at raw-result top level after the production analyzer contract was corrected.",
+    "correction": {
+      "fixture": "Tools/AssemblyShadow/tests/test_h1_paired_performance.py now emits the three authenticated top-level R00 build-identity fields while retaining nested receipt path/SHA/buildGuid and optional matching nested baseline/runtime copies.",
+      "boundedRegression": "Tools/AssemblyShadow/h1_bee_primary_tests.py now loads test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive explicitly, so the bounded suite is expected to grow from 376 to 377 leaves.",
+      "productionAnalyzer": "Unchanged; missing/wrong top-level build identity remains fail-closed.",
+      "historicalEvidence": "Unchanged; no historical receipt, Player result, bridge, seal, formal authority, or source-27df execution artifact is modified."
+    },
+    "historicalCompatibilityPolicy": {
+      "previousPolicyId": "H1HistoricalPerformanceReanalysis-v1",
+      "policyId": "H1HistoricalPerformanceReanalysis-v2",
+      "historicalSourceRevision": "27df1a3d60811dc121f296ab561ae313a382b363",
+      "historicalCheckoutRevision": "f5e34235641c212c715aef3405925ddd4cf28ee6",
+      "retainedGraphRevision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+      "exactAnalysisTestOnlyDelta": [
+        "Tools/AssemblyShadow/README.md",
+        "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+        "Tools/AssemblyShadow/h1_graph_reuse.py",
+        "Tools/AssemblyShadow/h1_historical_reanalysis.py",
+        "Tools/AssemblyShadow/h1_paired_performance.py",
+        "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+        "Tools/AssemblyShadow/tests/test_h1_paired_performance.py"
+      ],
+      "prohibitedDelta": "Any execution runner, R00 input/results verifier, measurement, protocol, schedule, graph producer, Player, native, runtime, or execution-authority source change makes historical reanalysis ineligible."
+    },
+    "retainedGraphCompatibilityPolicy": {
+      "previousPolicyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
+      "policyId": "H1V04RetainedGraphToolOnlySuccessor-v2",
+      "retainedGraphRevision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+      "exactNonMetadataPaths": [
+        ".github/workflows/h1-bee-primary.yml",
+        "Tools/AssemblyShadow/README.md",
+        "Tools/AssemblyShadow/analyze-h1-paired-performance.py",
+        "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
+        "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+        "Tools/AssemblyShadow/h1_formal_launch_authority.py",
+        "Tools/AssemblyShadow/h1_graph_reuse.py",
+        "Tools/AssemblyShadow/h1_historical_reanalysis.py",
+        "Tools/AssemblyShadow/h1_paired_performance.py",
+        "Tools/AssemblyShadow/r00_player_inputs.py",
+        "Tools/AssemblyShadow/r00_results.py",
+        "Tools/AssemblyShadow/r01_early_results.py",
+        "Tools/AssemblyShadow/run-h1-formal-batch.py",
+        "Tools/AssemblyShadow/run-h1-paired-performance.py",
+        "Tools/AssemblyShadow/run-r00-players.py",
+        "Tools/AssemblyShadow/seal-h1-pilot-verification.py",
+        "Tools/AssemblyShadow/tests/test_h1_formal_batch.py",
+        "Tools/AssemblyShadow/tests/test_h1_formal_launch_authority.py",
+        "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+        "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
+        "Tools/AssemblyShadow/tests/test_h1_paired_performance.py",
+        "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
+        "Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py",
+        "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py",
+        "Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py"
+      ],
+      "exactNonMetadataPathCount": 25,
+      "v2AddedPath": "Tools/AssemblyShadow/tests/test_h1_paired_performance.py"
+    },
+    "primaryValidation": {
+      "status": "PendingFreshValidation",
+      "expectedBoundedLeafCount": 377,
+      "expectedFullPythonLeafCount": 1061,
+      "expectedFullPythonPassed": 1033,
+      "expectedFullPythonSkipped": 28,
+      "expectedFullPythonFailures": 0,
+      "scope": "Fresh evidence required at the new source anchor; do not reuse the prior 376/376 run as current-source validation."
+    }
   }
 }
