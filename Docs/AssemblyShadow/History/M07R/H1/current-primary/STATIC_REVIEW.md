@@ -8,6 +8,16 @@ Reviewed source/tool anchor:
 
 `7aa6f61994da354b04464e38ddfc8552cc5c3055`
 
+## Latest source-authority review
+
+**PASS for repair strategy; empirical V00 rerun remains required.**
+
+The post-anchor agent migration made the checkout fail the unchanged complete non-metadata-tree check. Treating all `.agents/` or `.codex/` files as metadata would widen the verifier around files that can influence validation behavior, while advancing the source anchor would break the fixed five-file historical-analysis compatibility contract.
+
+Primary therefore restored only the nine drifted agent-configuration files to their exact source-anchor blobs. A remote comparison from `7aa6f619...` to the repaired branch now contains only paths already classified as metadata by the existing verifier. A remote comparison from source-27df to the repaired branch retains exactly the original five non-metadata analysis paths.
+
+No historical receipt, runtime tool, analyzer source, verifier source, protocol, schedule, graph, Player, or native source was changed by this repair.
+
 ## Returned finding
 
 The 40/40 formal series passed execution.
