@@ -1,13 +1,29 @@
 # Current Status
 
 - Candidate build-input/tool source anchor: `7aa6f61994da354b04464e38ddfc8552cc5c3055`.
-- Latest Local return: `ff3d352ee9a7c373e21bc06d714fff647354bb09`.
-- Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/`.
+- Latest Local return: `c3fe9620f9f6b494184b8ff76cbb377757591585`.
+- Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority7aa6-source-pin-blocked/`.
 - Completed formal execution source: `27df1a3d60811dc121f296ab561ae313a382b363`.
-- Gate: `H1 / InProgress / AwaitingHistoricalFinalReanalysis`.
+- Gate: `H1 / InProgress / AwaitingSourceAuthorityRevalidation`.
 - Last independent M08: `FAIL` (historical; not rerun).
 - Human gate passed: `false`.
 - May enter R02: `false`.
+
+## Current Primary repair after latest Local return
+
+Local V00 failed because nine `.agents/.codex` coordination files had changed after source anchor `7aa6f619...`. Primary restored all nine files to their exact anchor blobs.
+
+The chosen repair deliberately keeps the verifier fail-closed:
+
+- no change to `shadow_tools.metadata_only`;
+- no broad metadata exemption for `.agents/` or `.codex/`;
+- no source-anchor advance;
+- no expansion of the five-file historical-analysis successor;
+- no mutation of historical 27df execution evidence.
+
+Connector write/readback smoke tests passed in all four canonical repositories on disposable branch `codex/connector-smoke-primary-20260923-a`. Cleanup is unavailable through the current Connector, so those branches remain explicitly non-authoritative.
+
+Required next action: Local reruns V00 on the final pushed handoff HEAD. Only after V00 proves the complete non-metadata checkout tree still equals `7aa6f619...` may it resume the existing Python/source audits and historical reanalysis sequence.
 
 ## Latest Local result
 
