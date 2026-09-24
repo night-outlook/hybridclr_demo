@@ -4,7 +4,7 @@
 
 Latest Local return:
 
-`ff3d352ee9a7c373e21bc06d714fff647354bb09`
+`c3fe9620f9f6b494184b8ff76cbb377757591585`
 
 Candidate source/tool anchor:
 
@@ -15,6 +15,20 @@ Completed formal execution source:
 `27df1a3d60811dc121f296ab561ae313a382b363`
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
+
+## Source-authority coherence repair
+
+The latest Local cycle stopped at V00 because nine agent-configuration files under `.agents/skills/agent-collaboration` and `.codex/agents` had changed after source anchor `7aa6f619...`.
+
+Primary restored all nine files to their exact `7aa6f619` Git blobs. This is intentionally a tree-coherence restoration, not a verifier-policy change:
+
+- `shadow_tools.metadata_only` remains unchanged;
+- `.agents/` and `.codex/` are not broadly exempted;
+- source anchor remains `7aa6f619...`;
+- the exact five-file `H1HistoricalPerformanceReanalysis-v1` boundary is unchanged;
+- the immutable source-27df 40/40 evidence is untouched.
+
+Local must rerun V00 on the final pushed checkout before continuing any analysis work.
 
 ## Local result received
 
