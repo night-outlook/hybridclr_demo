@@ -136,10 +136,10 @@ final analyzer 必须按以上真实 producer contract 验证，不能额外要�
 5. compatibility proof 只授权 analysis，不授权 historical source 下的新 Player execution、bridge reuse 或 source-pin override；
 6. preflight 通过后，corrected analyzer 才能在同一 immutable final sample index 上重新分析。
 
-本 H1 已完成的 source-27df formal series适用固定 policy `H1HistoricalPerformanceReanalysis-v1`。其历史 failed pilot attempt 继续保留为 invalid evidence；同 pair 后续 Passed pilot attempt 按既有 latest-valid selection 参与统计。
+本 H1 已完成的 source-27df formal series 当前适用固定 policy `H1HistoricalPerformanceReanalysis-v2`。v2 仍只允许经审查的 analysis/test-only successor；不会把历史 Player execution 重新标记为当前源码 Fresh execution。其历史 failed pilot attempt 继续保留为 invalid evidence；同 pair 后续 Passed pilot attempt 按既有 latest-valid selection 参与统计。
 ## P6. 分析与退出
 
-以 process pair 为统计单位；按 mode/operation/phase 报 n、median/IQR/min/max、配对 B−A 及 B/A。分母近零或低于冻结的分辨率规则时不报夸张比例。可选 process-level bootstrap 须记录算法/seed；不以 10 对数据宣称 P99。
+V05 使用 `H1AnalysisOnlySuccessorEvidence-v1` 仅绑定 current-source validation、历史执行重认证与完整 performance analysis；`ComparabilityPassed` 不等于性能验收。V05 必须保留完整 measured JSON 与 `performanceAcceptance=NotClaimedNoSLA`，由独立 H1 review 对稳定退化、额外内存和方差作结论。\n\n以 process pair 为统计单位；按 mode/operation/phase 报 n、median/IQR/min/max、配对 B−A 及 B/A。分母近零或低于冻结的分辨率规则时不报夸张比例。可选 process-level bootstrap 须记录算法/seed；不以 10 对数据宣称 P99。
 
 分别输出 ComparabilityPassed/Failed/Incomplete 与 Measured/Invalid；没有 SLA 不等于任何退化自动合格。稳定退化、额外内存或高方差形成解释/定位项，交 H1 判断；不顺带实现 R02 优化。源/构建改变需要新 series、配对重测及受影响功能回归。
 
