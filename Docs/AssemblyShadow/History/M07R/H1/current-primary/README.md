@@ -2,92 +2,136 @@
 
 ## Status
 
-Latest Local return: `421f221156f4e9a71aab3363fd4e49a91cbaba68`
+Latest Local return:
 
-Candidate source/tool anchor: `27df1a3d60811dc121f296ab561ae313a382b363`
+`ff3d352ee9a7c373e21bc06d714fff647354bb09`
+
+Candidate source/tool anchor:
+
+`7aa6f61994da354b04464e38ddfc8552cc5c3055`
+
+Completed formal execution source:
+
+`27df1a3d60811dc121f296ab561ae313a382b363`
 
 H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## Returned blocker
+## Local result received
 
-The previous cycle reached 14/40 formal pairs and proved the entire retained-pilot → seal → current formal subprocess chain.
+The source-27df formal run is complete:
 
-Resume then failed because one sealed file's `st_dev` changed across a remount while SHA-256, canonical path, inode, mode, size, mtime and ctime remained unchanged.
+- bridge: Passed;
+- retained-pilot admission: Passed;
+- guard-v2 8-side seal: Passed;
+- formal batch: **40/40 Passed, zero retries**;
+- build-map comparability: Passed;
+- chronology: Passed.
 
-That behavior was fail-closed but made long-running formal series mount-instance-dependent.
+Final analysis returned Incomplete because the analyzer required two duplicate identity fields in a nested summary that the R00 producer never emitted.
 
-A separate first-batch launch also encountered a deterministic internal project-output name already preserved from historical evidence.
+The raw top-level build identity is correct and already verified by R00.
 
-## Primary decision
+## Primary design decision
 
-Filesystem device identity is not immutable artifact identity.
+Do not mutate the producer and do not rerun 40 Players.
 
-`st_dev` is removed from acceptance while all stable stat fields remain strict.
+Correct the analyzer to match the existing authenticated producer contract.
 
-The change is versioned as seal guard v2 so no old seal is silently reinterpreted.
+Then reanalyze the exact immutable 27df evidence only through a fixed historical-analysis compatibility policy.
 
-## Guard v2
+## Corrected R00 build binding
 
-New acceptance guard:
+Required against the frozen M07 receipt:
 
-- inode;
-- mode;
-- size;
-- mtimeNs;
-- ctimeNs.
+### Raw result top level
 
-Canonical path remains separately required.
+- `buildGuid`;
+- `baselineBuildId`;
+- `runtimeAbiHash`.
 
-New seals bind:
+### Nested playerBuildReceipt
 
-- `guardKind=CrossRemountStableStatGuard`;
-- `guardVersion=2`;
-- exact guard field list;
-- explicit device-ID exclusion policy.
+Required:
 
-Old device-bound seals fail the new contract and require resealing.
+- path;
+- SHA-256;
+- build GUID.
 
-## Output collision repair
+Optional:
 
-The project-local run ID now combines:
+- baseline build ID;
+- runtime ABI hash.
 
-- safe leaf name;
-- first 12 hex chars of SHA-256(full canonical requested output path).
+If optional nested copies exist, they must match.
 
-A new batch root therefore produces a new project-local side output even when pair ID and attempt are the same as preserved historical evidence.
+## Historical reanalysis compatibility
+
+New:
+
+`Tools/AssemblyShadow/h1_historical_reanalysis.py`
+
+Policy:
+
+`H1HistoricalPerformanceReanalysis-v1`
+
+It is fixed to:
+
+- historical source `27df1a3d...`;
+- historical checkout `f5e34235...`;
+- retained graph `69130bbb...`;
+- exact old bridge;
+- exact old guard-v2 seal;
+- exact 40/40 batch receipt;
+- exact final cumulative index.
+
+It authenticates all historical tool hashes from Git rather than accepting current-tool substitutions.
+
+The exact current delta contains only five analysis files.
+
+No execution authority is granted.
 
 ## Regression coverage
 
-Tests prove:
+Tests now cover:
 
-- `st_dev` drift alone is accepted;
-- every remaining stat field remains acceptance-critical;
-- old guard schema is rejected;
-- same pair leaf under two batch roots persists in distinct project-local directories;
-- existing bridge/pilot/formal authority contracts remain unchanged.
-
-## Source scope
-
-Previous Primary delta: exactly 3 non-metadata paths.
-
-Full retained-graph delta remains exactly 22 paths.
+- the actual Local failure diagnosis;
+- real producer-shaped raw build receipt;
+- missing/wrong top-level build identity rejection;
+- conflicting optional nested identity rejection;
+- exact five-file Git analysis delta;
+- historical bridge reconstruction from Git;
+- exact historical seal verifier inventory;
+- fixed checkpoint bridge/seal/batch/final-index SHA-256s;
+- synthetic 4-pilot + 40-formal authority chain;
+- retained-pilot vs current-formal runner split;
+- formal batch 40/40 binding and unsuccessful-run rejection.
 
 ## Primary validation
 
-Exact live handoff workflow `35731096138` at `7093ea03...` passed bounded **368/368** plus all live handoff/R01/M07 recovery/lazy suites. Artifact `10695328184`, SHA-256 `e939d91da81895d9dfb5d8d19aa3fc48ff6bc1189ef3bc4528cc00218689f513`.
+Workflow `35942350651` passed bounded **376/376** and all live handoff/R01/M07 recovery/lazy suites.
 
 ## Next Local cycle
 
-1. fresh authority / current Python;
-2. exact 3/22 source audits;
-3. retained evidence audit;
-4. new graph bridge;
-5. retained-pilot admission preflight;
-6. new guard-v2 8-side seal;
-7. new 40-pair formal series from retained pilot index;
-8. final strict analysis;
-9. checkpoint / V05 / independent M08 if eligible.
+No Player execution.
 
-The old 14/40 series remains historical and must not be mixed into the new series.
+Run:
+
+1. current source/Python and exact analysis-only audit;
+2. checkpoint/live evidence reauthentication;
+3. `h1_historical_reanalysis.py --preflight-only`;
+4. full `h1_historical_reanalysis.py`;
+5. analysis-only checkpoint;
+6. V05 / independent M08 if the result is Passed.
+
+Expected final analysis:
+
+- `result=Passed`;
+- `status=ComparabilityPassed`;
+- 10 formal pairs/mode;
+- 1 valid pilot/mode;
+- complete startup and chronology;
+- one retained historical failed pilot attempt remains invalid and non-selected.
+
+Do not rerun formal Players unless compatibility fails because of a genuine non-analysis source/evidence mismatch.
 
 Do not begin R02.
