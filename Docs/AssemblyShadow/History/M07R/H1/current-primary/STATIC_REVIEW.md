@@ -1,108 +1,132 @@
-# Static Review — Cross-Remount Seal Guard v2
+# Static Review — R00 Final Analysis Contract + Historical 40/40 Reanalysis
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to a real guard-v2 seal and fresh formal series.
+**PASS for Primary → Local Validation handoff**, subject to real compatibility preflight and reanalysis of the immutable 27df series.
 
 Reviewed source/tool anchor:
 
-`27df1a3d60811dc121f296ab561ae313a382b363`
+`7aa6f61994da354b04464e38ddfc8552cc5c3055`
 
 ## Returned finding
 
-The old seal identity guard included `st_dev`.
+The 40/40 formal series passed execution.
 
-Local observed an actual remount where:
+The final analyzer then rejected 44 analyzable attempts because it expected:
 
-- canonical path unchanged;
-- SHA-256 unchanged;
-- inode unchanged;
-- mode unchanged;
-- size unchanged;
-- mtime unchanged;
-- ctime unchanged;
-- only `st_dev` changed.
+- `playerBuildReceipt.baselineBuildId`;
+- `playerBuildReceipt.runtimeAbiHash`.
 
-Therefore `st_dev` was measuring filesystem/mount topology rather than immutable artifact identity.
+The real R00 producer does not require those nested duplicates.
 
-## Review of semantic change
+It emits and verifies those identities at raw top level.
 
-The change removes **only** `st_dev`.
+## Analyzer correction review
 
-It does not add a hash fallback, stat tolerance, automatic reseal, or cache-miss retry.
+The corrected analyzer now requires top-level:
 
-The new acceptance guard is:
+- build GUID;
+- baseline build ID;
+- runtime ABI hash.
 
-- inode;
-- mode;
-- size;
-- mtimeNs;
-- ctimeNs.
+It still requires nested:
 
-Canonical path remains independently required.
+- receipt path;
+- receipt hash;
+- build GUID.
 
-Any mismatch in those fields remains fail-closed.
+Optional nested baseline/runtime values, when present, must agree.
 
-Immutable content remains SHA-256-bound through the strict pilot evidence and current immutable inventory.
+This is stricter than simply deleting checks: the intended build identity remains mandatory and is now checked at the producer-defined location.
 
-## Explicit schema boundary
+## Historical-series reuse decision
 
-New seals carry guard kind/version/field metadata.
+The 40/40 series may be reused because:
 
-Old seals lack guard v2 and are rejected before cached admission.
+- all 40 formal pairs passed runtime execution;
+- no formal retry was needed;
+- build-map comparability passed;
+- chronology passed;
+- raw evidence is immutable and checkpointed;
+- the defect exists only in final analyzer interpretation;
+- current source changes no execution or measurement component.
 
-This prevents reinterpretation of an existing 14-pair series under changed verifier semantics.
+Normal current-source bridge verification is **not** relaxed to make this work.
 
-## Output collision review
+Instead, a separate analysis-only compatibility policy authenticates historical receipts against historical Git.
 
-Previous internal project-output identity used only the requested output leaf.
+## Compatibility proof review
 
-Separate batch roots can legitimately reuse the same pair/attempt leaf, causing a collision with preserved project-local evidence.
+The fixed policy validates:
 
-The new ID includes SHA-256(full canonical output path), so two external roots map to distinct internal directories.
+1. exact bridge SHA;
+2. exact guard-v2 seal SHA;
+3. exact formal-batch SHA and 40/40 status;
+4. exact final sample-index SHA;
+5. historical source/check-out pins;
+6. graph bridge 69130→27df transition;
+7. exact historical bridge verifier inventory;
+8. exact historical seal verifier inventory;
+9. retained pilot historical runner provenance;
+10. all 40 formal current-runner/formal-authority bindings;
+11. protected A has no retained authority;
+12. candidate B successful launch echoes authority/bridge/seal/map;
+13. exact five-file 27df→current analysis-only Git delta.
 
-The external evidence path remains unchanged and new-only.
+Any execution/runtime/measurement/protocol/schedule/graph/native delta rejects compatibility.
+
+## Evidence selection
+
+The historical index contains 45 attempts:
+
+- 5 pilot attempts, including one preserved failed attempt and its later successful retry;
+- 40 passed formal attempts.
+
+Existing analyzer selection semantics retain the failed pilot evidence but select the later valid pilot for that pair.
+
+Expected selected evidence after the build-binding fix:
+
+- 4 valid pilot pairs;
+- 40 valid formal pairs.
+
+No evidence is deleted or relabelled.
 
 ## Regression review
 
-New tests cover:
+Primary tests cover:
 
-- same stat identity with different device;
-- every remaining field mutation;
-- guard-v2 receipt metadata;
-- old schema rejection;
-- deterministic full-path output ID;
-- actual two-run preserved-project-output coexistence.
+- real Local contract diagnosis;
+- correct real-producer build binding;
+- top-level tampering/missing-field rejection;
+- optional nested conflict rejection;
+- real exact five-file Git delta;
+- historical bridge and seal Git authentication;
+- exact checkpoint hash constants;
+- formal-batch 40/40 contract;
+- synthetic complete formal authority chain and runner-provenance isolation.
 
-Existing formal/pilot/bridge authority suites remain active.
+## Source scope
 
-## Scope
+`27df1a3d... → 7aa6f619...` is exactly five non-metadata analysis paths.
 
-`91ac4db3... → 27df1a3d...`: exactly 3 non-metadata paths.
+`69130bbb... → 7aa6f619...` is the closed 24-path retained-graph tooling allowlist.
 
-`69130bbb... → 27df1a3d...`: exactly 22 non-metadata paths.
-
-No Player/runtime/native/measurement/Unity build input changed.
+No Player/runtime/measurement/native/protocol/schedule/graph-production source changed.
 
 ## Primary validation
 
-Exact live handoff workflow `35731096138` at `7093ea03...` passed bounded **368/368**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
+Workflow `35942350651` at `4c368bdb...` passed bounded **376/376**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
 
-Artifact `10695328184` has SHA-256 `e939d91da81895d9dfb5d8d19aa3fc48ff6bc1189ef3bc4528cc00218689f513`.
+Artifact `10784819521` has SHA-256 `9df947a5443d24f8f4d1a8cc71b1f440f3894f357a84824aa47ea65023c7f51b`.
 
 ## Residual empirical requirements
 
-Local must:
+Local must run the compatibility proof and corrected analysis against the real live 27df evidence.
 
-- refresh current authority;
-- verify exact 3/22 path sets;
-- reauthenticate retained evidence;
-- create a new bridge;
-- run retained-pilot admission preflight;
-- create a new guard-v2 strict seal;
-- start a new 40-pair formal series;
-- prove preserved historical outputs no longer collide;
-- complete final strict analysis;
-- checkpoint / V05 / independent M08.
+If it passes, no Player rerun is required and V04 may close.
+
+Then authenticate an analysis-only checkpoint and proceed to V05 / genuinely independent M08.
+
+If compatibility fails for a non-analysis reason, return to Primary rather than widening the policy.
 
 H1 remains `InProgress`. Do not begin R02.
