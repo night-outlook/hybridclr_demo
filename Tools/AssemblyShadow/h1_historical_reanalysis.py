@@ -16,6 +16,8 @@ from pathlib import Path
 from typing import Any
 
 import h1_paired_performance as paired
+import m07_results as m07
+import r00_player_inputs as r00_inputs
 import r00_results
 import shadow_tools
 from shadow_tools import PINS, VerificationError, metadata_only, read_json, require
@@ -204,6 +206,41 @@ def _current_source_pins(project: Path) -> dict[str, Any]:
     return pins
 
 
+def _analysis_source_authority(project: Path) -> dict[str, Any]:
+    """Authenticate the designated current analysis checkout independently of historical evidence paths."""
+    project = canonical_dir(project, "current analysis project")
+    git_root = Path(shadow_tools.git(project, "rev-parse", "--show-toplevel").decode().strip()).resolve()
+    require(git_root == project, "Current analysis project must be its Git root")
+    pins_path = canonical_file(project / PINS, "current analysis source pins")
+    require(shadow_tools.git(project, "show", "HEAD:" + PINS) == pins_path.read_bytes(),
+            "Current analysis source pins differ from committed HEAD")
+    pins = _current_source_pins(project)
+    entries = _entries(pins)
+    demo = entries["demo"]
+    require(demo.get("url") in (
+                "https://github.com/night-outlook/hybridclr_demo",
+                "https://github.com/night-outlook/hybridclr_demo.git"),
+            "Current analysis source pins identify the wrong demo repository")
+    require(demo.get("localPath") == ".", "Current analysis demo localPath must be '.'")
+    revision = demo["revision"]
+    shadow_tools.verify_demo(project, demo)
+
+    running_tool = canonical_file(Path(__file__).resolve(), "running historical reanalysis tool")
+    relative_tool = running_tool.relative_to(Path(__file__).resolve().parents[2]).as_posix()
+    analysis_tool = canonical_file(project / relative_tool, "current analysis historical reanalysis tool")
+    require(digest(running_tool) == digest(analysis_tool),
+            "Running historical reanalysis tool differs from designated analysis project")
+
+    return {
+        "projectRoot": str(project),
+        "checkoutCommit": shadow_tools.git(project, "rev-parse", "HEAD").decode().strip(),
+        "sourceRevision": revision,
+        "sourcePins": pins,
+        "sourcePinsBinding": binding(pins_path),
+        "toolBinding": binding(analysis_tool),
+    }
+
+
 def _historical_tool_binding(project: Path, relative: str) -> dict[str, str]:
     path = (project / relative).resolve(strict=True)
     require(path.is_relative_to(project) and path.is_file() and not path.is_symlink(),
@@ -238,7 +275,7 @@ def _verify_historical_tool_rows(project: Path, rows: Any, label: str,
 
 
 def verify_historical_bridge(bridge_path: Path, build_map_path: Path,
-                             project: Path) -> dict[str, Any]:
+                             project: Path, analysis_pins: dict[str, Any]) -> dict[str, Any]:
     bridge_path = canonical_file(bridge_path, "historical graph bridge")
     build_map_path = canonical_file(build_map_path, "historical build map")
     project = canonical_dir(project, "candidate project")
@@ -302,22 +339,23 @@ def verify_historical_bridge(bridge_path: Path, build_map_path: Path,
             type(installed.get("receiptSha256")) is str and len(installed["receiptSha256"]) == 64,
             "Historical bridge installed-runtime evidence is incomplete")
 
-    current_pins = _current_source_pins(project)
-    current_entries = _entries(current_pins)
+    analysis_entries = _entries(analysis_pins)
     historical_entries = _entries(historical_pins)
     for key in ("unityVersion", "target", "architecture"):
-        require(current_pins.get(key) == historical_pins.get(key),
+        require(analysis_pins.get(key) == historical_pins.get(key),
                 "Analysis successor changed platform source pins: " + key)
     for name in ("hybridclr", "hybridclrUnity", "il2cppPlus"):
-        require(current_entries[name] == historical_entries[name],
+        require(analysis_entries[name] == historical_entries[name],
                 "Analysis successor changed runtime repository pin: " + name)
 
     return {
         "historicalBridge": binding(bridge_path),
+        "historicalEvidenceProjectRoot": str(project),
         "graphSourcePins": graph_pins,
         "historicalCurrentSourcePins": historical_pins,
-        "currentSourcePins": current_pins,
+        "analysisSourcePins": analysis_pins,
         "retainedPilotRunner": retained,
+        "installedRuntimeVerification": installed,
         "transitionSha256": transition["nonMetadataDeltaSha256"],
     }
 
@@ -519,7 +557,11 @@ def verify_historical_sample_chain(sample_index_path: Path, seal_path: Path,
 
 
 def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
-                               bridge_path: Path, formal_batch_path: Path) -> dict[str, Any]:
+                               bridge_path: Path, formal_batch_path: Path,
+                               analysis_project: Path) -> dict[str, Any]:
+    analysis = _analysis_source_authority(analysis_project)
+    analysis_project = Path(analysis["projectRoot"])
+    analysis_pins = analysis["sourcePins"]
     sample_index_path = canonical_file(sample_index_path, "historical final sample index")
     seal_path = canonical_file(seal_path, "historical pilot seal")
     bridge_path = canonical_file(bridge_path, "historical graph bridge")
@@ -534,25 +576,29 @@ def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
             "Historical reanalysis is limited to the authenticated 27df formal batch")
 
     bridge_value = read_json(bridge_path)
-    project = canonical_dir(bridge_value.get("projectRoot", ""), "candidate project")
+    historical_project = canonical_dir(
+        bridge_value.get("projectRoot", ""), "historical evidence project")
     sample = read_json(sample_index_path)
     build_map_path = _bound(sample.get("buildMap"), "historical build map")
 
-    current_pins = _current_source_pins(project)
-    current_revision = _entries(current_pins)["demo"]["revision"]
-    delta = authenticate_analysis_delta(project, current_revision)
-    bridge_info = verify_historical_bridge(bridge_path, build_map_path, project)
-    seal_info = verify_historical_seal(seal_path, bridge_path, sample, project)
+    current_revision = _entries(analysis_pins)["demo"]["revision"]
+    delta = authenticate_analysis_delta(analysis_project, current_revision)
+    bridge_info = verify_historical_bridge(
+        bridge_path, build_map_path, historical_project, analysis_pins)
+    seal_info = verify_historical_seal(
+        seal_path, bridge_path, sample, historical_project)
     batch_info = verify_historical_formal_batch(
         formal_batch_path, sample_index_path, seal_path, bridge_path, sample)
     sample_info = verify_historical_sample_chain(
-        sample_index_path, seal_path, bridge_path, project, bridge_info)
+        sample_index_path, seal_path, bridge_path, historical_project, bridge_info)
 
     pairing_authority = {
         "kind": PAIRING_AUTHORITY_KIND,
-        "projectRoot": str(project),
+        "projectRoot": str(historical_project),
         "graphSourcePins": bridge_info["graphSourcePins"],
-        "currentSourcePins": current_pins,
+        "currentSourcePins": bridge_info["historicalCurrentSourcePins"],
+        "historicalSourcePins": bridge_info["historicalCurrentSourcePins"],
+        "analysisSourcePins": analysis_pins,
         "bridgeReceipt": binding(bridge_path),
         "policyId": POLICY_ID,
     }
@@ -561,7 +607,10 @@ def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
         "kind": "H1HistoricalAnalysisCompatibility",
         "status": "AuthenticatedAnalysisOnlySuccessor",
         "policyId": POLICY_ID,
-        "projectRoot": str(project),
+        "projectRoot": str(historical_project),
+        "historicalProjectRoot": str(historical_project),
+        "analysisProjectRoot": str(analysis_project),
+        "analysisSourceAuthority": analysis,
         "analysisDelta": delta,
         "historicalBridge": bridge_info,
         "historicalSeal": seal_info,
@@ -588,16 +637,90 @@ def _write_new(path: Path, value: dict[str, Any]) -> None:
         stream.write("\n")
 
 
+def _verify_historical_r00_inputs(project: Path, fixture_manifest: Path,
+                                  on_path: Path, off_path: Path, replay_path: Path,
+                                  authority: dict[str, Any],
+                                  installed_verification: dict[str, Any]) -> dict[str, Any]:
+    """Reauthenticate immutable historical R00 inputs without treating that checkout as current authority."""
+    project = canonical_dir(project, "historical R00 evidence project")
+    require(type(authority) is dict and authority.get("kind") == PAIRING_AUTHORITY_KIND,
+            "Historical R00 retained graph requires authenticated authority")
+    require(authority.get("projectRoot") == str(project),
+            "Historical R00 retained graph authority project mismatch")
+    graph_pins = authority.get("graphSourcePins")
+    historical_pins = authority.get("historicalSourcePins")
+    require(type(graph_pins) is dict and type(historical_pins) is dict and
+            authority.get("currentSourcePins") == historical_pins,
+            "Historical R00 retained graph source pins are incomplete")
+    require(authority.get("bridgeReceipt"),
+            "Historical R00 retained graph authority is not bound to a bridge receipt")
+
+    manifest, baseline, fixtures, rejected, resources = m07.verify_inputs(fixture_manifest)
+    r00_inputs.require_current_pairing(graph_pins, baseline["sourcePins"], "R00 baseline")
+    m07.prepare_fixture_resources(manifest, baseline, fixtures, resources)
+    on = m07.verify_player(on_path, manifest, baseline, resources, "NativeOn")
+    off = m07.verify_player(off_path, manifest, baseline, resources, "NativeOff")
+    for name, build in (("NativeOn", on), ("NativeOff", off)):
+        r00_inputs.require_current_pairing(
+            graph_pins, build["snapshot"]["sourcePins"], "R00 " + name)
+        require(build["output"].is_relative_to(project / "Builds/AssemblyShadow/M07"),
+                "R00 Player is outside the historical integration project")
+    for key in ("inputSnapshotHash", "nativeLibrarySha256", "buildGuid"):
+        require(on["player"][key] != off["player"][key],
+                "R00 ON/OFF must be distinct: " + key)
+    m07.exact(
+        m07.managed_player_inputs(on["snapshot"], on["path"]),
+        m07.managed_player_inputs(off["snapshot"], off["path"]),
+        "R00 ON/OFF managed inputs")
+    m07.exact(on["path"], Path(manifest["playerBuildReceiptPath"]),
+              "R00 manifest ON receipt")
+    m07.exact(m07.digest(on["path"]), manifest["playerBuildReceiptSha256"],
+              "R00 manifest ON receipt hash")
+    m07.verify_replay(replay_path, manifest, baseline, fixtures, rejected, on, resources)
+    replay = read_json(Path(replay_path))
+    r00_inputs.require_current_pairing(
+        graph_pins, replay["validatorSourcePins"], "R00 Editor replay")
+    return {
+        "manifest": manifest,
+        "baseline": baseline,
+        "fixtures": fixtures,
+        "on": on,
+        "off": off,
+        "sourcePins": graph_pins,
+        "currentSourcePins": historical_pins,
+        "installed": installed_verification,
+    }
+
+
 def _historical_verified_launch(compatibility: dict[str, Any]):
     authority = compatibility["pairingAuthority"]
-    candidate = Path(compatibility["projectRoot"]).resolve(strict=True)
+    candidate = Path(compatibility["historicalProjectRoot"]).resolve(strict=True)
+    installed = compatibility["historicalBridge"]["installedRuntimeVerification"]
 
     def verify(launch_path: Path, expected_mode: str | None = None) -> dict[str, Any]:
         launch = read_json(Path(launch_path))
         project = Path(launch["projectRoot"]).resolve(strict=True)
         pairing = authority if project == candidate else None
-        return r00_results.verify_suite(
-            launch_path, expected_mode=expected_mode, pairing_authority=pairing)
+        if pairing is None:
+            return r00_results.verify_suite(
+                launch_path, expected_mode=expected_mode, pairing_authority=None)
+
+        def historical_inputs(project, fixture, on, off, replay, incoming_authority):
+            require(incoming_authority == authority,
+                    "Historical R00 verifier received different pairing authority")
+            return _verify_historical_r00_inputs(
+                project, fixture, on, off, replay, authority, installed)
+
+        original_r00 = r00_results.verify_inputs_with_reuse
+        original_early = r00_results.early.verify_inputs_with_reuse
+        r00_results.verify_inputs_with_reuse = historical_inputs
+        r00_results.early.verify_inputs_with_reuse = historical_inputs
+        try:
+            return r00_results.verify_suite(
+                launch_path, expected_mode=expected_mode, pairing_authority=pairing)
+        finally:
+            r00_results.verify_inputs_with_reuse = original_r00
+            r00_results.early.verify_inputs_with_reuse = original_early
 
     return verify
 
@@ -608,6 +731,8 @@ def main(argv=None) -> int:
     parser.add_argument("--pilot-verification-receipt", required=True, type=Path)
     parser.add_argument("--graph-reuse-bridge", required=True, type=Path)
     parser.add_argument("--formal-batch", required=True, type=Path)
+    parser.add_argument("--analysis-project", required=True, type=Path,
+                        help="Canonical current validation checkout that owns analysis source authority")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args(argv)
@@ -616,7 +741,7 @@ def main(argv=None) -> int:
     try:
         compatibility = authenticate_compatibility(
             args.sample_index, args.pilot_verification_receipt,
-            args.graph_reuse_bridge, args.formal_batch)
+            args.graph_reuse_bridge, args.formal_batch, args.analysis_project)
         public_compatibility = copy.deepcopy(compatibility)
         public_compatibility.pop("pairingAuthority", None)
         if args.preflight_only:
@@ -633,6 +758,7 @@ def main(argv=None) -> int:
             "result": "Failed",
             "error": str(error),
             "sampleIndex": str(Path(args.sample_index).resolve()),
+            "analysisProject": str(Path(args.analysis_project).resolve()),
         }
         _write_new(output, result)
         print("Historical H1 reanalysis Failed: " + str(output), flush=True)
