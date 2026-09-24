@@ -1,6 +1,6 @@
 # 验证矩阵：拆批不删覆盖
 
-状态：全部待执行。`H1R-*` 是本整改包 requirement/test IDs，不修改历史用例身份。
+状态说明：本文是 H1 requirement/test acceptance matrix，不在表内滚动改写每次执行状态。实际 Passed/Failed/Skipped/ReusedAuthenticated/NotRun 以 `CURRENT_STATUS.md`、当前 Handoff 和带 manifest 的 Local checkpoint 为准；不得因 matrix 文本未更新而把未执行项视为 Passed。`H1R-*` 是本整改包 requirement/test IDs，不修改历史用例身份。
 
 ## V1. Count 基础输入
 
