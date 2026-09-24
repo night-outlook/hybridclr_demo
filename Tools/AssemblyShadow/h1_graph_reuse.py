@@ -17,7 +17,7 @@ import shadow_tools
 from shadow_tools import PINS, VerificationError, metadata_only, read_json, require
 
 GRAPH_SOURCE_REVISION = "69130bbb3a6df516916dddb5ad263799a7c6e5e3"
-POLICY_ID = "H1V04RetainedGraphToolOnlySuccessor-v1"
+POLICY_ID = "H1V04RetainedGraphToolOnlySuccessor-v2"
 RECEIPT_KIND = "H1GraphReuseBridge"
 AUTHORITY_KIND = "H1AuthenticatedGraphReuseAuthority"
 RETAINED_PILOT_RUNNER_RELATIVE = "Tools/AssemblyShadow/run-r00-players.py"
@@ -47,6 +47,7 @@ ALLOWED_NON_METADATA_PATHS = frozenset({
     "Tools/AssemblyShadow/tests/test_h1_formal_launch_authority.py",
     "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
     "Tools/AssemblyShadow/tests/test_h1_paired_driver.py",
+    "Tools/AssemblyShadow/tests/test_h1_paired_performance.py",
     "Tools/AssemblyShadow/tests/test_h1_retained_early_preflight.py",
     "Tools/AssemblyShadow/tests/test_h1_retained_pilot_runner.py",
     "Tools/AssemblyShadow/verify-h1-retained-early-reuse.py",
