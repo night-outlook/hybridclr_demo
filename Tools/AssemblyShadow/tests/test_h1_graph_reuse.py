@@ -132,6 +132,137 @@ class H1GraphReuseTests(unittest.TestCase):
             row["path"].startswith(".github/") or row["path"].startswith("Tools/AssemblyShadow/")
             for row in result["nonMetadataDelta"]))
 
+    def test_historical_bridge_authenticates_original_git_source(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            build_map = root / "build-map.json"
+            build_map.write_text("{}", encoding="utf-8")
+
+            historical_pins = historical._git_json(
+                ROOT, historical.HISTORICAL_CHECKOUT_REVISION, PINS)
+            self.assertEqual(
+                historical._entries(historical_pins)["demo"]["revision"],
+                historical.HISTORICAL_SOURCE_REVISION)
+            graph_pins = copy.deepcopy(historical_pins)
+            historical._entries(graph_pins)["demo"]["revision"] = historical.RETAINED_GRAPH_REVISION
+            transition_rows = historical._tree_delta(
+                ROOT, historical.RETAINED_GRAPH_REVISION,
+                historical.HISTORICAL_SOURCE_REVISION)
+
+            bridge = root / "bridge.json"
+            value = {
+                "schemaVersion": 1,
+                "kind": historical.BRIDGE_KIND,
+                "status": "AuthenticatedToolOnlySuccessor",
+                "side": "B",
+                "projectRoot": str(ROOT.resolve()),
+                "buildMap": historical.binding(build_map),
+                "graphSourcePins": graph_pins,
+                "graphSourcePinsSha256": historical.json_digest(graph_pins),
+                "currentSourcePins": {
+                    "path": str((ROOT / PINS).resolve()),
+                    "sha256": historical._git_sha256(
+                        ROOT, historical.HISTORICAL_CHECKOUT_REVISION, PINS),
+                },
+                "currentSourcePinsObjectSha256": historical.json_digest(historical_pins),
+                "transition": {
+                    "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
+                    "graphDemoRevision": historical.RETAINED_GRAPH_REVISION,
+                    "currentDemoRevision": historical.HISTORICAL_SOURCE_REVISION,
+                    "graphSourcePinsSha256": historical.json_digest(graph_pins),
+                    "currentSourcePinsSha256": historical.json_digest(historical_pins),
+                    "nonMetadataDelta": transition_rows,
+                    "nonMetadataDeltaSha256": historical.json_digest(transition_rows),
+                },
+                "retainedPilotRunner": {
+                    "path": str((ROOT / "Tools/AssemblyShadow/run-r00-players.py").resolve()),
+                    "sha256": historical._git_sha256(
+                        ROOT, historical.RETAINED_GRAPH_REVISION,
+                        "Tools/AssemblyShadow/run-r00-players.py"),
+                },
+                "verifierBindings": [
+                    historical._historical_tool_binding(ROOT, relative)
+                    for relative in sorted(historical.HISTORICAL_BRIDGE_VERIFIER_PATHS)
+                ],
+                "installedRuntimeVerification": {
+                    "unityVersion": graph_pins["unityVersion"],
+                    "target": graph_pins["target"],
+                    "demoSourceVerified": True,
+                    "configuredShadowMode": "on",
+                    "receiptSha256": "1" * 64,
+                },
+            }
+            bridge.write_text(json.dumps(value), encoding="utf-8")
+            verified = historical.verify_historical_bridge(
+                bridge, build_map, ROOT.resolve())
+            self.assertEqual(
+                verified["historicalBridge"], historical.binding(bridge))
+            self.assertEqual(verified["graphSourcePins"], graph_pins)
+            self.assertEqual(
+                verified["historicalCurrentSourcePins"], historical_pins)
+
+            changed = json.loads(bridge.read_text())
+            changed["transition"]["currentDemoRevision"] = "0" * 40
+            bridge.write_text(json.dumps(changed), encoding="utf-8")
+            with self.assertRaisesRegex(
+                    VerificationError, "transition header mismatch"):
+                historical.verify_historical_bridge(
+                    bridge, build_map, ROOT.resolve())
+
+    def test_historical_seal_requires_exact_old_verifier_inventory(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            protocol = root / "protocol.json"; protocol.write_text("{}", encoding="utf-8")
+            schedule = root / "schedule.json"; schedule.write_text("{}", encoding="utf-8")
+            build_map = root / "build-map.json"; build_map.write_text("{}", encoding="utf-8")
+            bridge = root / "bridge.json"; bridge.write_text("{}", encoding="utf-8")
+            pilot_index = root / "pilot.json"; pilot_index.write_text("{}", encoding="utf-8")
+            sample = {
+                "protocol": historical.binding(protocol),
+                "schedule": historical.binding(schedule),
+                "buildMap": historical.binding(build_map),
+            }
+            seal = root / "seal.json"
+            verifier_rows = [
+                {
+                    "path": str((ROOT / relative).resolve()),
+                    "sha256": historical._git_sha256(
+                        ROOT, historical.HISTORICAL_SOURCE_REVISION, relative),
+                }
+                for relative in sorted(historical.HISTORICAL_SEAL_VERIFIER_PATHS)
+            ]
+            value = {
+                "schemaVersion": 1,
+                "kind": historical.SEAL_KIND,
+                "status": "PassedStrictReconstructionAndStatGuardSealed",
+                **sample,
+                "graphReuseBridge": historical.binding(bridge),
+                "guardKind": "CrossRemountStableStatGuard",
+                "guardVersion": 2,
+                "guardFields": ["inode", "mode", "size", "mtimeNs", "ctimeNs"],
+                "verifierBindings": verifier_rows,
+                "sourcePilotIndex": historical.binding(pilot_index),
+                "deepLaunchVerificationCount": 8,
+                "selectedPilots": [{}, {}, {}, {}],
+                "fileCount": 1,
+                "fileInventorySha256": "2" * 64,
+                "guardInventorySha256": "3" * 64,
+            }
+            seal.write_text(json.dumps(value), encoding="utf-8")
+            verified = historical.verify_historical_seal(
+                seal, bridge, sample, ROOT.resolve())
+            self.assertEqual(verified["historicalSeal"], historical.binding(seal))
+
+            changed = json.loads(seal.read_text())
+            changed["verifierBindings"].pop()
+            seal.write_text(json.dumps(changed), encoding="utf-8")
+            with self.assertRaisesRegex(
+                    VerificationError, "tool inventory differs"):
+                historical.verify_historical_seal(
+                    seal, bridge, sample, ROOT.resolve())
+
     def test_real_transition_rejects_runtime_pin_change(self):
         old_pins = self.real_old_pins()
         current_pins = self.successor_pins_at_head()
