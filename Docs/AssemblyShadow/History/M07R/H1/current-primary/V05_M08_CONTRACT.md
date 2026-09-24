@@ -4,7 +4,7 @@
 
 Current source anchor:
 
-`27e67920c6d8445895c1b9db647d733371a067c0`
+`0388479f7073289e3505b992956a7cbe78c302ce`
 
 V05 policy:
 
@@ -35,7 +35,7 @@ Therefore V05 is an evidence-binding stage:
 
 ## Exact source-specific cardinalities
 
-For source anchor `27e67920c6d8445895c1b9db647d733371a067c0`, V05 fails closed unless the bound evidence contains:
+For source anchor `0388479f7073289e3505b992956a7cbe78c302ce`, V05 fails closed unless the bound evidence contains:
 
 - bounded Primary: 387/387 Passed;
 - full Python discovery: exactly 1,071 leaves with zero Failed/Error;
