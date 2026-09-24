@@ -643,12 +643,14 @@ python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
   --sample-index <27df-final-sample-index.json> \
   --pilot-verification-receipt <27df-pilot-verification.json> \
   --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
+  --formal-batch <27df-formal-batch.json> \
   --output <new-compatibility-preflight.json> \
   --preflight-only
 ```
 
 The preflight authenticates:
 
+- the exact retained bridge, guard-v2 seal, final sample index, and 40/40 formal-batch SHA-256s recorded by the Local checkpoint;
 - historical source `27df1a3d...` and checkout `f5e34235...`;
 - the old bridge transition and verifier hashes from Git;
 - the old guard-v2 pilot seal and exact historical seal verifier inventory;
@@ -667,6 +669,7 @@ python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
   --sample-index <27df-final-sample-index.json> \
   --pilot-verification-receipt <27df-pilot-verification.json> \
   --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
+  --formal-batch <27df-formal-batch.json> \
   --output <new-historical-performance-analysis.json>
 ```
 
