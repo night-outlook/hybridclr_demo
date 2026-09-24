@@ -1,128 +1,142 @@
-# Static Review — H1 Test-Only Historical Reanalysis Successor
+# Static Review — Split-Checkout Historical Reanalysis Repair
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff, with fresh empirical Local validation required.**
+**PASS for Primary → Local Validation handoff. Fresh Local empirical validation remains mandatory.**
 
 Reviewed source anchor:
 
-`d239d9d00784ea2df22133cb8c938ec25035f5a0`
+`d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`
 
-## Finding
+## Returned defect
 
-Local's one full-discovery failure is a stale synthetic positive fixture, not evidence of a production analyzer defect or Player failure.
+The v2 compatibility tool conflated:
 
-The real analyzer contract requires raw top-level:
+- immutable historical evidence root; and
+- current analysis-source authority.
 
-- `buildGuid`;
-- `baselineBuildId`;
-- `runtimeAbiHash`.
+The historical bridge's `projectRoot` points to the owner checkout that owns the original absolute evidence paths. Its present-day source pin is not authoritative for the separate current validation checkout.
 
-The fixture had those values only in its nested `playerBuildReceipt`.
+This caused V04.AF to compare source-27df against 7aa rather than d239.
 
-Local's in-memory diagnostic added the top-level fields and reached `ComparabilityPassed`.
+## Authority separation review
 
-## Fixture correction review
+The repair introduces a required `--analysis-project`.
 
-The committed fixture now mirrors the authenticated producer shape:
+The current analysis checkout is fail-closed authenticated as:
 
-- required top-level build identity exists;
-- nested receipt path/SHA/build GUID remains bound;
-- optional nested baseline/runtime copies remain matching.
+- a canonical Git root;
+- committed source-pin bytes;
+- canonical repository URL/localPath;
+- complete non-metadata source tree matching the pinned revision;
+- reanalysis tool bytes matching the running tool.
 
-The production analyzer was not relaxed.
+The historical bridge project remains required to match the immutable bridge's absolute project root and historical path/hash bindings.
 
-Missing or incorrect top-level identity still fails closed.
+No current-source inference is taken from that historical root.
 
-## Bounded-regression review
+## Historical bridge review
 
-The bounded Primary runner now explicitly loads only:
+`verify_historical_bridge` now receives the already-authenticated analysis pin DTO explicitly.
 
-`test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive`
+It still reconstructs and checks:
 
-This directly closes the coverage gap that allowed 376/376 while full discovery failed.
+- retained graph source revision;
+- source-27df historical pin DTO;
+- original v1 graph transition;
+- historical verifier tool hashes from Git;
+- retained pilot runner identity;
+- immutable installed-runtime verification summary.
 
-Expected bounded count is 377.
+It compares only platform/runtime repository pins between current analysis and historical source. The demo revision is intentionally different under the analysis/test-only successor.
 
-## Historical compatibility review
+## Strict-analysis review
 
-The v1 five-path policy cannot honestly authorize the new test change.
+A preflight-only fix would have left a downstream dependency: normal retained R00 verification reads the candidate project's present-day source pins and runs the generic source verifier.
 
-Primary therefore published:
+That is invalid for immutable historical evidence whose owner checkout can advance independently.
 
-`H1HistoricalPerformanceReanalysis-v2`
+The repair therefore adds `_verify_historical_r00_inputs` inside the historical reanalysis module. It mirrors the evidence-semantic portion of the existing R00 input gate:
 
-with an exact **seven-path** source-27df → current delta.
+- baseline source pin equality;
+- fixture resources;
+- NativeOn/NativeOff player receipt verification;
+- snapshot source pin equality;
+- distinct ON/OFF identities;
+- managed input equality;
+- manifest ON receipt path/hash;
+- replay validation and source pins.
 
-The two additions are test/regression-only:
+It deliberately does not treat the historical checkout's present-day source file as current authority.
 
-1. `Tools/AssemblyShadow/h1_bee_primary_tests.py`
-2. `Tools/AssemblyShadow/tests/test_h1_paired_performance.py`
+During candidate-side strict verification only, the reanalysis callback temporarily substitutes this historical input verifier for:
 
-The other five paths are the already-reviewed v1 analysis paths.
+- `r00_results.verify_inputs_with_reuse`;
+- `r00_results.early.verify_inputs_with_reuse`.
 
-No execution runner, R00 verifier, measurement source, protocol, schedule, graph producer, Player/native/runtime source, or execution-authority source is added.
+Both are restored in `finally`.
 
-## Retained-graph policy review
+No shared execution/runtime verifier source is modified.
 
-The current retained-graph source transition is versioned to:
+Protected side A follows its normal preserved verification path.
 
-`H1V04RetainedGraphToolOnlySuccessor-v2`
+## Policy-scope review
 
-It contains exactly **25 non-metadata paths**: the prior reviewed 24 plus the paired-performance test fixture.
+The new repair does not widen v2 source scope.
 
-Changing the existing runner `h1_bee_primary_tests.py` does not add a new unique retained-graph path because that path was already in the 24-path set.
+Source-27df → current anchor remains exactly seven non-metadata paths.
 
-Historical source-27df bridge/formal authorities continue to bind v1. The historical authenticator explicitly validates their original v1 policy IDs and hashes.
+d239 → current anchor is exactly three already-allowed paths.
 
-## Source-anchor review
+The retained-graph 25-path policy is unchanged.
 
-The implementation/source anchor is:
+No changes occurred in:
 
-`d239d9d00784ea2df22133cb8c938ec25035f5a0`
+- `r00_player_inputs.py`;
+- `r00_results.py`;
+- `r01_early_results.py`;
+- Player runners;
+- measurement code;
+- protocol/schedule;
+- build-map/graph producer;
+- native/runtime source.
 
-A direct source-27df comparison at that anchor contains exactly the seven reviewed non-metadata paths.
+## Regression review
 
-All later commits in this Primary cycle are metadata/handoff only.
+New tests cover:
 
-No `.agents/` or `.codex/` metadata exemption was introduced.
+1. a real Git split-checkout case using the stale evidence-checkout commit from the Local diagnosis;
+2. a committed wrong-current-pin negative;
+3. changed historical bridge build-map binding rejection;
+4. direct `authenticate_compatibility` routing between analysis and historical roots;
+5. strict historical input override installation/restoration.
 
-## Historical evidence integrity
+These tests remain within `test_h1_graph_reuse`, already part of the bounded Primary suite.
 
-Primary did not modify:
+Expected bounded count rises from 377 to 381.
 
-- source-27df raw results;
-- historical build receipts;
-- graph bridge;
-- guard-v2 seal;
-- formal authorities;
-- formal batch;
-- sample indexes;
-- protocol/schedule/map;
-- Player artifacts.
+## Residual empirical requirements
 
-The fixed four historical SHA-256 identities remain unchanged.
+This Primary environment has no fresh workflow run for the new source anchor.
 
-## Validation boundary
+Local must verify:
 
-No fresh GitHub Actions run was visible for the new source anchor.
+- 381/381 bounded;
+- full Python zero failures/errors;
+- exact seven/25-path policies;
+- complete historical live evidence;
+- real split-checkout V04.AF;
+- strict V04.AG;
+- analysis-only checkpoint;
+- V05;
+- genuinely independent M08.
 
-Therefore this review does **not** claim:
+No Player rerun is required if those checks pass.
 
-- bounded 377/377;
-- full Python PASS;
-- live historical compatibility PASS;
-- historical analysis PASS;
-- V05 PASS;
-- independent M08 PASS;
-- Human Review Gate readiness.
+## Gate
 
-Local must provide those empirical results in order.
+H1 remains `InProgress`.
 
-## Stop condition
+Historical M08 remains `FAIL`.
 
-If source authority, bounded/full Python validation, exact source audits, historical compatibility, or strict analysis fails, return to Primary.
-
-Do not rerun Players merely to work around analysis/test defects.
-
-H1 remains `InProgress`. Do not begin R02.
+Do not begin R02.
