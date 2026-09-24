@@ -4,7 +4,7 @@
 
 Validate the V05 analysis-only successor-evidence implementation at source anchor:
 
-`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+`27e67920c6d8445895c1b9db647d733371a067c0`
 
 Then reclose V04, bind V05, and immediately run a genuinely independent H1 M08 review if V05 succeeds.
 
@@ -28,12 +28,12 @@ Required identities:
 
 | Repository | Branch | Required source/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | analysis/test/V05 source anchor `25cd25f675c0caaf5009fd1aa3136aa0d98302d8` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | analysis/test/V05 source anchor `27e67920c6d8445895c1b9db647d733371a067c0` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
 
-The final pushed demo checkout HEAD may be later than `25cd25f...` only by paths classified as metadata by the unchanged `shadow_tools.metadata_only` policy.
+The final pushed demo checkout HEAD may be later than `27e67920...` only by paths classified as metadata by the unchanged `shadow_tools.metadata_only` policy.
 
 Historical execution source:
 
@@ -165,7 +165,7 @@ Detailed V05/M08 contract:
 
 New source anchor:
 
-`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+`27e67920c6d8445895c1b9db647d733371a067c0`
 
 Source-27df → current remains exactly the existing seven-path `H1HistoricalPerformanceReanalysis-v2` set.
 
@@ -181,19 +181,19 @@ No shared runtime/input verifier, Player runner, measurement, protocol, schedule
 
 ### New regression coverage
 
-Four V05 fail-closed tests were added inside the already-bounded graph-reuse test module:
+Six V05 fail-closed tests were added inside the already-bounded graph-reuse test module:
 
 1. checkpoint manifest tamper detection;
 2. positive V05 evidence binding with exact Fresh/Reused classifications and no approval flags;
 3. rejection of non-Passed/non-ComparabilityPassed V04 analysis;
-4. rejection of invalid no-Player evidence containing a Player/formal runner command.
+4. rejection of invalid no-Player evidence containing a Player/formal runner command;\n5. rejection of incomplete current-source test cardinality;\n6. rejection of truncated sealed-live file/byte cardinality.
 
 Expected current counts:
 
-- bounded Primary: **385**;
-- full Python discovery: **1,069** leaves;
+- bounded Primary: **387**;
+- full Python discovery: **1,071** leaves;
 - expected if the prior environment skip set remains:
-  **1,041 Passed / 28 Skipped / 0 Failed / 0 Error**.
+  **1,043 Passed / 28 Skipped / 0 Failed / 0 Error**.
 
 Fresh Local evidence is required.
 
@@ -215,7 +215,7 @@ Require:
 
 - final pushed HEAD from the handoff prompt;
 - clean tracked state before evidence creation;
-- source pin = `25cd25f...`;
+- source pin = `27e67920...`;
 - source anchor → final HEAD zero non-metadata delta;
 - all four repository/pin identities exact;
 - committed preflight = `SourceTargetVerifiedNotBuildAccepted`.
@@ -224,16 +224,16 @@ Require:
 
 Bounded Primary:
 
-- 385 tests;
+- 387 tests;
 - 385 Passed;
 - zero nonpass.
 
 Complete Python discovery:
 
-- expected 1,069 leaves;
+- expected 1,071 leaves;
 - zero Failed/Error;
 - every skip explicit;
-- expected 1,041 Passed / 28 Skipped only if the environment skip set is unchanged.
+- expected 1,043 Passed / 28 Skipped only if the environment skip set is unchanged.
 
 ### V01A
 
@@ -255,7 +255,7 @@ Repeat complete source-27df live evidence authentication:
 
 ### V04.AF / V04.AG
 
-Because the analysis/V05 tool changed, rerun V04 compatibility and strict analysis at source `25cd25f...`.
+Because the analysis/V05 tool changed, rerun V04 compatibility and strict analysis at source `27e67920...`.
 
 Use the same explicit `--analysis-project` split-checkout contract.
 
