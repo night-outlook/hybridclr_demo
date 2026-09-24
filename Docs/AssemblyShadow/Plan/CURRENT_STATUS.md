@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate analysis/test/V05 source anchor: `27e67920c6d8445895c1b9db647d733371a067c0`.
+- Candidate analysis/test/V05 source anchor: `0388479f7073289e3505b992956a7cbe78c302ce`.
 - Previous source anchor: `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`.
 - Latest Local return: `5f8db436e31df017dbff396b375547394c396ad5`.
 - Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`.
@@ -91,7 +91,7 @@ It does not set `humanGatePassed=true` and does not permit R02.
 
 ## Source scope
 
-The new source anchor `27e67920...` still satisfies the same exact source policies.
+The new source anchor `0388479f...` still satisfies the same exact source policies.
 
 Source-27df → current remains exactly the existing seven non-metadata analysis/test paths.
 
