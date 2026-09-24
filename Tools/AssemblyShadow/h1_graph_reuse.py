@@ -33,6 +33,7 @@ ALLOWED_NON_METADATA_PATHS = frozenset({
     "Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py",
     "Tools/AssemblyShadow/h1_bee_primary_tests.py",
     "Tools/AssemblyShadow/h1_graph_reuse.py",
+    "Tools/AssemblyShadow/h1_historical_reanalysis.py",
     "Tools/AssemblyShadow/h1_formal_launch_authority.py",
     "Tools/AssemblyShadow/r00_player_inputs.py",
     "Tools/AssemblyShadow/r00_results.py",
