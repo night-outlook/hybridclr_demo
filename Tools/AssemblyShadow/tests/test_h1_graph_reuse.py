@@ -135,10 +135,15 @@ class H1GraphReuseTests(unittest.TestCase):
     def test_historical_reanalysis_delta_is_exact_analysis_only_successor(self):
         current = shadow_tools.git(ROOT, "rev-parse", "HEAD").decode().strip()
         result = historical.authenticate_analysis_delta(ROOT, current)
+        self.assertEqual(historical.POLICY_ID, "H1HistoricalPerformanceReanalysis-v2")
         self.assertEqual(result["policyId"], historical.POLICY_ID)
-        self.assertEqual(
-            {row["path"] for row in result["nonMetadataDelta"]},
-            set(historical.ALLOWED_ANALYSIS_DELTA))
+        changed = {row["path"] for row in result["nonMetadataDelta"]}
+        self.assertEqual(changed, set(historical.ALLOWED_ANALYSIS_DELTA))
+        self.assertEqual(len(changed), 7)
+        self.assertTrue({
+            "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+            "Tools/AssemblyShadow/tests/test_h1_paired_performance.py",
+        }.issubset(changed))
         forbidden = (
             "run-r00-players.py", "r00_results.py", "r00_player_inputs.py",
             "run-h1-paired-performance.py", "seal-h1-pilot-verification.py",
