@@ -61,14 +61,14 @@ class H1GraphReuseTests(unittest.TestCase):
             "V01/bounded-primary/results.json": {
                 "kind": "H1BeePrimaryRegression",
                 "status": "PassedBoundedTests",
-                "testCount": 3,
-                "counts": {"Passed": 3},
+                "testCount": historical.V05_BOUNDED_TEST_COUNT,
+                "counts": {"Passed": historical.V05_BOUNDED_TEST_COUNT},
             },
             "V01/python-inventory.json": {
                 "kind": "H1PythonLeafInventory",
-                "count": 4,
-                "discoveredCount": 4,
-                "counts": {"Passed": 3, "Skipped": 1},
+                "count": historical.V05_PYTHON_LEAF_COUNT,
+                "discoveredCount": historical.V05_PYTHON_LEAF_COUNT,
+                "counts": {"Passed": historical.V05_PYTHON_LEAF_COUNT},
             },
             "V02/live-evidence-reauthentication.json": {
                 "kind": "H1CurrentLiveHistoricalEvidenceAudit",
@@ -96,8 +96,10 @@ class H1GraphReuseTests(unittest.TestCase):
                     },
                 },
                 "sealedInventory": {
-                    "expectedFiles": 2, "verifiedFiles": 2,
-                    "expectedBytes": 10, "verifiedBytes": 10,
+                    "expectedFiles": historical.V05_SEALED_FILE_COUNT,
+                    "verifiedFiles": historical.V05_SEALED_FILE_COUNT,
+                    "expectedBytes": historical.V05_SEALED_BYTES,
+                    "verifiedBytes": historical.V05_SEALED_BYTES,
                     "guardMismatches": 0, "contentMismatches": 0, "missing": 0,
                 },
             },
@@ -159,6 +161,10 @@ class H1GraphReuseTests(unittest.TestCase):
         historical_manifest = historical_root / "MANIFEST.sha256"
         historical_manifest.write_text("synthetic historical manifest\n", encoding="utf-8")
         historical_entries = dict(historical.V05_HISTORICAL_EXPECTED)
+        for index in range(
+                historical.V05_HISTORICAL_MANIFEST_ENTRIES - len(historical_entries)):
+            historical_entries["synthetic/" + str(index) + ".json"] = (
+                hashlib.sha256(("synthetic-" + str(index)).encode()).hexdigest())
 
         current_checkpoint = {
             "root": current,
@@ -685,6 +691,50 @@ class H1GraphReuseTests(unittest.TestCase):
             self.assertFalse(result["M08Passed"])
             self.assertFalse(result["humanGatePassed"])
             self.assertFalse(result["mayEnterR02"])
+
+    def test_v05_rejects_incomplete_current_test_counts(self):
+        with tempfile.TemporaryDirectory(prefix="h1-v05-count-negative-") as directory:
+            root = Path(directory).resolve()
+            current, historical_root, current_cp, historical_cp, analysis = self._v05_fixture(root)
+            bounded_path = current / "V01/bounded-primary/results.json"
+            bounded = json.loads(bounded_path.read_text())
+            bounded["testCount"] -= 1
+            bounded["counts"] = {"Passed": bounded["testCount"]}
+            bounded_path.write_text(json.dumps(bounded), encoding="utf-8")
+            current_cp["entries"]["V01/bounded-primary/results.json"] = historical.digest(bounded_path)
+            def checkpoint(path, label):
+                return current_cp if Path(path) == current else historical_cp
+            with mock.patch.object(
+                    historical, "_analysis_source_authority", return_value=analysis), \
+                 mock.patch.object(
+                    historical, "authenticate_checkpoint", side_effect=checkpoint):
+                with self.assertRaisesRegex(
+                        VerificationError, "exact complete PASS"):
+                    historical.build_v05_successor_evidence(
+                        ROOT, current, historical_root)
+
+    def test_v05_rejects_truncated_sealed_inventory(self):
+        with tempfile.TemporaryDirectory(prefix="h1-v05-sealed-negative-") as directory:
+            root = Path(directory).resolve()
+            current, historical_root, current_cp, historical_cp, analysis = self._v05_fixture(root)
+            live_path = current / "V02/live-evidence-reauthentication.json"
+            live = json.loads(live_path.read_text())
+            live["sealedInventory"]["expectedFiles"] = 1
+            live["sealedInventory"]["verifiedFiles"] = 1
+            live["sealedInventory"]["expectedBytes"] = 1
+            live["sealedInventory"]["verifiedBytes"] = 1
+            live_path.write_text(json.dumps(live), encoding="utf-8")
+            current_cp["entries"]["V02/live-evidence-reauthentication.json"] = historical.digest(live_path)
+            def checkpoint(path, label):
+                return current_cp if Path(path) == current else historical_cp
+            with mock.patch.object(
+                    historical, "_analysis_source_authority", return_value=analysis), \
+                 mock.patch.object(
+                    historical, "authenticate_checkpoint", side_effect=checkpoint):
+                with self.assertRaisesRegex(
+                        VerificationError, "sealed live inventory authentication is incomplete"):
+                    historical.build_v05_successor_evidence(
+                        ROOT, current, historical_root)
 
     def test_v05_rejects_nonpassing_historical_analysis(self):
         with tempfile.TemporaryDirectory(prefix="h1-v05-analysis-negative-") as directory:
