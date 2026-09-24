@@ -197,6 +197,50 @@
     },
     "controlledExpectedFailure": "Controlled M07 failure after successful ValidateCompilerInputs for exact-byte restoration verification."
   },
+  "connectorWriteSmokeTest": {
+    "transport": "GitHub Connector",
+    "baseBranch": "codex/assembly-shadow-r01b-h1",
+    "smokeBranch": "codex/connector-smoke-primary-20260923-a",
+    "purpose": "Operational transport readiness only; not product acceptance evidence.",
+    "cleanup": "Connector branch-delete capability unavailable; disposable smoke branches remain and must not be used as handoff authority.",
+    "repositories": {
+      "night-outlook/hybridclr_demo": {
+        "commit": "6dfb790bfa1509152db0ad7b504efb84553c64e7",
+        "readbackMatched": true
+      },
+      "night-outlook/hybridclr": {
+        "commit": "78d564a47ad561b81957c2cbf9c2cbdf4359420e",
+        "readbackMatched": true
+      },
+      "night-outlook/hybridclr_unity": {
+        "commit": "b4d28546750565252efb36e985f64f53cb03611e",
+        "readbackMatched": true
+      },
+      "night-outlook/il2cpp_plus": {
+        "commit": "4d2ff92aca1d40197f2548c77c397ac751011535",
+        "readbackMatched": true
+      }
+    }
+  },
+  "sourceAuthorityCoherenceRepair": {
+    "returnedByLocalValidationCommit": "c3fe9620f9f6b494184b8ff76cbb377757591585",
+    "failure": "V00 rejected the pushed checkout because nine agent-configuration files changed after analysis source anchor 7aa6f61994da354b04464e38ddfc8552cc5c3055.",
+    "decision": "Restore the nine agent-configuration files to their exact source-anchor Git blobs. Do not classify .agents or .codex broadly as metadata, do not modify shadow_tools.metadata_only, do not advance the analysis source anchor, and do not widen H1HistoricalPerformanceReanalysis-v1.",
+    "sourceAnchor": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
+    "restoredPaths": [
+      ".agents/skills/agent-collaboration/SKILL.md",
+      ".agents/skills/agent-collaboration/scripts/Get-GateReviewMode.ps1",
+      ".agents/skills/agent-collaboration/tests/Test-AgentCollaborationGatePolicy.Tests.ps1",
+      ".codex/agents/code-debugger.toml",
+      ".codex/agents/code-explorer.toml",
+      ".codex/agents/code-gate-reviewer.toml",
+      ".codex/agents/code-general.toml",
+      ".codex/agents/code-reviewer.toml",
+      ".codex/agents/code-worker.toml"
+    ],
+    "expectedSourceState": "The final checkout may contain later metadata-only handoff/history/source-pin commits, but its complete non-metadata tree must equal the 7aa6f619 source anchor. The 27df1a3d to current analysis non-metadata delta must remain exactly the existing five analysis-only paths.",
+    "policy": "Preserve fail-closed source verification and the fixed historical-analysis compatibility boundary; repository coordination drift is removed rather than reclassified."
+  },
   "gateState": {
     "name": "H1",
     "status": "InProgress",
