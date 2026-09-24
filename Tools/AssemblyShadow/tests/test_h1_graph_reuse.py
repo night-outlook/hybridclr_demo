@@ -263,6 +263,154 @@ class H1GraphReuseTests(unittest.TestCase):
                 historical.verify_historical_seal(
                     seal, bridge, sample, ROOT.resolve())
 
+    def test_historical_sample_chain_authenticates_40_formals_and_runner_split(self):
+        import hashlib
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            protocol = root / "protocol.json"; protocol.write_text("{}", encoding="utf-8")
+            schedule = root / "schedule.json"; schedule.write_text("{}", encoding="utf-8")
+            build_map = root / "build-map.json"; build_map.write_text("{}", encoding="utf-8")
+            bridge = root / "bridge.json"; bridge.write_text("{}", encoding="utf-8")
+            seal = root / "seal.json"; seal.write_text("{}", encoding="utf-8")
+            fixture = root / "fixture.json"; fixture.write_text("{}", encoding="utf-8")
+            on = root / "on.json"; on.write_text("{}", encoding="utf-8")
+            off = root / "off.json"; off.write_text("{}", encoding="utf-8")
+            replay = root / "replay.json"; replay.write_text("{}", encoding="utf-8")
+
+            historical_pins = historical._git_json(
+                ROOT, historical.HISTORICAL_CHECKOUT_REVISION, PINS)
+            graph_pins = copy.deepcopy(historical_pins)
+            historical._entries(graph_pins)["demo"]["revision"] = historical.RETAINED_GRAPH_REVISION
+            retained_runner = {
+                "path": str((ROOT / "Tools/AssemblyShadow/run-r00-players.py").resolve()),
+                "sha256": historical._git_sha256(
+                    ROOT, historical.RETAINED_GRAPH_REVISION,
+                    "Tools/AssemblyShadow/run-r00-players.py"),
+            }
+            current_formal_runner = {
+                "path": retained_runner["path"],
+                "sha256": historical._git_sha256(
+                    ROOT, historical.HISTORICAL_SOURCE_REVISION,
+                    "Tools/AssemblyShadow/run-r00-players.py"),
+            }
+            self.assertNotEqual(retained_runner, current_formal_runner)
+
+            protocol_binding = historical.binding(protocol)
+            schedule_binding = historical.binding(schedule)
+            map_binding = historical.binding(build_map)
+            bridge_binding = historical.binding(bridge)
+            seal_binding = historical.binding(seal)
+            tool_rows = [
+                historical._historical_tool_binding(ROOT, relative)
+                for relative in sorted(historical.HISTORICAL_FORMAL_AUTHORITY_TOOL_PATHS)
+            ]
+
+            attempts = []
+            for index, mode in enumerate(paired.MODES):
+                attempts.append({
+                    "pairId": f"pilot-{index}",
+                    "attempt": 1,
+                    "mode": mode,
+                    "phase": "pilot",
+                    "order": ["A", "B"],
+                    "status": "Passed",
+                    "A": {"runner": retained_runner, "launchReceipt": None},
+                    "B": {"runner": retained_runner, "launchReceipt": None},
+                })
+
+            for index in range(40):
+                pair_id = f"formal-{index:02d}"
+                mode = paired.MODES[index % len(paired.MODES)]
+                order = ["A", "B"] if index % 2 == 0 else ["B", "A"]
+                output_root = root / ("output-" + str(index))
+                authority_path = root / ("authority-" + str(index) + ".json")
+                authority_value = {
+                    "schemaVersion": 1,
+                    "kind": historical.FORMAL_AUTHORITY_KIND,
+                    "status": "AuthenticatedRetainedCandidateFormalLaunch",
+                    "side": "B",
+                    "pairId": pair_id,
+                    "attempt": 1,
+                    "mode": mode,
+                    "pairOrder": order,
+                    "projectRoot": str(ROOT.resolve()),
+                    "runnerOutputRoot": str(output_root),
+                    "protocol": protocol_binding,
+                    "schedule": schedule_binding,
+                    "buildMap": map_binding,
+                    "graphReuseBridge": bridge_binding,
+                    "pilotVerification": seal_binding,
+                    "fixtureManifest": historical.binding(fixture),
+                    "nativeOnReceipt": historical.binding(on),
+                    "nativeOffReceipt": historical.binding(off),
+                    "editorReplayReceipt": historical.binding(replay),
+                    "toolBindings": tool_rows,
+                    "pairingPolicyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
+                    "graphSourcePins": graph_pins,
+                    "currentSourcePins": historical_pins,
+                }
+                authority_path.write_text(json.dumps(authority_value), encoding="utf-8")
+                authority_binding = historical.binding(authority_path)
+
+                launch_a = root / ("launch-a-" + str(index) + ".json")
+                launch_a.write_text("{}", encoding="utf-8")
+                launch_b = root / ("launch-b-" + str(index) + ".json")
+                launch_b.write_text(json.dumps({
+                    "formalLaunchAuthority": authority_binding,
+                    "graphReuseBridge": bridge_binding,
+                    "pilotVerification": seal_binding,
+                    "buildMap": map_binding,
+                }), encoding="utf-8")
+
+                attempts.append({
+                    "pairId": pair_id,
+                    "attempt": 1,
+                    "mode": mode,
+                    "phase": "formal",
+                    "order": order,
+                    "status": "Passed",
+                    "graphReuseBridge": bridge_binding,
+                    "pilotVerification": seal_binding,
+                    "A": {
+                        "runner": current_formal_runner,
+                        "launchReceipt": historical.binding(launch_a),
+                        "formalLaunchAuthority": None,
+                    },
+                    "B": {
+                        "runner": current_formal_runner,
+                        "launchReceipt": historical.binding(launch_b),
+                        "formalLaunchAuthority": authority_binding,
+                    },
+                })
+
+            sample_path = root / "sample.json"
+            sample_path.write_text(json.dumps({
+                "schemaVersion": 1,
+                "kind": "H1ControlledSamples",
+                "protocol": protocol_binding,
+                "schedule": schedule_binding,
+                "buildMap": map_binding,
+                "attempts": attempts,
+            }), encoding="utf-8")
+            bridge_info = {
+                "graphSourcePins": graph_pins,
+                "historicalCurrentSourcePins": historical_pins,
+                "retainedPilotRunner": retained_runner,
+            }
+            result = historical.verify_historical_sample_chain(
+                sample_path, seal, bridge, ROOT.resolve(), bridge_info)
+            self.assertEqual(result["formalAttemptCount"], 40)
+            self.assertEqual(result["attemptCount"], 44)
+
+            changed = json.loads(sample_path.read_text())
+            changed["attempts"][-1]["B"]["runner"] = retained_runner
+            sample_path.write_text(json.dumps(changed), encoding="utf-8")
+            with self.assertRaisesRegex(
+                    VerificationError, "runner provenance mismatch"):
+                historical.verify_historical_sample_chain(
+                    sample_path, seal, bridge, ROOT.resolve(), bridge_info)
+
     def test_real_transition_rejects_runtime_pin_change(self):
         old_pins = self.real_old_pins()
         current_pins = self.successor_pins_at_head()
