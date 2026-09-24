@@ -627,3 +627,57 @@ unexpected Git delta, graph artifact mutation, or seal identity change is a hard
 failure and requires explicit diagnosis. Do not rewrite receipts, move source
 pins, or weaken the normal R00 pairing gate.
 
+
+### 5. Reanalyze the completed 27df series after an analysis-only successor
+
+The formal series completed at source
+`27df1a3d60811dc121f296ab561ae313a382b363` is immutable evidence. If a later
+source changes only the closed historical-analysis tool set, do **not** recreate
+its bridge/seal/formal authorities or rerun Players merely to accommodate an
+analyzer contract fix.
+
+Use the fixed-source compatibility tool:
+
+```sh
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --sample-index <27df-final-sample-index.json> \
+  --pilot-verification-receipt <27df-pilot-verification.json> \
+  --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
+  --output <new-compatibility-preflight.json> \
+  --preflight-only
+```
+
+The preflight authenticates:
+
+- historical source `27df1a3d...` and checkout `f5e34235...`;
+- the old bridge transition and verifier hashes from Git;
+- the old guard-v2 pilot seal and exact historical seal verifier inventory;
+- all forty formal attempt authority bindings;
+- historical pilot/current-formal runner provenance;
+- the exact current analysis-only Git delta.
+
+It does not authorize Player execution and does not rewrite any historical
+receipt.
+
+Only after that passes, run the corrected analyzer over the same immutable
+series:
+
+```sh
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --sample-index <27df-final-sample-index.json> \
+  --pilot-verification-receipt <27df-pilot-verification.json> \
+  --graph-reuse-bridge <27df-graph-reuse-bridge.json> \
+  --output <new-historical-performance-analysis.json>
+```
+
+The corrected build-binding contract follows the real R00 producer: build GUID,
+baseline build ID, and runtime ABI hash are required at the raw result top level.
+The nested `playerBuildReceipt` must bind the frozen receipt path/SHA/build
+GUID; baseline/runtime fields are optional there, but if present must agree.
+Wrong or missing top-level identity still fails closed.
+
+The historical compatibility path is fixed to the completed 27df series and an
+exact analysis-only successor set. Any runner, measurement, protocol, schedule,
+graph, Player, native, or execution-verifier source change makes it ineligible
+and requires normal current-source evidence instead.
+
