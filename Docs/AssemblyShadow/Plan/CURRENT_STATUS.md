@@ -1,6 +1,6 @@
 # Current Status
 
-- Candidate analysis/test/V05 source anchor: `25cd25f675c0caaf5009fd1aa3136aa0d98302d8`.
+- Candidate analysis/test/V05 source anchor: `27e67920c6d8445895c1b9db647d733371a067c0`.
 - Previous source anchor: `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`.
 - Latest Local return: `5f8db436e31df017dbff396b375547394c396ad5`.
 - Latest authenticated Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`.
@@ -91,7 +91,7 @@ It does not set `humanGatePassed=true` and does not permit R02.
 
 ## Source scope
 
-The new source anchor `25cd25f...` still satisfies the same exact source policies.
+The new source anchor `27e67920...` still satisfies the same exact source policies.
 
 Source-27df → current remains exactly the existing seven non-metadata analysis/test paths.
 
@@ -107,18 +107,18 @@ No Player runner, shared R00 verifier, runtime/native source, measurement code, 
 
 ## Regression additions
 
-Four V05 fail-closed regression leaves were added to `test_h1_graph_reuse.py`:
+Six V05 fail-closed regression leaves were added to `test_h1_graph_reuse.py`:
 
 1. checkpoint manifest tamper rejection;
 2. successful analysis-only V05 binding with truthful Fresh/Reused classifications;
 3. rejection of non-Passed/non-ComparabilityPassed V04 analysis;
-4. rejection of invalid no-Player evidence.
+4. rejection of invalid no-Player evidence;\n5. rejection of incomplete bounded/full-source evidence cardinality;\n6. rejection of truncated sealed-live inventory cardinality.
 
 Expected next counts:
 
-- bounded Primary: **385**;
-- full Python: **1,069** leaves;
-- if the same environment skip set remains: **1,041 Passed / 28 Skipped / 0 Failed / 0 Error**.
+- bounded Primary: **387**;
+- full Python: **1,071** leaves;
+- if the same environment skip set remains: **1,043 Passed / 28 Skipped / 0 Failed / 0 Error**.
 
 Fresh Local evidence is required.
 
@@ -127,7 +127,7 @@ Fresh Local evidence is required.
 Local must execute one consolidated cycle:
 
 1. V00 source authority at the final pushed handoff HEAD.
-2. V01 bounded **385/385** and full Python zero Failed/Error.
+2. V01 bounded **387/387** and full Python zero Failed/Error.
 3. Exact 7-path / 25-path / d61→25cd 3-path audits.
 4. Repeat complete V02 historical live reauthentication.
 5. Re-run V04.AF / V04.AG because the analysis tool changed within the authorized seven-path successor.
