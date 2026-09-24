@@ -2,7 +2,7 @@
 
 Current analysis/test/V05 source anchor:
 
-`27e67920c6d8445895c1b9db647d733371a067c0`
+`0388479f7073289e3505b992956a7cbe78c302ce`
 
 Latest Local return:
 
@@ -41,7 +41,7 @@ Do not rerun Players.
 3. Require clean tracked state before creating evidence.
 4. Record all four repository paths, branches, commits, remote heads, remotes, worktrees, pins and package reference.
 5. Require demo source pin:
-   `27e67920c6d8445895c1b9db647d733371a067c0`.
+   `0388479f7073289e3505b992956a7cbe78c302ce`.
 6. Require source anchor → final handoff HEAD has zero non-metadata paths.
 7. Run committed handoff/source preflight.
 8. Require `SourceTargetVerifiedNotBuildAccepted`.
@@ -96,7 +96,7 @@ Treat expected skip/pass counts as an expectation, not as permission to alter re
 
 Require:
 
-`27df1a3d60811dc121f296ab561ae313a382b363 → 27e67920c6d8445895c1b9db647d733371a067c0`
+`27df1a3d60811dc121f296ab561ae313a382b363 → 0388479f7073289e3505b992956a7cbe78c302ce`
 
 to equal exactly the existing seven-path `H1HistoricalPerformanceReanalysis-v2` set:
 
@@ -116,7 +116,7 @@ Require retained graph `69130bbb...` → current source to equal the existing ex
 
 Require:
 
-`d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece → 27e67920c6d8445895c1b9db647d733371a067c0`
+`d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece → 0388479f7073289e3505b992956a7cbe78c302ce`
 
 to contain exactly:
 
@@ -170,7 +170,7 @@ Require:
 
 - `AuthenticatedAnalysisOnlySuccessor`;
 - policy `H1HistoricalPerformanceReanalysis-v2`;
-- current source `27e67920...`;
+- current source `0388479f...`;
 - exact 7-path delta;
 - original historical bridge/seal/formal-authority identities;
 - exact four historical input hashes;
