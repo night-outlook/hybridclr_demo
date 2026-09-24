@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1LocalValidationCheckpoint",
+  "createdUtc": "2026-09-24T03:46:31.373351+00:00",
+  "status": "ReturnedToPrimaryAfterFullPythonFixtureFailure",
+  "candidate": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "checkoutCommit": "dd3c8988e9136e0c3a8ca965f82067d6b7c83acd",
+    "sourceAnchor": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
+    "branch": "codex/assembly-shadow-r01b-h1"
+  },
+  "v00r": {
+    "status": "Passed",
+    "restoredPathCount": 9,
+    "anchorToHeadNonMetadataCount": 0,
+    "historicalToHeadExactFive": true,
+    "retainedGraphToAnchorExactTwentyFour": true
+  },
+  "v00": {
+    "status": "SourceTargetVerifiedNotBuildAccepted"
+  },
+  "v01": {
+    "boundedPrimaryStatus": "PassedBoundedTests",
+    "boundedPrimaryPassed": 376,
+    "boundedPrimaryTotal": 376,
+    "pythonStatus": "Failed",
+    "pythonTotal": 1061,
+    "pythonCounts": {
+      "Failed": 1,
+      "Passed": 1032,
+      "Skipped": 28
+    },
+    "failingTest": "test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive",
+    "focusedAsCommittedPassed": false,
+    "focusedInvalidAttemptCount": 44,
+    "focusedFirstErrors": {
+      "A": "R00 raw top-level build field differs: buildGuid",
+      "B": "R00 raw top-level build field differs: buildGuid"
+    },
+    "inMemoryFixtureCorrectionPassed": true
+  },
+  "v02IndependentIntegrity": {
+    "historicalCheckpointManifest": {
+      "exitCode": 0,
+      "entryCount": 92,
+      "allEntriesOK": true
+    },
+    "liveFourHashesMatch": true,
+    "fullLiveGraphAuthentication": "NotRun"
+  },
+  "downstream": {
+    "historicalCompatibilityPreflight": "BlockedNotRun",
+    "correctedHistoricalAnalysis": "BlockedNotRun",
+    "v05": "BlockedNotRun",
+    "independentM08": "BlockedNotRun",
+    "unityAndPlayers": "NotRun"
+  },
+  "gate": {
+    "h1": "InProgress",
+    "lastIndependentM08": "FAIL",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  }
+}

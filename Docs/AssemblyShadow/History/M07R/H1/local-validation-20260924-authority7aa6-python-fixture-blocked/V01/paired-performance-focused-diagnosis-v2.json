@@ -1,0 +1,64 @@
+{
+  "test": "test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive",
+  "asCommittedPassed": false,
+  "asCommittedLog": "test_analyze_sample_index_complete_positive (test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive) ... FAIL\n\n======================================================================\nFAIL: test_analyze_sample_index_complete_positive (test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/tests/test_h1_paired_performance.py\", line 364, in test_analyze_sample_index_complete_positive\n    self.assertEqual(result[\"status\"], \"ComparabilityPassed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ComparabilityIncomplete' != 'ComparabilityPassed'\n- ComparabilityIncomplete\n+ ComparabilityPassed\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.110s\n\nFAILED (failures=1)\n",
+  "captured": [
+    {
+      "status": "ComparabilityIncomplete",
+      "result": "Incomplete",
+      "requirements": {
+        "formalPairsPerMode": {
+          "R00-OFF-NoPatch": 0,
+          "R00-ON-NoPatch": 0,
+          "R00-ON-P01": 0,
+          "R00-ON-P03": 0
+        },
+        "pilotPairsPerMode": {
+          "R00-OFF-NoPatch": 0,
+          "R00-ON-NoPatch": 0,
+          "R00-ON-P01": 0,
+          "R00-ON-P03": 0
+        },
+        "formalStartupObservationsPerMode": {
+          "R00-OFF-NoPatch": 0,
+          "R00-ON-NoPatch": 0,
+          "R00-ON-P01": 0,
+          "R00-ON-P03": 0
+        },
+        "formalComplete": false,
+        "pilotsComplete": false,
+        "startupComplete": false,
+        "chronologyComplete": true,
+        "globalIntervalsResolved": true,
+        "globalIntervalsNonOverlapping": true,
+        "pilotsBeforeFormalByTimestamp": true
+      },
+      "firstAttempt": {
+        "pairId": "R00-OFF-NoPatch-pilot-01",
+        "attempt": 1,
+        "mode": "R00-OFF-NoPatch",
+        "phase": "pilot",
+        "order": [
+          "A",
+          "B"
+        ],
+        "valid": false,
+        "sides": {
+          "A": {
+            "valid": false,
+            "error": "R00 raw top-level build field differs: buildGuid"
+          },
+          "B": {
+            "valid": false,
+            "error": "R00 raw top-level build field differs: buildGuid"
+          }
+        },
+        "errors": {
+          "A": "R00 raw top-level build field differs: buildGuid",
+          "B": "R00 raw top-level build field differs: buildGuid"
+        }
+      },
+      "invalidCount": 44
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "focusedAsCommitted": {
+    "passed": false,
+    "log": "test_analyze_sample_index_complete_positive (test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive) ... FAIL\n\n======================================================================\nFAIL: test_analyze_sample_index_complete_positive (test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/tests/test_h1_paired_performance.py\", line 364, in test_analyze_sample_index_complete_positive\n    self.assertEqual(result[\"status\"], \"ComparabilityPassed\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'ComparabilityIncomplete' != 'ComparabilityPassed'\n- ComparabilityIncomplete\n+ ComparabilityPassed\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.110s\n\nFAILED (failures=1)\n",
+    "captured": [
+      {
+        "status": "ComparabilityPassed",
+        "result": "Passed",
+        "requirements": {
+          "formalPairsPerMode": {
+            "R00-OFF-NoPatch": 10,
+            "R00-ON-NoPatch": 10,
+            "R00-ON-P01": 10,
+            "R00-ON-P03": 10
+          },
+          "pilotPairsPerMode": {
+            "R00-OFF-NoPatch": 1,
+            "R00-ON-NoPatch": 1,
+            "R00-ON-P01": 1,
+            "R00-ON-P03": 1
+          },
+          "formalStartupObservationsPerMode": {
+            "R00-OFF-NoPatch": 10,
+            "R00-ON-NoPatch": 10,
+            "R00-ON-P01": 10,
+            "R00-ON-P03": 10
+          },
+          "formalComplete": true,
+          "pilotsComplete": true,
+          "startupComplete": true,
+          "chronologyComplete": true,
+          "globalIntervalsResolved": true,
+          "globalIntervalsNonOverlapping": true,
+          "pilotsBeforeFormalByTimestamp": true
+        },
+        "firstAttempt": {
+          "pairId": "R00-OFF-NoPatch-pilot-01",
+          "attempt": 1,
+          "mode": "R00-OFF-NoPatch",
+          "phase": "pilot",
+          "order": [
+            "A",
+            "B"
+          ],
+          "valid": true,
+          "sides": {
+            "A": {
+              "valid": true,
+              "error": ""
+            },
+            "B": {
+              "valid": true,
+              "error": ""
+            }
+          },
+          "metrics": {
+            "pairId": "R00-OFF-NoPatch-pilot-01",
+            "attempt": 1,
+            "mode": "R00-OFF-NoPatch",
+            "order": [
+              "A",
+              "B"
+            ],
+            "phase": "pilot",
+            "sides": {
+              "A": {
+                "startedAtUnix": 0.0,
+                "readinessMilliseconds": 10.0,
+                "operations": {
+                  "allocation:first": 0.02,
+                  "allocation:warmup": 0.02,
+                  "allocation:repeat10": 0.02,
+                  "allocation:repeat10000": 0.02,
+                  "reflectionInvoke:first": 0.02,
+                  "reflectionInvoke:warmup": 0.02,
+                  "reflectionInvoke:repeat10": 0.02,
+                  "reflectionInvoke:repeat10000": 0.02,
+                  "closedGeneric:first": 0.02,
+                  "closedGeneric:warmup": 0.02,
+                  "closedGeneric:repeat10": 0.02,
+                  "closedGeneric:repeat10000": 0.02
+                },
+                "operationTicks": {
+                  "allocation:first": 20,
+                  "allocation:warmup": 20,
+                  "allocation:repeat10": 20,
+                  "allocation:repeat10000": 20,
+                  "reflectionInvoke:first": 20,
+                  "reflectionInvoke:warmup": 20,
+                  "reflectionInvoke:repeat10": 20,
+                  "reflectionInvoke:repeat10000": 20,
+                  "closedGeneric:first": 20,
+                  "closedGeneric:warmup": 20,
+                  "closedGeneric:repeat10": 20,
+                  "closedGeneric:repeat10000": 20
+                },
+                "memory": {
+                  "before-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  },
+                  "after-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  }
+                },
+                "memoryMetadata": {
+                  "before-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  },
+                  "after-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  }
+                }
+              },
+              "B": {
+                "startedAtUnix": 1.0,
+                "readinessMilliseconds": 10.0,
+                "operations": {
+                  "allocation:first": 0.02,
+                  "allocation:warmup": 0.02,
+                  "allocation:repeat10": 0.02,
+                  "allocation:repeat10000": 0.02,
+                  "reflectionInvoke:first": 0.02,
+                  "reflectionInvoke:warmup": 0.02,
+                  "reflectionInvoke:repeat10": 0.02,
+                  "reflectionInvoke:repeat10000": 0.02,
+                  "closedGeneric:first": 0.02,
+                  "closedGeneric:warmup": 0.02,
+                  "closedGeneric:repeat10": 0.02,
+                  "closedGeneric:repeat10000": 0.02
+                },
+                "operationTicks": {
+                  "allocation:first": 20,
+                  "allocation:warmup": 20,
+                  "allocation:repeat10": 20,
+                  "allocation:repeat10000": 20,
+                  "reflectionInvoke:first": 20,
+                  "reflectionInvoke:warmup": 20,
+                  "reflectionInvoke:repeat10": 20,
+                  "reflectionInvoke:repeat10000": 20,
+                  "closedGeneric:first": 20,
+                  "closedGeneric:warmup": 20,
+                  "closedGeneric:repeat10": 20,
+                  "closedGeneric:repeat10000": 20
+                },
+                "memory": {
+                  "before-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  },
+                  "after-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  }
+                },
+                "memoryMetadata": {
+                  "before-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  },
+                  "after-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "invalidCount": 0
+      }
+    ]
+  },
+  "diagnosticInMemoryFixtureCorrection": {
+    "passed": true,
+    "log": "test_analyze_sample_index_complete_positive (test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.106s\n\nOK\n",
+    "captured": [
+      {
+        "status": "ComparabilityPassed",
+        "result": "Passed",
+        "requirements": {
+          "formalPairsPerMode": {
+            "R00-OFF-NoPatch": 10,
+            "R00-ON-NoPatch": 10,
+            "R00-ON-P01": 10,
+            "R00-ON-P03": 10
+          },
+          "pilotPairsPerMode": {
+            "R00-OFF-NoPatch": 1,
+            "R00-ON-NoPatch": 1,
+            "R00-ON-P01": 1,
+            "R00-ON-P03": 1
+          },
+          "formalStartupObservationsPerMode": {
+            "R00-OFF-NoPatch": 10,
+            "R00-ON-NoPatch": 10,
+            "R00-ON-P01": 10,
+            "R00-ON-P03": 10
+          },
+          "formalComplete": true,
+          "pilotsComplete": true,
+          "startupComplete": true,
+          "chronologyComplete": true,
+          "globalIntervalsResolved": true,
+          "globalIntervalsNonOverlapping": true,
+          "pilotsBeforeFormalByTimestamp": true
+        },
+        "firstAttempt": {
+          "pairId": "R00-OFF-NoPatch-pilot-01",
+          "attempt": 1,
+          "mode": "R00-OFF-NoPatch",
+          "phase": "pilot",
+          "order": [
+            "A",
+            "B"
+          ],
+          "valid": true,
+          "sides": {
+            "A": {
+              "valid": true,
+              "error": ""
+            },
+            "B": {
+              "valid": true,
+              "error": ""
+            }
+          },
+          "metrics": {
+            "pairId": "R00-OFF-NoPatch-pilot-01",
+            "attempt": 1,
+            "mode": "R00-OFF-NoPatch",
+            "order": [
+              "A",
+              "B"
+            ],
+            "phase": "pilot",
+            "sides": {
+              "A": {
+                "startedAtUnix": 0.0,
+                "readinessMilliseconds": 10.0,
+                "operations": {
+                  "allocation:first": 0.02,
+                  "allocation:warmup": 0.02,
+                  "allocation:repeat10": 0.02,
+                  "allocation:repeat10000": 0.02,
+                  "reflectionInvoke:first": 0.02,
+                  "reflectionInvoke:warmup": 0.02,
+                  "reflectionInvoke:repeat10": 0.02,
+                  "reflectionInvoke:repeat10000": 0.02,
+                  "closedGeneric:first": 0.02,
+                  "closedGeneric:warmup": 0.02,
+                  "closedGeneric:repeat10": 0.02,
+                  "closedGeneric:repeat10000": 0.02
+                },
+                "operationTicks": {
+                  "allocation:first": 20,
+                  "allocation:warmup": 20,
+                  "allocation:repeat10": 20,
+                  "allocation:repeat10000": 20,
+                  "reflectionInvoke:first": 20,
+                  "reflectionInvoke:warmup": 20,
+                  "reflectionInvoke:repeat10": 20,
+                  "reflectionInvoke:repeat10000": 20,
+                  "closedGeneric:first": 20,
+                  "closedGeneric:warmup": 20,
+                  "closedGeneric:repeat10": 20,
+                  "closedGeneric:repeat10000": 20
+                },
+                "memory": {
+                  "before-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  },
+                  "after-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  }
+                },
+                "memoryMetadata": {
+                  "before-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  },
+                  "after-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  }
+                }
+              },
+              "B": {
+                "startedAtUnix": 1.0,
+                "readinessMilliseconds": 10.0,
+                "operations": {
+                  "allocation:first": 0.02,
+                  "allocation:warmup": 0.02,
+                  "allocation:repeat10": 0.02,
+                  "allocation:repeat10000": 0.02,
+                  "reflectionInvoke:first": 0.02,
+                  "reflectionInvoke:warmup": 0.02,
+                  "reflectionInvoke:repeat10": 0.02,
+                  "reflectionInvoke:repeat10000": 0.02,
+                  "closedGeneric:first": 0.02,
+                  "closedGeneric:warmup": 0.02,
+                  "closedGeneric:repeat10": 0.02,
+                  "closedGeneric:repeat10000": 0.02
+                },
+                "operationTicks": {
+                  "allocation:first": 20,
+                  "allocation:warmup": 20,
+                  "allocation:repeat10": 20,
+                  "allocation:repeat10000": 20,
+                  "reflectionInvoke:first": 20,
+                  "reflectionInvoke:warmup": 20,
+                  "reflectionInvoke:repeat10": 20,
+                  "reflectionInvoke:repeat10000": 20,
+                  "closedGeneric:first": 20,
+                  "closedGeneric:warmup": 20,
+                  "closedGeneric:repeat10": 20,
+                  "closedGeneric:repeat10000": 20
+                },
+                "memory": {
+                  "before-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  },
+                  "after-benchmark": {
+                    "currentRssBytes": 100,
+                    "managedBytes": 50,
+                    "lifetimePeakRssBytes": 120
+                  }
+                },
+                "memoryMetadata": {
+                  "before-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  },
+                  "after-benchmark": {
+                    "measurement": "DarwinMachTaskBasicInfoResidentAndLifetimePeakBytes",
+                    "measurementSemantics": "currentRssBytes=mach_task_self/task_info(MACH_TASK_BASIC_INFO).resident_size; managedBytes=GC.GetTotalMemory(false); lifetimePeakRssBytes=resident_size_max; noForcedGC"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "invalidCount": 0
+      }
+    ]
+  },
+  "note": "In-memory test fixture correction only; no repository files changed, not an authoritative source validation."
+}

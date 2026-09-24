@@ -1,6 +1,39 @@
 # Local Validation report
 
-## Current run — 2026-09-23/24, analysis anchor `7aa6f619`
+## Current run — 2026-09-23/24, repaired analysis-source handoff
+
+### Exit
+
+**Local Validation → Primary Implementation: FAIL at complete Python discovery.**
+
+The final pushed Primary handoff was checked out cleanly at `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, HEAD `dd3c8988e9136e0c3a8ca965f82067d6b7c83acd`. Its build-input/tool anchor remains `7aa6f61994da354b04464e38ddfc8552cc5c3055`. The other validation worktrees and matching pushed commits are `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` at `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` at `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` at `6be7f38bec2fa4677d24efc1a4a1294240789933`. All use the expected branch. Native/package/IL2CPP pins and the Unity package file reference resolve to this validation workspace. Exact repository inventories are in the new checkpoint's `V00/v00r-source-authority.json`.
+
+V00.R passed: all nine restored `.agents`/`.codex` files are byte-identical to their `7aa6f619` Git blobs; the complete 7aa→HEAD non-metadata delta is empty. The 27df→HEAD non-metadata delta is exactly the fixed five analysis-only paths, and the retained 6913→7aa delta is exactly the 24-path allowlist. The committed V00 preflight returned `SourceTargetVerifiedNotBuildAccepted`. This authenticates source identity, not a new Player build or acceptance gate.
+
+Bounded Primary regression passed 376/376. Complete Python discovery then executed 1,061 leaves: 1,032 `Passed`, 28 explicit `Skipped`, and one `Failed`. The failure is `test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive`. Its synthetic `raw()` fixture stores build GUID, baseline ID, and runtime ABI only inside `playerBuildReceipt`; the corrected analyzer requires those three values at raw-result top level and rejects all 44 synthetic pilot/formal attempts with `R00 raw top-level build field differs: buildGuid`. The focused committed test reproduced this. Adding those top-level fields from the expected receipt **in memory only** made the focused test return `ComparabilityPassed`; no repository test or production source was edited. The bounded suite does not contain this failing positive test.
+
+Changing the test file in this checkout would create a sixth non-metadata path after the fixed `7aa6f619` anchor and invalidate both current source preflight and the exact five-path historical compatibility rule. This is therefore a Primary source-authority decision, even though the test fixture defect itself is narrow. `RETURN_TO_WEB.md` gives the reproduction and corrective direction.
+
+### Results
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| Four-repository Git/native/package preflight | `Passed` | `V00/v00r-source-authority.json`; exact pushed commits and clean checkouts before report edits |
+| V00.R repaired source-authority audit | `Passed` | Nine restored bytes exact; 7aa→HEAD zero non-metadata; 27df→HEAD exact five; 6913→7aa exact 24 |
+| V00 committed handoff/source preflight | `Passed` | `V00/handoff-preflight.json`; `SourceTargetVerifiedNotBuildAccepted` |
+| V01 bounded Primary | `Passed` | 376/376, full inventory and log in `V01/bounded-primary/` |
+| V01 complete Python discovery | `Failed` | 1,032 Passed / 28 Skipped / 1 Failed; `V01/python-inventory.json` and `python-tests.log` |
+| V01 focused fixture diagnosis | `FailedAsCommitted`; `PassedWithInMemoryDiagnosticCorrection` | 44 invalid synthetic attempts as committed; no file edit or authoritative PASS claim |
+| V02 historical checkpoint and four fixed live hashes | `PassedHistoricalIntegrityOnly` | 92/92 manifest entries and four SHA-256 matches; full live graph not reauthenticated this cycle |
+| V04 historical compatibility preflight and corrected analysis | `Blocked / NotRun` | Complete Python prerequisite has one failure |
+| Analysis-only closure checkpoint / V05 / independent M08 | `Blocked / NotRun` | V04 remains incomplete |
+| Unity, IL2CPP, native builds, Players, profiler | `NotRun` | Current handoff is analysis-only; no new build GUID or execution evidence |
+
+The run used Python 3.14.6 on macOS arm64; command receipts in the checkpoint record UTC start/end, exact commands, logs, paths, and exit codes. The handoff specifies Unity 2022.3.62f2 / StandaloneOSX / arm64; Unity was not invoked. The authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority7aa6-python-fixture-blocked/`, containing all fresh V00/V01 and independent integrity evidence plus `MANIFEST.sha256`. The immutable source-27df execution checkpoint and 40/40 formal series remain historical; no Player was rerun and no historical receipt was changed. Earlier runtime evidence remains `ReusedAuditedFromFF3D`, earlier Unity EditMode 1,076/1,076 remains `ReusedAuditedFromD18`, and source-27df formal execution remains historical. None is relabelled as fresh current-source execution.
+
+Primary must publish a coherent test-fixture correction and source/compatibility handoff. After it is pushed, Local must restart V00.R/V00, rerun the full Python suite, then perform complete live historical reauthentication, historical compatibility preflight, corrected analysis, checkpoint authentication, V05, and genuinely independent M08 in order. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. R02 is closed.
+
+## Historical run — 2026-09-23/24, source-pin mismatch
 
 ### Exit
 
