@@ -58,3 +58,15 @@ InterpreterImage.cpp 改变后，依赖真实 loader 的 native/Player 结果必
 新证据使用新版本名称，不替换 v6。结构可为 audits/v6、sources、builds、count-tests、regressions、capacity、performance、indexes；每个 block/文件均入 index。保留 failed/invalid attempts 与 selected run 集合。只有 summary 的包不完整。
 
 每 finding 绑定 source commit/lines、test IDs、raw evidence 和独立 review。Failed、Unavailable、NotRun、NoCoverage、ReusedAudited 不归并为 Passed；材料齐备仅为 ReadyForHumanH1。本次计划提交不认证任何原 archive，也不构成新执行证据。
+
+## E8. Analysis-only successor 与 V05 分类
+
+当 current source 相对已认证 Player execution 只包含经明确 allowlist 审查的 analysis/test-only 变化时，可在不重新执行 Player 的前提下建立后继 evidence chain，但必须保持证据身份分离：
+
+- current source/test regression：`FreshCurrentSourceValidation`；
+- 原 source-27df Player/runtime execution：`ReusedAuthenticatedFromSource27df`；
+- 对原始 immutable raw 的当前 analyzer 复算：`ReanalyzedImmutableHistoricalExecution`。
+
+`H1AnalysisOnlySuccessorEvidence-v1` 只负责验证 checkpoint manifest、source pairing、live historical reauthentication、V04 compatibility/analysis、no-Player scope，并把完整 performance JSON 与 canonical H1 review documents 绑定给 independent review。它不得声称 fresh current-source Player execution，不得把 `ComparabilityPassed` 当作 performance acceptance，也不得设置 M08/human/R02 PASS。
+
+独立 M08 PASS 仅表示 `ReadyForHumanReviewGate`。只有人工 H1 明确批准后才可将 `humanGatePassed` 置 true 并允许 R02。
