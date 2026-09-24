@@ -1,6 +1,35 @@
 # Local Validation report
 
-## Current run — 2026-09-24, v2 historical compatibility preflight
+## Current run — 2026-09-24, split-checkout historical analysis
+
+### Exit
+
+**Local Validation → Primary Implementation: V04 closed; V05 is not eligible under the current handoff, so independent M08 was not run.** V04.AF authenticated the separate current analysis checkout and historical evidence root. V04.AG then returned `Passed` / `ComparabilityPassed` for the immutable source-27df 40/40 series. No Player was rerun.
+
+The validation checkout was `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, pushed handoff HEAD `0bed47e981e5b3b4ac8b9ed2b4c423e11aa88b31` before this metadata-only report/checkpoint commit, and source/tool anchor `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`. The other clean, remotely verified worktrees remained `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` at `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` at `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` at `6be7f38bec2fa4677d24efc1a4a1294240789933`. The source pins, package reference, remote heads, worktree registrations, and host versions are recorded in `V00/source-authority.json`.
+
+The authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`. Its `MANIFEST.sha256` covers 24 evidence/README files, SHA-256 `04ca3e24a1f16f21cbbde7e62493070529ffce4720beebac2c1f1615ab3b3553`; all 24 verified independently. Command receipts retain exact commands, UTC start/end, cwd, exit codes, stdout/stderr and paths. V04.AG ran once from `2026-09-24T06:57:24Z` to `17:08:44Z` and exited 0. Python was 3.14.6 on macOS arm64. Unity 2022.3.62f2 / StandaloneOSX / arm64 is the pinned target, but Unity and Players were not invoked in this analysis-only cycle.
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| V00 four-repository authority and committed preflight | `Passed` | `V00/`; all four pushed worktrees clean at entry; `d61→0bed` zero non-metadata paths; preflight `SourceTargetVerifiedNotBuildAccepted` |
+| V01 bounded Primary | `Passed` | `V01/bounded-primary/`: 381/381 Passed, zero skips/failures/errors; four split-checkout regressions included |
+| V01 complete Python discovery | `CompletedWithNonPass` from explicit environment skips; required zero failures/errors met | `V01/python-inventory.json` and full log: 1,065 leaves, 1,037 Passed, 28 Skipped, zero Failed/Error; the inventory CLI exit 2 reflects its skip policy |
+| V01 exact source audits | `Passed` | `V00/source-authority.json`: source-27df→d61 exact v2 seven paths; retained-6913→d61 exact v2 25 paths; d239→d61 exact three paths |
+| V02 source-27df checkpoint and complete live reauthentication | `PassedHistoricalIntegrityOnly` | `V02/`: 92/92 prior checkpoint manifest; four fixed live hashes; 33,792/33,792 sealed files, 1,606,993,133 bytes, zero missing/content/stable-stat mismatches; 184 additional current-live bindings match and five historical Git-source/tool identities match pinned Git blobs, zero unresolved |
+| V04.AF split-checkout compatibility | `Passed` | `V04/historical-compatibility.json`: `AuthenticatedAnalysisOnlySuccessor`, analysis root is the designated worktree, historical root is the unchanged ordinary owner, exact v2 policy and source-27df bridge/seal/formal authority |
+| V04.AG strict historical analysis | `Passed` / `ComparabilityPassed` | `V04/historical-performance-analysis.json` and `analysis-validation.json`: 45 retained attempts, 44 valid, exactly one preserved invalid ON-NoPatch pilot, 40/40 valid formal, ten formal pairs and startup observations per mode, one valid pilot per mode, complete chronology and non-overlap |
+| V04.AH analysis-only closure | `Passed` | New 24-entry SHA-256 checkpoint manifest verified; full measured statistics, including unfavorable values, retained unchanged in analysis JSON |
+| V05 successor | `NotEligible / NotRun` | `V05/eligibility.json`: current handoff names V05 but provides no runnable analysis-only successor criteria; the historical series cannot be relabelled fresh current-source execution and Player reruns are forbidden in this handoff |
+| Genuinely independent M08 | `NotEligible / NotRun` | `M08/eligibility.json`; no successor package eligible for a whole-chain review, so historical independent M08 `FAIL` remains the only M08 result |
+
+The original failed `R00-ON-NoPatch-pilot-01` retains its process-group cleanup error and skipped B side. The 40 formal attempts were not replayed. V04.AG authenticated and reanalyzed existing bytes; it did not create current-source Player evidence or change the original live source-27df paths. `V04/no-player-proof.json` records Local command issuance and its scope limit. Earlier runtime evidence remains `ReusedAuditedFromFF3D`, and Unity EditMode 1,076/1,076 remains `ReusedAuditedFromD18`; neither is fresh current-source execution.
+
+`ComparabilityPassed` establishes that the paired measurements can be analyzed, not that they meet a performance target. In the `repeat10000` phase, the median paired B/A ratios for allocation, reflection invoke, and closed generic are respectively 1.133/1.266/1.204 for ON-P01 and 1.150/1.276/1.221 for ON-P03. The candidate B median current RSS exceeds protected A in every mode at both memory snapshots. The analysis JSON retains every measured value and statistic for independent review.
+
+Primary must state an exact V05 successor-evidence contract that is compatible with this analysis-only, no-Player boundary, or explicitly defer V05 to a separately authorized fresh-execution program. Only after an eligible V05 package should a genuinely independent M08 review be commissioned. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. R02 remains closed.
+
+## Historical run — 2026-09-24, v2 historical compatibility preflight
 
 ### Exit
 

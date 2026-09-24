@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1HistoricalAnalysisCompatibility",
+  "status": "AuthenticatedAnalysisOnlySuccessor",
+  "policyId": "H1HistoricalPerformanceReanalysis-v2",
+  "projectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+  "historicalProjectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+  "analysisProjectRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "analysisSourceAuthority": {
+    "projectRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "checkoutCommit": "0bed47e981e5b3b4ac8b9ed2b4c423e11aa88b31",
+    "sourceRevision": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+    "sourcePins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+        "localPath": "."
+      }
+    },
+    "sourcePinsBinding": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "061d4209d52a6236565dccf5065de4ced7967f6fdd172e6f8e49d9186997989a"
+    },
+    "toolBinding": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_historical_reanalysis.py",
+      "sha256": "54ef92da69b925012ab53abaf4783875ce837d1c99130a3864b793553661fa06"
+    }
+  },
+  "analysisDelta": {
+    "policyId": "H1HistoricalPerformanceReanalysis-v2",
+    "historicalSourceRevision": "27df1a3d60811dc121f296ab561ae313a382b363",
+    "historicalCheckoutRevision": "f5e34235641c212c715aef3405925ddd4cf28ee6",
+    "currentSourceRevision": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+    "nonMetadataDelta": [
+      {
+        "path": "Tools/AssemblyShadow/README.md",
+        "oldBlob": "a2fa421ee95ff187cdb617ec0fc354c16912f026",
+        "newBlob": "d701b4c05388ff80f9cb187a18c8b1c4b9c761e8",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+        "oldBlob": "fa43c75eb05e4e3fde4071e1038dcad7136a1a97",
+        "newBlob": "62d36ac9cc25b2fec69a544b5e30f81b94a1ca9a",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/h1_graph_reuse.py",
+        "oldBlob": "1d8336964323ec81c561ff5c22854560b507da0d",
+        "newBlob": "85316786da48b0bb7e4c915448308ff209e36a8e",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/h1_historical_reanalysis.py",
+        "oldBlob": null,
+        "newBlob": "b025d7d230086873085a85e7231fe4cb453200e3",
+        "status": "Added"
+      },
+      {
+        "path": "Tools/AssemblyShadow/h1_paired_performance.py",
+        "oldBlob": "59ae89133d5758f28c62ff34da421fbaf972701d",
+        "newBlob": "b3b41afdd3c3303ca46a6a499d8867b667a624c0",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/tests/test_h1_graph_reuse.py",
+        "oldBlob": "1e535c6cb96bfbd198d875a7404d627794047d63",
+        "newBlob": "0da5edfd9da81a88e3ba756d02055abba739baad",
+        "status": "Modified"
+      },
+      {
+        "path": "Tools/AssemblyShadow/tests/test_h1_paired_performance.py",
+        "oldBlob": "7cc6deb38cbad96b0bcd4055cd9c69593a35556b",
+        "newBlob": "a01160aa0672b512194d1343cb2541fb47d4902a",
+        "status": "Modified"
+      }
+    ],
+    "nonMetadataDeltaSha256": "087d19ad6b792cb2b9c19952923eba866a7b5d00db025907917686f3241be0a9"
+  },
+  "historicalBridge": {
+    "historicalBridge": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+      "sha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c"
+    },
+    "historicalEvidenceProjectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+    "graphSourcePins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "69130bbb3a6df516916dddb5ad263799a7c6e5e3",
+        "localPath": "."
+      }
+    },
+    "historicalCurrentSourcePins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "27df1a3d60811dc121f296ab561ae313a382b363",
+        "localPath": "."
+      }
+    },
+    "analysisSourcePins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+        "localPath": "."
+      }
+    },
+    "retainedPilotRunner": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+      "sha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c"
+    },
+    "installedRuntimeVerification": {
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "sourceFiles": 955,
+      "installedFiles": 957,
+      "demoSourceVerified": true,
+      "configuredShadowMode": "on",
+      "receiptSha256": "4d8afaeac07b7d0209c8c2539419279b6331184f04857bb743a6a4e7cfd3b1b0"
+    },
+    "transitionSha256": "7209ea430c34c4d5475a5604543ad3e549d5261cce9f8403025e19f5d08dc34e"
+  },
+  "historicalSeal": {
+    "historicalSeal": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+      "sha256": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631"
+    },
+    "sourcePilotIndex": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260920-authority6913-v04a/V04/performance/samples/pilot-04-attempt-1/sample-index.json",
+      "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+    },
+    "fileCount": 33792,
+    "fileInventorySha256": "b9b84a3cfb6cd5571edaaeef3cfa9d97e0e79c463370590db3d0267ce8e18d0b",
+    "guardInventorySha256": "4ef4650c70a5a97a22344b772bd1e3b67db784b730538727a1e5d626b7469d99"
+  },
+  "historicalFormalBatch": {
+    "historicalFormalBatch": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+      "sha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667"
+    },
+    "formalPairCount": 40,
+    "formalPairsPassed": 40
+  },
+  "historicalSeries": {
+    "historicalSampleIndex": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+      "sha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+    },
+    "attemptCount": 45,
+    "formalAttemptCount": 40
+  },
+  "authenticatedEvidenceSha256": {
+    "graphReuseBridge": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c",
+    "pilotVerification": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631",
+    "finalSampleIndex": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021",
+    "formalBatch": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667"
+  }
+}

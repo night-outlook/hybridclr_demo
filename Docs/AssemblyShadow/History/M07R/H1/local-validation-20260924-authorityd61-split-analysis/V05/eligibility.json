@@ -1,0 +1,15 @@
+{
+  "kind": "H1V05EligibilityAssessment",
+  "recordedUtc": "2026-09-24T17:10:57.242929+00:00",
+  "status": "NotEligibleUnderCurrentHandoff",
+  "execution": "NotRun",
+  "reason": "The current handoff names V05 and refers to existing successor-evidence requirements but does not provide a runnable analysis-only V05 contract or acceptance criteria. The prior fresh-current-source successor contract requires new build/Player evidence that this handoff explicitly forbids rerunning. The source-27df series remains historical and cannot be relabelled fresh current-source execution.",
+  "currentAuthorityFiles": [
+    "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+    "Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md",
+    "Docs/AssemblyShadow/Handoff/source-targets.json"
+  ],
+  "completedPrerequisite": "V04.AG Passed / ComparabilityPassed for immutable source-27df series",
+  "requestedPrimaryResolution": "Publish an exact V05 successor-evidence contract compatible with the analysis-only no-Player boundary, or state that V05 remains ineligible until a separately authorized fresh-execution program.",
+  "noPlayerRerun": true
+}

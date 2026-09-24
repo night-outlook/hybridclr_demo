@@ -1,0 +1,55 @@
+{
+  "kind": "H1HistoricalStrictAnalysisValidation",
+  "recordedUtc": "2026-09-24T17:09:55.274777+00:00",
+  "analysisPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authorityd61-split-checkout-a/V04/historical-performance-analysis.json",
+  "analysisSha256": "bf2a5c4c67c55023a9f2d86ede03e7c52395d3a7dc08ca9a612426663831e882",
+  "checks": {
+    "kind": true,
+    "result": true,
+    "status": true,
+    "compatibility": true,
+    "attempts45": true,
+    "valid44": true,
+    "invalidHistoricalPilotOnly": true,
+    "formal40AllValid": true,
+    "oneValidPilotPerMode": true,
+    "tenFormalPerMode": true,
+    "tenStartupPerMode": true,
+    "chronology": true,
+    "nonOverlap": true,
+    "statisticsTenPerMode": true
+  },
+  "passed": true,
+  "invalidAttempt": {
+    "pairId": "R00-ON-NoPatch-pilot-01",
+    "attempt": 1,
+    "mode": "R00-ON-NoPatch",
+    "phase": "pilot",
+    "order": [
+      "A",
+      "B"
+    ],
+    "valid": false,
+    "sides": {
+      "A": {
+        "valid": false,
+        "error": "Could not kill owned runner process group: [Errno 1] Operation not permitted"
+      },
+      "B": {
+        "valid": false,
+        "error": "Skipped because the previous runner process group could not be proven gone."
+      }
+    },
+    "errors": {
+      "A": "Could not kill owned runner process group: [Errno 1] Operation not permitted",
+      "B": "Skipped because the previous runner process group could not be proven gone."
+    }
+  },
+  "formalModeCounts": {
+    "R00-OFF-NoPatch": 10,
+    "R00-ON-NoPatch": 10,
+    "R00-ON-P01": 10,
+    "R00-ON-P03": 10
+  },
+  "note": "Reanalysis of immutable historical source-27df execution evidence only. It is not a new Player series or current-source runtime acceptance."
+}

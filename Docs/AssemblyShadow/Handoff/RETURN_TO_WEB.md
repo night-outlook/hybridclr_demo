@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Blocker: V04.AF reads current analysis source pins from the historical bridge checkout
+## Current return: split-checkout V04 passed; V05 contract is unresolved
+
+The pushed `0bed47e981e5b3b4ac8b9ed2b4c423e11aa88b31` demo handoff at `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` passed final V00 source authority against anchor `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`, bounded Primary 381/381, full Python discovery 1,065 leaves with 1,037 Passed / 28 environment Skipped / zero Failed/Error, and exact seven/25/three-path source audits. The three other repository heads stayed at their handed-off pushed commits. The original source-27df checkpoint manifest and all 33,792 sealed live files reauthenticated; no Player was rerun.
+
+V04.AF returned `AuthenticatedAnalysisOnlySuccessor` with separate designated analysis and unchanged historical evidence roots. V04.AG completed in one read-only invocation with `Passed` / `ComparabilityPassed`: 45 retained attempts, 44 valid, 40/40 formal, one selected valid pilot and ten formal startup observations per mode, complete chronology and non-overlap. The original failed ON-NoPatch pilot attempt remains invalid. The analysis-only V04.AH checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`; all 24 entries of its SHA-256 manifest verify. `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` gives the final Local report.
+
+The current handoff names V05 and refers to existing successor-evidence requirements but supplies no executable analysis-only V05 contract or acceptance criteria. The source-27df Player series remains historical and cannot be presented as fresh current-source execution; the current handoff bars Player reruns. Local therefore records V05 `NotEligible / NotRun` and did not commission independent M08. Primary needs to publish an exact V05 successor-evidence contract compatible with this no-Player analysis boundary, or explicitly defer V05 to a separately authorized fresh-execution program. The historical independent M08 result remains `FAIL`; H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`. R02 stays closed.
+
+## Historical blocker: V04.AF read current analysis source pins from the historical bridge checkout
 
 ### Symptom and reproduction
 
