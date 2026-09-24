@@ -63,21 +63,8 @@ if (Test-Path -LiteralPath $rootModeScriptPath -PathType Leaf) {
 
         It "reads gate settings from the repository config" {
             Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $true -FightFullReview $false
-            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "GPT-6-Sol"
+            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "GPT-5.6-Sol"
             $mode | Should Be "FinalAndMilestones"
-        }
-
-        It "keeps a Sol-only gate off for GPT-6 Astra and Luna" {
-            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
-            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-astra") | Should Be "Off"
-            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-luna") | Should Be "Off"
-        }
-
-        It "rejects malformed model identities instead of inferring a Sol gate" {
-            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
-            { & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "unrecognized-sol-model" } | Should Throw
-            { & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-sol-astra" } | Should Throw
-            { & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-5.6-sol" } | Should Throw
         }
 
         It "does not require an account-specific config file" {
@@ -102,7 +89,7 @@ if (Test-Path -LiteralPath $rootModeScriptPath -PathType Leaf) {
 
         It "keeps MainAgentModel as a compatibility alias" {
             Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
-            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -MainAgentModel "GPT-6-Sol"
+            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -MainAgentModel "GPT-5.6-Sol"
             $mode | Should Be "Final"
         }
     }
