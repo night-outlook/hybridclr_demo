@@ -1,0 +1,49 @@
+{
+  "kind": "H1HistoricalDirectBindingAudit",
+  "recordedUtc": "2026-09-24T06:15:14.148774+00:00",
+  "inputReceipts": [
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json"
+  ],
+  "directUniqueBindingsByReceipt": {
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json": 11,
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json": 33810,
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json": 46,
+    "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json": 135
+  },
+  "uniqueBindings": 33981,
+  "coveredByFullSealedInventory": 33792,
+  "extraBindingsHashed": 189,
+  "extraBytesHashed": 878741040,
+  "mismatchCount": 5,
+  "mismatches": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+      "expectedSha256": "b261dc9db758ee2dd685ae3f05887b276eed7f7b41bc13eccbaec7761d9272f0",
+      "actualSha256": "d65a92704f698585420bb5c6966d7229855285a619d2b53834f3be861749a57c"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/h1_graph_reuse.py",
+      "expectedSha256": "0c55e05351d248cdde6d80fd8c4c56ba6a8e51bda409a191e32b18088f48b18e",
+      "actualSha256": "767ca943aa59107e6591a73dbf89f79870c5ceab74b490b5123521043866b591"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/h1_paired_performance.py",
+      "expectedSha256": "3f1e9a3b0d1f30f3352ffbd7e566a9b93f6004f9c65b764ada9cfc4255556a7a",
+      "actualSha256": "0ee2d090c0d90eed7fa20c96fdd44d7da212fd1b77bae491424ec80066da1be6"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+      "expectedSha256": "afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c",
+      "actualSha256": "a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280"
+    },
+    {
+      "path": "Tools/AssemblyShadow/h1_graph_reuse.py",
+      "expectedSha256": "0c55e05351d248cdde6d80fd8c4c56ba6a8e51bda409a191e32b18088f48b18e",
+      "actualSha256": "3f4352a897079370d3d894185a1ba44b19505895e2e27063efde5741948e9b78"
+    }
+  ],
+  "note": "This audits direct path/SHA bindings of four fixed receipts; historical compatibility preflight performs semantic and deeper authority verification."
+}

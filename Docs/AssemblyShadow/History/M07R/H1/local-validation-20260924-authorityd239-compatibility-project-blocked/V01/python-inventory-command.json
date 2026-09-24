@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_test_inventory.py",
+    "python",
+    "--tests",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/tests",
+    "--pattern",
+    "test*.py",
+    "--log",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authorityd239-reanalysis-c/V01/python-tests.log",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authorityd239-reanalysis-c/V01/python-inventory.json"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startUtc": "2026-09-24T06:10:13.340055+00:00",
+  "endUtc": "2026-09-24T06:12:10.195484+00:00",
+  "exitCode": 2,
+  "stdout": "{\"kind\": \"H1PythonLeafInventory\", \"status\": \"CompletedWithNonPass\", \"count\": 1061, \"counts\": {\"Passed\": 1033, \"Skipped\": 28}}\n",
+  "stderr": ""
+}

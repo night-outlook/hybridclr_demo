@@ -1,6 +1,34 @@
 # Local Validation report
 
-## Current run — 2026-09-23/24, repaired analysis-source handoff
+## Current run — 2026-09-24, v2 historical compatibility preflight
+
+### Exit
+
+**Local Validation → Primary Implementation: FAIL at V04.AF historical compatibility preflight.** The fail-closed preflight rejected the checkout selected for current analysis authority. Corrected historical analysis, V05, and independent M08 were not run. No Players were rerun.
+
+The validation checkout was `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, pushed HEAD `aedf3c58c3e3f8ab612552563a29c8906b82bea1` before this metadata-only report commit, with demo source/tool pin `d239d9d00784ea2df22133cb8c938ec25035f5a0`. The other clean, remotely verified validation worktrees were `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` at `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` at `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` at `6be7f38bec2fa4677d24efc1a4a1294240789933`. Native/package/IL2CPP source pins and the Unity package file reference resolve to these worktrees. `V00/source-authority.json` records exact paths, branches, commits, remote heads, worktree registrations, pins, and host versions before report edits.
+
+The authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd239-compatibility-project-blocked/`. Its `MANIFEST.sha256` covers 17 evidence and README files; verification passes. Command receipts contain exact commands, UTC start/end, cwd, exit codes, and output paths. The run used Python 3.14.6 on macOS arm64. The handoff specifies Unity 2022.3.62f2 / StandaloneOSX / arm64; Unity and Players were not invoked. No local source or test fix was made.
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| V00 four-repository source/native/package authority | `Passed` | `V00/source-authority.json`; all four initial worktrees clean and at pushed commits; anchor `d239d9d0` → handoff HEAD has zero non-metadata paths |
+| V00 committed handoff preflight | `Passed` | `V00/handoff-preflight.json`: `SourceTargetVerifiedNotBuildAccepted`, not a build acceptance result |
+| V01 bounded Primary | `Passed` | `V01/bounded-primary/results.json` and `tests.log`: 377/377 Passed, zero skips/failures/errors |
+| V01 complete Python discovery | `CompletedWithNonPass` from explicit skips; handoff requirements met | `V01/python-inventory.json` and `python-tests.log`: 1,061 leaves, 1,033 Passed, 28 environment Skipped, zero Failed/Error; corrected positive paired-performance leaf Passed. Inventory CLI exit 2 reflects skip policy, not a test failure; 27 skips lack the canonical H1R coordination directory and one lacks real compiler/config paths. |
+| V01A exact source audits | `Passed` | `V00/source-authority.json`: `27df1a3d` → `d239d9d0` exact seven-path `H1HistoricalPerformanceReanalysis-v2`; `69130bbb` → `d239d9d0` exact 25-path `H1V04RetainedGraphToolOnlySuccessor-v2`; `27df` → handoff HEAD remains exact seven paths |
+| V02 source-27df checkpoint manifest and fixed live inputs | `PassedHistoricalIntegrityOnly` | `V02/historical-checkpoint-manifest.log`: 92/92; `V02/live-evidence-reauthentication.json`: original live bridge `c03665db...`, seal `bdc4062a...`, formal batch `97ddb6c8...`, final sample `a8e519c3...` all SHA-256 exact |
+| V02 complete live sealed graph | `PassedReadOnlyReauthentication` | 33,792/33,792 files, 1,606,993,133 bytes, zero missing/content/stable-stat mismatches. 184 additional current-live direct bindings match. The initial generic binding audit marked five historical Git-source/tool identities as live mismatches; `V02/direct-binding-semantics-audit.json` verifies their pinned Git blobs and reports zero unresolved mismatches. Both audit receipts are retained. This does not replace the V04 semantic proof. |
+| V04.AF v2 historical compatibility | `Failed` | `V04/historical-compatibility-v2.json`, command receipt and checkout-selection diagnosis: exact v2 policy says the two new test paths are missing from the source delta selected by the tool |
+| V04.AG corrected historical strict analysis | `Blocked / NotRun` | Requires V04.AF `AuthenticatedAnalysisOnlySuccessor` |
+| V04.AH analysis-only closure, V05, independent M08 | `Blocked / NotRun` | No authenticated compatibility/analysis result; historical M08 `FAIL` is unchanged |
+| Current Unity/native/IL2CPP builds, Players, profiler | `NotRun` | Analysis-only handoff; original source-27df 40/40 execution remains historical and unchanged |
+
+The preflight uses the original live source-27df bridge, seal, batch, and final sample paths as required. It checks `bridge.projectRoot` (`/Users/ah/GitHub/hybridclr/hybridclr_demo`) for **current** source pins. That ordinary owner checkout is detached at `d7854b16c09b02d4494d28c2b0ea015ba83f58a3` and pins demo source `7aa6f61994da354b04464e38ddfc8552cc5c3055`. The designated validation checkout pins `d239d9d0`; the audited v2 seven-path delta is there. Thus the preflight returns `H1HistoricalPerformanceReanalysisFailure` with `missing=[Tools/AssemblyShadow/h1_bee_primary_tests.py, Tools/AssemblyShadow/tests/test_h1_paired_performance.py]`. This is a checkout-selection defect in the compatibility tool, not a live evidence hash failure. `RETURN_TO_WEB.md` contains the exact reproduction and Primary implementation direction.
+
+The immutable source-27df execution checkpoint and 40/40 formal series remain historical. Earlier runtime evidence remains `ReusedAuditedFromFF3D`; Unity EditMode 1,076/1,076 remains `ReusedAuditedFromD18`. Neither is fresh current-source execution. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. After Primary publishes a source-authority-safe repair, Local must restart V00, V01, live reauthentication, V04.AF, V04.AG, checkpoint authentication, V05, and genuinely independent M08 in order. R02 remains closed.
+
+## Historical run — 2026-09-23/24, repaired analysis-source handoff
 
 ### Exit
 

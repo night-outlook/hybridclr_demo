@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_handoff_preflight.py",
+    "--project",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "--role",
+    "candidate",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authorityd239-reanalysis-c/V00/handoff-preflight.json"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startUtc": "2026-09-24T06:08:45.170422+00:00",
+  "endUtc": "2026-09-24T06:08:46.719400+00:00",
+  "exitCode": 0,
+  "stdout": "{\n  \"kind\": \"PrimaryHandoffPreflight\",\n  \"status\": \"SourceTargetVerifiedNotBuildAccepted\",\n  \"role\": \"candidate\",\n  \"repository\": \"night-outlook/hybridclr_demo\",\n  \"branch\": \"codex/assembly-shadow-r01b-h1\",\n  \"checkoutCommit\": \"aedf3c58c3e3f8ab612552563a29c8906b82bea1\",\n  \"codeCommit\": \"d239d9d00784ea2df22133cb8c938ec25035f5a0\",\n  \"handoffHashes\": {\n    \"Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md\": \"3c3b2c3e757f7264f252a76033b18849dd0e64737930a6083add33b28cfcd441\",\n    \"Docs/AssemblyShadow/Handoff/source-targets.json\": \"f451ca8ec3859a24ee673791298840edc87245e1175c4de105c23c2a2a882318\"\n  },\n  \"sourcePinSha256\": \"bc2a3bf8e8c5501c729734ec1974d12333b898295176eef3f2a7b4613e72acc2\",\n  \"nativeInstallationVerified\": false,\n  \"humanGatePassed\": false,\n  \"mayEnterR02\": false\n}\n",
+  "stderr": ""
+}

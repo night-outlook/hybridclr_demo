@@ -1,0 +1,22 @@
+{
+  "kind": "H1HistoricalReanalysisProjectSelectionDiagnosis",
+  "recordedUtc": "2026-09-24T06:17:12.891541+00:00",
+  "bridgePath": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+  "bridgeSha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c",
+  "bridgeProjectRoot": "/Users/ah/GitHub/hybridclr/hybridclr_demo",
+  "bridgeProjectHead": "d7854b16c09b02d4494d28c2b0ea015ba83f58a3",
+  "bridgeProjectBranch": "",
+  "bridgeProjectDemoSourcePin": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
+  "designatedValidationProject": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "designatedValidationHead": "aedf3c58c3e3f8ab612552563a29c8906b82bea1",
+  "designatedValidationDemoSourcePin": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
+  "callChain": [
+    "main",
+    "authenticate_compatibility",
+    "bridge.projectRoot",
+    "_current_source_pins(project)",
+    "authenticate_analysis_delta(project,current_revision)"
+  ],
+  "preflightFailure": "Historical analysis successor delta differs from the exact policy: missing h1_bee_primary_tests.py and tests/test_h1_paired_performance.py",
+  "conclusion": "Preflight derives current analysis source from the original historical bridge projectRoot, which is the ordinary owner checkout at 7aa6f619. The designated validation checkout is pinned to d239d9d0. This is not a missing live evidence hash."
+}
