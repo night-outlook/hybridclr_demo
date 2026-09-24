@@ -1,142 +1,128 @@
-# Static Review — R00 Final Analysis Contract + Historical 40/40 Reanalysis
+# Static Review — H1 Test-Only Historical Reanalysis Successor
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff**, subject to real compatibility preflight and reanalysis of the immutable 27df series.
+**PASS for Primary → Local Validation handoff, with fresh empirical Local validation required.**
 
-Reviewed source/tool anchor:
+Reviewed source anchor:
 
-`7aa6f61994da354b04464e38ddfc8552cc5c3055`
+`d239d9d00784ea2df22133cb8c938ec25035f5a0`
 
-## Latest source-authority review
+## Finding
 
-**PASS for repair strategy; empirical V00 rerun remains required.**
+Local's one full-discovery failure is a stale synthetic positive fixture, not evidence of a production analyzer defect or Player failure.
 
-The post-anchor agent migration made the checkout fail the unchanged complete non-metadata-tree check. Treating all `.agents/` or `.codex/` files as metadata would widen the verifier around files that can influence validation behavior, while advancing the source anchor would break the fixed five-file historical-analysis compatibility contract.
+The real analyzer contract requires raw top-level:
 
-Primary therefore restored only the nine drifted agent-configuration files to their exact source-anchor blobs. A remote comparison from `7aa6f619...` to the repaired branch now contains only paths already classified as metadata by the existing verifier. A remote comparison from source-27df to the repaired branch retains exactly the original five non-metadata analysis paths.
+- `buildGuid`;
+- `baselineBuildId`;
+- `runtimeAbiHash`.
 
-No historical receipt, runtime tool, analyzer source, verifier source, protocol, schedule, graph, Player, or native source was changed by this repair.
+The fixture had those values only in its nested `playerBuildReceipt`.
 
-## Returned finding
+Local's in-memory diagnostic added the top-level fields and reached `ComparabilityPassed`.
 
-The 40/40 formal series passed execution.
+## Fixture correction review
 
-The final analyzer then rejected 44 analyzable attempts because it expected:
+The committed fixture now mirrors the authenticated producer shape:
 
-- `playerBuildReceipt.baselineBuildId`;
-- `playerBuildReceipt.runtimeAbiHash`.
+- required top-level build identity exists;
+- nested receipt path/SHA/build GUID remains bound;
+- optional nested baseline/runtime copies remain matching.
 
-The real R00 producer does not require those nested duplicates.
+The production analyzer was not relaxed.
 
-It emits and verifies those identities at raw top level.
+Missing or incorrect top-level identity still fails closed.
 
-## Analyzer correction review
+## Bounded-regression review
 
-The corrected analyzer now requires top-level:
+The bounded Primary runner now explicitly loads only:
 
-- build GUID;
-- baseline build ID;
-- runtime ABI hash.
+`test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive`
 
-It still requires nested:
+This directly closes the coverage gap that allowed 376/376 while full discovery failed.
 
-- receipt path;
-- receipt hash;
-- build GUID.
+Expected bounded count is 377.
 
-Optional nested baseline/runtime values, when present, must agree.
+## Historical compatibility review
 
-This is stricter than simply deleting checks: the intended build identity remains mandatory and is now checked at the producer-defined location.
+The v1 five-path policy cannot honestly authorize the new test change.
 
-## Historical-series reuse decision
+Primary therefore published:
 
-The 40/40 series may be reused because:
+`H1HistoricalPerformanceReanalysis-v2`
 
-- all 40 formal pairs passed runtime execution;
-- no formal retry was needed;
-- build-map comparability passed;
-- chronology passed;
-- raw evidence is immutable and checkpointed;
-- the defect exists only in final analyzer interpretation;
-- current source changes no execution or measurement component.
+with an exact **seven-path** source-27df → current delta.
 
-Normal current-source bridge verification is **not** relaxed to make this work.
+The two additions are test/regression-only:
 
-Instead, a separate analysis-only compatibility policy authenticates historical receipts against historical Git.
+1. `Tools/AssemblyShadow/h1_bee_primary_tests.py`
+2. `Tools/AssemblyShadow/tests/test_h1_paired_performance.py`
 
-## Compatibility proof review
+The other five paths are the already-reviewed v1 analysis paths.
 
-The fixed policy validates:
+No execution runner, R00 verifier, measurement source, protocol, schedule, graph producer, Player/native/runtime source, or execution-authority source is added.
 
-1. exact bridge SHA;
-2. exact guard-v2 seal SHA;
-3. exact formal-batch SHA and 40/40 status;
-4. exact final sample-index SHA;
-5. historical source/check-out pins;
-6. graph bridge 69130→27df transition;
-7. exact historical bridge verifier inventory;
-8. exact historical seal verifier inventory;
-9. retained pilot historical runner provenance;
-10. all 40 formal current-runner/formal-authority bindings;
-11. protected A has no retained authority;
-12. candidate B successful launch echoes authority/bridge/seal/map;
-13. exact five-file 27df→current analysis-only Git delta.
+## Retained-graph policy review
 
-Any execution/runtime/measurement/protocol/schedule/graph/native delta rejects compatibility.
+The current retained-graph source transition is versioned to:
 
-## Evidence selection
+`H1V04RetainedGraphToolOnlySuccessor-v2`
 
-The historical index contains 45 attempts:
+It contains exactly **25 non-metadata paths**: the prior reviewed 24 plus the paired-performance test fixture.
 
-- 5 pilot attempts, including one preserved failed attempt and its later successful retry;
-- 40 passed formal attempts.
+Changing the existing runner `h1_bee_primary_tests.py` does not add a new unique retained-graph path because that path was already in the 24-path set.
 
-Existing analyzer selection semantics retain the failed pilot evidence but select the later valid pilot for that pair.
+Historical source-27df bridge/formal authorities continue to bind v1. The historical authenticator explicitly validates their original v1 policy IDs and hashes.
 
-Expected selected evidence after the build-binding fix:
+## Source-anchor review
 
-- 4 valid pilot pairs;
-- 40 valid formal pairs.
+The implementation/source anchor is:
 
-No evidence is deleted or relabelled.
+`d239d9d00784ea2df22133cb8c938ec25035f5a0`
 
-## Regression review
+A direct source-27df comparison at that anchor contains exactly the seven reviewed non-metadata paths.
 
-Primary tests cover:
+All later commits in this Primary cycle are metadata/handoff only.
 
-- real Local contract diagnosis;
-- correct real-producer build binding;
-- top-level tampering/missing-field rejection;
-- optional nested conflict rejection;
-- real exact five-file Git delta;
-- historical bridge and seal Git authentication;
-- exact checkpoint hash constants;
-- formal-batch 40/40 contract;
-- synthetic complete formal authority chain and runner-provenance isolation.
+No `.agents/` or `.codex/` metadata exemption was introduced.
 
-## Source scope
+## Historical evidence integrity
 
-`27df1a3d... → 7aa6f619...` is exactly five non-metadata analysis paths.
+Primary did not modify:
 
-`69130bbb... → 7aa6f619...` is the closed 24-path retained-graph tooling allowlist.
+- source-27df raw results;
+- historical build receipts;
+- graph bridge;
+- guard-v2 seal;
+- formal authorities;
+- formal batch;
+- sample indexes;
+- protocol/schedule/map;
+- Player artifacts.
 
-No Player/runtime/measurement/native/protocol/schedule/graph-production source changed.
+The fixed four historical SHA-256 identities remain unchanged.
 
-## Primary validation
+## Validation boundary
 
-Workflow `35942350651` at `4c368bdb...` passed bounded **376/376**, live handoff **11/11**, R01 early capsule **7/7**, early launch **20/20**, early results **20/20**, failure pipeline **16/16**, both M07 recovery regressions, and lazy **10/10**.
+No fresh GitHub Actions run was visible for the new source anchor.
 
-Artifact `10784819521` has SHA-256 `9df947a5443d24f8f4d1a8cc71b1f440f3894f357a84824aa47ea65023c7f51b`.
+Therefore this review does **not** claim:
 
-## Residual empirical requirements
+- bounded 377/377;
+- full Python PASS;
+- live historical compatibility PASS;
+- historical analysis PASS;
+- V05 PASS;
+- independent M08 PASS;
+- Human Review Gate readiness.
 
-Local must run the compatibility proof and corrected analysis against the real live 27df evidence.
+Local must provide those empirical results in order.
 
-If it passes, no Player rerun is required and V04 may close.
+## Stop condition
 
-Then authenticate an analysis-only checkpoint and proceed to V05 / genuinely independent M08.
+If source authority, bounded/full Python validation, exact source audits, historical compatibility, or strict analysis fails, return to Primary.
 
-If compatibility fails for a non-analysis reason, return to Primary rather than widening the policy.
+Do not rerun Players merely to work around analysis/test defects.
 
 H1 remains `InProgress`. Do not begin R02.
