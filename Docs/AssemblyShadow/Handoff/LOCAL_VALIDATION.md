@@ -1,6 +1,43 @@
 # Local Validation report
 
-## Current run — 2026-09-23 authority `27df1a3d`
+## Current run — 2026-09-23/24, analysis anchor `7aa6f619`
+
+### Exit
+
+**Local Validation → Primary Implementation: FAIL at V00 source authority.**
+
+The latest pushed handoff was read at demo checkout HEAD `d7854b16c09b02d4494d28c2b0ea015ba83f58a3`, branch `codex/assembly-shadow-r01b-h1`, path `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`. Its declared analysis source/tool anchor is `7aa6f61994da354b04464e38ddfc8552cc5c3055`. All four validation worktrees are on the handoff branch, clean, and match the pushed remote heads. Their exact paths, commits, remotes, worktree registrations, package references, source pins, submodule inventories, and host versions are in the new checkpoint's `V00/repository-preflight.json`.
+
+| Repository | Validation checkout | Pushed commit |
+| --- | --- | --- |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `d7854b16c09b02d4494d28c2b0ea015ba83f58a3` before this report commit |
+| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
+| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
+| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
+
+Native, package, and IL2CPP pins equal those three repository commits. `Packages/manifest.json` resolves the HybridCLR Unity package to this validation workspace. No new build GUID or Player artifact was generated. The completed formal evidence remains bound to execution source `27df1a3d60811dc121f296ab561ae313a382b363` and retained graph source `69130bbb3a6df516916dddb5ad263799a7c6e5e3`; its four fixed live evidence hashes are recorded in `V02/historical-live-four-hashes.json`.
+
+The current `h1_handoff_preflight.py --project <candidate> --role candidate --output <new V00 output>` returned exit 1: `Blocked: Demo HEAD contains build-input changes after the source pin`. The exact nine non-metadata changes from `7aa6f619` to `d7854b1` are the three `.agents/skills/agent-collaboration` files and six `.codex/agents` profiles. The source verifier compares the complete non-metadata Git tree at the pin to HEAD, so the migration commit `d7854b1` invalidated the pinned checkout. The source-to-source five-path analysis delta and 24-path retained-graph delta remain exact, but they do not authenticate this later HEAD.
+
+### Results
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| V00 repository/branch/remote/native/package pins | `Passed` | `V00/repository-preflight.json`; clean worktrees and exact remote heads before report commit |
+| V00 current committed handoff/source preflight | `Failed` | `V00/preflight.json`; source pin rejected before output receipt |
+| V01 exact source-to-source audits | `PassedForAnchorsOnly` | `V01A/source-audits.json`: 27df→7aa exact five; 6913→7aa exact 24; 7aa→HEAD has nine non-metadata files |
+| V02 historical checkpoint manifest | `PassedHistoricalIntegrityOnly` | 92/92 manifest entries verified in `V02/historical-checkpoint-manifest.log` |
+| V02 four fixed live evidence hashes | `PassedHistoricalIntegrityOnly` | Bridge, seal, batch, and final sample hash-identical at original live paths; no full live graph reauthentication this cycle |
+| V00 bounded Primary / complete Python discovery | `Blocked / NotRun` | Source preflight prerequisite failed |
+| V04 historical compatibility and corrected analysis | `Blocked / NotRun` | Source-authority prerequisite failed; no analysis result claimed |
+| V04 new checkpoint / V05 / independent M08 | `Blocked / NotRun` | No authenticated current analysis checkout |
+| Unity, IL2CPP, native builds, Players, profiler | `NotRun` | Current handoff specifies analysis-only validation; no new execution evidence |
+
+The fresh run used Python 3.14.6, PowerShell 7.6.3, and Git 2.50.1 on macOS arm64. The handoff specifies Unity 2022.3.62f2 / StandaloneOSX / arm64; Unity was not invoked. The preflight command, UTC start/end, exit code, stdout/stderr, Git inventories, full path lists, hashes, and manifest log are in `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority7aa6-source-pin-blocked/`. That checkpoint is the evidence for this return and references the immutable 27df execution checkpoint. Historical runtime, EditMode, pilot, and formal results remain historical and are not promoted to current-source PASS.
+
+Primary must restore a coherent pushed handoff source identity while preserving the completed 40/40 formal series and the source verifier's fail-closed guarantee. `RETURN_TO_WEB.md` gives the reproduction and implementation boundary. After a new pushed handoff, Local must restart V00 and run V01, historical compatibility, corrected analysis, checkpoint, V05, and independent M08 in order. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. R02 is closed.
+
+## Historical run — 2026-09-23 authority `27df1a3d`
 
 ### Exit
 
