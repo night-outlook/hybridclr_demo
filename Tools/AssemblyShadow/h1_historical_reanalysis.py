@@ -24,6 +24,10 @@ HISTORICAL_SOURCE_REVISION = "27df1a3d60811dc121f296ab561ae313a382b363"
 HISTORICAL_CHECKOUT_REVISION = "f5e34235641c212c715aef3405925ddd4cf28ee6"
 RETAINED_GRAPH_REVISION = "69130bbb3a6df516916dddb5ad263799a7c6e5e3"
 POLICY_ID = "H1HistoricalPerformanceReanalysis-v1"
+HISTORICAL_BRIDGE_SHA256 = "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c"
+HISTORICAL_SEAL_SHA256 = "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631"
+HISTORICAL_FINAL_SAMPLE_SHA256 = "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+HISTORICAL_FORMAL_BATCH_SHA256 = "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667"
 BRIDGE_KIND = "H1GraphReuseBridge"
 SEAL_KIND = "H1PilotVerificationReceipt"
 FORMAL_AUTHORITY_KIND = "H1FormalSideLaunchAuthority"
@@ -480,10 +484,18 @@ def verify_historical_sample_chain(sample_index_path: Path, seal_path: Path,
 
 def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
                                bridge_path: Path) -> dict[str, Any]:
+    sample_index_path = canonical_file(sample_index_path, "historical final sample index")
+    seal_path = canonical_file(seal_path, "historical pilot seal")
     bridge_path = canonical_file(bridge_path, "historical graph bridge")
+    require(digest(sample_index_path) == HISTORICAL_FINAL_SAMPLE_SHA256,
+            "Historical reanalysis is limited to the authenticated 27df final sample index")
+    require(digest(seal_path) == HISTORICAL_SEAL_SHA256,
+            "Historical reanalysis is limited to the authenticated 27df pilot seal")
+    require(digest(bridge_path) == HISTORICAL_BRIDGE_SHA256,
+            "Historical reanalysis is limited to the authenticated 27df graph bridge")
+
     bridge_value = read_json(bridge_path)
     project = canonical_dir(bridge_value.get("projectRoot", ""), "candidate project")
-    sample_index_path = canonical_file(sample_index_path, "historical final sample index")
     sample = read_json(sample_index_path)
     build_map_path = _bound(sample.get("buildMap"), "historical build map")
 
@@ -513,6 +525,12 @@ def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
         "historicalBridge": bridge_info,
         "historicalSeal": seal_info,
         "historicalSeries": sample_info,
+        "authenticatedEvidenceSha256": {
+            "graphReuseBridge": HISTORICAL_BRIDGE_SHA256,
+            "pilotVerification": HISTORICAL_SEAL_SHA256,
+            "finalSampleIndex": HISTORICAL_FINAL_SAMPLE_SHA256,
+            "formalBatch": HISTORICAL_FORMAL_BATCH_SHA256,
+        },
         "pairingAuthority": pairing_authority,
     }
 
