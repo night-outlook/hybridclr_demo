@@ -89,11 +89,11 @@
     "policy": "Preserve its committed old-profile pins; never install candidate runtime into this reference."
   },
   "primaryValidation": {
-    "workflowRun": 35731096138,
-    "handoffCommit": "7093ea03ff371d2bac6b79304d3f39fb18336762",
-    "implementationCommit": "27df1a3d60811dc121f296ab561ae313a382b363",
-    "testCount": 368,
-    "passed": 368,
+    "workflowRun": 35942875626,
+    "handoffCommit": "9019911bad3924c26f1503c82c39b8ee0cce1463",
+    "implementationCommit": "7aa6f61994da354b04464e38ddfc8552cc5c3055",
+    "testCount": 376,
+    "passed": 376,
     "nonpasses": 0,
     "handoffTests": "11/11",
     "r01EarlyCapsuleTests": "7/7",
@@ -103,15 +103,16 @@
     "m07RecoveryLabelBinder": "Passed",
     "m07MutableInputRecovery": "Passed",
     "r01bLazyTests": "10/10",
-    "crossRemountGuardRegression": "Passed; st_dev-only drift produces the same acceptance guard, while inode/mode/size/mtimeNs/ctimeNs mutations each change it. New seals bind CrossRemountStableStatGuard v2 and old device-bound guard schemas are rejected.",
-    "collisionResistanceRegression": "Passed; internal project-output IDs are derived from the full canonical requested output path plus a 12-hex SHA-256 suffix. Two actual paired runs with the same pair/attempt leaf under different batch roots persist distinct project-local outputs without collision.",
-    "retainedPilotAndFormalRegression": "All prior retained-runner admission, graph bridge, nested early authority, formal side-B subprocess authority, seal/cache, batch/retry, and final-analysis regressions remain Passed.",
-    "artifactId": 10695328184,
-    "artifactSha256": "e939d91da81895d9dfb5d8d19aa3fc48ff6bc1189ef3bc4528cc00218689f513",
-    "artifactBytes": 12825837,
-    "scope": "Primary source/tool validation only. Covers cross-remount seal guard v2, old-seal rejection, collision-resistant paired outputs, retained pilot runner provenance, authenticated graph reuse, formal subprocess authority, seal/cache/formal-batch/final-analysis contracts, live handoff/source authority, R01/lazy contracts, and M07 recovery tests. Not real Local new guard-v2 bridge/seal, fresh 40-pair formal Player series, final performance analysis, V05, M08, or human H1 approval.",
-    "finalMetadataBaseCommit": "9e6b69d1990edecd819a12751c2857a85dbf4917",
-    "finalMetadataPolicy": "This source-target commit is the final planned repository write. It changes only handoff authority metadata and triggers the full Primary workflow. No executable/tool changes are permitted after implementationCommit 27df1a3d60811dc121f296ab561ae313a382b363."
+    "analyzerContractRegression": "Passed; final analyzer binds buildGuid/baselineBuildId/runtimeAbiHash at the authenticated raw R00 top level, requires nested receipt path/SHA/buildGuid, accepts absent nested baseline/runtime duplicates, and rejects missing/wrong top-level identity or conflicting optional nested copies.",
+    "historicalAnalysisDeltaRegression": "Passed; real Git comparison from completed execution source 27df1a3d to current analysis source 7aa6f619 is exactly the fixed five-path analysis-only allowlist and excludes runner/R00 verifier/measurement/protocol/schedule/graph/runtime source changes.",
+    "historicalEvidenceAuthenticationRegression": "Passed; historical bridge and guard-v2 seal are reconstructed against exact Git 27df tool hashes, exact historical tool inventories are required, fixed checkpoint bridge/seal/formal-batch/final-index hashes are pinned, and formal authority/runner provenance remains source-specific.",
+    "historicalReanalysisRegression": "Passed; compatibility path authenticates the immutable source-27df 4-pilot/40-formal authority chain and preserves the one historical failed pilot as non-selected evidence without granting execution authority to the current analysis successor.",
+    "artifactId": 10784918609,
+    "artifactSha256": "dcc14702644d1303743a87698f5daba97ffa3cd910bf6a6d2b15e20629236865",
+    "artifactBytes": 12864223,
+    "scope": "Primary source/tool validation only. Covers corrected final-analyzer build binding, fixed-source historical reanalysis authentication, exact historical bridge/seal/formal-authority Git provenance, exact analysis-only source delta, live handoff/source authority, all prior H1 bridge/seal/formal contracts, R01/lazy contracts, and M07 recovery tests. Not real Local compatibility preflight/reanalysis result, V05, independent M08, or human H1 approval.",
+    "finalMetadataBaseCommit": "9019911bad3924c26f1503c82c39b8ee0cce1463",
+    "finalMetadataPolicy": "This source-target commit is the final planned repository write for this Primary cycle. It changes only handoff authority metadata and triggers the full Primary workflow. No executable/tool changes are permitted after implementationCommit 7aa6f61994da354b04464e38ddfc8552cc5c3055."
   },
   "retentionRepair": {
     "returnedByLocalValidationCommit": "425186b213313eb945571c01a2b060ae701e7bd8",
@@ -199,7 +200,7 @@
   "gateState": {
     "name": "H1",
     "status": "InProgress",
-    "technicalReadiness": "BlockedPendingFreshV00ToV05",
+    "technicalReadiness": "AwaitingHistoricalFinalReanalysis",
     "lastIndependentM08": "FAIL",
     "humanGatePassed": false,
     "mayEnterR02": false
