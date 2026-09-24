@@ -701,3 +701,48 @@ measurement, protocol, schedule, graph producer, Player, native, or
 execution-verifier source change makes the historical path ineligible and
 requires normal current-source evidence instead.
 
+
+### 6. Bind V05 analysis-only successor evidence
+
+After a fresh Local cycle has authenticated current source/tests, completely
+reauthenticated the immutable source-27df evidence, and produced a Passed /
+ComparabilityPassed V04 closure checkpoint, bind V05 without creating or
+relabeling Player execution:
+
+```sh
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --analysis-project <current-validation-checkout> \
+  --v05-package \
+  --current-checkpoint <authenticated-current-v04-closure-checkpoint> \
+  --historical-checkpoint <authenticated-source-27df-execution-checkpoint> \
+  --output <new-v05-successor-evidence.json>
+```
+
+Policy ID: `H1AnalysisOnlySuccessorEvidence-v1`.
+
+The V05 binder verifies both checkpoint manifests, current V00/V01 source/test
+authority, V02 complete live reauthentication, V04 compatibility/strict
+analysis, the exact four source-27df evidence hashes, and the scoped no-Player
+receipt. It binds the full performance analysis JSON; it does not summarize
+away unfavorable timing, RSS, managed-memory, or variance measurements.
+
+Required classifications are intentionally distinct:
+
+- current source regression: `FreshCurrentSourceValidation`;
+- source-27df Player/runtime execution:
+  `ReusedAuthenticatedFromSource27df`;
+- performance: `ReanalyzedImmutableHistoricalExecution`;
+- fresh current-source Player execution: false.
+
+A successful V05 binder returns
+`SuccessorEvidenceBoundForIndependentM08`. It does **not** claim runtime
+acceptance, M08 PASS, human approval, or permission to enter R02.
+
+The V05 output also binds the canonical H1 design/evidence/performance/gate
+documents and the repository's read-only `code-gate-reviewer` configuration.
+A genuine independent H1 M08 review uses those bound inputs and must return
+PASS/FAIL/BLOCKED. `ComparabilityPassed` is only a measurement-validity
+result. The performance protocol has no approved SLA; measured regressions and
+additional memory remain explicit review inputs. M08 PASS makes the state only
+`ReadyForHumanReviewGate`; the human H1 decision remains separate.
+
