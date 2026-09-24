@@ -628,7 +628,7 @@ failure and requires explicit diagnosis. Do not rewrite receipts, move source
 pins, or weaken the normal R00 pairing gate.
 
 
-### 5. Reanalyze the completed 27df series after an analysis-only successor
+### 5. Reanalyze the completed 27df series after an analysis/test-only successor
 
 The formal series completed at source
 `27df1a3d60811dc121f296ab561ae313a382b363` is immutable evidence. If a later
@@ -679,8 +679,14 @@ The nested `playerBuildReceipt` must bind the frozen receipt path/SHA/build
 GUID; baseline/runtime fields are optional there, but if present must agree.
 Wrong or missing top-level identity still fails closed.
 
-The historical compatibility path is fixed to the completed 27df series and an
-exact analysis-only successor set. Any runner, measurement, protocol, schedule,
-graph, Player, native, or execution-verifier source change makes it ineligible
-and requires normal current-source evidence instead.
+The historical compatibility path uses `H1HistoricalPerformanceReanalysis-v2`
+and is fixed to the completed 27df series plus an exact seven-path
+analysis/test-only successor set. Relative to v1, the only added paths are the
+bounded Primary regression runner and the paired-performance synthetic fixture;
+no execution/runtime/measurement source is added. The retained-graph transition
+uses `H1V04RetainedGraphToolOnlySuccessor-v2` with the corresponding exact
+25-path tool/test/CI allowlist. Any execution runner, measurement, protocol,
+schedule, graph producer, Player, native, or execution-verifier source change
+makes the historical path ineligible and requires normal current-source evidence
+instead.
 
