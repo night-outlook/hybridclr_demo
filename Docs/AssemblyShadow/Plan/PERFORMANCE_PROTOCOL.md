@@ -117,6 +117,26 @@ first-observed 是当前 probe 首次计时，不自动是全路径 cold；列�
 
 相同阶段记录 current RSS、managed bytes；lifetime peak 单列。默认 timed loop 内不强制 GC；若 setup 后显式 GC，两边一致并记录。不得把 peak−initial 称为精确 metadata 占用，或把 512 MiB 输入当 RAM 上限。
 
+## P5A. R00 raw build binding 与历史分析兼容
+
+R00 raw producer 的 build identity contract 是分层的：
+
+- raw result 顶层必须包含并由 R00 verifier 验证 `buildGuid`、`baselineBuildId`、`runtimeAbiHash`；
+- nested `playerBuildReceipt` 是 frozen M07 receipt 的绑定摘要，必须包含正确 `path`、`sha256`、`buildGuid`；
+- nested `playerBuildReceipt.baselineBuildId` / `runtimeAbiHash` **不是必需字段**；若存在则必须与顶层和 frozen M07 receipt 一致。
+
+final analyzer 必须按以上真实 producer contract 验证，不能额外要求 producer 未承诺的 nested duplicate fields。缺少或错误的顶层 build identity、错误 receipt path/hash/buildGuid、或存在但冲突的 nested identity 仍必须 fail closed。
+
+若完整 formal series 已在旧 source/tool anchor 下生成且 immutable raw/launch/authority evidence 已认证，而后续 source 只修复 analyzer contract，则不得为了 analyzer-only bug 自动重跑 Players。允许 historical reanalysis 的前提是：
+
+1. historical series 的 source/tool anchor、checkout、bridge、pilot seal、formal authority chain 全部固定且可由 Git/receipt 重建；
+2. current source 相对 historical source 的 non-metadata delta 必须**精确等于**预先 review 的 analysis-only allowlist；
+3. delta 不得包含 runner、R00 input/results verifier、measurement source、protocol、schedule、graph/map producer、Player/native/runtime source；
+4. compatibility preflight 必须验证 historical bridge transition、historical verifier hashes、guard-v2 seal、pilot/formal runner provenance、40 个 formal authority 的 pair/attempt/input/bridge/seal/tool binding；
+5. compatibility proof 只授权 analysis，不授权 historical source 下的新 Player execution、bridge reuse 或 source-pin override；
+6. preflight 通过后，corrected analyzer 才能在同一 immutable final sample index 上重新分析。
+
+本 H1 已完成的 source-27df formal series适用固定 policy `H1HistoricalPerformanceReanalysis-v1`。其历史 failed pilot attempt 继续保留为 invalid evidence；同 pair 后续 Passed pilot attempt 按既有 latest-valid selection 参与统计。
 ## P6. 分析与退出
 
 以 process pair 为统计单位；按 mode/operation/phase 报 n、median/IQR/min/max、配对 B−A 及 B/A。分母近零或低于冻结的分辨率规则时不报夸张比例。可选 process-level bootstrap 须记录算法/seed；不以 10 对数据宣称 P99。
