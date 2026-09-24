@@ -8,7 +8,7 @@ Latest Local return:
 
 Current analysis/test/V05 source anchor:
 
-`27e67920c6d8445895c1b9db647d733371a067c0`
+`0388479f7073289e3505b992956a7cbe78c302ce`
 
 Completed formal execution source:
 
@@ -118,7 +118,7 @@ Human H1 approval remains explicit and separate.
 
 New source anchor:
 
-`27e67920c6d8445895c1b9db647d733371a067c0`
+`0388479f7073289e3505b992956a7cbe78c302ce`
 
 The exact seven-path historical analysis policy and 25-path retained-graph policy remain unchanged.
 
