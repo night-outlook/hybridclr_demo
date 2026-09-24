@@ -1,7 +1,9 @@
 import copy
 import json
 from pathlib import Path
+import subprocess
 import sys
+import tempfile
 import unittest
 from unittest import mock
 
@@ -229,8 +231,9 @@ class H1GraphReuseTests(unittest.TestCase):
                 },
             }
             bridge.write_text(json.dumps(value), encoding="utf-8")
+            analysis_pins = historical._analysis_source_authority(ROOT)["sourcePins"]
             verified = historical.verify_historical_bridge(
-                bridge, build_map, ROOT.resolve())
+                bridge, build_map, ROOT.resolve(), analysis_pins)
             self.assertEqual(
                 verified["historicalBridge"], historical.binding(bridge))
             self.assertEqual(verified["graphSourcePins"], graph_pins)
@@ -243,7 +246,129 @@ class H1GraphReuseTests(unittest.TestCase):
             with self.assertRaisesRegex(
                     VerificationError, "transition header mismatch"):
                 historical.verify_historical_bridge(
-                    bridge, build_map, ROOT.resolve())
+                    bridge, build_map, ROOT.resolve(), analysis_pins)
+
+    def test_split_checkout_process_regression_uses_designated_analysis_authority(self):
+        stale_revision = "d7854b16c09b02d4494d28c2b0ea015ba83f58a3"
+        with tempfile.TemporaryDirectory(prefix="h1-split-checkout-") as directory:
+            root = Path(directory).resolve()
+            historical_root = root / "historical-evidence"
+            subprocess.check_call([
+                "git", "-C", str(ROOT), "worktree", "add", "--detach",
+                str(historical_root), stale_revision,
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            try:
+                analysis = historical._analysis_source_authority(ROOT)
+                stale_pins = shadow_tools.read_json(historical_root / PINS)
+                stale_revision_pin = historical._entries(stale_pins)["demo"]["revision"]
+                self.assertNotEqual(stale_revision_pin, analysis["sourceRevision"])
+                self.assertEqual(
+                    analysis["sourceRevision"],
+                    historical._entries(shadow_tools.read_json(ROOT / PINS))["demo"]["revision"])
+
+                build_map = root / "build-map.json"
+                build_map.write_text("{}", encoding="utf-8")
+                historical_pins = historical._git_json(
+                    historical_root, historical.HISTORICAL_CHECKOUT_REVISION, PINS)
+                graph_pins = copy.deepcopy(historical_pins)
+                historical._entries(graph_pins)["demo"]["revision"] = historical.RETAINED_GRAPH_REVISION
+                transition_rows = historical._tree_delta(
+                    historical_root, historical.RETAINED_GRAPH_REVISION,
+                    historical.HISTORICAL_SOURCE_REVISION)
+                bridge = root / "bridge.json"
+                bridge_value = {
+                    "schemaVersion": 1,
+                    "kind": historical.BRIDGE_KIND,
+                    "status": "AuthenticatedToolOnlySuccessor",
+                    "side": "B",
+                    "projectRoot": str(historical_root),
+                    "buildMap": historical.binding(build_map),
+                    "graphSourcePins": graph_pins,
+                    "graphSourcePinsSha256": historical.json_digest(graph_pins),
+                    "currentSourcePins": {
+                        "path": str((historical_root / PINS).resolve()),
+                        "sha256": historical._git_sha256(
+                            historical_root, historical.HISTORICAL_CHECKOUT_REVISION, PINS),
+                    },
+                    "currentSourcePinsObjectSha256": historical.json_digest(historical_pins),
+                    "transition": {
+                        "policyId": "H1V04RetainedGraphToolOnlySuccessor-v1",
+                        "graphDemoRevision": historical.RETAINED_GRAPH_REVISION,
+                        "currentDemoRevision": historical.HISTORICAL_SOURCE_REVISION,
+                        "graphSourcePinsSha256": historical.json_digest(graph_pins),
+                        "currentSourcePinsSha256": historical.json_digest(historical_pins),
+                        "nonMetadataDelta": transition_rows,
+                        "nonMetadataDeltaSha256": historical.json_digest(transition_rows),
+                    },
+                    "retainedPilotRunner": {
+                        "path": str((historical_root / "Tools/AssemblyShadow/run-r00-players.py").resolve()),
+                        "sha256": historical._git_sha256(
+                            historical_root, historical.RETAINED_GRAPH_REVISION,
+                            "Tools/AssemblyShadow/run-r00-players.py"),
+                    },
+                    "verifierBindings": [
+                        historical._historical_tool_binding(historical_root, relative)
+                        for relative in sorted(historical.HISTORICAL_BRIDGE_VERIFIER_PATHS)
+                    ],
+                    "installedRuntimeVerification": {
+                        "unityVersion": graph_pins["unityVersion"],
+                        "target": graph_pins["target"],
+                        "demoSourceVerified": True,
+                        "configuredShadowMode": "on",
+                        "receiptSha256": "2" * 64,
+                    },
+                }
+                bridge.write_text(json.dumps(bridge_value), encoding="utf-8")
+
+                verified = historical.verify_historical_bridge(
+                    bridge, build_map, historical_root, analysis["sourcePins"])
+                self.assertEqual(
+                    verified["historicalEvidenceProjectRoot"], str(historical_root))
+                self.assertEqual(verified["analysisSourcePins"], analysis["sourcePins"])
+                self.assertEqual(
+                    historical._entries(verified["historicalCurrentSourcePins"])["demo"]["revision"],
+                    historical.HISTORICAL_SOURCE_REVISION)
+
+                changed = json.loads(bridge.read_text())
+                changed["buildMap"]["sha256"] = "0" * 64
+                bridge.write_text(json.dumps(changed), encoding="utf-8")
+                with self.assertRaisesRegex(
+                        VerificationError, "build-map binding mismatch"):
+                    historical.verify_historical_bridge(
+                        bridge, build_map, historical_root, analysis["sourcePins"])
+            finally:
+                subprocess.run([
+                    "git", "-C", str(ROOT), "worktree", "remove", "--force",
+                    str(historical_root),
+                ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+
+    def test_analysis_source_authority_rejects_wrong_committed_pin(self):
+        with tempfile.TemporaryDirectory(prefix="h1-analysis-pin-") as directory:
+            worktree = Path(directory).resolve() / "analysis"
+            subprocess.check_call([
+                "git", "-C", str(ROOT), "worktree", "add", "--detach",
+                str(worktree), "HEAD",
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            try:
+                pins_path = worktree / PINS
+                pins = shadow_tools.read_json(pins_path)
+                historical._entries(pins)["demo"]["revision"] = (
+                    "7aa6f61994da354b04464e38ddfc8552cc5c3055")
+                pins_path.write_text(json.dumps(pins, indent=2) + "\n", encoding="utf-8")
+                subprocess.check_call(["git", "-C", str(worktree), "config", "user.name", "H1 Tests"])
+                subprocess.check_call(["git", "-C", str(worktree), "config", "user.email", "h1@example.invalid"])
+                subprocess.check_call(["git", "-C", str(worktree), "add", PINS])
+                subprocess.check_call([
+                    "git", "-C", str(worktree), "commit", "-qm", "test wrong analysis pin",
+                ])
+                with self.assertRaisesRegex(
+                        VerificationError, "Demo HEAD contains build-input changes after the source pin"):
+                    historical._analysis_source_authority(worktree)
+            finally:
+                subprocess.run([
+                    "git", "-C", str(ROOT), "worktree", "remove", "--force",
+                    str(worktree),
+                ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
 
     def test_historical_seal_requires_exact_old_verifier_inventory(self):
         import tempfile
