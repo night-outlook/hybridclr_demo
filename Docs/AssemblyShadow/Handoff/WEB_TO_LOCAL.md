@@ -10,11 +10,39 @@ No Player, bridge, seal, pilot, or formal pair should be rerun if historical com
 
 Latest Local return:
 
-`ff3d352ee9a7c373e21bc06d714fff647354bb09`
+`c3fe9620f9f6b494184b8ff76cbb377757591585`
 
 H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
 **Do not begin R02.**
+
+## Current Primary source-authority repair
+
+Local V00 correctly rejected the prior pushed checkout because nine repository agent-configuration files had changed after analysis source anchor `7aa6f61994da354b04464e38ddfc8552cc5c3055`.
+
+Primary resolved this by restoring those nine files to their exact `7aa6f619` Git blobs:
+
+- `.agents/skills/agent-collaboration/SKILL.md`
+- `.agents/skills/agent-collaboration/scripts/Get-GateReviewMode.ps1`
+- `.agents/skills/agent-collaboration/tests/Test-AgentCollaborationGatePolicy.Tests.ps1`
+- `.codex/agents/code-debugger.toml`
+- `.codex/agents/code-explorer.toml`
+- `.codex/agents/code-gate-reviewer.toml`
+- `.codex/agents/code-general.toml`
+- `.codex/agents/code-reviewer.toml`
+- `.codex/agents/code-worker.toml`
+
+No verifier policy was weakened:
+
+- `shadow_tools.metadata_only` is unchanged;
+- `.agents/` and `.codex/` are not broadly reclassified as metadata;
+- analysis source anchor remains `7aa6f619...`;
+- `H1HistoricalPerformanceReanalysis-v1` remains the exact five-file analysis-only successor;
+- the source-27df formal evidence and fixed four evidence hashes remain untouched.
+
+Connector transport readiness was also proven independently on disposable branch `codex/connector-smoke-primary-20260923-a` in all four repositories. Exact smoke commits are recorded in `source-targets.json`. The smoke branches remain only because the current Connector exposes no branch-delete operation; they are not product evidence or handoff authority.
+
+Local must rerun V00 from the final pushed handoff HEAD. The checkout may be later than `7aa6f619` only by paths already classified as repository metadata. The complete non-metadata tree must equal the source anchor before historical compatibility or reanalysis may continue.
 
 ## Source targets
 
@@ -219,6 +247,9 @@ Authoritative detailed plan:
 Run it in order.
 
 ### Current source/tool validation
+
+Before any bounded or historical-analysis work, rerun the committed V00 preflight against the final pushed checkout and require it to pass. Independently confirm that the nine restored agent-configuration paths are byte-identical to `7aa6f619...` and that `7aa6f619... → HEAD` contains metadata-only paths under the unchanged verifier policy.
+
 
 Run:
 
