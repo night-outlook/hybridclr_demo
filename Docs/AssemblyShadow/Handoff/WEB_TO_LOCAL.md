@@ -4,7 +4,7 @@
 
 Validate the V05 analysis-only successor-evidence implementation at source anchor:
 
-`27e67920c6d8445895c1b9db647d733371a067c0`
+`0388479f7073289e3505b992956a7cbe78c302ce`
 
 Then reclose V04, bind V05, and immediately run a genuinely independent H1 M08 review if V05 succeeds.
 
@@ -28,12 +28,12 @@ Required identities:
 
 | Repository | Branch | Required source/runtime identity |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | analysis/test/V05 source anchor `27e67920c6d8445895c1b9db647d733371a067c0` |
+| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | analysis/test/V05 source anchor `0388479f7073289e3505b992956a7cbe78c302ce` |
 | `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
 
-The final pushed demo checkout HEAD may be later than `27e67920...` only by paths classified as metadata by the unchanged `shadow_tools.metadata_only` policy.
+The final pushed demo checkout HEAD may be later than `0388479f...` only by paths classified as metadata by the unchanged `shadow_tools.metadata_only` policy.
 
 Historical execution source:
 
@@ -165,7 +165,7 @@ Detailed V05/M08 contract:
 
 New source anchor:
 
-`27e67920c6d8445895c1b9db647d733371a067c0`
+`0388479f7073289e3505b992956a7cbe78c302ce`
 
 Source-27df → current remains exactly the existing seven-path `H1HistoricalPerformanceReanalysis-v2` set.
 
@@ -215,7 +215,7 @@ Require:
 
 - final pushed HEAD from the handoff prompt;
 - clean tracked state before evidence creation;
-- source pin = `27e67920...`;
+- source pin = `0388479f...`;
 - source anchor → final HEAD zero non-metadata delta;
 - all four repository/pin identities exact;
 - committed preflight = `SourceTargetVerifiedNotBuildAccepted`.
@@ -255,7 +255,7 @@ Repeat complete source-27df live evidence authentication:
 
 ### V04.AF / V04.AG
 
-Because the analysis/V05 tool changed, rerun V04 compatibility and strict analysis at source `27e67920...`.
+Because the analysis/V05 tool changed, rerun V04 compatibility and strict analysis at source `0388479f...`.
 
 Use the same explicit `--analysis-project` split-checkout contract.
 
