@@ -156,11 +156,13 @@ class H1GraphReuseTests(unittest.TestCase):
         old_pins = self.real_old_pins()
         current_pins = self.successor_pins_at_head()
         result = reuse.authenticate_transition(ROOT, old_pins, current_pins)
+        self.assertEqual(reuse.POLICY_ID, "H1V04RetainedGraphToolOnlySuccessor-v2")
         self.assertEqual(result["policyId"], reuse.POLICY_ID)
         self.assertEqual(result["graphDemoRevision"], reuse.GRAPH_SOURCE_REVISION)
-        self.assertEqual(
-            {row["path"] for row in result["nonMetadataDelta"]},
-            set(reuse.ALLOWED_NON_METADATA_PATHS))
+        changed = {row["path"] for row in result["nonMetadataDelta"]}
+        self.assertEqual(changed, set(reuse.ALLOWED_NON_METADATA_PATHS))
+        self.assertEqual(len(changed), 25)
+        self.assertIn("Tools/AssemblyShadow/tests/test_h1_paired_performance.py", changed)
         self.assertTrue(all(
             row["path"].startswith(".github/") or row["path"].startswith("Tools/AssemblyShadow/")
             for row in result["nonMetadataDelta"]))
