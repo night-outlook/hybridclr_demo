@@ -1,98 +1,106 @@
-# Local Validation Tasks — Cross-Remount Seal Guard v2 + Fresh Formal Series
+# Local Validation Tasks — Authenticated Historical Final Reanalysis
 
-Candidate source/tool anchor:
+Candidate analysis source/tool anchor:
 
-`27df1a3d60811dc121f296ab561ae313a382b363`
+`7aa6f61994da354b04464e38ddfc8552cc5c3055`
 
 Latest Local return:
 
-`421f221156f4e9a71aab3363fd4e49a91cbaba68`
+`ff3d352ee9a7c373e21bc06d714fff647354bb09`
 
-Latest authenticated blocked checkpoint:
+Completed formal-execution source:
 
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260922-authority91ac-formal-seal-invalidated/`
+`27df1a3d60811dc121f296ab561ae313a382b363`
 
-Retained graph/pilot checkpoint:
+Historical checkout that finalized that source family:
 
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/`
+`f5e34235641c212c715aef3405925ddd4cf28ee6`
+
+Authenticated blocked checkpoint:
+
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/`
 
 H1 remains `InProgress`. Do not begin R02.
 
 ## Goal
 
-Validate cross-remount-stable seal guard v2 and collision-resistant internal paired outputs, then complete a wholly new formal series in one Local cycle if every gate passes:
+Close the final analyzer-only contract defect without rerunning Players:
 
-fresh authority/tests → exact 3-path Primary delta audit → exact 22-path retained-graph audit → retained evidence reauthentication → new graph bridge → retained-pilot admission preflight → new guard-v2 strict seal → new 40-pair formal batch → final strict analysis → checkpoint → V05 / independent M08 if eligible.
+fresh current source/Python → exact analysis-only source audit → reauthenticate the completed 27df checkpoint/live evidence → historical compatibility preflight → corrected historical analysis → analysis-only checkpoint → V05 / genuinely independent M08 if eligible.
 
-The prior 14/40 formal series is historical only. Do not reuse or chain any of its sample indexes.
+The completed 40/40 formal series is immutable execution evidence. Do not create a new bridge, seal, Player, pilot, formal pair, or retry unless the compatibility proof fails because of a genuine non-analysis evidence problem and the task returns to Primary.
 
-## V00 — fresh current authority
+## V00 — current analysis authority
 
 1. Pull final pushed `codex/assembly-shadow-r01b-h1`.
 2. Require clean tracked state.
-3. Record checkout HEAD separately from source/tool anchor `27df1a3d60811dc121f296ab561ae313a382b363`.
-4. Run candidate handoff/source preflight and require `SourceTargetVerifiedNotBuildAccepted`.
-5. Reauthenticate reproduction tooling and protected profile-1 family.
-6. Refresh candidate installed-runtime receipt through the sanctioned `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability` path if the current receipt still binds the previous demo revision.
-7. Verify candidate installed runtime with Shadow ON and complete demo-source authentication.
-8. Verify protected installed runtime with Shadow ON.
-9. Retain exact receipt hashes.
-
-Do not create the bridge until V00/V01/V01A/V02 are complete.
-
-## V01 — current Primary regression
-
-Run:
-
-- complete bounded Primary suite;
-- live handoff preflight;
-- direct `test_h1_paired_driver.py`;
-- retained-pilot runner/admission suites;
-- graph reuse/formal authority/formal batch suites;
-- R01 early/failure/lazy suites;
-- both M07 PowerShell recovery regressions.
-
-### Python inventory
-
-Run complete Python discovery because the paired driver/guard implementation changed.
+3. Record checkout HEAD separately from analysis source anchor `7aa6f61994da354b04464e38ddfc8552cc5c3055`.
+4. Run current committed handoff/source preflight and require `SourceTargetVerifiedNotBuildAccepted`.
+5. Run complete current bounded Primary regression.
+6. Run complete Python discovery.
 
 Require:
 
-- zero failures/errors;
-- all skips explicit/environment-bound;
-- complete log retained.
+- zero Python failures/errors;
+- environment skips explicit;
+- full logs retained.
 
-### Unity EditMode
+### No runtime rebuild / Unity execution
 
-The current 3-path source delta changes no Unity C#/asmdef/Assets/Packages/resource input.
+Do **not** run:
 
-The historical 1076/1076 result may remain:
+- candidate install-repeatability refresh;
+- Player builds;
+- Unity Play/Player validation;
+- formal sampling;
+- bridge/seal creation.
 
-`ReusedAuditedFromD18`
+Reason: the successor is analysis-only and historical compatibility must not mutate the completed execution evidence.
 
-only after the exact 3-path audit passes.
+Classify prior runtime/Unity evidence only after the source audit:
 
-A fresh Unity run is optional before bridge creation.
+- candidate/protected runtime evidence: `ReusedAuditedFromFF3D`;
+- Unity EditMode 1076/1076: `ReusedAuditedFromD18`;
+- completed source-27df formal execution: `HistoricalExecutionAuthenticatedFromFF3D`.
 
-## V01A — exact source audits
+Do not label any of these as fresh execution at the new analyzer source.
 
-### Previous Primary source → current source
+## V01 — exact source audits
+
+### A. Historical execution source → current analysis source
 
 Compare:
 
-`91ac4db31cec704551c7db05bd918c8d5695ce83`
+`27df1a3d60811dc121f296ab561ae313a382b363`
 
 to:
 
-`27df1a3d60811dc121f296ab561ae313a382b363`
+`7aa6f61994da354b04464e38ddfc8552cc5c3055`
 
-After metadata-only classification, the exact non-metadata set must equal **3 paths**:
+After repository metadata-only classification, the exact non-metadata set must equal **five paths**:
 
 1. `Tools/AssemblyShadow/README.md`
-2. `Tools/AssemblyShadow/run-h1-paired-performance.py`
-3. `Tools/AssemblyShadow/tests/test_h1_paired_driver.py`
+2. `Tools/AssemblyShadow/h1_graph_reuse.py`
+3. `Tools/AssemblyShadow/h1_historical_reanalysis.py`
+4. `Tools/AssemblyShadow/h1_paired_performance.py`
+5. `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`
 
-### Retained graph source → current source
+Require **no** delta in:
+
+- `run-r00-players.py`;
+- `r00_results.py`;
+- `r00_player_inputs.py`;
+- `r01_early_results.py`;
+- paired/formal execution runner;
+- pilot sealer;
+- measurement source;
+- protocol/schedule;
+- build-map/graph producer;
+- Unity/runtime/native/Player source.
+
+A subset or superset fails historical compatibility.
+
+### B. Retained graph anchor → current analysis source
 
 Compare:
 
@@ -100,230 +108,221 @@ Compare:
 
 to:
 
-`27df1a3d60811dc121f296ab561ae313a382b363`
+`7aa6f61994da354b04464e38ddfc8552cc5c3055`
 
-After metadata-only classification, the complete set must remain exactly the **22-path** allowlist in `source-targets.json`.
+Require equality to the exact **24-path** retained-graph tooling allowlist in:
 
-No changed path is permitted under Unity gameplay/runtime source, Assets/Packages, native HybridCLR/IL2CPP, protocol/schedule/build-map producers, measurement source, or Player binary source.
+`Docs/AssemblyShadow/Handoff/source-targets.json`
 
-A subset or superset fails.
+Do not edit either allowlist locally.
 
-## V02 — retained evidence reauthentication
+## V02 — reauthenticate the completed 27df evidence
 
-Before bridge creation verify:
+Authenticate the checkpoint:
 
-- retained V04 manifest;
-- Player-artifact manifest;
-- latest `authority91ac-formal-seal-invalidated` checkpoint manifest;
-- protocol/schedule/build map/preregistration;
-- retained pilot index and all five pilot attempts;
-- four selected pilots / eight selected launch receipts;
-- complete bound-file inventory.
+`local-validation-20260923-authority27df-formal-analysis-blocked`
 
-Also retain the prior 14/40 formal series and seal-invalidation receipt as historical evidence. Do not incorporate those attempts into the new cumulative series.
+Require its `MANIFEST.sha256` to pass.
 
-## V04.AA — create a new current graph bridge
+The following exact evidence identities are mandatory:
 
-Create a new bridge:
+- graph bridge:
+  `c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c`;
+- guard-v2 pilot seal:
+  `bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631`;
+- formal batch:
+  `97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667`;
+- final cumulative sample index:
+  `a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021`.
 
-~~~text
-python3 Tools/AssemblyShadow/create-h1-graph-reuse-bridge.py \
-  --project <candidate> \
-  --build-map <retained-live-frozen-build-map.json> \
-  --output <new-graph-reuse-bridge.json>
-~~~
+Also require:
 
-Require:
+- formal batch status `PassedAllFormalPairs`;
+- 40/40 formal pairs;
+- zero formal retries;
+- all referenced live launch/raw/result/authority/build evidence remains available and hash-identical.
 
-- `AuthenticatedToolOnlySuccessor`;
-- current demo revision exactly `27df1a3d60811dc121f296ab561ae313a382b363`;
-- exact 22-path transition;
-- exact current runtime/map/verifier bindings;
-- fixed retained pilot runner provenance from `69130bbb...`.
+Use the **original live paths recorded in the historical receipts** for compatibility/reanalysis. Do not substitute checkpoint-copy paths whose filenames differ from the authenticated bindings.
 
-Do not reuse the previous bridge.
+If required live evidence is missing, do not manually rewrite receipts or relocate paths. Retain the failure and return to Primary.
 
-## V04.AB — retained-pilot admission preflight
-
-Run before the expensive seal:
-
-~~~text
-python3 Tools/AssemblyShadow/verify-h1-retained-pilot-admission.py \
-  --protocol <bound-protocol> \
-  --schedule <bound-schedule> \
-  --build-map <retained-live-frozen-build-map.json> \
-  --pilot-index <retained-live-pilot-index.json> \
-  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
-  --output <new-retained-pilot-admission.json>
-~~~
-
-Require:
-
-- Passed;
-- five retained attempts;
-- four selected pilots;
-- exact historical runner provenance;
-- zero deep R00 verification.
-
-If this fails, stop before seal and return to Primary.
-
-## V04.AC — create guard-v2 strict pilot seal
+## V04.AF — historical compatibility preflight
 
 Run:
 
 ~~~text
-python3 Tools/AssemblyShadow/seal-h1-pilot-verification.py \
-  --protocol <bound-protocol> \
-  --schedule <bound-schedule> \
-  --build-map <retained-live-frozen-build-map.json> \
-  --pilot-index <retained-live-pilot-index.json> \
-  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
-  --output <new-pilot-verification.json>
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --sample-index <27df-live-final-sample-index.json> \
+  --pilot-verification-receipt <27df-live-pilot-verification.json> \
+  --graph-reuse-bridge <27df-live-graph-reuse-bridge.json> \
+  --formal-batch <27df-live-formal-batch.json> \
+  --output <new-historical-analysis-compatibility.json> \
+  --preflight-only
 ~~~
 
 Require:
 
-- `status=PassedStrictReconstructionAndStatGuardSealed`;
-- `deepLaunchVerificationCount=8`;
-- `guardKind=CrossRemountStableStatGuard`;
-- `guardVersion=2`;
-- `guardFields=[inode, mode, size, mtimeNs, ctimeNs]`;
-- no `device` field in any per-file acceptance guard;
-- exact new bridge binding;
-- stable file/stat inventory during sealing.
+- `schemaVersion=1`;
+- `kind=H1HistoricalAnalysisCompatibility`;
+- `status=AuthenticatedAnalysisOnlySuccessor`;
+- `policyId=H1HistoricalPerformanceReanalysis-v1`.
 
-The old device-bound seal is incompatible and must not be reused.
+### Fixed evidence identities
 
-### Explicit guard-v2 sanity
+Require `authenticatedEvidenceSha256` exactly:
 
-From the new seal, choose at least one protected Player native binary and independently record:
+- bridge: `c03665db...`;
+- seal: `bdc4062a...`;
+- final sample: `a8e519c3...`;
+- formal batch: `97ddb6c8...`.
 
-- canonical path;
-- SHA-256;
-- inode;
-- mode;
-- size;
-- mtimeNs;
-- ctimeNs;
-- current `st_dev` as **diagnostic only**.
-
-If the filesystem remounts later and only `st_dev` changes, formal admission must continue to pass.
-
-If any acceptance field changes, it must fail closed.
-
-Do not intentionally mutate files merely to test this.
-
-## V04.AD — start a wholly new formal series
-
-Start from the retained pilot index only:
-
-~~~text
-python3 Tools/AssemblyShadow/run-h1-formal-batch.py \
-  --protocol <bound-protocol> \
-  --schedule <bound-schedule> \
-  --build-map <retained-live-frozen-build-map.json> \
-  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
-  --pilot-verification-receipt <new-pilot-verification.json> \
-  --prior-index <retained-live-pilot-index.json> \
-  --output-root <new-unique-formal-batch-root> \
-  --timeout 900
-~~~
-
-Do not use any sample index from the prior 14/40 series.
-
-### Output-collision acceptance
-
-Do not manually switch to a direct pair because of preserved historical project-local outputs.
-
-The batch/paired driver must automatically derive collision-resistant per-project output names from the full canonical requested output path.
-
-For formal pair 1 verify:
-
-- project-local A/B output names include the new 12-hex path-hash suffix;
-- they differ from preserved historical side-output paths;
-- no `Per-side output must be new` collision occurs;
-- parent formal authority output-root bindings match those new project-local paths.
-
-If a collision still occurs, stop and return to Primary.
-
-### Formal authority/current-runner acceptance
-
-All prior current-formal requirements remain:
-
-- protected A has no retained authority;
-- candidate B uses the current runner;
-- candidate B receives unique `H1FormalSideLaunchAuthority`;
-- child uses `verify_inputs_with_reuse`;
-- successful R00 receipt echoes authority/bridge/seal/map;
-- historical runner is pilot provenance only.
-
-### Complete all 40 pairs
-
-Full success requires:
-
-- `PassedAllFormalPairs`;
-- 40/40 selected formal pairs;
-- unchanged preregistered order;
-- valid current formal authority for every actual candidate B attempt;
-- no seal cache invalidation caused solely by `st_dev` drift.
-
-### Whole-pair retry
-
-If a protocol-valid pair fails:
-
-- retain the failed attempt;
-- retain its formal authority;
-- prove process cleanup;
-- retry exactly the same pair with incremented attempt;
-- resume from the successful retry index in a new batch root.
-
-No side-only retry, auto-retry, pair skip, or sample deletion.
-
-## V04.AE — final strict analysis
-
-After all 40 pairs complete:
-
-~~~text
-python3 Tools/AssemblyShadow/analyze-h1-paired-performance.py \
-  --sample-index <final-sample-index.json> \
-  --pilot-verification-receipt <new-pilot-verification.json> \
-  --graph-reuse-bridge <new-graph-reuse-bridge.json> \
-  --output <new-performance-analysis.json>
-~~~
+### Analysis delta
 
 Require:
 
-- full bridge/seal/formal-authority verification;
-- 10 selected formal pairs per mode;
-- all failed/retried attempts retained;
-- complete comparability/performance result retained regardless of direction.
+- historical source = `27df1a3d...`;
+- historical checkout = `f5e34235...`;
+- current source = `7aa6f61994da354b04464e38ddfc8552cc5c3055`;
+- exact five-path analysis-only delta.
 
-## Checkpoint / V05 / M08
+### Historical bridge/seal
 
-Before cleanup authenticate a new checkpoint containing:
+Require:
 
-- V00 authority;
-- current Python result;
-- Unity reuse/fresh classification;
-- exact 3/22 source audits;
-- retained evidence audit;
-- new bridge;
-- admission preflight;
-- guard-v2 seal;
-- formal batch/retries/authorities;
-- final sample index;
-- final analysis;
-- references to the historical 14/40 series and its device-drift invalidation.
+- retained graph = `69130bbb...`;
+- historical bridge transition 69130 → 27df authenticates from Git;
+- historical bridge verifier hashes match Git 27df;
+- historical guard-v2 seal verifier inventory matches Git 27df;
+- guard-v2 seal still records 8 deep launch verifications;
+- retained pilot runner provenance remains exact.
 
-Proceed to V05 and genuinely independent M08 only when mandatory V04 is complete and consistent.
+### Completed formal batch/sample
+
+Require:
+
+- historical formal batch = 40/40 Passed;
+- final sample binding equals the fixed final index;
+- bridge/seal/protocol/schedule/map bindings exact;
+- historical sample attempt count = **45**;
+- historical formal attempt count = **40**;
+- pilot rows use retained historical runner;
+- formal rows use source-27df current runner;
+- all candidate-B formal authorities bind exact pair/attempt/mode/order/project/input/bridge/seal/tool identity;
+- protected A carries no retained authority.
+
+The compatibility preflight must not launch Players or mutate historical evidence.
+
+If this fails, **do not rerun Players**. Return the exact incompatibility to Primary.
+
+## V04.AG — corrected historical strict analysis
+
+Only after V04.AF passes:
+
+~~~text
+python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
+  --sample-index <27df-live-final-sample-index.json> \
+  --pilot-verification-receipt <27df-live-pilot-verification.json> \
+  --graph-reuse-bridge <27df-live-graph-reuse-bridge.json> \
+  --formal-batch <27df-live-formal-batch.json> \
+  --output <new-historical-performance-analysis.json>
+~~~
+
+Require top-level result:
+
+- `kind=H1ControlledPairedPerformanceSummary`;
+- `result=Passed`;
+- `status=ComparabilityPassed`.
+
+Require embedded:
+
+`historicalAnalysisCompatibility.status=AuthenticatedAnalysisOnlySuccessor`
+
+with the exact same fixed evidence hashes and five-path delta as preflight.
+
+### Sampling requirements
+
+Require:
+
+- formal pairs per mode:
+  - OFF-NoPatch = 10;
+  - ON-NoPatch = 10;
+  - ON-P01 = 10;
+  - ON-P03 = 10;
+- pilot pairs per mode = 1 each;
+- formal startup observations per mode = 10 each;
+- `formalComplete=true`;
+- `pilotsComplete=true`;
+- `startupComplete=true`;
+- `chronologyComplete=true`;
+- `globalIntervalsResolved=true`;
+- `globalIntervalsNonOverlapping=true`;
+- `pilotsBeforeFormalByTimestamp=true`.
+
+### Attempt retention
+
+Require exactly 45 attempt records:
+
+- 44 valid selected/analyzable attempts;
+- 1 invalid historical pilot attempt:
+  `R00-ON-NoPatch-pilot-01` attempt 1;
+- later Passed pilot attempt is the selected pilot for that mode;
+- no formal attempt becomes invalid.
+
+Do not delete or relabel the historical failed pilot.
+
+### Build binding
+
+For every selected raw R00 result require:
+
+- top-level build GUID/baseline/runtime ABI equals frozen build;
+- nested `playerBuildReceipt` path/SHA/build GUID equals frozen build;
+- absent nested baseline/runtime is accepted;
+- any present nested duplicate must agree.
+
+### Statistics
+
+Require every mode summary to report `formalPairCount=10`.
+
+Retain all paired operation/memory/startup statistics exactly as produced. Do not interpret or suppress an unfavorable measured result.
+
+If analysis is not Passed, retain the entire output and return to Primary. Do **not** rerun formal Players to work around another analyzer/tool defect.
+
+## V04.AH — analysis-only checkpoint
+
+After V04.AG passes, create/authenticate a new checkpoint that includes:
+
+- current source/Python validation;
+- exact five-path and 24-path audits;
+- original source-27df checkpoint manifest reference;
+- compatibility preflight;
+- corrected historical analysis;
+- exact four historical evidence SHA-256s;
+- explicit classification that no new Player execution occurred;
+- all prior failure/blocked checkpoint references.
+
+Authenticate the checkpoint manifest before any cleanup.
+
+The source-27df execution checkpoint remains immutable historical evidence; the new checkpoint adds analysis closure rather than replacing it.
+
+## V05 / independent M08
+
+If and only if V04 historical reanalysis is Passed/ComparabilityPassed:
+
+1. prepare the existing V05 successor evidence using the completed V04 execution + analysis closure;
+2. prepare a fresh independent-M08 review package;
+3. if the Local environment has an established genuinely independent reviewer mechanism, execute it in a separate context/agent;
+4. otherwise return `ReadyForIndependentM08` with the package rather than self-declaring an independent PASS.
 
 M08 must explicitly review:
 
-- the decision to exclude `st_dev`;
-- guard-v2 acceptance fields and old-seal invalidation;
-- collision-resistant project-output namespace;
-- historical 14/40 evidence classification;
-- full new 40-pair series and final analysis.
+- real R00 producer vs analyzer field contract;
+- fixed-source historical compatibility policy;
+- exact evidence hashes;
+- five-file analysis-only delta;
+- historical bridge/seal/formal-authority Git verification;
+- one failed pilot retained/non-selected;
+- 40/40 formal execution and corrected statistical result;
+- no Player rerun after analyzer fix.
 
 Only genuine **M08 PASS** may make H1 **Ready for Human Review Gate**.
 
@@ -331,26 +330,42 @@ Stop for explicit human approval.
 
 **Do not begin R02.**
 
+## Failure evidence
+
+On compatibility failure retain:
+
+- current source/checkout;
+- exact Git delta;
+- fixed historical input hashes;
+- first failing bridge/seal/batch/sample/formal-authority binding;
+- stdout/stderr;
+- proof no Player process launched.
+
+On analysis failure retain:
+
+- compatibility preflight;
+- corrected analysis output;
+- first invalid attempt/side/raw field;
+- relevant raw result and frozen build receipt bindings.
+
 ## Local correction boundary
 
 Local may adjust only:
 
-- absolute paths;
-- new evidence/output roots;
+- absolute paths to the already authenticated live historical evidence;
+- new output/checkpoint roots;
 - permissions/PYTHONPATH;
-- bounded command syntax;
-- protocol-valid whole-pair retry number.
+- bounded invocation syntax.
 
-Local must not alter:
+Local must not:
 
-- guard-v2 field set/version;
-- device exclusion policy;
-- path-hash output namespace;
-- graph-reuse allowlist;
-- bridge/seal/formal authority semantics;
-- source/runtime pins;
-- graph/map/protocol/schedule identities;
-- pair order/retry/statistics;
-- final analyzer logic.
+- rewrite historical receipts;
+- substitute copied paths for bound live paths;
+- broaden the five-file compatibility delta;
+- change fixed historical hashes/source revisions;
+- rerun Players/bridges/seals/formal pairs;
+- alter analyzer semantics;
+- modify protocol/schedule/map/statistics;
+- claim independent M08 without an independent mechanism.
 
 Any non-trivial source/tool correction returns to Primary.
