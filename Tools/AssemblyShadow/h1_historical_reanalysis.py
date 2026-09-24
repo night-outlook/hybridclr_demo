@@ -12,7 +12,7 @@ import argparse
 import copy
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 import h1_paired_performance as paired
@@ -34,6 +34,36 @@ BRIDGE_KIND = "H1GraphReuseBridge"
 SEAL_KIND = "H1PilotVerificationReceipt"
 FORMAL_AUTHORITY_KIND = "H1FormalSideLaunchAuthority"
 PAIRING_AUTHORITY_KIND = "H1AuthenticatedGraphReuseAuthority"
+V05_POLICY_ID = "H1AnalysisOnlySuccessorEvidence-v1"
+V05_KIND = "H1AnalysisOnlySuccessorEvidence"
+V05_REQUIRED_CURRENT_MEMBERS = (
+    "V00/source-authority.json",
+    "V00/handoff-preflight.json",
+    "V01/bounded-primary/results.json",
+    "V01/python-inventory.json",
+    "V02/live-evidence-reauthentication.json",
+    "V02/direct-binding-semantics-audit.json",
+    "V04/historical-compatibility.json",
+    "V04/historical-performance-analysis.json",
+    "V04/analysis-validation.json",
+    "V04/no-player-proof.json",
+)
+V05_PLAN_FILES = (
+    "Docs/AssemblyShadow/Plan/DESIGN.md",
+    "Docs/AssemblyShadow/Plan/EVIDENCE_CONTRACT.md",
+    "Docs/AssemblyShadow/Plan/HUMAN_REVIEW_GATES.md",
+    "Docs/AssemblyShadow/Plan/PERFORMANCE_PROTOCOL.md",
+    "Docs/AssemblyShadow/Plan/VALIDATION_MATRIX.md",
+)
+V05_HISTORICAL_EXPECTED = {
+    "V04/performance/h1-graph-reuse-bridge.json": HISTORICAL_BRIDGE_SHA256,
+    "V04/performance/h1-pilot-verification.json": HISTORICAL_SEAL_SHA256,
+    "V04/performance/formal-batch-guardv2-27df-01/formal-batch.json":
+        HISTORICAL_FORMAL_BATCH_SHA256,
+    "V04/performance/formal-batch-guardv2-27df-01/"
+    "40-R00-ON-P03-formal-10-attempt-1/sample-index.json":
+        HISTORICAL_FINAL_SAMPLE_SHA256,
+}
 
 # Exact analysis/test-only successor scope from the completed 27df formal series.
 # The two additional v2 paths are bounded-regression/test-fixture code only. No
@@ -626,6 +656,309 @@ def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
     }
 
 
+
+def _manifest_relative(value: str) -> str:
+    require(type(value) is str and value and "\\" not in value,
+            "Checkpoint manifest path is invalid")
+    while value.startswith("./"):
+        value = value[2:]
+    pure = PurePosixPath(value)
+    require(value and not pure.is_absolute() and ".." not in pure.parts and
+            "." not in pure.parts and str(pure) == value,
+            "Checkpoint manifest path is unsafe: " + value)
+    return value
+
+
+def authenticate_checkpoint(checkpoint: Path, label: str) -> dict[str, Any]:
+    checkpoint = canonical_dir(checkpoint, label + " checkpoint")
+    manifest = canonical_file(checkpoint / "MANIFEST.sha256", label + " manifest")
+    entries: dict[str, str] = {}
+    for raw in manifest.read_text(encoding="utf-8").splitlines():
+        if not raw.strip():
+            continue
+        require("  " in raw, label + " manifest line is malformed")
+        expected, relative = raw.split("  ", 1)
+        require(len(expected) == 64 and all(c in "0123456789abcdef" for c in expected),
+                label + " manifest SHA-256 is invalid")
+        relative = _manifest_relative(relative)
+        require(relative not in entries, label + " manifest contains duplicate path: " + relative)
+        path = canonical_file(checkpoint / relative, label + " manifest member")
+        require(path.is_relative_to(checkpoint),
+                label + " manifest member escapes checkpoint: " + relative)
+        require(digest(path) == expected,
+                label + " manifest member hash mismatch: " + relative)
+        entries[relative] = expected
+    require(entries, label + " manifest is empty")
+    return {
+        "root": checkpoint,
+        "manifest": manifest,
+        "manifestSha256": digest(manifest),
+        "entries": entries,
+    }
+
+
+def _checkpoint_member(checkpoint: dict[str, Any], relative: str,
+                       label: str) -> dict[str, Any]:
+    relative = _manifest_relative(relative)
+    expected = checkpoint["entries"].get(relative)
+    require(type(expected) is str, label + " is absent from checkpoint manifest: " + relative)
+    path = canonical_file(checkpoint["root"] / relative, label)
+    require(digest(path) == expected, label + " changed after checkpoint authentication")
+    return {
+        "relativePath": relative,
+        "path": str(path),
+        "sha256": expected,
+        "sizeBytes": path.stat().st_size,
+    }
+
+
+def _checkpoint_json(checkpoint: dict[str, Any], relative: str,
+                     label: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    member = _checkpoint_member(checkpoint, relative, label)
+    value = read_json(Path(member["path"]))
+    require(type(value) is dict, label + " must be a JSON object")
+    return value, member
+
+
+def _require_fixed_live_evidence(value: dict[str, Any]) -> None:
+    require(value.get("kind") == "H1CurrentLiveHistoricalEvidenceAudit",
+            "V05 live evidence audit kind mismatch")
+    manifest = value.get("checkpointManifest")
+    require(type(manifest) is dict and manifest.get("allPassed") is True and
+            manifest.get("entries") == 92,
+            "V05 source-27df checkpoint authentication is incomplete")
+    expected = {
+        "bridge": HISTORICAL_BRIDGE_SHA256,
+        "seal": HISTORICAL_SEAL_SHA256,
+        "formalBatch": HISTORICAL_FORMAL_BATCH_SHA256,
+        "finalSampleIndex": HISTORICAL_FINAL_SAMPLE_SHA256,
+    }
+    observed = value.get("fixedLiveEvidence")
+    require(type(observed) is dict, "V05 fixed live evidence is missing")
+    for name, sha256 in expected.items():
+        row = observed.get(name)
+        require(type(row) is dict and row.get("expectedSha256") == sha256 and
+                row.get("actualSha256") == sha256 and row.get("matches") is True,
+                "V05 fixed live evidence mismatch: " + name)
+    sealed = value.get("sealedInventory")
+    require(type(sealed) is dict and
+            sealed.get("expectedFiles") == sealed.get("verifiedFiles") and
+            sealed.get("expectedBytes") == sealed.get("verifiedBytes") and
+            sealed.get("guardMismatches") == 0 and
+            sealed.get("contentMismatches") == 0 and sealed.get("missing") == 0,
+            "V05 sealed live inventory authentication is incomplete")
+
+
+def _require_no_player_receipt(value: dict[str, Any]) -> None:
+    require(value.get("kind") == "H1LocalNoPlayerRerunEvidence" and
+            value.get("result") == "NoPlayerCommandIssuedByLocal",
+            "V05 no-Player evidence is invalid")
+    commands = value.get("commands")
+    require(type(commands) is list and commands,
+            "V05 no-Player command inventory is missing")
+    forbidden = (
+        "run-r00-players.py",
+        "run-h1-paired-performance.py",
+        "run-h1-formal-batch.py",
+        "run-m07-players.py",
+    )
+    for row in commands:
+        command = row.get("command") if type(row) is dict else None
+        require(type(command) is list and all(type(x) is str for x in command),
+                "V05 no-Player command row is malformed")
+        joined = " ".join(command)
+        require(not any(token in joined for token in forbidden),
+                "V05 no-Player evidence contains a Player/formal runner command")
+    require(type(value.get("scopeLimit")) is str and value["scopeLimit"],
+            "V05 no-Player evidence must preserve its scope limitation")
+
+
+def build_v05_successor_evidence(analysis_project: Path, current_checkpoint: Path,
+                                 historical_checkpoint: Path) -> dict[str, Any]:
+    analysis = _analysis_source_authority(analysis_project)
+    analysis_project = Path(analysis["projectRoot"])
+    current = authenticate_checkpoint(current_checkpoint, "current V04 closure")
+    historical = authenticate_checkpoint(historical_checkpoint, "source-27df execution")
+
+    for relative, expected in V05_HISTORICAL_EXPECTED.items():
+        require(historical["entries"].get(relative) == expected,
+                "V05 historical checkpoint identity mismatch: " + relative)
+
+    source, source_binding = _checkpoint_json(
+        current, "V00/source-authority.json", "V05 source authority")
+    require(source.get("kind") == "H1LocalSourceAuthorityAudit" and
+            source.get("sourcePins") == analysis["sourcePins"],
+            "V05 current source authority does not match analysis project")
+    repositories = source.get("repositories")
+    require(type(repositories) is dict, "V05 repository authority is missing")
+    for key, pin_key in (
+        ("hybridclr", "hybridclr"),
+        ("hybridclr_unity", "hybridclrUnity"),
+        ("il2cpp_plus", "il2cppPlus"),
+    ):
+        require(repositories.get(key, {}).get("head") ==
+                _entries(analysis["sourcePins"])[pin_key]["revision"],
+                "V05 runtime repository authority mismatch: " + key)
+
+    preflight, preflight_binding = _checkpoint_json(
+        current, "V00/handoff-preflight.json", "V05 handoff preflight")
+    require(preflight.get("kind") == "PrimaryHandoffPreflight" and
+            preflight.get("status") == "SourceTargetVerifiedNotBuildAccepted" and
+            preflight.get("codeCommit") == analysis["sourceRevision"],
+            "V05 handoff preflight does not bind current analysis source")
+
+    bounded, bounded_binding = _checkpoint_json(
+        current, "V01/bounded-primary/results.json", "V05 bounded Primary")
+    count = bounded.get("testCount")
+    require(bounded.get("kind") == "H1BeePrimaryRegression" and
+            bounded.get("status") == "PassedBoundedTests" and
+            type(count) is int and count > 0 and
+            bounded.get("counts") == {"Passed": count},
+            "V05 bounded Primary evidence is not a complete PASS")
+
+    python_inventory, python_binding = _checkpoint_json(
+        current, "V01/python-inventory.json", "V05 full Python inventory")
+    py_counts = python_inventory.get("counts")
+    require(python_inventory.get("kind") == "H1PythonLeafInventory" and
+            type(py_counts) is dict and
+            python_inventory.get("count") == python_inventory.get("discoveredCount") and
+            py_counts.get("Failed", 0) == 0 and py_counts.get("Error", 0) == 0 and
+            py_counts.get("Passed", 0) > 0,
+            "V05 complete Python inventory contains failure/error or is incomplete")
+
+    live, live_binding = _checkpoint_json(
+        current, "V02/live-evidence-reauthentication.json",
+        "V05 live historical evidence authentication")
+    _require_fixed_live_evidence(live)
+    semantics, semantics_binding = _checkpoint_json(
+        current, "V02/direct-binding-semantics-audit.json",
+        "V05 historical binding semantics")
+    require(semantics.get("unresolvedMismatchCount") == 0 and
+            semantics.get("unresolved") == [],
+            "V05 historical direct-binding semantics has unresolved mismatch")
+
+    compatibility, compatibility_binding = _checkpoint_json(
+        current, "V04/historical-compatibility.json", "V05 historical compatibility")
+    require(compatibility.get("kind") == "H1HistoricalAnalysisCompatibility" and
+            compatibility.get("status") == "AuthenticatedAnalysisOnlySuccessor" and
+            compatibility.get("policyId") == POLICY_ID and
+            compatibility.get("analysisSourceAuthority", {}).get("sourceRevision") ==
+                analysis["sourceRevision"] and
+            compatibility.get("analysisDelta", {}).get("currentSourceRevision") ==
+                analysis["sourceRevision"],
+            "V05 historical compatibility does not bind current analysis source")
+
+    performance, performance_binding = _checkpoint_json(
+        current, "V04/historical-performance-analysis.json", "V05 performance analysis")
+    embedded = performance.get("historicalAnalysisCompatibility")
+    require(performance.get("kind") == "H1ControlledPairedPerformanceSummary" and
+            performance.get("result") == "Passed" and
+            performance.get("status") == "ComparabilityPassed" and
+            type(embedded) is dict and
+            embedded.get("status") == "AuthenticatedAnalysisOnlySuccessor" and
+            embedded.get("policyId") == POLICY_ID and
+            embedded.get("analysisDelta", {}).get("currentSourceRevision") ==
+                analysis["sourceRevision"] and
+            type(performance.get("attempts")) is list and len(performance["attempts"]) == 45,
+            "V05 performance analysis is incomplete or source-mismatched")
+
+    validation, validation_binding = _checkpoint_json(
+        current, "V04/analysis-validation.json", "V05 strict analysis validation")
+    checks = validation.get("checks")
+    require(validation.get("kind") == "H1HistoricalStrictAnalysisValidation" and
+            validation.get("passed") is True and type(checks) is dict and
+            checks and all(value is True for value in checks.values()) and
+            validation.get("analysisSha256") == performance_binding["sha256"],
+            "V05 strict analysis validation does not authenticate the performance result")
+
+    no_player, no_player_binding = _checkpoint_json(
+        current, "V04/no-player-proof.json", "V05 no-Player evidence")
+    _require_no_player_receipt(no_player)
+
+    plan_bindings = {
+        relative: binding(analysis_project / relative)
+        for relative in V05_PLAN_FILES
+    }
+    reviewer_binding = binding(
+        analysis_project / ".codex/agents/code-gate-reviewer.toml")
+
+    current_bindings = {
+        "sourceAuthority": source_binding,
+        "handoffPreflight": preflight_binding,
+        "boundedPrimary": bounded_binding,
+        "pythonInventory": python_binding,
+        "liveHistoricalReauthentication": live_binding,
+        "bindingSemantics": semantics_binding,
+        "historicalCompatibility": compatibility_binding,
+        "performanceAnalysis": performance_binding,
+        "analysisValidation": validation_binding,
+        "noPlayerEvidence": no_player_binding,
+    }
+
+    return {
+        "schemaVersion": 1,
+        "kind": V05_KIND,
+        "status": "SuccessorEvidenceBoundForIndependentM08",
+        "policyId": V05_POLICY_ID,
+        "analysisSourceAuthority": analysis,
+        "currentClosureCheckpoint": {
+            "path": str(current["root"]),
+            "manifest": binding(current["manifest"]),
+            "entryCount": len(current["entries"]),
+        },
+        "historicalExecutionCheckpoint": {
+            "path": str(historical["root"]),
+            "manifest": binding(historical["manifest"]),
+            "entryCount": len(historical["entries"]),
+            "sourceRevision": HISTORICAL_SOURCE_REVISION,
+        },
+        "evidence": current_bindings,
+        "historicalFixedEvidenceSha256": {
+            "graphReuseBridge": HISTORICAL_BRIDGE_SHA256,
+            "pilotVerification": HISTORICAL_SEAL_SHA256,
+            "formalBatch": HISTORICAL_FORMAL_BATCH_SHA256,
+            "finalSampleIndex": HISTORICAL_FINAL_SAMPLE_SHA256,
+        },
+        "executionClassifications": {
+            "currentSourceRegression": "FreshCurrentSourceValidation",
+            "historicalExecution": "ReusedAuthenticatedFromSource27df",
+            "historicalPerformance": "ReanalyzedImmutableHistoricalExecution",
+            "freshCurrentSourcePlayerExecution": False,
+            "playerRerunForV05": False,
+        },
+        "performanceDisposition": {
+            "comparability": "ComparabilityPassed",
+            "performanceAcceptance": "NotClaimedNoSLA",
+            "fullMeasuredAnalysis": performance_binding,
+            "instruction":
+                "Preserve all measured regressions, memory deltas and variance for independent review; "
+                "ComparabilityPassed is not performance acceptance.",
+        },
+        "canonicalPlanBindings": plan_bindings,
+        "independentReviewer": {
+            "mechanism": "code-gate-reviewer",
+            "binding": reviewer_binding,
+            "gateType": "MILESTONE",
+            "requiredVerdicts": ["PASS", "FAIL", "BLOCKED"],
+            "passDisposition": "ReadyForHumanReviewGate",
+            "humanApprovalStillRequired": True,
+        },
+        "reviewRequirements": [
+            "Review canonical H1 gate, evidence contract, validation matrix and performance protocol.",
+            "Review source-27df execution provenance separately from current analysis/test source.",
+            "Review complete V04 performance JSON; do not infer performance acceptance from ComparabilityPassed.",
+            "Review the preserved invalid historical pilot and all 40 valid formal attempts.",
+            "Review V05 classifications; historical execution must not be relabelled Fresh.",
+            "Review current source diff and the analysis-only historical compatibility mechanism.",
+        ],
+        "historicalIndependentM08": "FAIL",
+        "v05Complete": True,
+        "independentM08Eligible": True,
+        "M08Passed": False,
+        "humanGatePassed": False,
+        "mayEnterR02": False,
+    }
+
 def _write_new(path: Path, value: dict[str, Any]) -> None:
     require(path.is_absolute() and path == path.resolve() and
             not path.exists() and not path.is_symlink(),
@@ -727,44 +1060,70 @@ def _historical_verified_launch(compatibility: dict[str, Any]):
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--sample-index", required=True, type=Path)
-    parser.add_argument("--pilot-verification-receipt", required=True, type=Path)
-    parser.add_argument("--graph-reuse-bridge", required=True, type=Path)
-    parser.add_argument("--formal-batch", required=True, type=Path)
+    parser.add_argument("--sample-index", type=Path)
+    parser.add_argument("--pilot-verification-receipt", type=Path)
+    parser.add_argument("--graph-reuse-bridge", type=Path)
+    parser.add_argument("--formal-batch", type=Path)
     parser.add_argument("--analysis-project", required=True, type=Path,
                         help="Canonical current validation checkout that owns analysis source authority")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--preflight-only", action="store_true")
+    parser.add_argument("--v05-package", action="store_true",
+                        help="Bind an authenticated analysis-only V05 successor evidence index")
+    parser.add_argument("--current-checkpoint", type=Path,
+                        help="Authenticated current V04 closure checkpoint for --v05-package")
+    parser.add_argument("--historical-checkpoint", type=Path,
+                        help="Authenticated source-27df execution checkpoint for --v05-package")
     args = parser.parse_args(argv)
 
     output = args.output
     try:
-        compatibility = authenticate_compatibility(
-            args.sample_index, args.pilot_verification_receipt,
-            args.graph_reuse_bridge, args.formal_batch, args.analysis_project)
-        public_compatibility = copy.deepcopy(compatibility)
-        public_compatibility.pop("pairingAuthority", None)
-        if args.preflight_only:
-            result = public_compatibility
+        if args.v05_package:
+            require(not args.preflight_only,
+                    "--preflight-only cannot be combined with --v05-package")
+            require(args.current_checkpoint is not None and
+                    args.historical_checkpoint is not None,
+                    "--v05-package requires --current-checkpoint and --historical-checkpoint")
+            result = build_v05_successor_evidence(
+                args.analysis_project, args.current_checkpoint, args.historical_checkpoint)
         else:
-            summary = paired.analyze_sample_index(
-                args.sample_index, verifier=_historical_verified_launch(compatibility))
-            summary["historicalAnalysisCompatibility"] = public_compatibility
-            result = summary
+            require(all(value is not None for value in (
+                        args.sample_index, args.pilot_verification_receipt,
+                        args.graph_reuse_bridge, args.formal_batch)),
+                    "Historical reanalysis requires sample/seal/bridge/formal-batch inputs")
+            compatibility = authenticate_compatibility(
+                args.sample_index, args.pilot_verification_receipt,
+                args.graph_reuse_bridge, args.formal_batch, args.analysis_project)
+            public_compatibility = copy.deepcopy(compatibility)
+            public_compatibility.pop("pairingAuthority", None)
+            if args.preflight_only:
+                result = public_compatibility
+            else:
+                summary = paired.analyze_sample_index(
+                    args.sample_index, verifier=_historical_verified_launch(compatibility))
+                summary["historicalAnalysisCompatibility"] = public_compatibility
+                result = summary
     except Exception as error:
         result = {
             "schemaVersion": 1,
-            "kind": "H1HistoricalPerformanceReanalysisFailure",
+            "kind": ("H1AnalysisOnlySuccessorEvidenceFailure"
+                     if args.v05_package else "H1HistoricalPerformanceReanalysisFailure"),
             "result": "Failed",
             "error": str(error),
-            "sampleIndex": str(Path(args.sample_index).resolve()),
             "analysisProject": str(Path(args.analysis_project).resolve()),
         }
+        if args.sample_index is not None:
+            result["sampleIndex"] = str(Path(args.sample_index).resolve())
         _write_new(output, result)
-        print("Historical H1 reanalysis Failed: " + str(output), flush=True)
+        print(("H1 V05 successor evidence Failed: " if args.v05_package
+               else "Historical H1 reanalysis Failed: ") + str(output), flush=True)
         return 1
 
     _write_new(output, result)
+    if args.v05_package:
+        print("H1 V05 successor evidence " + str(result["status"]) + ": " +
+              str(output), flush=True)
+        return 0
     status = result.get("result", result.get("status", "Passed"))
     print("Historical H1 reanalysis " + str(status) + ": " + str(output), flush=True)
     if args.preflight_only:
