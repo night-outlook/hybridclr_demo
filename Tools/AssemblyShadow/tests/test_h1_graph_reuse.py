@@ -35,6 +35,34 @@ class H1GraphReuseTests(unittest.TestCase):
     def real_old_pins(self):
         return reuse.retained_graph_pins(self.successor_pins_at_head())
 
+    def test_historical_reanalysis_evidence_hashes_match_authenticated_checkpoint_manifest(self):
+        manifest = (
+            ROOT / "Docs/AssemblyShadow/History/M07R/H1/"
+            "local-validation-20260923-authority27df-formal-analysis-blocked/"
+            "MANIFEST.sha256"
+        ).read_text().splitlines()
+        entries = {}
+        for line in manifest:
+            if "  " not in line:
+                continue
+            sha256, relative = line.split("  ", 1)
+            entries[relative] = sha256
+        self.assertEqual(
+            entries["./V04/performance/h1-graph-reuse-bridge.json"],
+            historical.HISTORICAL_BRIDGE_SHA256)
+        self.assertEqual(
+            entries["./V04/performance/h1-pilot-verification.json"],
+            historical.HISTORICAL_SEAL_SHA256)
+        self.assertEqual(
+            entries[
+                "./V04/performance/formal-batch-guardv2-27df-01/"
+                "40-R00-ON-P03-formal-10-attempt-1/sample-index.json"],
+            historical.HISTORICAL_FINAL_SAMPLE_SHA256)
+        self.assertEqual(
+            entries[
+                "./V04/performance/formal-batch-guardv2-27df-01/formal-batch.json"],
+            historical.HISTORICAL_FORMAL_BATCH_SHA256)
+
     def test_returned_analysis_failure_is_exact_real_producer_shape(self):
         diagnosis_path = (
             ROOT / "Docs/AssemblyShadow/History/M07R/H1/"
