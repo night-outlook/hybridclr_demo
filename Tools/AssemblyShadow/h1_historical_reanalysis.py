@@ -411,6 +411,39 @@ def _verify_historical_formal_authority(authority_binding: dict[str, Any],
             "Historical formal authority pairing identity mismatch")
 
 
+def verify_historical_formal_batch(formal_batch_path: Path, sample_index_path: Path,
+                                   seal_path: Path, bridge_path: Path,
+                                   sample_index: dict[str, Any]) -> dict[str, Any]:
+    formal_batch_path = canonical_file(formal_batch_path, "historical formal batch")
+    require(digest(formal_batch_path) == HISTORICAL_FORMAL_BATCH_SHA256,
+            "Historical reanalysis is limited to the authenticated 27df formal batch")
+    value = read_json(formal_batch_path)
+    require(value.get("schemaVersion") == 1 and value.get("kind") == "H1FormalBatchRun" and
+            value.get("status") == "PassedAllFormalPairs",
+            "Historical formal batch header mismatch")
+    require(value.get("formalPairCount") == 40 and value.get("formalPairsPassed") == 40,
+            "Historical formal batch is not the completed 40/40 series")
+    require(value.get("finalSampleIndex") == binding(sample_index_path),
+            "Historical formal batch final sample binding mismatch")
+    require(value.get("graphReuseBridge") == binding(bridge_path) and
+            value.get("pilotVerification") == binding(seal_path),
+            "Historical formal batch switched bridge or seal")
+    for key in ("protocol", "schedule", "buildMap"):
+        require(value.get(key) == sample_index.get(key),
+                "Historical formal batch binding mismatch: " + key)
+    runs = value.get("runs")
+    require(type(runs) is list and len(runs) == 40,
+            "Historical formal batch must retain exactly 40 pair runs")
+    require(all(type(row) is dict and row.get("exitCode") == 0 and
+                type(row.get("sampleIndex")) is dict for row in runs),
+            "Historical formal batch contains an unsuccessful or unbound run")
+    return {
+        "historicalFormalBatch": binding(formal_batch_path),
+        "formalPairCount": 40,
+        "formalPairsPassed": 40,
+    }
+
+
 def verify_historical_sample_chain(sample_index_path: Path, seal_path: Path,
                                    bridge_path: Path, project: Path,
                                    bridge_info: dict[str, Any]) -> dict[str, Any]:
@@ -483,16 +516,19 @@ def verify_historical_sample_chain(sample_index_path: Path, seal_path: Path,
 
 
 def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
-                               bridge_path: Path) -> dict[str, Any]:
+                               bridge_path: Path, formal_batch_path: Path) -> dict[str, Any]:
     sample_index_path = canonical_file(sample_index_path, "historical final sample index")
     seal_path = canonical_file(seal_path, "historical pilot seal")
     bridge_path = canonical_file(bridge_path, "historical graph bridge")
+    formal_batch_path = canonical_file(formal_batch_path, "historical formal batch")
     require(digest(sample_index_path) == HISTORICAL_FINAL_SAMPLE_SHA256,
             "Historical reanalysis is limited to the authenticated 27df final sample index")
     require(digest(seal_path) == HISTORICAL_SEAL_SHA256,
             "Historical reanalysis is limited to the authenticated 27df pilot seal")
     require(digest(bridge_path) == HISTORICAL_BRIDGE_SHA256,
             "Historical reanalysis is limited to the authenticated 27df graph bridge")
+    require(digest(formal_batch_path) == HISTORICAL_FORMAL_BATCH_SHA256,
+            "Historical reanalysis is limited to the authenticated 27df formal batch")
 
     bridge_value = read_json(bridge_path)
     project = canonical_dir(bridge_value.get("projectRoot", ""), "candidate project")
@@ -504,6 +540,8 @@ def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
     delta = authenticate_analysis_delta(project, current_revision)
     bridge_info = verify_historical_bridge(bridge_path, build_map_path, project)
     seal_info = verify_historical_seal(seal_path, bridge_path, sample, project)
+    batch_info = verify_historical_formal_batch(
+        formal_batch_path, sample_index_path, seal_path, bridge_path, sample)
     sample_info = verify_historical_sample_chain(
         sample_index_path, seal_path, bridge_path, project, bridge_info)
 
@@ -524,6 +562,7 @@ def authenticate_compatibility(sample_index_path: Path, seal_path: Path,
         "analysisDelta": delta,
         "historicalBridge": bridge_info,
         "historicalSeal": seal_info,
+        "historicalFormalBatch": batch_info,
         "historicalSeries": sample_info,
         "authenticatedEvidenceSha256": {
             "graphReuseBridge": HISTORICAL_BRIDGE_SHA256,
@@ -565,6 +604,7 @@ def main(argv=None) -> int:
     parser.add_argument("--sample-index", required=True, type=Path)
     parser.add_argument("--pilot-verification-receipt", required=True, type=Path)
     parser.add_argument("--graph-reuse-bridge", required=True, type=Path)
+    parser.add_argument("--formal-batch", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args(argv)
@@ -572,7 +612,8 @@ def main(argv=None) -> int:
     output = args.output
     try:
         compatibility = authenticate_compatibility(
-            args.sample_index, args.pilot_verification_receipt, args.graph_reuse_bridge)
+            args.sample_index, args.pilot_verification_receipt,
+            args.graph_reuse_bridge, args.formal_batch)
         public_compatibility = copy.deepcopy(compatibility)
         public_compatibility.pop("pairingAuthority", None)
         if args.preflight_only:
