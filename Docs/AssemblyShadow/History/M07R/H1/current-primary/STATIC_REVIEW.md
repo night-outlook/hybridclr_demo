@@ -6,7 +6,7 @@
 
 Reviewed source anchor:
 
-`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+`27e67920c6d8445895c1b9db647d733371a067c0`
 
 ## Context
 
@@ -124,12 +124,12 @@ No shared runtime/input verifier, Player runner, measurement, protocol, schedule
 
 ## Regression review
 
-Four new tests cover:
+Six V05 tests cover:
 
 1. checkpoint manifest tamper rejection;
 2. successful V05 package classifications and non-approval flags;
 3. rejection of a non-ComparabilityPassed V04 analysis;
-4. rejection of no-Player evidence containing a Player/formal runner command.
+4. rejection of no-Player evidence containing a Player/formal runner command;\n5. rejection of incomplete current-source test cardinality;\n6. rejection of truncated sealed-live file/byte cardinality.
 
 Expected bounded count is 385.
 
@@ -139,7 +139,7 @@ Primary could not execute a fresh GitHub Actions workflow for the new source anc
 
 Local must execute:
 
-- 385/385 bounded;
+- 387/387 bounded;
 - full Python zero failures/errors;
 - exact source audits;
 - complete V02;
