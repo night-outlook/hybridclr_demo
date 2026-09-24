@@ -36,6 +36,11 @@ FORMAL_AUTHORITY_KIND = "H1FormalSideLaunchAuthority"
 PAIRING_AUTHORITY_KIND = "H1AuthenticatedGraphReuseAuthority"
 V05_POLICY_ID = "H1AnalysisOnlySuccessorEvidence-v1"
 V05_KIND = "H1AnalysisOnlySuccessorEvidence"
+V05_BOUNDED_TEST_COUNT = 387
+V05_PYTHON_LEAF_COUNT = 1071
+V05_HISTORICAL_MANIFEST_ENTRIES = 92
+V05_SEALED_FILE_COUNT = 33792
+V05_SEALED_BYTES = 1606993133
 V05_REQUIRED_CURRENT_MEMBERS = (
     "V00/source-authority.json",
     "V00/handoff-preflight.json",
@@ -54,6 +59,9 @@ V05_PLAN_FILES = (
     "Docs/AssemblyShadow/Plan/HUMAN_REVIEW_GATES.md",
     "Docs/AssemblyShadow/Plan/PERFORMANCE_PROTOCOL.md",
     "Docs/AssemblyShadow/Plan/VALIDATION_MATRIX.md",
+    "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+    "Docs/AssemblyShadow/Handoff/source-targets.json",
+    "Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md",
 )
 V05_HISTORICAL_EXPECTED = {
     "V04/performance/h1-graph-reuse-bridge.json": HISTORICAL_BRIDGE_SHA256,
@@ -725,7 +733,7 @@ def _require_fixed_live_evidence(value: dict[str, Any]) -> None:
             "V05 live evidence audit kind mismatch")
     manifest = value.get("checkpointManifest")
     require(type(manifest) is dict and manifest.get("allPassed") is True and
-            manifest.get("entries") == 92,
+            manifest.get("entries") == V05_HISTORICAL_MANIFEST_ENTRIES,
             "V05 source-27df checkpoint authentication is incomplete")
     expected = {
         "bridge": HISTORICAL_BRIDGE_SHA256,
@@ -742,8 +750,10 @@ def _require_fixed_live_evidence(value: dict[str, Any]) -> None:
                 "V05 fixed live evidence mismatch: " + name)
     sealed = value.get("sealedInventory")
     require(type(sealed) is dict and
-            sealed.get("expectedFiles") == sealed.get("verifiedFiles") and
-            sealed.get("expectedBytes") == sealed.get("verifiedBytes") and
+            sealed.get("expectedFiles") == V05_SEALED_FILE_COUNT and
+            sealed.get("verifiedFiles") == V05_SEALED_FILE_COUNT and
+            sealed.get("expectedBytes") == V05_SEALED_BYTES and
+            sealed.get("verifiedBytes") == V05_SEALED_BYTES and
             sealed.get("guardMismatches") == 0 and
             sealed.get("contentMismatches") == 0 and sealed.get("missing") == 0,
             "V05 sealed live inventory authentication is incomplete")
@@ -780,6 +790,8 @@ def build_v05_successor_evidence(analysis_project: Path, current_checkpoint: Pat
     current = authenticate_checkpoint(current_checkpoint, "current V04 closure")
     historical = authenticate_checkpoint(historical_checkpoint, "source-27df execution")
 
+    require(len(historical["entries"]) == V05_HISTORICAL_MANIFEST_ENTRIES,
+            "V05 historical checkpoint manifest entry count differs")
     for relative, expected in V05_HISTORICAL_EXPECTED.items():
         require(historical["entries"].get(relative) == expected,
                 "V05 historical checkpoint identity mismatch: " + relative)
@@ -812,19 +824,22 @@ def build_v05_successor_evidence(analysis_project: Path, current_checkpoint: Pat
     count = bounded.get("testCount")
     require(bounded.get("kind") == "H1BeePrimaryRegression" and
             bounded.get("status") == "PassedBoundedTests" and
-            type(count) is int and count > 0 and
-            bounded.get("counts") == {"Passed": count},
-            "V05 bounded Primary evidence is not a complete PASS")
+            count == V05_BOUNDED_TEST_COUNT and
+            bounded.get("counts") == {"Passed": V05_BOUNDED_TEST_COUNT},
+            "V05 bounded Primary evidence is not the exact complete PASS")
 
     python_inventory, python_binding = _checkpoint_json(
         current, "V01/python-inventory.json", "V05 full Python inventory")
     py_counts = python_inventory.get("counts")
     require(python_inventory.get("kind") == "H1PythonLeafInventory" and
             type(py_counts) is dict and
-            python_inventory.get("count") == python_inventory.get("discoveredCount") and
+            python_inventory.get("count") == V05_PYTHON_LEAF_COUNT and
+            python_inventory.get("discoveredCount") == V05_PYTHON_LEAF_COUNT and
+            all(type(value) is int and value >= 0 for value in py_counts.values()) and
+            sum(py_counts.values()) == V05_PYTHON_LEAF_COUNT and
             py_counts.get("Failed", 0) == 0 and py_counts.get("Error", 0) == 0 and
             py_counts.get("Passed", 0) > 0,
-            "V05 complete Python inventory contains failure/error or is incomplete")
+            "V05 complete Python inventory differs from the exact source suite")
 
     live, live_binding = _checkpoint_json(
         current, "V02/live-evidence-reauthentication.json",
