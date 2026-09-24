@@ -4,93 +4,162 @@
 
 Latest Local return:
 
-`57d51ac4b1d09eb190a7e95235a7ec6ff5ed1357`
+`5f8db436e31df017dbff396b375547394c396ad5`
 
-Current analysis/test source anchor:
+Current analysis/test/V05 source anchor:
 
-`d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`
+`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
 
 Completed formal execution source:
 
 `27df1a3d60811dc121f296ab561ae313a382b363`
 
-H1 remains `InProgress`; historical M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
+Latest Local V04 closure:
 
-## Returned Local result
+`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`
 
-The d239 cycle passed source authority, bounded 377/377, full Python with zero failures/errors, exact seven/25-path audits, the source-27df manifest, all four fixed hashes, and complete read-only sealed-live authentication.
+H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-V04.AF failed because current source authority was read from the historical bridge checkout instead of the designated validation checkout.
+## Local result received
+
+The d61 split-checkout repair closed V04 successfully.
+
+Local passed:
+
+- source authority;
+- 381/381 bounded Primary;
+- full Python with zero failures/errors;
+- exact v2 source audits;
+- complete source-27df live evidence reauthentication;
+- V04.AF split-checkout compatibility;
+- V04.AG strict historical analysis;
+- V04.AH authenticated closure checkpoint.
 
 No Player was rerun.
 
-## Primary design decision
+V04.AG returned:
 
-Historical evidence location and current analysis source authority are independent concepts.
+- `result=Passed`;
+- `status=ComparabilityPassed`;
+- 45 attempts;
+- 44 valid/analyzable;
+- one preserved invalid historical pilot;
+- 40/40 valid formal attempts;
+- ten formal pairs/mode;
+- one valid pilot/mode;
+- complete startup/chronology/non-overlap.
 
-Do not move or rewrite historical evidence and do not update the historical owner checkout merely to satisfy current source verification.
+## Returned blocker resolved
 
-Current authority must come from an explicitly designated current validation checkout.
+Local correctly marked V05 `NotEligibleUnderCurrentHandoff` because the previous handoff did not define an analysis-only successor-evidence contract.
 
-## Implementation
+Primary now defines:
 
-`h1_historical_reanalysis.py` now requires:
+`H1AnalysisOnlySuccessorEvidence-v1`
 
-`--analysis-project <current-validation-checkout>`
+implemented by:
 
-It independently authenticates that checkout and uses it for the v2 source delta.
+`Tools/AssemblyShadow/h1_historical_reanalysis.py --v05-package`
 
-Historical bridge/seal/batch/sample/formal-authority verification continues to use the original historical paths.
+See:
 
-For strict candidate-side R00 reanalysis, the tool supplies a historical-input adapter that reconstructs the immutable historical M07/R00 input graph without consulting the historical checkout's current source pin. Shared runtime verification modules are not changed and their normal functions are restored after the callback.
+`Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md`
 
-## Policies
+## V05 semantics
 
-Unchanged:
+V05 verifies and binds:
 
-- `H1HistoricalPerformanceReanalysis-v2`: exact 7 paths;
-- `H1V04RetainedGraphToolOnlySuccessor-v2`: exact 25 paths.
+- the authenticated current V04 closure checkpoint;
+- the immutable source-27df execution checkpoint;
+- current source authority/tests;
+- complete V02 live reauthentication;
+- V04 compatibility and full strict performance analysis;
+- scoped no-Player evidence;
+- canonical H1 gate/evidence/performance documents;
+- the independent reviewer configuration.
 
-Relative to d239, only three already-allowed paths changed:
+It does not run Players or convert historical execution into current-source Fresh evidence.
+
+Required classifications:
+
+- `FreshCurrentSourceValidation`;
+- `ReusedAuthenticatedFromSource27df`;
+- `ReanalyzedImmutableHistoricalExecution`.
+
+Success means only:
+
+`SuccessorEvidenceBoundForIndependentM08`
+
+## Performance
+
+The performance protocol has no approved H1 SLA.
+
+`ComparabilityPassed` is not performance acceptance.
+
+The full measured analysis, including observed slowdowns and increased memory, is bound into V05 and must be examined by independent M08.
+
+## Independent M08
+
+Use:
+
+`.codex/agents/code-gate-reviewer.toml`
+
+in a genuinely independent, read-only context.
+
+The independent review must return PASS / FAIL / BLOCKED and inspect the full chain, not summaries only.
+
+A PASS yields only:
+
+`ReadyForHumanReviewGate`
+
+Human H1 approval remains explicit and separate.
+
+## Source scope
+
+New source anchor:
+
+`25cd25f675c0caaf5009fd1aa3136aa0d98302d8`
+
+The exact seven-path historical analysis policy and 25-path retained-graph policy remain unchanged.
+
+Relative to d61, only these already-authorized paths changed:
 
 - `Tools/AssemblyShadow/README.md`;
 - `Tools/AssemblyShadow/h1_historical_reanalysis.py`;
 - `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`.
 
-## Regression coverage
+## New regression coverage
 
-Four new leaves cover:
+Four V05 leaves cover:
 
-- real split checkout with stale historical worktree + current analysis checkout;
-- wrong committed current source pin rejection;
-- compatibility root-routing contract;
-- strict candidate-side historical verifier override scope/restoration.
+- checkpoint manifest tamper;
+- positive V05 analysis-only evidence binding and classifications;
+- nonpassing V04 analysis rejection;
+- invalid no-Player evidence rejection.
 
-The split-checkout test also mutates historical build-map binding and requires rejection.
+Expected next counts:
 
-Expected counts:
+- bounded: 385;
+- full Python: 1,069;
+- expected with unchanged environment skips: 1,041 Passed / 28 Skipped / 0 Failed/Error.
 
-- bounded: **381**;
-- full Python: **1,065**;
-- expected under unchanged environment skips: **1,037 Passed / 28 Skipped / 0 Failed/Error**.
-
-Fresh Local evidence is required.
+Fresh Local execution remains required.
 
 ## Next Local cycle
 
-Run the complete chain in one cycle:
+Run one complete batch:
 
-1. V00 source authority;
-2. bounded 381;
-3. full Python 1,065;
-4. exact source audits;
-5. complete live historical reauthentication;
-6. V04.AF with explicit `--analysis-project`;
-7. V04.AG with the same analysis checkout;
-8. analysis-only checkpoint;
-9. V05;
-10. genuinely independent M08 if eligible.
+1. V00 source authority.
+2. V01 bounded/full Python.
+3. exact source audits.
+4. complete V02 live reauthentication.
+5. rerun V04.AF/V04.AG.
+6. authenticate pre-V05 V04 closure.
+7. run V05.
+8. if eligible, run genuine independent M08.
+9. PASS → stop at ReadyForHumanReviewGate.
+10. FAIL/BLOCKED → return findings to Primary.
 
-Do not rerun Players as a workaround.
+Do not rerun Players.
 
 Do not begin R02.
