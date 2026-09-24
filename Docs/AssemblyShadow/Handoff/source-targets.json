@@ -8,9 +8,9 @@
     "candidate": {
       "repository": "night-outlook/hybridclr_demo",
       "branch": "codex/assembly-shadow-r01b-h1",
-      "codeCommit": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
-      "implementationCommit": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
-      "codeAnchorPolicy": "codeCommit is the authoritative candidate analysis/test-tool identity for H1HistoricalPerformanceReanalysis-v2. Relative to completed source 27df1a3d it permits exactly seven reviewed non-metadata analysis/test paths; no execution/runtime/measurement source is added. The immutable 27df completed formal series remains historical execution evidence.",
+      "codeCommit": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+      "implementationCommit": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+      "codeAnchorPolicy": "codeCommit is the authoritative candidate analysis/test-tool identity for the split-checkout H1HistoricalPerformanceReanalysis-v2 repair. Relative to completed source 27df1a3d the exact seven-path analysis/test-only set is unchanged; no execution/runtime/measurement source is added. Historical evidence paths remain bound to their original checkout while current analysis authority is explicitly supplied by the designated validation checkout.",
       "runtimePins": {
         "hybridclr": {
           "url": "https://github.com/night-outlook/hybridclr",
@@ -908,6 +908,45 @@
       "expectedFullPythonSkipped": 28,
       "expectedFullPythonFailures": 0,
       "scope": "Fresh evidence required at the new source anchor; do not reuse the prior 376/376 run as current-source validation."
+    }
+  },
+  "connectorWriteSmokeTestSplitCheckoutRepair": {
+    "transport": "GitHub Connector",
+    "repository": "night-outlook/hybridclr_demo",
+    "baseBranch": "codex/assembly-shadow-r01b-h1",
+    "smokeBranch": "codex/connector-smoke-primary-20260924-c",
+    "commit": "fba7f10bfcf361111133f622a88c3f87894c0a29",
+    "readbackMatched": true,
+    "cleanup": "Connector branch-delete capability unavailable; disposable smoke branch remains non-authoritative.",
+    "purpose": "Operational transport readiness only; not product acceptance evidence."
+  },
+  "v04HistoricalAnalysisSplitCheckoutRepair": {
+    "returnedByLocalValidationCommit": "57d51ac4b1d09eb190a7e95235a7ec6ff5ed1357",
+    "previousSourceAnchor": "d239d9d00784ea2df22133cb8c938ec25035f5a0",
+    "sourceAnchor": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
+    "failure": "V04.AF derived current analysis source pins from the immutable historical bridge projectRoot checkout, which still pinned 7aa6f619, instead of the designated validation checkout pinned to d239d9d0.",
+    "correction": {
+      "analysisAuthority": "h1_historical_reanalysis.py now requires --analysis-project. The designated checkout must be a canonical Git root, its source-pin file must equal committed HEAD, its demo repository identity/localPath must be exact, its complete non-metadata tree must match the pinned source revision, and the running reanalysis tool bytes must match that checkout.",
+      "historicalEvidence": "The bridge/seal/batch/sample/formal-authority paths remain bound to the immutable historical project root from the historical receipts. No historical file or receipt is rewritten.",
+      "strictAnalysis": "Candidate-side historical R00 verification uses a historical-input adapter inside h1_historical_reanalysis.py. It rechecks the immutable M07/R00 evidence graph against historical graph/source pin DTOs while avoiding the mutable historical checkout as current-source authority. r00_player_inputs.py, r00_results.py, and r01_early_results.py are unchanged; their normal behavior is restored after each callback.",
+      "policy": "H1HistoricalPerformanceReanalysis-v2 exact seven-path allowlist and H1V04RetainedGraphToolOnlySuccessor-v2 exact 25-path allowlist are unchanged."
+    },
+    "regressions": {
+      "splitCheckout": "A real detached Git worktree at the previously observed stale evidence checkout commit is used as historical bridge projectRoot while the current repository is used as analysis authority; bridge verification must accept the split and preserve historical source pins.",
+      "wrongCurrentPin": "A detached current worktree commits an intentionally stale 7aa source pin and must fail current analysis source verification.",
+      "changedHistoricalEvidence": "The split-checkout bridge test mutates the historical build-map binding and must fail closed.",
+      "routing": "authenticate_compatibility is locked to route current delta/authentication through the designated analysis checkout and historical receipts through the historical project root.",
+      "strictVerifierScope": "The historical R00 input override is asserted to apply only inside the candidate historical verifier call and to restore both r00_results and early-startup verifier globals afterward."
+    },
+    "primaryValidation": {
+      "status": "PendingFreshValidation",
+      "expectedBoundedLeafCount": 381,
+      "expectedFullPythonLeafCount": 1065,
+      "expectedFullPythonPassedIfSkipSetUnchanged": 1037,
+      "expectedFullPythonSkippedIfEnvironmentUnchanged": 28,
+      "expectedFullPythonFailures": 0,
+      "expectedFullPythonErrors": 0,
+      "scope": "Fresh Local evidence required at the new source anchor. No GitHub Actions run was available in Primary for the source commits."
     }
   }
 }
