@@ -4,112 +4,93 @@
 
 Latest Local return:
 
-`144a26adf37bc0ecd5222499d328d1d1560910a0`
+`57d51ac4b1d09eb190a7e95235a7ec6ff5ed1357`
 
 Current analysis/test source anchor:
 
-`d239d9d00784ea2df22133cb8c938ec25035f5a0`
-
-Previous analysis source anchor:
-
-`7aa6f61994da354b04464e38ddfc8552cc5c3055`
+`d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`
 
 Completed formal execution source:
 
 `27df1a3d60811dc121f296ab561ae313a382b363`
 
-H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
+H1 remains `InProgress`; historical M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
 
-## Returned Local failure
+## Returned Local result
 
-V00.R and committed V00 passed on the repaired 7aa handoff. Bounded Primary passed 376/376.
+The d239 cycle passed source authority, bounded 377/377, full Python with zero failures/errors, exact seven/25-path audits, the source-27df manifest, all four fixed hashes, and complete read-only sealed-live authentication.
 
-Full Python discovery then ran 1,061 leaves and produced:
+V04.AF failed because current source authority was read from the historical bridge checkout instead of the designated validation checkout.
 
-- 1,032 Passed;
-- 28 environment-bound Skipped;
-- 1 Failed.
+No Player was rerun.
 
-The failed leaf was:
+## Primary design decision
 
-`test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive`
+Historical evidence location and current analysis source authority are independent concepts.
 
-Its synthetic raw-result fixture omitted top-level build GUID, baseline build ID, and runtime ABI hash. The corrected production analyzer correctly rejected that stale fixture.
+Do not move or rewrite historical evidence and do not update the historical owner checkout merely to satisfy current source verification.
 
-Local demonstrated in memory that adding those three fields makes the positive case pass.
+Current authority must come from an explicitly designated current validation checkout.
 
-## Primary correction
+## Implementation
 
-### Synthetic fixture
+`h1_historical_reanalysis.py` now requires:
 
-`Tools/AssemblyShadow/tests/test_h1_paired_performance.py::raw()` now emits the authenticated top-level R00 build identity while retaining the nested receipt binding.
+`--analysis-project <current-validation-checkout>`
 
-Production analyzer behavior is unchanged and remains fail-closed.
+It independently authenticates that checkout and uses it for the v2 source delta.
 
-### Bounded suite
+Historical bridge/seal/batch/sample/formal-authority verification continues to use the original historical paths.
 
-`Tools/AssemblyShadow/h1_bee_primary_tests.py` now explicitly loads the previously missed positive leaf.
+For strict candidate-side R00 reanalysis, the tool supplies a historical-input adapter that reconstructs the immutable historical M07/R00 input graph without consulting the historical checkout's current source pin. Shared runtime verification modules are not changed and their normal functions are restored after the callback.
 
-Expected bounded leaf count: **377**.
+## Policies
 
-### Historical successor v2
+Unchanged:
 
-`H1HistoricalPerformanceReanalysis-v2` authenticates an exact seven-path source-27df → current analysis/test-only delta.
+- `H1HistoricalPerformanceReanalysis-v2`: exact 7 paths;
+- `H1V04RetainedGraphToolOnlySuccessor-v2`: exact 25 paths.
 
-Relative to v1, the only added paths are:
+Relative to d239, only three already-allowed paths changed:
 
-- `Tools/AssemblyShadow/h1_bee_primary_tests.py`;
-- `Tools/AssemblyShadow/tests/test_h1_paired_performance.py`.
+- `Tools/AssemblyShadow/README.md`;
+- `Tools/AssemblyShadow/h1_historical_reanalysis.py`;
+- `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`.
 
-No execution/runtime/measurement source is added.
+## Regression coverage
 
-### Retained graph v2
+Four new leaves cover:
 
-`H1V04RetainedGraphToolOnlySuccessor-v2` requires the exact prior 24-path retained-graph set plus the paired-performance test fixture, for **25 paths** total.
+- real split checkout with stale historical worktree + current analysis checkout;
+- wrong committed current source pin rejection;
+- compatibility root-routing contract;
+- strict candidate-side historical verifier override scope/restoration.
 
-Historical v1 bridge/seal/formal-authority evidence is not relabelled.
+The split-checkout test also mutates historical build-map binding and requires rejection.
 
-## Source authority
+Expected counts:
 
-The source anchor is frozen at:
+- bounded: **381**;
+- full Python: **1,065**;
+- expected under unchanged environment skips: **1,037 Passed / 28 Skipped / 0 Failed/Error**.
 
-`d239d9d00784ea2df22133cb8c938ec25035f5a0`
-
-All later Primary commits in this cycle are metadata/handoff only.
-
-`ProjectSettings/AssemblyShadowSourcePins.json` and `Docs/AssemblyShadow/Handoff/source-targets.json` point to this anchor.
-
-## Primary evidence
-
-No fresh GitHub Actions execution was visible for the new anchor.
-
-Do not reuse old 376/376 as current validation.
-
-Required Local empirical validation:
-
-- bounded 377/377;
-- full Python 1,061 leaves with zero failures/errors;
-- exact 7-path and 25-path audits;
-- completed source-27df live evidence reauthentication;
-- historical compatibility v2;
-- corrected historical analysis.
-
-No Player rerun is required when those checks pass.
+Fresh Local evidence is required.
 
 ## Next Local cycle
 
-Run:
+Run the complete chain in one cycle:
 
-1. final source preflight;
-2. bounded 377;
-3. full Python discovery;
+1. V00 source authority;
+2. bounded 381;
+3. full Python 1,065;
 4. exact source audits;
-5. completed evidence reauthentication;
-6. historical compatibility preflight v2;
-7. historical strict analysis;
+5. complete live historical reauthentication;
+6. V04.AF with explicit `--analysis-project`;
+7. V04.AG with the same analysis checkout;
 8. analysis-only checkpoint;
-9. V05 / genuinely independent M08 if eligible.
+9. V05;
+10. genuinely independent M08 if eligible.
 
-Only genuine M08 PASS may make H1 Ready for Human Review Gate.
+Do not rerun Players as a workaround.
 
 Do not begin R02.
