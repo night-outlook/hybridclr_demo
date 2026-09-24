@@ -25,7 +25,9 @@ MODULES = (
     'test_h1_reproduction_tooling', 'test_h1_reproduction_tooling_binding', 'test_h1_m07_policy_bridge',
     'test_h1_m07_workflow_authority',
     'test_h1_performance_build_map_freezer', 'test_h1_performance_preregistration_binding',
-    'test_h1_paired_driver', 'test_h1_graph_reuse', 'test_h1_formal_batch',
+    'test_h1_paired_driver', 'test_h1_graph_reuse',
+    'test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive',
+    'test_h1_formal_batch',
     'test_h1_formal_launch_authority', 'test_h1_retained_early_preflight',
     'test_h1_retained_pilot_runner',
     'test_h1_protected_reference_contract',
@@ -64,7 +66,7 @@ def run(output):
     report={'kind':'H1BeePrimaryRegression','status':'PassedBoundedTests' if passed else 'CompletedWithNonPass',
         'testCount':result.testsRun,'counts':counts,'tests':sorted(result.rows,key=lambda r:r['id']),
         'host':platform.platform(),'python':sys.version,'rawLogSha256':hashlib.sha256(log.read_bytes()).hexdigest(),
-        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, managed changed-action/cache-hit proof, split reproduction behavior/tooling source and receipt binding, exact M07 fixed-byte/bootstrap policy plus workflow-restoration and post-validation authority regressions, protected-reference coordination and authenticated performance build-map freezing, and host-Clang synthetic probes; not Unity/Apple Player validation',
+        'scope':'Pinned Apple graph planning, >256 MiB logical retention, fail-closed storage limits, managed changed-action/cache-hit proof, split reproduction behavior/tooling source and receipt binding, exact M07 fixed-byte/bootstrap policy plus workflow-restoration and post-validation authority regressions, protected-reference coordination, authenticated performance build-map freezing, corrected paired-performance positive contract, and host-Clang synthetic probes; not Unity/Apple Player validation',
         'UnityCompile':'NotRun','AppleClangExecution':'NotRun','M08':'NotRun','humanGatePassed':False,'mayEnterR02':False}
     (output/'results.json').write_text(json.dumps(report,indent=2)+'\n')
     summary={k:report[k] for k in ('status','testCount','counts')}
