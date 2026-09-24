@@ -40,20 +40,14 @@ function Get-GitRepositoryRoot {
 function Get-ValidatedMainAgentModelFamily {
     param([AllowNull()][object]$Model)
 
-    $matchedFamilies = @()
     if ($Model -is [string] -and -not [string]::IsNullOrWhiteSpace($Model)) {
-        $matchedFamilies = @(
-            [regex]::Matches($Model, "(?i)(?<![a-z])(luna|terra|sol)(?![a-z])") |
-                ForEach-Object { $_.Groups[1].Value.ToLowerInvariant() } |
-                Select-Object -Unique
-        )
+        $normalizedModel = $Model.Trim().ToLowerInvariant()
+        if ($normalizedModel -match '^(?:gpt-6-)?(?:luna|sol|astra)$') {
+            return ($normalizedModel -split '-')[-1]
+        }
     }
 
-    if ($matchedFamilies.Count -ne 1) {
-        Write-Error -Message "Expected exactly one Luna, Terra, or Sol family; verify the effective main-agent model and retry once." -ErrorId "InvalidMainAgentModel" -Category InvalidArgument -TargetObject $Model -ErrorAction Stop
-    }
-
-    return $matchedFamilies[0]
+    Write-Error -Message "Expected a GPT-6 model or family (Luna, Sol, Astra); verify the effective main-agent model and retry once." -ErrorId "InvalidMainAgentModel" -Category InvalidArgument -TargetObject $Model -ErrorAction Stop
 }
 
 try {
