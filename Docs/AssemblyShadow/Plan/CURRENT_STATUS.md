@@ -1,124 +1,86 @@
 # Current Status
 
+Updated: 2026-09-25 after the user-initiated delegated H1 review.
+
 - H1 source anchor: `0388479f7073289e3505b992956a7cbe78c302ce`.
-- Latest Local return: `482d9d5cfe703310e8ea6d980677c73817bad774`.
-- Latest Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-m08-re-review/`.
-- V05: `SuccessorEvidenceBoundForIndependentM08`.
-- Latest independent M08: `BLOCKED` on one count-evidence finding.
-- Gate: `H1 / InProgress / AwaitingFreshCountMatrixClosure`.
+- Latest Local return commit: `2cbf68658a5b73189930fcdfe250835b72639515`.
+- Latest Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-fresh-count-m08/`.
+- Independent M08 reviewed checkpoint HEAD: `3754d35bed4efa62e16401453aa4f7edec185355`.
+- V05: `SuccessorEvidenceBoundForIndependentM08`; classifications and historical bytes unchanged.
+- Latest independent M08: **MILESTONE PASS, zero findings**.
+- Gate: **H1 / ReadyForHumanReviewGate**.
+- Delegated review disposition: **ReviewCompletedAwaitingUserDecision**.
+- Recommended final human verdict: `PassedWithExplicitDeferredRisk`, subject to both decisions below.
+- M08 passed: `true`.
 - Human gate passed: `false`.
 - May enter R02: `false`.
 
+`ReviewCompletedAwaitingUserDecision` describes the review workflow; it is not a new normative gate verdict. A recommendation is not an approved gate.
+
+## Read first
+
+[Delegated H1 review and batched decision sheet](../History/M07R/H1/human-review-20260925/HUMAN_REVIEW_GATE.md)
+
+Report publication commit: `9c76243ca8667934855ec52a0431b9e50f5405b4`.
+
+The report records its exact four-repository input tuple, Local checkout paths, source inspection scope, evidence classifications, measured performance, limitations, and conditional next-stage obligations. It does not rerun or replace Local Validation or the independent M08 reviewer.
+
 ## Latest Local result
 
-The M08 evidence-closure package successfully closed the earlier provenance/manifest/reuse blockers:
+The fresh `H1CountMatrixClosureSource038-v1` program completed:
 
-- source 038 → handoff HEAD remained metadata-only;
-- recovered prior-review records authenticated;
-- 925e successor manifest effectively authenticated 293/293;
-- 6913 correctly retained 29 verified + 1 unavailable/excluded;
-- source-27df superseding formal evidence reauthenticated;
-- startup11, failure/publication/recovery, ordinary capacity, mixed capacity, and M07/native were accepted as `ReusedAudited`.
+- fresh seed-20260925 parameter and nested fixtures and their audits;
+- six provenance-bound builds, with four candidate ON/OFF x C++ Debug/Release tuples selected for count acceptance;
+- 132/132 canonical count cells;
+- 132 verifier reports, 132 launch receipts, 132 semantic raw outcomes, and unique run IDs/PIDs;
+- 118 normal passes and 14 expected validation rejections;
+- seven sealed archives with inventories and retained live evidence;
+- `H1FreshCountMatrixClosureReceipt / PassedFreshSource038CountMatrix`;
+- `H1WholeChainSuiteClosureV2 / SixRequiredSuitesSupported`;
+- independent read-only M08 PASS.
 
-The only required suite still blocked is count-chain.
+The first prerequisite-failed A attempt remains preserved. The successful B run does not overwrite it.
 
-The immutable 12cf archive contains:
+Whole-H1 evidence classifications remain:
 
-- 132 `verification.json` reports;
-- one `result-index.json`;
-- zero retained bound Player launch receipts;
-- zero retained bound raw semantic results.
+| Suite | Selected classification |
+| --- | --- |
+| count-chain | `FreshCurrentSourceExecution` |
+| startup11 | `AcceptedReusedAudited` |
+| failure-publication-recovery | `AcceptedReusedAudited` |
+| ordinary-capacity | `AcceptedReusedAudited` |
+| mixed-capacity | `AcceptedReusedAudited` |
+| M07/native | `AcceptedReusedAudited` |
 
-Therefore its 132/132 summary cannot independently satisfy the canonical Launch and Raw evidence layers. The latest independent M08 returned `BLOCKED` on this single high-priority finding.
+The historical 12cf count archive remains blocked in its original record. Its missing launch/raw layer is replaced for current acceptance by the new source-038 execution, not reconstructed or relabeled. The earlier 925e effective 293/293 and 6913 explicit 29 verified plus 1 unavailable/excluded dispositions remain unchanged.
 
-## Primary decision
+## Remaining user decisions
 
-Do not attempt another historical reconstruction.
+The full measured source-038 analysis of immutable source-27df performance execution remains `ComparabilityPassed`, not an automatic performance acceptance.
 
-Do not temporarily rewrite current source pins to reuse old build receipts.
+- **D1 — warm-operation cost:** accept measured P01/P03 allocation, reflectionInvoke and closedGeneric regressions as an explicit H1 development-stage deferred risk with R02 investigation/controlled remeasurement and disposition before H2 review, or keep H1 closed pending bounded performance remediation.
+- **D2 — RSS:** accept before-benchmark RSS marginal-median increases of 18.2109 MiB / 19.1563 MiB for P01/P03 as an explicit H1 development-stage deferred risk with R02 attribution/remeasurement, or keep H1 closed pending memory remediation.
 
-Replace the count suite with **fresh source-038 execution evidence** while leaving all other accepted suites and V05 unchanged.
+Both recommended choices are A in the report. Neither choice has yet been supplied by the user. These are not production SLAs or release acceptance. The already selected 8192-image process-lifetime / 32 MiB individual / 512 MiB total / at least 25% usable-index headroom contract is unchanged and is not being re-asked.
 
-Protocol:
+Only after both risks have an explicit accepted disposition, bound to the report and reviewed source tuple in a committed decision record, may the human gate be recorded as `PassedWithExplicitDeferredRisk` and R02 become eligible. Any rejection or missing answer keeps `humanGatePassed=false` and `mayEnterR02=false`.
 
-`H1CountMatrixClosureSource038-v1`
+## Source and evidence preservation
 
-Contract:
+Candidate runtime pins remain:
 
-`Docs/AssemblyShadow/History/M07R/H1/current-primary/COUNT_MATRIX_CLOSURE_CONTRACT.md`
+- hybridclr: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`;
+- hybridclr_unity: `0ea633a2c5b936b5af69d944593c55bd2783fca9`;
+- il2cpp_plus: `6be7f38bec2fa4677d24efc1a4a1294240789933`.
 
-## Fresh count closure
+The review and this status correction are documentation-only successors. They do not change installed runtime, source-targets, executable code, immutable Local checkpoints, V05, the performance protocol, or the independent review.
 
-The protocol freezes:
-
-- source 038;
-- Unity 2022.3.62f2 / StandaloneOSX / arm64;
-- fixture seed 20260925;
-- current candidate runtime pins;
-- protected reproduction identity/tooling already recorded in machine authority;
-- six fresh provenance builds through existing `h1_count_build_batch_tooling.py --scope all`;
-- four candidate build receipts as count acceptance inputs;
-- 132 canonical count cells;
-- current per-cell and aggregate verifiers;
-- complete Launch/Raw retention.
-
-No source/tool modification is part of this program.
-
-## Required count evidence
-
-Fresh count acceptance requires:
-
-- two fresh fixture families, independently audited;
-- six fresh build/provenance rows;
-- four candidate build GUIDs selected by exact feature/config tuple;
-- 132 canonical cells;
-- 132 unique run IDs;
-- 132 `verification.json`;
-- 132 `H1CountPlayerLaunchReceipt` files;
-- 132 semantic raw outcomes;
-- zero missing launch/raw bindings;
-- strict aggregate `H1CountMatrixVerification / Passed / 132`;
-- complete evidence sealing for matrix, fixtures and four candidate build roots.
-
-The previous 12cf count evidence remains historical failed-closure evidence and is not upgraded.
-
-## Whole-H1 closure after count
-
-Create `H1WholeChainSuiteClosureV2`:
-
-- count-chain = `FreshCurrentSourceExecution`;
-- startup11 = `AcceptedReusedAudited`;
-- failure/publication/recovery = `AcceptedReusedAudited`;
-- ordinary capacity = `AcceptedReusedAudited`;
-- mixed capacity = `AcceptedReusedAudited`;
-- M07/native = `AcceptedReusedAudited`.
-
-Only after all six are supported with zero Blocked/Rejected may independent M08 run again.
-
-## Independent M08
-
-The next review must explicitly revisit the former count Launch/Raw blocker using the fresh matrix receipt/archive.
-
-PASS still means only:
-
-`ReadyForHumanReviewGate`
-
-It does not set human approval or allow R02.
+Preserve `_temp/AssemblyShadow/H1CountClosure038-20260925B/`, its seven archives, all four selected candidate build roots, and the reused historical/performance evidence. The delegated reviewer did not directly rehash the local external bytes; the report retains that limitation and the existing Local/M08 authentication.
 
 ## Required next action
 
-Local should run exactly one count-closure batch:
+Receive the user's single batched D1/D2 decision. Record the actual choices without inventing approval. Do not repeat the already completed count program merely because the earlier WEB_TO_LOCAL execution contract still describes its pre-run objective.
 
-1. source/handoff preflight;
-2. fresh parameter/nested fixture generation + audits;
-3. fresh six-build provenance batch;
-4. fresh 132-cell candidate count matrix;
-5. strict aggregate verification;
-6. complete Launch/Raw/build evidence sealing;
-7. `H1FreshCountMatrixClosureReceipt`;
-8. `H1WholeChainSuiteClosureV2`;
-9. independent M08 if all count requirements pass.
+No new Local Validation run is requested by this review. No R02 implementation, source refactor, evidence cleanup, or release work is authorized by this document.
 
-Do not rerun V04, V05, performance formal Players, capacity, startup11, failure, or M07/native.
-
-Do not begin R02.
+**Stop pending user risk decisions. Do not begin R02.**
