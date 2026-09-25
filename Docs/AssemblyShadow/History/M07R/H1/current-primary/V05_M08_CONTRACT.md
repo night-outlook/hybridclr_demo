@@ -251,3 +251,65 @@ A new independent M08 is a new review; it must not inherit PASS/FAIL/BLOCKED mec
 It must explicitly revisit the prior three BLOCKED findings against E01–E04 receipts.
 
 PASS still means only `ReadyForHumanReviewGate`; human approval remains separate.
+
+## Fresh count closure addendum — 2026-09-25
+
+The second independent source-038 M08 re-review returned `BLOCKED` only because the historical 12cf count suite lacks its underlying 132 launch receipts and raw semantic results.
+
+The prior evidence-closure work remains valid for:
+
+- prior M08/finding provenance;
+- 925e effective 293/293 successor authentication;
+- 6913 29+1 explicit historical disposition;
+- startup11;
+- failure/publication/recovery;
+- ordinary capacity;
+- mixed capacity;
+- M07/native regression.
+
+Do not rerun those suites.
+
+Primary authorizes one replacement suite only:
+
+`H1CountMatrixClosureSource038-v1`
+
+See:
+
+`COUNT_MATRIX_CLOSURE_CONTRACT.md`
+
+### Required replacement semantics
+
+The new count suite must be fresh source-038 execution and must retain all evidence layers missing from 12cf:
+
+- 132 canonical cells;
+- 132 fresh process/run IDs;
+- 132 launch receipts;
+- 132 semantic raw outcomes;
+- 132 per-cell verification reports;
+- strict aggregate `H1CountMatrixVerification / Passed / 132`;
+- fresh fixture/audit bindings;
+- fresh candidate build/provenance bindings;
+- complete matrix/build evidence sealing.
+
+The historical 12cf count evidence remains historical failed-closure evidence and must not be upgraded.
+
+### Whole-H1 successor
+
+After count closure, create:
+
+`H1WholeChainSuiteClosureV2`
+
+with:
+
+- count-chain = `FreshCurrentSourceExecution`;
+- the five previously accepted suites = `AcceptedReusedAudited`.
+
+This successor does not change V05 source/performance classifications.
+
+### Independent re-review
+
+A third independent M08 review is eligible only after the fresh count closure and whole-H1 closure V2 both pass.
+
+The reviewer must explicitly revisit the former count Launch/Raw blocker and inspect the complete retained count evidence.
+
+PASS still means only `ReadyForHumanReviewGate`. Human approval remains separate.
