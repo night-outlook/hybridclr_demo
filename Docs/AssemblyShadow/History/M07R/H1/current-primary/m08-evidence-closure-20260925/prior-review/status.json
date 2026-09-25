@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 2,
+  "kind": "H1CoordinationStatus",
+  "status": "InProgress",
+  "currentMilestone": "H1R/M05 policy/source baseline remediation, coordinated through M08",
+  "earliestUnverifiedTask": "M05 source/policy contract and fresh baseline for witness-bearing Bootstrap; M06 startup11 and M08 successor sealing depend on it",
+  "updatedAtUtc": "2026-09-14T03:36:27.549722+00:00",
+  "humanGatePassed": false,
+  "readyForHumanH1": false,
+  "mayEnterR02": false,
+  "r02Status": "Closed",
+  "previousStatusSnapshot": "external-artifact://h1r-coordination-20260910/coordinator-20260914T024529Z/status-before.json",
+  "independentM08Review": {
+    "verdict": "FAIL",
+    "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/M08-whole-chain-review.json"
+  },
+  "findingClosure": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/finding-closure.json",
+  "workspaceInventory": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/workspace-inventory.json",
+  "workingCopies": {
+    "candidateDemo": {
+      "path": "https://github.com/night-outlook/hybridclr_demo/tree/codex/assembly-shadow-r01b-h1",
+      "head": "9c6b812148f5ec640e57ecbedcf9399ce68e6aaa",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "status": "M Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs\n M Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuild.cs\n M Assets/AssemblyShadowDemo/Editor/M01EditorValidation.cs\n M Assets/AssemblyShadowDemo/Tests/Editor/H1CountEarlyStartupTests.cs\n M Assets/AssemblyShadowDemo/Tests/Editor/H1CountNativeDiagnosticsTests.cs\n M Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs\n M Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity\n M Assets/HybridCLRGenerate/link.xml\n M ProjectSettings/AssemblyShadowSourcePins.json\n M Tools/AssemblyShadow/h1_count_matrix.py\n M Tools/AssemblyShadow/h1_count_results.py\n M Tools/AssemblyShadow/run-h1-count-players.py\n M Tools/AssemblyShadow/run-m07-players.py\n M Tools/AssemblyShadow/run-r01b-codec-kernel-tests.py\n M Tools/AssemblyShadow/tests/test_h1_count_launcher.py\n M Tools/AssemblyShadow/tests/test_h1_count_matrix.py\n M Tools/AssemblyShadow/tests/test_h1_count_results.py\n M Tools/AssemblyShadow/tests/test_m02_results.py\n M Tools/AssemblyShadow/tests/test_m07_results.py\n?? Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs\n?? Assets/AssemblyShadowDemo/Editor/H1CompilerProvenance.cs.meta\n?? Assets/AssemblyShadowDemo/Tests/Editor/H1CompilerProvenanceTests.cs\n?? Assets/AssemblyShadowDemo/Tests/Editor/H1CompilerProvenanceTests.cs.meta\n?? Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v10/\n?? Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/\n?? Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v7/\n?? Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v8/\n?? Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v9/\n?? Tools/AssemblyShadow/prepare-h1-m07-control-capsules.py\n?? Tools/AssemblyShadow/tests/test_h1_compiler_provenance.py\n?? Tools/AssemblyShadow/verify-h1-compiler-provenance.py"
+    },
+    "candidateHybridCLR": {
+      "path": "https://github.com/night-outlook/hybridclr/tree/codex/assembly-shadow-r01b-h1",
+      "head": "67f80ac01c15004ed9d2f0c884d0d92141d1019a",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "status": "M hybridclr/RuntimeApi.cpp\n M hybridclr/RuntimeApi.h\n M hybridclr/metadata/InterpreterImage.cpp\n M hybridclr/metadata/InterpreterImage.h\n M hybridclr/metadata/RawImageBase.cpp\n M hybridclr/metadata/RawImageBase.h"
+    },
+    "candidateUnity": {
+      "path": "https://github.com/night-outlook/hybridclr_unity/tree/codex/assembly-shadow-r01b-h1",
+      "head": "c7ed6d244a2c3a8e948f062d5431c289e1369650",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "status": ""
+    },
+    "candidateIL2CPP": {
+      "path": "https://github.com/night-outlook/il2cpp_plus/tree/codex/assembly-shadow-r01b-h1",
+      "head": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "branch": "codex/assembly-shadow-r01b-h1",
+      "status": ""
+    },
+    "referenceDemo": {
+      "path": "https://github.com/night-outlook/hybridclr_demo/tree/codex/assembly-shadow-h1-performance-reference",
+      "head": "f1c923cbaa814e1b63f3c5b9f8303c90616de726",
+      "branch": "codex/assembly-shadow-h1-performance-reference",
+      "status": "M ProjectSettings/AssemblyShadowSourcePins.json"
+    },
+    "reproDemo": {
+      "path": "https://github.com/night-outlook/hybridclr_demo/tree/codex/assembly-shadow-h1-count-repro",
+      "head": "3efc756f7c95ef6699fe838ddda3fdfffc856b53",
+      "branch": "codex/assembly-shadow-h1-count-repro",
+      "status": "M Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs\n M Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnostics.cs\n M Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnosticsJsonReader.cs\n M Assets/HybridCLRGenerate/link.xml\n M ProjectSettings/AssemblyShadowSourcePins.json\n?? Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity\n?? Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity.meta"
+    },
+    "reproHybridCLR": {
+      "path": "https://github.com/night-outlook/hybridclr/tree/codex/assembly-shadow-h1-count-repro",
+      "head": "6356dac1df87f601b2d7eb44c9c2ce13b06aa19b",
+      "branch": "codex/assembly-shadow-h1-count-repro",
+      "status": "M hybridclr/RuntimeApi.cpp\n M hybridclr/metadata/RawImageBase.cpp\n M hybridclr/metadata/RawImageBase.h"
+    },
+    "originalDemo": {
+      "path": "https://github.com/night-outlook/hybridclr_demo/tree/main",
+      "head": "73d95b4064ee23143e0722f6eae127fe61df6c9d",
+      "branch": "main",
+      "status": "M Assets/Settings/Renderer2D.asset\n?? Assets/Editor.meta\n?? Documents/HybridCLR_AssemblyShadow_Design_and_Plans/AGENT_PLANNING_SAFETY_NOTES.md"
+    },
+    "frozenNative": {
+      "path": "https://github.com/night-outlook/hybridclr/tree/db685e44afb5aee440efae2eb7bec4205aac090d",
+      "head": "db685e44afb5aee440efae2eb7bec4205aac090d",
+      "status": ""
+    }
+  },
+  "completedThisRun": [
+    "Independent M08 whole-chain review completed: FAIL with three P1 findings",
+    "Current worktree pins and 17 successor bound-artifact hashes checked",
+    "Packaging focused tests passed 5/5; integrity only, not M08 acceptance",
+    "Stale coordination ledger reconciled against v11 and newer successor evidence",
+    "All eight fresh unfixed reproduction cells executed; six UnexpectedAccepted and two AssertAbort, inputs unchanged",
+    "Independent follow-up PASS for eight-cell execution/classification and native defect-site identity; full managed/compiler provenance remains BLOCKED"
+  ],
+  "availableEvidence": {
+    "countLoader": {
+      "status": "Passed",
+      "cells": 132,
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1-count-matrix-verification-v3.json",
+      "acceptanceBoundary": "New schema-2 raw reports verified by independent reviewer; not sealed in v11"
+    },
+    "capacity": {
+      "status": "Passed",
+      "ordinary": 8192,
+      "mixed": 8192,
+      "rejectionBoundary": 8193,
+      "claimSource": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/m06-successor-aggregate-v2.json"
+    },
+    "lazyDenseFieldRVA": {
+      "status": "Passed",
+      "checks": 61,
+      "claimSource": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/m06-successor-aggregate-v2.json"
+    },
+    "oldPlayerIdentity": {
+      "status": "Passed",
+      "boundary": "Identity rejection before publication, not historical explicit numeric profile-2 proof"
+    },
+    "performance": {
+      "status": "ComparabilityPassed",
+      "formalPairs": 40,
+      "scope": "Development StandaloneOSX arm64 only; no SLA acceptance",
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/performance-analysis-final-v7-v2.json"
+    },
+    "startup11Historical": {
+      "status": "PassedReusedAudited",
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/startup11-revalidated-20260911.json",
+      "freshCurrentCandidateEvidence": false
+    },
+    "unfixedReproduction": {
+      "status": "PassedExecutionAndClassification",
+      "cells": 8,
+      "classificationCounts": {
+        "UnexpectedAccepted": 6,
+        "AssertAbort": 2
+      },
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/reproduction-execution.json",
+      "candidateAcceptance": false,
+      "independentReview": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/reproduction-independent-review.json",
+      "fullDiagnosticOverlayAndCompilerProvenance": "Unverified",
+      "nativeDefectSitesMatchReviewedV6": true
+    }
+  },
+  "active": [
+    "Finish exact H1 witness contract and runtime probe; focused Unity validation",
+    "Port native compiler provenance into unfixed reproduction builder",
+    "Implement managed-source snapshot and binding for new reproduction builds",
+    "Await additional disk space while preparing source freeze and rebuild inputs"
+  ],
+  "notRun": [
+    "Complete fresh current-candidate startup11",
+    "Successor sealed package and independent package review",
+    "Human H1 acceptance"
+  ],
+  "blockers": [
+    {
+      "id": "M08-P1-COUNT-CHAIN",
+      "priority": "P1",
+      "status": "Open",
+      "finding": "v11 seals obsolete schema-1 count evidence; current verified schema-2 successor is not packaged.",
+      "evidence": "external-artifact://candidate-demo/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/v11/requirements-coverage.json",
+      "requiredClosure": "Seal schema-2 matrix, four build/provenance/input chains and updated closure documents; independently review the new package."
+    },
+    {
+      "id": "M08-P1-FRESH-STARTUP",
+      "priority": "P1",
+      "status": "Open",
+      "finding": "Successor binding requires historical Startup11RevalidatedAudit/PassedReusedAudited, not fresh current-candidate execution.",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1-remediation-v12-successor-inputs.json",
+      "requiredClosure": "Produce verified current-candidate R01EarlyLaunches for all 11 modes, with executable/build/source/fixture identity and raw outcomes; update M06 aggregate and successor contract."
+    },
+    {
+      "id": "M08-P1-UNFIXED-REPRO",
+      "priority": "P1",
+      "status": "Open",
+      "finding": "Eight fresh cells now independently classified; managed overlay/compiler provenance and mandatory successor membership remain open.",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/h1_successor_chain.py",
+      "requiredClosure": "Authenticate managed diagnostic source-to-binary and effective Debug/Release compiler attribution, then include mandatory reproduction evidence in successor package."
+    },
+    {
+      "id": "STARTUP-CURRENT-BASELINE-CONTRACT",
+      "status": "Open",
+      "priority": "P1",
+      "finding": "Fresh compilation includes witness-bearing H1 Bootstrap code while fixture generation targets the older frozen Bootstrap with no H1 exact-site acquisition contract.",
+      "requiredClosure": "For current witness-bearing candidate, register exact FixedAssemblyBytes binding preserving pinned identity, compiler variants and enforced transformation; freeze a new baseline and build corresponding Players, fixtures, replay and provenance-bound acceptance evidence.",
+      "evidence": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/startup-root-cause.json"
+    }
+  ],
+  "originalEvidenceGaps": [
+    "Per-selected-build historical generated/compiler provenance incomplete despite matching retained binaries and launch identities",
+    "Native strict-index suite source/input equivalence passed; resolved backend compiler/linker/sanitizer and original temporary executable missing",
+    "Python 492 successful executions but original case IDs and exact invocation unavailable after scoped search",
+    "OldPlayer explicit profile2 request unproven; controlled identity rejection supported",
+    "Editor1021 actual passed vs1059 declared leaves38 coverage ambiguity"
+  ],
+  "performanceLimitations": [
+    "Development-only scope",
+    "P01/P03 reflection slowdowns and positive RSS deltas remain human review risks",
+    "ComparabilityPassed is not product or SLA acceptance"
+  ],
+  "planningStatusNote": "Planning files retain original plan-time Pending states; this ledger is the live execution status. Sealed historical packages remain unchanged.",
+  "latestValidation": {
+    "startupFixtureGeneration": {
+      "status": "Failed",
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/startup-fixture-attempt.json",
+      "reason": "Exact-site policy authorization missing for LoadOrdinaryWitness"
+    },
+    "packaging": "5/5 Passed; byte-integrity scope only",
+    "witnessContractAssets": {
+      "status": "Passed",
+      "path": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-resume-20260914T032404Z/witness-contract-assets.json",
+      "scope": "Focused Unity asset contract validation only"
+    }
+  },
+  "technicalReadiness": "Blocked",
+  "nextTaskCards": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/next-task-cards.json",
+  "resumeRecord": "external-artifact://h1r-coordination-20260910/coordinator-resume-20260914T032404Z",
+  "stopPolicy": "Continue authorized technical remediation; stop for human H1 only after evidence readiness and independent M08 PASS, or for a concrete external dependency requiring user input.",
+  "externalDependencies": [
+    {
+      "kind": "Storage",
+      "status": "UserInputRequested",
+      "observedFreeGiB": 3.5,
+      "requestedFreeGiB": 10,
+      "reason": "Six retained-format diagnostic replacements are approximately3GiB before M07, source snapshots, package and Unity transient storage; preserve old evidence"
+    }
+  ]
+}
