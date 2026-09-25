@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1PriorIndependentFindingSuccessorMap",
+  "status": "EvidenceSuppliedForIndependentReReview",
+  "priorReview": {
+    "recoveredPath": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/prior-review/M08-whole-chain-review.json",
+    "originCommit": "7cb710fa38464b1977a69619fea2b5fc93f79966",
+    "verdict": "FAIL",
+    "rule": "This map does not edit or replace the prior verdict. It identifies later evidence for a new independent review."
+  },
+  "findings": [
+    {
+      "id": "M08-P1-COUNT-CHAIN",
+      "priorDisposition": "FAIL",
+      "priorGap": "Successor count evidence lacked a complete independently bound schema-2 count/build/provenance chain.",
+      "successorEvidence": {
+        "checkpointSourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
+        "resultsSummary": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-results-summary.json",
+        "provenanceSummary": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-v03-provenance-summary.json",
+        "countVerificationArchive": {
+          "originCommit": "7cb710fa38464b1977a69619fea2b5fc93f79966",
+          "originPath": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260917-12cf9b2/v04/candidate-count-verifications.tar.gz",
+          "originGitBlob": "5e52ea92e84316f10fcb1efd54d04354b3abf111"
+        },
+        "facts": [
+          "V03 contains four candidate and two reproduction fresh Player builds with nativeStatus=Passed, managedStatus=SourceGraphBound and tooling binding to each verified build receipt.",
+          "The 12cf results summary records candidate count 132/132 Passed.",
+          "This evidence is historical finding-closure evidence; it is not relabelled current-source Fresh runtime acceptance."
+        ]
+      },
+      "currentReviewDisposition": "ReReviewRequired"
+    },
+    {
+      "id": "M08-P1-FRESH-STARTUP",
+      "priorDisposition": "FAIL",
+      "priorGap": "The successor package reused historical startup instead of a fresh current-candidate 11-mode execution.",
+      "successorEvidence": {
+        "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+        "sourceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+        "resultsSummary": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/results-summary.json",
+        "artifactIndex": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/artifact-index.json",
+        "startupVerificationLog": {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/startup11-verification.log",
+          "sha256": "52f93078f7ef6bb778eb7041ad1f47a18fa72883e5ea2075f5450656736e8fb5"
+        },
+        "launchReceipt": {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-launches.json",
+          "sha256": "73df4829cd2f319037ee4d008141b117e586d81cbcc0e3a95b7f9157b70990fe"
+        },
+        "strictResult": {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-results.json",
+          "sha256": "95dcc84f35c364832e1c013ad1cd92f6b26332c8dd894beaf54ff09877d0dc2e"
+        },
+        "facts": [
+          "The 925e Local report records startup11 PassedBoundedProfile with 11 fresh PIDs.",
+          "The 3168 reuse audit later selected startup11 only as ReusedAuditedFrom925e after an exact narrow source-scope audit.",
+          "The current whole-H1 reuse bridge proves Player-managed Bootstrap/runtime blobs and native repository pins remain unchanged through source 038."
+        ]
+      },
+      "currentReviewDisposition": "ReReviewRequired"
+    },
+    {
+      "id": "M08-P1-UNFIXED-REPRO",
+      "priorDisposition": "FAIL",
+      "priorGap": "The earlier eight-cell classification lacked complete fresh reproduction build/provenance membership.",
+      "successorEvidence": {
+        "checkpointSourceAnchor": "f59b0d8d171340951157b01b583df17e380d6f55",
+        "reproductionToolingRevision": "ba8fee33753a5ebc215b7a98739e343d8e05572e",
+        "provenanceSummary": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-v03-provenance-summary.json",
+        "reproductionExecution": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-reproduction-execution.json",
+        "rawArchive": {
+          "originCommit": "7cb710fa38464b1977a69619fea2b5fc93f79966",
+          "originPath": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260917-12cf9b2/v04/reproduction-count-raw.tar.gz",
+          "originGitBlob": "557f4227c81ca3ea29fa88ca7387913e66c705be"
+        },
+        "directBinding": {
+          "debugBuildReceiptSha256": "505249186b7aab356e25b11b95750e3122350afd687d45fa82bc72ac3451a9d0",
+          "releaseBuildReceiptSha256": "f6bc036b3bd4ed1c6c236cbee3b76c4c225ddabc273d792d977d0382203487ea",
+          "cellCount": 8,
+          "classifications": {
+            "AssertAbort": 2,
+            "UnexpectedAccepted": 6
+          }
+        },
+        "facts": [
+          "The V03 provenance summary independently records the same reproduction Debug/Release receipt hashes used by all eight execution cells.",
+          "Every reproduction cell records buildGuid, buildReceiptSha256, inputSnapshotHash and inputsUnchanged=true.",
+          "candidateAcceptance remains false; this is historical defect reproduction evidence, not current-candidate PASS."
+        ]
+      },
+      "currentReviewDisposition": "ReReviewRequired"
+    }
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
