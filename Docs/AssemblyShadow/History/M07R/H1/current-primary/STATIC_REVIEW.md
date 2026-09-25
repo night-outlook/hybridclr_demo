@@ -1,114 +1,106 @@
-# Static Review — H1 M08 Evidence Closure
+# Static Review — Fresh Source-038 Count Closure
 
 ## Verdict
 
-**PASS for metadata-only Primary → Local evidence-closure handoff. Independent M08 outcome remains unknown.**
+**PASS for Primary → Local execution handoff.**
 
-Source anchor remains:
+The remaining blocker is evidentiary, not a known runtime implementation defect. Existing current-source count tooling already generates and verifies the missing Launch/Raw layers.
 
-`0388479f7073289e3505b992956a7cbe78c302ce`
+## Why historical reuse cannot close count
 
-No executable/runtime source changed in this Primary cycle.
+The selected 12cf archive contains 132 verifier reports and one index but not the 132 referenced launch receipts or 132 raw semantic results.
 
-## Reviewed blocker
+The reports preserve hashes, but a reviewer cannot independently reconstruct fresh-process identity, binary selection and raw oracle semantics from report assertions alone.
 
-Latest independent M08 at source 038 returned `BLOCKED` on three evidence gaps:
+The missing bytes are not in the designated checkout/archive. They must not be synthesized.
 
-1. prior whole-chain M08/finding provenance absent from selected package;
-2. older 925e/6913 manifest discrepancies lacked successor disposition;
-3. older whole-H1 capacity/failure/recovery/count/startup claims lacked a suite-specific equivalence bridge to source 038.
+## Why old 925e builds are not selected for new launch
 
-The review did not identify a new runtime/code defect.
+Current `run-h1-count-players.py` correctly requires the build receipt's `sourcePinFile` to exist inside the selected project and hash exactly to the build's frozen source-pin bytes.
 
-## Prior-review recovery
+The current checkout carries source-038 source-pin authority. Historical 925e build receipts bind older source-pin bytes.
 
-Primary recovered the referenced historical records from immutable commit `7cb710fa...`.
+Temporarily swapping the current source-pin file would weaken the authority boundary, so it is not authorized.
 
-Twelve recovered current files were checked against their historical origin Git blob IDs. All 12 blob IDs match exactly.
+## Fresh execution design
 
-This is a byte-for-byte reconstruction, not a rewritten review.
+Existing source-038 tooling is sufficient:
 
-The original M08 verdict remains FAIL in the recovered record.
+- `create-h1-count-fixtures.py`
+- `audit-h1-count-fixtures.py`
+- `audit-h1-nested-fixtures.py`
+- `h1_count_build_batch_tooling.py`
+- `run-h1-count-matrix-players.py`
+- `verify-h1-count-results.py`
+- `verify-h1-count-matrix.py`
 
-## Prior P1 finding closure
+No source patch is required.
 
-The successor map is evidence-supported:
+### Per-cell semantics already enforced
 
-- COUNT: later 12cf checkpoint records six provenance-bound builds and candidate count 132/132.
-- FRESH-STARTUP: 925e records fresh startup11 with 11 fresh PIDs.
-- UNFIXED-REPRO: later 12cf eight-cell execution is directly bound to the same reproduction Debug/Release receipt hashes present in the provenance summary; 6 UnexpectedAccepted + 2 AssertAbort; candidateAcceptance=false.
+For every matrix cell, current tooling:
 
-A new reviewer must decide closure; Primary does not convert these findings to PASS itself.
+- validates fixture manifest/audit bytes;
+- validates selected build receipt and explicit feature/compiler flags;
+- validates Player executable/native library/metadata hashes;
+- independently hashes the input snapshot;
+- validates native and managed provenance;
+- records immutable input hashes before/after;
+- launches a new process;
+- records the launch receipt;
+- verifies early startup for Shadow cells;
+- verifies raw diagnostic result or expected startup rejection;
+- requires input bytes unchanged;
+- independently reopens launch/raw/build/fixture evidence in the per-cell verifier.
 
-## Historical manifest closure
+### Aggregate semantics already enforced
 
-### 925e
+`h1_count_matrix.py` independently requires:
 
-The missing effective manifest binding is not missing evidence: it is a relative reference to a Handoff file that later evolved.
+- the exact canonical 132-cell set;
+- unique report/launch/run identities;
+- exactly four shared candidate feature/config build tuples;
+- shared source/runtime identity;
+- live build binary hashes;
+- fixture audit bindings;
+- per-cell raw semantics;
+- per-cell evidence verifier PASS.
 
-The exact historical Handoff bytes are recoverable from Git commit `075f8a25...`, and the recovered current copy has the identical Git blob ID.
+Therefore the previous failure is retention/packaging, not missing verification logic.
 
-Local still must verify SHA-256 `cb8f06d7...` and produce the successor 293/293 receipt.
+## Retention design
 
-### 6913
+The new protocol corrects packaging by preserving:
 
-The missing formal blocker log cannot be reconstructed. It is absent even at checkpoint-creation commit `fa23a0dd...`.
+- complete matrix tree;
+- 132 launch receipts;
+- 132 semantic raw outcomes;
+- 132 verifier reports;
+- fresh fixtures/audits;
+- build batch evidence;
+- all four selected candidate build roots including Player/input/provenance bytes.
 
-Primary therefore does not claim original 30/30 integrity.
+No cleanup occurs before independent M08.
 
-The successor index explicitly preserves:
+## Scope
 
-- 29 available authenticated entries;
-- 1 unavailable/excluded prelaunch diagnostic;
-- source-27df 40/40 formal series as superseding selected execution evidence.
+No source/tool change occurs, so:
 
-This matches the independent review's allowed closure path: document the exclusion and produce a verifying successor index.
+- source anchor remains 038;
+- existing V04/V05 remain valid;
+- five accepted reused suites remain valid;
+- performance evidence remains unchanged.
 
-## Suite-equivalence review
+Only count diagnostic Player execution is newly authorized.
 
-The bridge uses exact Git-tree comparison, not filename extension or generic “metadata” reasoning.
+## Residual empirical requirements
 
-925e → source 038:
+Local must perform the fresh build/matrix execution.
 
-- Bootstrap: 70/70 unchanged;
-- R01B Runtime: 16/16 unchanged;
-- H1 count-related files: 42/42 unchanged;
-- selected failure runner/verifier: 3/3 unchanged;
-- selected capacity runner/verifier: 3/3 unchanged;
-- native/package/IL2CPP pins unchanged.
+Any semantic count failure returns to Primary.
 
-Changed Assets are Editor-only provenance/test files.
+Only a complete fresh count closure may make whole-H1 closure eligible for independent M08.
 
-Post-925e M07 build changes were inspected:
-
-- controlled label admission only;
-- exact mutable-input restoration;
-- nested native-verifier environment scoping;
-- Editor tests.
-
-The startup verifier changes after 925e only introduce/constrain retained performance pairing; direct ordinary startup verification remains current-pairing-only.
-
-This supports per-suite `ReusedAudited` review, not Fresh current-source execution.
-
-## Residual requirements
-
-Primary cannot authenticate local live paths/stats or issue a new independent verdict.
-
-Local must create:
-
-- `H1HistoricalCheckpointSuccessorAuthentication`;
-- `H1WholeChainSuiteReuseAuthentication`.
-
-Every required suite must independently be `AcceptedReusedAudited` before M08.
-
-Then a genuinely independent reviewer must decide PASS/FAIL/BLOCKED.
-
-## Gate
-
-H1 remains `InProgress`.
-
-`humanGatePassed=false`.
-
-`mayEnterR02=false`.
+M08 PASS still stops at `ReadyForHumanReviewGate`.
 
 Do not begin R02.
