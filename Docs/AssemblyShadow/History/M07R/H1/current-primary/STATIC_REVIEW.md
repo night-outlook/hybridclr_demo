@@ -1,152 +1,114 @@
-# Static Review — H1 V05 Analysis-Only Successor Evidence
+# Static Review — H1 M08 Evidence Closure
 
 ## Verdict
 
-**PASS for Primary → Local Validation handoff. Fresh Local execution and independent M08 remain required.**
+**PASS for metadata-only Primary → Local evidence-closure handoff. Independent M08 outcome remains unknown.**
 
-Reviewed source anchor:
+Source anchor remains:
 
 `0388479f7073289e3505b992956a7cbe78c302ce`
 
-## Context
+No executable/runtime source changed in this Primary cycle.
 
-Local has already closed V04 at the d61 source with:
+## Reviewed blocker
 
-- exact source authority;
-- 381/381 bounded tests;
-- 1,065 full-Python leaves with zero failures/errors;
-- complete source-27df evidence reauthentication;
-- `AuthenticatedAnalysisOnlySuccessor`;
-- `Passed / ComparabilityPassed`;
-- an authenticated V04 closure checkpoint.
+Latest independent M08 at source 038 returned `BLOCKED` on three evidence gaps:
 
-Local stopped because V05 lacked a runnable contract.
+1. prior whole-chain M08/finding provenance absent from selected package;
+2. older 925e/6913 manifest discrepancies lacked successor disposition;
+3. older whole-H1 capacity/failure/recovery/count/startup claims lacked a suite-specific equivalence bridge to source 038.
 
-## V05 design review
+The review did not identify a new runtime/code defect.
 
-The canonical evidence contract permits evidence reuse only when provenance and relevant executable inputs are preserved, and prohibits relabeling Reused/Historical evidence as Fresh.
+## Prior-review recovery
 
-The current source successor is analysis/test-only. Therefore V05 is correctly defined as an evidence-binding stage rather than a new execution stage.
+Primary recovered the referenced historical records from immutable commit `7cb710fa...`.
 
-`H1AnalysisOnlySuccessorEvidence-v1` binds:
+Twelve recovered current files were checked against their historical origin Git blob IDs. All 12 blob IDs match exactly.
 
-- Fresh current source/test evidence;
-- reused-authenticated source-27df execution evidence;
-- current reanalysis of immutable source-27df performance bytes;
-- canonical gate/evidence/performance documents;
-- independent reviewer configuration.
+This is a byte-for-byte reconstruction, not a rewritten review.
 
-It cannot set runtime acceptance, M08 PASS, human approval, or R02 permission.
+The original M08 verdict remains FAIL in the recovered record.
 
-## Checkpoint integrity review
+## Prior P1 finding closure
 
-The new V05 path validates both checkpoint manifests itself.
+The successor map is evidence-supported:
 
-It rejects:
+- COUNT: later 12cf checkpoint records six provenance-bound builds and candidate count 132/132.
+- FRESH-STARTUP: 925e records fresh startup11 with 11 fresh PIDs.
+- UNFIXED-REPRO: later 12cf eight-cell execution is directly bound to the same reproduction Debug/Release receipt hashes present in the provenance summary; 6 UnexpectedAccepted + 2 AssertAbort; candidateAcceptance=false.
 
-- unsafe or traversal manifest paths;
-- duplicate manifest paths;
-- malformed SHA-256 values;
-- missing members;
-- post-manifest byte changes;
-- historical checkpoint mismatch for the four fixed V04 source-27df artifacts.
+A new reviewer must decide closure; Primary does not convert these findings to PASS itself.
 
-This prevents V05 from trusting a checkpoint directory merely because it is named as one.
+## Historical manifest closure
 
-## Current evidence review
+### 925e
 
-V05 requires:
+The missing effective manifest binding is not missing evidence: it is a relative reference to a Handoff file that later evolved.
 
-- current source-authority receipt exactly matching the designated analysis source pins;
-- runtime-repository heads matching the current source pins;
-- committed handoff preflight for the same source anchor;
-- bounded Primary all-Passed;
-- complete Python inventory with no Failed/Error;
-- complete V02 live evidence authentication;
-- zero unresolved direct-binding semantic mismatch;
-- V04 compatibility bound to the same current source revision;
-- V04 `Passed / ComparabilityPassed` with exactly 45 retained attempts;
-- strict-analysis validation that binds the full performance JSON SHA;
-- scoped no-Player evidence.
+The exact historical Handoff bytes are recoverable from Git commit `075f8a25...`, and the recovered current copy has the identical Git blob ID.
 
-## Historical evidence review
+Local still must verify SHA-256 `cb8f06d7...` and produce the successor 293/293 receipt.
 
-V05 authenticates the complete source-27df checkpoint manifest and requires exact fixed identities for:
+### 6913
 
-- bridge;
-- pilot seal;
-- formal batch;
-- final sample index.
+The missing formal blocker log cannot be reconstructed. It is absent even at checkpoint-creation commit `fa23a0dd...`.
 
-Historical execution remains explicitly:
+Primary therefore does not claim original 30/30 integrity.
 
-`ReusedAuthenticatedFromSource27df`
+The successor index explicitly preserves:
 
-No code path marks it Fresh.
+- 29 available authenticated entries;
+- 1 unavailable/excluded prelaunch diagnostic;
+- source-27df 40/40 formal series as superseding selected execution evidence.
 
-## Performance review
+This matches the independent review's allowed closure path: document the exclusion and produce a verifying successor index.
 
-The V05 output binds the entire performance-analysis JSON and marks:
+## Suite-equivalence review
 
-`performanceAcceptance=NotClaimedNoSLA`
+The bridge uses exact Git-tree comparison, not filename extension or generic “metadata” reasoning.
 
-This is correct because the performance protocol defines comparability/statistics but no approved acceptance SLA.
+925e → source 038:
 
-Measured slowdowns, RSS increases, managed-memory differences and variance remain independent-review inputs.
+- Bootstrap: 70/70 unchanged;
+- R01B Runtime: 16/16 unchanged;
+- H1 count-related files: 42/42 unchanged;
+- selected failure runner/verifier: 3/3 unchanged;
+- selected capacity runner/verifier: 3/3 unchanged;
+- native/package/IL2CPP pins unchanged.
 
-## M08 review
+Changed Assets are Editor-only provenance/test files.
 
-The V05 output binds the existing read-only reviewer configuration:
+Post-925e M07 build changes were inspected:
 
-`.codex/agents/code-gate-reviewer.toml`
+- controlled label admission only;
+- exact mutable-input restoration;
+- nested native-verifier environment scoping;
+- Editor tests.
 
-The independent review contract requires Gate type `MILESTONE` and PASS/FAIL/BLOCKED.
+The startup verifier changes after 925e only introduce/constrain retained performance pairing; direct ordinary startup verification remains current-pairing-only.
 
-PASS is defined as:
+This supports per-suite `ReusedAudited` review, not Fresh current-source execution.
 
-`ReadyForHumanReviewGate`
+## Residual requirements
 
-not human approval.
+Primary cannot authenticate local live paths/stats or issue a new independent verdict.
 
-## Source-scope review
+Local must create:
 
-Source-27df → current remains exactly seven non-metadata analysis/test paths.
+- `H1HistoricalCheckpointSuccessorAuthentication`;
+- `H1WholeChainSuiteReuseAuthentication`.
 
-Retained graph 69130 → current remains the existing exact 25-path set.
+Every required suite must independently be `AcceptedReusedAudited` before M08.
 
-d61 → current changes exactly:
+Then a genuinely independent reviewer must decide PASS/FAIL/BLOCKED.
 
-- `Tools/AssemblyShadow/README.md`;
-- `Tools/AssemblyShadow/h1_historical_reanalysis.py`;
-- `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`.
+## Gate
 
-No shared runtime/input verifier, Player runner, measurement, protocol, schedule, graph producer, native source or runtime source changed.
+H1 remains `InProgress`.
 
-## Regression review
+`humanGatePassed=false`.
 
-Six V05 tests cover:
-
-1. checkpoint manifest tamper rejection;
-2. successful V05 package classifications and non-approval flags;
-3. rejection of a non-ComparabilityPassed V04 analysis;
-4. rejection of no-Player evidence containing a Player/formal runner command;\n5. rejection of incomplete current-source test cardinality;\n6. rejection of truncated sealed-live file/byte cardinality.
-
-Expected bounded count is 385.
-
-## Residual empirical requirements
-
-Primary could not execute a fresh GitHub Actions workflow for the new source anchor.
-
-Local must execute:
-
-- 387/387 bounded;
-- full Python zero failures/errors;
-- exact source audits;
-- complete V02;
-- V04 revalidation;
-- V05;
-- independent M08.
-
-If M08 PASSes, stop for human H1 review.
+`mayEnterR02=false`.
 
 Do not begin R02.
