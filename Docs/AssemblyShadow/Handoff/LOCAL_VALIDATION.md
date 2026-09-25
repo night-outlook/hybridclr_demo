@@ -1,6 +1,37 @@
 # Local Validation report
 
-## Current run — 2026-09-24, split-checkout historical analysis
+## Current run — 2026-09-24/25, source 038 V05 and independent M08
+
+### Exit
+
+**Local Validation → Primary Implementation: V00–V05 passed within the analysis-only handoff; genuinely independent M08 returned BLOCKED with three evidence gaps.** The 40/40 formal Player series was not rerun. H1 remains `InProgress`, `M08Passed=false`, `humanGatePassed=false`, and `mayEnterR02=false`; R02 remains closed.
+
+The validation checkout was `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, at pushed handoff HEAD `4b8e8617deee75dbc10241e120ec2e8a3b3cd366` before this metadata-only checkpoint/report commit, with source anchor `0388479f7073289e3505b992956a7cbe78c302ce`. The other clean, remotely verified worktrees matched `hybridclr=1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `hybridclr_unity=0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `il2cpp_plus=6be7f38bec2fa4677d24efc1a4a1294240789933`. `V00/source-authority.json` records exact paths, heads, remote refs, source/package pins, and worktree registrations. The original execution source remains `27df1a3d60811dc121f296ab561ae313a382b363`.
+
+The pre-V05 V04 closure checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/`: all 22 manifest members verify; its manifest SHA-256 is `bd8a7e575503623a0c8bf98739a1a8da3c0cc3bebc44dbdd94075c74e7f92c28`. The final Local checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-v05-m08/`: all 28 manifest members verify; its manifest SHA-256 is `71cbe155977a08fadacea92c641203c218d05db242ed301dd5d70bd249d31d10`. The final checkpoint retains the independent review verbatim and a SHA-bound receipt. Command receipts retain the exact commands, cwd, UTC intervals, outputs, and exit codes.
+
+| Cell | Result | Evidence and limit |
+| --- | --- | --- |
+| V00 source authority and committed preflight | `Passed` | Exact four-repository pins and remote heads; source-anchor→handoff HEAD zero nonmetadata paths; preflight `SourceTargetVerifiedNotBuildAccepted` |
+| V01 bounded Primary | `Passed` | 387/387 Passed, zero Failed/Error/Skipped; six V05 leaves included |
+| V01 complete Python discovery | Required zero Failed/Error met; 28 environment skips | 1,071 leaves: 1,043 Passed, 28 Skipped; inventory CLI exit 2 reflects skip policy; full inventory/log and explicit skip reasons retained |
+| V01A source audits | `Passed` | Source-27df→038 exact seven analysis/test paths; retained-6913→038 exact 25 paths; d61→038 exact three paths |
+| V02 immutable historical reauthentication | `PassedHistoricalIntegrityOnly` | 92/92 source-27df manifest, four fixed live hashes, 33,792/33,792 sealed files totaling 1,606,993,133 bytes; zero missing/content/stable-stat mismatches; 33,981 direct bindings with zero unresolved semantic mismatches |
+| V04.AF split-checkout compatibility | `AuthenticatedAnalysisOnlySuccessor` | Current analysis checkout and original historical evidence root remain distinct; exact v2 source policy and live historical authority pass |
+| V04.AG strict historical analysis | `Passed` / `ComparabilityPassed` | Fresh analysis of immutable original bytes: 45 attempts, 44 valid, one preserved invalid ON-NoPatch pilot, 40/40 valid formal, ten formal pairs/startup observations per mode, chronology and non-overlap pass |
+| V04 closure | `Passed` | 22-entry pre-V05 manifest; full performance JSON, exact assertion receipt, and scoped no-Player command proof |
+| V05 successor binding | `SuccessorEvidenceBoundForIndependentM08` | `H1AnalysisOnlySuccessorEvidence-v1`; current tests Fresh, historical execution Reused, historical performance Reanalyzed; complete performance JSON SHA bound; no Player; performance acceptance `NotClaimedNoSLA`; M08/human/R02 flags false |
+| Independent M08 `MILESTONE` | **`BLOCKED`**, three findings | Read-only `code-gate-reviewer` examined the complete V05 package and H1 gate; review and machine receipt in `M08/` |
+
+V04.AG ran once and exited 0 after full strict verification. The full paired analysis SHA-256 is `c02c4ffd0ad93759ef4f2ffb3a7482b3c9d5ed96cf4c9a122f35135478323053`. The original failed `R00-ON-NoPatch-pilot-01` still records process-group cleanup failure and skipped B side. In the warm repeat-10,000 phase, median paired B/A ratios for allocation, reflection invoke, and closed generic are 1.133/1.266/1.204 for ON-P01 and 1.150/1.276/1.221 for ON-P03. B median RSS is higher than protected A in every mode at both snapshots; P01/P03 managed-memory medians move downward. `ComparabilityPassed` is measurement validity, not performance acceptance. The full timing, startup, memory, and variance statistics remain visible to M08.
+
+The first V05 invocation failed before analysis because its new output directory had not been created. Its failure receipt is preserved. After creating that empty directory, the identical package command exited 0 and produced V05 SHA-256 `534eba62b817584f1a2d48c2fa1bcfccf498d447351c34f10a412993fff3d73f`; no input or Player evidence changed for the retry. The final checkpoint retains both command receipts and all 15 Local V05 assertions.
+
+The independent M08 review ran read-only from `2026-09-25T06:35:25Z` to `06:48:23Z` and returned **BLOCKED**, not PASS. Its three findings are: (1) the original M08 review/finding-closure records referenced by `History/M07R/R01B/H1-handoff.md` are not available in the designated local paths for finding-by-finding closure; (2) older whole-H1 manifests verify only 292/293 and 29/30 members at their listed paths, respectively, although the reviewer did not infer corruption of the current 40/40 formal raw evidence; and (3) V05 does not provide the required selected suite-by-suite equivalence bridge for older capacity, failure, recovery, count, and startup claims. The complete reviewer wording, evidence paths, performance observations, and closure requests are preserved verbatim in `M08/independent-review.md`. These gaps require Primary evidence disposition and a new independent M08 review. Human H1 approval is still separate even if a future M08 returns PASS.
+
+No Unity Editor, native build, IL2CPP build, Player, profiler, or formal runner was invoked in this analysis-only cycle. `V04/no-player-proof.json` records Local command issuance with its stated scope limit. Historical Unity EditMode and runtime results remain historical/reused where separately supported; this run does not promote them to fresh current-source execution.
+
+## Historical run — 2026-09-24, split-checkout historical analysis
 
 ### Exit
 

@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1AnalysisOnlySuccessorEvidence",
+  "status": "SuccessorEvidenceBoundForIndependentM08",
+  "policyId": "H1AnalysisOnlySuccessorEvidence-v1",
+  "analysisSourceAuthority": {
+    "projectRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "checkoutCommit": "4b8e8617deee75dbc10241e120ec2e8a3b3cd366",
+    "sourceRevision": "0388479f7073289e3505b992956a7cbe78c302ce",
+    "sourcePins": {
+      "schemaVersion": 1,
+      "unityVersion": "2022.3.62f2",
+      "target": "StandaloneOSX",
+      "architecture": "arm64",
+      "hybridclr": {
+        "url": "https://github.com/night-outlook/hybridclr",
+        "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+        "localPath": "../hybridclr"
+      },
+      "hybridclrUnity": {
+        "url": "https://github.com/night-outlook/hybridclr_unity",
+        "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+        "localPath": "../hybridclr_unity"
+      },
+      "il2cppPlus": {
+        "url": "https://github.com/night-outlook/il2cpp_plus",
+        "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+        "localPath": "../il2cpp_plus"
+      },
+      "demo": {
+        "url": "https://github.com/night-outlook/hybridclr_demo",
+        "revision": "0388479f7073289e3505b992956a7cbe78c302ce",
+        "localPath": "."
+      }
+    },
+    "sourcePinsBinding": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "5916b7a0d3ddd5f17d3372f4baded440a9dcb36947569448ab3d11836bb908fe"
+    },
+    "toolBinding": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_historical_reanalysis.py",
+      "sha256": "8359a981d6aafe43b1452d749cf195c64a4ad596e0a8136f39263d741cd98642"
+    }
+  },
+  "currentClosureCheckpoint": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04",
+    "manifest": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/MANIFEST.sha256",
+      "sha256": "bd8a7e575503623a0c8bf98739a1a8da3c0cc3bebc44dbdd94075c74e7f92c28"
+    },
+    "entryCount": 22
+  },
+  "historicalExecutionCheckpoint": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked",
+    "manifest": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/MANIFEST.sha256",
+      "sha256": "6808d00b0f3e67bb9d16073283e8ed1e084c10f1ae6673b7b6c6ac774c1127c7"
+    },
+    "entryCount": 92,
+    "sourceRevision": "27df1a3d60811dc121f296ab561ae313a382b363"
+  },
+  "evidence": {
+    "sourceAuthority": {
+      "relativePath": "V00/source-authority.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V00/source-authority.json",
+      "sha256": "b4c40d20c228e1b36db934087a38d3a685019f73f6e0af053cc45905d21733ae",
+      "sizeBytes": 100649
+    },
+    "handoffPreflight": {
+      "relativePath": "V00/handoff-preflight.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V00/handoff-preflight.json",
+      "sha256": "72a36d161f61f63f6aff4a82a47f6c5505e399a96eed0294c5c139d90d5c5335",
+      "sizeBytes": 779
+    },
+    "boundedPrimary": {
+      "relativePath": "V01/bounded-primary/results.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V01/bounded-primary/results.json",
+      "sha256": "6b249bbf452afb7baa97dff8beb082c513c374d644bccf2613d152bc35404e3b",
+      "sizeBytes": 57219
+    },
+    "pythonInventory": {
+      "relativePath": "V01/python-inventory.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V01/python-inventory.json",
+      "sha256": "7b3a0874263247f8909f5eef59f637cd041adba12014a1461c22415471af6e0c",
+      "sizeBytes": 157895
+    },
+    "liveHistoricalReauthentication": {
+      "relativePath": "V02/live-evidence-reauthentication.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V02/live-evidence-reauthentication.json",
+      "sha256": "c81d1a32eb67a576d617d498d1a493eb6271bc37b78ef62cf9b638b64f0b1a29",
+      "sizeBytes": 2447
+    },
+    "bindingSemantics": {
+      "relativePath": "V02/direct-binding-semantics-audit.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V02/direct-binding-semantics-audit.json",
+      "sha256": "6f6dfe3ec2d2f29bf40a8dfd5b88099eb6c648d1530bc3fdd73f1428c4039015",
+      "sizeBytes": 3778
+    },
+    "historicalCompatibility": {
+      "relativePath": "V04/historical-compatibility.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V04/historical-compatibility.json",
+      "sha256": "015d6913c3fb21339d83647fab3be90626e3d136873f7f99021f3981df22e2ff",
+      "sizeBytes": 10025
+    },
+    "performanceAnalysis": {
+      "relativePath": "V04/historical-performance-analysis.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V04/historical-performance-analysis.json",
+      "sha256": "c02c4ffd0ad93759ef4f2ffb3a7482b3c9d5ed96cf4c9a122f35135478323053",
+      "sizeBytes": 379746
+    },
+    "analysisValidation": {
+      "relativePath": "V04/analysis-validation.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V04/analysis-validation.json",
+      "sha256": "cb5b28bd928385ce28079c35bdb235f54501c8d101cc3b0fd4d6c925e163fa85",
+      "sizeBytes": 1809
+    },
+    "noPlayerEvidence": {
+      "relativePath": "V04/no-player-proof.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V04/no-player-proof.json",
+      "sha256": "5c8ce1155db80e50db58f27c8b16b3a27fe3ff45ef8f5d056b50af87d8c118f6",
+      "sizeBytes": 5609
+    }
+  },
+  "historicalFixedEvidenceSha256": {
+    "graphReuseBridge": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c",
+    "pilotVerification": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631",
+    "formalBatch": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667",
+    "finalSampleIndex": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+  },
+  "executionClassifications": {
+    "currentSourceRegression": "FreshCurrentSourceValidation",
+    "historicalExecution": "ReusedAuthenticatedFromSource27df",
+    "historicalPerformance": "ReanalyzedImmutableHistoricalExecution",
+    "freshCurrentSourcePlayerExecution": false,
+    "playerRerunForV05": false
+  },
+  "performanceDisposition": {
+    "comparability": "ComparabilityPassed",
+    "performanceAcceptance": "NotClaimedNoSLA",
+    "fullMeasuredAnalysis": {
+      "relativePath": "V04/historical-performance-analysis.json",
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/V04/historical-performance-analysis.json",
+      "sha256": "c02c4ffd0ad93759ef4f2ffb3a7482b3c9d5ed96cf4c9a122f35135478323053",
+      "sizeBytes": 379746
+    },
+    "instruction": "Preserve all measured regressions, memory deltas and variance for independent review; ComparabilityPassed is not performance acceptance."
+  },
+  "canonicalPlanBindings": {
+    "Docs/AssemblyShadow/Plan/DESIGN.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Plan/DESIGN.md",
+      "sha256": "47fb14a0d8ac71bae1a2ff7600ac4d6a6e396e4a98fca3562417f5e31f9612c3"
+    },
+    "Docs/AssemblyShadow/Plan/EVIDENCE_CONTRACT.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Plan/EVIDENCE_CONTRACT.md",
+      "sha256": "c378c1f612ead43d90c4d31b9db123501762160943d12141a0c4d344744cc86e"
+    },
+    "Docs/AssemblyShadow/Plan/HUMAN_REVIEW_GATES.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Plan/HUMAN_REVIEW_GATES.md",
+      "sha256": "3be86244cfa373fc7073d36fce95aa890053ed6c822cdae00a79501dfc7f0424"
+    },
+    "Docs/AssemblyShadow/Plan/PERFORMANCE_PROTOCOL.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Plan/PERFORMANCE_PROTOCOL.md",
+      "sha256": "3076d45c00ce9e7a98d4f8648b8418d7b534ff9ded70fe85b5ae7d6035c56abb"
+    },
+    "Docs/AssemblyShadow/Plan/VALIDATION_MATRIX.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Plan/VALIDATION_MATRIX.md",
+      "sha256": "1c0c95e528b08a25792fd2ac0e3e795611ff63602a4ec677dc89ca23efa59a65"
+    },
+    "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
+      "sha256": "3cfd34eafd6b7e1bbc5ee5654a0ff3f27bab15acd74b3fc426a57793f32a89eb"
+    },
+    "Docs/AssemblyShadow/Handoff/source-targets.json": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/Handoff/source-targets.json",
+      "sha256": "940cd3b05f6b109647149f030cbdab11ccbfab07f8c64274de0c3d4d803a8a62"
+    },
+    "Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md",
+      "sha256": "83dc1fc4d28818ff2ef4c6f098d5355d9e1d00163ca71c7d3f4fa01cec922659"
+    }
+  },
+  "independentReviewer": {
+    "mechanism": "code-gate-reviewer",
+    "binding": {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.codex/agents/code-gate-reviewer.toml",
+      "sha256": "179b8c0268996e5c2bfaf876513d489680ff16eee1f1d515be98c9f2755810c7"
+    },
+    "gateType": "MILESTONE",
+    "requiredVerdicts": [
+      "PASS",
+      "FAIL",
+      "BLOCKED"
+    ],
+    "passDisposition": "ReadyForHumanReviewGate",
+    "humanApprovalStillRequired": true
+  },
+  "reviewRequirements": [
+    "Review canonical H1 gate, evidence contract, validation matrix and performance protocol.",
+    "Review source-27df execution provenance separately from current analysis/test source.",
+    "Review complete V04 performance JSON; do not infer performance acceptance from ComparabilityPassed.",
+    "Review the preserved invalid historical pilot and all 40 valid formal attempts.",
+    "Review V05 classifications; historical execution must not be relabelled Fresh.",
+    "Review current source diff and the analysis-only historical compatibility mechanism."
+  ],
+  "historicalIndependentM08": "FAIL",
+  "v05Complete": true,
+  "independentM08Eligible": true,
+  "M08Passed": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

@@ -1,0 +1,48 @@
+{
+  "kind": "H1CurrentLiveHistoricalEvidenceAudit",
+  "startUtc": "2026-09-25T00:27:28.460942+00:00",
+  "endUtc": "2026-09-25T00:27:33.221942+00:00",
+  "source27dfCheckpoint": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked",
+  "checkpointManifest": {
+    "exitCode": 0,
+    "entries": 92,
+    "allPassed": true
+  },
+  "fixedLiveEvidence": {
+    "bridge": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+      "expectedSha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c",
+      "actualSha256": "c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c",
+      "matches": true
+    },
+    "seal": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+      "expectedSha256": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631",
+      "actualSha256": "bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631",
+      "matches": true
+    },
+    "formalBatch": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+      "expectedSha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667",
+      "actualSha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667",
+      "matches": true
+    },
+    "finalSampleIndex": {
+      "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+      "expectedSha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021",
+      "actualSha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021",
+      "matches": true
+    }
+  },
+  "sealedInventory": {
+    "expectedFiles": 33792,
+    "expectedBytes": 1606993133,
+    "verifiedFiles": 33792,
+    "verifiedBytes": 1606993133,
+    "guardMismatches": 0,
+    "contentMismatches": 0,
+    "missing": 0,
+    "sampleErrors": []
+  },
+  "classification": "ReusedAuthenticatedFromSource27df"
+}

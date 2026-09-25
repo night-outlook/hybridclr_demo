@@ -1,0 +1,101 @@
+{
+  "kind": "H1LocalNoPlayerRerunEvidence",
+  "recordedUtc": "2026-09-25T06:33:26.553740+00:00",
+  "result": "NoPlayerCommandIssuedByLocal",
+  "commands": [
+    {
+      "receipt": "V00/handoff-preflight-command.json",
+      "receiptSha256": "28abc7859c6dcb1902f7c45602ca42fd8424db97f4fcfb7cf673e2e287db44dd",
+      "command": [
+        "python3",
+        "Tools/AssemblyShadow/h1_handoff_preflight.py",
+        "--project",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--role",
+        "candidate",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authority038-v05-a/V00/handoff-preflight.json"
+      ],
+      "exitCode": 0,
+      "explicitNoPlayerMarker": false
+    },
+    {
+      "receipt": "V01/bounded-primary-command.json",
+      "receiptSha256": "6d062815868c8dd71abf9126a2fd9c5c5daccb8d8296628193eecd245bec688c",
+      "command": [
+        "python3",
+        "Tools/AssemblyShadow/h1_bee_primary_tests.py",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authority038-v05-a/V01/bounded-primary"
+      ],
+      "exitCode": 0,
+      "explicitNoPlayerMarker": false
+    },
+    {
+      "receipt": "V01/python-inventory-command.json",
+      "receiptSha256": "21af6abd31ca5160fe48bb9fa0ef95bb40ed51d91cb5ca61ad36da95dc311da3",
+      "command": [
+        "python3",
+        "Tools/AssemblyShadow/h1_test_inventory.py",
+        "python",
+        "--tests",
+        "Tools/AssemblyShadow/tests",
+        "--pattern",
+        "test*.py",
+        "--log",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authority038-v05-a/V01/python-tests.log",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authority038-v05-a/V01/python-inventory.json"
+      ],
+      "exitCode": 2,
+      "explicitNoPlayerMarker": false
+    },
+    {
+      "receipt": "V04/historical-compatibility-command.json",
+      "receiptSha256": "83120c79fb4c20c4dc927ce29b9e8ee8672bfefb45a20f4bdaf66a347b5cfcec",
+      "command": [
+        "python3",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_historical_reanalysis.py",
+        "--analysis-project",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--sample-index",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+        "--pilot-verification-receipt",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+        "--graph-reuse-bridge",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+        "--formal-batch",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authority038-v05-a/V04/historical-compatibility.json",
+        "--preflight-only"
+      ],
+      "exitCode": 0,
+      "explicitNoPlayerMarker": false
+    },
+    {
+      "receipt": "V04/historical-analysis-command.json",
+      "receiptSha256": "3d43efe932e907a1eef7b78346ab61844c742ba0f9390b394d58c9d06ba8f582",
+      "command": [
+        "python3",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/h1_historical_reanalysis.py",
+        "--analysis-project",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "--sample-index",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+        "--pilot-verification-receipt",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-pilot-verification.json",
+        "--graph-reuse-bridge",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/h1-graph-reuse-bridge.json",
+        "--formal-batch",
+        "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+        "--output",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260924-authority038-v05-a/V04/historical-performance-analysis.json"
+      ],
+      "exitCode": 0,
+      "explicitNoPlayerMarker": false
+    }
+  ],
+  "historicalEvidence": "Original source-27df live inputs were read and reauthenticated; Local issued no Player or formal runner command.",
+  "scopeLimit": "This records Local command issuance and point-in-time process observations, not a continuous host-wide process audit. The five Python command receipts include explicit no-Player markers where generated by the Local capture wrapper."
+}
