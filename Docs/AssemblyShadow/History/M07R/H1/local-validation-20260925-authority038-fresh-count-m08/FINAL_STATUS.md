@@ -1,0 +1,11 @@
+# Final Local Validation status — 2026-09-25
+
+Protocol `H1CountMatrixClosureSource038-v1` passed against handoff `df14afd618edd408356ee9559937ccf9080caef8` and source anchor `0388479f7073289e3505b992956a7cbe78c302ce`. The final source delta contains zero non-metadata paths.
+
+The fresh seed-20260925 fixtures passed both audits. Six provenance-bound builds passed, including four selected candidate ON/OFF × Debug/Release builds. The fresh count Player matrix and independent aggregate verification passed **132/132**. All 132 verifier reports, 132 launch receipts, 132 semantic raw outcomes, and 132 distinct run IDs and process IDs were authenticated. The raw set includes 118 ordinary `Passed` results and 14 expected validation rejections. Seven archives seal the fixtures, batch, matrix, and four candidate build roots. Their inventories and live roots remain available under `_temp/AssemblyShadow/H1CountClosure038-20260925B/`.
+
+`C08/fresh-count-matrix-closure.json` is `PassedFreshSource038CountMatrix`. `C09/whole-h1-suite-closure-v2.json` supports all six required suites: count is `FreshCurrentSourceExecution`; startup11, failure/publication/recovery, ordinary capacity, mixed capacity, and M07/native are `AcceptedReusedAudited`. The earlier 12cf count attempt remains blocked in its historical record.
+
+The independent, read-only `code-gate-reviewer` M08 returned **MILESTONE PASS** with zero findings. It reauthenticated all 132 Launch/Raw chains and seven archive inventories and explicitly revisited the three earlier blocked findings. The verbatim verdict and SHA-bound receipt are in `C10/`. The frozen 82-entry `PRE_M08_MANIFEST.sha256` authenticates the package reviewed by that agent. This final status and the handoff snapshots are covered by `MANIFEST.sha256`.
+
+H1 is `ReadyForHumanReviewGate`; `M08Passed=true`, `humanGatePassed=false`, and `mayEnterR02=false`. Human review must consider the unfavorable ON-P01/ON-P03 allocation, reflection, closed-generic, and RSS measurements retained in the full V04 performance analysis. R02 remains closed pending explicit human H1 approval. V04, V05, formal/performance Players, capacity, startup11, failure, and M07/native were not rerun.
