@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1HistoricalCheckpointSuccessorIndex",
+  "status": "PrimaryPreparedAwaitingLocalAuthentication",
+  "rule": "Do not rewrite historical manifests. Authenticate surviving/recovered bytes and record unavailable members explicitly. Only selected claims listed here may be carried into the new M08 package.",
+  "checkpoints": [
+    {
+      "id": "authority925e",
+      "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+      "manifestSha256": "7ed2a62ea13f9d4935e2838a2a6cb55ccb5976aec7178ce5fa513ed571fa63e4",
+      "originalEntryCount": 293,
+      "currentDirectlyVerifiableEntries": 292,
+      "externalBinding": {
+        "manifestRelativePath": "../../../../Handoff/LOCAL_VALIDATION.md",
+        "expectedSha256": "cb8f06d757962ddd366878543b2bb75aade49f8b27b165cf7d9eb984652a3d54",
+        "recoveredCopy": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/manifest-reconstruction/authority925e-LOCAL_VALIDATION.md",
+        "originCommit": "075f8a25f44b7fe5fef397be566b8a5f4f7e447f",
+        "originPath": "Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md",
+        "originGitBlob": "5099dd4053a79aefa8cf3d852888f1bae48638c9",
+        "corroboratingAudit": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260920-authority3168/V01A/source-scope-audit.json",
+        "disposition": "RecoverableImmutableGitBinding"
+      },
+      "localClosureRequirement": "Verify the recovered copy SHA-256 equals the manifest expected SHA and byte-equals git show 075f8a25...:Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md; then verify the other 292 manifest members normally and publish a 293/293 successor-authentication receipt.",
+      "selectedClaims": [
+        "six fresh candidate/reproduction compiler/provenance build cells",
+        "fresh startup11",
+        "M07 14/14",
+        "schema-v3 failure/publication",
+        "dense-v2 diagnostic Player and parser/native matrix",
+        "ordinary 8192/8193 capacity",
+        "exact mixed capacity and retained-failure accounting"
+      ],
+      "historicalManifestMutated": false
+    },
+    {
+      "id": "authority6913-v04-boundary",
+      "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260921-authority6913-v04-boundary/",
+      "creationCommit": "fa23a0ddcf45eabc870e7e7742d2d18a78a52d49",
+      "originalEntryCount": 30,
+      "currentlyAvailableEntries": 29,
+      "unavailableMember": {
+        "relativePath": "V04/performance/formal-01-prelaunch-operational-blocker.log",
+        "expectedSha256": "8d899ad7f910dbf6c2eef903f735fb343e67c5124e45b22796f43d41f0aec0ae",
+        "gitTreeAtCreationCommit": "Absent",
+        "contentRecoveryStatus": "Unavailable",
+        "historicalMeaning": "Operational diagnostic for a formal prelaunch scalability blocker; the run stopped before formal output root or Player launch.",
+        "selectedForCurrentH1Claims": false,
+        "disposition": "ExcludedUnavailableSupersededDiagnostic"
+      },
+      "localClosureRequirement": "Verify all 29 available members; independently confirm the missing path is absent from Git tree fa23a0dd...; do not claim 30/30 original-manifest integrity. Publish a successor-index receipt that records 29 authenticated + 1 unavailable/excluded.",
+      "supersedingEvidence": {
+        "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/",
+        "checkpointManifestExpectedEntries": 92,
+        "formalBatchSha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667",
+        "finalSampleIndexSha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021",
+        "formalPairsPassed": 40,
+        "formalRetries": 0,
+        "currentReanalysisCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/",
+        "currentReanalysisDisposition": "Passed / ComparabilityPassed"
+      },
+      "historicalManifestMutated": false
+    }
+  ],
+  "currentM08Use": "The next independent M08 must use this successor index plus Local authentication receipts; it must not treat either original manifest as silently repaired.",
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
