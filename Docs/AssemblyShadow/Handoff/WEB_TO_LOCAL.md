@@ -2,21 +2,17 @@
 
 ## Objective
 
-Validate the V05 analysis-only successor-evidence implementation at source anchor:
+Authenticate the Primary M08 evidence-closure package and rerun genuinely independent H1 M08.
+
+Source anchor remains:
 
 `0388479f7073289e3505b992956a7cbe78c302ce`
 
-Then reclose V04, bind V05, and immediately run a genuinely independent H1 M08 review if V05 succeeds.
-
-Do not rerun Players.
-
 Latest Local return:
 
-`5f8db436e31df017dbff396b375547394c396ad5`
+`7be042c6a6b1a73e907a53bcea10a4d1a3b50c03`
 
-H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
-
-**Do not begin R02.**
+Do not rerun Players. Do not begin R02.
 
 ## Source targets
 
@@ -24,376 +20,311 @@ Machine authority:
 
 `Docs/AssemblyShadow/Handoff/source-targets.json`
 
-Required identities:
+Required runtime/package/native identities remain:
 
-| Repository | Branch | Required source/runtime identity |
-| --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | analysis/test/V05 source anchor `0388479f7073289e3505b992956a7cbe78c302ce` |
-| `night-outlook/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
-| `night-outlook/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
-| `night-outlook/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
+- hybridclr: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`
+- hybridclr_unity: `0ea633a2c5b936b5af69d944593c55bd2783fca9`
+- il2cpp_plus: `6be7f38bec2fa4677d24efc1a4a1294240789933`
 
-The final pushed demo checkout HEAD may be later than `0388479f...` only by paths classified as metadata by the unchanged `shadow_tools.metadata_only` policy.
+The final demo HEAD may be later than source 038 only by paths classified as metadata under unchanged `shadow_tools.metadata_only`.
 
-Historical execution source:
+Existing source-038 V05 evidence remains authoritative if that condition holds:
 
-`27df1a3d60811dc121f296ab561ae313a382b363`
-
-Retained graph source:
-
-`69130bbb3a6df516916dddb5ad263799a7c6e5e3`
-
-Latest successfully closed V04 checkpoint:
-
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`
-
-Immutable source-27df execution checkpoint:
-
-`Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/`
+- V05 SHA-256: `534eba62b817584f1a2d48c2fa1bcfccf498d447351c34f10a412993fff3d73f`
+- latest prior Local checkpoint manifest SHA-256:
+  `71cbe155977a08fadacea92c641203c218d05db242ed301dd5d70bd249d31d10`
 
 ## Implementation
 
-### Local result received
+Latest independent M08 returned `BLOCKED`, not FAIL/PASS, on three evidence-package gaps.
 
-At source d61 Local completed:
+Primary addressed all three without executable source changes.
 
-- V00 source authority;
-- 381/381 bounded Primary;
-- 1,065 full Python leaves with 1,037 Passed / 28 explicit environment Skipped / 0 Failed/Error;
-- exact seven-path / 25-path / d239→d61 three-path source audits;
-- source-27df manifest 92/92;
-- 33,792/33,792 sealed live files and 1,606,993,133 bytes;
-- V04.AF `AuthenticatedAnalysisOnlySuccessor`;
-- V04.AG `Passed / ComparabilityPassed`;
-- V04.AH authenticated closure checkpoint.
+Closure root:
 
-No Player was rerun.
+`Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/`
 
-V05 was correctly left `NotEligibleUnderCurrentHandoff` because no runnable analysis-only V05 contract existed.
+### 1. Prior independent-review provenance
 
-### V05 contract now implemented
+Recovered from immutable commit:
 
-Policy:
+`7cb710fa38464b1977a69619fea2b5fc93f79966`
 
-`H1AnalysisOnlySuccessorEvidence-v1`
+The closure includes the original:
 
-Tool:
+- M08 whole-chain FAIL;
+- finding-closure ledger;
+- reproduction follow-up review;
+- review-gates/findings/status records;
+- startup attempt/root cause;
+- later 12cf finding-closure evidence.
 
-`Tools/AssemblyShadow/h1_historical_reanalysis.py --v05-package`
+`origin-index.json` records origin path and Git blob for every copy.
 
-V05 authenticates:
+Primary checked all 12 recovered files: every current Git blob ID exactly equals its historical origin blob ID.
 
-- the complete current V04 closure checkpoint manifest and required V00/V01/V02/V04 members;
-- the complete source-27df execution checkpoint manifest;
-- current source authority and runtime repository pins;
-- current bounded/full-Python evidence;
-- complete live historical reauthentication;
-- zero unresolved direct-binding semantic mismatch;
-- V04.AF compatibility at the same current source;
-- V04.AG `Passed / ComparabilityPassed`;
-- strict-analysis receipt bound to the full performance JSON;
-- scoped no-Player evidence;
-- canonical H1 gate/evidence/performance documents;
-- the read-only independent-reviewer configuration.
+The historical verdicts are unchanged.
 
-### V05 classifications
+### 2. Prior M08 P1 successor evidence
 
-A valid result must preserve:
+`prior-finding-successor-map.json` binds:
 
-- current source regression:
-  `FreshCurrentSourceValidation`;
-- source-27df execution:
-  `ReusedAuthenticatedFromSource27df`;
-- historical performance:
-  `ReanalyzedImmutableHistoricalExecution`;
-- fresh current-source Player execution:
-  `false`;
-- Player rerun for V05:
-  `false`.
+- `M08-P1-COUNT-CHAIN` → later 12cf six-build provenance + candidate count 132/132;
+- `M08-P1-FRESH-STARTUP` → 925e fresh startup11 / 11 fresh PIDs;
+- `M08-P1-UNFIXED-REPRO` → later 12cf eight-cell execution directly bound to provenance-verified reproduction Debug/Release receipts.
 
-V05 success status:
+Reproduction remains historical defect evidence:
 
-`SuccessorEvidenceBoundForIndependentM08`
+- 6 `UnexpectedAccepted`;
+- 2 Debug `AssertAbort`;
+- `candidateAcceptance=false`.
 
-V05 always retains:
+### 3. Historical manifest successor index
 
-- `M08Passed=false`;
-- `humanGatePassed=false`;
-- `mayEnterR02=false`.
+`historical-manifest-successor-index.json` preserves both historical discrepancies.
 
-### Performance disposition
+925e:
 
-The V05 result binds the complete V04 performance-analysis JSON.
+- original manifest = 293 entries;
+- 292 current checkpoint members remain directly verifiable;
+- historical Handoff external binding was recovered from commit
+  `075f8a25f44b7fe5fef397be566b8a5f4f7e447f`;
+- expected recovered Handoff SHA-256 =
+  `cb8f06d757962ddd366878543b2bb75aade49f8b27b165cf7d9eb984652a3d54`;
+- target successor authentication = 293/293.
 
-It must state:
+6913:
 
-`performanceAcceptance=NotClaimedNoSLA`
+- original manifest = 30 entries;
+- 29 remain available;
+- missing
+  `V04/performance/formal-01-prelaunch-operational-blocker.log`
+  is absent even from creation commit
+  `fa23a0ddcf45eabc870e7e7742d2d18a78a52d49`;
+- it is classified
+  `ExcludedUnavailableSupersededDiagnostic`;
+- do not claim original manifest 30/30;
+- later source-27df 40/40 formal evidence is the selected superseding execution evidence.
 
-The H1 performance protocol has no approved performance SLA. `ComparabilityPassed` proves measurement comparability; it does not make observed slowdowns, RSS increases, managed-memory differences or variance acceptable automatically.
+### 4. Whole-H1 suite reuse bridge
 
-Independent M08 must review those measurements explicitly.
+`whole-h1-suite-reuse-bridge.json` provides suite-specific source/input/provenance equivalence to source 038.
 
-### Independent M08
+Exact 925e → 038 Git-tree results:
 
-Established mechanism:
+- Bootstrap runtime: 70 blobs, 0 changed;
+- R01B diagnostics Runtime: 16 blobs, 0 changed;
+- H1 count-related files: 42, 0 changed;
+- selected failure runner/verifier: 3, 0 changed;
+- selected capacity runner/verifier: 3, 0 changed;
+- hybridclr / hybridclr_unity / il2cpp_plus pins unchanged.
 
-`.codex/agents/code-gate-reviewer.toml`
+Only changed `Assets/**` paths are Editor-only provenance/test files.
 
-Run it in a genuinely independent read-only context with Gate type:
+Post-925e M07 build-side changes were reviewed and are limited to:
 
-`MILESTONE`
+- controlled-stage recovery labels;
+- exact mutable-input backup/restoration;
+- nested native-verifier environment scoping;
+- Editor test assertions.
 
-It must review the whole H1 chain, not the V05 summary alone.
+Startup verifier changes only add/constrain retained-performance pairing; direct ordinary startup verification remains current-pairing-only.
 
-Allowed verdicts:
-
-- PASS;
-- FAIL;
-- BLOCKED.
-
-M08 PASS means only:
-
-`ReadyForHumanReviewGate`
-
-It does not constitute human H1 approval.
-
-Detailed V05/M08 contract:
-
-`Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md`
-
-### Source/policy scope
-
-New source anchor:
-
-`0388479f7073289e3505b992956a7cbe78c302ce`
-
-Source-27df → current remains exactly the existing seven-path `H1HistoricalPerformanceReanalysis-v2` set.
-
-Retained 69130 → current remains exactly the existing 25-path `H1V04RetainedGraphToolOnlySuccessor-v2` set.
-
-d61 → current contains exactly:
-
-- `Tools/AssemblyShadow/README.md`;
-- `Tools/AssemblyShadow/h1_historical_reanalysis.py`;
-- `Tools/AssemblyShadow/tests/test_h1_graph_reuse.py`.
-
-No shared runtime/input verifier, Player runner, measurement, protocol, schedule, graph producer, native source or runtime source changed.
-
-### New regression coverage
-
-Six V05 fail-closed tests were added inside the already-bounded graph-reuse test module:
-
-1. checkpoint manifest tamper detection;
-2. positive V05 evidence binding with exact Fresh/Reused classifications and no approval flags;
-3. rejection of non-Passed/non-ComparabilityPassed V04 analysis;
-4. rejection of invalid no-Player evidence containing a Player/formal runner command;\n5. rejection of incomplete current-source test cardinality;\n6. rejection of truncated sealed-live file/byte cardinality.
-
-Expected current counts:
-
-- bounded Primary: **387**;
-- full Python discovery: **1,071** leaves;
-- expected if the prior environment skip set remains:
-  **1,043 Passed / 28 Skipped / 0 Failed / 0 Error**.
-
-Fresh Local evidence is required.
+Selected older suites remain `ReusedAudited`, never Fresh.
 
 ## Local validation
 
-Authoritative detailed task plan:
+Detailed instructions:
 
 `Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md`
 
-V05/M08 contract:
-
-`Docs/AssemblyShadow/History/M07R/H1/current-primary/V05_M08_CONTRACT.md`
-
-Run the following in order.
-
-### V00
+### E00 — source/handoff preflight
 
 Require:
 
-- final pushed HEAD from the handoff prompt;
-- clean tracked state before evidence creation;
-- source pin = `0388479f...`;
-- source anchor → final HEAD zero non-metadata delta;
-- all four repository/pin identities exact;
-- committed preflight = `SourceTargetVerifiedNotBuildAccepted`.
+- exact final pushed branch/HEAD;
+- source pin remains `0388479f...`;
+- source 038 → final HEAD has zero non-metadata paths;
+- committed preflight = `SourceTargetVerifiedNotBuildAccepted`;
+- existing V05/checkpoint hashes above unchanged.
 
-### V01
+If non-metadata drift exists, stop and return to Primary.
 
-Bounded Primary:
+Do not rerun V01/V02/V04/V05 merely because handoff metadata changed.
 
-- 387 tests;
-- 385 Passed;
-- zero nonpass.
+### E01 — recovered origin authentication
 
-Complete Python discovery:
+Authenticate every row in:
 
-- expected 1,071 leaves;
-- zero Failed/Error;
-- every skip explicit;
-- expected 1,043 Passed / 28 Skipped only if the environment skip set is unchanged.
+`m08-evidence-closure-20260925/origin-index.json`
 
-### V01A
+against `git show` at origin commit/path.
 
-Require:
+Also require reconstructed 925e Handoff:
 
-- source-27df → current = exact seven-path v2 set;
-- retained 69130 → current = exact 25-path v2 set;
-- d61 → current = exactly README + historical reanalysis tool + graph-reuse tests.
+- byte-equal to origin commit `075f8a25...`;
+- SHA-256 = `cb8f06d757...`.
 
-### V02
+Create:
 
-Repeat complete source-27df live evidence authentication:
+`H1RecoveredIndependentReviewAuthentication`
 
-- checkpoint 92/92;
-- four exact fixed hashes;
-- 33,792/33,792 sealed files;
-- 1,606,993,133 bytes;
-- zero unresolved mismatch.
+### E02 — historical manifest successor authentication
 
-### V04.AF / V04.AG
+925e:
 
-Because the analysis/V05 tool changed, rerun V04 compatibility and strict analysis at source `0388479f...`.
+- verify 292 retained members;
+- verify reconstructed historical Handoff;
+- effective successor result 293/293;
+- do not edit original manifest.
 
-Use the same explicit `--analysis-project` split-checkout contract.
+6913:
 
-Require V04.AF `AuthenticatedAnalysisOnlySuccessor` and V04.AG `Passed / ComparabilityPassed`.
+- verify 29 available members;
+- prove missing log absent at creation commit;
+- retain 1 unavailable/excluded member;
+- authenticate source-27df 40/40 superseding formal evidence.
 
-Retain the complete performance JSON without suppressing unfavorable values.
+Create:
 
-### V04.AH — pre-V05 closure checkpoint
+`H1HistoricalCheckpointSuccessorAuthentication`
 
-Create a new checkpoint containing current V00/V01/V02/V04 evidence and authenticate its `MANIFEST.sha256`.
+with status:
 
-It must include at least:
+`AuthenticatedWithExplicitHistoricalExclusion`.
 
-- `V00/source-authority.json`;
-- `V00/handoff-preflight.json`;
-- `V01/bounded-primary/results.json`;
-- `V01/python-inventory.json`;
-- `V02/live-evidence-reauthentication.json`;
-- `V02/direct-binding-semantics-audit.json`;
-- `V04/historical-compatibility.json`;
-- `V04/historical-performance-analysis.json`;
-- `V04/analysis-validation.json`;
-- `V04/no-player-proof.json`.
+### E03 — prior finding successor audit
 
-Do not include the future V05 result in this pre-V05 manifest.
+Independently verify the COUNT, FRESH-STARTUP and UNFIXED-REPRO mappings in:
 
-### V05
+`prior-finding-successor-map.json`
 
-Run:
+Create:
 
-~~~text
-python3 Tools/AssemblyShadow/h1_historical_reanalysis.py \
-  --analysis-project /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo \
-  --v05-package \
-  --current-checkpoint <new-authenticated-pre-v05-v04-closure-checkpoint> \
-  --historical-checkpoint /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked \
-  --output <new-v05-successor-evidence.json>
-~~~
+`H1PriorFindingSuccessorAuthentication`
 
-Require:
+This does not alter the historical M08 FAIL.
 
-- `H1AnalysisOnlySuccessorEvidence`;
-- `SuccessorEvidenceBoundForIndependentM08`;
-- policy `H1AnalysisOnlySuccessorEvidence-v1`;
-- exact Fresh/Reused classifications above;
-- `performanceAcceptance=NotClaimedNoSLA`;
-- `v05Complete=true`;
-- `independentM08Eligible=true`;
-- M08/human/R02 flags false.
+### E04 — whole-H1 suite reuse authentication
 
-If V05 fails, stop and return to Primary.
+Independently recompute source/tool equality and authenticate key evidence for each required suite:
 
-### Independent M08
+- count-chain;
+- startup11;
+- failure-publication-recovery;
+- ordinary-capacity;
+- mixed-capacity;
+- m07-and-native-regression.
 
-Only after V05 succeeds, invoke the established `code-gate-reviewer` in an independent read-only context.
+Every suite must receive one explicit disposition:
 
-The reviewer must read the canonical H1 gate/evidence/validation/performance documents, the current source diff, V05 output, current closure checkpoint, immutable source-27df checkpoint, full V04 performance analysis and relevant prior H1 findings.
+- `AcceptedReusedAudited`
+- `Rejected`
+- `Blocked`
 
-Retain the independent response verbatim and create the review receipt specified in `V05_M08_CONTRACT.md`.
+Create:
 
-Result handling:
+`H1WholeChainSuiteReuseAuthentication`
 
-- PASS → mark only `ReadyForHumanReviewGate`; stop for explicit human H1 approval.
-- FAIL → return findings to Primary.
-- BLOCKED → return missing evidence/access to Primary.
+Do not emit a blanket PASS.
 
-Never set `humanGatePassed=true` or `mayEnterR02=true` without explicit human approval.
+If any required suite is Rejected/Blocked, stop before M08 and return to Primary.
+
+### E05 — independent M08 re-review
+
+Only after E01–E04 close successfully.
+
+Use:
+
+`.codex/agents/code-gate-reviewer.toml`
+
+in a genuinely independent read-only context.
+
+Gate:
+
+`MILESTONE`
+
+Provide:
+
+- canonical H1 gate/evidence/validation/performance documents;
+- source-038 V05 evidence and closure checkpoint;
+- previous BLOCKED M08 review verbatim;
+- complete M08 evidence-closure package;
+- E01–E04 authentication receipts;
+- source-27df execution checkpoint;
+- full V04 performance analysis.
+
+The reviewer must explicitly revisit all three prior BLOCKED findings.
+
+Allowed verdicts:
+
+- PASS
+- FAIL
+- BLOCKED
+
+PASS means only:
+
+`ReadyForHumanReviewGate`
+
+Keep:
+
+- `humanGatePassed=false`
+- `mayEnterR02=false`
+
+Stop for explicit human H1 approval.
 
 ## Failure evidence
 
-On V00/V01/source failure retain exact repos, revisions, pins, source deltas, inventory/log and first failure.
+If E00 fails, retain exact source delta/preflight and stop.
 
-On V02 failure retain first mismatching live item and prior checkpoint provenance.
+If E01/E02 fails, retain first mismatching path/blob/hash or unavailable evidence classification.
 
-On V04 failure retain complete compatibility/analysis output, first semantic failure and no-Player proof.
+If E03 fails, retain the finding ID and exact successor binding that failed.
 
-On V05 failure retain:
+If E04 rejects/blocks a suite, retain that suite's complete source/input/provenance comparison and reason.
 
-- V05 failure JSON;
-- both checkpoint manifest SHA-256s;
-- first failed member/classification;
-- current source authority;
-- V04 analysis SHA;
-- no-Player evidence.
-
-On M08 FAIL/BLOCKED retain the independent review verbatim and machine receipt. Do not rewrite it.
+If M08 FAIL/BLOCKED, retain the independent review verbatim and machine receipt.
 
 ## Alternatives
 
 Do not:
 
-- rerun Players to satisfy V05;
-- use the old fresh-execution `h1_successor_evidence.py` package as a substitute for this V05 contract;
-- call source-27df execution Fresh current-source evidence;
-- treat `ComparabilityPassed` as performance acceptance;
-- hide or remove unfavorable performance/memory measurements;
-- alter the preserved invalid pilot;
-- weaken the exact seven-path or 25-path policies;
+- modify recovered historical JSON;
+- rewrite old manifests;
+- fabricate the unavailable 6913 log;
+- call the 6913 original manifest 30/30;
+- relabel reused suites Fresh;
+- rerun Players as a shortcut;
+- rerun V04/V05 when source is metadata-only;
 - self-approve independent M08;
 - begin R02.
 
 ## Risks
 
-- Historical absolute live paths must remain present and hash-identical.
-- V05 depends on both checkpoint manifests remaining intact.
-- The historical performance series is valid/comparable but includes unfavorable measurements; H1 review must assess them without a predeclared SLA.
-- Independent M08 may legitimately FAIL or BLOCK even after V05 binds successfully.
-- Human H1 approval remains mandatory after M08 PASS.
+- Some old raw artifacts are live/external rather than Git-packaged; Local must preserve Available/Unavailable distinctions.
+- Count finding closure is historical successor evidence, not a fresh source-038 count Player run.
+- Reuse bridge acceptance remains an independent-review question even after Local authenticates its facts.
+- Performance regressions and higher memory remain visible H1 review inputs.
 
 ## Local correction boundary
 
-Local may adjust only:
+Local may create authentication receipts, temporary `git show` materializations, hash inventories, successor-index receipts and independent review output.
 
-- canonical existing evidence-path arguments;
-- new output/checkpoint roots;
-- permissions/PYTHONPATH;
-- bounded command syntax;
-- review-receipt timestamps/paths that truthfully record the independent run.
-
-Local must not modify source, pins, policies, evidence classifications, historical receipts, performance statistics, reviewer verdict, or independence rules.
-
-Any non-trivial issue returns to Primary.
-
-Do not rewrite `WEB_TO_LOCAL.md` during Local Validation.
+Local must not modify source, source pins, recovered history, original manifests, V05 evidence, measured performance, or reviewer verdict.
 
 ## Human review gate
 
-H1 remains **InProgress** until a genuine independent M08 PASS.
+H1 remains `InProgress`.
 
-M08 PASS changes the state only to:
+Only a new genuine independent M08 PASS may move to:
 
 `ReadyForHumanReviewGate`
 
-Human approval is then explicit and separate.
+Human approval is separate.
 
-Until that approval:
+Until then:
 
-- `humanGatePassed=false`;
-- `mayEnterR02=false`.
+- `humanGatePassed=false`
+- `mayEnterR02=false`
 
 **Do not begin R02.**
