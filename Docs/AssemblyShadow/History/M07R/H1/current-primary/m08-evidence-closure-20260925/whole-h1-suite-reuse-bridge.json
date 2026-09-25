@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1WholeChainSuiteReuseBridge",
+  "status": "PrimaryPreparedAwaitingLocalAuthentication",
+  "currentSourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+  "evidenceRule": "This bridge supplies source/input/provenance equivalence for independent review. Reused historical Player evidence remains ReusedAudited; it is never Fresh current-source execution.",
+  "sourceEquivalence": {
+    "baseEvidenceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+    "currentSourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+    "playerManagedTrees": [
+      {
+        "prefix": "Assets/AssemblyShadowDemo/Bootstrap/",
+        "blobCount": 70,
+        "changedBlobCount": 0
+      },
+      {
+        "prefix": "Assets/AssemblyShadowR01BDiagnostics/Runtime/",
+        "blobCount": 16,
+        "changedBlobCount": 0
+      }
+    ],
+    "changedAssetsOnly": [
+      "Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs",
+      "Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs"
+    ],
+    "projectSettingsDelta": [
+      "ProjectSettings/AssemblyShadowSourcePins.json"
+    ],
+    "runtimeRepositoryPins": {
+      "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+      "hybridclrUnity": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+      "il2cppPlus": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+      "changed": false
+    },
+    "suiteToolEquivalence": {
+      "h1CountRelated": {
+        "matchedFileCount": 42,
+        "changedFileCount": 0
+      },
+      "failureRunnerVerifier": {
+        "matchedFileCount": 3,
+        "changedFileCount": 0
+      },
+      "capacityRunnerVerifier": {
+        "matchedFileCount": 3,
+        "changedFileCount": 0
+      },
+      "startupVerifierChanges": {
+        "file": "Tools/AssemblyShadow/r01_early_results.py",
+        "after925eCommits": [
+          {
+            "commit": "d4dd935bd1aa71354181553f021c56a18a1bdecf",
+            "scope": "optional authenticated retained-pairing propagation for performance early preparation"
+          },
+          {
+            "commit": "08ffe50bf988b9ec14a3cd5cdcd47e3f52ec7a5f",
+            "scope": "limits retained authority to Baseline/Control performance modes"
+          },
+          {
+            "commit": "a9cbecaa1595a5afd4fcab92a29076c8d654055d",
+            "scope": "restores direct verify_suite to current-pairing-only; ordinary startup path calls _prepare without retained authority"
+          }
+        ],
+        "ordinaryStartupSemanticPathChanged": false
+      }
+    },
+    "buildOrchestrationChanges": [
+      {
+        "commit": "9b35b05e5f72883d71d47059b3212b772e28142b",
+        "path": "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
+        "scope": "adds native-on-controlled/native-off-controlled to recovery Label ValidateSet only"
+      },
+      {
+        "commit": "65ffc901f493d55d84f5cb7dda5c5352be52731e",
+        "path": "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
+        "scope": "extends exact-byte mutable-input backup/restoration to ProjectSettings.asset; does not set compiler flags or Player runtime source"
+      },
+      {
+        "commit": "40d5967b6d7d94f2a1fc8720e9ba24c5be126575",
+        "path": "Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs",
+        "scope": "removes outer workflow authority environment from nested native-only verifier and records verificationEnvironmentScope"
+      },
+      {
+        "path": "Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs",
+        "scope": "Editor test assertions only"
+      }
+    ],
+    "priorAuditedReuse": {
+      "catalog": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260920-authority3168/reused-audit-catalog.json",
+      "sourceAudit": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260920-authority3168/V01A/source-scope-audit.json",
+      "status": "ReusedAuditedFrom925e",
+      "baseSource": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+      "auditedSuccessor": "316894a83873c46ffd3eefa57222311ae03da214",
+      "freshPassClaimedAtSuccessor": false
+    }
+  },
+  "suites": [
+    {
+      "id": "count-chain",
+      "classification": "HistoricalFindingClosurePlusReusedProvenance",
+      "currentFreshPlayerClaim": false,
+      "evidence": [
+        "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-results-summary.json",
+        "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-v03-provenance-summary.json",
+        "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-reproduction-execution.json",
+        "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/batch-result.json",
+        "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-compiler-verification.json",
+        "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-compiler-verification.json"
+      ],
+      "equivalence": [
+        "All 42 current H1 count-related source/tool files are byte-identical between 925e and 038.",
+        "All 70 Bootstrap and 16 R01B Runtime blobs are unchanged between 925e and 038.",
+        "Native/package/IL2CPP pins are unchanged.",
+        "The 12cf 132/132 run closes the original independent count finding historically; the 925e six-build chain supplies later fresh compiler/managed/native provenance. This bridge does not merge them into a fictitious fresh 038 run."
+      ],
+      "localAuthentication": "Byte-authenticate recovered 12cf records from origin commit and current 925e build/provenance records; independently verify the 42-file count-related Git-tree equality."
+    },
+    {
+      "id": "startup11",
+      "classification": "ReusedAuditedFrom925e",
+      "currentFreshPlayerClaim": false,
+      "evidenceCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+      "keyBindings": [
+        {
+          "path": "V04/startup11-verification.log",
+          "sha256": "52f93078f7ef6bb778eb7041ad1f47a18fa72883e5ea2075f5450656736e8fb5"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-launches.json",
+          "sha256": "73df4829cd2f319037ee4d008141b117e586d81cbcc0e3a95b7f9157b70990fe"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-results.json",
+          "sha256": "95dcc84f35c364832e1c013ad1cd92f6b26332c8dd894beaf54ff09877d0dc2e"
+        }
+      ],
+      "recordedResult": "PassedBoundedProfile; 11 fresh PIDs",
+      "equivalence": [
+        "Bootstrap runtime tree 70/70 blobs unchanged 925e→038.",
+        "Native/package/IL2CPP pins unchanged.",
+        "Post-925e r01_early_results changes only add/constrain retained performance authority; direct verify_suite remains current-pairing-only."
+      ]
+    },
+    {
+      "id": "failure-publication-recovery",
+      "classification": "ReusedAuditedFrom925e",
+      "currentFreshPlayerClaim": false,
+      "evidenceCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+      "keyBindings": [
+        {
+          "path": "V04/failure-verification.log",
+          "sha256": "52a226243b58d60ea60c942d3dc12d2a0c043d18fa6d56acfc2c7611ac46db95"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-FailurePlayers-20260919A/r01-failure-verification.json",
+          "sha256": "5643887685582f00a61b19cb83693dd9c6196bf284c35dcbf61a8bd7e72943e2"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-NativeCoverage-20260919A/r01-recovery.json",
+          "sha256": "fcd8aa6adb5a62b460bf10a02049024783e08dfb8795bc9e5b9e9881e2d5fe9c"
+        }
+      ],
+      "recordedResult": "Schema-v3 failure/publication Passed; native recovery matrix Passed",
+      "equivalence": [
+        "Selected failure runner/verifier files unchanged 925e→038.",
+        "Bootstrap runtime tree unchanged; native repositories unchanged."
+      ]
+    },
+    {
+      "id": "ordinary-capacity",
+      "classification": "ReusedAuditedFrom925e",
+      "currentFreshPlayerClaim": false,
+      "evidenceCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+      "keyBindings": [
+        {
+          "path": "V04/capacity-player.log",
+          "sha256": "e969508f6990ab63be7f7f219110db05fb0928eadfc6afbdb2cd4553ab288eca"
+        },
+        {
+          "path": "V04/capacity-verify.log",
+          "sha256": "1332d4d3eca86e6390caadafae48ad2929b0f21a239ede5a8866c405d8185d5a"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-Capacity-20260919A/r01b-capacity-result.json",
+          "sha256": "4751cb7b694e91b383700e4b637fed1d67a709b59e428f7e762b6def3bd649bd"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-Capacity-20260919A/r01b-capacity-strict-verification.json",
+          "sha256": "6ee9911252470623bcbbe616855cc36609341da0b69d6f41732d850b8d364232"
+        }
+      ],
+      "recordedResult": "8,192 assemblies / 536,870,912 bytes; 8,193rd rejected; strict verification Passed",
+      "equivalence": [
+        "Capacity runner/verifier files unchanged 925e→038.",
+        "R01B Runtime tree unchanged; native repositories unchanged."
+      ]
+    },
+    {
+      "id": "mixed-capacity",
+      "classification": "ReusedAuditedFrom925e",
+      "currentFreshPlayerClaim": false,
+      "evidenceCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+      "keyBindings": [
+        {
+          "path": "V04/mixed-capacity-player.log",
+          "sha256": "5e53163a39ce8fad7895af2426a7d5b8e9ee2af1e59e6600c71534522b9695fc"
+        },
+        {
+          "path": "V04/mixed-capacity-verify.log",
+          "sha256": "9c6002ccc9a694fe0dcdf6e20f70801f77e961e29ad3e7b495848be490785272"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-MixedCapacity-20260919A/r01b-mixed-result.json",
+          "sha256": "b933972836343b918426885cb94edd76db7bc6f2221ca794c508153cf88f3b99"
+        },
+        {
+          "rawPath": "_temp/AssemblyShadow/H1Authority925e-MixedCapacity-20260919A/r01b-mixed-strict-verification.json",
+          "sha256": "e3097836df0769182fec0b0eb555e9f4aac8e1baa35effb87fdb3d3231261701"
+        }
+      ],
+      "recordedResult": "Exact mixed 512 MiB valid DLL envelope with five Shadow images and three retained ordinary failures; strict verification Passed",
+      "equivalence": [
+        "Capacity runner/verifier files unchanged 925e→038.",
+        "R01B Runtime tree unchanged; native repositories unchanged."
+      ]
+    },
+    {
+      "id": "m07-and-native-regression",
+      "classification": "ReusedAuditedFrom925e",
+      "currentFreshPlayerClaim": false,
+      "evidenceCheckpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/",
+      "keyBindings": [
+        {
+          "path": "V04/m07-players14-verification-rerun.log",
+          "sha256": "f49c5ae52b9921ecfe66b24b19050f13c6729ffb71e4ee16e5c30dffb541cfaa"
+        },
+        {
+          "path": "V04/native-matrix.log",
+          "sha256": "d6fd97e7423f45067b6a2edbb94d26272ebd9b733e26d2f37b9b7a68f3067611"
+        },
+        {
+          "path": "V04/normal-m07/native-on-m07-player-build.json",
+          "sha256": "301b8a41cbea80dec0bbbd520ecd6a819b18feb22d6c4cda3b686b519b677c11"
+        },
+        {
+          "path": "V04/normal-m07/native-off-m07-player-build.json",
+          "sha256": "23c393fcdeab091a3e8e3dcc61a9e0055fa254717d9098e070f4738cbd74bd0d"
+        }
+      ],
+      "recordedResult": "M07 14/14 and retained native matrix Passed",
+      "equivalence": [
+        "Player-managed Bootstrap/runtime source unchanged.",
+        "Native/package/IL2CPP pins unchanged.",
+        "Post-925e M07 PowerShell changes are recovery/authority orchestration only and are explicitly listed under buildOrchestrationChanges."
+      ]
+    }
+  ],
+  "exclusions": [
+    "Controlled-performance failures at 925e/3168 are not selected; they are superseded by the authenticated source-27df 40/40 formal series and current V04 reanalysis.",
+    "The missing 6913 formal-prelaunch blocker log is not selected for any current claim.",
+    "No reused suite is relabelled Fresh at source 038."
+  ],
+  "localClosureRequirements": [
+    "Recompute Git-tree equality for the two runtime managed prefixes and the selected count/failure/capacity tool sets.",
+    "Verify runtime repository pins equal the bridge values.",
+    "Authenticate the 925e artifact-index/raw-evidence/checkpoint via the historical-manifest successor index, including recovered historical Handoff bytes.",
+    "Rehash each listed key binding that exists in the retained checkpoint/live raw root and record Available/Verified or exact Unavailable state.",
+    "Verify the 3168 reused-audit catalog/source-scope audit bytes and semantics.",
+    "Publish H1WholeChainSuiteReuseAuthentication with per-suite AcceptedReusedAudited / Rejected / Blocked; do not use a single blanket PASS."
+  ],
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
