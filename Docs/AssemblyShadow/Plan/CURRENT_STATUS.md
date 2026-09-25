@@ -1,115 +1,124 @@
 # Current Status
 
 - H1 source anchor: `0388479f7073289e3505b992956a7cbe78c302ce`.
-- Latest Local return: `7be042c6a6b1a73e907a53bcea10a4d1a3b50c03`.
-- Latest Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-v05-m08/`.
+- Latest Local return: `482d9d5cfe703310e8ea6d980677c73817bad774`.
+- Latest Local checkpoint: `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-m08-re-review/`.
 - V05: `SuccessorEvidenceBoundForIndependentM08`.
-- Latest independent M08: `BLOCKED`.
-- Gate: `H1 / InProgress / AwaitingM08EvidenceClosureReReview`.
+- Latest independent M08: `BLOCKED` on one count-evidence finding.
+- Gate: `H1 / InProgress / AwaitingFreshCountMatrixClosure`.
 - Human gate passed: `false`.
 - May enter R02: `false`.
 
 ## Latest Local result
 
-At source 038, Local passed the complete current validation and V05 chain:
+The M08 evidence-closure package successfully closed the earlier provenance/manifest/reuse blockers:
 
-- bounded Primary: 387/387;
-- full Python: 1,071 leaves, 1,043 Passed, 28 explicit environment Skipped, zero Failed/Error;
-- exact seven-path and 25-path source policies;
-- source-27df checkpoint 92/92;
-- 33,792/33,792 sealed historical files / 1,606,993,133 bytes;
-- V04.AF `AuthenticatedAnalysisOnlySuccessor`;
-- V04.AG `Passed / ComparabilityPassed`;
-- authenticated pre-V05 V04 checkpoint;
-- V05 `H1AnalysisOnlySuccessorEvidence-v1` successfully bound.
+- source 038 → handoff HEAD remained metadata-only;
+- recovered prior-review records authenticated;
+- 925e successor manifest effectively authenticated 293/293;
+- 6913 correctly retained 29 verified + 1 unavailable/excluded;
+- source-27df superseding formal evidence reauthenticated;
+- startup11, failure/publication/recovery, ordinary capacity, mixed capacity, and M07/native were accepted as `ReusedAudited`.
 
-No Player was rerun.
+The only required suite still blocked is count-chain.
 
-Independent M08 then returned **BLOCKED**, not FAIL/PASS, for three evidence-package gaps:
+The immutable 12cf archive contains:
 
-1. prior M08/finding-closure provenance was not present in the selected current package;
-2. older 925e and 6913 manifest discrepancies lacked a reviewable successor disposition;
-3. older whole-H1 runtime claims lacked a suite-specific source/input/provenance-equivalence bridge to source 038.
+- 132 `verification.json` reports;
+- one `result-index.json`;
+- zero retained bound Player launch receipts;
+- zero retained bound raw semantic results.
 
-## Primary evidence closure
+Therefore its 132/132 summary cannot independently satisfy the canonical Launch and Raw evidence layers. The latest independent M08 returned `BLOCKED` on this single high-priority finding.
 
-Primary created:
+## Primary decision
 
-`Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/`
+Do not attempt another historical reconstruction.
 
-### Prior independent review provenance
+Do not temporarily rewrite current source pins to reuse old build receipts.
 
-Twelve historical records were recovered from immutable Git history. Primary verified every recovered copy has the exact same Git blob ID as its origin.
+Replace the count suite with **fresh source-038 execution evidence** while leaving all other accepted suites and V05 unchanged.
 
-The package restores review visibility for:
+Protocol:
 
-- original M08 whole-chain FAIL;
-- finding-closure ledger;
-- reproduction follow-up review;
-- review-gate/findings/status records;
-- startup failed-attempt/root-cause records;
-- later 12cf provenance/count/reproduction closure records;
-- the exact historical 925e Handoff bytes.
+`H1CountMatrixClosureSource038-v1`
 
-The original verdicts are not edited.
+Contract:
 
-### Historical manifest successor index
+`Docs/AssemblyShadow/History/M07R/H1/current-primary/COUNT_MATRIX_CLOSURE_CONTRACT.md`
 
-925e:
+## Fresh count closure
 
-- original manifest: 293 entries;
-- current direct path verification: 292;
-- historical Handoff external binding recovered byte-for-byte from commit `075f8a25...`;
-- expected recovered SHA-256: `cb8f06d757962ddd366878543b2bb75aade49f8b27b165cf7d9eb984652a3d54`;
-- Local target: successor authentication 293/293.
+The protocol freezes:
 
-6913:
+- source 038;
+- Unity 2022.3.62f2 / StandaloneOSX / arm64;
+- fixture seed 20260925;
+- current candidate runtime pins;
+- protected reproduction identity/tooling already recorded in machine authority;
+- six fresh provenance builds through existing `h1_count_build_batch_tooling.py --scope all`;
+- four candidate build receipts as count acceptance inputs;
+- 132 canonical count cells;
+- current per-cell and aggregate verifiers;
+- complete Launch/Raw retention.
 
-- original manifest: 30 entries;
-- 29 remain available;
-- missing `formal-01-prelaunch-operational-blocker.log` is absent even at creation commit `fa23a0dd...`;
-- it is classified `ExcludedUnavailableSupersededDiagnostic`, not silently repaired;
-- later source-27df 40/40 formal execution is the selected superseding evidence.
+No source/tool modification is part of this program.
 
-### Prior M08 finding closure
+## Required count evidence
 
-The original P1 findings are mapped to later evidence:
+Fresh count acceptance requires:
 
-- count chain: later 12cf six-build provenance + candidate count 132/132;
-- fresh startup: 925e fresh startup11 with 11 PIDs;
-- unfixed reproduction: later 12cf eight-cell execution directly bound to provenance-verified reproduction Debug/Release builds, 6 UnexpectedAccepted + 2 AssertAbort.
+- two fresh fixture families, independently audited;
+- six fresh build/provenance rows;
+- four candidate build GUIDs selected by exact feature/config tuple;
+- 132 canonical cells;
+- 132 unique run IDs;
+- 132 `verification.json`;
+- 132 `H1CountPlayerLaunchReceipt` files;
+- 132 semantic raw outcomes;
+- zero missing launch/raw bindings;
+- strict aggregate `H1CountMatrixVerification / Passed / 132`;
+- complete evidence sealing for matrix, fixtures and four candidate build roots.
 
-All remain historical finding-closure evidence; none is relabelled current-source Fresh runtime acceptance.
+The previous 12cf count evidence remains historical failed-closure evidence and is not upgraded.
 
-### Whole-H1 suite bridge
+## Whole-H1 closure after count
 
-Exact Git-tree comparison 925e → 038 shows:
+Create `H1WholeChainSuiteClosureV2`:
 
-- Bootstrap runtime: 70 blobs / 0 changed;
-- R01B diagnostics Runtime: 16 blobs / 0 changed;
-- H1 count-related files: 42 / 0 changed;
-- selected failure runner/verifier files: 3 / 0 changed;
-- selected capacity runner/verifier files: 3 / 0 changed;
-- native/package/IL2CPP pins unchanged.
+- count-chain = `FreshCurrentSourceExecution`;
+- startup11 = `AcceptedReusedAudited`;
+- failure/publication/recovery = `AcceptedReusedAudited`;
+- ordinary capacity = `AcceptedReusedAudited`;
+- mixed capacity = `AcceptedReusedAudited`;
+- M07/native = `AcceptedReusedAudited`.
 
-The only changed `Assets/**` files are Editor-only provenance/test files.
+Only after all six are supported with zero Blocked/Rejected may independent M08 run again.
 
-Post-925e M07 build-side changes are explicitly classified as controlled-stage labels, exact mutable-input recovery, nested verifier environment scoping, and Editor tests; they do not change Player-managed runtime source or native/runtime repository revisions.
+## Independent M08
 
-Selected older suites remain `ReusedAudited`, never Fresh.
+The next review must explicitly revisit the former count Launch/Raw blocker using the fresh matrix receipt/archive.
+
+PASS still means only:
+
+`ReadyForHumanReviewGate`
+
+It does not set human approval or allow R02.
 
 ## Required next action
 
-If final checkout remains metadata-only beyond source 038, Local does **not** rerun V01/V04/V05 or Players.
+Local should run exactly one count-closure batch:
 
-Local must:
+1. source/handoff preflight;
+2. fresh parameter/nested fixture generation + audits;
+3. fresh six-build provenance batch;
+4. fresh 132-cell candidate count matrix;
+5. strict aggregate verification;
+6. complete Launch/Raw/build evidence sealing;
+7. `H1FreshCountMatrixClosureReceipt`;
+8. `H1WholeChainSuiteClosureV2`;
+9. independent M08 if all count requirements pass.
 
-1. run source/handoff preflight and prove 038 → final HEAD has zero non-metadata paths;
-2. authenticate the recovered origin-index records;
-3. create `H1HistoricalCheckpointSuccessorAuthentication`;
-4. create `H1WholeChainSuiteReuseAuthentication` with per-suite dispositions;
-5. only if both receipts succeed, rerun genuinely independent M08 via `code-gate-reviewer`;
-6. PASS → stop at `ReadyForHumanReviewGate`;
-7. FAIL/BLOCKED → return the independent result to Primary.
+Do not rerun V04, V05, performance formal Players, capacity, startup11, failure, or M07/native.
 
 Do not begin R02.
