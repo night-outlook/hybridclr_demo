@@ -244,7 +244,7 @@
   "gateState": {
     "name": "H1",
     "status": "InProgress",
-    "technicalReadiness": "AwaitingM08EvidenceClosureReReview",
+    "technicalReadiness": "AwaitingFreshCountMatrixClosure",
     "lastIndependentM08": "FAIL",
     "humanGatePassed": false,
     "mayEnterR02": false
@@ -951,25 +951,32 @@
   },
   "currentRequiredValidation": {
     "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
-    "mode": "M08EvidenceClosureOnlyUnlessSourceDrift",
+    "mode": "FreshCountMatrixClosureThenIndependentM08",
+    "protocolId": "H1CountMatrixClosureSource038-v1",
     "sourcePreflight": [
       "final checkout branch/remote exact",
       "source anchor -> checkout HEAD has zero non-metadata paths",
-      "committed handoff preflight remains SourceTargetVerifiedNotBuildAccepted"
+      "committed handoff preflight remains SourceTargetVerifiedNotBuildAccepted",
+      "existing V05 SHA and prior closure checkpoint manifest remain unchanged"
     ],
-    "evidenceClosure": [
-      "authenticate recovered origin-index copies against immutable Git blobs",
-      "authenticate 925e successor manifest as 293/293 using reconstructed historical Handoff",
-      "authenticate 6913 successor index as 29 available + 1 unavailable/excluded and prove creation-tree absence",
-      "authenticate source-27df superseding formal evidence",
-      "authenticate whole-H1 per-suite reuse bridge and selected key hashes",
-      "produce H1HistoricalCheckpointSuccessorAuthentication",
-      "produce H1WholeChainSuiteReuseAuthentication"
+    "freshCountClosure": [
+      "generate fresh parameter fixtures seed 20260925 and independent audit",
+      "generate fresh nested fixtures seed 20260925 and independent audit",
+      "run h1_count_build_batch_tooling.py --scope all --execute",
+      "select exactly four fresh candidate build receipts",
+      "run 132-cell count matrix at timeout 120",
+      "run verify-h1-count-matrix.py aggregate",
+      "retain 132 verification reports + 132 launch receipts + 132 semantic raw outcomes",
+      "seal matrix/fixtures/four selected candidate build roots",
+      "create H1FreshCountMatrixClosureReceipt status PassedFreshSource038CountMatrix",
+      "create H1WholeChainSuiteClosureV2 with Fresh count + five AcceptedReusedAudited suites"
     ],
-    "independentM08": "rerun code-gate-reviewer only after both receipts succeed",
-    "noSourceTestsRerunRequiredIfMetadataOnly": true,
-    "noV04V05RerunRequiredIfMetadataOnly": true,
-    "playerRerunForbiddenAsWorkaround": true
+    "independentM08": "rerun code-gate-reviewer only after fresh count closure and whole-chain closure V2 succeed",
+    "skipUnrelatedSuites": true,
+    "skipV04V05Rerun": true,
+    "allowedPlayerScope": "count diagnostic only",
+    "humanGatePassed": false,
+    "mayEnterR02": false
   },
   "latestLocalV04Closure": {
     "returnedByLocalValidationCommit": "5f8db436e31df017dbff396b375547394c396ad5",
@@ -1183,6 +1190,108 @@
     "repository": "night-outlook/hybridclr_demo",
     "smokeBranch": "codex/connector-smoke-primary-20260925-f",
     "commit": "bd22a1e3e62c4d9578250af1af0bcfbe1f213f16",
+    "readbackMatched": true,
+    "cleanup": "Connector branch-delete capability unavailable; branch remains non-authoritative.",
+    "purpose": "Operational transport readiness only."
+  },
+  "latestLocalCountBlocker": {
+    "returnedByLocalValidationCommit": "482d9d5cfe703310e8ea6d980677c73817bad774",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-m08-re-review/",
+    "independentM08": "BLOCKED",
+    "blockerId": "M08-COUNT-LAUNCH-RAW",
+    "blocker": "Selected 12cf count archive retains 132 verification.json reports and result-index.json but no bound 132 launch receipts or 132 raw semantic results.",
+    "correctedSuiteDisposition": {
+      "countChain": "Blocked",
+      "startup11": "AcceptedReusedAudited",
+      "failurePublicationRecovery": "AcceptedReusedAudited",
+      "ordinaryCapacity": "AcceptedReusedAudited",
+      "mixedCapacity": "AcceptedReusedAudited",
+      "m07AndNativeRegression": "AcceptedReusedAudited"
+    },
+    "historicalLaunchReferences": 132,
+    "historicalLaunchBytesAvailable": 0,
+    "historicalRawReferences": 132,
+    "historicalRawBytesAvailable": 0,
+    "previousEvidenceClosureFindingsResolved": [
+      "prior independent review/finding provenance",
+      "925e/6913 historical manifest successor disposition",
+      "five non-count suite reuse bridges"
+    ],
+    "noPlayerRerunInReturnedCycle": true
+  },
+  "freshCountMatrixClosure": {
+    "protocolId": "H1CountMatrixClosureSource038-v1",
+    "contract": "Docs/AssemblyShadow/History/M07R/H1/current-primary/COUNT_MATRIX_CLOSURE_CONTRACT.md",
+    "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+    "sourceImpact": "None; execution-only validation program",
+    "fixtureSeed": 20260925,
+    "caseSet": "all",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "unityVersion": "2022.3.62f2",
+    "buildProgram": {
+      "tool": "Tools/AssemblyShadow/h1_count_build_batch_tooling.py",
+      "scope": "all",
+      "expectedFreshBuilds": 6,
+      "selectedCandidateBuilds": [
+        "candidate/on/Debug",
+        "candidate/on/Release",
+        "candidate/off/Debug",
+        "candidate/off/Release"
+      ],
+      "unselectedDiagnosticBuilds": [
+        "reproduction/on/Debug",
+        "reproduction/on/Release"
+      ]
+    },
+    "matrixProgram": {
+      "tool": "Tools/AssemblyShadow/run-h1-count-matrix-players.py",
+      "aggregateVerifier": "Tools/AssemblyShadow/verify-h1-count-matrix.py",
+      "requiredCells": 132,
+      "perCellTimeoutSeconds": 120,
+      "requiredVerificationReports": 132,
+      "requiredLaunchReceipts": 132,
+      "requiredSemanticRawOutcomes": 132,
+      "requiredUniqueRunIds": 132,
+      "allowedMissingLaunchOrRaw": 0
+    },
+    "retention": {
+      "requireCompleteMatrixTree": true,
+      "requireCompleteParameterFixtureRoot": true,
+      "requireCompleteNestedFixtureRoot": true,
+      "requireBuildBatchRoot": true,
+      "requireSelectedCandidateBuildRoots": 4,
+      "archiveAppleDoubleMembersAllowed": false,
+      "cleanupBeforeIndependentM08": false
+    },
+    "closureReceipt": {
+      "kind": "H1FreshCountMatrixClosureReceipt",
+      "requiredStatus": "PassedFreshSource038CountMatrix"
+    },
+    "wholeChainSuccessor": {
+      "kind": "H1WholeChainSuiteClosureV2",
+      "countChain": "FreshCurrentSourceExecution",
+      "otherRequiredSuites": "AcceptedReusedAudited",
+      "requiredBlockedOrRejected": 0
+    },
+    "playerAuthorization": {
+      "allowed": "Only count diagnostic Players launched by H1CountMatrixClosureSource038-v1",
+      "forbidden": [
+        "performance/formal Players",
+        "V04 performance rerun",
+        "M07 unrelated rerun",
+        "V05 rerun as workaround"
+      ]
+    },
+    "independentM08AfterClosure": true,
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "connectorWriteSmokeTestFreshCountClosure": {
+    "transport": "GitHub Connector",
+    "repository": "night-outlook/hybridclr_demo",
+    "smokeBranch": "codex/connector-smoke-primary-20260925-g",
+    "commit": "1b946feab86f3ffb6095b509e09917c9bb70b4f1",
     "readbackMatched": true,
     "cleanup": "Connector branch-delete capability unavailable; branch remains non-authoritative.",
     "purpose": "Operational transport readiness only."
