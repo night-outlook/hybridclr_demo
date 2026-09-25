@@ -1,0 +1,346 @@
+{
+  "kind": "H1WholeChainSuiteReuseAuthentication",
+  "status": "RequiredSuiteBlocked",
+  "recordedUtc": "2026-09-25T08:57:41.123459+00:00",
+  "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+  "bridgeSha256": "2701c9fd964932050bdf2dfe6a28fddf0370b2679b4512677feb9e2c9887a2bd",
+  "sourceEquivalenceReceiptSha256": "2ee958b0b13ba821e48ed470ac61f005ab3840bcb55d57a3be6c172094bc6f50",
+  "indexedArtifactReceiptSha256": "eb7f205c2419636bdab569d7c1cfe46c37001fe27d1713c92fa88cba531ebfaf",
+  "historicalCheckpointSuccessorReceiptSha256": "41a992a19245a04c0171d52d8ffb6e430bc9a17f8282b6d8c20f271416a54b79",
+  "priorFindingSuccessorReceiptSha256": "54cec8c970a1e07359a3adfd96a35bd1e4bce8f782e64c5603a2670c83b94b80",
+  "suites": [
+    {
+      "suite": "count-chain",
+      "disposition": "Blocked",
+      "classificationAtSource038": "ReusedAudited",
+      "currentFreshPlayerClaim": false,
+      "reason": "The 12cf candidate count archive has 132 verifier JSONs and an index, but all 132 bound Player launch receipts and raw result paths are absent from the designated checkout and archive. EVIDENCE_CONTRACT E2/E7 launch/raw layer cannot be independently authenticated for the selected 132/132 count claim.",
+      "checks": {
+        "sourceGroupsIdentical": true,
+        "nativePackageIl2cppPinsUnchanged": true,
+        "925eCheckpointEffectiveAuthenticated": true,
+        "925eArtifactIndexAllAuthenticated": true,
+        "3168ReuseSemantics": true,
+        "historicalNotFresh": true,
+        "historicalRecordedResult": true,
+        "allKeyBindingsVerified": false,
+        "allSelectedEvidenceAvailable": false,
+        "priorCountFindingMapped": true,
+        "priorReproductionMapped": true,
+        "laterCountBuildProvenanceVerified": true,
+        "historicalLaunchBytesAvailable": false,
+        "historicalRawResultBytesAvailable": false
+      },
+      "requiredSourceGroups": [
+        "H1CountRelated",
+        "Bootstrap",
+        "R01BDiagnosticsRuntime"
+      ],
+      "keyBindings": [],
+      "selectedEvidence": [
+        {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-results-summary.json",
+          "available": true,
+          "sha256": "427134779bca38fbabc75fa87c8a030ac4694e7b9ee474d42028947ad7a423cc"
+        },
+        {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-v03-provenance-summary.json",
+          "available": true,
+          "sha256": "3e6582b8d415ec8b8f19a315e67b985e09fe3b92f74a2bf1571e9c2b3ea0e5d8"
+        },
+        {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/finding-closure-evidence/12cf-reproduction-execution.json",
+          "available": true,
+          "sha256": "136c6a0a4052eadb265b9c3796f2f0046efc576d4581bd94ce91fecf0f59fd34"
+        },
+        {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/batch-result.json",
+          "available": true,
+          "sha256": "425cc98ca84f75ec98c26ecf7dac491eafa9c3f7c5048bfa516bffcfbe37db71"
+        },
+        {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/candidate-compiler-verification.json",
+          "available": true,
+          "sha256": "331d39fd2a1967d1ef8893521d8d91d72853852b0ffcaa5985fca1e1f880b411"
+        },
+        {
+          "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V02-V03/count-builds/reproduction-compiler-verification.json",
+          "available": true,
+          "sha256": "39ece7d3c3ee050a49095af69c03023f248cd151aa39fc2edb9b3e96ef6e657d"
+        }
+      ],
+      "countRawAvailabilityAudit": {
+        "path": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-m08-re-review/E04/count-chain-raw-availability.json",
+        "sha256": "70f4dd170c9f6d2c7df6a329050f421c6e79e29adbd669a3a67087c838362b8f"
+      }
+    },
+    {
+      "suite": "startup11",
+      "disposition": "AcceptedReusedAudited",
+      "classificationAtSource038": "ReusedAudited",
+      "currentFreshPlayerClaim": false,
+      "reason": "All selected source/input/provenance and historical outcome bindings authenticated; historical execution remains reused.",
+      "checks": {
+        "sourceGroupsIdentical": true,
+        "nativePackageIl2cppPinsUnchanged": true,
+        "925eCheckpointEffectiveAuthenticated": true,
+        "925eArtifactIndexAllAuthenticated": true,
+        "3168ReuseSemantics": true,
+        "historicalNotFresh": true,
+        "historicalRecordedResult": true,
+        "allKeyBindingsVerified": true,
+        "allSelectedEvidenceAvailable": true,
+        "elevenFreshHistoricalPids": true
+      },
+      "requiredSourceGroups": [
+        "Bootstrap"
+      ],
+      "keyBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/startup11-verification.log",
+          "available": true,
+          "expectedSha256": "52f93078f7ef6bb778eb7041ad1f47a18fa72883e5ea2075f5450656736e8fb5",
+          "actualSha256": "52f93078f7ef6bb778eb7041ad1f47a18fa72883e5ea2075f5450656736e8fb5",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-launches.json",
+          "available": true,
+          "expectedSha256": "73df4829cd2f319037ee4d008141b117e586d81cbcc0e3a95b7f9157b70990fe",
+          "actualSha256": "73df4829cd2f319037ee4d008141b117e586d81cbcc0e3a95b7f9157b70990fe",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-results.json",
+          "available": true,
+          "expectedSha256": "95dcc84f35c364832e1c013ad1cd92f6b26332c8dd894beaf54ff09877d0dc2e",
+          "actualSha256": "95dcc84f35c364832e1c013ad1cd92f6b26332c8dd894beaf54ff09877d0dc2e",
+          "verified": true
+        }
+      ],
+      "selectedEvidence": []
+    },
+    {
+      "suite": "failure-publication-recovery",
+      "disposition": "AcceptedReusedAudited",
+      "classificationAtSource038": "ReusedAudited",
+      "currentFreshPlayerClaim": false,
+      "reason": "All selected source/input/provenance and historical outcome bindings authenticated; historical execution remains reused.",
+      "checks": {
+        "sourceGroupsIdentical": true,
+        "nativePackageIl2cppPinsUnchanged": true,
+        "925eCheckpointEffectiveAuthenticated": true,
+        "925eArtifactIndexAllAuthenticated": true,
+        "3168ReuseSemantics": true,
+        "historicalNotFresh": true,
+        "historicalRecordedResult": true,
+        "allKeyBindingsVerified": true,
+        "allSelectedEvidenceAvailable": true,
+        "rawFailureAndRecoveryPassed": true
+      },
+      "requiredSourceGroups": [
+        "FailureRunnerVerifier",
+        "Bootstrap"
+      ],
+      "keyBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/failure-verification.log",
+          "available": true,
+          "expectedSha256": "52a226243b58d60ea60c942d3dc12d2a0c043d18fa6d56acfc2c7611ac46db95",
+          "actualSha256": "52a226243b58d60ea60c942d3dc12d2a0c043d18fa6d56acfc2c7611ac46db95",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-FailurePlayers-20260919A/r01-failure-verification.json",
+          "available": true,
+          "expectedSha256": "5643887685582f00a61b19cb83693dd9c6196bf284c35dcbf61a8bd7e72943e2",
+          "actualSha256": "5643887685582f00a61b19cb83693dd9c6196bf284c35dcbf61a8bd7e72943e2",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-NativeCoverage-20260919A/r01-recovery.json",
+          "available": true,
+          "expectedSha256": "fcd8aa6adb5a62b460bf10a02049024783e08dfb8795bc9e5b9e9881e2d5fe9c",
+          "actualSha256": "fcd8aa6adb5a62b460bf10a02049024783e08dfb8795bc9e5b9e9881e2d5fe9c",
+          "verified": true
+        }
+      ],
+      "selectedEvidence": []
+    },
+    {
+      "suite": "ordinary-capacity",
+      "disposition": "AcceptedReusedAudited",
+      "classificationAtSource038": "ReusedAudited",
+      "currentFreshPlayerClaim": false,
+      "reason": "All selected source/input/provenance and historical outcome bindings authenticated; historical execution remains reused.",
+      "checks": {
+        "sourceGroupsIdentical": true,
+        "nativePackageIl2cppPinsUnchanged": true,
+        "925eCheckpointEffectiveAuthenticated": true,
+        "925eArtifactIndexAllAuthenticated": true,
+        "3168ReuseSemantics": true,
+        "historicalNotFresh": true,
+        "historicalRecordedResult": true,
+        "allKeyBindingsVerified": true,
+        "allSelectedEvidenceAvailable": true,
+        "rawCapacityAndStrictVerificationPassed": true
+      },
+      "requiredSourceGroups": [
+        "CapacityRunnerVerifier",
+        "R01BDiagnosticsRuntime"
+      ],
+      "keyBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/capacity-player.log",
+          "available": true,
+          "expectedSha256": "e969508f6990ab63be7f7f219110db05fb0928eadfc6afbdb2cd4553ab288eca",
+          "actualSha256": "e969508f6990ab63be7f7f219110db05fb0928eadfc6afbdb2cd4553ab288eca",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/capacity-verify.log",
+          "available": true,
+          "expectedSha256": "1332d4d3eca86e6390caadafae48ad2929b0f21a239ede5a8866c405d8185d5a",
+          "actualSha256": "1332d4d3eca86e6390caadafae48ad2929b0f21a239ede5a8866c405d8185d5a",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-Capacity-20260919A/r01b-capacity-result.json",
+          "available": true,
+          "expectedSha256": "4751cb7b694e91b383700e4b637fed1d67a709b59e428f7e762b6def3bd649bd",
+          "actualSha256": "4751cb7b694e91b383700e4b637fed1d67a709b59e428f7e762b6def3bd649bd",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-Capacity-20260919A/r01b-capacity-strict-verification.json",
+          "available": true,
+          "expectedSha256": "6ee9911252470623bcbbe616855cc36609341da0b69d6f41732d850b8d364232",
+          "actualSha256": "6ee9911252470623bcbbe616855cc36609341da0b69d6f41732d850b8d364232",
+          "verified": true
+        }
+      ],
+      "selectedEvidence": []
+    },
+    {
+      "suite": "mixed-capacity",
+      "disposition": "AcceptedReusedAudited",
+      "classificationAtSource038": "ReusedAudited",
+      "currentFreshPlayerClaim": false,
+      "reason": "All selected source/input/provenance and historical outcome bindings authenticated; historical execution remains reused.",
+      "checks": {
+        "sourceGroupsIdentical": true,
+        "nativePackageIl2cppPinsUnchanged": true,
+        "925eCheckpointEffectiveAuthenticated": true,
+        "925eArtifactIndexAllAuthenticated": true,
+        "3168ReuseSemantics": true,
+        "historicalNotFresh": true,
+        "historicalRecordedResult": true,
+        "allKeyBindingsVerified": true,
+        "allSelectedEvidenceAvailable": true,
+        "rawCapacityAndStrictVerificationPassed": true
+      },
+      "requiredSourceGroups": [
+        "CapacityRunnerVerifier",
+        "R01BDiagnosticsRuntime"
+      ],
+      "keyBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/mixed-capacity-player.log",
+          "available": true,
+          "expectedSha256": "5e53163a39ce8fad7895af2426a7d5b8e9ee2af1e59e6600c71534522b9695fc",
+          "actualSha256": "5e53163a39ce8fad7895af2426a7d5b8e9ee2af1e59e6600c71534522b9695fc",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/mixed-capacity-verify.log",
+          "available": true,
+          "expectedSha256": "9c6002ccc9a694fe0dcdf6e20f70801f77e961e29ad3e7b495848be490785272",
+          "actualSha256": "9c6002ccc9a694fe0dcdf6e20f70801f77e961e29ad3e7b495848be490785272",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-MixedCapacity-20260919A/r01b-mixed-result.json",
+          "available": true,
+          "expectedSha256": "b933972836343b918426885cb94edd76db7bc6f2221ca794c508153cf88f3b99",
+          "actualSha256": "b933972836343b918426885cb94edd76db7bc6f2221ca794c508153cf88f3b99",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-MixedCapacity-20260919A/r01b-mixed-strict-verification.json",
+          "available": true,
+          "expectedSha256": "e3097836df0769182fec0b0eb555e9f4aac8e1baa35effb87fdb3d3231261701",
+          "actualSha256": "e3097836df0769182fec0b0eb555e9f4aac8e1baa35effb87fdb3d3231261701",
+          "verified": true
+        }
+      ],
+      "selectedEvidence": []
+    },
+    {
+      "suite": "m07-and-native-regression",
+      "disposition": "AcceptedReusedAudited",
+      "classificationAtSource038": "ReusedAudited",
+      "currentFreshPlayerClaim": false,
+      "reason": "All selected source/input/provenance and historical outcome bindings authenticated; historical execution remains reused.",
+      "checks": {
+        "sourceGroupsIdentical": true,
+        "nativePackageIl2cppPinsUnchanged": true,
+        "925eCheckpointEffectiveAuthenticated": true,
+        "925eArtifactIndexAllAuthenticated": true,
+        "3168ReuseSemantics": true,
+        "historicalNotFresh": true,
+        "historicalRecordedResult": true,
+        "allKeyBindingsVerified": true,
+        "allSelectedEvidenceAvailable": true,
+        "m07FourteenOfFourteen": true
+      },
+      "requiredSourceGroups": [
+        "Bootstrap",
+        "R01BDiagnosticsRuntime"
+      ],
+      "keyBindings": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/m07-players14-verification-rerun.log",
+          "available": true,
+          "expectedSha256": "f49c5ae52b9921ecfe66b24b19050f13c6729ffb71e4ee16e5c30dffb541cfaa",
+          "actualSha256": "f49c5ae52b9921ecfe66b24b19050f13c6729ffb71e4ee16e5c30dffb541cfaa",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/native-matrix.log",
+          "available": true,
+          "expectedSha256": "d6fd97e7423f45067b6a2edbb94d26272ebd9b733e26d2f37b9b7a68f3067611",
+          "actualSha256": "d6fd97e7423f45067b6a2edbb94d26272ebd9b733e26d2f37b9b7a68f3067611",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/native-on-m07-player-build.json",
+          "available": true,
+          "expectedSha256": "301b8a41cbea80dec0bbbd520ecd6a819b18feb22d6c4cda3b686b519b677c11",
+          "actualSha256": "301b8a41cbea80dec0bbbd520ecd6a819b18feb22d6c4cda3b686b519b677c11",
+          "verified": true
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/normal-m07/native-off-m07-player-build.json",
+          "available": true,
+          "expectedSha256": "23c393fcdeab091a3e8e3dcc61a9e0055fa254717d9098e070f4738cbd74bd0d",
+          "actualSha256": "23c393fcdeab091a3e8e3dcc61a9e0055fa254717d9098e070f4738cbd74bd0d",
+          "verified": true
+        }
+      ],
+      "selectedEvidence": []
+    }
+  ],
+  "acceptedSuiteCount": 5,
+  "rejectedSuiteCount": 0,
+  "blockedSuiteCount": 1,
+  "allRequiredSuitesAccepted": false,
+  "independentM08VerdictNotClaimed": true,
+  "humanGatePassed": false,
+  "mayEnterR02": false,
+  "independentM08Eligible": false,
+  "correction": {
+    "supersedesInitialReceipt": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-m08-re-review/E04/whole-h1-suite-reuse-authentication.json",
+    "initialReceiptSha256": "3cab6349d5da9f90004fb93f3744567274888de49cd167bef5cf27228c1881f6",
+    "reason": "Initial E04 verified the 12cf summary and Git archive identity but failed to inspect the archive member set and live launch/raw references before accepting count-chain. The initial receipt is retained as failed-attempt evidence."
+  }
+}

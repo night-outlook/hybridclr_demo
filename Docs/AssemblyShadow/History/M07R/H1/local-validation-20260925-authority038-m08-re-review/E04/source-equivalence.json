@@ -1,0 +1,630 @@
+{
+  "kind": "H1WholeChainSourceEquivalenceAudit",
+  "recordedUtc": "2026-09-25T08:41:06.447512+00:00",
+  "baseEvidenceAnchor": "925e84d7b653bc7434482e6f4fbde39a4d9fcd0e",
+  "currentSourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+  "gitTreeGroups": [
+    {
+      "name": "Bootstrap",
+      "matchedFileCount": 70,
+      "changedFileCount": 0,
+      "members": [
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/AssemblyShadowDemo.Bootstrap.asmdef",
+          "gitBlob": "d75731c5a0e4871596101870abdc3f5c4645224f"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/AssemblyShadowDemo.Bootstrap.asmdef.meta",
+          "gitBlob": "dd8964775aca33872bced343eba02db7a131a1d1"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs",
+          "gitBlob": "d93e44942531984839abe65ebbaac825d28c2cff"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs.meta",
+          "gitBlob": "f23ab3cb7ae0503fbcb83c91599ab599c302ea35"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/H1WitnessGuardRuntimeProbe.cs",
+          "gitBlob": "f76678d5d5bf182d309ec86f741872b8f6fd62d1"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/H1WitnessGuardRuntimeProbe.cs.meta",
+          "gitBlob": "e872ee09dc6b715782e1308c6e4d4cd2c304b35d"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M02ReflectionBindingProbe.cs",
+          "gitBlob": "bc870c9f3f7c26b84b75886f73ce0150fc82176a"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M02ReflectionBindingProbe.cs.meta",
+          "gitBlob": "63cd64a012b5300f8302b97d5797bcbe7a4752ac"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M03BootstrapRunner.cs",
+          "gitBlob": "8a4090aec7d8ca5cfcfd074988c430108f8cd7e3"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M03BootstrapRunner.cs.meta",
+          "gitBlob": "0dc780ed9cf8ef7d4ad79d1262cb6474a05df2b5"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M03TransactionProbe.cs",
+          "gitBlob": "8022c479b31a6c9160fedf2d34a7f6174848bf94"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M03TransactionProbe.cs.meta",
+          "gitBlob": "c387d7da34cf1d340d2904a93813bf60413b45e9"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04BootstrapRunner.cs",
+          "gitBlob": "c952974d2048d92ca3f0556c949ca52e51b59202"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04BootstrapRunner.cs.meta",
+          "gitBlob": "03ea7b078fafe230d7e4e1a3ee30bd51e10beae7"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04OrdinaryAssemblyProbe.cs",
+          "gitBlob": "07ae4974b4863dfb60892fe187b5d1902674b372"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04OrdinaryAssemblyProbe.cs.meta",
+          "gitBlob": "58f2917092e8dff78f2436c35cbc0c6e672390c6"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04ReferenceProbe.cs",
+          "gitBlob": "9a17570404689e6af19b1221a77b8f0d1c62acc3"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M04ReferenceProbe.cs.meta",
+          "gitBlob": "6414a9602f0aa25b2dcb5c2599662e9b7fbec3cf"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BootstrapRunner.cs",
+          "gitBlob": "191148e0d305e36f404d69b30632621669447b45"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BootstrapRunner.cs.meta",
+          "gitBlob": "9b86fac3e0fff026c79d1e18ea81b810c3046825"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BoundTypeQueries.cs",
+          "gitBlob": "13d596f65ea04806d4275dcc0df4dce99a647f80"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05BoundTypeQueries.cs.meta",
+          "gitBlob": "4e42912062121d319af043c08e7ada60a9e8a426"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05ResourceProbe.cs",
+          "gitBlob": "6e698c9458b7b088c0a546effc9852deb3ca4bb7"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05ResourceProbe.cs.meta",
+          "gitBlob": "2f73ffa1e36757189edb2741b3eda8e2f137ca3b"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs",
+          "gitBlob": "7f3dae19b3713da567d60ec52fc16e8b80ed7f95"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M05TypeProbe.cs.meta",
+          "gitBlob": "600f4c1306984562a814875e7df8d98eeacd255e"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06BootstrapRunner.cs",
+          "gitBlob": "a383d1f80e786ff889ac73bce3430d89ef5ebbc9"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06BootstrapRunner.cs.meta",
+          "gitBlob": "70086d76722395ca3f111092628382cc9b36a0ca"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionEvidence.cs",
+          "gitBlob": "ad036740618d221b64ed4a11151e75beff10c364"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionEvidence.cs.meta",
+          "gitBlob": "e118620f16804c5548332387ba2f6731154ca9eb"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionInputs.cs",
+          "gitBlob": "c3a3cd771803d42d40dcf8564927b5d10c1b0ee3"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionInputs.cs.meta",
+          "gitBlob": "2980e26ce926555235c3b376bc669318cf897097"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionProbe.cs",
+          "gitBlob": "455be518bd47a77c362cfd63f4aa9df23805a61e"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M06ExecutionProbe.cs.meta",
+          "gitBlob": "c93fb5dd22c44bd4e7a99284aced1ab65f9fbc25"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07BootstrapRunner.cs",
+          "gitBlob": "d6fd57d7ceca8785b8dd495a88845251e078e048"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07BootstrapRunner.cs.meta",
+          "gitBlob": "d90037272608f2d891f1b00f1413b6a21a790cad"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07EarlyStartupHandoff.cs",
+          "gitBlob": "948cf92361844ef5146f144c3d6177487644fc60"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07EarlyStartupHandoff.cs.meta",
+          "gitBlob": "a46c009a7040652b31f72415952108e655c44582"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07MonoScriptCarrier.cs",
+          "gitBlob": "6783c5bcebc68130ad869f80aaa86713bf0a815d"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07MonoScriptCarrier.cs.meta",
+          "gitBlob": "b1a9b7b98ddb83e20ba15ea452b9bd492b93bee5"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs",
+          "gitBlob": "46338ba17d582f43ebdcabbde737a73415845efe"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07Probe.cs.meta",
+          "gitBlob": "c6ef604f3dc7212c40e3cd11c8b612433dce1df7"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R00PerformanceProbe.cs",
+          "gitBlob": "61664d4532be81f0b35c488453eb11db51d16b31"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R00PerformanceProbe.cs.meta",
+          "gitBlob": "8c4e1b2ff076962e6c5e4dce008f440d75a76f74"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01OrdinarySnapshotBinding.cs",
+          "gitBlob": "e751657786a36803c37c03327d832ace02d31238"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01OrdinarySnapshotBinding.cs.meta",
+          "gitBlob": "de6c9c68c3e26c3b7477d6d7b826df943dfc51e9"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs",
+          "gitBlob": "bbb052d0eaea59c9824bedd7d8ac368554dc3007"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07R01Probe.cs.meta",
+          "gitBlob": "1e97b6294d2e0cbf67dbc73f400ae6add9460a90"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07ResourceProbe.cs",
+          "gitBlob": "b0cfbe3906428c3ebfa994d5bc5fb7556f945811"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/M07ResourceProbe.cs.meta",
+          "gitBlob": "cfa5d040aab110b5f49404371d6f79ba540cb275"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R00ProcessMemory.cs",
+          "gitBlob": "0805c8933688a884002a19a0990a58fd9bbcbf80"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R00ProcessMemory.cs.meta",
+          "gitBlob": "05100cc8c066caec2d76fd5c7d32aec034faab97"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyObserver.cs",
+          "gitBlob": "35b77887cafd3ef3e0d2e2b2ab892bbd39ae86b9"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyObserver.cs.meta",
+          "gitBlob": "47c2563930e7240fba4e0fd928fb1b5e268881c3"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs",
+          "gitBlob": "4c3d71ff61282d3277964d56ebbb5bd58aceed89"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01EarlyStartup.cs.meta",
+          "gitBlob": "708093a39eb7a362e126f996595e4c091df0391f"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs",
+          "gitBlob": "49909d88d65d8c1989a345ffd1031c5eaa7fd801"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01FailureProbe.cs.meta",
+          "gitBlob": "dede41a18509ecee2212645efbc325c3afa1dbe6"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01NativeScriptWitness.cs",
+          "gitBlob": "5e1f49a5f1160e7264ffba2c87e66a3f9491c896"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/R01NativeScriptWitness.cs.meta",
+          "gitBlob": "57fdb131b96a4b2cdcdfe22db4dad9bc0b6229c0"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs",
+          "gitBlob": "c7b7a701097038e83d7ba48c0190acff51a81b72"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs.meta",
+          "gitBlob": "ffd6e058eb3854a127d0fb1911dd2c6aa3cf4e02"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowDemoResultWriter.cs",
+          "gitBlob": "c89423a32da5f5941e34e9dddbb974152e85b79d"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowDemoResultWriter.cs.meta",
+          "gitBlob": "e06422e1b610144b1e77985a02d83cdce91faaa7"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchFileProvider.cs",
+          "gitBlob": "b36e13e94d20c09bb9b270d6990aff3370d20acc"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchFileProvider.cs.meta",
+          "gitBlob": "0139b60238da06ae0dcc8d9b42b12337203d4efb"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs",
+          "gitBlob": "9ba573ccbffd248023980692e28e0401f1914226"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/ShadowPatchMetadataReservation.cs.meta",
+          "gitBlob": "213a2d4eec1c71251af510b8bf5cd6de376309a6"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/link.xml",
+          "gitBlob": "a207a3986aa7152c0cc4cad0c276d109dd58fa84"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/link.xml.meta",
+          "gitBlob": "be3d50d58ded57cae097de822af6be1d3ca99b03"
+        }
+      ]
+    },
+    {
+      "name": "R01BDiagnosticsRuntime",
+      "matchedFileCount": 16,
+      "changedFileCount": 0,
+      "members": [
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/AssemblyShadow.R01BDiagnostics.asmdef",
+          "gitBlob": "4c834c1254bb9576332333f5e2c99bbca44afb1e"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/AssemblyShadow.R01BDiagnostics.asmdef.meta",
+          "gitBlob": "4e8290138f6edc40c3d5f32a4cf3a7d523ee2519"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs",
+          "gitBlob": "ca3062933b75365c20fa3a2d277ce2f75a98fff8"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs.meta",
+          "gitBlob": "1cff60d41a1e5257c2b422307bd9b3cb086869b7"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnostics.cs",
+          "gitBlob": "f732cff840b47e976e95f3602bb3b666917c1e64"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnostics.cs.meta",
+          "gitBlob": "c0515c91a102eb2e45de1b49bc6acbc95239a1fb"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnosticsJsonReader.cs",
+          "gitBlob": "535e088b00a19297cda56f83878c5d2de878055a"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnosticsJsonReader.cs.meta",
+          "gitBlob": "1d7446de3735b022247d4e24da2d8e3de672df0a"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BCapacityProbe.cs",
+          "gitBlob": "66dbe8674e8e31353ac83ae7aaf8b4a5d1c444ca"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BCapacityProbe.cs.meta",
+          "gitBlob": "e19fc7b803937b476c2780000aa29d13e5bece4b"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BDiagnosticRunner.cs",
+          "gitBlob": "34cae424b565b677c060f334e1a854d99f5fa399"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BDiagnosticRunner.cs.meta",
+          "gitBlob": "e9e1a58275887035f64471164c382d20869ea5fa"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs",
+          "gitBlob": "afabd1440f96883c82167dd0fd5131cb38a01946"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BLazyProbe.cs.meta",
+          "gitBlob": "8ec5f3f0c2ccaae91756c40478816b45ec35b05d"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs",
+          "gitBlob": "ceee1c67741e5f62a042a2398c896fd4b901b740"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/R01BProcessMemory.cs.meta",
+          "gitBlob": "6f7f8107fe375a5c6132e0fe7c86bf18e956a8ce"
+        }
+      ]
+    },
+    {
+      "name": "H1CountRelated",
+      "matchedFileCount": 42,
+      "changedFileCount": 0,
+      "members": [
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs",
+          "gitBlob": "d93e44942531984839abe65ebbaac825d28c2cff"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Bootstrap/H1CountEarlyStartup.cs.meta",
+          "gitBlob": "f23ab3cb7ae0503fbcb83c91599ab599c302ea35"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuild.cs",
+          "gitBlob": "88780647187df588dea15307273735e28b841466"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuild.cs.meta",
+          "gitBlob": "a72d0ae86dd04cc96bea72498cb9586f73db3018"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs",
+          "gitBlob": "faf90624cf9812efcfc50a817369a26ead231eb0"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Editor/H1CountDiagnosticBuildWithManagedProvenance.cs.meta",
+          "gitBlob": "d6a0497e946f60c8fbe69953fff3193862da59e8"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/H1CountEarlyStartupTests.cs",
+          "gitBlob": "f99db6723a5dedae836caa8da5482efd47d9f02c"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/H1CountEarlyStartupTests.cs.meta",
+          "gitBlob": "6435f02469ab16e9dd7ba6b2f3417e63c671af54"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/H1CountNativeDiagnosticsTests.cs",
+          "gitBlob": "fc3955e423bf87d2a6bf0315bb88583c012c5f4e"
+        },
+        {
+          "path": "Assets/AssemblyShadowDemo/Tests/Editor/H1CountNativeDiagnosticsTests.cs.meta",
+          "gitBlob": "10b1a73452baaff2d1ed1bc93be0129c6a027eb2"
+        },
+        {
+          "path": "Assets/AssemblyShadowH1Baselines/Parameters/AssemblyShadow.H1Count.Target.asmdef",
+          "gitBlob": "4b793c5116899aa0946271f888f797dd0edeb919"
+        },
+        {
+          "path": "Assets/AssemblyShadowH1Baselines/Parameters/AssemblyShadow.H1Count.Target.asmdef.meta",
+          "gitBlob": "8eac392a924fafe7c4292b0dd2d64f1a1310f1f7"
+        },
+        {
+          "path": "Assets/AssemblyShadowH1Baselines/Parameters/AssemblyShadow.H1Count.Target.cs",
+          "gitBlob": "4141a5e6fbb1ee88311df58d880e80fb2b948954"
+        },
+        {
+          "path": "Assets/AssemblyShadowH1Baselines/Parameters/AssemblyShadow.H1Count.Target.cs.meta",
+          "gitBlob": "58f2941aa47203c101de809c82be566ddd254435"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs",
+          "gitBlob": "ca3062933b75365c20fa3a2d277ce2f75a98fff8"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountDiagnosticRunner.cs.meta",
+          "gitBlob": "1cff60d41a1e5257c2b422307bd9b3cb086869b7"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnostics.cs",
+          "gitBlob": "f732cff840b47e976e95f3602bb3b666917c1e64"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnostics.cs.meta",
+          "gitBlob": "c0515c91a102eb2e45de1b49bc6acbc95239a1fb"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnosticsJsonReader.cs",
+          "gitBlob": "535e088b00a19297cda56f83878c5d2de878055a"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Runtime/H1CountNativeDiagnosticsJsonReader.cs.meta",
+          "gitBlob": "1d7446de3735b022247d4e24da2d8e3de672df0a"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity",
+          "gitBlob": "f0ab318c8c9212bf77b4e41b69f782699dd410c4"
+        },
+        {
+          "path": "Assets/AssemblyShadowR01BDiagnostics/Scenes/H1CountDiagnostic.unity.meta",
+          "gitBlob": "924e5dcfd2a1aff07634e586dfed1d37a531065e"
+        },
+        {
+          "path": "Tools/AssemblyShadow/audit-h1-count-fixtures.py",
+          "gitBlob": "f77b7a4f6e33382606efce7dafefd14e673a3e6b"
+        },
+        {
+          "path": "Tools/AssemblyShadow/create-h1-count-fixtures.py",
+          "gitBlob": "72fd89c6e4fe911e21fcaab2b799b73c8c5fd80e"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1-count-fixture-writer.cs",
+          "gitBlob": "671d31efa519ad223c621271ebb5b02d014c6b3f"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1_count_build_batch.py",
+          "gitBlob": "7508a9411a32bc7257cffcef70f52b023b6291a1"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1_count_build_batch_tooling.py",
+          "gitBlob": "16300ab5c11989bdbd83a605d1dd3e4f997b0167"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1_count_fixture_audit.py",
+          "gitBlob": "9fa05479e7fc1b81da3fe8d094c8d964261ca4b7"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1_count_manifest.py",
+          "gitBlob": "92c90283e74d844a888d480def0c504f1bc65ba8"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1_count_matrix.py",
+          "gitBlob": "c89ca9355af85abfec4f8de91c9d61526747eafb"
+        },
+        {
+          "path": "Tools/AssemblyShadow/h1_count_results.py",
+          "gitBlob": "e5ecf9bf0e276f29c042a6ee8fee9a7106860131"
+        },
+        {
+          "path": "Tools/AssemblyShadow/run-h1-count-matrix-players.py",
+          "gitBlob": "d68bbcce25b3b8b5dab75614749bb200f63ad00b"
+        },
+        {
+          "path": "Tools/AssemblyShadow/run-h1-count-players.py",
+          "gitBlob": "76df4df8f950f5e2a38d70e63cfbf41a8e3689c4"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_build_batch.py",
+          "gitBlob": "15f343b0c336e05bfb002962ed3f0cf89d50745c"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_fixture_audit.py",
+          "gitBlob": "9d78f15f8b4e7c63f4e340141360365e3277ac10"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_fixture_generator.py",
+          "gitBlob": "37db742bf0a7e87d1cc47b3ac8d3c8528e0cde58"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_launcher.py",
+          "gitBlob": "f53f5f5efdb9c58a1a17fcd9d96280d96e25d1e8"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_manifest.py",
+          "gitBlob": "3a5a5f41698c93d7407a3bbcd389e6cf72312af4"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_matrix.py",
+          "gitBlob": "ae7a6506c05259a6ee3570c63ffe88357f85e4fd"
+        },
+        {
+          "path": "Tools/AssemblyShadow/tests/test_h1_count_results.py",
+          "gitBlob": "56b40045007b7f9921a045b3288531ab222d5e0f"
+        },
+        {
+          "path": "Tools/AssemblyShadow/verify-h1-count-matrix.py",
+          "gitBlob": "04a889bebd35dd6a96bf70f2d1755ee01511eea8"
+        },
+        {
+          "path": "Tools/AssemblyShadow/verify-h1-count-results.py",
+          "gitBlob": "dde1426511470eb69990df878961356d78064da2"
+        }
+      ]
+    },
+    {
+      "name": "FailureRunnerVerifier",
+      "matchedFileCount": 3,
+      "changedFileCount": 0,
+      "members": [
+        {
+          "path": "Tools/AssemblyShadow/r01_failure_results.py",
+          "gitBlob": "e63526e11983ad71dedb5c9fb922506566cc89bb"
+        },
+        {
+          "path": "Tools/AssemblyShadow/run-r01-failure-players.py",
+          "gitBlob": "605ca4587ae263d8da4174932c8eb967c0f253d7"
+        },
+        {
+          "path": "Tools/AssemblyShadow/verify-r01-failure-results.py",
+          "gitBlob": "aaa2feb9511f80cfd1e7c2a94cd840240c36ba0d"
+        }
+      ]
+    },
+    {
+      "name": "CapacityRunnerVerifier",
+      "matchedFileCount": 3,
+      "changedFileCount": 0,
+      "members": [
+        {
+          "path": "Tools/AssemblyShadow/r01b_capacity_inputs.py",
+          "gitBlob": "76702cd38f78637949fa4fa2ef713c619c42fa9c"
+        },
+        {
+          "path": "Tools/AssemblyShadow/run-r01b-capacity-player.py",
+          "gitBlob": "a1e0d469c9d3f2cecd1254adbf3fcbd64c46d6b3"
+        },
+        {
+          "path": "Tools/AssemblyShadow/verify-r01b-capacity-result.py",
+          "gitBlob": "5e26b0c5760b36667eb295052d413b3e32290274"
+        }
+      ]
+    }
+  ],
+  "changedAssetsOnly": [
+    "Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs",
+    "Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs"
+  ],
+  "projectSettingsDelta": [
+    "ProjectSettings/AssemblyShadowSourcePins.json"
+  ],
+  "packagesDelta": [],
+  "runtimeRepositoryPins": {
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclrUnity": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+    "il2cppPlus": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+  },
+  "unityVersion": "2022.3.62f2",
+  "target": "StandaloneOSX",
+  "architecture": "arm64",
+  "reviewedChangedVerifierAndBuildOrchestration": [
+    {
+      "path": "Tools/AssemblyShadow/Invoke-M07Build.Core.ps1",
+      "diffSha256": "65c40e16fde8333d931bb668dfa06c5b13df1aa41339d2484c533f84197cee67",
+      "reviewedScope": "controlled labels and mutable-input restoration"
+    },
+    {
+      "path": "Tools/AssemblyShadow/r01_early_results.py",
+      "diffSha256": "532b500be05986e781eeaa51b24658f9e70ab672deaac98dac15d9e778e0558e",
+      "reviewedScope": "optional retained performance pairing; direct ordinary startup default unchanged"
+    },
+    {
+      "path": "Tools/AssemblyShadow/r00_player_inputs.py",
+      "diffSha256": "9aa4a5adfe8dcc4e04f0b800ed852aae15f7deb73025292084079c3eac3aeedd",
+      "reviewedScope": "optional reuse authority; default current-pairing verifier retained"
+    },
+    {
+      "path": "Tools/AssemblyShadow/r00_results.py",
+      "diffSha256": "d6ce565ad2bb7147e2b1f70ff4bb14cf67fa7fd9f2d948fcca6a546c3deea1b7",
+      "reviewedScope": "optional reuse authority propagation"
+    },
+    {
+      "path": "Assets/AssemblyShadowDemo/Editor/H1BuildInputProvenance.cs",
+      "diffSha256": "d1c1900afa6ca45dbcb79ec0fdffa827766194e7f817818d443614d9ec5ee71d",
+      "reviewedScope": "nested native verifier environment scope and provenance receipt"
+    },
+    {
+      "path": "Assets/AssemblyShadowDemo/Tests/Editor/M07BuildTests.cs",
+      "diffSha256": "30d22d24b0a87c570bb61e8ad7e44860ccc505d906bbec3aa169f6648fc8827a",
+      "reviewedScope": "Editor assertions only"
+    }
+  ],
+  "playerManagedRuntimeChanged": false,
+  "allSelectedToolGroupsIdentical": true,
+  "passed": true
+}

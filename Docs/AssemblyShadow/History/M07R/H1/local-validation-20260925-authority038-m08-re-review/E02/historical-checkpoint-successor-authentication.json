@@ -1,0 +1,1341 @@
+{
+  "kind": "H1HistoricalCheckpointSuccessorAuthentication",
+  "status": "AuthenticatedWithExplicitHistoricalExclusion",
+  "recordedUtc": "2026-09-25T08:33:51.832613+00:00",
+  "successorIndexSha256": "539144b828dbff1aafc0a7c8fe91c9015c3ce891de0b38859b53208e8f0e7032",
+  "authority925e": {
+    "manifestSha256": "7ed2a62ea13f9d4935e2838a2a6cb55ccb5976aec7178ce5fa513ed571fa63e4",
+    "originalEntries": 293,
+    "directVerified": 292,
+    "directMembers": [
+      {
+        "manifestPath": "./README.md",
+        "sha256": "2872a77b90952154e3ec0fa4870a7f4f689d1a29720c8b3a56fc47ba97c4a457"
+      },
+      {
+        "manifestPath": "./V00/candidate-installed-runtime-after-install.json",
+        "sha256": "ba2c75ebfeb06f2c5372580fd569f68d21ce4f30c8bfe056f510810aa72f728d"
+      },
+      {
+        "manifestPath": "./V00/candidate-installed-runtime-rerun.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V00/candidate-installed-runtime.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V00/candidate-preflight.json",
+        "sha256": "46d730b02909fff8d2eb55084de18a9864fda9cc856652616e0debbe9fc5138e"
+      },
+      {
+        "manifestPath": "./V00/protected-reference.json",
+        "sha256": "b41c4dba05b972d1fb15a40b9182188e1b6300ff7bd45144f79e86a33702e491"
+      },
+      {
+        "manifestPath": "./V00/reference-installed-runtime-rerun.json",
+        "sha256": "82d9ce2d144ff1bbe0712841b83738cb69f1af6cc31d04e51901621599eb6168"
+      },
+      {
+        "manifestPath": "./V00/reference-installed-runtime.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V00/reproduction-tooling.json",
+        "sha256": "b658b83b431c9113b6e3bc04f9d95fcff7fc1003fd67675d82ba0bcce39ea26c"
+      },
+      {
+        "manifestPath": "./V01/primary-results/results.json",
+        "sha256": "e6c518e7fa9bfaa58b73f6d01ea520f47aa2bcbe612d34c5f8e0a6e83e2c9c27"
+      },
+      {
+        "manifestPath": "./V01/primary-results/tests.log",
+        "sha256": "7cd6dd2c3a0fe915f2f27c8217d329b8cea0586beecf357a515213d1e9f61453"
+      },
+      {
+        "manifestPath": "./V01/python-full-results.json",
+        "sha256": "6c5b7a2a010c1140496931647955cae9110c0112f5c29423c9de7a2f79bf79b0"
+      },
+      {
+        "manifestPath": "./V01/python-full.log",
+        "sha256": "9991ca75d10d73cc964b3b7e42152e7904ac41ccc67a4f0db986380c104bacab"
+      },
+      {
+        "manifestPath": "./V01/unity-editmode-console.log",
+        "sha256": "897a74743e07928fc8e564e3740e323ea929349cc3168afea24ff99823529e9a"
+      },
+      {
+        "manifestPath": "./V01/unity-editmode-results.xml",
+        "sha256": "29272d41318cd5d842efd89e2ec7d428c64e9afb5bd3d144cfebd7c5bef35483"
+      },
+      {
+        "manifestPath": "./V01/unity-editmode-wrapper.log",
+        "sha256": "ea00ee91d9210cb4b50366183a9869f4b884999eab54a44e0071e48bc359d250"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds-console-rerun.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds-console.log",
+        "sha256": "70f85b5aa245b93635f637332c171826065e1a65aea62d8585527ac34d338ca3"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/batch-result.json",
+        "sha256": "425cc98ca84f75ec98c26ecf7dac491eafa9c3f7c5048bfa516bffcfbe37db71"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-compiler-verification.json",
+        "sha256": "331d39fd2a1967d1ef8893521d8d91d72853852b0ffcaa5985fca1e1f880b411"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-compiler-verification.log",
+        "sha256": "f1be183b98589f1dd25cee001a0434197b34cf7abbb86fcbb449cf1069c7117f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-compiler-verification.log.execution.json",
+        "sha256": "ac17fab4d34d366774b849e1b31597e79dbc44e61b88c3ad9c5fe95198c29812"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/742a1ec210110eb5.after.bin",
+        "sha256": "c7bb1cc1c564d02611dceb5e3356decfef12f47cc8b3d47988233d09213ff9ba"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/742a1ec210110eb5.before.bin",
+        "sha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/before.json",
+        "sha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/build-unity.log",
+        "sha256": "4693b9412268df678bfca1f97fc59d1197359ac85d9e7f63df647cd0f7fbd878"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/build.log.execution.json",
+        "sha256": "d48aa16c770ed2becbb7fd89c3331af34ace7f01926e6f36edf76e2e126218ec"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/f1db76edbe0068cc.after.bin",
+        "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/f1db76edbe0068cc.before.bin",
+        "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/managed-verification.json",
+        "sha256": "190353621ef279641c2a9c4546a21277c300a098ca0afdb59f78628d905e5233"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/native-verification.json",
+        "sha256": "89eb5bcd9ff8a62b589ec37174850c7a9ed59970b94b46060c1683ed5ea454c7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-build.log.execution.json",
+        "sha256": "69cb2e913d7d89a301511a1bc33765fc7272575c6685fec4e5b891039c6fe830"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-prepare.log.execution.json",
+        "sha256": "9e7c96d96a37a66875a749626617854b9d50305a201f794f823571ead24b6568"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-recovery.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-recovery.log.execution.json",
+        "sha256": "afe44b2a1672af72ba3879b4a940d445eaa6615ce22490b8b384fa7398823ca3"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/ownership-restore.log.execution.json",
+        "sha256": "2fce6f31d9bbb8d723c0f99e58c91c2226f526a88e9306da704d3027340b99a6"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/prepare-unity.log",
+        "sha256": "9d1b428135327dfab37fbdadfbad8ee9d9e22f948c2b74a2f6ae9d34891ae6c4"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/prepare.log.execution.json",
+        "sha256": "b2678bd96470a0c89be04a787d51a1428ee8f2cd221d1d1288372ead65edabb9"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/restoration-check.json",
+        "sha256": "26775ded5496a882490dabac6c538424d64530282e2d02ac6bdc1dd83316d9ca"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/restore-unity.log",
+        "sha256": "74c904c6ead9658b1c5928c3a3ab49c4f92bfc06270ba7988acbb5417d3c8a0f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/restore.log.execution.json",
+        "sha256": "ba3cb0b1db9035ba76e9eb452fc265116ab18b93c14681d7d4801a08ddd9d619"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/restored.json",
+        "sha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/result.json",
+        "sha256": "aba0017a266012f18b832cec28bf647d3bce22953f68b83d6667a3c8ec283768"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/validation-tooling-binding.json",
+        "sha256": "5c8a4c9d80cbd80a01061626afab909bc000b29a479b413de4b675cd42e3d7b0"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/verify-managed.log",
+        "sha256": "9169ef948d7c4a0ecfaa427398b03609913a6cc4bffb660d70f9d9eecc7cce6a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/verify-managed.log.execution.json",
+        "sha256": "06c32efbe636ef1e02e178df013c892713604eba944da2d716945ae687c9a185"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/verify-native.log",
+        "sha256": "74f9d4f35cafc83c022ead4bc8543f4469411d85dd36a6b718ba2b1d87c923ba"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Debug/verify-native.log.execution.json",
+        "sha256": "14f36d675c79c9daa38f432f3188bc577ce5f8e4e286d28f34c12b2c26d8f1f0"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/742a1ec210110eb5.after.bin",
+        "sha256": "6698070358b81f9b39cb219c516859b1df9a70acb91ff613d96aeb007286ace5"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/742a1ec210110eb5.before.bin",
+        "sha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/before.json",
+        "sha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/build-unity.log",
+        "sha256": "7f29415f49bd56075a5397477fdc9f5d013fafc2b989bd6d0ca7dbf67d27f360"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/build.log.execution.json",
+        "sha256": "6f5b90c0fbc4ca52c227bf32776daa2e43583178a1b0e2b1031027f70c2ad0c1"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/f1db76edbe0068cc.after.bin",
+        "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/f1db76edbe0068cc.before.bin",
+        "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/managed-verification.json",
+        "sha256": "78c9a002d1022df44385704842ce854969fcc6398ad116af17acafebfcfbe371"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/native-verification.json",
+        "sha256": "fedf107aba5fb3d41ab5e3a2e0531190d6b52a4a3d3c2034a4e4bf8b7ecdcac3"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-build.log.execution.json",
+        "sha256": "f36ec3acb699ba59dcdf1da83e81acba2c87a3dff4a171cfac3badcd1091dbea"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-prepare.log.execution.json",
+        "sha256": "2cf70aff652e6519f2d8a7593ac89a89582d92b58c49668f7eeb80f720df15c9"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-recovery.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-recovery.log.execution.json",
+        "sha256": "9b6bbea2de07495977552143b411c14ed9fb9aa6511efb97f2ff85f358383776"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/ownership-restore.log.execution.json",
+        "sha256": "be18cdb410e6a63d8c3fa6cf6a2a8a1d567e030ee640903853923695e290b567"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/prepare-unity.log",
+        "sha256": "460d69b1de1674562edff2faf55f7767d9bc1d54b956fadaa0026d7e2c7f0bd7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/prepare.log.execution.json",
+        "sha256": "0c6b6728b4857bd508f1aeeb15ab69c6c38e2dbdf06ce4e57a9ae47d4c4338c3"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/restoration-check.json",
+        "sha256": "fea6c13662b130c902eac996b73924746b86bfe19832fa2eb845992c28fd39a6"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/restore-unity.log",
+        "sha256": "371bddda3825a6e67055f078d7ab92b2a8f590889df327d3989f1f8ee9082ecd"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/restore.log.execution.json",
+        "sha256": "477d340071098b764059ba0a7f1a3a07816d09dd5cc4d1f42ba393d63000637a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/restored.json",
+        "sha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/result.json",
+        "sha256": "cda8e7cbf0053a548b842cdf33274038598a58527692834a3dc42fec8478102f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/validation-tooling-binding.json",
+        "sha256": "a4207fd3bdaf3018cd342dea49b34e521b3fcdc7fb0d84e875b2897bacdd1b81"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/verify-managed.log",
+        "sha256": "9169ef948d7c4a0ecfaa427398b03609913a6cc4bffb660d70f9d9eecc7cce6a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/verify-managed.log.execution.json",
+        "sha256": "49b24d9eed7d6663a8c720cdb05656856e66e99dbe0dca0aec8d1e5416d1bdce"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/verify-native.log",
+        "sha256": "94c4f961922fb270dbc6411ff5de50fef8d2b38eb7ca497c3a9806b5a0f30fc3"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-off-Release/verify-native.log.execution.json",
+        "sha256": "0348fbeaf016ea2ef3dc647da0534a18ca8b9f0b710c7c1a1b07876f32704e58"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/742a1ec210110eb5.after.bin",
+        "sha256": "4e113897627c375c001c79a4a0d24006edcb69e599c8306c2c21bf3e26a2e718"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/742a1ec210110eb5.before.bin",
+        "sha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/before.json",
+        "sha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/build-unity.log",
+        "sha256": "94d27a47c4e31ac9aeb3b46c1986b33bf822676fb31172fa6cb070d1581d2acb"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/build.log.execution.json",
+        "sha256": "c3b8144208a58bd85caf3349cb6b8f933fae792983acba8892ccc635df97feef"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/f1db76edbe0068cc.after.bin",
+        "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/f1db76edbe0068cc.before.bin",
+        "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/managed-verification.json",
+        "sha256": "9f01857fe979dfff90c8d270a7e430f58da08b75dbe0f1be54cd5e72accb18f7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/native-verification.json",
+        "sha256": "38c0c07ecc2bf962f4c5979ca12e50741d00edb11ba97e60af59c15806ec8e85"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-build.log.execution.json",
+        "sha256": "ec7c876ea22f0dee029ad97ba76cafadb07b9413e409b03cff28f4b64115f6a5"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-prepare.log.execution.json",
+        "sha256": "e646ac34f560e50231424700997907c101d3f28bf820d1c484f56f274e467d79"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-recovery.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-recovery.log.execution.json",
+        "sha256": "67fa23c7eb318fff23790fe95db52596f200fffe2a42f3ab7525f37deef496c0"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/ownership-restore.log.execution.json",
+        "sha256": "110ea4e86f1984b8fd69be83b93eedf30498c82b14ded0274ce7d360866a255a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/prepare-unity.log",
+        "sha256": "73ab81c92b24d8c68b20c359963fe73c9332f0c8a739b3e25677a419e302121e"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/prepare.log.execution.json",
+        "sha256": "6f62a89aa64c14997cf53c65e70fc751bef2b64b044e7e13736e0cb73c91734e"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/restoration-check.json",
+        "sha256": "240bf842addbb606ab84f3115ebaf02d64fd6dafe777c884680a5ccac253dd8d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/restore-unity.log",
+        "sha256": "ddf84671d2ac6d2b20f4077c1ca8f4eee1e04212c607f8ceae316d59204d3621"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/restore.log.execution.json",
+        "sha256": "90be15347a5694b43eb2dd07f5e9489bb62818dc41f0bc93c902881a9fe58d7c"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/restored.json",
+        "sha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/result.json",
+        "sha256": "c932ba4ecaf519f8b453a593ecde5cc28dcee2ea4f8b605287ada312a2de1d74"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/validation-tooling-binding.json",
+        "sha256": "183727950979f72d137e22a068840ebcc72131c2246b42d8c4f2ed2bc5d2f0dc"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/verify-managed.log",
+        "sha256": "9169ef948d7c4a0ecfaa427398b03609913a6cc4bffb660d70f9d9eecc7cce6a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/verify-managed.log.execution.json",
+        "sha256": "56dbe7f1a1b0f2f8e7d340c33b34519d2406cd16fd8a09c54590f51b1548ed10"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/verify-native.log",
+        "sha256": "e903489fbef100bbd527be2305bce4346bfd88fe6373a20f6350eff91852bd2e"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Debug/verify-native.log.execution.json",
+        "sha256": "7857c5879a87f5b7e5b05d9a97a0f834e007c0f76c41ef0ca72542291010e529"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/742a1ec210110eb5.after.bin",
+        "sha256": "582eefa5764d06ca4a043e9bd96e0b797257b698f62bf47b4f79652fe3b25ea1"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/742a1ec210110eb5.before.bin",
+        "sha256": "ff18a2b718d34dd2c06b4dfe2e7f53126849645608fd516e8e232f3d4fcc557d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/before.json",
+        "sha256": "f25598fcb2c566fd255f0ace82fd1921893404f5416b7f679f2bdcca82e6d09a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/build-unity.log",
+        "sha256": "8d8743bb3dc568b2905d82d78c997329aa537be8bf719d5831070cbe81271294"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/build.log.execution.json",
+        "sha256": "de0bbc431c1848e67f71e8b6637f957af37e94afe30795c7d643b7c1c02348df"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/f1db76edbe0068cc.after.bin",
+        "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/f1db76edbe0068cc.before.bin",
+        "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/managed-verification.json",
+        "sha256": "6afc343d5b64ebbd62941780cf007aaf6d955f78e4e8934f2373e72b42e650ad"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/native-verification.json",
+        "sha256": "fb168ccf748434819bee78e3fdfc0e30ca3d8c0f302cf9cfe4c592a4e8b1dd65"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-build.log.execution.json",
+        "sha256": "1071e1dbcda46272a4d8d4b4410aa25f1002dffa6d95c9064420bb5f9ded8a9d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-prepare.log.execution.json",
+        "sha256": "f6af9b76fba5de2f5636a1972e2244aa72fa6fdf97391c92d4c9c58c441019be"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-recovery.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-recovery.log.execution.json",
+        "sha256": "1306c16f1c2f126afabbdc0b29a4f6056e521ec6648c730bce4513e0f7dbf27d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/ownership-restore.log.execution.json",
+        "sha256": "dd6c2d3cadb9ee9a06d5a6d48e0cc864bb62a9788059a1e5de3ddc04f8ec75b7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/prepare-unity.log",
+        "sha256": "0ed87af40c8f0bf44a5fdca157c0f92dc61f82324129063d40e848f8510fc13a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/prepare.log.execution.json",
+        "sha256": "92ef477688406d41c36315d813ecef4bbfbc26d037b36fcb546e75e7caff1af1"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/restoration-check.json",
+        "sha256": "a5f038834c071fe972b2dd12864f5f024e1cf63db4b1b89a229d715e5ead5014"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/restore-unity.log",
+        "sha256": "3de478a9a426101107110f7728ba75ad2fbe39e951ef86964673cde1526ce179"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/restore.log.execution.json",
+        "sha256": "49fb2bcdc5801658bf0c28fe0d7cc23bfeee373e79d4c6f5fb5f222df2ec305f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/restored.json",
+        "sha256": "c2002136957fff86955cca015369f6699acb537ff1a59c6e4d932388c816105f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/result.json",
+        "sha256": "020ad9c7016dfd1d2b54128e397aaa6f18a5c035197a8941ef665c1cf56c7bb7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/validation-tooling-binding.json",
+        "sha256": "ac5a694f740608780099e14293936e5679b61a0527a9e03e850b08dc3f835c8d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/verify-managed.log",
+        "sha256": "9169ef948d7c4a0ecfaa427398b03609913a6cc4bffb660d70f9d9eecc7cce6a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/verify-managed.log.execution.json",
+        "sha256": "22f7c466cf5211d7c7bad742b585f9093b4fcc0d5abe6e98244a8adce55584d3"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/verify-native.log",
+        "sha256": "190ac115d12c30f549753d6c4a2191f33e3cc0663f9c2b8a7f8c1baf4d8526f4"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/candidate-on-Release/verify-native.log.execution.json",
+        "sha256": "68a0dd910009f7544b6e52900fdb30d54d94ce1202fe5d86b52ffc752a71ff94"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/plan.json",
+        "sha256": "c6b2c043afe3fea1d870ceef81810ca52da93a06be23a3d12c60be5ec974cc14"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-compiler-verification.json",
+        "sha256": "39ece7d3c3ee050a49095af69c03023f248cd151aa39fc2edb9b3e96ef6e657d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-compiler-verification.log",
+        "sha256": "8392d792c41ac988f8561f6c232dd63ee524390fe3314a89bc77fafa1d9ac4dc"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-compiler-verification.log.execution.json",
+        "sha256": "f6313db290c2054b09ec8603dc7060445787a3b73f4d4778f1be548d540fa095"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/742a1ec210110eb5.after.bin",
+        "sha256": "f5f4f6ad98c998c4fd9c8400df89812ef25c819b1ad7f730b1e899cda2b4c5f6"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/742a1ec210110eb5.before.bin",
+        "sha256": "1980109bc8bb9b3c4a59a9ec67dd486adfa03be69636b155d3793362d79e8132"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/before.json",
+        "sha256": "e00a2bee31958e31022a1c28b29ff805b9b09da3b6314c0faaeb6af1d46da2d7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/build-unity.log",
+        "sha256": "63711516d7394b9d413372819baf8047931325e77623534dc2a7a9ff6923088b"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/build.log.execution.json",
+        "sha256": "7bcf5cf58e35270313478da8ae249d045133469863edc45113be2c92807fe396"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/f1db76edbe0068cc.after.bin",
+        "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/f1db76edbe0068cc.before.bin",
+        "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/managed-verification.json",
+        "sha256": "582190088b3eec17606f280d585de8f9f714568571631a65c4416f50a19bbef2"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/native-verification.json",
+        "sha256": "65ef29789af971cd5b334d3f2d763f9576dee6adb875587ab25d587e43d8cea8"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-build.log.execution.json",
+        "sha256": "0e4bfb295b798eccdcaa6549ecdc7f80daf9a279f10f784d52e44d65c6edf1f6"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-prepare.log.execution.json",
+        "sha256": "63b6c23ad97fdf9a85dae48fe2481f46f748057d7fac927cc8af53fc60aa652e"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-recovery.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-recovery.log.execution.json",
+        "sha256": "a325f071b4321e492fb169e2029277f7c6cc261e74dc49082eff4ef1c19845d7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/ownership-restore.log.execution.json",
+        "sha256": "ce19e4332c5b5a1d25cfbea16a462f68bb333fbbffe8f8dc80ccf20c94ac8ec0"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/prepare-unity.log",
+        "sha256": "5acba7c484a09b0ca77be3b01ad1e95b341fab98b47c5412f197e79e62d9cb62"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/prepare.log.execution.json",
+        "sha256": "bff5cd7baa13330d0968fa9bd3349b87f11a71b4bcceb59512418f5b1e987963"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/restoration-check.json",
+        "sha256": "1d9acbb806be204d0d303c7f5ee37ffe324571e3cde98282fe702363c5e28f19"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/restore-unity.log",
+        "sha256": "1d0558930265b59f16ac71f62081866241477e9fc958e31a097a8b1e70891ed6"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/restore.log.execution.json",
+        "sha256": "d7aab882ff73d59e1bcc8132deb580ca8422b4e46357ff2eb38200958366d96a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/restored.json",
+        "sha256": "0101cd5f743dcde398ec19e5e226c630aedf1e81b980a6bdfad3e6a5597ce54f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/result.json",
+        "sha256": "27d3e4f6b5c6f73a96536ef98f053bc24461dc4a32b066c086942992bb34ff2f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/validation-tooling-binding.json",
+        "sha256": "d9bfd844b60f9f7a783a694e507e04993a5daa970425f9e69b9443a9bbcdeb8e"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/verify-managed.log",
+        "sha256": "9169ef948d7c4a0ecfaa427398b03609913a6cc4bffb660d70f9d9eecc7cce6a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/verify-managed.log.execution.json",
+        "sha256": "ec2355eea5afd75f438423e5dc6ed7cfd937108eefccc96093dd5d93f028bb43"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/verify-native.log",
+        "sha256": "06a690827ee37da678bfeb4027afd14deb621b459b32a044a09bc48ee083cf63"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Debug/verify-native.log.execution.json",
+        "sha256": "694b0a2c706d5990264511b66cb612398755e6b4af7c96bc2f034386604419ec"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/742a1ec210110eb5.after.bin",
+        "sha256": "234680e584e8b87808b8d3e7c33abcab4b72856f9cd4e8c33a22091c40e9469c"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/742a1ec210110eb5.before.bin",
+        "sha256": "1980109bc8bb9b3c4a59a9ec67dd486adfa03be69636b155d3793362d79e8132"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/before.json",
+        "sha256": "e00a2bee31958e31022a1c28b29ff805b9b09da3b6314c0faaeb6af1d46da2d7"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/build-unity.log",
+        "sha256": "05496fb07d8673dc5166396947002265add7f6539d2c71a16afae1693894bd9a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/build.log.execution.json",
+        "sha256": "1aa3955aa42c973343b406f1071e8b2a8634681814acf58f091fd9fb3664ac06"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/f1db76edbe0068cc.after.bin",
+        "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/f1db76edbe0068cc.before.bin",
+        "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/managed-verification.json",
+        "sha256": "5be7a7fa67c45f0d5ffb2dbe0927489719209591aef35a7d2f80e6d2dd2f1588"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/native-verification.json",
+        "sha256": "65fcc6f85664a28b888352f35882e0a8bcd442f9bf512ded8b0d3203dcf1ddab"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-build.log.execution.json",
+        "sha256": "410b7c73f92125e09d9d41c837a412b981fa76d7e08c7a4459c494a2975f7fad"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-prepare.log.execution.json",
+        "sha256": "47da5a701587aee85d4f30df66b414d03b6c957cf305a4f9cbb76735cc892e9c"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-recovery.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-recovery.log.execution.json",
+        "sha256": "dd0f4a60f85dd9f5f768d15c7350da512c61f2eb068ba1104681964531644f6d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/ownership-restore.log.execution.json",
+        "sha256": "e45bf6f7eaeafde70aa49b3aaaee68c3c44260ec1e762fb72f0a85043ee2f0b5"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/prepare-unity.log",
+        "sha256": "852e4e1d0d6e02955cd3bd40ccc3236aa6f23b45483dc8718104822c1f9e4bef"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/prepare.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/prepare.log.execution.json",
+        "sha256": "371c44b1b5f89207759e3bff63a3020e614e329b107fc1f2916b58859f2ee468"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/restoration-check.json",
+        "sha256": "bd850fe5b9a79c444f6978ed67bfb317f7b8bd067789a12089aaadc5fe5b6c20"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/restore-unity.log",
+        "sha256": "b7f9935f72b2f8e1171b6330bdfb65959a44f29b5c7e31827f8ee974e0fe9402"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/restore.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/restore.log.execution.json",
+        "sha256": "d26897dae55c5d3fccd76f9e9b68e63126f465a5d44e87fecda3a6bccca55596"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/restored.json",
+        "sha256": "0101cd5f743dcde398ec19e5e226c630aedf1e81b980a6bdfad3e6a5597ce54f"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/result.json",
+        "sha256": "7ec71da4ba10686724b37476f1c2f6845fa9a844c717edc07b8b6225f6136fbd"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/validation-tooling-binding.json",
+        "sha256": "c15af17b0c038adea39d1f33655c24b3df5683212837253a40eb457f09429d52"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/verify-managed.log",
+        "sha256": "9169ef948d7c4a0ecfaa427398b03609913a6cc4bffb660d70f9d9eecc7cce6a"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/verify-managed.log.execution.json",
+        "sha256": "35cf9029b998400cffc94c9f1ad7bf3186ce0d0a64b4ddfdb8115d0d23f33362"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/verify-native.log",
+        "sha256": "e1440c5d7be5e089c6e2a1a8c195e7da2821cd24c39f3f13244960e49549b43d"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/reproduction-on-Release/verify-native.log.execution.json",
+        "sha256": "88ab2cfbee6cbfde5aef04ba169bf902db3f25e4a371ead866bc6512672b2efc"
+      },
+      {
+        "manifestPath": "./V02-V03/count-builds/source-preflight.json",
+        "sha256": "7215485bdf119842e6de895db2b8318013b65f2548812e5263302903026f6809"
+      },
+      {
+        "manifestPath": "./V04/candidate-installed-runtime-after-performance-failure.json",
+        "sha256": "ba2c75ebfeb06f2c5372580fd569f68d21ce4f30c8bfe056f510810aa72f728d"
+      },
+      {
+        "manifestPath": "./V04/capacity-player.log",
+        "sha256": "e969508f6990ab63be7f7f219110db05fb0928eadfc6afbdb2cd4553ab288eca"
+      },
+      {
+        "manifestPath": "./V04/capacity-tools.log",
+        "sha256": "534860803e337eb278d3888fa6ed53ae35ba2af126191ec11c5f65db7564c449"
+      },
+      {
+        "manifestPath": "./V04/capacity-verify.log",
+        "sha256": "1332d4d3eca86e6390caadafae48ad2929b0f21a239ede5a8866c405d8185d5a"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-blocker.json",
+        "sha256": "088070f47e464290e6f2d9085f9ad5ceaf89ec588356b64ebcbb47c9d7f264b5"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-current.log",
+        "sha256": "45cd0754cfc02b3052cea560ac8e379536b91a6b9cd015a5c54257aa73779f9f"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/resource/manifest.sha256",
+        "sha256": "382c5a2154e896575513c76a5b36c94c03875981ade9e74f378ff1daf4622d98"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/resource/resource-abi.json",
+        "sha256": "fdea3c94871ab4e72b3e8e078f20522c2185b9f07540c60860628d03fe3daa67"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/resource/resource-build-receipt.json",
+        "sha256": "0d72d0a9ea5e931fdde016b18babffd2c4f1d8d883c80004c2f14e27102913df"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/resource/resource-script-index.json",
+        "sha256": "d8f76d7b1ef308c2a1b3c5f3beec3f80b68cd9efff007722daae439c810bbc03"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/assembly-shadow-settings.original",
+        "sha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/assembly-shadow-settings.original.before-restore",
+        "sha256": "92330ed73eaa19e3c536f3ab3b5b29c1eb284bc614d3d9d49e43c23594e5b2c1"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/editor-build-settings.original",
+        "sha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/editor-build-settings.original.before-restore",
+        "sha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/m07-bootstrap-scene.original",
+        "sha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/m07-bootstrap-scene.original.before-restore",
+        "sha256": "f6b1942db45563ef89897a162d35cbd9047d0020a6a625394ae5b42f7c6acea7"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/current/restoration/workflow-inputs-restored.json",
+        "sha256": "5121daf89121170d3ea3e058bfd17bcbbbfa6d4b5113057934bd5c07ba32c357"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/resource/manifest.sha256",
+        "sha256": "fe65ff57b108f93372ef1af7302a6bd41e9f50bbc3dc09de0675cbdd9cbd104a"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/resource/resource-abi.json",
+        "sha256": "fdea3c94871ab4e72b3e8e078f20522c2185b9f07540c60860628d03fe3daa67"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/resource/resource-build-receipt.json",
+        "sha256": "0e60f73e11a61d7fc872532bb87cb208c45938957f87c8387877bcdc86f914bc"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/resource/resource-script-index.json",
+        "sha256": "d8f76d7b1ef308c2a1b3c5f3beec3f80b68cd9efff007722daae439c810bbc03"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/assembly-shadow-settings.original",
+        "sha256": "62ef96796fc4f685baee4e324a24dc210da66aa4a1f773306cd00c39315438c9"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/assembly-shadow-settings.original.before-restore",
+        "sha256": "ba8b3e765a2e852ae50d6f9aac6122d43b3c1e9940f79d8a000458e1231708ce"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/editor-build-settings.original",
+        "sha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/editor-build-settings.original.before-restore",
+        "sha256": "34e2bf46ce45977004527f7d665541f114efa27c1ce255f844dee85b9ad1af35"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/m07-bootstrap-scene.original",
+        "sha256": "064d79125f4ee69cc619801872d89a4f2b02271257b2a6495c6fc96f62082ec8"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/m07-bootstrap-scene.original.before-restore",
+        "sha256": "587b5d5f99912844ac6b095e732cb63660facd3e924b1d3b48346a6d2083c4bb"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-failures/reference/restoration/workflow-inputs-restored.json",
+        "sha256": "72d752437f638955c3bf4780fb3df2e6794361805e9fa00d4b5f55d3d343ed03"
+      },
+      {
+        "manifestPath": "./V04/controlled-performance-reference.log",
+        "sha256": "5b440569df16a232348a4b561f89e97b3d41445ca4f17dd266d1e97ab92dc9dd"
+      },
+      {
+        "manifestPath": "./V04/dense-v2.log",
+        "sha256": "f1e529b833079312263e6745bd94086ade7f20e1435d3b6263cf2874ca49fa86"
+      },
+      {
+        "manifestPath": "./V04/diagnostic-player-rerun-unity.log",
+        "sha256": "8b2ab1aad8ff57c493ea361f4cc930e7ad20de31ca37b59f34a4f78c108d12fa"
+      },
+      {
+        "manifestPath": "./V04/diagnostic-player-unity.log",
+        "sha256": "24045405c91c65a866f4accca86e04183914dec215b3ab713500cb9d7b9b5275"
+      },
+      {
+        "manifestPath": "./V04/failure-fixtures-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V04/failure-fixtures-unity.log",
+        "sha256": "48c7b29fab56d73221223835f69d5c914427c484de4647806a83bd01f15f43bf"
+      },
+      {
+        "manifestPath": "./V04/failure-players.log",
+        "sha256": "d8571695232b71e59bed525e3c734fc226f1d9a1b8fc86e37a57118d2e02f6ff"
+      },
+      {
+        "manifestPath": "./V04/failure-verification.log",
+        "sha256": "52a226243b58d60ea60c942d3dc12d2a0c043d18fa6d56acfc2c7611ac46db95"
+      },
+      {
+        "manifestPath": "./V04/lazy-fixture.log",
+        "sha256": "56682b865aaaa4e5954642a44ca697c1d53bfe8020f9b8a79f71a1a2cdd66a4c"
+      },
+      {
+        "manifestPath": "./V04/lazy-player.log",
+        "sha256": "48b3ce207bd61301cd84ad4b341e8ff86db1d008d70474de4466bf8db67c58e3"
+      },
+      {
+        "manifestPath": "./V04/m07-players14-verification-rerun.log",
+        "sha256": "f49c5ae52b9921ecfe66b24b19050f13c6729ffb71e4ee16e5c30dffb541cfaa"
+      },
+      {
+        "manifestPath": "./V04/m07-players14-verification.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V04/m07-players14.log",
+        "sha256": "20338d965fdcfcbccded146c3b1e1a0fc10b1719d769c97b451035602b9bfac7"
+      },
+      {
+        "manifestPath": "./V04/mixed-capacity-player.log",
+        "sha256": "5e53163a39ce8fad7895af2426a7d5b8e9ee2af1e59e6600c71534522b9695fc"
+      },
+      {
+        "manifestPath": "./V04/mixed-capacity-verify.log",
+        "sha256": "9c6002ccc9a694fe0dcdf6e20f70801f77e961e29ad3e7b495848be490785272"
+      },
+      {
+        "manifestPath": "./V04/mixed-workload.log",
+        "sha256": "0bb19487ca898c983d2b097ee7c87a701083c2c2fb958c41f6fd42581e6687a7"
+      },
+      {
+        "manifestPath": "./V04/native-matrix.log",
+        "sha256": "d6fd97e7423f45067b6a2edbb94d26272ebd9b733e26d2f37b9b7a68f3067611"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/invoke.log",
+        "sha256": "b7850e90fa33c5bae22cb5f998f789821067f412ae77b40c83073ca95c9b013e"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/m07-build-workflow.json",
+        "sha256": "c31128e197393d16d306b2ed9968827abe00ebd169f4f56873553284188885c3"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/m07-editor-replay.json",
+        "sha256": "852331c4a48917085f0629c8d366818852accf7294dfba96123b04414c51b9b0"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/m07-fixtures.json",
+        "sha256": "491ec97c3d2e6779328d75e018af466712707efa1e9d59de83e114bd79f921b8"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/native-off-link-xml-restored.json",
+        "sha256": "be7b172927e84cf97203571b965d57760fa3ece635153be77704678059ceaa36"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/native-off-m07-player-build.json",
+        "sha256": "23c393fcdeab091a3e8e3dcc61a9e0055fa254717d9098e070f4738cbd74bd0d"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/native-on-link-xml-restored.json",
+        "sha256": "51e7db82ed3e17dd1f05e78f6bcfac7c7e2498f1b92c0c7566972b628ea28be6"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/native-on-m07-player-build.json",
+        "sha256": "301b8a41cbea80dec0bbbd520ecd6a819b18feb22d6c4cda3b686b519b677c11"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/outer-workflow-inputs-restored.json",
+        "sha256": "e6fa6a2c564f3e14fc3916211f2624085d0dff10575523a5bacff849cb31b3ca"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/p05-restored.json",
+        "sha256": "3491080a8a3ce982c50f528949d0a00784fa7224c778d38ba5de24af64750990"
+      },
+      {
+        "manifestPath": "./V04/normal-m07/p05-settings-restored.json",
+        "sha256": "4b21eeb11d3730a7ba75f4bbcbfc3a14d400e51411db157998d6478201d89c72"
+      },
+      {
+        "manifestPath": "./V04/parser-dense-v2-rerun.log",
+        "sha256": "8c75653a1cc3ac6645d4e93e0f12f22e43737b067d078294c26d840cb89a7276"
+      },
+      {
+        "manifestPath": "./V04/parser-dense-v2.log",
+        "sha256": "d54ed51243405f775558905a6acd17929eb516dd51b3efade4a9e2c7dcdbe126"
+      },
+      {
+        "manifestPath": "./V04/protected-installed-runtime-after-performance-failure.json",
+        "sha256": "82d9ce2d144ff1bbe0712841b83738cb69f1af6cc31d04e51901621599eb6168"
+      },
+      {
+        "manifestPath": "./V04/protected-installed-runtime-before-performance-B.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V04/protected-installed-runtime-before-performance-C.json",
+        "sha256": "82d9ce2d144ff1bbe0712841b83738cb69f1af6cc31d04e51901621599eb6168"
+      },
+      {
+        "manifestPath": "./V04/protected-installed-runtime-before-performance.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./V04/protected-reference-before-performance.json",
+        "sha256": "b41c4dba05b972d1fb15a40b9182188e1b6300ff7bd45144f79e86a33702e491"
+      },
+      {
+        "manifestPath": "./V04/startup11-verification.log",
+        "sha256": "52f93078f7ef6bb778eb7041ad1f47a18fa72883e5ea2075f5450656736e8fb5"
+      },
+      {
+        "manifestPath": "./V04/startup11.log",
+        "sha256": "eada36190f2a41be97358364d83112198cc47d1f8ca41c05cf27a820e550198f"
+      },
+      {
+        "manifestPath": "./artifact-index.json",
+        "sha256": "506aaa7e1b4787ec9d8893d7b6f4266b98c1dc486c65c17534f7b02ef274acf2"
+      },
+      {
+        "manifestPath": "./logs/v00-candidate-install-repeatability.log",
+        "sha256": "f81640350f6fa0fb7876ab985a71f28687b2eec37dd64b8ab4f1ec903da4a84c"
+      },
+      {
+        "manifestPath": "./logs/v00-candidate-preflight.log",
+        "sha256": "46d730b02909fff8d2eb55084de18a9864fda9cc856652616e0debbe9fc5138e"
+      },
+      {
+        "manifestPath": "./logs/v00-protected-reference.log",
+        "sha256": "b41c4dba05b972d1fb15a40b9182188e1b6300ff7bd45144f79e86a33702e491"
+      },
+      {
+        "manifestPath": "./logs/v00-reproduction-tooling-rerun.log",
+        "sha256": "b658b83b431c9113b6e3bc04f9d95fcff7fc1003fd67675d82ba0bcce39ea26c"
+      },
+      {
+        "manifestPath": "./logs/v00-reproduction-tooling.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "manifestPath": "./raw-evidence.tar.gz",
+        "sha256": "2ecb3d04cdd093c469717d4c2959ec416ec8d0745c51c2a4ba37c82f9bc253e8"
+      },
+      {
+        "manifestPath": "./results-summary.json",
+        "sha256": "e16fb73d949365682bb3b372a9a3fcdb8c25f7d4abed57baa6712b6e6273c20d"
+      }
+    ],
+    "recoveredExternalVerified": true,
+    "external": {
+      "manifestPath": "../../../../Handoff/LOCAL_VALIDATION.md",
+      "recoveredPath": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/manifest-reconstruction/authority925e-LOCAL_VALIDATION.md",
+      "sha256": "cb8f06d757962ddd366878543b2bb75aade49f8b27b165cf7d9eb984652a3d54"
+    },
+    "effectiveAuthenticated": 293,
+    "originalManifestMutated": false
+  },
+  "authority6913": {
+    "manifestSha256": "76b4af548142220411ce18c191d6326e1293256efb9bd59a06b22b19d7ad6bf8",
+    "originalEntries": 30,
+    "availableVerified": 29,
+    "availableMembers": [
+      {
+        "manifestPath": "./PLAYER_ARTIFACTS.sha256",
+        "sha256": "2f4af85f10dab5a9790a81bf072dece34198c418aaccd2b17eb158b314ac12f5"
+      },
+      {
+        "manifestPath": "./README.md",
+        "sha256": "f5f0f6e1dfbeb3eb6e16776fb1fa8c05770b0debed1136028d7bb129b0e6c1cb"
+      },
+      {
+        "manifestPath": "./V04/current/m07-build-workflow.json",
+        "sha256": "fa5e1f262115cbc7af9f495b9cd3c05af42579eecc0d1e76066be69a6b803e40"
+      },
+      {
+        "manifestPath": "./V04/current/m07-editor-replay.json",
+        "sha256": "ec6d52922deda734d9111e77a2a1dfb46281355ad3dc5799630e84bb15a714bd"
+      },
+      {
+        "manifestPath": "./V04/current/m07-fixtures.json",
+        "sha256": "640e7d057146a05d4f0f2e6bb431e2d616ce5f7e592a90160d2c0d681c95a8a9"
+      },
+      {
+        "manifestPath": "./V04/current/native-off-controlled-evidence.json",
+        "sha256": "20f9edbaaac2f9112bd8dc3a3d65acd3fd51675f128617e7842613cb8f24c9dc"
+      },
+      {
+        "manifestPath": "./V04/current/native-off-m07-player-build.json",
+        "sha256": "65384f3852a5a839eb941ea8660bff7e1f9e86e6539d85f5d0349e91b6d97ae5"
+      },
+      {
+        "manifestPath": "./V04/current/native-on-controlled-evidence.json",
+        "sha256": "8a6d38184e823f2cddf343e156118882f68c08343d17e90e917da703d5c65a1e"
+      },
+      {
+        "manifestPath": "./V04/current/native-on-m07-player-build.json",
+        "sha256": "995faab3e7360bd1d0dff77af941ce4c6ce6d745651d02eaccaa75b42edd609c"
+      },
+      {
+        "manifestPath": "./V04/old-player-rejection-receipt.json",
+        "sha256": "c013f6cad3b086fd042fcadc8e8067db2afb5549de6a920d3cc9e424e63a1feb"
+      },
+      {
+        "manifestPath": "./V04/performance/h1-performance-build-map-freeze-receipt.json",
+        "sha256": "ad376a5997d68e310055b3a188796abba065fb01265ace4e650be98b82d1f039"
+      },
+      {
+        "manifestPath": "./V04/performance/h1-performance-build-map.json",
+        "sha256": "169351cc62911d52bdcbd2beebe90b446063889fdb180fa60d2db3df8fe90d19"
+      },
+      {
+        "manifestPath": "./V04/performance/performance-preregistration-binding.json",
+        "sha256": "834665d956bed8c0e568e0f47148fde6cd5e7bb27252794996321b6b2e14ecf7"
+      },
+      {
+        "manifestPath": "./V04/performance/performance-protocol.preregistered.json",
+        "sha256": "2c12ce68e5f01bf0fb82b2d8a7cfae5789842f3112724b1bb839821e7742defc"
+      },
+      {
+        "manifestPath": "./V04/performance/performance-schedule.bound.json",
+        "sha256": "429b99a6d49f20deb0ad919b395a8b45d68a2d22f4630f80b73676c8c6c8733a"
+      },
+      {
+        "manifestPath": "./V04/performance/pilot-sample-index.json",
+        "sha256": "8f856abbeec013953374550a5f073bcb2f8b8485d54e11ab13b6b73e5c1a1fcf"
+      },
+      {
+        "manifestPath": "./V04/reference/m07-build-workflow.json",
+        "sha256": "586b6d4d379203081a261da2b09956844e5f1e1e89cbbda52feecdd64df2b563"
+      },
+      {
+        "manifestPath": "./V04/reference/m07-editor-replay.json",
+        "sha256": "60c37f17b7594548b7d9ec570230be136751dd571489854202358605ac5c02b6"
+      },
+      {
+        "manifestPath": "./V04/reference/m07-fixtures.json",
+        "sha256": "59d03551fc58c769bcdb6609663511e2e4bb3eb1edae1c04f7e1644c0b7412c5"
+      },
+      {
+        "manifestPath": "./V04/reference/native-off-controlled-evidence.json",
+        "sha256": "23466ee734d95b5c582e89df16c9178b967b5d0489ea13a7fa730ea89afbd000"
+      },
+      {
+        "manifestPath": "./V04/reference/native-off-m07-player-build.json",
+        "sha256": "26f0e6037775723817c9ceffb390a1cce42dcd1a70d00ef7319bc69fe3eb275a"
+      },
+      {
+        "manifestPath": "./V04/reference/native-on-controlled-evidence.json",
+        "sha256": "21e85aa71c14617d470db92defa8bbc11547e8eda6343a4823ee6a369993de0b"
+      },
+      {
+        "manifestPath": "./V04/reference/native-on-m07-player-build.json",
+        "sha256": "c0d2e0f7da558019fb9bfb797f527bd78eee0bbe4e0638b0fd8a9dcfa7f7ef7b"
+      },
+      {
+        "manifestPath": "./V04/restoration/current-workflow-inputs-restored.json",
+        "sha256": "0e9bb6073013def9187886d842cdaf7ff09f963c1f875869de329325d8c957f1"
+      },
+      {
+        "manifestPath": "./V04/restoration/reference-workflow-inputs-restored.json",
+        "sha256": "58eacdc18adb11b1963f2e5936ec820dd50ffe37a9067a1ff1799dbbb366d44c"
+      },
+      {
+        "manifestPath": "./handoff/LOCAL_VALIDATION.md",
+        "sha256": "99de9927fae7c11d8107c1ecfaae6571bbed121876f3abebdd683b4485027a88"
+      },
+      {
+        "manifestPath": "./handoff/RETURN_TO_WEB.md",
+        "sha256": "d76f2c8b2fee0a094b4002a833feac89ececdb623bccbf9deac5c51c0d7e7775"
+      },
+      {
+        "manifestPath": "./raw-evidence.tar.gz",
+        "sha256": "7f0d79931558437e89883f3676c2c8239f93c6e9c6f1db417c959923db6d10bf"
+      },
+      {
+        "manifestPath": "./results-summary.json",
+        "sha256": "8beaf50f0c5681a8177881e3c0cea9e59b102d44c22f101d2f539c614deeb64c"
+      }
+    ],
+    "unavailableExcluded": {
+      "manifestPath": "./V04/performance/formal-01-prelaunch-operational-blocker.log",
+      "expectedSha256": "8d899ad7f910dbf6c2eef903f735fb343e67c5124e45b22796f43d41f0aec0ae",
+      "currentAbsent": true,
+      "creationCommit": "fa23a0ddcf45eabc870e7e7742d2d18a78a52d49",
+      "creationTreeAbsent": true,
+      "disposition": "ExcludedUnavailableSupersededDiagnostic",
+      "selectedForCurrentH1Claims": false
+    },
+    "originalManifest30of30Claimed": false,
+    "originalManifestMutated": false
+  },
+  "supersedingSource27df": {
+    "manifestSha256": "6808d00b0f3e67bb9d16073283e8ed1e084c10f1ae6673b7b6c6ac774c1127c7",
+    "authenticatedMembers": 92,
+    "formalEvidence": {
+      "formalBatch": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/formal-batch.json",
+        "sha256": "97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667"
+      },
+      "finalSampleIndex": {
+        "path": "/Users/ah/GitHub/hybridclr/hybridclr_demo/_temp/AssemblyShadow/LocalValidation-20260922-authority27df-formal-v2/V04/performance/formal-batch-guardv2-27df-01/40-R00-ON-P03-formal-10-attempt-1/sample-index.json",
+        "sha256": "a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021"
+      }
+    },
+    "formalPairsPassed": 40,
+    "currentStrictAnalysis": "Passed / ComparabilityPassed"
+  },
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

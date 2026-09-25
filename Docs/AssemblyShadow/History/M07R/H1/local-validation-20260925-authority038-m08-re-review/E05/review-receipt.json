@@ -1,0 +1,36 @@
+{
+  "kind": "H1IndependentM08ReReviewReceipt",
+  "gate": "MILESTONE",
+  "reviewerMechanism": "code-gate-reviewer",
+  "reviewerAgentTask": "/root/h1_m08_rereview_gpt6sol_max_1",
+  "reviewerConfiguration": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/.codex/agents/code-gate-reviewer.toml",
+    "sha256": "179b8c0268996e5c2bfaf876513d489680ff16eee1f1d515be98c9f2755810c7"
+  },
+  "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+  "pushedHandoffHead": "384662d08482f804bfa9772c4acf38b834c57db1",
+  "existingV05Sha256": "534eba62b817584f1a2d48c2fa1bcfccf498d447351c34f10a412993fff3d73f",
+  "existingLocalCheckpointManifestSha256": "71cbe155977a08fadacea92c641203c218d05db242ed301dd5d70bd249d31d10",
+  "primaryClosureBundleJsonSha256": {
+    "whole-h1-suite-reuse-bridge.json": "2701c9fd964932050bdf2dfe6a28fddf0370b2679b4512677feb9e2c9887a2bd",
+    "historical-manifest-successor-index.json": "539144b828dbff1aafc0a7c8fe91c9015c3ce891de0b38859b53208e8f0e7032",
+    "origin-index.json": "aaa40fb49a2345b6c96da6b5c00f0ada99847a80b25d8761a009c717bf71dcce",
+    "prior-finding-successor-map.json": "160b05ae251289a0fec1d2f37dd2a83377e6f3b599d9df8129e7fafb6894ceb8"
+  },
+  "preReviewLocalManifestSha256": "f17491e869fcc372948cb2988113e5357abcda57df9cf1ded1aab2103caf7240",
+  "initialE04ReceiptSha256": "3cab6349d5da9f90004fb93f3744567274888de49cd167bef5cf27228c1881f6",
+  "correctedE04ReceiptSha256": "b86d49b2a3ec9409c7c62d5b109db4cd5b09b6eb2aff4445d9055e6f4b474a01",
+  "countRawAvailabilityAuditSha256": "70f4dd170c9f6d2c7df6a329050f421c6e79e29adbd669a3a67087c838362b8f",
+  "reviewOutputSha256": "15d730b6d80956f8856d7b4e8ea6c7681a90c398d93f883ab6a25b0d151be2e9",
+  "verdict": "BLOCKED",
+  "findingsCount": 1,
+  "reviewStartUtc": "2026-09-25T08:44:08Z",
+  "reviewEndUtc": "2026-09-25T08:58:55Z",
+  "reviewReadOnly": true,
+  "reviewerNoMutationAssertion": "Reviewer states no file or repository mutations and no Players or formal runners.",
+  "eligibilityCorrection": "Initial Local E04 accepted 6/6 based on reports and hashes; independent examination found the count launch/raw layer unavailable, and Local retained the initial receipt while correcting E04 to 5 accepted plus 1 blocked. This M08 attempt is BLOCKED and does not satisfy ReadyForHumanReviewGate.",
+  "M08Passed": false,
+  "readyForHumanReviewGate": false,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}

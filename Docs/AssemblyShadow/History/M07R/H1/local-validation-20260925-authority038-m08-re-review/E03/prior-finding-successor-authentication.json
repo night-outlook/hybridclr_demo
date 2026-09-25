@@ -1,0 +1,69 @@
+{
+  "kind": "H1PriorFindingSuccessorAuthentication",
+  "status": "AuthenticatedForIndependentReReview",
+  "recordedUtc": "2026-09-25T08:36:43.822386+00:00",
+  "priorReviewVerdict": "FAIL",
+  "priorReviewSha256": "091e3a171d3aebd5549cbc8f38ed96826531009c2b840eb3786f45184e0b346e",
+  "priorFindingClosureSha256": "0aa410aa656368695509aee68aac9b9d371fdb07d936afef56c3441e82267b50",
+  "successorMapSha256": "160b05ae251289a0fec1d2f37dd2a83377e6f3b599d9df8129e7fafb6894ceb8",
+  "findings": {
+    "M08-P1-COUNT-CHAIN": {
+      "authenticated": true,
+      "candidateCount": "132/132 Passed",
+      "sixProvenanceBuilds": true,
+      "fourCandidateTwoReproduction": true,
+      "archive": {
+        "originCommit": "7cb710fa38464b1977a69619fea2b5fc93f79966",
+        "originPath": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260917-12cf9b2/v04/candidate-count-verifications.tar.gz",
+        "gitBlob": "5e52ea92e84316f10fcb1efd54d04354b3abf111",
+        "sizeBytes": 32278,
+        "verified": true
+      },
+      "historicalFindingClosureOnly": true
+    },
+    "M08-P1-FRESH-STARTUP": {
+      "authenticated": true,
+      "source925eStatus": "PassedBoundedProfile",
+      "freshDistinctPids": 11,
+      "bindings": [
+        {
+          "key": "startupVerificationLog",
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/V04/startup11-verification.log",
+          "sha256": "52f93078f7ef6bb778eb7041ad1f47a18fa72883e5ea2075f5450656736e8fb5"
+        },
+        {
+          "key": "launchReceipt",
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-launches.json",
+          "sha256": "73df4829cd2f319037ee4d008141b117e586d81cbcc0e3a95b7f9157b70990fe"
+        },
+        {
+          "key": "strictResult",
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/H1Authority925e-Startup11-20260919A/r01-early-results.json",
+          "sha256": "95dcc84f35c364832e1c013ad1cd92f6b26332c8dd894beaf54ff09877d0dc2e"
+        }
+      ],
+      "successorClassification": "ReusedAuditedFrom925e"
+    },
+    "M08-P1-UNFIXED-REPRO": {
+      "authenticated": true,
+      "cells": 8,
+      "classifications": {
+        "AssertAbort": 2,
+        "UnexpectedAccepted": 6
+      },
+      "inputsUnchanged": true,
+      "buildReceiptHashesMatchV03": true,
+      "candidateAcceptance": false,
+      "archive": {
+        "originCommit": "7cb710fa38464b1977a69619fea2b5fc93f79966",
+        "originPath": "Docs/AssemblyShadow/M07R/R01B/H1-Remediation/local-validation-20260917-12cf9b2/v04/reproduction-count-raw.tar.gz",
+        "gitBlob": "557f4227c81ca3ea29fa88ca7387913e66c705be",
+        "sizeBytes": 2092237,
+        "verified": true
+      }
+    }
+  },
+  "independentM08VerdictNotClaimed": true,
+  "humanGatePassed": false,
+  "mayEnterR02": false
+}
