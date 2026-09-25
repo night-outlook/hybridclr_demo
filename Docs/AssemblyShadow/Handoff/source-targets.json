@@ -244,7 +244,7 @@
   "gateState": {
     "name": "H1",
     "status": "InProgress",
-    "technicalReadiness": "AwaitingV05AnalysisOnlySuccessorEvidence",
+    "technicalReadiness": "AwaitingM08EvidenceClosureReReview",
     "lastIndependentM08": "FAIL",
     "humanGatePassed": false,
     "mayEnterR02": false
@@ -951,41 +951,24 @@
   },
   "currentRequiredValidation": {
     "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
-    "handoffDocument": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md",
-    "detailedPlan": "Docs/AssemblyShadow/History/M07R/H1/current-primary/LOCAL_VALIDATION_TASKS.md",
-    "boundedPrimary": {
-      "requiredLeafCount": 387,
-      "requiredPassed": 387,
-      "allowedNonPasses": 0
-    },
-    "fullPython": {
-      "expectedLeafCount": 1071,
-      "requiredFailed": 0,
-      "requiredErrors": 0,
-      "expectedPassedIfSkipSetUnchanged": 1043,
-      "expectedSkippedIfEnvironmentUnchanged": 28,
-      "skipCountIsExpectationOnly": true
-    },
-    "sourceAudits": {
-      "historicalAnalysisPolicy": "H1HistoricalPerformanceReanalysis-v2",
-      "historicalAnalysisPathCount": 7,
-      "retainedGraphPolicy": "H1V04RetainedGraphToolOnlySuccessor-v2",
-      "retainedGraphPathCount": 25,
-      "previousAnchor": "d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece",
-      "previousAnchorRepairPathCount": 3
-    },
-    "stages": [
-      "V00 current source authority",
-      "V01 bounded/full Python",
-      "V01A exact source audits",
-      "V02 complete live historical reauthentication",
-      "V04.AF compatibility revalidation",
-      "V04.AG strict historical analysis revalidation",
-      "V04.AH authenticated closure checkpoint",
-      "V05 H1AnalysisOnlySuccessorEvidence-v1 binding",
-      "genuinely independent H1 M08 via code-gate-reviewer",
-      "Human Review Gate only if M08 PASS"
+    "mode": "M08EvidenceClosureOnlyUnlessSourceDrift",
+    "sourcePreflight": [
+      "final checkout branch/remote exact",
+      "source anchor -> checkout HEAD has zero non-metadata paths",
+      "committed handoff preflight remains SourceTargetVerifiedNotBuildAccepted"
     ],
+    "evidenceClosure": [
+      "authenticate recovered origin-index copies against immutable Git blobs",
+      "authenticate 925e successor manifest as 293/293 using reconstructed historical Handoff",
+      "authenticate 6913 successor index as 29 available + 1 unavailable/excluded and prove creation-tree absence",
+      "authenticate source-27df superseding formal evidence",
+      "authenticate whole-H1 per-suite reuse bridge and selected key hashes",
+      "produce H1HistoricalCheckpointSuccessorAuthentication",
+      "produce H1WholeChainSuiteReuseAuthentication"
+    ],
+    "independentM08": "rerun code-gate-reviewer only after both receipts succeed",
+    "noSourceTestsRerunRequiredIfMetadataOnly": true,
+    "noV04V05RerunRequiredIfMetadataOnly": true,
     "playerRerunForbiddenAsWorkaround": true
   },
   "latestLocalV04Closure": {
@@ -1118,5 +1101,90 @@
     "correction": "Added the missing module-level hashlib import required by the V05 synthetic checkpoint fixture.",
     "sourcePolicyImpact": "None; the path was already present in both exact v2 allowlists.",
     "testCardinalityImpact": "None; still 387 bounded / 1,071 full Python leaves."
+  },
+  "latestLocalM08Blocked": {
+    "returnedByLocalValidationCommit": "7be042c6a6b1a73e907a53bcea10a4d1a3b50c03",
+    "checkpoint": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-v05-m08/",
+    "result": "BLOCKED",
+    "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+    "v05Status": "SuccessorEvidenceBoundForIndependentM08",
+    "v05Sha256": "534eba62b817584f1a2d48c2fa1bcfccf498d447351c34f10a412993fff3d73f",
+    "checkpointManifestSha256": "71cbe155977a08fadacea92c641203c218d05db242ed301dd5d70bd249d31d10",
+    "blockers": [
+      "prior independent M08/finding-closure provenance unavailable in selected package",
+      "925e/6913 historical manifest discrepancies lacked successor disposition",
+      "whole-H1 suite-specific reuse/equivalence bridge absent"
+    ],
+    "noPlayerRerun": true
+  },
+  "m08EvidenceClosure": {
+    "status": "PrimaryPreparedAwaitingLocalAuthentication",
+    "sourceImpact": "MetadataOnly",
+    "sourceAnchor": "0388479f7073289e3505b992956a7cbe78c302ce",
+    "root": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/",
+    "priorReviewOriginIndex": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/origin-index.json",
+    "priorFindingSuccessorMap": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/prior-finding-successor-map.json",
+    "historicalManifestSuccessorIndex": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/historical-manifest-successor-index.json",
+    "wholeH1SuiteReuseBridge": "Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/whole-h1-suite-reuse-bridge.json",
+    "recoveredOriginCommit": "7cb710fa38464b1977a69619fea2b5fc93f79966",
+    "recoveredGitBlobExactCount": 12,
+    "manifestClosures": {
+      "authority925e": {
+        "originalEntries": 293,
+        "recoveredExternalHandoffExpectedSha256": "cb8f06d757962ddd366878543b2bb75aade49f8b27b165cf7d9eb984652a3d54",
+        "recoveredExternalHandoffOriginCommit": "075f8a25f44b7fe5fef397be566b8a5f4f7e447f",
+        "expectedSuccessorAuthentication": "293/293"
+      },
+      "authority6913": {
+        "originalEntries": 30,
+        "availableEntries": 29,
+        "missingMember": "V04/performance/formal-01-prelaunch-operational-blocker.log",
+        "missingExpectedSha256": "8d899ad7f910dbf6c2eef903f735fb343e67c5124e45b22796f43d41f0aec0ae",
+        "creationCommit": "fa23a0ddcf45eabc870e7e7742d2d18a78a52d49",
+        "creationTreeStatus": "Absent",
+        "disposition": "ExcludedUnavailableSupersededDiagnostic",
+        "supersedingFormalSource": "27df1a3d60811dc121f296ab561ae313a382b363"
+      }
+    },
+    "suiteReuseFacts": {
+      "bootstrapBlobs": {
+        "count": 70,
+        "changed925eTo038": 0
+      },
+      "r01bRuntimeBlobs": {
+        "count": 16,
+        "changed925eTo038": 0
+      },
+      "h1CountRelatedFiles": {
+        "count": 42,
+        "changed925eTo038": 0
+      },
+      "selectedFailureRunnerVerifierFiles": {
+        "count": 3,
+        "changed925eTo038": 0
+      },
+      "selectedCapacityRunnerVerifierFiles": {
+        "count": 3,
+        "changed925eTo038": 0
+      },
+      "nativePackageIl2cppPinsChanged": false,
+      "classification": "PerSuiteReusedAuditedNotFresh"
+    },
+    "requiredLocalReceipts": [
+      "H1HistoricalCheckpointSuccessorAuthentication",
+      "H1WholeChainSuiteReuseAuthentication"
+    ],
+    "nextIndependentReview": "code-gate-reviewer MILESTONE; PASS/FAIL/BLOCKED",
+    "humanGatePassed": false,
+    "mayEnterR02": false
+  },
+  "connectorWriteSmokeTestM08EvidenceClosure": {
+    "transport": "GitHub Connector",
+    "repository": "night-outlook/hybridclr_demo",
+    "smokeBranch": "codex/connector-smoke-primary-20260925-f",
+    "commit": "bd22a1e3e62c4d9578250af1af0bcfbe1f213f16",
+    "readbackMatched": true,
+    "cleanup": "Connector branch-delete capability unavailable; branch remains non-authoritative.",
+    "purpose": "Operational transport readiness only."
   }
 }
