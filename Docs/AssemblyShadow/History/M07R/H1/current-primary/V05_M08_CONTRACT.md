@@ -201,3 +201,53 @@ Retain the independent review verbatim under the new Local checkpoint, plus a ma
 - read-only/no-mutation assertion.
 
 Do not edit the independent review result to make it PASS.
+
+## M08 BLOCKED re-review addendum — 2026-09-25
+
+The first source-038 independent M08 run completed read-only and returned `BLOCKED` on evidence-package completeness. V05 itself remains valid and does not need to be rerun if source authority remains metadata-only.
+
+Primary closure package:
+
+`m08-evidence-closure-20260925/`
+
+The re-review has two additional mandatory prerequisite receipts:
+
+1. `H1HistoricalCheckpointSuccessorAuthentication`
+2. `H1WholeChainSuiteReuseAuthentication`
+
+The independent reviewer must also receive the recovered original M08/finding records and `prior-finding-successor-map.json`.
+
+### Historical manifest semantics
+
+The 925e manifest may be successor-authenticated 293/293 only by substituting the exact recovered historical Handoff bytes for its external relative Handoff member. The original manifest is not edited.
+
+The 6913 manifest must remain historically 29 available + 1 unavailable. The unavailable formal-prelaunch blocker log is excluded only because:
+
+- it is absent from the checkpoint creation Git tree;
+- it was a prelaunch operational diagnostic;
+- it is not selected for any current claim;
+- later source-27df 40/40 formal evidence supersedes the blocked attempt.
+
+Do not call the original 6913 manifest 30/30.
+
+### Whole-H1 reuse semantics
+
+Reused suite evidence is acceptable for re-review only when Local independently authenticates the per-suite bridge.
+
+Required classification is per suite, never blanket:
+
+- `AcceptedReusedAudited`
+- `Rejected`
+- `Blocked`
+
+Any required Rejected/Blocked suite prevents M08 rerun and returns to Primary.
+
+No reused suite may be relabelled Fresh at source 038.
+
+### Re-review verdict
+
+A new independent M08 is a new review; it must not inherit PASS/FAIL/BLOCKED mechanically from the earlier result.
+
+It must explicitly revisit the prior three BLOCKED findings against E01–E04 receipts.
+
+PASS still means only `ReadyForHumanReviewGate`; human approval remains separate.
