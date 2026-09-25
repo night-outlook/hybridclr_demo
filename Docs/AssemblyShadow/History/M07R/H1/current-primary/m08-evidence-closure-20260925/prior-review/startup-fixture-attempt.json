@@ -1,0 +1,1719 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1StartupFailureFixtureAttempt",
+  "status": "Failed",
+  "exitCode": 1,
+  "method": "AssemblyShadowDemo.Editor.R01FailureFixtures.Build",
+  "baseline": "external-artifact://candidate-demo/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-H1-Candidate-9c6b812-v2/baseline-manifest.json",
+  "fixtures": "external-artifact://candidate-demo/_temp/AssemblyShadow/M02Validation-d90fb623c8584feeb5722e1a32108796/m07-fixtures.json",
+  "outputRoot": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures",
+  "logPath": "external-artifact://candidate-demo/_temp/UnityExec_20260913_195356.log",
+  "logSha256": "a5a52df18f04bffae0c3ec2281f31cdb0d93efea1d0f3ad057c09217958bf6c3",
+  "error": "PolicyValidation: UnboundedManagedAcquisition: H1CountEarlyStartup::LoadOrdinaryWitness Assembly.LoadBytes operation 25; method-level prose cannot authorize this operation.",
+  "failureFixtureReceiptExists": false,
+  "outputInventory": [
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Assembly-CSharp.dll",
+      "sizeBytes": 5120,
+      "sha256": "9f893200e151c33c56cebbf8c87ac222b9951a51436d2903b157ed64881893de"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Assembly-CSharp.pdb",
+      "sizeBytes": 17608,
+      "sha256": "f8dc1bef85e1a9312b5811d408b6a919edb8a86a12f9f3d817c521f48dc83009"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyA.Contracts.dll",
+      "sizeBytes": 25600,
+      "sha256": "e57733007abb667aeb8c53c8b3703d02ed63237d7b0577d0f4514c1b37849891"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyA.Contracts.pdb",
+      "sizeBytes": 18392,
+      "sha256": "278c26776aa9a8a67a1371b019e58527d17ad9c4df0c445fb56ae35ef2569130"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyA.Implementation.Extensibility.dll",
+      "sizeBytes": 26624,
+      "sha256": "56c0e1424f7bd4e27d24107027227601bd1d2dbc3b0213383e042956a58f84d2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyA.Implementation.Extensibility.pdb",
+      "sizeBytes": 22356,
+      "sha256": "5dc763429e103ebe10877fb4d428a6870a4b2a1eb9cc363b7d80bcd72b3610af"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyA.Implementation.Internal.dll",
+      "sizeBytes": 37888,
+      "sha256": "8e2dc8dfad37433a4780e3890ff8d7942270a9d6974fb5db16f60abe1ae81b56"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyA.Implementation.Internal.pdb",
+      "sizeBytes": 27604,
+      "sha256": "52d4836ed8ccbc530823cec1c83f0f1befcf21c952e0872d880e42382e817bd9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowBaseline.Aot.dll",
+      "sizeBytes": 11264,
+      "sha256": "09f5377d686c1b3bb10e0c51017cfa9b6c64a1345a53ebc1dd8028a78023c1f6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowBaseline.Aot.pdb",
+      "sizeBytes": 17308,
+      "sha256": "de23c190dc14cdc4c73dc4d8cb7b82e49928f3c8e1a7512e42845c3ea43cf1a2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowBaseline.HotUpdate.dll",
+      "sizeBytes": 4608,
+      "sha256": "f8a4037bb04a3c8ba646c1e8624595adf2b60604db08c2063e92aa44a394e32f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowBaseline.HotUpdate.pdb",
+      "sizeBytes": 11992,
+      "sha256": "cc4c1a23218a905b0b974c9c987057dd02b62bf35144f0ceeaf91e0501607191"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowDemo.Bootstrap.dll",
+      "sizeBytes": 557568,
+      "sha256": "b58851c3c3a83d71ee5c5162fb35394b4ded4a9a8583b156ceb183f21c3d0de2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowDemo.Bootstrap.pdb",
+      "sizeBytes": 159228,
+      "sha256": "33b25d45b5afb8aa4ccaccc88b0d1914bd8f790a1b10d3d8ee2de419472085ad"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowDemo.ContractsConsumer.dll",
+      "sizeBytes": 24576,
+      "sha256": "69c14190f3f41b152d8d6e5fc8c076b7b2bfb4c4940d7cedb99e5ff26f3070bc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowDemo.ContractsConsumer.pdb",
+      "sizeBytes": 17576,
+      "sha256": "a08156fb7ae2feed5b4213fbc238c0fd8fe39d771350feb45524f807261e0dbc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+      "sizeBytes": 26112,
+      "sha256": "edc22792d40256d3b368bbf2edc093a300c984a5694fda5b329a0bddb607f7f5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/AssemblyShadowDemo.ExtensibilityConsumer.pdb",
+      "sizeBytes": 22148,
+      "sha256": "575cf0ec93545bb9113fd98610c7e508aadf7b948d014c9973b6cdbbcb24f62a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/HybridCLR.Runtime.dll",
+      "sizeBytes": 57856,
+      "sha256": "82467c281c75c7b0a8478fc335891f0f85a9caca038bb6ae8faed19938a0828c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/HybridCLR.Runtime.pdb",
+      "sizeBytes": 34020,
+      "sha256": "47b7f8d81a4bd2b693c705306c99092536c12aa6a63a72326e6ef186c08e2d31"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/MCPForUnity.Runtime.dll",
+      "sizeBytes": 33280,
+      "sha256": "a9acda0c8f878937555517bb6802ca5b87482b167e068b5283d322407258c83c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/MCPForUnity.Runtime.pdb",
+      "sizeBytes": 28104,
+      "sha256": "74b630ae79a46faca073ecc09d4c607a5dd1a7bea6fc502a054f5a57f942799e"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Newtonsoft.Json.dll",
+      "sizeBytes": 691712,
+      "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Newtonsoft.Json.pdb",
+      "sizeBytes": 2174464,
+      "sha256": "17cbab4d4207187ed94173c0d59d7a39fabed7c9035b73634c1f02188dd60168"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.Animation.Runtime.dll",
+      "sizeBytes": 77824,
+      "sha256": "e14063d87152ad07fa2bdd1be07885af0cc71b83599c61c370d3cd95747d5eba"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.Animation.Runtime.pdb",
+      "sizeBytes": 51172,
+      "sha256": "6dc33de3cb01289f7666ed4c22c0113bcec342ad3912c2e8b49c6aacf717a266"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.Common.Runtime.dll",
+      "sizeBytes": 48128,
+      "sha256": "5d7b715f49c9b86b3e08ad21b8fffb2ccab07e8d91ab671262d74cbbd2cd2463"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.Common.Runtime.pdb",
+      "sizeBytes": 42684,
+      "sha256": "10b9cc0b1c2330b61fd61cf873f13763c876e2f4d385898e6ac7df9d08900e0c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.IK.Runtime.dll",
+      "sizeBytes": 22016,
+      "sha256": "f24a1b94be52d69241f2a68e3173d12a26dfd5e2d0cb3acae51d94fed30f59f6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.IK.Runtime.pdb",
+      "sizeBytes": 26796,
+      "sha256": "a985d9a0e7b764a2edff6aee687166b860ff0ac7f8b0b589c68966bab5c3a517"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.PixelPerfect.dll",
+      "sizeBytes": 14336,
+      "sha256": "097de8ee7aa05070ec8aec2f6676d288dbff99ab6c94410e5f4efe70a46778a2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.PixelPerfect.pdb",
+      "sizeBytes": 19912,
+      "sha256": "0e3f0c1b2d979568f6d233b5235db42f2bad0cf7a8044fa9a3b7801dc8a0315e"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.SpriteShape.Runtime.dll",
+      "sizeBytes": 118272,
+      "sha256": "0931faf24a48127ce6ddae1f4d2aae478ce79e77654b0c7bb6d34a285b29fa02"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.SpriteShape.Runtime.pdb",
+      "sizeBytes": 80756,
+      "sha256": "6c4444ed5235f6edb4d7f6614c8f0380df7c1648384866d4d09c044f07ccbd86"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.Tilemap.Extras.dll",
+      "sizeBytes": 35840,
+      "sha256": "e55a64d2b0154fffa15290edea56df61c06766c8d398495a6ba085d849076d8b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.2D.Tilemap.Extras.pdb",
+      "sizeBytes": 30360,
+      "sha256": "7d17ea32c51f480d7fc0b170151e93e663ecc138235df9d4b590e0572b68a8e2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Burst.Unsafe.dll",
+      "sizeBytes": 5632,
+      "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Burst.dll",
+      "sizeBytes": 348160,
+      "sha256": "991274465d9095004745a177f34e03434f72c9483c50630a23ee9eba4a0b7880"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Burst.pdb",
+      "sizeBytes": 220016,
+      "sha256": "9d2afc0f3750541fb82605da81daa722862c12c2a79b3b9d58fab3a6af5da579"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Collections.LowLevel.ILSupport.dll",
+      "sizeBytes": 4096,
+      "sha256": "dbd7fb37e353bf6609938be1565c14c952ff6b6a67d2e6436ae3147a084d40f1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Collections.dll",
+      "sizeBytes": 400896,
+      "sha256": "692f884f286cfa87b9801b6ccda22f225bae1ec12faaf1e192799dc860de898f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Collections.pdb",
+      "sizeBytes": 255408,
+      "sha256": "70549907d09bc7c5074abac27b974c83acd9b1c902156864f632498a30e3e71b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.InternalAPIEngineBridge.001.dll",
+      "sizeBytes": 6656,
+      "sha256": "57716017560e7be158095921360d48c1129a22aaf1b5dc90615b6890c0fdbffc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.InternalAPIEngineBridge.001.pdb",
+      "sizeBytes": 16824,
+      "sha256": "65546fea51332664c65196455c7fd31e84f8dd690ef5dcf0d4d2bba515c2ea28"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Mathematics.dll",
+      "sizeBytes": 873984,
+      "sha256": "56027bcdfe0e15f111aff54ce38e8d549be00e86b35b401fa3775f578c751fd1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Mathematics.pdb",
+      "sizeBytes": 507492,
+      "sha256": "59d8e01c1718f1007a515be414a8117d0cbc055115c85d49a6c41fe5f6e40707"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "sizeBytes": 8192,
+      "sha256": "a193a088fe7b9992e6829d1afe9e70947b7f300861111f4f2dd087471a33bee1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipeline.Universal.ShaderLibrary.pdb",
+      "sizeBytes": 16544,
+      "sha256": "816d03118f9fbb2dcfd308cd0ae12a05e38b2254c0417cfbb4ceb2396d0664e7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Core.Runtime.dll",
+      "sizeBytes": 594944,
+      "sha256": "553c92b0425e5e9fea1a4ec6ef89025412affdcba2642188740d6e96bec41f91"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Core.Runtime.pdb",
+      "sizeBytes": 284012,
+      "sha256": "b666d5844d92fb2888beb26654517521dd3ff2b89f0f98576dd49ad544bbeec0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "sizeBytes": 4608,
+      "sha256": "f89154cefbc4f77e3128feafd5c9ede25ca4baf0f8c5117f5655f8cac37a3b03"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Core.ShaderLibrary.pdb",
+      "sizeBytes": 16064,
+      "sha256": "9ee54021faa6a003cfcd2e444959ec538bb300e5719cfee4cfb7a9183a9ddbcf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "sizeBytes": 4608,
+      "sha256": "aef459cf3b62663b259eac4dfbb7fab7fa27e18d929ff2791818d3ed1f03a1e8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb",
+      "sizeBytes": 16044,
+      "sha256": "e8eb58ba8f3ec0e6adab9fb2ff0126b53c0c770dc481865d1158d50e7c32571c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.2D.Internal.dll",
+      "sizeBytes": 5120,
+      "sha256": "0db2409ee8d92f3e8408a6e1f0e45747aa519baf06be134630b17c322c037564"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.2D.Internal.pdb",
+      "sizeBytes": 16304,
+      "sha256": "2a8e950867076d07cef6c63923e5e1268b23d726cd00c69c9ec23e385fac309a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "sizeBytes": 5632,
+      "sha256": "db89fc8e1251834e121f0a47adf3e9a9565b470734679a8b88f6bf82e7d99f6b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.Config.Runtime.pdb",
+      "sizeBytes": 16220,
+      "sha256": "b8c9890ebde714bacbc6469329eb79cb0402a7f07f0ebba26ae91b3f44776332"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.Runtime.dll",
+      "sizeBytes": 850432,
+      "sha256": "ceee72b1d96dec9a5e5fb6d8a14a3316b8b5e413f1bb409237f83f5902cadab6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.Runtime.pdb",
+      "sizeBytes": 395040,
+      "sha256": "d4d4a774db8d97a00a324661e12c445cc692eb552438320f5c60d2d479a810dc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.Shaders.dll",
+      "sizeBytes": 4608,
+      "sha256": "b15efa1aa396595e85ed88cabd77deff9465337707a74c5e1f2823594c8e56b9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.RenderPipelines.Universal.Shaders.pdb",
+      "sizeBytes": 16056,
+      "sha256": "2df58b5512e53d01a761352a4a23da3bd1d76f01b0348b7c8b05e9aad235a889"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.TextMeshPro.dll",
+      "sizeBytes": 436224,
+      "sha256": "7dcf1147fccc6ee8fe82b6dd6cdd58ad380ddace2c1ec3cafd73045a4bd6c2a2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.TextMeshPro.pdb",
+      "sizeBytes": 234284,
+      "sha256": "56d5061f08d56be03370cd1f84faafaf4d2b62fd1833e9899c6c785df93cb5d7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Timeline.dll",
+      "sizeBytes": 141312,
+      "sha256": "c61f3f3ffae515a0dd1951e73950e56953a31187a30406ec902c4737cc7787ea"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.Timeline.pdb",
+      "sizeBytes": 86716,
+      "sha256": "2258cc23d8a752947d180cf4d816ebaea1ab34f9c73e6713f35f24cacca3159f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.Antlr3.Runtime.dll",
+      "sizeBytes": 86016,
+      "sha256": "ed7ce205f66eafe39bbb5d084d42e7fe11cb4b386ff208e5d5110891be0b7b37"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.Core.dll",
+      "sizeBytes": 668672,
+      "sha256": "9af6c589621368030edfc2cfd8e51e57ed8dfe65cddf453ab0982996e3389fff"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.Core.pdb",
+      "sizeBytes": 334536,
+      "sha256": "647e5b2910100d42f09ed1d2324ae92e201930c8a81555f0df30d45c4aba5ed8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.Flow.dll",
+      "sizeBytes": 427008,
+      "sha256": "3c61fb730e7fe76fe3fe32c5150131798e0e670f3854eca8b33ada1d53ec3a16"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.Flow.pdb",
+      "sizeBytes": 218676,
+      "sha256": "c980175a15893a7319880b8c5ec815f7f77bcf9616c8ab1bb35b27a98e2395f9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.State.dll",
+      "sizeBytes": 33792,
+      "sha256": "2dfd3476587a56db046bfc1203409a0077c47736f9e42442e6e63a1e459d261d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/Unity.VisualScripting.State.pdb",
+      "sizeBytes": 29088,
+      "sha256": "daf18d87a1ceb53d2d52904b572baaae5078c1f13674faa0aca420fe681c7a21"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/UnityEngine.TestRunner.dll",
+      "sizeBytes": 144896,
+      "sha256": "4733e7e171b5a1a4408c14072ab177ec641adb13acf98bb4b3baedd8002bc94a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/UnityEngine.TestRunner.pdb",
+      "sizeBytes": 77388,
+      "sha256": "41507227bb0fc99e2e2e1c0ef5ef0dc5c5c2cbeaa5563dc53c2eb03a1a5a1496"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/UnityEngine.UI.dll",
+      "sizeBytes": 297472,
+      "sha256": "ba571e729fddd72e9902fe7344108f8092ba5f45d3318e19e9662c71f6f86667"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/UnityEngine.UI.pdb",
+      "sizeBytes": 181740,
+      "sha256": "18199909d76113f8d5a0bcf92d95be4d331e7432d3357154160d287ad797b547"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/Assemblies/nunit.framework.dll",
+      "sizeBytes": 329728,
+      "sha256": "e388e140954de12970384331d1730e95b4613ef53c3326b6f8fa0fffdbc9314f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/RawTypeAdmissions/compiled-evidence.json",
+      "sizeBytes": 39549,
+      "sha256": "afb9f3b09c64800662da18ed0b63229aa80eb4ce381b041073191a5229edba77"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/RawTypeAdmissions/configuration.json",
+      "sizeBytes": 29589,
+      "sha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/Microsoft.Win32.Primitives.dll",
+      "sizeBytes": 13688,
+      "sha256": "2522cb85ef5379a4f716a035e11549b6814f4d426e758649250738358a71c85f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.AppContext.dll",
+      "sizeBytes": 13688,
+      "sha256": "643ec79d998df16995c4270bf2dc8ba881796179c03fa55d343ee9c43ba074d7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Buffers.dll",
+      "sizeBytes": 13688,
+      "sha256": "d0648fc3d820c8b225fe991d55d506f3210b698cc02beaf8aa31d990cd990772"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Collections.Concurrent.dll",
+      "sizeBytes": 14200,
+      "sha256": "c882ff60ae9e26a23d149a11aa8bcc546652e1bd2b58656a7c3b11a8f5e227a7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Collections.NonGeneric.dll",
+      "sizeBytes": 14200,
+      "sha256": "17221b8767355654f5c97b53a4fd8dd413f95e2faf36dd2d28ea863ca7536f4a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Collections.Specialized.dll",
+      "sizeBytes": 14200,
+      "sha256": "9572743bf2fa4fd7a5c5e8d2c8a9b44424f38ff67042c833789282dbe241cb88"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Collections.dll",
+      "sizeBytes": 14712,
+      "sha256": "969da19309c9d0aa44d4ab9c03ad9f85a614fe0c285eaa68ee0bb5dc4dc6e47a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ComponentModel.Composition.dll",
+      "sizeBytes": 13688,
+      "sha256": "3d9e953036e19ba57ee12c1148a35e067442063c86ad9d40ff393fb289421914"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ComponentModel.EventBasedAsync.dll",
+      "sizeBytes": 14200,
+      "sha256": "04a7ea907580d9d41ca1d8d67abfe81d61af8fc59125e1383a9502bfd4f9134f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ComponentModel.Primitives.dll",
+      "sizeBytes": 14712,
+      "sha256": "6522dfefdddfbf58ccc4f3ba6f41121e16ee5b20dd8f325c6983b4ac8c3befd8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ComponentModel.TypeConverter.dll",
+      "sizeBytes": 15736,
+      "sha256": "399642afed43a9c150650eeb37cd407c2d14ab005e58d6f2784b726e0be72f53"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ComponentModel.dll",
+      "sizeBytes": 14200,
+      "sha256": "a488ab63c97df6d45f8dc01ecdd56c4ece383fc88231869caca1a74c29ee1c12"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Console.dll",
+      "sizeBytes": 14200,
+      "sha256": "98b2c46fda1c10418cddd36e3950058a7d188a48c482074ec77c3daca1dbad04"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Core.dll",
+      "sizeBytes": 18808,
+      "sha256": "83c8c06c5e59955aad7ef4acc13b63d702764f5b4e20cefb3a431cb2f75a12ed"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Data.Common.dll",
+      "sizeBytes": 14712,
+      "sha256": "cfbbe345a3af5c2820492779ce4c9e1d9c7e4c9e714f222a15ab524cf827af52"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Data.dll",
+      "sizeBytes": 18296,
+      "sha256": "722b754ca36e903c69519e8906ebc0f96f14525d847f73f3b5f2ac765499715b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.Contracts.dll",
+      "sizeBytes": 14200,
+      "sha256": "250ba880b970a355cf626e7ad60f736aab379c7ba06f68ffdebb6f2b852c25cb"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.Debug.dll",
+      "sizeBytes": 14200,
+      "sha256": "3964a2da6b23e89d076faf6a91cf8b2fe6d196d4dea2f954e0c5e1f570ef85b1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.FileVersionInfo.dll",
+      "sizeBytes": 13688,
+      "sha256": "3f6ce9c7991ab252c5c704ff91e1c99d21b5fe99937d27132b3b56f8b981a045"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.Process.dll",
+      "sizeBytes": 14200,
+      "sha256": "29f7e89a609dcbcec72a4adf094a458718b23940721cebae0440ad7a0f522921"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.StackTrace.dll",
+      "sizeBytes": 14200,
+      "sha256": "2b91c8a72755071086c0fe4ab8019480eeabf9ae5243cbf58942761abd1013a5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.TextWriterTraceListener.dll",
+      "sizeBytes": 14200,
+      "sha256": "d85c7a6c1d9e848b69aa5a8ffb4a9755e8d84fc957ae9c455ead30fd8b688869"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.Tools.dll",
+      "sizeBytes": 14200,
+      "sha256": "25d1dec703daa1e68dea27c6f85f4a0c55d24a56d1c597388c6c596e0ff9f856"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.TraceSource.dll",
+      "sizeBytes": 14200,
+      "sha256": "10ae31d5bdd373bbca96dc83cad65a32d1e788d8f95fb1555b371026025b2643"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Diagnostics.Tracing.dll",
+      "sizeBytes": 14712,
+      "sha256": "469d5ab04348ab7db62f71d757586e46692695b5c4604a26a01899baceb4b47d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Drawing.Primitives.dll",
+      "sizeBytes": 14200,
+      "sha256": "da2afcd4237dc4f8e14f66bd9d2983143881e97c3f3c1738620438df94d030e4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Drawing.dll",
+      "sizeBytes": 14200,
+      "sha256": "c9a3ea4bcb020c63a986fd72a31ce997e62a5f8d04460a32548e6fa31ae8f910"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Dynamic.Runtime.dll",
+      "sizeBytes": 14712,
+      "sha256": "f34cb31b138244d902cc4220500a60a7ffe6e5cf0874f48678145aa2f42318ea"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Globalization.Calendars.dll",
+      "sizeBytes": 14200,
+      "sha256": "03d14391a91d831f15050cd6255cd1097f546760b46f9fd2c0479069735d264b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Globalization.Extensions.dll",
+      "sizeBytes": 14200,
+      "sha256": "744c044a966cde69a0362d7f7eadba7f4b89e28c95cb47ab6022740d381969c0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Globalization.dll",
+      "sizeBytes": 14200,
+      "sha256": "a8bb8be1079c4220b202bc873b7ffe39a2e306cd5280843ad5c1aed8376db2d3"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.Compression.FileSystem.dll",
+      "sizeBytes": 13688,
+      "sha256": "2511e6d2df543140d45bf45d8df2cb34b8590db5193157e970021136c20173d6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.Compression.ZipFile.dll",
+      "sizeBytes": 13688,
+      "sha256": "f721f7c90e0e1a8b04a62ce570eb7f7c238db9136ac213a6c04970e94a737e82"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.Compression.dll",
+      "sizeBytes": 13688,
+      "sha256": "dd36080142c15c7cf005e78e3237cd85a6d9e241b979072c0b82e0a40f6848b3"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.FileSystem.DriveInfo.dll",
+      "sizeBytes": 14200,
+      "sha256": "25e4ed8748fdbd9cf2fd77014d087ed9ed24dbde2e694e966a68a9d72371f51d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.FileSystem.Primitives.dll",
+      "sizeBytes": 14200,
+      "sha256": "4e96df37c5713fb21e30c767aa216e1f10878f30e4a89c6d7657b86637a62647"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.FileSystem.Watcher.dll",
+      "sizeBytes": 14200,
+      "sha256": "c75a0339b10aedcddff7c3acc85f23bfc95c63244abc7edbaec8606b426a6556"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.FileSystem.dll",
+      "sizeBytes": 14200,
+      "sha256": "3e6b283d0ad07f2d3e33eb1588e0279f52e684d638fe3dcfa6441deefe799c13"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.IsolatedStorage.dll",
+      "sizeBytes": 14200,
+      "sha256": "7b514b9dfd4ad5b514b54aa9a12f4a9cd02de97a724b21ecaefdd97c2f94b31f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.MemoryMappedFiles.dll",
+      "sizeBytes": 14200,
+      "sha256": "a7bcea398169e5f8b7bf01ce75d23065590db0d1a62e67df6a5b0894236e46b1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.Pipes.dll",
+      "sizeBytes": 14200,
+      "sha256": "c988c381f5ed6e2e8ff84a85f71e859f47c19ac149c8ee8230dc3c315100cad4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.UnmanagedMemoryStream.dll",
+      "sizeBytes": 14200,
+      "sha256": "52df0618cf4bc35ac97150c1a999220b5e6107b7272042cdd49e2adbc41e8adf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.IO.dll",
+      "sizeBytes": 14200,
+      "sha256": "855c8b76c1dd99ecd97f079b073eff83292b1ff90b9c5426cbe36b76c39a34d1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Linq.Expressions.dll",
+      "sizeBytes": 15224,
+      "sha256": "1a9d4766cc13b2e27d6295d707c3af5d57f11d63f4cb4a9ffd47d9917edacd7c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Linq.Parallel.dll",
+      "sizeBytes": 14200,
+      "sha256": "f6d2eba7f641721e3a41ee29000430659f0f987ec1b33fc467f715c9d186e58c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Linq.Queryable.dll",
+      "sizeBytes": 14200,
+      "sha256": "6c5b11651156aedfbacacadfbe4a388062cbae74a2a43004b590990a0b941a26"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Linq.dll",
+      "sizeBytes": 13688,
+      "sha256": "0f94f7b2e726b32509e628a8514c6ce5ae903d07c99f99a61933289f13756ca4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Memory.dll",
+      "sizeBytes": 14712,
+      "sha256": "34abf197fbf191fb83e983571a6f3a6fc460fa80f32038c94d54e96966678f88"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.Http.dll",
+      "sizeBytes": 15224,
+      "sha256": "bba894cb713ef6a2f48776240ee55122c38839af88c72742294b4583f8d2a66e"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.NameResolution.dll",
+      "sizeBytes": 13688,
+      "sha256": "2308c9e1f674c3b854320507d41ba633802c8db7d10ec8dbb3ef9d86acca44fe"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.NetworkInformation.dll",
+      "sizeBytes": 15224,
+      "sha256": "8fb1051323d2fc34c59f8aeaa3f17cd37907eeaf7d0c274323b12b14aa7027e9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.Ping.dll",
+      "sizeBytes": 14200,
+      "sha256": "a17b78f469c6622970d1eb6ee5105220235c70d2908c856de6742797c7d82c32"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.Primitives.dll",
+      "sizeBytes": 14712,
+      "sha256": "0a3b1ad27d640a56a55ca750861768271edd211ca1c494ae36b5184ab8e26780"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.Requests.dll",
+      "sizeBytes": 14200,
+      "sha256": "5f2a63d0ec2fd4ccc45ca2ba3dcfd7a4cf72931e97fd41bd36f00ca2f18dab06"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.Security.dll",
+      "sizeBytes": 14200,
+      "sha256": "ca922585b98ea8bc9b2c684dc11cf0a0946211cecec6b3f59c9c9b784a41ba56"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.Sockets.dll",
+      "sizeBytes": 14712,
+      "sha256": "cb5996625a8ae3b82a2e06d8b27b00e6a4ad480b6dde96492e1a245583275d68"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.WebHeaderCollection.dll",
+      "sizeBytes": 14200,
+      "sha256": "edfc6c63a5f6374134bc9b25349978acbc4c2b02ae7de2fe7935e898044e6ff7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.WebSockets.Client.dll",
+      "sizeBytes": 14200,
+      "sha256": "c212a3431d18b2c678daeb0d1c0a839ea0eb02fb2029ecda32b09e00aed00aa5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.WebSockets.dll",
+      "sizeBytes": 14200,
+      "sha256": "538827c5993417c9aba603171200b0f6f096f399e6e7178cf2028735f1b909d7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Net.dll",
+      "sizeBytes": 15224,
+      "sha256": "b99d8f30be2f3ef351b7e00b6cd6b4c09826dfc3ba334999cfbc2899d87204e8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Numerics.Vectors.dll",
+      "sizeBytes": 14200,
+      "sha256": "4c6ba8896ea9d26ff732d5afaccb3b13ffa4097799b10b3260bf7f64bc8b09c1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Numerics.dll",
+      "sizeBytes": 13688,
+      "sha256": "ff69f92af7abae62302e0b29e7562d3f7392bc11d95d75e587b4ca6f1ceb8cbe"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ObjectModel.dll",
+      "sizeBytes": 14712,
+      "sha256": "a5d377dbf15d2abe6b00a65ae81766b237354738b275c7a0e2d9466f093cbc20"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.DispatchProxy.dll",
+      "sizeBytes": 13688,
+      "sha256": "69833afb991f90cf22590b9de9aa95ac3aae9bed2b186321ff73fa5790efe08f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.Emit.ILGeneration.dll",
+      "sizeBytes": 14200,
+      "sha256": "125c6aaab34dec8c7799fc99074ab01a42f67e549187f50cad9da2184bd35d32"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.Emit.Lightweight.dll",
+      "sizeBytes": 14200,
+      "sha256": "5e24ed2d22416fca721f54243e4cbc693e6f293904660947067ba1c0288e79fe"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.Emit.dll",
+      "sizeBytes": 14200,
+      "sha256": "b42bfcd22d815a9ab3d2b2e8a425ecc91e50a6e2aa7e3c5cfa2d5b9b9e127c92"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.Extensions.dll",
+      "sizeBytes": 14200,
+      "sha256": "59ec997a2dd047441fbf886691dffe2fe9eff0e549dd5d6241400aa2241c7c23"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.Primitives.dll",
+      "sizeBytes": 14200,
+      "sha256": "ebfd6f084c8741e359358711ae6da4b0a06db2369be8c9defb4d6eb17bc8ee14"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Reflection.dll",
+      "sizeBytes": 14712,
+      "sha256": "00d69622de91ce2e2aeee6c1215debaa721a120d8f59b08e7f4a70796ecf9b3f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Resources.Reader.dll",
+      "sizeBytes": 13688,
+      "sha256": "f73fa653ba6ceb7e7c1d5eeb82d09c77d4101424422ec74f7313a7845cc882c6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Resources.ResourceManager.dll",
+      "sizeBytes": 14200,
+      "sha256": "99ed45baff87bd6723ef8dac8d04d21075627141f7525a1ace95ba1dcba9a964"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Resources.Writer.dll",
+      "sizeBytes": 13688,
+      "sha256": "49e3aaa0b5e6d87c3f1d038877063582811f78ae4fb6d6a8f2cb8920f3782d26"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.CompilerServices.VisualC.dll",
+      "sizeBytes": 14200,
+      "sha256": "a75c6fa50f10ad888663ab694ca2cb45b8379070065e9d558d4c19086be9f28b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Extensions.dll",
+      "sizeBytes": 14200,
+      "sha256": "3cb31bf3acb245a0e409b2e6160e8dfbbe7c26fbd9eeabcc8bf2bb81535cbab9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Handles.dll",
+      "sizeBytes": 14200,
+      "sha256": "aa5fc7ca286d170bfe32dd15663d508bb94e297a52797984a9aa7d8ffddf5ec5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.InteropServices.RuntimeInformation.dll",
+      "sizeBytes": 14200,
+      "sha256": "1ae138913f54d55cea0f40807ee363fdd1ceaf2037f4a029c1d2aca445146183"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.InteropServices.WindowsRuntime.dll",
+      "sizeBytes": 24024,
+      "sha256": "7019a99db764398275bdeb788af79e2904c7ce024539113ce92d0c77f928bbce"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.InteropServices.dll",
+      "sizeBytes": 17272,
+      "sha256": "7e97622025bcbda146408eecbb750345bd373ab9454fb118f11377f215f56400"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Numerics.dll",
+      "sizeBytes": 13688,
+      "sha256": "e0727d00a0dda8280716df9a2019d4e53cf3da0b6339b1ad4d407ba2dd3396fd"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Serialization.Formatters.dll",
+      "sizeBytes": 14200,
+      "sha256": "54c2621c4476473fe95be77a8c91a153c63d6d0cf4912683f6dbc98aae0db85a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Serialization.Json.dll",
+      "sizeBytes": 14200,
+      "sha256": "8c50999e83e5ef46a479498e2010425283b04eb674cf6e9a691f6e1ea39e3b47"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Serialization.Primitives.dll",
+      "sizeBytes": 14712,
+      "sha256": "f35293ebdd0b318f02341da4bc7bb236cf0c8e14e1c7ec8e3cba9cc4db2d2aee"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Serialization.Xml.dll",
+      "sizeBytes": 14712,
+      "sha256": "baac69344e578e064dcc277d93bbe1082a72e5d0c21f04b137a3c343c75ef405"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.Serialization.dll",
+      "sizeBytes": 15224,
+      "sha256": "618f378d908436c7e143ec0ffe95ea791431a728a29815eaa1618ec5906aa05f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Runtime.dll",
+      "sizeBytes": 21880,
+      "sha256": "81be9e3c2938390b15445969128e65e5ff14b80193fc531bce4e9e28a368273a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Claims.dll",
+      "sizeBytes": 14200,
+      "sha256": "ea04a2840cede1e5ee2281442540f5df410c562cf5943277ab938abf30b386e8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Cryptography.Algorithms.dll",
+      "sizeBytes": 14712,
+      "sha256": "39bd261f8befb2334ab3e720c312ead1d584408c29717f8b439371491d0946ae"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Cryptography.Csp.dll",
+      "sizeBytes": 14200,
+      "sha256": "30f289b46935daa1770373812ac97fe2a3d14806051ba28f900cd305967a0ef9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Cryptography.Encoding.dll",
+      "sizeBytes": 14200,
+      "sha256": "2327c771b6f00d194816c7e142ba054b8ee120018295c2d61289dfbf822fbbf7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Cryptography.Primitives.dll",
+      "sizeBytes": 14200,
+      "sha256": "4ce2892fa454e46f7d99411caab18db1595bb3650f8fcbe303851731d889f4cd"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Cryptography.X509Certificates.dll",
+      "sizeBytes": 15224,
+      "sha256": "af66cdf9b9e2ee26174a56aae0bee557edd9a7a61b27a4b99509b338cf68c4b4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.Principal.dll",
+      "sizeBytes": 14200,
+      "sha256": "f7edd00a5f69766356638b9c8692fa7d8ad2465239c5aeb14d9f071f3832a64b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Security.SecureString.dll",
+      "sizeBytes": 14200,
+      "sha256": "fd85a43436a9ed3667df457c6a92721052c29405eba2232b867d3797ca72cb8b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ServiceModel.Web.dll",
+      "sizeBytes": 14200,
+      "sha256": "ef71e6e462f783e8a9ae8d019c7c737256b3d1593659e9831583af4c1b3747e9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Text.Encoding.Extensions.dll",
+      "sizeBytes": 14200,
+      "sha256": "7d88331223deb5e7226b56fe02a2967c8770b7120d3f23a043192a2396d207d3"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Text.Encoding.dll",
+      "sizeBytes": 14200,
+      "sha256": "968665d2b5b1d7a2786b8e35d9df599ac40d45aedc86b3a2ea21ad35bf02f071"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Text.RegularExpressions.dll",
+      "sizeBytes": 14200,
+      "sha256": "d8839d80664bcaffafada263aded6bda805885fc8c1af0a38eb784f8786a3d2e"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.Overlapped.dll",
+      "sizeBytes": 14200,
+      "sha256": "fb48baf7cb0693c44e907b89a8c792cb4b90de258cd9735bef67d9b4dd85e2f1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.Tasks.Extensions.dll",
+      "sizeBytes": 14712,
+      "sha256": "a159ada6a533b86727178129915d53c9c7554b0e55e117fce27b8661f8366f62"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.Tasks.Parallel.dll",
+      "sizeBytes": 14200,
+      "sha256": "69efa79ae26cc823964170b3a23f69c8c2346206f3c2670d8d07f60cd4c19a94"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.Tasks.dll",
+      "sizeBytes": 14712,
+      "sha256": "30984a07e22928be7fbea6fc3518ef0171537652402d5622497f8dd5afcb16f4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.Thread.dll",
+      "sizeBytes": 14200,
+      "sha256": "6822f2724465e7c973ae1f2d5a2e7a5755a816b6847498a855fe9c8d0ed69a0b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.ThreadPool.dll",
+      "sizeBytes": 14200,
+      "sha256": "cdb2e88636ec5e827305d93e008e69cd205675fed0e19115a03288624769e853"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.Timer.dll",
+      "sizeBytes": 13688,
+      "sha256": "e9aa691cef3ec721b26e7d0efc1a960ec7fc5661eb1921e06a0ff0afb52f41b9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Threading.dll",
+      "sizeBytes": 14712,
+      "sha256": "23c49cba7193aa07fea9c840254433461601ad3b7e9d77d97c889a8b671dee62"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Transactions.dll",
+      "sizeBytes": 14712,
+      "sha256": "a518484c7988530007547406cc8d14b1cde92fc26f373d49ea155cab472a6131"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.ValueTuple.dll",
+      "sizeBytes": 14200,
+      "sha256": "1b0ee8e45405c0b4917327b1e44454ffffc63750b7df479a7f6ffbda2a1f92a2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Web.dll",
+      "sizeBytes": 13688,
+      "sha256": "2c1b3298574d95c3232a45a073d39dae0908e89dacfbfb42e4f44ebf06368fe4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Windows.dll",
+      "sizeBytes": 14200,
+      "sha256": "a1bc4b5483e459783cde59c72f9213d13136695ebbba1b9e6093d50d675d741d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.Linq.dll",
+      "sizeBytes": 14200,
+      "sha256": "9649dcf62b2882648a5b5de48b931b8c7080da8e8a96fc853e87801fae8d892d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.ReaderWriter.dll",
+      "sizeBytes": 14712,
+      "sha256": "ae8db24c60c075fc0cd7c30e9aecc7f7de52fa05048d1d09e3ee35653f4c54d5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.Serialization.dll",
+      "sizeBytes": 14712,
+      "sha256": "41738a9f79bbe5dfcf9b5d75960caa091d5b4a7cd276e7176c9d03df260737e7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.XDocument.dll",
+      "sizeBytes": 14712,
+      "sha256": "729c42931e8812e1a993727a0f32c832ebfc3abac2223a5a30c2a8ac1cc9964d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.XPath.XDocument.dll",
+      "sizeBytes": 13688,
+      "sha256": "857621dc44cff6ac7388d828a5a083d99f149901f2bec74993d87ef3cd541b35"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.XPath.dll",
+      "sizeBytes": 14200,
+      "sha256": "ddcb1eb78a567a323b47dc18a9dd63c066000e3cdbb90a4559607dae69ab4be0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.XmlDocument.dll",
+      "sizeBytes": 14712,
+      "sha256": "e683ff6c95f117954a616d304f3b89cb273e8b00b42efef7fe99a48713800645"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.XmlSerializer.dll",
+      "sizeBytes": 14712,
+      "sha256": "6650b822e73bc40af1f242a6d96c2f25397189b8fa778d22ac6a8c5fa2ea58f7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.Xml.dll",
+      "sizeBytes": 21880,
+      "sha256": "1191d6b547783fb32061de561a9379fbe7c788518510cc22c71d3c4646dd65f5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/System.dll",
+      "sizeBytes": 40312,
+      "sha256": "2886c15559ef9f2f2c06389d204176ef86f74344416e680d450ac210d40656aa"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AIModule.dll",
+      "sizeBytes": 48128,
+      "sha256": "3b13f71904318cd58e3cb4ecbf98df203298713a5f531ff5ea4b4e431ca49fb8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AIModule.pdb",
+      "sizeBytes": 19648,
+      "sha256": "f4156cba72f3320819dc39006c1adb1d4489d09c1f8d3feea3bde4230ae49016"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ARModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "f7e9d876645e782da29b61b76801289667945ed690f29650571c6463052e0820"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ARModule.pdb",
+      "sizeBytes": 9596,
+      "sha256": "4bfb19606b91a8b2922e3b224e2a7e06487811b6eb605a272e74221cc873af83"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AccessibilityModule.dll",
+      "sizeBytes": 13312,
+      "sha256": "36ecb21f6480ec9c0d0dc2879e4640334d40b39e531988e5562950aa2a35870f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AccessibilityModule.pdb",
+      "sizeBytes": 10112,
+      "sha256": "757e4def1990e5ab11b7cdd8ee2c6689524b971c538ecb5e67aca58d9acca521"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AndroidJNIModule.dll",
+      "sizeBytes": 84480,
+      "sha256": "a81285e4cf475a47e40224cb7cc80547692b66dd17225ab54df47ebf77bae7c4"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AndroidJNIModule.pdb",
+      "sizeBytes": 44640,
+      "sha256": "3f497f16a75ed1301252695c6fb18c2eebdaaf097856d68073f43604b06c5e13"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AnimationModule.dll",
+      "sizeBytes": 153600,
+      "sha256": "7f329fc53ba65594d97bea0b60feb9a061ad2b6310c20f948db0461321aeda2d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AnimationModule.pdb",
+      "sizeBytes": 52912,
+      "sha256": "e610a7b037b12662179375e8eb8ccfa7a8818c277461018fbda1abdf4e9d5b4a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AssetBundleModule.dll",
+      "sizeBytes": 22528,
+      "sha256": "ea8e19198b8c1ebc8cd133ee87eff3b6f68978935810465ed1942722d1eb88bf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AssetBundleModule.pdb",
+      "sizeBytes": 12896,
+      "sha256": "1a6d94230eba651ddbf5164d6bd813390c5ba4af3e0e2e3e2ce794f5512f6bf7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AudioModule.dll",
+      "sizeBytes": 60928,
+      "sha256": "07991eb3b16f9712c2effa30dc289780df2e460468213a83d735469c9d8c61c0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.AudioModule.pdb",
+      "sizeBytes": 21640,
+      "sha256": "81bc25687e17232e3684ee528cec74bc2b6cd8b045175011bbc363ce50f59496"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ClothModule.dll",
+      "sizeBytes": 15872,
+      "sha256": "2800f87e6b2928c1ab86ec1e315c014347cb2058cb90ffb6e3a422ee26eb6f77"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ClothModule.pdb",
+      "sizeBytes": 9980,
+      "sha256": "f4b15adb360bfdb1118292f53b9d69962f9244733336f5f98453aae7abf1c97a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ClusterInputModule.dll",
+      "sizeBytes": 11264,
+      "sha256": "6298e92b8e32cf1de32ad8630bf6cf6395bd18eee5f52cea1984b170fde87ade"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ClusterInputModule.pdb",
+      "sizeBytes": 8936,
+      "sha256": "6bef5a88f1b6e9ae135e80bac680489465c257ba896f75ddf1ec2245de3ffac5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ClusterRendererModule.dll",
+      "sizeBytes": 11776,
+      "sha256": "5d915ebbd47c7cdcfbb8ba9cd6f4ff269b920fbf93ee176fe3d79ee52f5eb44e"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ClusterRendererModule.pdb",
+      "sizeBytes": 9580,
+      "sha256": "28cbf0f28b9b941d2d8f7161ca0d9dfab9f24aa794cbed5f06e32c346fabd140"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ContentLoadModule.dll",
+      "sizeBytes": 16896,
+      "sha256": "a13cb69f6d0fbd3dd5d3c2655b96f5d4f33e2a3a0abf89d453f7064664e91b05"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ContentLoadModule.pdb",
+      "sizeBytes": 10756,
+      "sha256": "12eee36e64fa994923eeba1a469e201e5fa69dc614bfe63608b113cb583f54cf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.CoreModule.dll",
+      "sizeBytes": 1381888,
+      "sha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.CoreModule.pdb",
+      "sizeBytes": 455880,
+      "sha256": "014b16adac8ce3e4a7ade07571c3b0b092a42351f8c0f21bc6a251bc0ecb66b6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.CrashReportingModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "cd28e278e77705b2b9c29fa6c92e32de52fd2598c7a8c61dd343b97403ae651a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.CrashReportingModule.pdb",
+      "sizeBytes": 9508,
+      "sha256": "faa22eb133a5992f4d927899ef2a7f985d9978edbb5051143598ddef36db2a4c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.DSPGraphModule.dll",
+      "sizeBytes": 18944,
+      "sha256": "9b1c3130177aa103bf23e9d37c58142ec14f626d2aeffa4aa7f474d1a3a324b0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.DSPGraphModule.pdb",
+      "sizeBytes": 10132,
+      "sha256": "c7e93c7cb1fb5f13ef2b04eb2c597f8c87560ec5dc8fad0d4c7e7c84cfcc521a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.DirectorModule.dll",
+      "sizeBytes": 14336,
+      "sha256": "61737964cd210b02a39c9862ac460b32f3d08614e36944a99f4a447b4efa51cc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.DirectorModule.pdb",
+      "sizeBytes": 10228,
+      "sha256": "59c0bd2344d5c512bd17444372ed265df8613d571cdb5c3b7035b8290f521a64"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.GIModule.dll",
+      "sizeBytes": 9728,
+      "sha256": "0370668eda9c0f289cc3452e33336c7fcc23287f9554a81c66e94561b0dba83f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.GIModule.pdb",
+      "sizeBytes": 8848,
+      "sha256": "8bc83acd5ca690cae19289c37807975f13d30954f5305a74019d8ffd864b3b92"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.GameCenterModule.dll",
+      "sizeBytes": 38400,
+      "sha256": "9cc4d1aded1fb76f92870a9566eec035ab85b6d537301c0e5fd97e0d69f85711"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.GameCenterModule.pdb",
+      "sizeBytes": 21204,
+      "sha256": "74904a739e1cd4d68de6650607ca215a6d2c8dfeedcfc06f2c5389cbdfba4a52"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.GridModule.dll",
+      "sizeBytes": 14848,
+      "sha256": "99f466e6be73809b96556d47fbdc5be45dd520c71f6ca32e43786596ed7a2d3f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.GridModule.pdb",
+      "sizeBytes": 9588,
+      "sha256": "129a32fc2604be37d389a1104be645c11438a6824041e15d0325a0ff0f3366b3"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.HotReloadModule.dll",
+      "sizeBytes": 9728,
+      "sha256": "c75636f3feed34c53675e2fe62e9acc71fc1455eef94528f9682803853d419b1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.HotReloadModule.pdb",
+      "sizeBytes": 8848,
+      "sha256": "bf2d5fc8a143808d91563a4607e9631cf665b4b94bd3ae8f10674fd97a4f644b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.IMGUIModule.dll",
+      "sizeBytes": 180736,
+      "sha256": "48e43536b2d0686233279535808327d4d41712242428f32a0d15fff70cdc9aae"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.IMGUIModule.pdb",
+      "sizeBytes": 87284,
+      "sha256": "59db54c3ef9bedefda2c74263031c787735243226d3f543630340689f82c7913"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ImageConversionModule.dll",
+      "sizeBytes": 13824,
+      "sha256": "46f3e81f2b81c9da1a6e76508382e51c6c3b488dc8919c7b93738b9b42221ead"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ImageConversionModule.pdb",
+      "sizeBytes": 9996,
+      "sha256": "9d57370dce21299219a93d8d91f737a081cc3f6210a76727ec49be8c086ff45d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.InputLegacyModule.dll",
+      "sizeBytes": 28672,
+      "sha256": "c47bff57650504b74813461ada0933a39ae37fa2b4b41d75debebdd2a61dd2bb"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.InputLegacyModule.pdb",
+      "sizeBytes": 14808,
+      "sha256": "8d1036206b8a38a2ca4fe400b8e6a96a0929e73d4758e02cc77e5d2e0586355c"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.InputModule.dll",
+      "sizeBytes": 13312,
+      "sha256": "316bc8833bd53bd0b8d7dc3d0bbb53a6dfe6e9b145fc51ca64d626fc4a38c39b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.InputModule.pdb",
+      "sizeBytes": 10216,
+      "sha256": "3b5f6aac24b6ef70d1f1452540939059d0f389d1e5b9cfc1d78f6e4080153b60"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.JSONSerializeModule.dll",
+      "sizeBytes": 11776,
+      "sha256": "5ba82c29099e4165f7f99ac868469135c5d3a8a0b0be6b245ab413e019a69b0f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.JSONSerializeModule.pdb",
+      "sizeBytes": 9476,
+      "sha256": "14a535a4d5766b2f44ceb3a1ba47a8559a2a83e202322a552a9db848804950fa"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.LocalizationModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "d297fa26a9aab23872208cc122e35bd242109cdc1626b2d7d0fa7bec4f214439"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.LocalizationModule.pdb",
+      "sizeBytes": 9244,
+      "sha256": "dc8968ba96bde945c4cd5448d5b481d254d98054850508496463671e39984f0a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ParticleSystemModule.dll",
+      "sizeBytes": 151040,
+      "sha256": "ef6ff7ffd849fabf572d8106a808a53e40cf5a5b54ad7d525ab0f450e8046213"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ParticleSystemModule.pdb",
+      "sizeBytes": 35700,
+      "sha256": "e30d74b5e7e68b90b1e4784e277298a6fd5e216e24003dcf61eb37494b34d640"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.PerformanceReportingModule.dll",
+      "sizeBytes": 10240,
+      "sha256": "8cf850c8970fbc879ea7a16b6a136d90e8fa9207a9ec031d1027a88d1557bc3f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.PerformanceReportingModule.pdb",
+      "sizeBytes": 9056,
+      "sha256": "07762c795971d6f9bb0c3216c3c53ea1560287908e4ef08f4d86f0b29e0ec79d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.Physics2DModule.dll",
+      "sizeBytes": 131072,
+      "sha256": "6784b7db9aac81c4cbf3b2183d87dc1f9e4af285e8697c937c33cc19f7656fa2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.Physics2DModule.pdb",
+      "sizeBytes": 42348,
+      "sha256": "f7266248dcfa9ed67108e72bcc139216a79d59bfa21b3cda26793becc500ce27"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.PhysicsModule.dll",
+      "sizeBytes": 128000,
+      "sha256": "71785542a58fd311700c1c7a8f0674cdf48a4a68b757f9773d053a75dd16a331"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.PhysicsModule.pdb",
+      "sizeBytes": 40820,
+      "sha256": "0e66e08c1ebde33cd079f6825d93bbbfb96e43e0e92bb4edc9deccb67300a092"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ProfilerModule.dll",
+      "sizeBytes": 9728,
+      "sha256": "a59bba0d44854b231308777c5f03054a934a626da7d0de2d7dfd80a8d9fd4e54"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ProfilerModule.pdb",
+      "sizeBytes": 8848,
+      "sha256": "e1dc002b9300916611164b65ac8c8429653cca10c233160b14a9b5044b649854"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.PropertiesModule.dll",
+      "sizeBytes": 143872,
+      "sha256": "20dae9713ba130147b01bd1b95ba37087ea94ef6925659097ba8598973149ebc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.PropertiesModule.pdb",
+      "sizeBytes": 58232,
+      "sha256": "8bb057f9034fc3d1e3a3d33dbd79e645bcf884caafa5b348a994f1709aa67c55"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "sizeBytes": 9728,
+      "sha256": "f53983e826cd20be42285e3d5e7ba56b1b10672d084bc796ba6e6886bd6f35e6"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.pdb",
+      "sizeBytes": 8912,
+      "sha256": "a2ab0fba5e8b8a3c9d788d78ee52b37e20adb4865bd9cd9d4f5ea1503eef8f65"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ScreenCaptureModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "337768a4dc45b9a809d6b83b04ffe9cae44cdb4ffba59dd10d4e35dfd6e3a0d9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.ScreenCaptureModule.pdb",
+      "sizeBytes": 9444,
+      "sha256": "f63cb96344cb86a770de127b142d94c584839abb82908041cdb64dcc0c9535bc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SharedInternalsModule.dll",
+      "sizeBytes": 22528,
+      "sha256": "51271e3212d963bd331d3185b3f2ee5c556ba83495fd4db30e439ed74e8a9986"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SharedInternalsModule.pdb",
+      "sizeBytes": 13832,
+      "sha256": "b6ebdc9b43f0e05ed4bf6633ada374ce253e442f0d5b9671378f775034c3077a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SpriteMaskModule.dll",
+      "sizeBytes": 11264,
+      "sha256": "2db181751c5fc5de1f4ed9cbc90d4698d91c5a05c5fed4165f74443824bb031a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SpriteMaskModule.pdb",
+      "sizeBytes": 8960,
+      "sha256": "496ea939c707e3865e8fcb90da4e1cb9173886453ebdd2e3b9f9f6448b407903"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SpriteShapeModule.dll",
+      "sizeBytes": 15872,
+      "sha256": "498d04a05997c9f1df642786ff3212bde7d2d93372e442393e4add3e718f1e40"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SpriteShapeModule.pdb",
+      "sizeBytes": 10396,
+      "sha256": "282197bf6d9fa4a24a46d51e7f5f903d741e464cfa364c2c45e2fe111973af0f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.StreamingModule.dll",
+      "sizeBytes": 10240,
+      "sha256": "f21512875fa5ab06e6ed4085fe71ec596686434de9d9672a5923877eee1bbafc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.StreamingModule.pdb",
+      "sizeBytes": 8900,
+      "sha256": "482386cd594f1acc6a299921a191bf39293169e0fef972e2a1c13e90926605e0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SubstanceModule.dll",
+      "sizeBytes": 14336,
+      "sha256": "4c2bca7d93ce343d70764e0944bf7cf8ed234a8ada92c83c415c7f4b4c65dced"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SubstanceModule.pdb",
+      "sizeBytes": 11068,
+      "sha256": "d8cde127b82d03d3aa4867bde8c42693057d28f36ffc82397d462f371110d832"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SubsystemsModule.dll",
+      "sizeBytes": 24576,
+      "sha256": "a66dd6fe2e2cc01818b880b6488748ce65dd836e982b708d9e9cdcdee2bc3386"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.SubsystemsModule.pdb",
+      "sizeBytes": 15160,
+      "sha256": "23d052fca2623cf86f4a5fa1d6f2f3816a17839a1ccd801d7e7c3599f587e4b2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TLSModule.dll",
+      "sizeBytes": 16384,
+      "sha256": "063efd22dae9e008e7cc9136195ed71fd7e068322a9357d92a96311eddabe0f1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TLSModule.pdb",
+      "sizeBytes": 8868,
+      "sha256": "9b02c02b84991da006ad6ca20ad274be4b5f17565eec6a5fdb65051d70f0f51d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TerrainModule.dll",
+      "sizeBytes": 90624,
+      "sha256": "38542ea5752dd5476f3c43065378a6dfc4354919170f3f8b4c98b230357e1de7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TerrainModule.pdb",
+      "sizeBytes": 32372,
+      "sha256": "7fd388d8bc75de7d19a6039e5e24662a4e34245808d805b042779522fb9b88ad"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TerrainPhysicsModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "20f07c2dd98d46a1edecf82dff144fed57614769f5055f42679aacfe23674e9b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TerrainPhysicsModule.pdb",
+      "sizeBytes": 9312,
+      "sha256": "f166433f995a5c5d72164ec1a453d8d019fb6bf95eed540846e2edca971aa6ac"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TextCoreFontEngineModule.dll",
+      "sizeBytes": 61952,
+      "sha256": "9a61c9f14f4150209f84605e3387c2864455d75f289db383689e9575efa66934"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TextCoreFontEngineModule.pdb",
+      "sizeBytes": 27248,
+      "sha256": "77937dc9266742441a8222e93e7a826415d473fcf2ec0411a0387d12b327fadc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TextCoreTextEngineModule.dll",
+      "sizeBytes": 238592,
+      "sha256": "59d5dda33d76e4dd3f3908691c5adf85cbb0da926f96a18f523b2d77a1ee197f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TextCoreTextEngineModule.pdb",
+      "sizeBytes": 110804,
+      "sha256": "2a919194ba99135563337f1837d1328d7a00e037a262998979e4b80b391217b9"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TextRenderingModule.dll",
+      "sizeBytes": 28672,
+      "sha256": "28af9c53bdf1e2306a660eb4af0709c0d18e3623f24c1c224777ceaaa9bffbdb"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TextRenderingModule.pdb",
+      "sizeBytes": 14532,
+      "sha256": "9ee6cba202a823f3995864aefe72bf7444e0b4dc766ec7c75c7b16963771419e"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TilemapModule.dll",
+      "sizeBytes": 36352,
+      "sha256": "8605f1b287eac4cb3afb245a6542407356f6d7991d84bce8b85f8970e8a7da38"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.TilemapModule.pdb",
+      "sizeBytes": 18104,
+      "sha256": "469dec94b18a7f076feb0bae450ac9ad7754aac6f07888218cead5937d59fb81"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UIElementsModule.dll",
+      "sizeBytes": 1525760,
+      "sha256": "2f39252006ef45d0ed6f08e6b50f58c2b86b0dc0b3518e7ab4826f11dc71cdbb"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UIElementsModule.pdb",
+      "sizeBytes": 702676,
+      "sha256": "243bd8ff5fdb5e6f529fdb18be6ce8406d950b43b94c11bfcab385d7bbf10a56"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UIModule.dll",
+      "sizeBytes": 26112,
+      "sha256": "7a5394fb9c047b0f492ba592dd9b3441e604d59fb8e9c1fe3e10ea1a6fa6d116"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UIModule.pdb",
+      "sizeBytes": 13116,
+      "sha256": "703e32e1423674ef5e0f6a6d8a5cc54130ae7ca3a7e9e6140a4b81220357edaf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UmbraModule.dll",
+      "sizeBytes": 9728,
+      "sha256": "42a720632de41182b9b18f57f51c269b90acfd8c5d08aa7b84001f93e1a4465b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UmbraModule.pdb",
+      "sizeBytes": 8848,
+      "sha256": "54a05869b82ddd24e3058b1b77d1a34188e13f6c986e7c362181f2ecc930fb09"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "5dfb28aad35a3dc6f85c10c1754a39e7d9c7fcdeb6eec3156a3bbf9a90315131"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityAnalyticsCommonModule.pdb",
+      "sizeBytes": 9276,
+      "sha256": "640660547e6fb919bfb3300e03d1c8399ed96c4eedec10a5c4f292781364a8d7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityAnalyticsModule.dll",
+      "sizeBytes": 34304,
+      "sha256": "651c2799d3dd263cd47c5d38169ac3b5f0c8e3efed5dda8cfc19795a74d7d0da"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityAnalyticsModule.pdb",
+      "sizeBytes": 17224,
+      "sha256": "a4f0936a893cadce68285c39b50eb23555271c5a3ae0a737d8765c8d6e879d6b"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityConnectModule.dll",
+      "sizeBytes": 11264,
+      "sha256": "09529ea3716686a9b5bf866a4b87ee5e05b0c38e9f02e24ee3ae29c9fec0baa5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityConnectModule.pdb",
+      "sizeBytes": 9420,
+      "sha256": "195159ae36d371827d82aba039cafaeee153d4a84727488cf6bd16df0e5a2b27"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityCurlModule.dll",
+      "sizeBytes": 11264,
+      "sha256": "ab3d86c9694ad593a90eae3e6da9190ae110f0f2bab54e1aa37b24a21a44065d"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityCurlModule.pdb",
+      "sizeBytes": 9252,
+      "sha256": "5a5e2d3505c9d1bb27b87fdcc2151938ba4e220822812f89eb40f529ca01c777"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityTestProtocolModule.dll",
+      "sizeBytes": 9728,
+      "sha256": "316148f948a4dca3b6af2eea3a6f5c4b6ace8fc49f53ebce2bd36138b0835024"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityTestProtocolModule.pdb",
+      "sizeBytes": 8912,
+      "sha256": "a7656617ff0851ad0f2923a900b2c85c70f362941d60bc6f762fa5036b8dcf81"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "sizeBytes": 12800,
+      "sha256": "6d16005ca5da241390aeaf7ef89fccaaff1abfd6606239934ce811e8a6e8cefe"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestAssetBundleModule.pdb",
+      "sizeBytes": 10380,
+      "sha256": "c93a12939e85ef4190cc729a75ef21ce0e6f4062e829c228a06995cfb1fc1084"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestAudioModule.dll",
+      "sizeBytes": 12288,
+      "sha256": "2e6f76020b501de1764ab2b586d5940ae3bceee6bf17400dd9784b024e3a6849"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestAudioModule.pdb",
+      "sizeBytes": 10180,
+      "sha256": "c18538bca60f1e03bbe9165194bed8584b607bb1dc9841bc9e78e08df72f327f"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestModule.dll",
+      "sizeBytes": 47616,
+      "sha256": "7905002653bcd7188628afd7f5c3460087772fbde428599f7c78349ab419a979"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestModule.pdb",
+      "sizeBytes": 27360,
+      "sha256": "663223820a77fa9f9d8d302f379bafab9e2513939c9c598adbc6b33fe11c8882"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestTextureModule.dll",
+      "sizeBytes": 11264,
+      "sha256": "06d88f9b3041d7e763dcb562038bcb82fb05f039c2a4459adefc6d31a40fbadc"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestTextureModule.pdb",
+      "sizeBytes": 9940,
+      "sha256": "1b4e2557dd1a82acfc8aa1f4f73912179289827b13ab8323e0435dff1facc3de"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestWWWModule.dll",
+      "sizeBytes": 20992,
+      "sha256": "3dcb326d4a9ca8453a48169cbe64cb43e418dca4a53f3b176d97067c36745b84"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.UnityWebRequestWWWModule.pdb",
+      "sizeBytes": 13300,
+      "sha256": "15323fa4a882a545fc864d37379d2eec46e9b717fb585f6a407d8b636e808791"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VFXModule.dll",
+      "sizeBytes": 48128,
+      "sha256": "821492e4a83fcacfedd494abb2993ef2d14f8611beac6e9d717b29a4f8bd6ba2"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VFXModule.pdb",
+      "sizeBytes": 17452,
+      "sha256": "6f68865994a2c26c8ae3a8b9cd90f2bae1579af03a729f878148e91a297aa719"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VRModule.dll",
+      "sizeBytes": 16384,
+      "sha256": "177adc59863720c82b88ae604edfdd28317f11bd0bebc8843652249546355783"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VRModule.pdb",
+      "sizeBytes": 9912,
+      "sha256": "189631f5b197ad5d298865ecdad6a354086b663385676642cf8e97c01a912f0a"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VehiclesModule.dll",
+      "sizeBytes": 13824,
+      "sha256": "99cc491d16dc927fb0b0d088f5bb8bcd15a0ac6ff95b5298e7214997a368fb95"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VehiclesModule.pdb",
+      "sizeBytes": 10004,
+      "sha256": "27e94e70b16e8da7af13f3aafbb223b346d04988f783ec199ebf9aa48a7a4aaf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VideoModule.dll",
+      "sizeBytes": 30720,
+      "sha256": "9146be477e890ab9c438b9a1f2cf6c13a03358a224ec104eb92e6f245b4bce77"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VideoModule.pdb",
+      "sizeBytes": 13060,
+      "sha256": "228c7503b79e94f833517d92b2232411713a4abf1bef38c2638ceffcd2600dd8"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VirtualTexturingModule.dll",
+      "sizeBytes": 25600,
+      "sha256": "6ca32254fb788e3c2f119a6e9cc48ef3b6ea7d7aa473121ef1d4206ab57f7da0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.VirtualTexturingModule.pdb",
+      "sizeBytes": 13020,
+      "sha256": "f65ab82b86901554ca9404be261164d99eeb5935c66ed9889637c8c24df3d4f0"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.WindModule.dll",
+      "sizeBytes": 10752,
+      "sha256": "64f6bcfaddc613e16e2788be617dd2ec3890428a2d28cd9ad3ac1909c908f0e5"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.WindModule.pdb",
+      "sizeBytes": 8932,
+      "sha256": "31cadcd4e86a46bf46f570ae99b2ec7a1b4dc5aae10793e07e474e620642b7e7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.XRModule.dll",
+      "sizeBytes": 60416,
+      "sha256": "d4fdd0597386aff9f88a0c64776cb82b6749eec3f2502412d0a37bfedd7e5e71"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.XRModule.pdb",
+      "sizeBytes": 22992,
+      "sha256": "e64afafb5734ca1ba6ca6fab0654154f8b5c3e7babaabc6ab5c16a3e3cb6bc35"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.dll",
+      "sizeBytes": 115712,
+      "sha256": "963165524a5925a090d0e6a124fd496675765eee5b326551a88387b80940fdc1"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/UnityEngine.pdb",
+      "sizeBytes": 11640,
+      "sha256": "12a80549ef4fa33016a4ece8495a502d65bbeb78925d9928056382b63b32ffc7"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/mscorlib.dll",
+      "sizeBytes": 47480,
+      "sha256": "fb7ac3d0534282d14c3256e66f8d273ea016055ea1307c0f70021e7a236d6c33"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/References/netstandard.dll",
+      "sizeBytes": 1556344,
+      "sha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/ReflectionBindings/Images/9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27.dll.bytes",
+      "sizeBytes": 4608,
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/ReflectionBindings/configuration.json",
+      "sizeBytes": 14255,
+      "sha256": "6c63b33e5a1fabf1ade113f86c5d50a4d580b7a422318101a08cda16028de0fa"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/assembly-snapshot.json",
+      "sizeBytes": 119385,
+      "sha256": "95b6c9bacd8932c48770be888a3201d1d35e42561218891967fb1578399404cf"
+    },
+    {
+      "path": "external-artifact://candidate-demo/_temp/AssemblyShadow/H1Startup11-Coordinator-20260914T024529Z-FailureFixtures/CompileSnapshot/compiler-mode.json",
+      "sizeBytes": 723,
+      "sha256": "aefb1e4c6775e5c5cbcba266537b934fac4d4e2614517078718ffe0265ea021e"
+    }
+  ],
+  "humanGatePassed": false,
+  "readyForHumanH1": false,
+  "mayEnterR02": false
+}
