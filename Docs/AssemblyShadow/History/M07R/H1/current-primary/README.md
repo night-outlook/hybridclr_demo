@@ -2,45 +2,51 @@
 
 ## Status
 
-Latest Local return: `7be042c6a6b1a73e907a53bcea10a4d1a3b50c03`.
+Latest Local return:
+
+`482d9d5cfe703310e8ea6d980677c73817bad774`
 
 Source anchor remains:
 
 `0388479f7073289e3505b992956a7cbe78c302ce`
 
-V05 has passed. Latest independent M08 is `BLOCKED` on evidence completeness. H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
+Latest independent M08 is `BLOCKED` by one count Launch/Raw evidence gap.
+
+H1 remains `InProgress`; `humanGatePassed=false`; `mayEnterR02=false`.
 
 ## Primary work in this cycle
 
-No executable/runtime source was changed.
+No source or tool code changed.
 
-Primary built the evidence closure required by M08 under:
+Primary rejected two unsafe/incomplete alternatives:
 
-`m08-evidence-closure-20260925/`
+- reconstructing missing 12cf launch/raw bytes that are not retained;
+- swapping the current source-pin file to make historical build receipts pass current launch verification.
 
-It contains:
+Instead Primary defined a fresh, source-038 count-only execution protocol:
 
-- content-addressed recovery of the prior M08/finding ledgers from immutable Git;
-- later provenance-bound 12cf count/reproduction evidence;
-- exact historical 925e Handoff reconstruction;
-- historical manifest successor index;
-- prior-finding successor map;
-- whole-H1 suite-specific reuse bridge.
+`COUNT_MATRIX_CLOSURE_CONTRACT.md`
 
-All 12 recovered historical copies were verified in Primary to have the exact same Git blob IDs as their original immutable Git objects.
+Protocol ID:
+
+`H1CountMatrixClosureSource038-v1`
+
+It uses existing fixture/build/matrix/verifier tooling, authorizes only count diagnostic Players, and requires full retention of the evidence layers that 12cf lost.
 
 ## Next Local cycle
 
-Run only evidence-closure validation if source 038 → final HEAD is metadata-only:
+Run:
 
-1. source/handoff preflight;
-2. authenticate recovered historical origins;
-3. authenticate historical manifest successor index;
-4. authenticate whole-H1 suite bridge per suite;
-5. rerun independent M08.
+- fresh source-038 fixtures;
+- fresh provenance-bound diagnostic builds;
+- fresh 132-cell count matrix;
+- strict aggregate verification;
+- complete matrix/build evidence sealing;
+- whole-H1 closure V2;
+- independent M08.
 
-Do not rerun Players, V04, or V05 unless source authority unexpectedly changes.
+Five older suites remain accepted `ReusedAudited` and must not be rerun.
 
-M08 PASS means only `ReadyForHumanReviewGate`.
+Do not rerun V04/V05/performance.
 
 Do not begin R02.
