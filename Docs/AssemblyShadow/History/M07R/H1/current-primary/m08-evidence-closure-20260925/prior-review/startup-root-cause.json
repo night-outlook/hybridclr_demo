@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "H1StartupFixtureRootCause",
+  "status": "Blocked",
+  "analyst": "/root/h1_fixture_diagnosis_gpt6astra_high_1",
+  "access": "ReadOnly",
+  "rootCause": "Fresh compilation includes witness-bearing H1 Bootstrap code while fixture generation targets the older frozen Bootstrap with no H1 exact-site acquisition contract.",
+  "directFailure": "UnboundedManagedAcquisition at H1CountEarlyStartup.LoadOrdinaryWitness Assembly.Load(byte[])",
+  "frozenBootstrapSha256": "df0838c7337571d741e642b43f2d334a9467be1ed4219cbc7686dfccdc0aa292",
+  "freshBootstrapSha256": "b58851c3c3a83d71ee5c5162fb35394b4ded4a9a8583b156ceb183f21c3d0de2",
+  "reflectionConfigurationSha256": "6c63b33e5a1fabf1ade113f86c5d50a4d580b7a422318101a08cda16028de0fa",
+  "reflectionConfigurationObservation": "Both snapshots use schema 4 without H1 sites",
+  "requiredCorrection": "For current witness-bearing candidate, register exact FixedAssemblyBytes binding preserving pinned identity, compiler variants and enforced transformation; freeze a new baseline and build corresponding Players, fixtures, replay and provenance-bound acceptance evidence.",
+  "notSufficient": [
+    "Runtime hash checking alone",
+    "Prose dependency exemption or weakened validation",
+    "Generating fixtures against historical Bootstrap then claiming current candidate acceptance",
+    "Editor-only adjustment against unchanged old baseline"
+  ],
+  "designGap": "Diagnostic changes entered shared fixed Bootstrap without updated compiled acquisition contract or replacement baseline.",
+  "verification": [
+    "Source/log inspection",
+    "Python JSON/SHA-256 and DLL-name comparisons"
+  ],
+  "notVerified": [
+    "Exact semantic diff",
+    "Corrected build behavior"
+  ],
+  "failureAttempt": "https://github.com/night-outlook/hybridclr_demo/blob/codex/assembly-shadow-r01b-h1/Docs/AssemblyShadow/M07R/R01B/H1-Remediation/transfer/coordination-snapshot/coordinator-20260914T024529Z/startup-fixture-attempt.json",
+  "humanGatePassed": false,
+  "readyForHumanH1": false,
+  "mayEnterR02": false
+}
