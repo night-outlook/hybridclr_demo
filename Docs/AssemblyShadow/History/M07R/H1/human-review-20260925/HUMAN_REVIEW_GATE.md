@@ -8,7 +8,7 @@
 
 ## 1. 审查结论
 
-**工程建议：以 `PassedWithExplicitDeferredRisk` 关闭 H1，但必须先取得第 9 节 D1、D2 的明确风险处置决定。当前尚未通过 H1，也未授权 R02。**
+**最终结论：H1 以 `PassedWithExplicitDeferredRisk` 关闭。用户已明确选择 `D1=A，D2=A`，因此 `humanGatePassed=true`、`mayEnterR02=true`。R02 仅具备进入资格，本次未启动 R02。**
 
 本次已完成针对所列材料的 design → plan → 相关源码 → 测试与证据 → 性能和范围限制的委托审查。它不是重新执行所有测试，也不冒充 C10 中独立 `code-gate-reviewer` 的审查。新增源码核对是第 3 节列明的定点审查；其余完整执行链采用已提交的 Local Validation 和独立 M08 证据，保留其原有范围。
 
@@ -17,21 +17,22 @@
 - 最新独立 M08 为 `MILESTONE PASS`，原三个证据阻塞已有可追踪的后继处置。新 count 执行补上了原先缺失的 Launch/Raw 层；不能把旧 12cf 记录改写为通过。[S02–S05]
 - 六套必需 suite 的当前闭合方式是 **一套 FreshCurrentSourceExecution + 五套 AcceptedReusedAudited**，不是六套重新运行。[S03]
 - 在已核对的源码和所选证据范围内，没有发现需要重新打开已关闭 count/容量/恢复问题的新阻塞性证据；这不是对四仓库全部代码或未测平台的无缺陷保证。
-- 性能可比性成立，但 P01/P03 的暖态操作耗时和 RSS 存在实测退化；没有产品 SLA 不代表这些代价自动合格。两项风险需要用户选择接受为研发阶段延期项，或继续阻塞 H1。[S06–S08]
+- 性能可比性成立，但 P01/P03 的暖态操作耗时和 RSS 存在实测退化；没有产品 SLA 不代表这些代价自动合格。用户已明确接受 D1/D2 为研发阶段延期风险，关闭条件转移为 R02 处置并在 H2 前复核。[S06–S08]
 - live `Plan/CURRENT_STATUS.md` 滞后于最新 Local return。该文档应随本次报告更正为 M08 PASS、H1 等待风险决策；历史 checkpoint、V05、独立 review 和 Local 所有的报告保持不变。
 
 当前状态：
 
 ```text
-reviewDisposition = ReviewCompletedAwaitingUserDecision
-recommendedHumanGateVerdict = PassedWithExplicitDeferredRisk
-H1 = ReadyForHumanReviewGate
+reviewDisposition = Completed
+humanGateVerdict = PassedWithExplicitDeferredRisk
+H1 = PassedWithExplicitDeferredRisk
 M08Passed = true
-humanGatePassed = false
-mayEnterR02 = false
+humanGatePassed = true
+mayEnterR02 = true
+R02Started = false
 ```
 
-`reviewDisposition` 只是本报告的处理状态，不是新增的规范性 gate 枚举。上述建议不能被执行 agent 当成已经批准的 gate。
+用户决定已单独记录于 `HUMAN_REVIEW_DECISION.md`，首次记录提交为 `da4668d456763559d624e561cb265608d9ea443a`。该决定只关闭 H1，并不构成 R02 已开始、性能 SLA 已通过或 release 已批准。
 
 ## 2. 固定版本与工作区
 
@@ -178,8 +179,8 @@ readiness 的改善不能与每次方法调用的退化相互抵销：它们是�
 
 | ID | 类型 / 重要性 | 处置与关闭条件 |
 | --- | --- | --- |
-| H1-GR-01 | 暖态性能退化；用户风险决定 | D1。建议允许研发阶段延期，但 R02 必须定位和配对复测；在进入 H2 审查前提交结果及剩余代价，不能直接拖到 M11 才首次解释 |
-| H1-GR-02 | 额外 RSS；用户风险决定 | D2。建议允许研发阶段延期，但 R02 分离 codec 常驻存储、native allocation/cache、managed 与 process RSS 的测量；不能未经实验证明就认定泄漏或固定 19 MiB 常数 |
+| H1-GR-01 | 暖态性能退化；已接受延期风险 | **D1=A**。H1 不再阻塞；R02 必须定位和配对复测，在进入 H2 审查前提交结果及剩余代价，不能直接拖到 M11 才首次解释 |
+| H1-GR-02 | 额外 RSS；已接受延期风险 | **D2=A**。H1 不再阻塞；R02 分离 codec 常驻存储、native allocation/cache、managed 与 process RSS 的测量；不能未经实验证明就认定泄漏或固定 19 MiB 常数 |
 | H1-GR-03 | live coordination 文档滞后；文档一致性问题 | 更正 live CURRENT_STATUS，明确最新 M08 PASS、两个决定待处理。保留旧状态的 Git 历史及 immutable checkpoints；不重新写 Local 所有的验证报告 |
 | H1-GR-04 | 审查可访问性 / 保留范围；运行约束 | 七归档、四 candidate build roots、历史复用及性能原始证据继续保留。外部字节当前由 Local/C10 认证，后续不能用本报告替代其保存或复验 |
 
@@ -187,11 +188,11 @@ readiness 的改善不能与每次方法调用的退化相互抵销：它们是�
 
 另见 `InterpreterMetadataIndexCodec.h` 开头“not yet wired into the runtime”注释，与本次读取的实际 runtime adapter 已接入状态不一致。这属于旧注释滞后，不是证明实现未接入的证据。建议在后续授权的源码维护周期更正；本次不改 native pin，也不为注释更改触发新的安装/构建链。
 
-## 8. 若用户接受延期，后续工作的明确边界
+## 8. H1 通过后的后续工作边界
 
-以下是有条件的执行约束，不是本次启动 R02 的授权：
+以下执行约束随 `PassedWithExplicitDeferredRisk` 生效，但本次仍不启动 R02：
 
-1. 先追加不可歧义的用户决定记录，绑定本报告的 Git 版本、四仓库审查 tuple、D1/D2 选择和延期关闭条件，再更新 live gate 状态。历史 Local/M08 文档不回写为“当时人工已经批准”。
+1. 用户决定已记录于 `HUMAN_REVIEW_DECISION.md`，绑定本报告版本、四仓库审查 tuple、D1/D2 选择和延期关闭条件。历史 Local/M08 文档不回写为“当时人工已经批准”。
 2. 下一 Primary Implementation 周期只进入既有 R02 范围，建立现状 B 与 R02 候选的受控对照；同时保留 A 的历史 reference，避免移动参照掩盖回归。源码/构建变化后，旧性能 series 仍是旧 source 身份。
 3. CPU 诊断区分 definition scans、layout proofs、cache hits、临时 native allocation、guard 和 observation contention；不得通过关闭必要 baseline-use/poison/上下文检查取得表面性能收益。
 4. 内存记录 before/after、常驻容量结构、native 与 managed 字节、RSS 和 lifetime peak 的各自语义；对根因只作证据支持的归因。
@@ -199,18 +200,16 @@ readiness 的改善不能与每次方法调用的退化相互抵销：它们是�
 6. R02 退出时提供性能解释、优化前后数据、负向测试和剩余风险；若代价仍无法接受，停止推进并返回同一风险决定。H2 审查必须看到其处置，不能把 H1 延期理解为永久豁免。
 7. 保留 roadmap 的后续 Human Review Gates、M10 平台/生产集成以及用户要求的 X01 独立能力。H1 不缩减既定容量目标，不授予 release 结论，不自动批准后续阶段。
 
-## 9. 一次性用户决策单
+## 9. 用户决策（已完成）
 
-仅以下两项需要用户选择；容量、计数域、已有平台计划和普通工程修正不重复询问。
+用户于 2026-09-25 明确回复 `D1=A，D2=A`。容量、计数域、已有平台计划和普通工程修正均保持既有决定。
 
 | 决定 | A：建议选项 | B：不接受延期 |
 | --- | --- | --- |
 | D1：暖态耗时 | 接受本报告中 P01/P03 allocation +13.34/+15.01%、reflection +26.57/+27.59%、closedGeneric +20.42/+22.09% 作为 **H1 研发阶段显式延期风险**；R02 定位/优化/受控复测，进入 H2 审查前提交处置。不等于性能 SLA 通过 | H1 保持未通过；先制定并授权局限于该性能问题的修复与验证方案，再重新关闭 H1；不能借机启动完整 R02 |
 | D2：RSS | 接受 P01/P03 before-benchmark RSS 边际中位数增加 **18.2109/19.1563 MiB** 作为 **H1 研发阶段显式延期风险**；R02 解释和复测；生产设备 RAM 预算仍须在后续目标平台验证前明确 | H1 保持未通过；先处理内存代价并提供可接受证据，再重新关闭 H1 |
 
-可回复：`D1=A，D2=A`，或逐项选择 B 并给出要求。
-
-两个 A 都明确成立，才具备记录 `PassedWithExplicitDeferredRisk`、将 humanGatePassed 置 true 并允许下一授权周期进入 R02 的条件。任何 B 或未回答均保持 `humanGatePassed=false`、`mayEnterR02=false`。不要求用户现在凭空给出一个生产性能阈值；这里询问的是有范围、有截止审查点的研发风险接受。
+最终选择为两个 A，因此本 Gate 记录为 `PassedWithExplicitDeferredRisk`，`humanGatePassed=true`、`mayEnterR02=true`。D1/D2 仍不是生产 SLA 或 release 验收；它们的延期关闭义务在 R02/H2 边界继续有效。
 
 ## 10. 版本绑定来源与复核入口
 
@@ -238,4 +237,4 @@ C09 的其它重要绑定：fresh count closure `1e70e5450c3eac7d05c281699d6c781
 
 GitHub Connector 的 contents API 写入路径已在本会话前一轮通过四仓库 disposable commit/read-back smoke test。保留的临时分支 `codex/connector-smoke-20260925-pio-7f6d2a91` 不是产品或交付版本，不能合并；当前 Connector 未提供分支删除操作。它们的存在不授予产品验收。
 
-**停止点：报告已形成，等待 D1/D2 的一次性批量答复。不运行新的 Player，不进入 R02，不代填用户的最终风险选择。**
+**停止点：H1 已按用户决定关闭为 `PassedWithExplicitDeferredRisk`。本次不运行新的 Player、不启动 R02；下一 Primary Implementation 周期可在明确启动后进入既有 R02 范围。**
