@@ -1,0 +1,41 @@
+name: R02 pinned source snapshot
+on:
+  push:
+    branches: [codex/r02-source-snapshot-20260925-6bd814]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Export immutable public sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p snapshot
+          while read -r repo revision; do
+            git init --quiet "$repo"
+            git -C "$repo" remote add origin "https://github.com/night-outlook/$repo.git"
+            git -C "$repo" -c protocol.version=2 fetch --quiet --depth=1 --filter=blob:none origin "$revision"
+            test "$(git -C "$repo" rev-parse FETCH_HEAD)" = "$revision"
+            if test "$repo" = hybridclr_demo; then
+              git -C "$repo" archive --format=tar "$revision" Tools Assets/AssemblyShadowDemo ProjectSettings Packages Docs/AssemblyShadow/Plan Docs/AssemblyShadow/Handoff Docs/AssemblyShadow/README.md Docs/AssemblyShadow/History/M07R/H1/human-review-20260925 > "snapshot/$repo.tar"
+            else
+              git -C "$repo" archive --format=tar "$revision" > "snapshot/$repo.tar"
+            fi
+            git -C "$repo" ls-tree -r "$revision" > "snapshot/$repo.git-tree.txt"
+            printf '%s %s\n' "$repo" "$revision" >> snapshot/source-pins.txt
+          done <<'PINS'
+          hybridclr_demo a8d2c02c636ee9276d6cf12a54ee3e0626a5c49e
+          hybridclr 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad
+          hybridclr_unity 0ea633a2c5b936b5af69d944593c55bd2783fca9
+          il2cpp_plus 6be7f38bec2fa4677d24efc1a4a1294240789933
+          PINS
+          (cd snapshot && sha256sum *.tar *.txt > MANIFEST.sha256)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r02-source-snapshot
+          path: snapshot/
+          retention-days: 7
+          compression-level: 6
