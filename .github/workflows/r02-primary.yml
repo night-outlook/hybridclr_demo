@@ -1,0 +1,99 @@
+name: R02 Primary native and tooling validation
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r02-primary.yml'
+      - 'Tools/AssemblyShadow/R02/**'
+      - 'Docs/AssemblyShadow/Handoff/r02-source-targets.json'
+permissions:
+  contents: read
+jobs:
+  primary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Resolve pinned native input
+        id: pins
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          target = Path('hybridclr_demo/Docs/AssemblyShadow/Handoff/r02-source-targets.json')
+          # Bootstrap export is a source artifact, never runtime acceptance.
+          pin = '6be7f38bec2fa4677d24efc1a4a1294240789933'
+          if target.exists():
+              pin = json.loads(target.read_text())['repositories']['il2cpp_plus']['commit']
+          if len(pin) != 40 or any(c not in '0123456789abcdef' for c in pin):
+              raise SystemExit('Invalid exact il2cpp_plus pin')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('il2cpp=' + pin + '\n')
+          PY
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: ${{ steps.pins.outputs.il2cpp }}
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 0ea633a2c5b936b5af69d944593c55bd2783fca9
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Native and tooling tests when implementation is present
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/r02-primary/results"
+          if test -f hybridclr_demo/Tools/AssemblyShadow/R02/run_primary.py; then
+            python3 hybridclr_demo/Tools/AssemblyShadow/R02/run_primary.py --il2cpp-root "$GITHUB_WORKSPACE/il2cpp_plus" --output "$RUNNER_TEMP/r02-primary/results"
+          else
+            printf '%s\n' 'BootstrapSourceExportOnly: implementation tests not yet present; no acceptance claimed.' > "$RUNNER_TEMP/r02-primary/results/BOOTSTRAP_ONLY.txt"
+          fi
+      - name: Export exact source inputs and Git identities
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess, tarfile
+          from pathlib import Path
+          out = Path(os.environ['RUNNER_TEMP'])/'r02-primary'
+          out.mkdir(parents=True, exist_ok=True)
+          entries=[]; repos={}
+          suffixes={'.cs','.csproj','.asmdef','.meta','.py','.ps1','.h','.hpp','.cpp','.c','.json','.yml','.md','.txt','.xml','.yaml','.asset'}
+          with tarfile.open(out/'source-inputs.tar.gz','w:gz') as archive:
+              for name in ('hybridclr_demo','hybridclr','hybridclr_unity','il2cpp_plus'):
+                  root=Path(name)
+                  if not (root/'.git').exists(): continue
+                  head=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()
+                  repos[name]=head
+                  paths=subprocess.check_output(['git','-C',str(root),'ls-files','-z']).decode().split('\0')
+                  for relative in paths:
+                      if not relative: continue
+                      path=root/relative
+                      if name=='hybridclr_demo' and not relative.startswith(('Tools/AssemblyShadow/','Assets/AssemblyShadow','ProjectSettings/','Packages/','.github/')): continue
+                      if path.suffix not in suffixes or path.is_symlink() or not path.is_file(): continue
+                      raw=path.read_bytes()
+                      archive.add(path,arcname=str(path),recursive=False)
+                      entries.append({'repository':name,'path':relative,'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'gitBlob':hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()})
+          (out/'source-inventory.json').write_text(json.dumps({'kind':'R02PrimarySourceArtifact','repositories':repos,'files':entries,'runtimeAcceptance':False},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r02-primary-${{ github.sha }}
+          path: ${{ runner.temp }}/r02-primary
+          retention-days: 14
+          if-no-files-found: error
