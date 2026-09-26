@@ -1,6 +1,6 @@
 # Current Status
 
-Updated: 2026-09-25 after the user-initiated delegated H1 review.
+Updated: 2026-09-25 after explicit user acceptance of H1 deferred risks D1 and D2.
 
 - H1 source anchor: `0388479f7073289e3505b992956a7cbe78c302ce`.
 - Latest Local return commit: `2cbf68658a5b73189930fcdfe250835b72639515`.
@@ -8,20 +8,24 @@ Updated: 2026-09-25 after the user-initiated delegated H1 review.
 - Independent M08 reviewed checkpoint HEAD: `3754d35bed4efa62e16401453aa4f7edec185355`.
 - V05: `SuccessorEvidenceBoundForIndependentM08`; classifications and historical bytes unchanged.
 - Latest independent M08: **MILESTONE PASS, zero findings**.
-- Gate: **H1 / ReadyForHumanReviewGate**.
-- Delegated review disposition: **ReviewCompletedAwaitingUserDecision**.
-- Recommended final human verdict: `PassedWithExplicitDeferredRisk`, subject to both decisions below.
+- Gate: **H1 / PassedWithExplicitDeferredRisk**.
+- Delegated review disposition: **Completed**.
+- Final human verdict: `PassedWithExplicitDeferredRisk`.
+- User decision: `D1=A，D2=A`.
 - M08 passed: `true`.
-- Human gate passed: `false`.
-- May enter R02: `false`.
+- Human gate passed: `true`.
+- May enter R02: `true`.
+- R02 started: `false`.
 
-`ReviewCompletedAwaitingUserDecision` describes the review workflow; it is not a new normative gate verdict. A recommendation is not an approved gate.
+The H1 decision is bounded to the reviewed R01/R01B scope. It is not a production performance SLA, release acceptance, or approval of later Human Review Gates.
 
 ## Read first
 
 [Delegated H1 review and batched decision sheet](../History/M07R/H1/human-review-20260925/HUMAN_REVIEW_GATE.md)
 
 Report publication commit: `9c76243ca8667934855ec52a0431b9e50f5405b4`.
+
+Explicit decision record: [HUMAN_REVIEW_DECISION.md](../History/M07R/H1/human-review-20260925/HUMAN_REVIEW_DECISION.md), first recorded at `da4668d456763559d624e561cb265608d9ea443a`.
 
 The report records its exact four-repository input tuple, Local checkout paths, source inspection scope, evidence classifications, measured performance, limitations, and conditional next-stage obligations. It does not rerun or replace Local Validation or the independent M08 reviewer.
 
@@ -54,16 +58,14 @@ Whole-H1 evidence classifications remain:
 
 The historical 12cf count archive remains blocked in its original record. Its missing launch/raw layer is replaced for current acceptance by the new source-038 execution, not reconstructed or relabeled. The earlier 925e effective 293/293 and 6913 explicit 29 verified plus 1 unavailable/excluded dispositions remain unchanged.
 
-## Remaining user decisions
+## Accepted deferred risks
 
-The full measured source-038 analysis of immutable source-27df performance execution remains `ComparabilityPassed`, not an automatic performance acceptance.
+The full measured source-038 analysis of immutable source-27df performance execution remains `ComparabilityPassed`; the user explicitly accepted its two H1 development-stage residual risks:
 
-- **D1 — warm-operation cost:** accept measured P01/P03 allocation, reflectionInvoke and closedGeneric regressions as an explicit H1 development-stage deferred risk with R02 investigation/controlled remeasurement and disposition before H2 review, or keep H1 closed pending bounded performance remediation.
-- **D2 — RSS:** accept before-benchmark RSS marginal-median increases of 18.2109 MiB / 19.1563 MiB for P01/P03 as an explicit H1 development-stage deferred risk with R02 attribution/remeasurement, or keep H1 closed pending memory remediation.
+- **D1=A — warm-operation cost:** P01/P03 allocation, reflectionInvoke and closedGeneric regressions are accepted for H1 only, with R02 investigation/controlled remeasurement and disposition required before H2 review.
+- **D2=A — RSS:** P01/P03 before-benchmark RSS marginal-median increases of 18.2109 MiB / 19.1563 MiB are accepted for H1 only, with R02 attribution/remeasurement required; production-device RAM budgets remain a later platform-validation requirement.
 
-Both recommended choices are A in the report. Neither choice has yet been supplied by the user. These are not production SLAs or release acceptance. The already selected 8192-image process-lifetime / 32 MiB individual / 512 MiB total / at least 25% usable-index headroom contract is unchanged and is not being re-asked.
-
-Only after both risks have an explicit accepted disposition, bound to the report and reviewed source tuple in a committed decision record, may the human gate be recorded as `PassedWithExplicitDeferredRisk` and R02 become eligible. Any rejection or missing answer keeps `humanGatePassed=false` and `mayEnterR02=false`.
+These decisions are not production SLAs or release acceptance. The already selected 8192-image process-lifetime / 32 MiB individual / 512 MiB total / at least 25% usable-index headroom contract is unchanged.
 
 ## Source and evidence preservation
 
@@ -79,8 +81,8 @@ Preserve `_temp/AssemblyShadow/H1CountClosure038-20260925B/`, its seven archives
 
 ## Required next action
 
-Receive the user's single batched D1/D2 decision. Record the actual choices without inventing approval. Do not repeat the already completed count program merely because the earlier WEB_TO_LOCAL execution contract still describes its pre-run objective.
+H1 is closed. No additional H1 Local Validation run is required solely for the documentation-only decision recording, and the completed count program must not be repeated merely because the older WEB_TO_LOCAL contract still describes its pre-run objective.
 
-No new Local Validation run is requested by this review. No R02 implementation, source refactor, evidence cleanup, or release work is authorized by this document.
+R02 is now eligible to begin in a subsequent explicitly initiated Primary Implementation cycle. That cycle must follow the existing R02 plan and carry D1/D2 closure obligations forward. No R02 source implementation, evidence cleanup, or release work is part of this status update.
 
-**Stop pending user risk decisions. Do not begin R02.**
+**Stop here. H1 is complete; R02 is eligible but not started.**
