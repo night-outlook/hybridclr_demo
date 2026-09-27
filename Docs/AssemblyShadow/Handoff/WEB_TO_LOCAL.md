@@ -16,16 +16,16 @@ Run `R02LocalBatch-v1` against fresh source-bound H1-runtime control and R02 can
 
 Read `Docs/AssemblyShadow/README.md`, this file, `Docs/AssemblyShadow/History/M07R/R02/DESIGN.md`, `Docs/AssemblyShadow/History/M07R/R02/LOCAL_VALIDATION_TASKS.md`, and `Docs/AssemblyShadow/History/M07R/R02/source-targets.json`.
 
-H1 remains `PassedWithExplicitDeferredRisk` following D1=A and D2=A. R02 is not accepted. The candidate demo **source anchor** is `5cbc4eb7df616ba3fefe0331cebb70630072a233`. Use the exact **final pushed transport HEAD** supplied by the Primary handoff prompt; do not substitute the source anchor as a complete handoff. The source-to-HEAD executable delta must be empty under the unchanged `shadow_tools.metadata_only` policy.
+H1 remains `PassedWithExplicitDeferredRisk` following D1=A and D2=A. R02 is not accepted. The candidate demo **source anchor** is `82d64ce415c062729f0082e81c1808eaac9602e4`. Use the exact **final pushed transport HEAD** supplied by the Primary handoff prompt; do not substitute the source anchor as a complete handoff. The source-to-HEAD executable delta must be empty under the unchanged `shadow_tools.metadata_only` policy.
 
 | Repository | Candidate checkout | Branch | Source commit |
 | --- | --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `5cbc4eb7df616ba3fefe0331cebb70630072a233` |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `82d64ce415c062729f0082e81c1808eaac9602e4` |
 | night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` |
 
-Control demo checkout: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo`, branch `codex/r02-h1-runtime-control`, exact published HEAD `f0c3cc5f7380c6387911538f9f0bfb2edcb8cefc`. Its executable demo source is the same `5cbc4eb7df616ba3fefe0331cebb70630072a233`. Its three owning sibling checkouts use HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. All three control runtime/package checkouts may be detached at their exact commits; the metadata authority checks their remote branch identities. IL2CPP control remote branch is `codex/assembly-shadow-r01b`. Never install R02 native code into the control workspace or the historical R01 reference.
+Control demo checkout: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo`, branch `codex/r02-h1-runtime-control`, exact published HEAD `5370d46b126390a87d91847ad6b90a9e195bcb5f`. Its executable demo source is the same `82d64ce415c062729f0082e81c1808eaac9602e4`. Its three owning sibling checkouts use HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. All three control runtime/package checkouts may be detached at their exact commits; the metadata authority checks their remote branch identities. IL2CPP control remote branch is `codex/assembly-shadow-r01b`. Never install R02 native code into the control workspace or the historical R01 reference.
 
 Canonical remotes are `https://github.com/night-outlook/<repository>.git`. Preserve any existing unrelated worktrees; new control worktrees must use unused absolute paths and the specified owning repositories, not copies of generated outputs.
 
