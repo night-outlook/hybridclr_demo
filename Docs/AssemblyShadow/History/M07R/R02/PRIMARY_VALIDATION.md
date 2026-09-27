@@ -1,82 +1,65 @@
-# R02 Primary Validation — repaired build boundary
+# R02 Primary Validation — successor to batch D
 
-Status: **Passed for Primary host/source scope; Unity/Player runtime acceptance remains Local Validation.**
+Result: **Passed for the bounded Primary host/source scope. Awaiting real Local Validation.**
 
-## Authority
+## Exact authority and publication
 
-- Local return input: `621216751ade64aa39f28ed44a5acdc15c38c6cc`.
-- Repaired executable/tool source anchor: `82d64ce415c062729f0082e81c1808eaac9602e4`.
-- Candidate runtime pins:
-  - hybridclr `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`;
-  - hybridclr_unity `0ea633a2c5b936b5af69d944593c55bd2783fca9`;
-  - il2cpp_plus `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`.
-- Matched H1-runtime control: `codex/r02-h1-runtime-control@6c950eaa98f995084750fe1ea8f80cfe4c59c61b`, using H1 il2cpp_plus `6be7f38bec2fa4677d24efc1a4a1294240789933`.
-- Candidate/control comparison from source anchor to control head differs only in `ProjectSettings/AssemblyShadowSourcePins.json`; the control head has the repaired source anchor as an explicit merge parent.
-- Candidate post-anchor transport delta is limited to `Docs/AssemblyShadow/**` and `ProjectSettings/AssemblyShadowSourcePins.json`, which are metadata-only under the existing source authority policy.
+- Input Local return: `39dd8213f0a93a2ebde4bdbe982ead4214e9b2eb`.
+- Executable/tool source anchor: `57a9470bf299af60f88112998c8326c4c013204a`.
+- CI-tested candidate authority commit: `96ec97221439ab1ca8964acaf5bf2b5b16e2dcda`.
+- Matched H1-runtime control: `codex/r02-h1-runtime-control@a379f0b809a5d8af967df06fc83271d90fd84f4c`.
+- Candidate HybridCLR/package/IL2CPP: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / `0ea633a2c5b936b5af69d944593c55bd2783fca9` / `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`.
+- Control IL2CPP remains `6be7f38bec2fa4677d24efc1a4a1294240789933`; the other two runtime/package pins match the candidate.
 
-## Repaired boundaries
+Control includes the source anchor as explicit Git ancestry and differs from its tree only in `ProjectSettings/AssemblyShadowSourcePins.json`. Candidate transport changes after the source anchor are documentation and the source-pin file only. No source-policy allowlist was broadened. The final handoff prompt must use the latest pushed documentation transport HEAD, not the earlier source or CI commit.
 
-The Local A/B/C evidence exposed two build-boundary defects. Primary implemented both:
+## Review of the returned problems
 
-1. **Owned Unity/Roslyn completion.** Long Unity/PowerShell build commands run under `unity_session.py`, which retains the real command exit, identifies only the exact command-owned Unity `VBCSCompiler.dll`, reauthenticates PID/group/start identity before signaling, performs bounded TERM/KILL retirement, and still requires the unchanged outer no-survivor check. Unknown descendants or changed identities fail closed.
-2. **Workspace-local M00 ordinary input.** Candidate and control independently compile and authenticate the frozen M00 ordinary DLL in their own workspaces before M07. The frozen SHA-256 `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27` is unchanged; no candidate-to-control copy, hash rewrite, M00 Configure, or fallback is allowed.
+Read `D_COMPLETION_REPAIR.md` for design, official platform references and test mapping.
 
-The legacy H1 workflow was also corrected after R02 source evolution. The original 387 H1 tests are partitioned without omission: 381 reusable current contracts plus three explicit R02 rejection tests run against current source, while six fixed-H1 positive tests run against an authenticated disposable checkout at H1 checkpoint `2cbf68658a5b73189930fcdfe250835b72639515`. The fixed fixture checkout uses deterministic `git checkout -B`; it does not alter H1 verifiers or historical evidence.
+| Finding | Primary disposition | Remaining verification |
+| --- | --- | --- |
+| Process identity based on ps display fields | Replaced with kernel birth/PID/group/UID identity; known exiting instances may be waited for without trusting changing displayed argv | Actual user Unity Roslyn lifetime and long M07 commands |
+| Rejecting post-signal census omitted | All observations retained before assertions, including phase and exact expected/observed mismatch; native census errors preserve owned raw rows | Any remaining real rejection must retain its complete snapshot |
+| Transaction native probe scheduled without generated inputs | Four independent scripts retained; new generated-input prerequisite depends on candidate build and gates transaction probe | Current Unity-generated header and native compile/link execution |
+| Transaction probe's historical DLL default | Explicit current controlled graph fixture, installed root, source pins and supplied Unity baselib; pre/post bindings checked | Fresh actual candidate graph with no historical output substitution |
 
-## Final R02 Primary CI
+This is a focused Primary implementation self-review, not a new independent R02 stage review. The old D receipts lack the rejecting census; the exact historical process transition remains unproven. The repair closes concrete portability/diagnostic and ordering defects without relabeling D as successful.
 
-Workflow: `R02 Primary native and tooling validation`.
+The M00 preparation from the earlier cycle is unchanged and still requires actual Unity verification. The frozen ordinary DLL hash was not modified. R02 production runtime code, formal timing code and correctness guards are unchanged in this cycle.
 
-- Run: `36318653155`.
-- Head: `fd59bad0a470b8f70a409fae8ccead9e4046518f`.
-- Result: **Passed**.
-- Artifact: `10931711251`.
-- Artifact bytes: `10,553,690`.
-- Artifact SHA-256: `b94c9346e03f5c7e6122a51207b85b4852313e8823462928ea82f021b0061f67`.
-- Source inventory: 3,103 exact source/input files.
-- Bound repository heads in artifact:
-  - hybridclr_demo `fd59bad0a470b8f70a409fae8ccead9e4046518f`;
-  - hybridclr `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`;
-  - hybridclr_unity `0ea633a2c5b936b5af69d944593c55bd2783fca9`;
-  - il2cpp_plus `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`.
+## Actual validation performed
 
-Results:
+R02 workflow run **36323257884**, at `96ec97221439ab1ca8964acaf5bf2b5b16e2dcda`, completed successfully in both jobs:
 
-- source verification: Passed;
-- native production-header matrix: **70/70** process cases, **1,540** checks;
-- native revision matrix: **70/70** process cases, **28,294** checks;
-- Python R02 suite: **145/145 Passed**;
-- managed host Baseline: **102** assertions Passed;
-- managed host P01: **111** assertions Passed;
-- managed host P03: **111** assertions Passed;
-- managed process groups: clean for all passing rows;
-- codec storage attribution: GCC and Clang both measured four allocation requests totaling **29,884,384 bytes**, plus a 120-byte codec object on the CI host ABI.
+| Check | Actual result and boundary |
+| --- | --- |
+| R02 Python in current environment | 165/165 Passed, zero failures/skips |
+| R02 Python in Linux CI | 165/165 Passed, zero failures/skips |
+| macOS 14.8.9 arm64 focused tests | 32/32 Passed: real kernel birth/zombie checks, real owned-process retirement and unrelated-session isolation, policy and native-prerequisite tests. This is a repeated subset of the 165 tests, not 32 additional unique cases. |
+| Native production-header matrix | 70/70 process cases, 1,540 checks; synthetic physical classes, not IL2CPP VM integration |
+| Native revision matrix | 70/70 process cases, 28,294 checks |
+| Managed host Baseline/P01/P03 | 102 / 111 / 111 assertions, strict clean process groups; not Unity execution |
+| Codec storage attribution | Two compiler runs Passed; four requests totaling 29,884,384 bytes plus 120-byte object on the CI ABI. Not RSS or new R02 bytes. |
+| Published source authentication | All 3,119 inventoried source/input files match size, SHA-256 and Git blob; all seven changed executable blobs match the tested artifact |
+| Artifact bindings | ZIP digest/CRC checks passed; 48 unique nested exported bindings authenticated with no missing member |
 
-The codec number is constructor allocation-request attribution for the unchanged profile-2 storage. It excludes allocator overhead and is not Unity RSS, Player memory, or proof of the complete H1 D2 delta.
+Scoped legacy-H1 workflow **36323257953**, at the same candidate authority commit, also completed successfully: 384/384 current reusable/rejection cases, 6/6 fixed-H1 positive cases, plus the remaining R01 early/failure, M07 PowerShell recovery and R01B lazy workflow steps. The fixed-H1 positives executed at `2cbf68658a5b73189930fcdfe250835b72639515`; no historical Player execution is promoted to R02 acceptance.
 
-## Final legacy-H1 CI
+## Retained CI evidence
 
-Workflow: `H1 Bee primary fixture and tools`.
+All artifacts below were downloaded through the Connector and digest-verified. `D_PRIMARY_VALIDATION.json` records individual member hashes and exact results.
 
-- Run: `36318659885`.
-- Head: `727b8c39c5f6329d3c94e9a0cf339b8d214e2134`.
-- Result: **Passed**.
-- Artifact: `10931995719`.
-- Artifact bytes: `12,971,530`.
-- Artifact SHA-256: `a92ed53afeb9becfb25a08f971cfbe505bb66ff6310365aeb79b72e66ff1cc8e`.
+| Artifact | ID | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Primary source/native/managed/Python | 10933361330 | 10,629,330 | `7cea9daadfefb74ba38c65855d089a09189b2e8de937c3e91f9fa493dd98f8c5` |
+| Darwin focused tests | 10933026186 | 1,113 | `ebd482561604e90ad5176365ca2a77e35f5dad72340c582243b000479f5cb6fe` |
+| Scoped legacy tests | 10932818367 | 12,979,985 | `bcb8434f14bcd78ea7e7f53032081fe40985c4114651ef97cbc83150d388fd6f` |
 
-Scoped results:
+The earlier source-only run 36322916359 also passed. The authority runs above are the selected final Primary evidence. Initial historical CI and Local attempts keep their original classifications. The previous build-repair Primary records at source `82d64ce4...` and runs 36318653155/36318659885 remain in Git history; they do not validate this new source.
 
-- current reusable contracts + explicit R02 rejection tests: **384/384 Passed**;
-- fixed-H1 positive fixture tests: **6/6 Passed**;
-- remaining R01 early/failure, M07 PowerShell recovery, and R01B lazy workflow steps: Passed.
+## Remaining Local work and stopping point
 
-The earlier failed legacy runs remain historical evidence. Their failure was not relabeled.
+Primary did not access the user's Mac workspace, run Unity, build Players or rerun D. Actual Roslyn retirement, M00 fixed-byte generation, generated-native prerequisite/transaction execution, controlled functional/performance results, affected regressions and complete Local seals remain required.
 
-## Scope limit and next validation
-
-No Primary CI above launched a Unity Player or established R02 runtime acceptance. The R02 receipt keeps `unityPlayerRun=false` and `runtimeAcceptance=false`.
-
-Local Validation must now execute a new unused `R02LocalBatch-v1` root from the final handoff. It must independently generate candidate/control M00 inputs, produce fresh controlled graphs, run functional sidecars, the 44-pair/88-process formal comparison, affected Editor/native/M07/startup/failure/count/lazy/dense/capacity regressions, D1/D2 measurement/disposition, complete sealing, and independent R02 stage review if eligible.
-
-R02 remains unaccepted; `mayEnterR03=false`.
+Run the 33-cell successor batch once in a new unused root; preserve A/B/C/D and H1 evidence. Local returns actual classifications, first failures and complete snapshots. A genuinely independent R02 stage review is required only after the full evidence is eligible. D1/D2 remain development-stage deferred risks requiring measured disposition before H2. R02Accepted=false; mayEnterR03=false.
