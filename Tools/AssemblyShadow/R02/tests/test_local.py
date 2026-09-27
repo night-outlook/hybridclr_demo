@@ -13,7 +13,7 @@ from evidence import EvidenceError
 
 class Local(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(); self.root = Path(self.temp.name)
+        self.temp = tempfile.TemporaryDirectory(); self.root = Path(self.temp.name).resolve()
         self.addCleanup(self.temp.cleanup)
 
     def test_formal_clears_every_inherited_sidecar_control(self):
@@ -113,3 +113,34 @@ class CellAuthority(unittest.TestCase):
             with patch.object(authority,'inspect',return_value={'result':'SourceVerifiedNotBuildAccepted'}):
                 with contextlib.redirect_stdout(io.StringIO()):batch.cell('check',[],lambda:42,roles=('candidate',))
             self.assertEqual(batch.values['check'],42);self.assertEqual(len(batch.rows['check']['inputAuthorities']),1)
+
+class BuildCompletionBoundary(unittest.TestCase):
+    def test_child_environment_is_canonical_and_server_reuse_disabled(self):
+        value=run_local.environment()
+        self.assertEqual(Path(value['TMPDIR']),Path(value['TMPDIR']).resolve(strict=True))
+        self.assertEqual(value['MSBUILDDISABLENODEREUSE'],'1')
+        self.assertEqual(value['DOTNET_CLI_USE_MSBUILD_SERVER'],'0')
+
+    def test_unity_wrapper_does_not_change_player_command_path(self):
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as temp:
+            batch=object.__new__(run_local.Batch);batch.out=Path(temp).resolve();batch.serial=0
+            batch.args=SimpleNamespace(unity=Path('/Unity.app/Contents/MacOS/Unity'))
+            with patch.object(run_local,'run',return_value={'result':'Passed'} ) as call:
+                batch.command(['player','arg'],batch.out)
+                self.assertEqual(call.call_args.args[0],['player','arg'])
+            with patch.object(run_local,'run',return_value={'result':'Passed'}) as call, patch.object(run_local,'read',return_value={
+                'result':'Passed','commandExitCode':0,'completion':{'clean':True}}):
+                batch.command(['build','arg'],batch.out,unity_owned=True)
+                actual=call.call_args.args[0]
+                self.assertTrue(actual[1].endswith('unity_session.py'))
+                self.assertEqual(actual[-3:],['--','build','arg'])
+
+    def test_build_completion_receipt_cannot_override_outer_failure(self):
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as temp:
+            batch=object.__new__(run_local.Batch);batch.out=Path(temp).resolve();batch.serial=0
+            batch.args=SimpleNamespace(unity=Path('/Unity.app/Contents/MacOS/Unity'))
+            with patch.object(run_local,'run',return_value={'result':'Failed'}), patch.object(run_local,'read') as read:
+                with self.assertRaises(EvidenceError):batch.command(['build'],batch.out,unity_owned=True)
+                read.assert_not_called()
