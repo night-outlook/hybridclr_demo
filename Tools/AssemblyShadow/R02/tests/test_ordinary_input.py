@@ -1,93 +1,188 @@
+import base64
+import zlib
 import copy
-import hashlib
 import json
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
-from evidence import EvidenceError, binding
+from evidence import EvidenceError, read
 import ordinary_input as ordinary
+
+SOURCE_ROOT = Path(__file__).resolve().parents[4]
+
+
+def setup_project(root):
+    for name in (ordinary.FIXTURE, ordinary.ORIGIN):
+        target = root / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(SOURCE_ROOT / name, target)
+    pins = root / ordinary.PINS
+    pins.parent.mkdir(parents=True)
+    pins.write_text('{}')
+    return root
 
 
 class OrdinaryInput(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name).resolve();self.addCleanup(self.temp.cleanup)
-        self.output=self.root/'_temp/AssemblyShadow/prepared'
-        self.data=b'M00 test fixture; not real Player evidence'
-        self.sha=hashlib.sha256(self.data).hexdigest()
-        self.patch=patch.object(ordinary,'IMAGE_SHA256',self.sha);self.patch.start();self.addCleanup(self.patch.stop)
-        source=self.root/ordinary.SOURCE;source.mkdir(parents=True)
-        (source/'Entry.cs').write_text('fixture');(source/'Fixture.asmdef').write_text('{}')
-        pins=self.root/'ProjectSettings/AssemblyShadowSourcePins.json';pins.parent.mkdir();pins.write_text('{}')
-        self.receipt=dict(kind='R02OrdinaryInputPreparation',schemaVersion=1,result='Passed',projectRoot=str(self.root),
-            outputRoot=str(self.output),unityVersion='2022.3.62f2',target='StandaloneOSX',development=True,
-            classification='CurrentWorkspaceCompilerOutput',freshCscExecutionClaimed=False,runtimeAcceptance=False,
-            expectedSha256=self.sha,sourcePinsSha256=binding(pins)['sha256'],sources=[binding(p) for p in sorted(source.iterdir())])
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = setup_project(Path(self.temp.name).resolve() / 'candidate')
+        self.output = self.root / '_temp/AssemblyShadow/materialization'
+        self.destination = self.root / ordinary.IMAGE_PATH
 
-    def emit(self):
-        self.output.mkdir(parents=True)
-        for key,path in [('compiled',self.output/'compiled/AssemblyShadowBaseline.HotUpdate.dll'),('staged',self.root/ordinary.IMAGE_PATH)]:
-            path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(self.data);self.receipt[key]=binding(path)
-        self.save()
+    def prepare(self):
+        return ordinary.prepare(self.root, self.output)
 
-    def save(self):
-        (self.output/'preparation.json').write_text(json.dumps(self.receipt))
+    def test_exact_committed_fixture_identity_and_original_contract(self):
+        data, _, _, identity = ordinary.fixture(self.root)
+        self.assertEqual(len(data), 4608)
+        self.assertEqual(identity['fullName'], ordinary.PROVIDER)
+        self.assertEqual(identity['mvid'], 'e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b')
 
-    def test_generated_input_bound_to_own_workspace(self):
-        ordinary.preflight(self.root,self.output);self.emit()
-        self.assertEqual(ordinary.verify(self.root,self.output)['result'],'Passed')
+    def test_independent_roles_decode_their_own_fixture(self):
+        control = setup_project(Path(self.temp.name).resolve() / 'control')
+        self.prepare()
+        a = read(self.output / 'preparation.json')
+        out = control / '_temp/AssemblyShadow/materialization'
+        ordinary.prepare(control, out)
+        b = read(out / 'preparation.json')
+        self.assertEqual(self.destination.read_bytes(), (control / ordinary.IMAGE_PATH).read_bytes())
+        self.assertNotEqual(a['fixture']['path'], b['fixture']['path'])
+        self.assertNotEqual(a['staged']['path'], b['staged']['path'])
+        self.assertEqual(a['classification'], 'FrozenHistoricalInputMaterialization')
+        self.assertFalse(a['freshCscExecutionClaimed'])
+        self.assertFalse(b['historicalPlayerExecutionReused'])
+        self.assertFalse(b['runtimeAcceptance'])
 
-    def test_wrong_contract_or_workspace_or_mode_rejected(self):
-        self.emit();original=copy.deepcopy(self.receipt)
-        for key,value in [('projectRoot','/other'),('outputRoot','/other'),('expectedSha256','f'*64),
-                          ('target','Android'),('unityVersion','other'),('development',False),
-                          ('result','Failed'),('runtimeAcceptance',True),('freshCscExecutionClaimed',True),
-                          ('sourcePinsSha256','e'*64)]:
+    def test_existing_matching_destination_is_not_rewritten(self):
+        data = ordinary.fixture(self.root)[0]
+        self.destination.parent.mkdir(parents=True)
+        self.destination.write_bytes(data)
+        before = self.destination.stat()
+        self.prepare()
+        after = self.destination.stat()
+        self.assertEqual((before.st_ino, before.st_mtime_ns), (after.st_ino, after.st_mtime_ns))
+        receipt = read(self.output / 'preparation.json')
+        self.assertEqual(receipt['destinationBefore'], receipt['staged'])
+
+    def test_wrong_destination_preserved_and_no_output_created(self):
+        self.destination.parent.mkdir(parents=True)
+        self.destination.write_bytes(b'wrong existing bytes')
+        with self.assertRaises(EvidenceError): self.prepare()
+        self.assertEqual(self.destination.read_bytes(), b'wrong existing bytes')
+        self.assertFalse(self.output.exists())
+
+    def test_old_compiler_receipt_is_not_relabelled(self):
+        self.prepare()
+        receipt = read(self.output / 'preparation.json')
+        receipt.update(schemaVersion=1, classification='CurrentWorkspaceCompilerOutput')
+        (self.output / 'preparation.json').write_text(json.dumps(receipt))
+        with self.assertRaises(EvidenceError): ordinary.verify(self.root, self.output)
+
+    def test_receipt_claim_and_path_mutations_fail(self):
+        self.prepare()
+        path = self.output / 'preparation.json'
+        original = read(path)
+        for field, value in [('projectRoot', '/other'), ('outputRoot', '/other'),
+                             ('expectedSha256', 'f'*64), ('result', 'Failed'),
+                             ('runtimeAcceptance', True), ('historicalPlayerExecutionReused', True),
+                             ('freshCscExecutionClaimed', True), ('sourcePinsSha256', 'e'*64),
+                             ('classification', 'CurrentWorkspaceCompilerOutput')]:
+            with self.subTest(field=field):
+                row = copy.deepcopy(original); row[field] = value
+                path.write_text(json.dumps(row))
+                with self.assertRaises(EvidenceError): ordinary.verify(self.root, self.output)
+
+    def test_changed_staged_or_materialized_bytes_rejected(self):
+        self.prepare()
+        for path in (self.destination, self.output / 'materialized.dll.bytes'):
+            with self.subTest(path=path.name):
+                old = path.read_bytes(); path.write_bytes(b'changed')
+                with self.assertRaises(EvidenceError): ordinary.verify(self.root, self.output)
+                path.write_bytes(old)
+
+    def test_changed_source_pins_rejected(self):
+        self.prepare(); (self.root / ordinary.PINS).write_text('{"changed":true}')
+        with self.assertRaises(EvidenceError): ordinary.verify(self.root, self.output)
+
+    def test_wrong_fixture_hash_never_admitted(self):
+        path = self.root / ordinary.FIXTURE
+        data = bytearray(ordinary.fixture(self.root)[0]); data[-1] ^= 1
+        path.write_bytes(base64.b64encode(zlib.compress(bytes(data),9)) + b'\n')
+        with self.assertRaises(EvidenceError): self.prepare()
+        self.assertFalse(self.destination.exists())
+
+    def test_noncanonical_encoding_rejected(self):
+        path = self.root / ordinary.FIXTURE
+        original = path.read_bytes()
+        for data in (original[:-1], original+b'\n', b'!bad!\n', original[:10]+b'\n'+original[10:]):
+            with self.subTest(size=len(data)):
+                path.write_bytes(data)
+                with self.assertRaises((EvidenceError, ValueError)): self.prepare()
+
+    def test_compressed_fixture_cannot_expand_or_append_unbounded_bytes(self):
+        path = self.root / ordinary.FIXTURE
+        for compressed in (zlib.compress(b'A'*100000), zlib.compress(b'small')+b'trailing', b'broken'):
+            path.write_bytes(base64.b64encode(compressed)+b'\n')
+            with self.assertRaises(EvidenceError): self.prepare()
+
+    def test_origin_mutations_rejected(self):
+        path = self.root / ordinary.ORIGIN; original = read(path)
+        for key, value in [('imageSha256', '0'*64), ('member', 'unrelated'),
+                           ('archiveSha256', 'e'*64), ('sizeBytes', 1),
+                           ('runtimeAcceptance', True), ('historicalPlayerExecutionReused', True),
+                           ('classification', 'CurrentWorkspaceCompilerOutput')]:
             with self.subTest(field=key):
-                self.receipt=copy.deepcopy(original);self.receipt[key]=value;self.save()
-                with self.assertRaises(EvidenceError):ordinary.verify(self.root,self.output)
+                row = copy.deepcopy(original); row[key] = value
+                path.write_text(json.dumps(row))
+                with self.assertRaises(EvidenceError): self.prepare()
 
-    def test_missing_and_duplicate_source_rejected(self):
-        self.emit();original=copy.deepcopy(self.receipt)
-        for rows in ([],original['sources'][:1],original['sources']+[original['sources'][0]]):
-            self.receipt=copy.deepcopy(original);self.receipt['sources']=rows;self.save()
-            with self.assertRaises(EvidenceError):ordinary.verify(self.root,self.output)
+    def test_linked_destination_and_fixture_rejected(self):
+        self.destination.parent.mkdir(parents=True)
+        self.destination.symlink_to(self.root / ordinary.FIXTURE)
+        with self.assertRaises(EvidenceError): self.prepare()
+        self.destination.unlink()
+        path = self.root / ordinary.FIXTURE; old = path.read_bytes()
+        path.unlink(); foreign = self.root / 'foreign'; foreign.write_bytes(old); path.symlink_to(foreign)
+        with self.assertRaises(EvidenceError): self.prepare()
 
-    def test_mutated_compiler_output_not_accepted(self):
-        self.emit();Path(self.receipt['compiled']['path']).write_bytes(b'changed')
-        with self.assertRaises(EvidenceError):ordinary.verify(self.root,self.output)
+    def test_linked_output_parent_rejected(self):
+        target = self.root / 'outside'; target.mkdir()
+        (self.root / '_temp').symlink_to(target, target_is_directory=True)
+        with self.assertRaises(EvidenceError): self.prepare()
 
-    def test_changed_source_not_accepted(self):
-        self.emit();Path(self.receipt['sources'][0]['path']).write_bytes(b'changed')
-        with self.assertRaises(EvidenceError):ordinary.verify(self.root,self.output)
+    def test_foreign_or_reused_output_refused(self):
+        with self.assertRaises(EvidenceError): ordinary.prepare(self.root, self.root / 'wrong')
+        self.prepare()
+        with self.assertRaises(EvidenceError): self.prepare()
 
-    def test_preflight_never_overwrites_existing_wrong_bytes(self):
-        dest=self.root/ordinary.IMAGE_PATH;dest.parent.mkdir(parents=True);dest.write_bytes(b'old')
-        with self.assertRaises(EvidenceError):ordinary.preflight(self.root,self.output)
-        self.assertEqual(dest.read_bytes(),b'old');self.assertFalse(self.output.exists())
+    def test_racing_destination_is_not_overwritten(self):
+        create = ordinary._create
+        def competing(path, data):
+            if path == self.output / 'materialized.dll.bytes':
+                self.destination.parent.mkdir(parents=True)
+                self.destination.write_bytes(b'concurrent bytes')
+            create(path, data)
+        with patch.object(ordinary, '_create', side_effect=competing):
+            with self.assertRaises(EvidenceError): self.prepare()
+        self.assertEqual(self.destination.read_bytes(), b'concurrent bytes')
+        self.assertEqual(read(self.output / 'preparation.json')['result'], 'Failed')
 
-    def test_existing_matching_bytes_do_not_skip_new_generation(self):
-        dest=self.root/ordinary.IMAGE_PATH;dest.parent.mkdir(parents=True);dest.write_bytes(self.data)
-        ordinary.preflight(self.root,self.output)
-        with self.assertRaises(EvidenceError):ordinary.verify(self.root,self.output)
+    def test_pin_change_mid_materialization_keeps_failure_receipt(self):
+        create = ordinary._create
+        def changing(path, data):
+            create(path, data); (self.root / ordinary.PINS).write_text('{"changed":true}')
+        with patch.object(ordinary, '_create', side_effect=changing):
+            with self.assertRaises(EvidenceError): self.prepare()
+        self.assertEqual(read(self.output / 'preparation.json')['result'], 'Failed')
 
-    def test_linked_destination_is_rejected_before_unity(self):
-        dest=self.root/ordinary.IMAGE_PATH;dest.parent.mkdir(parents=True)
-        source=self.root/'foreign';source.write_bytes(self.data);dest.symlink_to(source)
-        with self.assertRaises(EvidenceError):ordinary.preflight(self.root,self.output)
-
-    def test_reused_output_is_rejected(self):
-        self.output.mkdir(parents=True)
-        with self.assertRaises(EvidenceError):ordinary.preflight(self.root,self.output)
-
-    def test_generation_source_preserves_contract_and_avoids_configure(self):
-        path=Path(__file__).resolve().parents[4]/'Assets/AssemblyShadowBaseline/Editor/R02OrdinaryInput.cs'
-        text=path.read_text()
-        self.assertIn('CompileDllCommand.CompileDll(compiledRoot, EditorUserBuildSettings.activeBuildTarget, true)',text)
-        self.assertIn('9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27',text)
-        self.assertNotIn('BaselineBuild.Configure()',text)
-        self.assertNotIn('PrebuildCommand.GenerateAll()',text)
-        self.assertIn('FileMode.CreateNew',text)
+    def test_no_obsolete_compiler_helper_or_stub_remains(self):
+        self.assertFalse((SOURCE_ROOT/'Assets/AssemblyShadowBaseline/Editor/R02OrdinaryInput.cs').exists())
+        csproj = (SOURCE_ROOT/'Tools/AssemblyShadow/R02/ManagedTests/ManagedTests.csproj').read_text()
+        self.assertNotIn('OrdinaryInputStubs.cs', csproj)
+        self.assertNotIn('R02OrdinaryInput.cs', csproj)
 
 
-if __name__=='__main__':unittest.main()
+if __name__ == '__main__': unittest.main()

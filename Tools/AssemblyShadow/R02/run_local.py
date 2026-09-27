@@ -22,6 +22,7 @@ if str(TOOLS) not in sys.path: sys.path.insert(0, str(TOOLS))
 import authority
 import performance
 import ordinary_input
+import m00_forensics
 import native_prerequisite
 from restoration import diagnostic_scene_allowed, restore_files, with_recovery
 from evidence import EvidenceError, binding, check_binding, files_under, read, require, run, seal, sha256, write
@@ -173,10 +174,10 @@ class Batch:
         self.unity(role, "AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability", timeout=3600)
         self.tool("verify-installed-runtime.py", ["--project", project, "--expect-shadow", "on", "--json"], role)
         prepared = self.new_player_root(role, "ordinary-input-" + role)
-        ordinary_input.preflight(project, prepared)
-        self.unity(role, "AssemblyShadowBaseline.Editor.R02OrdinaryInput.Prepare",
-                   ["-shadowR02OrdinaryRoot", prepared])
-        authenticated = ordinary_input.verify(project, prepared)
+        # The FixedAssemblyBytes witness is historical input, not the result
+        # of a new workspace-specific compiler invocation. Each role reads
+        # its own committed fixture; neither reads the other role's outputs.
+        authenticated = ordinary_input.prepare(project, prepared)
         write(self.out / (role + "-ordinary-input.json"), authenticated)
         self.retained.add(project / ordinary_input.IMAGE_PATH)
         before = set((project / "_temp/AssemblyShadow").rglob("m07-build-workflow.json"))
@@ -195,6 +196,20 @@ class Batch:
         self.track_graph_inputs(graph)
         authority.inspect(project, self.heads[role], role, self.targets)
         return graph
+
+    def m00_diagnostics(self):
+        output = self.out / "m00-batch-e-forensics"
+        try:
+            return m00_forensics.analyze_batch_e(self.roots["candidate"], output)
+        finally:
+            # A failed forensic comparison must retain any inputs already read.
+            # Do not replace its original exception with a retention error.
+            report_path = output / "analysis.json"
+            if report_path.is_file():
+                try:
+                    self.retained.update(Path(row["path"]) for row in read(report_path).get("retainedInputs", []))
+                except (OSError, ValueError, KeyError):
+                    pass  # The complete failed report is already under the sealed batch root.
 
     def track_graph_inputs(self, graph):
         spec = importlib.util.spec_from_file_location("r02_m07_runner", TOOLS / "run-m07-players.py")
@@ -509,7 +524,7 @@ def parse(argv=None):
 def _execute(args):
     if not args.execute:
         print(json.dumps({"protocol": "R02LocalBatch-v1", "candidate": str(args.candidate), "control": str(args.control),
-            "cells": ["authority", "primary", "two-controlled-graphs", "eight-functional-sidecars", "44-pairs-88-processes",
+            "cells": ["authority", "primary", "m00-batch-e-forensics", "two-controlled-graphs", "eight-functional-sidecars", "44-pairs-88-processes",
                       "m07", "startup11", "failure", "count132", "diagnostic", "lazy-dense", "ordinary-mixed-capacity", "seal"],
             "executes": False, "runtimeAcceptance": False}, indent=2)); return 0
     require(sys.platform == "darwin", "Real batch requires macOS")
@@ -526,6 +541,7 @@ def _execute(args):
     batch.cell("common-sources", ["candidate-authority", "control-authority"], lambda: write(batch.out / "common-sources.json", authority.common_sources(args.candidate, args.control)))
     batch.cell("primary", ["candidate-authority"], lambda: batch.command([sys.executable, HERE / "run_primary.py",
         "--il2cpp-root", args.candidate.parent / "il2cpp_plus", "--output", args.output / "primary"], args.candidate, 7200), roles=("candidate",))
+    batch.cell("m00-batch-e-forensics", ["common-sources"], batch.m00_diagnostics, roles=("candidate", "control"))
     for role in ("candidate", "control"):
         batch.cell(role + "-build", ["common-sources", "primary"], lambda role=role: batch.build(role), roles=(role,))
     batch.cell("frozen-build-map", ["candidate-build", "control-build"], batch.freeze, roles=("candidate", "control"))

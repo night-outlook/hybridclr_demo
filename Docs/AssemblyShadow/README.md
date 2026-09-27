@@ -8,8 +8,8 @@ This is the canonical documentation root.
 - `History/`: historical evidence and current R02 implementation records.
 - `Evidence/`: evidence catalogs and protected pins.
 
-H1 remains `PassedWithExplicitDeferredRisk` after explicit user acceptance of D1=A and D2=A. Historical evidence keeps its original status.
+H1 remains `PassedWithExplicitDeferredRisk` after explicit D1=A and D2=A. Historical evidence keeps its original status.
 
-R02 Primary Implementation has incorporated Local return `621216751ade64aa39f28ed44a5acdc15c38c6cc` and published the build-boundary repair. Repaired source anchor: `82d64ce415c062729f0082e81c1808eaac9602e4`; matched H1-runtime control: `6c950eaa98f995084750fe1ea8f80cfe4c59c61b`. Final R02 Primary CI run `36318653155` passed, and final scoped legacy-H1 CI run `36318659885` passed.
+Primary has incorporated Local return `39dd8213f0a93a2ebde4bdbe982ead4214e9b2eb`. Batch-D repair source: `57a9470bf299af60f88112998c8326c4c013204a`; matched H1-runtime control: `a379f0b809a5d8af967df06fc83271d90fd84f4c`. Final authority `96ec97221439ab1ca8964acaf5bf2b5b16e2dcda` passed R02 CI 36323257884 (Linux and macOS) and scoped legacy CI 36323257953.
 
-R02 itself is **not accepted** until the new Local Validation batch and independent R02 stage review complete. Read `Plan/CURRENT_STATUS.md`, `Handoff/WEB_TO_LOCAL.md`, `History/M07R/R02/LOCAL_VALIDATION_TASKS.md`, and `History/M07R/R02/PRIMARY_VALIDATION.md`. Do not begin R03.
+Read `Plan/CURRENT_STATUS.md`, `Handoff/WEB_TO_LOCAL.md`, `History/M07R/R02/D_COMPLETION_REPAIR.md`, `LOCAL_VALIDATION_TASKS.md` and `PRIMARY_VALIDATION.md` in that R02 directory. The next Local batch has 33 required cells. R02 remains unaccepted until real Local evidence and independent stage review complete. Do not begin R03.

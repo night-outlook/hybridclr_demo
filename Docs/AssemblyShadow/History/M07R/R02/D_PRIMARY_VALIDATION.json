@@ -1,0 +1,58 @@
+{
+  "kind": "R02BatchDPrimaryRepairValidation",
+  "schemaVersion": 1,
+  "inputLocalReturn": "39dd8213f0a93a2ebde4bdbe982ead4214e9b2eb",
+  "sourceCommit": "57a9470bf299af60f88112998c8326c4c013204a",
+  "validatedAuthorityCommit": "96ec97221439ab1ca8964acaf5bf2b5b16e2dcda",
+  "controlHead": "a379f0b809a5d8af967df06fc83271d90fd84f4c",
+  "result": "PassedPrimaryHostScope",
+  "repositories": {
+    "hybridclr_demo": "96ec97221439ab1ca8964acaf5bf2b5b16e2dcda",
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_unity": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+    "il2cpp_plus": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
+  },
+  "ci": {
+    "r02Run": 36323257884,
+    "r02Jobs": {"primary": "success", "process-lifecycle-macos": "success"},
+    "legacyRun": 36323257953,
+    "legacyJob": "success"
+  },
+  "artifacts": [
+    {"id": 10933361330, "role": "primary", "sizeBytes": 10629330, "sha256": "7cea9daadfefb74ba38c65855d089a09189b2e8de937c3e91f9fa493dd98f8c5", "downloadedAndDigestVerified": true},
+    {"id": 10933026186, "role": "darwin", "sizeBytes": 1113, "sha256": "ebd482561604e90ad5176365ca2a77e35f5dad72340c582243b000479f5cb6fe", "downloadedAndDigestVerified": true},
+    {"id": 10932818367, "role": "legacy", "sizeBytes": 12979985, "sha256": "bcb8434f14bcd78ea7e7f53032081fe40985c4114651ef97cbc83150d388fd6f", "downloadedAndDigestVerified": true}
+  ],
+  "checks": {
+    "sourceInventoryFilesVerified": 3119,
+    "nestedArtifactBindingsVerified": 48,
+    "changedExecutableBlobsMatched": 7,
+    "pythonLocal": {"passed": 165, "failed": 0, "skipped": 0},
+    "pythonCI": {"passed": 165, "failed": 0, "skipped": 0},
+    "macosFocusedSubset": {"passed": 32, "failed": 0, "skipped": 0, "platform": "macOS 14.8.9 arm64", "subsetOfPythonSuite": true},
+    "native": {"passedProcessCases": 70, "checks": 1540},
+    "nativeRevision": {"passedProcessCases": 70, "checks": 28294},
+    "managedHostAssertions": {"Baseline": 102, "P01": 111, "P03": 111, "strictProcessGroupsClean": true},
+    "legacyCurrent": {"passed": 384, "classification": "CurrentContractsAndH1Rejections"},
+    "legacyHistorical": {"passed": 6, "classification": "FixedH1PositiveFixtureExecution", "checkpoint": "2cbf68658a5b73189930fcdfe250835b72639515"},
+    "codecStorage": {"compilerRuns": 2, "allocationCalls": 4, "requestedHeapBytes": 29884384, "codecObjectBytes": 120, "unityRssMeasurement": false}
+  },
+  "retainedMemberDigests": {
+    "primary/results/results.json": "d607303ddb8a1f48160365ce9f8251631da07e3ef9dc184a801d6e1a1cc6db7a",
+    "primary/results/native/results.json": "b41533410f89ac931a45a66ee28782f71204d5cfef40dfe433bf14bf770a4296",
+    "primary/results/revision/results.json": "92e0c40ca75b9070b58a8fc1a8781ecc83901c32fc96a0ad4d7297e581199bbd",
+    "primary/results/python-command/stderr.log": "48d157ed81adae602ff40ef0b15951f6a02041ee016bf5d5c75f5c39f1874dd7",
+    "primary/source-inventory.json": "c68822ed1ce2df8301731344886acf0f9be11d712042f2bd0e4bc8a36eb4ee31",
+    "darwin/r02-darwin-tests.log": "62ecc2cd61d0d45b60edbf96ec8b5f67ea4c524974737ae18747f5510a03f723",
+    "legacy/current-results/results.json": "794ffb82a4015d92c463d1c11e61ee4a5d995951e69ed96523bb416ef05af507",
+    "legacy/fixed-h1-results/results.json": "06925a25b674a52cc91b894cbbabe8f4f7988088bd2029ec6781beed3179dc22"
+  },
+  "review": "Focused Primary self-review; not an independent R02 stage review",
+  "historicalBatchDTransitionProven": false,
+  "userMacWorkspaceAccessed": false,
+  "unityPlayerRun": false,
+  "runtimeAcceptance": false,
+  "R02Accepted": false,
+  "mayEnterR03": false,
+  "nextLocalRequiredCells": 33
+}
