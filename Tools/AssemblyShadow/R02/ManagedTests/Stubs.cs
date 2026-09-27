@@ -9,6 +9,7 @@ namespace UnityEngine
     public enum RuntimePlatform { OSXPlayer }
     public static class Application
     {
+        public static string dataPath = "not-unity";
         public static string buildGUID = "host-only";
         public static string unityVersion = "not-unity";
         public static RuntimePlatform platform;

@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import shutil
 import sys
+sys.dont_write_bytecode = True
 import time
 import uuid
 
@@ -20,6 +21,7 @@ TOOLS = HERE.parent
 if str(TOOLS) not in sys.path: sys.path.insert(0, str(TOOLS))
 import authority
 import performance
+import ordinary_input
 from restoration import diagnostic_scene_allowed, restore_files, with_recovery
 from evidence import EvidenceError, binding, check_binding, files_under, read, require, run, seal, sha256, write
 from verify import MODES, verify_raw
@@ -35,6 +37,12 @@ SOURCE_BASE = "30bcb6ebb7f6bcd6c957894f437a9be0d421dce2"
 
 def environment(role=None, output=None, nonce=None):
     value = dict(os.environ)
+    value["PYTHONDONTWRITEBYTECODE"] = "1"
+    # Canonicalize only the child environment, not validators or retained paths.
+    import tempfile
+    value["TMPDIR"] = str(Path(tempfile.gettempdir()).resolve(strict=True))
+    value.update(DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER="1",
+                 MSBUILDDISABLENODEREUSE="1", DOTNET_CLI_USE_MSBUILD_SERVER="0")
     for key in ENV_KEYS: value.pop(key, None)
     if role is not None:
         require(role in ("control", "candidate") and output is not None and nonce is not None, "Incomplete sidecar environment")
@@ -96,11 +104,20 @@ class Batch:
     def new_player_root(self, role, label):
         return self.retain_root(self.roots[role] / "_temp/AssemblyShadow" / (self.prefix + "-" + label))
 
-    def command(self, argv, project, timeout=3600, env=None):
+    def command(self, argv, project, timeout=3600, env=None, unity_owned=False):
         self.serial += 1
         folder = self.out / "commands" / str(self.serial).zfill(4)
+        completion = folder.parent / (folder.name + "-unity-completion.json")
+        if unity_owned:
+            argv = [sys.executable, HERE / "unity_session.py", "--unity", self.args.unity,
+                    "--receipt", completion, "--", *argv]
         result = run([str(a) for a in argv], project, folder, timeout, environment() if env is None else env)
         require(result["result"] == "Passed", "Command failed; retained " + str(folder))
+        if unity_owned:
+            observed = read(completion)
+            require(observed.get("result") == "Passed" and observed.get("commandExitCode") == 0 and
+                    observed.get("completion", {}).get("clean") is True,
+                    "Unity command did not complete cleanly")
         return result, folder / "command.json"
 
     def tool(self, name, arguments, role="candidate", timeout=3600):
@@ -114,7 +131,7 @@ class Batch:
         self.stopped(role)
         log = self.out / ("unity-" + uuid.uuid4().hex + ".log")
         return self.command([self.args.unity, "-batchmode", "-nographics", "-quit", "-projectPath", self.roots[role],
-            "-buildTarget", "StandaloneOSX", "-executeMethod", method, *arguments, "-logFile", log], self.roots[role], timeout)
+            "-buildTarget", "StandaloneOSX", "-executeMethod", method, *arguments, "-logFile", log], self.roots[role], timeout, unity_owned=True)
 
     def cell(self, name, dependencies, action, roles=()):
         row = {"name": name, "dependencies": dependencies, "result": "Blocked", "runtimeAcceptance": False}
@@ -154,10 +171,18 @@ class Batch:
                       "-ProjectPath", project, "-Set", self.args.unity], project, 90)
         self.unity(role, "AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability", timeout=3600)
         self.tool("verify-installed-runtime.py", ["--project", project, "--expect-shadow", "on", "--json"], role)
+        prepared = self.new_player_root(role, "ordinary-input-" + role)
+        ordinary_input.preflight(project, prepared)
+        self.unity(role, "AssemblyShadowBaseline.Editor.R02OrdinaryInput.Prepare",
+                   ["-shadowR02OrdinaryRoot", prepared])
+        authenticated = ordinary_input.verify(project, prepared)
+        write(self.out / (role + "-ordinary-input.json"), authenticated)
+        self.retained.add(project / ordinary_input.IMAGE_PATH)
         before = set((project / "_temp/AssemblyShadow").rglob("m07-build-workflow.json"))
         baseline = "M07-Baseline-" + self.prefix + "-" + role
         self.command([self.args.pwsh, "-NoProfile", "-File", project / "Tools/AssemblyShadow/Invoke-M07Build.ps1",
-            "-ProjectPath", project, "-BaselineId", baseline, "-BuildTarget", "StandaloneOSX", "-ControlledPerformanceBuilds"], project, 86400)
+            "-ProjectPath", project, "-BaselineId", baseline, "-BuildTarget", "StandaloneOSX", "-ControlledPerformanceBuilds"], project, 86400, unity_owned=True)
+        ordinary_input.verify(project, prepared)
         path, graph = select_workflow(project, baseline, before)
         self.graphs[role] = graph
         write(self.out / (role + "-graph.json"), {"workflow": binding(path), "graph": graph})
@@ -399,7 +424,7 @@ class Batch:
         xml = self.out / "editmode.xml"
         self.command([self.args.unity, "-batchmode", "-nographics", "-projectPath", project,
             "-runTests", "-testPlatform", "EditMode", "-testResults", xml,
-            "-logFile", self.out / "editmode-unity.log"], project, 7200)
+            "-logFile", self.out / "editmode-unity.log"], project, 7200, unity_owned=True)
         import xml.etree.ElementTree as ET
         cases = ET.parse(xml).getroot().findall(".//test-case")
         require(cases and all(c.get("result") not in ("Failed", "Inconclusive") for c in cases), "EditMode contains failures or no cases")

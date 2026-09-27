@@ -1,0 +1,37 @@
+{
+  "D1": {
+    "CPUAndAllocationDistributions": "NotRun",
+    "classification": "Blocked",
+    "coldWarmCandidateControlComparison": "NotRun",
+    "formalPairs": 0
+  },
+  "D2": {
+    "candidateControlUnityRSS": "NotRun",
+    "classification": "Blocked",
+    "codecOwnedStorage": {
+      "allocationCalls": 4,
+      "classification": "HostMeasuredComponentOnly",
+      "codecObjectBytes": 144,
+      "excludes": [
+        "allocator overhead",
+        "Unity RSS",
+        "R02-added storage",
+        "whole historical RSS delta"
+      ],
+      "localAbi": "macOS arm64 host",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927C/primary/codec-storage/results.json",
+        "sha256": "7ef083dce479a5aacf1148098e8b893511fc847ed52b41ad98344e6b519c7519",
+        "sizeBytes": 3213
+      },
+      "requestedHeapBytes": 29884384,
+      "unchangedBetweenControlAndCandidate": true
+    },
+    "lifetimePeak": "NotRun"
+  },
+  "H1": "PassedWithExplicitDeferredRisk",
+  "R02Accepted": false,
+  "independentStageReview": "NotEligibleNotRun",
+  "kind": "R02D1D2LocalDisposition",
+  "mayEnterR03": false
+}
