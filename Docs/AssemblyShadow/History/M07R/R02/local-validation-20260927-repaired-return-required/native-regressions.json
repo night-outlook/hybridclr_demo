@@ -1,0 +1,26 @@
+{
+  "rows": [
+    {
+      "script": "run-r01-budget-native-tests.py",
+      "result": "Passed"
+    },
+    {
+      "script": "run-r01-recovery-native-tests.py",
+      "result": "Passed"
+    },
+    {
+      "script": "run-r01-transaction-native-tests.py",
+      "result": "Failed",
+      "error": "Command failed; retained /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927D/commands/0010"
+    },
+    {
+      "script": "run-r01b-index-runtime-tests.py",
+      "result": "Passed"
+    },
+    {
+      "script": "run-r01b-type-cache-tests.py",
+      "result": "Passed"
+    }
+  ],
+  "runtimeAcceptance": false
+}

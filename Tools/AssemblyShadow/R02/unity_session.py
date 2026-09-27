@@ -15,27 +15,47 @@ import subprocess
 import sys
 import time
 from evidence import binding, require, write
+from process_identity import attach, same_birth
 
-POLICY = "R02OwnedUnityRoslyn-v1"
+POLICY = "R02OwnedUnityRoslyn-v2"
 TERM_GRACE = 5.0
 KILL_GRACE = 3.0
 
 
+class CensusError(ValueError):
+    def __init__(self, message, members):
+        super().__init__(message)
+        self.members = members
+
+
 def census(group):
-    # Only the owned group is retained. lstart guards against PID reuse.
-    proc = subprocess.Popen(["ps", "-ww", "-axo", "pid=,pgid=,stat=,lstart=,args="],
+    # Only the owned group is retained. Birth identity comes from the kernel;
+    # never parse ps lstart, whose display may change while Darwin exits.
+    proc = subprocess.Popen(["ps", "-ww", "-axo", "pid=,pgid=,stat=,args="],
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
                             env=dict(os.environ, LC_ALL="C"))
-    stdout, stderr = proc.communicate(timeout=3)
+    try:
+        stdout, stderr = proc.communicate(timeout=3)
+    except subprocess.TimeoutExpired:
+        proc.kill(); proc.communicate()
+        raise
     require(proc.returncode == 0, "Owned process census unavailable")
     rows = []
     for line in stdout.splitlines():
-        parts = line.strip().split(None, 8)
-        require(len(parts) == 9, "Malformed process census")
+        parts = line.strip().split(None, 3)
+        require(len(parts) >= 3, "Malformed process census")
         pid, pgid = int(parts[0]), int(parts[1])
         if pgid == group and pid not in (os.getpid(), proc.pid):
-            rows.append({"pid": pid, "group": pgid, "state": parts[2], "start": " ".join(parts[3:8]), "command": parts[8]})
-    return sorted(rows, key=lambda row: row["pid"])
+            rows.append({"pid": pid, "group": pgid, "state": parts[2], "command": parts[3] if len(parts) == 4 else ""})
+    bound = []
+    for row in rows:
+        try:
+            attached = attach(row)
+        except (OSError, ValueError) as error:
+            raise CensusError(str(error), rows) from error
+        if attached is not None:
+            bound.append(attached)
+    return sorted(bound, key=lambda row: row["pid"])
 
 
 def roslyn_command(command, compiler):
@@ -49,12 +69,24 @@ def roslyn_command(command, compiler):
                for prefix in (expected, '"' + expected + '"'))
 
 
+def exiting(row):
+    info = row.get("kernel")
+    return bool(info and (info.get("exiting") or info.get("zombie")))
+
+
 def same_identity(original, current):
-    if original is None or any(original[k] != current[k] for k in ("pid", "group", "start")):
+    # Production censuses always carry kernel identity. Display start/argv can
+    # disappear in Darwin exit(), and are retained only as diagnostics.
+    if original is None:
         return False
-    # A known child may become a zombie between census and waitpid. Wait for
-    # disappearance; never signal/reclassify it as a new live process.
-    return original["command"] == current["command"] or current.get("state", "").startswith("Z")
+    if "kernel" in original or "kernel" in current:
+        if not same_birth(original.get("kernel"), current.get("kernel")):
+            return False
+        return original["command"] == current["command"] or exiting(current)
+    # Explicit synthetic policy rows from the original tests; not a production
+    # fallback when kernel information is unavailable (census raises instead).
+    return all(original[k] == current[k] for k in ("pid", "group", "start")) and (
+        original["command"] == current["command"] or current.get("state", "").startswith("Z"))
 
 
 def reap():
@@ -71,47 +103,72 @@ def reap():
 def retire(group, compiler, *, scan=census, send=os.kill, clock=time.monotonic, sleep=time.sleep):
     result = {"policy": POLICY, "group": group, "compiler": str(compiler),
               "termGraceSeconds": TERM_GRACE, "killGraceSeconds": KILL_GRACE,
-              "clean": False, "actions": []}
+              "clean": False, "actions": [], "observations": [], "after": []}
+    phase = "initial"
+
+    def observe(label):
+        nonlocal phase
+        phase = label
+        try:
+            rows = scan(group)
+        except CensusError as error:
+            result["after"] = error.members
+            result["observations"].append({"phase": label, "members": error.members,
+                                           "censusError": str(error)})
+            raise
+        # Persist the actual rejecting snapshot BEFORE any policy assertion.
+        result["after"] = rows
+        result["observations"].append({"phase": label, "atMonotonic": clock(), "members": rows})
+        require(len(result["observations"]) <= 512 and len(rows) <= 64,
+                "Owned completion census budget exceeded")
+        return rows
+
+    def authenticate(identities, rows):
+        for row in rows:
+            expected = identities.get(row["pid"])
+            if not same_identity(expected, row):
+                result["identityMismatch"] = {"phase": phase, "expected": expected, "observed": row}
+                raise ValueError("New or changed descendant during compiler completion")
+
     try:
-        initial = scan(group)
+        initial = observe("initial")
         result["before"] = initial
         require(all(roslyn_command(row["command"], compiler) for row in initial),
                 "Unknown owned descendant; compiler completion not authorized")
         identities = {row["pid"]: row for row in initial}
         for sig, grace in ((signal.SIGTERM, TERM_GRACE), (signal.SIGKILL, KILL_GRACE)):
-            live = scan(group)
-            require(all(same_identity(identities.get(row["pid"]), row) for row in live),
-                    "Owned process identity changed during compiler completion")
+            live = observe("before-" + sig.name)
+            authenticate(identities, live)
             for row in live:
-                # Reauthenticate immediately before each individual signal.
-                current = {item["pid"]: item for item in scan(group)}.get(row["pid"])
+                checked = observe("signal-identity-" + sig.name)
+                authenticate(identities, checked)
+                current = {item["pid"]: item for item in checked}.get(row["pid"])
                 if current is None:
                     continue
-                require(same_identity(row, current), "PID identity changed before signal")
-                if current.get("state", "").startswith("Z"):
+                # Exiting/zombie instances are waited for, not signalled or
+                # called clean. A changed live argv still fails authentication.
+                if exiting(current) or current.get("state", "").startswith("Z"):
                     continue
                 try:
                     send(row["pid"], sig)
-                    result["actions"].append({"pid": row["pid"], "signal": int(sig), "identity": row})
+                    result["actions"].append({"pid": row["pid"], "signal": int(sig), "identity": current})
                 except ProcessLookupError:
                     pass
             deadline = clock() + grace
             while True:
                 reap()
-                remaining = scan(group)
+                remaining = observe("wait-" + sig.name)
                 if not remaining:
-                    result["after"] = []
                     result["clean"] = True
                     return result
-                require(all(same_identity(identities.get(row["pid"]), row) for row in remaining),
-                        "New or changed descendant during compiler completion")
+                authenticate(identities, remaining)
                 if clock() >= deadline:
                     break
                 sleep(0.05)
-        result["after"] = remaining
         result["error"] = "Owned compiler did not disappear after bounded termination"
     except (OSError, ValueError, subprocess.SubprocessError) as error:
         result["error"] = type(error).__name__ + ": " + str(error)
+        result["errorPhase"] = phase
     return result
 
 

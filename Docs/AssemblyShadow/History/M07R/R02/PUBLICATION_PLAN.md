@@ -36,11 +36,17 @@ No revision C or control HEAD is invented in this document. Their actual values 
 
 ## Completion record
 
-- Candidate executable source commit: `06ba01e010c7eac3543dd6f23e083c2716941190`.
-- Matched H1-runtime control branch/head: `codex/r02-h1-runtime-control@e6fdd32a6fd661a88ef108f7b055e4f7840e9e43`; its delta from source is exactly `ProjectSettings/AssemblyShadowSourcePins.json`.
-- Candidate source-authority commit: `149a7f33d7bf4c431c2ed7ef3e5f393b47b71817`; its delta from executable source is exactly candidate source pins, R02 source-targets, and `WEB_TO_LOCAL.md`.
-- Fresh Primary workflow run: `36289846827`, conclusion `success`.
-- Artifact: `10921843892`, size 10,428,779 bytes, SHA-256 `23c40013304d56ee545941aee0a174f19f89ae4fe29020c5fc64c4b8720e5f2e`.
-- Current final documentation commit is created after this record and must remain metadata-only relative to the executable source anchor.
+The initial R02 publication (`06ba01e…` / `149a7f33…` / control `e6fdd32a…`) remains historical. Local return `621216751ade64aa39f28ed44a5acdc15c38c6cc` required a new source freeze and matched control.
 
-No executable source change occurred after the frozen source commit. Local Validation may begin only from the final remotely verified handoff tuple.
+Current repaired publication:
+
+- repaired executable/tool source anchor: `82d64ce415c062729f0082e81c1808eaac9602e4`;
+- matched H1-runtime control branch/head: `codex/r02-h1-runtime-control@6c950eaa98f995084750fe1ea8f80cfe4c59c61b`;
+- control tree versus source anchor: only `ProjectSettings/AssemblyShadowSourcePins.json` differs;
+- candidate source authority: `Docs/AssemblyShadow/History/M07R/R02/source-targets.json`, with source anchor `82d64ce4…` and control head `6c950eaa…`;
+- final R02 Primary CI: run `36318653155`, conclusion `success`, artifact `10931711251`, SHA-256 `b94c9346e03f5c7e6122a51207b85b4852313e8823462928ea82f021b0061f67`;
+- final scoped legacy-H1 CI: run `36318659885`, conclusion `success`, artifact `10931995719`, SHA-256 `a92ed53afeb9becfb25a08f971cfbe505bb66ff6310365aeb79b72e66ff1cc8e`.
+
+The final documentation commits after the validated authority remain metadata-only relative to the source anchor. Local Validation may begin only from the latest remotely verified candidate transport HEAD supplied in the handoff prompt.
+
+No Player acceptance is claimed by publication or Primary CI. R02 remains unaccepted and R03 remains closed.

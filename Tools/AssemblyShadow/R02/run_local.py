@@ -22,6 +22,7 @@ if str(TOOLS) not in sys.path: sys.path.insert(0, str(TOOLS))
 import authority
 import performance
 import ordinary_input
+import native_prerequisite
 from restoration import diagnostic_scene_allowed, restore_files, with_recovery
 from evidence import EvidenceError, binding, check_binding, files_under, read, require, run, seal, sha256, write
 from verify import MODES, verify_raw
@@ -442,7 +443,6 @@ class Batch:
         definitions = [
             ("run-r01-budget-native-tests.py", ["--hybridclr-root", native]),
             ("run-r01-recovery-native-tests.py", ["--il2cpp-root", runtime]),
-            ("run-r01-transaction-native-tests.py", ["--hybridclr-root", native]),
             ("run-r01b-index-runtime-tests.py", ["--native-root", native, "--runtime-root", runtime]),
             ("run-r01b-type-cache-tests.py", ["--native-root", native]),
         ]
@@ -455,6 +455,32 @@ class Batch:
         write(self.out / "native-regressions.json", {"rows": rows, "runtimeAcceptance": False})
         require(all(r["result"] == "Passed" for r in rows), "Native regression matrix incomplete")
         return rows
+
+    def native_generated_inputs(self):
+        project = self.roots["candidate"]
+        # Full installed-runtime verification remains outside the version-only
+        # prerequisite. Do not fabricate generated headers or copy control data.
+        self.tool("verify-installed-runtime.py", ["--project", project, "--expect-shadow", "on", "--json"])
+        result = native_prerequisite.prepare(project, self.out / "candidate-graph.json", self.args.unity,
+                                            self.out / "native-generated-inputs.json")
+        self.retained.update(Path(row["path"]) for row in result["files"].values())
+        return result
+
+    def native_transaction(self):
+        prerequisite = self.values["native-generated-inputs"]
+        native_prerequisite.recheck(prerequisite)
+        project = self.roots["candidate"]
+        def execute():
+            self.tool("run-r01-transaction-native-tests.py", ["--demo-root", project,
+                "--hybridclr-root", project.parent / "hybridclr", "--runtime-root", project.parent / "il2cpp_plus",
+                "--installed-root", prerequisite["installedRoot"],
+                "--pins", prerequisite["files"]["pins"]["path"],
+                "--dll", prerequisite["files"]["fixture"]["path"],
+                "--baselib", prerequisite["files"]["baselib"]["path"],
+                "--output", self.out / "run-r01-transaction-native-tests.py.json"])
+            return {"result": "Passed", "runtimeAcceptance": False}
+        return with_recovery(execute, lambda: native_prerequisite.recheck(prerequisite),
+                             self.out / "native-transaction-integrity.json")
 
     def finish(self):
         paths = set(self.retained)
@@ -511,6 +537,8 @@ def _execute(args):
     batch.cell("performance", functional, batch.paired, roles=("candidate", "control"))
     batch.cell("editor-tests", ["candidate-build"], batch.editor_tests, roles=("candidate",))
     batch.cell("native-regressions", ["candidate-authority"], batch.native_regressions, roles=("candidate",))
+    batch.cell("native-generated-inputs", ["candidate-build"], batch.native_generated_inputs, roles=("candidate",))
+    batch.cell("native-transaction", ["native-generated-inputs"], batch.native_transaction, roles=("candidate",))
     batch.cell("negative-fixtures", ["candidate-build"], batch.negatives, roles=("candidate",))
     batch.cell("m07", ["candidate-build"], lambda: batch.regression("m07"), roles=("candidate",))
     for kind in ("startup11", "failure"):

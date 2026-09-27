@@ -48,3 +48,11 @@ H1 remains PassedWithExplicitDeferredRisk. D1/D2 are still pending measured R02 
 ## Transport
 
 The new demo-only Git-object/ref smoke test on `codex/connector-smoke-r02-buildrepair-20260927-81fd` passed read-back at `3f91bd73f1697f825c40172563bc4e928dd39b71`, based on Local return `6212167`. It is not an acceptance or handoff commit and must not be merged. It remains because no branch-deletion operation is exposed. Other repositories are read-only in this repair.
+
+## Repair completion
+
+Primary published the repaired source anchor at `82d64ce415c062729f0082e81c1808eaac9602e4`, paired it with H1-runtime control `6c950eaa98f995084750fe1ea8f80cfe4c59c61b`, and refreshed the candidate source authority. The control commit has the repaired source anchor as explicit ancestry and differs in the working tree only by `ProjectSettings/AssemblyShadowSourcePins.json`.
+
+Final R02 Primary CI run `36318653155` passed, including 145/145 Python tests, both 70/70 native process matrices, and managed host Baseline/P01/P03 assertions. Final legacy-H1 CI run `36318659885` also passed: 384/384 current scoped cases and 6/6 fixed-H1 positives, plus the remaining R01/M07/R01B workflow regressions.
+
+The repair remains unverified in the real macOS Unity/IL2CPP build path until the next Local batch. Previous A/B/C failures and seals remain historical evidence; they are not superseded as executions.
