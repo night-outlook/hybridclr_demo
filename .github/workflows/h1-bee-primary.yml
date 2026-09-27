@@ -71,7 +71,7 @@ jobs:
           # Disposable local fixture, not a live branch or a Player source.
           historical="$RUNNER_TEMP/h1-positive-checkout"
           git clone --shared --no-checkout "$GITHUB_WORKSPACE" "$historical"
-          git -C "$historical" checkout -b codex/assembly-shadow-r01b-h1 2cbf68658a5b73189930fcdfe250835b72639515
+          git -C "$historical" checkout -B codex/assembly-shadow-r01b-h1 2cbf68658a5b73189930fcdfe250835b72639515
           git -C "$historical" remote set-url origin https://github.com/night-outlook/hybridclr_demo.git
           python3 Tools/AssemblyShadow/R02/legacy_scope.py --project "$historical" --current-root "$GITHUB_WORKSPACE" --scope historical --output "$RUNNER_TEMP/h1-bee-fixture/fixed-h1-results"
       - name: Run R01 early and failure/publication contract regressions
