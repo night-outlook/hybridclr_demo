@@ -1,6 +1,6 @@
 # R02 Primary publication sequence
 
-Status: blocked by transport availability in the current session. Code and metadata-generation logic are supplied; no Local implementation is requested.
+Status: **Completed by Primary.** This file preserves the publication procedure and records the exact results; no Local implementation is requested.
 
 ## Fixed bases
 
@@ -32,3 +32,15 @@ Control local paths are `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/
 All three control runtime/package checkouts can be detached worktrees at their exact published commits; this avoids attaching one local branch to two worktrees. Candidate owning branches remain `codex/assembly-shadow-r01b-h1`.
 
 No revision C or control HEAD is invented in this document. Their actual values must be obtained from successful publication. This is an operational dependency, not delegated design or production-code work.
+
+
+## Completion record
+
+- Candidate executable source commit: `06ba01e010c7eac3543dd6f23e083c2716941190`.
+- Matched H1-runtime control branch/head: `codex/r02-h1-runtime-control@e6fdd32a6fd661a88ef108f7b055e4f7840e9e43`; its delta from source is exactly `ProjectSettings/AssemblyShadowSourcePins.json`.
+- Candidate source-authority commit: `149a7f33d7bf4c431c2ed7ef3e5f393b47b71817`; its delta from executable source is exactly candidate source pins, R02 source-targets, and `WEB_TO_LOCAL.md`.
+- Fresh Primary workflow run: `36289846827`, conclusion `success`.
+- Artifact: `10921843892`, size 10,428,779 bytes, SHA-256 `23c40013304d56ee545941aee0a174f19f89ae4fe29020c5fc64c4b8720e5f2e`.
+- Current final documentation commit is created after this record and must remain metadata-only relative to the executable source anchor.
+
+No executable source change occurred after the frozen source commit. Local Validation may begin only from the final remotely verified handoff tuple.

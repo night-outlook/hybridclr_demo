@@ -2,9 +2,9 @@
 
 ## Disposition
 
-**Prepared repair and diagnostics are tested within the available host scope. Publication is blocked; this is not a completed or handoff-ready Primary cycle.**
+**Primary continuation is published and host-validated. It is handoff-ready for Local Validation, but R02 is not accepted and R03 remains closed.**
 
-The current continuation did not modify any remote repository. It recovered source and evidence from the published R02 CI artifact, continued the already-implemented R02 work, and prepared executable repairs, tests, metadata tooling and documentation. No H1 work was restarted. No Local-owned report or historical evidence was overwritten.
+The continuation first recovered source and evidence from the earlier R02 CI artifact, then published the executable repairs as source anchor `06ba01e010c7eac3543dd6f23e083c2716941190`, published matched H1-runtime control `e6fdd32a6fd661a88ef108f7b055e4f7840e9e43`, and froze candidate authority at `149a7f33d7bf4c431c2ed7ef3e5f393b47b71817`. No H1 work was restarted. No Local-owned report or historical evidence was overwritten.
 
 This is a Primary self-review and source/evidence audit, not a newly commissioned independent MILESTONE review.
 
@@ -59,12 +59,12 @@ The original failed CI run passed its 70/70 native and 70/70 revision process ca
 
 The current environment has no .NET SDK, Unity or IL2CPP platform toolchain. A real new managed build/exec run, complete current-source Primary CI, Unity/Player builds, the controlled 88-process series and affected Player matrices were **NotRun here**. The original .NET output does not close validation of the command repair.
 
-## Remaining operational blocker
+## Publication and current Primary validation
 
-The available GitHub operation set has reads/artifact downloads but no commit/file-update/branch-write action. Plugin discovery found the existing installed GitHub connection, not another usable write capability. Direct Git transport also failed to resolve `github.com`. Although repository metadata reports push permission, no usable write transport is available in this session.
+The GitHub Connector write path became available and was used for authoritative publication. Candidate executable source is `06ba01e010c7eac3543dd6f23e083c2716941190`; the matched control is `e6fdd32a6fd661a88ef108f7b055e4f7840e9e43`; candidate source authority is frozen at `149a7f33d7bf4c431c2ed7ef3e5f393b47b71817`.
 
-Consequently there is no new pushed source anchor, matched control HEAD, final source-target JSON or remotely verified final handoff for this repair. `PUBLICATION_PLAN.md` and `prepare_metadata.py` define the complete mechanical sequence, owned by Primary. This is not delegated production implementation for Local.
+Fresh workflow run `36289846827` completed successfully. Artifact `10921843892` is 10,428,779 bytes with SHA-256 `23c40013304d56ee545941aee0a174f19f89ae4fe29020c5fc64c4b8720e5f2e`. Its source inventory records 3,082 files and exact repository heads. Native and revision matrices are each 70/70 Passed; Python is 115/115; codec attribution passed on GCC and Clang; managed Baseline/P01/P03 passed 102/111/111 assertions with clean owned process groups. Primary receipts explicitly keep `unityPlayerRun=false` and `runtimeAcceptance=false`.
 
 ## Exit boundary
 
-H1 remains closed with its explicit deferred risks. R02 remains unaccepted and R03 is not authorized. Finish Primary publication and a passing current CI run before issuing the generated pinned Local Validation prompt. Then Local executes the prepared batch, returns factual evidence, and obtains a genuinely independent R02 stage review. D1/D2 measured disposition must remain visible before H2.
+H1 remains closed with its explicit deferred risks. Primary publication and host CI are complete. R02 remains unaccepted and R03 is not authorized. Local now executes the frozen batch, returns factual evidence, and obtains a genuinely independent R02 stage review if eligible. D1/D2 measured disposition must remain visible before H2.
