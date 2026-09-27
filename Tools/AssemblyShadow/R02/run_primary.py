@@ -7,7 +7,8 @@ import os
 from pathlib import Path
 import shutil
 import sys
-from evidence import run, write, binding, require
+from evidence import run, write, binding
+from managed import run_suite
 
 
 def main(argv=None):
@@ -24,6 +25,8 @@ def main(argv=None):
         ("source", [sys.executable, str(native / "tools/r02/finalize_sources.py"), "--verify", "--output", str(out / "source.json")], 300),
         ("native", [sys.executable, str(native / "tools/r02/run_tests.py"), "--output", str(out / "native"), "--sanitizers"], 900),
         ("revision", [sys.executable, str(native / "tools/r02/run_revision_tests.py"), "--output", str(out / "revision"), "--sanitizers"], 900),
+        ("codec-storage", [sys.executable, str(Path(__file__).parent / "codec_memory.py"),
+            "--hybridclr-root", str(native.parent / "hybridclr"), "--output", str(out / "codec-storage")], 300),
         ("python", [sys.executable, "-m", "unittest", "discover", "-s", str(Path(__file__).parent / "tests"), "-v"], 180),
     ]
     rows = []
@@ -36,12 +39,7 @@ def main(argv=None):
         rows.append({"cell": "managed", "result": "Unavailable", "reason": "Host .NET SDK not run", "unityPlayerRun": False})
     else:
         csproj = Path(__file__).parent / "ManagedTests/ManagedTests.csproj"
-        for name, define in (("Baseline", ""), ("P01", "ASSEMBLY_SHADOW_P01"), ("P03", "ASSEMBLY_SHADOW_P03")):
-            command = [dotnet, "run", "--project", str(csproj), "--configuration", name,
-                       "--property:WitnessDefine=" + define, "--property:BaseOutputPath=" + str(out / "managed-bin") + "/",
-                       "--property:BaseIntermediateOutputPath=" + str(out / ("managed-obj-" + name)) + "/"]
-            receipt = run(command, project, out / ("managed-" + name), 180, env)
-            rows.append({"cell": "managed-" + name, "result": receipt["result"], "receipt": binding(out / ("managed-" + name + "/command.json"))})
+        rows.extend(run_suite(dotnet, csproj, project, out, env))
     success = all(row["result"] == "Passed" for row in rows)
     result = {"kind": "R02PrimaryValidation", "result": "Passed" if success else "IncompleteOrFailed", "cells": rows,
               "unityPlayerRun": False, "runtimeAcceptance": False}

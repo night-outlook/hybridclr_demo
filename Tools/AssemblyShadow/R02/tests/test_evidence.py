@@ -71,3 +71,27 @@ class EvidenceTests(unittest.TestCase):
     def test_spawn_failure_is_retained(self):
         row=e.run([str(self.root/'absent')],self.root,self.root/'run',2)
         self.assertEqual(row['result'],'Failed');self.assertIn('error',row)
+
+class OwnedGroupDiagnostics(unittest.TestCase):
+    def test_census_stores_only_owned_group_without_arguments(self):
+        from unittest.mock import patch
+        import subprocess
+        result=subprocess.CompletedProcess([],0,'12 42 Sl dotnet\n13 43 S unrelated\n14 42 Sl VBCSCompiler\n','')
+        with patch.object(e.subprocess,'run',return_value=result):value=e.owned_group_members(42)
+        self.assertEqual(value['members'],[{'pid':12,'processGroup':42,'state':'Sl','executable':'dotnet'},
+                                          {'pid':14,'processGroup':42,'state':'Sl','executable':'VBCSCompiler'}])
+        self.assertNotIn('unrelated',str(value))
+    def test_unavailable_census_does_not_claim_clean(self):
+        from unittest.mock import patch
+        with patch.object(e.subprocess,'run',side_effect=OSError('not installed')):value=e.owned_group_members(42)
+        self.assertEqual(value['status'],'Unavailable')
+        self.assertNotIn('processGroupClean',value)
+    @unittest.skipUnless(os.name=='posix','Owned POSIX process-group test')
+    def test_zero_exit_parent_with_live_child_fails_and_records_census(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp).resolve()
+            code='import subprocess,sys;subprocess.Popen([sys.executable,"-c","import time;time.sleep(10)"]);print("Passed")'
+            value=e.run([sys.executable,'-c',code],root,root/'run',10)
+            self.assertEqual(value['exitCode'],0)
+            self.assertFalse(value['processGroupClean']);self.assertEqual(value['result'],'Failed')
+            self.assertIn('survivorsBeforeCleanup',value)

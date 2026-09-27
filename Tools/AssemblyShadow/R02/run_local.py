@@ -20,6 +20,7 @@ TOOLS = HERE.parent
 if str(TOOLS) not in sys.path: sys.path.insert(0, str(TOOLS))
 import authority
 import performance
+from restoration import diagnostic_scene_allowed, restore_files, with_recovery
 from evidence import EvidenceError, binding, check_binding, files_under, read, require, run, seal, sha256, write
 from verify import MODES, verify_raw
 import r00_results
@@ -115,18 +116,27 @@ class Batch:
         return self.command([self.args.unity, "-batchmode", "-nographics", "-quit", "-projectPath", self.roots[role],
             "-buildTarget", "StandaloneOSX", "-executeMethod", method, *arguments, "-logFile", log], self.roots[role], timeout)
 
-    def cell(self, name, dependencies, action):
+    def cell(self, name, dependencies, action, roles=()):
         row = {"name": name, "dependencies": dependencies, "result": "Blocked", "runtimeAcceptance": False}
         missing = [key for key in dependencies if self.rows[key]["result"] != "Passed"]
         if missing: row["blockedBy"] = missing
         else:
             row["startedAtUnix"] = time.time()
             try:
-                self.values[name] = action()
-                row["result"] = "Passed"
+                # A prior failed build can leave a workspace unusable even when
+                # this cell's original graph dependency passed. Reauthenticate
+                # at cell boundaries, outside deliberate build mutations.
+                row["inputAuthorities"] = [authority.inspect(self.roots[role], self.heads[role], role, self.targets) for role in roles]
             except Exception as error:
-                row["result"] = "Failed"
-                row["error"] = type(error).__name__ + ": " + str(error)
+                row["result"] = "Blocked"
+                row["sourceAuthorityError"] = type(error).__name__ + ": " + str(error)
+            else:
+                try:
+                    self.values[name] = action()
+                    row["result"] = "Passed"
+                except Exception as error:
+                    row["result"] = "Failed"
+                    row["error"] = type(error).__name__ + ": " + str(error)
             row["endedAtUnix"] = time.time()
         self.rows[name] = row
         write(self.out / "cells" / (name + ".json"), row)
@@ -266,35 +276,22 @@ class Batch:
         folder = self.out / "count-builds" / (feature + "-" + cpp); folder.mkdir(parents=True)
         frozen = sha256(project / "ProjectSettings/AssemblyShadowSourcePins.json")
         common = ["-shadowH1Python", sys.executable, "-shadowH1PreparationRoot", prep]
-        failure = None
-        try:
+        def build_action():
             self.unity("candidate", "AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.PrepareDiagnosticBuild", common)
             self.unity("candidate", "AssemblyShadowDemo.Editor.H1CountDiagnosticBuildWithManagedProvenance.BuildDiagnosticPlayer",
                 common + ["-shadowH1Feature", feature, "-shadowH1Cpp", cpp, "-shadowH1BuildReceipt", prep / "build-receipt.json",
                           "-shadowH1PlayerOutput", prep / "Player.app"])
             count_build.verify_build(project, prep / "build-receipt.json", folder, frozen)
-        except Exception as error:
-            failure = error
-        finally:
-            self.unity("candidate", "AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.RestoreDiagnosticBuild", common)
-            self.stopped("candidate")
-            changes = []
-            for name, original in before.items():
-                current = (project / name).read_bytes()
-                token = uuid.uuid4().hex
-                (folder / (token + ".before")).write_bytes(original); (folder / (token + ".after")).write_bytes(current)
-                allowed = count_build.restore_allowed(name, original, current)
-                changes.append({"path": name, "allowed": allowed, "before": binding(folder / (token + ".before")),
-                                "after": binding(folder / (token + ".after"))})
-            write(folder / "restoration.json", {"changes": changes})
-            require(all(c["allowed"] for c in changes), "Unexpected build mutation; retained without overwriting")
-            for row in changes:
-                path = project / row["path"]
-                require(path.read_bytes() == check_binding(row["after"]).read_bytes(), "Concurrent restoration edit")
-                path.write_bytes(check_binding(row["before"]).read_bytes())
+            return prep / "build-receipt.json"
+        def recover():
+            # Do not hide a failed Unity restore behind a successful byte copy.
+            try:
+                self.unity("candidate", "AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.RestoreDiagnosticBuild", common)
+            finally:
+                self.stopped("candidate")
+                restore_files(project, before, count_build.restore_allowed, folder / "restoration")
             authority.inspect(project, self.heads["candidate"], "candidate", self.targets)
-        if failure: raise failure
-        return prep / "build-receipt.json"
+        return with_recovery(build_action, recover, folder / "build-recovery.json")
 
     def counts(self):
         root = self.new_player_root("candidate", "count-inputs"); root.mkdir()
@@ -349,22 +346,15 @@ class Batch:
         scene = project / "Assets/AssemblyShadowR01BDiagnostics/Scenes/R01BDiagnostic.unity"
         before = scene.read_bytes()
         receipt = root / "build.json"
-        try:
+        def build_action():
             self.unity("candidate", "AssemblyShadowDemo.Editor.R02DiagnosticBuild.Build", [
                 "-shadowM07Fixtures", graph["fixtureManifest"], "-shadowM07PlayerReceipt", graph["nativeOnReceipt"],
                 "-shadowR01BDiagnosticOutput", root / "Player.app", "-shadowR01BDiagnosticBuildReceipt", receipt])
-        finally:
+        def recover():
             self.stopped("candidate")
-            after = scene.read_bytes(); (root / "scene-before.bin").write_bytes(before); (root / "scene-after.bin").write_bytes(after)
-            import re
-            def scrub(value):
-                for key in (b"expectedBaselineBuildId", b"expectedRuntimeAbiHash"):
-                    value, n = re.subn(rb"(?m)^  " + key + rb": [^\r\n]*$", b"  " + key + b": <identity>", value)
-                    require(n == 1, "Non-unique diagnostic scene identity field")
-                return value
-            require(scrub(before) == scrub(after), "Unexpected diagnostic scene changes; not overwritten")
-            require(scene.read_bytes() == after, "Concurrent scene edit")
-            scene.write_bytes(before)
+            restore_files(project, {str(scene.relative_to(project)): before},
+                lambda relative, original, current: diagnostic_scene_allowed(original, current), root / "restoration")
+        with_recovery(build_action, recover, root / "build-recovery.json")
         authority.inspect(project, self.heads["candidate"], "candidate", self.targets)
         from r01b_diagnostic_inputs import verify_diagnostic_inputs
         verify_diagnostic_inputs(project, *[Path(graph[k]) for k in ("fixtureManifest", "nativeOnReceipt", "nativeOffReceipt", "editorReplayReceipt")], receipt)
@@ -468,7 +458,7 @@ def parse(argv=None):
 def _execute(args):
     if not args.execute:
         print(json.dumps({"protocol": "R02LocalBatch-v1", "candidate": str(args.candidate), "control": str(args.control),
-            "cells": ["authority", "primary", "two-controlled-graphs", "eight-functional-sidecars", "44-paired-process-samples",
+            "cells": ["authority", "primary", "two-controlled-graphs", "eight-functional-sidecars", "44-pairs-88-processes",
                       "m07", "startup11", "failure", "count132", "diagnostic", "lazy-dense", "ordinary-mixed-capacity", "seal"],
             "executes": False, "runtimeAcceptance": False}, indent=2)); return 0
     require(sys.platform == "darwin", "Real batch requires macOS")
@@ -484,29 +474,29 @@ def _execute(args):
         batch.cell(role + "-authority", [], lambda role=role: batch.source(role))
     batch.cell("common-sources", ["candidate-authority", "control-authority"], lambda: write(batch.out / "common-sources.json", authority.common_sources(args.candidate, args.control)))
     batch.cell("primary", ["candidate-authority"], lambda: batch.command([sys.executable, HERE / "run_primary.py",
-        "--il2cpp-root", args.candidate.parent / "il2cpp_plus", "--output", args.output / "primary"], args.candidate, 7200))
+        "--il2cpp-root", args.candidate.parent / "il2cpp_plus", "--output", args.output / "primary"], args.candidate, 7200), roles=("candidate",))
     for role in ("candidate", "control"):
-        batch.cell(role + "-build", ["common-sources", "primary"], lambda role=role: batch.build(role))
-    batch.cell("frozen-build-map", ["candidate-build", "control-build"], batch.freeze)
+        batch.cell(role + "-build", ["common-sources", "primary"], lambda role=role: batch.build(role), roles=(role,))
+    batch.cell("frozen-build-map", ["candidate-build", "control-build"], batch.freeze, roles=("candidate", "control"))
     functional = []
     for role in ("control", "candidate"):
         for mode in MODES:
             name = role + "-" + mode; functional.append(name)
-            batch.cell(name, ["frozen-build-map"], lambda role=role, mode=mode, name=name: batch.sample(role, mode, name, True))
-    batch.cell("performance", functional, batch.paired)
-    batch.cell("editor-tests", ["candidate-build"], batch.editor_tests)
-    batch.cell("native-regressions", ["candidate-authority"], batch.native_regressions)
-    batch.cell("negative-fixtures", ["candidate-build"], batch.negatives)
-    batch.cell("m07", ["candidate-build"], lambda: batch.regression("m07"))
+            batch.cell(name, ["frozen-build-map"], lambda role=role, mode=mode, name=name: batch.sample(role, mode, name, True), roles=(role,))
+    batch.cell("performance", functional, batch.paired, roles=("candidate", "control"))
+    batch.cell("editor-tests", ["candidate-build"], batch.editor_tests, roles=("candidate",))
+    batch.cell("native-regressions", ["candidate-authority"], batch.native_regressions, roles=("candidate",))
+    batch.cell("negative-fixtures", ["candidate-build"], batch.negatives, roles=("candidate",))
+    batch.cell("m07", ["candidate-build"], lambda: batch.regression("m07"), roles=("candidate",))
     for kind in ("startup11", "failure"):
-        batch.cell(kind, ["negative-fixtures"], lambda kind=kind: batch.regression(kind))
-    batch.cell("count132", ["candidate-build"], batch.counts)
-    batch.cell("diagnostic-build", ["candidate-build"], batch.diagnostic)
+        batch.cell(kind, ["negative-fixtures"], lambda kind=kind: batch.regression(kind), roles=("candidate",))
+    batch.cell("count132", ["candidate-build"], batch.counts, roles=("candidate",))
+    batch.cell("diagnostic-build", ["candidate-build"], batch.diagnostic, roles=("candidate",))
     batch.cell("retained-capacity-inputs", ["candidate-authority"], batch.retained_capacity)
     batch.cell("overflow-fixture", ["candidate-authority"], batch.overflow)
-    batch.cell("lazy-dense", ["diagnostic-build"], batch.lazy)
+    batch.cell("lazy-dense", ["diagnostic-build"], batch.lazy, roles=("candidate",))
     for mixed in (False, True):
-        batch.cell("mixed-capacity" if mixed else "ordinary-capacity", ["diagnostic-build", "retained-capacity-inputs", "overflow-fixture"], lambda mixed=mixed: batch.capacity(mixed))
+        batch.cell("mixed-capacity" if mixed else "ordinary-capacity", ["diagnostic-build", "retained-capacity-inputs", "overflow-fixture"], lambda mixed=mixed: batch.capacity(mixed), roles=("candidate",))
     for role in ("candidate", "control"):
         batch.cell("final-" + role + "-authority", [role + "-authority"], lambda role=role: batch.source(role, final=True))
     try: summary = batch.finish()

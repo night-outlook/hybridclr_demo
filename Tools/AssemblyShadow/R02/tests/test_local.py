@@ -93,3 +93,23 @@ class Local(unittest.TestCase):
 
 
 if __name__=='__main__': unittest.main()
+
+class CellAuthority(unittest.TestCase):
+    def test_dirty_workspace_blocks_cell_before_action(self):
+        with tempfile.TemporaryDirectory() as root:
+            batch=object.__new__(run_local.Batch);batch.out=Path(root).resolve();batch.rows={};batch.values={}
+            batch.roots={'candidate':batch.out};batch.heads={'candidate':'a'*40};batch.targets={}
+            calls=[]
+            with patch.object(authority,'inspect',side_effect=EvidenceError('dirty after prior failed build')):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    batch.cell('diagnostic',[],lambda:calls.append('run'),roles=('candidate',))
+            self.assertEqual(calls,[]);self.assertEqual(batch.rows['diagnostic']['result'],'Blocked')
+            self.assertIn('dirty',batch.rows['diagnostic']['sourceAuthorityError'])
+
+    def test_clean_workspace_runs_cell_with_receipt(self):
+        with tempfile.TemporaryDirectory() as root:
+            batch=object.__new__(run_local.Batch);batch.out=Path(root).resolve();batch.rows={};batch.values={}
+            batch.roots={'candidate':batch.out};batch.heads={'candidate':'a'*40};batch.targets={}
+            with patch.object(authority,'inspect',return_value={'result':'SourceVerifiedNotBuildAccepted'}):
+                with contextlib.redirect_stdout(io.StringIO()):batch.cell('check',[],lambda:42,roles=('candidate',))
+            self.assertEqual(batch.values['check'],42);self.assertEqual(len(batch.rows['check']['inputAuthorities']),1)

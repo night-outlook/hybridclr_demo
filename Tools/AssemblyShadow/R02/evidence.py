@@ -107,6 +107,32 @@ def number(value, label: str) -> float:
     return float(value)
 
 
+def owned_group_members(group: int) -> dict:
+    """Diagnostic-only census of the owned group; never store other processes.
+
+    A missing census does not relax the separate killpg ownership/cleanup check.
+    Executable names are enough; command arguments and environments are omitted.
+    """
+    try:
+        observed = subprocess.run(["ps", "-eo", "pid=,pgid=,stat=,comm="], capture_output=True, text=True, timeout=3)
+        if observed.returncode:
+            return {"status": "Unavailable", "reason": "ps exited nonzero"}
+        members = []
+        for line in observed.stdout.splitlines():
+            parts = line.strip().split(None, 3)
+            if len(parts) != 4:
+                continue
+            try:
+                pid, pgid = int(parts[0]), int(parts[1])
+            except ValueError:
+                continue
+            if pgid == group:
+                members.append({"pid": pid, "processGroup": pgid, "state": parts[2], "executable": parts[3][:1024]})
+        return {"status": "Observed", "members": members}
+    except (OSError, subprocess.SubprocessError) as error:
+        return {"status": "Unavailable", "reason": type(error).__name__}
+
+
 def run(argv: list[str], cwd: Path, output: Path, timeout: int, env: dict | None = None) -> dict:
     """An owned process group; log files and failed/partial attempts are retained."""
     require(argv and all(isinstance(a, str) and "\0" not in a for a in argv), "Invalid argv")
@@ -143,6 +169,7 @@ def run(argv: list[str], cwd: Path, output: Path, timeout: int, env: dict | None
                 else:
                     # Even a zero-exit parent with surviving children fails.
                     receipt["processGroupClean"] = False
+                    receipt["survivorsBeforeCleanup"] = owned_group_members(process.pid)
                     os.killpg(process.pid, signal.SIGKILL)
             receipt["result"] = "Passed" if receipt["exitCode"] == 0 and not receipt["timedOut"] and receipt["processGroupClean"] else "Failed"
     except (OSError, subprocess.SubprocessError) as error:

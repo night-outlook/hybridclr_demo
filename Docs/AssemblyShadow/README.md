@@ -1,13 +1,13 @@
 # HybridCLR Assembly Shadow
 
-This directory is the canonical project documentation root.
+This is the canonical documentation root.
 
-- `Plan/`: authoritative design, roadmap, stage specifications, and review gates.
+- `Plan/`: design, roadmap, stage specifications and review gates.
 - `Handoff/`: live Primary Implementation and Local Validation contract.
-- `Architecture/`: durable architecture decisions.
-- `History/`: compact historical reports and current H1 summaries.
-- `Evidence/`: Git and local-archive catalogs plus protected pins.
+- `Architecture/`: durable design decisions.
+- `History/`: historical evidence and current R02 implementation records.
+- `Evidence/`: evidence catalogs and protected pins.
 
-Historical evidence retains its original status. H1 was approved on 2026-09-25 as `PassedWithExplicitDeferredRisk` after explicit user acceptance of D1/D2. R02 is eligible but has not started; see `History/M07R/H1/human-review-20260925/HUMAN_REVIEW_DECISION.md`.
+H1 remains `PassedWithExplicitDeferredRisk` after explicit user acceptance of D1/A and D2/A. Historical evidence keeps its original status.
 
-Workspace and documentation consolidation completed on 2026-09-17. The retained workspace consists of the four owning repositories and the `assembly_shadow_h1r` integration family. Product validation is deferred; cleanup completion does not change the H1 gate.
+R02 work has started. The current continuation package is **not published** and does not constitute a Local Validation handoff. Read `Plan/CURRENT_STATUS.md`, `Handoff/WEB_TO_LOCAL.md` and `History/M07R/R02/PUBLICATION_PLAN.md` before further work. R02 source/control pairing and final CI verification must be published before execution. Do not begin R03.

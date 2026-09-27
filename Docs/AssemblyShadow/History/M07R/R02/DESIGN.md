@@ -60,3 +60,13 @@ Primary supplies native concurrency/failure/allocation-free tests, diagnostic-po
 Keep raw results, launch receipts, build/input identities, logs, before/after hashes, failed attempts, and archive inventories. No report-only package may replace launch/raw evidence. Historical H1 acceptance stays intact and is not promoted to R02 execution evidence.
 
 R02 remains unaccepted until the required fresh Local evidence and independent stage review are complete. Remaining D1/D2 costs must be disposed before H2. No R03 or later milestone starts automatically.
+
+## Continuation: process ownership, recovery and publication
+
+Managed host checks now compile and execute as separate owned processes. Per-command build-server/node reuse is disabled; no global build-server shutdown may disrupt another workspace. Compilation and execution have separate bound receipts. The exact host marker/assertion count is checked only after clean command termination. A zero exit code or Passed payload cannot override a failed owned-group cleanup.
+
+Before each workspace-dependent Local cell, recheck the exact source/remote identities. A prior successful build dependency does not authorize later execution in a workspace left dirty by another failed build. Independent cells may proceed only in valid workspaces. Generated-input restoration captures the whole change set and rejects unexpected or concurrent changes before overwriting it. Build and restoration errors are recorded independently.
+
+The codec storage probe instruments allocation requests around the unchanged standalone profile-2 codec constructor. It measures the four owned arrays on the current host compiler ABI. These bytes are neither allocator overhead nor Unity RSS, and the component is shared by H1-runtime control and R02 candidate. It supplies bounded D2 attribution without claiming to explain or eliminate the full historical RSS difference.
+
+Source pairing requires two publication phases after executable source is committed: a metadata-only H1-runtime control commit, then candidate metadata naming that exact control and source. `prepare_metadata.py` prepares those files without performing Git writes. Its prompt path requires live source/ref verification. Until publication succeeds, the current old H1 pins are not R02 authority. No provisional or unpushed SHA may be issued as a Local handoff.
