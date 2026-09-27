@@ -1,0 +1,59 @@
+{
+  "kind": "R02UnityCommandCompletion",
+  "policy": "R02OwnedUnityRoslyn-v1",
+  "result": "Failed",
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-quit",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo",
+    "-buildTarget",
+    "StandaloneOSX",
+    "-executeMethod",
+    "AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927D/unity-5bcd761f9cae40ba8df1da7f2dbc33a4.log"
+  ],
+  "commandExitCode": 0,
+  "startedAtUnix": 1790513448.0777879,
+  "runtimeAcceptance": false,
+  "compilerBinding": {
+    "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "sha256": "02958dc1de32e0960dc8dc85e17f51a5755438a746c21d892f4ac726ddfcbd4a",
+    "sizeBytes": 240640
+  },
+  "completion": {
+    "policy": "R02OwnedUnityRoslyn-v1",
+    "group": 36250,
+    "compiler": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "termGraceSeconds": 5.0,
+    "killGraceSeconds": 3.0,
+    "clean": false,
+    "actions": [
+      {
+        "pid": 36266,
+        "signal": 15,
+        "identity": {
+          "pid": 36266,
+          "group": 36250,
+          "state": "S",
+          "start": "Sun Sep 27 05:50:53 2026",
+          "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE"
+        }
+      }
+    ],
+    "before": [
+      {
+        "pid": 36266,
+        "group": 36250,
+        "state": "S",
+        "start": "Sun Sep 27 05:50:53 2026",
+        "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE"
+      }
+    ],
+    "error": "EvidenceError: New or changed descendant during compiler completion"
+  },
+  "endedAtUnix": 1790513462.9731789
+}

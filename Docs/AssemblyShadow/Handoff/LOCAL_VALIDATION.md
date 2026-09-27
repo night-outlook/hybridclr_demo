@@ -1,6 +1,27 @@
 # Local Validation report
 
-## Current run — 2026-09-26/27, R02LocalBatch-v1 returned to Primary
+## Current run — 2026-09-27, repaired R02LocalBatch-v1 returned to Primary
+
+**Result: `ReturnRequired`.** The fresh, unused `R02LocalBatch-20260927D` root was executed once from candidate handoff `3bbc2c8dee125ba9db47dcd0584c4a6285abebf8` and matched control `6c950eaa98f995084750fe1ea8f80cfe4c59c61b`. Candidate executable source anchor `82d64ce415c062729f0082e81c1808eaac9602e4` differs from its handoff by ten metadata paths and zero non-metadata paths. Candidate sibling heads were HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and IL2CPP `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`; the matched control used the same HybridCLR/package heads and H1 IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. Entry and final authority, remotes, clean worktrees, and common managed executable graph passed. All eight worktrees were clean after removing one local audit-generated Python cache file.
+
+The live batch is `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927D/`; the authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-repaired-return-required/`. The batch has **31 cells: 8 Passed, 3 Failed, 20 Blocked**. `LOCAL_BATCH_RESULT.json` SHA-256 is `dc3185b3e0697894d19c99d581ab00a7d0f2533cdc8ca69a3b42425342a1b7f3`. Its bound `seal/seal-index.json` SHA-256 is `de3aae97aab1dcf86b6e92ad0e86cb31b83a27eec0726dece9fca431b91de602`; the archive SHA-256 is `5c6e082d58ca38f8a582eb2e746bc78ee565e2ead0b4b92e22b8e68637b106fb`. Independent member-by-member audit passed for 9,037 live locators and 8,657 unique archive blobs.
+
+| Cell | Result | Observed limit |
+| --- | --- | --- |
+| Candidate/control authority, common graph, host Primary, final authorities | `Passed` | Exact source, remote and clean-worktree checks; host checks do not imply runtime acceptance |
+| Candidate/control controlled builds | **`Failed`** | Unity `InstallRepeatability` logged success and exited 0 in both workspaces, but command-owned Roslyn completion returned `clean=false` after signalling `VBCSCompiler.dll`: `New or changed descendant during compiler completion`. The outer receipts `commands/0004` and `0007` correctly failed; neither build was accepted. |
+| Native regressions | **`Failed`** | Four of five scripts passed. `run-r01-transaction-native-tests.py` failed its dependency scan on missing `icalls/mscorlib/System/MonoType.h` and the `please run 'HybridCLR/Generate/All'` guard. This cell currently depends only on source authority and executed before a successful generated-header workflow. |
+| Retained capacity input authentication and overflow fixture | `Passed` | Inputs and fixture only; no capacity Player result was promoted |
+| Ordinary M00 input, frozen build map, eight functional sidecars, 44 A/B pairs / 88 formal processes | `Blocked/NotRun` | Both build cells failed before ordinary-input preparation; no fresh paired CPU or RSS analysis exists |
+| Editor, M07, startup11, failure/recovery, count132, diagnostic, lazy/dense, ordinary/mixed capacity | `Blocked/NotRun` | Build and dependent prerequisites failed; no affected regression Player was launched |
+| D1/D2 R02 measurement/disposition | `Blocked` | No controlled paired performance or memory series; H1's accepted deferred risks remain open for R02 review |
+| Independent R02 stage review | `NotEligible/NotRun` | Batch result is `ReturnRequired`, not `EvidenceReadyForStageReview` |
+
+The first Unity failure is a completion-identity failure, not a Unity install/compiler exit failure. The completion receipts retain the original owned compiler PID, start time, group, DLL hash, TERM action, and exact error, but do not retain the changed post-signal census; therefore the changed process cannot be classified more narrowly from this evidence. The native failure is a separate ordering/prerequisite issue. No source change, assertion relaxation, semantic retry, or relabeling was made locally. Preserve batch D, its archive, prior A/B/C evidence, and both installed-runtime workspace roots while Primary diagnoses and repairs the source-bound runner.
+
+H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. R02 stage review and H2 are not eligible. The exact return and proposed bounded Primary corrections are in `RETURN_TO_WEB.md`.
+
+## Historical run — 2026-09-26/27, R02LocalBatch-v1 returned to Primary
 
 ### Exit
 
