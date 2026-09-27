@@ -1,21 +1,31 @@
 # Primary Implementation -> Local Validation: R02
 
+## Build-boundary repair from Local return 6212167
+
+This handoff supersedes the failed A/B/C build attempts, not their historical evidence. Read `Docs/AssemblyShadow/History/M07R/R02/BUILD_REPAIR_20260927.md` before the batch. Both candidate and control must fast-forward to the new transport commits; both use the common source anchor listed below. No old candidate build is accepted merely because its internal M07 command printed success.
+
+The runner now supervises each Unity/build command and retires only its exact command-owned Roslyn server, then requires the unchanged outer no-survivor check. Unknown children, changed identity, compiler-byte mutation or remaining processes fail. Player/formal timing commands remain unwrapped. Preserve `commands/*-unity-completion.json` along with the original command logs and receipts.
+
+Before M07, each workspace independently generates the fixed M00 ordinary DLL using `R02OrdinaryInput.Prepare`, then authenticates its source/pins/output. Preserve both `<role>-ordinary-input.json` and the retained ordinary-input root with `preparation.json` and compiled bytes. The existing SHA-256 `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27` is not relaxed. A generation mismatch returns to Primary; Local must not rewrite hashes or copy the other workspace’s DLL. Actual Unity byte equality and macOS long-build cleanup remain unverified until this run.
+
+Use `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1` for the batch entry process. Child commands additionally receive canonical temporary paths and the committed no-server-reuse environment. Keep all A/B/C roots and seals. Use a new unused output root; no resumed or relabeled acceptance.
+
 ## Objective and authority
 
 Run `R02LocalBatch-v1` against fresh source-bound H1-runtime control and R02 candidate builds. Collect functional, concurrency, guard/regression, CPU, memory and complete raw/launch evidence in one serial batch. Do not begin R03.
 
 Read `Docs/AssemblyShadow/README.md`, this file, `Docs/AssemblyShadow/History/M07R/R02/DESIGN.md`, `Docs/AssemblyShadow/History/M07R/R02/LOCAL_VALIDATION_TASKS.md`, and `Docs/AssemblyShadow/History/M07R/R02/source-targets.json`.
 
-H1 remains `PassedWithExplicitDeferredRisk` following D1=A and D2=A. R02 is not accepted. The candidate demo **source anchor** is `06ba01e010c7eac3543dd6f23e083c2716941190`. Use the exact **final pushed transport HEAD** supplied by the Primary handoff prompt; do not substitute the source anchor as a complete handoff. The source-to-HEAD executable delta must be empty under the unchanged `shadow_tools.metadata_only` policy.
+H1 remains `PassedWithExplicitDeferredRisk` following D1=A and D2=A. R02 is not accepted. The candidate demo **source anchor** is `5cbc4eb7df616ba3fefe0331cebb70630072a233`. Use the exact **final pushed transport HEAD** supplied by the Primary handoff prompt; do not substitute the source anchor as a complete handoff. The source-to-HEAD executable delta must be empty under the unchanged `shadow_tools.metadata_only` policy.
 
 | Repository | Candidate checkout | Branch | Source commit |
 | --- | --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `06ba01e010c7eac3543dd6f23e083c2716941190` |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `codex/assembly-shadow-r01b-h1` | `5cbc4eb7df616ba3fefe0331cebb70630072a233` |
 | night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `codex/assembly-shadow-r01b-h1` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
 | night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `codex/assembly-shadow-r01b-h1` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
 | night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `codex/assembly-shadow-r01b-h1` | `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` |
 
-Control demo checkout: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo`, branch `codex/r02-h1-runtime-control`, exact published HEAD `e6fdd32a6fd661a88ef108f7b055e4f7840e9e43`. Its executable demo source is the same `06ba01e010c7eac3543dd6f23e083c2716941190`. Its three owning sibling checkouts use HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. All three control runtime/package checkouts may be detached at their exact commits; the metadata authority checks their remote branch identities. IL2CPP control remote branch is `codex/assembly-shadow-r01b`. Never install R02 native code into the control workspace or the historical R01 reference.
+Control demo checkout: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo`, branch `codex/r02-h1-runtime-control`, exact published HEAD `3fc4511dc80cc03414f24b52c1c3f6b74fea8b82`. Its executable demo source is the same `5cbc4eb7df616ba3fefe0331cebb70630072a233`. Its three owning sibling checkouts use HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. All three control runtime/package checkouts may be detached at their exact commits; the metadata authority checks their remote branch identities. IL2CPP control remote branch is `codex/assembly-shadow-r01b`. Never install R02 native code into the control workspace or the historical R01 reference.
 
 Canonical remotes are `https://github.com/night-outlook/<repository>.git`. Preserve any existing unrelated worktrees; new control worktrees must use unused absolute paths and the specified owning repositories, not copies of generated outputs.
 
