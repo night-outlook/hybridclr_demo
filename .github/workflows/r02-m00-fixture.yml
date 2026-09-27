@@ -1,0 +1,26 @@
+name: R02 immutable M00 fixture provenance
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r02-m00-fixture.yml'
+      - 'Tools/AssemblyShadow/R02/export_m00_fixture.py'
+permissions:
+  contents: read
+jobs:
+  fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Locate frozen bytes in hash-bound H1 input archive
+        run: python3 Tools/AssemblyShadow/R02/export_m00_fixture.py --project "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/m00-provenance"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r02-m00-provenance-${{ github.sha }}
+          path: ${{ runner.temp }}/m00-provenance
+          retention-days: 14
+          if-no-files-found: error
