@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/r02-m00-fixture.yml'
       - 'Tools/AssemblyShadow/R02/export_m00_fixture.py'
+      - 'Tools/AssemblyShadow/R02/ordinary_input.py'
+      - 'Tools/AssemblyShadow/R02/fixtures/**'
+      - 'Docs/AssemblyShadow/History/M07R/R02/source-targets.json'
 permissions:
   contents: read
 jobs:
@@ -16,7 +19,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Locate frozen bytes in hash-bound H1 input archive
-        run: python3 Tools/AssemblyShadow/R02/export_m00_fixture.py --project "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/m00-provenance"
+        run: python3 Tools/AssemblyShadow/R02/export_m00_fixture.py --project "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/m00-provenance" --verify-committed
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

@@ -118,7 +118,7 @@ jobs:
           PYTHONPATH: Tools/AssemblyShadow/R02:Tools/AssemblyShadow:Tools/AssemblyShadow/R02/tests
         run: |
           export TMPDIR="$(python3 -c 'import tempfile,pathlib; print(pathlib.Path(tempfile.gettempdir()).resolve())')"
-          python3 -m unittest test_process_identity test_unity_session test_native_prerequisite -v > "$RUNNER_TEMP/r02-darwin-tests.log" 2>&1
+          python3 -m unittest test_process_identity test_unity_session test_native_prerequisite test_ordinary_input test_m00_forensics -v > "$RUNNER_TEMP/r02-darwin-tests.log" 2>&1
           cat "$RUNNER_TEMP/r02-darwin-tests.log"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
