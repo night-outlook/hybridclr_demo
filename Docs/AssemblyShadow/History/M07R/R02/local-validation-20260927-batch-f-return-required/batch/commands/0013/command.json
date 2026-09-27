@@ -1,0 +1,43 @@
+{
+  "kind": "R02Command",
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Tools/AssemblyShadow/run-r00-players.py",
+    "--project-root",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo",
+    "--fixture-manifest",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/M02Validation-1d7aaa098b9346178b9463e1b06cf525/m07-fixtures.json",
+    "--on-build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-a00ae3050e874a338a0da0a786d37bdd/m07-player-build.json",
+    "--off-build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-8a977a367ee14e3db607e5b9406d9e44/m07-player-build.json",
+    "--replay-receipt",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/M02Validation-1d7aaa098b9346178b9463e1b06cf525/m07-editor-replay.json",
+    "--output-root",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/R02-762e700b851c46b39336b8b5a32a87e0-control-R00-ON-NoPatch",
+    "--mode",
+    "R00-ON-NoPatch",
+    "--timeout",
+    "900"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo",
+  "startedAtUnix": 1790530801.5135438,
+  "result": "Passed",
+  "exitCode": 0,
+  "timedOut": false,
+  "processGroupClean": true,
+  "pid": 55493,
+  "endedAtUnix": 1790531105.824519,
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0013/stdout.log",
+      "sha256": "85dbfbcd5731de0b8166bd78dcd7098a60f9338be57491a8d658b7ac29acaf06",
+      "sizeBytes": 62
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0013/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    }
+  ]
+}

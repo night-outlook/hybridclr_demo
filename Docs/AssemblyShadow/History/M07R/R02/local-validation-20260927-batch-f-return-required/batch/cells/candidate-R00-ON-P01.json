@@ -1,0 +1,78 @@
+{
+  "name": "candidate-R00-ON-P01",
+  "dependencies": [
+    "frozen-build-map"
+  ],
+  "result": "Failed",
+  "runtimeAcceptance": false,
+  "startedAtUnix": 1790533234.396817,
+  "inputAuthorities": [
+    {
+      "kind": "R02SourceAuthority",
+      "result": "SourceVerifiedNotBuildAccepted",
+      "role": "candidate",
+      "demoHead": "3e9a842b11c7848692728376aa5ab1bf4b20bece",
+      "sourceCommit": "d4cfbe5da29482a3b307fbec3333821615288129",
+      "repositories": {
+        "hybridclr_demo": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "head": "3e9a842b11c7848692728376aa5ab1bf4b20bece",
+          "origin": "git@github.com:night-outlook/hybridclr_demo.git",
+          "remoteHead": "3e9a842b11c7848692728376aa5ab1bf4b20bece"
+        },
+        "hybridclr": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+          "head": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "origin": "git@github.com:night-outlook/hybridclr.git",
+          "remoteHead": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
+        },
+        "hybridclr_unity": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+          "head": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+          "origin": "git@github.com:night-outlook/hybridclr_unity.git",
+          "remoteHead": "0ea633a2c5b936b5af69d944593c55bd2783fca9"
+        },
+        "il2cpp_plus": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+          "head": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5",
+          "origin": "git@github.com:night-outlook/il2cpp_plus.git",
+          "remoteHead": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
+        }
+      },
+      "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+          "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5",
+          "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+          "url": "https://github.com/night-outlook/hybridclr_demo",
+          "revision": "d4cfbe5da29482a3b307fbec3333821615288129",
+          "localPath": "."
+        }
+      },
+      "sourcePinBinding": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+        "sha256": "9e5545742af5cd0a939e734d02699e0802605455359d40254dd4367514bc2517",
+        "sizeBytes": 809
+      },
+      "runtimeAcceptance": false
+    }
+  ],
+  "error": "EvidenceError: Command failed; retained /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0018",
+  "endedAtUnix": 1790533553.669743
+}

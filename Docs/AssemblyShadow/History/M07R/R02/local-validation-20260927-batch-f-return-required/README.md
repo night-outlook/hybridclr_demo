@@ -1,0 +1,7 @@
+# R02 Local batch F — authenticated failure checkpoint
+
+One fresh 34-cell R02LocalBatch-v1 ran on 2026-09-27 from candidate `3e9a842b11c7848692728376aa5ab1bf4b20bece` and control `5a931fe86795e8cc192d3df262cdee824b105963`. The runner produced 22 Passed, 8 Failed, and 4 Blocked cell receipts. Complete batch sealing failed, so there is no runner `LOCAL_BATCH_RESULT.json`, seal-index, or archive. The Local post-run disposition is `ReturnRequired`; no independent stage review was eligible.
+
+`batch/` preserves source/graph/M00/forensic/build/command/cell/strict-failure receipts and selected logs. `selected-live/` preserves selected raw sidecar, startup, count and launch evidence. `generated-link-after-diagnostic.xml` is the exact tracked output left by diagnostic Unity before byte-exact restoration of HEAD. `LIVE_EVIDENCE_INVENTORY.json` hashes 1,984 existing files in the F batch root and current external roots and explicitly lists two missing prior-E compiled DLLs. It is a diagnostic inventory, not the complete R02 batch seal. The live root remains `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/`.
+
+`MANIFEST.sha256` authenticates this checkpoint. See `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` for classifications and `RETURN_TO_WEB.md` for source-level Primary repair requests. Preserve this checkpoint and all A/B/C/D/E/H1 live evidence. `R02Accepted=false`; `mayEnterR03=false`.
