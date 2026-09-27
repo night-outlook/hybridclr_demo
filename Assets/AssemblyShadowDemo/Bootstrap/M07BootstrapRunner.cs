@@ -27,6 +27,8 @@ namespace AssemblyShadowDemo
             {
                 if ((r00 ? 1 : 0) + (r01 ? 1 : 0) + (r01Failure ? 1 : 0) > 1)
                     throw new InvalidOperationException("M07 revision modes cannot run together.");
+                if (R02PlayerProbe.Requested && !r00)
+                    throw new InvalidOperationException("R02 sidecars require an explicit R00 mode.");
                 work = r01Failure
                     ? R01FailureProbe.RunAndWriteCoroutine(expectedBaselineBuildId, expectedRuntimeAbiHash, code => exitCode = code)
                     : r01
@@ -46,6 +48,10 @@ namespace AssemblyShadowDemo
                     if (!moved) break;
                     yield return work.Current;
                 }
+                // R00 has already written its complete observation. R02 never
+                // changes its timings, activation path, or evidence schema.
+                if (r00 && exitCode == 0 && R02PlayerProbe.Requested)
+                    exitCode = R02PlayerProbe.Run(expectedBaselineBuildId, expectedRuntimeAbiHash);
             }
             finally
             {

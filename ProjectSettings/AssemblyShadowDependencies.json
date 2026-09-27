@@ -757,6 +757,13 @@
       "method": "AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness",
       "target": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
       "reason": "Derived from FixedAssemblyBytes site h1-count-ordinary-witness-image; exact H1 ordinary witness only. This does not authorize other methods, providers, images, or byte loads."
+    },
+    {
+      "consumer": "AssemblyShadowDemo.Bootstrap",
+      "provider": "AssemblyA.Implementation.Internal",
+      "typeName": "AssemblyA.Implementation.Internal.R02AllocationWitness",
+      "method": "AssemblyShadowDemo.R02PlayerProbe::Run",
+      "reason": "R02 opt-in sidecar resolves this exact literal witness only after the complete successful R00 activation and observation. No other business type, image loading, pre-Configure access, or arbitrary reflection is authorized."
     }
   ]
 }

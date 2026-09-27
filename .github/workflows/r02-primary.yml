@@ -5,7 +5,10 @@ on:
     paths:
       - '.github/workflows/r02-primary.yml'
       - 'Tools/AssemblyShadow/R02/**'
-      - 'Docs/AssemblyShadow/Handoff/r02-source-targets.json'
+      - 'Docs/AssemblyShadow/History/M07R/R02/source-targets.json'
+      - 'Assets/AssemblyShadowDemo/**'
+      - 'ProjectSettings/AssemblyShadowDependencies.json'
+      - 'ProjectSettings/AssemblyShadowSourcePins.json'
 permissions:
   contents: read
 jobs:
@@ -25,11 +28,11 @@ jobs:
           python3 - <<'PY'
           import json, os
           from pathlib import Path
-          target = Path('hybridclr_demo/Docs/AssemblyShadow/Handoff/r02-source-targets.json')
-          # Bootstrap export is a source artifact, never runtime acceptance.
-          pin = '6be7f38bec2fa4677d24efc1a4a1294240789933'
+          target = Path('hybridclr_demo/Docs/AssemblyShadow/History/M07R/R02/source-targets.json')
+          # Exact R02 native source, never a generated worktree substitution.
+          pin = '3981da12f2cd3ee878a04dda6f573d0ad3faeda5'
           if target.exists():
-              pin = json.loads(target.read_text())['repositories']['il2cpp_plus']['commit']
+              pin = json.loads(target.read_text())['candidate']['repositories']['il2cpp_plus']['commit']
           if len(pin) != 40 or any(c not in '0123456789abcdef' for c in pin):
               raise SystemExit('Invalid exact il2cpp_plus pin')
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
@@ -41,6 +44,7 @@ jobs:
           ref: ${{ steps.pins.outputs.il2cpp }}
           path: il2cpp_plus
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/hybridclr
@@ -53,15 +57,18 @@ jobs:
           ref: 0ea633a2c5b936b5af69d944593c55bd2783fca9
           path: hybridclr_unity
           persist-credentials: false
-      - name: Native and tooling tests when implementation is present
+      - name: Validate committed R02 sources, native kernels, tooling and managed host
         shell: bash
         run: |
-          mkdir -p "$RUNNER_TEMP/r02-primary/results"
-          if test -f hybridclr_demo/Tools/AssemblyShadow/R02/run_primary.py; then
-            python3 hybridclr_demo/Tools/AssemblyShadow/R02/run_primary.py --il2cpp-root "$GITHUB_WORKSPACE/il2cpp_plus" --output "$RUNNER_TEMP/r02-primary/results"
-          else
-            printf '%s\n' 'BootstrapSourceExportOnly: implementation tests not yet present; no acceptance claimed.' > "$RUNNER_TEMP/r02-primary/results/BOOTSTRAP_ONLY.txt"
-          fi
+          mkdir -p "$RUNNER_TEMP/r02-primary"
+          dotnet --info
+          python3 hybridclr_demo/Tools/AssemblyShadow/R02/run_primary.py --il2cpp-root "$GITHUB_WORKSPACE/il2cpp_plus" --output "$RUNNER_TEMP/r02-primary/results"
+          git -C hybridclr_demo diff --exit-code
+          git -C il2cpp_plus diff --exit-code
+      - name: Whitespace checks
+        shell: bash
+        run: |
+          git -C hybridclr_demo diff --check HEAD~1 HEAD
       - name: Export exact source inputs and Git identities
         if: always()
         shell: bash
@@ -83,7 +90,7 @@ jobs:
                   for relative in paths:
                       if not relative: continue
                       path=root/relative
-                      if name=='hybridclr_demo' and not relative.startswith(('Tools/AssemblyShadow/','Assets/AssemblyShadow','ProjectSettings/','Packages/','.github/')): continue
+                      if name=='hybridclr_demo' and not relative.startswith(('Tools/AssemblyShadow/','Assets/AssemblyShadow','ProjectSettings/','Packages/','.github/','.agents/skills/unity-debug/','Docs/AssemblyShadow/History/M07R/R02/')): continue
                       if path.suffix not in suffixes or path.is_symlink() or not path.is_file(): continue
                       raw=path.read_bytes()
                       archive.add(path,arcname=str(path),recursive=False)
