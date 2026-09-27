@@ -1,0 +1,73 @@
+{
+  "kind": "R02BatchERepairPrimaryValidation",
+  "result": "PassedForPrimaryScope",
+  "inputLocalReturn": "1d7dc134003206ada8a92b50763ca2da7dc9530d",
+  "sourceAnchor": "d4cfbe5da29482a3b307fbec3333821615288129",
+  "ciAuthority": "69f75b78a0696be8b7da69c1725f07c6e1708c48",
+  "controlHead": "5a931fe86795e8cc192d3df262cdee824b105963",
+  "artifacts": [
+    {"kind":"primary","id":10935253012,"sizeBytes":10682540,"sha256":"d78395863b4d0ab82a2e11902f6d6450b3b182bf5f1ae24f05becb1f0b915a79","workflowRun":36330847917,"testedCommit":"69f75b78a0696be8b7da69c1725f07c6e1708c48","result":"Passed","digestAndZipCrcVerified":true},
+    {"kind":"darwin","id":10935178272,"sizeBytes":1759,"sha256":"47444e9c3100d858a90273695948cfc179b8c4adabe188b27e6e6c8f66e89c91","workflowRun":36330847917,"testedCommit":"69f75b78a0696be8b7da69c1725f07c6e1708c48","result":"Passed","digestAndZipCrcVerified":true},
+    {"kind":"legacy","id":10935802048,"sizeBytes":12993014,"sha256":"03cdbf643f126519a84a1e2c93b69ab625d0b80872feb770f6d8e51d002f47e6","workflowRun":36330847766,"testedCommit":"69f75b78a0696be8b7da69c1725f07c6e1708c48","result":"Passed","digestAndZipCrcVerified":true},
+    {"kind":"origin","id":10934524826,"sizeBytes":3068,"sha256":"5e5594525b29daf6e3b56b437c7c5e3f6fb0a724a741512704fd52ae715aa427","workflowRun":36330847788,"testedCommit":"69f75b78a0696be8b7da69c1725f07c6e1708c48","result":"Passed","digestAndZipCrcVerified":true}
+  ],
+  "sourceAuthentication": {
+    "count": 3146,
+    "result": "Passed",
+    "repositories": {
+      "hybridclr_demo": "69f75b78a0696be8b7da69c1725f07c6e1708c48",
+      "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+      "hybridclr_unity": "0ea633a2c5b936b5af69d944593c55bd2783fca9",
+      "il2cpp_plus": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
+    },
+    "changedSourceMatches": [
+      {"path":".github/workflows/r02-m00-fixture.yml","gitBlob":"b01c8fedda5ca32415fdf450a30884a8053d9ef4","sha256":"db9579fbb0100168b320383d3de4c3b4d1e608c9719b263c613d0923a4b1042f"},
+      {"path":".github/workflows/r02-primary.yml","gitBlob":"d476f0ae75857f587cd568e0d7d0213e0549348c","sha256":"51793b9efb7307ddf3f033204122f04e7223416872ae20ca6931e6ff0cad57b6"},
+      {"path":"Assets/AssemblyShadowBaseline/Editor/R02OrdinaryInput.cs","deleted":true},
+      {"path":"Assets/AssemblyShadowBaseline/Editor/R02OrdinaryInput.cs.meta","deleted":true},
+      {"path":"Tools/AssemblyShadow/R02/ManagedTests/ManagedTests.csproj","gitBlob":"1f770601027e764b0c2231293ce868929af9604e","sha256":"2b70cc7c54697cd3dfe14ce73b0e3afb2890b21e7a2cd83b018905f007ae80b3"},
+      {"path":"Tools/AssemblyShadow/R02/ManagedTests/OrdinaryInputStubs.cs","deleted":true},
+      {"path":"Tools/AssemblyShadow/R02/export_m00_fixture.py","gitBlob":"3ddc209b53a8b56659848221a0f175be4216220a","sha256":"d6232ee1ac4465d1931b59b7b1224e90f52542a323d3ef7690dce4d8bb911495"},
+      {"path":"Tools/AssemblyShadow/R02/fixtures/m00-frozen.dll.zlib.base64.txt","gitBlob":"9803eb472c0ef6eaf713a38a59d3fe07aa93830e","sha256":"5d1fe4d3f74df1fb00d58b55907bc89f06361c4134ce407e067af1e1be07c7c2"},
+      {"path":"Tools/AssemblyShadow/R02/fixtures/m00-origin.json","gitBlob":"245d7b56ffeccc16c897dfc8ef40bfb4f73fe098","sha256":"1caab079a9185dbf53a7f6eba85bb4dad63b587663d0ab933a737601f7141f94"},
+      {"path":"Tools/AssemblyShadow/R02/m00_forensics.py","gitBlob":"1d6880a89bc6182f2afd4716bb501b27886aa352","sha256":"2fe43651dc19fb57b7fbb02a59f5e9291b3ea0e1c8a7bb3cd5d185224b103e47"},
+      {"path":"Tools/AssemblyShadow/R02/ordinary_input.py","gitBlob":"f5fed62f955188023e18ab9dc53237d5d6c1ca4e","sha256":"faa11b295ea881582ef55f0c5d7a3e98c3778aa4de57649432d8d7de176b3930"},
+      {"path":"Tools/AssemblyShadow/R02/run_local.py","gitBlob":"3e799807bd636d4e81cba57e669f6e026c02a959","sha256":"b1cca061aa10113bb3da980350b3d7f2c1b96bbaf24225755b1bf8aa438de3b5"},
+      {"path":"Tools/AssemblyShadow/R02/tests/test_e_batch.py","gitBlob":"d6fc92077d126c4154877e3022baf11ff888dfe3","sha256":"50c8b6ea8eb0f63d8feead3377c7a4afefdc218277fad5a4c8a22b33d6370587"},
+      {"path":"Tools/AssemblyShadow/R02/tests/test_m00_forensics.py","gitBlob":"b2a92469fd9678fbea6c1dfee6e83fd2ece30b40","sha256":"023494a35d3e1a1e458d660a3a26768ac727877429f8160693144f252d0ca6c4"},
+      {"path":"Tools/AssemblyShadow/R02/tests/test_m00_origin.py","gitBlob":"72d7640b0192f7e7dd2a68dec8a530cb1e4a39c5","sha256":"15c35ddbd473618ec3ccf7f2d8dcad02c6f3b286fb5e528ddb9f2f3b5affed86"},
+      {"path":"Tools/AssemblyShadow/R02/tests/test_ordinary_input.py","gitBlob":"2d287d293f7d2173f12d7e2fb3e53f8c5ce9935b","sha256":"e59fa59617b7b5cf764a4ffe61f92e6548ef1290749abfb03f928ac7f27c2b3d"}
+    ]
+  },
+  "nestedExportedBindingCount": 48,
+  "selectedEvidenceMembers": {
+    "primary:source-inventory.json":{"sha256":"747578ba86201a5312b5ef6105136fe5ea0546296c1f2429b1779a91e9fcf20b","sizeBytes":905115},
+    "primary:results/results.json":{"sha256":"8a0a0370a6f62fbeec013578e50e661560ff6a8895c21b6de5c5025c0fedb283","sizeBytes":4635},
+    "primary:results/python-command/stderr.log":{"sha256":"00e37db1d89db46040be0d704c29e4e6dbe913ab9ec5ca230b5b51ef05a72c6d","sizeBytes":22668},
+    "primary:results/native/results.json":{"sha256":"b41533410f89ac931a45a66ee28782f71204d5cfef40dfe433bf14bf770a4296","sizeBytes":10857},
+    "primary:results/revision/results.json":{"sha256":"92e0c40ca75b9070b58a8fc1a8781ecc83901c32fc96a0ad4d7297e581199bbd","sizeBytes":13540},
+    "primary:results/codec-storage/results.json":{"sha256":"182c41350402d5746029a8d0d46f5ab3b1348505642ee7f549edcc4c73f5109c","sizeBytes":2929},
+    "darwin:r02-darwin-tests.log":{"sha256":"60df075dee673566a642f8a5bc7679f4749f9b629e3600495c3dcda13e52f3b6","sizeBytes":8397},
+    "legacy:current-results/results.json":{"sha256":"0e3505a09f45e8275f8378a7bf42e28d3979faed72d75893ccaf360bc5ae6aa3","sizeBytes":56924},
+    "legacy:current-results/tests.log":{"sha256":"e50c9d6291c196541fc4e52017063171294e48c602f778e13e94836938bf720f","sizeBytes":57031},
+    "legacy:fixed-h1-results/results.json":{"sha256":"3fe1c3305ca43401474eb95107a199de86059c726e59d14de790c868e71acd59","sizeBytes":4128},
+    "legacy:fixed-h1-results/tests.log":{"sha256":"e52c2f4ecff031d9a9ad52efb2b9d166471bd1a08f3e67b1747e5cf7a5c181b9","sizeBytes":1221},
+    "origin:search.json":{"sha256":"bce0fd02ad79c45576a8fa422b9188974451559b95276ce1c9f3a47fc1b34bb8","sizeBytes":3097},
+    "origin:frozen-m00.dll":{"sha256":"9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27","sizeBytes":4608}
+  },
+  "localPython":{"passed":191,"failed":0,"skipped":0,"logSha256":"a76155a93a0d3b54f3b12fc65e8b5151849d6b6a339758940b16bbcefed80306"},
+  "ciPython":{"passed":191,"failed":0,"skipped":0},
+  "darwin":{"testCount":60,"result":"Passed","rawLogSha256":"60df075dee673566a642f8a5bc7679f4749f9b629e3600495c3dcda13e52f3b6","subsetOfFullPythonSuite":true},
+  "native":{"passedProcessCases":70,"checks":1540},
+  "revision":{"passedProcessCases":70,"checks":28294},
+  "managedAssertions":{"Baseline":102,"P01":111,"P03":111},
+  "legacyCurrent":{"testCount":384,"counts":{"Passed":384},"rawLogSha256":"e50c9d6291c196541fc4e52017063171294e48c602f778e13e94836938bf720f","classification":"CurrentContractsAndH1Rejections"},
+  "legacyFixedH1":{"testCount":6,"counts":{"Passed":6},"rawLogSha256":"e52c2f4ecff031d9a9ad52efb2b9d166471bd1a08f3e67b1747e5cf7a5c181b9","classification":"FixedH1PositiveFixtureExecution"},
+  "frozenImage":{"sha256":"9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27","sizeBytes":4608,"archiveSha256":"2ecb3d04cdd093c469717d4c2959ec416ec8d0745c51c2a4ba37c82f9bc253e8","originMember":"_temp/AssemblyShadow/H1Authority925e-FailureFixtures-20260919A/CompileSnapshot/ReflectionBindings/Images/9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27.dll.bytes","result":"FrozenFixtureOriginVerified"},
+  "runtimeAcceptance": false,
+  "unityPlayerRun": false,
+  "historicalPlayerExecutionReused": false,
+  "batchEExactDllCause": "NotEstablishedHere; supplied Local forensic cell reads retained exact inputs",
+  "R02Accepted": false,
+  "mayEnterR03": false
+}

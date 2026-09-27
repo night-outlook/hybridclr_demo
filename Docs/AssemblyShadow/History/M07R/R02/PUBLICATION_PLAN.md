@@ -1,36 +1,31 @@
-# R02 Primary publication protocol and current completion
+# R02 Primary publication — batch-E successor
 
-Current cycle: successor to Local return `39dd8213f0a93a2ebde4bdbe982ead4214e9b2eb`. Primary publication and bounded host validation are complete; real Local acceptance remains outstanding.
+Status: **Published source/control authority; Primary CI passed. Final documentation transport commit follows this record.** No Local implementation is requested.
 
-## Reproducible publication sequence
+## Fixed identities
 
-1. Read canonical documentation and Local return, verify four candidate refs and control ref, preserve all existing source and evidence.
-2. Prove the intended Connector Git-object/ref write path on a disposable branch; never use the active feature branch for transport testing.
-3. Publish executable changes as source anchor C. Do not broaden metadata-only policy to hide source changes after C.
-4. Build the control tree from exact C with only its source pins selecting H1 IL2CPP. Preserve old control ancestry and add C as a parent; update control with force=false. This keeps the common source anchor an ancestor without dropping previous control history.
-5. Publish candidate source pins, R02 source-targets and live WEB_TO_LOCAL naming exact C and actual returned control HEAD. No provisional commit is authority.
-6. Verify fresh source/native/managed/Python and platform host CI. Reauthenticate published bytes, artifacts and source graph. Preserve failed attempts with their actual results.
-7. Publish final coordination/validation records as metadata-only successors. Re-read all remote refs and verify final candidate/control non-metadata equality and source ancestry.
-8. Render a short final Local prompt from the verified Connector state. It must use the latest candidate transport HEAD, not C or the earlier CI commit. The prepared prompt may not invent filesystem access to the user's Mac.
+- Local return/base: `1d7dc134003206ada8a92b50763ca2da7dc9530d`.
+- Read-only archive investigation: `74e41cdc0173379b424014de151ae5413fd1c9a3`.
+- Executable/tool source: `d4cfbe5da29482a3b307fbec3333821615288129`.
+- Matched control: `codex/r02-h1-runtime-control@5a931fe86795e8cc192d3df262cdee824b105963`.
+- Candidate authority: `69f75b78a0696be8b7da69c1725f07c6e1708c48`.
+- Candidate HybridCLR/package/IL2CPP: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / `0ea633a2c5b936b5af69d944593c55bd2783fca9` / `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`.
+- Control IL2CPP: `6be7f38bec2fa4677d24efc1a4a1294240789933`.
 
-## Current completion
+## Performed publication
 
-- Source C: `57a9470bf299af60f88112998c8326c4c013204a`.
-- Candidate/control common executable source includes all seven changed workflow/tool/test files.
-- Control branch: `codex/r02-h1-runtime-control`.
-- Control HEAD: `a379f0b809a5d8af967df06fc83271d90fd84f4c`.
-- Control tree differs from C only in `ProjectSettings/AssemblyShadowSourcePins.json`.
-- Candidate authority: `96ec97221439ab1ca8964acaf5bf2b5b16e2dcda`.
-- R02 workflow 36323257884: Linux primary and macOS lifecycle jobs Passed.
-- Scoped legacy workflow 36323257953: Passed.
-- Exact artifacts and member hashes: `D_PRIMARY_VALIDATION.json`.
+1. Read Local return and exact remote tuple through the Connector; demo write/read-back smoke test passed on a disposable branch.
+2. Inspected the already tracked historical archive in read-only CI; recovered and hash-authenticated the exact protected M00 image and provenance.
+3. Implemented materialization, safe compact decoding, source/origin checks, independent PE diagnostics, tests and integration; removed the invalid new-compilation-equals-fixed-image helper. Original fixed hash, provider semantics, source allowlist and runtime code remain unchanged.
+4. Published executable source, then advanced the existing matched control with common source as additional parent and its tree plus only H1-runtime source pins. No force-push or history rewrite.
+5. Published candidate pins, source-targets, WEB_TO_LOCAL and 34-cell task sheet. All later deliverables are metadata-only.
+6. Verified successful final R02, macOS, legacy and origin CI at candidate authority. Downloaded four selected artifacts and authenticated digests, CRCs, source inventory, changed source paths and nested receipt bindings. Exact identities appear in E_PRIMARY_VALIDATION.json.
+7. Update canonical status/validation docs, publish this metadata-only commit, re-read all remote heads and compare the final candidate/control trees against the frozen source. Supply the actual returned final transport SHA in the Local prompt.
 
-Candidate runtime heads remain `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`. Control uses H1 IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933` with the same HybridCLR/package.
+Candidate paths: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repository>`.
+Control paths: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/<repository>`.
+Both demo checkouts use their specified branches; control siblings may be detached at exact source-target commits. No generated output crosses workspaces.
 
-Candidate local roots remain `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repository>`; control roots remain `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/<repository>`. Local must confirm actual filesystem state before execution.
+## Stop boundary
 
-The disposable `codex/connector-smoke-r02-d-20260927-a92d` passed read-back at `f89683801f8c2b9e9c74f06f237e357fab97b523`. It remains because branch deletion is not exposed; it must not be merged or used as a handoff.
-
-## Historical boundary
-
-Earlier R02 publications at sources `06ba01e...` and `82d64ce4...`, their CI runs, and Local A/B/C/D remain historical with their original classifications. This cycle does not retroactively approve those executions, claim to know D's unrecorded post-signal transition, approve a performance SLA, or establish Player runtime acceptance. No non-trivial implementation is delegated to Local and no R03 work is authorized.
+All code changes belong to Primary. Local executes the supplied batch, collects evidence and returns non-trivial issues; it does not rewrite pins/fixtures/verifiers. E forensic results remain pending on retained Local raw bytes, without blocking otherwise valid fresh build cells. Original A/B/C/D/E attempts remain immutable. No host/source CI establishes R02 runtime or D1/D2 acceptance. R02Accepted=false; mayEnterR03=false.
