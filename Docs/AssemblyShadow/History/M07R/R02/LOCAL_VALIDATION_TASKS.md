@@ -1,6 +1,6 @@
 # R02 Local Validation task sheet — after verified publication
 
-Protocol: `R02LocalBatch-v1`. Current package is publication-blocked; this is the prepared execution contract, not authority to run unpushed code.
+Protocol: `R02LocalBatch-v1`. The repaired package is published and Primary-validated. Execute only from the exact final handoff tuple and the source/control authority in `source-targets.json`; prior A/B/C attempts remain historical failed evidence.
 
 ## Entry
 
