@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/h1-bee-primary.yml'
       - 'Tools/AssemblyShadow/README.md'
+      - 'Tools/AssemblyShadow/R02/legacy_scope.py'
+      - 'Tools/AssemblyShadow/R02/tests/test_legacy_scope.py'
       - 'Tools/AssemblyShadow/h1_*.py'
       - 'Tools/AssemblyShadow/freeze-h1-performance-build-map.py'
       - 'Tools/AssemblyShadow/bind-h1-performance-preregistration.py'
@@ -56,15 +58,22 @@ jobs:
           fetch-depth: 0
       - name: Authenticate immutable failure fixture
         run: python3 Tools/AssemblyShadow/h1_bee_fixture_export.py --output "$RUNNER_TEMP/h1-bee-fixture"
-      - name: Run exact Primary regression suite
+      - name: Run current reusable contracts and explicit H1 rejection tests
         env:
           H1_BEE_FIXTURE_DIR: ${{ runner.temp }}/h1-bee-fixture
           PYTHONPATH: Tools/AssemblyShadow
-        run: python3 Tools/AssemblyShadow/h1_bee_primary_tests.py --output "$RUNNER_TEMP/h1-bee-fixture/test-results"
-      - name: Verify committed live H1 handoff
+        run: python3 Tools/AssemblyShadow/R02/legacy_scope.py --project "$GITHUB_WORKSPACE" --current-root "$GITHUB_WORKSPACE" --scope current --output "$RUNNER_TEMP/h1-bee-fixture/current-results"
+      - name: Run six immutable H1 positive fixtures separately
         env:
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python3 Tools/AssemblyShadow/tests/test_h1_handoff_preflight.py
+          H1_BEE_FIXTURE_DIR: ${{ runner.temp }}/h1-bee-fixture
+        run: |
+          # Disposable local fixture, not a live branch or a Player source.
+          historical="$RUNNER_TEMP/h1-positive-checkout"
+          git clone --shared --no-checkout "$GITHUB_WORKSPACE" "$historical"
+          git -C "$historical" checkout -b codex/assembly-shadow-r01b-h1 2cbf68658a5b73189930fcdfe250835b72639515
+          git -C "$historical" remote set-url origin https://github.com/night-outlook/hybridclr_demo.git
+          python3 Tools/AssemblyShadow/R02/legacy_scope.py --project "$historical" --current-root "$GITHUB_WORKSPACE" --scope historical --output "$RUNNER_TEMP/h1-bee-fixture/fixed-h1-results"
       - name: Run R01 early and failure/publication contract regressions
         env:
           PYTHONDONTWRITEBYTECODE: '1'
