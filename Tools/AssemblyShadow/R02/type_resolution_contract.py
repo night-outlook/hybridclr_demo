@@ -3,8 +3,20 @@ from pathlib import Path
 import argparse
 import json
 import os
+import platform
 import shutil
 from evidence import binding, read, require, run, write
+
+
+INCLUDE_POLICY = 'R02QuotedProjectHeaders-v1'
+
+
+def writer_command(compiler, native, source, binary, level):
+    """Resolve project quotes without exposing vm/string.h to system includes."""
+    require(type(level) is int and level in (0, 1, 2), 'Invalid diagnostics level')
+    return [str(compiler), '-std=c++11', '-pthread', '-iquote', str(native / 'libil2cpp/vm'),
+            '-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=' + str(level),
+            str(source / 'writer.cpp'), '-o', str(binary)]
 
 
 def execute(native, package, output, dotnet='dotnet'):
@@ -24,19 +36,21 @@ def execute(native, package, output, dotnet='dotnet'):
     parser = package / 'Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs'
     report = dict(kind='R02TypeResolutionContractRun', result='Failed', commands=rows,
                   parser=binding(parser), writer=binding(native / 'libil2cpp/vm/AssemblyShadowR02Diagnostics.h'),
-                  runtimeAcceptance=False, unityPlayerRun=False)
+                  includePolicy=INCLUDE_POLICY, hostSystem=platform.system(), hostMachine=platform.machine(),
+                  nativeFixtures=[], runtimeAcceptance=False, unityPlayerRun=False)
     try:
         compiler = shutil.which('c++'); require(compiler is not None, 'Host C++ compiler required')
+        report['compiler'] = dict(path=compiler, version=binding(command('compiler-version', [compiler, '--version'])))
         for level in range(3):
             binary = output / ('writer-' + str(level))
-            command('compile-' + str(level), [compiler, '-std=c++11', '-pthread', '-I', native / 'libil2cpp/vm',
-                '-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=' + str(level), source / 'writer.cpp', '-o', binary])
+            command('compile-' + str(level), writer_command(compiler, native, source, binary, level))
             for mode in ('normal', 'saturated', 'truncated', 'classes') + (('legacy',) if level == 0 else ()):
                 label = str(level) + '-' + mode
                 stdout = command('emit-' + label, [binary, mode])
                 raw = read(stdout)
                 target = fixtures / ('legacy.json' if mode == 'legacy' else label + '.json')
                 write(target, raw)
+                report['nativeFixtures'].append(dict(level=level, mode=mode, file=binding(target)))
         csproj = source / 'Contract.csproj'
         command('managed-build', [dotnet, 'build', csproj, '--disable-build-servers', '-p:UseSharedCompilation=false',
             '-nodeReuse:false', '-p:ParserSource=' + str(parser), '-p:BaseIntermediateOutputPath=' + str(output / 'obj') + '/',

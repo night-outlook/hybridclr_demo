@@ -1,0 +1,163 @@
+{
+  "kind": "R02PrimaryEditorCoverageFinalization",
+  "schemaVersion": 1,
+  "result": "PassedForPrimaryHostSourceScope",
+  "localReturn": "6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f",
+  "recoveredPublication": "d43663e9ff96a9249d5e7bbf1e02bbd7e40f552b",
+  "sourceAnchor": "1642392278a97bc9348195e35ec5d1b7fb6fa530",
+  "testedAuthority": "4a6a8d604e27aa5e3175149c4df0170b8ec09b05",
+  "controlHead": "028ad68fa25a531be07f11f1fdcc417842f98ab4",
+  "repositories": {
+    "hybridclr_demo": "4a6a8d604e27aa5e3175149c4df0170b8ec09b05",
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+    "il2cpp_plus": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
+  },
+  "controlIl2Cpp": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+  "scope": "Complete batch-F integration repair plus machine-enforced coverage for all five required Editor tests. No new Unity Player execution.",
+  "workflowRuns": {
+    "primary": 36387357718,
+    "legacy": 36387357712,
+    "origin": 36387357717
+  },
+  "results": {
+    "localPythonPassed": 210,
+    "ciPythonPassed": 210,
+    "macosSubsetPassed": 79,
+    "producerParserChecks": 1310,
+    "nativeCasesPassed": 70,
+    "nativeChecks": 1540,
+    "revisionCasesPassed": 70,
+    "revisionChecks": 28294,
+    "managedAssertions": {
+      "Baseline": 102,
+      "P01": 111,
+      "P03": 111
+    },
+    "legacyCurrentPassed": 384,
+    "legacyHistoricalPassed": 6,
+    "sourceFilesAuthenticated": 3278,
+    "nestedBindingsAuthenticated": 137
+  },
+  "changedExecutablePaths": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/run_local.py",
+      "gitBlob": "64961f328f5b83e3ceff6ee546351c3a51e2c00b",
+      "sizeBytes": 39574,
+      "sha256": "eaa56d5abecaf146b7fc6a59f836f030fd7e41bf14246fe8a69921c33dac7b25"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_f_batch_repairs.py",
+      "gitBlob": "7c605c2037449d0429b07ed7762b803c5e0dd568",
+      "sizeBytes": 9182,
+      "sha256": "f7d2ca901723e8c77824707bd3473c87db59e1a0f919b8886eb982ff8853b2cb"
+    }
+  ],
+  "artifacts": [
+    {
+      "scope": "primary",
+      "id": 10955057360,
+      "sizeBytes": 13205038,
+      "sha256": "b7f0152ebc7840060027e0679afe0ace7bc8976598e55ce7a3daf54aa33b6d28",
+      "zipMembers": 767
+    },
+    {
+      "scope": "darwin",
+      "id": 10954434941,
+      "sizeBytes": 2314,
+      "sha256": "26685a35b74c99f17687399f34bfd21457654eac2945beb8e4400eb4681815fe",
+      "zipMembers": 1
+    },
+    {
+      "scope": "legacy",
+      "id": 10954383544,
+      "sizeBytes": 13006535,
+      "sha256": "853d5a10b4ac92fd3808e9f0564ebf0fab6213f5a68e449f0918026341707d4e",
+      "zipMembers": 1251
+    },
+    {
+      "scope": "origin",
+      "id": 10954897908,
+      "sizeBytes": 3068,
+      "sha256": "c443b43da6359214e9d99b8e57b9caa8ee366f454e47eccfbe034f60fcbc0a82",
+      "zipMembers": 2
+    }
+  ],
+  "memberBindings": [
+    {
+      "path": "primary/results/results.json",
+      "sizeBytes": 4964,
+      "sha256": "5d528be2031e8d6853689d9c49bef12623a7e6e3e840a3d66264f7430c357244"
+    },
+    {
+      "path": "primary/results/python-command/stderr.log",
+      "sizeBytes": 25742,
+      "sha256": "6cc7dc07d9192e9fac7900140df5ea5ecdbce2f65f5e98af938508578d6ea31c"
+    },
+    {
+      "path": "primary/results/type-resolution-contract/results.json",
+      "sizeBytes": 6217,
+      "sha256": "ee8533d62548c305663c257adc310ace56977ccdc7b0c14dfc8d7922426d5675"
+    },
+    {
+      "path": "primary/results/native/results.json",
+      "sizeBytes": 10857,
+      "sha256": "b41533410f89ac931a45a66ee28782f71204d5cfef40dfe433bf14bf770a4296"
+    },
+    {
+      "path": "primary/results/revision/results.json",
+      "sizeBytes": 13540,
+      "sha256": "92e0c40ca75b9070b58a8fc1a8781ecc83901c32fc96a0ad4d7297e581199bbd"
+    },
+    {
+      "path": "primary/results/codec-storage/results.json",
+      "sizeBytes": 2929,
+      "sha256": "2327d82baac730cb0357ac6070b73e10d09176a10612da720d58a88222776987"
+    },
+    {
+      "path": "primary/source-inventory.json",
+      "sizeBytes": 951825,
+      "sha256": "38438498b8b3f51c10ec43e98e1ca2700901bc54bbc90006fedade953f9041fd"
+    },
+    {
+      "path": "darwin/r02-darwin-tests.log",
+      "sizeBytes": 11471,
+      "sha256": "a23c04cbf81adcd384ab0717e5106f73e457d2a816779f7f91f87c9543e33b13"
+    },
+    {
+      "path": "legacy/current-results/results.json",
+      "sizeBytes": 56924,
+      "sha256": "bc303ea0ab8b65598736dc0720e87a6c1531578df2ed9fc077a458c8cc9ef5e5"
+    },
+    {
+      "path": "legacy/fixed-h1-results/results.json",
+      "sizeBytes": 4128,
+      "sha256": "2eb381db7e25bb4af84193ff15364f64d7201641f2309479e571d5b9d728529d"
+    },
+    {
+      "path": "origin/search.json",
+      "sizeBytes": 3097,
+      "sha256": "bce0fd02ad79c45576a8fa422b9188974451559b95276ce1c9f3a47fc1b34bb8"
+    },
+    {
+      "path": "origin/frozen-m00.dll",
+      "sizeBytes": 4608,
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27"
+    }
+  ],
+  "localPythonLog": {
+    "path": "/mnt/data/f_resume/coverage-python-tests.log",
+    "sizeBytes": 26938,
+    "sha256": "e4c1be02c6dc19744348bbec526b8c6f35751025df6c292d1d061949548f21be"
+  },
+  "bindingResolutionPolicy": "Exact CI r02-primary output root and explicit checkout prefix; relative native paths use pinned il2cpp_plus root. No basename fallback.",
+  "historicalPreservation": "F_PRIMARY_VALIDATION.json and all Local A-F checkpoints retain their original identities and classifications; F remains without a complete seal.",
+  "independentStageReviewRun": false,
+  "realEditorTestsRun": false,
+  "unityPlayerRun": false,
+  "runtimeAcceptance": false,
+  "R02Accepted": false,
+  "mayEnterR03": false
+}

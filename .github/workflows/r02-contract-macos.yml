@@ -1,0 +1,91 @@
+name: R02 actual writer-parser contract on macOS
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r02-contract-macos.yml'
+      - 'Tools/AssemblyShadow/R02/**'
+      - 'Assets/AssemblyShadowDemo/Editor/R02TypeResolutionSchema.cs'
+      - 'Docs/AssemblyShadow/History/M07R/R02/source-targets.json'
+      - 'ProjectSettings/AssemblyShadowSourcePins.json'
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: macos-14
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Resolve exact contract source pins
+        id: pins
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          target = json.loads(Path('hybridclr_demo/Docs/AssemblyShadow/History/M07R/R02/source-targets.json').read_text())
+          assert target['kind'] == 'R02SourceTargets' and target['protocol'] == 'R02LocalBatch-v1'
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              for key, name in (('native', 'il2cpp_plus'), ('package', 'hybridclr_unity')):
+                  row = target['candidate']['repositories'][name]
+                  assert row['repository'] == 'night-outlook/' + name
+                  assert re.fullmatch('[0-9a-f]{40}', row['commit'])
+                  stream.write(key + '=' + row['commit'] + '\n')
+          PY
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: ${{ steps.pins.outputs.native }}
+          path: il2cpp_plus
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.pins.outputs.package }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Run include regression and actual 0-1-2 writer-parser contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          export TMPDIR="$(python3 -c 'import tempfile,pathlib; print(pathlib.Path(tempfile.gettempdir()).resolve())')"
+          out="$(python3 -c 'import os,pathlib; print(pathlib.Path(os.environ["RUNNER_TEMP"]).resolve()/"r02-contract-macos")')"
+          mkdir "$out"
+          { uname -a; sw_vers; /usr/bin/c++ --version; dotnet --info; } > "$out/toolchain.log" 2>&1
+          export PYTHONPATH="$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow/R02:$GITHUB_WORKSPACE/hybridclr_demo/Tools/AssemblyShadow"
+          python3 -m unittest discover -s hybridclr_demo/Tools/AssemblyShadow/R02/tests -p test_type_resolution_contract.py -v 2>&1 | tee "$out/regression.log"
+          python3 hybridclr_demo/Tools/AssemblyShadow/R02/type_resolution_contract.py \
+            --runtime-root "$GITHUB_WORKSPACE/il2cpp_plus" \
+            --package-root "$GITHUB_WORKSPACE/hybridclr_unity" \
+            --output "$out/contract"
+          for repository in hybridclr_demo il2cpp_plus hybridclr_unity; do
+            git -C "$repository" diff --exit-code
+            test -z "$(git -C "$repository" status --porcelain=v1 --untracked-files=all)"
+          done
+      - name: Retain exact checkout and execution identities
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json, os, platform, subprocess
+          from pathlib import Path
+          out = Path(os.environ['RUNNER_TEMP']).resolve()/'r02-contract-macos'
+          out.mkdir(parents=True, exist_ok=True)
+          rows = {}
+          for name in ('hybridclr_demo', 'il2cpp_plus', 'hybridclr_unity'):
+              rows[name] = {'head': subprocess.check_output(['git', '-C', name, 'rev-parse', 'HEAD'], text=True).strip(),
+                            'origin': subprocess.check_output(['git', '-C', name, 'remote', 'get-url', 'origin'], text=True).strip()}
+          (out/'identities.json').write_text(json.dumps({'kind':'R02DarwinContractIdentity', 'repositories':rows,
+              'hostSystem':platform.system(), 'machine':platform.machine(), 'unityPlayerRun':False,
+              'runtimeAcceptance':False}, indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r02-contract-macos-${{ github.sha }}
+          path: ${{ runner.temp }}/r02-contract-macos
+          retention-days: 14
+          if-no-files-found: error

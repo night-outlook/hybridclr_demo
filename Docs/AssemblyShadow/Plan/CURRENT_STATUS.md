@@ -1,35 +1,37 @@
-# Current Status — batch-F repairs published; awaiting Local Validation
+# Current Status — batch-F repair finalized; awaiting Local Validation
 
-Latest incorporated Local return: `6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f`.
+- Input Local return: `6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f`.
+- H1: `PassedWithExplicitDeferredRisk`; D1=A and D2=A remain development-stage risk deferrals.
+- Current executable/tool source: `1642392278a97bc9348195e35ec5d1b7fb6fa530`.
+- CI-tested candidate authority: `4a6a8d604e27aa5e3175149c4df0170b8ec09b05`.
+- Candidate branch: `codex/assembly-shadow-r01b-h1`.
+- Matched control: `codex/r02-h1-runtime-control@028ad68fa25a531be07f11f1fdcc417842f98ab4`.
+- HybridCLR, both roles: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
+- Managed package, both roles: `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
+- Candidate/control IL2CPP: `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
+- R02Accepted=false; mayEnterR03=false.
 
-- H1: `PassedWithExplicitDeferredRisk`; D1=A and D2=A require measured R02 disposition before H2.
-- Common executable/tool source: `995dbf1003c306a69586f882ff02599db7a9780e`.
-- Candidate source-authority commit: `a01ac8169ccdbaacc3eec8ce81009f38eb100d64` on `codex/assembly-shadow-r01b-h1`.
-- Matched control: `codex/r02-h1-runtime-control@95b85617c92f8ce806f4652d88077936c76c3b8a`.
-- **Package in both roles:** `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
-- HybridCLR unchanged: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
-- Candidate IL2CPP unchanged: `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`.
-- Control IL2CPP unchanged: `6be7f38bec2fa4677d24efc1a4a1294240789933`.
-- R02Accepted: `false`; mayEnterR03: `false`.
+## Implemented disposition
 
-## Returned state and Primary disposition
+All five batch-F integration repairs are published: strict optional R02 native/managed diagnostics schema and linked proof, M07 early capsules, count-family-specific auditors, scoped linker restoration, and stable forensic snapshots with exact archive recovery. The new package is required in both workspaces; prior F graphs cannot be reused as new-package builds.
 
-F reached controlled builds and Player execution, then recorded 22 Passed, 8 Failed and 4 Blocked cells plus a failed complete seal. Its 1,984-file preservation inventory is not a complete seal. That result is not relabelled or reused as new-package runtime acceptance.
+The resumed audit found one additional acceptance gap: the batch enforced only two existing Editor tests although three new schema tests were required. The final runner now requires exactly one Passed record for every one of the five exact full names, a Passed overall NUnit run, and no failed/inconclusive cases. Missing, skipped, duplicated or misnamed required tests reject the cell. `editor-tests.json` includes `requiredCases` and binds the full XML. Seven added host tests exercise this behavior. The batch remains 34 cells.
 
-Primary implemented strict R02 extension parsing while preserving legacy eighteen-field serialization, separate exact extension pre/post-link proof, native-writer/managed-parser interoperability tests, three Editor tests, M07 early-capsule preparation, correct count-family auditor dispatch, bounded linker restoration and pre-build forensic snapshots with exact E archive recovery.
+The control has the current source as explicit ancestry and differs from that source tree only in the source-pin file. Candidate post-source commits change only permitted metadata. No source allowlist, semantic expectation, production runtime, timeout or performance schedule was relaxed.
 
-Both comparison roles now use the same updated parser package. The control includes the frozen demo source as ancestry and differs only in source pins; candidate post-freeze changes are metadata-only. Old F builds must not be reused as the new tuple.
+## Selected final Primary evidence
 
-## Actual selected Primary validation
+All selected workflows tested authority `4a6a8d604e27aa5e3175149c4df0170b8ec09b05`:
 
-At `a01ac8169ccdbaacc3eec8ce81009f38eb100d64`, R02 workflow **36372371088**, legacy workflow **36372371077** and M00 origin workflow **36372371129** all passed.
+- R02 workflow 36387357718: Linux and macOS Passed; Python 210/210; macOS repeated subset 79/79; native-writer/package-parser 1,310 checks; native matrices 70/70 each; managed Baseline/P01/P03 102/111/111 assertions with clean process groups.
+- Legacy workflow 36387357712: 384/384 current reusable/rejection tests, 6/6 fixed-H1 positives, remaining R01/M07/R01B workflow steps Passed.
+- Origin workflow 36387357717: immutable M00 archive/member/compact-fixture provenance Passed.
+- Four downloaded artifact sizes/digests/CRCs, 3,278 source files and 137 unique nested bindings authenticated. Both final changed executable blobs match the tested export.
 
-Python: 203/203 in the current environment and Linux CI. macOS: 72/72 repeated-subset tests. Actual native-writer/package-parser/schema/BCL-round-trip contract: 1,310 checks across twelve native extension fixtures plus one legacy fixture. Native matrices: 70/70 each, 1,540 and 28,294 checks. Managed Baseline/P01/P03: 102/111/111 assertions. Legacy scoped cases: 384/384 current and 6/6 historical positives. All 3,276 exported source/input entries, nineteen changed executable paths and 137 nested bindings authenticated.
+`PRIMARY_VALIDATION.md` and `F_COVERAGE_VALIDATION.json` record exact artifacts, results and limits. The earlier `F_PRIMARY_VALIDATION.json` remains evidence for its earlier authority, not this final coverage change.
 
-No Unity Editor or Player was run in Primary. The three new Editor tests, actual linked builds and runtime paths remain Local verification. Read `History/M07R/R02/PRIMARY_VALIDATION.md` for artifact identities and limitations.
+## Next Local cycle
 
-## Required next action
+Run one new unused 34-cell `R02LocalBatch-v1` from the final verified candidate transport and fixed control above. Cover all fresh builds, eight sidecars, four pilot plus forty formal A/B pairs, five required Editor contracts, affected regressions, D1/D2 measurements, final source checks and complete sealing. Independent stage review is eligible only after the required evidence succeeds.
 
-Local executes one fresh **34-cell R02LocalBatch-v1** using the final pushed candidate transport HEAD in Primary's prompt, control `95b85617c92f8ce806f4652d88077936c76c3b8a`, and the new package in both workspaces. Read `Handoff/WEB_TO_LOCAL.md` and `History/M07R/R02/LOCAL_VALIDATION_TASKS.md`.
-
-Keep all A/B/C/D/E/F and H1 evidence, run fresh builds, all functional/negative/count/capacity paths, four pilot plus forty formal pairs, exact restoration, final authority and complete sealing. Return non-trivial issues to Primary; obtain independent R02 stage review only when the evidence is eligible. Do not begin R03.
+No new Unity/Player execution or actual Editor-test execution occurred in Primary. The old F result remains 22 Passed, 8 Failed and 4 Blocked followed by failed sealing; its preservation inventory is not a complete seal. Preserve A/B/C/D/E/F and H1 evidence. Return non-trivial failures to Primary without local source changes. Stop before R03.
