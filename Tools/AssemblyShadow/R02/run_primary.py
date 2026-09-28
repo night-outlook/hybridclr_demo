@@ -37,9 +37,16 @@ def main(argv=None):
     dotnet = shutil.which(args.dotnet)
     if args.skip_managed or not dotnet:
         rows.append({"cell": "managed", "result": "Unavailable", "reason": "Host .NET SDK not run", "unityPlayerRun": False})
+        rows.append({"cell": "type-resolution-contract", "result": "Unavailable", "reason": "Host .NET SDK not run", "unityPlayerRun": False})
     else:
         csproj = Path(__file__).parent / "ManagedTests/ManagedTests.csproj"
         rows.extend(run_suite(dotnet, csproj, project, out, env))
+        command = [sys.executable, str(Path(__file__).parent / "type_resolution_contract.py"),
+                   "--runtime-root", str(native), "--package-root", str(native.parent / "hybridclr_unity"),
+                   "--output", str(out / "type-resolution-contract"), "--dotnet", dotnet]
+        result = run(command, project, out / "type-resolution-contract-command", 900, env)
+        rows.append({"cell": "type-resolution-contract", "result": result["result"],
+                     "receipt": binding(out / "type-resolution-contract-command/command.json")})
     success = all(row["result"] == "Passed" for row in rows)
     result = {"kind": "R02PrimaryValidation", "result": "Passed" if success else "IncompleteOrFailed", "cells": rows,
               "unityPlayerRun": False, "runtimeAcceptance": False}

@@ -24,7 +24,7 @@ import performance
 import ordinary_input
 import m00_forensics
 import native_prerequisite
-from restoration import diagnostic_scene_allowed, restore_files, with_recovery
+from restoration import diagnostic_scene_allowed, generated_link_allowed, GENERATED_LINK, restore_files, with_recovery
 from evidence import EvidenceError, binding, check_binding, files_under, read, require, run, seal, sha256, write
 from verify import MODES, verify_raw
 import r00_results
@@ -50,6 +50,12 @@ def environment(role=None, output=None, nonce=None):
         require(role in ("control", "candidate") and output is not None and nonce is not None, "Incomplete sidecar environment")
         value.update(dict(zip(ENV_KEYS, (str(output), nonce, role))))
     return value
+
+
+def fixture_auditor(family):
+    auditors = {"parameters": "audit-h1-count-fixtures.py", "nested": "audit-h1-nested-fixtures.py"}
+    require(family in auditors, "Unknown count fixture family")
+    return auditors[family]
 
 
 def graph_args(graph):
@@ -300,7 +306,12 @@ class Batch:
         graph = self.graphs["candidate"]
         common = ["--project-root", self.roots["candidate"], *graph_args(graph)]
         if kind == "m07":
-            self.tool("run-m07-players.py", common + ["--output-root", root], timeout=28800)
+            # The native ON build calls R01EarlyStartup before Unity's catalog.
+            # Supply its mode-specific Control input, rather than invoking the
+            # legacy M07 launcher without the mandatory callback arguments.
+            capsules = self.new_player_root("candidate", "m07-control-capsules")
+            self.tool("prepare-h1-m07-control-capsules.py", graph_args(graph) + ["--output-root", capsules])
+            self.tool("run-m07-players.py", common + ["--early-capsule-root", capsules, "--output-root", root], timeout=28800)
             self.tool("verify-m07-results.py", graph_args(graph) + ["--result-dir", root / "Results", "--output", root / "strict.json"])
         else:
             negative = self.values["negative-fixtures"]
@@ -313,7 +324,7 @@ class Batch:
     def count_one(self, feature, cpp):
         project = self.roots["candidate"]
         prep = self.retain_root(project / "_temp/AssemblyShadow" / ("H1CountBuild-" + uuid.uuid4().hex)); prep.mkdir()
-        before = {name: (project / name).read_bytes() for name in count_build.RESTORABLE}
+        before = {name: (project / name).read_bytes() for name in (*count_build.RESTORABLE, GENERATED_LINK)}
         folder = self.out / "count-builds" / (feature + "-" + cpp); folder.mkdir(parents=True)
         frozen = sha256(project / "ProjectSettings/AssemblyShadowSourcePins.json")
         common = ["-shadowH1Python", sys.executable, "-shadowH1PreparationRoot", prep]
@@ -330,7 +341,9 @@ class Batch:
                 self.unity("candidate", "AssemblyShadowDemo.Editor.H1CountDiagnosticBuild.RestoreDiagnosticBuild", common)
             finally:
                 self.stopped("candidate")
-                restore_files(project, before, count_build.restore_allowed, folder / "restoration")
+                restore_files(project, before, lambda name, old, new:
+                    generated_link_allowed(old, new) if name == GENERATED_LINK else count_build.restore_allowed(name, old, new),
+                    folder / "restoration")
             authority.inspect(project, self.heads["candidate"], "candidate", self.targets)
         return with_recovery(build_action, recover, folder / "build-recovery.json")
 
@@ -341,7 +354,7 @@ class Batch:
             target = root / family
             self.tool("create-h1-count-fixtures.py", ["--family", family, "--case-set", "all", "--seed", "20260926", "--output-root", target])
             manifest = target / "h1-count-fixture-manifest.json"; audit = target / "h1-count-fixture-audit.json"
-            self.tool("audit-h1-count-fixtures.py", ["--manifest", manifest, "--output", audit])
+            self.tool(fixture_auditor(family), ["--manifest", manifest, "--output", audit])
             args.extend(["--" + label + "-manifest", manifest, "--" + label + "-audit", audit])
         builds = []
         for feature in ("on", "off"):
@@ -385,7 +398,8 @@ class Batch:
         # its finally block restores settings. Generated scene recovery is
         # limited to the two serialized identity fields.
         scene = project / "Assets/AssemblyShadowR01BDiagnostics/Scenes/R01BDiagnostic.unity"
-        before = scene.read_bytes()
+        before = {str(scene.relative_to(project)): scene.read_bytes(),
+                  GENERATED_LINK: (project / GENERATED_LINK).read_bytes()}
         receipt = root / "build.json"
         def build_action():
             self.unity("candidate", "AssemblyShadowDemo.Editor.R02DiagnosticBuild.Build", [
@@ -393,8 +407,9 @@ class Batch:
                 "-shadowR01BDiagnosticOutput", root / "Player.app", "-shadowR01BDiagnosticBuildReceipt", receipt])
         def recover():
             self.stopped("candidate")
-            restore_files(project, {str(scene.relative_to(project)): before},
-                lambda relative, original, current: diagnostic_scene_allowed(original, current), root / "restoration")
+            restore_files(project, before, lambda relative, original, current:
+                generated_link_allowed(original, current) if relative == GENERATED_LINK else diagnostic_scene_allowed(original, current),
+                root / "restoration")
         with_recovery(build_action, recover, root / "build-recovery.json")
         authority.inspect(project, self.heads["candidate"], "candidate", self.targets)
         from r01b_diagnostic_inputs import verify_diagnostic_inputs
@@ -498,6 +513,12 @@ class Batch:
                              self.out / "native-transaction-integrity.json")
 
     def finish(self):
+        # An attempted forensic acquisition with absent required inputs cannot
+        # turn into a complete seal merely by omitting missing locators.
+        forensic = self.out / "m00-batch-e-forensics/analysis.json"
+        if forensic.is_file():
+            require(read(forensic).get("inputsSnapshotted") is True,
+                    "Required forensic input acquisition incomplete; complete seal refused")
         paths = set(self.retained)
         for root in self.generated_roots:
             if root.is_dir(): paths.update(files_under(root))
