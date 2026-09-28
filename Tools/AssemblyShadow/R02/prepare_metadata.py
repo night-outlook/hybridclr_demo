@@ -19,7 +19,7 @@ CONTROL_WORKSPACE = "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control"
 NATIVE = "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
 H1_NATIVE = "6be7f38bec2fa4677d24efc1a4a1294240789933"
 HYBRID = "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
-PACKAGE = "809a67f1f14c3626bd3c7b21721a53c1c61b1849"
+PACKAGE = "b936a495ade1691ebb6f3bab8fdff3ef34f6f192"
 DOCS = "Docs/AssemblyShadow/History/M07R/R02/"
 
 
@@ -61,68 +61,55 @@ def handoff(source_commit, control_head):
     rows = []
     for name, item in target["candidate"]["repositories"].items():
         rows.append("| " + " | ".join((item["repository"], "`" + item["path"] + "`", "`" + item["branch"] + "`", "`" + item["commit"] + "`")) + " |")
-    return f'''# Primary Implementation -> Local Validation: R02
+    return f'''# Primary Implementation -> Local Validation: R02 after batch F
 
-## Objective and authority
+## Authority and read order
 
-Run `R02LocalBatch-v1` against fresh source-bound H1-runtime control and R02 candidate builds. Collect functional, concurrency, guard/regression, CPU, memory and complete raw/launch evidence in one serial batch. Do not begin R03.
+Read `Docs/AssemblyShadow/README.md`, this handoff, `{DOCS}F_INTEGRATION_REPAIR.md`, `DESIGN.md`, `LOCAL_VALIDATION_TASKS.md`, `PRIMARY_VALIDATION.md` and `source-targets.json` in that R02 directory.
 
-Read `Docs/AssemblyShadow/README.md`, this file, `{DOCS}DESIGN.md`, `{DOCS}LOCAL_VALIDATION_TASKS.md`, and `{DOCS}source-targets.json`.
+Input Local return: `6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f`. F remains 22 Passed, 8 Failed, 4 Blocked followed by failed complete sealing; its preservation inventory is not a complete seal. Preserve A/B/C/D/E/F, all H1 evidence, old R01 comparison and failed raw results.
 
-H1 remains `PassedWithExplicitDeferredRisk` following D1=A and D2=A. R02 is not accepted. The candidate demo **source anchor** is `{source_commit}`. Use the exact **final pushed transport HEAD** supplied by the Primary handoff prompt; do not substitute the source anchor as a complete handoff. The source-to-HEAD executable delta must be empty under the unchanged `shadow_tools.metadata_only` policy.
+Common executable/tool source anchor: `{source_commit}`. Use the final pushed candidate transport HEAD from Primary's prompt, not this source anchor. Post-anchor changes must be metadata-only under unchanged `shadow_tools.metadata_only`.
 
-| Repository | Candidate checkout | Branch | Source commit |
+| Repository | Candidate owning checkout | Branch | Source commit |
 | --- | --- | --- | --- |
 {chr(10).join(rows)}
 
-Control demo checkout: `{CONTROL_WORKSPACE}/hybridclr_demo`, branch `{CONTROL_BRANCH}`, exact published HEAD `{control_head}`. Its executable demo source is the same `{source_commit}`. Its three owning sibling checkouts use HybridCLR `{HYBRID}`, package `{PACKAGE}`, and IL2CPP `{H1_NATIVE}`. All three control runtime/package checkouts may be detached at their exact commits; the metadata authority checks their remote branch identities. IL2CPP control remote branch is `codex/assembly-shadow-r01b`. Never install R02 native code into the control workspace or the historical R01 reference.
+Control demo: `{CONTROL_WORKSPACE}/hybridclr_demo`, branch `{CONTROL_BRANCH}`, exact HEAD `{control_head}`. Its siblings use HybridCLR `{HYBRID}`, package `{PACKAGE}`, H1 IL2CPP `{H1_NATIVE}`. Control sibling worktrees may be detached at exact commits; their remote branches are `{BRANCH}` for HybridCLR/package and `codex/assembly-shadow-r01b` for IL2CPP. Both demo worktrees must use their specified branches. Canonical remotes: `https://github.com/night-outlook/<repository>.git`.
 
-Canonical remotes are `https://github.com/night-outlook/<repository>.git`. Preserve any existing unrelated worktrees; new control worktrees must use unused absolute paths and the specified owning repositories, not copies of generated outputs.
+All eight worktrees must be clean and source-bound. The control includes the common source as ancestry and differs only in source pins. **Both roles use the new managed parser package.** Do not reuse the old control package, install R02 native runtime into control, or alter unrelated worktrees.
 
-## Completed implementation
+## Completed Primary repairs
 
-Immutable complete-physical-type admission certificates and absent-baseline counterpart caching; retained mutable-state guards; bounded observation shards and class memo; diagnostics default level 2; explicit disabled/truncated coverage; shared production-header native tests; R02 opt-in allocation/generic/array/boxing/dispatch/1000-type/worker witness; strict raw verifier; controlled paired performance; complete evidence sealing; generated-input recovery; host build/run cleanup repair; codec-owned-storage attribution.
+The strict type-resolution parser admits the known 33-field R02 extension and still rejects missing/duplicate/unknown/mistyped fields. It preserves UInt64 values and unavailable coverage. `r02` is a preserved parsed view with non-serialized backing storage; the legacy eighteen public serialized fields stay unchanged. Retain raw native JSON for R02 persistence; legacy DTO serialization intentionally excludes that transient view. The real build proof checks the nested 33-field schema separately. New Editor tests cover stripped/narrowed fields and Unity serialization; the actual native-writer/managed-parser and BCL round trips are required host tests.
 
-The production native files are already committed, not patches for Local to apply. Local must not run `tools/r02/finalize_sources.py --prepare` or alter source/pins to make a verifier pass. The read-only `--verify` mode is part of Primary checks.
+M07 now prepares and supplies mode-specific Control early-startup capsules before launching. Counts dispatch parameter and nested manifests to their respective existing auditors. Count and diagnostic build transactions capture linker XML and restore only the exact permitted empty-to-known-netstandard expansion; arbitrary changes still fail.
 
-## Single batch
+E forensics copies authenticated raw inputs before builds. Missing live E DLLs may be read only from their original Git-bound, digest-verified E archive and exact indexed members. The archive/index and copies are retained. Corrupt existing live data never falls back to an archive. Missing required inputs still prevent a complete seal. No old path is reconstructed and no failed execution is relabeled.
 
-Prerequisites: macOS arm64, Unity 2022.3.62f2, Python 3.10+ with the existing project tooling, .NET SDK 8 or newer capable of net8.0 host builds, `clang++`, and PowerShell. At least 30 GiB free is an entry check, not a guarantee for every archive. Resolve actual absolute tool paths; do not assume a particular Python installation. Confirm the candidate and control owning checkouts are clean and match the final prompt/source-targets.
+Fixed M00 materialization, native prerequisite ordering, Roslyn v2 kernel identities, source policies, correctness guards, runtime cache and formal timing are unchanged. No non-trivial implementation is assigned to Local.
 
-Run `Tools/AssemblyShadow/R02/run_local.py` with `--candidate`, the prompt's `--candidate-head`, `--control`, the fixed `--control-head`, absolute `--unity` and `--pwsh`, and an unused `--output` directly under candidate `_temp/AssemblyShadow/`. Without `--execute` it prints the plan; add `--execute` only after checking those inputs. The detailed task sheet gives the complete shell command.
+## One new 34-cell batch
 
-Expected independent cells:
+Protocol: `R02LocalBatch-v1`.
 
-1. Four-repository/source/common-managed-graph authority and host Primary checks.
-2. Two new controlled build graphs (candidate/control, ON/OFF), installed-runtime provenance and strict input checks.
-3. Eight functional sidecar processes across both roles and four modes: 1/10/10000 operations, 100/1000 physical types, four workers, semantic construction checks, retained correctness diagnostics.
-4. Four pilot pairs plus forty formal A/B pairs: 88 fresh processes, frozen balanced schedule, strict R00 verification, no R02 sidecar during formal timing. CPU/RSS statistics are measurements, not SLA approval.
-5. Candidate Editor tests, native regressions, M07, startup11, failure/publication/recovery, fresh 132-cell count matrix, lazy/dense, and ordinary/mixed capacity.
-6. Final source checks and a complete content-addressed evidence archive. `EvidenceReadyForStageReview` means evidence preparation only; `R02Accepted=false` and `mayEnterR03=false` remain.
+Prerequisites: macOS arm64, Unity 2022.3.62f2, Python 3.10+, PowerShell, .NET SDK supporting net8.0, clang++, and at least 30 GiB free (entry minimum, not a total archive-space guarantee). Close both Unity editors. Resolve absolute tool paths. Set `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1`.
 
-Dependencies block on failure; independent valid cells continue. A source-state preflight before each workspace-dependent cell prevents a dirty failed build from contaminating later Players. No automatic semantic retry, source edit, lowered expectation, timeout increase, or historical result substitution is permitted.
+Run candidate `Tools/AssemblyShadow/R02/run_local.py` with `--candidate`, final `--candidate-head`, `--control`, `--control-head {control_head}`, absolute `--unity`/`--pwsh`, and an unused direct child of candidate `_temp/AssemblyShadow/` as `--output`. Inspect the plan without `--execute`, then add it for one execution. Do not resume or relabel F.
 
-## Evidence, failures and recovery
+The 34 cells preserve the full scope: exact source/common graph; expanded host checks; E raw forensics; two fixed M00 materializations and fresh controlled ON/OFF graphs; eight functional sidecars; four pilot plus forty formal A/B pairs (88 fresh timing processes); Editor/native/generated-transaction/M07/startup11/failure/count132/diagnostic/lazy-dense/ordinary-mixed-capacity; final authority and full sealing. Require all three new `R02TypeResolutionSchemaTests` and the existing two `R02ProbeContractTests` to pass in Editor results. Inspect M07 early receipts separately from later runtime parser results.
 
-Keep every command JSON/stdout/stderr, partial output, failed attempt, generated-input before/after record, exact build/input binding, launch receipt, raw result, sidecar verifier, paired index, and seal index/archive. Do not retain only PASS summaries. `LOCAL_BATCH_RESULT.json` points to the seal; preserve both. The controlled graphs and count/diagnostic roots outside the batch folder are indexed and retained by the runner.
+Independent valid cells continue; failed prerequisites block consumers. No automatic semantic retry, timeout increase, hash/pin changes, verifier relaxation, source refactor or case-set reduction is allowed. A new linker output outside the fixed restoration policy returns to Primary with original/generated bytes, not a Local permission change.
 
-The retained ordinary capacity corpus is used as authenticated input bytes only, never reused execution. It is found through the fixed historical Git index and exact launch/workload bindings; no basename fallback. Missing external bytes block that capacity path. Preserve the historical seven count archives, source-27df performance bytes, and all H1 evidence.
+## Evidence, review and return
 
-Record the first actual build/semantic error and every recovery error independently. Do not convert a failed cleanup to Passed because host assertions or Player exit code were zero. If unexpected source mutations remain, preserve them and return the failure; do not reset or clean them automatically.
+Preserve type-resolution raw JSON and interoperability results, per-mode M07 capsule files/manifests/early receipts, both count audits, linker original/generated/restored bytes, copied E DLLs and their origin/index/archive, per-role M00 materialization, Unity completion snapshots, generated-native receipts, current build maps, all launch/raw/verifier chains, failed attempts, performance analysis and full content-addressed seal. Keep indexed generated roots outside the batch directory. `LOCAL_BATCH_RESULT.json` must bind the completed seal; `SEAL_FAILED.json` or an inventory is not equivalent.
 
-## D1/D2 and review
+Do not delete retained history to make disk checks pass. If E source paths are absent, the committed forensic cell handles only the exact archived bytes; Local must not improvise another source. Incomplete forensic acquisition remains a fatal full-seal failure even when independent builds complete.
 
-Report R02-versus-current-H1-runtime cold/warm allocation, reflection and closed generic results, distributions and sample counts. Retain the older R01 comparison separately; no codec-only causal claim. Report native owned structure bytes, managed bytes, point-in-time RSS and lifetime peak with their different meanings. `codec_memory.py` measures host constructor allocation requests for the unchanged profile-2 storage; it neither measures Unity RSS nor explains the whole historical RSS delta by itself.
+Update and push `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` with actual Passed/Failed/Blocked/NotRun/Unavailable classifications, first errors, source/build/input hashes and exact evidence locations. Preserve original negative cases; no summary-only replacement of raw evidence. Commission the genuinely independent R02 stage reviewer only when complete evidence is eligible, and retain its verbatim verdict.
 
-After all required evidence succeeds, commission a genuinely independent R02 stage review with the existing reviewer definition and fixed source/evidence inputs. Preserve its verbatim verdict. This is not the later H2 Human Review Gate. Return D1/D2 disposition and remaining risks to Primary before any subsequent stage; no risk is silently waived.
-
-## Local modification boundary and return
-
-Permitted: unused output suffixes, absolute tool resolution, registered worktree setup at the listed commits, normal builds/fixture generation, exact scripted generated-input restoration, command/evidence collection, and bounded environment fixes with receipts.
-
-Forbidden: production or verifier refactors, changing source pins or fixtures after freezing, changing the required case set, hiding failing attempts, relaxing provenance or cleanup, installing candidate runtime into control, cleanup of retained evidence, and beginning R03.
-
-Update `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` with actual Passed/Failed/Blocked/NotRun/Unavailable classifications. Put non-trivial issues in `RETURN_TO_WEB.md` with reproduction command, source/build tuple, first failing path/hash and retained evidence. Commit and push Local's reports and evidence indexes without replacing historical records. No non-trivial implementation is assigned to Local.
+H1 remains `PassedWithExplicitDeferredRisk`. D1=A/D2=A are development-stage deferrals, not performance/RAM acceptance. Report measured allocation/reflection/closed-generic and native/managed/RSS effects before H2; keep historical R01 and new H1-runtime-control comparisons distinct. Stop and return to Primary. R02Accepted=false; mayEnterR03=false.
 '''
 
 

@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Program.cs"/>
+    <Compile Include="../../../../Assets/AssemblyShadowDemo/Editor/R02TypeResolutionSchema.cs" Link="ProductionSchema.cs"/>
     <Compile Include="$(ParserSource)" Link="ProductionParser.cs"/>
   </ItemGroup>
 </Project>

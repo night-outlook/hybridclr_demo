@@ -1,6 +1,10 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using AssemblyShadowDemo.Editor;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using HybridCLR;
@@ -24,11 +28,33 @@ public static class Program
             if (args.Length != 1) throw new Exception("Exact fixture directory required");
             var paths = Directory.GetFiles(args[0], "*.json").OrderBy(x => x).ToArray();
             Check(paths.Length == 13, "Expected twelve native extensions and one legacy fixture");
+            var inventory = R02TypeResolutionSchema.Fields();
+            var members = typeof(AssemblyShadowTypeResolutionInfo.R02Diagnostics).GetFields();
+            Check(members.Length == 33 && inventory.Count == 33, "Proof model field count");
+            foreach (var field in members)
+            {
+                Check(inventory[field.Name] == field.FieldType.FullName, "Pre/post-link proof schema mismatch");
+                Check(field.IsDefined(typeof(UnityEngine.Scripting.PreserveAttribute), false), "Unpreserved extension field");
+            }
+            Check(typeof(AssemblyShadowTypeResolutionInfo).GetFields(BindingFlags.Public | BindingFlags.Instance).Length == 18,
+                "Legacy serialized field inventory changed");
+            Check(typeof(AssemblyShadowTypeResolutionInfo).GetField("r02Value", BindingFlags.NonPublic | BindingFlags.Instance).IsNotSerialized,
+                "Transient view would manufacture serialized defaults");
             foreach (var path in paths)
             {
                 var json = File.ReadAllText(path);
                 var info = AssemblyShadowTypeResolutionInfo.Parse(json);
                 Check(info.definitionCacheHits == ulong.MaxValue, "Root UInt64 narrowed");
+                // Real BCL round trip of the linked production DTO: no null or
+                // default R02 object may be manufactured by legacy serialization.
+                using (var stream = new MemoryStream())
+                {
+                    new DataContractJsonSerializer(typeof(AssemblyShadowTypeResolutionInfo)).WriteObject(stream, info);
+                    string serialized = Encoding.UTF8.GetString(stream.ToArray());
+                    Check(Object(serialized).Count == 18 && !Object(serialized).ContainsKey("r02"), "Legacy JSON shape changed");
+                    var roundTrip = AssemblyShadowTypeResolutionInfo.Parse(serialized);
+                    Check(roundTrip.r02 == null && roundTrip.definitionCacheHits == ulong.MaxValue, "Legacy round trip");
+                }
                 using var document = JsonDocument.Parse(json);
                 if (!document.RootElement.TryGetProperty("r02", out var raw))
                 { Check(info.r02 == null, "Legacy absence is not zero diagnostics"); continue; }

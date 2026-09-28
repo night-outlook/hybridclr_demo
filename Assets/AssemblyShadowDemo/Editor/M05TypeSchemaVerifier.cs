@@ -183,7 +183,11 @@ namespace AssemblyShadowDemo.Editor
             Require(input.Assembly.Name == "HybridCLR.Runtime" && input.Assembly.FullName == linked.Assembly.FullName,
                 "M05TypeSchemaIdentity", "Runtime schema requires the captured HybridCLR.Runtime identity.");
             const string diagnostic = "HybridCLR.AssemblyShadowTypeResolutionInfo";
-            ShadowDiagnosticSchemaProof.Verify(input, linked, new[] { diagnostic }, "M05Type");
+            // The R02 parsed view is intentionally outside legacy DTO serialization;
+            // prove its nested wire model explicitly instead of weakening the
+            // existing exact eighteen-field serialized schema.
+            ShadowDiagnosticSchemaProof.Verify(input, linked,
+                new[] { diagnostic, R02TypeResolutionSchema.ExtensionType }, "M05Type");
             var fields = new Dictionary<string, string>(StringComparer.Ordinal);
             foreach (string name in new[] { "schemaVersion", "executionModeCode" }) fields.Add(name, "System.Int32");
             foreach (string name in new[] { "logicalAssembly", "executionMode", "physicalImageKind", "typeKey", "inputTypePointer", "activeTypePointer", "baselineTypePointer" }) fields.Add(name, "System.String");
@@ -195,6 +199,13 @@ namespace AssemblyShadowDemo.Editor
                 var actual = type.Fields.Where(field => field.IsPublic && !field.IsStatic).ToArray();
                 Require(actual.Length == 18 && actual.All(field => fields.ContainsKey(field.Name.String) && fields[field.Name.String] == field.FieldType.FullName),
                     "M05TypeSchemaFields", "Type-resolution diagnostics must have exactly the declared 18 typed fields, including ulong counters.");
+                var nested = module.Find(R02TypeResolutionSchema.ExtensionType, false);
+                var extensionFields = R02TypeResolutionSchema.Fields();
+                Require(nested != null && nested.IsSerializable, "M05TypeSchemaFields", "Missing serializable R02 wire model.");
+                var extensionActual = nested.Fields.Where(field => field.IsPublic && !field.IsStatic).ToArray();
+                Require(extensionActual.Length == 33 && extensionActual.All(field =>
+                    extensionFields.ContainsKey(field.Name.String) && extensionFields[field.Name.String] == field.FieldType.FullName),
+                    "M05TypeSchemaFields", "R02 wire model must retain all 33 exact typed fields.");
                 var api = module.Find("HybridCLR.AssemblyShadowRuntime", false);
                 Require(api != null, "M05TypeApi", "Missing native transaction API.");
                 string[] signatures = {
