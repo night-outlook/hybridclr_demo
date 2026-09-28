@@ -312,13 +312,18 @@ class Batch:
             capsules = self.new_player_root("candidate", "m07-control-capsules")
             self.tool("prepare-h1-m07-control-capsules.py", graph_args(graph) + ["--output-root", capsules])
             self.tool("run-m07-players.py", common + ["--early-capsule-root", capsules, "--output-root", root], timeout=28800)
-            self.tool("verify-m07-results.py", graph_args(graph) + ["--result-dir", root / "Results", "--output", root / "strict.json"])
+            self.tool("R02/verify_regressions.py", ["--kind", "m07", "--project-root", self.roots["candidate"],
+                "--candidate-head", self.heads["candidate"], *graph_args(graph), "--result-dir", root / "Results", "--output", root / "strict.json"])
         else:
             negative = self.values["negative-fixtures"]
             args = common + ["--failure-fixtures", negative["failure"], "--negative-input", negative["negative"], "--output-root", root]
             stem = "r01-early" if kind == "startup11" else "r01-failure"
             self.tool("run-" + stem + "-players.py", args, timeout=28800)
-            self.tool("verify-" + stem + "-results.py", ["--launch-receipt", root / (stem + "-launches.json"), "--output", root / "strict.json"])
+            if kind == "startup11":
+                self.tool("R02/verify_regressions.py", ["--kind", "startup11", "--project-root", self.roots["candidate"],
+                    "--candidate-head", self.heads["candidate"], "--launch-receipt", root / "r01-early-launches.json", "--output", root / "strict.json"])
+            else:
+                self.tool("verify-r01-failure-results.py", ["--launch-receipt", root / "r01-failure-launches.json", "--output", root / "strict.json"])
         return {"root": str(root)}
 
     def count_one(self, feature, cpp):
@@ -401,10 +406,21 @@ class Batch:
         before = {str(scene.relative_to(project)): scene.read_bytes(),
                   GENERATED_LINK: (project / GENERATED_LINK).read_bytes()}
         receipt = root / "build.json"
+        # Honor the unchanged R01B provenance root. The receipt/recovery lives
+        # in _temp; the distinct Player is a fresh artifact under Builds/R01B.
+        player_root = project / "Builds/AssemblyShadow/R01B" / (self.prefix + "-diagnostic")
+        require(player_root == player_root.resolve() and not player_root.exists() and not player_root.is_symlink(),
+                "Unused canonical diagnostic Player root required")
+        player_root.mkdir(parents=True, exist_ok=False)
+        require(player_root == player_root.resolve(strict=True), "Diagnostic Player root changed identity")
+        self.retain_root(player_root)
+        player = player_root / "Player.app"
+        write(root / "output-plan.json", {"kind": "R02DiagnosticOutputPlan", "playerOutput": str(player),
+              "requiredParent": str(project / "Builds/AssemblyShadow/R01B"), "preexistingPlayer": False})
         def build_action():
             self.unity("candidate", "AssemblyShadowDemo.Editor.R02DiagnosticBuild.Build", [
                 "-shadowM07Fixtures", graph["fixtureManifest"], "-shadowM07PlayerReceipt", graph["nativeOnReceipt"],
-                "-shadowR01BDiagnosticOutput", root / "Player.app", "-shadowR01BDiagnosticBuildReceipt", receipt])
+                "-shadowR01BDiagnosticOutput", player, "-shadowR01BDiagnosticBuildReceipt", receipt])
         def recover():
             self.stopped("candidate")
             restore_files(project, before, lambda relative, original, current:
@@ -412,6 +428,7 @@ class Batch:
                 root / "restoration")
         with_recovery(build_action, recover, root / "build-recovery.json")
         authority.inspect(project, self.heads["candidate"], "candidate", self.targets)
+        require(read(receipt)["playerOutput"] == str(player), "Diagnostic receipt output differs from the planned fresh Player")
         from r01b_diagnostic_inputs import verify_diagnostic_inputs
         verify_diagnostic_inputs(project, *[Path(graph[k]) for k in ("fixtureManifest", "nativeOnReceipt", "nativeOffReceipt", "editorReplayReceipt")], receipt)
         self.retain_root(Path(read(receipt)["inputSnapshot"]))

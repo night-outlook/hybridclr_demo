@@ -6,6 +6,7 @@ import os
 import platform
 import shutil
 from evidence import binding, read, require, run, write
+from type_resolution_schema import validate_extension
 
 
 INCLUDE_POLICY = 'R02QuotedProjectHeaders-v1'
@@ -48,6 +49,10 @@ def execute(native, package, output, dotnet='dotnet'):
                 label = str(level) + '-' + mode
                 stdout = command('emit-' + label, [binary, mode])
                 raw = read(stdout)
+                if mode != 'legacy':
+                    validate_extension(raw['r02'], 'native fixture ' + label)
+                else:
+                    require('r02' not in raw, 'Legacy fixture unexpectedly contains R02')
                 target = fixtures / ('legacy.json' if mode == 'legacy' else label + '.json')
                 write(target, raw)
                 report['nativeFixtures'].append(dict(level=level, mode=mode, file=binding(target)))
