@@ -1,29 +1,19 @@
-# R02 publication record — batch-G include repair
+# R02 publication record — batch-H successor
 
-This cycle is completed by Primary, not work assigned to Local. Canonical GitHub Connector writes are authoritative; no local-only commit or working copy is a handoff.
+## Completed source publication
 
-## Bound inputs and published source
+The Connector published native commit `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c` on `night-outlook/il2cpp_plus:codex/assembly-shadow-r01b-h1`, followed by demo source `a81bb0d7b886fe941ba4b132296a30dcf4a319cc` on `night-outlook/hybridclr_demo:codex/assembly-shadow-r01b-h1`. The source incorporates input Local return `d33792957303488e03529c945ac01ce0eedd660b` without editing its evidence.
 
-- Local return/base: `4c4f50adfd3a44073d14b107227f399c53ea605c` on `codex/assembly-shadow-r01b-h1`.
-- Source/tool repair: `af9ba49127a7e852fed504a55c733c5f6ec5e54e`.
-- Matched control: `codex/r02-h1-runtime-control@2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e`.
-- CI-tested candidate authority: `5c7b9babca7257edb61976f50e3b8a51fc18abd6`.
-- Final documentation transport is the later exact remote HEAD in Primary's prompt. It must be metadata-only relative to the source above.
+The matched H1-runtime control `21c689732cd8087f8ee8fdce4e52a8f2a655f722` on `codex/r02-h1-runtime-control` includes `a81bb0d7b886fe941ba4b132296a30dcf4a319cc` as an explicit additional parent and uses that exact tree with only `ProjectSettings/AssemblyShadowSourcePins.json` changed. Control native remains `6be7f38bec2fa4677d24efc1a4a1294240789933`; HybridCLR/package match the candidate.
 
-Only three executable paths changed: the host contract runner, its new regression module and the dedicated actual-macOS contract workflow. Native, package, fixtures, schema, Player code and timing remain unchanged. The new design is `G_INCLUDE_REPAIR.md`.
+Candidate metadata authority `c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d` binds the new source and control. It changes only the pin file, source-target metadata and WEB_TO_LOCAL. All four selected workflows at that authority passed: 36431496003 (R02), 36431496157 (actual macOS contract), 36431495940 (legacy), 36431495954 (M00 origin). Their downloaded artifacts, source inventory and raw bindings are recorded in `H_PRIMARY_VALIDATION.json`.
 
-The control merge uses its prior tip plus the new source as parents, retaining the new source tree except for the source-pin file selecting H1 IL2CPP. No branch was force-updated or reset. Candidate metadata includes exact pins, the control tip and updated WEB_TO_LOCAL. `prepare_metadata.pins/targets` generated the JSON values; the live handoff was explicitly authored for batch G rather than using the older batch-F prose template.
+## Final transport contract
 
-## Final verification
+The final documentation commit records validation/task/status completion. Its delta from the source anchor must contain only permitted metadata under unchanged `shadow_tools.metadata_only`; no executable source may change after the selected validation without a new freeze/control/validation cycle.
 
-Selected authority workflows all passed: R02/Linux/macOS lifecycle 36393519340; actual macOS writer/parser contract 36393519338; scoped legacy 36393519418; immutable M00 origin 36393519352. `PRIMARY_VALIDATION.md` and `G_PRIMARY_VALIDATION.json` record exact artifact sizes/digests, raw member bindings, 3,336 verified source/input files and actual scope.
+The final response must read back all four candidate remote refs and the control refs after the last write, then supply that exact candidate transport HEAD in the Local prompt. Do not reuse source/CI HEADs or an earlier chat tuple as transport authority. Stop on later remote movement rather than weakening the exact-ref preflight.
 
-The final docs commit updates the validation record, current status, task sheet, root README and this publication record only. It does not create a new executable or CI identity. Read back final candidate/control refs and all unchanged runtime/package refs after the last write, verify post-source metadata-only deltas, then issue exactly that tuple. Perform no additional candidate/control write after issuing the prompt during this cycle.
+## Boundary
 
-## Local identities and preservation
-
-Candidate workspace: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`.
-Control workspace: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control`.
-Each contains its own demo, HybridCLR, package and IL2CPP owning checkout. Control native/package siblings may remain detached at exact source-target commits. Preserve unrelated worktrees.
-
-Previous publications and A/B/C/D/E/F/G results remain in Git history and retained evidence. No old G build existed to reuse. Run one new 34-cell batch after the exact remote checks, without source edits or weakened prerequisites. Publication is not Player acceptance. R02Accepted=false; mayEnterR03=false.
+Primary publication and host CI do not accept R02 or approve R03. The next Local cycle is one fresh 34-cell batch with new-native candidate builds and source-matched H1 control, full regressions and sealing. H1 remains PassedWithExplicitDeferredRisk; D1/D2 require measured disposition before H2. Preserve all historical results, raw inputs and failed attempts. Rollback requires an explicit complete new tuple, never mixed pins or destructive reset.

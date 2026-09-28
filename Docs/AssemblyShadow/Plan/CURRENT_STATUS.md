@@ -1,28 +1,27 @@
-# Current Status — batch-G host include repair; awaiting Local Validation
+# Current Status — batch-H repair awaiting Local Validation
 
-- Input Local return: `4c4f50adfd3a44073d14b107227f399c53ea605c`.
-- H1: `PassedWithExplicitDeferredRisk`; D1=A/D2=A remain development-stage deferrals.
-- Source/tool anchor: `af9ba49127a7e852fed504a55c733c5f6ec5e54e`.
-- Selected CI authority: `5c7b9babca7257edb61976f50e3b8a51fc18abd6`.
+- Input Local return: `d33792957303488e03529c945ac01ce0eedd660b`.
+- H1: PassedWithExplicitDeferredRisk; D1=A/D2=A remain development-stage deferrals.
+- Common source: `a81bb0d7b886fe941ba4b132296a30dcf4a319cc`.
+- CI authority: `c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d`.
 - Candidate branch: `codex/assembly-shadow-r01b-h1`.
-- Matched control: `codex/r02-h1-runtime-control@2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e`.
-- HybridCLR, both roles: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
-- Package, both roles: `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
-- Candidate/control IL2CPP: `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
+- Matched control: `codex/r02-h1-runtime-control@21c689732cd8087f8ee8fdce4e52a8f2a655f722`.
+- HybridCLR/package, both roles: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
+- Candidate/control IL2CPP: `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
 - R02Accepted=false; mayEnterR03=false.
 
-## Completed Primary work
+## Implemented work
 
-G's native host compile failed because `-I` exposed the project's `vm/string.h` to standard library includes. The compiler command now uses quote-only project search via `-iquote`; no additional native-root include path or Local workaround is needed. All native/parser semantics and strict assertions remain unchanged. Compiler/platform/version and fixture diagnostics are recorded.
+Concrete AOT compiled layout can now complete an allocation proof without initializing the protected baseline; all physical comparisons, active-target readiness, composite restrictions and per-hit correctness guards remain. A capped cold-readiness diagnostic and a 10,000-warm-allocation native-header regression are included. H's exact failing class remains unproven from its counters alone.
 
-Eight new tests cover the real collision and negative control, quoted sibling resolution, path spaces, all diagnostics levels and failure propagation. The full Python suite passes 218/218 locally and in Linux CI. The new dedicated macOS workflow executes the actual writer/parser at levels 0/1/2, passing 1,310 checks and all nineteen commands with clean completion. The existing macOS lifecycle subset passes 79/79; the new eight tests are repeated there only in the dedicated contract workflow, not additional unique cases beyond 218.
+Current M07/startup validation has a source-bound strict R02 schema bridge; legacy verifiers and raw evidence are unchanged. Startup invokes its existing verifier module. The diagnostic Player now uses a new distinct canonical R01B build root, retaining full receipts and restoration. Earlier F/G repairs and all five machine-enforced Editor tests remain.
 
-Final authority workflows Passed: 36393519340 (R02), 36393519338 (actual macOS contract), 36393519418 (legacy), 36393519352 (origin). Native matrices remain 70/70 each; managed host assertions 102/111/111; scoped legacy 384/384 and 6/6. All 3,336 source/input files and the three changed executable blobs match the downloaded tested artifact. Details and digests are in `History/M07R/R02/PRIMARY_VALIDATION.md` and `G_PRIMARY_VALIDATION.json`.
+## Selected evidence
 
-Control contains the new source as ancestry and differs only in source pins. Candidate post-anchor changes are metadata-only. All three runtime/package repositories remain unchanged. The final prompt must use the latest verified transport HEAD, not the earlier source or CI commit.
+At `c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d`, R02 CI 36431496003, actual macOS writer/parser CI 36431496157, legacy CI 36431495940 and origin CI 36431495954 passed. Python: 236/236 local and Linux; macOS repeated subset 97/97; actual writer/parser 1,310 checks per platform; native matrices 70/70 each, 1,540/168,616 checks; managed Baseline/P01/P03 102/111/111; legacy 384/384 and 6/6. All 3,412 source entries, thirteen changed executable blobs and 226 nested bindings authenticated.
 
-## Next action and gates
+`PRIMARY_VALIDATION.md` and `H_PRIMARY_VALIDATION.json` retain exact results, artifacts and limits. No Primary Unity/Player execution or performance acceptance is claimed. H remains 25 Passed, 5 Failed, 4 Blocked with its original complete seal.
 
-Run one new unused 34-cell R02LocalBatch-v1. Local host contract validation remains mandatory before fresh Unity graphs. Complete all eight sidecars, four pilot plus forty formal A/B pairs, five Editor contracts, native/generated/M07/startup/count/diagnostic/capacity regressions, final source checks and full sealing. Commission independent R02 review only when complete evidence is eligible.
+## Required next action
 
-G remains ReturnRequired: 9 Passed, 1 Failed, 24 Blocked, with a complete audited seal and no new Unity graph. Preserve A/B/C/D/E/F/G and H1 history. No Primary Unity/Player execution or runtime acceptance is claimed. D1/D2 still need measured disposition before H2. Stop before R03.
+Local runs one unused 34-cell batch from the latest verified candidate transport and the fixed control above, with fresh candidate native installation/builds. It verifies warm admission, eight sidecars, four pilot plus forty formal A/B pairs, five Editor tests, M07/startup/failure/count132, diagnostic/lazy/dense/capacity, final authority and complete sealing. Prior count and Editor passes cannot authenticate the new native runtime. D1/D2 require measured disposition before H2; independent review only after complete eligible evidence. Preserve all history and stop before R03.

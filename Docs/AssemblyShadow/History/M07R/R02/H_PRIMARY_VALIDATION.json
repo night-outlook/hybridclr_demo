@@ -1,0 +1,288 @@
+{
+  "kind": "R02HPrimaryValidation",
+  "sourceFiles": 3412,
+  "sourceRepositories": {
+    "hybridclr_demo": "c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d",
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+    "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+  },
+  "changedSources": [
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+      "gitBlob": "6d7994364d6bfd089a56bde69e676778f65945a8",
+      "sha256": "0ea8cefd6564051f65de2402e3a82843096ec2450ead12c15cd25f4ae2a83b4d",
+      "sizeBytes": 44534
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "libil2cpp/vm/AssemblyShadowLayoutReadiness.h",
+      "gitBlob": "5a7a44b3ab02798bf8253124a9b7891fa6eb8cd1",
+      "sha256": "2b7dd79619a450697ca72951abbd3b3068557f833c886cec622b99ee1932e9da",
+      "sizeBytes": 1561
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r02/h_layout_repair.py",
+      "gitBlob": "efdf893a74091030b0b20bbf64fb715be3daaee0",
+      "sha256": "349209816625d6d786d26e348b697739b17ce6c33f234a3ab788d686f3a1c851",
+      "sizeBytes": 3262
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r02/finalize_sources.py",
+      "gitBlob": "8cdd98a46743433c8645356315d849c13d7921dc",
+      "sha256": "545d9c324131ee51a032f55db34a857f2f57755833aa3f5d157e4135a45dafb5",
+      "sizeBytes": 4671
+    },
+    {
+      "repository": "il2cpp_plus",
+      "path": "tools/r02/native_revision_tests.cpp",
+      "gitBlob": "5fef42bd132ff14f6e34af768f76181fc7fa3d85",
+      "sha256": "409b3b6124a10d8457520ab0e4f2e40438fee68a026e5ac75ea20245777af149",
+      "sizeBytes": 9178
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/run_local.py",
+      "gitBlob": "6b95095f2f4de14b3ee89c960b0217cd11f96fa4",
+      "sha256": "400aadd23b16c824fdc7c41b3a4cf823bd8cdf7a548a2f12255d94a3fc35a302",
+      "sizeBytes": 41043
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/type_resolution_schema.py",
+      "gitBlob": "2dc8e13c3441bb253274e3ea7e01228fe72c4d80",
+      "sha256": "856afcc82133d9239f8da37880dbdef928c4fe64e62cb823a8b9fc217a03b737",
+      "sizeBytes": 5009
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/verify_regressions.py",
+      "gitBlob": "81175c99faa3e6d642f8702cb5506f6b9ca85dbd",
+      "sha256": "3131b04cd752b450c6d6c03b054d836e9bdeabdd344d3c5b18ab0738cd5ebec4",
+      "sizeBytes": 3214
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/type_resolution_contract.py",
+      "gitBlob": "e357bd236f584e4859decbc770bddec3d22170ef",
+      "sha256": "3a1b94363e7c100ab05cc6957c65d82d19b26fdc6f3c2d15c6cca3b2dcd69e15",
+      "sizeBytes": 4672
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_type_resolution_contract.py",
+      "gitBlob": "63c3d9da40f0e25b507e76bea725343d0e2e3941",
+      "sha256": "e35e0a53aacea0481339699c5b30c95d264f17d1a6b73fd0f05117591f4caf34",
+      "sizeBytes": 8099
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_f_batch_repairs.py",
+      "gitBlob": "fbb9ffa1797b5860810d699cfae76e9a20027ee9",
+      "sha256": "f0032ef8e2fea2066c4d90dc027e9bdc68ffcaee2d77cbc89914363324d8c4e7",
+      "sizeBytes": 9237
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_h_regressions.py",
+      "gitBlob": "8103e2fcec40a964d9e0886c44987368a34f49fc",
+      "sha256": "e34864c86874bc8d692d4b8492310a5956c8ac2a6becd897d1f97f51efdba530",
+      "sizeBytes": 14674
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r02-primary.yml",
+      "gitBlob": "c0faad84eeac7ebbc4685b43a1ab4324c98791c0",
+      "sha256": "b8643ad71e1644c1248db58d2528d1b318f6fa5502ce7d686cada188d057291e",
+      "sizeBytes": 6367
+    }
+  ],
+  "bindingCount": 226,
+  "unresolvedBindings": [],
+  "protectedGuardHashes": {
+    "void AssemblyShadow::RecordBaselineUse(": "7b2ce0f53563f5cd0abffcfbf60e32cc787e09dfd189dd8baa535c1b203dc347",
+    "void AssemblyShadow::RequireActiveMethod(": "c7dc5bc72d25053c8729ae47b5b9d8dc09ff8e1946ee947d5ab12ff898269552",
+    "void AssemblyShadow::RequireUserCodeAllowed(": "026597f622788e2587739854e5ca0e2a675a812e862e1f7adf339cd3fc5b6973",
+    "void AssemblyShadow::FailTypeResolution(": "cd29a6668ecfdbb072ccba8939392c7458f05dbdc43ad0d29004115018d4f315",
+    "Il2CppClass* AssemblyShadow::ResolveAllocationClass(": "9c46555a100e80dfedbe213476ebc530952d82f37d9c6b8c023fcc9a6db5abdc",
+    "void AssemblyShadow::RequireActiveClass(": "1c41ef9085bfad4814abf981cf37bc94cd42697db7fc8769d8bfc7ab6648122c",
+    "void AssemblyShadow::RecordTypeUse(": "c7feca74b749dc022e485d94c50cb554db14fdfa2729bf8a1d55005a5f5b90d0",
+    "void AssemblyShadow::TraceClass(": "355e54ca3a105c02156addb1df0981d7f0f507ec89703091364519fe19f5c06e"
+  },
+  "schemaVersion": 1,
+  "result": "PassedPrimaryScope",
+  "inputLocalReturn": "d33792957303488e03529c945ac01ce0eedd660b",
+  "sourceCommit": "a81bb0d7b886fe941ba4b132296a30dcf4a319cc",
+  "candidateAuthority": "c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d",
+  "controlHead": "21c689732cd8087f8ee8fdce4e52a8f2a655f722",
+  "workflows": [
+    {
+      "id": 36431496003,
+      "scope": "Linux Primary and Darwin focused",
+      "head": "c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d",
+      "result": "Passed"
+    },
+    {
+      "id": 36431496157,
+      "scope": "Actual macOS native-writer/package-parser/Python extension",
+      "head": "c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d",
+      "result": "Passed"
+    },
+    {
+      "id": 36431495940,
+      "scope": "Scoped legacy H1 regressions",
+      "head": "c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d",
+      "result": "Passed"
+    },
+    {
+      "id": 36431495954,
+      "scope": "Fixed M00 origin",
+      "head": "c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d",
+      "result": "Passed"
+    }
+  ],
+  "artifacts": [
+    {
+      "scope": "primary",
+      "artifactId": 10974042248,
+      "sizeBytes": 13556200,
+      "sha256": "f56b45e9ac302244e065068df1370e58659351ab7a5d6aa6c98f37dc65cf8cb5",
+      "memberCount": 770
+    },
+    {
+      "scope": "macos-contract",
+      "artifactId": 10973811620,
+      "sizeBytes": 206482,
+      "sha256": "ee1931a2c769668cfddc6e04162af8229cad3481dc17bd204811d7816fe4b4e1",
+      "memberCount": 100
+    },
+    {
+      "scope": "darwin",
+      "artifactId": 10973816572,
+      "sizeBytes": 2822,
+      "sha256": "d3515d5e78d0a46d368c2c6691c91e3794389f6106e8a02e495f135991ae64b3",
+      "memberCount": 1
+    },
+    {
+      "scope": "legacy",
+      "artifactId": 10973562806,
+      "sizeBytes": 13018355,
+      "sha256": "1e1fcfb30a22bc7b42d95a61bc296ac03a12e4673d27d960af4620721fa2b08c",
+      "memberCount": 1255
+    },
+    {
+      "scope": "origin",
+      "artifactId": 10973961382,
+      "sizeBytes": 3068,
+      "sha256": "e49ec69555beb5b28b8beff1e7a2c43e8842d63e7bd5c2166360b0b9cb5b6f3f",
+      "memberCount": 2
+    }
+  ],
+  "results": {
+    "pythonLocal": 236,
+    "pythonLinux": 236,
+    "macosSubset": 97,
+    "macosIncludeSubset": 8,
+    "nativeProcessCases": 70,
+    "nativeChecks": 1540,
+    "revisionProcessCases": 70,
+    "revisionChecks": 168616,
+    "managedBaselineChecks": 102,
+    "managedP01Checks": 111,
+    "managedP03Checks": 111,
+    "writerParserChecksPerPlatform": 1310,
+    "nativeFixturesPerPlatform": 12,
+    "legacyFixturesPerPlatform": 1,
+    "currentLegacyCases": 384,
+    "historicalLegacyCases": 6
+  },
+  "unityPlayerRun": false,
+  "realVmCompile": false,
+  "runtimeAcceptance": false,
+  "R02Accepted": false,
+  "mayEnterR03": false,
+  "scope": "Synthetic physical-class header tests and source-bound host/CI contracts; real Unity/Player verification remains Local.",
+  "rawMembers": [
+    {
+      "artifactScope": "primary",
+      "path": "source-inventory.json",
+      "sizeBytes": 998323,
+      "sha256": "4dd44c310f6cc99d3dbbba108703d9ac02f2483f01a3d2199f342f289b5217d6"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/results.json",
+      "sizeBytes": 4964,
+      "sha256": "c157b1e14bc9291b6ab8ed558fb759137b207241d0aeb92cf77dc0f49be2e065"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/source.json",
+      "sizeBytes": 1630,
+      "sha256": "199f175df57e03feb4a4e559ab1bc72e337d98302d09561e7fe6b25b866676a7"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/native/results.json",
+      "sizeBytes": 10857,
+      "sha256": "2a99da93a2cbc869eaafea0be19c2c360b8bfb1f1075d7c777be8629f1687ecd"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/revision/results.json",
+      "sizeBytes": 13779,
+      "sha256": "3ed592eb47536ea235d1adb7967a2ca252874bfadea4256d5e0db94436029dfc"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/python-command/stderr.log",
+      "sizeBytes": 29786,
+      "sha256": "8d5524e72084b020cea8d69c1f0d838bf132491e01b3c398d4fde6f38c01bffe"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/type-resolution-contract/results.json",
+      "sizeBytes": 10906,
+      "sha256": "20313e3c8e378f892c04f1916d41472991eb890914f8bad7e93015b65c3b292c"
+    },
+    {
+      "artifactScope": "primary",
+      "path": "results/type-resolution-contract/managed-run/stdout.log",
+      "sizeBytes": 131,
+      "sha256": "9e3c47275bcb1e6c7ce73e96fa574d2a4ad8ac1b409b67f17d79ee0ed299395b"
+    },
+    {
+      "artifactScope": "macos-contract",
+      "path": "contract/results.json",
+      "sizeBytes": 10380,
+      "sha256": "3d984a9667dbb3ee06b8b309702431368b4b40e19decdfb14448eb6d4d1db274"
+    },
+    {
+      "artifactScope": "macos-contract",
+      "path": "contract/managed-run/stdout.log",
+      "sizeBytes": 131,
+      "sha256": "9e3c47275bcb1e6c7ce73e96fa574d2a4ad8ac1b409b67f17d79ee0ed299395b"
+    },
+    {
+      "artifactScope": "darwin",
+      "path": "r02-darwin-tests.log",
+      "sizeBytes": 14216,
+      "sha256": "feca1d61ee2a769e81da8ae92a364cd2f74ee9fdcc44e77c1a64ad01854bb3ae"
+    },
+    {
+      "artifactScope": "legacy",
+      "path": "current-results/results.json",
+      "sizeBytes": 56924,
+      "sha256": "57d9d9b29c1c2884977ebce68e53a4b41e094c30cbc443121b47e7fcfd6f4640"
+    },
+    {
+      "artifactScope": "legacy",
+      "path": "fixed-h1-results/results.json",
+      "sizeBytes": 4128,
+      "sha256": "9aabd6e12a310e6039c803c3b22522f2f7860537e4f609434de95b58161bd4ef"
+    }
+  ]
+}

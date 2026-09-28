@@ -1,53 +1,38 @@
-# R02 Local Validation task sheet — after batch G
+# R02 Local Validation tasks — successor to batch H
 
-Protocol: `R02LocalBatch-v1`. Execute only the exact final pushed tuple in Primary's prompt and current `source-targets.json`. Read the live `Handoff/WEB_TO_LOCAL.md`, `G_INCLUDE_REPAIR.md`, and retained F integration/Editor-coverage designs first. No non-trivial source changes are assigned to Local.
+Protocol: `R02LocalBatch-v1`, 34 required cells. Exact source/workspace authority is in `WEB_TO_LOCAL.md` and `source-targets.json`. Candidate source `a81bb0d7b886fe941ba4b132296a30dcf4a319cc`, matched control `21c689732cd8087f8ee8fdce4e52a8f2a655f722`, new candidate native `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`. Use the final remotely verified candidate transport HEAD in the prompt. All eight checkouts must be clean and correctly bound; preserve unrelated worktrees.
 
-## Entry and invocation
+## Entry and execution
 
-Candidate owning root: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`.
-Control owning root: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo`.
-Control branch/head: `codex/r02-h1-runtime-control@2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e`.
-Common source: `af9ba49127a7e852fed504a55c733c5f6ec5e54e`.
+Resolve actual Unity 2022.3.62f2, PowerShell, Python and .NET paths on macOS arm64. Close both Unity editors. Use `TMPDIR=/private/tmp`, `PYTHONDONTWRITEBYTECODE=1` and a new unused direct child of candidate `_temp/AssemblyShadow/`. At least 30 GiB free is an entry minimum, not an evidence-size guarantee. Never delete history to make the check pass.
 
-Resolve Unity 2022.3.62f2, Python 3.10+, PowerShell, .NET SDK supporting net8.0 and host C++ compiler on macOS arm64. Close both Unity editors. Set `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1`. Preserve all prior worktrees/evidence. Confirm all eight owning repositories and remote tips against the final prompt and source targets; no uncommitted source changes are allowed.
+Inspect the committed dry plan, then invoke `run_local.py --execute` with exact candidate/control paths and HEADs and explicit tools. Do not resume H, overwrite its outputs, change pins or run source preparation recipes. The complete host contract remains mandatory even though Primary CI passed.
 
-Set `CANDIDATE` and `CONTROL` to the owning roots above, `CANDIDATE_HEAD` to the exact final prompt transport HEAD, `CONTROL_HEAD` to `2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e`, `UNITY`/`PWSH` to resolved absolute executable paths and `OUTPUT` to a new unused direct child of candidate `_temp/AssemblyShadow/`. The minimum entry free-space check is 30 GiB, not a guarantee of full evidence capacity.
+## Required coverage in the same batch
 
-```sh
-export TMPDIR=/private/tmp
-export PYTHONDONTWRITEBYTECODE=1
-python3 "$CANDIDATE/Tools/AssemblyShadow/R02/run_local.py" \
-  --candidate "$CANDIDATE" --candidate-head "$CANDIDATE_HEAD" \
-  --control "$CONTROL" --control-head "$CONTROL_HEAD" \
-  --unity "$UNITY" --pwsh "$PWSH" --output "$OUTPUT"
-```
+| Group | Required evidence |
+| --- | --- |
+| Source and host | Eight entry/final authorities, common managed graph, all nine host subcells, actual native writer/parser/Python extension contract |
+| Inputs and builds | Authenticated E forensic snapshots/archive origin, independent fixed-M00 materialization, fresh candidate/control controlled ON/OFF graphs and frozen map |
+| Functional and warm proof | Eight sidecars; unchanged P01/P03 warm 10,000-allocation oracle, proof/workspace counter deltas, any bounded R02LayoutReadiness records |
+| Performance | Four pilot and forty formal A/B pairs, 88 fresh timing processes, strict identity/raw verification; only formal pairs count for performance disposition |
+| Editor | Five exact required test full names, once each and Passed, in a Passed NUnit run; XML-bound requiredCases retained |
+| Regressions | Native/generated-transaction, all fourteen M07 modes, all eleven startup modes, failure/recovery, both count-family audits and fresh count132 |
+| Diagnostic and capacity | Distinct new R01B diagnostic Player/receipt, unchanged scene/linker restoration, lazy/dense, ordinary and mixed capacity |
+| Closure | Final clean authorities, complete seal/index/archive bound by LOCAL_BATCH_RESULT.json, measured D1/D2 disposition and independent R02 review only when eligible |
 
-Inspect that dry plan, then add `--execute` for one new execution. Do not substitute the source anchor for the final transport HEAD. If a remote moves again, stop before execution and report the mismatch; do not rewrite pins or update to an unreviewed tip.
+## Batch-H repair observations
 
-## Required batch coverage
+Candidate installation must bind the new native commit. Do not install candidate code into control. Preserve initial and warm class-readiness records; the repair does not initialize baseline classes. A new failure returns exact class pointers/tokens/images, readiness/shape/size and row deltas, not a locally relaxed warm assertion.
 
-All 34 existing cells remain required. First pass the full host Primary cell, including actual native writer/parser execution at diagnostics levels 0/1/2. Require twelve native fixtures, one legacy fixture and the unchanged complete assertions. Preserve compiler-version/include-policy/platform evidence and every compile/emit/managed receipt. The new macOS CI proves that path in its host environment, not the user's Local tools or Unity environment.
+M07/startup aggregate validation now enters `R02/verify_regressions.py`; retain original strict output and adjacent `.r02-schema.json`. The wrapper requires exact source authority and validates the known extension before legacy semantics, without writing projected JSON over raw results. Do not call the nonexistent old startup wrapper. No --allow-incomplete is authorized.
 
-Then run independent E raw forensics, separate fixed-M00 materializations and fresh candidate/control ON/OFF graphs, eight functional sidecars, four pilot plus forty formal A/B pairs (88 fresh timing processes), Editor/native/generated-transaction/M07/startup11/failure/count132/diagnostic/lazy-dense/ordinary-mixed-capacity, final authorities and complete sealing.
+The diagnostic output-plan must name a fresh `Builds/AssemblyShadow/R01B/<unique>/Player.app`. Retain the exact returned receipt, full Player tree, capture and original/generated/restored bytes. Do not copy a previously built Player or relax `r01b_diagnostic_inputs.py`.
 
-All five exact Editor full names must appear once with Passed status in a Passed NUnit run:
+## Failures, sealing and return
 
-- `AssemblyShadowDemo.Tests.R02ProbeContractTests.FormulaMatchesIndependentLoop`
-- `AssemblyShadowDemo.Tests.R02ProbeContractTests.JsonPreservesNestedRawDiagnosticsAndLargeIntegers`
-- `AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.EveryR02LinkedFieldIsRequiredByActualRuntimeProof`
-- `AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.MatchingButNarrowedInputsCannotRedefineTheR02WireSchema`
-- `AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.UnitySerializationDoesNotManufactureMissingOrZeroR02Coverage`
+Independent valid cells continue; invalid prerequisites block consumers. Retain all failed commands and original bytes, external generated roots, all launch/raw/verifier chains, full warm diagnostics and all archives. Missing required forensic inputs or a failed seal is fatal to complete evidence readiness; a preservation inventory is not a seal.
 
-`editor-tests.json` must bind the original XML and all five requiredCases. Host XML tests do not replace these real Editor cases. Inspect M07 early capsules/receipts separately from later parser/semantic results. Both count families use their own unchanged auditors before the 132-cell Player matrix. Generated transaction inputs depend on a valid current candidate graph.
+Update and push Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` with actual classifications, first failure, exact source/build/input identities and evidence locations. Non-trivial fixes return to Primary; Local may only perform documented bounded environment resolution, execution and evidence collection. No semantic retry, timeout increase, hash/pin change or case reduction is authorized.
 
-## Failure, restoration and retention
-
-Independent valid cells may continue; failed prerequisites block consumers. No semantic retry, timeout increase, native include flag workaround, hash/pin change, weaker verifier or smaller case set is allowed. Return non-trivial errors with the first failing command and complete stdout/stderr.
-
-Use only the committed linker restoration policy. Retain original/generated/restored bytes and reject unfamiliar changes. Preserve forensic snapshots and their exact Git/index/archive provenance; never recreate an old path or silently omit missing evidence. Keep the frozen M00 hash and original materialization contract.
-
-Retain every current build/input/launch/raw/verifier chain, type-resolution JSON, command completion snapshot, performance analysis, failure, seal/index/archive and indexed external root. `SEAL_FAILED.json` or an inventory alone cannot replace a complete seal. Preserve A/B/C/D/E/F/G and H1 evidence regardless of the new result.
-
-Report D1/D2 CPU/memory effects and remaining uncertainty; a passing host or functional test is not performance/RAM acceptance. Keep historical R01 and current H1-runtime-control comparisons distinct.
-
-Update and push `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` with actual classifications and exact source/evidence identities. Obtain a genuinely independent R02 stage review only when the full evidence is eligible. Stop and return to Primary. H1 remains PassedWithExplicitDeferredRisk; R02Accepted=false; mayEnterR03=false.
+H's 25 Passed/5 Failed/4 Blocked result, count132 and 1,119 Editor passes remain historical. They are not new-native execution. Preserve A/B/C/D/E/F/G/H and H1 evidence. Report D1/D2 measurements before H2; no production SLA or RAM acceptance is implied. R02Accepted=false; mayEnterR03=false. Stop and return to Primary.
