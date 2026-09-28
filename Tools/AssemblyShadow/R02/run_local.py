@@ -457,11 +457,27 @@ class Batch:
             "-runTests", "-testPlatform", "EditMode", "-testResults", xml,
             "-logFile", self.out / "editmode-unity.log"], project, 7200, unity_owned=True)
         import xml.etree.ElementTree as ET
-        cases = ET.parse(xml).getroot().findall(".//test-case")
-        require(cases and all(c.get("result") not in ("Failed", "Inconclusive") for c in cases), "EditMode contains failures or no cases")
-        required = [c for c in cases if "R02ProbeContractTests." in c.get("fullname", "")]
-        require(len(required) == 2 and all(c.get("result") == "Passed" for c in required), "R02 Editor contract coverage missing")
+        root = ET.parse(xml).getroot()
+        cases = root.findall(".//test-case")
+        require(root.get("result") == "Passed" and cases and
+                all(c.get("result") not in ("Failed", "Inconclusive") for c in cases),
+                "EditMode contains failures or no cases")
+        # Require the exact five non-parameterized contracts. A missing,
+        # renamed, duplicate, skipped or foreign-namespace case is not coverage.
+        required_names = {
+            "AssemblyShadowDemo.Tests.R02ProbeContractTests.FormulaMatchesIndependentLoop",
+            "AssemblyShadowDemo.Tests.R02ProbeContractTests.JsonPreservesNestedRawDiagnosticsAndLargeIntegers",
+            "AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.EveryR02LinkedFieldIsRequiredByActualRuntimeProof",
+            "AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.MatchingButNarrowedInputsCannotRedefineTheR02WireSchema",
+            "AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.UnitySerializationDoesNotManufactureMissingOrZeroR02Coverage",
+        }
+        required = [c for c in cases if c.get("fullname") in required_names]
+        require(len(required) == len(required_names) and
+                {c.get("fullname") for c in required} == required_names and
+                all(c.get("result") == "Passed" for c in required),
+                "R02 Editor contract coverage missing or not Passed")
         result = {"kind": "R02EditorTests", "caseCount": len(cases), "passed": sum(c.get("result") == "Passed" for c in cases),
+                  "requiredCases": [{"fullname": c.get("fullname"), "result": c.get("result")} for c in required],
                   "otherResults": [{"name": c.get("fullname"), "result": c.get("result")} for c in cases if c.get("result") != "Passed"],
                   "xml": binding(xml), "runtimeAcceptance": False}
         write(self.out / "editor-tests.json", result)

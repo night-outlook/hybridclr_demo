@@ -87,4 +87,70 @@ class FBatchRepairs(unittest.TestCase):
             self.assertIn('generated_link_allowed', source)
 
 
+class EditorCoverage(unittest.TestCase):
+    # Independent expected inventory, not imported from the acceptance code.
+    NAMES = (
+        "AssemblyShadowDemo.Tests.R02ProbeContractTests.FormulaMatchesIndependentLoop",
+        "AssemblyShadowDemo.Tests.R02ProbeContractTests.JsonPreservesNestedRawDiagnosticsAndLargeIntegers",
+        "AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.EveryR02LinkedFieldIsRequiredByActualRuntimeProof",
+        "AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.MatchingButNarrowedInputsCannotRedefineTheR02WireSchema",
+        "AssemblyShadowDemo.EditorTests.R02TypeResolutionSchemaTests.UnitySerializationDoesNotManufactureMissingOrZeroR02Coverage",
+    )
+
+    def execute(self, cases, overall="Passed"):
+        import types
+        import xml.etree.ElementTree as ET
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder).resolve()
+            batch = object.__new__(run_local.Batch)
+            batch.roots = {"candidate": path}; batch.out = path
+            batch.args = types.SimpleNamespace(unity=path / "Unity")
+            root = ET.Element("test-run", result=overall)
+            suite = ET.SubElement(root, "test-suite", result=overall)
+            for name, outcome in cases:
+                ET.SubElement(suite, "test-case", fullname=name, result=outcome)
+            def emit(*args, **kwargs):
+                ET.ElementTree(root).write(path / "editmode.xml", encoding="utf-8")
+            with patch.object(batch, "stopped"), patch.object(batch, "command", side_effect=emit):
+                result = batch.editor_tests()
+            return result, json.loads((path / "editor-tests.json").read_text())
+
+    def passed(self):
+        return [(name, "Passed") for name in self.NAMES]
+
+    def test_all_five_editor_contracts_are_recorded(self):
+        result, stored = self.execute(self.passed())
+        self.assertEqual(result, stored)
+        self.assertEqual({r["fullname"] for r in stored["requiredCases"]}, set(self.NAMES))
+        self.assertEqual(len(stored["requiredCases"]), 5)
+
+    def test_each_missing_schema_or_original_case_is_rejected(self):
+        for name in self.NAMES:
+            with self.subTest(name=name), self.assertRaises(EvidenceError):
+                self.execute([row for row in self.passed() if row[0] != name])
+
+    def test_skipped_or_nonpassed_required_case_is_rejected(self):
+        for name in self.NAMES:
+            for outcome in ("Skipped", "Ignored", "Inconclusive", "Failed", "", "Unknown"):
+                with self.subTest(name=name, outcome=outcome), self.assertRaises(EvidenceError):
+                    self.execute([(n, outcome if n == name else r) for n, r in self.passed()])
+
+    def test_duplicate_and_duplicate_replacing_missing_case_are_rejected(self):
+        for rows in (self.passed() + [self.passed()[0]], self.passed()[:-1] + [self.passed()[0]]):
+            with self.assertRaises(EvidenceError): self.execute(rows)
+
+    def test_foreign_namespace_cannot_supply_missing_contract(self):
+        rows = self.passed(); rows[-1] = ("Foreign." + self.NAMES[-1], "Passed")
+        with self.assertRaises(EvidenceError): self.execute(rows)
+
+    def test_failed_run_or_unrelated_failed_case_is_rejected(self):
+        with self.assertRaises(EvidenceError): self.execute(self.passed(), "Failed")
+        with self.assertRaises(EvidenceError): self.execute(self.passed() + [("Other.Test", "Failed")])
+
+    def test_unrelated_skipped_case_stays_reported_without_masking_required_coverage(self):
+        result, _ = self.execute(self.passed() + [("Other.PlatformSpecific", "Skipped")])
+        self.assertEqual(result["caseCount"], 6); self.assertEqual(result["passed"], 5)
+        self.assertEqual(result["otherResults"], [{"name": "Other.PlatformSpecific", "result": "Skipped"}])
+
+
 if __name__ == '__main__': unittest.main()
