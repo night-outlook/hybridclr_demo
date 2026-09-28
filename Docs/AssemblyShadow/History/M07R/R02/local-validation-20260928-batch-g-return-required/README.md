@@ -1,0 +1,7 @@
+# R02 Local batch G — authenticated sealed return
+
+One fresh 34-cell `R02LocalBatch-v1` ran on 2026-09-28 from candidate `d807b6e29ad22b15c2c425f78db8e61fbe197faf` and matched control `028ad68fa25a531be07f11f1fdcc417842f98ab4`. The result is `ReturnRequired`: 9 Passed, 1 Failed, 24 Blocked. The failed cell is host Primary's actual native-writer/package-parser contract compile on macOS. Both builds, all Unity Editor and Player cells, and D1/D2 measurements were blocked. Independent R02 stage review was NotEligible/NotRun.
+
+Unlike F, this batch completed its mandatory seal. The live batch remains `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928G/`; `LIVE_EVIDENCE_BINDINGS.json` binds selected raw receipts, the complete seal index/archive, and E forensic origin files. `ARCHIVE_AUDIT.json` records independent member-by-member verification of 8,662 archive blobs and 9,031 live locators. `batch/` preserves the failing compiler command and stderr, the 34 cell receipts, both source authorities, E forensic result and recovered original DLL bytes. `MANIFEST.sha256` authenticates the copied checkpoint.
+
+E forensic recovery and complete sealing passed; this does not convert historical E bytes into current Player evidence. The full classification and source-level return are in `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md`. Preserve A/B/C/D/E/F/G and H1 evidence. `R02Accepted=false`; `mayEnterR03=false`.

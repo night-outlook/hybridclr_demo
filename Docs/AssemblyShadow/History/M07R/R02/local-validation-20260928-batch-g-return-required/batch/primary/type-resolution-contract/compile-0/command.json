@@ -1,0 +1,34 @@
+{
+  "kind": "R02Command",
+  "argv": [
+    "/usr/bin/c++",
+    "-std=c++11",
+    "-pthread",
+    "-I",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+    "-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=0",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/TypeResolutionContract/writer.cpp",
+    "-o",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928G/primary/type-resolution-contract/writer-0"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startedAtUnix": 1790579783.739926,
+  "result": "Failed",
+  "exitCode": 1,
+  "timedOut": false,
+  "processGroupClean": true,
+  "pid": 65476,
+  "endedAtUnix": 1790579783.925788,
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928G/primary/type-resolution-contract/compile-0/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928G/primary/type-resolution-contract/compile-0/stderr.log",
+      "sha256": "3dae1c30e0d2d7806514437ee6e50dc39e59a1ea115a5f9b05731128d092bfd2",
+      "sizeBytes": 1191
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+    "schemaVersion": 1,
+    "kind": "R02OrdinaryInputPreparation",
+    "result": "Failed",
+    "error": "UnityEditor.Build.BuildFailedException: Ordinary compiler output differs from the frozen M00 contract; retain output and return to Primary. Expected 9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27 actual b6e8b232d1749ed67db7f7bda028522993c7e912a68192c05cad0fe8ef31f5e5\n  at AssemblyShadowBaseline.Editor.R02OrdinaryInput.Require (System.Boolean value, System.String message) [0x0000a] in /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Assets/AssemblyShadowBaseline/Editor/R02OrdinaryInput.cs:46 \n  at AssemblyShadowBaseline.Editor.R02OrdinaryInput.Prepare () [0x00229] in /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Assets/AssemblyShadowBaseline/Editor/R02OrdinaryInput.cs:78 ",
+    "projectRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo",
+    "outputRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/R02-9187ed69c79c47c18b5c248e838ee8d7-ordinary-input-control",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "sourcePinsSha256": "77d1aa867e335ce64f1b90e51f6d905032c2b211e50125a79bf891fd3a72fb7f",
+    "expectedSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "classification": "CurrentWorkspaceCompilerOutput",
+    "development": true,
+    "freshCscExecutionClaimed": false,
+    "runtimeAcceptance": false,
+    "sources": [
+        {
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Assets/AssemblyShadowBaseline/HotUpdate/AssemblyShadowBaseline.HotUpdate.asmdef",
+            "sha256": "1c8b91a77f99f615aec115eee4ae300a34c04d4676ebfa14fd750b08d5e78417",
+            "sizeBytes": 126
+        },
+        {
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs",
+            "sha256": "7f65d6533d98c7372c3ee36449f712036752d2f3770a02c64bdabdabad6c4e54",
+            "sizeBytes": 147
+        }
+    ],
+    "compiled": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/R02-9187ed69c79c47c18b5c248e838ee8d7-ordinary-input-control/compiled/AssemblyShadowBaseline.HotUpdate.dll",
+        "sha256": "b6e8b232d1749ed67db7f7bda028522993c7e912a68192c05cad0fe8ef31f5e5",
+        "sizeBytes": 4608
+    },
+    "staged": {
+        "path": "",
+        "sha256": "",
+        "sizeBytes": 0
+    }
+}
