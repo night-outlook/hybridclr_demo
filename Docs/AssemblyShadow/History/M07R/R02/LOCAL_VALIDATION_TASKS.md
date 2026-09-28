@@ -1,12 +1,18 @@
-# R02 Local Validation task sheet — batch-E successor
+# R02 Local Validation — successor to batch F
 
-Protocol: R02LocalBatch-v1. Use the final pushed candidate transport HEAD and control `5a931fe86795e8cc192d3df262cdee824b105963`, as defined by WEB_TO_LOCAL and source-targets. This is a 34-cell execution, not reuse of E.
+Protocol: `R02LocalBatch-v1`; **34 required cells**, one fresh unused execution root. Primary code, tests, source/control pairing and selected host CI are published. This task sheet does not establish runtime acceptance.
 
-## Entry and command
+## Entry authority
 
-Confirm the exact eight owning checkouts, clean state, remotes and common source graph. Resolve Unity 2022.3.62f2, macOS arm64, Python 3.10+, PowerShell, a net8.0-capable SDK and clang++. Do not modify source or infer source identity from an arbitrary checkout. Preserve all retained evidence. At least 30 GiB free is an entry check only.
+Read canonical `Docs/AssemblyShadow/README.md` and `Handoff/WEB_TO_LOCAL.md`, then this directory's `F_INTEGRATION_REPAIR.md`, `PRIMARY_VALIDATION.md` and `source-targets.json`. Use the final pushed transport HEAD in Primary's prompt, not the source or CI commit.
 
-Set CANDIDATE and CONTROL to the owning demo paths in WEB_TO_LOCAL. Set CANDIDATE_HEAD to the final prompt's pushed transport SHA, CONTROL_HEAD to the fixed control above, UNITY/PWSH to actual absolute tool paths and OUTPUT to a new unused direct child of candidate `_temp/AssemblyShadow`.
+Common source: `995dbf1003c306a69586f882ff02599db7a9780e`.
+Control demo: `codex/r02-h1-runtime-control@95b85617c92f8ce806f4652d88077936c76c3b8a`.
+**Both roles must use package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.** Candidate/control runtime pins, owning paths and branch identities are fixed by the handoff. The old package or previous F graphs are not valid substitutes.
+
+Close both Unity editors; verify eight clean, correctly identified owning checkouts and common executable graph. Confirm Unity 2022.3.62f2, macOS arm64, Python 3.10+, PowerShell, a .NET SDK supporting net8.0, clang++ and at least 30 GiB free. This disk minimum is not a total archive-space guarantee. Preserve unrelated worktrees and all A/B/C/D/E/F/H1 evidence.
+
+Set exact paths and heads from the final prompt in `CANDIDATE`, `CONTROL`, `CANDIDATE_HEAD`, `CONTROL_HEAD`; resolve absolute `UNITY`/`PWSH`, and use a new unused direct candidate `_temp/AssemblyShadow/` child as `OUTPUT`.
 
 ```sh
 export TMPDIR=/private/tmp
@@ -17,29 +23,38 @@ python3 "$CANDIDATE/Tools/AssemblyShadow/R02/run_local.py" \
   --unity "$UNITY" --pwsh "$PWSH" --output "$OUTPUT"
 ```
 
-Inspect the plan, then append `--execute` once. Do not resume/relabel E or retry semantic failures automatically.
+Inspect this non-executing plan, then add `--execute` for the single new batch. Do not resume or relabel F.
 
-## Required coverage
+## Required coverage and repair observations
 
-| Group | Required evidence |
+| Area | Required evidence |
 | --- | --- |
-| Source/host | Eight source/ref identities, clean inputs/common graph, all supplied host tests |
-| E forensics | Exact Git-bound failed E receipts and retained raw DLLs; 3 pairwise PE comparisons; no normalization-based admission |
-| M00 | Each role's independent schema-2 FrozenHistoricalInputMaterialization; fixed hash/identity/origin; existing correct destination preserved |
-| Builds | Fresh installed runtime and current controlled ON/OFF graphs in each role; original M07 compiler/provider checks and exact restoration |
-| Functional | Eight role/mode sidecars; construction, physical identities, generic/array/boxing/dispatch and worker checks |
-| Performance | Four pilot then forty formal A/B pairs; 88 unique nonces/processes, balanced schedule, strict R00 verification, no R02 sidecar during timing |
-| Regressions | Editor; four independent native scripts; generated-native prerequisite then transaction; M07/startup11/failure/count132/diagnostic/lazy-dense/ordinary-mixed capacity |
-| Final/seal | Final authorities; every raw/launch/build/input/partial failure/recovery binding; complete seal and index |
+| Source/host | Exact four-repository authority per role, common graph, host native/managed/Python checks and actual native-writer/package-parser contract |
+| E forensic retention | Exact authenticated live snapshots or original E archive member recovery, retained origin/index/archive and selected copies; no dangling original paths |
+| Controlled builds | Independent fixed M00 materialization and new ON/OFF graphs for both roles, current package and installed runtime, complete build/input identities |
+| Parser and functional sidecars | All eight role/mode combinations; candidate ON-P01/P03 must no longer fail on the known r02 extension; raw native JSON retained |
+| Formal measurement | Four pilot plus forty formal A/B pairs, 88 fresh timing processes; balanced order and unchanged strict verification; no sidecar during formal timing |
+| Editor serialization/linker tests | All three `R02TypeResolutionSchemaTests` and both existing `R02ProbeContractTests` Passed; retain complete XML and other case classifications |
+| M07/startup/failure | Prepared mode-specific Control capsule root, early callback receipts and then semantic/raw M07 results; unchanged negative-case expectations |
+| Counts | Parameter and nested manifests reach their respective auditors; fresh four diagnostic builds and complete 132-case launch/raw chain |
+| Restoration | Diagnostic/count linker before/generated/restored bytes; exact restoration and final clean authority; unknown output returns to Primary |
+| Remaining regressions | Four independent native scripts, authenticated generated-native transaction, lazy/dense and ordinary/mixed capacity |
+| Sealing | Every required input/output and partial failure retained; complete content-addressed seal bound by `LOCAL_BATCH_RESULT.json` |
 
-The old Unity M00 compile-and-stage helper no longer exists. Fixed input bytes were authenticated from the historical Git archive in Primary, not generated by a new compiler or obtained from another role. Fresh M07 provider validation still applies. Wrong existing M00 bytes must remain untouched and return a failure.
+F's old missing early arguments are a source-level diagnosed cause, not proof that all later M07 paths are correct. Report any further refusal separately. Raw native JSON is authoritative for R02 diagnostics; the legacy serialized DTO intentionally omits its transient parsed extension.
 
-E forensic input absence does not block otherwise valid fresh builds, but prevents full evidence readiness. Record the precise missing path/hash. The new analyzer and runner already implement the diagnosis; do not design a replacement locally. Preserve any normalization comparison as diagnostics only.
+## Failure and retention rules
 
-## Failure and review rules
+Independent valid cells continue; invalid prerequisites or dirty source state block consumers. Do not automatically retry semantics, increase timeouts, change pins/hashes, relax verifiers, reduce cases or implement non-trivial fixes. No historical Player execution is promoted to current success.
 
-Dependencies fail closed; independent valid cells continue. Never relax no-survivor cleanup, expected hashes, provider semantics, linked-path checks or source pins. Keep build and recovery failures separate; unexpected mutations are preserved, not reset automatically. Historical capacity input absence is not permission to reuse its old PASS.
+The existing E archive is an exact recovery source only. Missing/corrupt required inputs remain fatal to complete sealing; no basename fallback or substitute run is allowed. Preserve F's failed-seal status and preservation inventory as such. Do not reconstruct historical paths or invent a complete F archive.
 
-Retain materialization roots, `m00-batch-e-forensics/analysis.json`, kernel rejection snapshots, generated-native receipts, all build/launch/raw/verifier files, paired index/analysis, recovery records and the content-addressed seal. A summary alone is insufficient.
+A linker expansion beyond the exact approved set returns to Primary. Preserve all source mutations and before/after receipts; do not reset unexpected changes. Build failure and restoration failure remain separate observations.
 
-Update LOCAL_VALIDATION.md and RETURN_TO_WEB.md with exact classifications and reproduction inputs; commit/push the actual Local evidence indexes. Run the independent R02 stage review only after the complete evidence is eligible. No H2 approval or R03 entry follows automatically. D1/D2 need measured disposition returned to Primary.
+## Return and stop
+
+Retain complete command logs, raw diagnostics, capsule files, both count audits, copied forensic inputs and origins, materialization/build/launch/raw/verifier chains, linker recovery and Unity process-completion receipts, D1/D2 analysis, seal/index/archive and generated roots outside the batch directory.
+
+Update and push `Handoff/LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` with actual Passed/Failed/Blocked/NotRun/Unavailable classifications, first failure, exact source/build/input bindings and preserved paths. If all evidence is eligible, obtain a genuinely independent R02 stage review using the existing reviewer definition and keep its verbatim verdict. This does not replace H2 Human Review Gate or authorize R03.
+
+H1 remains PassedWithExplicitDeferredRisk. D1/D2 require measured allocation/reflection/closed-generic and memory disposition before H2. R02Accepted=false; mayEnterR03=false. Stop and return to Primary.
