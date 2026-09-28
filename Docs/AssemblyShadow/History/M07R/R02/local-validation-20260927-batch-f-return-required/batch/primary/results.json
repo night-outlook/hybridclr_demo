@@ -1,0 +1,137 @@
+{
+  "kind": "R02PrimaryValidation",
+  "result": "Passed",
+  "cells": [
+    {
+      "cell": "source",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/source-command/command.json",
+        "sha256": "61b68c5bec7eb5f1bb5046c01383bf20270230baee5aaeaab3b97dbe8e66493f",
+        "sizeBytes": 1199
+      }
+    },
+    {
+      "cell": "native",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/native-command/command.json",
+        "sha256": "17cfb1620809851d878c5d3bb12bceb915773a9d2ab584a968c74e162b210f9b",
+        "sizeBytes": 1190
+      }
+    },
+    {
+      "cell": "revision",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/revision-command/command.json",
+        "sha256": "4925e79fa7d74b8f094a8c6eda6e5a697acc0085c5a8bdb12af04c9624c7f472",
+        "sizeBytes": 1204
+      }
+    },
+    {
+      "cell": "codec-storage",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/codec-storage-command/command.json",
+        "sha256": "e729916d90556a13d07973ac0a83f648307a0b720e4f9bef0bde5d7fd5f53002",
+        "sizeBytes": 1300
+      }
+    },
+    {
+      "cell": "python",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/python-command/command.json",
+        "sha256": "ea1324e36bc41e04726a3f286a1dc337cefb68767541e2da082e8a7b50ed7d99",
+        "sizeBytes": 1103
+      }
+    },
+    {
+      "cell": "managed-Baseline",
+      "result": "Passed",
+      "unityPlayerRun": false,
+      "build": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-Baseline-build/command.json",
+        "sha256": "bf50bb7efb216e4e16f756301af98547ba8c2540e01ba1754bf5fa66395be279",
+        "sizeBytes": 1640
+      },
+      "assembly": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-bin-Baseline/ManagedTests.dll",
+        "sha256": "329e831d347b623d45d45c3e72937fdbbd91e4b7c8565146cc95cea351839d8e",
+        "sizeBytes": 26624
+      },
+      "run": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-Baseline-run/command.json",
+        "sha256": "118c5e82f220551ca25dcc56d77992ce96946da44635f897ac8decc942d60400",
+        "sizeBytes": 1155
+      },
+      "assertions": {
+        "kind": "R02ManagedHostTests",
+        "result": "Passed",
+        "checks": 102,
+        "marker": 3000,
+        "unityPlayerRun": false
+      },
+      "runResult": "Passed"
+    },
+    {
+      "cell": "managed-P01",
+      "result": "Passed",
+      "unityPlayerRun": false,
+      "build": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-P01-build/command.json",
+        "sha256": "8920b380e02c4fa593db1a6ec9db5428d0d8ab8c06e93b78d6d729acad7ecd17",
+        "sizeBytes": 1634
+      },
+      "assembly": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-bin-P01/ManagedTests.dll",
+        "sha256": "0d9dfc4b451c68aec0f1ae07ed23c3c7820d1b2d33a9ecf265928450db116c81",
+        "sizeBytes": 26624
+      },
+      "run": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-P01-run/command.json",
+        "sha256": "7f6ebe1e79f0703c9f20a7b340840e2241d0bbc14ce2fc82d93d7f0b06fa6729",
+        "sizeBytes": 1140
+      },
+      "assertions": {
+        "kind": "R02ManagedHostTests",
+        "result": "Passed",
+        "checks": 111,
+        "marker": 3001,
+        "unityPlayerRun": false
+      },
+      "runResult": "Passed"
+    },
+    {
+      "cell": "managed-P03",
+      "result": "Passed",
+      "unityPlayerRun": false,
+      "build": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-P03-build/command.json",
+        "sha256": "f2571ce75ea97e93f111d3164168b2da6ed1cab5ed63a38109820e0a05d01e3d",
+        "sizeBytes": 1635
+      },
+      "assembly": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-bin-P03/ManagedTests.dll",
+        "sha256": "543273b5f8b54a4b8213c1622a36641709831160b0e41d436d85a693e098c12c",
+        "sizeBytes": 26624
+      },
+      "run": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/primary/managed-P03-run/command.json",
+        "sha256": "7e82dee74459fbcbfb7606e5e48664c5175c89f3df3b830e6757d1b09b57cb46",
+        "sizeBytes": 1140
+      },
+      "assertions": {
+        "kind": "R02ManagedHostTests",
+        "result": "Passed",
+        "checks": 111,
+        "marker": 3003,
+        "unityPlayerRun": false
+      },
+      "runResult": "Passed"
+    }
+  ],
+  "unityPlayerRun": false,
+  "runtimeAcceptance": false
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "R02Command",
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py",
+    "--unity",
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "--receipt",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0006-unity-completion.json",
+    "--",
+    "/usr/local/bin/pwsh",
+    "-NoProfile",
+    "-File",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/Invoke-M07Build.ps1",
+    "-ProjectPath",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "-BaselineId",
+    "M07-Baseline-R02-762e700b851c46b39336b8b5a32a87e0-candidate",
+    "-BuildTarget",
+    "StandaloneOSX",
+    "-ControlledPerformanceBuilds"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startedAtUnix": 1790527605.405806,
+  "result": "Passed",
+  "exitCode": 0,
+  "timedOut": false,
+  "processGroupClean": true,
+  "pid": 40453,
+  "endedAtUnix": 1790528907.99365,
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0006/stdout.log",
+      "sha256": "128e2e39ea1aa7fc8bd45670563e329d8d04fcf0ddcbd087570d8db57c4f5c68",
+      "sizeBytes": 218689
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0006/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    }
+  ]
+}

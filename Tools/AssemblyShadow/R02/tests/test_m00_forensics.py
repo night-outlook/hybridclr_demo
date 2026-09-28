@@ -85,7 +85,8 @@ class PeForensics(unittest.TestCase):
             report = f.analyze_batch_e(self.root, output)
         self.assertEqual(report['result'], 'AnalyzedNotRuntimeAccepted')
         self.assertEqual(len(report['comparisons']), 3)
-        self.assertEqual(len(report['retainedInputs']), 4)
+        self.assertEqual(len(report['retainedInputs']), 6)
+        self.assertTrue(report['inputsSnapshotted'])
         self.assertFalse((self.root/ordinary.IMAGE_PATH).exists())
         self.assertFalse(report['runtimeAcceptance'])
 
@@ -108,8 +109,9 @@ class PeForensics(unittest.TestCase):
             with self.assertRaises(EvidenceError): f.analyze_batch_e(self.root, output)
         report = read(output/'analysis.json')
         self.assertEqual(report['result'], 'Failed')
-        self.assertEqual(len(report['retainedInputs']), 3)
-        self.assertIn('old-control.dll', report['error'])
+        self.assertEqual(len(report['retainedInputs']), 5)
+        self.assertIn('old-control.dll', report['inputAcquisition']['control']['original']['path'])
+        self.assertFalse(report['inputsSnapshotted'])
 
     def test_reused_output_refused(self):
         output=self.root/'analysis';output.mkdir()

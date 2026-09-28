@@ -14,6 +14,52 @@ def diagnostic_scene_allowed(before: bytes, after: bytes):
     return scrub(before) == scrub(after)
 
 
+GENERATED_LINK = "Assets/HybridCLRGenerate/link.xml"
+DIAGNOSTIC_LINK_TYPES = frozenset((
+    "System.Array", "System.Byte", "System.CodeDom.Compiler.GeneratedCodeAttribute",
+    "System.ComponentModel.EditorBrowsableAttribute", "System.ComponentModel.EditorBrowsableState",
+    "System.Diagnostics.DebuggableAttribute", "System.Diagnostics.DebuggableAttribute/DebuggingModes",
+    "System.Object", "System.Runtime.CompilerServices.CompilationRelaxationsAttribute",
+    "System.Runtime.CompilerServices.CompilerGeneratedAttribute",
+    "System.Runtime.CompilerServices.RuntimeCompatibilityAttribute", "System.Runtime.CompilerServices.RuntimeHelpers",
+    "System.RuntimeFieldHandle", "System.ValueType",
+))
+
+
+def generated_link_allowed(before: bytes, after: bytes):
+    """Only the exact known netstandard preservation expansion from batch F.
+
+    A different graph needs review; well-formed arbitrary linker XML is not an
+    authorization to overwrite concurrent/user changes. Originals are restored
+    byte-for-byte, including BOM/newlines, by restore_files.
+    """
+    import xml.etree.ElementTree as ET
+    if before == after:
+        return True
+    def shape(raw):
+        require(len(raw) <= 65536 and b"<!" not in raw, "Unexpected generated linker declaration")
+        tree = ET.fromstring(raw)
+        require(tree.tag == "linker" and not tree.attrib and not (tree.text or "").strip(), "Unexpected linker root")
+        if len(tree) == 0:
+            return frozenset()
+        require(len(tree) == 1, "Unexpected linker assembly count")
+        assembly = tree[0]
+        require(assembly.tag == "assembly" and assembly.attrib == {"fullname": "netstandard"} and
+                not (assembly.text or "").strip() and not (assembly.tail or "").strip(), "Unexpected linker assembly")
+        names = []
+        for item in assembly:
+            require(item.tag == "type" and set(item.attrib) == {"fullname", "preserve"} and
+                    item.attrib["preserve"] == "all" and len(item) == 0 and
+                    not (item.text or "").strip() and not (item.tail or "").strip(), "Unexpected linker type")
+            names.append(item.attrib["fullname"])
+        require(len(names) == len(set(names)), "Duplicate linker type")
+        return frozenset(names)
+    try:
+        return shape(before) == frozenset() and shape(after) == DIAGNOSTIC_LINK_TYPES
+    except (ValueError, ET.ParseError):
+        return False
+
+
 def restore_files(project: Path, before: dict, permitted, folder: Path):
     """Capture all files before considering restoration; never mask a mismatch.
 

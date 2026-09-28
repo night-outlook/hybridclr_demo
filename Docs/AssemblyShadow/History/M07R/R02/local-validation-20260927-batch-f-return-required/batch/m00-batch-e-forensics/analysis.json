@@ -1,0 +1,827 @@
+{
+  "kind": "R02M00BatchEForensics",
+  "result": "AnalyzedNotRuntimeAccepted",
+  "checkpoint": "1d7dc134003206ada8a92b50763ca2da7dc9530d",
+  "receipts": {
+    "candidate": {
+      "path": "Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-batch-e-m00-return-required/ordinary-preparation-candidate.json",
+      "gitBlob": "922dbf928bb7b1de9e383e983f6911eb33e5a75f",
+      "originalResult": "Failed",
+      "sourcePinsSha256": "1524f2a30e114b9883c19ef92f7d7c277dca1fe95ecc457ad3b537d09f28b26f",
+      "sources": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/AssemblyShadowBaseline/HotUpdate/AssemblyShadowBaseline.HotUpdate.asmdef",
+          "sha256": "1c8b91a77f99f615aec115eee4ae300a34c04d4676ebfa14fd750b08d5e78417",
+          "sizeBytes": 126
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs",
+          "sha256": "7f65d6533d98c7372c3ee36449f712036752d2f3770a02c64bdabdabad6c4e54",
+          "sizeBytes": 147
+        }
+      ]
+    },
+    "control": {
+      "path": "Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-batch-e-m00-return-required/ordinary-preparation-control.json",
+      "gitBlob": "35ce524b8ed951b52890f1e07d49844a37537e89",
+      "originalResult": "Failed",
+      "sourcePinsSha256": "77d1aa867e335ce64f1b90e51f6d905032c2b211e50125a79bf891fd3a72fb7f",
+      "sources": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Assets/AssemblyShadowBaseline/HotUpdate/AssemblyShadowBaseline.HotUpdate.asmdef",
+          "sha256": "1c8b91a77f99f615aec115eee4ae300a34c04d4676ebfa14fd750b08d5e78417",
+          "sizeBytes": 126
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs",
+          "sha256": "7f65d6533d98c7372c3ee36449f712036752d2f3770a02c64bdabdabad6c4e54",
+          "sizeBytes": 147
+        }
+      ]
+    }
+  },
+  "images": {
+    "frozen": {
+      "identity": {
+        "name": "AssemblyShadowBaseline.HotUpdate",
+        "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "version": "0.0.0.0",
+        "culture": "",
+        "publicKeyToken": "",
+        "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+        "referenceIdentities": [
+          {
+            "referenceIndex": 0,
+            "name": "netstandard",
+            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+            "version": "2.1.0.0",
+            "culture": "",
+            "publicKeyToken": "cc7b13ffcd2ddd51"
+          }
+        ]
+      },
+      "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "sizeBytes": 4608,
+      "parsedProvenance": [
+        {
+          "offset": 136,
+          "sizeBytes": 4,
+          "kind": "coff-timestamp",
+          "sha256": "9a471af55a692e74c1a15fbfb93bb271a4ab28f655c7cb158af2df9d41737606",
+          "value": 3319539976
+        },
+        {
+          "offset": 216,
+          "sizeBytes": 4,
+          "kind": "pe-checksum",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2208,
+          "sizeBytes": 16,
+          "kind": "module-mvid",
+          "sha256": "132bd646c03be2910869fbee86ce79ec0fa40eb70a12716ccdb4a18af411e724"
+        },
+        {
+          "offset": 2428,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "4725fe0e2d306823f18cc26d6bda17ea15d1b75112f34e9d2f3fe2b7809361c9",
+          "value": 3787265049
+        },
+        {
+          "offset": 2456,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2484,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2508,
+          "sizeBytes": 150,
+          "kind": "codeview",
+          "sha256": "250c49c9beb5229ef16e4694c6f022357cfff683e8aad544dca52cbcc90ec742",
+          "pdbId": "d7a395a2-5a05-445e-95d2-8729fcbc6fad",
+          "age": 1,
+          "pdbPath": "/Users/ah/GitHub/hybridclr/hybridclr_demo_shadow/Library/Bee/artifacts/200b00PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.pdb"
+        },
+        {
+          "offset": 2658,
+          "sizeBytes": 39,
+          "kind": "pdb-checksum",
+          "sha256": "92b7fb0fbde1d1ad14a3759b0336c94418acf73e694d227cc906996b129dc390"
+        }
+      ],
+      "maskRanges": [
+        [
+          136,
+          4,
+          "coff-timestamp"
+        ],
+        [
+          216,
+          4,
+          "pe-checksum"
+        ],
+        [
+          2208,
+          16,
+          "module-mvid"
+        ],
+        [
+          2428,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2456,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2484,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2508,
+          150,
+          "codeview"
+        ],
+        [
+          2658,
+          39,
+          "pdb-checksum"
+        ]
+      ],
+      "normalizedSha256": "c9cff01a03324fc64ef66644c7f1b8591d4d7133bad087969c4774dbc7ad567e",
+      "runtimeAcceptance": false
+    },
+    "candidate": {
+      "identity": {
+        "name": "AssemblyShadowBaseline.HotUpdate",
+        "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "version": "0.0.0.0",
+        "culture": "",
+        "publicKeyToken": "",
+        "mvid": "69dbd75d-0ea9-4663-8f17-622de947b7df",
+        "referenceIdentities": [
+          {
+            "referenceIndex": 0,
+            "name": "netstandard",
+            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+            "version": "2.1.0.0",
+            "culture": "",
+            "publicKeyToken": "cc7b13ffcd2ddd51"
+          }
+        ]
+      },
+      "sha256": "9d05065f57806073919b551cb9b23e8f2ef86fab96bb3cb6d8da80f74b82ba99",
+      "sizeBytes": 4608,
+      "parsedProvenance": [
+        {
+          "offset": 136,
+          "sizeBytes": 4,
+          "kind": "coff-timestamp",
+          "sha256": "8b0b64ba0a10bffe8052173377dd232593e6cd26bf9f16648f6fa8286526c2e8",
+          "value": 4078872448
+        },
+        {
+          "offset": 216,
+          "sizeBytes": 4,
+          "kind": "pe-checksum",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2208,
+          "sizeBytes": 16,
+          "kind": "module-mvid",
+          "sha256": "5e9ed6ffe6f1bf7f0fe510198d08ff11ed271fb2b1cc27c061bacd661fb4050c"
+        },
+        {
+          "offset": 2428,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "2d385db1e5b8e1c36ca49357b01857c57cbeb0158e3353387cab0433d202204d",
+          "value": 4199185169
+        },
+        {
+          "offset": 2456,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2484,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2508,
+          "sizeBytes": 163,
+          "kind": "codeview",
+          "sha256": "5f35ba2b8a8c8195830e13ab6491b81fd64c3412eb38ad184737a41e8d33c1f6",
+          "pdbId": "87df0753-5471-4df2-a84a-f53f5ed61ce8",
+          "age": 1,
+          "pdbPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.pdb"
+        },
+        {
+          "offset": 2671,
+          "sizeBytes": 39,
+          "kind": "pdb-checksum",
+          "sha256": "41059b59a75404e26a73a8cb107b0c8837cef5f2dc3797af5a5125f317bccbda"
+        }
+      ],
+      "maskRanges": [
+        [
+          136,
+          4,
+          "coff-timestamp"
+        ],
+        [
+          216,
+          4,
+          "pe-checksum"
+        ],
+        [
+          2208,
+          16,
+          "module-mvid"
+        ],
+        [
+          2428,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2456,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2484,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2508,
+          163,
+          "codeview"
+        ],
+        [
+          2671,
+          39,
+          "pdb-checksum"
+        ]
+      ],
+      "normalizedSha256": "a7b4ba5ed455dee7db83e9ff18651f40ef5ccf1f9ab7dc9cd17b50c8e0b710e5",
+      "runtimeAcceptance": false
+    },
+    "control": {
+      "identity": {
+        "name": "AssemblyShadowBaseline.HotUpdate",
+        "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "version": "0.0.0.0",
+        "culture": "",
+        "publicKeyToken": "",
+        "mvid": "7e799bcb-c95b-4b43-8419-94620928c188",
+        "referenceIdentities": [
+          {
+            "referenceIndex": 0,
+            "name": "netstandard",
+            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+            "version": "2.1.0.0",
+            "culture": "",
+            "publicKeyToken": "cc7b13ffcd2ddd51"
+          }
+        ]
+      },
+      "sha256": "b6e8b232d1749ed67db7f7bda028522993c7e912a68192c05cad0fe8ef31f5e5",
+      "sizeBytes": 4608,
+      "parsedProvenance": [
+        {
+          "offset": 136,
+          "sizeBytes": 4,
+          "kind": "coff-timestamp",
+          "sha256": "63fee8c613584801962c1fbdef7758fb0508aebe9045583fef0c8ee091598cfe",
+          "value": 4048377646
+        },
+        {
+          "offset": 216,
+          "sizeBytes": 4,
+          "kind": "pe-checksum",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2208,
+          "sizeBytes": 16,
+          "kind": "module-mvid",
+          "sha256": "2b68a2700b956ae60510a32850e123c5f24b7f5cfb35ae0838358936a263b621"
+        },
+        {
+          "offset": 2428,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "55d1213f4e45d5e8f53e9250546b4885bba68d5fa2f8c4733892661c5a83f1f4",
+          "value": 3445921538
+        },
+        {
+          "offset": 2456,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2484,
+          "sizeBytes": 4,
+          "kind": "debug-timestamp",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+          "value": 0
+        },
+        {
+          "offset": 2508,
+          "sizeBytes": 171,
+          "kind": "codeview",
+          "sha256": "2ae084986ef4183099cd816eca9155fbc9dcb14991b7933d0f2f0150ab2313f3",
+          "pdbId": "35387945-6095-4485-9563-d025987ea6b0",
+          "age": 1,
+          "pdbPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.pdb"
+        },
+        {
+          "offset": 2679,
+          "sizeBytes": 39,
+          "kind": "pdb-checksum",
+          "sha256": "787853231b4268b0d29d2de2efc9ae1ce0457ac878e0da1e00be7869fdfb8e3c"
+        }
+      ],
+      "maskRanges": [
+        [
+          136,
+          4,
+          "coff-timestamp"
+        ],
+        [
+          216,
+          4,
+          "pe-checksum"
+        ],
+        [
+          2208,
+          16,
+          "module-mvid"
+        ],
+        [
+          2428,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2456,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2484,
+          4,
+          "debug-timestamp"
+        ],
+        [
+          2508,
+          171,
+          "codeview"
+        ],
+        [
+          2679,
+          39,
+          "pdb-checksum"
+        ]
+      ],
+      "normalizedSha256": "7905f02c7a093bbf9c1ff02ff949c4bcd86a24ceab149269c13353152f04d22c",
+      "runtimeAcceptance": false
+    }
+  },
+  "comparisons": [
+    {
+      "left": "frozen",
+      "right": "candidate",
+      "exactBytesEqual": false,
+      "differingSpans": [
+        [
+          136,
+          4
+        ],
+        [
+          168,
+          1
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          384,
+          1
+        ],
+        [
+          512,
+          1
+        ],
+        [
+          1280,
+          1
+        ],
+        [
+          1286,
+          1
+        ],
+        [
+          2208,
+          16
+        ],
+        [
+          2428,
+          4
+        ],
+        [
+          2440,
+          1
+        ],
+        [
+          2472,
+          1
+        ],
+        [
+          2476,
+          1
+        ],
+        [
+          2512,
+          16
+        ],
+        [
+          2559,
+          13
+        ],
+        [
+          2573,
+          2
+        ],
+        [
+          2576,
+          14
+        ],
+        [
+          2591,
+          7
+        ],
+        [
+          2599,
+          25
+        ],
+        [
+          2625,
+          6
+        ],
+        [
+          2632,
+          80
+        ],
+        [
+          2714,
+          1
+        ],
+        [
+          2722,
+          2
+        ],
+        [
+          2727,
+          1
+        ],
+        [
+          2737,
+          2
+        ],
+        [
+          2750,
+          12
+        ],
+        [
+          2763,
+          3
+        ],
+        [
+          2768,
+          7
+        ],
+        [
+          2776,
+          12
+        ],
+        [
+          2794,
+          50
+        ],
+        [
+          2847,
+          11
+        ],
+        [
+          2859,
+          46
+        ],
+        [
+          4104,
+          1
+        ]
+      ],
+      "equalOutsideExistingPeProvenanceMask": false,
+      "pdbPathsDiffer": true,
+      "mvidDiffers": true,
+      "classification": "OtherBytesOrLayoutAlsoDiffer",
+      "admissionPolicyUnchanged": true,
+      "runtimeAcceptance": false
+    },
+    {
+      "left": "frozen",
+      "right": "control",
+      "exactBytesEqual": false,
+      "differingSpans": [
+        [
+          136,
+          4
+        ],
+        [
+          168,
+          1
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          384,
+          1
+        ],
+        [
+          512,
+          1
+        ],
+        [
+          1280,
+          1
+        ],
+        [
+          1286,
+          1
+        ],
+        [
+          2208,
+          16
+        ],
+        [
+          2428,
+          4
+        ],
+        [
+          2440,
+          1
+        ],
+        [
+          2472,
+          1
+        ],
+        [
+          2476,
+          1
+        ],
+        [
+          2512,
+          7
+        ],
+        [
+          2521,
+          7
+        ],
+        [
+          2559,
+          13
+        ],
+        [
+          2573,
+          38
+        ],
+        [
+          2612,
+          10
+        ],
+        [
+          2623,
+          97
+        ],
+        [
+          2730,
+          2
+        ],
+        [
+          2735,
+          1
+        ],
+        [
+          2737,
+          2
+        ],
+        [
+          2751,
+          11
+        ],
+        [
+          2763,
+          32
+        ],
+        [
+          2796,
+          117
+        ],
+        [
+          4104,
+          1
+        ]
+      ],
+      "equalOutsideExistingPeProvenanceMask": false,
+      "pdbPathsDiffer": true,
+      "mvidDiffers": true,
+      "classification": "OtherBytesOrLayoutAlsoDiffer",
+      "admissionPolicyUnchanged": true,
+      "runtimeAcceptance": false
+    },
+    {
+      "left": "candidate",
+      "right": "control",
+      "exactBytesEqual": false,
+      "differingSpans": [
+        [
+          136,
+          4
+        ],
+        [
+          168,
+          1
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          384,
+          1
+        ],
+        [
+          512,
+          1
+        ],
+        [
+          1280,
+          1
+        ],
+        [
+          1286,
+          1
+        ],
+        [
+          2208,
+          16
+        ],
+        [
+          2428,
+          4
+        ],
+        [
+          2440,
+          1
+        ],
+        [
+          2472,
+          1
+        ],
+        [
+          2476,
+          1
+        ],
+        [
+          2512,
+          16
+        ],
+        [
+          2575,
+          26
+        ],
+        [
+          2602,
+          4
+        ],
+        [
+          2608,
+          112
+        ],
+        [
+          2722,
+          2
+        ],
+        [
+          2727,
+          1
+        ],
+        [
+          2730,
+          2
+        ],
+        [
+          2735,
+          1
+        ],
+        [
+          2750,
+          2
+        ],
+        [
+          2758,
+          2
+        ],
+        [
+          2764,
+          32
+        ],
+        [
+          2797,
+          1
+        ],
+        [
+          2799,
+          1
+        ],
+        [
+          2802,
+          50
+        ],
+        [
+          2855,
+          11
+        ],
+        [
+          2867,
+          46
+        ],
+        [
+          4104,
+          1
+        ]
+      ],
+      "equalOutsideExistingPeProvenanceMask": false,
+      "pdbPathsDiffer": true,
+      "mvidDiffers": true,
+      "classification": "OtherBytesOrLayoutAlsoDiffer",
+      "admissionPolicyUnchanged": true,
+      "runtimeAcceptance": false
+    }
+  ],
+  "retainedInputs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/fixtures/m00-frozen.dll.zlib.base64.txt",
+      "sha256": "5d1fe4d3f74df1fb00d58b55907bc89f06361c4134ce407e067af1e1be07c7c2",
+      "sizeBytes": 2565
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/fixtures/m00-origin.json",
+      "sha256": "1caab079a9185dbf53a7f6eba85bb4dad63b587663d0ab933a737601f7141f94",
+      "sizeBytes": 1013
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-9187ed69c79c47c18b5c248e838ee8d7-ordinary-input-candidate/compiled/AssemblyShadowBaseline.HotUpdate.dll",
+      "sha256": "9d05065f57806073919b551cb9b23e8f2ef86fab96bb3cb6d8da80f74b82ba99",
+      "sizeBytes": 4608
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/_temp/AssemblyShadow/R02-9187ed69c79c47c18b5c248e838ee8d7-ordinary-input-control/compiled/AssemblyShadowBaseline.HotUpdate.dll",
+      "sha256": "b6e8b232d1749ed67db7f7bda028522993c7e912a68192c05cad0fe8ef31f5e5",
+      "sizeBytes": 4608
+    }
+  ],
+  "runtimeAcceptance": false,
+  "historicalPlayerExecutionReused": false,
+  "limitation": "PE fields identify observed differences; they do not reconstruct all compiler arguments."
+}

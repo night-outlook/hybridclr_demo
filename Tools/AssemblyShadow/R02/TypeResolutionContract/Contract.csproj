@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ParserSource Condition="'$(ParserSource)' == ''">../../../../../hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs</ParserSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs"/>
+    <Compile Include="$(ParserSource)" Link="ProductionParser.cs"/>
+  </ItemGroup>
+</Project>

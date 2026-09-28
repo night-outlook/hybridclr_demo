@@ -1,0 +1,43 @@
+{
+  "kind": "R02Command",
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/run-r01-early-players.py",
+    "--project-root",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "--fixture-manifest",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M02Validation-c6a212986daf4ecfbe00f99801acfb80/m07-fixtures.json",
+    "--on-build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-4a3c7560ed1d49578aca732b09b6faf1/m07-player-build.json",
+    "--off-build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-70e3775a08a84a1a8426d2bafc8eaa6c/m07-player-build.json",
+    "--replay-receipt",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M02Validation-c6a212986daf4ecfbe00f99801acfb80/m07-editor-replay.json",
+    "--failure-fixtures",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-762e700b851c46b39336b8b5a32a87e0-negative-fixtures/failure/failure-fixtures.json",
+    "--negative-input",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-762e700b851c46b39336b8b5a32a87e0-negative-fixtures/metadata-negative/q04-metadata-transform.json",
+    "--output-root",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-762e700b851c46b39336b8b5a32a87e0-startup11"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startedAtUnix": 1790534209.812845,
+  "result": "Failed",
+  "exitCode": 1,
+  "timedOut": false,
+  "processGroupClean": true,
+  "pid": 58052,
+  "endedAtUnix": 1790534543.85332,
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0032/stdout.log",
+      "sha256": "0c5ae6c75e0ee26a11bc5d1f16b2b71d3a0fe38b1c8db86e474edad89d6f317a",
+      "sizeBytes": 281
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0032/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    }
+  ]
+}

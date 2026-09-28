@@ -19,7 +19,7 @@ CONTROL_WORKSPACE = "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control"
 NATIVE = "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
 H1_NATIVE = "6be7f38bec2fa4677d24efc1a4a1294240789933"
 HYBRID = "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
-PACKAGE = "0ea633a2c5b936b5af69d944593c55bd2783fca9"
+PACKAGE = "809a67f1f14c3626bd3c7b21721a53c1c61b1849"
 DOCS = "Docs/AssemblyShadow/History/M07R/R02/"
 
 

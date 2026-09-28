@@ -1,0 +1,32 @@
+{
+  "kind": "R02Command",
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/verify-installed-runtime.py",
+    "--project",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "--expect-shadow",
+    "on",
+    "--json"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startedAtUnix": 1790527601.852084,
+  "result": "Passed",
+  "exitCode": 0,
+  "timedOut": false,
+  "processGroupClean": true,
+  "pid": 40431,
+  "endedAtUnix": 1790527603.221903,
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0005/stdout.log",
+      "sha256": "4939add6b516dbb8378799a90812962b2823fb32d6596884e6415cd8ac4abd24",
+      "sizeBytes": 261
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/commands/0005/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    }
+  ]
+}
