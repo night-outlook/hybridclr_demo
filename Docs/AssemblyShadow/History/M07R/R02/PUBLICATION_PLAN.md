@@ -1,31 +1,29 @@
-# R02 Primary publication — batch-F finalization complete
+# R02 publication record — batch-G include repair
 
-Status: **Published and host-validated; final documentation transport remains metadata-only.** No publication or implementation work is assigned to Local.
+This cycle is completed by Primary, not work assigned to Local. Canonical GitHub Connector writes are authoritative; no local-only commit or working copy is a handoff.
 
-## Fixed identities
+## Bound inputs and published source
 
-- Local return: `6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f`.
-- Recovered integration repair: `d43663e9ff96a9249d5e7bbf1e02bbd7e40f552b`.
-- Final executable/tool source: `1642392278a97bc9348195e35ec5d1b7fb6fa530`.
-- Candidate authority: `4a6a8d604e27aa5e3175149c4df0170b8ec09b05`.
-- Candidate branch: `codex/assembly-shadow-r01b-h1`.
-- Control: `codex/r02-h1-runtime-control@028ad68fa25a531be07f11f1fdcc417842f98ab4`.
-- Common managed package: `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
-- Common HybridCLR: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
-- Candidate/control IL2CPP: `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
+- Local return/base: `4c4f50adfd3a44073d14b107227f399c53ea605c` on `codex/assembly-shadow-r01b-h1`.
+- Source/tool repair: `af9ba49127a7e852fed504a55c733c5f6ec5e54e`.
+- Matched control: `codex/r02-h1-runtime-control@2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e`.
+- CI-tested candidate authority: `5c7b9babca7257edb61976f50e3b8a51fc18abd6`.
+- Final documentation transport is the later exact remote HEAD in Primary's prompt. It must be metadata-only relative to the source above.
 
-Earlier publication tuples and test results stay in Git history and historical records; they are not silently relabeled as this source.
+Only three executable paths changed: the host contract runner, its new regression module and the dedicated actual-macOS contract workflow. Native, package, fixtures, schema, Player code and timing remain unchanged. The new design is `G_INCLUDE_REPAIR.md`.
 
-## Completed sequence
+The control merge uses its prior tip plus the new source as parents, retaining the new source tree except for the source-pin file selecting H1 IL2CPP. No branch was force-updated or reset. Candidate metadata includes exact pins, the control tip and updated WEB_TO_LOCAL. `prepare_metadata.pins/targets` generated the JSON values; the live handoff was explicitly authored for batch G rather than using the older batch-F prose template.
 
-1. Read Local F and remote successor repair; authenticate the prior source export and rerun its 203-test Python suite. Read-only runtime/package refs matched the published repair.
-2. Find and correct the Editor acceptance gap: enforce the three new schema tests plus two original probe tests. Seven host acceptance tests added; new source freeze is 1642392278a97bc9348195e35ec5d1b7fb6fa530. No runtime/package change in this finalization.
-3. Pass demo-only disposable Connector write/read-back at 7664740f26680d9b89223962413cc93a2eab0aaa on codex/connector-smoke-r02-f-coverage-8d72. This is not a source/handoff commit and must not be merged.
-4. Advance control without force from 95b85617c92f8ce806f4652d88077936c76c3b8a, using the frozen source tree and explicit source parent. Control 028ad68fa25a531be07f11f1fdcc417842f98ab4 differs only in the source-pin file. Both roles retain the same new managed package.
-5. Publish candidate pins, source-targets and WEB_TO_LOCAL at 4a6a8d604e27aa5e3175149c4df0170b8ec09b05.
-6. Verify selected CI at that authority: R02/Linux/macOS 36387357718, legacy 36387357712 and fixed-origin 36387357717 all Passed. Download/authenticate four artifacts, 3,278 source files and 137 nested bindings. Exact results are in PRIMARY_VALIDATION.md and F_COVERAGE_VALIDATION.json.
-7. Publish final metadata only, then verify source-to-final delta and exact candidate/control/package/runtime refs before issuing Local's prompt.
+## Final verification
 
-A commit cannot name itself in its contents. The exact final transport HEAD is supplied by the verified Primary prompt, never replaced by the source/CI commit. The prompt may be rendered from independently verified Connector reads; local checkouts are not invented.
+Selected authority workflows all passed: R02/Linux/macOS lifecycle 36393519340; actual macOS writer/parser contract 36393519338; scoped legacy 36393519418; immutable M00 origin 36393519352. `PRIMARY_VALIDATION.md` and `G_PRIMARY_VALIDATION.json` record exact artifact sizes/digests, raw member bindings, 3,336 verified source/input files and actual scope.
 
-Every later executable change requires another source freeze, matched control, authority update and affected tests. Do not broaden shadow_tools.metadata_only, mix old/new source or package builds, force-push control history or weaken checks. Local fetches the complete published tuple and runs the existing 34-cell batch. H1 stays PassedWithExplicitDeferredRisk; R02 runtime/stage acceptance and R03 entry remain false.
+The final docs commit updates the validation record, current status, task sheet, root README and this publication record only. It does not create a new executable or CI identity. Read back final candidate/control refs and all unchanged runtime/package refs after the last write, verify post-source metadata-only deltas, then issue exactly that tuple. Perform no additional candidate/control write after issuing the prompt during this cycle.
+
+## Local identities and preservation
+
+Candidate workspace: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`.
+Control workspace: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control`.
+Each contains its own demo, HybridCLR, package and IL2CPP owning checkout. Control native/package siblings may remain detached at exact source-target commits. Preserve unrelated worktrees.
+
+Previous publications and A/B/C/D/E/F/G results remain in Git history and retained evidence. No old G build existed to reuse. Run one new 34-cell batch after the exact remote checks, without source edits or weakened prerequisites. Publication is not Player acceptance. R02Accepted=false; mayEnterR03=false.
