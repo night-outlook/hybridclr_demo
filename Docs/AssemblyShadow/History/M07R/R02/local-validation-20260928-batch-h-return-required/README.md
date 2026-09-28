@@ -1,0 +1,9 @@
+# R02 Local batch H — authenticated sealed return
+
+One fresh 34-cell R02LocalBatch-v1 ran on 2026-09-28 from exact candidate bef8249922ce79623f5156cb20c5afc881d4d4c4 and matched control 2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e. The final result is ReturnRequired: 25 Passed, 5 Failed, 4 Blocked. Independent R02 stage review was NotEligible/NotRun.
+
+The live batch remains at /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/. ARCHIVE_AUDIT.json records independent verification of all 19,346 archive members and all 63,237 live locator bindings. LIVE_EVIDENCE_BINDINGS.json binds selected large raw, launch, build, matrix, index and archive files. The complete seal index remains in the live root and is itself hash-bound to the checkpoint. WARM_PATH_COUNTERS.json extracts both failing candidate 10,000-allocation counter rows and binds their exact raw files. The batch directory copies all 34 cell receipts, source/build/host results and key failure commands. MANIFEST.sha256 authenticates every copied checkpoint file.
+
+The candidate ON-P01 and ON-P03 warm certificate assertions failed. M07 strict verification rejected the new r02 raw field. Startup11 invoked an absent verifier script. Diagnostic build output did not meet the R01B provenance path contract. Functional failures blocked 44 A/B pairs and D1/D2; diagnostic provenance blocked lazy/dense and ordinary/mixed capacity. Host Primary, both Unity graphs, six functional sidecars, all five required Editor contracts, failure/recovery, native/negative tests and count132 passed. The full return and requested Primary repairs are in Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md and RETURN_TO_WEB.md.
+
+Preserve this live root and archive and all A/B/C/D/E/F/G/H1 evidence. H1 remains PassedWithExplicitDeferredRisk. R02Accepted=false; mayEnterR03=false.

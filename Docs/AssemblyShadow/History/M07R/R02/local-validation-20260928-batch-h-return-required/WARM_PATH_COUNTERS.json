@@ -1,0 +1,64 @@
+{
+  "kind": "R02LocalWarmPathFailureExtract",
+  "result": "ObservedCounterFailure",
+  "rows": [
+    {
+      "role": "candidate",
+      "mode": "R00-ON-P01",
+      "runId": "96c8e984e1bd46be8c159d2d7e31d5b9",
+      "raw": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/sidecars/96c8e984e1bd46be8c159d2d7e31d5b9/r02.json",
+        "sha256": "23b169dace7df147a9046a7bfdcea519087dfe30658c959b2b77da4f9e10bc2d",
+        "sizeBytes": 5969387
+      },
+      "operation": "allocation",
+      "phase": "warm10000",
+      "iterations": 10000,
+      "counterDeltas": {
+        "definitionSearches": 0,
+        "definitionRowsScanned": 0,
+        "admissionCacheHits": 2,
+        "admissionCacheMisses": 10000,
+        "admissionProofAttempts": 10000,
+        "admissionUnready": 10000,
+        "admissionEntries": 0,
+        "baselineStateChecks": 10000,
+        "fieldWorkspaceBuilds": 20000,
+        "interfaceWorkspaceBuilds": 20000,
+        "layoutCheckCalls": 10000
+      },
+      "rawProcessResult": "Passed",
+      "verifiedCellResult": "Failed"
+    },
+    {
+      "role": "candidate",
+      "mode": "R00-ON-P03",
+      "runId": "88dbd594e88f47d1a65fc089f6aed51e",
+      "raw": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/sidecars/88dbd594e88f47d1a65fc089f6aed51e/r02.json",
+        "sha256": "988b8672eefe3ecf6a5b852cc33f4578cc3d117d709c74383c517c1e9ddfeb22",
+        "sizeBytes": 5971034
+      },
+      "operation": "allocation",
+      "phase": "warm10000",
+      "iterations": 10000,
+      "counterDeltas": {
+        "definitionSearches": 0,
+        "definitionRowsScanned": 0,
+        "admissionCacheHits": 2,
+        "admissionCacheMisses": 10000,
+        "admissionProofAttempts": 10000,
+        "admissionUnready": 10000,
+        "admissionEntries": 0,
+        "baselineStateChecks": 10000,
+        "fieldWorkspaceBuilds": 20000,
+        "interfaceWorkspaceBuilds": 20000,
+        "layoutCheckCalls": 10000
+      },
+      "rawProcessResult": "Passed",
+      "verifiedCellResult": "Failed"
+    }
+  ],
+  "verifierAssertion": "Warm single-class path rebuilt proof or scanned metadata",
+  "runtimeAcceptance": false
+}

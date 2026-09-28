@@ -1,0 +1,221 @@
+{
+  "kind": "R02GPrimaryValidation",
+  "sourceCommit": "af9ba49127a7e852fed504a55c733c5f6ec5e54e",
+  "authorityCommit": "5c7b9babca7257edb61976f50e3b8a51fc18abd6",
+  "controlCommit": "2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e",
+  "repositories": {
+    "hybridclr_demo": "5c7b9babca7257edb61976f50e3b8a51fc18abd6",
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+    "il2cpp_plus": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
+  },
+  "sourceFileCount": 3336,
+  "changedExecutableBlobsVerified": 3,
+  "artifacts": [
+    {
+      "scope": "primary",
+      "artifactId": 10957845251,
+      "sizeBytes": 13286139,
+      "sha256": "e5d16be0e60ea0e9ee323c948adf0613eec34a7ad63b880aa4587baf60ebad80",
+      "members": 770
+    },
+    {
+      "scope": "macos-contract",
+      "artifactId": 10957481858,
+      "sizeBytes": 206493,
+      "sha256": "5620f7538f52c2c9a4e4b255b5f382141c30a2cf86376cef0c00bf6f84ba43c2",
+      "members": 100
+    },
+    {
+      "scope": "darwin",
+      "artifactId": 10956813919,
+      "sizeBytes": 2313,
+      "sha256": "418b90ba83f5134e9e109d47e2e108ed07f05de4b07dca4b78bc1c7db14ab3c9",
+      "members": 1
+    },
+    {
+      "scope": "legacy",
+      "artifactId": 10957551024,
+      "sizeBytes": 13009355,
+      "sha256": "ea3bee0e4f6e4bb054b8cfa549ace0e2e4934ad163df0342a88163867c605233",
+      "members": 1252
+    },
+    {
+      "scope": "origin",
+      "artifactId": 10957047950,
+      "sizeBytes": 3068,
+      "sha256": "aad045ac004f9610c8f9435050d6af157d41b34d819b1b1c2b7a014663c6505f",
+      "members": 2
+    }
+  ],
+  "macosContract": {
+    "kind": "R02ProducerParserContract",
+    "result": "Passed",
+    "checks": 1310,
+    "nativeFixtures": 12,
+    "legacyFixtures": 1,
+    "unityPlayerRun": false
+  },
+  "linuxContract": {
+    "kind": "R02ProducerParserContract",
+    "result": "Passed",
+    "checks": 1310,
+    "nativeFixtures": 12,
+    "legacyFixtures": 1,
+    "unityPlayerRun": false
+  },
+  "unityPlayerRun": false,
+  "runtimeAcceptance": false,
+  "result": "PassedForPrimaryScope",
+  "workflowRuns": {
+    "primary": 36393519340,
+    "actualMacosContract": 36393519338,
+    "legacy": 36393519418,
+    "origin": 36393519352
+  },
+  "contracts": {
+    "primary": {
+      "passed": 19,
+      "nativeLevels": [
+        0,
+        1,
+        2
+      ],
+      "nativeFixtures": 12,
+      "legacyFixtures": 1,
+      "checks": 1310,
+      "allCommandLogAndFixtureBindingsVerified": true
+    },
+    "macos-contract": {
+      "passed": 19,
+      "nativeLevels": [
+        0,
+        1,
+        2
+      ],
+      "nativeFixtures": 12,
+      "legacyFixtures": 1,
+      "checks": 1310,
+      "allCommandLogAndFixtureBindingsVerified": true
+    }
+  },
+  "pythonTests": 218,
+  "localPythonTests": 218,
+  "macosLifecycleSubset": 79,
+  "macosIncludeRegressionSubset": 8,
+  "nativeMatrix": {
+    "processCases": 70,
+    "checks": 1540
+  },
+  "revisionMatrix": {
+    "processCases": 70,
+    "checks": 28294
+  },
+  "managedAssertions": [
+    102,
+    111,
+    111
+  ],
+  "legacyScopes": [
+    384,
+    6
+  ],
+  "selectedRawBindings": [
+    {
+      "scope": "primary",
+      "member": "results/type-resolution-contract/results.json",
+      "sizeBytes": 10906,
+      "sha256": "ab229ac56d0d8fffee5e78adf44b38aa09f1568562bf82fa3b6eb4a4bcc76d66"
+    },
+    {
+      "scope": "macos-contract",
+      "member": "contract/results.json",
+      "sizeBytes": 10380,
+      "sha256": "2cd110d1f5f46716a4956122871a5bb74e8da00511e691523c344c678df06049"
+    },
+    {
+      "scope": "primary",
+      "member": "results/results.json",
+      "sizeBytes": 4964,
+      "sha256": "7991fa8463f1b1617329e4a40c24e4a7a7b8809099f6ee89269d72ababf8467a"
+    },
+    {
+      "scope": "primary",
+      "member": "results/python-command/stderr.log",
+      "sizeBytes": 27041,
+      "sha256": "545ad19d2b19b98a12cc3dbf1fddf96149a344ab5ab5067d8acf0fd741c701a2"
+    },
+    {
+      "scope": "primary",
+      "member": "results/native/results.json",
+      "sizeBytes": 10857,
+      "sha256": "b41533410f89ac931a45a66ee28782f71204d5cfef40dfe433bf14bf770a4296"
+    },
+    {
+      "scope": "primary",
+      "member": "results/revision/results.json",
+      "sizeBytes": 13540,
+      "sha256": "92e0c40ca75b9070b58a8fc1a8781ecc83901c32fc96a0ad4d7297e581199bbd"
+    },
+    {
+      "scope": "primary",
+      "member": "results/codec-storage/results.json",
+      "sizeBytes": 2929,
+      "sha256": "d5d0fdb9338646fab8635fc1ff7fbef3a2198a3a281684899902df82d5dad707"
+    },
+    {
+      "scope": "macos-contract",
+      "member": "identities.json",
+      "sizeBytes": 632,
+      "sha256": "151eaf41822c946613106642c08ebf8ee400283a58c411cf385bbb006df4725f"
+    },
+    {
+      "scope": "macos-contract",
+      "member": "regression.log",
+      "sizeBytes": 1397,
+      "sha256": "224e96e60a7507ad0336188e0d839de4477ebf4208482405c0038378c2940310"
+    },
+    {
+      "scope": "macos-contract",
+      "member": "toolchain.log",
+      "sizeBytes": 3789,
+      "sha256": "2c4597483ee5edb2e8089a17277b08e472b6b986945c70e4e3c7692232aca556"
+    },
+    {
+      "scope": "darwin",
+      "member": "r02-darwin-tests.log",
+      "sizeBytes": 11471,
+      "sha256": "237a5d4cc8e9b241dab9512406301f0d8c7a31d6966e26f3734427821f283e18"
+    },
+    {
+      "scope": "legacy",
+      "member": "current-results/results.json",
+      "sizeBytes": 56924,
+      "sha256": "d05e934b7d6dce478e9983134a91e96b292ddb19bdd86377c69e937b005eaddd"
+    },
+    {
+      "scope": "legacy",
+      "member": "fixed-h1-results/results.json",
+      "sizeBytes": 4128,
+      "sha256": "f00f551324b9b833862788a65073a5d62708dd402c5efd0d90f21db221ec829b"
+    },
+    {
+      "scope": "origin",
+      "member": "search.json",
+      "sizeBytes": 3097,
+      "sha256": "bce0fd02ad79c45576a8fa422b9188974451559b95276ce1c9f3a47fc1b34bb8"
+    }
+  ],
+  "changedSourceBlobs": {
+    "Tools/AssemblyShadow/R02/type_resolution_contract.py": "a1a756d948273ffd3a85f906637fe0697916b347",
+    "Tools/AssemblyShadow/R02/tests/test_type_resolution_contract.py": "12eeb522aa3e034206e3a728705aefd62c109a04",
+    ".github/workflows/r02-contract-macos.yml": "a809c2f5c4828d9f4c8eccf68eddd4d7a1d5536f"
+  },
+  "localLog": {
+    "sha256": "7395ae0742bda5c8a9e5a410016f36df06b0b7898e1428247f2f71fdb19df10d",
+    "classification": "CurrentEnvironmentPythonExecution"
+  },
+  "review": "Focused implementation self-review; independent R02 stage review not run",
+  "R02Accepted": false,
+  "mayEnterR03": false
+}

@@ -69,6 +69,17 @@ class ContractExecution(unittest.TestCase):
         result = dict(result='Failed' if output.name == self.fail else 'Passed', processGroupClean=True)
         write(output / 'command.json', result)
         text = 'fixture compiler version\n' if output.name == 'compiler-version' else json.dumps(self.assertions if output.name == 'managed-run' else {'fixture': output.name})
+        if output.name.startswith('emit-') and not output.name.endswith('legacy'):
+            # This is an orchestration fixture, not native execution.
+            from type_resolution_schema import COUNTERS
+            level = int(output.name.split('-')[1])
+            value = dict.fromkeys(COUNTERS, 0)
+            value.update(schemaVersion=1, diagnosticsLevel=level, counterThreadCapacity=128,
+                         counterSaturated=False, memoryAccountingAvailable=level != 0,
+                         counterCoverage='Disabled' if level == 0 else 'BoundedComplete',
+                         classesCoverage='Disabled' if level < 2 else 'BoundedComplete',
+                         memoryAccountingScope='R02StructuresExcludingAllocatorOverhead')
+            text = json.dumps({'r02': value})
         (output / 'stdout.log').write_text(text)
         return result
 

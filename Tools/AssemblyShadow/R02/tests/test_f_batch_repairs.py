@@ -16,6 +16,7 @@ class FBatchRepairs(unittest.TestCase):
         self.batch.roots = {'candidate': self.root}
         self.batch.graphs = {'candidate': {'fixtureManifest': 'fixtures', 'nativeOnReceipt': 'on',
             'nativeOffReceipt': 'off', 'editorReplayReceipt': 'replay'}}
+        self.batch.heads = {'candidate': 'a' * 40}
         self.batch.generated_roots = set(); self.batch.prefix = 'test'; self.batch.out = self.root / 'batch'
         (self.root / '_temp/AssemblyShadow').mkdir(parents=True)
 
@@ -23,7 +24,7 @@ class FBatchRepairs(unittest.TestCase):
         with patch.object(self.batch, 'tool') as call:
             self.batch.regression('m07')
         self.assertEqual([c.args[0] for c in call.call_args_list],
-            ['prepare-h1-m07-control-capsules.py', 'run-m07-players.py', 'verify-m07-results.py'])
+            ['prepare-h1-m07-control-capsules.py', 'run-m07-players.py', 'R02/verify_regressions.py'])
         prepare, launch = call.call_args_list[:2]
         target = prepare.args[1][-1]
         args = launch.args[1]

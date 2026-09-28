@@ -1,0 +1,39 @@
+{
+  "kind": "R02Command",
+  "argv": [
+    "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/verify-m07-results.py",
+    "--fixture-manifest",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M02Validation-fade04c752d84a40b4798382939daf1c/m07-fixtures.json",
+    "--on-build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-615820269c474f5d88f3cc92208bb6ea/m07-player-build.json",
+    "--off-build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M07PlayerInputs-8861a7d810a240bb8d95bc3ef2f473fb/m07-player-build.json",
+    "--replay-receipt",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/M02Validation-fade04c752d84a40b4798382939daf1c/m07-editor-replay.json",
+    "--result-dir",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-a55a913d4c834db490b3bf83cb4eac58-m07/Results",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-a55a913d4c834db490b3bf83cb4eac58-m07/strict.json"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "startedAtUnix": 1790596508.045665,
+  "result": "Failed",
+  "exitCode": 1,
+  "timedOut": false,
+  "processGroupClean": true,
+  "pid": 86649,
+  "endedAtUnix": 1790596617.174865,
+  "logs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/commands/0033/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/commands/0033/stderr.log",
+      "sha256": "48b09095b8f5821b79475cc33bbc10a8014b925cf42757721f3bb40615bb51f0",
+      "sizeBytes": 247
+    }
+  ]
+}
