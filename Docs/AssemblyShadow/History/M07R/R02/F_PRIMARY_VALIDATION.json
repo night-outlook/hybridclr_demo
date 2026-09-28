@@ -1,0 +1,218 @@
+{
+  "kind": "R02FPrimaryValidation",
+  "result": "PassedForHostSourceScope",
+  "localReturn": "6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f",
+  "sourceAnchor": "995dbf1003c306a69586f882ff02599db7a9780e",
+  "authorityCommit": "a01ac8169ccdbaacc3eec8ce81009f38eb100d64",
+  "controlHead": "95b85617c92f8ce806f4652d88077936c76c3b8a",
+  "candidateRepositories": {
+    "hybridclr_demo": "a01ac8169ccdbaacc3eec8ce81009f38eb100d64",
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+    "il2cpp_plus": "3981da12f2cd3ee878a04dda6f573d0ad3faeda5"
+  },
+  "controlIl2cpp": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+  "workflows": {
+    "primary": 36372371088,
+    "legacy": 36372371077,
+    "m00Origin": 36372371129
+  },
+  "artifacts": {
+    "primary": {
+      "id": 10949217962,
+      "sizeBytes": 13192862,
+      "sha256": "8381e04ea33696758124664540d328c1dc36bd5f423be219418cf093c8e79388",
+      "zipCrc": "Passed",
+      "memberCount": 767
+    },
+    "darwin": {
+      "id": 10949164749,
+      "sizeBytes": 2136,
+      "sha256": "f6372fc3fc8ac7f961ded0a97b0b8868fd0e492bbcf4e6ff0f0d1223e07f7f89",
+      "zipCrc": "Passed",
+      "memberCount": 1
+    },
+    "legacy": {
+      "id": 10949871106,
+      "sizeBytes": 13005130,
+      "sha256": "5ccfe7a05f0ac4bfafda88a2e867594ae9bd92b8bb1b1d26457d8247f6ddf9ee",
+      "zipCrc": "Passed",
+      "memberCount": 1251
+    },
+    "origin": {
+      "id": 10949497740,
+      "sizeBytes": 3068,
+      "sha256": "ec638883cd5d656150d368a7f35d97110639d40c1e8d6f6eb6ccb37f0f863549",
+      "zipCrc": "Passed",
+      "memberCount": 2
+    }
+  },
+  "results": {
+    "pythonLocal": 203,
+    "pythonLinuxCI": 203,
+    "darwinSubset": 72,
+    "producerParser": {
+      "kind": "R02ProducerParserContract",
+      "result": "Passed",
+      "checks": 1310,
+      "nativeFixtures": 12,
+      "legacyFixtures": 1,
+      "unityPlayerRun": false
+    },
+    "nativeCases": 70,
+    "nativeChecks": 1540,
+    "revisionCases": 70,
+    "revisionChecks": 28294,
+    "managedAssertions": {
+      "Baseline": 102,
+      "P01": 111,
+      "P03": 111
+    },
+    "legacyCurrent": 384,
+    "legacyHistorical": 6,
+    "sourceInventoryFiles": 3276
+  },
+  "changedExecutableMatches": [
+    {
+      "repository": "hybridclr_demo",
+      "path": "Assets/AssemblyShadowDemo/Editor/M05TypeSchemaVerifier.cs",
+      "gitBlob": "1129749a9f2eff57c460e5c8d6caf0d97a82719a"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Assets/AssemblyShadowDemo/Editor/R02TypeResolutionSchema.cs",
+      "gitBlob": "f648f9abf4d6b51d445b1b9444286219d25b11e5"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Assets/AssemblyShadowDemo/Editor/R02TypeResolutionSchema.cs.meta",
+      "gitBlob": "6d5d1aa9dd265bac69d95dcf7b50b082d8da6c61"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Assets/AssemblyShadowDemo/Tests/Editor/R02TypeResolutionSchemaTests.cs",
+      "gitBlob": "2b353ed4bebba9ac189c090d5395c6a8a9d9655c"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Assets/AssemblyShadowDemo/Tests/Editor/R02TypeResolutionSchemaTests.cs.meta",
+      "gitBlob": "5d78c181f73c1c7d584180aa64bd3a705c9fa5f6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/run_local.py",
+      "gitBlob": "8f4d51dd3b633962e793a6044bd776f7e5239d9e"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/restoration.py",
+      "gitBlob": "f2d0c66a2a7e5978f7ed51e7902ac09e06ef7909"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/m00_forensics.py",
+      "gitBlob": "97e02853cb778f6dab06436730c7775be440adf8"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/run_primary.py",
+      "gitBlob": "96f4a0ee002a083cbd14806538a4b5f4597cdcad"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/type_resolution_contract.py",
+      "gitBlob": "087c358a57249720c47c521dabadfe535936f792"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/TypeResolutionContract/Contract.csproj",
+      "gitBlob": "9aef1c2716bd6920d38271bbe3c9986290411066"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/TypeResolutionContract/Program.cs",
+      "gitBlob": "982c27bddb331dc61b2633842cab0c059717e4e8"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/TypeResolutionContract/writer.cpp",
+      "gitBlob": "68ef340394c986d9a55ce444ab2b7214a805eb89"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_m00_forensics.py",
+      "gitBlob": "9f643e7b9849ecb9333c17e55883a6d0c92275e8"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_f_batch_repairs.py",
+      "gitBlob": "3d0cd6433f8f1dff38b77d6f21ce821fa0988b6d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/tests/test_forensic_retention.py",
+      "gitBlob": "0eca6b0eabcd80ab48dc05cc183e9ee1b8757b9d"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": "Tools/AssemblyShadow/R02/prepare_metadata.py",
+      "gitBlob": "0cbdfd808c1caf13197919c8f88a6405e4c7fcc6"
+    },
+    {
+      "repository": "hybridclr_demo",
+      "path": ".github/workflows/r02-primary.yml",
+      "gitBlob": "0066e25464e94164276c5fa196cd80049a1a0d97"
+    },
+    {
+      "repository": "hybridclr_unity",
+      "path": "Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs",
+      "gitBlob": "787da8a19e26ba5dce05f900c19ebbb4ac01129a"
+    }
+  ],
+  "nestedArtifactBindings": {
+    "uniqueBindings": 137,
+    "authenticated": 137,
+    "unavailable": [],
+    "mapping": "CI checkout absolute roots from workflow; relative libil2cpp/tools/r02 source rows are in the pinned il2cpp_plus repository."
+  },
+  "selectedRawMembers": {
+    "results/python-command/stderr.log": {
+      "sha256": "4e3480d8e2a89d4269db6cf2ba1596ea17f20b9c6cf14f1af87442dcd00faaa8",
+      "sizeBytes": 24629
+    },
+    "results/type-resolution-contract/managed-run/stdout.log": {
+      "sha256": "9e3c47275bcb1e6c7ce73e96fa574d2a4ad8ac1b409b67f17d79ee0ed299395b",
+      "sizeBytes": 131
+    },
+    "results/native-command/stdout.log": {
+      "sha256": "9903b245dfb94f25598dbf340cc8963794b32ace3421488bb6e3521363283fbc",
+      "sizeBytes": 166
+    },
+    "results/revision-command/stdout.log": {
+      "sha256": "c7e3d6f3c1b9daff5466ae9d55d5f7ec96ff72d24af26ff2276f8f11d2c452b8",
+      "sizeBytes": 142
+    }
+  },
+  "darwinRawLog": {
+    "member": "r02-darwin-tests.log",
+    "sha256": "0c0b1bfd6993c0568317ed8cd1b0ded3045e3554e756cf273d24474252cba6f1",
+    "sizeBytes": 10358,
+    "summary": [
+      "Ran 72 tests in 2.303s"
+    ]
+  },
+  "localPythonLog": {
+    "tests": 203,
+    "result": "Passed",
+    "logSha256": "4df2e98487ecfa313aecd0005d163755369a69e91deaa61e27ea764260364269"
+  },
+  "scope": {
+    "unityPlayerRun": false,
+    "runtimeAcceptance": false,
+    "R02Accepted": false,
+    "mayEnterR03": false,
+    "independentReview": "NotRun; implementation self-review only",
+    "localEditorTests": "Three new dnlib/Unity tests authored; NotRun without Unity",
+    "darwinSubsetNotAdditionalUniqueCases": true
+  }
+}

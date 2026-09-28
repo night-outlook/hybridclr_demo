@@ -1,31 +1,34 @@
-# R02 Primary publication — batch-E successor
+# R02 Primary publication — batch-F repair completion
 
-Status: **Published source/control authority; Primary CI passed. Final documentation transport commit follows this record.** No Local implementation is requested.
+Status: **Published and host-validated; final documentation transport remains metadata-only.** No publication or implementation work is assigned to Local.
 
-## Fixed identities
+## Fixed publication identities
 
-- Local return/base: `1d7dc134003206ada8a92b50763ca2da7dc9530d`.
-- Read-only archive investigation: `74e41cdc0173379b424014de151ae5413fd1c9a3`.
-- Executable/tool source: `d4cfbe5da29482a3b307fbec3333821615288129`.
-- Matched control: `codex/r02-h1-runtime-control@5a931fe86795e8cc192d3df262cdee824b105963`.
-- Candidate authority: `69f75b78a0696be8b7da69c1725f07c6e1708c48`.
-- Candidate HybridCLR/package/IL2CPP: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / `0ea633a2c5b936b5af69d944593c55bd2783fca9` / `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`.
-- Control IL2CPP: `6be7f38bec2fa4677d24efc1a4a1294240789933`.
+- Local return base: `6415fdf3cc384c0fb8fa7073d8b1ee3631702e0f`.
+- Final executable/tool source: `995dbf1003c306a69586f882ff02599db7a9780e`.
+- Candidate authority commit: `a01ac8169ccdbaacc3eec8ce81009f38eb100d64`.
+- Candidate branch: `codex/assembly-shadow-r01b-h1`.
+- Control: `codex/r02-h1-runtime-control@95b85617c92f8ce806f4652d88077936c76c3b8a`.
+- Common managed package: `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
+- Common HybridCLR: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
+- Candidate/control IL2CPP: `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
 
-## Performed publication
+Earlier E/D and initial R02 publication tuples remain in Git history and historical evidence. They are not current authority and are not silently rewritten as executions of the new package.
 
-1. Read Local return and exact remote tuple through the Connector; demo write/read-back smoke test passed on a disposable branch.
-2. Inspected the already tracked historical archive in read-only CI; recovered and hash-authenticated the exact protected M00 image and provenance.
-3. Implemented materialization, safe compact decoding, source/origin checks, independent PE diagnostics, tests and integration; removed the invalid new-compilation-equals-fixed-image helper. Original fixed hash, provider semantics, source allowlist and runtime code remain unchanged.
-4. Published executable source, then advanced the existing matched control with common source as additional parent and its tree plus only H1-runtime source pins. No force-push or history rewrite.
-5. Published candidate pins, source-targets, WEB_TO_LOCAL and 34-cell task sheet. All later deliverables are metadata-only.
-6. Verified successful final R02, macOS, legacy and origin CI at candidate authority. Downloaded four selected artifacts and authenticated digests, CRCs, source inventory, changed source paths and nested receipt bindings. Exact identities appear in E_PRIMARY_VALIDATION.json.
-7. Update canonical status/validation docs, publish this metadata-only commit, re-read all remote heads and compare the final candidate/control trees against the frozen source. Supply the actual returned final transport SHA in the Local prompt.
+## Completed sequence
 
-Candidate paths: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repository>`.
-Control paths: `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/<repository>`.
-Both demo checkouts use their specified branches; control siblings may be detached at exact source-target commits. No generated output crosses workspaces.
+1. Read the exact Local return and current refs; perform disposable Connector write/read-back tests in changed demo/package repositories.
+2. Publish strict native-extension parsing in the package, then its serialization-compatible transient view at final package `b936a495...`.
+3. Publish demo integration repairs, producer/parser tests, schema proof and Editor tests. Final source freeze is `995dbf1003c306a69586f882ff02599db7a9780e`.
+4. Advance the control without force using a tree based on the complete frozen source and explicit source ancestry. Its tree differs from the source only in `ProjectSettings/AssemblyShadowSourcePins.json`; both roles use the same new managed package.
+5. Generate/publish candidate pins, exact R02 source-targets and `WEB_TO_LOCAL.md` at `a01ac8169ccdbaacc3eec8ce81009f38eb100d64`.
+6. Verify selected CI at that exact authority: R02/Linux/macOS 36372371088, legacy 36372371077 and fixed-origin 36372371129 all Passed. Download and authenticate four artifacts and their source/raw bindings. Detailed identities and counts are in `PRIMARY_VALIDATION.md` and `F_PRIMARY_VALIDATION.json`.
+7. Publish the final validation/status/task/design documentation without executable changes. Verify the source-to-final and CI-to-final deltas, final candidate/control/package/runtime refs, and remote read-back before issuing Local's prompt.
 
-## Stop boundary
+The final commit cannot name itself in its own content. The exact final transport HEAD is supplied by the verified Primary prompt; never substitute the source or CI commit for it. `prepare_metadata.py prompt` may be used with actual source-bound checkouts, or Primary may render the same contract from independently verified Connector refs.
 
-All code changes belong to Primary. Local executes the supplied batch, collects evidence and returns non-trivial issues; it does not rewrite pins/fixtures/verifiers. E forensic results remain pending on retained Local raw bytes, without blocking otherwise valid fresh build cells. Original A/B/C/D/E attempts remain immutable. No host/source CI establishes R02 runtime or D1/D2 acceptance. R02Accepted=false; mayEnterR03=false.
+## Continuing publication rules
+
+Every later executable change requires a new source freeze, common control pairing, candidate authority and affected tests. Do not broaden `shadow_tools.metadata_only`, mix old/new package builds, force-push control history, or weaken source checks. Local only fetches the published tuple and executes the supplied batch; it does not invent missing pins or publish Primary fixes.
+
+The final handoff is for one fresh 34-cell batch. H1 remains PassedWithExplicitDeferredRisk; this publication is not Unity Player acceptance, independent stage approval, performance/RAM approval or permission to enter R03.
