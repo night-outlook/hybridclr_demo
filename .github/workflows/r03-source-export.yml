@@ -1,0 +1,71 @@
+name: R03 pinned source export
+on:
+  push:
+    branches: [codex/connector-smoke-r03-20260930-0054]
+    paths: ['.github/workflows/r03-source-export.yml']
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: b901da42cc0b7433af8f24d5ec3bae8f1a124ebd
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: b936a495ade1691ebb6f3bab8fdff3ef34f6f192
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Export source with Git and byte identities
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess,tarfile
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-source-export'; out.mkdir()
+          repos={}; entries=[]; excluded=[]
+          suffixes={'.cs','.csproj','.sln','.asmdef','.asmref','.meta','.py','.ps1','.sh','.h','.hpp','.cpp','.c','.json','.yml','.md','.txt','.xml','.yaml','.asset','.dll','.rsp','.props','.targets','.config','.bytes'}
+          with tarfile.open(out/'source-inputs.tar.gz','w:gz') as tar:
+              for name in ('hybridclr_demo','hybridclr','hybridclr_unity','il2cpp_plus'):
+                  root=Path(name)
+                  def git(*args): return subprocess.check_output(['git','-C',name,*args]).decode().strip()
+                  repos[name]={'commit':git('rev-parse','HEAD'),'tree':git('rev-parse','HEAD^{tree}'),'remote':git('remote','get-url','origin')}
+                  listing=subprocess.check_output(['git','-C',name,'ls-tree','-rlz','HEAD']).decode().split('\0')
+                  for row in listing:
+                      if not row: continue
+                      metadata,relative=row.split('\t',1); mode,kind,blob,size=metadata.split()
+                      path=root/relative
+                      record={'repository':name,'path':relative,'mode':mode,'gitBlob':blob,'size':int(size)}
+                      selected=(name!='hybridclr_demo' or relative.startswith(('Tools/','Assets/','Packages/','ProjectSettings/','.github/','Docs/AssemblyShadow/Plan/','Docs/AssemblyShadow/Handoff/','Docs/AssemblyShadow/History/M07R/R02/')) or relative in ('Docs/AssemblyShadow/README.md','README.md','.gitignore'))
+                      selected=selected and (path.suffix in suffixes or path.name in ('.gitignore','CMakeLists.txt','Makefile')) and record['size']<=4194304 and mode in ('100644','100755')
+                      if not selected: excluded.append(record); continue
+                      raw=path.read_bytes(); assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==blob
+                      record['sha256']=hashlib.sha256(raw).hexdigest(); entries.append(record)
+                      tar.add(path,arcname=str(path),recursive=False)
+          (out/'inventory.json').write_text(json.dumps({'schema':'R03PinnedSourceExport-v1','repositories':repos,'files':entries,'excluded':excluded,'runtimeAcceptance':False},indent=2)+'\n')
+          print(json.dumps({'repositories':repos,'included':len(entries),'excluded':len(excluded),'archiveSha256':hashlib.sha256((out/'source-inputs.tar.gz').read_bytes()).hexdigest()}))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-pinned-source-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-source-export
+          retention-days: 14
+          if-no-files-found: error
