@@ -1,6 +1,43 @@
 # Local Validation report
 
-## Current run — 2026-09-29, batch I passed independent R02 stage review
+## Current run — 2026-09-30, R03 batch A returned at managed process lifetime
+
+**Local Validation → Primary Implementation: `ReturnRequired`; 36 cells: 4 Passed, 3 Failed, 29 Blocked.** Exactly one invocation ran in unused `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f`, 07:47:06–07:47:47 America/Los_Angeles (14:47:06–14:47:47 UTC), exit 1. The focused seal **Passed**. No retry, source/expectation/timeout repair or acceptance promotion occurred.
+
+| Repository | Exact owning path | Executed commit |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `25a7c5ada06c97574bf218e74cf38c811445d13c` |
+| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+All four used `codex/assembly-shadow-r01b-h1`, canonical night-outlook SSH identities, clean status and exact remote-head equality at entry/final authority. All checkouts fast-forwarded safely; no unrelated changes existed. The demo delta after host-CI anchor `f5f5712459fdf67e2b748ddeab8e6540bffd3d95` is eight documentation paths only. Source/package/native pins are copied in the checkpoint. The final Local publication commit carries these reports and evidence; it does not replace the executed demo identity.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; .NET SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Exact Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` and version were available; intended target StandaloneOSX/arm64. No Unity launch occurred. The existing .NET 8 SDK came from `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; that Unity Editor was not executed. PATH/DOTNET_ROOT settings, full command, actual PID, timestamps and tool checks are retained in `preflight/environment.json`, `runner-exit.json` and `preflight-commands.json`.
+
+| Validation | State | Evidence and boundary |
+| --- | --- | --- |
+| Entry/final four-source authority | Passed, fresh | Both cells contain exact clean published repository tuples. |
+| Python verifier/filesystem suite | Passed, fresh | Command 0001: 29 tests; synthetic tool contracts only. |
+| Reference sources | Passed, fresh checkout | Three retained detached worktrees at HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Historical reference source is not fresh runtime evidence. |
+| host-baseline-graph, host-candidate-graph, host-admission | Failed | Commands 0005/0006/0007: exitCode=0, zero warnings/errors, timeout=false, remainingProcessGroup=true. Cleanup killed the surviving owned groups. Each cell stopped before running its compiled assertion program; no graph/admission assertion verdict exists. |
+| player-fixtures | Blocked/NotRun | Admission prerequisite failed; no 15-DLL fixture inventory produced. |
+| Four isolated prepare/build pairs | Blocked/NotRun | No candidate Release, reference Release, candidate Debug or feature-OFF project/build created. |
+| Actual EditMode tests | Blocked/NotRun | No Editor invocation, XML or Editor log produced. |
+| All nineteen Player cells | Blocked/NotRun | C01–C10, R01–R05, D01–D03 and O01 did not launch. No runtime/native MethodInfo/warm-certificate evidence exists for R03 A. |
+| Focused seal and postrun custody | Passed | 58 indexed live files and 59 archive members individually authenticated; aggregate/individual 36-cell equality and ledger/command hashes checked. This is a custody audit of the failed run, not full R03 acceptance or independent stage review. |
+
+The live root and excluded `bin/`, `obj/` and three reference worktrees remain intact. The compiled binaries are successful compilation artifacts only. `preflight/RETAINED_LIVE_ROOTS.json` inventories their paths/hashes and reference identities. Missing host results, fixture inventory, builds, Player outputs and Editor XML are **NotRun**, not lost evidence. The exact per-cell statuses remain in `batch/LOCAL_BATCH_RESULT.json` and `batch/cells/`.
+
+Immutable checkpoint: [local-validation-20260930-batch-a-return-required](../History/M07R/R03/local-validation-20260930-batch-a-return-required/README.md). Result SHA-256 `a03a2b2cc2f493ca92f782eed0a2b03d040c45a826333581818c96200c4a9173`; execution ledger `0598bf960dbf9b4474b9075ab7cb24e3b1acb12941c86f8fd26dbf39bec314c5`; index `a14717414c030ac734fc2e9543118b507df4465b55cbbeb4a9af0bf5a0756181`; archive `13cf7407447d7952aae6429bbf8e5aae3fc11a030ae139651a09142324450c6c`; seal receipt `d92fde6945465e0df8ac109d6430da59b9c3be3694f382cc2f55d7bd6df4e84d`. Preflight material is separate from the original runner seal; the checkpoint manifest binds both without rewriting raw files.
+
+Most likely cause: R03's managed build command omits per-invocation build-server/shared-compilation/node-reuse controls while its command wrapper requires no surviving process group. The installed SDK defaults shared compilation to true, and the prior R02 helper already disables it. The original receipt proves group survival but captures no child identity; the exact survivor executable remains uncertain. This is a runner integration failure, not evidence of a failing product assertion. See `RETURN_TO_WEB.md` for an actionable Primary repair direction.
+
+Bounded Local fixes: none. Independent validations that could still run completed inside the one batch, including final authority and sealing. No downstream execution was forced. R03 full-stage review is NotEligible/NotRun. Full legacy, broader method/delegate/generic/interface/stack-trace, startup/capacity/performance/memory and PureInterpreter qualification remain outside this focused result. `R03Accepted=false`, `H2Passed=false`, `pureInterpreterExpansionEnabled=false`, `fullLegacyRegressionAcceptance=false`.
+
+Earlier A–I/H1 checkpoints and raw classifications were preserved; I result/index/archive hashes were reauthenticated unchanged. R02 is now accepted under its separately committed owner decision, with its historical execution-time false flags untouched. Only Local-owned reports/new checkpoint are changed in this return. **Exit: Local Validation → Primary Implementation. Stop; a new exact source handoff and unused output root are required before another batch.**
+
+## Historical run — 2026-09-29, batch I passed independent R02 stage review
 
 **Local Validation: `EvidenceReadyForStageReview`; 34/34 cells Passed.** One fresh `R02LocalBatch-v1` ran in the previously unused `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/` with `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1`. Candidate demo `19b0adcf0a1f376f16eaebf16558d0dcdfdafe6f` and matched control demo `21c689732cd8087f8ee8fdce4e52a8f2a655f722` matched pushed remote tips. Both use HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` and package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`; candidate IL2CPP is `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, control IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. All eight worktrees were clean at entry and postrun, and remote tips were rechecked. Source anchor `a81bb0d7b886fe941ba4b132296a30dcf4a319cc` differs by exactly nine metadata paths and zero non-metadata paths; candidate/control share 1,669 non-metadata demo blobs. See `SOURCE_PREFLIGHT.json` in the new checkpoint.
 

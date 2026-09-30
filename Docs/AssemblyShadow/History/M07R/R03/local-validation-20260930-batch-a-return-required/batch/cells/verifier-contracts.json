@@ -1,0 +1,32 @@
+{
+  "dependencies": [
+    "entry-authority"
+  ],
+  "evidence": {
+    "commandReceipt": {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "endedUtcEpoch": 1790779645.945993,
+      "exitCode": 0,
+      "pid": 90240,
+      "remainingProcessGroup": false,
+      "startedUtcEpoch": 1790779645.623899,
+      "stderrSha256": "a08c7da7d0480abcfc594a02e26ebb4dfa39116b53513ce8bf1b0dd1836d7e3d",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    "scope": "Synthetic verifier/filesystem contracts, not Player evidence"
+  },
+  "id": "verifier-contracts",
+  "result": "Passed"
+}
