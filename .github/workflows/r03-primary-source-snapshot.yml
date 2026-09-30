@@ -1,0 +1,90 @@
+name: R03 pinned source snapshot
+on:
+  push:
+    branches: [codex/smoke-r03-start-20260930-0624-b84e]
+    paths: [.github/workflows/r03-primary-source-snapshot.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: b901da42cc0b7433af8f24d5ec3bae8f1a124ebd
+          path: sources/hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: |
+            Docs/AssemblyShadow/Plan
+            Docs/AssemblyShadow/Handoff
+            Docs/AssemblyShadow/Architecture
+            Tools/AssemblyShadow
+            Assets
+            Packages
+            ProjectSettings
+            .github
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr
+          ref: 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad
+          path: sources/hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: b936a495ade1691ebb6f3bab8fdff3ef34f6f192
+          path: sources/hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c
+          path: sources/il2cpp_plus
+          persist-credentials: false
+      - name: Export tracked source bytes and identities
+        shell: python
+        run: |
+          import hashlib, json, pathlib, shutil, subprocess
+          pins = {
+              'hybridclr_demo': 'b901da42cc0b7433af8f24d5ec3bae8f1a124ebd',
+              'hybridclr': '1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad',
+              'hybridclr_unity': 'b936a495ade1691ebb6f3bab8fdff3ef34f6f192',
+              'il2cpp_plus': 'a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c',
+          }
+          allowed = ('.cs', '.csproj', '.sln', '.asmdef', '.asmref', '.meta', '.md', '.txt', '.json', '.py', '.ps1', '.sh', '.yml', '.yaml', '.h', '.hpp', '.cpp', '.c', '.inc', '.xml', '.rsp', '.dll', '.config', '.props', '.targets')
+          output = pathlib.Path('export'); output.mkdir()
+          entries = []
+          for repo, pin in pins.items():
+              root = pathlib.Path('sources') / repo
+              actual = subprocess.check_output(['git', '-C', str(root), 'rev-parse', 'HEAD'], text=True).strip()
+              if actual != pin:
+                  raise RuntimeError('Source identity mismatch: ' + repo)
+              paths = subprocess.check_output(['git', '-C', str(root), 'ls-files', '-z']).decode().split('\0')
+              for relative in paths:
+                  if not relative or not relative.endswith(allowed):
+                      continue
+                  source = root / relative
+                  if not source.is_file() or source.is_symlink():
+                      continue
+                  data = source.read_bytes()
+                  if len(data) > 16777216:
+                      raise RuntimeError('Unexpected large source: ' + str(source))
+                  blob = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+                  expected = subprocess.check_output(['git', '-C', str(root), 'rev-parse', 'HEAD:' + relative], text=True).strip()
+                  if blob != expected:
+                      raise RuntimeError('Tracked byte mismatch: ' + str(source))
+                  destination = output / repo / relative
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(data)
+                  entries.append({'repository': repo, 'path': relative, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(), 'gitBlob': blob})
+          (output / 'SOURCE_MANIFEST.json').write_text(json.dumps({'schema': 'R03PinnedSourceSnapshot-v1', 'pins': pins, 'files': entries}, indent=2) + '\n')
+          print('Exported', len(entries), 'verified tracked files from four pinned repositories.')
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r03-pinned-source-b901da42
+          path: export
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
