@@ -31,6 +31,7 @@ jobs:
               output.write('package='+p['hybridclr_unity']+'\nphase='+p['phase']+'\n')
           PY
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        id: package
         with:
           repository: night-outlook/hybridclr_unity
           ref: ${{ steps.pins.outputs.package }}
@@ -42,9 +43,23 @@ jobs:
           R03_PHASE: ${{ steps.pins.outputs.phase }}
         run: |
           dotnet --info
-          dotnet run --project hybridclr_demo/Tools/AssemblyShadow/R03/HostTests/HostTests.csproj -c Release -- --phase "$R03_PHASE" --output "$RUNNER_TEMP/r03-evolution"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/HostTests/HostTests.csproj -c Release --output "$RUNNER_TEMP/r03-bin/graph" -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-obj/graph/"
+          dotnet "$RUNNER_TEMP/r03-bin/graph/HostTests.dll" --phase "$R03_PHASE" --output "$RUNNER_TEMP/r03-evolution"
+      - name: Execute production admission and method contracts
+        if: always() && steps.package.outcome == 'success' && steps.pins.outputs.phase == 'candidate'
+        shell: bash
+        run: |
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/AdmissionTests/AdmissionTests.csproj -c Release --output "$RUNNER_TEMP/r03-bin/admission" -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-obj/admission/"
+          dotnet "$RUNNER_TEMP/r03-bin/admission/AdmissionTests.dll" --output "$RUNNER_TEMP/r03-evolution/admission"
+      - name: Source integrity and call-site inventory
+        if: always() && steps.package.outcome == 'success'
+        shell: bash
+        run: |
           git -C hybridclr_demo diff --exit-code
           git -C hybridclr_unity diff --exit-code
+          mkdir -p "$RUNNER_TEMP/r03-evolution/review-inputs"
+          git -C hybridclr_unity grep -n -E '\.(ReverseClosure|LoadOrder)\(' -- Editor > "$RUNNER_TEMP/r03-evolution/review-inputs/graph-call-sites.txt"
+          cat "$RUNNER_TEMP/r03-evolution/review-inputs/graph-call-sites.txt"
       - name: Record source and artifact provenance
         if: always()
         shell: bash
