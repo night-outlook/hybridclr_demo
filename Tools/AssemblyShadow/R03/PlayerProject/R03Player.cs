@@ -69,7 +69,6 @@ namespace AssemblyShadow.R03.Player
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_ObserveMethod(string assembly, string namespaze, string type, string method,
             int oldGuard, [Out] byte[] output, int capacity);
-
         private static bool started;
         private static readonly List<Step> Steps = new List<Step>();
         private static Result result;
@@ -117,9 +116,9 @@ namespace AssemblyShadow.R03.Player
                     result.phase = "Completed";
                     return;
                 }
-                // This fixed test bootstrap touches no fixture type before this
-                // registration. It tests R03 semantics, not the full production
-                // early-startup or deployment-admission contract.
+                // This fixed test bootstrap touches no fixture type before
+                // registration. It does not prove production early startup or
+                // authorize these deliberately invalid deployment inputs.
                 if (!Call("Configure", () => AssemblyShadowRuntime.ConfigureCandidates(request.baselineId, request.candidates, request.stable))) return;
                 if (!Call("Begin", () => AssemblyShadowRuntime.BeginTransaction("R03-" + request.runId, request.baselineId,
                     request.dlls.Select(d => d.name).ToArray(), 2))) return;
@@ -173,7 +172,7 @@ namespace AssemblyShadow.R03.Player
                     using (var stream = new FileStream(outputPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
                     using (var writer = new StreamWriter(stream, new UTF8Encoding(false)))
                         writer.Write(JsonUtility.ToJson(result, true) + "\n");
-                    Application.Quit(0); // A separate strict verifier decides the outcome.
+                    Application.Quit(0); // Recording success is not test acceptance.
                 }
                 catch (Exception error) { UnityEngine.Debug.LogException(error); Application.Quit(2); }
             }
@@ -195,6 +194,11 @@ namespace AssemblyShadow.R03.Player
             result.invocationResult = (int)method.Invoke(instance, null);
             result.delegateResult = ((Func<int>)Delegate.CreateDelegate(typeof(Func<int>), instance, method))();
             string info;
+            // Fixed preparation, not a retry-until-passing loop: warm the native
+            // diagnostic marshalling and perform eight allocations before the
+            // measured 10,000-allocation interval. Both cores use this same code.
+            AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info);
+            for (int preparation = 0; preparation < 8; ++preparation) instance = Activator.CreateInstance(type);
             if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)
                 result.beforeWarm = info;
             for (int i = 0; i < 10000; ++i)
