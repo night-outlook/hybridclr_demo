@@ -1,0 +1,930 @@
+{
+  "cells": [
+    {
+      "cellId": "parameters/H1R-P01-a/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/001-parameters-H1R-P01-a-Ordinary-ON-Debug/verification.json",
+        "sha256": "66c50ecd7aeb58cb84733cfd9454f728fc61571391c6a2ed93c7118c5b842b12"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-a/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/002-parameters-H1R-P01-a-Ordinary-ON-Release/verification.json",
+        "sha256": "c9299f887d336d1d443861217848155268860eee9c35471818e3277179c483f7"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-a/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/003-parameters-H1R-P01-a-Ordinary-OFF-Debug/verification.json",
+        "sha256": "3d5464c52dc675e7c0fde3e03c10bb0c3044e14e8a7193713046b5bc617b2227"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-a/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/004-parameters-H1R-P01-a-Ordinary-OFF-Release/verification.json",
+        "sha256": "11de8e902d92278400da485981f8c534626ee79032f4191d86e21fa16a3970b6"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-a/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/005-parameters-H1R-P01-a-Shadow-ON-Debug/verification.json",
+        "sha256": "dd732e28f070ac3e10d07a09e37a19cdd0d797f6e74b943c73d14e26a63268f1"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-a/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/006-parameters-H1R-P01-a-Shadow-ON-Release/verification.json",
+        "sha256": "57b4d5c4f253f9c3a40eaa6b7449ec8ac70f3eb7363240a7b10130f6bc73093d"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-b/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/007-parameters-H1R-P01-b-Ordinary-ON-Debug/verification.json",
+        "sha256": "223861aecdd83f5ee9c6404e81f5592b5643a4beb5721aace455f0b4de99e71e"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-b/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/008-parameters-H1R-P01-b-Ordinary-ON-Release/verification.json",
+        "sha256": "2d3345129ba04c651d6f004213981e7eeed561474343cee5dc22710615a09dd2"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-b/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/009-parameters-H1R-P01-b-Ordinary-OFF-Debug/verification.json",
+        "sha256": "de886d3c64eeb0b8cde35eac1b82f0d9d3a225d1c70aa90de67500ddb250470f"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-b/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/010-parameters-H1R-P01-b-Ordinary-OFF-Release/verification.json",
+        "sha256": "8fb6735d05b2e50fbafc1a0850b8894e6fa003847790dfc0646e83b90433fb1c"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-b/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/011-parameters-H1R-P01-b-Shadow-ON-Debug/verification.json",
+        "sha256": "703cb482ebd5a2c26815452af7815c0fba2e006694b86721c6a34f86184b2416"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-b/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/012-parameters-H1R-P01-b-Shadow-ON-Release/verification.json",
+        "sha256": "04cf2f5cf71b264c8a16d12449dc04113855ddc2510180d6518ce33046904e8a"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-c/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/013-parameters-H1R-P01-c-Ordinary-ON-Debug/verification.json",
+        "sha256": "9481716c78c07d797b1f8ca6c6b1b6e09b8efdcf8b131539e1ee290bda7aa67a"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-c/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/014-parameters-H1R-P01-c-Ordinary-ON-Release/verification.json",
+        "sha256": "6be96b82eaa0ace40ab669a1c560177bf8fee5c64b4e577eadac0c6fb0cefd30"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-c/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/015-parameters-H1R-P01-c-Ordinary-OFF-Debug/verification.json",
+        "sha256": "baee7fc554738ebf37c4abe71f09c87f2293b9ae54d34de950fd12564cf4d572"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-c/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/016-parameters-H1R-P01-c-Ordinary-OFF-Release/verification.json",
+        "sha256": "9d837b6442a5ca1639116d30b69b5f994ad6d118f878c381087898c2f07c357a"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-c/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/017-parameters-H1R-P01-c-Shadow-ON-Debug/verification.json",
+        "sha256": "d63dc7ca25462384d0bb7324881fea888520db6cfbf3675ba6d5c48aa891780c"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-c/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/018-parameters-H1R-P01-c-Shadow-ON-Release/verification.json",
+        "sha256": "49392c65d74171e52a13eb44903a193a77cbe300ba7976156e6ac91800159324"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-d/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/019-parameters-H1R-P01-d-Ordinary-ON-Debug/verification.json",
+        "sha256": "8005391ec06db419833456050ae2bf5d7437f7d4cbb2ab04ca11af643f5cf149"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-d/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/020-parameters-H1R-P01-d-Ordinary-ON-Release/verification.json",
+        "sha256": "73f1bd848c42dc40c650707a6dc903896114023a05d93ed65db64eeabd3f8267"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-d/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/021-parameters-H1R-P01-d-Ordinary-OFF-Debug/verification.json",
+        "sha256": "5e2085b4021772d9f2034642fabfb7b84f11665104281ffc6aeb05da37dfd7b4"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-d/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/022-parameters-H1R-P01-d-Ordinary-OFF-Release/verification.json",
+        "sha256": "aab46cb94a511ba8bc08919d3d163494e0ce786c38227ee568a0fee724ffce59"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-d/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/023-parameters-H1R-P01-d-Shadow-ON-Debug/verification.json",
+        "sha256": "bf6e149a479f96a98cbd2915fd951eb24d1ffdfd547c76a8869a12ba715493bf"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P01-d/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/024-parameters-H1R-P01-d-Shadow-ON-Release/verification.json",
+        "sha256": "98328e7d7d0922da038c443aae304b93625fc502e126b1aa090a3c523b2e4e92"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-a/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/025-parameters-H1R-P02-a-Ordinary-ON-Debug/verification.json",
+        "sha256": "bb2c0f26b0d76dfec1998863ea670912653f5785b645ea8c1e2a11da63b53f56"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-a/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/026-parameters-H1R-P02-a-Ordinary-ON-Release/verification.json",
+        "sha256": "c78d855fcd771c1bbeba0744fe2ab0800114de0fcb835197fe9dcc4a3678c10d"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-a/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/027-parameters-H1R-P02-a-Ordinary-OFF-Debug/verification.json",
+        "sha256": "e57f003f984da5fbe6681698b6e938582fcb64dd41180e15d0de282651ad6e9d"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-a/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/028-parameters-H1R-P02-a-Ordinary-OFF-Release/verification.json",
+        "sha256": "bf14fa9c33f5ad8e85117356724187f423fc3515f8d3c955e792b1f30bdcc597"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-a/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/029-parameters-H1R-P02-a-Shadow-ON-Debug/verification.json",
+        "sha256": "41a9ca32de443ccaa22f633905f141373fd62161a79f398abc5ce5aa079a7f9c"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-a/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/030-parameters-H1R-P02-a-Shadow-ON-Release/verification.json",
+        "sha256": "2837495049ea4dfb02216d46ea4a7640fbfeec39c88aa9c2ab8f5bc2644a04ca"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-b/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/031-parameters-H1R-P02-b-Ordinary-ON-Debug/verification.json",
+        "sha256": "09536dc5640fd2a4b7974a7dfeb98a23f70b69e774a934d1706dd3cc9441f9ba"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-b/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/032-parameters-H1R-P02-b-Ordinary-ON-Release/verification.json",
+        "sha256": "c2e1263826f4ad77e9fc513ee7573cd62f575a1962e1d47d9ed3bca392168d78"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-b/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/033-parameters-H1R-P02-b-Ordinary-OFF-Debug/verification.json",
+        "sha256": "67a627dd9ccfb63f3942ec97dd677fc6561073cd44939e3ab8bf2db42ac8a13f"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-b/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/034-parameters-H1R-P02-b-Ordinary-OFF-Release/verification.json",
+        "sha256": "ae11efcd125099c62204a93c6993f21de2b8910a1625691c0c7c6da5847dd3c1"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-b/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/035-parameters-H1R-P02-b-Shadow-ON-Debug/verification.json",
+        "sha256": "b12b79d4cf7f5d19951a04076d2aa03a4885172a3c477c2f0590756bbd82f589"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P02-b/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/036-parameters-H1R-P02-b-Shadow-ON-Release/verification.json",
+        "sha256": "9d4ee79be6550b12b3e063614e93319c2e14934df033e33562697db5b50d54a6"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-a/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/037-parameters-H1R-P03-a-Ordinary-ON-Debug/verification.json",
+        "sha256": "665c6e30863d7836604660bf22901b1ebfb6b43981d3cfd6bf0778a069b16780"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-a/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/038-parameters-H1R-P03-a-Ordinary-ON-Release/verification.json",
+        "sha256": "5bb9a0a729072f34894a406ca93f20a8afd6b8a51bb33e58fa5f137d4d8346cf"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-a/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/039-parameters-H1R-P03-a-Ordinary-OFF-Debug/verification.json",
+        "sha256": "fdaae093a1a2fc5d21e812907e26bb02a757ebb119b213f330309e0b5f73bda9"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-a/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/040-parameters-H1R-P03-a-Ordinary-OFF-Release/verification.json",
+        "sha256": "42cb3e4f62314040a116f1a5e21f8ed4e6ab97f55c581cefc0baf95f52bb3841"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-a/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/041-parameters-H1R-P03-a-Shadow-ON-Debug/verification.json",
+        "sha256": "7e96286496443e14daa588baec774c105a7b4171b27128febd4aa989c4b42c2c"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-a/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/042-parameters-H1R-P03-a-Shadow-ON-Release/verification.json",
+        "sha256": "213e774ba5be6932ad9b92000f60904f2d668cff3036ba05e5ced205cf413297"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-b/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/043-parameters-H1R-P03-b-Ordinary-ON-Debug/verification.json",
+        "sha256": "4ab8e83c133274b5c881f3bb0a7f4ba2759b14ec98e5dfa260ba9e32181902db"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-b/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/044-parameters-H1R-P03-b-Ordinary-ON-Release/verification.json",
+        "sha256": "0e9c621be9d49875e7a1d81a20ab36dc30470b5f50738700eb6a83ed40ae7997"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-b/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/045-parameters-H1R-P03-b-Ordinary-OFF-Debug/verification.json",
+        "sha256": "ee785dec6f77477f7974cafd1e89c9ca4632bddd5684b5d968160d84431f5139"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-b/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/046-parameters-H1R-P03-b-Ordinary-OFF-Release/verification.json",
+        "sha256": "976dd0673e75194e2484b4e4f3d1bf5b442750058551133521da54ca33642d66"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-b/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/047-parameters-H1R-P03-b-Shadow-ON-Debug/verification.json",
+        "sha256": "c0629f35b03e80c8b6a4494e28352be295f2a297ca30ab2ec59ed33d28c5ddc3"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P03-b/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/048-parameters-H1R-P03-b-Shadow-ON-Release/verification.json",
+        "sha256": "7642a0e74ffd9f49f7ce61dd3bb94d9485283cfaeae0c2ed859e01a549b02777"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-return255/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/049-parameters-H1R-P04-return255-Ordinary-ON-Debug/verification.json",
+        "sha256": "254e18ff3eb4e53ae26fd96baee63c9cdf511b95a14b02a61c11dc7bd9c3942f"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-return255/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/050-parameters-H1R-P04-return255-Ordinary-ON-Release/verification.json",
+        "sha256": "440176e76da597a8b4e255417520aea47d184295bc2c263f3091c4314baedac5"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-return255/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/051-parameters-H1R-P04-return255-Ordinary-OFF-Debug/verification.json",
+        "sha256": "62735de6435f3685c123360af604ee626c0ec08f9fff28cd9692076559eaebb7"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-return255/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/052-parameters-H1R-P04-return255-Ordinary-OFF-Release/verification.json",
+        "sha256": "90370b089e798af3cc54ea87b28cc2ef64400d611bc369602a3253dc89fb4bb3"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-return255/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/053-parameters-H1R-P04-return255-Shadow-ON-Debug/verification.json",
+        "sha256": "216af2d55fdf5629f04ba63e1c171aab3ebf9b9438bbff5322ecb8d6887dffaa"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-return255/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/054-parameters-H1R-P04-return255-Shadow-ON-Release/verification.json",
+        "sha256": "661a16c7a86ffec5625f2110ebd4f5b7c270e83cba3c895910b786ff48d5832f"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-partial-names/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/055-parameters-H1R-P04-partial-names-Ordinary-ON-Debug/verification.json",
+        "sha256": "a2064949e204642cb0e20fdfeb42317a0f47dd058eea74556d5d59e58ba187da"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-partial-names/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/056-parameters-H1R-P04-partial-names-Ordinary-ON-Release/verification.json",
+        "sha256": "3cd41077f9a497cd100b8fb505e1868e96e993b1ba20c685c0eefce73993e5ac"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-partial-names/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/057-parameters-H1R-P04-partial-names-Ordinary-OFF-Debug/verification.json",
+        "sha256": "26b868a6649fa5339a79a46d6dbc51af116aecef1b5f97275a664278eba4bbd9"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-partial-names/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/058-parameters-H1R-P04-partial-names-Ordinary-OFF-Release/verification.json",
+        "sha256": "9bff2832277df810c6ece197d23c8680df9d76e9cfefc940c8d8c20f44367672"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-partial-names/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/059-parameters-H1R-P04-partial-names-Shadow-ON-Debug/verification.json",
+        "sha256": "2c0399ca32daa99fbc92cb84b6bad9884457294ca27cea1b5a1504835f4ff7cc"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-partial-names/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/060-parameters-H1R-P04-partial-names-Shadow-ON-Release/verification.json",
+        "sha256": "bd0b7536a765c9183099c08459f08ae59789bfeac81b866e180608cd403e54d3"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-instance/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/061-parameters-H1R-P04-instance-Ordinary-ON-Debug/verification.json",
+        "sha256": "45bd70715abfb05ea4285c0ddf01d56544744496f7a54784aaf4d6c2bcc37b77"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-instance/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/062-parameters-H1R-P04-instance-Ordinary-ON-Release/verification.json",
+        "sha256": "6d451572783166656731097d46a7debdef57b1055baa1cb90ae2d2fcee01338b"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-instance/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/063-parameters-H1R-P04-instance-Ordinary-OFF-Debug/verification.json",
+        "sha256": "23a100606b5c88826bc3ade2861ffecd41b29340b5fa645cddeb34a26b055dde"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-instance/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/064-parameters-H1R-P04-instance-Ordinary-OFF-Release/verification.json",
+        "sha256": "6ce3866556c1274184cb044c42101eb5c24e2da6f567fd0cb8d15d02f477f960"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-instance/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/065-parameters-H1R-P04-instance-Shadow-ON-Debug/verification.json",
+        "sha256": "3d942089da62543d9677f6ab4f26a8df79507c18214bbcf2f8d7dd5c3caf67e5"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-instance/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/066-parameters-H1R-P04-instance-Shadow-ON-Release/verification.json",
+        "sha256": "9ff6b5c97d48625e76039240c971a389823e7ed1a4cc1a0b0e49ca8571b72920"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-mixed-kinds/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/067-parameters-H1R-P04-mixed-kinds-Ordinary-ON-Debug/verification.json",
+        "sha256": "188f631517c72caa69844227a98587e79966b1b86a28e1149e735947b044996f"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-mixed-kinds/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/068-parameters-H1R-P04-mixed-kinds-Ordinary-ON-Release/verification.json",
+        "sha256": "34a55ea0853263d602a2aa5b25dbbd91eb3d24aac34eccca66d02cf495b7447d"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-mixed-kinds/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/069-parameters-H1R-P04-mixed-kinds-Ordinary-OFF-Debug/verification.json",
+        "sha256": "fe6f7d34444b788d6594ad3503a7ca61be7a08f5318a6438c5560af59f9014b9"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-mixed-kinds/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/070-parameters-H1R-P04-mixed-kinds-Ordinary-OFF-Release/verification.json",
+        "sha256": "2640936c724d88725203220f6a00b18ea44636003c0ceda0bb694f7cfc7bd72e"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-mixed-kinds/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/071-parameters-H1R-P04-mixed-kinds-Shadow-ON-Debug/verification.json",
+        "sha256": "67bc37be8cca8746416e478330fa0270b1b0d219362b61616219484c5972e006"
+      }
+    },
+    {
+      "cellId": "parameters/H1R-P04-mixed-kinds/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/072-parameters-H1R-P04-mixed-kinds-Shadow-ON-Release/verification.json",
+        "sha256": "4653134aa666690dae3b55961b7c3f41082b69f973c6f9350dde1665404077bc"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-a/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/073-nested-H1R-N01-a-Ordinary-ON-Debug/verification.json",
+        "sha256": "8a66abb496d68c4394ed395ab5c8e9c7207a9aa2642048430e6443ca00c65ab7"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-a/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/074-nested-H1R-N01-a-Ordinary-ON-Release/verification.json",
+        "sha256": "b9c9868d39dcd084a23d5eebecce09c3bdc358a50c4a3e467ed73096c0775a8a"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-a/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/075-nested-H1R-N01-a-Ordinary-OFF-Debug/verification.json",
+        "sha256": "c6793676da07b9efefec85077714ddb824520c6cf14e2b5b312aa5756f7bc5c2"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-a/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/076-nested-H1R-N01-a-Ordinary-OFF-Release/verification.json",
+        "sha256": "cfb3ac0adbf7f6239b6217ee5246f1d33e38b7c9ae9c891f1554e5ef40956aba"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-a/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/077-nested-H1R-N01-a-Shadow-ON-Debug/verification.json",
+        "sha256": "114556aa0d069d0c51b24cdbc8e44095b74e8013f386831169157531503cbf08"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-a/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/078-nested-H1R-N01-a-Shadow-ON-Release/verification.json",
+        "sha256": "32d72ca50296ca43e5a446f574bc30a09df90ec0effff038ceee739b41736e4a"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-b/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/079-nested-H1R-N01-b-Ordinary-ON-Debug/verification.json",
+        "sha256": "a3c392e311c76a875cec222b01d2126090e3bfbbe11444c645447164a231b216"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-b/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/080-nested-H1R-N01-b-Ordinary-ON-Release/verification.json",
+        "sha256": "c3e22daea19c3d999764dd4c730b4068ed11b708ef6c37d7d0fdcac86b1be3f0"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-b/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/081-nested-H1R-N01-b-Ordinary-OFF-Debug/verification.json",
+        "sha256": "96def477d0b8faf72e9b109431909a86c9bf0d99fe4930845aa60fef8ab0309c"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-b/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/082-nested-H1R-N01-b-Ordinary-OFF-Release/verification.json",
+        "sha256": "6bc8a0e54435ae19cd8b1f45219f452c2c6031ebc858209966716618c50734ae"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-b/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/083-nested-H1R-N01-b-Shadow-ON-Debug/verification.json",
+        "sha256": "644238e14076c281f8139402557f7633ec26f779474dcb23c1935d44e629036c"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-b/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/084-nested-H1R-N01-b-Shadow-ON-Release/verification.json",
+        "sha256": "8193bc3bb6cc1ac99afac92215a118fbd435a95cbb379ed8d065e4247dda451d"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-c/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/085-nested-H1R-N01-c-Ordinary-ON-Debug/verification.json",
+        "sha256": "0f82dec7f8f38fc535fee9b2cc8cf8dd9acda238ec8132abb92ede4f97099f5b"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-c/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/086-nested-H1R-N01-c-Ordinary-ON-Release/verification.json",
+        "sha256": "b3eeb719513852a711ad573c6bda0793a930a13d0523a57fa8e1b04f34c4c380"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-c/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/087-nested-H1R-N01-c-Ordinary-OFF-Debug/verification.json",
+        "sha256": "632743b5ab5433a529b1fb0af48299fc49000e0dfaeac9c3b61cd76e6d690ef0"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-c/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/088-nested-H1R-N01-c-Ordinary-OFF-Release/verification.json",
+        "sha256": "2deb851da5bdd5e664e7bfa359dee1c162cc02ea63f320c2bcad35e136bc5790"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-c/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/089-nested-H1R-N01-c-Shadow-ON-Debug/verification.json",
+        "sha256": "26a75e661aed7704b1bd073e49f06f2155dc404788442b60d74e436ee7f8467d"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-c/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/090-nested-H1R-N01-c-Shadow-ON-Release/verification.json",
+        "sha256": "6069a20332ec50b3b62a5e7aebbaac782b07127c306c853fde165d69623f7a79"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-d/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/091-nested-H1R-N01-d-Ordinary-ON-Debug/verification.json",
+        "sha256": "db18ac56037a3a50a0ffe3a62f45e77c912f4a4b4f3c9bef1aed9fc3e2a07c44"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-d/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/092-nested-H1R-N01-d-Ordinary-ON-Release/verification.json",
+        "sha256": "b333a6cb3e150e09f6c66c1a4415afa3b65068de892438ab7d213d23b27711ef"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-d/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/093-nested-H1R-N01-d-Ordinary-OFF-Debug/verification.json",
+        "sha256": "bd156044d144e91749f9d2622f963aceee708eaa0d1146ff124b751f6da86bcd"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-d/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/094-nested-H1R-N01-d-Ordinary-OFF-Release/verification.json",
+        "sha256": "77730b59186538c2ab919cd33665bdb6a70cc22575a287f452e435c6bbfb8b48"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-d/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/095-nested-H1R-N01-d-Shadow-ON-Debug/verification.json",
+        "sha256": "e80a6ede246b2683e8c084a76e630827706b5242621b29dd32be7b5e97565444"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N01-d/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/096-nested-H1R-N01-d-Shadow-ON-Release/verification.json",
+        "sha256": "425c00250a16815df78ae29fbe5912c73f69a91088a20e50de6d7ffef317cc69"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-a/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/097-nested-H1R-N02-a-Ordinary-ON-Debug/verification.json",
+        "sha256": "6359b1420ef2283fe5e3daeb32b065b6d9d49ad7f1aedfda3dfc1319f3e4911c"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-a/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/098-nested-H1R-N02-a-Ordinary-ON-Release/verification.json",
+        "sha256": "f67d459d94ca269cc03b1a5df50d0afda2a9d9fffd44ac700d7573ecb91f7879"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-a/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/099-nested-H1R-N02-a-Ordinary-OFF-Debug/verification.json",
+        "sha256": "eb1385d87eb07ef886e1ac4fa6703ebb7235cdefa21c44298126ef0b531e92ac"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-a/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/100-nested-H1R-N02-a-Ordinary-OFF-Release/verification.json",
+        "sha256": "884e6dbc72391f035d57f14116ec1c31062db025b3dd94f6cdf3b1079301ae24"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-a/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/101-nested-H1R-N02-a-Shadow-ON-Debug/verification.json",
+        "sha256": "e7434e832ee9dbae90ee89078b4dd605a71a46aadc7c13b64a3eba8c64130050"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-a/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/102-nested-H1R-N02-a-Shadow-ON-Release/verification.json",
+        "sha256": "7847d626505f60f0820e799c412351b668b06136a270fe0f82636398d69e5f5a"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-b/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/103-nested-H1R-N02-b-Ordinary-ON-Debug/verification.json",
+        "sha256": "9a358b1bdd208807ab9c51b75494d94da44b27761090a2650577601f41dddffa"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-b/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/104-nested-H1R-N02-b-Ordinary-ON-Release/verification.json",
+        "sha256": "9af4a9cc8ac0f5834ac8fdaa9588266a2b96cbeea432ca71a295c06e16a2395d"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-b/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/105-nested-H1R-N02-b-Ordinary-OFF-Debug/verification.json",
+        "sha256": "07ea0fcab150f2216b30095ce2639d86b7c47d307348f106879ffba9cd66e2a5"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-b/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/106-nested-H1R-N02-b-Ordinary-OFF-Release/verification.json",
+        "sha256": "129d08bb01834411d2ed65a545c5bc1f1ed01597a8693b16f44b33551b1489ea"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-b/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/107-nested-H1R-N02-b-Shadow-ON-Debug/verification.json",
+        "sha256": "8ea1de43105eabbf06338a717f35f8db147a967de84fda939ac3f49aa2662fed"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N02-b/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/108-nested-H1R-N02-b-Shadow-ON-Release/verification.json",
+        "sha256": "67f6c848118d64a90f554970370b68a71d529f21d5e857f0f0283835987c0e12"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N03-interleaved/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/109-nested-H1R-N03-interleaved-Ordinary-ON-Debug/verification.json",
+        "sha256": "3d63ccbfc1651c8ea18f9ec0f65da630b22f797217668ac5d5b42ed7498cfaeb"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N03-interleaved/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/110-nested-H1R-N03-interleaved-Ordinary-ON-Release/verification.json",
+        "sha256": "4519591d61a9486e6452ce74d375f8a26572ee638010152759194a3756fe92df"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N03-interleaved/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/111-nested-H1R-N03-interleaved-Ordinary-OFF-Debug/verification.json",
+        "sha256": "d4836b3704dc2c78c2b34ad74f3ebd5ca54082bb1bac7b595e1803f3b72acf6f"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N03-interleaved/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/112-nested-H1R-N03-interleaved-Ordinary-OFF-Release/verification.json",
+        "sha256": "833a761b2b51698714909a5da7c5e1a8a8c5efd29b7b4fe8f9dee2b5d7989766"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N03-interleaved/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/113-nested-H1R-N03-interleaved-Shadow-ON-Debug/verification.json",
+        "sha256": "0d28f84a3bb852583f84693cd73e737a0ccc513365ad38050a6095f8699c5cbc"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N03-interleaved/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/114-nested-H1R-N03-interleaved-Shadow-ON-Release/verification.json",
+        "sha256": "910624e073863b943e9ff21f7f3dbe34728ab107bbd742ca98a15b294329f486"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-valid/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/115-nested-H1R-N04-adjacent-valid-Ordinary-ON-Debug/verification.json",
+        "sha256": "507b07362fddcc4a586f071ec257396d35b9a3736cce2d3369cf840a9c2556c6"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-valid/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/116-nested-H1R-N04-adjacent-valid-Ordinary-ON-Release/verification.json",
+        "sha256": "9762b05901e53e5fb54f32ffd3835e65775e30d7dde99d7dce4dd492851ef12d"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-valid/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/117-nested-H1R-N04-adjacent-valid-Ordinary-OFF-Debug/verification.json",
+        "sha256": "1e31bb4a4d9ecf6d4e597039623003c5d7c3dbc684e304ff3c09082132482205"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-valid/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/118-nested-H1R-N04-adjacent-valid-Ordinary-OFF-Release/verification.json",
+        "sha256": "d2f57ab19fb22d2dba3c018f1b1fc4d80fefd4062aa97c8b6c974e7d3a1017fc"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-valid/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/119-nested-H1R-N04-adjacent-valid-Shadow-ON-Debug/verification.json",
+        "sha256": "22e5adb136fbd2236596ca67bbeef6abf95d2be1e9f86f85a6166e530c31c0cd"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-valid/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/120-nested-H1R-N04-adjacent-valid-Shadow-ON-Release/verification.json",
+        "sha256": "bcb719df175ad8a09302bcdddcaac868526a6f6f4e39e136f66fbeea899ebbc3"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-overflow/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/121-nested-H1R-N04-adjacent-overflow-Ordinary-ON-Debug/verification.json",
+        "sha256": "d26ef898f4ee994f6001ea8e6db319f8b71f634739bc709b64d80fdfc9d9f9c0"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-overflow/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/122-nested-H1R-N04-adjacent-overflow-Ordinary-ON-Release/verification.json",
+        "sha256": "3c1829dbbbeeaa2fd424a0c59f3e7c2b2c29883c6a36a32ab494c087a42c3f13"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-overflow/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/123-nested-H1R-N04-adjacent-overflow-Ordinary-OFF-Debug/verification.json",
+        "sha256": "da37ee3877bbad2064ff1b81170efef57a8bdbb3991ba1ad0c6cf46e68ff36aa"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-overflow/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/124-nested-H1R-N04-adjacent-overflow-Ordinary-OFF-Release/verification.json",
+        "sha256": "76c3cccd5ebf1a69eb3d1f5c24d70ee04cc6cdf6e7f80e492638ab0aa67a0239"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-overflow/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/125-nested-H1R-N04-adjacent-overflow-Shadow-ON-Debug/verification.json",
+        "sha256": "2a2405b3aa4c555b8e3366f61499d8f53d792b174d3bdeee9038972059d9879b"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N04-adjacent-overflow/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/126-nested-H1R-N04-adjacent-overflow-Shadow-ON-Release/verification.json",
+        "sha256": "db60b83fd4b9ec53d96ceb1c02618e1fa32f06cfed09581503405ebe00c69f76"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N05-final-repeat/Ordinary-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/127-nested-H1R-N05-final-repeat-Ordinary-ON-Debug/verification.json",
+        "sha256": "c03d187675f342261eb2112e2811af16caa19b8251e8a2be546982bea171f595"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N05-final-repeat/Ordinary-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/128-nested-H1R-N05-final-repeat-Ordinary-ON-Release/verification.json",
+        "sha256": "5d125bf1893ab96a3acca5cc05faf929fd6674e7864e00eb561e321311abd5c6"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N05-final-repeat/Ordinary-OFF/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/129-nested-H1R-N05-final-repeat-Ordinary-OFF-Debug/verification.json",
+        "sha256": "d3e235398b3c5af8381dfa6bf96f0bfe4a717e7088cc131d7fa7935f225d44f2"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N05-final-repeat/Ordinary-OFF/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/130-nested-H1R-N05-final-repeat-Ordinary-OFF-Release/verification.json",
+        "sha256": "8bf650c7ea2848b8a878944ffc271c1607de8c6de6383e03960ec32c6867dc6e"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N05-final-repeat/Shadow-ON/Debug",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/131-nested-H1R-N05-final-repeat-Shadow-ON-Debug/verification.json",
+        "sha256": "b1fe3c8839dbc282743c4edc69127326a2ceca4f26fbe919e9bfe0463b6db113"
+      }
+    },
+    {
+      "cellId": "nested/H1R-N05-final-repeat/Shadow-ON/Release",
+      "report": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-count-matrix/132-nested-H1R-N05-final-repeat-Shadow-ON-Release/verification.json",
+        "sha256": "8d7eb49469fd175e3540ab23ce11f31027869c0eb0a3c04d3c5e1f054f8055f9"
+      }
+    }
+  ],
+  "kind": "H1CountResultIndex",
+  "schemaVersion": 1
+}

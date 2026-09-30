@@ -1,6 +1,14 @@
 # Local Validation → Primary Implementation
 
-## Current return: batch H reached controlled Players; five cells failed
+## Current return: batch I 34/34 evidence ready for independent R02 review
+
+One fresh 34-cell `R02LocalBatch-v1` completed from exact pushed candidate demo `19b0adcf0a1f376f16eaebf16558d0dcdfdafe6f` and matched control `21c689732cd8087f8ee8fdce4e52a8f2a655f722`. Candidate native IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c` was freshly built; control IL2CPP stayed `6be7f38bec2fa4677d24efc1a4a1294240789933`. Exact source and remote authority, eight clean owning worktrees, all 34 cells and final authority Passed. The result is `EvidenceReadyForStageReview`, not R02 acceptance. Live root: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/`. Committed checkpoint: `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260929-batch-i-evidence-ready/`.
+
+The previously failing batch-H boundaries now have fresh strict evidence: P01/P03 warm 10,000 allocations pass with 10,002 hits and zero misses/unready/workspace/layout checks; M07 and startup11 strict schema-bridge receipts pass; diagnostic Player has distinct authenticated provenance. The actual host contract, five Editor contracts (1,119/1,119 EditMode), candidate/control controlled builds and M00, eight sidecars, four pilot plus forty formal A/B pairs (88 processes), failure/recovery, 132 count launch/raw/verifier chains, generated-native, lazy/dense and ordinary/mixed capacity all Passed. The full archive/member and live-locator audit passed for 20,111 unique members and 72,826 locators. Result SHA-256 `5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69`; index `16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926`; archive `c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a`. Preserve all A-H/H1 and this I run.
+
+D1/D2 were measured and require disposition before H2. Pair comparability Passed, but performance acceptance is not claimed: P01/P03 first allocation and ON-NoPatch warm allocation regressions remain visible beside major P01/P03 warm gains, with full CPU/memory data in the checkpoint. Independent read-only R02 stage review is pending. No nontrivial Local failure or source repair is returned to Primary at this stage. H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. Do not begin R03.
+
+## Historical return: batch H reached controlled Players; five cells failed
 
 One fresh 34-cell R02LocalBatch-v1 ran once from exact pushed candidate bef8249922ce79623f5156cb20c5afc881d4d4c4 and matched control 2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e. Both use common source anchor af9ba49127a7e852fed504a55c733c5f6ec5e54e. All required remote tips, pins and source authorities passed; final demo checkouts are clean. The complete live root is /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/ and authenticated checkpoint is Docs/AssemblyShadow/History/M07R/R02/local-validation-20260928-batch-h-return-required/. Preserve both and all A/B/C/D/E/F/G/H1 evidence.
 

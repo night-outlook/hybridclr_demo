@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01BTypeCacheNative",
+  "success": true,
+  "result": "Passed",
+  "startedUtc": "2026-09-29T23:46:04.662783+00:00",
+  "commands": [
+    {
+      "phase": "compile-type-cache",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-fsanitize=address",
+        "-fno-omit-frame-pointer",
+        "-I",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/native-tests/r01b-type-cache.cpp",
+        "-o",
+        "/private/tmp/assembly-shadow-r01b-type-cache-gy6m6yr7/r01b-type-cache"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "phase": "run-type-cache",
+      "argv": [
+        "/private/tmp/assembly-shadow-r01b-type-cache-gy6m6yr7/r01b-type-cache"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "exitCode": 0,
+      "stdout": "r01b_type_cache_checks=77 PASS\n",
+      "stderr": ""
+    }
+  ],
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "architecture": "arm64",
+  "roots": {
+    "demo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "native": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr"
+  },
+  "inputs": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/InterpreterTypeCacheInsertion.h": "71cf1f8ad382c3eaae36d3dca77b8ccd4290b69697e63961432200b7306fdb7c",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/InterpreterMetadataIndexCodec.h": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/native-tests/r01b-type-cache.cpp": "68d2b6af123a3136b0d0109a4e346549568683cacaf5289795ca8be7320e5812",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/run-r01b-type-cache-tests.py": "30f0cbbbb42ed08019565800e249b791ca2e53641487e22f365428f2fcda50ee",
+    "/usr/bin/clang++": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818"
+  },
+  "boundary": "The actual production InterpreterTypeCacheInsertion helper is exercised with controlled allocation and map failures, retries, deduplication, amortized growth, and externally serialized concurrent writers. No production translation-unit or Unity/Player acceptance is claimed.",
+  "checkCount": 77,
+  "executableSha256": "1622795a40d1e1382a3ee073e78d816f17540001b4df073323c28cf430e06cf0",
+  "inputsUnchanged": true,
+  "productionContract": "Passed",
+  "finishedUtc": "2026-09-29T23:46:05.470974+00:00"
+}

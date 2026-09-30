@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01EarlyVerification",
+  "result": "PassedBoundedProfile",
+  "acceptance": "R01-Early-BoundedProfile",
+  "milestoneAccepted": false,
+  "requestedModes": [
+    "Control",
+    "OrdinaryFirst",
+    "OrdinaryAfterReserve",
+    "Oversize",
+    "Mismatch",
+    "Type",
+    "Object",
+    "Cctor",
+    "NativeScript",
+    "MetadataFailure",
+    "InitializerFailure"
+  ],
+  "fullModeInventory": [
+    "Control",
+    "OrdinaryFirst",
+    "OrdinaryAfterReserve",
+    "Oversize",
+    "Mismatch",
+    "Type",
+    "Object",
+    "Cctor",
+    "NativeScript",
+    "MetadataFailure",
+    "InitializerFailure",
+    "MetadataFailureContinue",
+    "InitializerFailureContinue",
+    "Baseline"
+  ],
+  "diagnosticOnly": true,
+  "observerPolicy": "At most 16 retained raw samples per phase; discarded queries are counted, not semantically verified.",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a81bb0d7b886fe941ba4b132296a30dcf4a319cc",
+      "localPath": "."
+    }
+  },
+  "launchReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/r01-early-launches.json",
+  "launchReceiptSha256": "24609675c5d1167125abc7147c899be4f760ef7da18ec096ca4d52db6522407e",
+  "modes": [
+    {
+      "mode": "Control",
+      "processId": 63881,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Control/r01-early.json",
+      "m07Receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Control/m07-T07-03-FullClosure-P03.json"
+    },
+    {
+      "mode": "OrdinaryFirst",
+      "processId": 63882,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/OrdinaryFirst/r01-early.json",
+      "m07Receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/OrdinaryFirst/m07-T07-03-FullClosure-P03.json"
+    },
+    {
+      "mode": "OrdinaryAfterReserve",
+      "processId": 63883,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/OrdinaryAfterReserve/r01-early.json",
+      "m07Receipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json"
+    },
+    {
+      "mode": "Oversize",
+      "processId": 63886,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Oversize/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Mismatch",
+      "processId": 63887,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Mismatch/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Type",
+      "processId": 63888,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Type/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Object",
+      "processId": 63889,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Object/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "Cctor",
+      "processId": 63890,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/Cctor/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "NativeScript",
+      "processId": 63891,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/NativeScript/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "MetadataFailure",
+      "processId": 63892,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/MetadataFailure/r01-early.json",
+      "m07Receipt": ""
+    },
+    {
+      "mode": "InitializerFailure",
+      "processId": 63893,
+      "diagnosticProfileComplete": true,
+      "earlyReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-startup11/InitializerFailure/r01-early.json",
+      "m07Receipt": ""
+    }
+  ],
+  "scope": "Requested early modes only. Full R01 acceptance, Baseline handoff, native stack evidence and remaining M07 matrices require separate evidence."
+}

@@ -1,0 +1,77 @@
+{
+  "name": "control-R00-OFF-NoPatch",
+  "dependencies": [
+    "frozen-build-map"
+  ],
+  "result": "Passed",
+  "runtimeAcceptance": false,
+  "startedAtUnix": 1790650807.126988,
+  "inputAuthorities": [
+    {
+      "kind": "R02SourceAuthority",
+      "result": "SourceVerifiedNotBuildAccepted",
+      "role": "control",
+      "demoHead": "21c689732cd8087f8ee8fdce4e52a8f2a655f722",
+      "sourceCommit": "a81bb0d7b886fe941ba4b132296a30dcf4a319cc",
+      "repositories": {
+        "hybridclr_demo": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo",
+          "head": "21c689732cd8087f8ee8fdce4e52a8f2a655f722",
+          "origin": "git@github.com:night-outlook/hybridclr_demo.git",
+          "remoteHead": "21c689732cd8087f8ee8fdce4e52a8f2a655f722"
+        },
+        "hybridclr": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr",
+          "head": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "origin": "git@github.com:night-outlook/hybridclr.git",
+          "remoteHead": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad"
+        },
+        "hybridclr_unity": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_unity",
+          "head": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+          "origin": "git@github.com:night-outlook/hybridclr_unity.git",
+          "remoteHead": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192"
+        },
+        "il2cpp_plus": {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/il2cpp_plus",
+          "head": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+          "origin": "git@github.com:night-outlook/il2cpp_plus.git",
+          "remoteHead": "6be7f38bec2fa4677d24efc1a4a1294240789933"
+        }
+      },
+      "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+          "url": "https://github.com/night-outlook/hybridclr",
+          "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "localPath": "../hybridclr"
+        },
+        "hybridclrUnity": {
+          "url": "https://github.com/night-outlook/hybridclr_unity",
+          "revision": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+          "localPath": "../hybridclr_unity"
+        },
+        "il2cppPlus": {
+          "url": "https://github.com/night-outlook/il2cpp_plus",
+          "revision": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+          "localPath": "../il2cpp_plus"
+        },
+        "demo": {
+          "url": "https://github.com/night-outlook/hybridclr_demo",
+          "revision": "a81bb0d7b886fe941ba4b132296a30dcf4a319cc",
+          "localPath": "."
+        }
+      },
+      "sourcePinBinding": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo/ProjectSettings/AssemblyShadowSourcePins.json",
+        "sha256": "0f70c724076cc42cc71e93bf1fc31e7cafcd64e9e9aaa2cf1a51fd1e6dbdd37a",
+        "sizeBytes": 809
+      },
+      "runtimeAcceptance": false
+    }
+  ],
+  "endedAtUnix": 1790651071.05393
+}

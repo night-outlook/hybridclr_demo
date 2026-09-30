@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01InterpreterImageBudgetNative",
+  "success": true,
+  "result": "Passed",
+  "startedUtc": "2026-09-29T23:46:00.552910+00:00",
+  "commands": [
+    {
+      "phase": "compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address",
+        "-fno-omit-frame-pointer",
+        "-I",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/NativeTests/R01InterpreterImageBudgetTests.cpp",
+        "-o",
+        "/private/tmp/assembly-shadow-r01-budget-uh6k1kp4/r01-interpreter-image-budget-tests"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "exitCode": 0,
+      "durationSeconds": 0.493,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "phase": "tests",
+      "argv": [
+        "/private/tmp/assembly-shadow-r01-budget-uh6k1kp4/r01-interpreter-image-budget-tests"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "exitCode": 0,
+      "durationSeconds": 1.236,
+      "stdout": "r01_budget_checks=2684 PASS\n",
+      "stderr": ""
+    }
+  ],
+  "demoRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "hybridclrRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+  "sourceHash": {
+    "testSource": "7c98a29157dc7954cf2413e910837de556d41b5f5a23c8b27053438048af0f2d",
+    "budgetHeader": "755fcf9848a83ec387956758d3531b4f68fa6551b69b8d24a4f4704dd8cb760d",
+    "runner": "aabbc66aa518cb65100dc598d143cd16710db2a0744234cb652f6f1c5b56bbff"
+  },
+  "compiler": {
+    "path": "/usr/bin/clang++"
+  },
+  "boundary": "C++11 native executable includes the production InterpreterImageBudget header directly; no Python model or IL2CPP dependency is used.",
+  "checkCount": 2684,
+  "executableSha256": "0640e42b062b5fcd1a4a300a7542d2fdd119355c30050c8cbaa3cadf5141dee3",
+  "inputsUnchanged": true,
+  "finishedUtc": "2026-09-29T23:46:02.284132+00:00"
+}

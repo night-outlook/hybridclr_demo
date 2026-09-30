@@ -1,0 +1,63 @@
+{
+  "kind": "R02LocalWarmPathCounterAudit",
+  "result": "Passed",
+  "candidate": [
+    {
+      "mode": "R00-ON-P01",
+      "runId": "7b8c5736d3ff4dc29d1fdeb728ba1cff",
+      "sample": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/sidecars/7b8c5736d3ff4dc29d1fdeb728ba1cff/sample.json",
+        "sha256": "fa8803b0a5df16221cbef17821c2d2701eb7a77cc59cd689c38e09e609dc42e1",
+        "sizeBytes": 1694
+      },
+      "raw": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/sidecars/7b8c5736d3ff4dc29d1fdeb728ba1cff/r02.json",
+        "sha256": "7bb2801b19625e79e39646c6b6b646eeca314087e75137c45dc8d7e6915a8fd6",
+        "sizeBytes": 5968363
+      },
+      "allocationWarm10000Passed": true,
+      "counterDeltas": {
+        "admissionCacheHits": 10002,
+        "admissionCacheMisses": 0,
+        "admissionProofAttempts": 0,
+        "admissionProofRejections": 0,
+        "admissionUnready": 0,
+        "baselineStateChecks": 10000,
+        "fieldWorkspaceBuilds": 0,
+        "interfaceWorkspaceBuilds": 0,
+        "layoutCheckCalls": 0,
+        "definitionSearches": 0,
+        "definitionRowsScanned": 0
+      }
+    },
+    {
+      "mode": "R00-ON-P03",
+      "runId": "a8c5b58926de4600b7e108800a8b7f96",
+      "sample": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/sidecars/a8c5b58926de4600b7e108800a8b7f96/sample.json",
+        "sha256": "5214dd287eb5cbdf0c7e1efaebe73b918598592730e8769eb64cb1ce621011da",
+        "sizeBytes": 1694
+      },
+      "raw": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/sidecars/a8c5b58926de4600b7e108800a8b7f96/r02.json",
+        "sha256": "c3f32e837a2a6a24044390bf1bd013281292209d8a1fa160b2f0713b3a5fb66e",
+        "sizeBytes": 5970021
+      },
+      "allocationWarm10000Passed": true,
+      "counterDeltas": {
+        "admissionCacheHits": 10002,
+        "admissionCacheMisses": 0,
+        "admissionProofAttempts": 0,
+        "admissionProofRejections": 0,
+        "admissionUnready": 0,
+        "baselineStateChecks": 10000,
+        "fieldWorkspaceBuilds": 0,
+        "interfaceWorkspaceBuilds": 0,
+        "layoutCheckCalls": 0,
+        "definitionSearches": 0,
+        "definitionRowsScanned": 0
+      }
+    }
+  ],
+  "runtimeAcceptance": false
+}

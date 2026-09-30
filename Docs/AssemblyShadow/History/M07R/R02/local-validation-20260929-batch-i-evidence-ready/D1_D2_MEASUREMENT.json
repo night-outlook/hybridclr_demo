@@ -1,0 +1,398 @@
+{
+  "kind": "R02LocalD1D2Measurement",
+  "result": "MeasuredDispositionRequiredBeforeH2",
+  "comparability": "ComparabilityPassed",
+  "performanceAcceptance": "NotClaimedPendingReview",
+  "analysis": {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/performance-analysis.json",
+    "sha256": "e1452cdea1f7cfdc9f86d2875c4c77935e06d150b55076e3f16f2677cf8dd440",
+    "sizeBytes": 339213
+  },
+  "controlRole": "A H1-runtime",
+  "candidateRole": "B R02",
+  "statistics": {
+    "R00-OFF-NoPatch": {
+      "formalPairs": 10,
+      "operations": {
+        "allocation": {
+          "first": {
+            "pairedRatioMedian": 0.5237125682151861,
+            "pairedDifferenceMedianSecondsPerIteration": -8.999999999999999e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0,
+            "pairedDifferenceMedianSecondsPerIteration": 0.0
+          },
+          "repeat10": {
+            "pairedRatioMedian": null,
+            "pairedDifferenceMedianSecondsPerIteration": 4.9999999999999985e-09
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0205718008264373,
+            "pairedDifferenceMedianSecondsPerIteration": 9.750000000000005e-10
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "pairedRatioMedian": 0.9637027491408935,
+            "pairedDifferenceMedianSecondsPerIteration": -3.5000000000000004e-07
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0332683120284802,
+            "pairedDifferenceMedianSecondsPerIteration": 3.450000000000005e-08
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.1875,
+            "pairedDifferenceMedianSecondsPerIteration": 3.0000000000000004e-08
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0263890126078066,
+            "pairedDifferenceMedianSecondsPerIteration": 9.615000000000024e-09
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "pairedRatioMedian": 1.005961452263559,
+            "pairedDifferenceMedianSecondsPerIteration": 4.999999999999952e-08
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0104095631593726,
+            "pairedDifferenceMedianSecondsPerIteration": 2.499999999999976e-09
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.0,
+            "pairedDifferenceMedianSecondsPerIteration": 0.0
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0138197309524661,
+            "pairedDifferenceMedianSecondsPerIteration": 7.215000000000002e-09
+          }
+        }
+      },
+      "memory": {
+        "before-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 223592448.0,
+            "candidateMedianBytes": 223248384.0,
+            "candidateMinusControlMiB": -0.328125
+          },
+          "managedBytes": {
+            "controlMedianBytes": 2654208.0,
+            "candidateMedianBytes": 2654208.0,
+            "candidateMinusControlMiB": 0.0
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 286916608.0,
+            "candidateMedianBytes": 286720000.0,
+            "candidateMinusControlMiB": -0.1875
+          }
+        },
+        "after-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 215613440.0,
+            "candidateMedianBytes": 215392256.0,
+            "candidateMinusControlMiB": -0.210938
+          },
+          "managedBytes": {
+            "controlMedianBytes": 964608.0,
+            "candidateMedianBytes": 966656.0,
+            "candidateMinusControlMiB": 0.001953
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 286916608.0,
+            "candidateMedianBytes": 286720000.0,
+            "candidateMinusControlMiB": -0.1875
+          }
+        }
+      }
+    },
+    "R00-ON-NoPatch": {
+      "formalPairs": 10,
+      "operations": {
+        "allocation": {
+          "first": {
+            "pairedRatioMedian": 0.201646787747357,
+            "pairedDifferenceMedianSecondsPerIteration": -9.250000000000001e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0955882352941175,
+            "pairedDifferenceMedianSecondsPerIteration": 6.499999999999999e-09
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.0294117647058822,
+            "pairedDifferenceMedianSecondsPerIteration": 4.999999999999992e-09
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.1585252596093183,
+            "pairedDifferenceMedianSecondsPerIteration": 1.4324999999999991e-08
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "pairedRatioMedian": 1.0431732325957905,
+            "pairedDifferenceMedianSecondsPerIteration": 4.499999999999991e-07
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.135963142650016,
+            "pairedDifferenceMedianSecondsPerIteration": 1.2950000000000004e-07
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.1024150268336315,
+            "pairedDifferenceMedianSecondsPerIteration": 8.499999999999998e-08
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.101003816698183,
+            "pairedDifferenceMedianSecondsPerIteration": 9.798000000000003e-08
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "pairedRatioMedian": 0.9208054502942835,
+            "pairedDifferenceMedianSecondsPerIteration": -1.2500000000000007e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0885464231817368,
+            "pairedDifferenceMedianSecondsPerIteration": 1.1399999999999988e-07
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.093265503875969,
+            "pairedDifferenceMedianSecondsPerIteration": 1.2000000000000012e-07
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0708007688478656,
+            "pairedDifferenceMedianSecondsPerIteration": 1.0764999999999993e-07
+          }
+        }
+      },
+      "memory": {
+        "before-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 229711872.0,
+            "candidateMedianBytes": 227713024.0,
+            "candidateMinusControlMiB": -1.90625
+          },
+          "managedBytes": {
+            "controlMedianBytes": 4141056.0,
+            "candidateMedianBytes": 4139008.0,
+            "candidateMinusControlMiB": -0.001953
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 289529856.0,
+            "candidateMedianBytes": 289849344.0,
+            "candidateMinusControlMiB": 0.304688
+          }
+        },
+        "after-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 227573760.0,
+            "candidateMedianBytes": 227713024.0,
+            "candidateMinusControlMiB": 0.132812
+          },
+          "managedBytes": {
+            "controlMedianBytes": 5992448.0,
+            "candidateMedianBytes": 5988352.0,
+            "candidateMinusControlMiB": -0.003906
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 289529856.0,
+            "candidateMedianBytes": 289849344.0,
+            "candidateMinusControlMiB": 0.304688
+          }
+        }
+      }
+    },
+    "R00-ON-P01": {
+      "formalPairs": 10,
+      "operations": {
+        "allocation": {
+          "first": {
+            "pairedRatioMedian": 1.2470352256335406,
+            "pairedDifferenceMedianSecondsPerIteration": 1.8900000000000005e-05
+          },
+          "warmup": {
+            "pairedRatioMedian": 0.086184291596219,
+            "pairedDifferenceMedianSecondsPerIteration": -5.1255e-06
+          },
+          "repeat10": {
+            "pairedRatioMedian": 0.11563602707236653,
+            "pairedDifferenceMedianSecondsPerIteration": -5.199999999999999e-06
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 0.08332225810537669,
+            "pairedDifferenceMedianSecondsPerIteration": -5.590995e-06
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "pairedRatioMedian": 0.5474661774822289,
+            "pairedDifferenceMedianSecondsPerIteration": -5.249999999999999e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.072320582611526,
+            "pairedDifferenceMedianSecondsPerIteration": 1.255e-07
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.0314482029598309,
+            "pairedDifferenceMedianSecondsPerIteration": 5.499999999999979e-08
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0456556553655674,
+            "pairedDifferenceMedianSecondsPerIteration": 8.029500000000018e-08
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "pairedRatioMedian": 0.8784883720930232,
+            "pairedDifferenceMedianSecondsPerIteration": -1.5e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0549016689804238,
+            "pairedDifferenceMedianSecondsPerIteration": 1.284999999999999e-07
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.0724119743925504,
+            "pairedDifferenceMedianSecondsPerIteration": 1.6999999999999985e-07
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.067600367798271,
+            "pairedDifferenceMedianSecondsPerIteration": 1.6438000000000015e-07
+          }
+        }
+      },
+      "memory": {
+        "before-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 242974720.0,
+            "candidateMedianBytes": 243425280.0,
+            "candidateMinusControlMiB": 0.429688
+          },
+          "managedBytes": {
+            "controlMedianBytes": 12675072.0,
+            "candidateMedianBytes": 12664832.0,
+            "candidateMinusControlMiB": -0.009766
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 294739968.0,
+            "candidateMedianBytes": 294674432.0,
+            "candidateMinusControlMiB": -0.0625
+          }
+        },
+        "after-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 243187712.0,
+            "candidateMedianBytes": 243539968.0,
+            "candidateMinusControlMiB": 0.335938
+          },
+          "managedBytes": {
+            "controlMedianBytes": 14548992.0,
+            "candidateMedianBytes": 14557184.0,
+            "candidateMinusControlMiB": 0.007812
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 294739968.0,
+            "candidateMedianBytes": 294674432.0,
+            "candidateMinusControlMiB": -0.0625
+          }
+        }
+      }
+    },
+    "R00-ON-P03": {
+      "formalPairs": 10,
+      "operations": {
+        "allocation": {
+          "first": {
+            "pairedRatioMedian": 1.2390253853705806,
+            "pairedDifferenceMedianSecondsPerIteration": 1.7699999999999997e-05
+          },
+          "warmup": {
+            "pairedRatioMedian": 0.08752356385624348,
+            "pairedDifferenceMedianSecondsPerIteration": -5.174e-06
+          },
+          "repeat10": {
+            "pairedRatioMedian": 0.11622827648457265,
+            "pairedDifferenceMedianSecondsPerIteration": -5.28e-06
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 0.08598112142664949,
+            "pairedDifferenceMedianSecondsPerIteration": -5.603634999999999e-06
+          }
+        },
+        "reflectionInvoke": {
+          "first": {
+            "pairedRatioMedian": 0.6544035674470456,
+            "pairedDifferenceMedianSecondsPerIteration": -3.999999999999999e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.0282324572800277,
+            "pairedDifferenceMedianSecondsPerIteration": 4.9999999999999945e-08
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.0238664215686275,
+            "pairedDifferenceMedianSecondsPerIteration": 4.0000000000000146e-08
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0730931623587447,
+            "pairedDifferenceMedianSecondsPerIteration": 1.309000000000001e-07
+          }
+        },
+        "closedGeneric": {
+          "first": {
+            "pairedRatioMedian": 0.8592573839662447,
+            "pairedDifferenceMedianSecondsPerIteration": -2.3500000000000004e-06
+          },
+          "warmup": {
+            "pairedRatioMedian": 1.105632761822402,
+            "pairedDifferenceMedianSecondsPerIteration": 2.51e-07
+          },
+          "repeat10": {
+            "pairedRatioMedian": 1.0550507469836232,
+            "pairedDifferenceMedianSecondsPerIteration": 1.3999999999999993e-07
+          },
+          "repeat10000": {
+            "pairedRatioMedian": 1.0670918934993647,
+            "pairedDifferenceMedianSecondsPerIteration": 1.7029499999999995e-07
+          }
+        }
+      },
+      "memory": {
+        "before-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 247652352.0,
+            "candidateMedianBytes": 247013376.0,
+            "candidateMinusControlMiB": -0.609375
+          },
+          "managedBytes": {
+            "controlMedianBytes": 13127680.0,
+            "candidateMedianBytes": 13111296.0,
+            "candidateMinusControlMiB": -0.015625
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 294027264.0,
+            "candidateMedianBytes": 293150720.0,
+            "candidateMinusControlMiB": -0.835938
+          }
+        },
+        "after-benchmark": {
+          "currentRssBytes": {
+            "controlMedianBytes": 244711424.0,
+            "candidateMedianBytes": 245112832.0,
+            "candidateMinusControlMiB": 0.382812
+          },
+          "managedBytes": {
+            "controlMedianBytes": 15003648.0,
+            "candidateMedianBytes": 15001600.0,
+            "candidateMinusControlMiB": -0.001953
+          },
+          "lifetimePeakRssBytes": {
+            "controlMedianBytes": 294027264.0,
+            "candidateMedianBytes": 293150720.0,
+            "candidateMinusControlMiB": -0.835938
+          }
+        }
+      }
+    }
+  },
+  "interpretation": "P01/P03 warm allocation repeat10000 improved while first allocation regressed; ON NoPatch repeat10000 and several reflection/closed-generic phases regressed. Current RSS, managed bytes, and lifetime peak show mixed small median deltas. No SLA or R02 acceptance is claimed; independent review and D1/D2 disposition remain required before H2.",
+  "R02Accepted": false,
+  "mayEnterR03": false
+}

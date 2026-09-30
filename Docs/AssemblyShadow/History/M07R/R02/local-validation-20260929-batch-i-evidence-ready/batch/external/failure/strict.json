@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 3,
+  "kind": "R01FailureVerification",
+  "result": "Passed",
+  "launchReceipt": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-failure/r01-failure-launches.json",
+  "launchReceiptSha256": "d56e654b6546eab2b937574c4ace3d322596cc125c390830d7d2273c1405ef04",
+  "sourcePins": {
+    "schemaVersion": 1,
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "hybridclr": {
+      "url": "https://github.com/night-outlook/hybridclr",
+      "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+      "localPath": "../hybridclr"
+    },
+    "hybridclrUnity": {
+      "url": "https://github.com/night-outlook/hybridclr_unity",
+      "revision": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+      "localPath": "../hybridclr_unity"
+    },
+    "il2cppPlus": {
+      "url": "https://github.com/night-outlook/il2cpp_plus",
+      "revision": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c",
+      "localPath": "../il2cpp_plus"
+    },
+    "demo": {
+      "url": "https://github.com/night-outlook/hybridclr_demo",
+      "revision": "a81bb0d7b886fe941ba4b132296a30dcf4a319cc",
+      "localPath": "."
+    }
+  },
+  "transactionOwnership": "EarliestStartup",
+  "modes": [
+    {
+      "mode": "R01-Failure-P03-Control",
+      "result": "Passed",
+      "processId": 64215,
+      "earlyMode": "Control",
+      "postHostState": "Committed",
+      "earlyBinding": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-failure/EarlyTransactions/R01-Failure-P03-Control.binding.json",
+      "earlyBindingSha256": "fe7c116a8a15d44c20dca92f240706875f1e1d3407f35053b04af87c2cbe255e"
+    },
+    {
+      "mode": "R01-Failure-Q04-Metadata",
+      "result": "Passed",
+      "processId": 64221,
+      "earlyMode": "MetadataFailureContinue",
+      "postHostState": "Failed",
+      "earlyBinding": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-failure/EarlyTransactions/R01-Failure-Q04-Metadata.binding.json",
+      "earlyBindingSha256": "2c6f6668f7c2b1217fe79b4af3b5b7bcf0fb5ca28db0ab0270ac0c8c004c70b0"
+    },
+    {
+      "mode": "R01-Failure-InitializerThrow",
+      "result": "Passed",
+      "processId": 64222,
+      "earlyMode": "InitializerFailureContinue",
+      "postHostState": "FailedAfterCommit",
+      "earlyBinding": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02-c67959d1a3724107824ae1153d152de0-failure/EarlyTransactions/R01-Failure-InitializerThrow.binding.json",
+      "earlyBindingSha256": "ff4306acd8b2f7e055b40b53097527c0bf867a61de489045dba68e66e5222408"
+    }
+  ]
+}

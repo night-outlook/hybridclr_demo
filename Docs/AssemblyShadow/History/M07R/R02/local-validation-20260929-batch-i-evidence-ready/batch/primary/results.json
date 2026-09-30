@@ -1,0 +1,146 @@
+{
+  "kind": "R02PrimaryValidation",
+  "result": "Passed",
+  "cells": [
+    {
+      "cell": "source",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/source-command/command.json",
+        "sha256": "a70501661c0a59284ee9ea868992f8e4925cda29b02a1902bd8382e35290afc9",
+        "sizeBytes": 1197
+      }
+    },
+    {
+      "cell": "native",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/native-command/command.json",
+        "sha256": "6a14725a8d71983619df58bbdc324f81fb59013e9a58291dd27f2e3b6caecb03",
+        "sizeBytes": 1190
+      }
+    },
+    {
+      "cell": "revision",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/revision-command/command.json",
+        "sha256": "34f3aaa0fdcb13494d46dd92ab0ab23f9b4564f7914b002ecf65e4189ddf9240",
+        "sizeBytes": 1205
+      }
+    },
+    {
+      "cell": "codec-storage",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/codec-storage-command/command.json",
+        "sha256": "15ed96eeea594d5b95b7bcbd31d66a9d9303412684f74c2279691f6fa4504133",
+        "sizeBytes": 1301
+      }
+    },
+    {
+      "cell": "python",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/python-command/command.json",
+        "sha256": "73c5383321ed2a3ea434e3d99ac20f5f5b580be157b3e85b1667c4bfa95f8df5",
+        "sizeBytes": 1103
+      }
+    },
+    {
+      "cell": "managed-Baseline",
+      "result": "Passed",
+      "unityPlayerRun": false,
+      "build": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-Baseline-build/command.json",
+        "sha256": "f8932142e54451b5d3f5674003629e8c5f1fb0c4bbc184e42dd37ff6e2df9013",
+        "sizeBytes": 1639
+      },
+      "assembly": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-bin-Baseline/ManagedTests.dll",
+        "sha256": "2755fcc4c094e122e4c31ff9630933602c96b297c336e4b1b1171ec350c1eb18",
+        "sizeBytes": 26624
+      },
+      "run": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-Baseline-run/command.json",
+        "sha256": "8900ace5e15b10ceb3ec645a786a460160aac5e6b190fefed38dbf1fd6cedb31",
+        "sizeBytes": 1154
+      },
+      "assertions": {
+        "kind": "R02ManagedHostTests",
+        "result": "Passed",
+        "checks": 102,
+        "marker": 3000,
+        "unityPlayerRun": false
+      },
+      "runResult": "Passed"
+    },
+    {
+      "cell": "managed-P01",
+      "result": "Passed",
+      "unityPlayerRun": false,
+      "build": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-P01-build/command.json",
+        "sha256": "c656e329257bf620069ee3f041e362c687e4b3e918301e3066cd002f71ea497f",
+        "sizeBytes": 1634
+      },
+      "assembly": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-bin-P01/ManagedTests.dll",
+        "sha256": "012e3185a6433a6f116a30be12f9ea4ef79cdf445ee0f89d36caa7721c5fc8d6",
+        "sizeBytes": 26624
+      },
+      "run": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-P01-run/command.json",
+        "sha256": "5013c35556aab0af08c084e5f96f52d39162fbc5c257b9f41f8c8e7df3eb1236",
+        "sizeBytes": 1139
+      },
+      "assertions": {
+        "kind": "R02ManagedHostTests",
+        "result": "Passed",
+        "checks": 111,
+        "marker": 3001,
+        "unityPlayerRun": false
+      },
+      "runResult": "Passed"
+    },
+    {
+      "cell": "managed-P03",
+      "result": "Passed",
+      "unityPlayerRun": false,
+      "build": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-P03-build/command.json",
+        "sha256": "412a50b2deabc2ed51240d9022ce8294a6000a332637a1a2462ec528ee8ddc9c",
+        "sizeBytes": 1634
+      },
+      "assembly": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-bin-P03/ManagedTests.dll",
+        "sha256": "2860dab11c85b3120161a7fa63544a9a62d1d1ce2917e215f0a6836e60deb81c",
+        "sizeBytes": 26624
+      },
+      "run": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/managed-P03-run/command.json",
+        "sha256": "b5f5b85d07c302c11b1fe17e5383bf64e80c5618aa4765c43347c129d003effa",
+        "sizeBytes": 1138
+      },
+      "assertions": {
+        "kind": "R02ManagedHostTests",
+        "result": "Passed",
+        "checks": 111,
+        "marker": 3003,
+        "unityPlayerRun": false
+      },
+      "runResult": "Passed"
+    },
+    {
+      "cell": "type-resolution-contract",
+      "result": "Passed",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/primary/type-resolution-contract-command/command.json",
+        "sha256": "8ca0031cc40fb3f62fc7ae3c3a306ecc8a35e47f97cabf41b68a6fa378ee5ac6",
+        "sizeBytes": 1555
+      }
+    }
+  ],
+  "unityPlayerRun": false,
+  "runtimeAcceptance": false
+}

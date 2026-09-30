@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "R01AssemblyShadowRecoveryNative",
+  "success": true,
+  "result": "Passed",
+  "startedUtc": "2026-09-29T23:46:02.383212+00:00",
+  "commands": [
+    {
+      "phase": "compile",
+      "argv": [
+        "/usr/bin/clang++",
+        "-std=c++11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fsanitize=address",
+        "-fno-omit-frame-pointer",
+        "-I",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/native-tests/R01RecoveryTests.cpp",
+        "-o",
+        "/private/tmp/assembly-shadow-r01-recovery-3orljlcr/r01-recovery-tests"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "exitCode": 0,
+      "durationSeconds": 0.066,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "phase": "tests",
+      "argv": [
+        "/private/tmp/assembly-shadow-r01-recovery-3orljlcr/r01-recovery-tests"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "exitCode": 0,
+      "durationSeconds": 0.462,
+      "stdout": "r01_recovery_checks=498 PASS\n",
+      "stderr": ""
+    }
+  ],
+  "demoRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "il2cppRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+  "sourceHash": {
+    "testSource": "dd22f60a1c893480c867828bc66b3c7ad5fde08a8d2e6f5ef7be918ccb5d6f9d",
+    "recoveryHeader": "02165a37ec40d2503f92087e86b0da0ec749ae47efbab18ca0c6c38b072473c6",
+    "runner": "bf89f2b4d73ff47fddf2cf997900830d751b5c47ca9f77efc29005842d79698c"
+  },
+  "compiler": {
+    "path": "/usr/bin/clang++"
+  },
+  "boundary": "C++11 native executable includes the production recovery header directly; no IL2CPP runtime, Unity, or Python model is used.",
+  "checkCount": 498,
+  "executableSha256": "b5515573f2125ef06bda4fc3daf16c1deb31c98e2cbea67686cfc995528d021d",
+  "inputsUnchanged": true,
+  "finishedUtc": "2026-09-29T23:46:02.913802+00:00"
+}

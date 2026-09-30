@@ -1,0 +1,9 @@
+# Independent R02 stage review input
+
+Review the committed checkpoint and its original live sealed run, not only the summary. Decide `PASS`, `FAIL`, or `BLOCKED` for readiness to present the R02 stage evidence to the human gate. This is a read-only technical review, not R02 acceptance or R03 authorization.
+
+Required inspection: exact candidate/control pins and remote authority; source anchor and zero non-metadata transport delta; 34/34 cell receipts; host and five actual Editor contracts; fresh controlled builds and M00; eight functional sidecars including unchanged P01/P03 warm assertions; four pilot plus forty formal pairs and 88 processes; full performance-analysis statistics including cold regressions and D1/D2 memory deltas; M07/startup schema bridges; failure, count132, diagnostic provenance, lazy/dense and capacity chains; final authority; seal/index/archive authentication. Revisit the batch-H warm, M07, startup, and diagnostic failures explicitly.
+
+Evidence: `SOURCE_PREFLIGHT.json`, `CARDINALITY_AUDIT.json`, `WARM_PATH_COUNTERS.json`, `D1_D2_MEASUREMENT.json`, `ARCHIVE_AUDIT.json`, `LIVE_EVIDENCE_BINDINGS.json`, `batch/LOCAL_BATCH_RESULT.json`, `batch/performance-analysis.json`, all copied `batch/cells/`, `batch/pairs/`, `batch/external/`, and the live root `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/`. Check manifest hashes.
+
+Limits: `ComparabilityPassed` validates pair comparability only. Candidate warm repeat10,000 improves sharply in P01/P03, but P01/P03 first allocation is about 1.24 times control; ON-NoPatch warm allocation is about 1.16 times control, with other reflection/closed-generic regressions and mixed memory deltas. D1/D2 were measured; disposition is still required before H2. H1 is `PassedWithExplicitDeferredRisk`. `R02Accepted=false`, `mayEnterR03=false`. A `PASS` can mean ready for the human review gate only.
