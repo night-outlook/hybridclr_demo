@@ -1,0 +1,78 @@
+name: R02 I immutable checkpoint audit
+on:
+  push:
+    branches: [codex/connector-smoke-r02-i-20260929-43c8]
+    paths: ['.github/workflows/r02-i-checkpoint-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 7a88cfc867d37360a1dc6a06892b3811ec025adf
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Authenticate and export committed review input
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, re, shutil, subprocess
+          root = pathlib.Path.cwd()
+          expected = '7a88cfc867d37360a1dc6a06892b3811ec025adf'
+          head = subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip()
+          assert head == expected, (head, expected)
+          out = pathlib.Path(os.environ['RUNNER_TEMP'])/'r02-i-audit'
+          out.mkdir()
+          cp = root/'Docs/AssemblyShadow/History/M07R/R02/local-validation-20260929-batch-i-evidence-ready'
+          rows = []; seen = set()
+          for line in (cp/'MANIFEST.sha256').read_text().splitlines():
+              if not line.strip(): continue
+              match = re.fullmatch(r'([a-f0-9]{64})\s+\*?(.+)', line)
+              assert match, line
+              digest, relative = match.groups()
+              p = pathlib.PurePosixPath(relative)
+              assert not p.is_absolute() and '..' not in p.parts and relative not in seen, relative
+              seen.add(relative)
+              path = cp.joinpath(*p.parts)
+              assert path.is_file() and not path.is_symlink(), relative
+              data = path.read_bytes()
+              actual = hashlib.sha256(data).hexdigest()
+              assert actual == digest, (relative, digest, actual)
+              rows.append({'path': relative, 'sizeBytes':len(data), 'sha256':actual})
+          shutil.copytree(cp, out/'checkpoint')
+          docs = root/'Docs/AssemblyShadow'
+          for sub in ('Plan','Handoff'):
+              shutil.copytree(docs/sub, out/sub)
+          shutil.copyfile(docs/'README.md', out/'README.md')
+          for name in ('source-targets.json','PRIMARY_VALIDATION.md','DESIGN.md','LOCAL_VALIDATION_TASKS.md'):
+              shutil.copyfile(docs/'History/M07R/R02'/name, out/name)
+          shutil.copyfile(root/'ProjectSettings/AssemblyShadowSourcePins.json', out/'AssemblyShadowSourcePins.json')
+          acceptance = docs/'History/M07R/H1/human-review-20260925/HUMAN_REVIEW_DECISION.md'
+          shutil.copyfile(acceptance, out/'H1_HUMAN_REVIEW_DECISION.md')
+          status = subprocess.check_output(['git','status','--porcelain'], text=True)
+          assert not status, status
+          inventory = []
+          for path in sorted(out.rglob('*')):
+              if not path.is_file(): continue
+              data = path.read_bytes()
+              inventory.append({'path':path.relative_to(out).as_posix(),'sizeBytes':len(data),
+                'sha256':hashlib.sha256(data).hexdigest(),
+                'gitBlob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
+          result = {'kind':'R02ICommittedCheckpointAudit','result':'Passed','sourceCommit':head,
+            'checkpointManifestEntries':len(rows),'checkpointEntries':rows,'exportedFiles':inventory,
+            'playerRun':False,'liveMacArchiveReauthenticated':False,'humanApproval':False}
+          (out/'audit.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps({'result':'Passed','sourceCommit':head,'manifestEntries':len(rows),
+            'exportedFiles':len(inventory),'playerRun':False,'liveMacArchiveReauthenticated':False}))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r02-i-checkpoint-audit-${{ github.sha }}
+          path: ${{ runner.temp }}/r02-i-audit
+          retention-days: 14
+          if-no-files-found: error
