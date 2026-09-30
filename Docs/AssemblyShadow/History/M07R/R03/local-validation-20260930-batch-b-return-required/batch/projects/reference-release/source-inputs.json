@@ -1,0 +1,95 @@
+{
+  "demoCommit": "a261bdf0db3f1432226a6b6b69f6f56fbbc47d34",
+  "files": [
+    {
+      "origin": "Primary source",
+      "path": "Assets/R03Player.cs",
+      "sha256": "e776abf796b7cd10d22c4a5b6d2dc95fa1a964a5686ea9832fd7f6a475a92d0a"
+    },
+    {
+      "origin": "Primary source",
+      "path": "Assets/Editor/R03Build.cs",
+      "sha256": "9576761207b619e4e82a69b08095019562ac666b2dd262c6216a0d9f5a21c66e"
+    },
+    {
+      "origin": {
+        "assembly": "A",
+        "mvid": "87d8b6bb-8c11-29e6-8ef2-dd9f2d044eeb",
+        "path": "baseline/A.dll",
+        "references": [
+          "B",
+          "mscorlib"
+        ],
+        "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+        "size": 2048
+      },
+      "path": "Assets/Fixtures/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281"
+    },
+    {
+      "origin": {
+        "assembly": "B",
+        "mvid": "ef87710c-ebde-ecbc-c144-b138529e67d9",
+        "path": "baseline/B.dll",
+        "references": [
+          "mscorlib"
+        ],
+        "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97",
+        "size": 2048
+      },
+      "path": "Assets/Fixtures/B.dll",
+      "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97"
+    },
+    {
+      "origin": {
+        "assembly": "Layout",
+        "mvid": "bc86caee-ae2b-8389-74c1-3619daf288c1",
+        "path": "baseline/Layout.dll",
+        "references": [
+          "mscorlib"
+        ],
+        "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f",
+        "size": 2048
+      },
+      "path": "Assets/Fixtures/Layout.dll",
+      "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f"
+    },
+    {
+      "origin": {
+        "assembly": "Methods",
+        "mvid": "4773fc19-55e6-0b61-bd26-4e01952444ca",
+        "path": "baseline/Methods.dll",
+        "references": [
+          "mscorlib"
+        ],
+        "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c",
+        "size": 2048
+      },
+      "path": "Assets/Fixtures/Methods.dll",
+      "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c"
+    },
+    {
+      "origin": {
+        "assembly": "R03Contract",
+        "mvid": "775f347b-a116-475f-839c-e68f36798260",
+        "path": "baseline/R03Contract.dll",
+        "references": [
+          "mscorlib"
+        ],
+        "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45",
+        "size": 2048
+      },
+      "path": "Assets/Fixtures/R03Contract.dll",
+      "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45"
+    }
+  ],
+  "fixtureInventorySha256": "a2ea5eb2311e523cfc45968b611fdccfe31883e0c5a894e453d4d990c480016a",
+  "note": "Current package and identical new test harness on both native cores; reference is not the old accepted Player.",
+  "repositories": {
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_demo": "a261bdf0db3f1432226a6b6b69f6f56fbbc47d34",
+    "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+    "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+  },
+  "schemaVersion": 1
+}

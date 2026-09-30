@@ -1,0 +1,59 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-quit",
+    "-buildTarget",
+    "osx",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/reference-release",
+    "-executeMethod",
+    "AssemblyShadow.R03.Editor.R03Build.Build",
+    "-r03Config",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/builds/reference-release/config.json",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/builds/reference-release/Editor.log"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "endedUtcEpoch": 1790791626.501219,
+  "exitCode": 1,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 92495,
+  "pid": 92495,
+  "postCleanupGroupExists": true,
+  "processGroupBeforeCleanup": {
+    "capturedUtcEpoch": 1790791626.4771981,
+    "members": [
+      {
+        "executable": "dotnet",
+        "pgid": 92495,
+        "pid": 92655,
+        "ppid": 1,
+        "state": "S"
+      }
+    ],
+    "observedCount": 1,
+    "pgid": 92495,
+    "status": "Captured",
+    "truncated": false
+  },
+  "remainingProcessGroup": true,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1790791619.62362,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f",
+  "timeout": false
+}

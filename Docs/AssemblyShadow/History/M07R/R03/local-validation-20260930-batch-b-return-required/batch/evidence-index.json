@@ -1,0 +1,2049 @@
+{
+  "excludedLiveRoots": [
+    "reference-worktrees/**",
+    "bin/**",
+    "obj/**",
+    "projects/*/{Library,Temp,Logs,HybridCLRData,obj}/**"
+  ],
+  "files": [
+    {
+      "path": "BATCH_EXECUTION.json",
+      "sha256": "b07bbd2b005881cd34c73fe708aaa8d3adbe6bb9e480aa9354cdff547498a2a8",
+      "size": 16050
+    },
+    {
+      "path": "builds/candidate-debug/Editor.log",
+      "sha256": "058ad04c46a116d257c298a92df07edc40ba882f1ff140e0bb148cba8006a924",
+      "size": 81328
+    },
+    {
+      "path": "builds/candidate-debug/config.json",
+      "sha256": "bce6e967032b72015525349cf468cea3ce24f742c48e80a60c56d0549939f981",
+      "size": 844
+    },
+    {
+      "path": "builds/candidate-off/Editor.log",
+      "sha256": "c7273ab795acb6de6082b77c86540f8fbeee8a29eb4633bc2c9f73c2c8b0f334",
+      "size": 81232
+    },
+    {
+      "path": "builds/candidate-off/config.json",
+      "sha256": "4e054d294fab5edc38243b8ad4377d3aa165b800ea9077ea51be4527a60804d5",
+      "size": 841
+    },
+    {
+      "path": "builds/candidate-release/Editor.log",
+      "sha256": "9160ece400dc84abfd4168845db5ab2629c6bc15808b3fca731e3e7539614a37",
+      "size": 81429
+    },
+    {
+      "path": "builds/candidate-release/config.json",
+      "sha256": "fddd04134ff3d92e372be209f7898ac3f117e622be26b47d101a0d76cf888273",
+      "size": 852
+    },
+    {
+      "path": "builds/reference-release/Editor.log",
+      "sha256": "c173662abed915f939043d2e9c37a4284ead32b44abe6935401f578ba530f7aa",
+      "size": 81426
+    },
+    {
+      "path": "builds/reference-release/config.json",
+      "sha256": "d011204b2d9f39b1c41330b96cd4b1ae98e599ea7b2cc8b9b1e8160096bc6095",
+      "size": 852
+    },
+    {
+      "path": "cells/C01-baseline.json",
+      "sha256": "a857eaa304852e42b97816c303fd4546a379f9d33e9fb07deb6e5736c3af79ac",
+      "size": 180
+    },
+    {
+      "path": "cells/C02-private-reference.json",
+      "sha256": "63ade63321df9f4c46e5d4b9c7c222d6a03133926eb15940d48fa272f2b3cd9a",
+      "size": 189
+    },
+    {
+      "path": "cells/C03-moved-slot.json",
+      "sha256": "7ebf901364df6685d95c6aafd0423e2f75d7d34544847d47c82a17ac90b4e93e",
+      "size": 182
+    },
+    {
+      "path": "cells/C04-old-AOT-guard.json",
+      "sha256": "c7352b07b3d4ae0dab467a0c7ca2349dfe1a1daee97a5ab67bf632d9107e30e9",
+      "size": 185
+    },
+    {
+      "path": "cells/C05-direction-reversal.json",
+      "sha256": "dc9f59397db34673f438cf60a58cfceeaa27e520bf41f1e893f0823d4803bdbc",
+      "size": 190
+    },
+    {
+      "path": "cells/C06-actual-target-cycle.json",
+      "sha256": "e0f8cce49df37e110e262f0a3bd2b4e4d78c18f21f0e2ada66f3830485dbb424",
+      "size": 191
+    },
+    {
+      "path": "cells/C07-private-primitive-append.json",
+      "sha256": "1a9769ef2213746b681a1427abf782f3b57891581b058a39e7cb7ab77e58cd5e",
+      "size": 196
+    },
+    {
+      "path": "cells/C08-interface-change.json",
+      "sha256": "d4a1541c7547be33e018c774318b612b449f5eb37bba97b1c052bd9df1dd80ac",
+      "size": 188
+    },
+    {
+      "path": "cells/C09-reference-to-value-kind.json",
+      "sha256": "909e1f091b0a7a6215cbcf346e262df08720cf63bf29bf3d06f3cd9ba3dfa847",
+      "size": 195
+    },
+    {
+      "path": "cells/C10-field-removal.json",
+      "sha256": "ae1a5e1633772eb0e4c5122163f7f9aef38c56a1bc160a76c596d3c25e0953fc",
+      "size": 185
+    },
+    {
+      "path": "cells/D01-private-reference.json",
+      "sha256": "681cbf3077110ddfaa342ae9f8a4a75166ee0889edac7bfe34cd18d4b00e9570",
+      "size": 187
+    },
+    {
+      "path": "cells/D02-moved-slot.json",
+      "sha256": "2b4c055780f5d43d29bd7f801138ca04efa14dd678531010facdb178ef15a776",
+      "size": 180
+    },
+    {
+      "path": "cells/D03-old-AOT-guard.json",
+      "sha256": "a0cc2b6e26eb082da78514044d79c177700e32f29eebfb9c44ad26299a91314a",
+      "size": 183
+    },
+    {
+      "path": "cells/O01-feature-OFF-baseline.json",
+      "sha256": "ce092fa7117bb2059c6683339d93bf09135e11fdfc92ae72dfdf26abfda4dfc4",
+      "size": 188
+    },
+    {
+      "path": "cells/R01-baseline.json",
+      "sha256": "7690d6ece91d95c15a03ac99933c04666c2e8a9cd40bba9e5f2ebd15888edff2",
+      "size": 180
+    },
+    {
+      "path": "cells/R02-original-late-layout.json",
+      "sha256": "5507d9bed904908a0db7da8753e198885ba79335b35eb995faa157f8dffbe6df",
+      "size": 192
+    },
+    {
+      "path": "cells/R03-original-slot-lookup.json",
+      "sha256": "74ed974367198ba21ee0139b1082bd6445cd8d5a698c55ea3beb1fb7b755aaca",
+      "size": 192
+    },
+    {
+      "path": "cells/R04-direction-reversal.json",
+      "sha256": "9cb60770bb3a5c0835c89ad325e8ce792b57e0a3424bcd1c34c6fed7a93a6ca8",
+      "size": 190
+    },
+    {
+      "path": "cells/R05-actual-target-cycle.json",
+      "sha256": "1fd13c9af3b6ad0881364ed21e705306903291c8481f1a1b41fb14a09a2f3d93",
+      "size": 191
+    },
+    {
+      "path": "cells/build-candidate-debug.json",
+      "sha256": "1cb6ca891b644029805a2d671bbcc28694575bb661f1e6925a490d4caa2a037c",
+      "size": 270
+    },
+    {
+      "path": "cells/build-candidate-off.json",
+      "sha256": "82887c2153754857c188f8960fb4b1890d211cbbb83fd2bbbc27c9eaafc43fc5",
+      "size": 266
+    },
+    {
+      "path": "cells/build-candidate-release.json",
+      "sha256": "540f4b44542e317bbc6577090866dd63e20e6512d304c2d27b2e1e75e7208ef5",
+      "size": 274
+    },
+    {
+      "path": "cells/build-reference-release.json",
+      "sha256": "3a38f9c6fe6c696a37b8202b40c49ef159d96577d04d0677c48041297c1d3af7",
+      "size": 274
+    },
+    {
+      "path": "cells/editor-tests.json",
+      "sha256": "06524d5a7a2e2d4038a91c942d86a5350a153da3d3a9c7e412ca881dc7ed580c",
+      "size": 285
+    },
+    {
+      "path": "cells/entry-authority.json",
+      "sha256": "0cad299cb205ffff63afd6387d79baba014db903ee0612f80039a62d23edaa70",
+      "size": 1308
+    },
+    {
+      "path": "cells/final-authority.json",
+      "sha256": "30383fb2e79781ef1a98f5147e0f7151f7626f294e279f6a1e593e6395744163",
+      "size": 1308
+    },
+    {
+      "path": "cells/host-admission.json",
+      "sha256": "70b5f70fb08e2c7a0b6320f18df2a19fcc75744f1ad5b071475e8c9a3a5a0685",
+      "size": 326
+    },
+    {
+      "path": "cells/host-baseline-graph.json",
+      "sha256": "5f501155ea2e8668fb5303cf7728003fbd80862c68eac9f08a3b472727800563",
+      "size": 338
+    },
+    {
+      "path": "cells/host-candidate-graph.json",
+      "sha256": "feacdcb72ad5369055d1c15a371ede3c36dec0774dec2190e88695761c3ae1cb",
+      "size": 338
+    },
+    {
+      "path": "cells/player-fixtures.json",
+      "sha256": "ec07757720a7e1b1faeced88ecc6d1bba6f3778b16fc1452cf9731f48238bc73",
+      "size": 334
+    },
+    {
+      "path": "cells/prepare-candidate-debug.json",
+      "sha256": "18dc3ac6ee31b7020c5d7e8c9ba89241282d37e077a44822f907855b173c51e0",
+      "size": 433
+    },
+    {
+      "path": "cells/prepare-candidate-off.json",
+      "sha256": "013f2eea901b6612f120f9bab515df5466481fc4952cb34ecb0907378fdf226a",
+      "size": 427
+    },
+    {
+      "path": "cells/prepare-candidate-release.json",
+      "sha256": "8029e65b7e793ed45b470eaf00e20cd6e983be63348a11be85590638587ec4ed",
+      "size": 439
+    },
+    {
+      "path": "cells/prepare-reference-release.json",
+      "sha256": "fe55bef4bf7b0cb6912cc6902a70a75772991e72e206217a499d084aa02895ae",
+      "size": 441
+    },
+    {
+      "path": "cells/reference-sources.json",
+      "sha256": "b5f080cc1204cccbc86c52f04e2ee8651feb507a5de3323d69d32839e35af916",
+      "size": 884
+    },
+    {
+      "path": "cells/verifier-contracts.json",
+      "sha256": "4290eed983ee9b8eb3d09355800192e8f5cc0a88d2cf0859ddcd1fab88f5c983",
+      "size": 1583
+    },
+    {
+      "path": "commands/0001/command.json",
+      "sha256": "dc7b30e66c0d93b543eb0e4dc7692f79953066faf81240ae7d1020f17d36a9ab",
+      "size": 1205
+    },
+    {
+      "path": "commands/0001/stderr.log",
+      "sha256": "02c9896ae0bbdc4c76219aee02b39e4dd385be735c21a223f2ea245e33a6d1b1",
+      "size": 5392
+    },
+    {
+      "path": "commands/0001/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0002/command.json",
+      "sha256": "13b0365a51df11407fe86a8f6f6a23a7ae6a55936ae8494627c2be75cb83ea71",
+      "size": 1235
+    },
+    {
+      "path": "commands/0002/stderr.log",
+      "sha256": "82e423a246b31c2f5ac4fd8e41d4f9ab7cf318ff701d163fcde9dd284f7c68aa",
+      "size": 43
+    },
+    {
+      "path": "commands/0002/stdout.log",
+      "sha256": "498493a7738b770a1bc4abdffa858c1179f1d30114dd21ced23fc3c10aa46572",
+      "size": 71
+    },
+    {
+      "path": "commands/0003/command.json",
+      "sha256": "9847efc571fa60b0767aada6ed82a2c9cd608c93dd2a0ad88504bc1ce928e0bf",
+      "size": 1242
+    },
+    {
+      "path": "commands/0003/stderr.log",
+      "sha256": "8ad4c8552baa5327e5079a58454902a90458084fe350d9803376b6a396306592",
+      "size": 43
+    },
+    {
+      "path": "commands/0003/stdout.log",
+      "sha256": "66eef5b0e18647b151689c596165b2e798a92b4977aec5a5789a7f9fa66680db",
+      "size": 104
+    },
+    {
+      "path": "commands/0004/command.json",
+      "sha256": "c23133149307278495eceb04a488bdbc0b0e4f762d3b0b7754abaab16e2b5a1e",
+      "size": 1248
+    },
+    {
+      "path": "commands/0004/stderr.log",
+      "sha256": "53c992ced2d4ffe7525bd669b7b548171b49bccc9e79387c05e5067c0ae45b98",
+      "size": 43
+    },
+    {
+      "path": "commands/0004/stdout.log",
+      "sha256": "14ec4a70f602beebf7fa58b03cde69baac227c2243617b0bdcbc32577b54071f",
+      "size": 97
+    },
+    {
+      "path": "commands/0005/command.json",
+      "sha256": "11d6ed00e4d8ca46fc6c256dc040c67503ffb5869eeb3d0dca8bbcb095d4645c",
+      "size": 1606
+    },
+    {
+      "path": "commands/0005/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0005/stdout.log",
+      "sha256": "ebd5dbfcba582ef054c193125773d9c0fca21c96cbc74fd44f43504b922a2d46",
+      "size": 379
+    },
+    {
+      "path": "commands/0006/command.json",
+      "sha256": "2368f0851693ee78a2af6da69e77f8b197bc12aa070723da380b6989307cbe8e",
+      "size": 1232
+    },
+    {
+      "path": "commands/0006/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0006/stdout.log",
+      "sha256": "c8a80c72b91637b29846e17ee3f06f2dd68a2a02e7a4f9b97b85c98a0e50b010",
+      "size": 4733
+    },
+    {
+      "path": "commands/0007/command.json",
+      "sha256": "1d7ffe74a817501243f60f9632ec7cecc08ffd2f121b780b9fbff621870e5fc2",
+      "size": 1555
+    },
+    {
+      "path": "commands/0007/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0007/stdout.log",
+      "sha256": "cf4b8d216a5da698230d3fde1a5c8d96cdce2c1b42ea272aefa41f221c0539b3",
+      "size": 380
+    },
+    {
+      "path": "commands/0008/command.json",
+      "sha256": "f08dbc542aa9bc7bab921d0a38ffffb7963484fcb40033a44cc49e74181c4999",
+      "size": 1235
+    },
+    {
+      "path": "commands/0008/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0008/stdout.log",
+      "sha256": "b41c10b61a11c738f0883f6727575db74fac57ecbda623994234cbd5ca371d53",
+      "size": 4798
+    },
+    {
+      "path": "commands/0009/command.json",
+      "sha256": "e9539c049143190bce0cd50f5b794668b115c6f33fe1b0baa15dca7a0c7bbb8c",
+      "size": 1554
+    },
+    {
+      "path": "commands/0009/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0009/stdout.log",
+      "sha256": "e3a0096c7ae302ecda4f78e6b6c1d5eb7993123633b50fb26f7e9ad2f6f9a440",
+      "size": 394
+    },
+    {
+      "path": "commands/0010/command.json",
+      "sha256": "6708cb0b7ba8daa529c0de262baa096d8969e3ba61e74588c87510fd3f064350",
+      "size": 1197
+    },
+    {
+      "path": "commands/0010/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0010/stdout.log",
+      "sha256": "73f2396eb6bd23beac0702b8a3fbd620762dc43cd1b178d9f65fc3b296b2736a",
+      "size": 16186
+    },
+    {
+      "path": "commands/0011/command.json",
+      "sha256": "d5e939b0af89213b623a26dab49be4089bedf3be79bd67f0c5c687b9d5d970cc",
+      "size": 1565
+    },
+    {
+      "path": "commands/0011/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0011/stdout.log",
+      "sha256": "d7df1208eaf193b362ef35af02b643bd285a5ba03a2a05d341fe4a7ad255bad7",
+      "size": 400
+    },
+    {
+      "path": "commands/0012/command.json",
+      "sha256": "09b9a9384aaa6b72abafb3c4eaef9aad1bfc9e21dcb54c2f92727e1b01142417",
+      "size": 1210
+    },
+    {
+      "path": "commands/0012/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0012/stdout.log",
+      "sha256": "a2ea5eb2311e523cfc45968b611fdccfe31883e0c5a894e453d4d990c480016a",
+      "size": 4610
+    },
+    {
+      "path": "commands/0013/command.json",
+      "sha256": "1537d420a7244971595425ed9e29f47c25cecb114e885b5c944b24d987c70904",
+      "size": 1884
+    },
+    {
+      "path": "commands/0013/process-group-before-cleanup.json",
+      "sha256": "0e369e65b2f029318ee52fb86905e3f1a41f64043e3753d0bfd88b8b76c3f401",
+      "size": 268
+    },
+    {
+      "path": "commands/0013/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0013/stdout.log",
+      "sha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f",
+      "size": 67
+    },
+    {
+      "path": "commands/0014/command.json",
+      "sha256": "8fed3e5a27b875fe653f24e828d687da5ab5714780346c327b23392ad27c2da5",
+      "size": 1883
+    },
+    {
+      "path": "commands/0014/process-group-before-cleanup.json",
+      "sha256": "12451b979007899f5c06b450654af7a9d3284f64425e57c505a5b900633c5755",
+      "size": 269
+    },
+    {
+      "path": "commands/0014/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0014/stdout.log",
+      "sha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f",
+      "size": 67
+    },
+    {
+      "path": "commands/0015/command.json",
+      "sha256": "c2c81a639d2444031f9bfb94d0200ad17a98d7c42eea9a96ba474cc1b2c03cc0",
+      "size": 1877
+    },
+    {
+      "path": "commands/0015/process-group-before-cleanup.json",
+      "sha256": "bf141e99ff56510eeca8db531d2600208a18025d8b5ff37aaf3d6552323cc8d9",
+      "size": 268
+    },
+    {
+      "path": "commands/0015/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0015/stdout.log",
+      "sha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f",
+      "size": 67
+    },
+    {
+      "path": "commands/0016/command.json",
+      "sha256": "41b9ade93f2f9883fdbb51a9b697a4034d7c846843c687bcf605e27b13a42200",
+      "size": 1872
+    },
+    {
+      "path": "commands/0016/process-group-before-cleanup.json",
+      "sha256": "640cfaf87996a9d6d61eac7292a7e2a733c086b18d8bb0d4312d89e8c11bad14",
+      "size": 268
+    },
+    {
+      "path": "commands/0016/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0016/stdout.log",
+      "sha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f",
+      "size": 67
+    },
+    {
+      "path": "commands/0017/command.json",
+      "sha256": "1e7e801b3aa50b9f416dea58a036d2d5f7c0547d342467b00fa8362f75ac6367",
+      "size": 1788
+    },
+    {
+      "path": "commands/0017/process-group-before-cleanup.json",
+      "sha256": "ddf6c57c51b6974ac271d7fdccbdf32b1a87d9462734f6a874fca487d68a0fd2",
+      "size": 268
+    },
+    {
+      "path": "commands/0017/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "commands/0017/stdout.log",
+      "sha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f",
+      "size": 67
+    },
+    {
+      "path": "editor-tests.log",
+      "sha256": "4580b5bb15dedda6ceab7cb6b5a4ad6bde55291a84d41150c219e5ce338c6888",
+      "size": 61933
+    },
+    {
+      "path": "host/admission/inputs/L01-private-reference-append/baseline.dll",
+      "sha256": "706863b8401de58d2034d81681679aada25b9d33ec769b390f4bc7014b7ca17c",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L01-private-reference-append/target.dll",
+      "sha256": "3d893f72e7dd413a773193a00e1c52f70dc4e8f40bda4cdf7e72ce2b26d6e95c",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L02-private-string-append/baseline.dll",
+      "sha256": "13d9b66ec4d1a3577cfdda051b013062974f5f59a0e2a05153aa9d736076bb4b",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L02-private-string-append/target.dll",
+      "sha256": "3fc33694c83bc967f246fc15844e14d99ce92aec59cc60f84017853931b9f3c6",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L03-private-primitive-append-needs-native/baseline.dll",
+      "sha256": "54ac44ea7241fcff55282a982af3fa81f01246479096b9803703c1e92e62f74d",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L03-private-primitive-append-needs-native/target.dll",
+      "sha256": "05be21773cf8c916b3ca765ce660cea3658f2c00b7fa9c2d285df7b950d91c5d",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L04-public-primitive-append/baseline.dll",
+      "sha256": "408c76b43e48095f516f2618add4f67d38cbc12c33b6563d1c64cd2e5c9b4d08",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L04-public-primitive-append/target.dll",
+      "sha256": "c8568b5a9cc07fefdf3f1f60fa0dfc70db02f6f5cf0bde30876979abcdd6ea97",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L05-value-type-growth/baseline.dll",
+      "sha256": "29fde4f27eb1161a833026b286b59ee11b6d2bcee20a31b2585df42c083bf552",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L05-value-type-growth/target.dll",
+      "sha256": "284b9816b7711fc7af05b8c032e8e734286f7d6d5cfdf05bfdc844015201e399",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L06-generic-definition-growth/baseline.dll",
+      "sha256": "e18603abd7688ba3c4a29202143429f99f95deb1adae1619621da027ebd0b7c2",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L06-generic-definition-growth/target.dll",
+      "sha256": "cdacb168a103392f25228ab18c471fd0908553358696f749f340d54bbab9a060",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L07-instance-field-removal/baseline.dll",
+      "sha256": "bcff51edd79ded3db8146ea2bb2ba14044070e028455239897d09f91fc3bb843",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L07-instance-field-removal/target.dll",
+      "sha256": "957982c2309d957b9960838969c14d6cf971b0aec8ca9c6f2d3d88ec0ecece07",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L08-instance-field-type-change/baseline.dll",
+      "sha256": "33022f7b37c690f99d9d61678c29a2f859383ef5f1504bad8ad20d2c689108c6",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L08-instance-field-type-change/target.dll",
+      "sha256": "af77d5ace32bfd96de38d2c46359d0be0f57caf59dbee150e53bbc4ded5c4674",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L09-instance-field-order-change/baseline.dll",
+      "sha256": "f82379284ac27cbf71ba2df826d86d06cf8e370fc6ec45bc93893f310f1d11db",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L09-instance-field-order-change/target.dll",
+      "sha256": "e9ac2518b00d96ea9267bc9229d7bea985f0ccb58bc0df671e2dadfed57c5196",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L10-static-field-is-not-instance-layout/baseline.dll",
+      "sha256": "435458397f8a9af2ae995389ae06371088080f0e684be945ba3fc16a80c45b42",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L10-static-field-is-not-instance-layout/target.dll",
+      "sha256": "381025aa775b32dc8a5add8f4a7a8d237a1f83e9ee7bebdaa16e9d73bac11b22",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L11-existing-field-visibility-is-not-storage/baseline.dll",
+      "sha256": "6d9f23a85465eeabf1f46faef7bdfd573a42ad4b34bdb4eb7e2b3f9b90c30ac3",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L11-existing-field-visibility-is-not-storage/target.dll",
+      "sha256": "e66e5938b375c69cdf40090701b36803ea6478dcca4c9ef655d82f334cde15a9",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L12-interface-addition/baseline.dll",
+      "sha256": "27d409e7619d85a49df51634c101e0cc4e0d878d45fce762728ee664861ffd70",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L12-interface-addition/target.dll",
+      "sha256": "0341cc768dc5867a26086373ec3e83e7ba6be349f19f17d108bcbdfcc2890b29",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L13-explicit-offset-change/baseline.dll",
+      "sha256": "1b90c24c5b98440e06bfac9937f540fdacfe9b572ac5ec075a65ff7a90fc423e",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L13-explicit-offset-change/target.dll",
+      "sha256": "2fff8ee5ed430b8f8774a260cc31aeb3cbc7f295ba7734c08dbfeacfd1906251",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L14-packing-needs-native/baseline.dll",
+      "sha256": "2c0c1c7d6b66403bf9f067b0f2d3f96e4642190dca7b631f8b4b4a3462525465",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L14-packing-needs-native/target.dll",
+      "sha256": "bf66ba9ece452491e3ef275738f3fcdbcd41b34551cfa09b5323c5c188208b84",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L15-class-size-needs-native/baseline.dll",
+      "sha256": "09d2bb0bdcaa2fe340aeae6c1279455d9466d912708f485f03351320a7cc0308",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L15-class-size-needs-native/target.dll",
+      "sha256": "68826ffb371b4d845fb2ad28f80b5b1e9691dd598964537863d020dac4a524d7",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L16-layout-kind-change/baseline.dll",
+      "sha256": "d765684504d41897ef3016747f45d954c18a5e2caaca1ba14e51656b74a0e487",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L16-layout-kind-change/target.dll",
+      "sha256": "fbb7dbe25e1f0b5fe771dc4c59155c02f7d03ee2f96c6acedb407fffa9b03014",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L17-type-constraint-change/baseline.dll",
+      "sha256": "92025a08c128821f3481318d7bb68507594a38b84cc96d4cc845ec995488030b",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L17-type-constraint-change/target.dll",
+      "sha256": "c30bdab17c33c1368966dc23ad036dc5c8d1000eead5d53d22dcae51d2d6c8c2",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L18-method-only-change-needs-allocation-proof/baseline.dll",
+      "sha256": "b52935a629c450365cf16533b8efcf4452f22329d0c22f9732197d5b710cb9ee",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L18-method-only-change-needs-allocation-proof/target.dll",
+      "sha256": "f230d55232641eb160c6ddfaa0a04449b9284c59ff100d3aa3a2532d4b32b736",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L19-new-type-no-baseline-proof/baseline.dll",
+      "sha256": "8e286d7e502192ad1daf3c97ea3e961bdcb74816f7bb1764570dda62fa17bc89",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L19-new-type-no-baseline-proof/target.dll",
+      "sha256": "91d6ce9d0dc48189fa59d193cab77cf353b1bb553a6e764fe5042981134c8cfc",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L20-analysis-does-not-load-assembly-or-cctor/baseline.dll",
+      "sha256": "67ccc3b8ad8f675ab6a2b6e09e462df70fda333fa770f4b4eadf9cad35c29679",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/L20-analysis-does-not-load-assembly-or-cctor/target.dll",
+      "sha256": "93650c35e4ba26401e5f12900e18476cf9d4b476eca944669356d8b219c3a133",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M01-token-and-virtual-order-not-identity/baseline.dll",
+      "sha256": "3a747e79779a39e9f7d1c5ecbdd1803e1210f7253876ff1f434c71073d58348f",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M01-token-and-virtual-order-not-identity/target.dll",
+      "sha256": "d4a90ff273163b194d2d8989ae5ae9fcde0a99115946372ec66c6356b59fc91b",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M02-no-inline-not-identity-or-contract/baseline.dll",
+      "sha256": "ace1a59ca39ece13c13a878305e7a42d9f9f5cde66e0c0209092f9e896dee8a6",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M02-no-inline-not-identity-or-contract/target.dll",
+      "sha256": "3df578ce9c642506b90260ef220d5db9a5155d60e65d3723cf9e833969d88fba",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M03-visibility-separate-compatibility/baseline.dll",
+      "sha256": "752bbc9952a89876b04aa237db9ba649c6c5424a8ed3ae895b956f019fa72730",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M03-visibility-separate-compatibility/target.dll",
+      "sha256": "ceabbd7ad4299d34a8c9ea71b53d35b7e6352178ec49de372ee03e309bcda8bc",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M04-dispatch-separate-compatibility/baseline.dll",
+      "sha256": "18954dacfd464a54dc6d078d3498976a22cf9ddeb134fb5b224a8549c5ed8328",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M04-dispatch-separate-compatibility/target.dll",
+      "sha256": "ba211306956b4a1c7fa9eb168c94814eeef76eeb96ddb5c0a58ae93991836336",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M05-static-calling-shape/baseline.dll",
+      "sha256": "d4f8510635b53c719020212bc4756b1e64d2b98842ec4089e50053d0bad57790",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M05-static-calling-shape/target.dll",
+      "sha256": "0a7b16dd403eaddc08ebbed7e0f30f9b28538513d7d829b0d652fcf54ffa76ad",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M06-byref-signature/baseline.dll",
+      "sha256": "cde345de760c4b5b6f76cfcadcf6027d1ca8bf348cc0a83935dd14253eeecaee",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M06-byref-signature/target.dll",
+      "sha256": "6cfe8ff0be4e75c4eff71ebed5de2053f93c7d6eae3d5c4249584c80abe8e938",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M07-required-modifier-identity/baseline.dll",
+      "sha256": "b55dbbec4596e9d503f28ec1f110fac9ad7db62e158ffff10fa9388a0f5f8710",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M07-required-modifier-identity/target.dll",
+      "sha256": "583dc2dc484947dd96c93697cf8de8660b7005d6d40d93ff929867e29962f81c",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M08-method-constraint-separate-compatibility/baseline.dll",
+      "sha256": "164ee44c089d862df99d65a3968343d3b4c4720c244ec6b46f4f7e8ecd4da8d7",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M08-method-constraint-separate-compatibility/target.dll",
+      "sha256": "4eee5c1f0a7b2796eb0e44ed22f648a7d729117e933733c76e92eeb89c98e606",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M09-parameter-name-not-contract/baseline.dll",
+      "sha256": "9369d1319777116c58dd753dd97d37a6d66413f958192abfdb97ea3d195228f0",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M09-parameter-name-not-contract/target.dll",
+      "sha256": "e18d296ca6f792aef5197ed419d3d10b6b474cae15ddd2f15407b4823632c817",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M10-parameter-attribute-separate-compatibility/baseline.dll",
+      "sha256": "5eac86b88517b1f177c697f5187172da9879c8677a4a5ed649150e9e40472b77",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M10-parameter-attribute-separate-compatibility/target.dll",
+      "sha256": "88f8a3732c5399775ae5dd1681771d1c013fe84eb4d5771e46568d9853df5ca4",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M11-generic-composite-local-numbering/baseline.dll",
+      "sha256": "d6bdc1ad878cb0e6a1c036e485e4bc9450d3e9b70ea37b05786c18041e485cbb",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M11-generic-composite-local-numbering/target.dll",
+      "sha256": "c784f7e86da9a1cde19cfa24a2e28883cfbd9d27de4720fd66d7e1ffc662db55",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M12-return-type-is-signature/baseline.dll",
+      "sha256": "f47d11e820391a00ddec46ea6fa9d7286ba953262b28e3c4bf6d3526365cdea7",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M12-return-type-is-signature/target.dll",
+      "sha256": "e0769ce4f6489fcd178e29011bbabeee8ab2cd4eeb9b1ab69bad1bccfaa5edbb",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M13-missing-method-rejected/baseline.dll",
+      "sha256": "c86913239f77d6fd1870ae349bf9fd577ebb8186b9351078e24f2aae744764b4",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M13-missing-method-rejected/target.dll",
+      "sha256": "84215b882ee32d3821d04c1b2c9ca4395ce75242de58cebc323a3e230d534469",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M14-declaring-type-constraints/baseline.dll",
+      "sha256": "dc0b8b1a293dd84e82fd799d30639e690b7940489e556f107de7d8523f97c943",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M14-declaring-type-constraints/target.dll",
+      "sha256": "fd7bd4066856a36f67d2a9e78f2be1adb8c631e43f98271147f2ae512bf862bb",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M15-optimization-hints-independent/baseline.dll",
+      "sha256": "1c2cfda4bc8d339d84ee40efec9bb71daeeca8aa420362e4dd564cd4d2d60425",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/inputs/M15-optimization-hints-independent/target.dll",
+      "sha256": "1daec69c5cbc9fcc5f3f3440d6406b46a71698d718f98e5ab5f2d408d874b132",
+      "size": 2048
+    },
+    {
+      "path": "host/admission/results.json",
+      "sha256": "73f2396eb6bd23beac0702b8a3fbd620762dc43cd1b178d9f65fc3b296b2736a",
+      "size": 16186
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/baseline/A.dll",
+      "sha256": "9c453e4e7b13622b11f45fad4bcf5e715682091503ecec2dfc7babe7f449df1f",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/baseline/B.dll",
+      "sha256": "0320a6b665632037f93235e305d22c53a4bc3511c490868445257c9433a6717e",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/rollback/A.dll",
+      "sha256": "9c453e4e7b13622b11f45fad4bcf5e715682091503ecec2dfc7babe7f449df1f",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/rollback/B.dll",
+      "sha256": "0320a6b665632037f93235e305d22c53a4bc3511c490868445257c9433a6717e",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/v1/A.dll",
+      "sha256": "aaf84901049d2fc6ff046d8dd3799b60f69167a769517f5718e94c4faf939a4d",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/v1/B.dll",
+      "sha256": "0320a6b665632037f93235e305d22c53a4bc3511c490868445257c9433a6717e",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/v2/A.dll",
+      "sha256": "aaf84901049d2fc6ff046d8dd3799b60f69167a769517f5718e94c4faf939a4d",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/cumulative/v2/B.dll",
+      "sha256": "e5a54f58597782681295ffd1c97a17a9af364900a5befcea512c91a18c929e8d",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/private-reference/baseline/Layout.dll",
+      "sha256": "b94a24c7e3dd844afa955c8dfda907be6421a8da6cfcce8c02e69c3cceac4ade",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/private-reference/target/Layout.dll",
+      "sha256": "4cc56368c9a7f63c6852e0132a8466e6494ece93befda0c4ec9d416937d65b96",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/reversal/baseline/A.dll",
+      "sha256": "9c453e4e7b13622b11f45fad4bcf5e715682091503ecec2dfc7babe7f449df1f",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/reversal/baseline/B.dll",
+      "sha256": "0320a6b665632037f93235e305d22c53a4bc3511c490868445257c9433a6717e",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/reversal/target/A.dll",
+      "sha256": "e097a477345b4d2116742936f2c6f9a77f773faff1357d69a68b925936551190",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/reversal/target/B.dll",
+      "sha256": "86d21025d356c9f9f183126a2b1fc32a485589ca66bd862b68c555fedd922b82",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/true-cycle/target/A.dll",
+      "sha256": "9c453e4e7b13622b11f45fad4bcf5e715682091503ecec2dfc7babe7f449df1f",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/true-cycle/target/B.dll",
+      "sha256": "86d21025d356c9f9f183126a2b1fc32a485589ca66bd862b68c555fedd922b82",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/virtual-slot/baseline/Methods.dll",
+      "sha256": "14d063a63a1d4c8d5e2f5a09a32168f37baf0b0b8c123be6ad02edfac6aaeda6",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/fixtures/virtual-slot/target/Methods.dll",
+      "sha256": "46b8a3f1f82a067bff037056fb7b94e6051fd3d901ca0b5ab5b90dd40309db80",
+      "size": 2048
+    },
+    {
+      "path": "host/baseline-graph/results.json",
+      "sha256": "c8a80c72b91637b29846e17ee3f06f2dd68a2a02e7a4f9b97b85c98a0e50b010",
+      "size": 4733
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/baseline/A.dll",
+      "sha256": "21f7f8c1e2e48b12698880c647ffbe653c73e41530e207dbbd368816093fa3ea",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/baseline/B.dll",
+      "sha256": "08f1cdf3a4f39eda6b43f5880e9cac8706f2a3adb67eaad31a86e002df3369a5",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/rollback/A.dll",
+      "sha256": "21f7f8c1e2e48b12698880c647ffbe653c73e41530e207dbbd368816093fa3ea",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/rollback/B.dll",
+      "sha256": "08f1cdf3a4f39eda6b43f5880e9cac8706f2a3adb67eaad31a86e002df3369a5",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/v1/A.dll",
+      "sha256": "e01e691949b12fffb3102d9cb8e82a06f96cc802656083bb05c9c589343bf3cd",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/v1/B.dll",
+      "sha256": "08f1cdf3a4f39eda6b43f5880e9cac8706f2a3adb67eaad31a86e002df3369a5",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/v2/A.dll",
+      "sha256": "e01e691949b12fffb3102d9cb8e82a06f96cc802656083bb05c9c589343bf3cd",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/cumulative/v2/B.dll",
+      "sha256": "e9d0af294d3022c654d5286b60e99d54639f63d2af0981b6e8e5d5308d385e35",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/private-reference/baseline/Layout.dll",
+      "sha256": "5151986966c4ef942e2d2af30ea7bba49aebf970bbfa1b1710d1a6190245ee74",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/private-reference/target/Layout.dll",
+      "sha256": "175dcdf3180cfcbc7f74eebd11ef9a78f53bb12a6a008f8eaefcf4cabd4eb360",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/reversal/baseline/A.dll",
+      "sha256": "21f7f8c1e2e48b12698880c647ffbe653c73e41530e207dbbd368816093fa3ea",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/reversal/baseline/B.dll",
+      "sha256": "08f1cdf3a4f39eda6b43f5880e9cac8706f2a3adb67eaad31a86e002df3369a5",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/reversal/target/A.dll",
+      "sha256": "97152a7508512f58d2e59785c40487d106800137654807c8954d73f110a34aca",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/reversal/target/B.dll",
+      "sha256": "dabb9ec8ea2660aeb6f611573bed3c2eceb87986ae36d91b661531b6201f979c",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/true-cycle/target/A.dll",
+      "sha256": "21f7f8c1e2e48b12698880c647ffbe653c73e41530e207dbbd368816093fa3ea",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/true-cycle/target/B.dll",
+      "sha256": "dabb9ec8ea2660aeb6f611573bed3c2eceb87986ae36d91b661531b6201f979c",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/virtual-slot/baseline/Methods.dll",
+      "sha256": "efa7d5017909f259bfab88a85ea622cce0775eece97021f8d64b2c1df6f5171e",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/fixtures/virtual-slot/target/Methods.dll",
+      "sha256": "ef19b918ec2c7659797006fbbff65ddf6434977d9bafff48062bff6aed621e5b",
+      "size": 2048
+    },
+    {
+      "path": "host/candidate-graph/results.json",
+      "sha256": "b41c10b61a11c738f0883f6727575db74fac57ecbda623994234cbd5ca371d53",
+      "size": 4798
+    },
+    {
+      "path": "host/player-fixtures/baseline/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/baseline/B.dll",
+      "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/baseline/Layout.dll",
+      "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/baseline/Methods.dll",
+      "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/baseline/R03Contract.dll",
+      "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/interface/R03Contract.dll",
+      "sha256": "dfa615cd294bd2e5d78ff86d90e763695a7f77b6b1c057f2cba3bf9a6d29318c",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/inventory.json",
+      "sha256": "a2ea5eb2311e523cfc45968b611fdccfe31883e0c5a894e453d4d990c480016a",
+      "size": 4610
+    },
+    {
+      "path": "host/player-fixtures/primitive/R03Contract.dll",
+      "sha256": "6c2d1535cfa207d31e3fc7e3735b924ab0aa7e35952d08a559233ff2f1e59e8b",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/private-reference/Layout.dll",
+      "sha256": "5941f5bcf014758179f76a5bdf478d753eea91d0892b2482edd1b3403a60e576",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/removal/R03Contract.dll",
+      "sha256": "f10ebd5d5679cd0c746e35853ac04939ab4c3da5957edebb07a4e18e1e763fe1",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/reversal/A.dll",
+      "sha256": "8f2373526c951bf9eeed05e7e705af41348f4cb7c3d868ef2dda3689befb51a3",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/reversal/B.dll",
+      "sha256": "230ff8067ffd065da3b8020aef7dfaa8a4dedd1e575fb69b58fa49b19ce4d6b9",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/true-cycle/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/true-cycle/B.dll",
+      "sha256": "230ff8067ffd065da3b8020aef7dfaa8a4dedd1e575fb69b58fa49b19ce4d6b9",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/value/R03Contract.dll",
+      "sha256": "643c500a0decd9188702e1f71e42841917c29e205a651403a1dcb4cc7786cdd7",
+      "size": 2048
+    },
+    {
+      "path": "host/player-fixtures/virtual-slot/Methods.dll",
+      "sha256": "07e2095a44bc6878f81d6fb104516f5dbcaf180f1601ddad7b3e00ddceb84c27",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-debug/.r03-isolated-project",
+      "sha256": "5033d88d1d11ed6e6f2807d285a6dbbf14d09873094b1a1dfca98784cef2a533",
+      "size": 58
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Editor/R03Build.cs",
+      "sha256": "9576761207b619e4e82a69b08095019562ac666b2dd262c6216a0d9f5a21c66e",
+      "size": 11513
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Editor/R03Build.cs.meta",
+      "sha256": "68ce14f911762305517d661720cf9158b9b0666f3c34b4311fad7ee0494cef84",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Editor.meta",
+      "sha256": "e1c2966aed705808dbe22d038814586503db29eb93fe8601dec83edde3edda25",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/A.dll.meta",
+      "sha256": "652c46b46617d684febe3919d2f76009a46eabcb935be3c404087ba85e2dc845",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/B.dll",
+      "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/B.dll.meta",
+      "sha256": "358568b24a005af4e2194ccc3369c09dedcb6a3fdbee5ff9e2dac31182330a1e",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/Layout.dll",
+      "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/Layout.dll.meta",
+      "sha256": "4632685a60fa350d0e002e2eec6eda3182e90ae494ddefd40fcb631889639874",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/Methods.dll",
+      "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/Methods.dll.meta",
+      "sha256": "6f28663ec4910d914dfdc0bc86f9dbaa1a1501dca04e108a65c0e8193c775c12",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/R03Contract.dll",
+      "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures/R03Contract.dll.meta",
+      "sha256": "b750995520afd54a4a780de1601ca0e575b63472677a53bc6032240862566a55",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/Fixtures.meta",
+      "sha256": "2ea6d91bb3b69e246cba9ef8c90c9f88168076faa758124addf5025e8e229870",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/R03/link.xml",
+      "sha256": "efec038049f6df7b815197fbe803cb51667041a5494014391a05e3706bbb4993",
+      "size": 293
+    },
+    {
+      "path": "projects/candidate-debug/Assets/R03/link.xml.meta",
+      "sha256": "e05ed6e34663fc9a54857b5dadec21f7e0909ef12969596f5e71148e6435dc53",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/R03.meta",
+      "sha256": "8dabc27c31a0d679fe3786ed1ce2f92ee85f42e3abfc287977bc02db6b42cc4e",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Assets/R03Player.cs",
+      "sha256": "e776abf796b7cd10d22c4a5b6d2dc95fa1a964a5686ea9832fd7f6a475a92d0a",
+      "size": 11230
+    },
+    {
+      "path": "projects/candidate-debug/Assets/R03Player.cs.meta",
+      "sha256": "5c245a72db3874ad4078e4e8ddc95afb81e6f854714bb9be05cacc9b8d053b60",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-debug/Packages/manifest.json",
+      "sha256": "d7ea38c3ff65e9747b37a6f9c034e0cc26403f37304762b84483800e2cf966ba",
+      "size": 1658
+    },
+    {
+      "path": "projects/candidate-debug/Packages/packages-lock.json",
+      "sha256": "bdb73667fb5230808c2c759582756e8f1206a9e423024bc8d0c504069fc3b4e2",
+      "size": 7286
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "03beba62ba08939a4ee1dd1f189e21f4a70104c1bc50efef375dc37a66d7ada3",
+      "size": 930
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/AudioManager.asset",
+      "sha256": "9a554916fe138ebcad8443ee9b079363ecc72795c39d0e80f5f7ca99e2c6f5e7",
+      "size": 443
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/ClusterInputManager.asset",
+      "sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623",
+      "size": 114
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/DynamicsManager.asset",
+      "sha256": "62fd35da36080a098d3e9f90cf4af6c655fe582091c33e505b812cf9aa36fee1",
+      "size": 1394
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "1942c088ddfeeef348fdf12390e2a2d6da51056e197458d67969d44e7b2cbbd3",
+      "size": 160
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/EditorSettings.asset",
+      "sha256": "d853eebd40ee532398333bac1bf7ac668eca3b831b6fc7d0887d7602f04e881a",
+      "size": 1502
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/GraphicsSettings.asset",
+      "sha256": "96fbec3a726513347293fb201477836277ade290a0bd7bd473cea90ffe896820",
+      "size": 2392
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/InputManager.asset",
+      "sha256": "d0f454ddb880912abcae92e3e12957a7446786ba89e24937e019ff3bbc0d4300",
+      "size": 5816
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/MemorySettings.asset",
+      "sha256": "1e8379a461b10ae09f3f696911088c16875d63e87ed5f2d95df9e1892703f9fd",
+      "size": 1192
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/NavMeshAreas.asset",
+      "sha256": "7ebbf8f53b8033104e1878b95ca07a28d0954092d81c220f14196a42f651e658",
+      "size": 1361
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/Physics2DSettings.asset",
+      "sha256": "531861618163b01648a075414f6e864506ad8fe0a0d4d0096aa1fbbfcd3937dc",
+      "size": 1635
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/PresetManager.asset",
+      "sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c",
+      "size": 146
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/ProjectSettings.asset",
+      "sha256": "57243f8491e2d00d58b6273b075477ae48fa14abcb3e5fcb55e4fed9e75db531",
+      "size": 19600
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/ProjectVersion.txt",
+      "sha256": "28a9a7d7df75389c85eb5dd6da1aed2dbb32fbf6e32dfc3b892447755821ecdc",
+      "size": 29
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/QualitySettings.asset",
+      "sha256": "944b52d523bcb15b945bc80924b9289f59185ab19bce8a00e99eec345bde6440",
+      "size": 9183
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/TagManager.asset",
+      "sha256": "8e18b1c820e9c09e16bbd1f1b7842e9fb3b0158a0921b0964e0b8fa12c6e2c01",
+      "size": 378
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/TimeManager.asset",
+      "sha256": "1a83e54adbbda7c9f4851103a0c6ab7f6448a3343d4ea5b7620452fa08416ecd",
+      "size": 202
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/UnityConnectSettings.asset",
+      "sha256": "d6034acbef6c9e3179866486c31eab81fcbe5e7ed350ce71e0fa2b1449b77109",
+      "size": 943
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/VFXManager.asset",
+      "sha256": "3f31266c7c1910447586e71b041dabd58d8371715ac3142d3e38ace46121f4ab",
+      "size": 465
+    },
+    {
+      "path": "projects/candidate-debug/ProjectSettings/VersionControlSettings.asset",
+      "sha256": "e7bda45bf7a394745fee1316e6c71fa676004d591ad1f3aa247fd3e4ceb86071",
+      "size": 188
+    },
+    {
+      "path": "projects/candidate-debug/UserSettings/EditorUserSettings.asset",
+      "sha256": "7212ef4cbaae147bad5901921a551174fd021129715084db891d596341eb4cdc",
+      "size": 659
+    },
+    {
+      "path": "projects/candidate-debug/UserSettings/Search.settings",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size": 2
+    },
+    {
+      "path": "projects/candidate-debug/source-inputs.json",
+      "sha256": "848f6b70c2f8c65bb807249bfbafceebaaadcb53fa5b0e7ad45f8f0424cdc83f",
+      "size": 3221
+    },
+    {
+      "path": "projects/candidate-off/.r03-isolated-project",
+      "sha256": "5033d88d1d11ed6e6f2807d285a6dbbf14d09873094b1a1dfca98784cef2a533",
+      "size": 58
+    },
+    {
+      "path": "projects/candidate-off/Assets/Editor/R03Build.cs",
+      "sha256": "9576761207b619e4e82a69b08095019562ac666b2dd262c6216a0d9f5a21c66e",
+      "size": 11513
+    },
+    {
+      "path": "projects/candidate-off/Assets/Editor/R03Build.cs.meta",
+      "sha256": "0ad8d380dac9f711e53a8a0ed844b92debd23dfd2c1db50f167e71eb2885e43b",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Editor.meta",
+      "sha256": "d650dfdb4aa4d7e214ae2d1244eecf5f024af877b98ebbc29c98b189ecd85e9b",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/A.dll.meta",
+      "sha256": "10525050ae0c730530b677b0d6d7968d5f2f8d769b8577d7d7cc15d27aa2f03a",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/B.dll",
+      "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/B.dll.meta",
+      "sha256": "c70d2103f4ea294a3d194442a6053a7b4ffb0fe61fb5b8e4ef8c1dcc4be73b25",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/Layout.dll",
+      "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/Layout.dll.meta",
+      "sha256": "d23be2ad4c2a18170fbe5baee3ec238c0b743eff1408cbc16b789cbc0cfdf0f1",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/Methods.dll",
+      "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/Methods.dll.meta",
+      "sha256": "fb7b0f5ad0c468f2489941fb080d34e74a3d86406519f9150863287541f3095f",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/R03Contract.dll",
+      "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures/R03Contract.dll.meta",
+      "sha256": "4e26bd10f36419125623397b3d04edaebc087c6aae70f68562ba7c27301f627b",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/Fixtures.meta",
+      "sha256": "a168bc24e08b03b8bf150bdbdd93a2921d8a5af7acaf0eba3c2ee13eadd77689",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/R03/link.xml",
+      "sha256": "efec038049f6df7b815197fbe803cb51667041a5494014391a05e3706bbb4993",
+      "size": 293
+    },
+    {
+      "path": "projects/candidate-off/Assets/R03/link.xml.meta",
+      "sha256": "39a9361ee45c2ea2a39bd9545df5660bc782f26c07b0311fe7b8ba7b4644dcdd",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/R03.meta",
+      "sha256": "61291d2d7b3f52a08554df1d8b333ff5dbae5b3a038f12ac09b1a6b9d38dd9dd",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Assets/R03Player.cs",
+      "sha256": "e776abf796b7cd10d22c4a5b6d2dc95fa1a964a5686ea9832fd7f6a475a92d0a",
+      "size": 11230
+    },
+    {
+      "path": "projects/candidate-off/Assets/R03Player.cs.meta",
+      "sha256": "5f82610aeae95ff6eb23de21e4a551451ee5b962f30a84923a6f8cf8288ac253",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-off/Packages/manifest.json",
+      "sha256": "d7ea38c3ff65e9747b37a6f9c034e0cc26403f37304762b84483800e2cf966ba",
+      "size": 1658
+    },
+    {
+      "path": "projects/candidate-off/Packages/packages-lock.json",
+      "sha256": "bdb73667fb5230808c2c759582756e8f1206a9e423024bc8d0c504069fc3b4e2",
+      "size": 7286
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "03beba62ba08939a4ee1dd1f189e21f4a70104c1bc50efef375dc37a66d7ada3",
+      "size": 930
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/AudioManager.asset",
+      "sha256": "9a554916fe138ebcad8443ee9b079363ecc72795c39d0e80f5f7ca99e2c6f5e7",
+      "size": 443
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/ClusterInputManager.asset",
+      "sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623",
+      "size": 114
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/DynamicsManager.asset",
+      "sha256": "62fd35da36080a098d3e9f90cf4af6c655fe582091c33e505b812cf9aa36fee1",
+      "size": 1394
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "1942c088ddfeeef348fdf12390e2a2d6da51056e197458d67969d44e7b2cbbd3",
+      "size": 160
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/EditorSettings.asset",
+      "sha256": "d853eebd40ee532398333bac1bf7ac668eca3b831b6fc7d0887d7602f04e881a",
+      "size": 1502
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/GraphicsSettings.asset",
+      "sha256": "96fbec3a726513347293fb201477836277ade290a0bd7bd473cea90ffe896820",
+      "size": 2392
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/InputManager.asset",
+      "sha256": "d0f454ddb880912abcae92e3e12957a7446786ba89e24937e019ff3bbc0d4300",
+      "size": 5816
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/MemorySettings.asset",
+      "sha256": "1e8379a461b10ae09f3f696911088c16875d63e87ed5f2d95df9e1892703f9fd",
+      "size": 1192
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/NavMeshAreas.asset",
+      "sha256": "7ebbf8f53b8033104e1878b95ca07a28d0954092d81c220f14196a42f651e658",
+      "size": 1361
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/Physics2DSettings.asset",
+      "sha256": "531861618163b01648a075414f6e864506ad8fe0a0d4d0096aa1fbbfcd3937dc",
+      "size": 1635
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/PresetManager.asset",
+      "sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c",
+      "size": 146
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/ProjectSettings.asset",
+      "sha256": "1e201ad793a25fbaafbde8b66a5d11056ec771ac0d4e8ff022046a8433ba825c",
+      "size": 19594
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/ProjectVersion.txt",
+      "sha256": "28a9a7d7df75389c85eb5dd6da1aed2dbb32fbf6e32dfc3b892447755821ecdc",
+      "size": 29
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/QualitySettings.asset",
+      "sha256": "944b52d523bcb15b945bc80924b9289f59185ab19bce8a00e99eec345bde6440",
+      "size": 9183
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/TagManager.asset",
+      "sha256": "8e18b1c820e9c09e16bbd1f1b7842e9fb3b0158a0921b0964e0b8fa12c6e2c01",
+      "size": 378
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/TimeManager.asset",
+      "sha256": "1a83e54adbbda7c9f4851103a0c6ab7f6448a3343d4ea5b7620452fa08416ecd",
+      "size": 202
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/UnityConnectSettings.asset",
+      "sha256": "d6034acbef6c9e3179866486c31eab81fcbe5e7ed350ce71e0fa2b1449b77109",
+      "size": 943
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/VFXManager.asset",
+      "sha256": "3f31266c7c1910447586e71b041dabd58d8371715ac3142d3e38ace46121f4ab",
+      "size": 465
+    },
+    {
+      "path": "projects/candidate-off/ProjectSettings/VersionControlSettings.asset",
+      "sha256": "e7bda45bf7a394745fee1316e6c71fa676004d591ad1f3aa247fd3e4ceb86071",
+      "size": 188
+    },
+    {
+      "path": "projects/candidate-off/UserSettings/EditorUserSettings.asset",
+      "sha256": "7212ef4cbaae147bad5901921a551174fd021129715084db891d596341eb4cdc",
+      "size": 659
+    },
+    {
+      "path": "projects/candidate-off/UserSettings/Search.settings",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size": 2
+    },
+    {
+      "path": "projects/candidate-off/source-inputs.json",
+      "sha256": "848f6b70c2f8c65bb807249bfbafceebaaadcb53fa5b0e7ad45f8f0424cdc83f",
+      "size": 3221
+    },
+    {
+      "path": "projects/candidate-release/.r03-isolated-project",
+      "sha256": "5033d88d1d11ed6e6f2807d285a6dbbf14d09873094b1a1dfca98784cef2a533",
+      "size": 58
+    },
+    {
+      "path": "projects/candidate-release/Assets/Editor/R03Build.cs",
+      "sha256": "9576761207b619e4e82a69b08095019562ac666b2dd262c6216a0d9f5a21c66e",
+      "size": 11513
+    },
+    {
+      "path": "projects/candidate-release/Assets/Editor/R03Build.cs.meta",
+      "sha256": "10154f1be4791d1f6aed2af261ca6b60fe95e59d2b077b0ea2d23c3c90754f6f",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Editor.meta",
+      "sha256": "bd0e9787153af9d1858cb70787c71ed305e08781c88465964e040d5c23a0725c",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/A.dll.meta",
+      "sha256": "180f496a18cab7af148511166165ca9641b37d3bc8f0daaa6156b5cb1e111e3e",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/B.dll",
+      "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/B.dll.meta",
+      "sha256": "7aaafcceae4a45c8f2e6675adba70b3d3445724bece30b7e193e1f0ed884bfbe",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/Layout.dll",
+      "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/Layout.dll.meta",
+      "sha256": "44a4dbb8ffe7afc67d82a3391c9a59f654520f343f0939b19baca165acfec725",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/Methods.dll",
+      "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/Methods.dll.meta",
+      "sha256": "4b6d3cc40275d8c6c5968cc70674c53181349a5608e4a55ecde7491168ed9a48",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/R03Contract.dll",
+      "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45",
+      "size": 2048
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures/R03Contract.dll.meta",
+      "sha256": "03d476f446565993955497e44e7ca90e92a686618df47629cce78d5938b09136",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/Fixtures.meta",
+      "sha256": "3cdf1142c4fb5566ae6dab4b463f2a505188f6e956b44d6ffcc166a4180088b0",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/R03/link.xml",
+      "sha256": "efec038049f6df7b815197fbe803cb51667041a5494014391a05e3706bbb4993",
+      "size": 293
+    },
+    {
+      "path": "projects/candidate-release/Assets/R03/link.xml.meta",
+      "sha256": "121bb058711840f49724f3bbd436a2507c070c0435dba0620e0e13f96fe0633e",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/R03.meta",
+      "sha256": "6be5cc116bfc8af8d6476d9984ec5b824c9dc86e5fd32ef95a00829483bc3c7c",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Assets/R03Player.cs",
+      "sha256": "e776abf796b7cd10d22c4a5b6d2dc95fa1a964a5686ea9832fd7f6a475a92d0a",
+      "size": 11230
+    },
+    {
+      "path": "projects/candidate-release/Assets/R03Player.cs.meta",
+      "sha256": "269606e160c5e09ccaceaafb6d308f58a37137a7a275d0122534e79d23f23252",
+      "size": 59
+    },
+    {
+      "path": "projects/candidate-release/Packages/manifest.json",
+      "sha256": "d7ea38c3ff65e9747b37a6f9c034e0cc26403f37304762b84483800e2cf966ba",
+      "size": 1658
+    },
+    {
+      "path": "projects/candidate-release/Packages/packages-lock.json",
+      "sha256": "bdb73667fb5230808c2c759582756e8f1206a9e423024bc8d0c504069fc3b4e2",
+      "size": 7286
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "03beba62ba08939a4ee1dd1f189e21f4a70104c1bc50efef375dc37a66d7ada3",
+      "size": 930
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/AudioManager.asset",
+      "sha256": "9a554916fe138ebcad8443ee9b079363ecc72795c39d0e80f5f7ca99e2c6f5e7",
+      "size": 443
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/ClusterInputManager.asset",
+      "sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623",
+      "size": 114
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/DynamicsManager.asset",
+      "sha256": "62fd35da36080a098d3e9f90cf4af6c655fe582091c33e505b812cf9aa36fee1",
+      "size": 1394
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "1942c088ddfeeef348fdf12390e2a2d6da51056e197458d67969d44e7b2cbbd3",
+      "size": 160
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/EditorSettings.asset",
+      "sha256": "d853eebd40ee532398333bac1bf7ac668eca3b831b6fc7d0887d7602f04e881a",
+      "size": 1502
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/GraphicsSettings.asset",
+      "sha256": "96fbec3a726513347293fb201477836277ade290a0bd7bd473cea90ffe896820",
+      "size": 2392
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/InputManager.asset",
+      "sha256": "d0f454ddb880912abcae92e3e12957a7446786ba89e24937e019ff3bbc0d4300",
+      "size": 5816
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/MemorySettings.asset",
+      "sha256": "1e8379a461b10ae09f3f696911088c16875d63e87ed5f2d95df9e1892703f9fd",
+      "size": 1192
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/NavMeshAreas.asset",
+      "sha256": "7ebbf8f53b8033104e1878b95ca07a28d0954092d81c220f14196a42f651e658",
+      "size": 1361
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/Physics2DSettings.asset",
+      "sha256": "531861618163b01648a075414f6e864506ad8fe0a0d4d0096aa1fbbfcd3937dc",
+      "size": 1635
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/PresetManager.asset",
+      "sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c",
+      "size": 146
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/ProjectSettings.asset",
+      "sha256": "48d180bd9d8ff353565e5349f1d6fc52a1d5dc860e3cf1dcce554d6c88814e89",
+      "size": 19606
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/ProjectVersion.txt",
+      "sha256": "28a9a7d7df75389c85eb5dd6da1aed2dbb32fbf6e32dfc3b892447755821ecdc",
+      "size": 29
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/QualitySettings.asset",
+      "sha256": "944b52d523bcb15b945bc80924b9289f59185ab19bce8a00e99eec345bde6440",
+      "size": 9183
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/TagManager.asset",
+      "sha256": "8e18b1c820e9c09e16bbd1f1b7842e9fb3b0158a0921b0964e0b8fa12c6e2c01",
+      "size": 378
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/TimeManager.asset",
+      "sha256": "1a83e54adbbda7c9f4851103a0c6ab7f6448a3343d4ea5b7620452fa08416ecd",
+      "size": 202
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/UnityConnectSettings.asset",
+      "sha256": "d6034acbef6c9e3179866486c31eab81fcbe5e7ed350ce71e0fa2b1449b77109",
+      "size": 943
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/VFXManager.asset",
+      "sha256": "3f31266c7c1910447586e71b041dabd58d8371715ac3142d3e38ace46121f4ab",
+      "size": 465
+    },
+    {
+      "path": "projects/candidate-release/ProjectSettings/VersionControlSettings.asset",
+      "sha256": "e7bda45bf7a394745fee1316e6c71fa676004d591ad1f3aa247fd3e4ceb86071",
+      "size": 188
+    },
+    {
+      "path": "projects/candidate-release/UserSettings/EditorUserSettings.asset",
+      "sha256": "7212ef4cbaae147bad5901921a551174fd021129715084db891d596341eb4cdc",
+      "size": 659
+    },
+    {
+      "path": "projects/candidate-release/UserSettings/Search.settings",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size": 2
+    },
+    {
+      "path": "projects/candidate-release/source-inputs.json",
+      "sha256": "848f6b70c2f8c65bb807249bfbafceebaaadcb53fa5b0e7ad45f8f0424cdc83f",
+      "size": 3221
+    },
+    {
+      "path": "projects/reference-release/.r03-isolated-project",
+      "sha256": "5033d88d1d11ed6e6f2807d285a6dbbf14d09873094b1a1dfca98784cef2a533",
+      "size": 58
+    },
+    {
+      "path": "projects/reference-release/Assets/Editor/R03Build.cs",
+      "sha256": "9576761207b619e4e82a69b08095019562ac666b2dd262c6216a0d9f5a21c66e",
+      "size": 11513
+    },
+    {
+      "path": "projects/reference-release/Assets/Editor/R03Build.cs.meta",
+      "sha256": "d31351bb8f1355cee318aa41445449911717fa7c46227982fbe2dc43deeed8f7",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Editor.meta",
+      "sha256": "4731899f02441acfc6accdc322f8a0fc44b436540a7135f62bc53bdfcf4bcd27",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "size": 2048
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/A.dll.meta",
+      "sha256": "7b28f28b08930d42f4dbee58b8be8b197a2ad547469e8fc5821ccc581e23c46d",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/B.dll",
+      "sha256": "d2ecb225630241b66a19a2813f6ce82a7a9d1b90363d600e998e8758fd7e8a97",
+      "size": 2048
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/B.dll.meta",
+      "sha256": "f8142bc7125aab9ee7e19ba86875303b6516544c298cfc180df28edb02539597",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/Layout.dll",
+      "sha256": "887349df11c57e81d3c479d85cf9ee18715f54208f2160c60e45b286686fa84f",
+      "size": 2048
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/Layout.dll.meta",
+      "sha256": "03477dc01281dc87482df4118d719f7fa40ba5b188d68b333e51c13886fb21a8",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/Methods.dll",
+      "sha256": "287b072c74faaf2979d965ecd6ddc560bd992bdc5b9b94193b55cedab186c64c",
+      "size": 2048
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/Methods.dll.meta",
+      "sha256": "d6fb693ea7d91d4c9d4cba75c096ce48e72d9cd11d602d2f512b6c707cef8cfd",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/R03Contract.dll",
+      "sha256": "5e6d8002b59421062cafc383ecb51494cacfd68643becdf07be54b014b758e45",
+      "size": 2048
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures/R03Contract.dll.meta",
+      "sha256": "16fc6203bf683641d4188ef5dd33efedca30af8e978fd1df7747e498a399041a",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/Fixtures.meta",
+      "sha256": "d5a9597e132fe84fa7877a17695485ee0b45f909f5b01a400f3da0576055ee82",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/R03/link.xml",
+      "sha256": "efec038049f6df7b815197fbe803cb51667041a5494014391a05e3706bbb4993",
+      "size": 293
+    },
+    {
+      "path": "projects/reference-release/Assets/R03/link.xml.meta",
+      "sha256": "243e7e580aff30ea1ec075288cc8b1d6a9acb8bf5f82ee833e0c5f8f440f6971",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/R03.meta",
+      "sha256": "00347b54ce33f8594fb09f7b84f37c19939841962ec8c26b54ae5a5a92d27995",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Assets/R03Player.cs",
+      "sha256": "e776abf796b7cd10d22c4a5b6d2dc95fa1a964a5686ea9832fd7f6a475a92d0a",
+      "size": 11230
+    },
+    {
+      "path": "projects/reference-release/Assets/R03Player.cs.meta",
+      "sha256": "818e2ff32e5e56efb334a0f4f8cb0203ab5f895f443f3a9174f2f9618cad83fc",
+      "size": 59
+    },
+    {
+      "path": "projects/reference-release/Packages/manifest.json",
+      "sha256": "d7ea38c3ff65e9747b37a6f9c034e0cc26403f37304762b84483800e2cf966ba",
+      "size": 1658
+    },
+    {
+      "path": "projects/reference-release/Packages/packages-lock.json",
+      "sha256": "bdb73667fb5230808c2c759582756e8f1206a9e423024bc8d0c504069fc3b4e2",
+      "size": 7286
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "3b667b8000903d3f37b58ea0ac66fbe98f3a666f3b58d943a150a7e7444d4a14",
+      "size": 918
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/AudioManager.asset",
+      "sha256": "9a554916fe138ebcad8443ee9b079363ecc72795c39d0e80f5f7ca99e2c6f5e7",
+      "size": 443
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/ClusterInputManager.asset",
+      "sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623",
+      "size": 114
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/DynamicsManager.asset",
+      "sha256": "62fd35da36080a098d3e9f90cf4af6c655fe582091c33e505b812cf9aa36fee1",
+      "size": 1394
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "1942c088ddfeeef348fdf12390e2a2d6da51056e197458d67969d44e7b2cbbd3",
+      "size": 160
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/EditorSettings.asset",
+      "sha256": "d853eebd40ee532398333bac1bf7ac668eca3b831b6fc7d0887d7602f04e881a",
+      "size": 1502
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/GraphicsSettings.asset",
+      "sha256": "96fbec3a726513347293fb201477836277ade290a0bd7bd473cea90ffe896820",
+      "size": 2392
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/InputManager.asset",
+      "sha256": "d0f454ddb880912abcae92e3e12957a7446786ba89e24937e019ff3bbc0d4300",
+      "size": 5816
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/MemorySettings.asset",
+      "sha256": "1e8379a461b10ae09f3f696911088c16875d63e87ed5f2d95df9e1892703f9fd",
+      "size": 1192
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/NavMeshAreas.asset",
+      "sha256": "7ebbf8f53b8033104e1878b95ca07a28d0954092d81c220f14196a42f651e658",
+      "size": 1361
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/Physics2DSettings.asset",
+      "sha256": "531861618163b01648a075414f6e864506ad8fe0a0d4d0096aa1fbbfcd3937dc",
+      "size": 1635
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/PresetManager.asset",
+      "sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c",
+      "size": 146
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/ProjectSettings.asset",
+      "sha256": "420c7720549bbc9b15a7a2fa6a07f63c3f68d8a5a38c20ebedc388c002ebcd99",
+      "size": 19606
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/ProjectVersion.txt",
+      "sha256": "28a9a7d7df75389c85eb5dd6da1aed2dbb32fbf6e32dfc3b892447755821ecdc",
+      "size": 29
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/QualitySettings.asset",
+      "sha256": "944b52d523bcb15b945bc80924b9289f59185ab19bce8a00e99eec345bde6440",
+      "size": 9183
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/TagManager.asset",
+      "sha256": "8e18b1c820e9c09e16bbd1f1b7842e9fb3b0158a0921b0964e0b8fa12c6e2c01",
+      "size": 378
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/TimeManager.asset",
+      "sha256": "1a83e54adbbda7c9f4851103a0c6ab7f6448a3343d4ea5b7620452fa08416ecd",
+      "size": 202
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/UnityConnectSettings.asset",
+      "sha256": "d6034acbef6c9e3179866486c31eab81fcbe5e7ed350ce71e0fa2b1449b77109",
+      "size": 943
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/VFXManager.asset",
+      "sha256": "3f31266c7c1910447586e71b041dabd58d8371715ac3142d3e38ace46121f4ab",
+      "size": 465
+    },
+    {
+      "path": "projects/reference-release/ProjectSettings/VersionControlSettings.asset",
+      "sha256": "e7bda45bf7a394745fee1316e6c71fa676004d591ad1f3aa247fd3e4ceb86071",
+      "size": 188
+    },
+    {
+      "path": "projects/reference-release/UserSettings/EditorUserSettings.asset",
+      "sha256": "7212ef4cbaae147bad5901921a551174fd021129715084db891d596341eb4cdc",
+      "size": 659
+    },
+    {
+      "path": "projects/reference-release/UserSettings/Search.settings",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size": 2
+    },
+    {
+      "path": "projects/reference-release/source-inputs.json",
+      "sha256": "f8d85344b983186778b430f7e7b809d7c177da73a62298f2eed09367a6587419",
+      "size": 3221
+    }
+  ],
+  "fullR02Seal": false,
+  "kind": "R03FocusedEvidenceIndex",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1
+}

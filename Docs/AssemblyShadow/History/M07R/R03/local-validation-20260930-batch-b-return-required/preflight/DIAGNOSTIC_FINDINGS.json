@@ -1,0 +1,192 @@
+{
+  "kind": "ReadOnlyArtifactDiagnosis",
+  "recordedUtc": "2026-09-30T18:24:04.689577+00:00",
+  "scope": "Existing artifacts only; no compilation, fixture execution, source repair, batch retry or original receipt edit",
+  "metadataOperation": "pwsh -NoProfile -File /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20260930B-lifetime/inspect-fixture-metadata.ps1",
+  "metadataOutputSha256": "9c7c851a66e960ef2cf26037dcc9f5b40d7f6af175f50571ff9d756d44278aab",
+  "malformedAssemblyReferences": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/host/player-fixtures/baseline/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "assemblyReference": {
+        "name": "B, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "flags": 1,
+        "hasPublicKey": true,
+        "keyOrTokenHex": ""
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/host/player-fixtures/reversal/B.dll",
+      "sha256": "230ff8067ffd065da3b8020aef7dfaa8a4dedd1e575fb69b58fa49b19ce4d6b9",
+      "assemblyReference": {
+        "name": "A, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "flags": 1,
+        "hasPublicKey": true,
+        "keyOrTokenHex": ""
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/host/player-fixtures/true-cycle/A.dll",
+      "sha256": "43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281",
+      "assemblyReference": {
+        "name": "B, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "flags": 1,
+        "hasPublicKey": true,
+        "keyOrTokenHex": ""
+      }
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/host/player-fixtures/true-cycle/B.dll",
+      "sha256": "230ff8067ffd065da3b8020aef7dfaa8a4dedd1e575fb69b58fa49b19ce4d6b9",
+      "assemblyReference": {
+        "name": "A, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "flags": 1,
+        "hasPublicKey": true,
+        "keyOrTokenHex": ""
+      }
+    }
+  ],
+  "compilerLogs": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/builds/candidate-debug/Editor.log",
+      "sha256": "058ad04c46a116d257c298a92df07edc40ba882f1ff140e0bb148cba8006a924",
+      "errors": [
+        {
+          "line": 869,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-debug/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 874,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-debug/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 876,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-debug/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        }
+      ],
+      "sharedCompilerInvocations": [
+        {
+          "line": 413,
+          "text": "\"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        },
+        {
+          "line": 872,
+          "text": "## CmdLine: \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        }
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/builds/candidate-off/Editor.log",
+      "sha256": "c7273ab795acb6de6082b77c86540f8fbeee8a29eb4633bc2c9f73c2c8b0f334",
+      "errors": [
+        {
+          "line": 869,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-off/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 874,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-off/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 876,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-off/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        }
+      ],
+      "sharedCompilerInvocations": [
+        {
+          "line": 413,
+          "text": "\"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        },
+        {
+          "line": 872,
+          "text": "## CmdLine: \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        }
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/builds/candidate-release/Editor.log",
+      "sha256": "9160ece400dc84abfd4168845db5ab2629c6bc15808b3fca731e3e7539614a37",
+      "errors": [
+        {
+          "line": 869,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 874,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 876,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        }
+      ],
+      "sharedCompilerInvocations": [
+        {
+          "line": 413,
+          "text": "\"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        },
+        {
+          "line": 872,
+          "text": "## CmdLine: \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        }
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/builds/reference-release/Editor.log",
+      "sha256": "c173662abed915f939043d2e9c37a4284ead32b44abe6935401f578ba530f7aa",
+      "errors": [
+        {
+          "line": 869,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/reference-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 874,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/reference-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 876,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/reference-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        }
+      ],
+      "sharedCompilerInvocations": [
+        {
+          "line": 413,
+          "text": "\"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        },
+        {
+          "line": 872,
+          "text": "## CmdLine: \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        }
+      ]
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/editor-tests.log",
+      "sha256": "4580b5bb15dedda6ceab7cb6b5a4ad6bde55291a84d41150c219e5ce338c6888",
+      "errors": [
+        {
+          "line": 694,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 699,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        },
+        {
+          "line": 701,
+          "text": "error CS0009: Metadata file '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/projects/candidate-release/Assets/Fixtures/A.dll' could not be opened -- Invalid public key."
+        }
+      ],
+      "sharedCompilerInvocations": [
+        {
+          "line": 238,
+          "text": "\"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        },
+        {
+          "line": 697,
+          "text": "## CmdLine: \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetCoreRuntime/dotnet\" exec \"/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/csc.dll\" /nostdlib /noconfig /shared \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp\" \"@Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.rsp2\""
+        }
+      ]
+    }
+  ],
+  "interpretation": "Observed empty full-public-key AssemblyRefs explain Unity Roslyn Invalid public key; persistent Unity compiler service is the likely dotnet survivor role, not proven from the comm-only roster."
+}

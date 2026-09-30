@@ -1,0 +1,18 @@
+# R03 Local batch B — immutable failed-run checkpoint
+
+**ReturnRequired: 12 Passed, 5 Failed, 19 Blocked; focused seal Passed.** One fresh invocation only, 2026-09-30 18:06:26.933831–18:07:40.190805 UTC, exit 1. Executed demo `a261bdf0db3f1432226a6b6b69f6f56fbbc47d34`; source/CI anchor `7e2852fcd6c5bd9ebc82f2b3f97516742b772dc2`. The later Local documentation commit does not replace this execution provenance.
+
+Read [LOCAL_VALIDATION.md](../../../../Handoff/LOCAL_VALIDATION.md) for status and [RETURN_TO_WEB.md](../../../../Handoff/RETURN_TO_WEB.md) for two actionable Primary issues. This checkpoint does not establish Unity/IL2CPP/native or runtime acceptance. R03Accepted=false; H2Passed=false; PureInterpreter expansion disabled.
+
+- [LOCAL_BATCH_RESULT.json](batch/LOCAL_BATCH_RESULT.json), [BATCH_EXECUTION.json](batch/BATCH_EXECUTION.json) and all 36 individual cells preserve actual classifications.
+- [evidence-index.json](batch/evidence-index.json), [evidence.tar.gz](batch/evidence.tar.gz), [seal-receipt.json](batch/seal-receipt.json) are unchanged runner outputs: 407 indexed files / 408 authenticated archive members. Final result and seal receipt are written after sealing and additionally bound by this checkpoint manifest.
+- All 17 command receipts/streams, five pre-cleanup process rosters, host results/fixture DLLs, build configs and actual Editor compiler logs are retained in `batch/` with unchanged hashes.
+- [POSTRUN_AUTHENTICATION.json](preflight/POSTRUN_AUTHENTICATION.json) authenticates live files, archive members, ledger/cells, command streams, fixture inventory, exact final source authority and 90 previous custody bindings. This read-only audit is separate from the original seal.
+- [DIAGNOSTIC_FINDINGS.json](preflight/DIAGNOSTIC_FINDINGS.json) and [fixture-metadata.json](preflight/fixture-metadata.json) bind metadata-only inspection. A.dll refers to B with AssemblyRef flags=1 (PublicKey), zero key bytes; four generated fixtures have this defect. No DLL was changed.
+- [RETAINED_LIVE_ROOTS.json](preflight/RETAINED_LIVE_ROOTS.json) inventories 108 excluded compiled/intermediate files, three clean detached reference worktrees and four isolated project roots. Original `Library` caches and all live roots remain available. Retained compiler response files are read-only diagnostic copies; no build outputs or test XML were manufactured.
+- Checkpoint-local Git whitespace attributes preserve captured Unity log/settings whitespace; no sealed bytes are normalized.
+- `source-snapshot/` retains the relevant executed-source files. `preflight/` includes command/environment/time/exit receipts and bounded postrun diagnosis. [MANIFEST.sha256](MANIFEST.sha256) binds every checkpoint file except itself.
+
+Live root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime`. Preflight root: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20260930B-lifetime`. These are retained, not disposable or reusable batch roots. Batch A and earlier R02/H1 evidence remain unchanged.
+
+Exactly four build cells and the EditMode invocation failed Unity compilation with CS0009; build methods, IL2CPP/native compilation, Editor test assertions and all nineteen Players did not run. All five Unity receipts additionally capture one surviving `dotnet` member; the original `remainingProcessGroup=true` and immediate cleanup flags remain unchanged. A later read-only ps observation found no members of those groups. No source repair, retry, pin change, full-stage review or acceptance promotion occurred. Local Validation → Primary Implementation; stop.

@@ -1,0 +1,6 @@
+# Immutable DLL/archive bytes; no text conversion.
+*.dll binary
+*.tar.gz binary
+# Captured Unity logs/settings retain original whitespace under their sealed hashes.
+batch/**/*.log whitespace=-blank-at-eol,-blank-at-eof
+batch/**/ProjectSettings/*.asset whitespace=-blank-at-eol,-blank-at-eof
