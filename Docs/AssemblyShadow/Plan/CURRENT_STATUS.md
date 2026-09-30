@@ -1,27 +1,35 @@
-# Current Status — batch-H repair awaiting Local Validation
+# Current Status — R02 batch I complete; awaiting explicit acceptance
 
-- Input Local return: `d33792957303488e03529c945ac01ce0eedd660b`.
-- H1: PassedWithExplicitDeferredRisk; D1=A/D2=A remain development-stage deferrals.
-- Common source: `a81bb0d7b886fe941ba4b132296a30dcf4a319cc`.
-- CI authority: `c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d`.
-- Candidate branch: `codex/assembly-shadow-r01b-h1`.
+## Current evidence
+
+- Local return: `7a88cfc867d37360a1dc6a06892b3811ec025adf`.
+- Batch I: **34/34 required cells Passed**, `EvidenceReadyForStageReview`.
+- Independent R02 stage review: **PASS, zero findings**, reviewed checkpoint `273f33a324c2262505863fb8a3594f913eb47ebc`.
+- Primary reconciliation: final 134-entry checkpoint manifest, 179 exported inputs and statistical summaries authenticated; no new blocking finding in that scope.
+- Execution candidate: `19b0adcf0a1f376f16eaebf16558d0dcdfdafe6f`.
+- Common executable/tool source: `a81bb0d7b886fe941ba4b132296a30dcf4a319cc`.
 - Matched control: `codex/r02-h1-runtime-control@21c689732cd8087f8ee8fdce4e52a8f2a655f722`.
-- HybridCLR/package, both roles: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
+- HybridCLR, both roles: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
+- Managed package, both roles: `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
 - Candidate/control IL2CPP: `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
-- R02Accepted=false; mayEnterR03=false.
 
-## Implemented work
+H's repeated warm-proof failure is resolved for the measured P01/P03 paths: 10,000 requested allocations produced 10,002 observed hits, zero repeated proof/unready/workspace/layout work and 10,000 retained baseline-state checks. All eight sidecars, the controlled paired series, 1,119 Editor cases including five exact contracts, affected regressions and complete I seal Passed. Local and the independent reviewer authenticated 72,826 live locators and 20,111 archive members; Primary's current audit is limited to committed checkpoint data, not another live-Mac audit.
 
-Concrete AOT compiled layout can now complete an allocation proof without initializing the protected baseline; all physical comparisons, active-target readiness, composite restrictions and per-hit correctness guards remain. A capped cold-readiness diagnostic and a 10,000-warm-allocation native-header regression are included. H's exact failing class remains unproven from its counters alone.
+## Remaining decision, not a new repair cycle
 
-Current M07/startup validation has a source-bound strict R02 schema bridge; legacy verifiers and raw evidence are unchanged. Startup invokes its existing verifier module. The diagnostic Player now uses a new distinct canonical R01B build root, retaining full receipts and restoration. Earlier F/G repairs and all five machine-enforced Editor tests remain.
+Read `../History/M07R/R02/I_PRIMARY_REVIEW.md` for all favorable and unfavorable CPU/RSS measurements and the batched **R02-D1 / R02-D2** choices. Warm P01/P03 allocation improved about 91%, while first allocation, ON-NoPatch and several reflection/generic phases regress. Incremental memory medians are mixed; they do not show that the earlier H1-versus-R01 RSS cost disappeared.
 
-## Selected evidence
+Primary recommends accepting the measured R02 development-stage tradeoff as `PassedWithExplicitDeferredRisk`, but has not recorded user approval. Earlier H1 D1=A/D2=A remains unchanged and does not automatically approve these new measurements.
 
-At `c5278a1a6fe024f1b00f8807d4e162e8e6f17d4d`, R02 CI 36431496003, actual macOS writer/parser CI 36431496157, legacy CI 36431495940 and origin CI 36431495954 passed. Python: 236/236 local and Linux; macOS repeated subset 97/97; actual writer/parser 1,310 checks per platform; native matrices 70/70 each, 1,540/168,616 checks; managed Baseline/P01/P03 102/111/111; legacy 384/384 and 6/6. All 3,412 source entries, thirteen changed executable blobs and 226 nested bindings authenticated.
+- H1: `PassedWithExplicitDeferredRisk`.
+- R02 readiness: `ReadyForHumanReviewGate` at the R02 acceptance/risk checkpoint.
+- R02Accepted: **false**.
+- mayEnterR03: **false**.
+- R03 started: **false**.
+- H2: future numbered gate after R03 under `HUMAN_REVIEW_GATES.md`; not passed or moved.
 
-`PRIMARY_VALIDATION.md` and `H_PRIMARY_VALIDATION.json` retain exact results, artifacts and limits. No Primary Unity/Player execution or performance acceptance is claimed. H remains 25 Passed, 5 Failed, 4 Blocked with its original complete seal.
+## Next action
 
-## Required next action
+Obtain the two explicit R02 risk choices. Until then, `Handoff/WEB_TO_LOCAL.md` authorizes documentation synchronization and evidence custody only. Do not start another 34-cell R02 run, overwrite I, or implement R03. `I_NEXT_VALIDATION_PLAN.md` prepares the conditional successor; all non-trivial changes remain Primary-owned.
 
-Local runs one unused 34-cell batch from the latest verified candidate transport and the fixed control above, with fresh candidate native installation/builds. It verifies warm admission, eight sidecars, four pilot plus forty formal A/B pairs, five Editor tests, M07/startup/failure/count132, diagnostic/lazy/dense/capacity, final authority and complete sealing. Prior count and Editor passes cannot authenticate the new native runtime. D1/D2 require measured disposition before H2; independent review only after complete eligible evidence. Preserve all history and stop before R03.
+This status update changes no executable, source pin, fixture, runtime or control head. Preserve every A-H/I and H1 result with its original classification. Existing host/source `PRIMARY_VALIDATION.md` remains historical evidence for its exact CI authority, not a new Player claim.
