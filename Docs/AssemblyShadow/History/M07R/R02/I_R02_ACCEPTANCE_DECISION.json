@@ -1,0 +1,39 @@
+{
+  "kind": "R02AcceptanceDecision",
+  "date": "2026-09-29",
+  "userDecision": {
+    "R02_D1": "A",
+    "R02_D2": "A",
+    "verbatim": "R02-D1=A, R02-D2=A"
+  },
+  "verdict": "PassedWithExplicitDeferredRisk",
+  "R02Accepted": true,
+  "mayEnterR03": true,
+  "R03Started": false,
+  "H2Passed": false,
+  "bindings": {
+    "localReturn": "7a88cfc867d37360a1dc6a06892b3811ec025adf",
+    "candidateExecutionCommit": "19b0adcf0a1f376f16eaebf16558d0dcdfdafe6f",
+    "sourceAnchor": "a81bb0d7b886fe941ba4b132296a30dcf4a319cc",
+    "controlCommit": "21c689732cd8087f8ee8fdce4e52a8f2a655f722",
+    "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+    "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+    "candidateIl2cppPlus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c",
+    "controlIl2cppPlus": "6be7f38bec2fa4677d24efc1a4a1294240789933",
+    "batchResultSha256": "5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69",
+    "sealIndexSha256": "16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926",
+    "archiveSha256": "c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a",
+    "independentReviewOutputSha256": "201ab92298c3ae4f758c9d5a0e464a36eddc117ddcfacf108b27f0404dcd277e"
+  },
+  "deferredRisks": {
+    "cpu": "Accept measured R02 development-stage CPU tradeoffs; retain first-allocation, ON-NoPatch, reflection and generic residuals through H2.",
+    "memory": "Accept measured incremental R02 memory tradeoff; preserve the original H1 RSS risk and later production RAM-budget validation."
+  },
+  "limits": {
+    "productionSlaApproved": false,
+    "productionRamBudgetApproved": false,
+    "releaseApproved": false,
+    "H2Satisfied": false,
+    "R03Started": false
+  }
+}
