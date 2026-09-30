@@ -6,15 +6,14 @@ import os
 from pathlib import Path
 import re
 import shutil
-import signal
 import subprocess
 import sys
-import time
 import uuid
 import xml.etree.ElementTree as ET
 
 from batch_contract import loads, require, sha, verify_raw
 from batch_evidence import finalize, write
+from command_lifetime import build_arguments, run_owned_command
 
 REPOS = ('hybridclr_demo', 'hybridclr', 'hybridclr_unity', 'il2cpp_plus')
 BRANCH = 'codex/assembly-shadow-r01b-h1'
@@ -64,31 +63,7 @@ class Batch:
     def command(self, args, timeout=600):
         self.command_count += 1
         root = self.root / 'commands' / ('%04d' % self.command_count)
-        root.mkdir(parents=True)
-        args = [str(x) for x in args]
-        start = time.time()
-        timed_out, remaining_group = False, False
-        env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', GIT_TERMINAL_PROMPT='0', TMPDIR='/private/tmp')
-        with (root / 'stdout.log').open('wb') as out, (root / 'stderr.log').open('wb') as err:
-            process = subprocess.Popen(args, stdout=out, stderr=err, env=env, start_new_session=True)
-            try:
-                code = process.wait(timeout=timeout)
-            except subprocess.TimeoutExpired:
-                timed_out = True
-                os.killpg(process.pid, signal.SIGKILL)
-                code = process.wait()
-            try:
-                os.killpg(process.pid, 0)
-                remaining_group = True
-                os.killpg(process.pid, signal.SIGKILL)
-            except ProcessLookupError:
-                pass
-        receipt = {'command': args, 'pid': process.pid, 'startedUtcEpoch': start, 'endedUtcEpoch': time.time(),
-                   'exitCode': code, 'timeout': timed_out, 'remainingProcessGroup': remaining_group,
-                   'stdoutSha256': sha(root / 'stdout.log'), 'stderrSha256': sha(root / 'stderr.log')}
-        write(root / 'command.json', receipt)
-        require(code == 0 and not timed_out and not remaining_group, 'Command failed; preserved receipt: ' + str(root / 'command.json'))
-        return receipt
+        return run_owned_command(args, root, timeout)
 
     def cell(self, name, action, dependencies=()):
         row = {'id': name, 'result': 'Blocked', 'dependencies': list(dependencies)}
@@ -127,8 +102,7 @@ class Batch:
     def managed(self, project, output, package=None, phase=None):
         package = package or self.workspace / 'hybridclr_unity'
         binary, intermediate = self.root / 'bin' / output, self.root / 'obj' / output
-        self.command(['dotnet', 'build', ROOT / project / (project + '.csproj'), '-c', 'Release', '--output', binary,
-                      '-p:PackageRoot=' + str(package), '-p:BaseIntermediateOutputPath=' + str(intermediate) + '/'])
+        self.command(build_arguments(ROOT / project / (project + '.csproj'), binary, intermediate, package))
         result_root = self.root / 'host' / output
         arguments = ['--phase', phase] if phase else []
         self.command(['dotnet', binary / (project + '.dll'), *arguments, '--output', result_root])
