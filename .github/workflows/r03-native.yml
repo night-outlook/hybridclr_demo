@@ -1,0 +1,64 @@
+name: R03 native source compilation
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-native.yml'
+      - 'Tools/AssemblyShadow/R03/source-pins.json'
+      - 'Tools/AssemblyShadow/R03/run_native_compile.py'
+permissions:
+  contents: read
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Exact source pins
+        id: pins
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,os,re
+          from pathlib import Path
+          pins=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              for name in ('hybridclr','il2cpp_plus'):
+                  if not re.fullmatch('[0-9a-f]{40}',pins[name]): raise SystemExit('Invalid source pin')
+                  out.write(name+'='+pins[name]+'\n')
+          PY
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: ${{ steps.pins.outputs.hybridclr }}
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: ${{ steps.pins.outputs.il2cpp_plus }}
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Compile actual translation units
+        run: python3 hybridclr_demo/Tools/AssemblyShadow/R03/run_native_compile.py --workspace "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/r03-native"
+      - name: Verify source integrity
+        if: always()
+        shell: bash
+        run: |
+          git -C hybridclr_demo diff --exit-code
+          git -C hybridclr diff --exit-code
+          git -C il2cpp_plus diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-native-${{ matrix.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-native
+          if-no-files-found: error
+          retention-days: 14
