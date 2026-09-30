@@ -1,0 +1,212 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
+using HybridCLR;
+using UnityEngine;
+
+namespace AssemblyShadow.R03.Player
+{
+    [Serializable] public sealed class InputDll { public string name; public string path; public string sha256; }
+    [Serializable] public sealed class Request
+    {
+        public int schemaVersion;
+        public string runId;
+        public string caseId;
+        public string baselineId;
+        public string[] candidates;
+        public string[] roots;
+        public InputDll[] dlls;
+        public string invokeAssembly;
+        public bool observeMethod;
+        public bool oldExecutionGuard;
+        public bool noPatch;
+    }
+    [Serializable] public sealed class Step { public string phase; public int code; public int state; }
+    [Serializable] public sealed class Result
+    {
+        public int schemaVersion = 1;
+        public string kind = "R03PlayerObservation";
+        public string runId;
+        public string caseId;
+        public string requestSha256;
+        public int pid;
+        public string startedUtc;
+        public string endedUtc;
+        public string unityVersion;
+        public string platform;
+        public bool il2cpp;
+        public bool supported;
+        public bool published;
+        public string phase;
+        public Step[] steps;
+        public string exception;
+        public string exceptionType;
+        public string exceptionStack;
+        public int invocationResult;
+        public int delegateResult;
+        public int warmAllocationCount;
+        public string beforeWarm;
+        public string afterWarm;
+        public string nativeMethod;
+        public string diagnostics;
+        public int diagnosticsCode;
+        public int finalState;
+        public string recovery;
+        public int recoveryCode;
+        public long managedBytesBefore;
+        public long managedBytesAfter;
+        public bool acceptance = false;
+    }
+
+    public static class R03Player
+    {
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_ObserveMethod(string assembly, string namespaze, string type, string method,
+            int oldGuard, [Out] byte[] output, int capacity);
+
+        private static bool started;
+        private static readonly List<Step> Steps = new List<Step>();
+        private static Result result;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Start()
+        {
+            if (started) return;
+            started = true;
+            string requestPath = Argument("-r03Request");
+            if (requestPath == null) return;
+            string outputPath = Argument("-r03Output");
+            result = new Result { startedUtc = DateTime.UtcNow.ToString("O"), pid = Process.GetCurrentProcess().Id,
+                unityVersion = Application.unityVersion, platform = Application.platform.ToString(), phase = "Input" };
+#if ENABLE_IL2CPP && !UNITY_EDITOR
+            result.il2cpp = true;
+#endif
+            try
+            {
+                if (outputPath == null || File.Exists(outputPath)) throw new IOException("An unused output path is required.");
+                byte[] requestBytes = File.ReadAllBytes(requestPath);
+                result.requestSha256 = Hash(requestBytes);
+                var request = JsonUtility.FromJson<Request>(Encoding.UTF8.GetString(requestBytes));
+                if (request == null || request.schemaVersion != 1 || string.IsNullOrEmpty(request.runId) ||
+                    string.IsNullOrEmpty(request.caseId) || string.IsNullOrEmpty(request.baselineId) ||
+                    request.candidates == null || request.roots == null || request.dlls == null)
+                    throw new InvalidDataException("Incomplete request.");
+                result.runId = request.runId; result.caseId = request.caseId;
+                if (Argument("-r03RunId") != request.runId) throw new InvalidDataException("Launch nonce mismatch.");
+                if (!result.il2cpp) throw new InvalidOperationException("This witness requires an IL2CPP Player.");
+                var bytes = new List<byte[]>();
+                foreach (var item in request.dlls)
+                {
+                    if (item == null || string.IsNullOrEmpty(item.name) || !Path.IsPathRooted(item.path))
+                        throw new InvalidDataException("Each DLL requires an absolute input path and identity.");
+                    byte[] dll = File.ReadAllBytes(item.path);
+                    if (Hash(dll) != item.sha256) throw new InvalidDataException("Input DLL hash mismatch: " + item.name);
+                    bytes.Add(dll);
+                }
+                result.supported = AssemblyShadowRuntime.IsSupported;
+                result.managedBytesBefore = GC.GetTotalMemory(false);
+                if (request.noPatch)
+                {
+                    result.phase = "BaselineInvoke";
+                    Invoke(request.invokeAssembly);
+                    result.phase = "Completed";
+                    return;
+                }
+                // This fixed test bootstrap touches no fixture type before this
+                // registration. It tests R03 semantics, not the full production
+                // early-startup contract or deployment admission pipeline.
+                if (!Call("Configure", AssemblyShadowRuntime.ConfigureCandidates(request.baselineId, request.candidates, new string[0]))) return;
+                if (!Call("Begin", AssemblyShadowRuntime.BeginTransaction("R03-" + request.runId, request.baselineId,
+                    request.roots, request.dlls.Select(d => d.name).ToArray()))) return;
+                if (!Call("Reserve", AssemblyShadowRuntime.ReserveTransactionImageBudget(request.dlls.Select(d => d.name).ToArray(),
+                    bytes.Select(b => (ulong)b.LongLength).ToArray()))) return;
+                for (int i = 0; i < bytes.Count; ++i)
+                    if (!Call("Stage:" + request.dlls[i].name, AssemblyShadowRuntime.StageAssembly(bytes[i]))) return;
+                if (!Call("Validate", AssemblyShadowRuntime.ValidateTransaction())) return;
+                if (!Call("Commit", AssemblyShadowRuntime.CommitTransaction())) return;
+                result.published = true;
+                if (!string.IsNullOrEmpty(request.invokeAssembly))
+                {
+                    result.phase = "ActiveInvoke";
+                    Invoke(request.invokeAssembly);
+                }
+                if (request.observeMethod)
+                {
+                    result.phase = "NativeMethod";
+                    byte[] buffer = new byte[16384];
+                    int size = R03_ObserveMethod(request.invokeAssembly, "R03", "Node", "Keep",
+                        request.oldExecutionGuard ? 1 : 0, buffer, buffer.Length);
+                    if (size < 1 || size >= buffer.Length) throw new InvalidOperationException("Native probe failed: " + size);
+                    result.nativeMethod = Encoding.UTF8.GetString(buffer, 0, size);
+                }
+                result.phase = "Completed";
+            }
+            catch (Exception error)
+            {
+                // Preserve the production exception and stack, including the
+                // inner invocation error. Do not call further business code.
+                result.exception = error.ToString(); result.exceptionType = error.GetType().FullName;
+                result.exceptionStack = error.StackTrace;
+            }
+            finally
+            {
+                result.managedBytesAfter = GC.GetTotalMemory(false);
+                result.steps = Steps.ToArray();
+                result.endedUtc = DateTime.UtcNow.ToString("O");
+                AssemblyShadowState state;
+                AssemblyShadowRuntime.GetState(out state); result.finalState = (int)state;
+                string diagnostics;
+                result.diagnosticsCode = (int)AssemblyShadowRuntime.GetDiagnostics(out diagnostics); result.diagnostics = diagnostics;
+                AssemblyShadowRecoveryInfo recovery;
+                result.recoveryCode = (int)AssemblyShadowRuntime.GetRecoveryInfo(out recovery);
+                result.recovery = recovery == null ? "" : JsonUtility.ToJson(recovery);
+                try
+                {
+                    using (var stream = new FileStream(outputPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+                    using (var writer = new StreamWriter(stream, new UTF8Encoding(false)))
+                        writer.Write(JsonUtility.ToJson(result, true) + "\n");
+                    Application.Quit(0); // A separate strict verifier decides the outcome.
+                }
+                catch (Exception error) { UnityEngine.Debug.LogException(error); Application.Quit(2); }
+            }
+        }
+
+        private static bool Call(string phase, AssemblyShadowError code)
+        {
+            result.phase = phase;
+            AssemblyShadowState state; AssemblyShadowRuntime.GetState(out state);
+            Steps.Add(new Step { phase = phase, code = (int)code, state = (int)state });
+            return code == AssemblyShadowError.Success;
+        }
+        private static void Invoke(string assembly)
+        {
+            Type type = Type.GetType("R03.Node, " + assembly, true);
+            object instance = Activator.CreateInstance(type);
+            MethodInfo method = type.GetMethod("Keep", BindingFlags.Instance | BindingFlags.Public);
+            result.invocationResult = (int)method.Invoke(instance, null);
+            result.delegateResult = ((Func<int>)Delegate.CreateDelegate(typeof(Func<int>), instance, method))();
+            AssemblyShadowTypeResolutionInfo info;
+            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowError.Success)
+                result.beforeWarm = JsonUtility.ToJson(info);
+            for (int i = 0; i < 10000; ++i)
+            { instance = Activator.CreateInstance(type); ++result.warmAllocationCount; }
+            GC.KeepAlive(instance);
+            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowError.Success)
+                result.afterWarm = JsonUtility.ToJson(info);
+        }
+        private static string Argument(string key)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            for (int i = 0; i + 1 < args.Length; ++i) if (args[i] == key) return args[i + 1];
+            return null;
+        }
+        private static string Hash(byte[] bytes)
+        { using (var hash = SHA256.Create()) return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant(); }
+    }
+}
