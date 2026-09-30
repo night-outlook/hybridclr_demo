@@ -37,6 +37,24 @@ jobs:
           ref: ${{ steps.pins.outputs.package }}
           path: hybridclr_unity
           persist-credentials: false
+      - name: Python syntax and verifier contracts
+        if: always() && steps.package.outcome == 'success'
+        shell: bash
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          mkdir -p "$RUNNER_TEMP/r03-evolution/tool-contracts"
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          root=Path('hybridclr_demo/Tools/AssemblyShadow/R03')
+          files=sorted(root.glob('*.py'))
+          if not files: raise SystemExit('No Python sources')
+          for path in files:
+              ast.parse(path.read_text(),filename=str(path))
+              print('Parsed',path)
+          PY
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/test_batch_contract.py 2>&1 | tee "$RUNNER_TEMP/r03-evolution/tool-contracts/python.log"
       - name: Execute production graph against real assembly bytes
         shell: bash
         env:
@@ -44,13 +62,25 @@ jobs:
         run: |
           dotnet --info
           dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/HostTests/HostTests.csproj -c Release --output "$RUNNER_TEMP/r03-bin/graph" -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-obj/graph/"
-          dotnet "$RUNNER_TEMP/r03-bin/graph/HostTests.dll" --phase "$R03_PHASE" --output "$RUNNER_TEMP/r03-evolution"
+          dotnet "$RUNNER_TEMP/r03-bin/graph/HostTests.dll" --phase "$R03_PHASE" --output "$RUNNER_TEMP/r03-evolution/graph"
       - name: Execute production admission and method contracts
         if: always() && steps.package.outcome == 'success' && steps.pins.outputs.phase == 'candidate'
         shell: bash
         run: |
           dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/AdmissionTests/AdmissionTests.csproj -c Release --output "$RUNNER_TEMP/r03-bin/admission" -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-obj/admission/"
           dotnet "$RUNNER_TEMP/r03-bin/admission/AdmissionTests.dll" --output "$RUNNER_TEMP/r03-evolution/admission"
+      - name: Generate and authenticate native Player inputs
+        if: always() && steps.package.outcome == 'success' && steps.pins.outputs.phase == 'candidate'
+        shell: bash
+        run: |
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerFixtures/PlayerFixtures.csproj -c Release --output "$RUNNER_TEMP/r03-bin/fixtures" -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-obj/fixtures/"
+          dotnet "$RUNNER_TEMP/r03-bin/fixtures/PlayerFixtures.dll" --output "$RUNNER_TEMP/r03-evolution/player-fixtures"
+      - name: Compile Player against actual managed runtime APIs
+        if: always() && steps.package.outcome == 'success' && steps.pins.outputs.phase == 'candidate'
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/r03-evolution/tool-contracts"
+          dotnet build hybridclr_demo/Tools/AssemblyShadow/R03/PlayerApiCompile/PlayerApiCompile.csproj -c Release --output "$RUNNER_TEMP/r03-bin/player-api" -p:BaseIntermediateOutputPath="$RUNNER_TEMP/r03-obj/player-api/" 2>&1 | tee "$RUNNER_TEMP/r03-evolution/tool-contracts/player-api-compile.log"
       - name: Source integrity and call-site inventory
         if: always() && steps.package.outcome == 'success'
         shell: bash
