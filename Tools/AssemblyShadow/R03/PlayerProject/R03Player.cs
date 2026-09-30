@@ -20,6 +20,7 @@ namespace AssemblyShadow.R03.Player
         public string caseId;
         public string baselineId;
         public string[] candidates;
+        public string[] stable;
         public string[] roots;
         public InputDll[] dlls;
         public string invokeAssembly;
@@ -41,7 +42,6 @@ namespace AssemblyShadow.R03.Player
         public string unityVersion;
         public string platform;
         public bool il2cpp;
-        public bool supported;
         public bool published;
         public string phase;
         public Step[] steps;
@@ -95,7 +95,7 @@ namespace AssemblyShadow.R03.Player
                 var request = JsonUtility.FromJson<Request>(Encoding.UTF8.GetString(requestBytes));
                 if (request == null || request.schemaVersion != 1 || string.IsNullOrEmpty(request.runId) ||
                     string.IsNullOrEmpty(request.caseId) || string.IsNullOrEmpty(request.baselineId) ||
-                    request.candidates == null || request.roots == null || request.dlls == null)
+                    request.candidates == null || request.stable == null || request.roots == null || request.dlls == null)
                     throw new InvalidDataException("Incomplete request.");
                 result.runId = request.runId; result.caseId = request.caseId;
                 if (Argument("-r03RunId") != request.runId) throw new InvalidDataException("Launch nonce mismatch.");
@@ -109,7 +109,6 @@ namespace AssemblyShadow.R03.Player
                     if (Hash(dll) != item.sha256) throw new InvalidDataException("Input DLL hash mismatch: " + item.name);
                     bytes.Add(dll);
                 }
-                result.supported = AssemblyShadowRuntime.IsSupported;
                 result.managedBytesBefore = GC.GetTotalMemory(false);
                 if (request.noPatch)
                 {
@@ -120,16 +119,18 @@ namespace AssemblyShadow.R03.Player
                 }
                 // This fixed test bootstrap touches no fixture type before this
                 // registration. It tests R03 semantics, not the full production
-                // early-startup contract or deployment admission pipeline.
-                if (!Call("Configure", AssemblyShadowRuntime.ConfigureCandidates(request.baselineId, request.candidates, new string[0]))) return;
-                if (!Call("Begin", AssemblyShadowRuntime.BeginTransaction("R03-" + request.runId, request.baselineId,
-                    request.roots, request.dlls.Select(d => d.name).ToArray()))) return;
-                if (!Call("Reserve", AssemblyShadowRuntime.ReserveTransactionImageBudget(request.dlls.Select(d => d.name).ToArray(),
-                    bytes.Select(b => (ulong)b.LongLength).ToArray()))) return;
+                // early-startup or deployment-admission contract.
+                if (!Call("Configure", () => AssemblyShadowRuntime.ConfigureCandidates(request.baselineId, request.candidates, request.stable))) return;
+                if (!Call("Begin", () => AssemblyShadowRuntime.BeginTransaction("R03-" + request.runId, request.baselineId,
+                    request.dlls.Select(d => d.name).ToArray(), 2))) return;
+                if (!Call("Reserve", () => AssemblyShadowRuntime.ReserveMetadataBudget(bytes.Select(b => b.LongLength).ToArray(), 2))) return;
                 for (int i = 0; i < bytes.Count; ++i)
-                    if (!Call("Stage:" + request.dlls[i].name, AssemblyShadowRuntime.StageAssembly(bytes[i]))) return;
-                if (!Call("Validate", AssemblyShadowRuntime.ValidateTransaction())) return;
-                if (!Call("Commit", AssemblyShadowRuntime.CommitTransaction())) return;
+                {
+                    byte[] dll = bytes[i];
+                    if (!Call("Stage:" + request.dlls[i].name, () => AssemblyShadowRuntime.StageAssembly(dll, null))) return;
+                }
+                if (!Call("Validate", AssemblyShadowRuntime.ValidateTransaction)) return;
+                if (!Call("Commit", AssemblyShadowRuntime.CommitTransaction)) return;
                 result.published = true;
                 if (!string.IsNullOrEmpty(request.invokeAssembly))
                 {
@@ -149,8 +150,6 @@ namespace AssemblyShadow.R03.Player
             }
             catch (Exception error)
             {
-                // Preserve the production exception and stack, including the
-                // inner invocation error. Do not call further business code.
                 result.exception = error.ToString(); result.exceptionType = error.GetType().FullName;
                 result.exceptionStack = error.StackTrace;
             }
@@ -159,13 +158,16 @@ namespace AssemblyShadow.R03.Player
                 result.managedBytesAfter = GC.GetTotalMemory(false);
                 result.steps = Steps.ToArray();
                 result.endedUtc = DateTime.UtcNow.ToString("O");
-                AssemblyShadowState state;
-                AssemblyShadowRuntime.GetState(out state); result.finalState = (int)state;
-                string diagnostics;
-                result.diagnosticsCode = (int)AssemblyShadowRuntime.GetDiagnostics(out diagnostics); result.diagnostics = diagnostics;
-                AssemblyShadowRecoveryInfo recovery;
-                result.recoveryCode = (int)AssemblyShadowRuntime.GetRecoveryInfo(out recovery);
-                result.recovery = recovery == null ? "" : JsonUtility.ToJson(recovery);
+                try
+                {
+                    AssemblyShadowState state;
+                    AssemblyShadowRuntime.GetState(out state); result.finalState = (int)state;
+                    string diagnostics;
+                    result.diagnosticsCode = (int)AssemblyShadowRuntime.GetDiagnosticsJson(out diagnostics); result.diagnostics = diagnostics;
+                    string recovery;
+                    result.recoveryCode = (int)AssemblyShadowRuntime.GetRecoveryInfoJson(out recovery); result.recovery = recovery;
+                }
+                catch (Exception error) { result.exception = (result.exception ?? "") + "\nDiagnosticFailure: " + error; }
                 try
                 {
                     using (var stream = new FileStream(outputPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
@@ -177,12 +179,13 @@ namespace AssemblyShadow.R03.Player
             }
         }
 
-        private static bool Call(string phase, AssemblyShadowError code)
+        private static bool Call(string phase, Func<AssemblyShadowErrorCode> action)
         {
             result.phase = phase;
+            AssemblyShadowErrorCode code = action();
             AssemblyShadowState state; AssemblyShadowRuntime.GetState(out state);
             Steps.Add(new Step { phase = phase, code = (int)code, state = (int)state });
-            return code == AssemblyShadowError.Success;
+            return code == AssemblyShadowErrorCode.Success;
         }
         private static void Invoke(string assembly)
         {
@@ -191,14 +194,14 @@ namespace AssemblyShadow.R03.Player
             MethodInfo method = type.GetMethod("Keep", BindingFlags.Instance | BindingFlags.Public);
             result.invocationResult = (int)method.Invoke(instance, null);
             result.delegateResult = ((Func<int>)Delegate.CreateDelegate(typeof(Func<int>), instance, method))();
-            AssemblyShadowTypeResolutionInfo info;
-            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowError.Success)
-                result.beforeWarm = JsonUtility.ToJson(info);
+            string info;
+            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)
+                result.beforeWarm = info;
             for (int i = 0; i < 10000; ++i)
             { instance = Activator.CreateInstance(type); ++result.warmAllocationCount; }
             GC.KeepAlive(instance);
-            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowError.Success)
-                result.afterWarm = JsonUtility.ToJson(info);
+            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)
+                result.afterWarm = info;
         }
         private static string Argument(string key)
         {
