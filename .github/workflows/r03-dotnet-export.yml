@@ -1,0 +1,37 @@
+name: R03 offline host compiler export
+on:
+  push:
+    branches: [codex/connector-smoke-r03-20260930-0054]
+    paths: ['.github/workflows/r03-dotnet-export.yml']
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Package installed .NET 8 compiler and reference assemblies
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet --info
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,tarfile
+          root=pathlib.Path(subprocess.check_output(['readlink','-f',subprocess.check_output(['which','dotnet'],text=True).strip()],text=True).strip()).parent
+          sdk=sorted((p for p in (root/'sdk').iterdir() if p.name.startswith('8.')),key=lambda p:tuple(int(n) for n in p.name.split('.')))[-1]
+          runtime=sorted((p for p in (root/'shared/Microsoft.NETCore.App').iterdir() if p.name.startswith('8.')),key=lambda p:tuple(int(n) for n in p.name.split('.')))[-1]
+          refs=sorted((p for p in (root/'packs/Microsoft.NETCore.App.Ref').iterdir() if p.name.startswith('8.')),key=lambda p:tuple(int(n) for n in p.name.split('.')))[-1]
+          fxr=root/'host/fxr'/runtime.name
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'r03-dotnet'; out.mkdir()
+          paths=[root/'dotnet',root/'LICENSE.txt',root/'ThirdPartyNotices.txt',sdk,runtime,refs,fxr]
+          with tarfile.open(out/'dotnet8.tar.gz','w:gz') as tar:
+              for p in paths: tar.add(p,arcname=str(p.relative_to(root)))
+          (out/'compiler.json').write_text(json.dumps({'sdk':sdk.name,'runtime':runtime.name,'refs':refs.name,'sha256':hashlib.sha256((out/'dotnet8.tar.gz').read_bytes()).hexdigest(),'runtimeAcceptance':False},indent=2)+'\n')
+          print((out/'compiler.json').read_text())
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-dotnet8-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-dotnet
+          retention-days: 7
+          if-no-files-found: error
