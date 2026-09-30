@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PrimaryToLocalHandoff",
+  "date": "2026-09-30",
+  "state": "AwaitingLocalValidation",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "demoHostCiExecutionAnchor": "f5f5712459fdf67e2b748ddeab8e6540bffd3d95",
+  "demoPreHandoffDocumentationParent": "a898fbf7f65792f1edabef836c6706b2f27d7f1f",
+  "demoHandoffBinding": "current pushed remote HEAD containing B_PRIMARY_HANDOFF.json and Handoff/WEB_TO_LOCAL.md",
+  "sources": {
+    "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+    "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+    "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399"
+  },
+  "hostEvidence": {
+    "workflowRunId": 36706408233,
+    "artifactId": 11092263069,
+    "artifactSha256": "c51888ca64f4cbddee69e603a1540d946de36f9c4e12633867c966551b91d897",
+    "verifierContracts": "29/29 Passed",
+    "graphContracts": "9/9 Passed",
+    "admissionMethodContracts": "35/35 Passed",
+    "playerFixtureDlls": 15,
+    "actualRuntimeApiCompile": "Passed",
+    "unityEditorRun": false,
+    "il2cppPlayerRun": false
+  },
+  "connectorSmoke": {
+    "branch": "codex/connector-smoke-r03-handoff-20260930-0717",
+    "cleanup": "Unavailable; disposable branches retained and non-authoritative",
+    "commits": {
+      "hybridclr_demo": "53afa819f9814ea6c19b707fc0a90e678590cb62",
+      "hybridclr": "2029ae5864ce02ee545ec7d28596f03291998556",
+      "hybridclr_unity": "3a5abb722bad571aad0c32c0aa72c862df566eef",
+      "il2cpp_plus": "9cc6cdd5ff6f96e4937eb4a37a00997b0656fa5f"
+    }
+  },
+  "local": {
+    "workspace": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+    "output": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f",
+    "unity": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "runner": "Tools/AssemblyShadow/R03/run_local.py",
+    "cells": 36,
+    "playerCases": 19,
+    "passResult": "EvidenceReadyForPrimaryReview",
+    "failResult": "ReturnRequired"
+  },
+  "R03Accepted": false,
+  "H2Passed": false,
+  "pureInterpreterExpansionEnabled": false
+}

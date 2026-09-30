@@ -1,10 +1,10 @@
 # R03 · 布局准入、逻辑成员身份与跨版本图修复
 
-状态：待执行。本文不表示代码已修改或测试已通过。
+状态：**执行中**。Primary 已实现 R03 conservative candidate，并已准备首轮 source-bound Local Validation；尚未完成 R03、未进入 H2、未启用 PureInterpreter 结构扩展。
 
 前置：R01、R02。关联 findings：ASR-004, ASR-005, ASR-006。
 
-所有“新增”文件名是建议实现位置，不是对当前仓库存在性的声明。现有路径均以 `source-baseline.json` 及本地固定 checkout 核对。执行前读取主设计 `../design.revised.md` 与验证矩阵 `../validation-matrix.md`。
+当前实现与首轮验证权威记录：`../../History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md`、`../../History/M07R/R03/A_VALIDATION_MATRIX.md`、`../../History/M07R/R03/B_PRIMARY_HANDOFF.md`。主设计以 `../DESIGN.md` 为准；本文件的阶段退出条件保持不变。
 
 
 ## 修改面

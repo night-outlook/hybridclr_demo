@@ -1,44 +1,68 @@
-# Current Status — R02 accepted; R03 eligible but not started
+# Current Status — R03 Primary candidate implemented; awaiting Local Validation
 
-## R02 completion
+## State
 
-- Local return: `7a88cfc867d37360a1dc6a06892b3811ec025adf`.
-- Batch I: **34/34 required cells Passed**.
-- Independent R02 stage review: **PASS, zero findings**.
-- Primary reconciliation: checkpoint, pair identities and CPU/memory summary arithmetic authenticated.
-- Explicit owner decision: **`R02-D1=A, R02-D2=A`**.
 - R02 verdict: **`PassedWithExplicitDeferredRisk`**.
 - R02Accepted: **true**.
 - mayEnterR03: **true**.
-- R03 started: **false**.
-- H2 passed: **false**.
+- R03Started: **true**.
+- R03PrimaryCandidateImplemented: **true**.
+- R03LocalValidationRequested: **true**.
+- R03LocalValidationCompleted: **false**.
+- R03Accepted: **false**.
+- H2Passed: **false**.
+- PureInterpreter structural expansion: **disabled**.
 
-Immutable decision record:
-- `Docs/AssemblyShadow/History/M07R/R02/I_R02_ACCEPTANCE_DECISION.md`
-- `Docs/AssemblyShadow/History/M07R/R02/I_R02_ACCEPTANCE_DECISION.json`
+R03's conservative candidate and validation tooling are documented in:
+- `Docs/AssemblyShadow/History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md`
+- `Docs/AssemblyShadow/History/M07R/R03/A_VALIDATION_MATRIX.md`
+- `Docs/AssemblyShadow/History/M07R/R03/B_PRIMARY_HANDOFF.md`
+- `Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md`
 
-## Bound source and evidence
+## Exact R03 source authority
 
-- Candidate demo actually executed: `19b0adcf0a1f376f16eaebf16558d0dcdfdafe6f`.
-- Common executable/tool source: `a81bb0d7b886fe941ba4b132296a30dcf4a319cc`.
-- Matched control: `21c689732cd8087f8ee8fdce4e52a8f2a655f722`.
-- HybridCLR: `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`.
-- Managed package: `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`.
-- Candidate/control IL2CPP: `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c` / `6be7f38bec2fa4677d24efc1a4a1294240789933`.
-- Batch result SHA-256: `5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69`.
-- Seal-index SHA-256: `16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926`.
-- Archive SHA-256: `c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a`.
+All repositories use branch `codex/assembly-shadow-r01b-h1`.
 
-## Accepted deferred risks
+| Repository | Exact implementation/source pin |
+| --- | --- |
+| `night-outlook/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| `night-outlook/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `night-outlook/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
 
-R02-D1 accepts the measured development-stage CPU tradeoff. The approximately 91% P01/P03 warm-allocation improvement is retained together with slower first allocation, ON-NoPatch warm allocation, and measured reflection/generic residuals. These remain visible through H2 and are not a production SLA.
+Demo host-CI execution anchor: `f5f5712459fdf67e2b748ddeab8e6540bffd3d95`.
 
-R02-D2 accepts the incremental R02 memory tradeoff. Batch-I H1-runtime-control deltas are small and mixed, but they do not prove the original H1-versus-R01 +18–19 MiB RSS risk disappeared. That H1 risk remains preserved, and production RAM budgeting remains future work.
+Pre-handoff documentation parent: `a898fbf7f65792f1edabef836c6706b2f27d7f1f`.
+
+The authoritative demo handoff revision is the **current pushed remote HEAD containing this status and `WEB_TO_LOCAL.md`**. Because a Git commit cannot literally contain its own SHA, Local must obtain that exact SHA from `refs/heads/codex/assembly-shadow-r01b-h1`, verify the final Primary prompt reports the same SHA, and pass it unchanged as `--demo-commit`. The runner independently re-verifies local HEAD, branch, clean state and remote HEAD.
+
+## Primary validation already completed
+
+Host CI at demo `f5f5712459fdf67e2b748ddeab8e6540bffd3d95` completed successfully after the Player API compile dependency fix:
+
+- verifier/filesystem contracts: **29/29 passed**;
+- production graph contracts using real DLL bytes: **9/9 passed**;
+- layout-admission/logical-method host contracts: **35/35 passed**;
+- Player fixture generation: **15 exact DLLs**;
+- compile against actual managed Runtime API source set: **passed, 0 errors**;
+- workflow run: `36706408233`;
+- artifact: `11092263069`;
+- artifact SHA-256: `c51888ca64f4cbddee69e603a1540d946de36f9c4e12633867c966551b91d897`.
+
+These are host/static/tooling results only. Unity Editor execution, IL2CPP Player execution and integrated native behavior are still Local Validation work.
+
+## R02 evidence retained
+
+The accepted R02 execution remains bound to batch-I and its immutable acceptance records. Preserve all R02 A-I/H1 evidence. In particular:
+- batch result SHA-256: `5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69`;
+- seal-index SHA-256: `16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926`;
+- archive SHA-256: `c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a`.
+
+R02-D1 CPU residuals and the original H1 +18–19 MiB RSS risk remain deferred through H2.
 
 ## Next action
 
-R03 is now eligible to begin, but **has not started**. A subsequent explicitly initiated Primary Implementation cycle must read `Plan/stages/R03-evolution-semantics.md`, implement all non-trivial R03 work in Primary, and prepare a new source-bound Local Validation handoff.
+Local Validation runs exactly one unused R03 focused batch from `WEB_TO_LOCAL.md`. It must not redesign the feature, enable PureInterpreter expansion, relax expectations, overwrite prior evidence, or promote the focused batch to R03/H2 acceptance.
 
-Normative H2 remains after R03 under `HUMAN_REVIEW_GATES.md`. This R02 acceptance does not satisfy H2, authorize release, or backdate any Local execution flag.
+A successful focused batch returns `EvidenceReadyForPrimaryReview` with a passed evidence seal and all 36 cells Passed. A failed or blocked batch returns `ReturnRequired`. Either way Local records factual evidence in `LOCAL_VALIDATION.md` and returns control to Primary.
 
-Until a new R03 Primary cycle is explicitly started, Local Validation should preserve batch-I and prior evidence and perform no new execution.
+After Primary reconciles the Local evidence, **R03 remains open** for the remaining full-stage regression, startup/capacity/performance work, gated PureInterpreter qualification/experiments, and independent full stage review described by `R03-evolution-semantics.md`. H2 occurs only after those R03 exit conditions are satisfied.
