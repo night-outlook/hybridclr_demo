@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>UNITY_EDITOR</DefineConstants>
+    <PackageRoot Condition="'$(PackageRoot)' == ''">$(MSBuildThisFileDirectory)../../../../../hybridclr_unity</PackageRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="UnityEnvironment.cs" />
+    <Compile Include="../PlayerProject/R03Player.cs" />
+    <Compile Include="$(PackageRoot)/Runtime/AssemblyShadow/*.cs" />
+  </ItemGroup>
+</Project>
