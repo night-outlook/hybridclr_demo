@@ -1,0 +1,69 @@
+name: R03 Primary evolution contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-primary.yml'
+      - 'Tools/AssemblyShadow/R03/**'
+permissions:
+  contents: read
+jobs:
+  host:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Resolve exact package input
+        id: pins
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          p=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          for repo in ('hybridclr','hybridclr_unity','il2cpp_plus'):
+              if not re.fullmatch('[0-9a-f]{40}',p[repo]): raise SystemExit('Invalid exact source pin: '+repo)
+          if p['phase'] not in ('baseline','candidate'): raise SystemExit('Invalid test phase')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              output.write('package='+p['hybridclr_unity']+'\nphase='+p['phase']+'\n')
+          PY
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.pins.outputs.package }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Execute production graph against real assembly bytes
+        shell: bash
+        env:
+          R03_PHASE: ${{ steps.pins.outputs.phase }}
+        run: |
+          dotnet --info
+          dotnet run --project hybridclr_demo/Tools/AssemblyShadow/R03/HostTests/HostTests.csproj -c Release -- --phase "$R03_PHASE" --output "$RUNNER_TEMP/r03-evolution"
+          git -C hybridclr_demo diff --exit-code
+          git -C hybridclr_unity diff --exit-code
+      - name: Record source and artifact provenance
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-evolution'
+          root.mkdir(parents=True,exist_ok=True)
+          repos={name:subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity') if Path(name).is_dir()}
+          files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          data={'kind':'R03PrimaryProvenance','workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':repos,'files':files,'unityEditorRun':False,'il2cppPlayerRun':False,'runtimeAcceptance':False}
+          (root/'provenance.json').write_text(json.dumps(data,indent=2)+'\n')
+          print(json.dumps(data,indent=2))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-evolution-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-evolution
+          retention-days: 14
+          if-no-files-found: error
