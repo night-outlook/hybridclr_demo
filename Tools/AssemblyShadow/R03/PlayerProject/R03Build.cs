@@ -47,8 +47,8 @@ namespace AssemblyShadow.R03.Editor
         public string installReceiptSha256;
         public string testOverlaySha256;
         public bool nonGeneratedCorePreserved;
-        public uint errors;
-        public uint warnings;
+        public int errors;
+        public int warnings;
         public FileHash[] installedBefore;
         public FileHash[] installedAfter;
         public FileHash[] playerFiles;

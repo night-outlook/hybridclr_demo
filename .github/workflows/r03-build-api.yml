@@ -1,0 +1,69 @@
+name: R03 pinned Unity build-helper API
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-build-api.yml'
+      - 'Tools/AssemblyShadow/R03/**'
+permissions:
+  contents: read
+jobs:
+  pinned-unity-api:
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 120bb01be680cec0375002a0823552d66d34b84c
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Extract exact official Editor without installing or launching Unity
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/r03-build-api"
+          URL=https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg
+          curl --fail --location --proto '=https' --max-time 900 "$URL" -o "$RUNNER_TEMP/unity.pkg"
+          shasum -a 256 "$RUNNER_TEMP/unity.pkg" > "$RUNNER_TEMP/r03-build-api/installer.sha256"
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+          find "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$RUNNER_TEMP/r03-build-api/unity-paths.txt"
+          test "$(wc -l < "$RUNNER_TEMP/r03-build-api/unity-paths.txt" | tr -d ' ')" = 1
+      - name: Compile full package dependencies and helper against actual pinned APIs
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py \
+            --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \
+            --output "$RUNNER_TEMP/r03-build-api/execution"
+      - name: Preserve source identity and evidence inventory
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])/'r03-build-api'
+          root.mkdir(parents=True, exist_ok=True)
+          repositories = {name: subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity')}
+          files = [{'path':str(p.relative_to(root)), 'size':p.stat().st_size, 'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          data = {'kind':'R03PinnedBuildApiProvenance','workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':repositories,'files':files,'unityEditorRun':False,'nativeExecution':False,'runtimeAcceptance':False}
+          (root/'provenance.json').write_text(json.dumps(data,indent=2)+'\n')
+          PY
+          git -C hybridclr_demo diff --exit-code
+          git -C hybridclr_unity diff --exit-code
+          test -z "$(git -C hybridclr_demo status --porcelain)"
+          test -z "$(git -C hybridclr_unity status --porcelain)"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-build-api-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-build-api
+          retention-days: 14
+          if-no-files-found: error
+          include-hidden-files: true

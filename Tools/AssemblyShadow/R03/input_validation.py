@@ -157,5 +157,7 @@ def validate_inputs(batch):
     audit_root, report = metadata_audit(batch)
     consumed = consumers(batch, audit_root, report, unity_toolchain(batch.unity), 'unity-2022.3.62f2')
     lifecycle = unity_probes(batch, audit_root)
+    from build_api import validate_build_api
+    build_api = validate_build_api(batch)
     return {'fixtureInventory': generated, 'metadataAudit': str(audit_root / 'results.json'),
-            'metadataAuditSha256': sha(audit_root / 'results.json'), 'compilerConsumers': consumed, 'unityLifecycle': lifecycle}
+            'metadataAuditSha256': sha(audit_root / 'results.json'), 'compilerConsumers': consumed, 'unityLifecycle': lifecycle, 'completeBuildHelper': build_api}
