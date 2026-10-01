@@ -1,68 +1,70 @@
-# Current Status — R03 batch-A failure repaired; awaiting batch B
+# Current Status — R03 batch-B blockers repaired; awaiting batch C
 
-## Current authority and state
+## Current state
 
-R02 remains accepted as **`PassedWithExplicitDeferredRisk`** under the separately committed owner decision. R03 is in progress; its conservative candidate remains implemented, but R03 and H2 are not accepted.
+R02 remains accepted as **PassedWithExplicitDeferredRisk** under its separately committed owner decision. R03 is in progress. The conservative product candidate remains implemented, but **R03Accepted=false; H2Passed=false**. PureInterpreter expansion remains disabled.
 
-- `R02Accepted=true`; `mayEnterR03=true`; `R03Started=true`.
-- Last Local return: **batch A, `ReturnRequired`**, committed at `2a9fdec813592fd79db511d5db96a6dcf1dea620`.
-- Batch A completed its one authorized invocation: **4 Passed / 3 Failed / 29 Blocked**, focused seal Passed.
-- `R03-LA-001`: **repaired in source and host-validated; Local revalidation required**.
-- Next Local cycle: **batch B requested; NotRun**.
-- `R03Accepted=false`; `H2Passed=false`.
-- PureInterpreter structural expansion: **disabled**.
+- Last Local return: `ec463b6dfbd91603ec0c539378af6dbbe6b9e651`.
+- B executed demo `a261bdf0db3f1432226a6b6b69f6f56fbbc47d34` once.
+- B remains **ReturnRequired: 12 Passed / 5 Failed / 19 Blocked**, focused seal Passed.
+- Direct managed lifetime, both 9-case graph suites, 35 admission cases and fifteen-DLL generation passed in B.
+- Four Unity builds and EditMode failed at compilation; Editor assertions, IL2CPP/native builds and all nineteen Players did not run.
+- R03-LB-001: fixture-reference encoding **fixed and host compiler-validated; pinned Unity revalidation required**.
+- R03-LB-002: Unity supervisor integration **implemented and real shared-compiler host-validated; actual Unity revalidation required**.
+- Next cycle: **Local C requested; NotRun**.
 
-Read `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for the unchanged batch-A execution facts. Read `History/M07R/R03/C_LIFETIME_REPAIR.md`, `C_HOST_EVIDENCE.json`, `C_VALIDATION_MATRIX.md`, and the live `Handoff/WEB_TO_LOCAL.md` for the repair and new execution authority. Earlier A/B handoff records are historical and do not authorize retrying A.
+Read the unchanged Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for B facts. Read `History/M07R/R03/D_INPUT_REPAIR.md`, `D_HOST_EVIDENCE.json`, `D_VALIDATION_MATRIX.md` and the live `Handoff/WEB_TO_LOCAL.md` for the new repair/validation authority. Earlier preparation records do not authorize retrying A or B.
 
-## Preserved batch-A result
+## Preserved evidence
 
-Executed demo: `25a7c5ada06c97574bf218e74cf38c811445d13c`.
-Local publication: `2a9fdec813592fd79db511d5db96a6dcf1dea620`.
-Checkpoint: `History/M07R/R03/local-validation-20260930-batch-a-return-required/`.
+B checkpoint: `History/M07R/R03/local-validation-20260930-batch-b-return-required/`.
+Retained live B root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime`.
+Local authenticated **407 indexed files / 408 archive members**. The seal establishes custody of the failed run, not native acceptance.
 
-Three managed builds exited 0 but left surviving process groups. The runner rejected each before its host assertion program ran. Fixture generation, four Unity builds, EditMode tests and nineteen Player cases remain **Blocked/NotRun**. The exact survivor executable was not captured; the proposed compiler/build-server explanation is not a directly observed child identity.
+B result/index/archive SHA-256:
+- `3c8646fa68556b987469467c473e7bff6b529abbd8df3b1693a0a49a20738870`
+- `ec1feae707274098acfbce3f83696a0ce1d2aa734318254bb84d54878cb63887`
+- `a09d5480508a6d40bf619f925b76144693faf5ed637dbf7ac1c7fed5cec86ebd`
 
-Local authenticated 58 indexed files and 59 archive members. The seal proves custody of the failed run, not runtime acceptance. Preserve the live A root and its excluded compiled outputs/intermediates/reference worktrees unchanged.
+A remains ReturnRequired, 4 Passed / 3 Failed / 29 Blocked, with its original seal and checkpoint untouched. Successful B managed execution does not backdate a PASS into A. B's exact dotnet survivor identity is not retroactively inferred from the new supervisor tests.
 
-- A result SHA-256: `a03a2b2cc2f493ca92f782eed0a2b03d040c45a826333581818c96200c4a9173`.
-- A index SHA-256: `a14717414c030ac734fc2e9543118b507df4465b55cbbeb4a9af0bf5a0756181`.
-- A archive SHA-256: `13cf7407447d7952aae6429bbf8e5aae3fc11a030ae139651a09142324450c6c`.
+## New source authority
 
-## New source tuple
+All four repositories use `codex/assembly-shadow-r01b-h1`.
 
-Branch in all four repositories: `codex/assembly-shadow-r01b-h1`.
-
-| Repository | Exact source authority |
+| Repository | Exact authority |
 | --- | --- |
-| night-outlook/hybridclr_demo | Tested executable/CI anchor `7e2852fcd6c5bd9ebc82f2b3f97516742b772dc2`; execute the final documentation-only transport HEAD identified by the current handoff and Primary prompt. |
+| night-outlook/hybridclr_demo | tested executable/CI anchor `5c2932d5340728b16302b7cea8f20b64fcc9e7ce`; execute the final docs-only transport supplied in Primary's prompt and resolved by the live handoff |
 | night-outlook/hybridclr | `041c0cbb42d3e64e54fe605673d99799b5d63893` — unchanged |
 | night-outlook/hybridclr_unity | `120bb01be680cec0375002a0823552d66d34b84c` — unchanged |
 | night-outlook/il2cpp_plus | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` — unchanged |
 
-Repair implementation commit: `94f2612a6c64c341ac38efcaf01952cb594f47d8`. Final source anchor `7e2852...` adds complete hidden compiler-file retention in host CI artifacts. Only documentation/evidence may differ after that new anchor. The previous `f5f571...` host anchor remains historical, not the source authority for batch B.
+Implementation commit `c72893c0df9452aa46a45a1f723b71f62512a0e6` fixes the generator and integrates supervised Unity invocation plus compiler-consumer tests. Final source `5c2932...` corrects a new test consumer's static/instance calling shape; it does not change the value fixture or native expectation. Only documentation/evidence may differ after the final tested anchor.
 
-The live handoff resolves the demo transport as the latest commit touching `WEB_TO_LOCAL.md`, and requires it to match local HEAD, current remote HEAD and Primary's exact prompt. The runner independently verifies all four owning repository identities before and after execution.
+The authoritative final demo transport is the latest commit touching WEB_TO_LOCAL.md, required to equal local HEAD, current remote HEAD and the exact Primary prompt. Do not use an arbitrary later HEAD or an old source/smoke/batch commit. The runner rechecks all four source authorities at entry and finish.
 
-## Primary repair and completed host checks
+## Completed Primary checks
 
-Managed builds now explicitly disable build servers/shared compilation/node reuse per invocation, using a child-scoped environment. The common command wrapper retains fail-closed survivor rejection and adds bounded pre-cleanup PID/PGID diagnostics. It never globally shuts down unrelated workers or converts successful cleanup into a passed command. New command receipts use schema version 2, `R03OwnedCommandV1`.
+Final CI run **36805988857** at source **5c2932d5340728b16302b7cea8f20b64fcc9e7ce** passed on **Linux x86_64 and macOS 15.7.9 arm64**, SDK **8.0.318**. Each platform passed 57 Python contracts, both 9-case graph suites, 35 admission/method assertions, fifteen-DLL generation and the actual Runtime API compile. All 33 fixture metadata checks and actual compiler consumers passed. The separate invalid-key control produced the specific CS0009/Invalid public key failure with no emitted consumer.
 
-Final workflow **36739214352** executed anchor `7e2852fcd6c5bd9ebc82f2b3f97516742b772dc2` successfully on **Linux x86_64 and macOS 15.7.9 arm64**, both with .NET SDK **8.0.318**. Each platform passed 43 Python contracts, both 9-case graph suites, 35 admission/method assertions, exact 15-DLL generation, five managed builds including the actual Runtime API compile, and twelve owned command completions with no surviving process group. Primary downloaded and authenticated both final ZIPs: **308 indexed files / 309 archive files per platform**. See `C_HOST_EVIDENCE.json` for job/artifact IDs, hashes and individual command bindings.
+Real SDK Roslyn `/shared` success/failure cases observed owned compiler children, authenticated and retired them using the same supervisor policy, retained original inner exits, and left an unrelated sentinel running. All 49 positive and 2 deliberately negative outer commands completed without surviving groups. Primary authenticated both final downloaded ZIPs: **620 indexed files / 621 ZIP files per platform**. `D_HOST_EVIDENCE.json` binds exact jobs, artifacts, platform, result hashes and command inventories.
 
-This evidence exercises the production `Batch.command`/`Batch.managed` path, not only direct dotnet shell builds. It is not execution of Local batch B, Local's macOS 26.5 environment, Unity Editor, or IL2CPP Player. The first source-94f host archive had a hidden-file membership defect; it is explicitly recorded as incomplete and superseded by the authenticated final source-7e artifacts.
+These are host compiler/supervisor results, not Unity Editor or IL2CPP execution. Actual pinned Unity compiler consumption and valid/invalid Editor probes are implemented for Local C. The first Primary CI attempt failed on an incorrect consumer call shape; that failed attempt remains recorded, not relabeled.
 
-## Next action and stop
+## Next Local batch
 
-Follow `Handoff/WEB_TO_LOCAL.md` to run exactly one new batch at:
+Follow `Handoff/WEB_TO_LOCAL.md` for one invocation at the new prescribed root:
 
-`/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime`
+`/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs`
 
-Use the existing verified SDK 8.0.318 and Unity 2022.3.62f2 paths recorded there. The batch root must be unused. Do not retry A, reuse an existing root, relax flags/timeouts/expectations or perform non-trivial implementation locally.
+Verify the root is unused. Use the recorded Unity 2022.3.62f2 and SDK 8.0.318 paths. Do not retry A/B, reuse an existing root, relax metadata/consumer/cleanup checks or perform non-trivial implementation locally.
 
-The batch retains **36 cells / four isolated Unity builds / nineteen fresh-process Player cases**. The existing verifier cell now runs 43 tests. All cells and the focused seal must pass for `EvidenceReadyForPrimaryReview`; otherwise return `ReturnRequired` with the original failure classifications. Local commits/pushes its factual reports and immutable B checkpoint, then stops for Primary reconciliation.
+All **36 cells / four native build roles / nineteen Player cases** remain. The fixture cell adds 33 pinned-Unity compiler consumers, an explicit invalid-key consumer control and two isolated Editor compiler/lifecycle probes. All normal Unity build and EditMode invocations use the supervisor while the outer no-survivor policy remains unchanged. Failed compiler controls remain visibly failed commands inside separate expected-negative assertions, not successful product builds.
 
-## Preserved risks and remaining R03 work
+All cells and the focused seal must pass for EvidenceReadyForPrimaryReview; otherwise return ReturnRequired. Local commits/pushes factual reports and a new immutable C checkpoint, then stops for Primary reconciliation.
 
-R02-D1 CPU residuals and the original H1 +18–19 MiB RSS risk remain deferred through H2. R02 I result/index/archive remain `5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69`, `16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926`, and `c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a`. No historical acceptance or execution-time flags have been rewritten.
+## Remaining risks and gates
 
-A successful focused B batch does not complete full R03. Legacy/resource regressions, broader method/generic/delegate/interface/stack-trace coverage, startup/capacity/performance/memory, gated PureInterpreter qualification/experiments and independent full stage review remain Primary-owned. H2 follows completion of the documented R03 exit conditions; it is not authorized by this repair or host evidence.
+R02-D1 CPU residuals and the original H1 +18–19 MiB RSS risk remain visible through H2. R02 I result/index/archive remain `5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69`, `16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926`, and `c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a`. No historical flags or acceptance decisions were rewritten.
+
+Passing focused C does not complete full R03. Legacy/resource regressions, broader method/generic/interface/delegate/stack-trace coverage, startup/capacity/performance/memory, PureInterpreter qualification/experiments and independent full-stage review remain Primary-owned. H2 follows the documented R03 exits and is not approved by this repair or host CI.
