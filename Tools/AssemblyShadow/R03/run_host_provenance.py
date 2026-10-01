@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 
 from batch_contract import loads, require, sha, ContractError
 from batch_evidence import write
-from build_provenance import inventory_entries, NATIVE_RELATIVE, INSTALL_FILE, RECEIPT_VERSION
+from build_provenance import inventory_entries, NATIVE_RELATIVE, INSTALL_FILE, RECEIPT_VERSION, OVERLAY
 from editor_scope import load_scope, verify_editor, REFERENCE, EXCLUDED, PACKAGE
 
 CHECKPOINT = 'Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-d-return-required'
@@ -55,7 +55,8 @@ def main():
             require(build['result'] == 'Passed' and build['errors'] == 0 and item['runnerBuildCellResult'] == 'Failed',
                     'Preserve artifact/cell distinction')
             before, after = inventory_entries(build['installedBefore']), inventory_entries(build['installedAfter'])
-            require(len(before) == 965 and len(after) == 966, 'Original native inventory sizes')
+            require(len(after) == len(before) + 1 and set(after) - set(before) == {OVERLAY},
+                    'Each role adds precisely its diagnostic probe; reference cores may have fewer files')
             require(after[INSTALL_FILE]['sha256'] == build['installReceiptSha256'], 'Original install hash binding')
             installed = checkpoint / 'preflight/native-receipts' / role / 'installed-sdk.json'
             copied = installed.with_name('stripped-aot-copy.json')
@@ -66,13 +67,15 @@ def main():
                     'Original recursive lookup would reject two matches')
             native = Path(build['projectPath']) / NATIVE_RELATIVE
             canonical = [x for x in locators if x['nativeRoot'] == str(native)]
-            require(len(canonical) == 1 and canonical[0]['exactInstalledAfterMatch'] is True,
+            require(len(canonical) == 1 and canonical[0]['exactInstalledAfterMatch'] is True and
+                    canonical[0]['files'] == len(after),
                     'Recorded actual installed root/profile mismatch')
             other = next(x for x in locators if x is not canonical[0])
             require(other['changed'] == ['hybridclr/generated/MethodBridge.cpp'] and other['exactInstalledAfterMatch'] is False,
                     'Preserve recorded generated-copy distinction')
             result['builds'].append({'role': role, 'receiptSha256': sha(build_path),
                                     'originalSchema': 1, 'newRequiredSchema': RECEIPT_VERSION,
+                                    'installedBeforeFiles': len(before), 'installedAfterFiles': len(after),
                                     'recordedReceiptCopies': 2, 'recordedInstalledRoot': str(native),
                                     'originalRunnerCell': 'Failed', 'newNativeVerification': 'NotRun'})
         host = loads(args.admission_results.read_text())
