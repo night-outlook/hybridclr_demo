@@ -61,8 +61,8 @@ def main():
             evidence = batch.python_tests()
             log = batch.root / 'commands' / ('%04d' % batch.command_count) / 'stderr.log'
             text = log.read_text()
-            require(re.search(r'Ran 43 tests in ', text) and '\nOK\n' in text and 'skipped=' not in text,
-                    'All 43 tool/process tests must execute without skips')
+            require(re.search(r'Ran 57 tests in ', text) and '\nOK\n' in text and 'skipped=' not in text,
+                    'All 57 tool/process tests must execute without skips')
             return evidence
         case('python-contracts', contracts)
         case('baseline-graph', lambda: batch.managed('HostTests', 'baseline-graph', reference, 'baseline'))

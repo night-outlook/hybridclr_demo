@@ -5,6 +5,9 @@ on:
     paths:
       - '.github/workflows/r03-primary.yml'
       - 'Tools/AssemblyShadow/R03/**'
+      - 'Tools/AssemblyShadow/R02/unity_session.py'
+      - 'Tools/AssemblyShadow/R02/process_identity.py'
+      - 'Tools/AssemblyShadow/R02/evidence.py'
 permissions:
   contents: read
 jobs:
@@ -69,6 +72,13 @@ jobs:
             --workspace "$GITHUB_WORKSPACE" \
             --reference-package "$GITHUB_WORKSPACE/reference-package" \
             --output "$RUNNER_TEMP/r03-evolution/lifetime"
+      - name: Fixture consumers and real shared-compiler supervision
+        shell: bash
+        run: |
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/run_host_inputs.py \
+            --workspace "$GITHUB_WORKSPACE" \
+            --fixtures "$RUNNER_TEMP/r03-evolution/lifetime/execution/host/player-fixtures" \
+            --output "$RUNNER_TEMP/r03-evolution/input-contracts"
       - name: Source integrity and graph call-site inventory
         if: always() && steps.package.outcome == 'success'
         shell: bash
@@ -95,6 +105,15 @@ jobs:
               dst=root/'review-inputs/source'/p.name
               dst.parent.mkdir(parents=True,exist_ok=True)
               shutil.copyfile(p,dst)
+          for relative in ['Tools/AssemblyShadow/R02/unity_session.py','Tools/AssemblyShadow/R02/process_identity.py','Tools/AssemblyShadow/R02/evidence.py']:
+              dst=root/'review-inputs/full-source'/relative
+              dst.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copyfile(Path('hybridclr_demo')/relative,dst)
+          for p in Path('hybridclr_demo/Tools/AssemblyShadow/R03').rglob('*'):
+              if p.suffix in ('.cs','.csproj'):
+                  dst=root/'review-inputs/full-source'/p.relative_to('hybridclr_demo')
+                  dst.parent.mkdir(parents=True,exist_ok=True)
+                  shutil.copyfile(p,dst)
           shutil.copyfile('hybridclr_demo/.github/workflows/r03-primary.yml',root/'review-inputs/r03-primary.yml')
           files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
           data={'kind':'R03PrimaryProvenance','workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'runnerOS':os.environ['RUNNER_OS'],'repositories':repos,'files':files,'unityEditorRun':False,'il2cppPlayerRun':False,'runtimeAcceptance':False}

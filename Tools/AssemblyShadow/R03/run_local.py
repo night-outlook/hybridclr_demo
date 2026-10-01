@@ -14,6 +14,8 @@ import xml.etree.ElementTree as ET
 from batch_contract import loads, require, sha, verify_raw
 from batch_evidence import finalize, write
 from command_lifetime import build_arguments, run_owned_command
+from input_validation import validate_inputs
+from unity_command import unity_command
 
 REPOS = ('hybridclr_demo', 'hybridclr', 'hybridclr_unity', 'il2cpp_plus')
 BRANCH = 'codex/assembly-shadow-r01b-h1'
@@ -172,7 +174,7 @@ class Batch:
 
     def build(self, role):
         state = self.builds[role['id']]
-        self.command([self.unity, '-batchmode', '-nographics', '-quit', '-buildTarget', 'osx', '-projectPath', state['project'],
+        unity_command(self, [self.unity, '-batchmode', '-nographics', '-quit', '-buildTarget', 'osx', '-projectPath', state['project'],
                       '-executeMethod', 'AssemblyShadow.R03.Editor.R03Build.Build', '-r03Config', state['root'] / 'config.json',
                       '-logFile', state['root'] / 'Editor.log'], 7200)
         self.verify_build(role['id'])
@@ -231,7 +233,7 @@ class Batch:
     def editor_tests(self):
         state = self.builds['candidate-release']
         result = self.root / 'editor-results.xml'
-        self.command([self.unity, '-batchmode', '-nographics', '-projectPath', state['project'], '-runTests', '-testPlatform', 'EditMode',
+        unity_command(self, [self.unity, '-batchmode', '-nographics', '-projectPath', state['project'], '-runTests', '-testPlatform', 'EditMode',
                       '-testResults', result, '-logFile', self.root / 'editor-tests.log'], 3600)
         tree = ET.parse(result).getroot()
         cases = list(tree.iter('test-case'))
@@ -281,7 +283,7 @@ class Batch:
         self.cell('host-baseline-graph', lambda: self.managed('HostTests', 'baseline-graph', self.references['hybridclr_unity'], 'baseline'), ('reference-sources',))
         self.cell('host-candidate-graph', lambda: self.managed('HostTests', 'candidate-graph', phase='candidate'), ('entry-authority',))
         self.cell('host-admission', lambda: self.managed('AdmissionTests', 'admission'), ('entry-authority',))
-        self.cell('player-fixtures', self.fixtures, ('host-admission',))
+        self.cell('player-fixtures', lambda: validate_inputs(self), ('host-admission',))
         for role in self.matrix['roles']:
             name = role['id']
             deps = ('player-fixtures', 'reference-sources', 'verifier-contracts') if not role['candidate'] else ('player-fixtures', 'entry-authority', 'verifier-contracts')

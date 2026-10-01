@@ -30,7 +30,10 @@ namespace AssemblyShadow.R03.Fixtures
                     type.Fields.Add(new FieldDefUser("added", new FieldSig(module.CorLibTypes.Object), FieldAttributes.Private));
                 if (provider != null)
                 {
-                    var reference = new AssemblyRefUser(provider, new Version(1, 0, 0, 0));
+                    // The two-argument constructor creates an empty full PublicKey.
+                    // These providers are unsigned: emit an empty token and clear the flag.
+                    var reference = new AssemblyRefUser(provider, new Version(1, 0, 0, 0), new PublicKeyToken())
+                    { HasPublicKey = false };
                     var target = new TypeRefUser(module, "R03", "Node", reference);
                     type.Fields.Add(new FieldDefUser("provider", new FieldSig(new ClassSig(target)), FieldAttributes.Private));
                 }
