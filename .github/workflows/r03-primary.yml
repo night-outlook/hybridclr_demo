@@ -79,6 +79,13 @@ jobs:
             --workspace "$GITHUB_WORKSPACE" \
             --fixtures "$RUNNER_TEMP/r03-evolution/lifetime/execution/host/player-fixtures" \
             --output "$RUNNER_TEMP/r03-evolution/input-contracts"
+      - name: Recorded installation and explicit Editor scope contracts
+        shell: bash
+        run: |
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/run_host_provenance.py \
+            --workspace "$GITHUB_WORKSPACE" \
+            --admission-results "$RUNNER_TEMP/r03-evolution/lifetime/execution/host/admission/results.json" \
+            --output "$RUNNER_TEMP/r03-evolution/provenance-repair"
       - name: Source integrity and graph call-site inventory
         if: always() && steps.package.outcome == 'success'
         shell: bash

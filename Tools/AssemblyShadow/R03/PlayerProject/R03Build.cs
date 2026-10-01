@@ -31,7 +31,7 @@ namespace AssemblyShadow.R03.Editor
     [Serializable] public sealed class FileHash { public string path; public string sha256; public long size; }
     [Serializable] public sealed class BuildReceipt
     {
-        public int schemaVersion = 1;
+        public int schemaVersion = 2;
         public string kind = "R03IsolatedPlayerBuild";
         public string result;
         public string unityVersion;
@@ -45,6 +45,7 @@ namespace AssemblyShadow.R03.Editor
         public string outputPath;
         public string sourceManifestSha256;
         public string installReceiptSha256;
+        public string installedNativeRoot;
         public string testOverlaySha256;
         public bool nonGeneratedCorePreserved;
         public int errors;
@@ -87,7 +88,8 @@ namespace AssemblyShadow.R03.Editor
             {
                 Configure(config);
                 PinnedSourceInstaller.Install();
-                string native = Path.Combine(SettingsUtil.LocalIl2CppDir, "libil2cpp");
+                string native = Path.GetFullPath(Path.Combine(SettingsUtil.LocalIl2CppDir, "libil2cpp"));
+                receipt.installedNativeRoot = native;
                 string installReceipt = Path.Combine(native, "assembly-shadow-install.json");
                 receipt.installReceiptSha256 = ShadowHash.File(installReceipt);
                 receipt.installedBefore = Inventory(native);

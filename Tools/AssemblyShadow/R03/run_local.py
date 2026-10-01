@@ -16,6 +16,8 @@ from batch_evidence import finalize, write
 from command_lifetime import build_arguments, run_owned_command
 from input_validation import validate_inputs
 from unity_command import unity_command
+from build_provenance import verify_installation, verify_inventory, RECEIPT_VERSION
+from editor_scope import load_scope, verify_scope_project, verify_editor
 
 REPOS = ('hybridclr_demo', 'hybridclr', 'hybridclr_unity', 'il2cpp_plus')
 BRANCH = 'codex/assembly-shadow-r01b-h1'
@@ -178,25 +180,15 @@ class Batch:
                       '-executeMethod', 'AssemblyShadow.R03.Editor.R03Build.Build', '-r03Config', state['root'] / 'config.json',
                       '-logFile', state['root'] / 'Editor.log'], 7200)
         self.verify_build(role['id'])
-        return {'receipt': str(state['root'] / 'build-receipt.json'), 'sha256': sha(state['root'] / 'build-receipt.json')}
+        return {'receipt': str(state['root'] / 'build-receipt.json'), 'sha256': sha(state['root'] / 'build-receipt.json'),
+                'nativeBinding': state['nativeBinding']}
 
-    @staticmethod
-    def verify_inventory(root, entries):
-        root = Path(root).resolve()
-        require(type(entries) is list and entries, 'A nonempty exact inventory is required')
-        expected = {}
-        for entry in entries:
-            path = Path(entry['path'])
-            require(not path.is_absolute() and '..' not in path.parts and entry['path'] not in expected, 'Unsafe or duplicate inventory path')
-            expected[entry['path']] = entry
-        actual = {str(p.relative_to(root)): p for p in root.rglob('*') if p.is_file()}
-        require(set(actual) == set(expected), 'Exact file membership: ' + str(root))
-        for name, path in actual.items():
-            require(not path.is_symlink() and sha(path) == expected[name]['sha256'] and path.stat().st_size == expected[name]['size'], 'File changed: ' + name)
+    verify_inventory = staticmethod(verify_inventory)
 
     def verify_build(self, role_id):
         state = self.builds[role_id]
         receipt = loads((state['root'] / 'build-receipt.json').read_text())
+        require(type(receipt.get('schemaVersion')) is int and receipt['schemaVersion'] == RECEIPT_VERSION, 'Build receipt v2 required')
         require(receipt['result'] == 'Passed' and receipt['nonGeneratedCorePreserved'] is True and receipt['errors'] == 0, 'Successful verified native build required')
         for field in ('featureEnabled', 'diagnosticsLevel', 'cppConfiguration', 'outputPath', 'projectPath', 'sourceManifestSha256'):
             require(receipt[field] == state['config'][field], 'Build/config mismatch: ' + field)
@@ -205,22 +197,8 @@ class Batch:
                 receipt['sourceManifestSha256'] == sha(state['project'] / 'source-inputs.json'), 'Native overlay and managed source binding')
         app = Path(state['config']['outputPath'])
         self.verify_inventory(app, receipt['playerFiles'])
-        # Locate exactly one installed receipt by its expected hash; the actual
-        # native root is derived from that receipt, not guessed from SDK layout.
-        installs = [p for p in (state['project'] / 'HybridCLRData').rglob('assembly-shadow-install.json') if sha(p) == receipt['installReceiptSha256']]
-        require(len(installs) == 1, 'Exact native installation receipt is required')
-        native = installs[0].parent
-        self.verify_inventory(native, receipt['installedAfter'])
-        require(sha(native / 'vm/AssemblyShadowR03Probe.cpp') == receipt['testOverlaySha256'], 'Installed diagnostic source binding')
-        before = {e['path']: e for e in receipt['installedBefore']}
-        after = {e['path']: e for e in receipt['installedAfter']}
-        generated = {'hybridclr/generated/AssemblyManifest.cpp', 'hybridclr/generated/MethodBridge.cpp',
-                     'hybridclr/generated/UnityVersion.h', 'hybridclr/generated/libil2cpp-version.txt'}
-        for path, entry in before.items():
-            if path not in generated:
-                require(path in after and after[path]['sha256'] == entry['sha256'], 'Changed non-generated installed source: ' + path)
-        require(set(after) - set(before) <= generated | {'vm/AssemblyShadowR03Probe.cpp'}, 'Unexplained native source addition')
         manifest = loads((state['project'] / 'source-inputs.json').read_text())
+        state['nativeBinding'] = verify_installation(receipt, state['project'], self.root, manifest['repositories'])
         for entry in manifest['files']:
             require(sha(state['project'] / entry['path']) == entry['sha256'], 'Managed source or baseline fixture changed')
         executables = [p for p in (app / 'Contents/MacOS').iterdir() if p.is_file()]
@@ -233,20 +211,24 @@ class Batch:
     def editor_tests(self):
         state = self.builds['candidate-release']
         result = self.root / 'editor-results.xml'
-        unity_command(self, [self.unity, '-batchmode', '-nographics', '-projectPath', state['project'], '-runTests', '-testPlatform', 'EditMode',
-                      '-testResults', result, '-logFile', self.root / 'editor-tests.log'], 3600)
-        tree = ET.parse(result).getroot()
-        cases = list(tree.iter('test-case'))
-        require(tree.attrib.get('result') == 'Passed' and len(cases) > 35, 'Nonzero real Editor test execution required')
-        require(not any(c.get('result') == 'Failed' for c in cases), 'Editor failures')
         required = [c['id'] for c in loads((self.root / 'host/admission/results.json').read_text())['cases']]
-        for test_id in required:
-            found = [c for c in cases if 'R03EvolutionContractTests.RealDllEvolutionContract' in c.get('fullname', '') and test_id in c.get('fullname', '')]
-            require(len(found) == 1 and found[0].get('result') == 'Passed', 'Missing, repeated or failed Editor contract: ' + test_id)
-        cycle = [c for c in cases if c.get('fullname', '').endswith('GraphAndInputTests.CyclesReportClosedPath')]
-        require(len(cycle) == 1 and cycle[0].get('result') == 'Passed', 'Actual target-cycle Editor regression required')
-        return {'xml': str(result), 'sha256': sha(result), 'cases': len(cases), 'passed': sum(c.get('result') == 'Passed' for c in cases),
-                'skipped': sum(c.get('result') == 'Skipped' for c in cases), 'r03RequiredIds': required}
+        scope = load_scope(self.workspace / 'hybridclr_demo', self.pins['hybridclr_unity'], required)
+        scope['projectFixtureScope'] = verify_scope_project(state['project'])
+        write(self.root / 'editor-scope.json', scope)
+        verdict = {'kind': 'R03ScopedEditorVerification', 'result': 'Failed', 'excludedCoverage': scope['excluded'],
+                   'fullLegacyRegressionAcceptance': False, 'R03Accepted': False, 'H2Passed': False}
+        try:
+            require(not result.exists(), 'Editor result destination must be unused')
+            unity_command(self, [self.unity, '-batchmode', '-nographics', '-projectPath', state['project'], '-runTests', '-testPlatform', 'EditMode',
+                          '-testFilter', scope['testFilter'], '-testResults', result, '-logFile', self.root / 'editor-tests.log'], 3600)
+            verdict = verify_editor(ET.parse(result).getroot(), scope)
+            verdict.update(xml=str(result), sha256=sha(result), scopeSha256=sha(self.root / 'editor-scope.json'))
+            return verdict
+        except Exception as error:
+            verdict['error'] = type(error).__name__ + ': ' + str(error)
+            raise
+        finally:
+            write(self.root / 'editor-verification.json', verdict)
 
     def player(self, case):
         self.verify_build(case['role'])
