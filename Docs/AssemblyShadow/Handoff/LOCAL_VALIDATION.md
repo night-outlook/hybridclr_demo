@@ -1,6 +1,62 @@
 # Local Validation report
 
-## Current run — 2026-09-30, R03 batch B returned after Unity compilation
+## Current run — R03 batch C, 2026-10-01 UTC: repaired inputs/lifetime pass; Editor build source fails
+
+**Local Validation → Primary Implementation: ReturnRequired; 36 cells: 12 Passed, 5 Failed, 19 Blocked; focused seal Passed; runner exit 1.** Exactly one fresh invocation ran 2026-10-01 02:53:29.052545–02:55:02.642508 UTC (2026-09-30 19:53:29–19:55:02 America/Los_Angeles), runner PID 97655. No source fix, retry, blocked-cell invocation, expectation/timeout/cleanup change or acceptance promotion occurred.
+
+### Exact executed authority and environment
+
+All four canonical owning paths were clean, on `codex/assembly-shadow-r01b-h1`, with independent top-level/branch/HEAD/status/origin/worktree/submodule inspection and exact remote tips before and after execution. Demo fast-forwarded from Local return `ec463b6dfbd91603ec0c539378af6dbbe6b9e651`; external repositories were already pinned. Origins are `git@github.com:night-outlook/<repository>.git`. The tested source anchor `5c2932d5340728b16302b7cea8f20b64fcc9e7ce` is an ancestor, and delta to execution HEAD is Docs/AssemblyShadow-only. The latest commit touching the live handoff matched HEAD and remote at execution.
+
+| Owning repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `fdefb4f7133812f3b0593ae2257057c1bc57195e` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+Reference detached worktrees under `<live root>/reference-worktrees/` remain clean at native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Four native-role isolated project manifests bind current package `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` and exact candidate/reference install/source pins and fixture hashes. Two additional compiler probes have independent project roots and empty package dependency manifests. No ordinary checkout or other batch Library/HybridCLRData/Builds was used. No native build receipt or build GUID exists because compilation failed before the build method ran.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; .NET SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Actual Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64. Direct managed SDK `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` was used as SDK only; that Unity 6000 Editor was not launched. Scoped environment/tool checks and timestamped Git operations are in checkpoint `preflight/environment.json`, `preflight-commands.json` and `preflight-before-sync.json`.
+
+Exact invocation: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit fdefb4f7133812f3b0593ae2257057c1bc57195e`. Full cwd/environment/PID/start/end/exit are in `preflight/runner-exit.json`; all 55 commands preserve their own start/end epochs, streams and hashes. For supervised Unity commands, outer PID is the supervisor PID, not an asserted inner Unity PID.
+
+### Fresh results and classification
+
+| Validation | Status | Factual evidence boundary |
+| --- | --- | --- |
+| Entry/final authority and detached reference sources | Passed | Four exact owning source/remote tuples; three retained reference worktrees. |
+| Python verifier/lifetime/input contracts | Passed | All 57 tests in command 0001. |
+| Baseline and candidate graph | Passed | Actual 9/9 each, commands 0005–0008; native observations NotRun. |
+| Admission/method suite | Passed | Actual 35/35, commands 0009–0010. |
+| Player-fixtures cell | Passed | Fifteen generated DLLs,33 audited inputs,33 actual pinned-Unity compiler consumers, one exact invalid-key compiler control and two actual independent Editor probes. |
+| Four native-role preparations | Passed | candidate Release/reference Release/candidate Debug/candidate OFF source/config/package/native bindings preserved. |
+| Four native build cells | Failed | Actual supervised Unity commands 0051–0054 compile common Editor source and fail CS0266 at R03Build.cs:109. Build method/IL2CPP conversion/native compilation/Player builds NotRun. |
+| EditMode cell | Failed | Actual -runTests command 0055 hits the same compiler prerequisite. Editor assertions NotRun; test XML unavailable because Test Runner was never reached. |
+| Nineteen Player cells | Blocked/NotRun | C01–C10,R01–R05,D01–D03,O01 did not launch; no native MethodInfo/runtime/warm certificate evidence. |
+| Focused seal and separate read-only custody audit | Passed | 677 live indexed files, 678 exact archive members,36 aggregate/individual cell matches,55 command stream bindings and 542 prior custody bindings unchanged. |
+
+`fixture-audit/results.json` passed 33/33 (fifteen Player + eighteen shared corpus inputs). All provider references now have PublicKey flag clear and empty token; mscorlib has its eight-byte token. `consumer-unity-2022.3.62f2/results.json` passed 33/33 actual consumers with bound runtime/compiler/reference files and emitted DLL hashes. Command 0048 separately returned exit 1 with CS0009/Invalid public key and no emitted consumer; it is an expected-negative assertion, not a successful normal build.
+
+`unity-lifecycle/results.json` passed both actual Editor probes. Command 0049 compiled/invoked the valid marker and exited0. Command 0050 retained exit 1 and exact invalid-key diagnostic, with no marker. Both completed cleanly under the supervisor. All seven Unity completions 0049–0055 preserved original inner exits, authenticated one owned VBCSCompiler child each by kernel birth identity and retired it using SIGTERM; all outer receipts remainingProcessGroup=false/postCleanupGroupExists=false, timeout=false, no cleanup errors. All 55 command groups completed cleanly. Seven original exit 1 commands remain visible: two expected-negative controls 0048/0050 plus five genuine failed product invocations 0051–0055. B's original survivor identity is not retroactively inferred.
+
+R03-LB-001 fixture-reference repair and R03-LB-002 supervised compiler lifecycle are verified in the executed focused scope, including actual pinned compiler/Editor success and failure. This does not establish successful native-build/runtime lifecycle or full-stage acceptance. Next blocker: R03Build.cs fields errors/warnings are uint (lines50–51), but pinned Unity BuildSummary totalErrors/totalWarnings getters return System.Int32; assignments line109 fail CS0266. Read-only metadata inspection binds UnityEditor.CoreModule.dll SHA-256 `e22a829a8022d30c6b2b11fe764d12a2383cf882b63a954641e3cd41ea56af6e`. Compiler/API/source evidence and Primary direction are in RETURN_TO_WEB.md and checkpoint `preflight/DIAGNOSTIC_FINDINGS.json`/`unity-api-metadata.json`. The current handoff explicitly reserves source corrections for Primary; no bounded Local fix was made.
+
+### Custody and exit
+
+Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs`; preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001C-inputs`. Immutable [batch-C checkpoint](../History/M07R/R03/local-validation-20261001-batch-c-return-required/README.md) contains unchanged result/ledger/index/archive/seal, all included cells/host/audit/consumer/build/Editor/project inputs, all 55 receipts/streams and seven unity-completion receipts, source snapshots and separate audit/metadata diagnostics. Excluded live roots remain retained; `preflight/RETAINED_LIVE_ROOTS.json` inventories 135 compiled/intermediate files, six isolated projects and three detached references. No missing Editor XML or Player/build receipt was manufactured.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `f1dae2e7925f155dcb3eb4d6eff51705846c68366560e89506d6cbde631f5c6d` |
+| BATCH_EXECUTION.json | `2c56cd3ab372b7647fbcd71c822d02984edb555810b0e5d40d2e364184972e0b` |
+| evidence-index.json | `477ad959a85db392a11fb0569fa313ee67ee4ad3e835a31821d37ebe2b790dec` |
+| evidence.tar.gz | `65537c0270229671214ae6c36633533d5f864484c00a2f6aa745e65399c20fe3` |
+| seal-receipt.json | `6c820a7065e28f92edd08e86a096073d42466aa93f1354eaae7033e4c738f252` |
+
+No Local source fix or external repository change. A/B checkpoints/raw output and prior R02 I result/index/archive were reauthenticated unchanged; earlier R02/H1 evidence and execution-time flags remain preserved. Only Local-owned reports and this new checkpoint change. Full R03 legacy/resource regressions, broader generic/delegate/interface/stack-trace coverage, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain NotRun/outside this focused batch. `R03Accepted=false`; `H2Passed=false`; `pureInterpreterExpansionEnabled=false`; `fullLegacyRegressionAcceptance=false`. **Exit: Local Validation → Primary Implementation; stop.** The outgoing prompt records the latest pushed Local docs/evidence HEAD; execution provenance remains fdefb4f. A new exact committed/pushed Primary handoff and unused root are required for another batch.
+
+## Historical run — 2026-09-30, R03 batch B returned after Unity compilation
 
 **Local Validation → Primary Implementation: `ReturnRequired`; 36 cells: 12 Passed, 5 Failed, 19 Blocked; focused seal Passed; runner exit 1.** Exactly one fresh invocation ran 11:06:26–11:07:40 America/Los_Angeles (18:06:26–18:07:40 UTC) in `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime`. No retry or source/timeout/expectation change occurred. This is the factual focused result, not full R03 acceptance.
 

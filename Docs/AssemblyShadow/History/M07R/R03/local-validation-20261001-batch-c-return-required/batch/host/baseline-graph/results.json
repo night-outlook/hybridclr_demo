@@ -1,0 +1,167 @@
+{
+  "kind": "R03HostEvolutionEvidence",
+  "schemaVersion": 1,
+  "phase": "baseline",
+  "result": "Passed",
+  "failures": 0,
+  "cases": [
+    {
+      "id": "R03-F01-private-reference-real-bytes",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-F02-virtual-insertion-real-bytes",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G01-direction-reversal",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G02-real-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G03-cumulative-installation-baseline",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G04-deleted-historical-edge",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G05-ordinary-role-false",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G06-ordinary-role-true",
+      "result": "Passed"
+    },
+    {
+      "id": "R03-G07-declared-impact-not-initializer-order",
+      "result": "Passed"
+    }
+  ],
+  "observations": {
+    "privateReference": {
+      "beforeFields": [
+        "System.Int32 R03.Node::stable"
+      ],
+      "afterFields": [
+        "System.Int32 R03.Node::stable",
+        "System.Object R03.Node::added"
+      ],
+      "nativeAllocation": "NotRun"
+    },
+    "virtualInsertion": {
+      "baselineToken": 100663298,
+      "targetToken": 100663299,
+      "targetDeclaredVirtualOrder": [
+        "Before",
+        "Keep"
+      ],
+      "nativeSlots": "NotRun",
+      "nativeMethodInfoMapping": "NotRun"
+    },
+    "directionReversal": {
+      "observed": "DependencyCycle",
+      "sourcePhase": "baseline"
+    }
+  },
+  "fixtures": [
+    {
+      "path": "fixtures/cumulative/baseline/A.dll",
+      "bytes": 2048,
+      "sha256": "06be257d17dbb2638ce0ccb090783a52d47e9014aec37ad906b2489ae3ec010e"
+    },
+    {
+      "path": "fixtures/cumulative/baseline/B.dll",
+      "bytes": 2048,
+      "sha256": "c24e9276ba125750b7294dc206a2df408bc567c72a83e6e08b0f638be273ac2e"
+    },
+    {
+      "path": "fixtures/cumulative/rollback/A.dll",
+      "bytes": 2048,
+      "sha256": "06be257d17dbb2638ce0ccb090783a52d47e9014aec37ad906b2489ae3ec010e"
+    },
+    {
+      "path": "fixtures/cumulative/rollback/B.dll",
+      "bytes": 2048,
+      "sha256": "c24e9276ba125750b7294dc206a2df408bc567c72a83e6e08b0f638be273ac2e"
+    },
+    {
+      "path": "fixtures/cumulative/v1/A.dll",
+      "bytes": 2048,
+      "sha256": "922eac35b45dc42396a89d9be481e82c5017aea54d616f02f56cd1309307fe75"
+    },
+    {
+      "path": "fixtures/cumulative/v1/B.dll",
+      "bytes": 2048,
+      "sha256": "c24e9276ba125750b7294dc206a2df408bc567c72a83e6e08b0f638be273ac2e"
+    },
+    {
+      "path": "fixtures/cumulative/v2/A.dll",
+      "bytes": 2048,
+      "sha256": "922eac35b45dc42396a89d9be481e82c5017aea54d616f02f56cd1309307fe75"
+    },
+    {
+      "path": "fixtures/cumulative/v2/B.dll",
+      "bytes": 2048,
+      "sha256": "52a96829f67513f95215209f161114e4c9c33c249fb14169f78574acbe7df8dc"
+    },
+    {
+      "path": "fixtures/private-reference/baseline/Layout.dll",
+      "bytes": 2048,
+      "sha256": "49529c70d3288e5346e57d1a7779262a146ad503f603824bca8be913f7ff10f7"
+    },
+    {
+      "path": "fixtures/private-reference/target/Layout.dll",
+      "bytes": 2048,
+      "sha256": "fd1fa43be39bb2d34cde81086b5472441d8624b917906f38d17d071b27fa57df"
+    },
+    {
+      "path": "fixtures/reversal/baseline/A.dll",
+      "bytes": 2048,
+      "sha256": "06be257d17dbb2638ce0ccb090783a52d47e9014aec37ad906b2489ae3ec010e"
+    },
+    {
+      "path": "fixtures/reversal/baseline/B.dll",
+      "bytes": 2048,
+      "sha256": "c24e9276ba125750b7294dc206a2df408bc567c72a83e6e08b0f638be273ac2e"
+    },
+    {
+      "path": "fixtures/reversal/target/A.dll",
+      "bytes": 2048,
+      "sha256": "47b64aa3742b43112dabff11729a6637d55fdbcea8fc4c328d78deeca0b7f9f8"
+    },
+    {
+      "path": "fixtures/reversal/target/B.dll",
+      "bytes": 2048,
+      "sha256": "9aa6e71b0a37119b39d6a0e7f0950bb5f3f9f9307a4b536346fcca01243b1a4c"
+    },
+    {
+      "path": "fixtures/true-cycle/target/A.dll",
+      "bytes": 2048,
+      "sha256": "06be257d17dbb2638ce0ccb090783a52d47e9014aec37ad906b2489ae3ec010e"
+    },
+    {
+      "path": "fixtures/true-cycle/target/B.dll",
+      "bytes": 2048,
+      "sha256": "9aa6e71b0a37119b39d6a0e7f0950bb5f3f9f9307a4b536346fcca01243b1a4c"
+    },
+    {
+      "path": "fixtures/virtual-slot/baseline/Methods.dll",
+      "bytes": 2048,
+      "sha256": "1fed35ed714d8da8d1922d367558e8b9192c17695411e2ec1ecb48ea494a66bb"
+    },
+    {
+      "path": "fixtures/virtual-slot/target/Methods.dll",
+      "bytes": 2048,
+      "sha256": "ceb9a2b0f90fbeea003416b4ae430480c021b749d17d9cc63b826d60ea732d5a"
+    }
+  ],
+  "unityEditorRun": false,
+  "il2cppPlayerRun": false,
+  "nativeCounterexamples": "NotRun",
+  "runtimeAcceptance": false
+}

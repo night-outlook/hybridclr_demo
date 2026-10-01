@@ -1,0 +1,7 @@
+# Preserve immutable DLL/archive bytes without text conversion.
+*.dll binary
+*.tar.gz binary
+# Preserve native Unity output whitespace under sealed hashes.
+batch/**/*.log whitespace=-blank-at-eol,-blank-at-eof
+batch/**/ProjectSettings/*.asset whitespace=-blank-at-eol,-blank-at-eof
+batch/projects/**/*.meta whitespace=-blank-at-eol,-blank-at-eof

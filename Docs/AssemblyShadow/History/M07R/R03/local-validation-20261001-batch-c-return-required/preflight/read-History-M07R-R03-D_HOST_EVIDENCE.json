@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03InputAndUnitySupervisorHostAudit",
+  "sourceCommit": "5c2932d5340728b16302b7cea8f20b64fcc9e7ce",
+  "workflowRunId": 36805988857,
+  "jobs": [
+    {
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "architecture": "x86_64",
+      "jobId": 110190314332,
+      "artifactId": 11137537132,
+      "archiveSha256": "99e7fa543915d3ce5292e3ff530c5cc74d1974cc867eae29e0e7c8db11f1e3b0",
+      "archiveBytes": 24040428,
+      "indexedFiles": 620,
+      "archiveFiles": 621,
+      "provenanceSha256": "fbf1ff2a4154a6f7e6b06a0b0fdbc27366bf35a74e13fa4472472521526929c3",
+      "lifetimeResultsSha256": "a86bf76cc6c21fcf5a5996973c2d240b65a3cd7089b922bfbb067861f0454fbc",
+      "inputsResultsSha256": "24ede39585e525000d4935962f124dedad4e85939fb0bf15711ae307351f1496",
+      "consumerResultsSha256": "af1827c021250cf27a22d3cde61ed60f0597753afe923303776612839a816f59",
+      "pythonTests": 57,
+      "fixtureMetadataContracts": 33,
+      "fixtureConsumers": 33,
+      "negativeKeyDiagnostic": "CS0009 Invalid public key",
+      "sharedCompilerCases": [
+        {
+          "receipt": "input-contracts/commands/0038/unity-completion.json",
+          "sha256": "5907a45a92cb03ec11555dcadb22265ebb5b1bff4830410459616a0f2a999fd7",
+          "originalExit": 0,
+          "result": "Passed",
+          "compilerChildrenObserved": 1,
+          "actions": 1
+        },
+        {
+          "receipt": "input-contracts/commands/0039/unity-completion.json",
+          "sha256": "58a55be26fe266b0eddc1a1c7e04c977906115de2f63e258d6e46ac03bd98bdb",
+          "originalExit": 1,
+          "result": "Failed",
+          "compilerChildrenObserved": 1,
+          "actions": 1
+        }
+      ],
+      "positiveCommands": 49,
+      "negativeCommands": 2,
+      "noSurvivors": true,
+      "unityEditorRun": false,
+      "nativeExecution": false,
+      "commandsTotal": 51,
+      "commandReceiptInventorySha256": "89cd2fe287adb0c3e095e9e44426ba93778e5fbff7f5224e85ead8f4e6218f30",
+      "baselineGraphTests": 9,
+      "candidateGraphTests": 9,
+      "admissionMethodTests": 35,
+      "playerFixtureDlls": 15,
+      "actualRuntimeApiCompile": "Passed",
+      "commandReceiptInventoryEncoding": "Recompute from sorted lifetime/execution/commands/*/command.json and input-contracts/commands/*/command.json: UTF-8 compact JSON array of [path,pid,exitCode,receiptSha256], with no trailing newline",
+      "positiveAndExpectedNegativeCommandsAllClean": true,
+      "sharedCompilerObservedInBothCases": true
+    },
+    {
+      "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
+      "architecture": "arm64",
+      "jobId": 110190314068,
+      "artifactId": 11137658546,
+      "archiveSha256": "a2a1e99d4d30854f5b513a912a6f6c7014d2b41f0cf6765b6639fdc22aef8c3a",
+      "archiveBytes": 23053208,
+      "indexedFiles": 620,
+      "archiveFiles": 621,
+      "provenanceSha256": "d8864cbbc373a93820630042b1d1241c5ebd6448c8e7458641b4cc7fde23da22",
+      "lifetimeResultsSha256": "b0201b74deddac1be7dbe98053be526676fdba228b79446f7857907cfc78e9d9",
+      "inputsResultsSha256": "10286fbaa3daef8b8c885b96a9ccbfd4574db4ad2783d2f8cac6d7580c4f3acb",
+      "consumerResultsSha256": "3d59a8096e9b9ebd32b19759f722c0a75f6dee443e25e1589924a9a5cb4e05bc",
+      "pythonTests": 57,
+      "fixtureMetadataContracts": 33,
+      "fixtureConsumers": 33,
+      "negativeKeyDiagnostic": "CS0009 Invalid public key",
+      "sharedCompilerCases": [
+        {
+          "receipt": "input-contracts/commands/0038/unity-completion.json",
+          "sha256": "5ea1066db08ffb4ea280b589cb484a0195059fcf5ba60cbc13f2a4f9c1a02e58",
+          "originalExit": 0,
+          "result": "Passed",
+          "compilerChildrenObserved": 1,
+          "actions": 1
+        },
+        {
+          "receipt": "input-contracts/commands/0039/unity-completion.json",
+          "sha256": "d3608145b724192db680dd075cecdf35fd83063ee67817888c7762075d72b839",
+          "originalExit": 1,
+          "result": "Failed",
+          "compilerChildrenObserved": 1,
+          "actions": 1
+        }
+      ],
+      "positiveCommands": 49,
+      "negativeCommands": 2,
+      "noSurvivors": true,
+      "unityEditorRun": false,
+      "nativeExecution": false,
+      "commandsTotal": 51,
+      "commandReceiptInventorySha256": "de5e84f3e46601789b79015bdea839e11e070447417fe21bc9f35b696aaa7f15",
+      "baselineGraphTests": 9,
+      "candidateGraphTests": 9,
+      "admissionMethodTests": 35,
+      "playerFixtureDlls": 15,
+      "actualRuntimeApiCompile": "Passed",
+      "commandReceiptInventoryEncoding": "Recompute from sorted lifetime/execution/commands/*/command.json and input-contracts/commands/*/command.json: UTF-8 compact JSON array of [path,pid,exitCode,receiptSha256], with no trailing newline",
+      "positiveAndExpectedNegativeCommandsAllClean": true,
+      "sharedCompilerObservedInBothCases": true
+    }
+  ],
+  "zipAndExactMembershipAndAllIndexedHashesVerified": true,
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "sourceCommitBeforeConsumerFix": "c72893c0df9452aa46a45a1f723b71f62512a0e6",
+  "earlierCiFailure": {
+    "runId": 36805795209,
+    "source": "c72893c0df9452aa46a45a1f723b71f62512a0e6",
+    "diagnostic": "CS0176: consumer incorrectly used an instance call for the value fixture static Keep method",
+    "disposition": "Consumer corrected to emitted method calling shape; fixture and native expectation unchanged"
+  },
+  "localUnityCompilerAndEditorProbes": "NotRun: implemented in next Local batch, not executed by Primary",
+  "scope": "Source-bound host compiler and supervisor evidence. No Unity Editor or IL2CPP acceptance."
+}
