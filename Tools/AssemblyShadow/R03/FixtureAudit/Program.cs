@@ -56,7 +56,9 @@ internal static class Program
             Need(actual.SequenceEqual(expected == null ? Array.Empty<string>() : new[] { expected }), "Graph edges changed: " + relative);
             string id = group.name + "-" + cases.Count.ToString("D2");
             string source = Path.Combine(output, id + ".cs");
-            File.WriteAllText(source, "extern alias Subject;\npublic static class Consumer { public static System.Type Type() => typeof(Subject::R03.Node); public static int Invoke(Subject::R03.Node n) => n.Keep(); }\n");
+            var keep = node.Methods.Single(method => method.Name == "Keep");
+            string invocation = keep.IsStatic ? "Subject::R03.Node.Keep()" : "n.Keep()";
+            File.WriteAllText(source, "extern alias Subject;\npublic static class Consumer { public static System.Type Type() => typeof(Subject::R03.Node); public static int Invoke(Subject::R03.Node n) => " + invocation + "; }\n");
             cases.Add(new { id, input = file, inputSha256 = Hash(bytes), source, sourceSha256 = Hash(File.ReadAllBytes(source)),
                 references = refs.Select(r => new { name = r.Name.String, flags = (uint)r.Attributes, keyBytes = Key(r).Length }).ToArray(),
                 peers = Directory.GetFiles(Path.GetDirectoryName(file), "*.dll").Where(p => p != file).OrderBy(p => p, StringComparer.Ordinal)
