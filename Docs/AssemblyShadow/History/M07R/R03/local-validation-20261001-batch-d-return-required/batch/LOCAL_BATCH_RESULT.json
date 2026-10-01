@@ -1,0 +1,486 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "cells": [
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "faa351d6854e71982ca047b994fb8579475f542a",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "120bb01be680cec0375002a0823552d66d34b84c",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "entry-authority",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "commandReceipt": {
+          "childEnvironmentPolicy": {
+            "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+            "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+            "GIT_TERMINAL_PROMPT": "0",
+            "MSBUILDDISABLENODEREUSE": "1",
+            "MSBUILDUSESERVER": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "TMPDIR": "/private/tmp"
+          },
+          "cleanupErrors": [],
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "endedUtcEpoch": 1790873265.374207,
+          "exitCode": 0,
+          "interrupted": false,
+          "lifetimePolicy": "R03OwnedCommandV1",
+          "pgid": 6124,
+          "pid": 6124,
+          "postCleanupGroupExists": false,
+          "processGroupBeforeCleanup": null,
+          "remainingProcessGroup": false,
+          "schemaVersion": 2,
+          "startError": null,
+          "startedUtcEpoch": 1790873264.750106,
+          "stderrSha256": "517f883fa45aafe73a4ddc7db05aac6dc586295260097a00b8d7684c0a0b1da6",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        "scope": "Synthetic verifier/filesystem contracts, not Player evidence"
+      },
+      "id": "verifier-contracts",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "authority": "Exact published ancestors of the verified candidate remote heads",
+        "commits": {
+          "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+          "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+        },
+        "paths": {
+          "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr",
+          "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr_unity",
+          "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/il2cpp_plus"
+        },
+        "retained": true
+      },
+      "id": "reference-sources",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "reference-sources"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/host/baseline-graph/results.json",
+        "sha256": "4051b76736cd71506a831c560d7448abbc4097a454fc707ce655142d9e0c4fca"
+      },
+      "id": "host-baseline-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/host/candidate-graph/results.json",
+        "sha256": "6aeb84e26ba1350153218b1d9dc1c13bd661c9f3f3a45262e4808e9d2777c985"
+      },
+      "id": "host-candidate-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/host/admission/results.json",
+        "sha256": "2b0e948f1f678406ced0838146ba31593f99b62b98aff010528f6e0ce7ebad29"
+      },
+      "id": "host-admission",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "host-admission"
+      ],
+      "evidence": {
+        "compilerConsumers": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/consumer-unity-2022.3.62f2/results.json",
+          "sha256": "b09b633e6b831b6bba9a9226e9f94c6d012e1f31f17b91547100fa622438116e"
+        },
+        "completeBuildHelper": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/build-api/results.json",
+          "sha256": "0819ee9fc13713a2da77fe9cc92f4d8a3dd06100fdd4af2593b026b49b0c3d36"
+        },
+        "fixtureInventory": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/host/player-fixtures/inventory.json",
+          "sha256": "3d1e303f67f8e110128453acb4f26b175da38ac94fc46381def4309a07f07e9e"
+        },
+        "metadataAudit": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/fixture-audit/results.json",
+        "metadataAuditSha256": "497abc728313482558f70ea607ef68f860ecf62e710a4bf677348c5db64e1d4b",
+        "unityLifecycle": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/unity-lifecycle/results.json",
+          "sha256": "8652b65d13720e2f6292a033e1ab2b6c0e968f261313b3de2ec9cf3894be689e"
+        }
+      },
+      "id": "player-fixtures",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-release"
+      },
+      "id": "prepare-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "error": "Exact native installation receipt is required",
+      "id": "build-candidate-release",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "reference-sources",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/reference-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/reference-release"
+      },
+      "id": "prepare-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-reference-release"
+      ],
+      "error": "Exact native installation receipt is required",
+      "id": "build-reference-release",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-debug/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-debug"
+      },
+      "id": "prepare-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "error": "Exact native installation receipt is required",
+      "id": "build-candidate-debug",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-off/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-off"
+      },
+      "id": "prepare-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "error": "Exact native installation receipt is required",
+      "id": "build-candidate-off",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release",
+        "host-admission"
+      ],
+      "error": "Nonzero real Editor test execution required",
+      "id": "editor-tests",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C01-baseline",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C02-private-reference",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C03-moved-slot",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C04-old-AOT-guard",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C05-direction-reversal",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C06-actual-target-cycle",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C07-private-primitive-append",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C08-interface-change",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C09-reference-to-value-kind",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "id": "C10-field-removal",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R01-baseline",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R02-original-late-layout",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R03-original-slot-lookup",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R04-direction-reversal",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "id": "R05-actual-target-cycle",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "id": "D01-private-reference",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "id": "D02-moved-slot",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "id": "D03-old-AOT-guard",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "build-candidate-off"
+      ],
+      "id": "O01-feature-OFF-baseline",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "faa351d6854e71982ca047b994fb8579475f542a",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "120bb01be680cec0375002a0823552d66d34b84c",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "final-authority",
+      "result": "Passed"
+    }
+  ],
+  "executionLedgerSha256": "e855d99d0fa78cec0429021922daf5d9c2d02831805c9266464e52aa954ba3bc",
+  "fullLegacyRegressionAcceptance": false,
+  "kind": "R03ConservativeLocalBatch",
+  "matrixSha256": "7002a0eb52a9ce38c06ab39faeaa4bf19ee95f0dd3809e90133cd68d9cb7c755",
+  "pureInterpreterExpansionEnabled": false,
+  "repositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+    "hybridclr_demo": "faa351d6854e71982ca047b994fb8579475f542a",
+    "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+    "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "ReturnRequired",
+  "retainedReferenceWorktrees": {
+    "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr",
+    "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr_unity",
+    "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/il2cpp_plus"
+  },
+  "schemaVersion": 1,
+  "seal": {
+    "archiveSha256": "989d7211e1772efc2b20f13b5354e533bc4760adf93fa4a45b1d5176ed17ff53",
+    "boundedEvidenceOnly": true,
+    "indexSha256": "b7bbe6d66c3c398db0fb504679cf560226aad4e044fe8a3ef04ccff3fc01e08b",
+    "members": 1737,
+    "runtimeAcceptance": false
+  },
+  "sealStatus": "Passed"
+}

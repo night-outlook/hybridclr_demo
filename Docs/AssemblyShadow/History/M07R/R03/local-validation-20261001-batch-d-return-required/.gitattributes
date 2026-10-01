@@ -1,0 +1,10 @@
+# Preserve binary evidence, archive parts and immutable original Unity output.
+*.dll binary
+*.dylib binary
+*.tar.gz binary
+batch/evidence.tar.gz.parts/* binary
+batch/**/*.log whitespace=-blank-at-eol,-blank-at-eof
+batch/**/*.meta whitespace=-blank-at-eol,-blank-at-eof
+batch/**/*.asset whitespace=-blank-at-eol,-blank-at-eof
+# The entire batch tree is immutable captured evidence, including generated C/C++.
+batch/** -whitespace

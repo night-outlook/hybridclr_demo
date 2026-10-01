@@ -1,0 +1,604 @@
+{
+  "kind": "ReadOnlyR03BatchDDiagnosis",
+  "startUtc": "2026-10-01T16:57:32.698267+00:00",
+  "endUtc": "2026-10-01T16:57:33.546549+00:00",
+  "scope": "Existing artifacts, receipts, source and XML only; no retry, source change, blocked Player launch or failed-cell reclassification",
+  "builds": [
+    {
+      "role": "candidate-debug",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-debug/build-receipt.json",
+      "receiptSha256": "eb93eac5df2856d515b63987e2be9939437191b7faa75954b045cbb265d43e74",
+      "rawBuildResult": "Passed",
+      "runnerBuildCellResult": "Failed",
+      "failure": "Exact native installation receipt is required",
+      "installReceiptSha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+      "hashMatchingInstallReceipts": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "sha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/candidate-debug/installed-sdk.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "files": 966,
+          "exactInstalledAfterMatch": true,
+          "extra": [],
+          "missing": [],
+          "changed": [],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+              "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-debug/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp/assembly-shadow-install.json",
+          "sha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/candidate-debug/stripped-aot-copy.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-debug/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp",
+          "files": 966,
+          "exactInstalledAfterMatch": false,
+          "extra": [],
+          "missing": [],
+          "changed": [
+            "hybridclr/generated/MethodBridge.cpp"
+          ],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+              "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        }
+      ],
+      "playerInventoryAuthenticated": 22,
+      "playerBytes": 122897797,
+      "architectureOperation": {
+        "command": [
+          "lipo",
+          "-archs",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-debug/R03Isolated.app/Contents/MacOS/R03Isolated"
+        ],
+        "exitCode": 0,
+        "stdout": "arm64\n",
+        "stderr": ""
+      },
+      "fresh": true,
+      "notAcceptanceOverride": true
+    },
+    {
+      "role": "candidate-off",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-off/build-receipt.json",
+      "receiptSha256": "34dd1180b444f8012593b6e54b069b75087e06e5ae7a82257693885b0e0ea36d",
+      "rawBuildResult": "Passed",
+      "runnerBuildCellResult": "Failed",
+      "failure": "Exact native installation receipt is required",
+      "installReceiptSha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+      "hashMatchingInstallReceipts": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "sha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/candidate-off/installed-sdk.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "files": 966,
+          "exactInstalledAfterMatch": true,
+          "extra": [],
+          "missing": [],
+          "changed": [],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+              "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-off/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp/assembly-shadow-install.json",
+          "sha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/candidate-off/stripped-aot-copy.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-off/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp",
+          "files": 966,
+          "exactInstalledAfterMatch": false,
+          "extra": [],
+          "missing": [],
+          "changed": [
+            "hybridclr/generated/MethodBridge.cpp"
+          ],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+              "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        }
+      ],
+      "playerInventoryAuthenticated": 22,
+      "playerBytes": 108238021,
+      "architectureOperation": {
+        "command": [
+          "lipo",
+          "-archs",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-off/R03Isolated.app/Contents/MacOS/R03Isolated"
+        ],
+        "exitCode": 0,
+        "stdout": "arm64\n",
+        "stderr": ""
+      },
+      "fresh": true,
+      "notAcceptanceOverride": true
+    },
+    {
+      "role": "candidate-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-release/build-receipt.json",
+      "receiptSha256": "89e780683ad5286e84505f16b41073759f1d19acf5994ba269ba98a015bc4c9e",
+      "rawBuildResult": "Passed",
+      "runnerBuildCellResult": "Failed",
+      "failure": "Exact native installation receipt is required",
+      "installReceiptSha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+      "hashMatchingInstallReceipts": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "sha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/candidate-release/installed-sdk.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "files": 966,
+          "exactInstalledAfterMatch": true,
+          "extra": [],
+          "missing": [],
+          "changed": [],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+              "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-release/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp/assembly-shadow-install.json",
+          "sha256": "ce4a395b030aefae855f2facba0ce5b69848c1d5ad4c8185ba729a73e0e63c88",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/candidate-release/stripped-aot-copy.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/candidate-release/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp",
+          "files": 966,
+          "exactInstalledAfterMatch": false,
+          "extra": [],
+          "missing": [],
+          "changed": [
+            "hybridclr/generated/MethodBridge.cpp"
+          ],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+              "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        }
+      ],
+      "playerInventoryAuthenticated": 22,
+      "playerBytes": 109027237,
+      "architectureOperation": {
+        "command": [
+          "lipo",
+          "-archs",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/candidate-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+        ],
+        "exitCode": 0,
+        "stdout": "arm64\n",
+        "stderr": ""
+      },
+      "fresh": true,
+      "notAcceptanceOverride": true
+    },
+    {
+      "role": "reference-release",
+      "receiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/reference-release/build-receipt.json",
+      "receiptSha256": "496c23109634f235d0d4cf96db96630d06ba2cb3361aae20a2cbde28e1ddaa22",
+      "rawBuildResult": "Passed",
+      "runnerBuildCellResult": "Failed",
+      "failure": "Exact native installation receipt is required",
+      "installReceiptSha256": "a3baad0e727e4fdf304dbbb2601cbb6bb469a1f49df242c0d26666e87f2c32eb",
+      "hashMatchingInstallReceipts": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "sha256": "a3baad0e727e4fdf304dbbb2601cbb6bb469a1f49df242c0d26666e87f2c32eb",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/reference-release/installed-sdk.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "files": 965,
+          "exactInstalledAfterMatch": true,
+          "extra": [],
+          "missing": [],
+          "changed": [],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+              "localPath": "../../reference-worktrees/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c",
+              "localPath": "../../reference-worktrees/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/reference-release/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp/assembly-shadow-install.json",
+          "sha256": "a3baad0e727e4fdf304dbbb2601cbb6bb469a1f49df242c0d26666e87f2c32eb",
+          "retainedCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api/native-receipts/reference-release/stripped-aot-copy.json",
+          "nativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/projects/reference-release/HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp",
+          "files": 965,
+          "exactInstalledAfterMatch": false,
+          "extra": [],
+          "missing": [],
+          "changed": [
+            "hybridclr/generated/MethodBridge.cpp"
+          ],
+          "repositories": {
+            "hybridclr": {
+              "url": "https://github.com/night-outlook/hybridclr.git",
+              "revision": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+              "localPath": "../../reference-worktrees/hybridclr"
+            },
+            "hybridclrUnity": {
+              "url": "https://github.com/night-outlook/hybridclr_unity.git",
+              "revision": "120bb01be680cec0375002a0823552d66d34b84c",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+            },
+            "il2cppPlus": {
+              "url": "https://github.com/night-outlook/il2cpp_plus.git",
+              "revision": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c",
+              "localPath": "../../reference-worktrees/il2cpp_plus"
+            },
+            "demo": {
+              "url": "https://github.com/night-outlook/hybridclr_demo.git",
+              "revision": "faa351d6854e71982ca047b994fb8579475f542a",
+              "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+            }
+          }
+        }
+      ],
+      "playerInventoryAuthenticated": 22,
+      "playerBytes": 109006228,
+      "architectureOperation": {
+        "command": [
+          "lipo",
+          "-archs",
+          "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/builds/reference-release/R03Isolated.app/Contents/MacOS/R03Isolated"
+        ],
+        "exitCode": 0,
+        "stdout": "arm64\n",
+        "stderr": ""
+      },
+      "fresh": true,
+      "notAcceptanceOverride": true
+    }
+  ],
+  "editor": {
+    "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/editor-results.xml",
+    "sha256": "4d43e1f3722965af9d0284bac6b774bd773181a7a5b35670750c690d8a5f9163",
+    "rootAttributes": {
+      "id": "2",
+      "testcasecount": "755",
+      "result": "Skipped:Ignored",
+      "total": "755",
+      "passed": "754",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "1",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-01 16:51:50Z",
+      "end-time": "2026-10-01 16:52:30Z",
+      "duration": "40.0399041"
+    },
+    "cases": 755,
+    "passed": 754,
+    "failed": 0,
+    "skipped": [
+      {
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+        "result": "Skipped",
+        "label": "Ignored",
+        "reason": "The frozen M01 demo assets are not present in this project."
+      }
+    ],
+    "skippedCoverage": "NoCoverage for frozen M01 demo-resource asset test in isolated project",
+    "all35MandatoryR03Contracts": [
+      {
+        "id": "L01-private-reference-append",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L01-private-reference-append\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L02-private-string-append",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L02-private-string-append\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L03-private-primitive-append-needs-native",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L03-private-primitive-append-needs-native\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L04-public-primitive-append",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L04-public-primitive-append\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L05-value-type-growth",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L05-value-type-growth\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L06-generic-definition-growth",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L06-generic-definition-growth\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L07-instance-field-removal",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L07-instance-field-removal\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L08-instance-field-type-change",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L08-instance-field-type-change\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L09-instance-field-order-change",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L09-instance-field-order-change\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L10-static-field-is-not-instance-layout",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L10-static-field-is-not-instance-layout\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L11-existing-field-visibility-is-not-storage",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L11-existing-field-visibility-is-not-storage\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L12-interface-addition",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L12-interface-addition\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L13-explicit-offset-change",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L13-explicit-offset-change\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L14-packing-needs-native",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L14-packing-needs-native\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L15-class-size-needs-native",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L15-class-size-needs-native\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L16-layout-kind-change",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L16-layout-kind-change\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L17-type-constraint-change",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L17-type-constraint-change\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L18-method-only-change-needs-allocation-proof",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L18-method-only-change-needs-allocation-proof\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L19-new-type-no-baseline-proof",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L19-new-type-no-baseline-proof\")",
+        "result": "Passed"
+      },
+      {
+        "id": "L20-analysis-does-not-load-assembly-or-cctor",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"L20-analysis-does-not-load-assembly-or-cctor\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M01-token-and-virtual-order-not-identity",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M01-token-and-virtual-order-not-identity\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M02-no-inline-not-identity-or-contract",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M02-no-inline-not-identity-or-contract\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M03-visibility-separate-compatibility",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M03-visibility-separate-compatibility\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M04-dispatch-separate-compatibility",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M04-dispatch-separate-compatibility\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M05-static-calling-shape",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M05-static-calling-shape\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M06-byref-signature",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M06-byref-signature\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M07-required-modifier-identity",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M07-required-modifier-identity\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M08-method-constraint-separate-compatibility",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M08-method-constraint-separate-compatibility\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M09-parameter-name-not-contract",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M09-parameter-name-not-contract\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M10-parameter-attribute-separate-compatibility",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M10-parameter-attribute-separate-compatibility\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M11-generic-composite-local-numbering",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M11-generic-composite-local-numbering\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M12-return-type-is-signature",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M12-return-type-is-signature\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M13-missing-method-rejected",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M13-missing-method-rejected\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M14-declaring-type-constraints",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M14-declaring-type-constraints\")",
+        "result": "Passed"
+      },
+      {
+        "id": "M15-optimization-hints-independent",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.R03EvolutionContractTests.RealDllEvolutionContract(\"M15-optimization-hints-independent\")",
+        "result": "Passed"
+      }
+    ],
+    "targetCycleRegression": {
+      "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.GraphAndInputTests.CyclesReportClosedPath",
+      "result": "Passed"
+    },
+    "runnerCell": "Failed",
+    "failure": "Nonzero real Editor test execution required"
+  },
+  "rootCauses": [
+    "verify_build globally searches HybridCLRData by hash and requires exactly one receipt; stripped-AOT generation copies the same receipt into its output tree, producing two legitimate hash matches.",
+    "editor_tests runs the entire package suite in an isolated project lacking frozen M01 resource assets; that test calls Assert.Ignore, making aggregate root Skipped:Ignored despite all mandatory R03 contracts passing."
+  ],
+  "sourceFiles": {
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py": "86b458467ba864d46a79e1277f2ed4e466612057c43ec9b33bb4c1c087cebe02",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Build.cs": "d058bed910f81341c6a615abe2479167d7ebe0537913a205573d0c59f0f182b5",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ResourceAbiTests.cs": "f40d137e4221b4c30adf1b73c093cc87ce5d5aa192b10713f1ff82130634f0fb"
+  }
+}
