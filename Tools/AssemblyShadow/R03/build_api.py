@@ -131,11 +131,12 @@ def validate_build_api(batch):
             directory = root / label; directory.mkdir()
             target = directory / (label + '.dll')
             args = csc_arguments(runtime, compiler, defines, references + plugins + deps, files, target)
-            # A response file avoids platform argv limits and is retained as evidence.
+            # /noconfig must be on the command line: Roslyn ignores it in response files.
+            # The remaining response file avoids argv limits and is retained as evidence.
             response = directory / 'compiler.rsp'
-            response.write_text('\n'.join('"' + a.replace('"', '\\"') + '"' for a in args[3:]) + '\n')
+            response.write_text('\n'.join('"' + a.replace('"', '\\"') + '"' for a in args[4:]) + '\n')
             try:
-                receipt = batch.command([*args[:3], '@' + str(response)])
+                receipt = batch.command([*args[:4], '@' + str(response)])
                 require(not negative, 'Original uint helper unexpectedly compiled')
             except RuntimeError:
                 if not negative:
