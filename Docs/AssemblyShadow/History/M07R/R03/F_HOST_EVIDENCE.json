@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03InstalledRootAndEditorScopePrimaryEvidenceAudit",
+  "sourceCommit": "979abd80b673e690c5f82819ed194200f8d2e536",
+  "localReturnCommit": "33d7b1fce2f3b8463dc4ac78061250ecc7df925d",
+  "hostJobs": [
+    {
+      "workflowRunId": 36926248759,
+      "jobId": 110584177315,
+      "artifactId": 11194471090,
+      "archiveSha256": "0ba217af0638e58aced3334add098a3fd8969bfa43b69ae36246434f79d6cafe",
+      "archiveBytes": 24079079,
+      "indexedFiles": 629,
+      "archiveFiles": 630,
+      "provenanceSha256": "ccd252e8484a4be520d8eef8b9a4bcde8dd373e2c3d636d790baf047e15e111c",
+      "positiveCommands": 49,
+      "expectedNegativeCommands": 2,
+      "noSurvivors": true,
+      "commandReceiptInventorySha256": "e14205f9448230d0e9fecf84bcb40a3eea72b73288bf46a43396aecf8f7ab012",
+      "commandInventoryEncoding": "Sorted [relative command.json path, pid, exitCode, receipt SHA-256]; compact JSON with no trailing newline",
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "architecture": "x86_64",
+      "sdk": "8.0.318",
+      "pythonTests": 116,
+      "baselineGraphTests": 9,
+      "candidateGraphTests": 9,
+      "admissionTests": 35,
+      "fixtureConsumers": 33,
+      "playerFixtureDlls": 15,
+      "actualRuntimeApiCompile": "Passed",
+      "sharedCompilerSuccessAndFailure": "Passed",
+      "unrelatedSentinelUnaffected": true,
+      "provenanceAndScopeContracts": "Passed",
+      "provenanceScopeResultsSha256": "ad500f76c03a95d87e9a668507de0795602d2c8cc76176cb7798b127b3e32d59",
+      "scopeSha256": "060dd5a5a2a82e4b20f0932d3dc3bc0129aa4c5140e9808f3807d822131874e3",
+      "lifetimeResultsSha256": "9dc6f795f15818aaff5cd7cd0d1e805d06f1236ab3e011db358cf4f2f337e40a",
+      "inputResultsSha256": "ad6e6cfef81f11ac6e913213afbbbdb294ca31c2b1b7863629516e1147f91ac6",
+      "reviewedEditorNames": 754,
+      "requiredEditorNames": 36,
+      "excludedCoverage": [
+        {
+          "coverage": "NoCoverage",
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+          "missingAssets": [
+            "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+            "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+            "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+          ],
+          "reason": "The frozen M01 demo assets are not present in this project."
+        }
+      ],
+      "freshEditorExecution": false
+    },
+    {
+      "workflowRunId": 36926248759,
+      "jobId": 110584176986,
+      "artifactId": 11193902947,
+      "archiveSha256": "c54777f8fd96a7a23b237849281f708a91dbd12ee761524a254865a62ec001f6",
+      "archiveBytes": 23091522,
+      "indexedFiles": 629,
+      "archiveFiles": 630,
+      "provenanceSha256": "506d3107a6874281a3c7ee83bf6430b6507842c3ba64ad7d1b00d6e64696d040",
+      "positiveCommands": 49,
+      "expectedNegativeCommands": 2,
+      "noSurvivors": true,
+      "commandReceiptInventorySha256": "eb7952a457d220f79ed6b2759204b30f641ae3158cd479a13526003d28a6894c",
+      "commandInventoryEncoding": "Sorted [relative command.json path, pid, exitCode, receipt SHA-256]; compact JSON with no trailing newline",
+      "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
+      "architecture": "arm64",
+      "sdk": "8.0.318",
+      "pythonTests": 116,
+      "baselineGraphTests": 9,
+      "candidateGraphTests": 9,
+      "admissionTests": 35,
+      "fixtureConsumers": 33,
+      "playerFixtureDlls": 15,
+      "actualRuntimeApiCompile": "Passed",
+      "sharedCompilerSuccessAndFailure": "Passed",
+      "unrelatedSentinelUnaffected": true,
+      "provenanceAndScopeContracts": "Passed",
+      "provenanceScopeResultsSha256": "ad500f76c03a95d87e9a668507de0795602d2c8cc76176cb7798b127b3e32d59",
+      "scopeSha256": "060dd5a5a2a82e4b20f0932d3dc3bc0129aa4c5140e9808f3807d822131874e3",
+      "lifetimeResultsSha256": "a7793f719a21c4d60319af984f1ea4c9f0527303165f79e901d4aad780a709c7",
+      "inputResultsSha256": "885e5e3d15f8814b1426f305b45b7e68821303d1365a4f679673901f9ec23f3f",
+      "reviewedEditorNames": 754,
+      "requiredEditorNames": 36,
+      "excludedCoverage": [
+        {
+          "coverage": "NoCoverage",
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+          "missingAssets": [
+            "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+            "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+            "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+          ],
+          "reason": "The frozen M01 demo assets are not present in this project."
+        }
+      ],
+      "freshEditorExecution": false
+    }
+  ],
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "newUnityEditorExecution": false,
+  "newNativePlayerExecution": false,
+  "pinnedUnityApi": {
+    "workflowRunId": 36926248750,
+    "jobId": 110584176565,
+    "artifactId": 11194331920,
+    "archiveSha256": "f0a009e6b471110b3b38250c32a04faafae123eb7630f698137db621eac4e227",
+    "archiveBytes": 461950,
+    "indexedFiles": 28,
+    "archiveFiles": 29,
+    "provenanceSha256": "e19aefe2217ce2f319e3933281f14decab6eb286975dbec2dd10b09c222e4331",
+    "positiveCommands": 4,
+    "expectedNegativeCommands": 1,
+    "noSurvivors": true,
+    "commandReceiptInventorySha256": "80d4530d575e5271b96bf18e2cb4819699375527486d42614834bce3bd2160f1",
+    "commandInventoryEncoding": "Sorted [relative command.json path, pid, exitCode, receipt SHA-256]; compact JSON with no trailing newline",
+    "result": "Passed",
+    "unityVersion": "2022.3.62f2",
+    "referenceCoreSha256": "e22a829a8022d30c6b2b11fe764d12a2383cf882b63a954641e3cd41ea56af6e",
+    "helperSourceSha256": "46f448196ceb69570be3d1fca87c0c811d40122498da7f007eb0bce46f9d604b",
+    "helperDllSha256": "5da3810b498ebb659f1c421615dc6465625cd87fb7c15389c2babf97571151c5",
+    "helperDllBytes": 13824,
+    "helperCompilerWarnings": 0,
+    "originalHelperErrors": [
+      "CS0266",
+      "CS0266"
+    ],
+    "resultsSha256": "e67700c995a10ae0bd030b91d2c1fb1ef28c25828fbfbc8027784dda4660e49b",
+    "inputsSha256": "9fed64a7fdd7d62bbcae3d69896dc5cd577acf2211bd4cff57a1a8764bf6a643",
+    "commandReceipts": [
+      [
+        "execution/commands/0001/command.json",
+        4159,
+        0,
+        "0e814962b9ae68b5bba3f7a61746d5ebf60ea0d68b4ac7d3b484f0b91e99bb7b"
+      ],
+      [
+        "execution/commands/0002/command.json",
+        4160,
+        0,
+        "05686c1fd7ac393855daae6689751b52e9ddc6bea7fb9175e51f920820d97804"
+      ],
+      [
+        "execution/commands/0003/command.json",
+        4162,
+        0,
+        "4f2ae5de482ffc93c8497f0d441d009a25beaf2a554a989862b4893bd5405bcf"
+      ],
+      [
+        "execution/commands/0004/command.json",
+        4164,
+        0,
+        "2c8b60d5dd4683ad38a195b161495e38ba34ae14d5815bb3717b0504458b350b"
+      ],
+      [
+        "execution/commands/0005/command.json",
+        4166,
+        1,
+        "28f496e4da84f9f1f9979f97bb2b35e6d0665b1a161bdc5d036fe67ce4c320e3"
+      ]
+    ],
+    "sourceInputs": 425,
+    "defineCount": 115,
+    "wholeHelperSource": true,
+    "apiStubsUsed": false,
+    "newUnityEditorExecution": false,
+    "nativeExecution": false,
+    "packageAssemblies": [
+      {
+        "asmdef": {
+          "path": "/Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Runtime/HybridCLR.Runtime.asmdef",
+          "sha256": "1495a49ac145ef0719621b72922fc2ebde927caf6eab8a68e91b883db1169fe9",
+          "size": 349
+        },
+        "name": "HybridCLR.Runtime",
+        "output": {
+          "path": "/Users/runner/work/_temp/r03-build-api/execution/build-api/HybridCLR.Runtime/HybridCLR.Runtime.dll",
+          "sha256": "a3c618c727cbcf8d7663103a1566efb5906012f9dca442ade407bf2442f96418",
+          "size": 60928
+        },
+        "sourceCount": 15
+      },
+      {
+        "asmdef": {
+          "path": "/Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Editor/AssemblyShadow.CodeGen/HybridCLR.AssemblyShadow.CodeGen.asmdef",
+          "sha256": "0e5e31e917a0687d02b4ca25fd7ae272f741090491961fbb8dddb1b6f4f9475e",
+          "size": 365
+        },
+        "name": "Unity.HybridCLR.AssemblyShadow.CodeGen",
+        "output": {
+          "path": "/Users/runner/work/_temp/r03-build-api/execution/build-api/Unity.HybridCLR.AssemblyShadow.CodeGen/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+          "sha256": "ebb8fe1849a422b17da04618bdc76eff5d4ba6f3399a4dd547c52d59da3227c2",
+          "size": 120832
+        },
+        "sourceCount": 14
+      },
+      {
+        "asmdef": {
+          "path": "/Users/runner/work/hybridclr_demo/hybridclr_demo/hybridclr_unity/Editor/HybridCLR.Editor.asmdef",
+          "sha256": "4ccf1d9bc487f3358320797601d1ddf1f49fc0e1e5390b7bb5b4c4d0aab56238",
+          "size": 454
+        },
+        "name": "HybridCLR.Editor",
+        "output": {
+          "path": "/Users/runner/work/_temp/r03-build-api/execution/build-api/HybridCLR.Editor/HybridCLR.Editor.dll",
+          "sha256": "bb351885263b1a29a11a34228230a50a3751e7fd07eba73a0ac5fabf82be9c28",
+          "size": 786432
+        },
+        "sourceCount": 173
+      }
+    ]
+  },
+  "zipExactMembershipAndEveryIndexedHashVerified": true,
+  "historicalDScopeAudit": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "builds": [
+      {
+        "installedAfterFiles": 966,
+        "installedBeforeFiles": 965,
+        "newNativeVerification": "NotRun",
+        "newRequiredSchema": 2,
+        "originalRunnerCell": "Failed",
+        "originalSchema": 1,
+        "receiptSha256": "eb93eac5df2856d515b63987e2be9939437191b7faa75954b045cbb265d43e74",
+        "recordedReceiptCopies": 2,
+        "role": "candidate-debug"
+      },
+      {
+        "installedAfterFiles": 966,
+        "installedBeforeFiles": 965,
+        "newNativeVerification": "NotRun",
+        "newRequiredSchema": 2,
+        "originalRunnerCell": "Failed",
+        "originalSchema": 1,
+        "receiptSha256": "34dd1180b444f8012593b6e54b069b75087e06e5ae7a82257693885b0e0ea36d",
+        "recordedReceiptCopies": 2,
+        "role": "candidate-off"
+      },
+      {
+        "installedAfterFiles": 966,
+        "installedBeforeFiles": 965,
+        "newNativeVerification": "NotRun",
+        "newRequiredSchema": 2,
+        "originalRunnerCell": "Failed",
+        "originalSchema": 1,
+        "receiptSha256": "89e780683ad5286e84505f16b41073759f1d19acf5994ba269ba98a015bc4c9e",
+        "recordedReceiptCopies": 2,
+        "role": "candidate-release"
+      },
+      {
+        "installedAfterFiles": 965,
+        "installedBeforeFiles": 964,
+        "newNativeVerification": "NotRun",
+        "newRequiredSchema": 2,
+        "originalRunnerCell": "Failed",
+        "originalSchema": 1,
+        "receiptSha256": "496c23109634f235d0d4cf96db96630d06ba2cb3361aae20a2cbde28e1ddaa22",
+        "recordedReceiptCopies": 2,
+        "role": "reference-release"
+      }
+    ],
+    "diagnosisSha256": "cd0f97d128b423e89c86399599249da591616662dc785597ca43707f7ce1fbf2",
+    "excludedCoverage": [
+      {
+        "coverage": "NoCoverage",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+        "missingAssets": [
+          "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+          "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+          "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+        ],
+        "reason": "The frozen M01 demo assets are not present in this project."
+      }
+    ],
+    "freshEditorExecution": false,
+    "historicalBatchResult": "ReturnRequired",
+    "historicalCellReclassification": false,
+    "kind": "R03ProvenanceAndScopeHostContracts",
+    "nativeExecution": false,
+    "originalDEditorStillRejected": true,
+    "referenceXmlSha256": "4d43e1f3722965af9d0284bac6b774bd773181a7a5b35670750c690d8a5f9163",
+    "result": "Passed",
+    "schemaVersion": 1,
+    "scopeSha256": "060dd5a5a2a82e4b20f0932d3dc3bc0129aa4c5140e9808f3807d822131874e3",
+    "syntheticScopeContract": {
+      "excluded": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+      "notFreshEditorEvidence": true,
+      "result": "Passed",
+      "selectedNames": 754
+    }
+  },
+  "firstCiCorrection": {
+    "sourceCommit": "1b89581a802a660057fd507f4deb65f060b29669",
+    "workflowRunId": 36925913478,
+    "finding": "Host audit incorrectly imposed candidate inventory counts on the smaller reference core. Production verifier had no such fixed-count requirement.",
+    "fixedIn": "979abd80b673e690c5f82819ed194200f8d2e536",
+    "referenceBeforeAfter": [
+      964,
+      965
+    ],
+    "candidateBeforeAfter": [
+      965,
+      966
+    ],
+    "historicalResultReclassified": false
+  }
+}
