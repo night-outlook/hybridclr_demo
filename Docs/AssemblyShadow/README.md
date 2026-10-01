@@ -8,26 +8,26 @@ This is the canonical documentation root.
 - `History/`: immutable evidence, implementation and review records.
 - `Evidence/`: protected fixture and artifact catalogs.
 
-**R02 remains accepted as PassedWithExplicitDeferredRisk. R03 remains in progress.** R03Accepted=false, H2Passed=false; PureInterpreter structural expansion remains disabled.
+**R02 remains accepted as PassedWithExplicitDeferredRisk. R03 is in progress; R03Accepted=false and H2Passed=false. PureInterpreter structural expansion is disabled.**
 
-**Latest Local return: batch B, ReturnRequired — 12 Passed / 5 Failed / 19 Blocked, focused seal Passed.** Its direct managed lifetime, graph/admission tests and fixture generation passed. Unity compilation failed on an empty-full-public-key provider reference; all five Unity invocations also recorded surviving dotnet groups. Editor assertions, native/IL2CPP builds and nineteen Players did not run. These facts and A/B evidence remain unchanged.
+Latest Local return: **C, ReturnRequired — 12 Passed / 5 Failed / 19 Blocked**, focused seal Passed. C verified the fixture references and supervised compiler lifecycle, but all four native-role build invocations and EditMode compilation stopped at R03Build.cs's int-to-uint count assignments. Native builds, Editor assertions and nineteen Players did not run. Its reports/checkpoint and all earlier evidence remain preserved.
 
-Primary has repaired fixture reference construction and integrated the existing birth-authenticated Unity compiler supervisor. New host checks compile all 33 fixture consumers and exercise actual shared Roslyn processes. **Batch C is now requested**, using the live handoff; never retry A or B.
+Primary now matches both count fields to Unity's int getters and adds complete build-helper compilation against the actual pinned Unity compiler/APIs and real package dependencies. The original complete C source is retained as a precise two-CS0266 negative control. **A fresh batch D is requested**, not a retry or acceptance of C.
 
-Read in order:
+Read:
 1. `Plan/CURRENT_STATUS.md`.
-2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for preserved B execution facts.
-3. `History/M07R/R03/D_INPUT_REPAIR.md`, `D_HOST_EVIDENCE.json`, and `D_VALIDATION_MATRIX.md`.
-4. `Handoff/WEB_TO_LOCAL.md` for the sole current execution command.
-5. `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` and `Plan/stages/R03-evolution-semantics.md` for unchanged product scope and remaining stage exits.
+2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for preserved C facts.
+3. `History/M07R/R03/E_BUILD_API_REPAIR.md`, `E_HOST_EVIDENCE.json`, and `E_VALIDATION_MATRIX.md`.
+4. `Handoff/WEB_TO_LOCAL.md` for the only current execution command.
+5. `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` and `Plan/stages/R03-evolution-semantics.md` for unchanged product scope and full-stage exits.
 
-New executable/CI anchor: **`5c2932d5340728b16302b7cea8f20b64fcc9e7ce`**. Final CI run **36805988857** passed on Linux x86_64 and macOS arm64 with SDK 8.0.318. Primary authenticated both complete archives: 620 indexed files / 621 ZIP files each. Host evidence is not actual Unity Editor or IL2CPP acceptance. The new batch includes pinned Unity compiler consumption and separate valid/invalid Editor probes before the unchanged four native build roles and nineteen Player cases.
+New tested demo source anchor: **`5931ada3c70958a7c6132219e059a42ee3cecbd0`**. The API workflow extracts the exact official Unity 2022.3.62f2 ARM64 package without installing or launching the Editor. Actual helper/package compilation and its old-source negative control passed; the Linux/macOS host regression suites also passed. E_HOST_EVIDENCE.json binds exact CI sources, results, command/output hashes and authenticated artifacts. This is compile-only evidence, not native/Editor pipeline acceptance.
 
-External source pins remain:
+All four repositories use `codex/assembly-shadow-r01b-h1`. Unchanged external pins:
 - HybridCLR `041c0cbb42d3e64e54fe605673d99799b5d63893`
-- managed package `120bb01be680cec0375002a0823552d66d34b84c`
+- package `120bb01be680cec0375002a0823552d66d34b84c`
 - IL2CPP `1abb6bcaa85226f08c67f9da65edb3c58e8cb399`
 
-All four repositories use `codex/assembly-shadow-r01b-h1`. Execute only the final pushed documentation transport SHA identified by Primary's prompt and the latest commit touching WEB_TO_LOCAL.md; local HEAD and remote HEAD must match. Only Docs/AssemblyShadow evidence/documentation may differ after the new tested source anchor. Earlier anchors/handoffs are historical, not authority to run a previous root.
+Execute only the final pushed docs-only transport SHA identified in Primary's prompt and by the latest commit touching WEB_TO_LOCAL.md; local/remote HEAD must match. Earlier handoffs/anchors are historical. Preserve all 36 cells, four native build roles and nineteen fresh-process Player cases; the fixture cell now includes the complete-helper compile prerequisite.
 
-R02 deferred CPU residuals and the original H1 RSS risk remain visible through H2. Full R03 regression, startup/capacity/performance/memory, gated PureInterpreter work and independent stage review remain Primary-owned. Neither this repair nor a successful focused C batch grants R03, H2 or release approval.
+Use only the new unused D root in WEB_TO_LOCAL.md. Never retry A/B/C or modify preserved evidence. R02 deferred CPU and original H1 RSS risks stay visible through H2. Full R03 regression, measurements, PureInterpreter qualification and independent stage review remain Primary-owned. No focused batch grants R03, H2 or release approval.

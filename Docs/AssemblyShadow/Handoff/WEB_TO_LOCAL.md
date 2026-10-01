@@ -1,67 +1,64 @@
-# Primary Implementation → Local Validation: R03 batch C, fixture references and Unity lifecycle
+# Primary Implementation → Local Validation: R03 batch D, complete build-helper API correction
 
-## Objective and preserved return
+## Objective and preserved result
 
-Run one fresh **36-cell R03 batch C** after the R03-LB-001 fixture-reference and R03-LB-002 Unity compiler-lifetime repairs. Do not retry A or B, redesign R03, enable PureInterpreter expansion, or enter H2.
+Run one fresh **36-cell R03 batch D** after R03-LC-001. Do not retry A/B/C, modify their evidence, redesign R03, enable PureInterpreter expansion, or enter H2.
 
-The authoritative Local return is `ec463b6dfbd91603ec0c539378af6dbbe6b9e651`. Batch B remains **ReturnRequired: 12 Passed / 5 Failed / 19 Blocked**, focused seal Passed. Its managed host tests passed; Unity compilation failed; Editor assertions, native/IL2CPP builds and nineteen Players did not run. A remains historical. Neither Local-owned report nor any A/B checkpoint was rewritten by this repair.
+Authoritative Local return: `ed9afef29d17c64f15b281ea8b2176cb17d637b3`. C remains **ReturnRequired: 12 Passed / 5 Failed / 19 Blocked**, focused seal Passed. It verified fixture consumers and supervised compiler lifetime in the executed scope, but four build invocations and EditMode failed at the common helper's int-to-uint assignments. Native builds, Editor assertions and all nineteen Players did not run. Primary has not rewritten Local-owned reports or C's checkpoint.
 
-## Read order
+## Read first
 
-All paths below are under `Docs/AssemblyShadow/`:
+All relative paths here are under `Docs/AssemblyShadow/`:
 1. `README.md` and `Plan/CURRENT_STATUS.md`.
-2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for preserved B facts, not old execution instructions.
-3. `History/M07R/R03/D_INPUT_REPAIR.md`, `D_HOST_EVIDENCE.json`, and `D_VALIDATION_MATRIX.md`.
-4. `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` and `Plan/stages/R03-evolution-semantics.md` for unchanged product scope.
-5. This live handoff for the new command and source authority. Earlier A/B/C preparation records are historical.
+2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for unchanged C facts, not old execution commands.
+3. `History/M07R/R03/E_BUILD_API_REPAIR.md`, `E_HOST_EVIDENCE.json`, and `E_VALIDATION_MATRIX.md`.
+4. `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` and `Plan/stages/R03-evolution-semantics.md` for unchanged product scope/full-stage exits.
+5. This live handoff for the only new batch command. Earlier A/B/C/D preparation records are historical.
 
-## Exact source authority
+## Exact authority
 
-Branch in all four repositories: `codex/assembly-shadow-r01b-h1`.
+All four repositories use `codex/assembly-shadow-r01b-h1`:
 
-| Repository | Exact owning path | Revision |
+| Repository | Owning path | Revision |
 | --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final docs-only transport SHA supplied in Primary's prompt; resolve using this handoff's latest touching commit and require local/remote HEAD equality as below |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final docs-only transport SHA in Primary's prompt, resolved and checked below |
 | night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
 | night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
 | night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
 
-**New tested executable/CI anchor: `5c2932d5340728b16302b7cea8f20b64fcc9e7ce`.** It supersedes the earlier `7e2852...` and `f5f571...` anchors for new runs. Implementation is `c72893c0df9452aa46a45a1f723b71f62512a0e6`; `5c2932...` fixes the new consumer's static/instance call shape without changing fixture semantics. Only documentation/evidence may differ after the new anchor.
+**New tested source anchor: `5931ada3c70958a7c6132219e059a42ee3cecbd0`.** Implementation `24a5a25972afc2a91afb26e68f97984c6dd8af2b` fixes the two count fields and adds full compilation coverage; `5931ada...` corrects `/noconfig` placement. Only Docs/AssemblyShadow evidence/documentation may differ after the new anchor. Previous source anchors do not authorize this run.
 
-Execute exactly the final pushed transport SHA, not the source anchor, a smoke commit, an arbitrary later HEAD or a previous batch's executed commit. A context-free agent resolves it as the latest commit touching this WEB_TO_LOCAL.md, then requires it to equal local HEAD and the current remote branch HEAD. The value must also equal Primary's final prompt. The runner independently verifies all four authorities before and after execution.
+Execute the final pushed transport SHA supplied by Primary, not the source anchor, old executed commit, smoke branch or arbitrary later HEAD. A context-free receiver resolves the latest commit touching this WEB_TO_LOCAL.md and requires it to equal local HEAD and current remote HEAD. Also compare it with Primary's exact prompt before execution. The runner verifies all four sources at entry/final authority.
 
-Native/package pins, nineteen Player cases, four build roles, normal runtime expectations, original command deadlines and the top-level 36-cell ledger remain unchanged. Reference package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192` is used for baseline graph tests; reference Players use the accepted R02 native cores `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c` with the current package/harness, not a historical binary.
+The three external pins, reference-core/package pins, 19 Player cases, four build roles, count/error acceptance rules, command deadlines and top-level ledger remain unchanged.
 
-## Implemented correction and selection
+## Completed Primary repair
 
-The common fixture generator explicitly emits unsigned A/B provider references (empty PublicKeyToken, PublicKey flag clear). A new audit verifies all fifteen Player plus eighteen shared-corpus DLLs, including exact provider identity and unchanged graph/static-field witnesses. Real compiler consumers check every input; a separate malformed control must produce the exact invalid-public-key diagnostic.
+`PlayerProject/R03Build.cs` now declares both receipt counts as int, matching the actual Unity BuildSummary getters; no casts or JSON field/schema changes. Build success still requires a successful report and zero totalErrors.
 
-R03's Unity build and EditMode calls now use the existing, unchanged birth-authenticated R02OwnedUnityRoslyn-v2 supervisor through `unity_command.py`. It retires only the selected invocation's exact compiler children before the unchanged outer R03OwnedCommandV1 boundary. Unknown/new/changed descendants fail closed. Direct .NET worker prevention remains in place. There is no global compiler shutdown or dotnet-name exception. Original command exit codes remain intact.
+`build_api.py` compiles the three actual package assemblies and complete helper using the pinned Unity compiler and actual API DLLs. It separately recompiles the preserved C helper and requires only its original two CS0266 errors. The CoreModule hash must match C's `e22a829a8022d30c6b2b11fe764d12a2383cf882b63a954641e3cd41ea56af6e`. All input bytes, command receipts, response files and output DLLs are bound. No API/package stubs are used. This same check is integrated in the existing player-fixtures cell before native preparation; the additional ten Python contracts bring the suite to 67.
 
-Changed files: `Fixtures/EvolutionFixtureCorpus.cs`; new `FixtureAudit/FixtureAudit.csproj` and `Program.cs`; `input_validation.py`, `unity_command.py`, `test_input_validation.py`, `run_host_inputs.py`; integration in `run_local.py`/`run_host_lifetime.py`; and `.github/workflows/r03-primary.yml`, all under `Tools/AssemblyShadow/R03/` unless fully qualified. The reused R02 supervisor/identity/evidence files, native/package sources, outer lifetime helper and Player expectations are unchanged.
+Primary's new CI extracts the exact official Unity 2022.3.62f2 ARM64 installer and executes its compiler without installing or launching the Editor. Actual full-helper and package compilation, the precise old-helper negative control, and retained host regressions are recorded in E_HOST_EVIDENCE.json. This is compiler evidence, not Unity import/generation/IL2CPP/native acceptance. D must execute the integrated path.
 
-Selection: use the existing authenticated supervisor for Unity's recorded `/shared` lifecycle rather than an unverified Unity compiler switch or broad process cleanup. No runtime candidate or cleanup fallback may be selected locally to turn a failure into success.
+## Pinned environment and unused root
 
-## Environment and new root
+- Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; StandaloneOSX, arm64.
+- Python `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`.
+- Direct managed SDK `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, version **8.0.318**, used only as SDK. Do not launch Unity 6000.
+- New root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api`.
 
-- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`.
-- Target: `StandaloneOSX`, `arm64`.
-- Python: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`.
-- Existing direct managed SDK: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, SDK **8.0.318**. This is an SDK location only; do not launch that Unity 6000 Editor.
-- New prescribed root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs`.
+Verify these recorded tools/versions. Missing or mismatched tooling is Blocked, not permission to substitute versions. The new root must not exist; never delete/reuse a root to bypass the guard. Preserve all A/B/C and R02/H1 evidence.
 
-Verify the recorded tools and versions still exist. Missing or mismatched tooling is Blocked, not permission to substitute Unity/SDK versions. The root must not already exist; never delete or reuse A, B or C to bypass the unused-root guard.
+## Run once
 
-## Execution
-
-Verify canonical origins and clean owning checkouts before synchronizing. Fast-forward only. No reset, stash, forced checkout, unrelated merge or source edits. Preserve all A/B/R02/H1 roots and live evidence.
+Verify canonical origins, clean owning checkouts and branches before syncing. Fast-forward only; no reset, stash, forced checkout, unrelated merge or source edits.
 
 ```bash
 set -euo pipefail
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 BRANCH=codex/assembly-shadow-r01b-h1
 DEMO="$WORKSPACE/hybridclr_demo"
-BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs
+BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
 export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
@@ -79,8 +76,8 @@ done
 DEMO_COMMIT="$(git -C "$DEMO" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
 test "$(git -C "$DEMO" rev-parse HEAD)" = "$DEMO_COMMIT"
 test "$(git -C "$DEMO" ls-remote origin "refs/heads/$BRANCH" | awk '{print $1}')" = "$DEMO_COMMIT"
-git -C "$DEMO" merge-base --is-ancestor 5c2932d5340728b16302b7cea8f20b64fcc9e7ce "$DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 5c2932d5340728b16302b7cea8f20b64fcc9e7ce "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
+git -C "$DEMO" merge-base --is-ancestor 5931ada3c70958a7c6132219e059a42ee3cecbd0 "$DEMO_COMMIT"
+git -C "$DEMO" diff --exit-code 5931ada3c70958a7c6132219e059a42ee3cecbd0 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
 test "$(git -C "$WORKSPACE/hybridclr" rev-parse HEAD)" = 041c0cbb42d3e64e54fe605673d99799b5d63893
 test "$(git -C "$WORKSPACE/hybridclr_unity" rev-parse HEAD)" = 120bb01be680cec0375002a0823552d66d34b84c
 test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = 1abb6bcaa85226f08c67f9da65edb3c58e8cb399
@@ -93,30 +90,22 @@ test ! -e "$BATCH"
   --unity "$UNITY" --demo-commit "$DEMO_COMMIT"
 ```
 
-Compare DEMO_COMMIT with Primary's exact final prompt before running. Capture preflight environment, actual command, timestamps, process ID and runner exit without changing its output files. Invoke once. A failed preflight is recorded as Blocked; do not manufacture a 36-cell execution that never occurred.
+Before running compare DEMO_COMMIT with Primary's final prompt. Capture preflight/environment, exact command, timestamps/PID and exit without changing runner outputs. Invoke once. A failed preflight is Blocked, not a fictional completed batch. Never run blocked cells manually or retry a failed batch.
 
-## Required checks and evidence
+## Required scope and evidence
 
-The original **36 cells / four native build roles / nineteen fresh-process Player cases** remain required. The existing verifier cell now runs **57** tests. The player-fixtures cell additionally audits 33 DLLs, compiles 33 consumers with the pinned Unity compiler, verifies one explicit invalid-key consumer control, and runs separate valid/invalid isolated Editor compiler/lifecycle probes. These two additional Editor probes do not replace native builds or EditMode assertions.
+Keep **36 cells / four native build roles / nineteen fresh-process Player cases**. The verifier cell runs 67 contracts. The player-fixtures cell keeps all original 15-DLL/33-audit/33-Unity-consumer/invalid-key and valid-invalid Editor probes and adds the complete helper compilation from E_VALIDATION_MATRIX.md.
 
-Normal commands still require successful exit and semantic assertions. Only the explicitly named invalid-key controls expect exit 1, with CS0009 and Invalid public key, no consumer/marker output and clean supervised completion. Their original command failures remain visible. Arbitrary compilation errors, timeouts, missing receipts or lingering processes cannot satisfy a negative test.
+All normal compiles/builds require exit 0 and the corresponding semantic/output proof. The existing named invalid-key controls may expect their exact CS0009, and the new preserved-old-helper control may expect exactly two CS0266 errors with no output. Each must still have clean lifetime. Nonzero product build exits cannot be reclassified as negative-control success.
 
-Collect the unchanged result/ledger/index/archive/seal files and all cells/commands/host/builds/players/Editor evidence. Also preserve:
-- `fixture-audit/results.json`, generated consumer sources, shared corpus and malformed control;
-- `consumer-unity-2022.3.62f2/results.json`, emitted consumer DLLs and compiler/runtime/reference bindings;
-- `unity-lifecycle/results.json`, both logs and the valid marker;
-- both `projects/compiler-probe-*` source/input directories;
-- `commands/*/unity-completion.json` with original inner command/exit, compiler binding, birth-identity/PGID observations and retirement actions;
-- the corresponding outer schema-v2 command receipts and any process-group-before-cleanup diagnostics.
+Preserve all original result/ledger/index/archive/seal, cells/commands/host/fixtures/consumers/lifecycle/build/Editor/Player files, supervision receipts and excluded live roots. In addition retain `build-api/inputs.json`, `build-api/results.json`, each `build-api/*/compiler.rsp`, the compiled package/helper DLLs, and all five additional command receipts/streams. The new directory is part of the existing focused seal. Do not edit the preserved C helper: the check reads its byte-bound repository snapshot only.
 
-For Unity calls the outer command PID is the supervisor PID, not the inner Unity PID. Native Player launch PIDs/run IDs remain direct and unchanged. Do not rewrite pre-cleanup observations using post-cleanup state. Preserve excluded live worktrees/SDK/cache roots according to the original focused seal policy.
+For supervised Unity calls the outer PID identifies the supervisor; direct Player PID/run-ID binding remains unchanged. No global compiler shutdown, survivor exception, timeout extension, hash relaxation or rewritten raw flag is authorized.
 
-All 36 cells and the focused seal must pass for EvidenceReadyForPrimaryReview. Any failed or blocked work remains ReturnRequired. R03Accepted=false, H2Passed=false, pureInterpreterExpansionEnabled=false and fullLegacyRegressionAcceptance=false remain mandatory.
+All 36 cells and the focused seal must pass for EvidenceReadyForPrimaryReview. Otherwise retain ReturnRequired and exact Failed/Blocked/NotRun classifications. R03Accepted=false, H2Passed=false, pureInterpreterExpansionEnabled=false and fullLegacyRegressionAcceptance=false remain mandatory.
 
-## Local-owned return and limits
+## Local-owned return and stop
 
-Update `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` factually, preserving B as historical. Create a new immutable `History/M07R/R03/local-validation-<date>-batch-c-<result>/` checkpoint with the executed tuple, counts, command/error details, all new subcheck evidence, seal/index/archive hashes and custody audit. Commit/push Local-owned demo reports/evidence, then stop for Primary reconciliation. Do not edit this handoff or external repositories.
+Write factual results to `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`, preserving C as historical. Add a new immutable `History/M07R/R03/local-validation-<date>-batch-d-<result>/` checkpoint with executed tuples, counts, command/error details, added compile evidence, hashes and custody audit. Commit/push these Local-owned demo reports/evidence, then stop for Primary. Do not edit this Primary handoff or external repositories.
 
-No non-trivial implementation is delegated. Environment/path verification and reporting are permitted; changes to source, fixture flags, consumers, expectations, pins, timeouts, cleanup rules or negative-test classification require Primary. Do not manually run blocked cases, rerun this batch, globally kill compiler servers or repair sealed A/B bytes.
-
-Host .NET compiler and supervisor checks passed on Linux and macOS arm64; actual Unity compiler/Editor/IL2CPP checks remain the purpose of C. B's exact survivor identity is still uncertain. Full R03 legacy/resource regressions, broader method/generic/interface/delegate/stack-trace coverage, startup/capacity/performance/memory, PureInterpreter qualification and independent full stage review remain Primary-owned. This batch cannot approve R03, H2 or release.
+No non-trivial implementation is delegated. Source, compiler flags, count types, expectations, pins, timeouts, cleanup rules or new failing cases return to Primary; do not force a pass locally. The known compiler blocker is fixed and compile-verified, but installer/generation/IL2CPP/native/runtime failures may still surface. Full-stage regressions, measurement, PureInterpreter qualification and independent review remain Primary-owned; this focused D cannot approve R03, H2 or release.
