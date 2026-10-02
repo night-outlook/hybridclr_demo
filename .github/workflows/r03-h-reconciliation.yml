@@ -1,0 +1,73 @@
+name: R03 H read-only Primary reconciliation
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-h-reconciliation.yml'
+      - 'Tools/AssemblyShadow/Reconciliation/**'
+permissions:
+  contents: read
+jobs:
+  reconcile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: auditor
+          sparse-checkout: Tools/AssemblyShadow/Reconciliation
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_demo
+          ref: 3a9d51a9bb42b12bf29dfd6e0d7d12956ae04a68
+          path: publication
+          fetch-depth: 2
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+            Docs/AssemblyShadow/Plan
+            Docs/AssemblyShadow/Handoff
+            Docs/AssemblyShadow/Architecture
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261002-batch-h-evidence-ready
+            Assets/AssemblyShadowDemo
+          persist-credentials: false
+      - name: Read-only hash and original-verifier audit
+        shell: bash
+        run: |
+          python3 -B auditor/Tools/AssemblyShadow/Reconciliation/reconcile_r03_h.py \
+            --publication "$GITHUB_WORKSPACE/publication" --output "$RUNNER_TEMP/r03-h-audit"
+      - name: Bind review output and immutable source documents
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-h-audit';root.mkdir(exist_ok=True)
+          pub=Path('publication'); auditor=Path('auditor')
+          for base in ['Docs/AssemblyShadow/Plan','Docs/AssemblyShadow/Handoff','Docs/AssemblyShadow/Architecture','Tools/AssemblyShadow/R03']:
+              for p in (pub/base).rglob('*'):
+                  if p.is_file() and p.suffix in ('.md','.py','.json','.cs','.cpp','.h'):
+                      dest=root/'source'/p.relative_to(pub);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dest)
+          cp=pub/'Docs/AssemblyShadow/History/M07R/R03/local-validation-20261002-batch-h-evidence-ready'
+          for name in ['README.md','ARCHIVE_TRANSPORT.json','MANIFEST.sha256','batch/LOCAL_BATCH_RESULT.json','batch/BATCH_EXECUTION.json','batch/evidence-index.json','batch/seal-receipt.json','batch/editor-scope.json','batch/editor-verification.json','batch/producer-controls.json','preflight/POSTRUN_AUTHENTICATION.json']:
+              p=cp/name;dest=root/'source-checkpoint'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dest)
+          assetfiles=[str(p.relative_to(pub)) for p in (pub/'Assets/AssemblyShadowDemo').rglob('*') if p.is_file()]
+          (root/'asset-inventory.json').write_text(json.dumps(assetfiles,indent=2)+'\n')
+          shutil.copyfile(auditor/'Tools/AssemblyShadow/Reconciliation/reconcile_r03_h.py',root/'auditor.py')
+          files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'workflowRun':os.environ['GITHUB_RUN_ID'],'classification':'ReusedAuditedEvidence','newPlayerRuns':0,'newEditorRuns':0,'files':files},indent=2)+'\n')
+          PY
+          git -C publication diff --exit-code
+          test -z "$(git -C publication status --porcelain)"
+          test -z "$(git -C auditor status --porcelain)"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-h-reconciliation-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-h-audit
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
