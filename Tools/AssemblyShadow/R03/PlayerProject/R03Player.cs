@@ -30,9 +30,31 @@ namespace AssemblyShadow.R03.Player
         public bool producerControl;
     }
     [Serializable] public sealed class Step { public string phase; public int code; public int state; }
+    [Serializable] public sealed class TerminalProbeState
+    {
+        public int stateCode;
+        public int diagnosticsCode;
+        public string diagnostics;
+        public int recoveryCode;
+        public string recovery;
+    }
+    [Serializable] public sealed class RejectionProbeObservation
+    {
+        public int schemaVersion = 1;
+        public string policy = "R03RejectedProbeNonMutationV1";
+        public TerminalProbeState before;
+        public TerminalProbeState afterSmall;
+        public TerminalProbeState afterFirst;
+        public TerminalProbeState afterSecond;
+        public int smallCapacity;
+        public int smallReturn;
+        public int firstReturn;
+        public int secondReturn;
+        public string repeatedProbe;
+    }
     [Serializable] public sealed class Result
     {
-        public int schemaVersion = 2;
+        public int schemaVersion = 3;
         public string kind = "R03PlayerObservation";
         public string runId;
         public string caseId;
@@ -56,6 +78,7 @@ namespace AssemblyShadow.R03.Player
         public string afterWarm;
         public string nativeMethod;
         public string runtimeProbe;
+        public string rejectionProbe;
         public string diagnostics;
         public int diagnosticsCode;
         public int finalState;
@@ -165,9 +188,15 @@ namespace AssemblyShadow.R03.Player
             {
                 try
                 {
-                    int size = R03_ReadRuntimeProbe(RuntimeProbeBuffer, RuntimeProbeBuffer.Length);
-                    if (size < 1 || size >= RuntimeProbeBuffer.Length) throw new InvalidOperationException("Runtime probe receipt failed: " + size);
-                    result.runtimeProbe = Encoding.UTF8.GetString(RuntimeProbeBuffer, 0, size);
+                    if (!result.published && Steps.Count > 0 && Steps[Steps.Count - 1].phase == "Validate" &&
+                        Steps[Steps.Count - 1].code == 16 && Steps[Steps.Count - 1].state == 8)
+                        ReadRejectedProbe();
+                    else
+                    {
+                        int size = R03_ReadRuntimeProbe(RuntimeProbeBuffer, RuntimeProbeBuffer.Length);
+                        if (size < 1 || size >= RuntimeProbeBuffer.Length) throw new InvalidOperationException("Runtime probe receipt failed: " + size);
+                        result.runtimeProbe = Encoding.UTF8.GetString(RuntimeProbeBuffer, 0, size);
+                    }
                 }
                 catch (Exception error) { result.exception = (result.exception ?? "") + "\nRuntimeProbeFailure: " + error; }
                 result.managedBytesAfter = GC.GetTotalMemory(false);
@@ -192,6 +221,42 @@ namespace AssemblyShadow.R03.Player
                 }
                 catch (Exception error) { UnityEngine.Debug.LogException(error); Application.Quit(2); }
             }
+        }
+
+        private static TerminalProbeState CaptureTerminal()
+        {
+            var value = new TerminalProbeState();
+            AssemblyShadowState state;
+            AssemblyShadowRuntime.GetState(out state); value.stateCode = (int)state;
+            value.diagnosticsCode = (int)AssemblyShadowRuntime.GetDiagnosticsJson(out value.diagnostics);
+            value.recoveryCode = (int)AssemblyShadowRuntime.GetRecoveryInfoJson(out value.recovery);
+            return value;
+        }
+        private static void ReadRejectedProbe()
+        {
+            // A bounded observation check, not a validation retry. Preserve
+            // every before/after state even when a read fails; never restore it.
+            var observation = new RejectionProbeObservation { smallCapacity = 16 };
+            try
+            {
+                byte[] small = new byte[observation.smallCapacity];
+                observation.before = CaptureTerminal();
+                observation.smallReturn = R03_ReadRuntimeProbe(small, small.Length);
+                observation.afterSmall = CaptureTerminal();
+                observation.firstReturn = R03_ReadRuntimeProbe(RuntimeProbeBuffer, RuntimeProbeBuffer.Length);
+                observation.afterFirst = CaptureTerminal();
+                if (observation.firstReturn > 0 && observation.firstReturn < RuntimeProbeBuffer.Length)
+                    result.runtimeProbe = Encoding.UTF8.GetString(RuntimeProbeBuffer, 0, observation.firstReturn);
+                observation.secondReturn = R03_ReadRuntimeProbe(RuntimeProbeBuffer, RuntimeProbeBuffer.Length);
+                observation.afterSecond = CaptureTerminal();
+                if (observation.secondReturn > 0 && observation.secondReturn < RuntimeProbeBuffer.Length)
+                    observation.repeatedProbe = Encoding.UTF8.GetString(RuntimeProbeBuffer, 0, observation.secondReturn);
+                if (observation.smallReturn != -2 || observation.firstReturn < 1 || observation.firstReturn >= RuntimeProbeBuffer.Length ||
+                    observation.secondReturn < 1 || observation.secondReturn >= RuntimeProbeBuffer.Length)
+                    throw new InvalidOperationException("Rejected probe read failed: " + observation.smallReturn + "/" +
+                        observation.firstReturn + "/" + observation.secondReturn);
+            }
+            finally { result.rejectionProbe = JsonUtility.ToJson(observation); }
         }
 
         private static bool Call(string phase, Func<AssemblyShadowErrorCode> action)

@@ -45,7 +45,7 @@ def integer(value, minimum=0):
 
 RAW_FIELDS = '''schemaVersion kind runId caseId requestSha256 pid startedUtc endedUtc unityVersion platform il2cpp
 published phase steps exception exceptionType exceptionStack invocationResult delegateResult warmAllocationCount
-beforeWarm afterWarm nativeMethod runtimeProbe diagnostics diagnosticsCode finalState recovery recoveryCode managedBytesBefore managedBytesAfter acceptance'''
+beforeWarm afterWarm nativeMethod runtimeProbe rejectionProbe diagnostics diagnosticsCode finalState recovery recoveryCode managedBytesBefore managedBytesAfter acceptance'''
 METHOD_FIELDS = '''schemaVersion available mappingCode mappingDetail baselineToken baselineSlot activeToken activeSlot
 differentPhysicalMethods activeOwner cacheIdentityStable baselineCctorBefore baselineCctorAfter activeGuard baselineGuard stateCode activeGeneration'''
 RECOVERY_FIELDS = '''schemaVersion enabled capabilityVersion stateCode state published abortAllowed dispositionCode disposition
@@ -63,7 +63,7 @@ classesCoverage memoryAccountingAvailable memoryAccountingScope'''
 
 def verify_raw(request, raw, expected, request_sha, launch_pid):
     fields(raw, RAW_FIELDS, 'Player observation')
-    require(raw['schemaVersion'] == 2 and raw['kind'] == 'R03PlayerObservation', 'Observation schema')
+    require(type(raw['schemaVersion']) is int and raw['schemaVersion'] == 3 and raw['kind'] == 'R03PlayerObservation', 'Observation schema')
     require(raw['acceptance'] is False and raw['il2cpp'] is True, 'Actual IL2CPP observation, not acceptance')
     require(raw['runId'] == request['runId'] and raw['caseId'] == request['caseId'], 'Request/run identity')
     require(raw['requestSha256'] == request_sha and raw['pid'] == launch_pid, 'Launch and exact request binding')
@@ -98,6 +98,9 @@ def verify_raw(request, raw, expected, request_sha, launch_pid):
         if outcome == 'admission-reject':
             require(raw['finalState'] == 8 and recovery['disposition'] == 'RestartRequired' and recovery['abortAllowed'] is False, 'Metadata failure remains terminal before publication')
             require('NativeLayoutAdmissionV1' in diagnostics['detail'], 'V1 rejection diagnostic, not unrelated code 16')
+            from rejection_contract import verify_rejection_observation
+            observation = verify_rejection_observation(raw, request)
+            return {'outcome': outcome, 'code': code, 'state': raw['finalState'], 'rejectionObservation': observation}
         else:
             require(raw['finalState'] == 3, 'Actual AssemblyRef order rejected before metadata initialization')
         return {'outcome': outcome, 'code': code, 'state': raw['finalState']}

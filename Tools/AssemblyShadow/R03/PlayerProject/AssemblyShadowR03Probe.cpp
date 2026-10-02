@@ -186,6 +186,10 @@ std::string ProbePointer(const void* p)
 void ProbeType(std::ostream& out, const void* pointer)
 {
     const auto* klass = static_cast<const Il2CppClass*>(pointer);
+    // This path is for published warm targets/events only. Rejected staged
+    // layout identities are owned snapshots and never enter this formatter.
+    if (klass && !il2cpp::vm::AssemblyShadow::ActiveGeneration())
+        throw std::logic_error("Unpublished live probe identity is forbidden");
     using il2cpp::vm::AssemblyShadowDiagnostics;
     out << "{\"physical\":" << AssemblyShadowDiagnostics::Quote(ProbePointer(pointer))
         << ",\"assembly\":" << AssemblyShadowDiagnostics::Quote(klass && klass->image && klass->image->assembly ? klass->image->assembly->aname.name : "")
@@ -217,7 +221,7 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
     const auto fence = assembly_shadow_r03::ProducerFence::Instance().Read();
     const auto r = assembly_shadow_r03::RuntimeProbe::Read();
     std::ostringstream out; out << std::boolalpha;
-    out << "{\"schemaVersion\":2,\"available\":true,\"policy\":\"R03ExactAllocationWindowV1\",\"used\":" << r.used
+    out << "{\"schemaVersion\":3,\"available\":true,\"policy\":\"R03ExactAllocationWindowV1\",\"used\":" << r.used
         << ",\"sealed\":" << r.sealed << ",\"invalid\":" << r.invalid << ",\"overflow\":" << r.overflow
         << ",\"generation\":" << r.generation << ",\"ownerThread\":" << r.owner << ",\"target\":";
     ProbeType(out, r.target);
@@ -262,7 +266,13 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
     for (size_t i = 0; i < r.layouts; ++i)
     {
         if (i) out << ","; const auto& l = r.layout[i];
-        out << "{\"baseline\":"; ProbeType(out, l.baseline); out << ",\"target\":"; ProbeType(out, l.target);
+        // No target pointer dereference or metadata decoding after the private
+        // staged owner has ended. These exact bytes were captured by RecordLayout.
+        out << "{\"baseline\":"; l.baselineIdentity.WriteJson(out);
+        out << ",\"target\":"; l.targetIdentity.WriteJson(out);
+        out << ",\"identityPolicy\":" << AssemblyShadowDiagnostics::Quote(assembly_shadow_r03::ProbeTypeSnapshot::Policy())
+            << ",\"baselineIdentityStatus\":" << AssemblyShadowDiagnostics::Quote(l.baselineIdentity.StatusName())
+            << ",\"targetIdentityStatus\":" << AssemblyShadowDiagnostics::Quote(l.targetIdentity.StatusName());
 #define SCALAR(name) out << ",\"" #name "\":" << l.name;
         SCALAR(fieldsChanged) SCALAR(baselineReady) SCALAR(targetReady) SCALAR(targetDefinitionReady)
         SCALAR(physicalProof) SCALAR(sourceSizeInited) SCALAR(targetSizeInited) SCALAR(sourcePending) SCALAR(targetPending)

@@ -11,7 +11,7 @@ def typename(pointer='0x1234', assembly='Methods', name='Node', namespace='R03')
 
 
 def fixture(cold=False):
-    p = dict(schemaVersion=2, available=True, policy='R03ExactAllocationWindowV1', used=True,
+    p = dict(schemaVersion=3, available=True, policy='R03ExactAllocationWindowV1', used=True,
              sealed=True, invalid=False, overflow=False, generation=1, ownerThread=1,
              target=typename(), eventCapacity=128, samples=[], events=[], layouts=[], runtimeAcceptance=False)
     p['producerFence'] = dict(policy='R03ArrayPoolFinalizerFenceV1', requested=True, acquired=True, released=True, expired=False, invalid=False, drained=True, admitted=0, completed=0, deferred=0, deferredCompleted=0, ownerOsThread=100, elapsedMicros=10, leaseMs=5000)
@@ -41,6 +41,7 @@ def layout():
     for k in ('sourceSizeInited', 'targetSizeInited', 'sourcePending', 'targetPending', 'baselineInitialized',
               'baselineVtable', 'targetInitialized', 'targetVtable', 'truncated', 'baselineInitializedAtRead', 'baselineVtableAtRead'): r[k] = False
     r.update(baseline=typename('0x22', 'R03Contract'), target=typename('0x33', 'R03Contract'),
+             identityPolicy='R03OwnedLayoutIdentityV1', baselineIdentityStatus='Captured', targetIdentityStatus='Captured',
              sourceSize=24, targetSize=32, sourceNativeSize=-1, targetNativeSize=-1,
              sourceFieldCount=1, targetFieldCount=2, sourceOffsets=[16], targetOffsets=[16, 24],
              sourceAttrs=[1], targetAttrs=[1, 1], targetStorage=[4, 8])

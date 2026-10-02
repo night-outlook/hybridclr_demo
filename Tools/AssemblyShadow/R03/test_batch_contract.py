@@ -16,7 +16,7 @@ def sample(outcome='success', method=False, guard=False):
                'dlls': [{'name': 'Methods'}], 'invokeAssembly': 'Methods', 'observeMethod': method, 'oldExecutionGuard': guard, 'producerControl': False}
     expected = {'outcome': outcome, 'value': 42}
     raw = {key: '' for key in RAW_FIELDS.split()}
-    raw.update(schemaVersion=2, kind='R03PlayerObservation', runId=request['runId'], caseId=request['caseId'],
+    raw.update(schemaVersion=3, kind='R03PlayerObservation', runId=request['runId'], caseId=request['caseId'],
                requestSha256='a' * 64, pid=1234, unityVersion='2022.3.62f2', platform='OSXPlayer',
                il2cpp=True, published=True, phase='Completed', acceptance=False, finalState=6,
                diagnosticsCode=0, recoveryCode=0, invocationResult=42, delegateResult=42, warmAllocationCount=10000)
@@ -57,6 +57,10 @@ def sample(outcome='success', method=False, guard=False):
         raw['nativeMethod'] = json.dumps(value)
     raw['diagnostics'] = json.dumps(diagnostics)
     raw['recovery'] = json.dumps(recovery)
+    if outcome == 'admission-reject':
+        from test_rejection_contract import attach_rejection_observation
+        attach_rejection_observation(raw, request)
+        raw['rejectionProbe'] = json.dumps(raw['rejectionProbe'])
     return request, raw, expected
 
 

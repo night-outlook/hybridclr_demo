@@ -21,7 +21,7 @@ LAYOUT = '''baseline target fieldsChanged baselineReady targetReady targetDefini
 sourceSizeInited targetSizeInited sourcePending targetPending baselineInitialized baselineVtable baselineCctor
 targetInitialized targetVtable targetCctor sourceSize targetSize sourceNativeSize targetNativeSize sourceFieldCount
 targetFieldCount truncated error sourceOffsets sourceAttrs targetOffsets targetAttrs targetStorage
-baselineInitializedAtRead baselineVtableAtRead baselineCctorAtRead'''
+baselineInitializedAtRead baselineVtableAtRead baselineCctorAtRead identityPolicy baselineIdentityStatus targetIdentityStatus'''
 
 
 def physical_type(value, *, target=False, assembly=None):
@@ -38,11 +38,23 @@ def physical_type(value, *, target=False, assembly=None):
 def probe_header(text):
     p = loads(text)
     fields(p, PROBE_FIELDS, 'Runtime probe')
-    require(type(p['schemaVersion']) is int and p['schemaVersion'] == 2 and p['available'] is True and p['policy'] == 'R03ExactAllocationWindowV1' and
+    require(type(p['schemaVersion']) is int and p['schemaVersion'] == 3 and p['available'] is True and p['policy'] == 'R03ExactAllocationWindowV1' and
             p['runtimeAcceptance'] is False and p['invalid'] is False and p['overflow'] is False,
             'Complete bounded native probe required')
     require(type(p['events']) is list and type(p['samples']) is list and type(p['layouts']) is list, 'Native probe collections')
+    verify_layout_identities(p)
     return p
+
+
+def verify_layout_identities(p):
+    require(len(p['layouts']) <= 32, 'Bounded layout row count')
+    for row in p['layouts']:
+        fields(row, LAYOUT, 'Snapshot layout row')
+        require(row['identityPolicy'] == 'R03OwnedLayoutIdentityV1' and
+                row['baselineIdentityStatus'] == 'Captured' and row['targetIdentityStatus'] == 'Captured',
+                'Complete owned staged identity snapshots required')
+        physical_type(row['baseline']); physical_type(row['target'])
+        require(row['baseline']['physical'] != row['target']['physical'], 'Distinct physical snapshot identities')
 
 
 def analyze_window(text, before, after, assembly):
