@@ -1,0 +1,83 @@
+name: R03 pinned BCL producer analysis
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-producer-analysis.yml']
+permissions:
+  contents: read
+jobs:
+  metadata:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: |
+            Tools/AssemblyShadow/R03
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 120bb01be680cec0375002a0823552d66d34b84c
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Extract official pinned BCL for read-only metadata analysis
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/producer-evidence"
+          curl --fail --location --proto '=https' --max-time 900 https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg -o "$RUNNER_TEMP/unity.pkg"
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+      - name: Enumerate BCL producer IL and background/finalizer methods
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $dnlib = @(Get-ChildItem "$env:GITHUB_WORKSPACE/hybridclr_unity" -Filter dnlib.dll -Recurse)
+          if ($dnlib.Count -ne 1) { throw 'Exact dnlib required' }
+          [void][System.Reflection.Assembly]::LoadFrom($dnlib[0].FullName)
+          $seen = @{}
+          $modules = @()
+          foreach ($file in (Get-ChildItem "$env:RUNNER_TEMP/unity-expanded" -File -Recurse | Where-Object { $_.Name -in @('mscorlib.dll','System.dll') -and $_.FullName -match '/unityaot[^/]*/' })) {
+            $hash = (Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            if ($seen.ContainsKey($hash)) { continue }; $seen[$hash] = $true
+            $module = [dnlib.DotNet.ModuleDefMD]::Load($file.FullName)
+            try {
+              $producers = @(); $background = @(); $enumerators = @()
+              foreach ($type in $module.GetTypes()) {
+                if ($type.Name.String -eq 'Enumerator') { $enumerators += [ordered]@{type=$type.FullName; valueType=$type.IsValueType; fields=@($type.Fields | ForEach-Object {$_.FullName})} }
+                foreach ($method in $type.Methods) {
+                  if (-not $method.HasBody) { continue }
+                  $hits = @($method.Body.Instructions | Where-Object { $_.OpCode.Name -in @('newobj','box','call','callvirt') -and "$($_.Operand)" -match 'Enumerator' -and "$($_.Operand)" -notmatch '::(MoveNext|get_Current|Dispose|Reset)\(' } | ForEach-Object { $_.ToString() })
+                  if ($hits.Count) { $producers += [ordered]@{method=$method.FullName;token=$method.MDToken.Raw;instructions=$hits} }
+                  if ($method.Name.String -eq 'Finalize' -or $method.FullName -match '(Scheduler.*(Run|Scheduler)|ThreadPool.*(Dispatch|WorkItem)|Process::(GetCurrentProcess|GetProcessById|Dispose)|GC::)') {
+                    $background += [ordered]@{method=$method.FullName;token=$method.MDToken.Raw;instructions=@($method.Body.Instructions | ForEach-Object {$_.ToString()})}
+                  }
+                }
+              }
+              $modules += [ordered]@{path=$file.FullName;sha256=$hash;assembly=$module.Assembly.FullName;enumerators=$enumerators;producers=$producers;background=$background}
+            } finally { $module.Dispose() }
+          }
+          if ($modules.Count -eq 0) { throw 'Pinned unityaot BCL was not found' }
+          $data = [ordered]@{kind='R03PinnedBclProducerMetadata';sourceCommit=$env:GITHUB_SHA;modules=$modules;unityEditorRun=$false;playerRun=$false;runtimeProducerIdentified=$false}
+          $data | ConvertTo-Json -Depth 12 | Set-Content -Encoding utf8 "$env:RUNNER_TEMP/producer-evidence/metadata.json"
+          $modules | ForEach-Object { Write-Host $_.assembly $_.sha256 'producers=' $_.producers.Count 'background=' $_.background.Count }
+      - name: Bind output bytes
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          r=Path(os.environ['RUNNER_TEMP'])/'producer-evidence';r.mkdir(exist_ok=True)
+          files=[{'path':p.name,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(r.iterdir()) if p.is_file()]
+          (r/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'files':files,'playerRun':False},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-producer-metadata-${{ github.sha }}
+          path: ${{ runner.temp }}/producer-evidence
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
