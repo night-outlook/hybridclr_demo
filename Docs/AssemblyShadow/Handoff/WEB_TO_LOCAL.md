@@ -1,66 +1,70 @@
-# Primary Implementation → Local Validation: R03 batch F, runtime attribution and physical readiness
+# Primary Implementation → Local Validation: R03 batch G, concurrent producer control
 
-## Objective and immutable prior result
+## Objective and preserved result
 
-Run exactly one new **36-cell batch F** against the published runtime repair tuple. Preserve all evidence and return to Primary. Do not retry A–E, reuse their apps, modify their evidence, enable PureInterpreter expansion or enter H2.
+Run exactly one fresh **37-cell batch G** against the producer-attribution/isolation candidate. Preserve all evidence and return to Primary. Do not retry A–F, reuse their apps, alter historical evidence, enable PureInterpreter expansion or enter H2.
 
-Authoritative Local return: `b97375d4b12357d0f987cf7738eaa422d4615081`. E remains **ReturnRequired: 32 Passed / 4 Failed / 0 Blocked; seal Passed**. Its four native builds and 754 selected Editor cases passed; all nineteen Players ran with fifteen Passed and four Failed. C03/C04/C05 Release warm intervals gained an unattributed proof; C07 failed prepublication physical readiness. No source review or new measurement contract retroactively promotes those cells. The excluded M01 resource test remains NoCoverage.
+Authoritative Local return: `7f27633d9fc761faa93733b07e1787831babe73e`. F remains **ReturnRequired: 32 Passed / 4 Failed / 0 Blocked; seal Passed**. Four fresh builds and 754 selected Editor tests passed; all nineteen Players ran, fifteen Passed and four Failed. C03/C04/C05/C07 captured non-owner-thread cold Enumerator admissions inside the exact loop. C07's physical-layout subcheck passed, but its full cell remains Failed. The excluded frozen M01 resource test remains NoCoverage.
 
 ## Read first
 
-All relative documentation paths are under `Docs/AssemblyShadow/`:
+Paths below are relative to `Docs/AssemblyShadow/`:
 1. `README.md` and `Plan/CURRENT_STATUS.md`.
-2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for unchanged E evidence, not old commands.
-3. `History/M07R/R03/G_RUNTIME_PROOF_REPAIR.md`, `G_HOST_EVIDENCE.json`, `G_VALIDATION_MATRIX.md`.
-4. `Plan/stages/R03-evolution-semantics.md` and `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` for full-stage obligations.
-5. This live handoff for the only authorized next execution.
+2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for unchanged F facts, not old execution commands.
+3. `History/M07R/R03/H_PRODUCER_ISOLATION.md`, `H_HOST_EVIDENCE.json`, `H_BCL_PRODUCER.json`, `H_VALIDATION_MATRIX.md`.
+4. `Plan/stages/R03-evolution-semantics.md` and `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` for unchanged full-stage obligations.
+5. This live handoff for the only new authorized batch command.
 
 ## Exact source authority
 
-All four repositories use `codex/assembly-shadow-r01b-h1`.
+All repositories use `codex/assembly-shadow-r01b-h1`.
 
 | Repository | Exact owning checkout | Revision |
 | --- | --- | --- |
 | night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final docs-only transport SHA in Primary's prompt, resolved and checked below |
 | night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
-| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `aae0ebb55b8761a7a905b410349d006d76fa748b` |
+| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `9ab7a0000f02251e280901c6e23f6a7772344ca6` |
 
-New tested executable/CI anchor: **`67e8c1df18f84dda4ec70edd45b1ed717bcea4e8`**. Only `Docs/AssemblyShadow/` documentation/evidence may differ after it. The native pins changed; do not reuse E's earlier native source tuple. The managed package, reference native cores/package, four build roles, nineteen case identities, deadlines and top-level dependencies remain unchanged.
+New tested source anchor: **`53e6e559165344cb98405a7261a988871157a864`**. Only `Docs/AssemblyShadow/` documentation/evidence may differ after it. Do not use F's older IL2CPP pin. HybridCLR/package, reference cores/package, four build roles, original nineteen case identities, original counter thresholds and command lifetime/deadlines remain unchanged.
 
-A commit cannot embed its own SHA. Resolve the final demo transport as the latest commit touching this WEB_TO_LOCAL.md, then require it to equal local HEAD, current remote HEAD and Primary's exact final prompt. The runner independently repeats all four authority checks before and after execution. Do not execute the anchor itself, a smoke commit, an old transport or an arbitrary later branch tip.
+Resolve the final demo transport from the latest commit touching this WEB_TO_LOCAL.md. It must equal local HEAD, current remote HEAD and the exact SHA in Primary's final prompt. A commit cannot embed its own SHA. Never execute an arbitrary later tip, old anchor, smoke commit or preserved app. The runner rechecks all four authorities at entry and completion.
 
-## Implemented correction and explicit contract
+## Candidate and pending proof
 
-LE-001: bounded native cold-event attribution and six exact observer/loop boundaries replace the assumption that the entire managed-observer interval is a pure business-allocation interval. Raw broad counters remain visible and must match their native snapshots. Every cold delta must reconcile to full physical key, logical type, generation/domain/context, site and process-local native thread identity. The exact 10,000-allocation loop must still have zero new admission proof/layout/field/interface work and retain at least 10,000 hits and baseline-state checks. Broad cold work is allowed only outside the exact loop with complete non-target attribution, not an unexplained +1 allowance. Historical E's extra class/site/thread remains unknown.
+Pinned BCL metadata identifies a concrete ArrayPool Gen2-finalizer path that allocates a ConditionalWeakTable Enumerator. This is source analysis, **not retrospective proof of F's producer**. The candidate adds actual finalizer/delegate/native-thread context and full nested/generic type keys to cold events, plus a bounded test-only producer lease. Recognition inspects an already initialized BCL object's actual callback metadata; unknown actors are not selected.
 
-LE-002: staged initialization now exposes an authenticated finalized-definition layout capability only after complete metadata initialization. It avoids forcing Class::Init, baseline object allocation or business initializers, while retaining the original baseline readiness and physical CheckLayout guards. C07 remains a required positive case. It must prove private Int64 tail geometry and successful prepublication readiness before Commit, without baseline business initialization. Unready or incompatible layouts retain fail-closed terminal behavior; Local must not change this success expectation to a rejection.
+The original six main warm witnesses acquire a one-use, owner-bound **5000 ms** lease around their unchanged observer/10,000-allocation interval. Existing matching callbacks finish; new matching callbacks defer until release. Deferred work must drain. GC remains enabled; no callback is discarded, no forced collection or extra warm-up occurs, and counters are not reset, ignored or subtracted. Expiry reopens the gate for runtime progress but invalidates the witness. The exact loop still requires zero all-thread cold proof/layout/workspace work and at least 10,000 hits/baseline checks. The serial finalizer thread may indirectly delay later queued finalizers; this is an isolated diagnostic profile, not production performance/GC policy.
 
-The isolated native test profile enables the bounded runtime probe; its ordinary-build default is off. Raw Player observations now use schema 2 with runtimeProbe. Old-core reference controls do not claim unavailable probe coverage. This is diagnostic validation, not a production performance acceptance run.
+One new `producer-controls` cell adds four fixed fresh-process, **unisolated** controls: PC-C03-moved-slot, PC-C04-old-AOT-guard, PC-C05-direction-reversal and PC-C07-private-primitive-append. They retain the corresponding publication/business/method/physical checks. At least one must capture an actual in-loop non-owner ArrayPool Gen2 callback admission with the full ConditionalWeakTable Enumerator identity; all four must satisfy their diagnostic contracts. Unknown producers or no attribution across all four fail the aggregate. A valid contaminated control records `unisolatedWarmCertificate=Failed`, not a passed warm certificate. `NoContaminationObserved` alone is not attribution.
 
-Primary has completed source review, 144 Python contracts, retained host/fixture/lifecycle/provenance tests, native header regressions and 25 pinned-SDK syntax compilations. The complete updated helper/package compilation also passed. Those results are not actual new integrated Player proof; that is the purpose of F.
+The resulting batch is **original 36 cells + one control cell = 37 cells**, and **original nineteen Players + four controls = 23 fresh Player processes**. All original identities remain; controls are not retries or replacements. Main/control mode is source-bound in request.json. Native runtimeProbe internal schema is now 2 with producerFence, full typeKey and event producer context; overall raw schema remains 2. Reference-core unavailable probe coverage is not fabricated.
 
-## Environment and new unused root
+Primary completed source review, 163 Python contracts, managed and provenance/lifetime regressions, 57 native header processes per CI host and 30 pinned-SDK native syntax checks. The complete helper/package API check passed. These are not new integrated runtime proof. G must establish actual actor identity, clean isolated witnesses and retained C07 success.
 
-- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64.
+## Pinned environment and unused root
+
+- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; StandaloneOSX/arm64.
 - Python: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`.
-- Direct managed SDK: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, version **8.0.318**, used as SDK only. Do not launch Unity 6000.
-- New root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime`.
+- Managed SDK: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, version **8.0.318**, SDK only. Do not launch Unity 6000 Editor.
+- Pinned BCL: `Contents/MonoBleedingEdge/lib/mono/unityaot-macos/mscorlib.dll`, SHA-256 `d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83`.
+- New root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer`.
 
-Verify the recorded tools and versions. Missing/mismatched tooling is Blocked, not permission to substitute versions. The root must not exist. Never delete/reuse an output root to bypass the guard. Preserve all A–E/R02/H1 live evidence, original archives and exact-byte publication parts.
+Verify all recorded paths/versions. Missing or mismatched tooling is Blocked, not permission to substitute versions. The new root must not exist; never delete or reuse a root to bypass the guard. Preserve all A–F/R02/H1 evidence, original archives and exact-byte publication parts.
 
 ## Execute once
 
-First verify canonical origins and clean owning checkouts. Fast-forward only: no reset, stash, forced checkout, unrelated merge or source edits.
+First inspect canonical remotes, clean owning checkouts and the current branch. Fast-forward only; no reset, stash, forced checkout, unrelated merge or source edits.
 
 ```bash
 set -euo pipefail
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 BRANCH=codex/assembly-shadow-r01b-h1
 DEMO="$WORKSPACE/hybridclr_demo"
-BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime
+BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+BCL=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityaot-macos/mscorlib.dll
 export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
 export PATH="$DOTNET_ROOT:$PATH"
 export PYTHONDONTWRITEBYTECODE=1
@@ -74,35 +78,36 @@ done
 DEMO_COMMIT="$(git -C "$DEMO" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
 test "$(git -C "$DEMO" rev-parse HEAD)" = "$DEMO_COMMIT"
 test "$(git -C "$DEMO" ls-remote origin "refs/heads/$BRANCH" | awk '{print $1}')" = "$DEMO_COMMIT"
-git -C "$DEMO" merge-base --is-ancestor 67e8c1df18f84dda4ec70edd45b1ed717bcea4e8 "$DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 67e8c1df18f84dda4ec70edd45b1ed717bcea4e8 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
+git -C "$DEMO" merge-base --is-ancestor 53e6e559165344cb98405a7261a988871157a864 "$DEMO_COMMIT"
+git -C "$DEMO" diff --exit-code 53e6e559165344cb98405a7261a988871157a864 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
 test "$(git -C "$WORKSPACE/hybridclr" rev-parse HEAD)" = 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
 test "$(git -C "$WORKSPACE/hybridclr_unity" rev-parse HEAD)" = 120bb01be680cec0375002a0823552d66d34b84c
-test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = aae0ebb55b8761a7a905b410349d006d76fa748b
+test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = 9ab7a0000f02251e280901c6e23f6a7772344ca6
 test "$(dotnet --version)" = 8.0.318
 test -f "$UNITY"
+printf '%s  %s\n' d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83 "$BCL" | shasum -a 256 -c
 test ! -e "$BATCH"
 "$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03/run_local.py" \
   --workspace "$WORKSPACE" --output "$BATCH" \
   --unity "$UNITY" --demo-commit "$DEMO_COMMIT"
 ```
 
-Before the runner invocation, compare DEMO_COMMIT with Primary's exact prompt. Capture actual argv/environment/PID/timestamps/exit without changing runner output. Invoke once. A failed preflight is Blocked, not a fabricated 36-cell execution. Independent cells are already scheduled; do not manually launch blocked cases or retry any batch.
+Before the runner invocation also compare DEMO_COMMIT with Primary's final exact prompt. Capture actual argv, environment, PID, timestamps and exit without modifying runner outputs. A failed preflight is Blocked, not an invented 37-cell execution. Invoke once; independent cells are already scheduled. Do not manually launch blocked cases, add GC triggers or repeat controls until an event appears.
 
-## Required new evidence
+## Required evidence and interpretation
 
-Retain all **36 cells / four fresh native build roles / 754 selected Editor cases with zero skips / nineteen fresh-process Players**. The verifier cell runs 144 Python tests. Preserve the existing actual fixture consumers, compiler/lifecycle controls, complete-helper check, schema-2 native build provenance and excluded M01 NoCoverage.
+Retain all **37 cells / four fresh native builds / 754 selected Editor cases with zero skips / 23 fresh Players**. The verifier cell runs 163 tests. The original nineteen cases and six strict warm witnesses remain mandatory; C07 remains a required positive layout/publication/allocation case. Keep the excluded M01 resource contract explicitly NoCoverage.
 
-Six candidate warm witnesses remain mandatory: C03/C04/C05/C07 and D02/D03. For each, retain native sample labels `[0,10,1,2,11,3]`, the original broad before/after snapshots, all cold events and exact-loop deltas. Report observed class/physical-key/site/thread/span attribution when present; otherwise report the unresolved mismatch. No new attribution is assigned retrospectively to E.
+Preserve result/ledger/index/archive/seal, every command stream/completion receipt, fixture/compiler output, source/config manifest, nativeBinding, build receipt/app, editor-scope.json, editor-verification.json, actual XML and all original Player request/raw/verdict files. Additional required data: `producer-controls.json`, `players/PC-*/` evidence, all `runtimeProbe.producerFence` fields, complete event producer context and nested/generic typeKey. Pair controls and main cases using source/DLL/build hashes and case identities, not pointer equality across processes.
 
-C07 additionally requires exactly one successful prepublication R03Contract/R03.Node layout row: both sides ready, target definition readiness true, no pending layout, physicalProof true/error0, unchanged baseline initialization/vtable/cctor state, one retained field plus private eight-byte tail storage, and successful publication/invocation/allocation. Preserve the full row even when it fails; do not warm or initialize baseline business state to bypass the guard.
+The six main witnesses must pass unchanged zero exact-loop cold/layout counters with successful finite isolation and all deferred callbacks completed. Report the actual finalizer/delegate/type/thread attribution from natural controls. If the actor differs, context is missing, a lease expires, no producer is observed across all four controls or any main counter increases, return the original failure and evidence to Primary. Do not reinterpret contaminated control warm certificates as Passed, assign their new identities retroactively to F or suppress unknown threads.
 
-Keep result/ledger/index/archive/seal, all command streams and Unity completion receipts, host/fixture/compiler outputs, configs/source manifests, nativeBinding, build receipts/apps, editor-scope.json, editor-verification.json and actual XML. Every launched Player retains request.json, raw.json including runtimeProbe, Player.log and the launch receipt. Semantic verification now writes a source-bound Passed or Failed verification.json; a Failed receipt is not an acceptance result. Missing outputs after an earlier launch failure remain missing, not fabricated.
+All 37 cells and the focused seal must pass for `EvidenceReadyForPrimaryReview`; otherwise `ReturnRequired`. Even on success keep `R03Accepted=false`, `H2Passed=false`, `pureInterpreterExpansionEnabled=false`, `fullLegacyRegressionAcceptance=false`.
 
-## Local-owned return and stop
+## Local-owned publication and stop
 
-All 36 cells and the focused seal must pass for EvidenceReadyForPrimaryReview. Otherwise return ReturnRequired with the original Failed/Blocked/NotRun/NoCoverage distinctions. A successful focused batch still has R03Accepted=false, H2Passed=false, pureInterpreterExpansionEnabled=false and fullLegacyRegressionAcceptance=false.
+Update `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` factually, preserving F as historical, including its Passed physical subcheck and Failed full C07 cell. Create an immutable `History/M07R/R03/local-validation-<date>-batch-g-<result>/` checkpoint. Commit/push only Local-owned demo evidence/reports, verify final repository/branch/HEAD, and stop for Primary reconciliation.
 
-Update `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` factually; retain E as historical. Add an immutable `History/M07R/R03/local-validation-<date>-batch-f-<result>/` checkpoint. Commit/push Local-owned demo evidence/docs and stop for Primary reconciliation. For large archives, preserve the live original and use the existing ordered exact-byte parts plus independent reconstruction audit, without re-compression or seal changes.
+Oversized archive publication uses the existing exact ordered byte-part convention: preserve the live original, independently authenticate reconstruction and keep transport metadata separate from the original runner seal. Never recompress, omit members, rewrite a raw result or delete a retained root.
 
-No non-trivial implementation is delegated. Source, native readiness policy, probe/schema, scope/filter, expectations, warm-up/iteration count, pins, deadlines and lifecycle changes require Primary. Do not reuse old apps, globally kill named compiler processes, relax attribution, flip C07 to an expected rejection or rewrite failed raw values. Full legacy/resource/M01 coverage, broader generic/interface/delegate/stack-trace work, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain Primary-owned before H2.
+No non-trivial work is delegated. Source, actor recognition, native lease policy, scope/filter/schema, counter expectations, warm-up/iteration count, pins, deadlines and lifecycle changes require Primary. No global compiler kill, finalizer suppression, GC disabling, forced collection or baseline business initialization is allowed. M01/full legacy-resource coverage, broader generic/interface/delegate/stack-trace work, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain Primary-owned before H2.
