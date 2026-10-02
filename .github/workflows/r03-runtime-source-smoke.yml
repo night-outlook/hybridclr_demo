@@ -1,0 +1,68 @@
+name: R03 runtime source transport smoke
+on:
+  push:
+    branches: [codex/connector-smoke-r03-runtime-f]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 041c0cbb42d3e64e54fe605673d99799b5d63893
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 120bb01be680cec0375002a0823552d66d34b84c
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 1abb6bcaa85226f08c67f9da65edb3c58e8cb399
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Retain pinned source bytes only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,shutil,subprocess
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-source'
+          root.mkdir()
+          pins={'hybridclr_demo':'b97375d4b12357d0f987cf7738eaa422d4615081','hybridclr':'041c0cbb42d3e64e54fe605673d99799b5d63893','hybridclr_unity':'120bb01be680cec0375002a0823552d66d34b84c','il2cpp_plus':'1abb6bcaa85226f08c67f9da65edb3c58e8cb399'}
+          files=[]
+          for repo,pin in pins.items():
+            if repo=='hybridclr_demo':
+              subprocess.run(['git','-C',repo,'fetch','--depth=1','origin',pin],check=True)
+            entries=subprocess.check_output(['git','-C',repo,'ls-tree','-r','-z',pin]).split(b'\0')
+            for entry in entries:
+              if not entry: continue
+              meta,rawpath=entry.split(b'\t',1); mode,kind,blob=meta.decode().split(); path=rawpath.decode()
+              if kind!='blob': continue
+              keep=repo!='hybridclr_demo'
+              if repo=='hybridclr_demo':
+                keep=path.startswith(('Tools/AssemblyShadow/','.github/workflows/')) or (path.startswith('Docs/AssemblyShadow/') and Path(path).suffix in ('.md','.json','.cs','.xml','.log') and '/R03Isolated.app/' not in path)
+              if not keep: continue
+              data=subprocess.check_output(['git','-C',repo,'show',pin+':'+path])
+              assert hashlib.sha1(('blob '+str(len(data))+'\0').encode()+data).hexdigest()==blob
+              dest=root/repo/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+              files.append({'path':repo+'/'+path,'gitBlob':blob,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (root/'source-manifest.json').write_text(json.dumps({'pins':pins,'files':files,'runtimeAcceptance':False},indent=2)+'\n')
+          print('Pinned source files',len(files))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-runtime-source-snapshot
+          path: ${{ runner.temp }}/r03-source
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
