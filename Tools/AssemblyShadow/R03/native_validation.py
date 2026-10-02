@@ -62,11 +62,11 @@ def main():
                     folder,_=c.run([str(exe),mode]);raw=loads((folder/'stdout.log').read_text())
                     require(raw['result']=='Passed' and raw['runtimeAcceptance'] is False,'Production probe header test')
                     result['unitCases'].append({'configuration':n,'mode':mode,'result':raw})
-            fence_configs = [('c++11', []), ('c++17', [])]
-            if args.sanitizers: fence_configs.append(('c++17', ['-fsanitize=address,undefined','-fno-omit-frame-pointer']))
-            for n, (std, extra) in enumerate(fence_configs):
+            fence_configs = [('c++11', '-O0', []), ('c++17', '-O1', [])]
+            if args.sanitizers: fence_configs.append(('c++17', '-O1', ['-fsanitize=address,undefined','-fno-omit-frame-pointer']))
+            for n, (std, optimization, extra) in enumerate(fence_configs):
                 exe=output/('fence-%02d'%n)
-                c.run([cc,'-std='+std,'-pthread','-O1','-g','-Wall','-Wextra','-Werror',
+                c.run([cc,'-std='+std,'-pthread',optimization,'-g','-Wall','-Wextra','-Werror',
                        '-DHYBRIDCLR_R03_RUNTIME_PROBE=1','-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2',
                        '-I'+str(native/'libil2cpp'),str(native/'tools/r03/producer_fence_tests.cpp'),*extra,'-o',str(exe)])
                 for mode in ('normal','defer','unrelated','existing','expire','abandoned','wrong-owner','reuse','bounds','exception','context'):
