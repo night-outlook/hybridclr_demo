@@ -13,7 +13,7 @@ from run_local import Batch
 
 def sample(outcome='success', method=False, guard=False):
     request = {'runId': 'synthetic-run', 'caseId': 'synthetic-case', 'baselineId': 'synthetic-baseline',
-               'dlls': [{'name': 'Methods'}], 'invokeAssembly': 'Methods', 'observeMethod': method, 'oldExecutionGuard': guard}
+               'dlls': [{'name': 'Methods'}], 'invokeAssembly': 'Methods', 'observeMethod': method, 'oldExecutionGuard': guard, 'producerControl': False}
     expected = {'outcome': outcome, 'value': 42}
     raw = {key: '' for key in RAW_FIELDS.split()}
     raw.update(schemaVersion=2, kind='R03PlayerObservation', runId=request['runId'], caseId=request['caseId'],

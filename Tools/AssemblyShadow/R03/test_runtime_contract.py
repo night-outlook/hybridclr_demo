@@ -7,19 +7,21 @@ from batch_contract import ContractError
 
 
 def typename(pointer='0x1234', assembly='Methods', name='Node', namespace='R03'):
-    return dict(physical=pointer, assembly=assembly, name=name, namespace=namespace)
+    return dict(physical=pointer, assembly=assembly, name=name, namespace=namespace, typeKey=assembly + '/' + namespace + '/' + name)
 
 
 def fixture(cold=False):
-    p = dict(schemaVersion=1, available=True, policy='R03ExactAllocationWindowV1', used=True,
+    p = dict(schemaVersion=2, available=True, policy='R03ExactAllocationWindowV1', used=True,
              sealed=True, invalid=False, overflow=False, generation=1, ownerThread=1,
              target=typename(), eventCapacity=128, samples=[], events=[], layouts=[], runtimeAcceptance=False)
+    p['producerFence'] = dict(policy='R03ArrayPoolFinalizerFenceV1', requested=True, acquired=True, released=True, expired=False, invalid=False, drained=True, admitted=0, completed=0, deferred=0, deferredCompleted=0, ownerOsThread=100, elapsedMicros=10, leaseMs=5000)
     c = {k: 0 for k in COUNTERS}
     if cold:
         for metric, amount in zip((COLD[0], COLD[1], COLD[3], COLD[4]), (1, 1, 1, 80)):
             p['events'].append(dict(index=len(p['events']), metric=metric, amount=amount, phase=1,
                                     thread=1, generation=1, domain=1, context='0x0', site='test:observer',
-                                    type=typename('0x5678', 'mscorlib', 'String', 'System')))
+                                    type=typename('0x5678', 'mscorlib', 'String', 'System'),
+                                    producer=dict(osThread=0, recognizedArrayPool=False, finalizerType=None, callback=None)))
     for label in (0, 10, 1, 2, 11, 3):
         if label == 1 and cold:
             for e in p['events']: c[e['metric']] += e['amount']

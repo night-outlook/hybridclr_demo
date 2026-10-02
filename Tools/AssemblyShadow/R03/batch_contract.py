@@ -129,8 +129,15 @@ def verify_raw(request, raw, expected, request_sha, launch_pid):
             require(integer(a[key]) and integer(b[key]) and b[key] >= a[key], 'Monotonic integer counter: ' + key)
         require(b['admissionCacheHits'] - a['admissionCacheHits'] >= 10000 and b['baselineStateChecks'] - a['baselineStateChecks'] >= 10000,
                 'Warm certificate reuse retains baseline checks')
-        from runtime_contract import verify_warm, verify_primitive_layout
-        runtime_evidence['warmWindow'] = verify_warm(raw['runtimeProbe'], a, b, request['invokeAssembly'])
+        from runtime_contract import verify_warm, verify_primitive_layout, verify_producer_control
+        control = expected.get('producerControl', False)
+        require(type(request.get('producerControl')) is bool and request['producerControl'] is control,
+                'Source-bound producer-control request')
+        if control:
+            require(expected['role'] == 'candidate-release' and expected['id'].startswith('PC-'), 'Dedicated natural-control identity')
+            runtime_evidence['warmWindow'] = verify_producer_control(raw['runtimeProbe'], a, b, request['invokeAssembly'])
+        else:
+            runtime_evidence['warmWindow'] = verify_warm(raw['runtimeProbe'], a, b, request['invokeAssembly'])
         if expected.get('primitiveLayoutProof'):
             runtime_evidence['prepublicationLayout'] = verify_primitive_layout(raw['runtimeProbe'])
     if request['observeMethod']:

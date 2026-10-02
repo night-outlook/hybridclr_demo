@@ -243,7 +243,8 @@ class Batch:
         request = {'schemaVersion': 1, 'runId': run_id, 'caseId': case['id'], 'baselineId': 'R03-Isolated-' + case['role'],
                    'candidates': ['A', 'B', 'Layout', 'Methods', 'R03Contract'], 'stable': ['mscorlib'], 'roots': [d['name'] for d in dlls],
                    'dlls': dlls, 'invokeAssembly': case['invoke'], 'observeMethod': case.get('observeMethod', False),
-                   'oldExecutionGuard': case.get('oldExecutionGuard', False), 'noPatch': case.get('noPatch', False)}
+                   'oldExecutionGuard': case.get('oldExecutionGuard', False), 'noPatch': case.get('noPatch', False),
+                   'producerControl': case.get('producerControl', False)}
         write(root / 'request.json', request)
         launch = self.command([state['executable'], '-batchmode', '-nographics', '-r03Request', root / 'request.json',
                                '-r03Output', root / 'raw.json', '-r03RunId', run_id, '-logFile', root / 'Player.log'], 180)
@@ -261,6 +262,30 @@ class Batch:
         verdict['result'] = 'Passed'
         write(root / 'verification.json', verdict)
         return verdict
+
+    def producer_controls(self):
+        # Four distinct fresh controls, fixed BEFORE execution, not retries of
+        # failed witnesses. All original semantic checks remain in verify_raw.
+        # The controls observe an unisolated certificate failure separately from
+        # the isolated main witnesses; they never rewrite historical raw data.
+        selected = ('C03-moved-slot', 'C04-old-AOT-guard', 'C05-direction-reversal', 'C07-private-primitive-append')
+        rows = []
+        for name in selected:
+            matches = [c for c in self.matrix['cases'] if c['id'] == name]
+            require(len(matches) == 1, 'Exact natural producer control pairing')
+            case = dict(matches[0], id='PC-' + name, producerControl=True)
+            try:
+                verdict = self.player(case)
+                rows.append({'id': case['id'], 'result': 'Passed', 'evidence': verdict})
+            except Exception as error:
+                rows.append({'id': case['id'], 'result': 'Failed', 'error': str(error)})
+        identified = sum(row.get('evidence', {}).get('warmWindow', {}).get('identifiedLoopAdmissions', 0) for row in rows)
+        report = {'kind': 'R03NaturalProducerControls', 'result': 'Failed', 'cases': rows,
+                  'identifiedLoopAdmissions': identified, 'runtimeAcceptance': False}
+        report['result'] = 'Passed' if all(row['result'] == 'Passed' for row in rows) and identified > 0 else 'Failed'
+        write(self.root / 'producer-controls.json', report)
+        require(report['result'] == 'Passed', 'Natural controls must bind the actual producer at least once; missing attribution is NoCoverage, not a waiver')
+        return report
 
     def python_tests(self):
         receipt = self.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', ROOT, '-p', 'test_*.py', '-v'])
@@ -282,8 +307,9 @@ class Batch:
         self.cell('editor-tests', self.editor_tests, ('prepare-candidate-release', 'host-admission'))
         for case in self.matrix['cases']:
             self.cell(case['id'], lambda c=case: self.player(c), ('build-' + case['role'],))
+        self.cell('producer-controls', self.producer_controls, ('build-candidate-release',))
         self.cell('final-authority', self.authority)
-        require(len(self.cells) == 36 and len({r['id'] for r in self.cells}) == 36, 'Exact thirty-six-cell execution ledger')
+        require(len(self.cells) == 37 and len({r['id'] for r in self.cells}) == 37, 'Original thirty-six cells plus one four-Player producer-control cell')
         summary = {'schemaVersion': 1, 'kind': 'R03ConservativeLocalBatch', 'repositories': self.pins,
                    'matrixSha256': sha(ROOT / 'player-cases.json'), 'cells': self.cells,
                    'retainedReferenceWorktrees': {k: str(v) for k, v in self.references.items()},

@@ -12,10 +12,11 @@ COLD = ('admissionCacheMisses', 'admissionProofAttempts', 'admissionProofRejecti
         'admissionEntries', 'admissionRetainedBytes', 'admissionUnready')
 COUNTERS = ('admissionCacheHits', 'baselineStateChecks', 'fieldWorkspaceBuilds',
             'interfaceWorkspaceBuilds', 'layoutCheckCalls', 'genericContextChecks') + COLD
-PROBE_FIELDS = '''schemaVersion available policy used sealed invalid overflow generation ownerThread target eventCapacity samples events layouts runtimeAcceptance'''
-TYPE = 'physical assembly namespace name'
+PROBE_FIELDS = '''schemaVersion available policy used sealed invalid overflow generation ownerThread target eventCapacity samples events layouts producerFence runtimeAcceptance'''
+TYPE = 'physical assembly namespace name typeKey'
 SAMPLE = 'label eventEnd thread saturated droppedThreads counters'
-EVENT = 'index metric amount phase thread generation domain context site type'
+EVENT = 'index metric amount phase thread generation domain context site type producer'
+FENCE = 'policy requested acquired released expired invalid drained admitted completed deferred deferredCompleted ownerOsThread elapsedMicros leaseMs'
 LAYOUT = '''baseline target fieldsChanged baselineReady targetReady targetDefinitionReady physicalProof
 sourceSizeInited targetSizeInited sourcePending targetPending baselineInitialized baselineVtable baselineCctor
 targetInitialized targetVtable targetCctor sourceSize targetSize sourceNativeSize targetNativeSize sourceFieldCount
@@ -27,7 +28,7 @@ def physical_type(value, *, target=False, assembly=None):
     fields(value, TYPE, 'Native physical type')
     require(type(value['physical']) is str and re.fullmatch(r'0x[0-9a-f]+', value['physical']) and
             int(value['physical'], 16) > 0, 'Actual non-null native key required')
-    for k in ('assembly', 'name'):
+    for k in ('assembly', 'name', 'typeKey'):
         require(type(value[k]) is str and value[k], 'Cold key identity unavailable: ' + k)
     require(type(value['namespace']) is str, 'Native namespace')
     if target:
@@ -37,14 +38,14 @@ def physical_type(value, *, target=False, assembly=None):
 def probe_header(text):
     p = loads(text)
     fields(p, PROBE_FIELDS, 'Runtime probe')
-    require(type(p['schemaVersion']) is int and p['schemaVersion'] == 1 and p['available'] is True and p['policy'] == 'R03ExactAllocationWindowV1' and
+    require(type(p['schemaVersion']) is int and p['schemaVersion'] == 2 and p['available'] is True and p['policy'] == 'R03ExactAllocationWindowV1' and
             p['runtimeAcceptance'] is False and p['invalid'] is False and p['overflow'] is False,
             'Complete bounded native probe required')
     require(type(p['events']) is list and type(p['samples']) is list and type(p['layouts']) is list, 'Native probe collections')
     return p
 
 
-def verify_warm(text, before, after, assembly):
+def analyze_window(text, before, after, assembly):
     p = probe_header(text)
     require(p['used'] is True and p['sealed'] is True and integer(p['generation'], 1) and integer(p['ownerThread'], 1), 'One sealed native interval')
     physical_type(p['target'], target=True, assembly=assembly)
@@ -67,6 +68,13 @@ def verify_warm(text, before, after, assembly):
         require(integer(e['generation'], 1) and e['generation'] == p['generation'] and type(e['domain']) is int and e['domain'] == 1 and e['context'] == '0x0' and integer(e['thread'], 1), 'Complete admission key/thread')
         require(type(e['site']) is str and e['site'] and e['site'] != '<unspecified>' and len(e['site'].encode()) < 128, 'Full allocation site')
         physical_type(e['type'])
+        producer = e['producer']; fields(producer, 'osThread recognizedArrayPool finalizerType callback', 'Cold producer context')
+        require(integer(producer['osThread']) and type(producer['recognizedArrayPool']) is bool, 'Producer thread and qualification types')
+        if producer['finalizerType'] is not None: physical_type(producer['finalizerType'])
+        if producer['callback'] is not None:
+            fields(producer['callback'], 'name token declaringType', 'Finalizer callback')
+            require(type(producer['callback']['name']) is str and producer['callback']['name'] and integer(producer['callback']['token'], 1), 'Actual callback metadata')
+            physical_type(producer['callback']['declaringType'])
         phase = 1 if i < samples[2]['eventEnd'] else 2 if i < samples[3]['eventEnd'] else 3
         require(e['phase'] == phase and type(e['phase']) is int, 'Event phase/boundary agreement')
     # Reconcile EVERY consecutive native span, not just a final net delta.
@@ -83,6 +91,32 @@ def verify_warm(text, before, after, assembly):
     require(b['admissionCacheHits'] - a['admissionCacheHits'] >= 10000 and
             b['baselineStateChecks'] - a['baselineStateChecks'] >= 10000,
             'Exact warm loop retains certificate hits and per-allocation baseline checks')
+    return p, a, b
+
+
+def verify_fence(p, required):
+    f = p['producerFence']; fields(f, FENCE, 'Producer lease')
+    require(f['policy'] == 'R03ArrayPoolFinalizerFenceV1', 'Exact producer-isolation policy')
+    for k in ('requested', 'acquired', 'released', 'expired', 'invalid', 'drained'):
+        require(type(f[k]) is bool, 'Producer lease boolean: ' + k)
+    for k in ('admitted', 'completed', 'deferred', 'deferredCompleted', 'ownerOsThread', 'elapsedMicros', 'leaseMs'):
+        require(integer(f[k]), 'Producer lease integer: ' + k)
+    require(not f['expired'] and not f['invalid'] and f['completed'] <= f['admitted'] and f['deferredCompleted'] <= f['deferred'], 'Producer lease did not expire or corrupt')
+    require(f['requested'] is required, 'Requested isolation must match the exact witness mode')
+    if required:
+        require(f['acquired'] and f['released'] and f['drained'] and f['ownerOsThread'] > 0 and
+                f['leaseMs'] == 5000 and f['elapsedMicros'] < 5000000 and f['deferredCompleted'] == f['deferred'],
+                'Bounded completed producer lease and drained deferred work required')
+    else:
+        require(not f['acquired'] and not f['released'] and not f['drained'] and f['leaseMs'] == 0 and
+                f['elapsedMicros'] == 0 and f['ownerOsThread'] == 0 and f['deferred'] == 0, 'Natural control must not isolate or defer callbacks')
+    return f
+
+
+def verify_warm(text, before, after, assembly):
+    p, a, b = analyze_window(text, before, after, assembly)
+    fence = verify_fence(p, True)
+    samples, events = p['samples'], p['events']
     for k in COLD + ('fieldWorkspaceBuilds', 'interfaceWorkspaceBuilds', 'layoutCheckCalls'):
         require(b[k] == a[k], 'Repeated exact-loop proof work: ' + k)
     broad = events[samples[1]['eventEnd']:samples[4]['eventEnd']]
@@ -92,7 +126,41 @@ def verify_warm(text, before, after, assembly):
             'Target proof or cold work leaked into the measured loop')
     return {'policy': p['policy'], 'exactLoopProofDelta': 0, 'broadColdEvents': broad,
             'broadCounterDelta': {k: after[k] - before[k] for k in COUNTERS},
-            'target': p['target'], 'ownerThread': p['ownerThread'], 'runtimeAcceptance': False}
+            'target': p['target'], 'ownerThread': p['ownerThread'], 'producerFence': fence, 'runtimeAcceptance': False}
+
+
+def verify_producer_control(text, before, after, assembly):
+    """An unisolated diagnostic, NOT a passed warm certificate or a tolerance.
+
+    Full publication/business/method/layout validation is performed by the
+    caller. The original zero-all-thread test's observed verdict is retained.
+    """
+    p, a, b = analyze_window(text, before, after, assembly)
+    verify_fence(p, False)
+    for k in ('fieldWorkspaceBuilds', 'interfaceWorkspaceBuilds', 'layoutCheckCalls'):
+        require(a[k] == b[k], 'Natural control repeated physical proof work')
+    loop = [e for e in p['events'] if e['phase'] == 2]
+    for e in p['events']:
+        require(e['type']['physical'] != p['target']['physical'] and e['type']['typeKey'] != p['target']['typeKey'], 'Natural control must not hide target proof')
+        if e['phase'] != 2: continue  # Unrelated observer work remains fully recorded.
+        c = e['producer']; callback = c['callback']; finalizer = c['finalizerType']
+        require(e['thread'] != p['ownerThread'] and e['site'] == 'Object::NewAllocSpecific', 'Only identified concurrent producer evidence is admissible in this control')
+        require(c['recognizedArrayPool'] and c['osThread'] > 0 and finalizer is not None and callback is not None, 'Actual native finalizer and delegate identity required')
+        require((finalizer['assembly'], finalizer['namespace'], finalizer['name']) == ('mscorlib', 'System', 'Gen2GcCallback'), 'Pinned Gen2 callback producer')
+        owner = callback['declaringType']
+        require((owner['assembly'], owner['namespace'], owner['name']) ==
+                ('mscorlib', 'System.Buffers', 'TlsOverPerCoreLockedStacksArrayPool`1') and
+                callback['name'] == 'Gen2GcCallbackFunc', 'Actual ArrayPool trimming delegate')
+        require(e['type']['assembly'] == 'mscorlib' and e['type']['name'] == 'Enumerator' and
+                'ConditionalWeakTable' in e['type']['typeKey'] and 'Enumerator' in e['type']['typeKey'], 'Full nested/generic Enumerator owner must be visible')
+        require(e['metric'] not in ('admissionProofRejections', 'admissionUnready'), 'Producer control cannot hide proof rejection or unreadiness')
+    count = sum(e['amount'] for e in loop if e['metric'] == 'admissionCacheMisses')
+    return {'policy': 'R03NaturalProducerControlV1', 'identifiedLoopAdmissions': count,
+            'observation': 'ExpectedContaminationObserved' if count else 'NoContaminationObserved',
+            'unisolatedWarmCertificate': 'Failed' if count else 'Passed',
+            'allColdEvents': p['events'], 'exactLoopDelta': {k: b[k] - a[k] for k in COUNTERS},
+            'runtimeAcceptance': False}
+
 
 
 def verify_primitive_layout(text):

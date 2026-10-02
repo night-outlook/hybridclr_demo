@@ -59,7 +59,8 @@ class InputContracts(unittest.TestCase):
     def test_both_engine_entrypoints_use_supervision(self):
         source=(Path(__file__).parent/'run_local.py').read_text()
         self.assertEqual(source.count('unity_command(self, [self.unity,'),2)
-        self.assertIn('len(self.cells) == 36',source)
+        self.assertIn('len(self.cells) == 37',source)
+        self.assertIn("self.cell('producer-controls'", source)
         self.assertIn("len(self.matrix['cases']) == 19",source)
         self.assertIn("self.cell('player-fixtures', lambda: validate_inputs(self)",source)
     def test_expectation_boolean_is_not_exit_code(self):
