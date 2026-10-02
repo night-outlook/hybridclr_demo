@@ -1,18 +1,18 @@
-# Primary Implementation → Local Validation: R03 batch E, provenance and Editor scope
+# Primary Implementation → Local Validation: R03 batch F, runtime attribution and physical readiness
 
-## Objective and preserved return
+## Objective and immutable prior result
 
-Run exactly one new **36-cell batch E** after R03-LD-001/002. Do not retry A/B/C/D, change their evidence, redesign R03, enable PureInterpreter expansion or enter H2.
+Run exactly one new **36-cell batch F** against the published runtime repair tuple. Preserve all evidence and return to Primary. Do not retry A–E, reuse their apps, modify their evidence, enable PureInterpreter expansion or enter H2.
 
-Authoritative Local return: `33d7b1fce2f3b8463dc4ac78061250ecc7df925d`. D remains **ReturnRequired: 12 Passed / 5 Failed / 19 Blocked**, focused seal Passed. It produced four successful native artifact receipts and ARM64 apps, but all four build cells failed provenance verification. Actual Editor execution had 754 Passed and one Ignored; the frozen M01 resource case remains NoCoverage. All nineteen Players were Blocked. Primary does not retroactively promote any of these cells.
+Authoritative Local return: `b97375d4b12357d0f987cf7738eaa422d4615081`. E remains **ReturnRequired: 32 Passed / 4 Failed / 0 Blocked; seal Passed**. Its four native builds and 754 selected Editor cases passed; all nineteen Players ran with fifteen Passed and four Failed. C03/C04/C05 Release warm intervals gained an unattributed proof; C07 failed prepublication physical readiness. No source review or new measurement contract retroactively promotes those cells. The excluded M01 resource test remains NoCoverage.
 
 ## Read first
 
-All relative documentation paths below are under `Docs/AssemblyShadow/`:
+All relative documentation paths are under `Docs/AssemblyShadow/`:
 1. `README.md` and `Plan/CURRENT_STATUS.md`.
-2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for preserved D facts, not old execution commands.
-3. `History/M07R/R03/F_PROVENANCE_SCOPE_REPAIR.md`, `F_HOST_EVIDENCE.json`, `F_VALIDATION_MATRIX.md`.
-4. `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` and `Plan/stages/R03-evolution-semantics.md` for unchanged product scope and full-stage exits.
+2. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for unchanged E evidence, not old commands.
+3. `History/M07R/R03/G_RUNTIME_PROOF_REPAIR.md`, `G_HOST_EVIDENCE.json`, `G_VALIDATION_MATRIX.md`.
+4. `Plan/stages/R03-evolution-semantics.md` and `History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md` for full-stage obligations.
 5. This live handoff for the only authorized next execution.
 
 ## Exact source authority
@@ -21,42 +21,44 @@ All four repositories use `codex/assembly-shadow-r01b-h1`.
 
 | Repository | Exact owning checkout | Revision |
 | --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final docs-only transport SHA supplied in Primary's prompt, resolved and checked below |
-| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | Final docs-only transport SHA in Primary's prompt, resolved and checked below |
+| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
-| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `aae0ebb55b8761a7a905b410349d006d76fa748b` |
 
-New tested source anchor: **`979abd80b673e690c5f82819ed194200f8d2e536`**. Only `Docs/AssemblyShadow/` documentation/evidence may differ after it. Earlier anchors and historical A–E preparation records do not authorize this run. Execute exactly the final pushed transport SHA in Primary's prompt, not the anchor, a smoke commit, an old executed commit or arbitrary later HEAD. A receiver without chat context resolves the latest commit touching this `WEB_TO_LOCAL.md` and requires it to equal local and current remote HEAD; the runner rechecks all four authorities at entry and completion.
+New tested executable/CI anchor: **`67e8c1df18f84dda4ec70edd45b1ed717bcea4e8`**. Only `Docs/AssemblyShadow/` documentation/evidence may differ after it. The native pins changed; do not reuse E's earlier native source tuple. The managed package, reference native cores/package, four build roles, nineteen case identities, deadlines and top-level dependencies remain unchanged.
 
-Native/package sources, reference-core/package pins, nineteen Player expectations, four build roles, count/error guards, lifetime enforcement, command deadlines and top-level dependencies are unchanged.
+A commit cannot embed its own SHA. Resolve the final demo transport as the latest commit touching this WEB_TO_LOCAL.md, then require it to equal local HEAD, current remote HEAD and Primary's exact final prompt. The runner independently repeats all four authority checks before and after execution. Do not execute the anchor itself, a smoke commit, an old transport or an arbitrary later branch tip.
 
-## Implemented correction and acceptance boundary
+## Implemented correction and explicit contract
 
-`R03Build.cs` emits build receipt schema **2** and the exact `installedNativeRoot` used by the producer. `build_provenance.py` independently checks the pinned OSXEditor root profile inside the selected batch/role, canonical nonlinked paths, install receipt/hash, exact native inventory, four-source tuple, unchanged non-generated sources and additive diagnostic probe. It does not search recursively, select a first matching hash or delete generation copies. Old v1 receipts are not upgraded or reused.
+LE-001: bounded native cold-event attribution and six exact observer/loop boundaries replace the assumption that the entire managed-observer interval is a pure business-allocation interval. Raw broad counters remain visible and must match their native snapshots. Every cold delta must reconcile to full physical key, logical type, generation/domain/context, site and process-local native thread identity. The exact 10,000-allocation loop must still have zero new admission proof/layout/field/interface work and retain at least 10,000 hits and baseline-state checks. Broad cold work is allowed only outside the exact loop with complete non-target attribution, not an unexplained +1 allowance. Historical E's extra class/site/thread remains unknown.
 
-`editor_scope.py` defines the isolated-project scope before launching tests. It excludes exactly the unavailable frozen M01 asset test via an anchored negative full-name filter, retains all **754** other cases, and requires every selected case and aggregate to be Passed with zero skips. Exact 35 R03 IDs and the true-cycle test remain mandatory. The D XML is a hash-pinned name catalog only, never fresh evidence. `editor-scope.json` and `editor-verification.json` explicitly retain the excluded case as **NoCoverage** and `fullLegacyRegressionAcceptance=false`. No broad skipped-result allowance or category-wide exclusion exists.
+LE-002: staged initialization now exposes an authenticated finalized-definition layout capability only after complete metadata initialization. It avoids forcing Class::Init, baseline object allocation or business initializers, while retaining the original baseline readiness and physical CheckLayout guards. C07 remains a required positive case. It must prove private Int64 tail geometry and successful prepublication readiness before Commit, without baseline business initialization. Unready or incompatible layouts retain fail-closed terminal behavior; Local must not change this success expectation to a rejection.
 
-Primary's host and pinned-API results are in F_HOST_EVIDENCE.json. They are not new integrated Unity, native-installation or Player acceptance. The next run must produce actual v2 receipts and the actual filtered Editor result.
+The isolated native test profile enables the bounded runtime probe; its ordinary-build default is off. Raw Player observations now use schema 2 with runtimeProbe. Old-core reference controls do not claim unavailable probe coverage. This is diagnostic validation, not a production performance acceptance run.
 
-## Environment and unused root
+Primary has completed source review, 144 Python contracts, retained host/fixture/lifecycle/provenance tests, native header regressions and 25 pinned-SDK syntax compilations. The complete updated helper/package compilation also passed. Those results are not actual new integrated Player proof; that is the purpose of F.
 
-- Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; StandaloneOSX, arm64.
-- Python `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`.
-- Direct managed SDK `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, version **8.0.318**, used as SDK only. Do not launch Unity 6000.
-- New prescribed root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance`.
+## Environment and new unused root
 
-Verify recorded tools and versions. Missing/mismatched tooling is Blocked, not permission to substitute versions. Verify the new root does not exist; do not delete/reuse a root to bypass that guard. Preserve all D/A/B/C and R02/H1 evidence, including D's original live archive and published byte parts.
+- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64.
+- Python: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`.
+- Direct managed SDK: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, version **8.0.318**, used as SDK only. Do not launch Unity 6000.
+- New root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime`.
 
-## Run once
+Verify the recorded tools and versions. Missing/mismatched tooling is Blocked, not permission to substitute versions. The root must not exist. Never delete/reuse an output root to bypass the guard. Preserve all A–E/R02/H1 live evidence, original archives and exact-byte publication parts.
 
-First verify all canonical origins and clean owning checkouts. Fast-forward only; no reset, stash, forced checkout, unrelated merge or source changes.
+## Execute once
+
+First verify canonical origins and clean owning checkouts. Fast-forward only: no reset, stash, forced checkout, unrelated merge or source edits.
 
 ```bash
 set -euo pipefail
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 BRANCH=codex/assembly-shadow-r01b-h1
 DEMO="$WORKSPACE/hybridclr_demo"
-BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance
+BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
 export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
@@ -72,11 +74,11 @@ done
 DEMO_COMMIT="$(git -C "$DEMO" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
 test "$(git -C "$DEMO" rev-parse HEAD)" = "$DEMO_COMMIT"
 test "$(git -C "$DEMO" ls-remote origin "refs/heads/$BRANCH" | awk '{print $1}')" = "$DEMO_COMMIT"
-git -C "$DEMO" merge-base --is-ancestor 979abd80b673e690c5f82819ed194200f8d2e536 "$DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 979abd80b673e690c5f82819ed194200f8d2e536 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
-test "$(git -C "$WORKSPACE/hybridclr" rev-parse HEAD)" = 041c0cbb42d3e64e54fe605673d99799b5d63893
+git -C "$DEMO" merge-base --is-ancestor 67e8c1df18f84dda4ec70edd45b1ed717bcea4e8 "$DEMO_COMMIT"
+git -C "$DEMO" diff --exit-code 67e8c1df18f84dda4ec70edd45b1ed717bcea4e8 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
+test "$(git -C "$WORKSPACE/hybridclr" rev-parse HEAD)" = 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
 test "$(git -C "$WORKSPACE/hybridclr_unity" rev-parse HEAD)" = 120bb01be680cec0375002a0823552d66d34b84c
-test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = 1abb6bcaa85226f08c67f9da65edb3c58e8cb399
+test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = aae0ebb55b8761a7a905b410349d006d76fa748b
 test "$(dotnet --version)" = 8.0.318
 test -f "$UNITY"
 test ! -e "$BATCH"
@@ -85,16 +87,22 @@ test ! -e "$BATCH"
   --unity "$UNITY" --demo-commit "$DEMO_COMMIT"
 ```
 
-Before invocation, also require DEMO_COMMIT to match Primary's final prompt. Capture the actual command, environment, PID, timestamps and exit without altering the runner's outputs. Invoke once; independent cells are already scheduled. A failed preflight is Blocked, not a fabricated 36-cell execution. Never manually launch blocked cases or retry the batch.
+Before the runner invocation, compare DEMO_COMMIT with Primary's exact prompt. Capture actual argv/environment/PID/timestamps/exit without changing runner output. Invoke once. A failed preflight is Blocked, not a fabricated 36-cell execution. Independent cells are already scheduled; do not manually launch blocked cases or retry any batch.
 
-## Required evidence and return
+## Required new evidence
 
-Retain all **36 cells / four new build roles / nineteen fresh-process Player cases**, plus all existing fixture, compiler, lifecycle and complete-helper prerequisites. The verifier cell now runs 116 tests. Actual Editor execution must include exactly the 754 selected identities with zero skips. The missing M01 asset case remains excluded/NoCoverage and is not counted as Passed.
+Retain all **36 cells / four fresh native build roles / 754 selected Editor cases with zero skips / nineteen fresh-process Players**. The verifier cell runs 144 Python tests. Preserve the existing actual fixture consumers, compiler/lifecycle controls, complete-helper check, schema-2 native build provenance and excluded M01 NoCoverage.
 
-Preserve the result, ledger, index, archive, seal, all command streams, host/fixture/compiler outputs, supervised completion receipts, build configs/receipts/apps, Editor XML and Player evidence. Additionally preserve `editor-scope.json`, `editor-verification.json` and build cells' `nativeBinding` records; each new build receipt must contain `schemaVersion=2` and `installedNativeRoot`. Canonical SDK directories and copied generation receipts remain intact. Do not rewrite pre-cleanup observations or infer runtime success from artifact existence.
+Six candidate warm witnesses remain mandatory: C03/C04/C05/C07 and D02/D03. For each, retain native sample labels `[0,10,1,2,11,3]`, the original broad before/after snapshots, all cold events and exact-loop deltas. Report observed class/physical-key/site/thread/span attribution when present; otherwise report the unresolved mismatch. No new attribution is assigned retrospectively to E.
 
-All 36 cells and the focused seal must pass for `EvidenceReadyForPrimaryReview`; otherwise return `ReturnRequired`. `R03Accepted=false`, `H2Passed=false`, `pureInterpreterExpansionEnabled=false` and `fullLegacyRegressionAcceptance=false` remain mandatory even on a successful focused batch.
+C07 additionally requires exactly one successful prepublication R03Contract/R03.Node layout row: both sides ready, target definition readiness true, no pending layout, physicalProof true/error0, unchanged baseline initialization/vtable/cctor state, one retained field plus private eight-byte tail storage, and successful publication/invocation/allocation. Preserve the full row even when it fails; do not warm or initialize baseline business state to bypass the guard.
 
-Local updates `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` factually, preserves D as historical, and creates an immutable `History/M07R/R03/local-validation-<date>-batch-e-<result>/` checkpoint. Commit/push only Local-owned demo reports/evidence and stop. For large archives, reuse D's exact-byte transport convention: preserve the live original, bind ordered parts to its original hash, authenticate reconstruction and keep transport metadata separate from the runner seal. No re-compression or replacement of raw evidence.
+Keep result/ledger/index/archive/seal, all command streams and Unity completion receipts, host/fixture/compiler outputs, configs/source manifests, nativeBinding, build receipts/apps, editor-scope.json, editor-verification.json and actual XML. Every launched Player retains request.json, raw.json including runtimeProbe, Player.log and the launch receipt. Semantic verification now writes a source-bound Passed or Failed verification.json; a Failed receipt is not an acceptance result. Missing outputs after an earlier launch failure remain missing, not fabricated.
 
-No non-trivial implementation is delegated. Changes to source, installation-root profile, schema, test catalog/filter, expectations, fixture assets, pins, deadlines or lifecycle policy require Primary. Do not waive skipped or missing tests, globally kill compiler servers or alter failed receipts. Actual M01 resource coverage, full R03 regressions, broader method/generic/stack-trace work, performance/memory/capacity and PureInterpreter qualification remain Primary-owned before full stage review and H2.
+## Local-owned return and stop
+
+All 36 cells and the focused seal must pass for EvidenceReadyForPrimaryReview. Otherwise return ReturnRequired with the original Failed/Blocked/NotRun/NoCoverage distinctions. A successful focused batch still has R03Accepted=false, H2Passed=false, pureInterpreterExpansionEnabled=false and fullLegacyRegressionAcceptance=false.
+
+Update `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` factually; retain E as historical. Add an immutable `History/M07R/R03/local-validation-<date>-batch-f-<result>/` checkpoint. Commit/push Local-owned demo evidence/docs and stop for Primary reconciliation. For large archives, preserve the live original and use the existing ordered exact-byte parts plus independent reconstruction audit, without re-compression or seal changes.
+
+No non-trivial implementation is delegated. Source, native readiness policy, probe/schema, scope/filter, expectations, warm-up/iteration count, pins, deadlines and lifecycle changes require Primary. Do not reuse old apps, globally kill named compiler processes, relax attribution, flip C07 to an expected rejection or rewrite failed raw values. Full legacy/resource/M01 coverage, broader generic/interface/delegate/stack-trace work, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain Primary-owned before H2.

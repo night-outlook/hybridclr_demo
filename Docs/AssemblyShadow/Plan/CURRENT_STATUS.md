@@ -1,51 +1,52 @@
-# Current Status — R03 batch-D blockers repaired; awaiting batch E
+# Current Status — R03 runtime repairs prepared; awaiting batch F
 
-## State and authority
+## State
 
-R02 remains **PassedWithExplicitDeferredRisk** under its separate owner decision. R03 is in progress; no full stage or H2 acceptance is claimed.
+R02 remains PassedWithExplicitDeferredRisk under its recorded owner decision. R03 remains in progress. This focused cycle does not authorize H2 or release acceptance.
 
 - R02Accepted=true; mayEnterR03=true; R03Started=true.
-- Latest Local publication: `33d7b1fce2f3b8463dc4ac78061250ecc7df925d`.
-- Latest executed focused batch: D from demo `faa351d6854e71982ca047b994fb8579475f542a`.
-- D remains ReturnRequired: **12 Passed / 5 Failed / 19 Blocked**, seal Passed.
-- R03-LD-001: explicit installation-root binding implemented and host-validated; integrated revalidation required.
-- R03-LD-002: isolated Editor scope defined and host-validated; actual filtered execution required. Frozen M01 resource fixture remains NoCoverage.
-- Next Local cycle: **batch E requested; NotRun**.
+- Latest Local publication: `b97375d4b12357d0f987cf7738eaa422d4615081`.
+- Latest executed focused batch: E from demo `d51483dc1a11007fe1db2ee456a8b0444061389c`.
+- E remains **ReturnRequired: 32 Passed / 4 Failed / 0 Blocked; seal Passed**.
+- Four native build cells and all 754 selected Editor cases Passed; all nineteen Players ran, fifteen Passed and four Failed.
+- R03-LD-001/002 passed integrated validation in E. Previous D cells remain unchanged.
+- R03-LE-001: bounded full-key/site/thread attribution and an explicit exact-loop observation contract implemented; actual integrated attribution pending.
+- R03-LE-002: finalized staged-definition readiness and positive physical-layout witness implemented; actual primitive-append publication/allocation pending.
+- Next Local cycle: **batch F requested; NotRun**.
 - R03Accepted=false; H2Passed=false; PureInterpreter expansion disabled; fullLegacyRegressionAcceptance=false.
+- Frozen M01 resource fixture remains excluded/NoCoverage.
 
-Read F_PROVENANCE_SCOPE_REPAIR.md, F_HOST_EVIDENCE.json and F_VALIDATION_MATRIX.md under `History/M07R/R03/`, then `Handoff/WEB_TO_LOCAL.md`. Local-owned reports and D/A/B/C/R02/H1 history remain unchanged; earlier handoffs are not execution authority.
+Read `History/M07R/R03/G_RUNTIME_PROOF_REPAIR.md`, `G_HOST_EVIDENCE.json`, `G_VALIDATION_MATRIX.md`, then `Handoff/WEB_TO_LOCAL.md`. Local-owned reports and all A–E/R02/H1 history are unchanged. Historical handoffs and output roots are not execution authority.
 
-## Preserved D evidence
+## Preserved E evidence
 
-Four successful native artifact receipts/ARM64 apps are not passed build cells: the strict recursive receipt lookup failed all four. Actual Editor recorded 754 Passed/one Ignored, not a passed aggregate. All nineteen Players were Blocked. Local authenticated 1,736 indexed files / 1,737 archive members; Primary has not accessed the retained macOS live root.
+E's Release C03/C04/C05 successfully published/invoked/allocated but failed the unchanged broad warm-counter expectation with one additional unattributed admission proof. The exact historical class/site/thread is not established. C07 failed Validate code16/state8 at prepublication physical readiness; it did not prove incompatible offsets. No failed E cell is promoted by source analysis or the new contract.
 
-D result/index/archive hashes remain `1d24e6ccfce7cd9f8e77cd51ca0afc1d5eb3ce5a8f8af5fba60cfccf9e6d1844`, `b7bbe6d66c3c398db0fb504679cf560226aad4e044fe8a3ef04ccff3fc01e08b`, `989d7211e1772efc2b20f13b5354e533bc4760adf93fa4a45b1d5176ed17ff53`. Preserve the original live archive and ordered published parts without re-compression.
+E result/index/archive SHA-256 remain `e57b15223de02b566c0e4157a6157487e0ed208b20700356e8378dab1d4bf95f`, `7bce6d321265f0c4fa4c0d1b1946e25d523e3c5351d6e4ac0310cc5a57d041a4`, and `e8bb7e85a6b3e030de30c800c1f8b18dff5d0ac7a80332d6b00c1b612de94c36`. Local authenticated 1,867 indexed files / 1,868 archive members and 3,081 prior custody bindings. Original live archive and exact committed parts remain intact.
 
-## New exact source tuple
+## Tested source tuple
 
-Branch for all repositories: `codex/assembly-shadow-r01b-h1`.
+All repositories use `codex/assembly-shadow-r01b-h1`.
 
-| Repository | Source authority |
+| Repository | Tested implementation/source revision |
 | --- | --- |
-| night-outlook/hybridclr_demo | Tested anchor `979abd80b673e690c5f82819ed194200f8d2e536`; execute only the final docs-only transport HEAD identified by the live handoff and final Primary prompt |
-| night-outlook/hybridclr | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
-| night-outlook/hybridclr_unity | `120bb01be680cec0375002a0823552d66d34b84c` |
-| night-outlook/il2cpp_plus | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+| night-outlook/hybridclr_demo | `67e8c1df18f84dda4ec70edd45b1ed717bcea4e8` — executable/CI anchor |
+| night-outlook/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | `120bb01be680cec0375002a0823552d66d34b84c` — unchanged |
+| night-outlook/il2cpp_plus | `aae0ebb55b8761a7a905b410349d006d76fa748b` |
 
-Implementation commit `1b89581a802a660057fd507f4deb65f060b29669` introduces receipt schema 2 and strict isolated Editor scope. Anchor `979abd80...` corrects a new host-audit assumption about reference inventory counts; the production verifier had no fixed count. Only Docs/AssemblyShadow documentation/evidence may differ after the tested anchor. Do not infer the final transport SHA from an earlier record; resolve the latest commit touching WEB_TO_LOCAL.md and require local/remote/prompt equality.
+These repair descendants were already pushed when this continuation resumed; live Connector reads and comparisons established their authority. The final demo handoff is their documentation-only transport descendant containing this status and the current WEB_TO_LOCAL.md. Resolve its exact SHA as the latest commit touching WEB_TO_LOCAL.md, require it to equal local/remote HEAD and the final Primary prompt, and pass it as --demo-commit. Do not execute the old E tuple or an arbitrary later HEAD.
 
-## Completed Primary checks
+## Completed Primary validation
 
-Host workflow **36926248759** passed Linux x86_64 and macOS arm64 with SDK 8.0.318: **116 Python contracts**, both 9-case graph suites, 35 admission/method cases, 15 Player inputs, 33 fixture audits/consumers, Runtime API compilation, shared compiler lifecycle, and recorded-D provenance/scope audit. Each platform retained 49 positive and two expected-negative commands, all clean. The exact 754-name catalog is verified; that is not fresh Editor execution.
+Host workflow 36973943178 passed on Linux x86_64 and macOS 15.7.9 arm64 with SDK8.0.318. Each passed 144 Python contracts, both 9-case graph suites, 35 admission/method cases, fifteen fixture DLLs, 33 audits/consumers, prior lifecycle/provenance checks, 24 new native test processes and the two 60-process R02 native suites.
 
-Pinned-API workflow **36926248750** compiled the entire updated helper and actual package dependencies using Unity 2022.3.62f2 compiler/API bytes. The helper had zero errors/warnings; the unchanged original C helper still produced exactly its two CS0266 errors. All five commands completed without survivors. Primary authenticated the three downloaded final archives: host 629 indexed / 630 ZIP files each, API 28 / 29. See F_HOST_EVIDENCE.json for hashes, IDs and scope limits.
+Pinned-Unity workflow 36973943228 passed full helper/package compilation and 25 actual pinned-SDK native syntax compilations. It did not launch Unity Editor or a Player. The complete updated helper has zero compiler diagnostics; existing package warnings remain recorded. G_HOST_EVIDENCE.json binds authenticated archives, source tuple, results and command streams. The container separately passed all144 Python contracts.
 
-## Next Local action
+Neither compiler success nor synthetic native tracing proves the integrated allocation attribution or C07's physical proof. Both remain required in F. The new contract retains broad counters while requiring exact event accounting and zero repeated proof work inside the fixed allocation loop. C07 remains an expected success; unsupported/unready input stays fail-closed until proof exists.
 
-Run once in prescribed unused root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance` using the exact tuple/environment in WEB_TO_LOCAL.md. Never retry A/B/C/D or reuse an existing root. Keep all 36 cells, four new native builds and nineteen fresh-process Players. The 754 selected Editor cases must all pass with no skips; the single unavailable M01 asset test remains explicitly excluded/NoCoverage. No Local source, schema, filter, expectation, timeout or cleanup changes are authorized.
+## Next action and remaining scope
 
-Success means EvidenceReadyForPrimaryReview with all 36 cells and the focused seal Passed, not R03/H2 acceptance. Otherwise return ReturnRequired with factual evidence. Local updates/pushes its reports and a new immutable E checkpoint, then stops for Primary reconciliation.
+Run once in the unused root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime`, following WEB_TO_LOCAL.md exactly. Retain all36 cells, four fresh builds, all754 selected Editor identities with zero skips, all19 fresh-process Players, six strict warm witnesses and C07's positive physical-layout witness. Preserve NoCoverage for the excluded M01 test. Local publishes factual evidence and returns to Primary without non-trivial code changes.
 
-## Remaining stage obligations
-
-Actual frozen-M01 and broader old-resource regressions, broader method/generic/delegate/interface/stack-trace coverage, startup/capacity/performance/memory, gated PureInterpreter qualification and independent full R03 review remain Primary-owned. R02 deferred CPU residuals and original H1 RSS risk remain visible through H2. This focused scope correction does not authorize release or waive full-stage resource coverage.
+Full R03 legacy/resource/P01–P05, broader generic/interface/delegate/stack-trace, startup/capacity/performance/memory, gated PureInterpreter qualification and independent stage review remain open. R02 deferred CPU residuals and the original H1 RSS risk remain visible through H2. No focused result, source repair or this self-review waives those obligations.
