@@ -82,7 +82,7 @@ def main():
             shutil.copytree(hybrid/'hybridclr',copy/'hybridclr',dirs_exist_ok=True)
             version='#pragma once\n#define HYBRIDCLR_UNITY_VERSION 20220362\n#define HYBRIDCLR_UNITY_2022 1\n'+''.join('#define HYBRIDCLR_UNITY_%d_OR_NEW 1\n'%y for y in range(2019,2023))
             (copy/'hybridclr/generated/UnityVersion.h').write_text(version)
-            write(output/'generated-profile.json',{'versionHeader':version,'derivation':'Pinned package Il2CppDefGenerator.GenerateIl2CppConfig for 2022.3.62f2','runtimeAcceptance':False})
+            write(output/'generated-profile.json',{'versionHeader':version,'baselibInlineNamespace':'il2cpp_baselib','derivation':'Pinned package Il2CppDefGenerator.GenerateIl2CppConfig for 2022.3.62f2','runtimeAcceptance':False})
             includes=[copy,scratch,scratch/'external',scratch/'external/baselib/Include',
                       scratch/'external/baselib/Platforms/OSX/Include',scratch/'external/bdwgc/include']
             overlay=demo/'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
@@ -92,7 +92,8 @@ def main():
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]
             for label,feature,probe,debug,diagnostics in profiles:
                 for source in units:
-                    cmd=[cc,'-std=c++17','-fsyntax-only','-arch','arm64','-DIL2CPP_DEBUG='+str(debug),
+                    cmd=[cc,'-std=c++17','-fsyntax-only','-arch','arm64','-DBASELIB_INLINE_NAMESPACE=il2cpp_baselib',
+                         '-DIL2CPP_DEBUG='+str(debug),
                          '-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW='+str(feature),'-DHYBRIDCLR_R03_RUNTIME_PROBE='+str(probe),
                          '-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL='+str(diagnostics),*[('-I'+str(p)) for p in includes if p.is_dir()],str(source)]
                     folder,_=c.run(cmd)
