@@ -50,7 +50,7 @@ jobs:
                   if (-not $method.HasBody) { continue }
                   $hits = @($method.Body.Instructions | Where-Object { $_.OpCode.Name -in @('newobj','box','call','callvirt') -and "$($_.Operand)" -match 'Enumerator' -and "$($_.Operand)" -notmatch '::(MoveNext|get_Current|Dispose|Reset)\(' } | ForEach-Object { $_.ToString() })
                   if ($hits.Count) { $producers += [ordered]@{method=$method.FullName;token=$method.MDToken.Raw;instructions=$hits} }
-                  if ($method.Name.String -eq 'Finalize' -or $method.FullName -match '(Scheduler.*(Run|Scheduler)|ThreadPool.*(Dispatch|WorkItem)|Process::(GetCurrentProcess|GetProcessById|Dispose)|GC::)') {
+                  if ($method.Name.String -eq 'Finalize' -or $method.FullName -match '(ArrayPool|Gen2GcCallback|Scheduler.*(Run|Scheduler)|ThreadPool.*(Dispatch|WorkItem)|Process::(GetCurrentProcess|GetProcessById|Dispose)|GC::)') {
                     $background += [ordered]@{method=$method.FullName;token=$method.MDToken.Raw;instructions=@($method.Body.Instructions | ForEach-Object {$_.ToString()})}
                   }
                 }
