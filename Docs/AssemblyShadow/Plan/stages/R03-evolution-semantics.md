@@ -1,10 +1,10 @@
 # R03 · 布局准入、逻辑成员身份与跨版本图修复
 
-状态：**执行中**。Primary 已实现 R03 conservative candidate，并已准备首轮 source-bound Local Validation；尚未完成 R03、未进入 H2、未启用 PureInterpreter 结构扩展。
+状态：**执行中；focused batch H 已通过并完成 Primary reconciliation，完整 R03 尚未完成。** H 为 37/37 cells Passed；不得将其提升为 R03/H2 验收。当前由 Primary Implementation 负责剩余工作，暂无新的 Local Validation 执行任务；PureInterpreter 结构扩展仍禁用。
 
 前置：R01、R02。关联 findings：ASR-004, ASR-005, ASR-006。
 
-当前实现与首轮验证权威记录：`../../History/M07R/R03/A_PRIMARY_IMPLEMENTATION.md`、`../../History/M07R/R03/A_VALIDATION_MATRIX.md`、`../../History/M07R/R03/B_PRIMARY_HANDOFF.md`。主设计以 `../DESIGN.md` 为准；本文件的阶段退出条件保持不变。
+当前证据与剩余工作：`../../History/M07R/R03/J_H_FOCUSED_RECONCILIATION.md`、`../../History/M07R/R03/J_H_EVIDENCE_AUDIT.json`、`R03-remaining-completion.md`。最早未完成的编号实施步骤为第 3 步资格判定/扩展 Gate；第 4–7 步还有完整运行时、资源和集成回归义务。主设计以 `../DESIGN.md` 为准；下列规范性实施步骤、退出条件和独立审查要求保持不变。首轮实现及 A–I 历史记录仍保留，不覆盖旧证据。
 
 
 ## 修改面

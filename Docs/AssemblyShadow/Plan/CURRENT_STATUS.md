@@ -1,44 +1,52 @@
-# Current Status — R03 rejected-stage observation repaired; awaiting batch H
+# Current Status — R03 focused H reconciled; remaining full-stage work is Primary-owned
 
-## State and authority
+## Authoritative state
 
-R02 remains PassedWithExplicitDeferredRisk under its recorded owner decision. R03 is in progress. No full-stage or H2 acceptance is claimed.
+- R02 remains `PassedWithExplicitDeferredRisk`; R02Accepted=true and mayEnterR03=true.
+- R03Started=true; conservative focused H evidence is reconciled as Passed.
+- Latest Local publication: `3a9d51a9bb42b12bf29dfd6e0d7d12956ae04a68`.
+- Latest executed Local batch: H from demo `2007c5dbd3dcf535706688e6595700e3ba26a11e`.
+- Original H result remains `EvidenceReadyForPrimaryReview`: **37 Passed / 0 Failed / 0 Blocked**, seal Passed, runner exit0.
+- R03-LG-001 is verified repaired in the focused H negative-path scope. No new focused defect was recorded.
+- R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false.
+- PureInterpreter expansion disabled; fullLegacyRegressionAcceptance=false.
+- **Current owner: Primary Implementation. Active Local execution assignment: none.**
 
-- R02Accepted=true; mayEnterR03=true; R03Started=true.
-- Latest Local publication: `0d8a19830ce454d22335c854978816a830997187`.
-- Latest executed batch: G from demo `78767ea4d7ea064115daffcdbb2ce9435569814c`.
-- G remains **ReturnRequired: 32 Passed / 5 Failed / 0 Blocked; seal Passed**.
-- R03-LF-001: actual producer attribution and isolated warm witnesses passed in G's focused diagnostic scope. Contaminated unisolated warm certificates remain Failed.
-- C07: full positive physical/publication/allocation/warm case passed in G. Earlier F full-cell failure remains historical.
-- R03-LG-001: owned staged identity and non-mutating observation checks implemented; host/compiler validation passed; fresh integrated rejection validation required.
-- Next Local cycle: **batch H requested, NotRun**.
-- R03Accepted=false; H2Passed=false; PureInterpreter expansion disabled; fullLegacyRegressionAcceptance=false.
+Read [J_H_FOCUSED_RECONCILIATION.md](../History/M07R/R03/J_H_FOCUSED_RECONCILIATION.md), [J_H_EVIDENCE_AUDIT.json](../History/M07R/R03/J_H_EVIDENCE_AUDIT.json), [R03-evolution-semantics.md](stages/R03-evolution-semantics.md) and [R03-remaining-completion.md](stages/R03-remaining-completion.md). The live [WEB_TO_LOCAL.md](../Handoff/WEB_TO_LOCAL.md) retires the completed H command; it does not authorize another batch.
 
-Read `History/M07R/R03/I_REJECTION_OBSERVATION.md`, `I_HOST_EVIDENCE.json`, `I_VALIDATION_MATRIX.md`, then `Handoff/WEB_TO_LOCAL.md`. Local-owned reports and all A–G/R02/H1 history remain unchanged. Earlier commands and source anchors are not execution authority.
+## Exact evidence authority
 
-## Preserved G evidence
+All repository branches remain `codex/assembly-shadow-r01b-h1`.
 
-Four fresh native build cells and all 754 selected Editor identities passed. All 23 Players executed: fourteen of nineteen main cases passed; five strict rejection cases failed. Four natural controls passed diagnostic attribution while recording Failed contaminated unisolated warm certificates. All six strict isolated warm certificates passed. M01 remains NoCoverage.
+| Repository | Executed H revision |
+| --- | --- |
+| night-outlook/hybridclr_demo | `2007c5dbd3dcf535706688e6595700e3ba26a11e` |
+| night-outlook/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | `120bb01be680cec0375002a0823552d66d34b84c` |
+| night-outlook/il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-C02/C08/C09/C10/D01 reached Validate16/state8, then late probe retrieval returned -3 and terminal diagnostic error15. No result has been retroactively promoted. Local authenticated 1,901 indexed files/1,902 archive members and 6,989 prior custody bindings. Original result/index/archive hashes:
-- `65ee4842a81e7ec9e7d14546dd95d40d995e807a528e4b89c56918860100f5f1`
-- `24c18f78be4ed43d8f8600e2f114d2b5c717180cf171ab4e1cd11eb807e8aa25`
-- `2a3e90a49eb9b13d035a3749b8012f1e96d4410343d76b7f11a00617d17aaf23`
+H's preceding product/tool CI anchor is `9d70494c97e4efc9597a3e071f63c1489c6ac396`. The later Local publication and Primary reconciliation commits are not new Player execution. This cycle changes only demo read-only auditing/coordination; original R03 runtime, fixtures, runner and verifier sources and the three external pins remain unchanged.
 
-## New source tuple and validation
+Retained Local root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection`. Immutable checkpoint: `History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/`.
 
-All repositories use `codex/assembly-shadow-r01b-h1`:
-- Demo tested executable anchor: `9d70494c97e4efc9597a3e071f63c1489c6ac396`.
-- HybridCLR: `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` (unchanged).
-- Managed package: `120bb01be680cec0375002a0823552d66d34b84c` (unchanged).
-- IL2CPP: `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`.
+## Reconciled coverage and preserved distinctions
 
-Only documentation/evidence under Docs/AssemblyShadow may differ between the executable anchor and final handoff transport. The demo transport is the latest commit touching WEB_TO_LOCAL.md, required to equal Primary's prompt and local/remote HEAD; a commit cannot embed its own SHA.
+H passed four fresh native build roles, all 754 selected Editor cases with zero skips, all nineteen main Player contracts and four natural producer diagnostic contracts. Five rejection cases preserve terminal error16 through a capacity -2 control and two complete reads. All six isolated warm witnesses and complete positive C07 Passed.
 
-Host workflow 37014409670 passed both platforms: 183 Python contracts, both 9-case graphs, 35 admission cases, 33 fixture audits/consumers, managed Runtime API, prior lifetime/provenance/scope checks, 90 native header processes and R02 60+60 native processes. Pinned-Unity workflow 37014409955 passed complete-helper/package compilation plus 35 native syntax checks. Three downloaded archives were authenticated. These are not new integrated Unity/Player results.
+Four contaminated natural controls still have **Failed unisolated warm certificates**. The diagnostic producer lease is not production GC/performance qualification. The excluded M01 resource contract remains **NoCoverage in the isolated H project**; the original source assets exist in the repository, but their complete fixture/dependency/bundle integration remains Primary work. Historical G rejection failures, F full-cell failures and all earlier evidence states remain unchanged.
 
-## Next action and limits
+## Primary read-only verification completed
 
-Local runs the one prepared H batch from WEB_TO_LOCAL.md at `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection`, which must not exist. Retain all 37 cells, four fresh builds, 754 exact Editor cases and 23 fresh Players. Require all five strict rejection observations to preserve error16 through the capacity control and repeated reads. Keep the six warm witnesses, producer controls and positive C07 unchanged.
+Auditor source `3139b08f71dab8f4138b4127d6b0eb7a2fd0e4e1`, workflow **37077636830**, Passed. It authenticated the 2,007 manifest-listed checkpoint files, all 1,901 original indexed files, three exact archive parts and all 1,902 archive members. It replayed the original 23 Player verdicts and selected Editor XML checks, confirmed all 37 cell/ledger identities and 83 original command lifetime/stream receipts, and preserved false stage/gate flags. Classification is `ReusedAuditedEvidence`; new Unity/Player executions are zero.
 
-Local publishes factual evidence and returns to Primary without non-trivial implementation. Full legacy/resource/P01–P05 and M01 coverage, broader generic/interface/delegate/stack-trace work, startup/capacity/performance/memory, gated PureInterpreter qualification and independent stage review remain open before H2. R02 deferred CPU and original H1 RSS risks remain visible.
+Original H index SHA-256: `ef0e33ef8efa345bca758539646a8d81aefd2d16b5a1e0b139f78234332d1a28`.
+Original H archive SHA-256: `dd7adb4de12aa7203c69f993e57ebbde49e4f223edfd1179a2945e3d55f6e5cd` (164177597 bytes).
+Downloaded audit artifact **11257725069**, SHA-256 `0a181c4a1cb3161d9eb650081e5b0223b20379ceaf1cac84fe14c591137abc85`, was authenticated independently for all 90 indexed outputs / 91 ZIP files. Local's 9,000 earlier macOS custody checks are attributed to Local, not newly performed by Primary.
+
+## Earliest unfinished work and next boundary
+
+The earliest unfinished numbered R03 implementation step is **step3: PureInterpreter eligibility and qualification Gate**, not another repair retry. [R03-remaining-completion.md](stages/R03-remaining-completion.md) decomposes Primary-owned work into eligibility, resource-complete M01/P01–P05 regressions, broader runtime identity/compatibility, cumulative generation/role integration, impact-selected production-profile validation and independent stage review.
+
+Existing real-DLL cumulative/deleted-edge/ordinary-role host tests have passed and should be reused, not described as absent. Their broader integration evidence remains incomplete. No private-reference expansion, generalized ABI/resource compatibility or production performance claim follows from focused H.
+
+Prepare the next implementation and fixtures before publishing a new exact-source Local batch. Do not rerun H, reuse its apps as fresh evidence, or assign non-trivial work to Local. After full R03 exit conditions and independent stage review are satisfied, stop for user-initiated H2. Do not enter M08A now. R02's accepted deferred CPU risk and original H1 RSS risk remain visible through H2.
