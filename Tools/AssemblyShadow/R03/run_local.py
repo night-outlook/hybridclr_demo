@@ -248,9 +248,17 @@ class Batch:
         launch = self.command([state['executable'], '-batchmode', '-nographics', '-r03Request', root / 'request.json',
                                '-r03Output', root / 'raw.json', '-r03RunId', run_id, '-logFile', root / 'Player.log'], 180)
         raw = loads((root / 'raw.json').read_text())
-        verdict = verify_raw(request, raw, case, sha(root / 'request.json'), launch['pid'])
-        verdict.update({'rawSha256': sha(root / 'raw.json'), 'requestSha256': sha(root / 'request.json'),
-                        'buildReceiptSha256': sha(state['root'] / 'build-receipt.json'), 'launchPid': launch['pid'], 'runId': run_id})
+        binding = {'rawSha256': sha(root / 'raw.json'), 'requestSha256': sha(root / 'request.json'),
+                   'buildReceiptSha256': sha(state['root'] / 'build-receipt.json'), 'launchPid': launch['pid'], 'runId': run_id}
+        try:
+            verdict = verify_raw(request, raw, case, binding['requestSha256'], launch['pid'])
+        except Exception as error:
+            # Retain a failure receipt without changing the original raw bytes,
+            # throwing away attribution, or converting launch success to PASS.
+            write(root / 'verification.json', dict(binding, result='Failed', error=str(error)))
+            raise
+        verdict.update(binding)
+        verdict['result'] = 'Passed'
         write(root / 'verification.json', verdict)
         return verdict
 

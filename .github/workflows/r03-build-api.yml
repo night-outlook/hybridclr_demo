@@ -24,6 +24,31 @@ jobs:
           ref: 120bb01be680cec0375002a0823552d66d34b84c
           path: hybridclr_unity
           persist-credentials: false
+      - name: Resolve native source pins
+        id: pins
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import json, os, re
+          from pathlib import Path
+          pins=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              for repo in ('hybridclr','il2cpp_plus'):
+                  assert re.fullmatch('[0-9a-f]{40}',pins[repo])
+                  output.write(repo+'='+pins[repo]+'\n')
+          PYCODE
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: ${{ steps.pins.outputs.hybridclr }}
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: ${{ steps.pins.outputs.il2cpp_plus }}
+          path: il2cpp_plus
+          persist-credentials: false
       - name: Extract exact official Editor without installing or launching Unity
         shell: bash
         run: |
@@ -41,6 +66,13 @@ jobs:
           python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/build_api.py \
             --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \
             --output "$RUNNER_TEMP/r03-build-api/execution"
+      - name: Compile changed runtime translation units against the pinned SDK
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/r03-build-api/unity-paths.txt")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py \
+            --workspace "$GITHUB_WORKSPACE" --unity "$UNITY" \
+            --output "$RUNNER_TEMP/r03-build-api/native"
       - name: Preserve source identity and evidence inventory
         if: always()
         shell: bash
@@ -50,7 +82,7 @@ jobs:
           from pathlib import Path
           root = Path(os.environ['RUNNER_TEMP'])/'r03-build-api'
           root.mkdir(parents=True, exist_ok=True)
-          repositories = {name: subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity')}
+          repositories = {name: subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity','hybridclr','il2cpp_plus')}
           files = [{'path':str(p.relative_to(root)), 'size':p.stat().st_size, 'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
           data = {'kind':'R03PinnedBuildApiProvenance','workflowSha':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':repositories,'files':files,'unityEditorRun':False,'nativeExecution':False,'runtimeAcceptance':False}
           (root/'provenance.json').write_text(json.dumps(data,indent=2)+'\n')

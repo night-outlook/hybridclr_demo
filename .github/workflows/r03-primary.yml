@@ -38,6 +38,7 @@ jobs:
           if p['phase'] != 'candidate': raise SystemExit('Expected R03 candidate')
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
               output.write('package='+p['hybridclr_unity']+'\n')
+              for repo in ('hybridclr','il2cpp_plus'): output.write(repo+'='+p[repo]+'\n')
           PY
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         id: package
@@ -51,6 +52,18 @@ jobs:
           repository: night-outlook/hybridclr_unity
           ref: b936a495ade1691ebb6f3bab8fdff3ef34f6f192
           path: reference-package
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: ${{ steps.pins.outputs.hybridclr }}
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: ${{ steps.pins.outputs.il2cpp_plus }}
+          path: il2cpp_plus
           persist-credentials: false
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
         with:
@@ -86,6 +99,12 @@ jobs:
             --workspace "$GITHUB_WORKSPACE" \
             --admission-results "$RUNNER_TEMP/r03-evolution/lifetime/execution/host/admission/results.json" \
             --output "$RUNNER_TEMP/r03-evolution/provenance-repair"
+      - name: Native cache and bounded runtime probe regressions
+        shell: bash
+        run: |
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03/native_validation.py \
+            --workspace "$GITHUB_WORKSPACE" --sanitizers \
+            --output "$RUNNER_TEMP/r03-evolution/native"
       - name: Source integrity and graph call-site inventory
         if: always() && steps.package.outcome == 'success'
         shell: bash
@@ -107,7 +126,7 @@ jobs:
           from pathlib import Path
           root=Path(os.environ['RUNNER_TEMP'])/'r03-evolution'
           root.mkdir(parents=True,exist_ok=True)
-          repos={name:subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity','reference-package') if Path(name,'.git').exists()}
+          repos={name:subprocess.check_output(['git','-C',name,'rev-parse','HEAD'],text=True).strip() for name in ('hybridclr_demo','hybridclr_unity','hybridclr','il2cpp_plus','reference-package') if Path(name,'.git').exists()}
           for p in Path('hybridclr_demo/Tools/AssemblyShadow/R03').glob('*.py'):
               dst=root/'review-inputs/source'/p.name
               dst.parent.mkdir(parents=True,exist_ok=True)
@@ -117,7 +136,7 @@ jobs:
               dst.parent.mkdir(parents=True,exist_ok=True)
               shutil.copyfile(Path('hybridclr_demo')/relative,dst)
           for p in Path('hybridclr_demo/Tools/AssemblyShadow/R03').rglob('*'):
-              if p.suffix in ('.cs','.csproj'):
+              if p.suffix in ('.cs','.csproj','.cpp'):
                   dst=root/'review-inputs/full-source'/p.relative_to('hybridclr_demo')
                   dst.parent.mkdir(parents=True,exist_ok=True)
                   shutil.copyfile(p,dst)

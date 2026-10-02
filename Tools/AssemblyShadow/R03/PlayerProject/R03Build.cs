@@ -145,7 +145,7 @@ namespace AssemblyShadow.R03.Editor
             PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.Standalone, ManagedStrippingLevel.Low);
             PlayerSettings.SetApiCompatibilityLevel(NamedBuildTarget.Standalone, ApiCompatibilityLevel.NET_Standard);
             PlayerSettings.SetAdditionalIl2CppArgs("--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=" +
-                (config.featureEnabled ? "1" : "0") + " -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=" + config.diagnosticsLevel + "\"");
+                (config.featureEnabled ? "1" : "0") + " -DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=" + config.diagnosticsLevel + " -DHYBRIDCLR_R03_RUNTIME_PROBE=1\"");
             EditorUserBuildSettings.development = true;
             EditorUserBuildSettings.allowDebugging = false;
             EditorUserBuildSettings.connectProfiler = false;

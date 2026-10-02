@@ -31,7 +31,7 @@ namespace AssemblyShadow.R03.Player
     [Serializable] public sealed class Step { public string phase; public int code; public int state; }
     [Serializable] public sealed class Result
     {
-        public int schemaVersion = 1;
+        public int schemaVersion = 2;
         public string kind = "R03PlayerObservation";
         public string runId;
         public string caseId;
@@ -54,6 +54,7 @@ namespace AssemblyShadow.R03.Player
         public string beforeWarm;
         public string afterWarm;
         public string nativeMethod;
+        public string runtimeProbe;
         public string diagnostics;
         public int diagnosticsCode;
         public int finalState;
@@ -69,6 +70,13 @@ namespace AssemblyShadow.R03.Player
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_ObserveMethod(string assembly, string namespaze, string type, string method,
             int oldGuard, [Out] byte[] output, int capacity);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_BeginWarmProbe(string assembly);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_MarkWarmProbe(int boundary);
+        [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int R03_ReadRuntimeProbe([Out] byte[] output, int capacity);
+        private static readonly byte[] RuntimeProbeBuffer = new byte[131072];
         private static bool started;
         private static readonly List<Step> Steps = new List<Step>();
         private static Result result;
@@ -154,6 +162,13 @@ namespace AssemblyShadow.R03.Player
             }
             finally
             {
+                try
+                {
+                    int size = R03_ReadRuntimeProbe(RuntimeProbeBuffer, RuntimeProbeBuffer.Length);
+                    if (size < 1 || size >= RuntimeProbeBuffer.Length) throw new InvalidOperationException("Runtime probe receipt failed: " + size);
+                    result.runtimeProbe = Encoding.UTF8.GetString(RuntimeProbeBuffer, 0, size);
+                }
+                catch (Exception error) { result.exception = (result.exception ?? "") + "\nRuntimeProbeFailure: " + error; }
                 result.managedBytesAfter = GC.GetTotalMemory(false);
                 result.steps = Steps.ToArray();
                 result.endedUtc = DateTime.UtcNow.ToString("O");
@@ -199,13 +214,18 @@ namespace AssemblyShadow.R03.Player
             // measured 10,000-allocation interval. Both cores use this same code.
             AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info);
             for (int preparation = 0; preparation < 8; ++preparation) instance = Activator.CreateInstance(type);
+            int probe = R03_BeginWarmProbe(assembly);
+            if (probe < 0) throw new InvalidOperationException("Cannot bind exact warm probe: " + probe);
             if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)
                 result.beforeWarm = info;
+            if (probe == 1 && R03_MarkWarmProbe(1) != 1) throw new InvalidOperationException("Invalid warm start boundary.");
             for (int i = 0; i < 10000; ++i)
             { instance = Activator.CreateInstance(type); ++result.warmAllocationCount; }
+            if (probe == 1 && R03_MarkWarmProbe(2) != 1) throw new InvalidOperationException("Invalid warm end boundary.");
             GC.KeepAlive(instance);
             if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)
                 result.afterWarm = info;
+            if (probe == 1 && R03_MarkWarmProbe(3) != 1) throw new InvalidOperationException("Invalid observer end boundary.");
         }
         private static string Argument(string key)
         {

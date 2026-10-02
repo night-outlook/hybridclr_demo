@@ -21,7 +21,7 @@
     {"id":"C04-old-AOT-guard","role":"candidate-release","dlls":["virtual-slot/Methods.dll"],"invoke":"Methods","observeMethod":true,"oldExecutionGuard":true,"outcome":"success","value":42,"warmCertificate":true},
     {"id":"C05-direction-reversal","role":"candidate-release","dlls":["reversal/A.dll","reversal/B.dll"],"invoke":"B","outcome":"success","value":41,"warmCertificate":true},
     {"id":"C06-actual-target-cycle","role":"candidate-release","dlls":["true-cycle/A.dll","true-cycle/B.dll"],"invoke":"B","outcome":"target-cycle"},
-    {"id":"C07-private-primitive-append","role":"candidate-release","dlls":["primitive/R03Contract.dll"],"invoke":"R03Contract","outcome":"success","value":41,"warmCertificate":true},
+    {"id":"C07-private-primitive-append","primitiveLayoutProof":true,"role":"candidate-release","dlls":["primitive/R03Contract.dll"],"invoke":"R03Contract","outcome":"success","value":41,"warmCertificate":true},
     {"id":"C08-interface-change","role":"candidate-release","dlls":["interface/R03Contract.dll"],"invoke":"R03Contract","outcome":"admission-reject"},
     {"id":"C09-reference-to-value-kind","role":"candidate-release","dlls":["value/R03Contract.dll"],"invoke":"R03Contract","outcome":"admission-reject"},
     {"id":"C10-field-removal","role":"candidate-release","dlls":["removal/R03Contract.dll"],"invoke":"R03Contract","outcome":"admission-reject"},

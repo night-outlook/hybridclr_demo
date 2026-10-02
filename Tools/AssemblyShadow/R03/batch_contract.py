@@ -45,7 +45,7 @@ def integer(value, minimum=0):
 
 RAW_FIELDS = '''schemaVersion kind runId caseId requestSha256 pid startedUtc endedUtc unityVersion platform il2cpp
 published phase steps exception exceptionType exceptionStack invocationResult delegateResult warmAllocationCount
-beforeWarm afterWarm nativeMethod diagnostics diagnosticsCode finalState recovery recoveryCode managedBytesBefore managedBytesAfter acceptance'''
+beforeWarm afterWarm nativeMethod runtimeProbe diagnostics diagnosticsCode finalState recovery recoveryCode managedBytesBefore managedBytesAfter acceptance'''
 METHOD_FIELDS = '''schemaVersion available mappingCode mappingDetail baselineToken baselineSlot activeToken activeSlot
 differentPhysicalMethods activeOwner cacheIdentityStable baselineCctorBefore baselineCctorAfter activeGuard baselineGuard stateCode activeGeneration'''
 RECOVERY_FIELDS = '''schemaVersion enabled capabilityVersion stateCode state published abortAllowed dispositionCode disposition
@@ -63,7 +63,7 @@ classesCoverage memoryAccountingAvailable memoryAccountingScope'''
 
 def verify_raw(request, raw, expected, request_sha, launch_pid):
     fields(raw, RAW_FIELDS, 'Player observation')
-    require(raw['schemaVersion'] == 1 and raw['kind'] == 'R03PlayerObservation', 'Observation schema')
+    require(raw['schemaVersion'] == 2 and raw['kind'] == 'R03PlayerObservation', 'Observation schema')
     require(raw['acceptance'] is False and raw['il2cpp'] is True, 'Actual IL2CPP observation, not acceptance')
     require(raw['runId'] == request['runId'] and raw['caseId'] == request['caseId'], 'Request/run identity')
     require(raw['requestSha256'] == request_sha and raw['pid'] == launch_pid, 'Launch and exact request binding')
@@ -113,6 +113,7 @@ def verify_raw(request, raw, expected, request_sha, launch_pid):
     require(raw['phase'] == 'Completed' and not raw['exception'], 'Successful execution without hidden exception')
     require(raw['invocationResult'] == expected['value'] and raw['delegateResult'] == expected['value'], 'Actual reflection and delegate results')
     require(raw['warmAllocationCount'] == 10000, 'Complete warm allocation loop')
+    runtime_evidence = {}
     if expected.get('warmCertificate'):
         before, after = loads(raw['beforeWarm']), loads(raw['afterWarm'])
         for value in (before, after):
@@ -128,8 +129,10 @@ def verify_raw(request, raw, expected, request_sha, launch_pid):
             require(integer(a[key]) and integer(b[key]) and b[key] >= a[key], 'Monotonic integer counter: ' + key)
         require(b['admissionCacheHits'] - a['admissionCacheHits'] >= 10000 and b['baselineStateChecks'] - a['baselineStateChecks'] >= 10000,
                 'Warm certificate reuse retains baseline checks')
-        for key in ('admissionCacheMisses', 'admissionProofAttempts', 'admissionUnready', 'fieldWorkspaceBuilds', 'interfaceWorkspaceBuilds', 'layoutCheckCalls'):
-            require(b[key] == a[key], 'Repeated warm proof work: ' + key)
+        from runtime_contract import verify_warm, verify_primitive_layout
+        runtime_evidence['warmWindow'] = verify_warm(raw['runtimeProbe'], a, b, request['invokeAssembly'])
+        if expected.get('primitiveLayoutProof'):
+            runtime_evidence['prepublicationLayout'] = verify_primitive_layout(raw['runtimeProbe'])
     if request['observeMethod']:
         method = loads(raw['nativeMethod'])
         fields(method, METHOD_FIELDS, 'Real MethodInfo probe')
@@ -151,4 +154,4 @@ def verify_raw(request, raw, expected, request_sha, launch_pid):
             require(method['activeGuard'] == -1 and method['baselineGuard'] == -1 and raw['finalState'] == 6, 'No unintended guard test')
     else:
         require(not raw['nativeMethod'] and raw['finalState'] == 6, 'No unexpected native probe or failure')
-    return {'outcome': outcome, 'state': raw['finalState'], 'value': raw['invocationResult']}
+    return {'outcome': outcome, 'state': raw['finalState'], 'value': raw['invocationResult'], **runtime_evidence}
