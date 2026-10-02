@@ -1,0 +1,108 @@
+{
+  "kind": "R03PinnedBclProducerSourceAnalysis",
+  "schemaVersion": 1,
+  "sourceWorkflowRun": 36988063609,
+  "sourceWorkflowCommit": "80c665d02e0dbbed7938c15b58a02a37d8e0dbca",
+  "artifactId": 11217714458,
+  "artifactZipSha256": "cdd0fd15b0635090c145606aca13a5c85b6aebd62059f47ace106336fdf77985",
+  "unityVersion": "2022.3.62f2",
+  "bclRelativePath": "MonoBleedingEdge/lib/mono/unityaot-macos/mscorlib.dll",
+  "bclSha256": "d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83",
+  "assembly": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+  "enumeratorTypes": [
+    {"type":"System.ArraySegment`1/Enumerator","valueType":true},
+    {"type":"System.ReadOnlySpan`1/Enumerator","valueType":true},
+    {"type":"System.Span`1/Enumerator","valueType":true},
+    {"type":"System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1/Enumerator","valueType":true},
+    {"type":"System.Runtime.CompilerServices.ConditionalWeakTable`2/Enumerator","valueType":false},
+    {"type":"System.Collections.Generic.Dictionary`2/Enumerator","valueType":true},
+    {"type":"System.Collections.Generic.Dictionary`2/KeyCollection/Enumerator","valueType":true},
+    {"type":"System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator","valueType":true},
+    {"type":"System.Collections.Generic.List`1/Enumerator","valueType":true},
+    {"type":"System.Collections.Generic.Queue`1/Enumerator","valueType":true},
+    {"type":"System.Collections.Generic.Stack`1/Enumerator","valueType":true},
+    {"type":"System.Collections.Generic.LowLevelListWithIList`1/Enumerator","valueType":true},
+    {"type":"System.Buffers.ReadOnlySequence`1/Enumerator","valueType":true}
+  ],
+  "selectedProducerIl": [
+    {
+      "method": "System.Void System.Gen2GcCallback::Finalize()",
+      "token": 100665991,
+      "instructions": [
+        "IL_0000: ldarg.0",
+        "IL_0001: ldflda System.Runtime.InteropServices.GCHandle System.Gen2GcCallback::_weakTargetObj",
+        "IL_0006: call System.Object System.Runtime.InteropServices.GCHandle::get_Target()",
+        "IL_000B: stloc.0",
+        "IL_000C: ldloc.0",
+        "IL_000D: brtrue.s IL_001C",
+        "IL_000F: ldarg.0",
+        "IL_0010: ldflda System.Runtime.InteropServices.GCHandle System.Gen2GcCallback::_weakTargetObj",
+        "IL_0015: call System.Void System.Runtime.InteropServices.GCHandle::Free()",
+        "IL_001A: leave.s IL_0048",
+        "IL_001C: nop",
+        "IL_001D: ldarg.0",
+        "IL_001E: ldfld System.Func`2<System.Object,System.Boolean> System.Gen2GcCallback::_callback",
+        "IL_0023: ldloc.0",
+        "IL_0024: callvirt System.Boolean System.Func`2<System.Object,System.Boolean>::Invoke(System.Object)",
+        "IL_0029: brtrue.s IL_002D",
+        "IL_002B: leave.s IL_0048",
+        "IL_002D: leave.s IL_0032",
+        "IL_002F: pop",
+        "IL_0030: leave.s IL_0032",
+        "IL_0032: call System.Boolean System.Environment::get_HasShutdownStarted()",
+        "IL_0037: brtrue.s IL_003F",
+        "IL_0039: ldarg.0",
+        "IL_003A: call System.Void System.GC::ReRegisterForFinalize(System.Object)",
+        "IL_003F: leave.s IL_0048",
+        "IL_0041: ldarg.0",
+        "IL_0042: call System.Void System.Runtime.ConstrainedExecution.CriticalFinalizerObject::Finalize()",
+        "IL_0047: endfinally",
+        "IL_0048: ret"
+      ]
+    },
+    {
+      "method": "System.Boolean System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1::Gen2GcCallbackFunc(System.Object)",
+      "token": 100689297,
+      "instructions": [
+        "IL_0000: ldarg.0",
+        "IL_0001: castclass System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1<T>",
+        "IL_0006: callvirt System.Boolean System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1<T>::Trim()",
+        "IL_000B: ret"
+      ]
+    },
+    {
+      "method": "System.Boolean System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1::GetTrimBuffers()",
+      "token": 100689299,
+      "instructions": ["IL_0000: ldc.i4.1", "IL_0001: ret"]
+    },
+    {
+      "method": "System.Boolean System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1::Trim()",
+      "token": 100689296,
+      "fullIlSha256": "0e45ac17783c0ae3cf419e3fb1164e906f1729c17f7ba43fd0f78cc3747b9013",
+      "selectedInstructions": [
+        "IL_0006: call System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1/MemoryPressure<T> System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1<T>::GetMemoryPressure()",
+        "IL_0059: ldloc.1",
+        "IL_005A: ldc.i4.2",
+        "IL_005B: bne.un IL_0121",
+        "IL_0068: ldsfld System.Runtime.CompilerServices.ConditionalWeakTable`2<T[][],System.Object> System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1<T>::s_allTlsBuckets",
+        "IL_006D: callvirt System.Collections.Generic.IEnumerator`1<System.Collections.Generic.KeyValuePair`2<T[][],System.Object>> System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<T[][],System.Object>>::GetEnumerator()",
+        "IL_00DE: ldsfld System.Runtime.CompilerServices.ConditionalWeakTable`2<T[][],System.Object> System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1<T>::s_allTlsBuckets",
+        "IL_00E3: callvirt System.Collections.Generic.IEnumerator`1<System.Collections.Generic.KeyValuePair`2<T[][],System.Object>> System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<T[][],System.Object>>::GetEnumerator()"
+      ]
+    },
+    {
+      "method": "System.Void System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1::Return(T[],System.Boolean)",
+      "token": 100689295,
+      "selectedInstructions": [
+        "IL_008D: ldftn System.Boolean System.Buffers.TlsOverPerCoreLockedStacksArrayPool`1<T>::Gen2GcCallbackFunc(System.Object)",
+        "IL_0099: call System.Void System.Gen2GcCallback::Register(System.Func`2<System.Object,System.Boolean>,System.Object)"
+      ]
+    }
+  ],
+  "inference": "The pinned ArrayPool Gen2 finalizer is a concrete candidate for the concurrent reference Enumerator admission. F does not retain enough caller/declaring-type data to establish that historical actor. New natural controls must confirm actual finalizer/delegate/closed-type identities.",
+  "otherKnownCaller": "TaskScheduler.GetTaskSchedulersForDebugger also enumerates a ConditionalWeakTable; simple-name matching is insufficient.",
+  "runtimeProducerIdentified": false,
+  "unityEditorRun": false,
+  "playerRun": false,
+  "runtimeAcceptance": false
+}

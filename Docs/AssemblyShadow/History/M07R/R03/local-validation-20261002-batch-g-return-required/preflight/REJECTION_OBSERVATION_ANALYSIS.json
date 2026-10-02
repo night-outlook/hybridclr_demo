@@ -1,0 +1,445 @@
+{
+  "kind": "ReadOnlyRejectedStageObservationAnalysis",
+  "utc": "2026-10-02T10:49:51.046946+00:00",
+  "rows": [
+    {
+      "id": "C02-private-reference",
+      "state": "Failed",
+      "error": "Exact production rejection code",
+      "pid": 50755,
+      "runId": "50f65d94a9c149ee9b1c53b429a8b342",
+      "commandId": "0062",
+      "commandExitCode": 0,
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/players/C02-private-reference/raw.json",
+      "rawSha256": "c4397d2c89511affc1e32e32722a1e1b7d82f644d168b31ef1c6b20328faaaf4",
+      "requestSha256": "8514c1bcb2625024773050b70f65eeb25106d18d6521c2eaf00bae03b495f962",
+      "verificationSha256": "9b091a3c3a3777c3e6d09c422f39bf65f2aa5e9b61cf968ba3937da136e3ff9c",
+      "logSha256": "c8518337f421dc12825af1369b39df5849a01f42cc656b94917f07cc44cc3658",
+      "phase": "Validate",
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Layout",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "published": false,
+      "stateCode": 8,
+      "probeAvailable": false,
+      "exception": "\nRuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3\n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 15,
+        "detail": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 15,
+        "reason": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logExcerpts": [],
+      "verifierReceipt": {
+        "buildReceiptSha256": "b51603f8f997952dbe790ea3eb1aa6c82a68133787a77624991687373dc6fc70",
+        "error": "Exact production rejection code",
+        "launchPid": 50755,
+        "rawSha256": "c4397d2c89511affc1e32e32722a1e1b7d82f644d168b31ef1c6b20328faaaf4",
+        "requestSha256": "8514c1bcb2625024773050b70f65eeb25106d18d6521c2eaf00bae03b495f962",
+        "result": "Failed",
+        "runId": "50f65d94a9c149ee9b1c53b429a8b342"
+      }
+    },
+    {
+      "id": "C08-interface-change",
+      "state": "Failed",
+      "error": "Exact production rejection code",
+      "pid": 50769,
+      "runId": "8f3e43a2442b4bb3a1ee94e3d3060e31",
+      "commandId": "0068",
+      "commandExitCode": 0,
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/players/C08-interface-change/raw.json",
+      "rawSha256": "e8267d8b6e6e88c3105805c85134cba545e923616b6f307a8c79fb1c9913d999",
+      "requestSha256": "5895acf7bf501bb60583dc44131014e59fb19d91a31ff86eacb055e688b7e303",
+      "verificationSha256": "0ccf13c455d2d81a8cf6ad4601f11d0e500b891f1545fb8b957f3ed761a140ec",
+      "logSha256": "5d73e60594dff3d87eb879683e2f2e540fbf78c76bcdae35cdcb36cc217e29ee",
+      "phase": "Validate",
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "published": false,
+      "stateCode": 8,
+      "probeAvailable": false,
+      "exception": "\nRuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3\n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 15,
+        "detail": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 15,
+        "reason": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logExcerpts": [],
+      "verifierReceipt": {
+        "buildReceiptSha256": "b51603f8f997952dbe790ea3eb1aa6c82a68133787a77624991687373dc6fc70",
+        "error": "Exact production rejection code",
+        "launchPid": 50769,
+        "rawSha256": "e8267d8b6e6e88c3105805c85134cba545e923616b6f307a8c79fb1c9913d999",
+        "requestSha256": "5895acf7bf501bb60583dc44131014e59fb19d91a31ff86eacb055e688b7e303",
+        "result": "Failed",
+        "runId": "8f3e43a2442b4bb3a1ee94e3d3060e31"
+      }
+    },
+    {
+      "id": "C09-reference-to-value-kind",
+      "state": "Failed",
+      "error": "Exact production rejection code",
+      "pid": 50771,
+      "runId": "297004ff1901461f9bb4c33dcd86fa33",
+      "commandId": "0069",
+      "commandExitCode": 0,
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/players/C09-reference-to-value-kind/raw.json",
+      "rawSha256": "e77481778630a0f31c4dd5d4ab6a52e2d8e6420a4f60ba59be8adb5da9498867",
+      "requestSha256": "d255663fd6838c54357a648546d8760520f12580f28f2f03f4dfca4558eea686",
+      "verificationSha256": "2ebfefc1f17294da504321eb6a295b7ce76f7d428eee0536dc44e15747c7e4bd",
+      "logSha256": "d241a21a3c74e5c08475fec5c8111bbb611478845f2c20475c3fb20ee9582664",
+      "phase": "Validate",
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "published": false,
+      "stateCode": 8,
+      "probeAvailable": false,
+      "exception": "\nRuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3\n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 15,
+        "detail": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 15,
+        "reason": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logExcerpts": [],
+      "verifierReceipt": {
+        "buildReceiptSha256": "b51603f8f997952dbe790ea3eb1aa6c82a68133787a77624991687373dc6fc70",
+        "error": "Exact production rejection code",
+        "launchPid": 50771,
+        "rawSha256": "e77481778630a0f31c4dd5d4ab6a52e2d8e6420a4f60ba59be8adb5da9498867",
+        "requestSha256": "d255663fd6838c54357a648546d8760520f12580f28f2f03f4dfca4558eea686",
+        "result": "Failed",
+        "runId": "297004ff1901461f9bb4c33dcd86fa33"
+      }
+    },
+    {
+      "id": "C10-field-removal",
+      "state": "Failed",
+      "error": "Exact production rejection code",
+      "pid": 50773,
+      "runId": "5fa57d312d7f42c2bf546442451b9088",
+      "commandId": "0070",
+      "commandExitCode": 0,
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/players/C10-field-removal/raw.json",
+      "rawSha256": "9913f38eb69b4d3e348ce9ccfae6e023df865fc4fda739feb6092edb906ba5cf",
+      "requestSha256": "a14ecc16c83a6de5fadab4c220fd8ddf72e77cdf08a2afa9f2a6d3ec0eea14f6",
+      "verificationSha256": "480fc3c189a5ab88e51bd0783ed19bda7c55c403a4996c35dfba10f081a4cf79",
+      "logSha256": "9a24fff8e0a24c04535b1426fcb5758435350924bdbaae029efa524d6a038912",
+      "phase": "Validate",
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "published": false,
+      "stateCode": 8,
+      "probeAvailable": false,
+      "exception": "\nRuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3\n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 15,
+        "detail": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 15,
+        "reason": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logExcerpts": [],
+      "verifierReceipt": {
+        "buildReceiptSha256": "b51603f8f997952dbe790ea3eb1aa6c82a68133787a77624991687373dc6fc70",
+        "error": "Exact production rejection code",
+        "launchPid": 50773,
+        "rawSha256": "9913f38eb69b4d3e348ce9ccfae6e023df865fc4fda739feb6092edb906ba5cf",
+        "requestSha256": "a14ecc16c83a6de5fadab4c220fd8ddf72e77cdf08a2afa9f2a6d3ec0eea14f6",
+        "result": "Failed",
+        "runId": "5fa57d312d7f42c2bf546442451b9088"
+      }
+    },
+    {
+      "id": "D01-private-reference",
+      "state": "Failed",
+      "error": "Exact production rejection code",
+      "pid": 50787,
+      "runId": "79da4b81872a452aac89277d996499df",
+      "commandId": "0076",
+      "commandExitCode": 0,
+      "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/players/D01-private-reference/raw.json",
+      "rawSha256": "c31bfa3d7e04d74f3e5b4d77ad8a6cb10d64a06aeb70d1b17bbf8f32524a0166",
+      "requestSha256": "9ecd0694eba8ae3031c02291d6d7357e8a38a77ca8e4e5dbb315265b3e3d12e8",
+      "verificationSha256": "05f3fc4fd479abc4055827e4d1310a2200b8698038db32a3e395698a79e57355",
+      "logSha256": "3d63b36f97f808a0591a947d392c820a602b5bfb36639f86e9a5980795285aae",
+      "phase": "Validate",
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Layout",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "published": false,
+      "stateCode": 8,
+      "probeAvailable": false,
+      "exception": "\nRuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3\n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 15,
+        "detail": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 15,
+        "reason": "ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "logExcerpts": [],
+      "verifierReceipt": {
+        "buildReceiptSha256": "ba5c9fdb39a0fcc45a5582263d9f5fbb163d85f8f40e1119fcd7636c9cb3916e",
+        "error": "Exact production rejection code",
+        "launchPid": 50787,
+        "rawSha256": "c31bfa3d7e04d74f3e5b4d77ad8a6cb10d64a06aeb70d1b17bbf8f32524a0166",
+        "requestSha256": "9ecd0694eba8ae3031c02291d6d7357e8a38a77ca8e4e5dbb315265b3e3d12e8",
+        "result": "Failed",
+        "runId": "79da4b81872a452aac89277d996499df"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp",
+      "sha256": "58a44d31829579938e76b9aa53bc7312684681505ed83a09cecafc865ad76e17",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs",
+      "sha256": "704a350687e75bb04900ae6b3c46198a2b4f30845ff1f530d76300dea8634e22",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeKey.cpp",
+      "sha256": "3a0df0727e57946eb6c9d8d65f6fcc5d350ddf55d760dabc906a5705307685f4",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeKey.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/MetadataCache.cpp",
+      "sha256": "519d8df12fe38253ef63c2cdc3dcb6daf1547924377aefe7aed403d207250c35",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/MetadataCache.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/GlobalMetadata.cpp",
+      "sha256": "a2012ab491d3838e08f043529348e3f69b7a04b5bcf020192703f07cc6c60c7e",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/GlobalMetadata.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+      "sha256": "825755a0379df3f83b6e7386adabc68538ac8c7b83912c2d4596812bd479284f",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/MetadataModule.h",
+      "sha256": "2b4708f0a0d4cb7f3c0c72ed453dfa5183de3ae95c7d9ca44a544e8345a1ff54",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/MetadataModule.h"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/MetadataUtil.cpp",
+      "sha256": "c9ab1bb824b917b7bee34988b2b229acbe7386aa52f5dfb8987a906318e4186e",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/MetadataUtil.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp",
+      "sha256": "874225ed20d6889195e44910133c2711a34ecd45a755a76677bd0b8a361c580e",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/InterpreterMetadataIndexRuntime.cpp"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/metadata/AssemblyShadowBridge.cpp",
+      "sha256": "66c9d2d36a1d373186071ad56a07f21f85663c6d00719c38e51d556fd23bc5ed",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/AssemblyShadowBridge.cpp"
+    }
+  ],
+  "likelyRootCause": "New ProbeType Format call enters physical metadata-resolution scope and re-resolves a private staged class after its staging owner scope ended. Sparse metadata decode has no current owner; managed exception allocation is rejected by the metadata allocation guard and mutates lastError to 15. ReadRuntimeProbe catches and returns -3 before emitting JSON. Exact innermost formatter/codec throw site and error were not instrumented.",
+  "limits": "Static source trace plus five independent existing raw observations; no new native probe, Player launch, source edit, counter waiver or runtime re-execution"
+}

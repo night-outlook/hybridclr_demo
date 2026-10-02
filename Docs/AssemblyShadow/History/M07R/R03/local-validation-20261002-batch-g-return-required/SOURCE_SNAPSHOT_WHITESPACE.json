@@ -1,0 +1,46 @@
+{
+  "status": "Passed",
+  "policy": "Only exact pinned source snapshot bytes exempted; no source normalization or prose exemption",
+  "rows": [
+    {
+      "path": "preflight/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/MetadataModule.h",
+      "repository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "source": "hybridclr/metadata/MetadataModule.h",
+      "sha256": "2b4708f0a0d4cb7f3c0c72ed453dfa5183de3ae95c7d9ca44a544e8345a1ff54",
+      "preExistingTrailingWhitespaceLines": [
+        57
+      ]
+    },
+    {
+      "path": "preflight/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/InterpreterImage.h",
+      "repository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "source": "hybridclr/metadata/InterpreterImage.h",
+      "sha256": "d78a4bdff310c9f33ddf5936ba0fc9c1783428a8db6ad044116cd47e8717228d",
+      "preExistingTrailingWhitespaceLines": [
+        649,
+        868
+      ]
+    }
+  ],
+  "exactDiffContext": {
+    "path": "preflight/probe-format-f-to-g.diff",
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "diff",
+      "8f86dda1aa0582a5b2d55aa650ea321f710cb49a",
+      "78767ea4d7ea064115daffcdbb2ce9435569814c",
+      "--",
+      "Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp"
+    ],
+    "sha256": "ca9302cac4e997d245f3f05fc3ae2f398f33cf2dbf8f1bce07a18a75e2cac469",
+    "preExistingUnifiedDiffBlankContextLines": [
+      13,
+      17,
+      39
+    ]
+  }
+}

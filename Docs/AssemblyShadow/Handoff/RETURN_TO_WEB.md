@@ -1,6 +1,52 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch F: attributed concurrent cold admission blocks four Release witnesses
+## Current return — R03 batch G: rejected-stage type-key observation replaces terminal diagnostics
+
+**ReturnRequired: 37 cells, 32 Passed / 5 Failed / 0 Blocked; seal Passed; runner exit 1.** Four fresh builds, 754 selected actual EditMode cases with zero skips, six strict warm witnesses, producer-controls aggregate and complete C07 cell Passed. All 23 fresh Player processes ran. Four controls confirmed the actual ArrayPool Gen2 finalizer/delegate producer; their diagnostic results Passed and all unisolated warm certificates remain Failed. Five expected-negative cells fail during probe observation. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md) for authority, environment, states and hashes; [G checkpoint](../History/M07R/R03/local-validation-20261002-batch-g-return-required/README.md) for preserved bytes. No Local source fix or retry. R03Accepted=false; H2Passed=false; M01 NoCoverage; PureInterpreter expansion disabled. Return to Primary.
+
+### R03-LG-001 — full type-key observation of rejected staged classes allocates and changes the original failure
+
+**Symptom and exact reproduction already performed.** Execute the prescribed single runner at the four source commits recorded in LOCAL_VALIDATION.md, branch codex/assembly-shadow-r01b-h1, Unity 2022.3.62f2 and SDK 8.0.318. Actual interval UTC 2026-10-02T10:38:14.388652+00:00–2026-10-02T10:44:38.180250+00:00, runner PID 45229:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 78767ea4d7ea064115daffcdbb2ce9435569814c
+```
+
+Do not retry G or relaunch its apps. In C02-private-reference, C08-interface-change, C09-reference-to-value-kind, C10-field-removal and D01-private-reference: Configure/Begin/Reserve/Stage succeed; Validate returns code 16/state 8, phase Validate, published=false. In managed finally, R03_ReadRuntimeProbe returns -3. The raw receipt records:
+
+```text
+RuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3
+at AssemblyShadow.R03.Player.R03Player.Start ()
+lastError=15
+terminalFailureCode=15
+ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific
+state=Failed; disposition=RestartRequired; abortAllowed=false; published=false
+verification.error=Exact production rejection code; verification.result=Failed
+```
+
+runtimeProbe is empty/Unavailable. Original steps retain code 16, but later diagnostics/recovery contain 15. No Commit, business work or warm witness occurred in these five cases. All five Player command exits are 0, which is not verifier success. C06 true-cycle fails before retained layouts and Passed its expected-negative contract; reference/off cases are unaffected. These five cases were Passed in F; F evidence is not rewritten.
+
+**Exact evidence.** Live `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/players/<case>/raw.json`, request.json, verification.json and Player logs; corresponding `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/commands/<command-id>/` receipts/streams. Exact immutable copies are [batch/players](../History/M07R/R03/local-validation-20261002-batch-g-return-required/batch/players) and [batch/commands](../History/M07R/R03/local-validation-20261002-batch-g-return-required/batch/commands). [REJECTION_OBSERVATION_ANALYSIS.json](../History/M07R/R03/local-validation-20261002-batch-g-return-required/preflight/REJECTION_OBSERVATION_ANALYSIS.json) contains complete run nonces, source bindings, build-receipt/request/log hashes, steps and excerpts. The source-bound Failed verification receipts agree with cell and ledger status.
+
+| Case | PID | Command | raw.json SHA-256 | verification.json SHA-256 |
+| --- | --- | --- | --- | --- |
+| `C02-private-reference` | 50755 | `0062` | `c4397d2c89511affc1e32e32722a1e1b7d82f644d168b31ef1c6b20328faaaf4` | `9b091a3c3a3777c3e6d09c422f39bf65f2aa5e9b61cf968ba3937da136e3ff9c` |
+| `C08-interface-change` | 50769 | `0068` | `e8267d8b6e6e88c3105805c85134cba545e923616b6f307a8c79fb1c9913d999` | `0ccf13c455d2d81a8cf6ad4601f11d0e500b891f1545fb8b957f3ed761a140ec` |
+| `C09-reference-to-value-kind` | 50771 | `0069` | `e77481778630a0f31c4dd5d4ab6a52e2d8e6420a4f60ba59be8adb5da9498867` | `2ebfefc1f17294da504321eb6a295b7ce76f7d428eee0536dc44e15747c7e4bd` |
+| `C10-field-removal` | 50773 | `0070` | `9913f38eb69b4d3e348ce9ccfae6e023df865fc4fda739feb6092edb906ba5cf` | `480fc3c189a5ab88e51bd0783ed19bda7c55c403a4996c35dfba10f081a4cf79` |
+| `D01-private-reference` | 50787 | `0076` | `c31bfa3d7e04d74f3e5b4d77ad8a6cb10d64a06aeb70d1b17bbf8f32524a0166` | `05f3fc4fd479abc4055827e4d1310a2200b8698038db32a3e395698a79e57355` |
+
+**Most likely root cause and why observation permits the mutation.** Read-only source tracing is retained in [diagnostic-source-snapshot](../History/M07R/R03/local-validation-20261002-batch-g-return-required/preflight/diagnostic-source-snapshot) and [probe-format-f-to-g.diff](../History/M07R/R03/local-validation-20261002-batch-g-return-required/preflight/probe-format-f-to-g.diff). New G `PlayerProject/AssemblyShadowR03Probe.cpp` ProbeType (lines 193–194) calls `AssemblyShadowTypeKey::Format(&klass->byval_arg)` for every retained baseline/target layout. Serialization occurs after Validate returns and its private owner/resolver scope ends for rejected unpublished layouts. Format enters AssemblyShadowTypeMetadataScope (AssemblyShadowTypeKey.cpp 218–221); FormatType/RawDefinition resolve class/valuetype via MetadataCache::GetTypeInfoFromHandle (1190) → GlobalMetadata::GetTypeInfoFromHandle (792) → interpreter MetadataModule image/token decode. MetadataModule.h private-image lookup precedes published lookup; InterpreterMetadataIndexRuntime.cpp CurrentOwner (161–174) depends on construction/private/public owner context; Decode (196–205) rejects an absent owner. MetadataUtil.cpp codec error helpers (19–48) raise a managed ExecutionEngineException. Inside Format's metadata scope, managed exception allocation enters ResolveAllocation (AssemblyShadowTypeResolver.cpp 884–892) and trips the physical-metadata allocation guard, recording code 15. Probe catch-all returns -3 and discards partial JSON; R03Player.cs finally (166–184) reads terminal diagnostics after probe retrieval. Thus diagnostic collection can overwrite the authoritative validation failure it is intended to report.
+
+Runtime proves the original code16 → failed probe → code15 sequence in five fresh processes; the private-owner/codec path is the most likely static explanation. The exact first failing layout row and inner native stack are Unavailable, so an OwnerRequired return is not claimed as directly observed. This is not evidence that retained memory was freed. The source snapshot and diff are historical read-only source evidence, not extra runtime coverage.
+
+**Impact boundary.** Rejected unpublished staged layouts, full nested/generic type-key formatting, metadata ownership/lifetime and native probe receipt generation; five negative acceptance cells lose both a usable probe and original terminal diagnostics. Positive warm/counter checks and all four controls passed unchanged. Cross-module ownership and formatting semantics make this a non-trivial Primary issue, beyond a bounded Local patch.
+
+**Concrete implementation direction.** Capture immutable full type keys/layout identity while valid owner context exists, or implement genuinely metadata-only formatting over authenticated owned physical metadata. Preserve nested/generic identity and explicit unavailable/error states. Diagnostic retrieval must not resolve/lazily initialize classes, publish staged metadata or allocate a managed exception; it must preserve original error16/recovery. Keep private visibility and allocation guards intact. Do not accept error15, ignore a probe exception, loosen exact rejection verification, extend a lease or broaden Local implementation. Record original diagnostics before and after native receipt retrieval in a focused rejected-layout regression to prove observation is non-mutating. Instrument the formatter/codec path if needed to establish the first failing row without changing semantics.
+
+**Validation after the fix.** Primary host/native negative-path regressions plus a newly authorized fresh pinned Local batch. Require all five exact-negative cells retain original error16 and safe bounded probe evidence, all 37 cells, four fresh builds, 754 selected cases/zero skips and 23 fresh Players. Preserve all six strict warm witnesses, positive C07 proof, actual producer attribution and four control certificates' Failed state when contaminated. No reinterpretation of G/F or production GC acceptance. Wider R03 legacy/resource/generic/delegate/interface/stack/performance/memory and independent review/H2 remain open.
+
+## Historical return — R03 batch F: attributed concurrent cold admission blocks four Release witnesses
 
 **ReturnRequired: 32 Passed, 4 Failed, 0 Blocked; focused seal Passed; runner exit 1.** Exactly one batch, 2026-10-02 01:26:18–01:32:39 PDT. Four fresh native build cells and all 754 selected Editor cases passed. All 19 fresh-process Players executed: 15 Passed, 4 Failed. Both Debug warm witnesses Passed; all four Release warm witnesses Failed. No Local source change or retry. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md) for exact paths/branches/commits/tooling/operations and the immutable [F checkpoint](../History/M07R/R03/local-validation-20261002-batch-f-return-required/README.md). Frozen M01 coverage remains NoCoverage.
 
