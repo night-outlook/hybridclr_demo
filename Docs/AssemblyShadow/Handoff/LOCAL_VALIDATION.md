@@ -1,6 +1,92 @@
 # Local Validation report
 
-## Current run — R03 batch E, 2026-10-01: provenance/scope repairs pass; four runtime cells fail
+## Current run — R03 batch F, 2026-10-02: attribution and positive staged proof observed; four exact-loop cells fail
+
+**Local Validation → Primary Implementation. Result=ReturnRequired; 36 cells: 32 Passed, 4 Failed, 0 Blocked; sealStatus=Passed; runner exit 1.** Exactly one invocation, 2026-10-02 01:26:18–01:32:39 PDT (UTC 2026-10-02T08:26:18.098066+00:00–2026-10-02T08:32:39.709297+00:00), runner PID 32186. All four fresh native build roles and all 754 selected Editor cases passed. All 19 fresh-process Players ran: 15 Passed, 4 Failed. Six warm witnesses produced complete native probes; both Debug witnesses Passed, four Release witnesses Failed. No Local source fix, retry, pin/scope/expectation/warm-up/deadline/lifetime change or acceptance promotion occurred.
+
+### Executed authority, environment and operations
+
+Each owning checkout independently matched its exact absolute top-level path, branch, clean status, canonical origin and remote tip before and after execution. All branches are `codex/assembly-shadow-r01b-h1`; origins are `git@github.com:night-outlook/<repository>.git`. Demo safely fast-forwarded from published E return `b97375d4b12357d0f987cf7738eaa422d4615081`. Tested executable source anchor `67e8c1df18f84dda4ec70edd45b1ed717bcea4e8` is an ancestor; its delta to the executed demo is documentation-only. The latest WEB_TO_LOCAL.md-touching commit matched prompt/local/remote HEAD. Pre-existing state was classified before synchronization and all checkouts remained clean throughout execution; unrelated worktrees were preserved.
+
+| Repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `8f86dda1aa0582a5b2d55aa650ea321f710cb49a` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `aae0ebb55b8761a7a905b410349d006d76fa748b` |
+
+Fresh detached, clean reference worktrees are retained under `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/`: HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. The native reference build uses its frozen core with the current package/harness. Four role source manifests, configs, isolated package references and installed pins bind exact cores, package, executed demo and fixture DLL inventories. Historical owning-project H1 pin files remain unchanged; the owning Unity project was not built. No primary-checkout or previous batch Library/HybridCLRData/Builds/app was used.
+
+Environment: macOS 26.5 arm64, Python 3.14.6, .NET SDK 8.0.318/runtime 8.0.21, PowerShell 7.6.3, Apple clang 21.0.0 and macOS SDK 26.5. Actual Unity is `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64. The .NET SDK at `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` supplies managed compilation only; Unity 6000 Editor was not launched. Exact tool/version, Git/worktree/submodule, source/package/config hashes, retained process observations and scoped environment are in checkpoint `preflight/`.
+
+Command from the owning candidate demo:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 8f86dda1aa0582a5b2d55aa650ea321f710cb49a
+```
+
+`preflight/runner-exit.json` binds absolute cwd, start/end, PID, environment, exit and batchInvocations=1. All 79 command receipts retain per-operation times/argv/PID/process group and stream paths/hashes. Outer Unity PIDs identify supervisors; direct Player PIDs bind exact requests/run IDs/raw evidence. Schema-2 build receipts bind installedNativeRoot/nativeBinding and complete native/managed/app inventories. Explicit Unity build GUID is Unavailable in these receipts; no GUID is inferred. Four distinct fresh role roots, source/config hashes, complete app inventories and 19 direct launch/run-ID bindings provide the recorded provenance.
+
+### Fresh validation and evidence states
+
+| Validation | State | Evidence and boundary |
+| --- | --- | --- |
+| Entry/final source authority and reference worktrees | Passed | Exact clean four-repository source tuple, origins/remotes and detached references. |
+| Verifier/input/API/lifetime/provenance/scope/probe contracts | Passed | 144 Python tests, command 0001; these do not substitute for real runtime coverage. |
+| Managed graph suites and admission | Passed | Reference 9/9, candidate 9/9, admission 35/35. |
+| Player fixtures / compiler input prerequisites | Passed | 15 DLLs, 33 metadata audits, 33 actual pinned Unity compiler consumers, invalid-key negative control and valid/invalid actual Editor probes. |
+| Complete helper/package API prerequisite | Passed | Real Runtime/CodeGen/Editor assemblies and helper, 425 input bindings/115 defines, commands 0051–0055. Old C helper negative control has exactly two CS0266 errors and no DLL. |
+| Four preparations and fresh native build cells | Passed | Candidate Release, reference Release, candidate Debug, feature-OFF; real installation/generation/IL2CPP/C++/link. All app inventories/ARM64/source/native bindings authenticated. |
+| Actual selected EditMode execution | Passed | Command 0060, exact 754 catalog identities, all Passed, zero skips/failures/inconclusive; all 35 mandatory R03 IDs and cycle case present. |
+| Excluded frozen M01 resource asset test | NoCoverage | Exact identity/missing assets/reason in editor-scope.json and editor-verification.json; fullLegacyRegressionAcceptance=false. |
+| Fresh-process Players | 15 Passed / 4 Failed | All 19 unique PID/run-ID requests ran once; each has source-bound Passed/Failed verification.json, original raw and cell state. |
+| Six warm probes: shape/boundary/cold-event reconciliation | Passed observation audit | Six complete probes, labels 0/10/1/2/11/3, no overflow/saturation/dropped threads; all 30 native spans reconcile. This does not waive exact-loop failures. |
+| Required warm certificates | 2 Passed / 4 Failed | Debug D02/D03 Passed; Release C03/C04/C05/C07 Failed for admissionCacheMisses during labels 1→2. |
+| C07 positive physical-layout subcheck | Passed subcheck; full cell Failed | Original raw.runtimeProbe passes the unchanged verify_primitive_layout function in a separate read-only audit. No Player rerun. |
+| Focused seal / separate custody authentication | Passed | 1,871 indexed files, 1,872 exact archive members, 36 cell/ledger matches, 5,027 earlier custody bindings unchanged. |
+
+All 79 outer command groups completed without survivor, timeout or cleanup error. Only 0048 (invalid compiler consumer), 0050 (invalid actual Editor probe), and 0055 (preserved C helper) retain expected exit 1; other 76 exits are 0. These negative controls are distinct from product build results. Seven birth-authenticated Unity completions preserved inner exits and clean owned compiler retirement. Exit 0 from each Player records its observation; it does not promote the four semantic failures.
+
+### Exact-loop attribution and remaining failure
+
+All four Release cells fail the unchanged `Repeated exact-loop proof work: admissionCacheMisses`. Each publishes, invokes reflection/delegate business work and executes 10,000 allocations. All six probes have ownerThread=1. Every Release extra entry is attributed to probe thread=2, site=`Object::NewAllocSpecific`, generation=1, domain=1, context=`0x0`, logical type assembly=`mscorlib`, namespace=`""`, name=`Enumerator`. These are process-local probe identities, not OS thread IDs. Full physical keys and results are:
+
+| Failed cell | Cold physical key | Reflection/delegate value | Final state |
+| --- | --- | --- | --- |
+| C03-moved-slot | `0x11cd280a8` | 42 | 6 |
+| C04-old-AOT-guard | `0x1207680a8` | 42 | 9 |
+| C05-direction-reversal | `0x1213680a8` | 41 | 6 |
+| C07-private-primitive-append | `0x120728118` | 41 | 6 |
+
+Only exact-loop span label 1→2 contains events: admissionCacheMisses +1, admissionProofAttempts +1, admissionEntries +1, admissionRetainedBytes +80, all phase 2 with the same complete key/site/thread. Hits and mandatory baseline checks each increase 10,000; genericContextChecks increases 5; field/interface workspace and layoutCheckCalls do not increase. All other native spans have no counter/event delta. Debug D02/D03 has the same required 10,000 hits/checks with zero cold events. F therefore establishes a different-thread BCL cold admission *inside* the exact loop, not in an observer-return span. The recorded cold key differs from each measured Node key. This does not establish which managed caller/subsystem or generic declaring owner allocated Enumerator, nor why Release and Debug scheduling differs.
+
+Source confirms global counters sum all thread slots and active probe Count accepts every thread. Mark authenticates its owner and phase boundary but does not constrain concurrent allocations. The unchanged verifier applies zero cold work to all-thread counters over labels 1→2. Thus unrelated observed BCL work invalidates this all-thread witness even while target hit/check deltas are present. No repeated target proof is evidenced by the retained cold events, but that cannot promote an all-thread Failed certificate. R03-LF-001 in RETURN_TO_WEB.md records this implementation/measurement-contract boundary and remaining actor uncertainty. E's class/site/thread/timing remains historically unknown; F identities are not assigned retroactively to E.
+
+### C07 staged physical readiness and business observations
+
+The unique R03Contract/R03.Node layout row binds baseline physical `0x120755b00` and target `0x120755dd0`: baselineReady=true, targetReady=true, targetDefinitionReady=true, physicalProof=true, error=0, truncated=false. Source/target pending flags are false. Both business initialized/vtable flags are false and cctor counts are zero at prepublication proof; baseline remains uninitialized/no vtable/cctor=0 at final read. sourceSizeInited=false/targetSizeInited=false are preserved, not rewritten; the finalized staged-layout readiness predicates and positive proof are the observed authority.
+
+Source size 24, target size 32; native sizes -1/-1. One retained field offset 16/attribute 1 is unchanged. Target has offsets [16,24], attributes [1,1], storage [4,8]; the private Int64 occupies proved tail storage 24–32. The additional `<Module>` row is retained separately and is not the required Node witness. Original C07 completes successful publication/state 6, reflection/delegate 41 and 10,000 allocations. `preflight/PHYSICAL_PROOF_AUDIT.json` records the strict unchanged primitive-layout verifier Passed independently because the full runner throws first on warm work. R03-LE-002's physical-readiness symptom is repaired in this F scope; C07's full cell remains Failed under R03-LF-001. E's original rejection/result is unchanged.
+
+C03/C04 raw MethodInfo identity/moved-slot and active/baseline guard observations remain sealed; C04 final state 9 follows the expected old-AOT guard. Those successful partial observations do not change Failed cells. The 15 Passed Players are C01/C02/C06/C08/C09/C10, R01–R05, D01–D03 and O01. They cover original reference late-layout/slot behavior, target-cycle and conservative rejection controls, Debug remapping/guard and feature-OFF baseline in the prescribed scope.
+
+### Evidence custody, publication and exit
+
+Immutable [batch-F checkpoint](../History/M07R/R03/local-validation-20261002-batch-f-return-required/README.md) contains all 1,871 indexed files individually, four complete apps, command streams, original result/ledger/index/seal, compiler/fixture/lifecycle/API evidence, exact Editor XML/scope/verdict, all 19 Player requests/raw/logs and Passed/Failed verification receipts, raw.runtimeProbe samples/events/layouts, source snapshots and separate read-only audits. Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime` and preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002F-runtime` remain intact. RETAINED_LIVE_ROOTS.json inventories six isolated projects, three reference worktrees and excluded caches/native/generated/intermediate files. No previous raw/sealed bytes were modified.
+
+| Original artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `29e5796cb95571416ad8f7b6e6f9fcbf18bf5638e25295ae0ed5ecc1ff2b6946` |
+| BATCH_EXECUTION.json | `25b7d2b17d9efbf31cda6c11fd62ddb12b41a5c39150995c600d0d0e14d48ec3` |
+| evidence-index.json | `a5b84340e83c96cd1a38f185926e58b341eced53f7132b1b8c2f27fd1e6d208c` |
+| evidence.tar.gz | `f0c259e6ba4a479d3765477962b4d971b902c83ce84bdfa635d519d13fa9bdeb` |
+| seal-receipt.json | `0fa5b245afb075c2938c9401112fd678875072786eb489c6b9eb8ca9c9adb274` |
+
+Original live archive is 163,690,329 bytes. Three ordered exact byte parts in ARCHIVE_TRANSPORT.json reconstruct the unchanged archive; independent reconstruction verifies part/whole hashes at a new external path. This representation is separate from the focused seal: no recompression, member omission or raw rewrite. MANIFEST.sha256 binds checkpoint publication bytes. All prior A–E checkpoint/live custody and R02 I bindings are unchanged.
+
+Only these two Local reports and the new F checkpoint change; no bounded source fix. Full R03 legacy/resource, broader generic/delegate/interface/stack-trace, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review are NotRun in this focused batch. Gate-review mode is Off; no independent stage acceptance is claimed. R03Accepted=false; H2Passed=false; pureInterpreterExpansionEnabled=false; fullLegacyRegressionAcceptance=false. **Exit: Local Validation → Primary Implementation; stop.** Final clean latest pushed heads/remote verification belong to the outgoing prompt and external PUBLICATION_RECEIPT.json. The later documentation/evidence publication commit does not replace executed-source provenance. Future execution requires a new exact pushed Primary handoff and unused root.
+
+## Historical run — R03 batch E, 2026-10-01: provenance/scope repairs pass; four runtime cells fail
 
 **Local Validation → Primary Implementation. Result=ReturnRequired; 36 cells: 32 Passed, 4 Failed, 0 Blocked; sealStatus=Passed; runner exit 1.** Exactly one invocation, 2026-10-01 21:55:20–22:01:10 PDT (UTC 2026-10-02T04:55:20.807577+00:00–2026-10-02T05:01:10.032908+00:00), runner PID 21299. Four fresh native build roles and the scoped Editor run passed. All 19 fresh-process Players ran: 15 Passed, 4 Failed. No Local source fix, retry, pin/scope/expectation/deadline/cleanup change, or acceptance promotion occurred.
 

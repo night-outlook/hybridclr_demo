@@ -1,0 +1,525 @@
+{
+  "kind": "ReadOnlyNativeColdEventReconciliation",
+  "utc": "2026-10-02T08:37:57.436053+00:00",
+  "status": "Passed",
+  "samplesReconciled": 30,
+  "spans": [
+    {
+      "case": "C03-moved-slot",
+      "from": 0,
+      "to": 10,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C03-moved-slot",
+      "from": 10,
+      "to": 1,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C03-moved-slot",
+      "from": 1,
+      "to": 2,
+      "coldDeltaReconciled": true,
+      "eventCount": 4,
+      "coldEvents": [
+        {
+          "index": 0,
+          "metric": "admissionCacheMisses",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x11cd280a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 1,
+          "metric": "admissionProofAttempts",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x11cd280a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 2,
+          "metric": "admissionEntries",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x11cd280a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 3,
+          "metric": "admissionRetainedBytes",
+          "amount": 80,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x11cd280a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        }
+      ]
+    },
+    {
+      "case": "C03-moved-slot",
+      "from": 2,
+      "to": 11,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C03-moved-slot",
+      "from": 11,
+      "to": 3,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C04-old-AOT-guard",
+      "from": 0,
+      "to": 10,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C04-old-AOT-guard",
+      "from": 10,
+      "to": 1,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C04-old-AOT-guard",
+      "from": 1,
+      "to": 2,
+      "coldDeltaReconciled": true,
+      "eventCount": 4,
+      "coldEvents": [
+        {
+          "index": 0,
+          "metric": "admissionCacheMisses",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1207680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 1,
+          "metric": "admissionProofAttempts",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1207680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 2,
+          "metric": "admissionEntries",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1207680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 3,
+          "metric": "admissionRetainedBytes",
+          "amount": 80,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1207680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        }
+      ]
+    },
+    {
+      "case": "C04-old-AOT-guard",
+      "from": 2,
+      "to": 11,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C04-old-AOT-guard",
+      "from": 11,
+      "to": 3,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C05-direction-reversal",
+      "from": 0,
+      "to": 10,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C05-direction-reversal",
+      "from": 10,
+      "to": 1,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C05-direction-reversal",
+      "from": 1,
+      "to": 2,
+      "coldDeltaReconciled": true,
+      "eventCount": 4,
+      "coldEvents": [
+        {
+          "index": 0,
+          "metric": "admissionCacheMisses",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1213680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 1,
+          "metric": "admissionProofAttempts",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1213680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 2,
+          "metric": "admissionEntries",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1213680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 3,
+          "metric": "admissionRetainedBytes",
+          "amount": 80,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x1213680a8",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        }
+      ]
+    },
+    {
+      "case": "C05-direction-reversal",
+      "from": 2,
+      "to": 11,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C05-direction-reversal",
+      "from": 11,
+      "to": 3,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C07-private-primitive-append",
+      "from": 0,
+      "to": 10,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C07-private-primitive-append",
+      "from": 10,
+      "to": 1,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C07-private-primitive-append",
+      "from": 1,
+      "to": 2,
+      "coldDeltaReconciled": true,
+      "eventCount": 4,
+      "coldEvents": [
+        {
+          "index": 0,
+          "metric": "admissionCacheMisses",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x120728118",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 1,
+          "metric": "admissionProofAttempts",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x120728118",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 2,
+          "metric": "admissionEntries",
+          "amount": 1,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x120728118",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        },
+        {
+          "index": 3,
+          "metric": "admissionRetainedBytes",
+          "amount": 80,
+          "phase": 2,
+          "thread": 2,
+          "generation": 1,
+          "domain": 1,
+          "context": "0x0",
+          "site": "Object::NewAllocSpecific",
+          "type": {
+            "physical": "0x120728118",
+            "assembly": "mscorlib",
+            "namespace": "",
+            "name": "Enumerator"
+          }
+        }
+      ]
+    },
+    {
+      "case": "C07-private-primitive-append",
+      "from": 2,
+      "to": 11,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "C07-private-primitive-append",
+      "from": 11,
+      "to": 3,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D02-moved-slot",
+      "from": 0,
+      "to": 10,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D02-moved-slot",
+      "from": 10,
+      "to": 1,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D02-moved-slot",
+      "from": 1,
+      "to": 2,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D02-moved-slot",
+      "from": 2,
+      "to": 11,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D02-moved-slot",
+      "from": 11,
+      "to": 3,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D03-old-AOT-guard",
+      "from": 0,
+      "to": 10,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D03-old-AOT-guard",
+      "from": 10,
+      "to": 1,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D03-old-AOT-guard",
+      "from": 1,
+      "to": 2,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D03-old-AOT-guard",
+      "from": 2,
+      "to": 11,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    },
+    {
+      "case": "D03-old-AOT-guard",
+      "from": 11,
+      "to": 3,
+      "coldDeltaReconciled": true,
+      "eventCount": 0,
+      "coldEvents": []
+    }
+  ],
+  "limits": "Reconciliation and attribution passed; four exact-loop zero-cold-work assertions remain Failed, not waived"
+}

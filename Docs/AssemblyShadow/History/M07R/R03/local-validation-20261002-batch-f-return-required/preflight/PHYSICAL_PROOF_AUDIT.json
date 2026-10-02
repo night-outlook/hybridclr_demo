@@ -1,0 +1,72 @@
+{
+  "kind": "ReadOnlyPhysicalLayoutSubcheck",
+  "utc": "2026-10-02T08:37:57.434615+00:00",
+  "status": "Passed",
+  "sourceCommit": "8f86dda1aa0582a5b2d55aa650ea321f710cb49a",
+  "operation": "runtime_contract.verify_primitive_layout(original raw.runtimeProbe)",
+  "verifierPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/runtime_contract.py",
+  "verifierSha256": "a9d05ff5e0b130a1eae0c69ab4f6a3e87dd09c5c0ca051e56c5a30c821ac0ea1",
+  "rawPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/players/C07-private-primitive-append/raw.json",
+  "rawSha256": "739c6f98592556772b88502fef4ea86ddd78417e9df10c37ca14a3633bb9ff97",
+  "physicalRow": {
+    "baseline": {
+      "physical": "0x120755b00",
+      "assembly": "R03Contract",
+      "namespace": "R03",
+      "name": "Node"
+    },
+    "target": {
+      "physical": "0x120755dd0",
+      "assembly": "R03Contract",
+      "namespace": "R03",
+      "name": "Node"
+    },
+    "fieldsChanged": true,
+    "baselineReady": true,
+    "targetReady": true,
+    "targetDefinitionReady": true,
+    "physicalProof": true,
+    "sourceSizeInited": false,
+    "targetSizeInited": false,
+    "sourcePending": false,
+    "targetPending": false,
+    "baselineInitialized": false,
+    "baselineVtable": false,
+    "baselineCctor": 0,
+    "targetInitialized": false,
+    "targetVtable": false,
+    "targetCctor": 0,
+    "sourceSize": 24,
+    "targetSize": 32,
+    "sourceNativeSize": -1,
+    "targetNativeSize": -1,
+    "sourceFieldCount": 1,
+    "targetFieldCount": 2,
+    "truncated": false,
+    "error": 0,
+    "sourceOffsets": [
+      16
+    ],
+    "sourceAttrs": [
+      1
+    ],
+    "targetOffsets": [
+      16,
+      24
+    ],
+    "targetAttrs": [
+      1,
+      1
+    ],
+    "targetStorage": [
+      4,
+      8
+    ],
+    "baselineInitializedAtRead": false,
+    "baselineVtableAtRead": false,
+    "baselineCctorAtRead": 0
+  },
+  "cellState": "Failed",
+  "cellError": "Repeated exact-loop proof work: admissionCacheMisses",
+  "limits": "Subcheck of existing sealed observation only, no Player rerun or promotion of the full cell; warm verifier fails before physical-layout verification in the original runner"
+}

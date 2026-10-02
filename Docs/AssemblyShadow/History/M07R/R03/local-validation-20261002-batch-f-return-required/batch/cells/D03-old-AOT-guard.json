@@ -1,0 +1,45 @@
+{
+  "dependencies": [
+    "build-candidate-debug"
+  ],
+  "evidence": {
+    "buildReceiptSha256": "d4992872dfccc33b7d7c2bd18b525710fe9644e132e5735e3c61edc59302710d",
+    "launchPid": 37708,
+    "outcome": "success",
+    "rawSha256": "51338e971aa549c7578ab38afe27976a65733eaba4be58817dd5a9ac69e2a90d",
+    "requestSha256": "8a9af0c9405daa806775bf75a49e66277929d7fc9146875914f1bc8cf15398b9",
+    "result": "Passed",
+    "runId": "c8c0f3a87b09480d8140d48aa772dd2e",
+    "state": 9,
+    "value": 42,
+    "warmWindow": {
+      "broadColdEvents": [],
+      "broadCounterDelta": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 0,
+        "admissionEntries": 0,
+        "admissionProofAttempts": 0,
+        "admissionProofRejections": 0,
+        "admissionRetainedBytes": 0,
+        "admissionUnready": 0,
+        "baselineStateChecks": 10000,
+        "fieldWorkspaceBuilds": 0,
+        "genericContextChecks": 0,
+        "interfaceWorkspaceBuilds": 0,
+        "layoutCheckCalls": 0
+      },
+      "exactLoopProofDelta": 0,
+      "ownerThread": 1,
+      "policy": "R03ExactAllocationWindowV1",
+      "runtimeAcceptance": false,
+      "target": {
+        "assembly": "Methods",
+        "name": "Node",
+        "namespace": "R03",
+        "physical": "0x1229c5790"
+      }
+    }
+  },
+  "id": "D03-old-AOT-guard",
+  "result": "Passed"
+}

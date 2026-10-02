@@ -1,0 +1,30 @@
+{
+  "baselineId": "R03-Isolated-candidate-debug",
+  "candidates": [
+    "A",
+    "B",
+    "Layout",
+    "Methods",
+    "R03Contract"
+  ],
+  "caseId": "D02-moved-slot",
+  "dlls": [
+    {
+      "name": "Methods",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/host/player-fixtures/virtual-slot/Methods.dll",
+      "sha256": "7b14e2587751c942eb4bfadbf30c29daf09e1c6d3d5da0758eff81a539948c56"
+    }
+  ],
+  "invokeAssembly": "Methods",
+  "noPatch": false,
+  "observeMethod": true,
+  "oldExecutionGuard": false,
+  "roots": [
+    "Methods"
+  ],
+  "runId": "dbea27797bec4ce79cfce36f0639c74b",
+  "schemaVersion": 1,
+  "stable": [
+    "mscorlib"
+  ]
+}
