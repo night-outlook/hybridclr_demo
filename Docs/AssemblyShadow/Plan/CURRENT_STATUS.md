@@ -1,51 +1,44 @@
-# Current Status — R03 batch-F runtime witness repair candidate; awaiting G
+# Current Status — R03 rejected-stage observation repaired; awaiting batch H
 
 ## State and authority
 
-R02 remains **PassedWithExplicitDeferredRisk** under its separate owner decision. R03 remains in progress; no full stage or H2 acceptance is claimed.
+R02 remains PassedWithExplicitDeferredRisk under its recorded owner decision. R03 is in progress. No full-stage or H2 acceptance is claimed.
 
 - R02Accepted=true; mayEnterR03=true; R03Started=true.
-- Latest Local publication: `7f27633d9fc761faa93733b07e1787831babe73e`.
-- Latest executed focused batch: F from demo `8f86dda1aa0582a5b2d55aa650ea321f710cb49a`.
-- F remains ReturnRequired: **32 Passed / 4 Failed / 0 Blocked**, seal Passed.
-- R03-LF-001: source-supported producer hypothesis, native attribution, finite diagnostic isolation and natural controls implemented; integrated identification and validation **NotRun**.
-- C07 physical-layout subcheck: Passed in F's recorded scope; complete C07 cell remains Failed under LF-001.
-- Next Local cycle: **G requested, NotRun**, 37 cells and 23 fresh Players.
-- Frozen M01 resource fixture remains NoCoverage.
+- Latest Local publication: `0d8a19830ce454d22335c854978816a830997187`.
+- Latest executed batch: G from demo `78767ea4d7ea064115daffcdbb2ce9435569814c`.
+- G remains **ReturnRequired: 32 Passed / 5 Failed / 0 Blocked; seal Passed**.
+- R03-LF-001: actual producer attribution and isolated warm witnesses passed in G's focused diagnostic scope. Contaminated unisolated warm certificates remain Failed.
+- C07: full positive physical/publication/allocation/warm case passed in G. Earlier F full-cell failure remains historical.
+- R03-LG-001: owned staged identity and non-mutating observation checks implemented; host/compiler validation passed; fresh integrated rejection validation required.
+- Next Local cycle: **batch H requested, NotRun**.
 - R03Accepted=false; H2Passed=false; PureInterpreter expansion disabled; fullLegacyRegressionAcceptance=false.
 
-Read H_PRODUCER_ISOLATION.md, H_HOST_EVIDENCE.json, H_BCL_PRODUCER.json and H_VALIDATION_MATRIX.md under `History/M07R/R03/`, then `Handoff/WEB_TO_LOCAL.md`. Local-owned reports and all A–F/R02/H1 evidence are unchanged. Earlier commands and source anchors are not execution authority.
+Read `History/M07R/R03/I_REJECTION_OBSERVATION.md`, `I_HOST_EVIDENCE.json`, `I_VALIDATION_MATRIX.md`, then `Handoff/WEB_TO_LOCAL.md`. Local-owned reports and all A–G/R02/H1 history remain unchanged. Earlier commands and source anchors are not execution authority.
 
-## Preserved F result
+## Preserved G evidence
 
-F passed four schema-2 native build cells and all 754 selected Editor cases with zero skips. Nineteen fresh-process Players ran: fifteen Passed, four Failed. Release C03/C04/C05/C07 captured cold mscorlib Enumerator work on probe thread 2 inside the exact loop; Debug D02/D03 retained zero cold work. The nested owner and actual caller are not established by F. All 79 command groups completed cleanly. No observed partial success upgrades a Failed cell.
+Four fresh native build cells and all 754 selected Editor identities passed. All 23 Players executed: fourteen of nineteen main cases passed; five strict rejection cases failed. Four natural controls passed diagnostic attribution while recording Failed contaminated unisolated warm certificates. All six strict isolated warm certificates passed. M01 remains NoCoverage.
 
-F result SHA-256: `29e5796cb95571416ad8f7b6e6f9fcbf18bf5638e25295ae0ed5ecc1ff2b6946`.
-F index SHA-256: `a5b84340e83c96cd1a38f185926e58b341eced53f7132b1b8c2f27fd1e6d208c`.
-F archive SHA-256: `f0c259e6ba4a479d3765477962b4d971b902c83ce84bdfa635d519d13fa9bdeb`.
-Local's authenticated custody is 1,871 indexed files / 1,872 archive members and 5,027 prior bindings unchanged. The retained live macOS root has not been accessed by Primary.
+C02/C08/C09/C10/D01 reached Validate16/state8, then late probe retrieval returned -3 and terminal diagnostic error15. No result has been retroactively promoted. Local authenticated 1,901 indexed files/1,902 archive members and 6,989 prior custody bindings. Original result/index/archive hashes:
+- `65ee4842a81e7ec9e7d14546dd95d40d995e807a528e4b89c56918860100f5f1`
+- `24c18f78be4ed43d8f8600e2f114d2b5c717180cf171ab4e1cd11eb807e8aa25`
+- `2a3e90a49eb9b13d035a3749b8012f1e96d4410343d76b7f11a00617d17aaf23`
 
-## Current tested source tuple
+## New source tuple and validation
 
-All four repositories use `codex/assembly-shadow-r01b-h1`.
+All repositories use `codex/assembly-shadow-r01b-h1`:
+- Demo tested executable anchor: `9d70494c97e4efc9597a3e071f63c1489c6ac396`.
+- HybridCLR: `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` (unchanged).
+- Managed package: `120bb01be680cec0375002a0823552d66d34b84c` (unchanged).
+- IL2CPP: `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`.
 
-| Repository | Revision |
-| --- | --- |
-| hybridclr_demo | Tested source anchor `53e6e559165344cb98405a7261a988871157a864`; execute only the final pushed docs-only transport containing this status and current WEB_TO_LOCAL.md |
-| hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| hybridclr_unity | `120bb01be680cec0375002a0823552d66d34b84c` |
-| il2cpp_plus | `9ab7a0000f02251e280901c6e23f6a7772344ca6` |
+Only documentation/evidence under Docs/AssemblyShadow may differ between the executable anchor and final handoff transport. The demo transport is the latest commit touching WEB_TO_LOCAL.md, required to equal Primary's prompt and local/remote HEAD; a commit cannot embed its own SHA.
 
-The exact final demo transport SHA is reported in Primary's prompt. Local resolves the latest commit touching WEB_TO_LOCAL.md and requires equality with local HEAD and remote HEAD. Only Docs/AssemblyShadow may differ after the tested source anchor. Unchanged reference cores/package are bound by the runner; old apps are not reused.
+Host workflow 37014409670 passed both platforms: 183 Python contracts, both 9-case graphs, 35 admission cases, 33 fixture audits/consumers, managed Runtime API, prior lifetime/provenance/scope checks, 90 native header processes and R02 60+60 native processes. Pinned-Unity workflow 37014409955 passed complete-helper/package compilation plus 35 native syntax checks. Three downloaded archives were authenticated. These are not new integrated Unity/Player results.
 
-## Primary validation boundary
+## Next action and limits
 
-Final host workflow 36992865105 passed Linux x86_64 and macOS arm64: 163 Python contracts, reference/candidate graph 9/9 each, admission 35/35, 33 fixture audits/consumers, fifteen DLLs, managed API/lifetime/provenance checks, 57 native header processes and existing R02 suites 60+60 processes. Final pinned-Unity workflow 36992864925 passed complete-helper/package compilation and 30 native syntax checks, including probe-off/feature-off profiles. All three final archives were downloaded and authenticated. No new integrated Unity Editor or Player execution is claimed.
+Local runs the one prepared H batch from WEB_TO_LOCAL.md at `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection`, which must not exist. Retain all 37 cells, four fresh builds, 754 exact Editor cases and 23 fresh Players. Require all five strict rejection observations to preserve error16 through the capacity control and repeated reads. Keep the six warm witnesses, producer controls and positive C07 unchanged.
 
-Pinned BCL source metadata identifies an ArrayPool Gen2-finalizer chain, but runtime actor confirmation remains mandatory. The optional full container native run reached the outer execution-tool time limit and remains Incomplete; complete final native regression evidence is from both CI hosts. Exact tests, diagnostics, transient Primary link correction, hashes and boundaries are in H_HOST_EVIDENCE.json.
-
-## Next action and non-acceptance
-
-Local runs the single unused G root from WEB_TO_LOCAL.md. Preserve all original 36 cells and nineteen Players; add one aggregate cell containing four fresh unisolated producer controls. Require all 37 cells and the focused seal to pass for EvidenceReadyForPrimaryReview. Main warm counters remain strict zero all-thread proof/layout work; no warm-up increase, counter subtraction, forced GC or relaxed timeout is allowed. A natural control's diagnostic result does not upgrade its contaminated unisolated warm certificate. No observed producer across all controls remains NoCoverage and causes aggregate failure.
-
-Local publishes factual reports and an immutable G checkpoint, commits/pushes and stops. Primary must reconcile actual attribution/isolation, complete remaining full-stage legacy/resource/M01, generic/interface/delegate/stack-trace, startup/capacity/performance/memory and gated PureInterpreter qualification, and obtain independent full R03 review before H2 can be requested. R02 CPU and original H1 RSS risks remain visible through that gate.
+Local publishes factual evidence and returns to Primary without non-trivial implementation. Full legacy/resource/P01–P05 and M01 coverage, broader generic/interface/delegate/stack-trace work, startup/capacity/performance/memory, gated PureInterpreter qualification and independent stage review remain open before H2. R02 deferred CPU and original H1 RSS risks remain visible.
