@@ -1,0 +1,41 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/reference-release/R03Isolated.app/Contents/MacOS/R03Isolated",
+    "-batchmode",
+    "-nographics",
+    "-r03Request",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R02-original-late-layout/request.json",
+    "-r03Output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R02-original-late-layout/raw.json",
+    "-r03RunId",
+    "f5edf5c0818a4f1ab1f20ec56cd9cc4a",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R02-original-late-layout/Player.log"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "endedUtcEpoch": 1790917216.0685399,
+  "exitCode": 0,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 26773,
+  "pid": 26773,
+  "postCleanupGroupExists": false,
+  "processGroupBeforeCleanup": null,
+  "remainingProcessGroup": false,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1790917215.813045,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "0dab381f23c1188c205e6f8554a36db3052f89d9617138eccaa73c9bf91518e6",
+  "timeout": false
+}

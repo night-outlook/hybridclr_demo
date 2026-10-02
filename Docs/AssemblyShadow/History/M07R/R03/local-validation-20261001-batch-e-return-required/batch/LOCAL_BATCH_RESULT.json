@@ -1,0 +1,761 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "cells": [
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "120bb01be680cec0375002a0823552d66d34b84c",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "entry-authority",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "commandReceipt": {
+          "childEnvironmentPolicy": {
+            "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+            "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+            "GIT_TERMINAL_PROMPT": "0",
+            "MSBUILDDISABLENODEREUSE": "1",
+            "MSBUILDUSESERVER": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "TMPDIR": "/private/tmp"
+          },
+          "cleanupErrors": [],
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "endedUtcEpoch": 1790916937.711411,
+          "exitCode": 0,
+          "interrupted": false,
+          "lifetimePolicy": "R03OwnedCommandV1",
+          "pgid": 21338,
+          "pid": 21338,
+          "postCleanupGroupExists": false,
+          "processGroupBeforeCleanup": null,
+          "remainingProcessGroup": false,
+          "schemaVersion": 2,
+          "startError": null,
+          "startedUtcEpoch": 1790916937.08742,
+          "stderrSha256": "f6f5d5ca5210821de1a1a497ecd31fdef235a5fa6a4bcdf6f192d8c34fe98d36",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        "scope": "Synthetic verifier/filesystem contracts, not Player evidence"
+      },
+      "id": "verifier-contracts",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "authority": "Exact published ancestors of the verified candidate remote heads",
+        "commits": {
+          "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+          "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+        },
+        "paths": {
+          "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr",
+          "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr_unity",
+          "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/il2cpp_plus"
+        },
+        "retained": true
+      },
+      "id": "reference-sources",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "reference-sources"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/baseline-graph/results.json",
+        "sha256": "80ccbe1f94c7b3017219245871f49315a782c92ec221d565d05a57d127329b9d"
+      },
+      "id": "host-baseline-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/candidate-graph/results.json",
+        "sha256": "988c609af703c8e8acccc1e73425e5b0c46287451ded7017f57b00472e7ca0c8"
+      },
+      "id": "host-candidate-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/admission/results.json",
+        "sha256": "69c252c659b7e244b046e25d822868418646da5fa81347e683d5b37bb42addb3"
+      },
+      "id": "host-admission",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "host-admission"
+      ],
+      "evidence": {
+        "compilerConsumers": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/consumer-unity-2022.3.62f2/results.json",
+          "sha256": "d37f15282e20cd37138157c1ec7476f576044fabaf5d451dd8552680b82b6820"
+        },
+        "completeBuildHelper": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/build-api/results.json",
+          "sha256": "ceba6bf259f524bec362bd7b570c1df21eaafaf009231392fcac6a78b95679fe"
+        },
+        "fixtureInventory": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/inventory.json",
+          "sha256": "4769de37d281274f2c0178992638cea4c6accb9250d652d650e60d52cb26d54b"
+        },
+        "metadataAudit": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/fixture-audit/results.json",
+        "metadataAuditSha256": "3420c0dcb8f17ba9feb623c16c435f95e68c0cba4672693e89324acffbc8dee3",
+        "unityLifecycle": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/unity-lifecycle/results.json",
+          "sha256": "34a717d6e46bf227045d0d81a205089177984aa52ad31f834e8fb45bcadf5e75"
+        }
+      },
+      "id": "player-fixtures",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/candidate-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-release"
+      },
+      "id": "prepare-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "2ff0e241a8cb68daf274ca78cf7e4c33a231032869899eccfddef3452767e48d",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-release",
+          "repositories": {
+            "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "hybridclr_demo": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+            "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+            "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "0621fd470a7c3376eba2501b4349dc7d70363490640efb18ec4e6ced179662f0",
+          "verifiedNativeFiles": 966
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/candidate-release/build-receipt.json",
+        "sha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3"
+      },
+      "id": "build-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "reference-sources",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/reference-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/reference-release"
+      },
+      "id": "prepare-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-reference-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "e3b7e32b38f74ea50350c1a666e6f1446eccf7eb39f18e526131a7e9a5f8dcc8",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/reference-release",
+          "repositories": {
+            "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+            "hybridclr_demo": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+            "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+            "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "1f1351575fbdc4a32af6ed12ffca366f7ce87f1841da3b7d6d42981c3108eccc",
+          "verifiedNativeFiles": 965
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/reference-release/build-receipt.json",
+        "sha256": "bbe9dd7ef40bd5dc77ae00a39acda35f4499b082e0d726bf9d410e2d8c4dc8b4"
+      },
+      "id": "build-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/candidate-debug/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-debug"
+      },
+      "id": "prepare-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "2ff0e241a8cb68daf274ca78cf7e4c33a231032869899eccfddef3452767e48d",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-debug",
+          "repositories": {
+            "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "hybridclr_demo": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+            "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+            "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "0621fd470a7c3376eba2501b4349dc7d70363490640efb18ec4e6ced179662f0",
+          "verifiedNativeFiles": 966
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/candidate-debug/build-receipt.json",
+        "sha256": "97f30db77f8ffefff769a7a5b1fe6f7c7ca523db6cc23cc9375d2c8f18cd2add"
+      },
+      "id": "build-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/candidate-off/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-off"
+      },
+      "id": "prepare-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "2ff0e241a8cb68daf274ca78cf7e4c33a231032869899eccfddef3452767e48d",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/projects/candidate-off",
+          "repositories": {
+            "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "hybridclr_demo": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+            "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+            "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "0621fd470a7c3376eba2501b4349dc7d70363490640efb18ec4e6ced179662f0",
+          "verifiedNativeFiles": 966
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/builds/candidate-off/build-receipt.json",
+        "sha256": "8f7d8dc5643979c36cd1cc78e09d8fabf9da8d663afada277fb165bcf503ceac"
+      },
+      "id": "build-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release",
+        "host-admission"
+      ],
+      "evidence": {
+        "H2Passed": false,
+        "R03Accepted": false,
+        "cases": 754,
+        "excludedCoverage": [
+          {
+            "coverage": "NoCoverage",
+            "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+            "missingAssets": [
+              "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+              "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+              "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+            ],
+            "reason": "The frozen M01 demo assets are not present in this project."
+          }
+        ],
+        "fullLegacyRegressionAcceptance": false,
+        "kind": "R03ScopedEditorVerification",
+        "passed": 754,
+        "r03RequiredIds": [
+          "L01-private-reference-append",
+          "L02-private-string-append",
+          "L03-private-primitive-append-needs-native",
+          "L04-public-primitive-append",
+          "L05-value-type-growth",
+          "L06-generic-definition-growth",
+          "L07-instance-field-removal",
+          "L08-instance-field-type-change",
+          "L09-instance-field-order-change",
+          "L10-static-field-is-not-instance-layout",
+          "L11-existing-field-visibility-is-not-storage",
+          "L12-interface-addition",
+          "L13-explicit-offset-change",
+          "L14-packing-needs-native",
+          "L15-class-size-needs-native",
+          "L16-layout-kind-change",
+          "L17-type-constraint-change",
+          "L18-method-only-change-needs-allocation-proof",
+          "L19-new-type-no-baseline-proof",
+          "L20-analysis-does-not-load-assembly-or-cctor",
+          "M01-token-and-virtual-order-not-identity",
+          "M02-no-inline-not-identity-or-contract",
+          "M03-visibility-separate-compatibility",
+          "M04-dispatch-separate-compatibility",
+          "M05-static-calling-shape",
+          "M06-byref-signature",
+          "M07-required-modifier-identity",
+          "M08-method-constraint-separate-compatibility",
+          "M09-parameter-name-not-contract",
+          "M10-parameter-attribute-separate-compatibility",
+          "M11-generic-composite-local-numbering",
+          "M12-return-type-is-signature",
+          "M13-missing-method-rejected",
+          "M14-declaring-type-constraints",
+          "M15-optimization-hints-independent"
+        ],
+        "result": "Passed",
+        "schemaVersion": 1,
+        "scopeSha256": "f16c40fc8f3c52baec1bda79de4001d6db01c0f9505a094aa1c593f5a1a65453",
+        "sha256": "f5ab5ac4b45c004f760167d367a33bb1ff943fe03aaefada3a749b3d95fb0204",
+        "skipped": 0,
+        "testFilter": "!^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ResourceAbiTests\\.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles$",
+        "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/editor-results.xml"
+      },
+      "id": "editor-tests",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3",
+        "launchPid": 26744,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "85fd0c67ea80b89cf404b6c019b55ec091d2d906366bcfec328faa586e87755d",
+        "requestSha256": "ed2a395f0df4fbaa392fb09a86cf43aaf621854af439692a3bacfc63da84e40d",
+        "runId": "f4cb05a3133b4e3fb8ee08cbd8629800"
+      },
+      "id": "C01-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3",
+        "code": 16,
+        "launchPid": 26749,
+        "outcome": "admission-reject",
+        "rawSha256": "15fdf3264c7ab835dba817cd2e5b2195014d87fd7283b83f61967fb55fbbf90d",
+        "requestSha256": "ab9ff20187b47cc039336b59ffe9733c76756125c668e66e327b4d637a0e0c4d",
+        "runId": "24d7f56337ee4aad84db3aba3dc07890",
+        "state": 8
+      },
+      "id": "C02-private-reference",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "error": "Repeated warm proof work: admissionCacheMisses",
+      "id": "C03-moved-slot",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "error": "Repeated warm proof work: admissionCacheMisses",
+      "id": "C04-old-AOT-guard",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "error": "Repeated warm proof work: admissionCacheMisses",
+      "id": "C05-direction-reversal",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3",
+        "code": 13,
+        "launchPid": 26761,
+        "outcome": "target-cycle",
+        "rawSha256": "024eb5414d8968291b925f5d3c2069f46429d105d3d51d9c3225fed752d8fb7a",
+        "requestSha256": "864c7702af7aaf1d6cfea3ac011fad9039d261378a2489edc86f71f76a347ad1",
+        "runId": "7b833b026c5546d990cd75b8e8cec2cd",
+        "state": 3
+      },
+      "id": "C06-actual-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "error": "Complete successful publication API chain",
+      "id": "C07-private-primitive-append",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3",
+        "code": 16,
+        "launchPid": 26765,
+        "outcome": "admission-reject",
+        "rawSha256": "ee494a15418ae0bf8ad60486f88ae748cad123ab1809ffa86dd31b9bd4c2f8ee",
+        "requestSha256": "78a4974d80023ad901597c3f121b0b5e93a3b3af3e375b0b20b6e29ad2eec082",
+        "runId": "db73a1489c7a4ec7913228790fa64bdb",
+        "state": 8
+      },
+      "id": "C08-interface-change",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3",
+        "code": 16,
+        "launchPid": 26767,
+        "outcome": "admission-reject",
+        "rawSha256": "69bc3a239e7eb82407752f446c99bb94e549fc7842496f9bf2928e23e30bd3f9",
+        "requestSha256": "5c038431412c872b3e8f3219ead2c16ed85d956b94c51082c7966ada010a89c1",
+        "runId": "59686fd4d948436382bd6aa44dd7fee9",
+        "state": 8
+      },
+      "id": "C09-reference-to-value-kind",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "282198ee3750eafdfd042c65c5b39ecbdfa412a58a0e2031ca7b2c38d07321a3",
+        "code": 16,
+        "launchPid": 26769,
+        "outcome": "admission-reject",
+        "rawSha256": "bad342cba43dd3abfd36f844f76deb5924984accf876e3e4109ac10958b550f5",
+        "requestSha256": "ee053b9690c19873418dda0836b235ac0b13be0dfb84e3e7e79f49892f6c80d6",
+        "runId": "361323044b2c49a6953e21380c187643",
+        "state": 8
+      },
+      "id": "C10-field-removal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "bbe9dd7ef40bd5dc77ae00a39acda35f4499b082e0d726bf9d410e2d8c4dc8b4",
+        "launchPid": 26771,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "f2d30690eeb9813247032ff1434390e01251292216de8a2040380c7cb27f659e",
+        "requestSha256": "da347d9b2543f0aa79fdd60ce7918846f3c95f1f070a817d7a56165b9adf8518",
+        "runId": "a498a2d978ff408487f881edc60a70c7"
+      },
+      "id": "R01-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "bbe9dd7ef40bd5dc77ae00a39acda35f4499b082e0d726bf9d410e2d8c4dc8b4",
+        "code": 16,
+        "launchPid": 26773,
+        "outcome": "legacy-late-layout",
+        "rawSha256": "dd94d61bab26264a6576bf7da0036f022542767572fc63396b26a0554a99b897",
+        "requestSha256": "6ebbfcc1e4344cf5b479689fe8664b7d59cea4282a4b8c258964df46cec3c9eb",
+        "runId": "f5edf5c0818a4f1ab1f20ec56cd9cc4a",
+        "state": 9
+      },
+      "id": "R02-original-late-layout",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "bbe9dd7ef40bd5dc77ae00a39acda35f4499b082e0d726bf9d410e2d8c4dc8b4",
+        "launchPid": 26775,
+        "outcome": "legacy-slot",
+        "rawSha256": "660ecbf4c8c2b4cc2ab5afda1536a3c0a8ae2a5738243186d75e404c0b8c0a0e",
+        "requestSha256": "df808fe8a979b7a63cb94053a218636e233561173dfd74f772e824b89bf13be8",
+        "runId": "24a2b2d18578434089592b25ded96db7",
+        "state": 6,
+        "value": 42
+      },
+      "id": "R03-original-slot-lookup",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "bbe9dd7ef40bd5dc77ae00a39acda35f4499b082e0d726bf9d410e2d8c4dc8b4",
+        "launchPid": 26777,
+        "outcome": "success",
+        "rawSha256": "b2fc8936cdb7a872ca791c94d658d83f663c32b8caa34580e493fbe275c6b4f7",
+        "requestSha256": "083b054d2a568aaa6dfb3368366e7e987702136bb8c6d62e0ee5307de9c3a69e",
+        "runId": "40b6ddf735b14541a7be440b861f353c",
+        "state": 6,
+        "value": 41
+      },
+      "id": "R04-direction-reversal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "bbe9dd7ef40bd5dc77ae00a39acda35f4499b082e0d726bf9d410e2d8c4dc8b4",
+        "code": 13,
+        "launchPid": 26779,
+        "outcome": "target-cycle",
+        "rawSha256": "6860cf1ea1ed5ec6fe4051c194bc31a0f2564b24f06a9e7b9b82f21ea79f6a89",
+        "requestSha256": "60193d7585bc90ecb97339c01764d9f0ebd941ab522b1daae9b7d9b1eb5dcdf9",
+        "runId": "841125e90967498ab91a1ae2b9c759e1",
+        "state": 3
+      },
+      "id": "R05-actual-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "97f30db77f8ffefff769a7a5b1fe6f7c7ca523db6cc23cc9375d2c8f18cd2add",
+        "code": 16,
+        "launchPid": 26781,
+        "outcome": "admission-reject",
+        "rawSha256": "47bb37e547ed285663b4e3c9550401f780c82ad2940346ee2e86033d0f609008",
+        "requestSha256": "ecf4dc1f3b166a55eea6d8b1645a207ee441c2eadc9d852220f22376b18f045a",
+        "runId": "c8e9cd742be54d4eab879febc06d2001",
+        "state": 8
+      },
+      "id": "D01-private-reference",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "97f30db77f8ffefff769a7a5b1fe6f7c7ca523db6cc23cc9375d2c8f18cd2add",
+        "launchPid": 26783,
+        "outcome": "success",
+        "rawSha256": "401447d82d3e322ea4618bf7d5bedc3755bac98f1a33d2225cbbe8f5d5a9ddc1",
+        "requestSha256": "42f5db908554952fee6ca670d0f82bb7b9b133d77f84e2f102025a473ee1825a",
+        "runId": "12794dd28fa54197ba2b69b9c7d6d18a",
+        "state": 6,
+        "value": 42
+      },
+      "id": "D02-moved-slot",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "97f30db77f8ffefff769a7a5b1fe6f7c7ca523db6cc23cc9375d2c8f18cd2add",
+        "launchPid": 26785,
+        "outcome": "success",
+        "rawSha256": "70e4bd7de4e4a81050d0ae2f03f414b6eef0a08ec67f094cf935e84849088f50",
+        "requestSha256": "6bf2c04d7886dbdb5ee1b5079c0422dc0e285a3ebed0a4bb847044dfe1c9d293",
+        "runId": "5921db2641b545e295cf396a45cf5350",
+        "state": 9,
+        "value": 42
+      },
+      "id": "D03-old-AOT-guard",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-off"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "8f7d8dc5643979c36cd1cc78e09d8fabf9da8d663afada277fb165bcf503ceac",
+        "launchPid": 26787,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "cb6ce1decaaea35732625d521eb9ea31218ca78f51ed8d0f69f08ef670378c90",
+        "requestSha256": "0102230049eec02e9542bd9b848bb5ba03976af482f048c6a23fbf14192f60e4",
+        "runId": "9bdf204fa6ad47cd988069b9c651743d"
+      },
+      "id": "O01-feature-OFF-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "120bb01be680cec0375002a0823552d66d34b84c",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "final-authority",
+      "result": "Passed"
+    }
+  ],
+  "executionLedgerSha256": "be10f90cfb321aebee9233e8f5749429bcbad9cfdf9b478a15cfae728e1c9ace",
+  "fullLegacyRegressionAcceptance": false,
+  "kind": "R03ConservativeLocalBatch",
+  "matrixSha256": "7002a0eb52a9ce38c06ab39faeaa4bf19ee95f0dd3809e90133cd68d9cb7c755",
+  "pureInterpreterExpansionEnabled": false,
+  "repositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+    "hybridclr_demo": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+    "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+    "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "ReturnRequired",
+  "retainedReferenceWorktrees": {
+    "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr",
+    "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr_unity",
+    "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/il2cpp_plus"
+  },
+  "schemaVersion": 1,
+  "seal": {
+    "archiveSha256": "e8bb7e85a6b3e030de30c800c1f8b18dff5d0ac7a80332d6b00c1b612de94c36",
+    "boundedEvidenceOnly": true,
+    "indexSha256": "7bce6d321265f0c4fa4c0d1b1946e25d523e3c5351d6e4ac0310cc5a57d041a4",
+    "members": 1868,
+    "runtimeAcceptance": false
+  },
+  "sealStatus": "Passed"
+}

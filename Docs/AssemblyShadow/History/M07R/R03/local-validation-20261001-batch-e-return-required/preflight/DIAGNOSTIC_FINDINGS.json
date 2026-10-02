@@ -1,0 +1,2705 @@
+{
+  "kind": "ReadOnlyBatchEDiagnosis",
+  "utc": "2026-10-02T05:04:57.825628+00:00",
+  "status": "EvidencePreserved",
+  "executedRepositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "hybridclr": "041c0cbb42d3e64e54fe605673d99799b5d63893",
+    "hybridclr_demo": "d51483dc1a11007fe1db2ee456a8b0444061389c",
+    "hybridclr_unity": "120bb01be680cec0375002a0823552d66d34b84c",
+    "il2cpp_plus": "1abb6bcaa85226f08c67f9da65edb3c58e8cb399",
+    "phase": "candidate",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "runtime": [
+    {
+      "case": "C01-baseline",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C01-baseline/raw.json",
+      "rawSha256": "85fd0c67ea80b89cf404b6c019b55ec091d2d906366bcfec328faa586e87755d",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C01-baseline/request.json",
+      "requestSha256": "ed2a395f0df4fbaa392fb09a86cf43aaf621854af439692a3bacfc63da84e40d",
+      "pid": 26744,
+      "runId": "f4cb05a3133b4e3fb8ee08cbd8629800",
+      "phase": "Completed",
+      "published": false,
+      "state": 0,
+      "steps": [],
+      "invocation": 41,
+      "delegate": 41,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 0,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "",
+        "patchId": "",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 0,
+        "state": "Disabled",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 5,
+        "disposition": "BaselineUnselected",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 0,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Layout",
+        "executionModeCode": 0,
+        "executionMode": "AotBaseline",
+        "isActive": true,
+        "physicalImageKind": "Aot",
+        "typeKey": "type(6:layout/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": false,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 0,
+          "definitionRowsScanned": 0,
+          "admissionCacheHits": 0,
+          "admissionCacheMisses": 0,
+          "admissionProofAttempts": 0,
+          "admissionProofRejections": 0,
+          "admissionEntries": 0,
+          "admissionRetainedBytes": 0,
+          "admissionUnready": 0,
+          "baselineStateChecks": 0,
+          "fieldWorkspaceBuilds": 0,
+          "interfaceWorkspaceBuilds": 0,
+          "layoutCheckCalls": 0,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 0,
+          "counterpartEntries": 0,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 0,
+          "counterpartRetainedBytes": 0,
+          "genericContextChecks": 213,
+          "observationLockContentions": 0,
+          "observationMemoHits": 0,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Layout",
+        "executionModeCode": 0,
+        "executionMode": "AotBaseline",
+        "isActive": true,
+        "physicalImageKind": "Aot",
+        "typeKey": "type(6:layout/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": false,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 0,
+          "definitionRowsScanned": 0,
+          "admissionCacheHits": 0,
+          "admissionCacheMisses": 0,
+          "admissionProofAttempts": 0,
+          "admissionProofRejections": 0,
+          "admissionEntries": 0,
+          "admissionRetainedBytes": 0,
+          "admissionUnready": 0,
+          "baselineStateChecks": 0,
+          "fieldWorkspaceBuilds": 0,
+          "interfaceWorkspaceBuilds": 0,
+          "layoutCheckCalls": 0,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 0,
+          "counterpartEntries": 0,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 0,
+          "counterpartRetainedBytes": 0,
+          "genericContextChecks": 218,
+          "observationLockContentions": 0,
+          "observationMemoHits": 0,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "genericContextChecks": 5
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "C02-private-reference",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C02-private-reference/raw.json",
+      "rawSha256": "15fdf3264c7ab835dba817cd2e5b2195014d87fd7283b83f61967fb55fbbf90d",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C02-private-reference/request.json",
+      "requestSha256": "ab9ff20187b47cc039336b59ffe9733c76756125c668e66e327b4d637a0e0c4d",
+      "pid": 26749,
+      "runId": "24d7f56337ee4aad84db3aba3dc07890",
+      "phase": "Validate",
+      "published": false,
+      "state": 8,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Layout",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 16,
+        "detail": "Layout: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(6:layout/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-24d7f56337ee4aad84db3aba3dc07890",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "Layout: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(6:layout/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "Layout",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/private-reference/Layout.dll",
+          "sha256": "606262163370443179e90c412fbdb17b167c32a04eb2345e6fb56d40863f4a8b"
+        }
+      ]
+    },
+    {
+      "case": "C03-moved-slot",
+      "cellState": "Failed",
+      "cellError": "Repeated warm proof work: admissionCacheMisses",
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C03-moved-slot/raw.json",
+      "rawSha256": "eba24bdcd92d2e98c7d98990ce32a651f5b293a0026c6aecf69904a0a9bc7241",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C03-moved-slot/request.json",
+      "requestSha256": "cdcea096a0d8260edcf1b88de2e2040268a92061a33894e59f87baa2c57657c6",
+      "pid": 26751,
+      "runId": "6fc57a72331a4d9a9a4ec1e71dce060b",
+      "phase": "Completed",
+      "published": true,
+      "state": 6,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Methods",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 42,
+      "delegate": 42,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 6,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-6fc57a72331a4d9a9a4ec1e71dce060b",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 6,
+        "state": "Committed",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 4,
+        "disposition": "ActiveShadow",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": false
+      },
+      "exception": "",
+      "methodObservation": {
+        "schemaVersion": 1,
+        "available": true,
+        "mappingCode": 0,
+        "mappingDetail": "",
+        "baselineToken": 100663298,
+        "baselineSlot": 4,
+        "activeToken": 100663299,
+        "activeSlot": 5,
+        "differentPhysicalMethods": true,
+        "activeOwner": true,
+        "cacheIdentityStable": true,
+        "baselineCctorBefore": 0,
+        "baselineCctorAfter": 0,
+        "activeGuard": -1,
+        "baselineGuard": -1,
+        "stateCode": 6,
+        "activeGeneration": 1
+      },
+      "inputDlls": [
+        {
+          "name": "Methods",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/virtual-slot/Methods.dll",
+          "sha256": "50e6f7f485287529bd1a792931625cdd85875f7f77df197c3efaeab525b079bc"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 18,
+          "admissionProofAttempts": 18,
+          "admissionProofRejections": 0,
+          "admissionEntries": 18,
+          "admissionRetainedBytes": 1464,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 234,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 1,
+        "admissionProofAttempts": 1,
+        "admissionEntries": 1,
+        "admissionRetainedBytes": 80,
+        "baselineStateChecks": 10000,
+        "genericContextChecks": 5,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "C04-old-AOT-guard",
+      "cellState": "Failed",
+      "cellError": "Repeated warm proof work: admissionCacheMisses",
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C04-old-AOT-guard/raw.json",
+      "rawSha256": "a7178e716854bfa7906565d7fbf9f173ce9ca75524c88c855989919db66e2b80",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C04-old-AOT-guard/request.json",
+      "requestSha256": "230a1f9eaa7f60a283f3312d877e4b7a535b59a59d9f70dc616e2ed1f6df7a15",
+      "pid": 26754,
+      "runId": "3b85a1b586924a6fa68fdebd1bab7943",
+      "phase": "Completed",
+      "published": true,
+      "state": 9,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Methods",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 42,
+      "delegate": 42,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 9,
+        "lastError": 21,
+        "detail": "ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-3b85a1b586924a6fa68fdebd1bab7943",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 9,
+        "state": "FailedAfterCommit",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 21,
+        "reason": "ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": {
+        "schemaVersion": 1,
+        "available": true,
+        "mappingCode": 0,
+        "mappingDetail": "",
+        "baselineToken": 100663298,
+        "baselineSlot": 4,
+        "activeToken": 100663299,
+        "activeSlot": 5,
+        "differentPhysicalMethods": true,
+        "activeOwner": true,
+        "cacheIdentityStable": true,
+        "baselineCctorBefore": 0,
+        "baselineCctorAfter": 0,
+        "activeGuard": 1,
+        "baselineGuard": 0,
+        "stateCode": 9,
+        "activeGeneration": 1
+      },
+      "inputDlls": [
+        {
+          "name": "Methods",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/virtual-slot/Methods.dll",
+          "sha256": "50e6f7f485287529bd1a792931625cdd85875f7f77df197c3efaeab525b079bc"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 18,
+          "admissionProofAttempts": 18,
+          "admissionProofRejections": 0,
+          "admissionEntries": 18,
+          "admissionRetainedBytes": 1464,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 234,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 1,
+        "admissionProofAttempts": 1,
+        "admissionEntries": 1,
+        "admissionRetainedBytes": 80,
+        "baselineStateChecks": 10000,
+        "genericContextChecks": 5,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "C05-direction-reversal",
+      "cellState": "Failed",
+      "cellError": "Repeated warm proof work: admissionCacheMisses",
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C05-direction-reversal/raw.json",
+      "rawSha256": "c06dbf2df562e913e0b74cad17f9a4aa497b8c4082782a6ac18b56a6e6bc3169",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C05-direction-reversal/request.json",
+      "requestSha256": "d3e6a7c9c2c3a29070a9bc48a624777b4e1b9cc7412f21ca041645bf6589a3d9",
+      "pid": 26759,
+      "runId": "8cbacb6e22be4143816e0cb84442eb7c",
+      "phase": "Completed",
+      "published": true,
+      "state": 6,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:A",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:B",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 41,
+      "delegate": 41,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 6,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-8cbacb6e22be4143816e0cb84442eb7c",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 6,
+        "state": "Committed",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 4,
+        "disposition": "ActiveShadow",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 4096,
+        "baselineEligibilityRequiresStartupValidation": false
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "A",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/reversal/A.dll",
+          "sha256": "ddfaac80135416f632d72afd22c1d191fa9d409fbf44f7a4b5036129d9d0cb64"
+        },
+        {
+          "name": "B",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/reversal/B.dll",
+          "sha256": "03c0fbc1f17abda4f6febb34402ecf3d0d4b0a391562cbc754046edb706b87b1"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "B",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(1:b/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 10,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 237,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "B",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(1:b/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 18,
+          "admissionProofAttempts": 18,
+          "admissionProofRejections": 0,
+          "admissionEntries": 18,
+          "admissionRetainedBytes": 1464,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 10,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 242,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 1,
+        "admissionProofAttempts": 1,
+        "admissionEntries": 1,
+        "admissionRetainedBytes": 80,
+        "baselineStateChecks": 10000,
+        "genericContextChecks": 5,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "C06-actual-target-cycle",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C06-actual-target-cycle/raw.json",
+      "rawSha256": "024eb5414d8968291b925f5d3c2069f46429d105d3d51d9c3225fed752d8fb7a",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C06-actual-target-cycle/request.json",
+      "requestSha256": "864c7702af7aaf1d6cfea3ac011fad9039d261378a2489edc86f71f76a347ad1",
+      "pid": 26761,
+      "runId": "7b833b026c5546d990cd75b8e8cec2cd",
+      "phase": "Validate",
+      "published": false,
+      "state": 3,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:A",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:B",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 13,
+          "state": 3
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 3,
+        "lastError": 13,
+        "detail": "Manifest load order is not provider-before-consumer: B -> A",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-7b833b026c5546d990cd75b8e8cec2cd",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 3,
+        "state": "Staged",
+        "published": false,
+        "abortAllowed": true,
+        "dispositionCode": 1,
+        "disposition": "CorrectInputOrAbort",
+        "terminalFailureCode": 0,
+        "reason": "Manifest load order is not provider-before-consumer: B -> A",
+        "retainedBytes": 4096,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "A",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/true-cycle/A.dll",
+          "sha256": "241b9430d12668d12b741ae2d15d1e0c4cb8ba153058d7b6ccb8550f2fd90792"
+        },
+        {
+          "name": "B",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/true-cycle/B.dll",
+          "sha256": "03c0fbc1f17abda4f6febb34402ecf3d0d4b0a391562cbc754046edb706b87b1"
+        }
+      ]
+    },
+    {
+      "case": "C07-private-primitive-append",
+      "cellState": "Failed",
+      "cellError": "Complete successful publication API chain",
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C07-private-primitive-append/raw.json",
+      "rawSha256": "edca24e0fca3ec57c5a7a1071ca233c1ab3192cfc8097725b3371a1a9e6865b0",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C07-private-primitive-append/request.json",
+      "requestSha256": "9bb905a8b73497f6308007c5294aa01220067ccae3330d45e859d01228a2c298",
+      "pid": 26763,
+      "runId": "0ba9508867204b1fa6b241ebb98eb579",
+      "phase": "Validate",
+      "published": false,
+      "state": 8,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 16,
+        "detail": "R03Contract: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(11:r03contract/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-0ba9508867204b1fa6b241ebb98eb579",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "R03Contract: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(11:r03contract/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "R03Contract",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/primitive/R03Contract.dll",
+          "sha256": "2c443fe83ba9b6e2202cc935e0ac33974b42d84f925c2d0bd934c3d85c8751dd"
+        }
+      ]
+    },
+    {
+      "case": "C08-interface-change",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C08-interface-change/raw.json",
+      "rawSha256": "ee494a15418ae0bf8ad60486f88ae748cad123ab1809ffa86dd31b9bd4c2f8ee",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C08-interface-change/request.json",
+      "requestSha256": "78a4974d80023ad901597c3f121b0b5e93a3b3af3e375b0b20b6e29ad2eec082",
+      "pid": 26765,
+      "runId": "db73a1489c7a4ec7913228790fa64bdb",
+      "phase": "Validate",
+      "published": false,
+      "state": 8,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 16,
+        "detail": "R03Contract: NativeLayoutAdmissionV1: NativeLayoutIncompatible type(11:r03contract/3:R03/4:Node@0) DeclarationOrInterfaceContract",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-db73a1489c7a4ec7913228790fa64bdb",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "R03Contract: NativeLayoutAdmissionV1: NativeLayoutIncompatible type(11:r03contract/3:R03/4:Node@0) DeclarationOrInterfaceContract",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "R03Contract",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/interface/R03Contract.dll",
+          "sha256": "6eeb253c6d5127cc51fdff79d031be597d94a95a857a7e3138609f28e35a28c9"
+        }
+      ]
+    },
+    {
+      "case": "C09-reference-to-value-kind",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C09-reference-to-value-kind/raw.json",
+      "rawSha256": "69bc3a239e7eb82407752f446c99bb94e549fc7842496f9bf2928e23e30bd3f9",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C09-reference-to-value-kind/request.json",
+      "requestSha256": "5c038431412c872b3e8f3219ead2c16ed85d956b94c51082c7966ada010a89c1",
+      "pid": 26767,
+      "runId": "59686fd4d948436382bd6aa44dd7fee9",
+      "phase": "Validate",
+      "published": false,
+      "state": 8,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 16,
+        "detail": "R03Contract: NativeLayoutAdmissionV1: ShadowTypeKindMismatch type(11:r03contract/3:R03/4:Node@0)",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-59686fd4d948436382bd6aa44dd7fee9",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "R03Contract: NativeLayoutAdmissionV1: ShadowTypeKindMismatch type(11:r03contract/3:R03/4:Node@0)",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "R03Contract",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/value/R03Contract.dll",
+          "sha256": "89db1952bc57e4a192c0ee6fa2dac300f79664c0c202161d0f566804a389da75"
+        }
+      ]
+    },
+    {
+      "case": "C10-field-removal",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C10-field-removal/raw.json",
+      "rawSha256": "bad342cba43dd3abfd36f844f76deb5924984accf876e3e4109ac10958b550f5",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/C10-field-removal/request.json",
+      "requestSha256": "ee053b9690c19873418dda0836b235ac0b13be0dfb84e3e7e79f49892f6c80d6",
+      "pid": 26769,
+      "runId": "361323044b2c49a6953e21380c187643",
+      "phase": "Validate",
+      "published": false,
+      "state": 8,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:R03Contract",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 16,
+        "detail": "R03Contract: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(11:r03contract/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "baselineBuildId": "R03-Isolated-candidate-release",
+        "patchId": "R03-361323044b2c49a6953e21380c187643",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "R03Contract: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(11:r03contract/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "R03Contract",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/removal/R03Contract.dll",
+          "sha256": "1ce3ff705c25ddc3d99b8a3d11060642b94972ebbb5978e877fed74242066c6c"
+        }
+      ]
+    },
+    {
+      "case": "D01-private-reference",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/D01-private-reference/raw.json",
+      "rawSha256": "47bb37e547ed285663b4e3c9550401f780c82ad2940346ee2e86033d0f609008",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/D01-private-reference/request.json",
+      "requestSha256": "ecf4dc1f3b166a55eea6d8b1645a207ee441c2eadc9d852220f22376b18f045a",
+      "pid": 26781,
+      "runId": "c8e9cd742be54d4eab879febc06d2001",
+      "phase": "Validate",
+      "published": false,
+      "state": 8,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Layout",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 16,
+          "state": 8
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 8,
+        "lastError": 16,
+        "detail": "Layout: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(6:layout/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "baselineBuildId": "R03-Isolated-candidate-debug",
+        "patchId": "R03-c8e9cd742be54d4eab879febc06d2001",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 8,
+        "state": "Failed",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "Layout: NativeLayoutAdmissionV1: NativeLayoutNeedsNativeProof type(6:layout/3:R03/4:Node@0) ChangedLayoutUnavailableBeforePublication",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "Layout",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/private-reference/Layout.dll",
+          "sha256": "606262163370443179e90c412fbdb17b167c32a04eb2345e6fb56d40863f4a8b"
+        }
+      ]
+    },
+    {
+      "case": "D02-moved-slot",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/D02-moved-slot/raw.json",
+      "rawSha256": "401447d82d3e322ea4618bf7d5bedc3755bac98f1a33d2225cbbe8f5d5a9ddc1",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/D02-moved-slot/request.json",
+      "requestSha256": "42f5db908554952fee6ca670d0f82bb7b9b133d77f84e2f102025a473ee1825a",
+      "pid": 26783,
+      "runId": "12794dd28fa54197ba2b69b9c7d6d18a",
+      "phase": "Completed",
+      "published": true,
+      "state": 6,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Methods",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 42,
+      "delegate": 42,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 6,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "R03-Isolated-candidate-debug",
+        "patchId": "R03-12794dd28fa54197ba2b69b9c7d6d18a",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 6,
+        "state": "Committed",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 4,
+        "disposition": "ActiveShadow",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": false
+      },
+      "exception": "",
+      "methodObservation": {
+        "schemaVersion": 1,
+        "available": true,
+        "mappingCode": 0,
+        "mappingDetail": "",
+        "baselineToken": 100663298,
+        "baselineSlot": 4,
+        "activeToken": 100663299,
+        "activeSlot": 5,
+        "differentPhysicalMethods": true,
+        "activeOwner": true,
+        "cacheIdentityStable": true,
+        "baselineCctorBefore": 0,
+        "baselineCctorAfter": 0,
+        "activeGuard": -1,
+        "baselineGuard": -1,
+        "stateCode": 6,
+        "activeGeneration": 1
+      },
+      "inputDlls": [
+        {
+          "name": "Methods",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/virtual-slot/Methods.dll",
+          "sha256": "50e6f7f485287529bd1a792931625cdd85875f7f77df197c3efaeab525b079bc"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "0x11f4c56d0",
+        "activeTypePointer": "0x11f4c56d0",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": true,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "0x11f4c56d0",
+        "activeTypePointer": "0x11f4c56d0",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": true,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "baselineStateChecks": 10000,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "D03-old-AOT-guard",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/D03-old-AOT-guard/raw.json",
+      "rawSha256": "70e4bd7de4e4a81050d0ae2f03f414b6eef0a08ec67f094cf935e84849088f50",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/D03-old-AOT-guard/request.json",
+      "requestSha256": "6bf2c04d7886dbdb5ee1b5079c0422dc0e285a3ebed0a4bb847044dfe1c9d293",
+      "pid": 26785,
+      "runId": "5921db2641b545e295cf396a45cf5350",
+      "phase": "Completed",
+      "published": true,
+      "state": 9,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Methods",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 42,
+      "delegate": 42,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 9,
+        "lastError": 21,
+        "detail": "ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline",
+        "baselineBuildId": "R03-Isolated-candidate-debug",
+        "patchId": "R03-5921db2641b545e295cf396a45cf5350",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 9,
+        "state": "FailedAfterCommit",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 21,
+        "reason": "ShadowBaselineMethodExecution Assembly=Methods Type=R03.Node Method=Keep Site=R03Probe:Baseline",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": {
+        "schemaVersion": 1,
+        "available": true,
+        "mappingCode": 0,
+        "mappingDetail": "",
+        "baselineToken": 100663298,
+        "baselineSlot": 4,
+        "activeToken": 100663299,
+        "activeSlot": 5,
+        "differentPhysicalMethods": true,
+        "activeOwner": true,
+        "cacheIdentityStable": true,
+        "baselineCctorBefore": 0,
+        "baselineCctorAfter": 0,
+        "activeGuard": 1,
+        "baselineGuard": 0,
+        "stateCode": 9,
+        "activeGeneration": 1
+      },
+      "inputDlls": [
+        {
+          "name": "Methods",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/virtual-slot/Methods.dll",
+          "sha256": "50e6f7f485287529bd1a792931625cdd85875f7f77df197c3efaeab525b079bc"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "0x121cc57f0",
+        "activeTypePointer": "0x121cc57f0",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": true,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "0x121cc57f0",
+        "activeTypePointer": "0x121cc57f0",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": true,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 6,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "baselineStateChecks": 10000,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "O01-feature-OFF-baseline",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/O01-feature-OFF-baseline/raw.json",
+      "rawSha256": "cb6ce1decaaea35732625d521eb9ea31218ca78f51ed8d0f69f08ef670378c90",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/O01-feature-OFF-baseline/request.json",
+      "requestSha256": "0102230049eec02e9542bd9b848bb5ba03976af482f048c6a23fbf14192f60e4",
+      "pid": 26787,
+      "runId": "9bdf204fa6ad47cd988069b9c651743d",
+      "phase": "Completed",
+      "published": false,
+      "state": 0,
+      "steps": [],
+      "invocation": 41,
+      "delegate": 41,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 0,
+        "lastError": 1,
+        "detail": "",
+        "baselineBuildId": "",
+        "patchId": "",
+        "generation": 0
+      },
+      "recovery": {},
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": []
+    },
+    {
+      "case": "R01-baseline",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R01-baseline/raw.json",
+      "rawSha256": "f2d30690eeb9813247032ff1434390e01251292216de8a2040380c7cb27f659e",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R01-baseline/request.json",
+      "requestSha256": "da347d9b2543f0aa79fdd60ce7918846f3c95f1f070a817d7a56165b9adf8518",
+      "pid": 26771,
+      "runId": "a498a2d978ff408487f881edc60a70c7",
+      "phase": "Completed",
+      "published": false,
+      "state": 0,
+      "steps": [],
+      "invocation": 41,
+      "delegate": 41,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 0,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "",
+        "patchId": "",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 0,
+        "state": "Disabled",
+        "published": false,
+        "abortAllowed": false,
+        "dispositionCode": 5,
+        "disposition": "BaselineUnselected",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 0,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Layout",
+        "executionModeCode": 0,
+        "executionMode": "AotBaseline",
+        "isActive": true,
+        "physicalImageKind": "Aot",
+        "typeKey": "type(6:layout/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": false,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 0,
+          "definitionRowsScanned": 0,
+          "admissionCacheHits": 0,
+          "admissionCacheMisses": 0,
+          "admissionProofAttempts": 0,
+          "admissionProofRejections": 0,
+          "admissionEntries": 0,
+          "admissionRetainedBytes": 0,
+          "admissionUnready": 0,
+          "baselineStateChecks": 0,
+          "fieldWorkspaceBuilds": 0,
+          "interfaceWorkspaceBuilds": 0,
+          "layoutCheckCalls": 0,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 0,
+          "counterpartEntries": 0,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 0,
+          "counterpartRetainedBytes": 0,
+          "genericContextChecks": 213,
+          "observationLockContentions": 0,
+          "observationMemoHits": 0,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Layout",
+        "executionModeCode": 0,
+        "executionMode": "AotBaseline",
+        "isActive": true,
+        "physicalImageKind": "Aot",
+        "typeKey": "type(6:layout/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": false,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 0,
+          "definitionRowsScanned": 0,
+          "admissionCacheHits": 0,
+          "admissionCacheMisses": 0,
+          "admissionProofAttempts": 0,
+          "admissionProofRejections": 0,
+          "admissionEntries": 0,
+          "admissionRetainedBytes": 0,
+          "admissionUnready": 0,
+          "baselineStateChecks": 0,
+          "fieldWorkspaceBuilds": 0,
+          "interfaceWorkspaceBuilds": 0,
+          "layoutCheckCalls": 0,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 0,
+          "counterpartEntries": 0,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 0,
+          "counterpartRetainedBytes": 0,
+          "genericContextChecks": 218,
+          "observationLockContentions": 0,
+          "observationMemoHits": 0,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "genericContextChecks": 5
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "R02-original-late-layout",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R02-original-late-layout/raw.json",
+      "rawSha256": "dd94d61bab26264a6576bf7da0036f022542767572fc63396b26a0554a99b897",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R02-original-late-layout/request.json",
+      "requestSha256": "6ebbfcc1e4344cf5b479689fe8664b7d59cea4282a4b8c258964df46cec3c9eb",
+      "pid": 26773,
+      "runId": "f5edf5c0818a4f1ab1f20ec56cd9cc4a",
+      "phase": "ActiveInvoke",
+      "published": true,
+      "state": 9,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Layout",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 9,
+        "lastError": 16,
+        "detail": "ShadowFieldLayoutMismatch type(6:layout/3:R03/4:Node@0) Site=Object::NewAllocSpecific",
+        "baselineBuildId": "R03-Isolated-reference-release",
+        "patchId": "R03-f5edf5c0818a4f1ab1f20ec56cd9cc4a",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 9,
+        "state": "FailedAfterCommit",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 0,
+        "disposition": "RestartRequired",
+        "terminalFailureCode": 16,
+        "reason": "ShadowFieldLayoutMismatch type(6:layout/3:R03/4:Node@0) Site=Object::NewAllocSpecific",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.InvalidOperationException: ShadowFieldLayoutMismatch type(6:layout/3:R03/4:Node@0) Site=Object::NewAllocSpecific\n  at System.Reflection.RuntimeConstructorInfo.InternalInvoke (System.Object obj, System.Object[] parameters, System.Boolean wrapExceptions) [0x00000] in <00000000000000000000000000000000>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic, System.Boolean wrapExceptions) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadow.R03.Player.R03Player.Invoke (System.String assembly) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 \n   --- End of inner exception stack trace ---\n  at System.Reflection.RuntimeConstructorInfo.InternalInvoke (System.Object obj, System.Object[] parameters, System.Boolean wrapExceptions) [0x00000] in <00000000000000000000000000000000>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic, System.Boolean wrapExceptions) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadow.R03.Player.R03Player.Invoke (System.String assembly) [0x00000] in <00000000000000000000000000000000>:0 \n  at AssemblyShadow.R03.Player.R03Player.Start () [0x00000] in <00000000000000000000000000000000>:0 ",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "Layout",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/private-reference/Layout.dll",
+          "sha256": "606262163370443179e90c412fbdb17b167c32a04eb2345e6fb56d40863f4a8b"
+        }
+      ]
+    },
+    {
+      "case": "R03-original-slot-lookup",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R03-original-slot-lookup/raw.json",
+      "rawSha256": "660ecbf4c8c2b4cc2ab5afda1536a3c0a8ae2a5738243186d75e404c0b8c0a0e",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R03-original-slot-lookup/request.json",
+      "requestSha256": "df808fe8a979b7a63cb94053a218636e233561173dfd74f772e824b89bf13be8",
+      "pid": 26775,
+      "runId": "24a2b2d18578434089592b25ded96db7",
+      "phase": "Completed",
+      "published": true,
+      "state": 6,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:Methods",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 42,
+      "delegate": 42,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 6,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "R03-Isolated-reference-release",
+        "patchId": "R03-24a2b2d18578434089592b25ded96db7",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 6,
+        "state": "Committed",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 4,
+        "disposition": "ActiveShadow",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 2048,
+        "baselineEligibilityRequiresStartupValidation": false
+      },
+      "exception": "",
+      "methodObservation": {
+        "schemaVersion": 1,
+        "available": true,
+        "mappingCode": 13,
+        "mappingDetail": "ShadowMethodNotFound Keep flags=454 iflags=0 slot=4 generic=0 arity=0 parameters=0 return=type(8:mscorlib/6:System/5:Int32@0)",
+        "baselineToken": 100663298,
+        "baselineSlot": 4,
+        "activeToken": 0,
+        "activeSlot": 65535,
+        "differentPhysicalMethods": false,
+        "activeOwner": false,
+        "cacheIdentityStable": false,
+        "baselineCctorBefore": 0,
+        "baselineCctorAfter": 0,
+        "activeGuard": -1,
+        "baselineGuard": -1,
+        "stateCode": 6,
+        "activeGeneration": 1
+      },
+      "inputDlls": [
+        {
+          "name": "Methods",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/virtual-slot/Methods.dll",
+          "sha256": "50e6f7f485287529bd1a792931625cdd85875f7f77df197c3efaeab525b079bc"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 2,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 229,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "Methods",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(7:methods/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 18,
+          "admissionProofAttempts": 18,
+          "admissionProofRejections": 0,
+          "admissionEntries": 18,
+          "admissionRetainedBytes": 1464,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 2,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 234,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 1,
+        "admissionProofAttempts": 1,
+        "admissionEntries": 1,
+        "admissionRetainedBytes": 80,
+        "baselineStateChecks": 10000,
+        "genericContextChecks": 5,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "R04-direction-reversal",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R04-direction-reversal/raw.json",
+      "rawSha256": "b2fc8936cdb7a872ca791c94d658d83f663c32b8caa34580e493fbe275c6b4f7",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R04-direction-reversal/request.json",
+      "requestSha256": "083b054d2a568aaa6dfb3368366e7e987702136bb8c6d62e0ee5307de9c3a69e",
+      "pid": 26777,
+      "runId": "40b6ddf735b14541a7be440b861f353c",
+      "phase": "Completed",
+      "published": true,
+      "state": 6,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:A",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:B",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 0,
+          "state": 4
+        },
+        {
+          "phase": "Commit",
+          "code": 0,
+          "state": 6
+        }
+      ],
+      "invocation": 41,
+      "delegate": 41,
+      "warmAllocations": 10000,
+      "diagnostic": {
+        "stateCode": 6,
+        "lastError": 0,
+        "detail": "",
+        "baselineBuildId": "R03-Isolated-reference-release",
+        "patchId": "R03-40b6ddf735b14541a7be440b861f353c",
+        "generation": 1
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 6,
+        "state": "Committed",
+        "published": true,
+        "abortAllowed": false,
+        "dispositionCode": 4,
+        "disposition": "ActiveShadow",
+        "terminalFailureCode": 0,
+        "reason": "",
+        "retainedBytes": 4096,
+        "baselineEligibilityRequiresStartupValidation": false
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "A",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/reversal/A.dll",
+          "sha256": "ddfaac80135416f632d72afd22c1d191fa9d409fbf44f7a4b5036129d9d0cb64"
+        },
+        {
+          "name": "B",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/reversal/B.dll",
+          "sha256": "03c0fbc1f17abda4f6febb34402ecf3d0d4b0a391562cbc754046edb706b87b1"
+        }
+      ],
+      "before": {
+        "schemaVersion": 1,
+        "logicalAssembly": "B",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(1:b/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 22,
+          "admissionCacheMisses": 17,
+          "admissionProofAttempts": 17,
+          "admissionProofRejections": 0,
+          "admissionEntries": 17,
+          "admissionRetainedBytes": 1384,
+          "admissionUnready": 0,
+          "baselineStateChecks": 9,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 2,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 237,
+          "observationLockContentions": 0,
+          "observationMemoHits": 43,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "after": {
+        "schemaVersion": 1,
+        "logicalAssembly": "B",
+        "executionModeCode": 1,
+        "executionMode": "InterpreterShadow",
+        "isActive": true,
+        "physicalImageKind": "Interpreter",
+        "typeKey": "type(1:b/3:R03/4:Node@0)",
+        "inputTypePointer": "",
+        "activeTypePointer": "",
+        "baselineTypePointer": "",
+        "pointerDetailsAvailable": false,
+        "baselinePointerAvailable": false,
+        "containsShadowTypes": true,
+        "definitionCacheHits": 0,
+        "definitionCacheMisses": 0,
+        "compositeRebuilds": 0,
+        "allocationRemaps": 0,
+        "guardFailures": 0,
+        "r02": {
+          "schemaVersion": 1,
+          "diagnosticsLevel": 2,
+          "definitionSearches": 1,
+          "definitionRowsScanned": 2,
+          "admissionCacheHits": 10022,
+          "admissionCacheMisses": 18,
+          "admissionProofAttempts": 18,
+          "admissionProofRejections": 0,
+          "admissionEntries": 18,
+          "admissionRetainedBytes": 1464,
+          "admissionUnready": 0,
+          "baselineStateChecks": 10009,
+          "fieldWorkspaceBuilds": 2,
+          "interfaceWorkspaceBuilds": 2,
+          "layoutCheckCalls": 1,
+          "counterpartCacheHits": 0,
+          "counterpartCacheMisses": 1,
+          "counterpartEntries": 1,
+          "absentCounterpartEntries": 0,
+          "cacheFixedBytes": 16384,
+          "counterpartRetainedBytes": 48,
+          "genericContextChecks": 242,
+          "observationLockContentions": 0,
+          "observationMemoHits": 40043,
+          "observationMemoTlsBytesPerThread": 512,
+          "counterStorageBytes": 41024,
+          "counterThreadCapacity": 128,
+          "droppedCounterThreads": 0,
+          "counterSaturated": false,
+          "counterCoverage": "BoundedComplete",
+          "classesCoverage": "BoundedComplete",
+          "memoryAccountingAvailable": true,
+          "memoryAccountingScope": "R02StructuresExcludingAllocatorOverhead"
+        }
+      },
+      "r02Deltas": {
+        "admissionCacheHits": 10000,
+        "admissionCacheMisses": 1,
+        "admissionProofAttempts": 1,
+        "admissionEntries": 1,
+        "admissionRetainedBytes": 80,
+        "baselineStateChecks": 10000,
+        "genericContextChecks": 5,
+        "observationMemoHits": 40000
+      },
+      "resolverDeltas": {}
+    },
+    {
+      "case": "R05-actual-target-cycle",
+      "cellState": "Passed",
+      "cellError": null,
+      "raw": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R05-actual-target-cycle/raw.json",
+      "rawSha256": "6860cf1ea1ed5ec6fe4051c194bc31a0f2564b24f06a9e7b9b82f21ea79f6a89",
+      "request": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/players/R05-actual-target-cycle/request.json",
+      "requestSha256": "60193d7585bc90ecb97339c01764d9f0ebd941ab522b1daae9b7d9b1eb5dcdf9",
+      "pid": 26779,
+      "runId": "841125e90967498ab91a1ae2b9c759e1",
+      "phase": "Validate",
+      "published": false,
+      "state": 3,
+      "steps": [
+        {
+          "phase": "Configure",
+          "code": 0,
+          "state": 1
+        },
+        {
+          "phase": "Begin",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Reserve",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:A",
+          "code": 0,
+          "state": 2
+        },
+        {
+          "phase": "Stage:B",
+          "code": 0,
+          "state": 3
+        },
+        {
+          "phase": "Validate",
+          "code": 13,
+          "state": 3
+        }
+      ],
+      "invocation": 0,
+      "delegate": 0,
+      "warmAllocations": 0,
+      "diagnostic": {
+        "stateCode": 3,
+        "lastError": 13,
+        "detail": "Manifest load order is not provider-before-consumer: B -> A",
+        "baselineBuildId": "R03-Isolated-reference-release",
+        "patchId": "R03-841125e90967498ab91a1ae2b9c759e1",
+        "generation": 0
+      },
+      "recovery": {
+        "schemaVersion": 1,
+        "enabled": true,
+        "capabilityVersion": 1,
+        "stateCode": 3,
+        "state": "Staged",
+        "published": false,
+        "abortAllowed": true,
+        "dispositionCode": 1,
+        "disposition": "CorrectInputOrAbort",
+        "terminalFailureCode": 0,
+        "reason": "Manifest load order is not provider-before-consumer: B -> A",
+        "retainedBytes": 4096,
+        "baselineEligibilityRequiresStartupValidation": true
+      },
+      "exception": "",
+      "methodObservation": null,
+      "inputDlls": [
+        {
+          "name": "A",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/true-cycle/A.dll",
+          "sha256": "241b9430d12668d12b741ae2d15d1e0c4cb8ba153058d7b6ccb8550f2fd90792"
+        },
+        {
+          "name": "B",
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/host/player-fixtures/true-cycle/B.dll",
+          "sha256": "03c0fbc1f17abda4f6febb34402ecf3d0d4b0a391562cbc754046edb706b87b1"
+        }
+      ]
+    }
+  ],
+  "editorAggregate": {
+    "id": "2",
+    "testcasecount": "754",
+    "result": "Passed",
+    "total": "754",
+    "passed": "754",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-02 04:59:28Z",
+    "end-time": "2026-10-02 05:00:08Z",
+    "duration": "39.1397184"
+  },
+  "excludedCoverage": [
+    {
+      "coverage": "NoCoverage",
+      "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+      "missingAssets": [
+        "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+        "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+        "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+      ],
+      "reason": "The frozen M01 demo assets are not present in this project."
+    }
+  ],
+  "issues": [
+    {
+      "id": "R03-LE-001",
+      "cases": [
+        "C03-moved-slot",
+        "C04-old-AOT-guard",
+        "C05-direction-reversal"
+      ],
+      "symptom": "Release warm snapshot has +1 miss, +1 proof, +1 entry, +80 retained bytes while 10000 shadow allocations reuse checks. Debug comparators have zero cold-proof deltas.",
+      "likelyBoundary": "Process-wide counters include every ResolveAllocation class and thread after publication, not only the tested shadow Node. One additional cold completed certificate is visible; exact class/site/timing is unavailable. Observation-return marshalling and surrounding harness allocations are inside the two returned snapshot boundaries.",
+      "uncertainty": "Current evidence cannot attribute the one extra proof to the requested business allocation, another class, marshalling, or another thread; no repeated target layout/interface/field work is observed. No bounded trace was added locally.",
+      "recommendation": "Primary add bounded identity/site/thread attribution around the two snapshots and define a source-reviewed observer boundary. Preserve target reuse and baseline-state checks. Fix cause or observation isolation with real Release/Debug validation; do not waive +1 or retry until passing."
+    },
+    {
+      "id": "R03-LE-002",
+      "cases": [
+        "C07-private-primitive-append"
+      ],
+      "symptom": "Real private Int64 appended field reaches Validate then code16 state8 ChangedLayoutUnavailableBeforePublication; expected successful Commit/invocation/warm loop never occurs.",
+      "rootCause": "CheckStagedPair requires baseline physical readiness and target size_inited before changed-layout CheckLayout. A missing readiness predicate rejects before publication. Editor test correctly labels NeedsNativeProof; runner case presumes that proof will be available in untouched startup.",
+      "uncertainty": "Receipt does not expose which side/readiness subcondition failed; no claim of incompatible offsets or successful admission is made.",
+      "recommendation": "Primary establish reviewed prepublication physical layout proof without old business initialization/allocation, or explicitly resolve conservative supported-scope/fixture expectation in a new source-bound handoff. Preserve fail-closed rejection and validate actual offsets/size/private primitive safety before Commit."
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+      "sha256": "a173b8421b8270bafccb11f700739d8ba40b26c492908a6be5f50f7e38ea6ceb",
+      "firstLine": 588,
+      "lastLine": 622,
+      "excerpt": "    return key.ToString();\n}\n\nbool CheckStagedPair(Il2CppClass* baseline, Il2CppClass* target)\n{\n    const std::string key = AssemblyShadowTypeKey::Make(target).ToString();\n    MatchDefinition(baseline, target, key);\n    if ((baseline->parent == nullptr) != (target->parent == nullptr) ||\n        (baseline->parent && AssemblyShadowTypeKey::Format(&baseline->parent->byval_arg) !=\n            AssemblyShadowTypeKey::Format(&target->parent->byval_arg)) ||\n        Interfaces(baseline) != Interfaces(target) ||\n        baseline->packingSize != target->packingSize ||\n        ((baseline->flags ^ target->flags) & TYPE_ATTRIBUTE_LAYOUT_MASK) ||\n        assembly_shadow_evolution::DeclarationContracts(baseline) != assembly_shadow_evolution::DeclarationContracts(target))\n        Fail(\"NativeLayoutIncompatible\", key + \" DeclarationOrInterfaceContract\", AssemblyShadowError::ResourceAbiMismatch);\n    const bool fieldsChanged = StagedFieldShapes(baseline) != StagedFieldShapes(target);\n    if (AssemblyShadowTypeKey::GenericArity(baseline) || AssemblyShadowTypeKey::GenericArity(target))\n    {\n        if (fieldsChanged) Fail(\"NativeLayoutIncompatible\", key + \" OpenGenericStructuralChange\", AssemblyShadowError::ResourceAbiMismatch);\n        return false; // A later constructed physical type still needs its own certificate.\n    }\n    const bool baselineReady = assembly_shadow_r02::BaselineLayoutReady(\n        PhysicalLayout(baseline), static_cast<uint32_t>(sizeof(Il2CppObject)));\n    const bool targetReady = target->size_inited != 0;\n    if (!baselineReady || !targetReady)\n    {\n        if (fieldsChanged) Fail(\"NativeLayoutNeedsNativeProof\", key + \" ChangedLayoutUnavailableBeforePublication\", AssemblyShadowError::ResourceAbiMismatch);\n        return false; // Unchanged metadata is not a physical allocation proof.\n    }\n    bool physicalChanged = baseline->instance_size != target->instance_size ||\n        (baseline->byval_arg.valuetype && baseline->native_size != target->native_size);\n    if (!physicalChanged && !fieldsChanged && baseline->typeMetadataHandle && target->typeMetadataHandle)\n    {\n        const auto before = InstanceFieldLayouts(baseline);\n        const auto after = InstanceFieldLayouts(target);",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+      "sha256": "a173b8421b8270bafccb11f700739d8ba40b26c492908a6be5f50f7e38ea6ceb",
+      "firstLine": 849,
+      "lastLine": 928,
+      "excerpt": "    using Certificate = AllocationCertificate<Il2CppClass>;\n    if (!klass) return nullptr;\n    if (!site) site = \"<unspecified>\";\n    if (AssemblyShadow::IsResolvingTypeMetadata())\n        Fail(\"ShadowAllocationDuringMetadataResolution\", site, AssemblyShadowError::BaselineAlreadyUsed);\n    const uint64_t generation = AssemblyShadow::ActiveGeneration();\n    auto build = [&](Certificate& certificate) {\n        Il2CppClass* target = ResolveClass(klass);\n        if (target != klass)\n        {\n            AssemblyShadowTypeMetadataScope scope;\n            CheckLayout(klass, target, site);\n            Increment(State().allocations);\n            certificate.involvesShadow = true;\n        }\n        if (generation)\n        {\n            AssemblyShadowTypeMetadataScope scope;\n            CheckActiveComponents(&target->byval_arg, site);\n        }\n        // A first allocation can precede lazy size finalization. Preserve its\n        // successful uncached behavior, but retry proof after metadata is ready.\n        certificate.complete = certificate.complete && target->size_inited;\n        return target;\n    };\n    if (!generation || Private())\n    {\n        Certificate temporary;\n        return build(temporary);\n    }\n    static AllocationProofCache<Il2CppClass>* cache = [] {\n        auto* value = new AllocationProofCache<Il2CppClass>();\n        ObservationCounters::Add(Metric::CacheFixedBytes, sizeof(*value));\n        return value;\n    }();\n    // Conservative allocation profile 1; full physical class identity keeps\n    // closed generics, arrays, baseline inputs and active inputs distinct.\n    const AdmissionKey key{generation, klass, nullptr, 1};\n    auto validate = [&](const Certificate* certificate) {\n        if (AssemblyShadow::IsResolvingTypeMetadata())\n            Fail(\"ShadowAllocationDuringMetadataResolution\", site, AssemblyShadowError::BaselineAlreadyUsed);\n        if (Private() || AssemblyShadow::ActiveGeneration() != generation)\n            Fail(\"ShadowAdmissionContextChanged\", site, AssemblyShadowError::InvalidState);\n        if (!certificate) return;\n        if (certificate->involvesShadow)\n        {\n            AssemblyShadowState state;\n            AssemblyShadow::GetState(state); // Atomic acquire, no transaction lock.\n            if (state == AssemblyShadowState::Failed || state == AssemblyShadowState::FailedAfterCommit)\n                Fail(\"ShadowAllocationAfterFailure\", site, AssemblyShadowError::InvalidState);\n        }\n        // These are the same mutable baseline-state conditions as CheckLayout,\n        // including every recursively checked parent/component. Guarded engine\n        // entry points remain authoritative; no old object's class is remapped.\n        for (const auto& dependency : certificate->dependencies)\n        {\n            Il2CppClass* baseline = dependency.baseline;\n            if (!baseline) continue;\n            ObservationCounters::Add(Metric::BaselineChecks, 1);\n            if (baseline->initialized || baseline->is_vtable_initialized ||\n                os::Atomic::LoadRelaxed(reinterpret_cast<const int32_t*>(&baseline->cctor_started)) != 0)\n                Fail(\"ShadowBaselineAlreadyInitialized\", AssemblyShadowTypeKey::Format(&baseline->byval_arg) +\n                    \" Site=\" + site, AssemblyShadowError::BaselineAlreadyUsed);\n        }\n    };\n    // Exceptions used to report failure are unrelated BCL allocations. They\n    // must remain constructible; poison rejection applies to Shadow proofs.\n    return cache->Resolve<il2cpp::os::FastAutoLock>(key, &g_MetadataLock, build, validate);\n}\n\nbool AssemblyShadowTypeResolver::ContainsBaseline(const Il2CppType* type)\n{\n    return type && AssemblyShadow::ActiveGeneration() && Visit(type, VisitMode::Baseline, BaselineUseKind::TypeReflection, \"\", 0);\n}\n\nvoid AssemblyShadowTypeResolver::RecordUse(const Il2CppType* type, BaselineUseKind kind, const char* site)\n{\n    if (!type) return;\n    Visit(type, VisitMode::Use, kind, site, 0);\n}",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowAllocationProof.h",
+      "sha256": "e5e1b47934201a48ae7d5790d0c8cc1c710acfaa69a0a9283a7374af4e13df36",
+      "firstLine": 106,
+      "lastLine": 145,
+      "excerpt": "    template<class Guard, class Mutex, class Builder, class Validator>\n    Class* Resolve(const AdmissionKey& key, Mutex* metadataMutex,\n        Builder build, Validator validate)\n    {\n        validate(nullptr);\n        if (const Certificate* hit = cache_.Find(key))\n        {\n            validate(hit);\n            ObservationCounters::Add(Metric::AdmissionHits, 1);\n            Propagate(*hit);\n            return hit->target;\n        }\n        ObservationCounters::Add(Metric::AdmissionMisses, 1);\n        Guard lock(metadataMutex);\n        // A different thread may have completed this physical type while we\n        // waited for metadata. Never build twice merely because both missed.\n        validate(nullptr);\n        if (const Certificate* hit = cache_.Find(key))\n        {\n            validate(hit);\n            ObservationCounters::Add(Metric::AdmissionHits, 1);\n            Propagate(*hit);\n            return hit->target;\n        }\n        BuildScope scope(this, key);\n        ObservationCounters::Add(Metric::AdmissionBuilds, 1);\n        Certificate value;\n        try\n        {\n            AllocationProofTrace<Class> trace(value);\n            value.target = build(value);\n            if (!value.target) throw std::logic_error(\"Null allocation proof target\");\n            validate(&value);\n        }\n        catch (...)\n        {\n            ObservationCounters::Add(Metric::AdmissionRejects, 1);\n            throw;\n        }\n        if (!value.complete)",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/AssemblyShadowAllocationProof.h"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservationCounters.h",
+      "sha256": "4ce6a868fc7c50361924ed0b9523a18a163719509f4c1879f3e72c03b7506575",
+      "firstLine": 129,
+      "lastLine": 148,
+      "excerpt": "    }\n\n    static uint64_t DroppedThreads() noexcept\n    {\n        return Level == 0 ? 0 : Data().droppedThreads.load(std::memory_order_relaxed);\n    }\n    static bool Saturated() noexcept\n    {\n        return Level != 0 && Data().saturated.load(std::memory_order_relaxed);\n    }\n    static size_t RetainedBytes() noexcept { return Level == 0 ? 0 : sizeof(State); }\n    static const char* Coverage() noexcept\n    {\n        return Level == 0 ? \"Disabled\" : DroppedThreads() ? \"Truncated\" :\n            Saturated() ? \"Saturated\" : \"BoundedComplete\";\n    }\n};\n\ntemplate<Metric Id>\nstruct ObservationCounter",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/il2cpp_plus/libil2cpp/vm/AssemblyShadowObservationCounters.h"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr/hybridclr/AssemblyShadowRuntimeApi.cpp",
+      "sha256": "f728455a5e6774e0b3372a283052dafda6a9d8128437cdc13dce5ff0eafd40a6",
+      "firstLine": 294,
+      "lastLine": 310,
+      "excerpt": "    int32_t AssemblyShadowRuntimeApi::GetTypeResolutionInfo(Il2CppReflectionType* type, Il2CppString** json)\n    {\n        if (json)\n            *json = nullptr;\n#if !HYBRIDCLR_ENABLE_ASSEMBLY_SHADOW\n        return Disabled();\n#else\n        if (!json || !type || !type->type)\n            return ErrorCode(AssemblyShadowError::InvalidArgument);\n        try\n        {\n            std::string value;\n            AssemblyShadowError result = il2cpp::vm::AssemblyShadow::GetTypeResolutionInfo(type->type, value);\n            if (!value.empty())\n                *json = il2cpp::vm::String::New(value.c_str());\n            return ErrorCode(result);\n        }",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/hybridclr/hybridclr/AssemblyShadowRuntimeApi.cpp"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs",
+      "sha256": "e776abf796b7cd10d22c4a5b6d2dc95fa1a964a5686ea9832fd7f6a475a92d0a",
+      "firstLine": 185,
+      "lastLine": 203,
+      "excerpt": "            AssemblyShadowState state; AssemblyShadowRuntime.GetState(out state);\n            Steps.Add(new Step { phase = phase, code = (int)code, state = (int)state });\n            return code == AssemblyShadowErrorCode.Success;\n        }\n        private static void Invoke(string assembly)\n        {\n            Type type = Type.GetType(\"R03.Node, \" + assembly, true);\n            object instance = Activator.CreateInstance(type);\n            MethodInfo method = type.GetMethod(\"Keep\", BindingFlags.Instance | BindingFlags.Public);\n            result.invocationResult = (int)method.Invoke(instance, null);\n            result.delegateResult = ((Func<int>)Delegate.CreateDelegate(typeof(Func<int>), instance, method))();\n            string info;\n            // Fixed preparation, not a retry-until-passing loop: warm the native\n            // diagnostic marshalling and perform eight allocations before the\n            // measured 10,000-allocation interval. Both cores use this same code.\n            AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info);\n            for (int preparation = 0; preparation < 8; ++preparation) instance = Activator.CreateInstance(type);\n            if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)\n                result.beforeWarm = info;",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03/PlayerProject/R03Player.cs"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py",
+      "sha256": "0a3b1f370db7fc0194c7615b44e3bcdaa2b3b40ad99372f83b3b27beecddf06d",
+      "firstLine": 131,
+      "lastLine": 153,
+      "excerpt": "        for key in ('admissionCacheMisses', 'admissionProofAttempts', 'admissionUnready', 'fieldWorkspaceBuilds', 'interfaceWorkspaceBuilds', 'layoutCheckCalls'):\n            require(b[key] == a[key], 'Repeated warm proof work: ' + key)\n    if request['observeMethod']:\n        method = loads(raw['nativeMethod'])\n        fields(method, METHOD_FIELDS, 'Real MethodInfo probe')\n        require(method['schemaVersion'] == 1 and method['available'] is True and integer(method['baselineToken'], 1), 'Physical baseline MethodInfo')\n        require(method['baselineCctorBefore'] == 0 and method['baselineCctorAfter'] == 0, 'No baseline business initializer')\n        require(integer(method['activeGeneration'], 1), 'Active generation exists')\n        if outcome == 'legacy-slot':\n            require(method['mappingCode'] == 13 and 'ShadowMethodNotFound' in method['mappingDetail'] and method['activeOwner'] is False,\n                    'Original slot-based lookup failure')\n        else:\n            require(method['mappingCode'] == 0 and method['differentPhysicalMethods'] is True and method['activeOwner'] is True and\n                    method['cacheIdentityStable'] is True, 'Actual active MethodInfo mapping and stable cached identity')\n            require(method['baselineSlot'] != method['activeSlot'], 'The actual native virtual slot must have moved')\n        if request['oldExecutionGuard']:\n            require(method['activeGuard'] == 1 and method['baselineGuard'] == 0 and method['stateCode'] == 9 and raw['finalState'] == 9,\n                    'Actual old-AOT execution guard was not authorized by remapping')\n            require(recovery['disposition'] == 'RestartRequired' and recovery['terminalFailureCode'] == 21, 'Old method guard preserves poison/restart')\n        else:\n            require(method['activeGuard'] == -1 and method['baselineGuard'] == -1 and raw['finalState'] == 6, 'No unintended guard test')\n    else:\n        require(not raw['nativeMethod'] and raw['finalState'] == 6, 'No unexpected native probe or failure')",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py"
+    },
+    {
+      "source": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/R03EvolutionContractCases.cs",
+      "sha256": "3c8a423345495b05489e371bc0a864e82dba7af4229907fae4d474781990a818",
+      "firstLine": 33,
+      "lastLine": 41,
+      "excerpt": "        }\n\n        private static IEnumerable<Case> Cases()\n        {\n            yield return Layout(\"L01-private-reference-append\", null, (m, t) => Field(t, \"extra\", m.CorLibTypes.Object), false);\n            yield return Layout(\"L02-private-string-append\", null, (m, t) => Field(t, \"extra\", m.CorLibTypes.String), false);\n            yield return Layout(\"L03-private-primitive-append-needs-native\", null, (m, t) => Field(t, \"extra\", m.CorLibTypes.Int64), true, true);\n            yield return Layout(\"L04-public-primitive-append\", null, (m, t) => Field(t, \"extra\", m.CorLibTypes.Int32, FieldAttributes.Public), false);\n            yield return Layout(\"L05-value-type-growth\", Value, (m, t) => { Value(m, t); Field(t, \"extra\", m.CorLibTypes.Int32); }, false);",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance/diagnostic-source-snapshot/hybridclr_unity/Tests/Editor/AssemblyShadow/R03EvolutionContractCases.cs"
+    }
+  ],
+  "limits": "No Local source edit, probe, retry, Player relaunch, expectation change or raw-evidence rewriting"
+}

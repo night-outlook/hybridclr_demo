@@ -1,0 +1,5 @@
+# Preserve immutable sealed bytes, including generated native whitespace.
+*.dll binary
+*.dylib binary
+batch/evidence.tar.gz.parts/* binary
+batch/** -whitespace
