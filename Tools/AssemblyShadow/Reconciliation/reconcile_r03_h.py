@@ -206,13 +206,20 @@ def main():
                 require(len(matches) == 1 and matches[0]['commit'] == commit and matches[0]['remoteHeadVerified'] is True
                         and matches[0]['branch'] == 'codex/assembly-shadow-r01b-h1', 'Executed source pairing')
         result['cells'] = {'Passed': 37, 'Failed': 0, 'Blocked': 0}
-        commands = [load(p) for p in sorted((batch/'commands').glob('*/command.json'))]
+        command_paths = sorted((batch/'commands').glob('*/command.json'))
+        commands = [load(p) for p in command_paths]
         require(len(commands) == 83, 'Original command count')
-        for command in commands:
-            require(command['exitCode'] in (0, 1) and not command.get('timedOut') and not command.get('survivors')
-                    and not command.get('cleanupErrors') and not command.get('interrupted'), 'Original command failure')
+        for receipt, command in zip(command_paths, commands):
+            require(command['schemaVersion'] == 2 and command['lifetimePolicy'] == 'R03OwnedCommandV1', 'Original lifetime schema')
+            require(command['exitCode'] in (0, 1) and command['timeout'] is False and command['remainingProcessGroup'] is False
+                    and command['postCleanupGroupExists'] is False and command['startError'] is None
+                    and command['cleanupErrors'] == [] and command['interrupted'] is False, 'Original command failure')
+            for stream in ('stdout', 'stderr'):
+                require(digest(receipt.parent/(stream+'.log')) == command[stream+'Sha256'], 'Command stream binding')
+        require([p.parent.name for p,c in zip(command_paths,commands) if c['exitCode'] == 1] == ['0048','0050','0055'], 'Named negative controls')
         result['commandExitCounts'] = dict(collections.Counter(str(c['exitCode']) for c in commands))
         require(result['commandExitCounts'] == {'0': 80, '1': 3}, 'Expected negative command count')
+        result['ownedCommandLifetimeAndStreamsAuthenticated'] = 83
         # Reuse the source-bound original verifier, never launch its Batch/Player methods.
         sys.path.insert(0, str(source))
         from batch_contract import verify_raw
@@ -242,7 +249,6 @@ def main():
         controls = load(batch/'producer-controls.json')
         require(controls['result'] == 'Passed' and controls['identifiedLoopAdmissions'] == 4, 'Four identified producer controls')
         for row in controls['cases']:
-            require(row['evidence'] == next(r for r in results if r['id'] == row['id']) | {}, 'PLACEHOLDER') if False else None
             actual_verdict = next({k:v for k,v in r.items() if k != 'id'} for r in results if r['id'] == row['id'])
             require(row['result'] == 'Passed' and row['evidence'] == actual_verdict, 'Control receipt equality')
             require(row['evidence']['warmWindow']['unisolatedWarmCertificate'] == 'Failed', 'Contaminated control certificate')
