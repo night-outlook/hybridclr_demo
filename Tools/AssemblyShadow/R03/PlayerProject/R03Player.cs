@@ -27,6 +27,7 @@ namespace AssemblyShadow.R03.Player
         public bool observeMethod;
         public bool oldExecutionGuard;
         public bool noPatch;
+        public bool producerControl;
     }
     [Serializable] public sealed class Step { public string phase; public int code; public int state; }
     [Serializable] public sealed class Result
@@ -71,7 +72,7 @@ namespace AssemblyShadow.R03.Player
         private static extern int R03_ObserveMethod(string assembly, string namespaze, string type, string method,
             int oldGuard, [Out] byte[] output, int capacity);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int R03_BeginWarmProbe(string assembly);
+        private static extern int R03_BeginWarmProbe(string assembly, int isolateProducer);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
         private static extern int R03_MarkWarmProbe(int boundary);
         [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl)]
@@ -120,7 +121,7 @@ namespace AssemblyShadow.R03.Player
                 if (request.noPatch)
                 {
                     result.phase = "BaselineInvoke";
-                    Invoke(request.invokeAssembly);
+                    Invoke(request.invokeAssembly, request.producerControl);
                     result.phase = "Completed";
                     return;
                 }
@@ -142,7 +143,7 @@ namespace AssemblyShadow.R03.Player
                 if (!string.IsNullOrEmpty(request.invokeAssembly))
                 {
                     result.phase = "ActiveInvoke";
-                    Invoke(request.invokeAssembly);
+                    Invoke(request.invokeAssembly, request.producerControl);
                 }
                 if (request.observeMethod)
                 {
@@ -201,7 +202,7 @@ namespace AssemblyShadow.R03.Player
             Steps.Add(new Step { phase = phase, code = (int)code, state = (int)state });
             return code == AssemblyShadowErrorCode.Success;
         }
-        private static void Invoke(string assembly)
+        private static void Invoke(string assembly, bool producerControl)
         {
             Type type = Type.GetType("R03.Node, " + assembly, true);
             object instance = Activator.CreateInstance(type);
@@ -214,7 +215,7 @@ namespace AssemblyShadow.R03.Player
             // measured 10,000-allocation interval. Both cores use this same code.
             AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info);
             for (int preparation = 0; preparation < 8; ++preparation) instance = Activator.CreateInstance(type);
-            int probe = R03_BeginWarmProbe(assembly);
+            int probe = R03_BeginWarmProbe(assembly, producerControl ? 0 : 1);
             if (probe < 0) throw new InvalidOperationException("Cannot bind exact warm probe: " + probe);
             if (AssemblyShadowRuntime.GetTypeResolutionInfo(type, out info) == AssemblyShadowErrorCode.Success)
                 result.beforeWarm = info;

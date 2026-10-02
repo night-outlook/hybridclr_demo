@@ -43,8 +43,8 @@ def main():
             require(subprocess.check_output(['git','-C',str(path),'rev-parse','HEAD'],text=True).strip()==pins[name],'Exact source pin: '+name)
     c=Commands(output); result={'kind':'R03NativeRuntimePrerequisites','result':'Failed','platform':platform.platform(),
                                'unitCases':[],'translationUnits':[], 'runtimeAcceptance':False,'unityEditorRun':False}
-    files=[p for root in (native/'libil2cpp/vm',native/'tools/r03',hybrid/'hybridclr/metadata') for p in root.glob('*')
-           if p.is_file() and (p.name.startswith('AssemblyShadow') or p.name in ('InterpreterImage.h','StagedAssembly.cpp','runtime_probe_tests.cpp','runtime_probe_other.cpp'))]
+    files=[p for root in (native/'libil2cpp/vm',native/'libil2cpp/gc',native/'tools/r03',hybrid/'hybridclr/metadata') for p in root.glob('*')
+           if p.is_file() and (p.name.startswith('AssemblyShadow') or p.name in ('InterpreterImage.h','StagedAssembly.cpp','runtime_probe_tests.cpp','runtime_probe_other.cpp','producer_fence_tests.cpp','GarbageCollector.cpp'))]
     sources=[{'path':str(p.relative_to(ws)),'sha256':sha(p)} for p in sorted(files)]
     try:
         cc=shutil.which('clang++');require(cc,'clang++ is required')
@@ -62,6 +62,17 @@ def main():
                     folder,_=c.run([str(exe),mode]);raw=loads((folder/'stdout.log').read_text())
                     require(raw['result']=='Passed' and raw['runtimeAcceptance'] is False,'Production probe header test')
                     result['unitCases'].append({'configuration':n,'mode':mode,'result':raw})
+            fence_configs = [('c++11', []), ('c++17', [])]
+            if args.sanitizers: fence_configs.append(('c++17', ['-fsanitize=address,undefined','-fno-omit-frame-pointer']))
+            for n, (std, extra) in enumerate(fence_configs):
+                exe=output/('fence-%02d'%n)
+                c.run([cc,'-std='+std,'-pthread','-O1','-g','-Wall','-Wextra','-Werror',
+                       '-DHYBRIDCLR_R03_RUNTIME_PROBE=1','-DHYBRIDCLR_ASSEMBLY_SHADOW_DIAGNOSTICS_LEVEL=2',
+                       '-I'+str(native/'libil2cpp'),str(native/'tools/r03/producer_fence_tests.cpp'),*extra,'-o',str(exe)])
+                for mode in ('normal','defer','unrelated','existing','expire','abandoned','wrong-owner','reuse','bounds','exception','context'):
+                    folder,_=c.run([str(exe),mode]); raw=loads((folder/'stdout.log').read_text())
+                    require(raw['result']=='Passed' and raw['runtimeAcceptance'] is False,'Bounded producer gate contract')
+                    result['unitCases'].append({'configuration':'fence-'+str(n),'mode':mode,'result':raw})
             # Original production cache/proof/negative-path/counter suites, unchanged.
             for script in ('run_tests.py','run_revision_tests.py'):
                 target=output/script.replace('.py','')
@@ -86,7 +97,7 @@ def main():
             includes=[copy,scratch,scratch/'external',scratch/'external/baselib/Include',
                       scratch/'external/baselib/Platforms/OSX/Include',scratch/'external/bdwgc/include']
             overlay=demo/'Tools/AssemblyShadow/R03/PlayerProject/AssemblyShadowR03Probe.cpp'
-            units=[copy/'vm/AssemblyShadowTypeResolver.cpp',copy/'vm/AssemblyShadowTypeKey.cpp',
+            units=[copy/'gc/GarbageCollector.cpp',copy/'vm/AssemblyShadowTypeResolver.cpp',copy/'vm/AssemblyShadowTypeKey.cpp',
                    copy/'hybridclr/metadata/StagedAssembly.cpp',copy/'hybridclr/metadata/InterpreterImage.cpp',overlay]
             profiles=[('candidate',1,1,0,2),('debug',1,1,1,2),('probe-off',1,0,0,2),
                       ('diagnostics-off',1,0,0,0),('feature-off',0,1,0,0)]

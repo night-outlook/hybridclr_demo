@@ -7,6 +7,8 @@
 #include "vm/AssemblyShadowDiagnostics.h"
 #include "vm/MetadataCache.h"
 #include "vm/MetadataLock.h"
+#include "vm/AssemblyShadowTypeKey.h"
+#include "os/Thread.h"
 #include <cstring>
 #include <sstream>
 
@@ -115,11 +117,15 @@ extern "C" IL2CPP_EXPORT int32_t R03_ObserveMethod(const char* assemblyName,
 #define R03_HAS_RUNTIME_PROBE 0
 #endif
 
-extern "C" IL2CPP_EXPORT int32_t R03_BeginWarmProbe(const char* assemblyName)
+extern "C" IL2CPP_EXPORT int32_t R03_BeginWarmProbe(const char* assemblyName, int32_t isolateProducer)
 {
 #if R03_HAS_RUNTIME_PROBE
     using namespace il2cpp::vm;
     if (!assemblyName || !AssemblyShadow::ActiveGeneration()) return 0;
+    // No metadata/probe mutex is held while acquiring the producer lease.
+    if (isolateProducer != 0 && isolateProducer != 1) return -6;
+    if (isolateProducer && !assembly_shadow_r03::ProducerFence::Instance().Acquire(
+            static_cast<uint64_t>(il2cpp::os::Thread::CurrentThreadId()))) return -7;
     try
     {
         Il2CppClass* baseline = nullptr;
@@ -142,14 +148,16 @@ extern "C" IL2CPP_EXPORT int32_t R03_BeginWarmProbe(const char* assemblyName)
     }
     catch (...) { return -5; }
 #else
-    (void)assemblyName; return 0;
+    (void)assemblyName; (void)isolateProducer; return 0;
 #endif
 }
 
 extern "C" IL2CPP_EXPORT int32_t R03_MarkWarmProbe(int32_t boundary)
 {
 #if R03_HAS_RUNTIME_PROBE
-    return il2cpp::vm::assembly_shadow_r03::RuntimeProbe::Mark(boundary) ? 1 : -1;
+    const bool marked = il2cpp::vm::assembly_shadow_r03::RuntimeProbe::Mark(boundary);
+    const bool released = boundary != 3 || il2cpp::vm::assembly_shadow_r03::ProducerFence::Instance().Release();
+    return marked && released ? 1 : -1;
 #else
     (void)boundary; return 0;
 #endif
@@ -182,7 +190,8 @@ void ProbeType(std::ostream& out, const void* pointer)
     out << "{\"physical\":" << AssemblyShadowDiagnostics::Quote(ProbePointer(pointer))
         << ",\"assembly\":" << AssemblyShadowDiagnostics::Quote(klass && klass->image && klass->image->assembly ? klass->image->assembly->aname.name : "")
         << ",\"namespace\":" << AssemblyShadowDiagnostics::Quote(klass ? klass->namespaze : "")
-        << ",\"name\":" << AssemblyShadowDiagnostics::Quote(klass ? klass->name : "") << "}";
+        << ",\"name\":" << AssemblyShadowDiagnostics::Quote(klass ? klass->name : "")
+        << ",\"typeKey\":" << AssemblyShadowDiagnostics::Quote(klass ? il2cpp::vm::AssemblyShadowTypeKey::Format(&klass->byval_arg) : "") << "}";
 }
 void UIntArray(std::ostream& out, const uint32_t* data, size_t count)
 {
@@ -201,9 +210,14 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
     using namespace il2cpp::vm;
     try
     {
+    // Also release on exceptional managed paths that did not reach Mark(3).
+    // The incomplete original probe remains invalid; cleanup never grants PASS.
+    assembly_shadow_r03::ProducerFence::Instance().Release();
+    assembly_shadow_r03::ProducerFence::Instance().Drain();
+    const auto fence = assembly_shadow_r03::ProducerFence::Instance().Read();
     const auto r = assembly_shadow_r03::RuntimeProbe::Read();
     std::ostringstream out; out << std::boolalpha;
-    out << "{\"schemaVersion\":1,\"available\":true,\"policy\":\"R03ExactAllocationWindowV1\",\"used\":" << r.used
+    out << "{\"schemaVersion\":2,\"available\":true,\"policy\":\"R03ExactAllocationWindowV1\",\"used\":" << r.used
         << ",\"sealed\":" << r.sealed << ",\"invalid\":" << r.invalid << ",\"overflow\":" << r.overflow
         << ",\"generation\":" << r.generation << ",\"ownerThread\":" << r.owner << ",\"target\":";
     ProbeType(out, r.target);
@@ -228,7 +242,21 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
             << ",\"generation\":" << e.key.generation << ",\"domain\":" << e.key.domain
             << ",\"context\":" << AssemblyShadowDiagnostics::Quote(ProbePointer(e.key.context))
             << ",\"site\":" << AssemblyShadowDiagnostics::Quote(e.site) << ",\"type\":";
-        ProbeType(out, e.key.physical); out << "}";
+        ProbeType(out, e.key.physical);
+        out << ",\"producer\":{\"osThread\":" << e.producer.osThread
+            << ",\"recognizedArrayPool\":" << e.producer.recognizedArrayPool
+            << ",\"finalizerType\":";
+        if (e.producer.finalizerClass) ProbeType(out, e.producer.finalizerClass); else out << "null";
+        out << ",\"callback\":";
+        const auto* callback = static_cast<const MethodInfo*>(e.producer.callback);
+        if (callback)
+        {
+            out << "{\"name\":" << AssemblyShadowDiagnostics::Quote(callback->name)
+                << ",\"token\":" << callback->token << ",\"declaringType\":";
+            ProbeType(out, callback->klass); out << "}";
+        }
+        else out << "null";
+        out << "}}";
     }
     out << "],\"layouts\":[";
     for (size_t i = 0; i < r.layouts; ++i)
@@ -251,7 +279,12 @@ extern "C" IL2CPP_EXPORT int32_t R03_ReadRuntimeProbe(char* output, int32_t capa
             << ",\"baselineVtableAtRead\":" << bool(baseline && baseline->is_vtable_initialized)
             << ",\"baselineCctorAtRead\":" << (baseline ? baseline->cctor_started : 0) << "}";
     }
-    out << "],\"runtimeAcceptance\":false}"; json = out.str();
+    out << "],\"producerFence\":{\"policy\":\"R03ArrayPoolFinalizerFenceV1\"";
+#define FENCE(name) out << ",\"" #name "\":" << fence.name;
+    FENCE(requested) FENCE(acquired) FENCE(released) FENCE(expired) FENCE(invalid) FENCE(drained)
+    FENCE(admitted) FENCE(completed) FENCE(deferred) FENCE(deferredCompleted) FENCE(ownerOsThread) FENCE(elapsedMicros) FENCE(leaseMs)
+#undef FENCE
+    out << "},\"runtimeAcceptance\":false}"; json = out.str();
     }
     catch (...) { return -3; }
 #else
