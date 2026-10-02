@@ -1,6 +1,131 @@
 # Local Validation report
 
-## Current run — R03 batch G, 2026-10-02: producer attribution and six warm witnesses pass; five rejection observations fail
+## Current run — R03 batch H, 2026-10-02: focused rejected-stage preservation Passed; return for Primary reconciliation
+
+**Result=EvidenceReadyForPrimaryReview; 37 cells: 37 Passed / 0 Failed / 0 Blocked; sealStatus=Passed; runner exit 0. Exit: Local Validation → Primary Implementation.** Exactly one fresh invocation, PID 60711, 2026-10-02 08:42:35–08:48:47 PDT; UTC 2026-10-02T15:42:35.301026+00:00–2026-10-02T15:48:47.419720+00:00. All four fresh native build roles, 754 selected actual Editor cases with zero skips, and all 23 fresh-process Players passed their defined contracts. The five strict negative cases retain error 16 through the 16-byte/-2 capacity control, two complete bounded native reads and final raw capture. All six strict main warm certificates, full positive C07 and producer-controls aggregate Passed. Contaminated natural controls' unisolated warm certificates remain Failed. No Local source fix, terminal restoration, counter/scope/pin/ownership/lease/warm-up/deadline change, retry or prior-app reuse occurred.
+
+### Executed authority and environment
+
+All owning repositories independently matched their absolute top-level paths, branch `codex/assembly-shadow-r01b-h1`, clean status, canonical origins `git@github.com:night-outlook/<repository>.git`, exact local HEAD and remote tip before and after execution. Demo safely fast-forwarded from G Local publication `0d8a19830ce454d22335c854978816a830997187`; IL2CPP advanced coherently to the H source pin. Source anchor `9d70494c97e4efc9597a3e071f63c1489c6ac396` is an ancestor and its delta to the executed demo is documentation-only. Original source pins, package file reference, fixture IDs, build roles, Editor filter and Player expectations are authenticated in [preflight](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight) and each isolated source/config receipt. Earlier owning/linked worktrees are preserved.
+
+| Owning repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `2007c5dbd3dcf535706688e6595700e3ba26a11e` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Fresh detached reference worktrees beneath `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees` remain clean at native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. The four role-specific `projects/` and `builds/` roots retain their own Library/HybridCLRData/install SDK/app outputs; no ordinary primary checkout, old app, prior cache or control sibling is mixed in. [RETAINED_LIVE_ROOTS.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/RETAINED_LIVE_ROOTS.json) records exact retained paths. Schema-2 build receipts and nativeBinding bind each installed root, non-generated core and full app inventory to source/config hashes. Build GUID remains explicitly Unavailable where the receipt reports it; no matching GUID is inferred.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0/macOS SDK 26.5. Unity executable `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, StandaloneOSX/arm64. SDK-only root `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; no Unity 6000 Editor execution. Pinned Unity 2022.3.62f2 `MonoBleedingEdge/lib/mono/unityaot-macos/mscorlib.dll` SHA-256 `d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83`. Scoped SDK PATH/DOTNET_ROOT/DOTNET_ROOT_ARM64, DOTNET_MULTILEVEL_LOOKUP=0, PYTHONDONTWRITEBYTECODE=1 and TMPDIR=/private/tmp are recorded in runner-invocation.json. No Unity Editor was running at preflight. Gate helper Off; no independent stage-review or Human Review Gate verdict claimed.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 2007c5dbd3dcf535706688e6595700e3ba26a11e
+```
+
+### Every required cell and supporting contracts
+
+All statuses below are fresh G-independent H results. Expected-negative compiler exit1 and expected Validate16 rejection are successful contracts, not successful product operations.
+
+| Cell | Original sealed state |
+| --- | --- |
+| `entry-authority` | Passed |
+| `verifier-contracts` | Passed |
+| `reference-sources` | Passed |
+| `host-baseline-graph` | Passed |
+| `host-candidate-graph` | Passed |
+| `host-admission` | Passed |
+| `player-fixtures` | Passed |
+| `prepare-candidate-release` | Passed |
+| `build-candidate-release` | Passed |
+| `prepare-reference-release` | Passed |
+| `build-reference-release` | Passed |
+| `prepare-candidate-debug` | Passed |
+| `build-candidate-debug` | Passed |
+| `prepare-candidate-off` | Passed |
+| `build-candidate-off` | Passed |
+| `editor-tests` | Passed |
+| `C01-baseline` | Passed |
+| `C02-private-reference` | Passed |
+| `C03-moved-slot` | Passed |
+| `C04-old-AOT-guard` | Passed |
+| `C05-direction-reversal` | Passed |
+| `C06-actual-target-cycle` | Passed |
+| `C07-private-primitive-append` | Passed |
+| `C08-interface-change` | Passed |
+| `C09-reference-to-value-kind` | Passed |
+| `C10-field-removal` | Passed |
+| `R01-baseline` | Passed |
+| `R02-original-late-layout` | Passed |
+| `R03-original-slot-lookup` | Passed |
+| `R04-direction-reversal` | Passed |
+| `R05-actual-target-cycle` | Passed |
+| `D01-private-reference` | Passed |
+| `D02-moved-slot` | Passed |
+| `D03-old-AOT-guard` | Passed |
+| `O01-feature-OFF-baseline` | Passed |
+| `producer-controls` | Passed |
+| `final-authority` | Passed |
+
+Supporting Passed checks: 183 verifier Python tests, both 9-case graph suites, 35 admission contracts, 15 real DLL fixtures, 33 unsigned-reference audits, 33 pinned-Unity consumers, valid/invalid Editor lifecycle probes, full package/helper API compilation (425 inputs/115 defines), four fresh IL2CPP/native arm64 builds and 754 selected Editor XML cases with zero skips. The 83 command receipts retain authenticated streams and clean process-group completion; 80 exit0, only named 0048/0050/0055 expected-negative controls exit1. The old C helper produces exactly two CS0266 errors, while current helper/product builds succeed. Seven birth-authenticated Unity completion receipts retain the original inner exits and bounded owned VBCSCompiler retirement; no global compiler kill or hidden survivor was used. Local did not separately rerun Primary's 90 native header processes or 35 syntax checks; their source-bound CI records are historical/host evidence, not extra Local Player coverage.
+
+All original 19 main Players and four PC controls executed with distinct PID/run nonce and bound request/raw/build-receipt hashes. All 23 Player command exits0 and source-defined semantic/diagnostic verifications Passed. Reference/off unavailable native probe states remain explicit; they do not acquire fabricated snapshot coverage. M01 remains **NoCoverage**, excluded because its frozen fixture is unavailable, not counted as an Editor skip/pass. Full-stage legacy/resource, broader generic/interface/delegate/stack-trace, startup/capacity/performance/memory, gated qualification and independent full R03 review are **NotRun in this focused batch and remain open**.
+
+### Five negative paths: non-mutating observation witnessed
+
+[REJECTION_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/REJECTION_RUNTIME_AUDIT.json) reconciles every original source-bound `verification.rejectionObservation` subcheck with the raw observation. Overall raw/runtimeProbe schemas3 and string-encoded `rejectionProbe` schema1/policy R03RejectedProbeNonMutationV1 are preserved. Each one-transaction process reaches Configure/Begin/Reserve/Stage success then Validate16/state 8/unpublished. Four captures (`before`, `afterSmall`, `afterFirst`, `afterSecond`) plus final ordinary raw diagnostics retain exact immutable transaction projection and the entire recovery document: lastError/terminalFailureCode16, failed state 8, generation0, no Commit/publication/module/business initialization, RestartRequired. No probe exception or error 15 occurs. Whole diagnostic strings remain retained; independent ordinary-class enumeration is not asserted invariant.
+
+| Case | Fresh PID | Capacity return | Full-read return bytes (first/second) | Retained rows | raw.json SHA-256 | verification.json SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `C02-private-reference` | 66221 | -2 | 2697 / 2697 | 2 | `d65ac46c97f9d057cb7235ecb170cb42ece328abd4165d161624c70d5b2ca261` | `8e0a2aa185fe9dba246a83c7c9414ea777891b2f1352b8e8899adacf1237ebb1` |
+| `C08-interface-change` | 66238 | -2 | 1664 / 1664 | 1 | `51f2b2f08182c60a0e941e052e594a442253714f1224f15e4e292a678febc73e` | `1cc13fd960b42867e2d231d6f77792efc7e50f80b758eb8853841b4f0555729b` |
+| `C09-reference-to-value-kind` | 66240 | -2 | 1664 / 1664 | 1 | `bf43ccb30aae7b5a5cade0dc50a68093e783ce8d196c0bc21b4bd983a69336e6` | `024a833d5e23f4b79231f89b7803a0549dabe357fdda61d517476cf42cda1f88` |
+| `C10-field-removal` | 66242 | -2 | 2730 / 2730 | 2 | `b17f5d19a4cb719c4c27436319b12de4c0bf3a8c24cb1785c12e8effb56a72c9` | `6067f1e849588951592add206638704b215e6c4cd743c01e8d7abbbb040a8576` |
+| `D01-private-reference` | 66254 | -2 | 2697 / 2697 | 2 | `9d04d99b7ccc2d03c99afd4ff6d3ed72b30e56e6c4e20bcc987c5cc804295933` | `1eca560d90274aa63840afc6c9afa82ab1f52f72203f23b0188f7f5936ef6c45` |
+
+Both native full reads return exactly their UTF-8 payload length below131072. C02/D01 retain two layout rows (`layout/<Module>` and `layout/R03.Node`); C08/C09 retain one prior `R03Contract/<Module>` row; C10 retains `R03Contract/<Module>` and `R03Contract/R03.Node`. Layout rows remain exactly equal across reads, identities have R03OwnedLayoutIdentityV1 and Captured baseline/target statuses with distinct opaque physical values and complete type keys. Each explicit captured transaction projection and entire recovery compare equal at all five boundaries. The second complete native JSON, complete diagnostics/recovery strings, their byte hashes and statuses are retained. An earlier retained row is not assumed to identify the actual failing type; failingRowIdentified=false remains explicit. These fresh H observations satisfy the focused LG-001 repair verification; G's five Failed cells and missing probes remain historical Failed/Unavailable without schema upgrade or retroactive closure.
+
+### Six strict main warm witnesses and four natural controls
+
+[PRODUCER_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/PRODUCER_RUNTIME_AUDIT.json) retains all ten raw probes, 50 adjacent native spans, exact counter/event reconciliation and source/DLL/build bindings. Each main exact loop has zero all-thread cold admission/proof/layout/workspace work and at least 10000 hits/baseline checks, unchanged eight preparation allocations and 10000 business allocations. Leases remain R03ArrayPoolFinalizerFenceV1/5000ms, acquired/released/drained=true, expired/invalid=false. All deferred matching callbacks complete.
+
+| Main witness | Fresh PID | Lease elapsed µs | Admitted/completed | Deferred/completed | Exact-loop cold work |
+| --- | --- | --- | --- | --- | --- |
+| `C03-moved-slot` | 66223 | 13467 | 2/2 | 1/1 | zero |
+| `C04-old-AOT-guard` | 66225 | 13173 | 2/2 | 1/1 | zero |
+| `C05-direction-reversal` | 66232 | 13154 | 2/2 | 1/1 | zero |
+| `C07-private-primitive-append` | 66236 | 13606 | 2/2 | 1/1 | zero |
+| `D02-moved-slot` | 66256 | 239393 | 1/1 | 0/0 | zero |
+| `D03-old-AOT-guard` | 66258 | 246388 | 1/1 | 0/0 | zero |
+
+| Natural control | Fresh PID | Unisolated warm certificate | Identified admissions | Miss/proof/entry/byte delta |
+| --- | --- | --- | --- | --- |
+| `PC-C03-moved-slot` | 66262 | Failed | 1 | 1/1/1/80 |
+| `PC-C04-old-AOT-guard` | 66264 | Failed | 1 | 1/1/1/80 |
+| `PC-C05-direction-reversal` | 66267 | Failed | 1 | 1/1/1/80 |
+| `PC-C07-private-primitive-append` | 66270 | Failed | 1 | 1/1/1/80 |
+
+Producer-controls aggregate Passed, with 4 identified in-loop admissions. All four controls observe an exact-loop Object::NewAllocSpecific admission on probe thread2 rather than owner1, type `System.Runtime.CompilerServices.ConditionalWeakTable<byte[][], object>.Enumerator`. Actual context identifies `mscorlib/System.Gen2GcCallback`, delegate `Gen2GcCallbackFunc`, token100672638, closed declaring type `System.Buffers.TlsOverPerCoreLockedStacksArrayPool<byte>`, recognizedArrayPool=true. Complete full keys, numeric native runtime thread identifiers and all four cold events per control remain in raw/audit evidence; no cross-process thread or pointer identity is inferred. Diagnostic success does not promote a contaminated control's Failed warm certificate. Pairing uses DLL/source/config/build hashes and distinct PID/run IDs, never pointer/thread equality across processes. Lease isolation remains diagnostic-only and may delay queued finalizers; it is not production GC/performance qualification. No H attribution is retroactively assigned to older E/F evidence.
+
+Full C07 main and the paired control retain sourceSize24/targetSize32, source offset[16]/target offsets[16,24], target storage[4,8], source/target attrs1, native sizes-1. baselineReady/targetReady/targetDefinitionReady/physicalProof=true, error0, pending/truncated=false; sourceSizeInited/targetSizeInited=false are preserved. Proof-time baseline/target business/vtable flags are false with cctor0; baseline flags remain false at final read. Both source-bound physical subchecks Passed, followed by main publication/reflection/delegate result41 and 10000 allocations. Their owned identity statuses are Captured; readiness comes from finalized staged definitions. Exact per-process physical values remain in the audit. The control's contaminated unisolated certificate remains Failed. Historical F positive physical subcheck/full-cell Failed and G full-cell Passed remain as originally sealed.
+
+### Custody, publication and exact exit state
+
+[POSTRUN_AUTHENTICATION.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/POSTRUN_AUTHENTICATION.json) authenticates 1901 indexed live files and 1902 exact safe unique archive members; result/ledger/37 individual cells agree. All 9000 earlier custody files are unchanged. No reused evidence is promoted to fresh H acceptance. Every important observation is preserved in raw receipts/reports; transient Unity Console is not the sole record.
+
+Live `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection` and all receipt-referenced project/install/build/app/reference roots remain intact. Immutable [H checkpoint](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/README.md) copies every indexed byte plus top-level result/index/seal and exact ordered archive parts. Original archive size 164177597 bytes, SHA-256 `dd7adb4de12aa7203c69f993e57ebbde49e4f223edfd1179a2945e3d55f6e5cd`; [ARCHIVE_TRANSPORT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/ARCHIVE_TRANSPORT.json) and [ARCHIVE_RECONSTRUCTION_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/ARCHIVE_RECONSTRUCTION_AUDIT.json) authenticate fresh separate reassembly without recompression. [MANIFEST.sha256](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/MANIFEST.sha256) and publication checks bind checkpoint/staged bytes, JSON and local links. Exact captured generated/native whitespace is preserved with narrow raw/snapshot attributes; prior reports change only by prepending H and marking the previous G heading historical.
+
+| Original sealed artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `fe3eb7e1e767f54d58b0702d03890c2b5d46aff55be8adb67af1f749d06895a8` |
+| `BATCH_EXECUTION.json` | `81dabf1052f63da49ff8c017757e90b08e5504f445c60e1f553111a848b5fe80` |
+| `evidence-index.json` | `ef0e33ef8efa345bca758539646a8d81aefd2d16b5a1e0b139f78234332d1a28` |
+| `evidence.tar.gz` | `dd7adb4de12aa7203c69f993e57ebbde49e4f223edfd1179a2945e3d55f6e5cd` |
+| `seal-receipt.json` | `b47641a234507290872ca04c5bd07973bd017d2a60f9173aea394566b4cded43` |
+
+Only LOCAL_VALIDATION.md, RETURN_TO_WEB.md and the new H checkpoint are Local-owned publication changes; no runtime/source/pin change or local fix. Final pushed demo publication HEAD is distinct from executed source and is recorded after non-force push in `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002H-rejection/PUBLICATION_RECEIPT.json` and the final copyable handoff; all four clean canonical remote heads are verified. Native/package/IL2CPP heads remain the executed commits above. Focused outcome EvidenceReadyForPrimaryReview does not satisfy full-stage Human Review Gate requirements. **R03Accepted=false; H2Passed=false; pureInterpreterExpansionEnabled=false; fullLegacyRegressionAcceptance=false.** Exit exactly **Local Validation → Primary Implementation** for source/evidence reconciliation and remaining Primary-owned stage work; do not begin another batch, H2, implementation or qualification autonomously.
+
+## Historical run — R03 batch G, 2026-10-02: producer attribution and six warm witnesses pass; five rejection observations fail
 
 **Local Validation → Primary Implementation. Result=ReturnRequired; 37 cells: 32 Passed, 5 Failed, 0 Blocked; sealStatus=Passed; runner exit 1.** Exactly one invocation, runner PID 45229, UTC 2026-10-02T10:38:14.388652+00:00–2026-10-02T10:44:38.180250+00:00 (03:38:14–03:44:38 PDT). Four fresh native build roles and 754 selected EditMode cases with zero skips Passed. All 23 fresh-process Players executed: 14 of the original 19 main cases Passed, five Failed; four added controls diagnostic Passed with four unisolated warm certificates Failed. The producer-controls aggregate Passed with four identified loop admissions. All six strict isolated warm witnesses and the complete C07 positive physical-proof cell Passed. Five expected-negative cases fail because runtime-probe observation throws and replaces their terminal diagnostics. No Local source fix, retry, app reuse, counter relaxation, forced GC, extra warm-up, timeout/lifetime/lease change or acceptance promotion occurred.
 
