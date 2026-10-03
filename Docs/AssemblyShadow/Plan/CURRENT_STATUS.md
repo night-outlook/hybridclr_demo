@@ -1,45 +1,39 @@
-# Current Status — R03 LI contracts repaired; batch J prepared
+# Current Status — R03 LJ source repair; completion batch K prepared
 
 ## Authoritative state
 
 - R02 remains PassedWithExplicitDeferredRisk; focused H remains reconciled Passed.
-- Latest Local publication: demo `c16f39ec204876e3fd569f75c7b2e7dabc8c3913`.
-- Latest executed completion batch: I, from demo `c579e75eadef58ca484b35ffee03e435a925d781`.
-- I remains ReturnRequired: **40 Passed / 2 Failed / 48 Blocked**, seal Passed. Focused Editor remains 736 Passed / 18 Failed / zero skips; all 23 executed focused Players Passed. Resource builds/Editor and 36 downstream Players were Blocked.
-- LI-001 and LI-002 source repairs are implemented and host/compiler checked. Their integrated closure awaits J.
+- Latest Local publication: demo `71bddefd86a3b718d9d36b3edc2d88cd21db1e92`.
+- Latest executed completion batch: J, from demo `cebed900e6456433ac65db531262b60fd26766ee`.
+- J remains **ReturnRequired: 43 Passed / 1 Failed / 46 Blocked; seal Passed**.
+- Four focused builds, 23 focused Players, 18-method Editor preflight, both 754/755 full rosters, ten source-pin consumer checks and native installation Passed. LI-001/LI-002 have fresh passing J regressions.
+- J's M01 source-asset/GUID Editor contract Passed. Resource bundles/runtime and 36 downstream Players remain unavailable; the two resource builds were Blocked.
+- R03-LJ-001 source repair and actual policy/inventory prerequisite are prepared. Integrated closure awaits K; no target snapshot from J is invented.
 - R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; qualificationApproved=false.
-- PureInterpreter expansion disabled; fullLegacyRegressionAcceptance=false. Historical M01 NoCoverage is not upgraded.
-- **Next owner: Local Validation only for the new exact batch J in WEB_TO_LOCAL.md.**
+- PureInterpreter expansion disabled; fullLegacyRegressionAcceptance=false.
+- **Next owner: Local Validation for exactly the fresh K assignment in WEB_TO_LOCAL.md.**
 
-## Read and source authority
-
-Read `History/M07R/R03/L_CONTRACT_REPAIR.md`, `L_HOST_EVIDENCE.json`, `L_VALIDATION_MATRIX.md`, then `Handoff/WEB_TO_LOCAL.md`. The original Local return and all A–I checkpoints are unchanged. K's measurement protocol and ADR-0002 qualification boundary still apply.
+## Exact implementation authority
 
 Branch in all four repositories: `codex/assembly-shadow-r01b-h1`.
 
-| Repository | Repair implementation/source pin |
+| Repository | Source pin |
 | --- | --- |
-| hybridclr_demo | Executable/CI anchor `8d5297c375201687d17b91843ea0250ed90c0095`; final documentation-only handoff must match Primary's prompt and local/remote HEAD |
-| hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` — unchanged |
-| hybridclr_unity | `c86cbf665f5fcb2137e5adf2960541ce492467a4` |
-| il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` — unchanged |
+| night-outlook/hybridclr_demo | Executable/CI anchor `f00626dca8591496f2676b629104fd688bf06dce`; final docs-only handoff is the pushed commit containing WEB_TO_LOCAL and must match Primary's exact prompt |
+| night-outlook/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | `c86cbf665f5fcb2137e5adf2960541ce492467a4` |
+| night-outlook/il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-Package changes are restricted to synthetic policy fixture construction; production source/qualification/ownership/native guards are unchanged. Demo fixes source-pin generation, adds constructor and actual-consumer preflights, strengthens tests and binds the new package revision.
+All three non-demo pins are unchanged from J. The demo changes its explicit resource adapter/profile, preflight, dependency generation, tests and documentation; it does not change package production or native guards.
 
-## Completed Primary checks
+## Repair and checks
 
-At the exact anchor, workflow **37116804583** Passed on Linux and macOS: 73 completion-tool Python tests, 183 retained verifier tests, 12 actual-helper constructor contracts, 32 qualification, 9+9 graph and 35 admission contracts per host. All 12 owned commands per host completed cleanly.
+`History/M07R/R03/M_CAPABILITY_REPAIR.md` records the complete five-declaration reconciliation, exact dependency scope, actual target-consumer prerequisite and additional XR transitive-module correction found before handoff. `M_HOST_EVIDENCE.json` binds matching CI, downloaded artifact authentication and local checks. `M_VALIDATION_MATRIX.md` fixes the fresh scope and negative codes.
 
-Workflow **37116804600** Passed: complete resource helper/dependencies including the new source-pin consumer compiled against Unity2022.3.62f2 APIs, **16 assemblies / 650 sources / 16 clean successful compiler commands**. The 907 warnings, including 17 new serialized/default-field CS0649 warnings, are retained; no all-source warning-free claim is made. Pinned Core RP compiler-source metadata is not claimed byte-equivalent to Local UPM packages.
+Host/compiler checks do not run the new actual Unity inventory consumer. K must prove resolved package membership, both actual compiler arrays, their production-derived capability inventory, all five dispositions, positive policy and ten copied-input negative/positive controls before compiling the resource snapshot.
 
-All three final archives were independently authenticated: each host 447 indexed files / 448 ZIP files; API 118 indexed / 119 ZIP files. All indexed bytes, unique membership, sources, command streams and verdicts match. Fourteen uploaded demo source files and three corrected package fixture files match the compiler artifact; the remaining metadata/workflow blobs were checked through Connector.
+## Next batch and remaining stage work
 
-These are host/compiler checks. **Actual early Editor and production JsonUtility execution have not run in Primary.**
+K retains 90 cells, six fresh builds, 59 fresh Player processes, the 18-method early regression and both 754/755 zero-skip Editor rosters. Prior constructor/source-pin, strict warm, producer attribution, rejection-observation and positive C07 expectations remain intact. A successful K returns EvidenceReadyForPrimaryReview; any Failed/Blocked prerequisite returns ReturnRequired. No prior root/app may be reused or rerun.
 
-## Batch J
-
-The new root is `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts`. Require the original **90 cells / six fresh builds / 59 fresh Players**, full zero-skip 754/755 Editor selections, plus an additional early 18-method Editor subset and ten actual source-pin consumer checks in existing prerequisite cells. Neither preflight replaces downstream coverage. Native counters, producer lease, expected rejections, C07 success and measurement rules are unchanged.
-
-Any Failed/Blocked cell or failed seal returns ReturnRequired. All 90 Passed with a Passed seal returns EvidenceReadyForPrimaryReview, not stage/gate approval. No I rerun or historical app reuse is authorized.
-
-After Local returns, Primary reconciles the result, fixes substantive findings and completes the full R03 exit matrix and independent design→plan→implementation→evidence review. Unrepresented generic/interface/old-handle/qualification/production-risk obligations remain open. Only after the documented exit conditions may the project become Ready for the separately user-initiated H2. Do not enter M08A automatically; retain R02 deferred CPU and H1 RSS risks.
+Primary must reconcile K into the full R03 exit matrix, close any remaining coverage/qualification/runtime/production-profile obligations, and conduct the independent full-stage review before requesting user-initiated H2. Scope and evidence approval cannot be inferred from a green batch. Do not enter M08A automatically.

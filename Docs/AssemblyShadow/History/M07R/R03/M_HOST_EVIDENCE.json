@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LJPrimaryCapabilityRepairEvidence",
+  "date": "2026-10-03",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAnchor": "f00626dca8591496f2676b629104fd688bf06dce",
+  "repositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "preservedLocalPublication": "71bddefd86a3b718d9d36b3edc2d88cd21db1e92",
+  "preservedLocalResult": {
+    "batch": "J",
+    "executedDemo": "cebed900e6456433ac65db531262b60fd26766ee",
+    "result": "ReturnRequired",
+    "passed": 43,
+    "failed": 1,
+    "blocked": 46,
+    "sealStatus": "Passed",
+    "M01SourceAssetEditor": "Passed",
+    "M01ResourceRuntime": "Unavailable",
+    "custodyNote": "Earlier custody and full J archive authentication remain attributed to Local; not re-executed or fully reauthenticated in this repair cycle."
+  },
+  "hostWorkflow": {
+    "runId": 37140746667,
+    "jobsConclusion": "success",
+    "platforms": [
+      "ubuntu-24.04",
+      "macos-15"
+    ],
+    "sdk": "8.0.318",
+    "completionPythonContractsPerHost": 107,
+    "retainedR03PythonContractsPerHost": 183,
+    "actualProfileHelperContractsPerHost": 20,
+    "constructorContractsPerHost": 12,
+    "qualificationContractsPerHost": 32,
+    "baselineGraphContractsPerHost": 9,
+    "candidateGraphContractsPerHost": 9,
+    "admissionContractsPerHost": 35,
+    "artifacts": [
+      {
+        "artifactId": 11279798794,
+        "sha256": "58c10eeae548d702acb567c7be4a3735e6b2af9bf1872a06265341bcab1367ed",
+        "bytes": 3733356,
+        "indexedFiles": 479,
+        "zipFiles": 480,
+        "sourceCommit": "f00626dca8591496f2676b629104fd688bf06dce",
+        "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+        "commandCount": 14,
+        "commandLifetime": "Passed",
+        "authenticated": true,
+        "provenanceSha256": "d70f5fd0d678326e86968572b54c7338b7cd6e3b52cb6fad709ce329c9bfa12c",
+        "resultSha256": "f11b0780b252894ca8b30a106324501d1557fa70078936288b90c597548c023e",
+        "result": "Passed",
+        "managedCounts": {
+          "capability-profile-host": 20,
+          "fixture-constructor-host": 12,
+          "qualification": 32,
+          "host/baseline-graph": 9,
+          "host/candidate-graph": 9,
+          "host/admission": 35
+        },
+        "pythonCounts": [
+          107,
+          183
+        ]
+      },
+      {
+        "artifactId": 11280416744,
+        "sha256": "0ebe894bf1e0052d124d6fab2b6c4f4472dd9cf4b0896c583d1f6060d3b9ecf2",
+        "bytes": 3703787,
+        "indexedFiles": 479,
+        "zipFiles": 480,
+        "sourceCommit": "f00626dca8591496f2676b629104fd688bf06dce",
+        "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+        "commandCount": 14,
+        "commandLifetime": "Passed",
+        "authenticated": true,
+        "provenanceSha256": "9c80bb1c82e96bcc0987a0c8e7ef679ecc67bb9d4571bfb9dc6c61ea769981df",
+        "resultSha256": "55b9c2120f1ac8c8d441cff583c4025a03ef2fac6f014710eb19118d2d171377",
+        "result": "Passed",
+        "managedCounts": {
+          "capability-profile-host": 20,
+          "fixture-constructor-host": 12,
+          "qualification": 32,
+          "host/baseline-graph": 9,
+          "host/candidate-graph": 9,
+          "host/admission": 35
+        },
+        "pythonCounts": [
+          107,
+          183
+        ]
+      }
+    ],
+    "unityEditorRun": false,
+    "playerRun": false
+  },
+  "pinnedUnityApiWorkflow": {
+    "runId": 37140746616,
+    "jobsConclusion": "success",
+    "unityVersion": "2022.3.62f2",
+    "compiledAssemblies": 16,
+    "compiledSourceFiles": 652,
+    "compilerCommands": 16,
+    "compilerCommandsPassed": 16,
+    "newActualInventoryConsumerSourceCompiled": true,
+    "compilerWarnings": 912,
+    "inventoryConsumerWarnings": 4,
+    "warningPolicy": "Warnings are preserved, not suppressed. Compiler success is not actual Unity inventory/deserialization execution.",
+    "coreRpSourceRevision": "4694a5f37cb1c40e48058da90d3deab8f440dae6",
+    "upmByteEquivalenceClaimed": false,
+    "artifact": {
+      "artifactId": 11280736299,
+      "sha256": "d425f73d1d3fd9c6aaa8e489e72e7a7e2dfdbf26fc52677830e64241574ef21b",
+      "bytes": 1546023,
+      "indexedFiles": 126,
+      "zipFiles": 127,
+      "sourceCommit": "f00626dca8591496f2676b629104fd688bf06dce",
+      "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "commandCount": 16,
+      "commandLifetime": "Passed",
+      "authenticated": true,
+      "provenanceSha256": "9698cdcb31b4c3d85e2b631be0f27844cefa37bf75987433dd37dfd4f288f941",
+      "resultSha256": "d9b560254c72a170fc6e684f1b6bbee6d80014230027d99ba71ba6538682e0b3",
+      "result": "Passed",
+      "compiledAssemblies": 16,
+      "compiledSourceFiles": 652,
+      "compilerWarningCount": 912,
+      "newInventoryWarnings": 4
+    },
+    "unityEditorRun": false,
+    "playerRun": false
+  },
+  "additionalReviewCorrection": {
+    "priorCandidate": "eb9f38097e8b76f95aef8b8aad144bbd7e713327",
+    "observation": "The prior manifest generator omitted the J-observed transitive com.unity.modules.subsystems dependency while requiring exact manifest/lock membership.",
+    "historicalLockGitBlob": "61f02845b988206b6ffc75e4d380e9b9a95fc42f",
+    "historicalLockPath": "Docs/AssemblyShadow/History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/issue-resource-snapshot/Packages/packages-lock.json",
+    "module": "com.unity.modules.subsystems",
+    "version": "1.0.0",
+    "jDepth": 1,
+    "reproduction": "Synthetic lock shape based on J, not a new Unity run.",
+    "repair": "Explicit reviewed root and missing-from-both/version/extra-dependency rejection tests.",
+    "newTests": 6
+  },
+  "sourceReadback": {
+    "count": 30,
+    "meaning": "Exact local intended source bytes equal the authenticated final compiler artifact source bytes.",
+    "keySourceBindings": [
+      {
+        "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs",
+        "sha256": "485d7a27397f7e85778f2e21362cadd5bb4dc96a666487802cdd4561e1c94ec0"
+      },
+      {
+        "path": "Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs",
+        "sha256": "6b18c8ca0224f326c95b47303bfa4ef977ae902ebc85b6bc9a59501931d8ec2c"
+      },
+      {
+        "path": "Tools/AssemblyShadow/R03Completion/resource_capabilities.py",
+        "sha256": "20f45e0a96fe0f497ef8f51de6f880048e7b8039f16392cb5870e919d500a8b3"
+      },
+      {
+        "path": "Tools/AssemblyShadow/R03Completion/test_lj_contracts.py",
+        "sha256": "fb48415184e040ab009f0a3aa69b58c55c87d514081673a8b556c6634f292d84"
+      },
+      {
+        "path": "Tools/AssemblyShadow/R03Completion/test_lj_module_closure.py",
+        "sha256": "59a1b374f15ea60d9dc6e03d91ec405bc0ea78953dcbc76bf091a0370dc62927"
+      }
+    ],
+    "allBindingsLocation": "Authenticated final compiler artifact provenance.json and sources/; 30 local working source files were compared byte-for-byte."
+  },
+  "localChecks": {
+    "completionPythonContracts": "107/107 Passed",
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "109bb92c8c0246c306337dc67be63ec0f212eba251e3220607497ef01f89e00e",
+    "scope": "Current-container static and synthetic tooling tests, not Unity Editor or Player evidence."
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/connector-smoke-r03-lj-20261003-1730",
+    "commit": "d03d365da89d4d4ffaaa89579a01f0e483269c98",
+    "remoteHeadReadback": "Passed",
+    "fileReadback": "Passed",
+    "cleanup": "Delete-ref unavailable; retained disposable non-authoritative branch.",
+    "unchangedRepositories": "No native/package write in this cycle; four-repository read bootstrap completed."
+  },
+  "interpretation": {
+    "actualTargetInventoryExecuted": false,
+    "runtimeAcceptance": false,
+    "qualificationApproved": false,
+    "expansionAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "pending": [
+      "Actual scoped package resolution and both CompilationPipeline arrays",
+      "Ten actual production policy/inventory controls and exact reference bindings",
+      "Fresh complete batch K, including resource builds and all previously blocked downstream paths"
+    ],
+    "historicalEvidence": "J remains 43 Passed / 1 Failed / 46 Blocked with seal Passed. M01 source-asset Editor Passed is distinct from unavailable resource/runtime coverage."
+  }
+}
