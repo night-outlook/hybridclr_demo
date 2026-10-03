@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-03T13:02:13.051813+00:00",
+  "rows": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "head": "cebed900e6456433ac65db531262b60fd26766ee",
+      "mergeStdout": "Updating c16f39ec..cebed900\nFast-forward\n .github/workflows/r03-completion-api.yml           |   3 +-\n .github/workflows/r03-completion.yml               |   2 +-\n .github/workflows/r03-li-source.yml                |  55 ++++++\n .../Editor/R03CompletionSourcePinContract.cs       | 132 ++++++++++++++\n .../Editor/R03CompletionSourcePinContract.cs.meta  |   2 +\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        | 120 +++++-------\n .../History/M07R/R03/L_CONTRACT_REPAIR.md          |  76 ++++++++\n .../History/M07R/R03/L_HOST_EVIDENCE.json          | 187 +++++++++++++++++++\n .../History/M07R/R03/L_VALIDATION_MATRIX.md        |  59 ++++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  81 +++------\n Docs/AssemblyShadow/README.md                      |  29 ++-\n .../FixtureContractTests.csproj                    |  18 ++\n .../R03Completion/FixtureContractTests/Program.cs  |  67 +++++++\n .../R03Completion/editor_contract.py               |   6 +-\n .../R03Completion/fixture-constructor-cases.json   |  26 +++\n .../R03Completion/fixture_contracts.py             |  79 ++++++++\n .../R03Completion/fixture_project.py               |   5 +-\n .../R03Completion/resource_pipeline.py             |  13 +-\n .../AssemblyShadow/R03Completion/run_completion.py |   6 +-\n Tools/AssemblyShadow/R03Completion/run_host.py     |   2 +\n .../AssemblyShadow/R03Completion/source-pins.json  |   2 +-\n .../R03Completion/source_pin_contract.py           |  66 +++++++\n .../R03Completion/test_completion_contracts.py     |   4 +-\n .../R03Completion/test_li_contracts.py             | 201 +++++++++++++++++++++\n 24 files changed, 1085 insertions(+), 156 deletions(-)\n create mode 100644 .github/workflows/r03-li-source.yml\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs.meta\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/L_CONTRACT_REPAIR.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/L_HOST_EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/L_VALIDATION_MATRIX.md\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixtureContractTests/FixtureContractTests.csproj\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixtureContractTests/Program.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/fixture-constructor-cases.json\n create mode 100644 Tools/AssemblyShadow/R03Completion/fixture_contracts.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/source_pin_contract.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_li_contracts.py\n",
+      "mergeStderr": ""
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "head": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "mergeStdout": "Already up to date.\n",
+      "mergeStderr": ""
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "head": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "mergeStdout": "Updating 11a20ef..c86cbf6\nFast-forward\n .../ManagedAcquisitionPolicyTests.cs               |  6 ++--\n Tests/Editor/AssemblyShadow/PolicyTests.cs         |  4 +--\n .../AssemblyShadow/SyntheticCompiledAssemblySet.cs | 40 ++++++++++++++++++++++\n .../SyntheticCompiledAssemblySet.cs.meta           |  2 ++\n 4 files changed, 47 insertions(+), 5 deletions(-)\n create mode 100644 Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs\n create mode 100644 Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs.meta\n",
+      "mergeStderr": ""
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "head": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+      "mergeStdout": "Already up to date.\n",
+      "mergeStderr": ""
+    }
+  ]
+}

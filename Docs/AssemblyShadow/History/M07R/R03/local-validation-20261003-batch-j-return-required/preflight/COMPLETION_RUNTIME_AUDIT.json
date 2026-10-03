@@ -1,0 +1,277 @@
+{
+  "kind": "ReadOnlyJCompletionSemanticAudit",
+  "startUtc": "2026-10-03T13:15:24.549554+00:00",
+  "endUtc": "2026-10-03T13:15:46.361772+00:00",
+  "originalBatchResult": "ReturnRequired",
+  "originalCellCounts": {
+    "Passed": 43,
+    "Failed": 1,
+    "Blocked": 46
+  },
+  "checks": [
+    {
+      "id": "static-qualification",
+      "state": "Passed",
+      "evidence": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/qualification/results.json",
+        "sha256": "79a09c200bc1a705a9a0cab1a1800d24239f1affd5e699b65016124810c7738f",
+        "cases": 32,
+        "inventoryFiles": 136,
+        "runtimeProofExecuted": false,
+        "expansionAuthorized": false,
+        "classification": "Static real-DLL qualification input, not runtime/expansion authority"
+      }
+    },
+    {
+      "id": "focused-editor",
+      "state": "Passed",
+      "evidence": {
+        "scope": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/focused-editor/scope.json",
+        "scopeSha256": "f6e7401bb4bb09f90c4e0d022b43fe0a4e47ee019973e571640d19dc423607d8",
+        "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/focused-editor/results.xml",
+        "xmlSha256": "7270967247e8792fa949d469f10a5121795ae985d7aae78b728d6b754c3919c5",
+        "verificationSha256": "94bd675fb364cff40cba4024c9225b680e3912a8e8f32030fc2e6c4390d0574f",
+        "freshReadOnlyContract": {
+          "kind": "R03ScopedEditorVerification",
+          "schemaVersion": 1,
+          "result": "Passed",
+          "cases": 754,
+          "passed": 754,
+          "skipped": 0,
+          "r03RequiredIds": [
+            "L01-private-reference-append",
+            "L02-private-string-append",
+            "L03-private-primitive-append-needs-native",
+            "L04-public-primitive-append",
+            "L05-value-type-growth",
+            "L06-generic-definition-growth",
+            "L07-instance-field-removal",
+            "L08-instance-field-type-change",
+            "L09-instance-field-order-change",
+            "L10-static-field-is-not-instance-layout",
+            "L11-existing-field-visibility-is-not-storage",
+            "L12-interface-addition",
+            "L13-explicit-offset-change",
+            "L14-packing-needs-native",
+            "L15-class-size-needs-native",
+            "L16-layout-kind-change",
+            "L17-type-constraint-change",
+            "L18-method-only-change-needs-allocation-proof",
+            "L19-new-type-no-baseline-proof",
+            "L20-analysis-does-not-load-assembly-or-cctor",
+            "M01-token-and-virtual-order-not-identity",
+            "M02-no-inline-not-identity-or-contract",
+            "M03-visibility-separate-compatibility",
+            "M04-dispatch-separate-compatibility",
+            "M05-static-calling-shape",
+            "M06-byref-signature",
+            "M07-required-modifier-identity",
+            "M08-method-constraint-separate-compatibility",
+            "M09-parameter-name-not-contract",
+            "M10-parameter-attribute-separate-compatibility",
+            "M11-generic-composite-local-numbering",
+            "M12-return-type-is-signature",
+            "M13-missing-method-rejected",
+            "M14-declaring-type-constraints",
+            "M15-optimization-hints-independent"
+          ],
+          "testFilter": "!^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ResourceAbiTests\\.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles$",
+          "excludedCoverage": [
+            {
+              "coverage": "NoCoverage",
+              "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+              "missingAssets": [
+                "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+                "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+                "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+              ],
+              "reason": "The frozen M01 demo assets are not present in this project."
+            }
+          ],
+          "fullLegacyRegressionAcceptance": false,
+          "R03Accepted": false,
+          "H2Passed": false
+        }
+      }
+    },
+    {
+      "id": "resource-editor",
+      "state": "Passed",
+      "evidence": {
+        "scope": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/resource-editor/scope.json",
+        "scopeSha256": "a87c2d7b6309b8a4692d0240f5e3b6f9e4e67c296021b52903e5401b2a67bfb0",
+        "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/resource-editor/results.xml",
+        "xmlSha256": "a655fd860fb6edd0aee7addcafef0ce45256513226ddccd61dbbe7829564531f",
+        "verificationSha256": "4b95a3633a8dd1935f7348b5b2418ef1221ff70ae6984b334a1901427c810f66",
+        "freshReadOnlyContract": {
+          "kind": "R03ResourceCompleteEditorScopeV1",
+          "result": "Passed",
+          "cases": 755,
+          "skipped": 0,
+          "m01Case": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+          "m01SourceAssetContract": "Passed",
+          "fullLegacyRegressionAcceptance": false,
+          "R03Accepted": false,
+          "H2Passed": false
+        }
+      }
+    },
+    {
+      "id": "copied-resource-source-and-phase-bindings",
+      "state": "Passed",
+      "evidence": {
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete",
+        "sourceVerification": {
+          "kind": "R03ResourceCompleteFixtureV1",
+          "filesVerified": 527,
+          "allowedConfigurationChanges": [
+            {
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "configuredSha256": "1ac96296def5a358fa10630a652553dc29b663e80ff519e10453f260679cf847"
+            },
+            {
+              "path": "ProjectSettings/AssemblyShadowSettings.asset",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "configuredSha256": "5e7c84bb0fa004f4c6d7b1f0c82e16d4b86f40e77c652712d9878b06961f7e05"
+            }
+          ],
+          "frozenM01Files": 6,
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "receipts": [
+          {
+            "phase": "install",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/install.json",
+            "sha256": "d1daa21af07a2949598e0250eff7bac3e8601ba0a698dc094c1127cd8c367093",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "install",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-cebed900e645",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "e8aba14d6fc7e2cc61d9cc60fcc8ef1f8be4fd89c0cd77c3e85ef1e80a8d17ed",
+              "resourceRoot": "",
+              "baselineManifest": "",
+              "baselineManifestSha256": "",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "compiler",
+            "state": "Unavailable",
+            "expectedCellState": "Failed"
+          },
+          {
+            "phase": "resources",
+            "state": "Unavailable",
+            "expectedCellState": "Blocked"
+          },
+          {
+            "phase": "player-on",
+            "state": "Unavailable",
+            "expectedCellState": "Blocked"
+          },
+          {
+            "phase": "player-off",
+            "state": "Unavailable",
+            "expectedCellState": "Blocked"
+          },
+          {
+            "phase": "prepare",
+            "state": "Unavailable",
+            "expectedCellState": "Blocked"
+          },
+          {
+            "phase": "compile",
+            "state": "Unavailable",
+            "expectedCellState": "Blocked"
+          },
+          {
+            "phase": "restore",
+            "state": "Unavailable",
+            "expectedCellState": "Passed"
+          },
+          {
+            "phase": "finalize",
+            "state": "Unavailable",
+            "expectedCellState": "Blocked"
+          }
+        ]
+      }
+    },
+    {
+      "id": "original-P05-restoration",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-p05-compile"
+      ]
+    },
+    {
+      "id": "production-P01-P05-entry-qualification-agreement",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "production-entry-integration"
+      ]
+    },
+    {
+      "id": "resource-original-graph-and-sixth-build-bindings",
+      "state": "NotRun",
+      "reason": "Original resource-input-binding not Passed"
+    }
+  ],
+  "resourceBuilds": [],
+  "resourceMeasurementEarlyPlayers": [],
+  "actualDirectPlayerCommands": 23,
+  "actualDirectPlayerPids": [
+    95478,
+    95480,
+    95482,
+    95484,
+    95486,
+    95488,
+    95490,
+    95492,
+    95494,
+    95496,
+    95498,
+    95500,
+    95502,
+    95504,
+    95506,
+    95508,
+    95512,
+    95514,
+    95516,
+    95518,
+    95520,
+    95522,
+    95525
+  ],
+  "focusedVerificationReceipts": 23,
+  "replayedResourceMeasurementEarlyPlayers": 0,
+  "readOnlyAuditStates": {
+    "Passed": 4,
+    "NotRun": 3
+  },
+  "allPlannedPlayerEvidenceCovered": false,
+  "limits": "Existing source-bound sealed data only; no Editor/Player launch, source change, restored terminal state, qualification approval, performance SLA or historical state promotion. Failed/Blocked prerequisites remain original states.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

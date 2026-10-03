@@ -1,0 +1,820 @@
+{
+  "kind": "R03QualificationContracts",
+  "schemaVersion": 1,
+  "result": "Passed",
+  "failures": 0,
+  "cases": [
+    {
+      "id": "Q01-pure-reference",
+      "result": "Passed"
+    },
+    {
+      "id": "Q02-private-reference-stays-v1-rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "Q03-value-representation",
+      "result": "Passed"
+    },
+    {
+      "id": "Q04-unity-native-binding",
+      "result": "Passed"
+    },
+    {
+      "id": "Q05-resource-domain",
+      "result": "Passed"
+    },
+    {
+      "id": "Q06-unresolved-parent",
+      "result": "Passed"
+    },
+    {
+      "id": "Q07-generic-definition",
+      "result": "Passed"
+    },
+    {
+      "id": "Q08-generic-field",
+      "result": "Passed"
+    },
+    {
+      "id": "Q09-byref-method",
+      "result": "Passed"
+    },
+    {
+      "id": "Q10-pinvoke",
+      "result": "Passed"
+    },
+    {
+      "id": "Q11-sequential-layout",
+      "result": "Passed"
+    },
+    {
+      "id": "Q12-unknown-resource",
+      "result": "Passed"
+    },
+    {
+      "id": "Q13-reference-bytes-changed",
+      "result": "Passed"
+    },
+    {
+      "id": "Q14-baseline-bytes-changed",
+      "result": "Passed"
+    },
+    {
+      "id": "Q15-target-bytes-changed",
+      "result": "Passed"
+    },
+    {
+      "id": "Q16-fixed-aot-consumer",
+      "result": "Passed"
+    },
+    {
+      "id": "Q17-ordinary-consumer",
+      "result": "Passed"
+    },
+    {
+      "id": "Q18-fixed-generic-consumer",
+      "result": "Passed"
+    },
+    {
+      "id": "Q19-dynamic-consumer-unproved",
+      "result": "Passed"
+    },
+    {
+      "id": "Q20-delegate-domain",
+      "result": "Passed"
+    },
+    {
+      "id": "Q21-resource-input-required",
+      "result": "Passed"
+    },
+    {
+      "id": "Q22-deterministic-source-binding",
+      "result": "Passed"
+    },
+    {
+      "id": "Q23-no-business-initialization",
+      "result": "Passed"
+    },
+    {
+      "id": "Q24-resource-duplicate-key",
+      "result": "Passed"
+    },
+    {
+      "id": "Q25-unknown-resource-flag",
+      "result": "Passed"
+    },
+    {
+      "id": "Q26-explicit-interop-field",
+      "result": "Passed"
+    },
+    {
+      "id": "Q27-resource-hash-binds-field-shape",
+      "result": "Passed"
+    },
+    {
+      "id": "Q28-report-never-grants-capability",
+      "result": "Passed"
+    },
+    {
+      "id": "Q29-resource-referenced-type",
+      "result": "Passed"
+    },
+    {
+      "id": "Q30-loaded-metadata-mutation",
+      "result": "Passed"
+    },
+    {
+      "id": "Q31-primary-descriptor-and-file-mutation",
+      "result": "Passed"
+    },
+    {
+      "id": "Q32-descriptor-reference-graph-mutation",
+      "result": "Passed"
+    }
+  ],
+  "inventory": [
+    {
+      "path": "Q01-pure-reference/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q01-pure-reference/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q01-pure-reference/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q01-pure-reference/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q02-private-reference-stays-v1-rejected/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q02-private-reference-stays-v1-rejected/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q02-private-reference-stays-v1-rejected/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q02-private-reference-stays-v1-rejected/target/Pure.dll",
+      "sha256": "fe5c6ebaaef8250819fda1ec6e8238e9add70d9bb79585fc23edbf716fcb030d",
+      "size": 2048
+    },
+    {
+      "path": "Q03-value-representation/baseline/Pure.dll",
+      "sha256": "e34621e2668aac3a779236a935ecdc74e3bef96e416a58ac090cbbc8576cb30e",
+      "size": 2048
+    },
+    {
+      "path": "Q03-value-representation/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q03-value-representation/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q03-value-representation/target/Pure.dll",
+      "sha256": "180e7d6e23b3416e6d0c4174cd7fe0c55fc3324f04634de1b6b48ab1b58c79af",
+      "size": 2048
+    },
+    {
+      "path": "Q04-unity-native-binding/baseline/Pure.dll",
+      "sha256": "4178782de819906944bdd9deadf9534b8a8b9d9f922734dbed19bfdbf459fd4f",
+      "size": 2048
+    },
+    {
+      "path": "Q04-unity-native-binding/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q04-unity-native-binding/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q04-unity-native-binding/target/Pure.dll",
+      "sha256": "aab3a41f94cfbcdd516209bbdc344cb3047e386b3fd41075d512bd8a684d9f9f",
+      "size": 2048
+    },
+    {
+      "path": "Q05-resource-domain/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q05-resource-domain/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q05-resource-domain/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q05-resource-domain/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q06-unresolved-parent/baseline/Pure.dll",
+      "sha256": "10113534abf5be6177c036e9ff8c54deefc992b50d995b08ce01291cbf8a4ac3",
+      "size": 2048
+    },
+    {
+      "path": "Q06-unresolved-parent/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q06-unresolved-parent/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q06-unresolved-parent/target/Pure.dll",
+      "sha256": "254ad32636f829c7064d97bc0c87439727f84fda03fab2c1156c2f363b384e7c",
+      "size": 2048
+    },
+    {
+      "path": "Q07-generic-definition/baseline/Pure.dll",
+      "sha256": "c695ae6f81c7d43525b2d18a12fce6c6bb63ee447d27dcd41b722074404b0c27",
+      "size": 2048
+    },
+    {
+      "path": "Q07-generic-definition/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q07-generic-definition/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q07-generic-definition/target/Pure.dll",
+      "sha256": "b8c9476329ea554cebad23e04b8c1593f675ac2865219b122bedcc1c4b5242f8",
+      "size": 2048
+    },
+    {
+      "path": "Q08-generic-field/baseline/Pure.dll",
+      "sha256": "bdbdc3480c96c1add75b0c8e5a8b65d05efb8b53f747612cdaf3047db11b1838",
+      "size": 2048
+    },
+    {
+      "path": "Q08-generic-field/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q08-generic-field/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q08-generic-field/target/Pure.dll",
+      "sha256": "c35497bbf7af73bb30bed38ca59b420eb91691135d506e3b481f97a004813e5a",
+      "size": 2048
+    },
+    {
+      "path": "Q09-byref-method/baseline/Pure.dll",
+      "sha256": "882a6337b95c58147d8f41c473b417af2ff043d37958bb5af2847e7a7ab76bea",
+      "size": 2048
+    },
+    {
+      "path": "Q09-byref-method/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q09-byref-method/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q09-byref-method/target/Pure.dll",
+      "sha256": "4ac45c899341aed7d79f0e9fb78a96a49bd6ddee11ebe5c6aa3d132bfc21b25f",
+      "size": 2048
+    },
+    {
+      "path": "Q10-pinvoke/baseline/Pure.dll",
+      "sha256": "0ea8e9e01559ee87271778db6ed1b8e36291a23cccccd83e750ecb6682f1ad1a",
+      "size": 2048
+    },
+    {
+      "path": "Q10-pinvoke/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q10-pinvoke/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q10-pinvoke/target/Pure.dll",
+      "sha256": "cd51773df839541a2e610557cedcd28933dd604b39bc8ceac38a24ca843ccba3",
+      "size": 2048
+    },
+    {
+      "path": "Q11-sequential-layout/baseline/Pure.dll",
+      "sha256": "d21b84dbb2daf556c0d5477b91c6b9fa7037f678f4fdf8bed4a0eb582ba822fe",
+      "size": 2048
+    },
+    {
+      "path": "Q11-sequential-layout/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q11-sequential-layout/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q11-sequential-layout/target/Pure.dll",
+      "sha256": "9305654c1076131dc45526d96277db67285b844cb4e9cf028c4130303626ee00",
+      "size": 2048
+    },
+    {
+      "path": "Q12-unknown-resource/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q12-unknown-resource/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q12-unknown-resource/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q12-unknown-resource/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q13-reference-bytes-changed/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q13-reference-bytes-changed/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q13-reference-bytes-changed/references/mscorlib.dll",
+      "sha256": "8302f53f7e00fe281134047a89507d201b44a44bc70a3b5d7d9eb782cd357df2",
+      "size": 2055
+    },
+    {
+      "path": "Q13-reference-bytes-changed/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q14-baseline-bytes-changed/baseline/Pure.dll",
+      "sha256": "19f54adf9fd7ecf0c953d885503cb4a6c4ca792da72fe7945d9e171d10826aa7",
+      "size": 2055
+    },
+    {
+      "path": "Q14-baseline-bytes-changed/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q14-baseline-bytes-changed/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q14-baseline-bytes-changed/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q15-target-bytes-changed/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q15-target-bytes-changed/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q15-target-bytes-changed/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q15-target-bytes-changed/target/Pure.dll",
+      "sha256": "cb887d41048eab797601716143c38001fe437c6886f2fabb516bf9f79da72c25",
+      "size": 2055
+    },
+    {
+      "path": "Q16-fixed-aot-consumer/baseline/Consumer.dll",
+      "sha256": "51d37631d444484cd5670a649eae9ab72b0d97c7c62ebdf4f878732a30a8e007",
+      "size": 2048
+    },
+    {
+      "path": "Q16-fixed-aot-consumer/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q16-fixed-aot-consumer/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q16-fixed-aot-consumer/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q16-fixed-aot-consumer/target/Consumer.dll",
+      "sha256": "51d37631d444484cd5670a649eae9ab72b0d97c7c62ebdf4f878732a30a8e007",
+      "size": 2048
+    },
+    {
+      "path": "Q16-fixed-aot-consumer/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q17-ordinary-consumer/baseline/Consumer.dll",
+      "sha256": "51d37631d444484cd5670a649eae9ab72b0d97c7c62ebdf4f878732a30a8e007",
+      "size": 2048
+    },
+    {
+      "path": "Q17-ordinary-consumer/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q17-ordinary-consumer/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q17-ordinary-consumer/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q17-ordinary-consumer/target/Consumer.dll",
+      "sha256": "51d37631d444484cd5670a649eae9ab72b0d97c7c62ebdf4f878732a30a8e007",
+      "size": 2048
+    },
+    {
+      "path": "Q17-ordinary-consumer/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q18-fixed-generic-consumer/baseline/Consumer.dll",
+      "sha256": "6fb584b09ce9d1084f0d4646e809edc322ce1e8fbf5176c2b012004b28c1190f",
+      "size": 2048
+    },
+    {
+      "path": "Q18-fixed-generic-consumer/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q18-fixed-generic-consumer/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q18-fixed-generic-consumer/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q18-fixed-generic-consumer/target/Consumer.dll",
+      "sha256": "6fb584b09ce9d1084f0d4646e809edc322ce1e8fbf5176c2b012004b28c1190f",
+      "size": 2048
+    },
+    {
+      "path": "Q18-fixed-generic-consumer/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q19-dynamic-consumer-unproved/baseline/Consumer.dll",
+      "sha256": "1b513a37b7cbb92a934a9e4b48ed3d470ecdce255b9a32e1007c6fc884472f0c",
+      "size": 2048
+    },
+    {
+      "path": "Q19-dynamic-consumer-unproved/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q19-dynamic-consumer-unproved/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q19-dynamic-consumer-unproved/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q19-dynamic-consumer-unproved/target/Consumer.dll",
+      "sha256": "1b513a37b7cbb92a934a9e4b48ed3d470ecdce255b9a32e1007c6fc884472f0c",
+      "size": 2048
+    },
+    {
+      "path": "Q19-dynamic-consumer-unproved/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q20-delegate-domain/baseline/Pure.dll",
+      "sha256": "db00eab072f60a18e5e54e639e93e1b5af504c8eede015e2af0390073f6eecb5",
+      "size": 2048
+    },
+    {
+      "path": "Q20-delegate-domain/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q20-delegate-domain/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q20-delegate-domain/target/Pure.dll",
+      "sha256": "ad48e35109081ae7d9696368b01c3ff084fd53212ec3ad3a14fdab6a0f52c6b5",
+      "size": 2048
+    },
+    {
+      "path": "Q21-resource-input-required/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q21-resource-input-required/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q21-resource-input-required/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q21-resource-input-required/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q22-deterministic-source-binding/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q22-deterministic-source-binding/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q22-deterministic-source-binding/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q22-deterministic-source-binding/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q23-no-business-initialization/baseline/Pure.dll",
+      "sha256": "0059c3b1b45fe7d81a2ff9f827fadca7bb4f658c1425f9115b670ebf533b8ebb",
+      "size": 2048
+    },
+    {
+      "path": "Q23-no-business-initialization/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q23-no-business-initialization/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q23-no-business-initialization/target/Pure.dll",
+      "sha256": "96d31d4b806a015bd9a21ea9ad917f9e18df7d84585e8a7d65068c1c06e406af",
+      "size": 2048
+    },
+    {
+      "path": "Q24-resource-duplicate-key/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q24-resource-duplicate-key/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q24-resource-duplicate-key/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q24-resource-duplicate-key/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q25-unknown-resource-flag/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q25-unknown-resource-flag/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q25-unknown-resource-flag/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q25-unknown-resource-flag/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q26-explicit-interop-field/baseline/Pure.dll",
+      "sha256": "4b33b2c22882ecdb0f0349640b8aa47f466e7e5ef6572edba74f6e8de189930a",
+      "size": 2048
+    },
+    {
+      "path": "Q26-explicit-interop-field/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q26-explicit-interop-field/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q26-explicit-interop-field/target/Pure.dll",
+      "sha256": "b5e5ba7947cecbfcfbae9e297655a1a3bac5f11c216cce4b4ea368561619091d",
+      "size": 2048
+    },
+    {
+      "path": "Q27-resource-hash-binds-field-shape/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q27-resource-hash-binds-field-shape/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q27-resource-hash-binds-field-shape/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q27-resource-hash-binds-field-shape/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q28-report-never-grants-capability/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q28-report-never-grants-capability/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q28-report-never-grants-capability/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q28-report-never-grants-capability/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q29-resource-referenced-type/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q29-resource-referenced-type/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q29-resource-referenced-type/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q29-resource-referenced-type/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q30-loaded-metadata-mutation/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q30-loaded-metadata-mutation/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q30-loaded-metadata-mutation/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q30-loaded-metadata-mutation/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    },
+    {
+      "path": "Q31-primary-descriptor-and-file-mutation/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q31-primary-descriptor-and-file-mutation/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q31-primary-descriptor-and-file-mutation/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q31-primary-descriptor-and-file-mutation/target/Pure.dll",
+      "sha256": "09738b1c7b26581162d4c30bcb2a8f4a7280b68490b2c65215b77c76285c6c95",
+      "size": 2054
+    },
+    {
+      "path": "Q32-descriptor-reference-graph-mutation/baseline/Pure.dll",
+      "sha256": "02c4908591a6bb0911180d3ac23fcb0f47e65c40ef074b052190b3ec3c20d394",
+      "size": 2048
+    },
+    {
+      "path": "Q32-descriptor-reference-graph-mutation/references/UnityEngine.CoreModule.dll",
+      "sha256": "9d057852a46d2400218e81e922e90d9799d2064e795ae11ddfdb8d0aec04187c",
+      "size": 2048
+    },
+    {
+      "path": "Q32-descriptor-reference-graph-mutation/references/mscorlib.dll",
+      "sha256": "5c8805e01bcf29aa2d30db3cec0bb0dce0dd3ce6bf0fbb40aa3f335337df8d43",
+      "size": 2048
+    },
+    {
+      "path": "Q32-descriptor-reference-graph-mutation/target/Pure.dll",
+      "sha256": "83bb438177f86ff4cb7055d5ab618b999f5145401cdf3e012e88b0255368c395",
+      "size": 2048
+    }
+  ],
+  "runtimeProofExecuted": false,
+  "expansionAuthorized": false
+}

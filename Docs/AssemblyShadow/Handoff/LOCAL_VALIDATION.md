@@ -1,6 +1,174 @@
 # Local Validation report
 
-## Current run — R03 completion batch I (2026-10-02 PDT / 2026-10-03 UTC): two independent prerequisite defects
+## Current run — R03 completion batch J, 2026-10-03: contract repairs Passed; resource policy mismatch returns to Primary
+
+**Result=ReturnRequired; 90 cells:43 Passed /1 Failed /46 Blocked; sealStatus=Passed; runner exit1. Exit Local Validation → Primary Implementation.** Exactly one fresh invocation PID89851, 2026-10-03 06:05:33–06:14:16 PDT; UTC 2026-10-03T13:05:33.453909+00:00–2026-10-03T13:14:16.869400+00:00. No retry, blocked-stage manual continuation, source fix, expectation/scope/pin/deadline/lease change or historical app reuse.
+
+The new 12 host constructor checks and 18-method actual Editor preflight Passed. Both complete actual Editor rosters Passed:754/754 focused and755/755 resource, zero skips/inconclusive. All 23 focused fresh Player contracts Passed;36 resource/measurement/early Players never launched. Four of six planned builds Passed; two resource builds Blocked. Ten real production source-pin consumer cases Passed with identical before/after input hashes; pinned native installation Passed. The following resource compiler prerequisite failed **UnknownPrecompiledCapability: Unity.Collections.LowLevel.ILSupport** before creating a compiler snapshot. Its46 dependent cells remain Blocked. Evidence integrity does not promote these states to acceptance.
+
+### Actual authority, pins and environment
+
+All owning paths independently matched branch `codex/assembly-shadow-r01b-h1`, exact clean HEADs, canonical `git@github.com:night-outlook/<repo>.git` origins and remote tips before/after execution. Clean demo/package checkouts advanced by fast-forward only; native/IL2CPP heads stayed unchanged. Anchor `8d5297c375201687d17b91843ea0250ed90c0095` is an ancestor with documentation-only delta. Package delta from I is only its four synthetic test fixture files; production/native guards are unchanged. Original Local I reports and earlier checkpoint bytes were authenticated before execution. Git/submodule/worktree, source/package/build pins, manifests and generated-file bindings are retained in [preflight](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight) and original receipts.
+
+| Owning repository path | Exact executed source |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `cebed900e6456433ac65db531262b60fd26766ee` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `c86cbf665f5fcb2137e5adf2960541ce492467a4` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Environment: macOS26.5.2 (25F84) arm64; Python3.14.6; SDK8.0.318/runtime8.0.21; PowerShell7.6.3; Apple clang21/macOS SDK26.5. Exact Unity2022.3.62f2/StandaloneOSXarm64 at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`. SDK-only root `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; no Unity6000 Editor ran. Pinned mscorlib SHA-256 `d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83`. Scoped environment/argv/PID/start/end/exit are captured; no pre-existing Editor at entry; gate helper Off and no independent full-stage gate verdict claimed. No ordinary primary/control checkout was used or changed.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit cebed900e6456433ac65db531262b60fd26766ee
+```
+
+Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts`; external capture `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts`. [RETAINED_LIVE_ROOTS.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/RETAINED_LIVE_ROOTS.json) records separate projects/SDKs/caches and clean detached reference worktrees at native1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad, IL2CPP a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c and graph-package b936a495ade1691ebb6f3bab8fdff3ef34f6f192. Focused schema2 receipts/nativeBinding authenticate four app inventories and arm64 binaries; GUID Unavailable where not provided. The resource SDK installation has a separately authenticated native inventory; **installation is not a fifth Player build**. No resource app/build GUID/bundle/manifest is inferred.
+
+### Exact validation states and new coverage
+
+| Validation | Factual state |
+| --- | --- |
+| Entry/final authority, pins, isolated source copies | Passed |
+| Completion Python/retained R03 verifier contracts | Passed;73/183 source-defined host tests |
+| Constructor helper host | Passed;12 checks, including original four-argument exception control; synthetic sources remain non-qualifying |
+| Early real Editor regression | Passed;18 exact I-failing identities; replaces neither full roster |
+| Static qualification/graphs/admission | Passed;32/9+9/35; no runtime/expansion authority |
+| Real fixtures/audit/compiler consumers/lifecycle/API helper | Passed;15 DLLs,33 audits,33 consumers, valid/invalid lifetime probes and old-count two-CS0266 negative control |
+| Focused four native builds and23 Players | Passed; fresh independent receipts |
+| Full Editor | Passed;754 and755 exact cases, zero skips/inconclusive |
+| J M01 original source-asset/GUID contract | Passed in the actual755-case resource Editor; historical H/I NoCoverage unchanged |
+| Source-pin consumer | Passed;10 actual ShadowSourcePins.Read/JsonUtility cases, exact negative codes and unchanged four inputs |
+| Resource original source preparation/native installation | Passed;527 source files/six frozen M01 files; installed inventory authenticated |
+| Resource compiler policy/snapshot | Failed;declared IL support capability is absent from actual target inventory; no target snapshot emitted |
+| Resource bundles/two builds/P05 prepare/compile/finalize | Blocked |
+| P05 restore cell | Passed cleanup only:NoRecordedMutation/restorationCoverage=NotApplicable; no structural byte-restoration coverage |
+| Production P01–P05 integration/input binding/14 resource Players | Blocked; M01/resource runtime and bundle acceptance remain NoCoverage |
+| 12 unfenced R00/M06 observation processes and summary | Blocked; measurements.json/timing distributions/memory observations Unavailable, not zero |
+| 10 early-startup Players | Blocked |
+| Seal/post-run custody authentication | Passed integrity only |
+
+[LI_CONTRACT_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/LI_CONTRACT_AUDIT.json) replays the actual constructor/Editor and consumer contracts. All18 affected methods also Passed within both full rosters; there were1527 test executions over three Editor runs, not1527 unique identities. Before/after consumer inputs agree and bind exact original settings snapshots/pins/authority. Later authorized M02/M07 configuration changed settings and bootstrap scene; this does not rewrite preflight hashes or claim successful P05 restoration. LI-001/LI-002's fresh J regression Passed; I remains40 Passed/2 Failed/48 Blocked with its original18 Editor failures and seal intact.
+
+Fresh focused evidence: four isolated native/IL2CPP builds and all 19 main plus four diagnostic-control Player contracts Passed. Six strict warm witnesses, full positive C07 physical-layout/publication/business checks and five non-mutating rejected-stage observations Passed. [PRODUCER_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/PRODUCER_RUNTIME_AUDIT.json) reconciles ten probes/fifty spans; actual natural-control producer attribution is Observed with four identified loop admissions. Each contaminated control retains **unisolatedWarmCertificate=Failed**. The diagnostic finalizer lease remains bounded and is not production GC/performance acceptance. [REJECTION_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/REJECTION_RUNTIME_AUDIT.json) confirms original error16/state8/unpublished/RestartRequired survives capacity -2, two complete owned-byte reads and final raw projection/recovery. No terminal restoration, counter relaxation, extra warm-up or ownership change.
+
+
+93 owned command receipts:89 exit0/four exit1. Expected-negative compiler commands0054/0056/0061 Passed their contracts; product compiler0092 failed with Unity/outer exit1. All groups completed cleanly, no surviving group, timeout or cleanup error. Twelve Unity completion receipts retain birth-authenticated supervision; nine record one owned compiler retirement and three record zero. Zero actions is not missing cleanup when no owned compiler remained; raw flags/actions are preserved. Exact per-command start/end times, source bindings, stream hashes and exits remain in batch/commands; cell absence of execution is explicit Blocked/Unavailable.
+
+All90 predetermined identities retain their original states:
+
+| Cell | Original sealed state | Failure/dependency |
+| --- | --- | --- |
+| `entry-authority` | Passed |  |
+| `completion-tool-contracts` | Passed |  |
+| `qualification` | Passed |  |
+| `verifier-contracts` | Passed |  |
+| `reference-sources` | Passed |  |
+| `host-baseline-graph` | Passed |  |
+| `host-candidate-graph` | Passed |  |
+| `host-admission` | Passed |  |
+| `player-fixtures` | Passed |  |
+| `prepare-candidate-release` | Passed |  |
+| `build-candidate-release` | Passed |  |
+| `prepare-reference-release` | Passed |  |
+| `build-reference-release` | Passed |  |
+| `prepare-candidate-debug` | Passed |  |
+| `build-candidate-debug` | Passed |  |
+| `prepare-candidate-off` | Passed |  |
+| `build-candidate-off` | Passed |  |
+| `editor-tests` | Passed |  |
+| `C01-baseline` | Passed |  |
+| `C02-private-reference` | Passed |  |
+| `C03-moved-slot` | Passed |  |
+| `C04-old-AOT-guard` | Passed |  |
+| `C05-direction-reversal` | Passed |  |
+| `C06-actual-target-cycle` | Passed |  |
+| `C07-private-primitive-append` | Passed |  |
+| `C08-interface-change` | Passed |  |
+| `C09-reference-to-value-kind` | Passed |  |
+| `C10-field-removal` | Passed |  |
+| `R01-baseline` | Passed |  |
+| `R02-original-late-layout` | Passed |  |
+| `R03-original-slot-lookup` | Passed |  |
+| `R04-direction-reversal` | Passed |  |
+| `R05-actual-target-cycle` | Passed |  |
+| `D01-private-reference` | Passed |  |
+| `D02-moved-slot` | Passed |  |
+| `D03-old-AOT-guard` | Passed |  |
+| `O01-feature-OFF-baseline` | Passed |  |
+| `producer-controls` | Passed |  |
+| `resource-prepare` | Passed |  |
+| `resource-install` | Passed |  |
+| `resource-compiler` | Failed | Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/commands/0092/command.json |
+| `resource-bundles` | Blocked | Prerequisite did not pass: resource-compiler |
+| `resource-player-on` | Blocked | Prerequisite did not pass: resource-bundles |
+| `resource-player-off` | Blocked | Prerequisite did not pass: resource-bundles |
+| `resource-p05-prepare` | Blocked | Prerequisite did not pass: resource-player-on, resource-player-off |
+| `resource-p05-compile` | Blocked | Prerequisite did not pass: resource-p05-prepare |
+| `resource-p05-restore` | Passed |  |
+| `resource-p05-finalize` | Blocked | Prerequisite did not pass: resource-p05-compile, resource-p05-restore |
+| `resource-editor` | Passed |  |
+| `production-entry-integration` | Blocked | Prerequisite did not pass: resource-p05-finalize |
+| `resource-input-binding` | Blocked | Prerequisite did not pass: resource-p05-finalize |
+| `resource-T07-01-Prefab-P01` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-02-Nested-P02` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-03-FullClosure-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-04-UnityApis-P01` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-05-Scriptable-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-06-SceneSingle-P01` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-07-SceneAdditive-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-08-SerializeReference-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-09-Messages-P01` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-10-Cache-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-11-DelayedCatalog-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-12-P04-NonSerialized` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-13-P05-Rebuilt` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-T07-14-FeatureOff` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `resource-contracts` | Blocked | Prerequisite did not pass: resource-T07-01-Prefab-P01, resource-T07-02-Nested-P02, resource-T07-03-FullClosure-P03, resource-T07-04-UnityApis-P01, resource-T07-05-Scriptable-P03, resource-T07-06-SceneSingle-P01, resource-T07-07-SceneAdditive-P03, resource-T07-08-SerializeReference-P03, resource-T07-09-Messages-P01, resource-T07-10-Cache-P03, resource-T07-11-DelayedCatalog-P03, resource-T07-12-P04-NonSerialized, resource-T07-13-P05-Rebuilt, resource-T07-14-FeatureOff |
+| `measure-R00-ON-NoPatch-0` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-NoPatch-1` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-NoPatch-2` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-P01-0` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-P01-1` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-P01-2` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-P03-0` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-P03-1` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-ON-P03-2` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-OFF-NoPatch-0` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-OFF-NoPatch-1` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measure-R00-OFF-NoPatch-2` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `measurement-summary` | Blocked | Prerequisite did not pass: measure-R00-ON-NoPatch-0, measure-R00-ON-NoPatch-1, measure-R00-ON-NoPatch-2, measure-R00-ON-P01-0, measure-R00-ON-P01-1, measure-R00-ON-P01-2, measure-R00-ON-P03-0, measure-R00-ON-P03-1, measure-R00-ON-P03-2, measure-R00-OFF-NoPatch-0, measure-R00-OFF-NoPatch-1, measure-R00-OFF-NoPatch-2 |
+| `early-Control-P03` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-Control-P01` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-OrdinaryFirst` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-OrdinaryAfterReserve` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-Oversize` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-Mismatch` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-Type` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-Object` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-Cctor` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `early-NativeScript` | Blocked | Prerequisite did not pass: resource-input-binding |
+| `final-authority` | Passed |  |
+
+### Primary issue, limits and custody
+
+[RETURN_TO_WEB.md](RETURN_TO_WEB.md) records **R03-LJ-001** with exact reproduction/log/source/policy/dependency hashes, scope and repair direction. [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/PRIMARY_ISSUES.json) preserves16 exact source blobs and six live resource snapshots. The filtered resource dependency profile and inherited five-plugin M02 declarations do not agree. Missing VisualScripting Antlr is a further source-supported risk, not a separately reproduced failure. A serialized complete Unity target inventory and compiler.json are Unavailable: the guard threw before compilation/success receipt emission. Command/log/cell remain preserved. No local source fix was made; profile/consumer contract closure needs Primary and a newly authorized tuple/root.
+
+[POSTRUN_AUTHENTICATION.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/POSTRUN_AUTHENTICATION.json) authenticates2753 indexed files/2754 exact safe archive members,90 individual cells and all original streams; all16523 older custody bindings are unchanged. [COMPLETION_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/COMPLETION_RUNTIME_AUDIT.json) records23 actual direct Players, zero resource/R00/early processes, four Passed read-only groups/three NotRun groups. Read-only audit network lookups initially timed out; same configured SSH identity/unchanged canonical origins recovered and exact tips were reverified. Audit attempts are retained separately from product results; no product deadlines changed.
+
+Immutable [J checkpoint](../History/M07R/R03/local-validation-20261003-batch-j-return-required/README.md) contains every indexed byte, top result/index/seal, exact ordered archive parts, [MANIFEST.sha256](../History/M07R/R03/local-validation-20261003-batch-j-return-required/MANIFEST.sha256) and [ARCHIVE_RECONSTRUCTION_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/ARCHIVE_RECONSTRUCTION_AUDIT.json). Original live archive and roots remain intact. No recompression, omitted indexed evidence or state/schema rewrite. Exact raw source/settings whitespace is preserved via narrowly authenticated snapshot attributes; owned prose is checked. Prior report body remains unchanged except its Current→Historical I heading.
+
+| Original artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `3f8008b1418d6e48c9ebbb3743c376062be93e428f2c330f13f538a72291b133` |
+| `BATCH_EXECUTION.json` | `fb4bfceb47f277602cccd2bf20705b82995eb330023a84e1609acb151c8da087` |
+| `evidence-index.json` | `54d2b3060b5d2be4a380b1d557c75c03f644c53cb777bdb99ee984baf80a9633` |
+| `evidence.tar.gz` | `a0c1832d7210a167016d09e54d2baf7be92f265aa64a3f720f78ff91b66e77b8` |
+| `seal-receipt.json` | `befbd0bbcb58fbce57ab4ded96e2ae49556e3495e33a3b0b22644c0125b82122` |
+
+Only the two Local reports/new J checkpoint are committed/pushed; no executable fix or other repository change. Final pushed publication identity is distinct from executed cebed900e6456433ac65db531262b60fd26766ee and is verified after push in `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/PUBLICATION_RECEIPT.json` and the final handoff, avoiding a commit self-hash cycle. R03Accepted=false;H2Passed=false;qualificationApproved=false;pureInterpreterExpansionEnabled=false;fullLegacyRegressionAcceptance=false;no production performance SLA or Human Review Gate approval. Exit exactly **Local Validation → Primary Implementation**, then stop.
+
+## Historical run — R03 completion batch I (2026-10-02 PDT / 2026-10-03 UTC): two independent prerequisite defects
 
 **Local Validation → Primary Implementation. Result=ReturnRequired; 90 cells: 40 Passed / 2 Failed / 48 Blocked; sealStatus=Passed; runner exit1.** Exactly one invocation, PID 74402, 2026-10-02 21:36:44–21:43:49 PDT; UTC 2026-10-03T04:36:44.875979+00:00–2026-10-03T04:43:49.531239+00:00. Four of six planned native builds Passed; both resource builds Blocked. The focused Editor roster ran all 754 cases: 736 Passed, 18 Failed, zero skipped/inconclusive. The 755-case resource-complete Editor run was Blocked. All 23 focused fresh-process Player contracts Passed; the remaining 36 resource/R00/early Players were Blocked and never launched. Source-bound qualification/tooling checks Passed without authorizing expansion. No Local source fix, retry, manual blocked-stage execution, old-app reuse, expectation/counter/scope/pin/lease/deadline change, terminal restoration or acceptance promotion occurred.
 

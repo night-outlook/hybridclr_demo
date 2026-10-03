@@ -1,0 +1,8 @@
+{
+  "kind": "LocalAuditPublicationSSHTransport",
+  "command": "ssh -i /Users/ah/.ssh/github-night-outlook -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15 -o ServerAliveInterval=10 -o ServerAliveCountMax=3",
+  "canonicalOriginUnchanged": true,
+  "existingIdentityFromCoreSshCommand": true,
+  "reason": "Default port-22 key exchange timed out during read-only remote auditing; bounded retries retain the configured identity and existing host verification",
+  "productSourceExpectationsAndDeadlinesUnchanged": true
+}

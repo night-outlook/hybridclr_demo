@@ -1,0 +1,609 @@
+{
+  "kind": "JPrimaryImplementationReturnEvidence",
+  "utc": "2026-10-03T13:23:46.053570+00:00",
+  "executedRepositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "expansionAuthorized": false,
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "cebed900e6456433ac65db531262b60fd26766ee",
+    "hybridclr_unity": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "issues": [
+    {
+      "id": "R03-LJ-001",
+      "symptom": "Resource CompilerPreflight fails UnknownPrecompiledCapability for Unity.Collections.LowLevel.ILSupport before a target compiler snapshot is produced",
+      "actualFailedCell": "resource-compiler",
+      "logExcerpts": [
+        {
+          "line": 450,
+          "text": "ShadowBuildException: UnknownPrecompiledCapability: Precompiled declaration is not a target compiler input: Unity.Collections.LowLevel.ILSupport"
+        },
+        {
+          "line": 451,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.ShadowHash.Require (System.Boolean condition, System.String code, System.String message) [0x0000b] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Model/ShadowConfiguration.cs:144 "
+        },
+        {
+          "line": 452,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.AssemblyShadowSettingsUtil.DeclareCapability (System.Collections.Generic.Dictionary`2[TKey,TValue] result, System.String name, System.Boolean shadow, System.Boolean bootstrap, System.Boolean precompiled) [0x0002a] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs:220 "
+        },
+        {
+          "line": 453,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.AssemblyShadowSettingsUtil.BuildCapabilities (HybridCLR.Editor.AssemblyShadow.AssemblyShadowSettings settings, System.Collections.Generic.IEnumerable`1[T] compilerInventory, System.Collections.Generic.IEnumerable`1[T] normalHotUpdates) [0x001d0] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs:206 "
+        },
+        {
+          "line": 454,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.AssemblyShadowSettingsUtil.BuildCapabilities (HybridCLR.Editor.AssemblyShadow.AssemblyShadowSettings settings, UnityEditor.BuildTarget target) [0x00093] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs:134 "
+        },
+        {
+          "line": 455,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.AssemblyShadowSettingsUtil.CreatePolicyConfiguration (UnityEditor.BuildTarget target) [0x00012] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs:23 "
+        },
+        {
+          "line": 456,
+          "text": "  at AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs () [0x00011] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/M07Build.cs:99 "
+        },
+        {
+          "line": 457,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild.Execute (System.String phase, System.Action action, System.String variant) [0x0005a] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:75 "
+        },
+        {
+          "line": 458,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild.CompilerPreflight () [0x00000] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:109 "
+        },
+        {
+          "line": 459,
+          "text": ""
+        },
+        {
+          "line": 460,
+          "text": "(Filename: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Model/ShadowConfiguration.cs Line: 144)"
+        },
+        {
+          "line": 461,
+          "text": ""
+        },
+        {
+          "line": 462,
+          "text": "executeMethod method AssemblyShadowDemo.Editor.R03CompletionBuild.CompilerPreflight threw exception."
+        }
+      ],
+      "actualTargetCompilerInventory": "Unavailable as a serialized full inventory; the production guard directly establishes that the declared IL support name is absent from the Unity-derived dictionary",
+      "sourceChain": [
+        "fixture_project.dependencies filters to Unity modules/URP/test/UGUI + JSON + actual package",
+        "R03CompletionBuild.CompilerPreflight invokes M07Build.ValidateCompilerInputs",
+        "M07Build.Configure invokes M02Build.Configure, which declares five precompiled capabilities for the full demo dependency profile",
+        "AssemblyShadowSettingsUtil derives Player/PlayerWithoutTestAssemblies references from actual CompilationPipeline",
+        "DeclareCapability rejects the absent precompiled name at line220 before AssemblySnapshot.CompileWithOptions"
+      ],
+      "mostLikelyRootCause": "The isolated resource dependency subset and inherited full-demo precompiled capability declarations are inconsistent; native installation/schema checks do not exercise production policy/target inventory agreement",
+      "impact": "Compiler snapshot/resource bundles/two resource Players/production P01-P05/input graph/36 resource-measurement-early processes blocked; independently permitted 755-case Editor Passed, so its source-asset result is distinct",
+      "recommendedDirection": "Primary must align the reviewed resource dependency/profile and precompiled declarations with actual active-target compiler inventory, by coherent pinned dependencies or an explicit complete scope-specific policy; preserve UnknownPrecompiledCapability/classification/closure/source guards. Add actual policy/compiler inventory consumer prerequisite; audit all five declared plugins rather than hand-removing just the first name",
+      "remainingUncertainty": "The missing VisualScripting Antlr declaration is source-supported as another likely profile mismatch but has no separate observed runtime failure. No full target inventory was emitted, no compiler snapshot or resource native build occurred, and subsequent graph/generation/runtime defects remain unknown",
+      "validationAfterFix": "New authorized source tuple/root; actual source-pin and constructor preflights; compiler policy/snapshot; all six builds, 754/755 Editor rosters, 59 Players, P01-P05/restoration/production entries/observations and complete seal; preserve J and earlier evidence"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/resource-logs/compiler.log",
+      "sha256": "b2ddd353cdaddd8c9a57dda15d0633aae0d14c36174f7cc1462eb2b04f500e82"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/commands/0092/command.json",
+      "sha256": "8501f6f63acddeadd751491bb17679cc88320b8ad86b39f7fb2690de127c8f9f"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/commands/0092/unity-completion.json",
+      "sha256": "6db70d238b8c9fc9f289f40ffea37e22ca2ce72d5955a4d04ee90eef585c2d80"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/commands/0092/stdout.log",
+      "sha256": "5891b2cec84bbf7b45a7392934b47e6908d3f6012a84b60feb3eb5ef7f068292"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/commands/0092/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/cells/resource-compiler.json",
+      "sha256": "3f53534a31012424178e445d15383228d28b68fdeabe6789009f98a3294bdcc5"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/install.json",
+      "sha256": "d1daa21af07a2949598e0250eff7bac3e8601ba0a698dc094c1127cd8c367093"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/resource-project.json",
+      "sha256": "500e9ed4692077cf2313e6fffe3c20471f52492300cfcac32945b2e827ade386"
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Assets/AssemblyShadowDemo/Editor/M02Build.cs",
+      "sha256": "86e1a1e292c2f4c5d0b01e7352dc4d13f5d54255b61ce9900b1019a65d098fa5",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Assets/AssemblyShadowDemo/Editor/M07Build.cs",
+      "sha256": "10ab0b4c45e3a2ce12bc90116f1a0c2a2a260470b1a1bf5dc9cf6583083daa14",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+      "sha256": "617926e0ec86c95e952f819afcaa27e364f66f37d26bf911edc90d32edfbb581",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs",
+      "sha256": "28cc1cec37a8e9eb38a24393daf26a10e159d9c9aa5d44e5ac4538659f5811fc",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Tools/AssemblyShadow/R03Completion/fixture_project.py",
+      "sha256": "2170071d73b1d53b300abb190dcffe18d663fc8036001b7469945792784eacdf",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/fixture_project.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "sha256": "dcdb111862b377bf357c3aa5bb6e9bd8b76d828abe6a3cf897510a0ec42224d4",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Tools/AssemblyShadow/R03Completion/source_pin_contract.py",
+      "sha256": "d5affacba8bb2789e4566b3d5a769ce3684cb8a6d52e96c09d13bb1d43ebe18d",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/source_pin_contract.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Tools/AssemblyShadow/R03Completion/fixture_contracts.py",
+      "sha256": "18beb270c5f407c8948e0f67e86c05bda17e26a4d1fe1a579c4883d36133bb0b",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/fixture_contracts.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Packages/manifest.json",
+      "sha256": "ed0105ff7c113a79e36c787e5aa52cf8e3b020f6ff1c6f9dd215efb147ff321c",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Packages/manifest.json",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "cebed900e6456433ac65db531262b60fd26766ee",
+      "path": "Packages/packages-lock.json",
+      "sha256": "0152179eaa8db6a4e1eae0d9746f28abffce3e9b6c21e5931ba5d207f6aee0fe",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_demo/Packages/packages-lock.json",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs",
+      "sha256": "03becf0d0a7d9bf314d2f80105eedf4bfe304bd0738c7195a9f6ed6b9056d7b4",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Settings/AssemblyShadowSettings.cs",
+      "sha256": "08cc0e506c5fd3f8b3c2d9e29388e83e7174a5b647479310f18a5004b4d038b2",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettings.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+      "sha256": "8fc2d9d848d8372a6fe0eebc9f1d9db52aa6db292e06bd3773d178ec97a9878d",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs",
+      "sha256": "860832f0474dc2dd6f73e884e8515dbdb7064833711a50d335313d3cf20cab65",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_unity/Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs",
+      "sha256": "eab62bcce1bc8e06e5ab1e22905715b8c0721f05636ae54b47757e384a1751de",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Tests/Editor/AssemblyShadow/PolicyTests.cs",
+      "sha256": "906c478151bd0def2c0945fc07f4807507b1023c772319d51572eeabcee6397b",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-source-snapshot/hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs",
+      "exactGitBlobAuthenticated": true
+    }
+  ],
+  "resourceSnapshots": [
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Packages/manifest.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-resource-snapshot/Packages/manifest.json",
+      "sha256": "3d9be86a817fbdcb9eecdc9cc059da2b882ea0e3eb6a479e935d4f53524dbe9c"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Packages/packages-lock.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-resource-snapshot/Packages/packages-lock.json",
+      "sha256": "27a0f048e8f1142ec5f412e220dc06226ddc60f7df83debf5fb2c3cc1d0519a6"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-resource-snapshot/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "e8aba14d6fc7e2cc61d9cc60fcc8ef1f8be4fd89c0cd77c3e85ef1e80a8d17ed"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/ProjectSettings/AssemblyShadowSettings.asset",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-resource-snapshot/ProjectSettings/AssemblyShadowSettings.asset",
+      "sha256": "5e7c84bb0fa004f4c6d7b1f0c82e16d4b86f40e77c652712d9878b06961f7e05"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/ProjectSettings/ProjectSettings.asset",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-resource-snapshot/ProjectSettings/ProjectSettings.asset",
+      "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/.r03-completion-project",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003J-contracts/issue-resource-snapshot/.r03-completion-project",
+      "sha256": "500e9ed4692077cf2313e6fffe3c20471f52492300cfcac32945b2e827ade386"
+    }
+  ],
+  "dependencyComparison": {
+    "owningExplicitVersions": {
+      "com.unity.collections": null,
+      "com.unity.visualscripting": "1.9.4",
+      "com.unity.render-pipelines.universal": "14.0.12",
+      "com.unity.nuget.newtonsoft-json": null
+    },
+    "isolatedManifest": {
+      "com.code-philosophy.hybridclr": "file:/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "com.unity.modules.ai": "1.0.0",
+      "com.unity.modules.androidjni": "1.0.0",
+      "com.unity.modules.animation": "1.0.0",
+      "com.unity.modules.assetbundle": "1.0.0",
+      "com.unity.modules.audio": "1.0.0",
+      "com.unity.modules.cloth": "1.0.0",
+      "com.unity.modules.director": "1.0.0",
+      "com.unity.modules.imageconversion": "1.0.0",
+      "com.unity.modules.imgui": "1.0.0",
+      "com.unity.modules.jsonserialize": "1.0.0",
+      "com.unity.modules.particlesystem": "1.0.0",
+      "com.unity.modules.physics": "1.0.0",
+      "com.unity.modules.physics2d": "1.0.0",
+      "com.unity.modules.screencapture": "1.0.0",
+      "com.unity.modules.terrain": "1.0.0",
+      "com.unity.modules.terrainphysics": "1.0.0",
+      "com.unity.modules.tilemap": "1.0.0",
+      "com.unity.modules.ui": "1.0.0",
+      "com.unity.modules.uielements": "1.0.0",
+      "com.unity.modules.umbra": "1.0.0",
+      "com.unity.modules.unityanalytics": "1.0.0",
+      "com.unity.modules.unitywebrequest": "1.0.0",
+      "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+      "com.unity.modules.unitywebrequestaudio": "1.0.0",
+      "com.unity.modules.unitywebrequesttexture": "1.0.0",
+      "com.unity.modules.unitywebrequestwww": "1.0.0",
+      "com.unity.modules.vehicles": "1.0.0",
+      "com.unity.modules.video": "1.0.0",
+      "com.unity.modules.vr": "1.0.0",
+      "com.unity.modules.wind": "1.0.0",
+      "com.unity.modules.xr": "1.0.0",
+      "com.unity.nuget.newtonsoft-json": "3.2.1",
+      "com.unity.render-pipelines.universal": "14.0.12",
+      "com.unity.test-framework": "1.1.33",
+      "com.unity.ugui": "1.0.0"
+    },
+    "isolatedResolvedPackages": {
+      "com.code-philosophy.hybridclr": "file:/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "com.unity.burst": "1.8.21",
+      "com.unity.ext.nunit": "1.0.6",
+      "com.unity.mathematics": "1.2.6",
+      "com.unity.nuget.newtonsoft-json": "3.2.1",
+      "com.unity.render-pipelines.core": "14.0.12",
+      "com.unity.render-pipelines.universal": "14.0.12",
+      "com.unity.render-pipelines.universal-config": "14.0.10",
+      "com.unity.searcher": "4.9.2",
+      "com.unity.shadergraph": "14.0.12",
+      "com.unity.test-framework": "1.1.33",
+      "com.unity.ugui": "1.0.0",
+      "com.unity.modules.ai": "1.0.0",
+      "com.unity.modules.androidjni": "1.0.0",
+      "com.unity.modules.animation": "1.0.0",
+      "com.unity.modules.assetbundle": "1.0.0",
+      "com.unity.modules.audio": "1.0.0",
+      "com.unity.modules.cloth": "1.0.0",
+      "com.unity.modules.director": "1.0.0",
+      "com.unity.modules.imageconversion": "1.0.0",
+      "com.unity.modules.imgui": "1.0.0",
+      "com.unity.modules.jsonserialize": "1.0.0",
+      "com.unity.modules.particlesystem": "1.0.0",
+      "com.unity.modules.physics": "1.0.0",
+      "com.unity.modules.physics2d": "1.0.0",
+      "com.unity.modules.screencapture": "1.0.0",
+      "com.unity.modules.subsystems": "1.0.0",
+      "com.unity.modules.terrain": "1.0.0",
+      "com.unity.modules.terrainphysics": "1.0.0",
+      "com.unity.modules.tilemap": "1.0.0",
+      "com.unity.modules.ui": "1.0.0",
+      "com.unity.modules.uielements": "1.0.0",
+      "com.unity.modules.umbra": "1.0.0",
+      "com.unity.modules.unityanalytics": "1.0.0",
+      "com.unity.modules.unitywebrequest": "1.0.0",
+      "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+      "com.unity.modules.unitywebrequestaudio": "1.0.0",
+      "com.unity.modules.unitywebrequesttexture": "1.0.0",
+      "com.unity.modules.unitywebrequestwww": "1.0.0",
+      "com.unity.modules.vehicles": "1.0.0",
+      "com.unity.modules.video": "1.0.0",
+      "com.unity.modules.vr": "1.0.0",
+      "com.unity.modules.wind": "1.0.0",
+      "com.unity.modules.xr": "1.0.0"
+    },
+    "missingDeclaredProviders": [
+      "com.unity.collections",
+      "com.unity.visualscripting"
+    ],
+    "matchingILSupportOrAntlr3FilesInIsolatedAssetsAndPackageCache": [],
+    "libraryScriptAssemblies": [
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyA.Contracts.dll",
+        "size": 24064,
+        "sha256": "0ff73efbb1a54e3af3e30c66260f1fe9c9532b5b58ff9dc7c3bccd5ae2a3869b"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyA.Implementation.Extensibility.dll",
+        "size": 24064,
+        "sha256": "311a6b0d16b7b92eb06d92fb3436a3215d77a5bcc99c80a470a710e0fdd40793"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyA.Implementation.Internal.dll",
+        "size": 40448,
+        "sha256": "bd3efb01523959e422a16ebf2d461aa3c08109eef4f54f6cb2e194ebf5fe02d8"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadow.H1Count.Target.dll",
+        "size": 4608,
+        "sha256": "94055713cda29438049e010b08aa01942eb2579688cb1c25bc8fdfb49090683a"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadow.H1Nested.Target.dll",
+        "size": 4608,
+        "sha256": "8b2475826cf03440238d6f66b5598f1cf7ffa8cc8f83e279ace121eacf99b9bd"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadow.R01BDiagnostics.dll",
+        "size": 109056,
+        "sha256": "d70db5985db75d3b4c98f7db001e4a81a2a1dab57957c114ed01919581eed5d2"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowBaseline.Aot.dll",
+        "size": 9728,
+        "sha256": "87e7a1baf5413d257ceaeace39e884f16a0907e5dc1e2ad3b4fa5812b0479952"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowBaseline.Editor.dll",
+        "size": 19968,
+        "sha256": "852d601a1982830fef6024f383d3b943543b1ceba5232a4a066ee532435eaa17"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowBaseline.HotUpdate.dll",
+        "size": 4608,
+        "sha256": "84f338ece51e6c38dde243329c18578e7d1340510485fc08bae0dcb032b304c0"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowDemo.Bootstrap.dll",
+        "size": 555520,
+        "sha256": "c383d5150deb2cf0c0b3bdb9bea35d681feb4ed49d8afed4cc674c28bf3c2d0e"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowDemo.ContractsConsumer.dll",
+        "size": 23040,
+        "sha256": "886cc1a9b1fd784b82dde87c868601ffa62053dbdc3cd96f3b959ab8f3502303"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowDemo.Editor.dll",
+        "size": 521728,
+        "sha256": "5ea4e89ba0cf31613bc85a3725839e22f7ee3c1843fad8aaeaf3e71656b1722c"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowDemo.EditorTests.dll",
+        "size": 429568,
+        "sha256": "761385f8a68c4ebb5d79347fa05f408e531ec6e8910b67373a787f312f981444"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+        "size": 24576,
+        "sha256": "e537ff018e20f89d452d3e4eb5a1121fc2a9560d25b8e495add7f15c824b5292"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/AssemblyShadowDemo.M06RuntimeTests.dll",
+        "size": 5120,
+        "sha256": "ae076d077b103a7202be7892932020b0cd06689336dc7a40ab00aaf8d2d99e9a"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/HybridCLR.AssemblyShadow.Editor.Tests.dll",
+        "size": 501760,
+        "sha256": "1c6aca185a51699fbf8272b841063e42a66f769aca0b71d75de1917401893782"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/HybridCLR.Editor.dll",
+        "size": 800768,
+        "sha256": "fcb6e73a74e73b364b422df101c594948af88267b3bd3d64cdc39570cd493e6c"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/HybridCLR.Runtime.dll",
+        "size": 60416,
+        "sha256": "832062d3ad2d9b0db47729dfdb57bf12475a1ab949748c8cd4cb4939c102dd1e"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/PPv2URPConverters.dll",
+        "size": 4096,
+        "sha256": "1628b69e8bf0d8db04a85c57e832b0b5dfa522ca324f82286e8b79e4f75c6a8b"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.Burst.CodeGen.dll",
+        "size": 62464,
+        "sha256": "8372a458e84b8afc6d6745b3da6d382564b329a8f04aa49649a5f8aa871f568a"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.Burst.Editor.dll",
+        "size": 916992,
+        "sha256": "e43290c111acfe330b660ee4f79b3a11145f04868fc6931d6428e22b0d8bb9fb"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.Burst.dll",
+        "size": 351744,
+        "sha256": "102f4321945660d39c8a5d656835175cbeb358c170edd132e260c66df5f7439a"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.HybridCLR.AssemblyShadow.CodeGen.Tests.dll",
+        "size": 111104,
+        "sha256": "c5625e7d73372b515a79c72177daa64c4f35242949b5425301c03a2181cddb19"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.HybridCLR.AssemblyShadow.CodeGen.dll",
+        "size": 121856,
+        "sha256": "2da5c6e6dcd8da3f27a0d2c93a64d7c1eb65b1db0e30f941108d3068212f24ce"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll",
+        "size": 23552,
+        "sha256": "6be6a7eb401bdcbe6f00996367c2f5cc754a9cb98a4848644b21472f76830323"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.Mathematics.dll",
+        "size": 743424,
+        "sha256": "598731ca334befee1a1a44b1d29580656b16802a18825deb22fce6368e00165b"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+        "size": 8192,
+        "sha256": "622fd898b96e0cc7980c941081145e3b0b8bf92d34d57234ba95fa22929d33ba"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll",
+        "size": 678912,
+        "sha256": "4532de04f9068610660f0e11b1c014fee52681738886ac3e9e22676bd026a0ee"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll",
+        "size": 593920,
+        "sha256": "8b8f7d6ff11ad1137e70e050ba14b571c0613f7cd1c99412bbe02dc086990209"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+        "size": 4608,
+        "sha256": "42fcd36640443ca6183d120c816335cfa18d5246fca7b28c60ce7960f90d3f23"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+        "size": 4608,
+        "sha256": "940189d1b49f5b62fedcae53baa6b2fdaed0048d62a45dca0ae5ab6513a3e5ac"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Internal.dll",
+        "size": 5120,
+        "sha256": "0dd3f2b1eadce140b1314e444d585dac7dc44109232c4c7bf057b56509eb84ea"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+        "size": 5632,
+        "sha256": "660a970970aa1ad6fe4f63bec70d163f7bd33775512d65202f7ecf2ddb4f1e30"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll",
+        "size": 752640,
+        "sha256": "4fcf4267df92942757a907e42de33579a8a841165dff5b5c537ba0ae09bb6d55"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll",
+        "size": 836096,
+        "sha256": "c8904d8efdf2d465b9ddab03e5f9218ebf94e94dfbb1faae62d5d9010e94403d"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll",
+        "size": 4608,
+        "sha256": "8222e690c46839b87f5ecd7dba839f752e257deffa6a75f0ac66efc992830fff"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.Searcher.Editor.dll",
+        "size": 41472,
+        "sha256": "d69b77e904e8ebc5781e140a24a76406a2761876b64625ad6b139acd55ad75f6"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll",
+        "size": 1505792,
+        "sha256": "ba2a701551fb4cc0a9f680d31105537b6aeb420f6ac604c6fc73250b8b2af939"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/Unity.ShaderGraph.Utilities.dll",
+        "size": 6144,
+        "sha256": "d852e20f80658528c18c07288e0fc10024f57df5cf2c6a312f039cee64ea63f7"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/UnityEditor.TestRunner.dll",
+        "size": 226816,
+        "sha256": "a018b54bba348a93b393f691a15b3faaba6386a2f1408ecc88b3e542ea7a2b8e"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/UnityEditor.UI.dll",
+        "size": 97792,
+        "sha256": "30b0729f44e3f6778453537bd47b3e69845b71f2725c246fa1d9c638694ac851"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/UnityEngine.TestRunner.dll",
+        "size": 134656,
+        "sha256": "e066ca695057c47153669da1fb5c8cdbd90ea3790d9f26672bd4f6bec6ae7d15"
+      },
+      {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/Library/ScriptAssemblies/UnityEngine.UI.dll",
+        "size": 268800,
+        "sha256": "7636eae0630b485fe7c87654c1e0f1cd953da383f8be897b782ce63517e96a97"
+      }
+    ],
+    "inventoryScope": "Read-only existing package cache/source and ScriptAssemblies listings; no new Unity/API invocation and no claim of a complete CompilationPipeline serialization"
+  },
+  "LI001LI002FreshRegression": "Passed early/full Editor and actual consumer/install; I states unchanged",
+  "unavailablePhaseReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler.json",
+    "state": "Unavailable",
+    "reason": "CompilerPreflight threw before success receipt emission; original Failed command/log/cell are retained"
+  },
+  "noLocalSourceChanges": true,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false
+}

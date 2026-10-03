@@ -1,0 +1,137 @@
+{
+    "schemaVersion": 1,
+    "kind": "R03ProductionSourcePinContract",
+    "result": "Passed",
+    "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete",
+    "baselineId": "M07-Baseline-R03Completion-cebed900e645",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "runtimeAbiHash": "1c035f201c3f3267c76916eb4fa9c0c8df5b96d960d3f2915ba861de878900eb",
+    "error": "",
+    "consumer": "HybridCLR.Editor.AssemblyShadow.ShadowSourcePins.Read",
+    "serialization": "UnityEngine.JsonUtility",
+    "unityEditorRun": true,
+    "nativeInstallationRun": false,
+    "expansionAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "before": [
+        {
+            "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+            "sha256": "e8aba14d6fc7e2cc61d9cc60fcc8ef1f8be4fd89c0cd77c3e85ef1e80a8d17ed"
+        },
+        {
+            "path": "ProjectSettings/AssemblyShadowSettings.asset",
+            "sha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67"
+        },
+        {
+            "path": "ProjectSettings/ProjectSettings.asset",
+            "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+        },
+        {
+            "path": ".r03-completion-project",
+            "sha256": "500e9ed4692077cf2313e6fffe3c20471f52492300cfcac32945b2e827ade386"
+        }
+    ],
+    "after": [
+        {
+            "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+            "sha256": "e8aba14d6fc7e2cc61d9cc60fcc8ef1f8be4fd89c0cd77c3e85ef1e80a8d17ed"
+        },
+        {
+            "path": "ProjectSettings/AssemblyShadowSettings.asset",
+            "sha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67"
+        },
+        {
+            "path": "ProjectSettings/ProjectSettings.asset",
+            "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+        },
+        {
+            "path": ".r03-completion-project",
+            "sha256": "500e9ed4692077cf2313e6fffe3c20471f52492300cfcac32945b2e827ade386"
+        }
+    ],
+    "cases": [
+        {
+            "id": "generated",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+            "sha256": "e8aba14d6fc7e2cc61d9cc60fcc8ef1f8be4fd89c0cd77c3e85ef1e80a8d17ed",
+            "expectedCode": "Success",
+            "observedCode": "Success",
+            "result": "Passed"
+        },
+        {
+            "id": "roundtrip",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/roundtrip.json",
+            "sha256": "ecd432bba5d0650dd9ea6e0acf88d0b626b5f9ba2b07e90ce7b9dff6a00cb751",
+            "expectedCode": "Success",
+            "observedCode": "Success",
+            "result": "Passed"
+        },
+        {
+            "id": "missing-architecture",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/missing-architecture.json",
+            "sha256": "d80c55c0ebc6f63272791a0869ec011fc6b89de065f8cd88d45dbb03d86e7895",
+            "expectedCode": "SourcePinTarget",
+            "observedCode": "SourcePinTarget",
+            "result": "Passed"
+        },
+        {
+            "id": "wrong-architecture",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/wrong-architecture.json",
+            "sha256": "70c4fc6210ffa24ca8827ff76de5be7be97a6391a4d6365c5569abbece3074c8",
+            "expectedCode": "SourcePinTarget",
+            "observedCode": "SourcePinTarget",
+            "result": "Passed"
+        },
+        {
+            "id": "wrong-target",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/wrong-target.json",
+            "sha256": "ce80ef6b9747a8543d86de09857c088ecfac5365a8338e84d6beb782071c7871",
+            "expectedCode": "SourcePinTarget",
+            "observedCode": "SourcePinTarget",
+            "result": "Passed"
+        },
+        {
+            "id": "wrong-unity",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/wrong-unity.json",
+            "sha256": "2126b9ae0ef172c24ac960f8a8095b3abd667b901eb36e278b8698d342010bb3",
+            "expectedCode": "SourcePinTarget",
+            "observedCode": "SourcePinTarget",
+            "result": "Passed"
+        },
+        {
+            "id": "wrong-schema",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/wrong-schema.json",
+            "sha256": "13f941809f9121c7fef3b5f4a32ce0560122ef7258898e06e5d4b71ca9dc6bb0",
+            "expectedCode": "SourcePinSchema",
+            "observedCode": "SourcePinSchema",
+            "result": "Passed"
+        },
+        {
+            "id": "bad-revision",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/bad-revision.json",
+            "sha256": "64c937bb2e441857a6ae88d7e5d600ee8981ce8280ddf59c78086fa466125eba",
+            "expectedCode": "InvalidSourcePin",
+            "observedCode": "InvalidSourcePin",
+            "result": "Passed"
+        },
+        {
+            "id": "missing-repository",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/missing-repository.json",
+            "sha256": "a844d4cee46e314b621688bc25915e2669e5cd4340dba2010827ec7c441c4bad",
+            "expectedCode": "InvalidSourcePin",
+            "observedCode": "InvalidSourcePin",
+            "result": "Passed"
+        },
+        {
+            "id": "wrong-build-source",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract-inputs/wrong-build-source.json",
+            "sha256": "2b11d7f204fdcd31a0a0436af43c0a0909dc4ec09d9354fedf096e4495338a01",
+            "expectedCode": "BuildSourceProvenanceMismatch",
+            "observedCode": "BuildSourceProvenanceMismatch",
+            "result": "Passed"
+        }
+    ]
+}

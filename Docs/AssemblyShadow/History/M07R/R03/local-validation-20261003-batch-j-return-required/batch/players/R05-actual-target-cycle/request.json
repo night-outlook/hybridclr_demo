@@ -1,0 +1,37 @@
+{
+  "baselineId": "R03-Isolated-reference-release",
+  "candidates": [
+    "A",
+    "B",
+    "Layout",
+    "Methods",
+    "R03Contract"
+  ],
+  "caseId": "R05-actual-target-cycle",
+  "dlls": [
+    {
+      "name": "A",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/host/player-fixtures/true-cycle/A.dll",
+      "sha256": "a34c7846739dd823cf5ab772f1a93c7975ca0d22296b3915c7e1b66d3d0d80a9"
+    },
+    {
+      "name": "B",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/host/player-fixtures/true-cycle/B.dll",
+      "sha256": "929cdc08a24d4621194217c6c1eca84135612b8582ee03b5d95a99d2b61708d8"
+    }
+  ],
+  "invokeAssembly": "B",
+  "noPatch": false,
+  "observeMethod": false,
+  "oldExecutionGuard": false,
+  "producerControl": false,
+  "roots": [
+    "A",
+    "B"
+  ],
+  "runId": "d4bfeffdd5b540699960149465c4cf3d",
+  "schemaVersion": 1,
+  "stable": [
+    "mscorlib"
+  ]
+}

@@ -1,6 +1,56 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch I: Editor fixture constructor and copied source-pin schema defects
+## Current return — R03 batch J: contract repairs Passed; resource capability profile requires Primary
+
+**ReturnRequired;43 Passed/1 Failed/46 Blocked;seal Passed;one invocation PID89851, 2026-10-03 06:05:33–06:14:16 PDT.** Four focused builds/23 Player contracts,18-method preflight, both754/755 Editor rosters with zero skips, ten actual source-pin consumer cases and native installation Passed. The resource compiler prerequisite failed before producing a target snapshot. Two resource builds and36 downstream Players were Blocked. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [J checkpoint](../History/M07R/R03/local-validation-20261003-batch-j-return-required/README.md), [LI_CONTRACT_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/LI_CONTRACT_AUDIT.json) and [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/PRIMARY_ISSUES.json).
+
+LI-001/LI-002 have fresh passing J regressions, including all18 affected methods in all three Editor runs and production consumer/installation success. Their original I failure/custody states remain unchanged. The J M01 source-asset/GUID test actually ran and Passed; M01 resource/bundle/Player acceptance remains NoCoverage.
+
+### R03-LJ-001 — isolated resource dependency profile contradicts inherited precompiled capability declarations
+
+**Exact reproduction already performed.** Use only the four executed commits/branch/paths recorded in LOCAL_VALIDATION.md, Unity2022.3.62f2 and SDK8.0.318. Invoke the prescribed command once in unused J; it has completed and must not be repeated:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit cebed900e6456433ac65db531262b60fd26766ee
+```
+
+After preparation, actual source-pin consumer0090 and native Install0091 succeed. Command0092 runs `AssemblyShadowDemo.Editor.R03CompletionBuild.CompilerPreflight` against `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/projects/resource-complete`. Its actual Unity/outer exits are1; completion is clean, zero compiler retirement actions, no survivor or timeout. Sealed `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/resource-logs/compiler.log`, line450:
+
+```text
+ShadowBuildException: UnknownPrecompiledCapability: Precompiled declaration is not a target compiler input: Unity.Collections.LowLevel.ILSupport
+AssemblyShadowSettingsUtil.DeclareCapability ... AssemblyShadowSettingsUtil.cs:220
+AssemblyShadowSettingsUtil.BuildCapabilities ... AssemblyShadowSettingsUtil.cs:206,134
+AssemblyShadowSettingsUtil.CreatePolicyConfiguration ... AssemblyShadowSettingsUtil.cs:23
+M07Build.ValidateCompilerInputs ... M07Build.cs:99
+R03CompletionBuild.CompilerPreflight ... R03CompletionBuild.cs:109
+```
+
+**Root cause and why preparation missed it.** `fixture_project.dependencies:75–86` produces a narrowed package manifest (Unity modules/URP/test/UGUI plus JSON and pinned HybridCLR). Actual isolated manifest/resolved lock have neither `com.unity.collections` nor `com.unity.visualscripting`. `M07Build.Configure` inherits `M02Build.Configure`; M02 lines31–39 unconditionally declare Newtonsoft.Json, Unity.Burst.Unsafe, Unity.Collections.LowLevel.ILSupport, nunit.framework and Unity.VisualScripting.Antlr3.Runtime. Production `AssemblyShadowSettingsUtil.BuildCompilerInventory:124–174` derives its dictionary from actual active-target Player/PlayerWithoutTestAssemblies and references; DeclareCapability correctly rejects the missing declared plugin at220. This happens before `AssemblySnapshot.CompileWithOptions` (M07Build100), so it is a configuration/target-inventory mismatch rather than a demonstrated C# syntax/native compilation failure. Host/API compilation and the platform-pin consumer do not execute this policy/inventory contract.
+
+Source/policy/manifest/lock snapshots are [issue-source-snapshot](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/issue-source-snapshot) and [issue-resource-snapshot](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/issue-resource-snapshot), with exact Git/live hashes in PRIMARY_ISSUES.json. No matching ILSupport or Antlr3 file was found in the retained isolated Assets/PackageCache. The guard directly proves the first name is absent from its actual Unity-derived dictionary. A full serialized CompilationPipeline inventory is Unavailable; do not treat the ScriptAssemblies listing as that inventory. Collections is not an explicit owning manifest dependency either; no historical provider/version is invented. VisualScripting1.9.4 is an explicit owning dependency excluded by the resource filter. Antlr3 is a further likely mismatch, not a second observed runtime failure.
+
+**Affected scope and uncertainty.** Resource compiler snapshot, seven-bundle baseline, ON/OFF native builds, P05 mutation/structural compile/finalization, production P01–P05 graph/input binding and36 M07/R00/early processes remain unverified. Independent755-case Editor including M01 source-asset contract Passed; it cannot replace those stages. P05 restore only reports NoRecordedMutation/NotApplicable. M02/M07 configuration did modify allowed settings/bootstrap scene before the guard; no blanket no-mutation claim. No compiler.json was emitted before the exception; preserve Unavailable alongside original Failed command/log/cell. Downstream failures remain unknown.
+
+**Concrete Primary direction.** Reconcile the reviewed resource dependency scope and complete precompiled capability profile with actual active-target compiler inventory. Choose coherent pinned dependencies or an explicit complete scope-specific configuration; retain UnknownPrecompiledCapability, classification, ordinary hot-update/plugin, closure and source/ownership guards. Audit every inherited declaration, including Antlr3, and capture the actual target inventory/positive-negative policy consumer contract before expensive phases. Do not simply delete the first failing name, make missing plugins optional, bypass classification or edit J's settings/expectations. Impact crosses resource provisioning and original production configuration; it cannot be closed locally inside the finished source-bound batch.
+
+**Validation still required.** Primary source/host/compiler regression followed by a newly authorized fresh tuple/root: unchanged constructor/source-pin preflights, successful actual policy/target compiler snapshot, all90 cells/six builds,754/755 Editor/zero skips,59 Players, native bindings, P01–P05/structural byte restoration/production-entry integration, unfenced observations/M06/early and complete evidence seal. Preserve all six strict warm witnesses, five error16 rejection observations, positive C07, actual producer attribution and contaminated controls' Failed unisolated certificates. Do not rerun J or reuse its apps.
+
+Key evidence paths relative to retained J root:
+
+| Evidence | SHA-256 |
+| --- | --- |
+| `resource-logs/compiler.log` | `b2ddd353cdaddd8c9a57dda15d0633aae0d14c36174f7cc1462eb2b04f500e82` |
+| `commands/0092/command.json` | `8501f6f63acddeadd751491bb17679cc88320b8ad86b39f7fb2690de127c8f9f` |
+| `commands/0092/unity-completion.json` | `6db70d238b8c9fc9f289f40ffea37e22ca2ce72d5955a4d04ee90eef585c2d80` |
+| `commands/0092/stdout.log` | `5891b2cec84bbf7b45a7392934b47e6908d3f6012a84b60feb3eb5ef7f068292` |
+| `commands/0092/stderr.log` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` |
+| `cells/resource-compiler.json` | `3f53534a31012424178e445d15383228d28b68fdeabe6789009f98a3294bdcc5` |
+| `projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/install.json` | `d1daa21af07a2949598e0250eff7bac3e8601ba0a698dc094c1127cd8c367093` |
+| `resource-project.json` | `500e9ed4692077cf2313e6fffe3c20471f52492300cfcac32945b2e827ade386` |
+
+All16523 prior custody bindings remain unchanged; J2753 indexed files/2754 archive members authenticate. No Local fix or further validation is authorized by this completed run. R03Accepted=false;H2Passed=false;qualificationApproved=false;PureInterpreter expansion disabled;no performance SLA;full-stage independent review remains open. Exit **Local Validation → Primary Implementation**.
+
+## Historical return — R03 batch I: Editor fixture constructor and copied source-pin schema defects
 
 **ReturnRequired;90 cells:40 Passed/2 Failed/48 Blocked;seal Passed;runner exit1.** Exactly one source-bound invocation PID74402, 2026-10-02 21:36:44–21:43:49 PDT (UTC 2026-10-03T04:36:44.875979+00:00–2026-10-03T04:43:49.531239+00:00). Four focused builds and 23 focused Player contracts Passed; qualification32 static cases Passed without expansion authority. Focused Editor754 cases yielded736 Passed/18 Failed/zero skips. Resource installation failed before native install; two resource builds,755-case Editor and36 resource/measurement/early Players remain Blocked. No retry, source fix, scope change or blocked-stage execution. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [I checkpoint](../History/M07R/R03/local-validation-20261003-batch-i-return-required/README.md) and [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-i-return-required/preflight/PRIMARY_ISSUES.json).
 

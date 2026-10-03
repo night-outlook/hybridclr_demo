@@ -1,0 +1,55 @@
+{
+  "buildReceiptSha256": "1a9056cea6bc15588b8f080c6e5fc925f33deabc656a6455689a468295633dff",
+  "launchPid": 95486,
+  "outcome": "success",
+  "rawSha256": "c7a627a133c2e4c2676a88c558461fa7272350cae94e726dfd40d67a162f5122",
+  "requestSha256": "0150e7a04dd8b3b6570a8f52994e90d77667d5c2263cf5ab5ee46f2383c191c5",
+  "result": "Passed",
+  "runId": "687443626f144eb1baed486aca351a01",
+  "state": 6,
+  "value": 41,
+  "warmWindow": {
+    "broadColdEvents": [],
+    "broadCounterDelta": {
+      "admissionCacheHits": 10000,
+      "admissionCacheMisses": 0,
+      "admissionEntries": 0,
+      "admissionProofAttempts": 0,
+      "admissionProofRejections": 0,
+      "admissionRetainedBytes": 0,
+      "admissionUnready": 0,
+      "baselineStateChecks": 10000,
+      "fieldWorkspaceBuilds": 0,
+      "genericContextChecks": 0,
+      "interfaceWorkspaceBuilds": 0,
+      "layoutCheckCalls": 0
+    },
+    "exactLoopProofDelta": 0,
+    "ownerThread": 1,
+    "policy": "R03ExactAllocationWindowV1",
+    "producerFence": {
+      "acquired": true,
+      "admitted": 2,
+      "completed": 2,
+      "deferred": 1,
+      "deferredCompleted": 1,
+      "drained": true,
+      "elapsedMicros": 13791,
+      "expired": false,
+      "invalid": false,
+      "leaseMs": 5000,
+      "ownerOsThread": 8294833536,
+      "policy": "R03ArrayPoolFinalizerFenceV1",
+      "released": true,
+      "requested": true
+    },
+    "runtimeAcceptance": false,
+    "target": {
+      "assembly": "B",
+      "name": "Node",
+      "namespace": "R03",
+      "physical": "0x11c957230",
+      "typeKey": "type(1:b/3:R03/4:Node@0)"
+    }
+  }
+}
