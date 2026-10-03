@@ -119,3 +119,12 @@ Conduct independent stage review in the required order: design → plan → impl
 Only when the documented R03 scope and exit requirements are satisfied may the project become Ready for Human Review Gate. Then stop and let the user explicitly initiate H2 as defined in HUMAN_REVIEW_GATES.md. R03 completion does not approve H2; H2 does not automatically approve Add/Remove capabilities. Do not begin M08A, broad production integration or unrelated feature work before the required approval.
 
 At this plan's publication: **R03Accepted=false; H2Passed=false; expansion disabled; fullLegacyRegressionAcceptance=false; current owner Primary Implementation; active Local assignment none.**
+
+## 10. Primary preparation state for batch I (2026-10-03)
+
+RC1's static qualification implementation now exists in the managed package and remains non-authorizing by design; see ADR-0002 and the K records. RC2–RC5 have concrete Primary-owned adapters, contracts and a source-bound 90-cell Local runner. This updates the implementation state of sections 3–8 above; it does **not** alter their acceptance semantics or close RC6.
+
+Batch I is the next empirical integration cycle: six fresh native builds, focused and resource-complete Editor scopes, 59 fresh Player processes, original M07 resource modes, production-entry graph/generation checks, early-startup regressions and current-source observations. Resource preparation is independent of static qualification so a qualification defect cannot hide unrelated resource/runtime evidence. Structural restoration remains independent of a failed compile once mutation authority was recorded.
+
+PureInterpreter expansion remains disabled and no qualification approval has been granted. A passing batch I still returns to Primary for the full R03 exit matrix and independent stage review. Missing generic/interface/old-handle/stack or other obligations must remain explicit rather than inferred from the prepared supplement. H2 remains user-initiated after R03 completion; M08A remains closed.
+

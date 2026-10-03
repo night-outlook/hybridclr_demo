@@ -1,50 +1,140 @@
-# Primary Implementation / Local Validation coordination — H completed; no active Local assignment
+# Primary Implementation → Local Validation: R03 batch I, remaining-completion integration
 
-## Current ownership
+## Objective
 
-**Current owner: Primary Implementation. Local execution authorized: false.** This document is a completion/ownership notice, not a new execution handoff. There is no new runtime command or reserved batch root.
+Run exactly one fresh source-bound **R03 batch I** that combines the retained conservative H regressions with static qualification, original-resource M01/P01–P05 coverage, available broader runtime witnesses, production graph/generation integration, current-source observations and early-startup regressions. Preserve all evidence and return to Primary.
 
-Batch H completed once and its focused evidence has been reconciled by Primary. Do not repeat H, run the old command from an earlier revision, reuse H apps as fresh validation, or infer that a later branch tip authorizes another run. No Local source implementation is requested. The original H command remains historical at demo `2007c5dbd3dcf535706688e6595700e3ba26a11e`; it is not the current task.
+This is not R03/H2 acceptance and does not authorize PureInterpreter structural expansion.
 
 ## Read first
 
 Paths are relative to `Docs/AssemblyShadow/`:
 
 1. `README.md` and `Plan/CURRENT_STATUS.md`.
-2. `History/M07R/R03/J_H_FOCUSED_RECONCILIATION.md` and `J_H_EVIDENCE_AUDIT.json`.
-3. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for the unchanged H result and historical failures.
-4. `Plan/stages/R03-evolution-semantics.md` and `R03-remaining-completion.md` for the next Primary work.
-5. `Plan/HUMAN_REVIEW_GATES.md` for independent review and human approval boundaries.
+2. `Architecture/ADR/ADR-0002-pure-interpreter-qualification-boundary.md`.
+3. `History/M07R/R03/K_COMPLETION_PREP.md`, `K_VALIDATION_MATRIX.md`, `K_MEASUREMENT_PROTOCOL.md`, `K_HOST_EVIDENCE.json`.
+4. `History/M07R/R03/J_H_FOCUSED_RECONCILIATION.md` for the immutable earlier focused result.
+5. `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md` for historical Local facts; do not execute their retired commands.
+6. This file for the only newly authorized execution.
 
-## Completed H source/evidence binding — not a new run tuple
+## Exact source authority
 
-All branches are `codex/assembly-shadow-r01b-h1`.
+All repositories use branch `codex/assembly-shadow-r01b-h1` and owning paths beneath `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`.
 
-| Repository | Owning checkout | H executed revision |
-| --- | --- | --- |
-| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `2007c5dbd3dcf535706688e6595700e3ba26a11e` |
-| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
-| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+| Repository | Exact validation authority |
+| --- | --- |
+| `night-outlook/hybridclr_demo` | final pushed docs-only transport commit containing this file; must equal the exact SHA in Primary's prompt and local/remote HEAD |
+| `night-outlook/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `night-outlook/hybridclr_unity` | `11a20efadd8f1ebc494d02ac80135e224dabd3e5` |
+| `night-outlook/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-Local H publication: `3a9d51a9bb42b12bf29dfd6e0d7d12956ae04a68`. Primary read-only auditor source: `3139b08f71dab8f4138b4127d6b0eb7a2fd0e4e1`. These later revisions do not replace the original executed tuple or create a new Player claim.
+Executable/tool source anchor: `55d43dd828d96647298b91ed6d8da122523f8a87`. The final demo handoff may differ from this anchor only under `Docs/AssemblyShadow/**`. Verify that delta before execution. Never run an arbitrary later tip.
 
-Retained immutable checkpoint: `History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/`.
-Retained live root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection`.
-The original archive SHA-256 remains `dd7adb4de12aa7203c69f993e57ebbde49e4f223edfd1179a2945e3d55f6e5cd`; index remains `ef0e33ef8efa345bca758539646a8d81aefd2d16b5a1e0b139f78234332d1a28`.
+The completion source's `source-pins.json` binds the three non-demo revisions above and retains `runtimeAcceptance=false` / `expansionAuthorized=false`. The runner replaces only the demo transport identity with the exact final published SHA.
 
-## Reconciled result and strict limits
+## What Primary implemented
 
-Original H state: `EvidenceReadyForPrimaryReview`, **37 Passed / 0 Failed / 0 Blocked**, seal Passed. Four fresh build roles, 754 selected Editor identities with zero skips and 23 Player contracts passed. The five rejection cases preserve terminal error16 through the -2 capacity control and two complete reads. Six isolated warm witnesses and complete C07 Passed. Four natural controls' diagnostic contracts Passed while their contaminated **unisolated warm certificates remain Failed**.
+- byte-bound, non-authorizing `R03PureInterpreterEligibilityV1`; V1 physical admission remains authoritative and structural expansion stays disabled;
+- exact copied original-resource project using the tracked M01 prefab/data/scene/meta identities and original production M07/P05 paths;
+- separate 754-case focused and 755-case resource-complete Editor scopes, both requiring zero skips;
+- source-bound P01–P05 production changed-root/closure/load/generation checks and return-to-installation-baseline comparison;
+- supplementary existing M06 static/delegate/exception observations in the same fresh R00 processes, outside the original timing interval;
+- unfenced current-source R00 observation protocol and existing early-startup/capability checks;
+- deterministic 90-cell orchestration, exact-source/provenance checking, process-lifetime rules, restoration logic and evidence seal.
 
-Primary's separate audit authenticates the publication/archive and replays the original verifier; it does not launch new Unity/Player processes or replace an independent full-stage review. R03-LG-001 is verified repaired in the focused H scope. G's five Failed/Unavailable results and all earlier states remain unchanged.
+Primary host/compiler checks passed on exact anchor `55d43dd...`; see `K_HOST_EVIDENCE.json`. They are not Unity/Player acceptance.
 
-M01 remains NoCoverage in the isolated fixture. Its source assets exist in the repository; Primary must provision and authenticate the complete original-resource/dependency fixture before any later coverage claim. The diagnostic producer lease is not production GC/performance qualification. R03Accepted=false; H2Passed=false; ReadyForHumanReviewGate=false; expansion disabled; fullLegacyRegressionAcceptance=false.
+## Pinned environment and unused output
 
-## Next Primary work and future Local entry conditions
+- workspace: `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r`
+- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`
+- Python: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`
+- SDK-only root: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, version **8.0.318**; do not launch Unity 6000
+- new batch root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion`
 
-The earliest unfinished numbered stage step is **R03 step3, PureInterpreter eligibility/qualification**. Remaining work also includes resource-complete M01/P01–P05 regressions, broader runtime identity/compatibility, cumulative generation/role integration, impact-selected production-profile validation and independent full-stage review. The completion plan preserves existing passed host work rather than reimplementing it.
+The output root must not exist. Do not delete/reuse a previous root to make the batch proceed.
 
-Primary must finish the next implementation, fixtures, diagnostics, tests and source review before issuing another Local assignment. Only a new explicit handoff with a frozen four-source tuple, prepared commands, required case identities, schemas, stop rules and an unused output root authorizes another batch. Combine ready independent coverage in that later cycle; do not send non-trivial changes to Local or repeat H without a new objective.
+## Execute once
 
-Until that handoff exists, preserve all H/A–G/R02/H1 live and committed evidence unchanged. Do not change acceptance flags, counter/lease/ownership rules, fixtures, scopes or deadlines. Do not execute a qualification experiment or enter M08A. Full R03 completion and independent stage review must precede user-initiated H2.
+Fast-forward only. No reset/stash/forced checkout/unrelated merge or source edit.
+
+```bash
+set -euo pipefail
+WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
+BRANCH=codex/assembly-shadow-r01b-h1
+DEMO="$WORKSPACE/hybridclr_demo"
+BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion
+UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
+PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
+export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
+export PATH="$DOTNET_ROOT:$PATH"
+export DOTNET_MULTILEVEL_LOOKUP=0
+export PYTHONDONTWRITEBYTECODE=1
+export TMPDIR=/private/tmp
+
+for REPO in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
+  test -z "$(git -C "$WORKSPACE/$REPO" status --porcelain=v1 --untracked-files=all)"
+  test "$(git -C "$WORKSPACE/$REPO" branch --show-current)" = "$BRANCH"
+  git -C "$WORKSPACE/$REPO" fetch origin "$BRANCH"
+  git -C "$WORKSPACE/$REPO" merge --ff-only FETCH_HEAD
+done
+
+DEMO_COMMIT="$(git -C "$DEMO" log -1 --format=%H -- Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md)"
+test "$(git -C "$DEMO" rev-parse HEAD)" = "$DEMO_COMMIT"
+test "$(git -C "$DEMO" ls-remote origin "refs/heads/$BRANCH" | awk '{print $1}')" = "$DEMO_COMMIT"
+git -C "$DEMO" merge-base --is-ancestor 55d43dd828d96647298b91ed6d8da122523f8a87 "$DEMO_COMMIT"
+git -C "$DEMO" diff --exit-code 55d43dd828d96647298b91ed6d8da122523f8a87 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
+test "$(git -C "$WORKSPACE/hybridclr" rev-parse HEAD)" = 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+test "$(git -C "$WORKSPACE/hybridclr_unity" rev-parse HEAD)" = 11a20efadd8f1ebc494d02ac80135e224dabd3e5
+test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = 1cf87f8209790f9fb2ebec97487dc1990ccd56c5
+test "$(dotnet --version)" = 8.0.318
+test -x "$UNITY"
+test ! -e "$BATCH"
+
+"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Completion/run_completion.py" \
+  --workspace "$WORKSPACE" --output "$BATCH" \
+  --unity "$UNITY" --demo-commit "$DEMO_COMMIT"
+```
+
+Immediately before invocation require `DEMO_COMMIT` to equal the exact demo SHA in Primary's final prompt. Capture the outer argv/environment/PID/timestamps/exit without altering runner outputs. Invoke once.
+
+## Required batch-I evidence
+
+The predetermined ledger is exactly **90 unique cells**. Retain all raw evidence for:
+
+- six fresh native builds and their installed/native binding receipts;
+- 754-case focused Editor XML and 755-case resource-complete Editor XML, both zero-skip;
+- **59 fresh Player processes**: 23 focused, 14 original M07 resource, 12 R00 observation, 10 early-startup;
+- qualification/results.json and exact byte/reference/resource/closure bindings;
+- original M01/P01–P05 source/resource/bundle/manifest receipts and structural restoration evidence;
+- production-entry integration and return-to-baseline results;
+- M06 supplement receipts and selected physical DLL/PDB identities;
+- R00 raw observations and `measurements.json` without inventing a release threshold;
+- all command receipts/streams, cell receipts, result/ledger/index/archive/seal and final authority.
+
+`K_VALIDATION_MATRIX.md` and the runner are the normative batch-I scope. Independent cells continue after unrelated failures; dependent cells become Blocked.
+
+## Pass/failure interpretation
+
+All 90 cells plus the evidence seal must pass for `EvidenceReadyForPrimaryReview`. Even then:
+
+- `R03Accepted=false`;
+- `H2Passed=false`;
+- `qualificationApproved=false`;
+- `pureInterpreterExpansionEnabled=false`;
+- no release performance SLA is approved;
+- historical H M01 NoCoverage and all A–H historical outcomes remain unchanged.
+
+Any Failed/Blocked cell returns `ReturnRequired`. Do not retry in the same root, reuse A–H apps, loosen scope/counters/rosters, change timing criteria, authorize structural expansion, or make a non-trivial source fix locally.
+
+## Local return and stop
+
+After the one run:
+
+1. factually update `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`;
+2. add an immutable `History/M07R/R03/local-validation-<date>-batch-i-<result>/` checkpoint with source/environment/result/seal and bounded evidence transport;
+3. preserve all historical reports/evidence exactly;
+4. commit/push only Local-owned demo reports/evidence and verify final repository/branch/HEAD;
+5. stop and return control to Primary.
+
+No later milestone or Human Review Gate is authorized by this batch. Primary will reconcile I, close any remaining R03 exit-matrix items, conduct the independent R03 stage review, and only then may stop for user-initiated H2.
