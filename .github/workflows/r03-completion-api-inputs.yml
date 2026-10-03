@@ -1,0 +1,57 @@
+name: R03 completion pinned API input capture
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-completion-api-inputs.yml']
+permissions:
+  contents: read
+jobs:
+  api-inputs:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Extract exact official compiler and API metadata without launching Editor
+        shell: bash
+        run: |
+          curl --fail --location --proto '=https' --max-time 900 https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg -o "$RUNNER_TEMP/unity.pkg"
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+      - name: Preserve metadata references and their exact source identities
+        shell: python
+        run: |
+          import hashlib,json,os,shutil,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP']);out=root/'r03-completion-api-inputs';out.mkdir()
+          hits=list((root/'unity-expanded').rglob('Unity.app/Contents/MacOS/Unity'));assert len(hits)==1
+          contents=hits[0].parents[1]
+          rows=[]
+          def save(source,relative):
+              data=source.read_bytes();target=out/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+              rows.append({'path':relative,'sha256':hashlib.sha256(data).hexdigest(),'size':len(data),'source':str(source)})
+          for folder in ('Managed','MonoBleedingEdge/lib/mono/unityaot-macos','DotNetSdkRoslyn'):
+              for source in sorted((contents/folder).rglob('*.dll')):save(source,str(Path('Contents')/source.relative_to(contents)))
+          for p in ('batch/builds/candidate-release/Editor.log','batch/projects/candidate-release/Assets/Editor/R03Build.cs'):
+              source=Path('hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required')/p
+              save(source,'OriginalC/'+p)
+          inventory={}
+          for name in filter(None,subprocess.check_output(['git','-C','hybridclr_demo','ls-files','-z']).decode().split('\0')):
+              if not name.endswith('/Unity.RenderPipelines.Core.Runtime.dll'):continue
+              source=Path('hybridclr_demo')/name;data=source.read_bytes();digest=hashlib.sha256(data).hexdigest()
+              inventory.setdefault(digest,[]).append(name)
+          assert inventory,'No published SRP compile reference; do not fabricate a stub'
+          for digest,paths in inventory.items():
+              save(Path('hybridclr_demo')/paths[0],'SRP/'+digest+'/Unity.RenderPipelines.Core.Runtime.dll')
+          (out/'srp-candidates.json').write_text(json.dumps({'kind':'PublishedSrpReferenceCandidates','sourceCommit':os.environ['GITHUB_SHA'],'candidates':inventory,'use':'Compiler reference metadata only; not new resource or Player execution'},indent=2)+'\n')
+          rows.append({'path':'srp-candidates.json','sha256':hashlib.sha256((out/'srp-candidates.json').read_bytes()).hexdigest(),'size':(out/'srp-candidates.json').stat().st_size,'source':'read-only inventory'})
+          (out/'provenance.json').write_text(json.dumps({'kind':'R03PinnedApiInputCapture','sourceCommit':os.environ['GITHUB_SHA'],'unityVersion':'2022.3.62f2','files':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-completion-api-inputs-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-completion-api-inputs
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
