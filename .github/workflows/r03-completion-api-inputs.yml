@@ -20,7 +20,7 @@ jobs:
           curl --fail --location --proto '=https' --max-time 900 https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg -o "$RUNNER_TEMP/unity.pkg"
           echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
           pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
-      - name: Preserve metadata references and their exact source identities
+      - name: Preserve exact metadata and original source inputs
         shell: python
         run: |
           import hashlib,json,os,shutil,subprocess
@@ -34,21 +34,60 @@ jobs:
               rows.append({'path':relative,'sha256':hashlib.sha256(data).hexdigest(),'size':len(data),'source':str(source)})
           for folder in ('Managed','MonoBleedingEdge/lib/mono/unityaot-macos','DotNetSdkRoslyn'):
               for source in sorted((contents/folder).rglob('*.dll')):save(source,str(Path('Contents')/source.relative_to(contents)))
+          for folder in ('Resources/PackageManager/BuiltInPackages/com.unity.ugui','Resources/PackageManager/BuiltInPackages/com.unity.modules.uielements'):
+              for source in sorted((contents/folder).rglob('*')):
+                  if source.is_file():save(source,str(Path('Contents')/source.relative_to(contents)))
           for p in ('batch/builds/candidate-release/Editor.log','batch/projects/candidate-release/Assets/Editor/R03Build.cs'):
               source=Path('hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-c-return-required')/p
               save(source,'OriginalC/'+p)
           inventory={}
           for name in filter(None,subprocess.check_output(['git','-C','hybridclr_demo','ls-files','-z']).decode().split('\0')):
-              if not name.endswith('/Unity.RenderPipelines.Core.Runtime.dll'):continue
-              source=Path('hybridclr_demo')/name;data=source.read_bytes();digest=hashlib.sha256(data).hexdigest()
-              inventory.setdefault(digest,[]).append(name)
-          assert inventory,'No published SRP compile reference; do not fabricate a stub'
-          for digest,paths in inventory.items():
-              save(Path('hybridclr_demo')/paths[0],'SRP/'+digest+'/Unity.RenderPipelines.Core.Runtime.dll')
-          (out/'srp-candidates.json').write_text(json.dumps({'kind':'PublishedSrpReferenceCandidates','sourceCommit':os.environ['GITHUB_SHA'],'candidates':inventory,'use':'Compiler reference metadata only; not new resource or Player execution'},indent=2)+'\n')
+              source=Path('hybridclr_demo')/name
+              if name.startswith(('Assets/StreamingAssets/AssemblyShadow/M00','Assets/StreamingAssets/AssemblyShadow/M02')):
+                  save(source,'OriginalSources/'+name)
+              if name.endswith('/Unity.RenderPipelines.Core.Runtime.dll'):
+                  digest=hashlib.sha256(source.read_bytes()).hexdigest();inventory.setdefault(digest,[]).append(name)
+          for digest,paths in inventory.items():save(Path('hybridclr_demo')/paths[0],'SRP/'+digest+'/Unity.RenderPipelines.Core.Runtime.dll')
+          (out/'srp-candidates.json').write_text(json.dumps({'kind':'PublishedSrpReferenceCandidates','sourceCommit':os.environ['GITHUB_SHA'],'candidates':inventory,'use':'Compiler metadata only; an empty inventory is not a compiled SRP reference'},indent=2)+'\n')
           rows.append({'path':'srp-candidates.json','sha256':hashlib.sha256((out/'srp-candidates.json').read_bytes()).hexdigest(),'size':(out/'srp-candidates.json').stat().st_size,'source':'read-only inventory'})
           (out/'provenance.json').write_text(json.dumps({'kind':'R03PinnedApiInputCapture','sourceCommit':os.environ['GITHUB_SHA'],'unityVersion':'2022.3.62f2','files':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - name: Preserve exact official SRP package sources for compilation
+        shell: python
+        run: |
+          import hashlib,json,os,tarfile,urllib.request
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-completion-api-inputs'
+          pending=[('com.unity.render-pipelines.core','14.0.12')];seen={};rows=[]
+          while pending:
+              name,version=pending.pop(0)
+              if name in seen:
+                  assert seen[name]==version,(name,seen[name],version)
+                  continue
+              seen[name]=version
+              if name.startswith('com.unity.modules.') or name=='com.unity.ugui':continue
+              url='https://packages.unity.com/'+name
+              metadata=json.load(urllib.request.urlopen(url,timeout=120))
+              entry=metadata['versions'][version];dist=entry['dist']
+              payload=urllib.request.urlopen(dist['tarball'],timeout=180).read()
+              assert hashlib.sha1(payload).hexdigest()==dist['shasum']
+              archive=root/(name+'-'+version+'.tgz');archive.write_bytes(payload)
+              directory=root/'PackageSources'/name;directory.mkdir(parents=True)
+              with tarfile.open(archive) as tar:tar.extractall(directory,filter='data')
+              rows.append({'name':name,'version':version,'url':dist['tarball'],'sha1':dist['shasum'],'sha256':hashlib.sha256(payload).hexdigest(),'size':len(payload)})
+              for dep,ver in entry.get('dependencies',{}).items():pending.append((dep,ver))
+          (root/'package-sources.json').write_text(json.dumps({'kind':'OfficialPinnedPackageSourceInputs','packages':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - name: Bind complete capture inventory
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-completion-api-inputs'
+          root.mkdir(exist_ok=True)
+          files=[{'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for p in sorted(root.rglob('*')) if p.is_file()]
+          (root/'capture-index.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'files':files,'unityRun':False,'playerRun':False},indent=2)+'\n')
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
         with:
           name: r03-completion-api-inputs-${{ github.sha }}
           path: ${{ runner.temp }}/r03-completion-api-inputs
