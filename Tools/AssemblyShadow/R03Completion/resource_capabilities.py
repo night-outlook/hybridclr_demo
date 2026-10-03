@@ -32,12 +32,17 @@ def dependency_profile(original, package):
             'Original resource direct package versions changed')
     modules = {k: v for k, v in original.items() if k.startswith('com.unity.modules.')}
     require(modules and all(v == '1.0.0' for v in modules.values()), 'Exact original built-in module versions')
+    # J's authenticated lock contains this XR transitive module at depth 1.
+    # Promote that reviewed 1.0.0 dependency to an explicit root, rather than
+    # accepting arbitrary resolver additions or weakening exact membership.
+    modules['com.unity.modules.subsystems'] = '1.0.0'
     return {'dependencies': dict(modules, **PACKAGES, **{'com.code-philosophy.hybridclr': 'file:' + str(package)}),
             'testables': ['com.code-philosophy.hybridclr']}
 
 
 def validate_packages(manifest, lock):
     deps = manifest['dependencies']; resolved = lock['dependencies']
+    require(deps.get('com.unity.modules.subsystems') == '1.0.0', 'Reviewed XR transitive module must be explicitly pinned')
     require(set(k for k in deps if not k.startswith('com.unity.modules.')) == {*PACKAGES, 'com.code-philosophy.hybridclr'}, 'Complete scoped dependency set')
     require(set(resolved) == set(deps), 'Unexpected or missing resolved package')
     for name, version in deps.items():
