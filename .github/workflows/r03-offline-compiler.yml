@@ -1,0 +1,39 @@
+name: R03 offline Primary compiler
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-offline-compiler.yml']
+permissions:
+  contents: read
+jobs:
+  compiler:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Acquire exact public SDK distribution
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/r03-offline-compiler"
+          curl --fail --location --proto '=https' --max-time 600 \
+            https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.318/dotnet-sdk-8.0.318-linux-x64.tar.gz \
+            -o "$RUNNER_TEMP/r03-offline-compiler/dotnet-sdk-8.0.318-linux-x64.tar.gz"
+          mkdir "$RUNNER_TEMP/sdk-check"
+          tar xzf "$RUNNER_TEMP/r03-offline-compiler/dotnet-sdk-8.0.318-linux-x64.tar.gz" -C "$RUNNER_TEMP/sdk-check"
+          test "$("$RUNNER_TEMP/sdk-check/dotnet" --version)" = 8.0.318
+          "$RUNNER_TEMP/sdk-check/dotnet" --info > "$RUNNER_TEMP/r03-offline-compiler/version.txt"
+      - name: Bind archive and version
+        shell: python
+        run: |
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-offline-compiler'
+          rows=[{'path':p.name,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.iterdir()) if p.is_file()]
+          (root/'provenance.json').write_text(json.dumps({'kind':'PinnedPublicDotnetCompiler','version':'8.0.318','platform':'linux-x64','sourceCommit':os.environ['GITHUB_SHA'],'files':rows,'containsProjectEvidence':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-offline-compiler-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-offline-compiler
+          include-hidden-files: true
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 2
