@@ -12,6 +12,7 @@ from batch_contract import loads, require, sha
 from batch_evidence import write
 from run_local import REPOS, git
 from source_pin_contract import validate_document
+from resource_capabilities import PROFILE, dependency_profile
 
 POLICY = 'R03ResourceCompleteFixtureV1'
 ROOTS = ('Assets/AssemblyShadowDemo', 'Assets/AssemblyShadowBaseline',
@@ -74,13 +75,9 @@ def source_catalog(demo, expected_commit=None):
 def dependencies(demo, package):
     manifest = loads(regular(Path(demo) / 'Packages/manifest.json').read_text())
     require(manifest['dependencies']['com.unity.render-pipelines.universal'] == '14.0.12', 'Original URP version changed')
-    result = {k: v for k, v in manifest['dependencies'].items()
-              if k.startswith('com.unity.modules.') or k in ('com.unity.ugui', 'com.unity.test-framework', 'com.unity.render-pipelines.universal')}
     locked = loads(regular(Path(demo) / 'Packages/packages-lock.json').read_text())['dependencies']
     require(locked['com.unity.nuget.newtonsoft-json']['version'] == '3.2.1', 'Original JSON parser dependency changed')
-    result['com.unity.nuget.newtonsoft-json'] = '3.2.1'
-    result['com.code-philosophy.hybridclr'] = 'file:' + str(package)
-    return {'dependencies': result, 'testables': ['com.code-philosophy.hybridclr']}
+    return dependency_profile(manifest['dependencies'], package)
 
 
 def source_pins(batch, project):
@@ -108,7 +105,7 @@ def provision(batch):
               'runPath': str(project / ('_temp/AssemblyShadow/M02Validation-' + uuid.uuid4().hex)),
               'receiptRoot': str(project / '_temp/AssemblyShadow/R03CompletionArtifacts'),
               'repositories': {n: batch.pins[n] for n in REPOS}, 'files': rows,
-              'resourceMapSha256': sha(project / 'ProjectSettings/AssemblyShadowResourcesM07.json'),
+              'capabilityProfile': PROFILE, 'resourceMapSha256': sha(project / 'ProjectSettings/AssemblyShadowResourcesM07.json'),
               'sourcePinsSha256': sha(project / 'ProjectSettings/AssemblyShadowSourcePins.json'),
               'packagesManifestSha256': sha(project / 'Packages/manifest.json'),
               'R03Accepted': False, 'H2Passed': False, 'expansionAuthorized': False}

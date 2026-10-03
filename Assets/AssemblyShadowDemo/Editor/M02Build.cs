@@ -28,15 +28,7 @@ namespace AssemblyShadowDemo.Editor
             settings.shadowAssemblyNames = Candidates;
             settings.bootstrapAssemblyNames = new[] { "AssemblyShadowDemo.Bootstrap" };
             settings.allowedInternalEditorAssemblies = new[] { "AssemblyShadowDemo.Editor", "AssemblyShadowDemo.EditorTests" };
-            settings.precompiledAssemblyCapabilities = new[] {
-                new AssemblyCapability { name = "Newtonsoft.Json", isShadowCapable = false },
-                new AssemblyCapability { name = "Unity.Burst.Unsafe", isShadowCapable = false },
-                new AssemblyCapability { name = "Unity.Collections.LowLevel.ILSupport", isShadowCapable = false },
-                // This is a real compiler dependency of UnityEngine.TestRunner.
-                // Actual Player filter evidence, not its name, excludes it from AOT.
-                new AssemblyCapability { name = "nunit.framework", isShadowCapable = false },
-                new AssemblyCapability { name = "Unity.VisualScripting.Antlr3.Runtime", isShadowCapable = false },
-            };
+            settings.precompiledAssemblyCapabilities = R03ResourceCapabilityProfile.Apply(InheritedPrecompiledCapabilities());
             settings.architecture = BaselineBuild.TargetArchitecture();
             settings.buildId = "M02-Baseline";
             settings.resourceBuildMapPath = "ProjectSettings/AssemblyShadowResources.json";
@@ -46,6 +38,19 @@ namespace AssemblyShadowDemo.Editor
             AssemblyShadowSettingsUtil.ValidateSettingsOrThrow();
             AssetDatabase.SaveAssets();
             Debug.Log("[AssemblyShadow M02] Configured independent candidates; ordinary hot-update filtering is unchanged.");
+        }
+
+        internal static AssemblyCapability[] InheritedPrecompiledCapabilities()
+        {
+            return new[] {
+                new AssemblyCapability { name = "Newtonsoft.Json", isShadowCapable = false },
+                new AssemblyCapability { name = "Unity.Burst.Unsafe", isShadowCapable = false },
+                new AssemblyCapability { name = "Unity.Collections.LowLevel.ILSupport", isShadowCapable = false },
+                // This is a real compiler dependency of UnityEngine.TestRunner.
+                // Actual Player filter evidence, not its name, excludes it from AOT.
+                new AssemblyCapability { name = "nunit.framework", isShadowCapable = false },
+                new AssemblyCapability { name = "Unity.VisualScripting.Antlr3.Runtime", isShadowCapable = false },
+            };
         }
 
         public static void ValidateConfiguration()

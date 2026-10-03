@@ -11,6 +11,7 @@ from batch_contract import loads, require, sha
 from batch_evidence import write
 from command_lifetime import build_arguments
 from run_local import Batch, git
+from resource_capabilities import host_contracts as capability_contracts
 from fixture_contracts import constructor_contracts
 
 
@@ -51,6 +52,7 @@ def main():
     batch.cells, batch.outputs, batch.failed = [], {}, False
     batch.cell('completion-tool-contracts', lambda: {'commandReceipt': batch.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v']), 'scope': 'Synthetic tooling contracts, not Player evidence'})
     batch.cell('fixture-constructor-contracts', lambda: constructor_contracts(batch))
+    batch.cell('capability-profile-contracts', lambda: capability_contracts(batch))
     batch.cell('qualification', lambda: qualification(batch))
     batch.cell('original-verifier-contracts', batch.python_tests)
     batch.cell('original-baseline-graph', lambda: batch.managed('HostTests', 'baseline-graph', args.reference_package.resolve(), 'baseline'))

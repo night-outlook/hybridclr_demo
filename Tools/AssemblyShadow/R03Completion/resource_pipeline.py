@@ -12,9 +12,10 @@ from unity_command import unity_command
 from fixture_project import provision, regular, verify_sources
 from fixture_authority import authenticate_copy, verify_graph, verify_installation
 from source_pin_contract import verify_report as verify_pin_report
+from resource_capabilities import verify_report as verify_capability_report
 from editor_contract import source_scope, verify as verify_editor
 
-METHODS = {'source-pin-preflight': 'Verify', 'install': 'Install', 'compiler': 'CompilerPreflight', 'resources': 'Resources',
+METHODS = {'capability-preflight': 'Verify', 'source-pin-preflight': 'Verify', 'install': 'Install', 'compiler': 'CompilerPreflight', 'resources': 'Resources',
            'player-on': 'PlayerOn', 'player-off': 'PlayerOff', 'prepare': 'StructuralPrepare',
            'compile': 'StructuralCompile', 'restore': 'StructuralRestore', 'finalize': 'FinalizeFixtures',
            'integration': 'VerifyProductionEntries'}
@@ -33,7 +34,7 @@ def command(batch, phase):
     log = batch.root / 'resource-logs' / (phase + '.log')
     log.parent.mkdir(parents=True, exist_ok=True)
     require(not log.exists(), 'Resource phase cannot be retried')
-    owner = 'R03CompletionSourcePinContract' if phase == 'source-pin-preflight' else 'R03CompletionBuild'
+    owner = {'source-pin-preflight': 'R03CompletionSourcePinContract', 'capability-preflight': 'R03CompletionInventoryContract'}.get(phase, 'R03CompletionBuild')
     return [batch.unity, '-batchmode', '-nographics', '-quit', '-buildTarget', 'osx', '-projectPath', project,
             '-executeMethod', 'AssemblyShadowDemo.Editor.' + owner + '.' + METHODS[phase],
             '-shadowBaselineId', config['baselineId'], '-shadowM07ResourceOutput', project / '_temp/AssemblyShadow/R03Resources',
@@ -58,6 +59,12 @@ def phase(batch, name):
         pin_contract = verify_pin_report(Path(config['receiptRoot']) / 'source-pin-contract.json', batch, project)
         pin_contract['command'] = proof
         write(batch.root / 'source-pin-contract-verification.json', pin_contract)
+    if name == 'compiler':
+        # Capture and validate the actual active-target inventory before compilation.
+        proof = unity_command(batch, command(batch, 'capability-preflight'), 3600)
+        contract = verify_capability_report(Path(config['receiptRoot']) / 'capability-contract.json', batch, project)
+        contract['command'] = proof
+        write(batch.root / 'capability-contract-verification.json', contract)
     receipt = unity_command(batch, command(batch, name), 7200 if name in ('player-on', 'player-off') else 3600)
     after = verify_sources(project, config, configured=True)
     path = Path(config['receiptRoot']) / (name + '.json')

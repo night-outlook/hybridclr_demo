@@ -20,7 +20,7 @@ namespace AssemblyShadowDemo.Editor
         [Serializable] private sealed class Context
         {
             public int schemaVersion;
-            public string kind, projectPath, baselineId, runPath, receiptRoot;
+            public string kind, projectPath, baselineId, runPath, receiptRoot, capabilityProfile;
             public bool R03Accepted, H2Passed, expansionAuthorized;
         }
         [Serializable] private sealed class Receipt
@@ -55,7 +55,7 @@ namespace AssemblyShadowDemo.Editor
             Require(File.Exists(marker), "Missing explicit resource-complete project authority.");
             var value = JsonUtility.FromJson<Context>(File.ReadAllText(marker));
             Require(value != null && value.schemaVersion == 1 && value.kind == "R03ResourceCompleteFixtureV1" &&
-                value.projectPath == project && !value.expansionAuthorized && !value.R03Accepted && !value.H2Passed,
+                value.projectPath == project && value.capabilityProfile == R03ResourceCapabilityProfile.Id && !value.expansionAuthorized && !value.R03Accepted && !value.H2Passed,
                 "Invalid resource-complete project authority.");
             Require(Application.unityVersion == "2022.3.62f2" && EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneOSX,
                 "Pinned Unity/StandaloneOSX required.");
@@ -66,13 +66,19 @@ namespace AssemblyShadowDemo.Editor
                 "Explicit per-batch baseline argument required.");
             return value;
         }
+        internal static IDisposable BeginCapabilityScope()
+        {
+            var context = ReadContext();
+            R03CompletionInventoryContract.ValidatePackages(context.projectPath);
+            return R03ResourceCapabilityProfile.Enter();
+        }
         private static void Execute(string phase, Action action, string variant = null)
         {
             var context = ReadContext();
             string destination = Path.Combine(context.receiptRoot, phase + ".json");
             Require(!File.Exists(destination), "Phase receipt already exists.");
             var old = variant == null ? new HashSet<string>() : new HashSet<string>(PlayerReceipts(context.projectPath), StringComparer.Ordinal);
-            action();
+            using (BeginCapabilityScope()) action();
             var session = ShadowBuildSession.Load();
             var receipt = new Receipt { phase = phase, projectPath = context.projectPath, baselineId = context.baselineId,
                 unityVersion = Application.unityVersion, target = EditorUserBuildSettings.activeBuildTarget.ToString(),
@@ -116,6 +122,10 @@ namespace AssemblyShadowDemo.Editor
         public static void FinalizeFixtures() { Execute("finalize", M07StructuralResources.FinalizeFixtures); }
 
         public static void VerifyProductionEntries()
+        {
+            using (BeginCapabilityScope()) VerifyProductionEntriesCore();
+        }
+        private static void VerifyProductionEntriesCore()
         {
             var context = ReadContext();
             string fixturePath = Path.Combine(context.runPath, "m07-fixtures.json");

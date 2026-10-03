@@ -17,6 +17,7 @@ from batch_contract import loads, require, sha
 from batch_evidence import finalize, write
 from input_validation import validate_inputs
 from run_host import qualification
+from resource_capabilities import host_contracts as capability_contracts
 from fixture_contracts import constructor_contracts, editor_preflight
 import resource_pipeline as resources
 import legacy_runtime as legacy
@@ -55,9 +56,10 @@ class CompletionBatch(FocusedBatch):
 
     def completion_tests(self):
         receipt = self.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v'])
+        capabilities = capability_contracts(self)
         constructor = constructor_contracts(self)
         editor = editor_preflight(self)
-        return {'commandReceipt': receipt, 'constructorContracts': constructor, 'earlyEditorFixtures': editor,
+        return {'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
                 'scope': 'Host helper and eighteen real Editor regressions; full rosters still required'}
 
     def execute(self):
