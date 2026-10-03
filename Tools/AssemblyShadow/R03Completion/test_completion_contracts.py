@@ -74,8 +74,8 @@ class SourceFixtureTests(unittest.TestCase):
         self.assertEqual(result['frozenM01Files'], 6)
         self.assertFalse(config['expansionAuthorized'])
         self.assertEqual(set(fixture.source_pins(self.batch, project)),
-                         {'schemaVersion', 'unityVersion', 'target', 'demo', 'hybridclr', 'hybridclrUnity', 'il2cppPlus'})
-        self.assertNotIn('architecture', fixture.source_pins(self.batch, project))
+                         {'schemaVersion', 'unityVersion', 'target', 'architecture', 'demo', 'hybridclr', 'hybridclrUnity', 'il2cppPlus'})
+        self.assertEqual(fixture.source_pins(self.batch, project)['architecture'], 'arm64')
 
     def test_wrong_source_commit_rejected(self):
         with self.assertRaisesRegex(ContractError, 'commit changed'):

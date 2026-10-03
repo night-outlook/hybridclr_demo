@@ -17,7 +17,11 @@ REVIEWED_PACKAGE_FILES = frozenset((
  'Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs',
  'Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs.meta',
  'Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs',
- 'Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs'))
+ 'Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs',
+ 'Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs',
+ 'Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs.meta',
+ 'Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs',
+ 'Tests/Editor/AssemblyShadow/PolicyTests.cs'))
 PACKAGE_FILTER = '^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.'
 
 

@@ -11,6 +11,7 @@ sys.path.insert(0, str(HERE.parent / 'R03'))
 from batch_contract import loads, require, sha
 from batch_evidence import write
 from run_local import REPOS, git
+from source_pin_contract import validate_document
 
 POLICY = 'R03ResourceCompleteFixtureV1'
 ROOTS = ('Assets/AssemblyShadowDemo', 'Assets/AssemblyShadowBaseline',
@@ -84,7 +85,7 @@ def dependencies(demo, package):
 
 def source_pins(batch, project):
     names = {'hybridclr': 'hybridclr', 'hybridclr_unity': 'hybridclrUnity', 'il2cpp_plus': 'il2cppPlus', 'hybridclr_demo': 'demo'}
-    pins = {'schemaVersion': 1, 'unityVersion': '2022.3.62f2', 'target': 'StandaloneOSX'}
+    pins = {'schemaVersion': 1, 'unityVersion': '2022.3.62f2', 'target': 'StandaloneOSX', 'architecture': 'arm64'}
     for name in REPOS:
         pins[names[name]] = {'url': 'https://github.com/night-outlook/' + name + '.git',
                             'revision': batch.pins[name], 'localPath': os.path.relpath(batch.workspace / name, project)}
@@ -101,7 +102,7 @@ def provision(batch):
         shutil.copyfile(batch.workspace / 'hybridclr_demo' / row['path'], dest)
         require(sha(dest) == row['sha256'], 'Copy mismatch: ' + row['path'])
     write(project / 'Packages/manifest.json', dependencies(batch.workspace / 'hybridclr_demo', batch.workspace / 'hybridclr_unity'))
-    write(project / 'ProjectSettings/AssemblyShadowSourcePins.json', source_pins(batch, project))
+    write(project / 'ProjectSettings/AssemblyShadowSourcePins.json', validate_document(source_pins(batch, project), batch, project))
     config = {'schemaVersion': 1, 'kind': POLICY, 'projectPath': str(project), 'owningDemoCommit': batch.pins['hybridclr_demo'],
               'baselineId': 'M07-Baseline-R03Completion-' + batch.pins['hybridclr_demo'][:12],
               'runPath': str(project / ('_temp/AssemblyShadow/M02Validation-' + uuid.uuid4().hex)),
