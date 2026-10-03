@@ -1,25 +1,20 @@
 # HybridCLR Assembly Shadow
 
-Canonical documentation: `Plan/` for design/stages/gates, `Handoff/` for current coordination, `Architecture/` for durable decisions, `History/` for immutable records and `Evidence/` for protected catalogs.
+Canonical documentation: `Plan/` for design/stages/gates, `Handoff/` for live assignments, `Architecture/` for decisions, `History/` for immutable evidence.
 
-**R02 remains `PassedWithExplicitDeferredRisk`. R03 focused batch H remains reconciled Passed. Primary has now prepared the broader R03 completion batch I; full R03 and H2 are still open.**
+**R03 completion batch I remains ReturnRequired. Its two contract defects have source repairs and host/compiler checks; a fresh batch J is prepared. Full R03 and H2 remain open.**
 
-Historical H is immutable: Local executed demo `2007c5dbd3dcf535706688e6595700e3ba26a11e` once and returned 37/37 cells Passed with seal Passed. Primary's later read-only reconciliation authenticated that evidence without another Unity/Player run. H's four contaminated natural controls retain Failed unisolated warm certificates, and H's M01 exclusion remains historical NoCoverage.
+I executed demo `c579e75eadef58ca484b35ffee03e435a925d781`; Local publication is `c16f39ec204876e3fd569f75c7b2e7dabc8c3913`. Preserve its 40 Passed / 2 Failed / 48 Blocked, seal Passed, 736/18 focused Editor result, 23 successful focused Players and blocked resource coverage. No earlier H or A–I evidence is reclassified.
 
-Current R03 completion source anchor is demo `55d43dd828d96647298b91ed6d8da122523f8a87`, HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`, managed package `11a20efadd8f1ebc494d02ac80135e224dabd3e5`, and IL2CPP `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. Later demo commits used only for K documentation/handoff do not create new runtime execution claims.
+Read in order:
+1. [Plan/CURRENT_STATUS.md](Plan/CURRENT_STATUS.md).
+2. [L_CONTRACT_REPAIR.md](History/M07R/R03/L_CONTRACT_REPAIR.md), [L_HOST_EVIDENCE.json](History/M07R/R03/L_HOST_EVIDENCE.json) and [L_VALIDATION_MATRIX.md](History/M07R/R03/L_VALIDATION_MATRIX.md).
+3. [LOCAL_VALIDATION.md](Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB.md](Handoff/RETURN_TO_WEB.md) for the unchanged empirical return.
+4. [WEB_TO_LOCAL.md](Handoff/WEB_TO_LOCAL.md) for the only new execution assignment.
+5. [R03 remaining plan](Plan/stages/R03-remaining-completion.md), [qualification boundary](Architecture/ADR/ADR-0002-pure-interpreter-qualification-boundary.md) and [Human Review Gates](Plan/HUMAN_REVIEW_GATES.md).
 
-Primary completed RC1 static qualification analysis and RC2–RC5 validation preparation. `R03PureInterpreterEligibilityV1` is byte-bound and explicitly non-authorizing; structural expansion remains disabled. Batch I provisions the original M01 resource project, uses the existing production M07/P01–P05 paths, retains the focused H-shaped regression, adds current-source M06 static/delegate/exception observations, cumulative production-entry integration, early-startup checks, and an unfenced current-source observation protocol. See:
+Batch J retains 90 cells, six fresh builds, 59 fresh Players and both 754/755 zero-skip Editor rosters. It adds an early actual 18-method constructor regression and ten production source-pin consumer checks before installation; static tests or compilation do not replace these Local observations.
 
-1. `Plan/CURRENT_STATUS.md`;
-2. `Architecture/ADR/ADR-0002-pure-interpreter-qualification-boundary.md`;
-3. `History/M07R/R03/K_COMPLETION_PREP.md`;
-4. `History/M07R/R03/K_VALIDATION_MATRIX.md`;
-5. `History/M07R/R03/K_MEASUREMENT_PROTOCOL.md`;
-6. `History/M07R/R03/K_HOST_EVIDENCE.json`;
-7. `Handoff/WEB_TO_LOCAL.md` for the sole authorized next Local execution.
+All branches remain `codex/assembly-shadow-r01b-h1`. Executable/CI anchor: demo `8d5297c375201687d17b91843ea0250ed90c0095`; package `c86cbf665f5fcb2137e5adf2960541ce492467a4`; HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; IL2CPP `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. The final documentation-only transport must equal Primary's handoff prompt. Host workflow 37116804583 and pinned-Unity compiler workflow 37116804600 Passed, with all three final archives authenticated; no new Primary Editor/Player execution is claimed.
 
-Primary source checks passed on Linux and macOS, including 49 completion-tool contracts, 183 retained R03 verifier contracts, 32 real-DLL qualification contracts, both 9-case graph suites and 35 admission cases. A separate pinned-Unity 2022.3.62f2 compiler workflow compiled 16 assemblies / 649 source files for the resource-complete project without launching the Editor. These are host/compiler results, not Player acceptance.
-
-Batch I is defined as 90 cells, six fresh native builds, a 754-case focused Editor run, a 755-case resource-complete Editor run, and 59 fresh Player processes. Passing it remains `EvidenceReadyForPrimaryReview`, not R03 or H2 acceptance. Full independent R03 review and any still-uncovered runtime/production-profile obligations remain Primary-owned after Local returns.
-
-`R03Accepted=false`; `H2Passed=false`; `ReadyForHumanReviewGate=false`; PureInterpreter expansion disabled; R02 deferred CPU and original H1 RSS risks remain visible. Do not enter M08A before the documented R03 exit conditions, independent review, and user-initiated H2.
+R03Accepted=false; H2Passed=false; qualificationApproved=false; PureInterpreter expansion disabled. Historical M01 NoCoverage and failed unisolated producer certificates remain unchanged. Diagnostic isolation is not production GC/performance qualification. R02 deferred CPU and original H1 RSS risks stay visible. No automatic M08A or Human Review Gate approval follows from this handoff.

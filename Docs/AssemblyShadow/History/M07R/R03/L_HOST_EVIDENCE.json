@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LIPrimaryContractRepairEvidence",
+  "date": "2026-10-03",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAnchor": "8d5297c375201687d17b91843ea0250ed90c0095",
+  "repositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "preservedLocalPublication": "c16f39ec204876e3fd569f75c7b2e7dabc8c3913",
+  "hostWorkflow": {
+    "runId": 37116804583,
+    "conclusion": "success",
+    "platforms": [
+      "ubuntu-24.04",
+      "macos-15"
+    ],
+    "sdk": "8.0.318",
+    "completionPythonContractsPerHost": 73,
+    "retainedR03PythonContractsPerHost": 183,
+    "actualHelperConstructorContractsPerHost": 12,
+    "qualificationContractsPerHost": 32,
+    "baselineGraphContractsPerHost": 9,
+    "candidateGraphContractsPerHost": 9,
+    "admissionContractsPerHost": 35,
+    "actualUnityEditorAssertionsExecuted": false,
+    "artifacts": [
+      {
+        "sha256": "1d87d4fb2a8e7e329abceb804cad20f47d76557f03e84854fe2642f32fe9fad0",
+        "bytes": 3609531,
+        "indexedFiles": 447,
+        "zipFiles": 448,
+        "sourceCommit": "8d5297c375201687d17b91843ea0250ed90c0095",
+        "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+        "commandCount": 12,
+        "commandLifetime": "Passed",
+        "provenanceSha256": "e55b008b3d3362c5337d206e0dbe09824b5e02d79ad6b101acf9535f042723da",
+        "resultSha256": "29004bc3b4002f8571ef8d0c9bed65942ce03a9c1395dc6abfe20f64f80b0b8a",
+        "authenticated": true,
+        "result": "Passed",
+        "pythonCounts": [
+          73,
+          183
+        ],
+        "managedCounts": {
+          "fixture-constructor-host": 12,
+          "qualification": 32,
+          "host/baseline-graph": 9,
+          "host/candidate-graph": 9,
+          "host/admission": 35
+        },
+        "unityEditorRun": false,
+        "artifactId": 11271547510
+      },
+      {
+        "sha256": "18497bcb87aa162d954158e1be54b76d0c18258f99882967571d059024f586fb",
+        "bytes": 3584592,
+        "indexedFiles": 447,
+        "zipFiles": 448,
+        "sourceCommit": "8d5297c375201687d17b91843ea0250ed90c0095",
+        "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+        "commandCount": 12,
+        "commandLifetime": "Passed",
+        "provenanceSha256": "27a5180b80a94c9d305d4218ac976a9147f9052340a3aa302e43b8cf3f253fa7",
+        "resultSha256": "7452535c9ded9ee0dcdf19a288e3b65a589310b7077a983b94e0aa30582a8f8b",
+        "authenticated": true,
+        "result": "Passed",
+        "pythonCounts": [
+          73,
+          183
+        ],
+        "managedCounts": {
+          "fixture-constructor-host": 12,
+          "qualification": 32,
+          "host/baseline-graph": 9,
+          "host/candidate-graph": 9,
+          "host/admission": 35
+        },
+        "unityEditorRun": false,
+        "artifactId": 11271472722
+      }
+    ]
+  },
+  "pinnedUnityApiWorkflow": {
+    "runId": 37116804600,
+    "conclusion": "success",
+    "unityVersion": "2022.3.62f2",
+    "compiledAssemblies": 16,
+    "compiledSourceFiles": 650,
+    "commandCount": 16,
+    "newPreflightSourceIncluded": true,
+    "unityEditorRun": false,
+    "playerRun": false,
+    "compilerWarningCount": 907,
+    "newPreflightCS0649Warnings": 17,
+    "warningPolicy": "Retained, not suppressed. Serialized fields/default-false report flags account for the new CS0649 diagnostics.",
+    "coreRpSourceRevision": "4694a5f37cb1c40e48058da90d3deab8f440dae6",
+    "upmByteEquivalenceClaimed": false,
+    "newtonsoftPluginSha256": "7292d3eb508652d14726749dd27094f2d481aeccf2db6427b62f68a71460897e",
+    "artifact": {
+      "sha256": "d3be07b4b0114a834eec074a37e8f5cb418876f1b8d0da111cad50ba04d7165e",
+      "bytes": 1519432,
+      "indexedFiles": 118,
+      "zipFiles": 119,
+      "sourceCommit": "8d5297c375201687d17b91843ea0250ed90c0095",
+      "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "commandCount": 16,
+      "commandLifetime": "Passed",
+      "provenanceSha256": "12094d0210f69ac0d1c14982553649e9a0d3e3ff6dfcf334ebac7e2d6ab03905",
+      "resultSha256": "dc57e5e97ee91d1195ba2330544c8b7d6151c99e9d8ad36277f266f45092f09a",
+      "authenticated": true,
+      "result": "Passed",
+      "compiledAssemblies": 16,
+      "compiledSourceFiles": 650,
+      "sourceFilesMatched": [
+        "Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs",
+        "Tools/AssemblyShadow/R03Completion/FixtureContractTests/FixtureContractTests.csproj",
+        "Tools/AssemblyShadow/R03Completion/FixtureContractTests/Program.cs",
+        "Tools/AssemblyShadow/R03Completion/editor_contract.py",
+        "Tools/AssemblyShadow/R03Completion/fixture-constructor-cases.json",
+        "Tools/AssemblyShadow/R03Completion/fixture_contracts.py",
+        "Tools/AssemblyShadow/R03Completion/fixture_project.py",
+        "Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+        "Tools/AssemblyShadow/R03Completion/run_completion.py",
+        "Tools/AssemblyShadow/R03Completion/run_host.py",
+        "Tools/AssemblyShadow/R03Completion/source-pins.json",
+        "Tools/AssemblyShadow/R03Completion/source_pin_contract.py",
+        "Tools/AssemblyShadow/R03Completion/test_completion_contracts.py",
+        "Tools/AssemblyShadow/R03Completion/test_li_contracts.py"
+      ],
+      "compilerWarningCount": 907,
+      "artifactId": 11272530593
+    }
+  },
+  "additionalWorkflow": {
+    "runId": 37116657548,
+    "source": "793fd1aad0ca8320e074b4559f4a4f78473cbc14",
+    "jobsConclusion": "success",
+    "scope": "Automatically triggered existing R02 native/tooling and macOS lifecycle workflow. Job result observed; artifacts not independently reauthenticated in this repair cycle. Not new R03 Player evidence."
+  },
+  "sourceReadback": {
+    "artifactMatchedDemoFiles": 14,
+    "artifactMatchedPackageFixtureFiles": 3,
+    "connectorMetadataAndWorkflowChecks": [
+      {
+        "path": ".github/workflows/r03-completion-api.yml",
+        "gitBlob": "2250015ce2c4aa8cea4d9525bd61118d4a19ef54",
+        "sha256": "27386323efae67066e377b3f976c1dff22b2c6806167a72881bb37fe679a41f5",
+        "readback": "ExactMatch"
+      },
+      {
+        "path": ".github/workflows/r03-completion.yml",
+        "gitBlob": "04f7a1ca90373c46f79ca4458ede0e6fdfabc64f",
+        "sha256": "64d4a6761195752c1d5f24d76325e485f56fd7d37446e3bf4dbad3b299656055",
+        "readback": "ExactMatch"
+      },
+      {
+        "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs.meta",
+        "gitBlob": "4046cb9bb05eef1cc4cb07dca3941890d4c4d6c3",
+        "sha256": "b8674801de5359d4714088aa3be1c282206bcf679479c7923f31831eef6cc4e1",
+        "readback": "ExactMatch"
+      }
+    ]
+  },
+  "localPrimaryChecks": {
+    "completionPythonContracts": "73/73 Passed",
+    "actualHelperConstructorContracts": "12/12 Passed",
+    "pythonCompilation": "Passed"
+  },
+  "interpretation": {
+    "unityEditorRun": false,
+    "playerRun": false,
+    "runtimeAcceptance": false,
+    "qualificationApproved": false,
+    "expansionAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "pending": [
+      "Actual 18-method Editor preflight",
+      "Actual ten-case ShadowSourcePins.Read/JsonUtility preflight",
+      "Full fresh completion batch J"
+    ],
+    "historicalEvidence": "I remains ReturnRequired, 40 Passed/2 Failed/48 Blocked. No prior result is reclassified."
+  }
+}
