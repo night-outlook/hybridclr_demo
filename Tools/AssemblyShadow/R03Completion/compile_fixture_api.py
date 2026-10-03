@@ -87,7 +87,7 @@ def validate(workspace, contents, core_source, runtime, compiler, output, newton
                 if name == 'Unity.RenderPipelines.Core.Runtime' and dep == optional_input: continue
                 visit(guids.get(dep, dep))
             visiting.remove(name); plans.append(name)
-        visit('UnityEditor.UI')
+        visit('UnityEditor.UI')  # Actual UGUI Editor code required by Core's Editor-only branches.
         visit('AssemblyShadowDemo.Editor')
         tracked = sorted(set([runtime, compiler, original_log, core_source / 'package.json', *refs, *plugins,
                               *[p for name in plans for p in [definitions[name][0], *definitions[name][2]]]]))
@@ -100,6 +100,8 @@ def validate(workspace, contents, core_source, runtime, compiler, output, newton
             asm, data, sources = definitions[name]
             folder = root / name; folder.mkdir(); target = folder / (name + '.dll')
             profile = set(defines)
+            # These version defines correspond to the original built-in module
+            # dependencies; uninstalled optional input-system/entities are absent.
             for version in data.get('versionDefines', []):
                 if version['name'] in ('com.unity.modules.vr', 'com.unity.modules.xr', 'com.unity.modules.nvidia', 'com.unity.modules.physics', 'com.unity.modules.physics2d', 'com.unity.modules.animation', 'com.unity.modules.uielements'):
                     module = {'com.unity.modules.vr': 'UnityEngine.VRModule.dll', 'com.unity.modules.xr': 'UnityEngine.XRModule.dll',

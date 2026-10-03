@@ -22,15 +22,15 @@ def qualification(batch):
     data = loads((output / 'results.json').read_text())
     require(data['kind'] == 'R03QualificationContracts' and data['result'] == 'Passed' and data['failures'] == 0,
             'Actual compiled qualification contracts must pass')
-    require(len(data['cases']) == len({row['id'] for row in data['cases']}) == 30 and
-            all(row['result'] == 'Passed' for row in data['cases']), 'All 30 source-defined qualification cases')
+    require(len(data['cases']) == len({row['id'] for row in data['cases']}) == 32 and
+            all(row['result'] == 'Passed' for row in data['cases']), 'All 32 source-defined qualification cases')
     require(data['runtimeProofExecuted'] is False and data['expansionAuthorized'] is False, 'Analysis does not authorize expansion')
     for entry in data['inventory']:
         path = Path(entry['path'])
         require(not path.is_absolute() and '..' not in path.parts, 'Fixture path')
         require(sha(output / path) == entry['sha256'] and (output / path).stat().st_size == entry['size'], 'Qualification fixture hash')
     return {'result': str(output / 'results.json'), 'sha256': sha(output / 'results.json'),
-            'cases': 30, 'classification': 'RealDllStaticAnalysis', 'runtimeProofExecuted': False, 'expansionAuthorized': False}
+            'cases': 32, 'classification': 'RealDllStaticAnalysis', 'runtimeProofExecuted': False, 'expansionAuthorized': False}
 
 
 def main():
@@ -48,6 +48,7 @@ def main():
     batch = object.__new__(Batch)
     batch.workspace, batch.root, batch.command_count = workspace, root, 0
     batch.cells, batch.outputs, batch.failed = [], {}, False
+    batch.cell('completion-tool-contracts', lambda: {'commandReceipt': batch.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v']), 'scope': 'Synthetic tooling contracts, not Player evidence'})
     batch.cell('qualification', lambda: qualification(batch))
     batch.cell('original-verifier-contracts', batch.python_tests)
     batch.cell('original-baseline-graph', lambda: batch.managed('HostTests', 'baseline-graph', args.reference_package.resolve(), 'baseline'))

@@ -51,6 +51,8 @@ internal static class Program
         Test("Q28-report-never-grants-capability", f => {var r=f.Analyze();Need(!r.expansionAuthorized&&!r.runtimeProofExecuted&&!r.qualificationApproved&&r.types.All(t=>!t.authorizesExpansion),"No permission from classification");Need(r.types.All(t=>t.requiredProofs.Contains("NoExistingBaselineObjectsOrUses")&&t.requiredProofs.Contains("ExplicitOwnerQualificationApproval")),"Qualification proof boundary");});
         Test("Q29-resource-referenced-type", f => {f.resources.types=new[]{new ResourceAbiTypeDescriptor{typeKey="other:Other:Container",referencedTypeKeys=new[]{"pure:Fixture:Node"}}};Excluded(f.Analyze(),"SerializedResourceType");});
         Test("Q30-loaded-metadata-mutation", f => f.TamperMetadata());
+        Test("Q31-primary-descriptor-and-file-mutation", f => f.TamperDescriptor(false));
+        Test("Q32-descriptor-reference-graph-mutation", f => f.TamperDescriptor(true));
         var inventory=Directory.GetFiles(root,"*.dll",SearchOption.AllDirectories).OrderBy(x=>x,StringComparer.Ordinal).Select(p=>new{path=Path.GetRelativePath(root,p).Replace('\\','/'),sha256=ShadowHash.File(p),size=new FileInfo(p).Length}).ToArray();
         File.WriteAllText(Path.Combine(root,"results.json"),Json(new{kind="R03QualificationContracts",schemaVersion=1,result=failures==0?"Passed":"Failed",failures,cases,inventory,runtimeProofExecuted=false,expansionAuthorized=false})+"\n");
         return failures==0?0:1;
@@ -135,6 +137,17 @@ internal static class Program
             Prepare();using(var a=DnlibAssemblyLoader.Load(Path.Combine(path,"baseline"),new[]{Path.Combine(path,"references")},caps,false))
             using(var b=DnlibAssemblyLoader.Load(Path.Combine(path,"target"),new[]{Path.Combine(path,"references")},caps,false))
             {b.GetModule("Pure").Types.Single(t=>t.Name=="Node").Fields.Clear();Code("EligibilityInputChanged",()=>PureInterpreterEligibility.Analyze(a,b,null,null,resources));}
+        }
+        public void TamperDescriptor(bool references)
+        {
+            Prepare();using(var a=DnlibAssemblyLoader.Load(Path.Combine(path,"baseline"),new[]{Path.Combine(path,"references")},caps,false))
+            using(var b=DnlibAssemblyLoader.Load(Path.Combine(path,"target"),new[]{Path.Combine(path,"references")},caps,false))
+            {
+                var descriptor=b.Get("Pure");
+                if(references)descriptor.references=new string[0];
+                else {File.AppendAllText(descriptor.filePath,"tamper");descriptor.sha256=ShadowHash.File(descriptor.filePath);}
+                Code("EligibilityInputChanged",()=>PureInterpreterEligibility.Analyze(a,b,null,null,resources));
+            }
         }
         public void Dispose(){baseline.Dispose();target.Dispose();foreach(var m in extras)m.Dispose();}
     }
