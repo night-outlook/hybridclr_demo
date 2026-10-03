@@ -1,0 +1,37 @@
+name: R03 original resource dependency source
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-resource-source.yml']
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 72123273a54c1b67faa4f105901b717cbc759386
+          persist-credentials: false
+      - name: Preserve original tracked dependency sources
+        shell: python
+        run: |
+          import hashlib,json,os,shutil,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-resource-source';out.mkdir()
+          rows=[]
+          for name in filter(None,subprocess.check_output(['git','ls-files','-z']).decode().split('\0')):
+              if not name.startswith(('Assets/AssemblyShadowBaseline','Assets/AssemblyShadowH1Baselines','Assets/AssemblyShadowR01BDiagnostics','Assets/HybridCLRGenerate','.agents/')):continue
+              source=Path(name)
+              if not source.is_file() or source.is_symlink():continue
+              target=out/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target)
+              data=target.read_bytes();rows.append({'path':name,'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'blob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'sourceCommit':'72123273a54c1b67faa4f105901b717cbc759386','files':rows,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-resource-source-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-resource-source
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
