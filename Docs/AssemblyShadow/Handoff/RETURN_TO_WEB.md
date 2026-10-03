@@ -1,6 +1,86 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch H: focused rejection preservation Passed; no new non-trivial defect
+## Current return — R03 batch I: Editor fixture constructor and copied source-pin schema defects
+
+**ReturnRequired;90 cells:40 Passed/2 Failed/48 Blocked;seal Passed;runner exit1.** Exactly one source-bound invocation PID74402, 2026-10-02 21:36:44–21:43:49 PDT (UTC 2026-10-03T04:36:44.875979+00:00–2026-10-03T04:43:49.531239+00:00). Four focused builds and 23 focused Player contracts Passed; qualification32 static cases Passed without expansion authority. Focused Editor754 cases yielded736 Passed/18 Failed/zero skips. Resource installation failed before native install; two resource builds,755-case Editor and36 resource/measurement/early Players remain Blocked. No retry, source fix, scope change or blocked-stage execution. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [I checkpoint](../History/M07R/R03/local-validation-20261003-batch-i-return-required/README.md) and [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-i-return-required/preflight/PRIMARY_ISSUES.json).
+
+### Exact reproduction performed for both entries
+
+Use only the executed four-repository source tuple and branch codex/assembly-shadow-r01b-h1 in LOCAL_VALIDATION.md, Unity 2022.3.62f2/SDK 8.0.318. The following command was invoked once; **do not repeat I or reuse its apps/root**:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit c579e75eadef58ca484b35ffee03e435a925d781
+```
+
+### R03-LI-001 — reflected CompiledAssemblySet fixture construction uses obsolete four-argument contract
+
+**Symptom.** Focused EditMode selected all 754 exact identities;18 fail before policy assertions with `System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.` There are17 ManagedAcquisitionPolicyTests failures and one PolicyTests failure. XML is `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/results.xml`, SHA-256 `59fce139a22d457dd49dee5465cd0b690855677bb11a583a6d09214987b789be`. Editor log/scope/verdict and command0063/unity-completion are sealed. Actual Unity exit2, outer supervisor1, clean completion; no lifetime failure. Raw first witness stack includes `ManagedAcquisitionPolicyTests+Fixture.CreateSet ... ManagedAcquisitionPolicyTests.cs:393`; the Policy witness points to `PolicyTests.cs:285`.
+
+**Root cause.** At package11a20efadd8f1ebc494d02ac80135e224dabd3e5, `Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs:28–29` has a five-parameter internal constructor: assemblies,modules,resolver,deferredFacadeReferences,`IEnumerable<CompiledAssemblySource> sources`. `Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:392–393` and `PolicyTests.cs:284–285` still select the single non-public constructor and invoke four objects. Reflection bypasses compile-time arity checking. Host/tool qualification and full-helper compilation did not execute these Editor fixtures, so their green results did not detect the stale contract. Exact source blobs/copies/hashes are in PRIMARY_ISSUES.json and [issue-source-snapshot](../History/M07R/R03/local-validation-20261003-batch-i-return-required/preflight/issue-source-snapshot).
+
+**Impact/direction.** Current Editor acquisition/policy regression assertions are unverified because fixtures fail during construction; this does not establish a native layout/admission regression. Repair test construction against the current contract, preferably through one checked fixture helper rather than duplicated implicit `GetConstructors().Single()` assumptions. Supply semantically correct byte/source records where needed, or an explicit synthetic-fixture boundary; do not fake qualification provenance, add null blindly, loosen production source binding or drop the failed tests. Audit other constructor consumers. Whether any deeper assertion fails after construction remains unknown. Run the affected tests and unchanged full754/755 rosters under pinned Unity in a newly authorized source/root; preserve I's failures.
+
+Exact failed identities:
+
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.AcquisitionDelegatePointersCannotAvoidOperationEvidence`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition`
+- `HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance`
+- `HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompiledReferenceModulesNeedNotBeSnapshotDescriptors`
+
+### R03-LI-002 — completion fixture generates source pins without required architecture
+
+**Symptom.** Independent resource-install command0087 (Unity/outer exit1, clean completion) throws:
+
+```text
+ShadowBuildException: SourcePinTarget: Source pins do not match exact Unity version, target and architecture.
+ShadowSourcePins.Read ... ShadowSourcePins.cs:34
+M07Build.Configure ... M07Build.cs:51
+R03CompletionBuild.<Install> ... R03CompletionBuild.cs:108
+```
+
+Live log `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/resource-logs/install.log` line10599 onward, SHA-256 `226affa7b57ded6c54dbedb1bab3142fe1bd8a6ce256577ab283f522e9321b49`. Generated `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json`, SHA-256 `d65f8f0c8e5d3936fd1755f51cfe73773d2bd7f88b6eeced336a2887f8e2a7bb`, has schemaVersion1/unityVersion2022.3.62f2/targetStandaloneOSX and exact repository pins but **no architecture key**. Configured AssemblyShadowSettings.asset explicitly records `architecture: arm64`, SHA-256 `54dd57127d7a3865620396a597ac33d9c2ef9b3826cdc443cd38d20b68798afb`. Exact copies are [issue-resource-snapshot](../History/M07R/R03/local-validation-20261003-batch-i-return-required/preflight/issue-resource-snapshot); full stack/source evidence and copies/hashes are in PRIMARY_ISSUES.json.
+
+**Root cause and scope.** `Tools/AssemblyShadow/R03Completion/fixture_project.py:85–91` builds the pin object with schemaVersion,unityVersion,target and repository records, omitting architecture. Production `ShadowSourcePins.Read:29–35` requires `pins.architecture == architecture`; omitted JsonUtility field is null versus configured arm64. `M02Build.Configure:40` sets the architecture before `M07Build.Configure:51` consumes pins. The Python copied-project verifier compares against the same incomplete generator and never proves the production C# serialized contract. Static compilation cannot detect the missing runtime JSON field. Installation aborts before the pinned native root exists; no resource compiler/bundles/ON-OFF builds/P01–P05 finalization,755-case M01 Editor,14 resource Players,12 observation/M06 processes or10 early cases execute. All 48 dependent cells remain Blocked.
+
+**Concrete direction/uncertainty.** Generate and bind the full source-pin platform schema, including the pinned arm64 field, and add a generator-to-production-consumer contract prerequisite. Keep SourcePinTarget and exact revision/target guards intact; no fallback architecture or hand-edit of I's generated JSON. Prove the copied project matches production serialization/validation before expensive phases. Revalidate install, all six builds, resource scopes/bundles/production entries/restoration and59 Players in a newly authorized complete batch. Downstream issues remain unknown. The P05 restore cell only reports `NoRecordedMutation / NotApplicable` because no transaction state was recorded; M02 configuration wrote permitted settings before failing, so this is not a claim that no project file changed, nor successful P05 byte-restoration coverage.
+
+### Preserved exit and evidence states
+
+The six strict warm witnesses, five non-mutating rejection observations, actual producer controls and full C07 all Passed freshly in I; four contaminated control warm certificates remain Failed. These independent successes do not replace missing completion coverage. M01 remains NoCoverage; measurements/statistics/runtime supplements/early evidence are Unavailable because their cells are Blocked. No Local fix can be closed-loop verified within the authorized single source-bound batch without another tuple/root; both contract repairs return to Primary. All historical A–H evidence remains unchanged. R03Accepted=false;H2Passed=false;qualificationApproved=false;PureInterpreter expansion disabled;no release performance SLA. Exit **Local Validation → Primary Implementation**.
+
+Key exact evidence hashes (immutable copies beneath checkpoint/batch):
+
+| Evidence path relative to live I root | SHA-256 |
+| --- | --- |
+| `focused-editor/results.xml` | `59fce139a22d457dd49dee5465cd0b690855677bb11a583a6d09214987b789be` |
+| `focused-editor/Editor.log` | `0b8d549dcb5438852e8b35f860b2c7a6539587543b4cc60e67ebb9c50a7be437` |
+| `focused-editor/scope.json` | `af7615a34580a82c1367e7b8c71d4958cc36eda72f33f61e9325e357b41afcc7` |
+| `focused-editor/verification.json` | `9919d3c75feba7da8487ebb867806dbf9a3513f08b83d14d8a8108d40df155ef` |
+| `resource-logs/install.log` | `226affa7b57ded6c54dbedb1bab3142fe1bd8a6ce256577ab283f522e9321b49` |
+| `cells/editor-tests.json` | `4f39b378fef4f7c293f04a2a43470d5d60ea8aea1b8c2c07260f5947b3e85fbd` |
+| `cells/resource-install.json` | `cdc07ff09f929fb29db3c76abd0b62e25eccef55b0c5e8d910e5c25727855963` |
+| `cells/resource-p05-restore.json` | `74314297f96a99fb3a4383b280efe16643efb63c02b049b031be1aac8fe6a3cf` |
+| `commands/0063/command.json` | `cf6dd29f007c95d952ded87fd8ce33c374d5c387160b2d339e7308891864fce1` |
+| `commands/0063/unity-completion.json` | `0a28d2b7b7c3cf38ff991113a09ab48dd478de57d46fb63d787ebaba136b079c` |
+| `commands/0087/command.json` | `aee7f12a015615cc913002b65a0b8bb930d162a2b8a01aa7fcec6728acfca66b` |
+| `commands/0087/unity-completion.json` | `261d807b41eebc5ab86dc4379da6b817a66e8f6d7e7e229c7be6e10b3dc10505` |
+| `resource-project.json` | `429630d876081d64abdb6bd52a06c0543624ffe511f87c337e67d150d4fff961` |
+
+## Historical return — R03 batch H: focused rejection preservation Passed; no new non-trivial defect
 
 **EvidenceReadyForPrimaryReview; 37 Passed / 0 Failed / 0 Blocked; seal Passed; runner exit0.** Exactly one fresh batch, PID60711, 2026-10-02 08:42:35–08:48:47 PDT (UTC 2026-10-02T15:42:35.301026+00:00–2026-10-02T15:48:47.419720+00:00). Four fresh builds, 754 selected actual Editor cases/zero skips and 23 fresh-process Player contracts Passed. All five negative-path rejectionObservation subchecks confirm error 16/state 8 unchanged through -2 capacity failure and two complete native reads; captured identities and repeated layout rows remain complete and equal. Six strict isolated warm witnesses, actual producer-controls aggregate and full C07 Passed. Contaminated natural controls retain Failed unisolated warm certificates. No Local source fix, terminal restoration, retry or expectation/pin/ownership/lease/warm-up/deadline change.
 

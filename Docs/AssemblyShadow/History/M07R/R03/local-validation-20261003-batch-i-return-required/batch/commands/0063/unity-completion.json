@@ -1,0 +1,172 @@
+{
+  "kind": "R02UnityCommandCompletion",
+  "policy": "R02OwnedUnityRoslyn-v2",
+  "result": "Failed",
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-release",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "!^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ResourceAbiTests\\.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles$",
+    "-testResults",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/results.xml",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/Editor.log"
+  ],
+  "commandExitCode": 2,
+  "startedAtUnix": 1791002455.233251,
+  "runtimeAcceptance": false,
+  "compilerBinding": {
+    "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "sha256": "02958dc1de32e0960dc8dc85e17f51a5755438a746c21d892f4ac726ddfcbd4a",
+    "sizeBytes": 240640
+  },
+  "completion": {
+    "policy": "R02OwnedUnityRoslyn-v2",
+    "group": 79559,
+    "compiler": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "termGraceSeconds": 5.0,
+    "killGraceSeconds": 3.0,
+    "clean": true,
+    "actions": [
+      {
+        "pid": 79734,
+        "signal": 15,
+        "identity": {
+          "pid": 79734,
+          "group": 79559,
+          "state": "S",
+          "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+          "kernel": {
+            "source": "DarwinProcBsdInfo",
+            "birth": [
+              1791002461,
+              388551
+            ],
+            "pid": 79734,
+            "group": 79559,
+            "uid": 501,
+            "parent": 1,
+            "status": 2,
+            "exiting": false,
+            "zombie": false
+          }
+        }
+      }
+    ],
+    "observations": [
+      {
+        "phase": "initial",
+        "atMonotonic": 924107.98893825,
+        "members": [
+          {
+            "pid": 79734,
+            "group": 79559,
+            "state": "S",
+            "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002461,
+                388551
+              ],
+              "pid": 79734,
+              "group": 79559,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": false,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "before-SIGTERM",
+        "atMonotonic": 924108.007805291,
+        "members": [
+          {
+            "pid": 79734,
+            "group": 79559,
+            "state": "S",
+            "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002461,
+                388551
+              ],
+              "pid": 79734,
+              "group": 79559,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": false,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "signal-identity-SIGTERM",
+        "atMonotonic": 924108.025352166,
+        "members": [
+          {
+            "pid": 79734,
+            "group": 79559,
+            "state": "S",
+            "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002461,
+                388551
+              ],
+              "pid": 79734,
+              "group": 79559,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": false,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "wait-SIGTERM",
+        "atMonotonic": 924108.042943125,
+        "members": []
+      }
+    ],
+    "after": [],
+    "before": [
+      {
+        "pid": 79734,
+        "group": 79559,
+        "state": "S",
+        "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+        "kernel": {
+          "source": "DarwinProcBsdInfo",
+          "birth": [
+            1791002461,
+            388551
+          ],
+          "pid": 79734,
+          "group": 79559,
+          "uid": 501,
+          "parent": 1,
+          "status": 2,
+          "exiting": false,
+          "zombie": false
+        }
+      }
+    ]
+  },
+  "endedAtUnix": 1791002503.46551
+}

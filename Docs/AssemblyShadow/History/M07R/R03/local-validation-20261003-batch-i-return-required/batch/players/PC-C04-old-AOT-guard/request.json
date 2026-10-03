@@ -1,0 +1,31 @@
+{
+  "baselineId": "R03-Isolated-candidate-release",
+  "candidates": [
+    "A",
+    "B",
+    "Layout",
+    "Methods",
+    "R03Contract"
+  ],
+  "caseId": "PC-C04-old-AOT-guard",
+  "dlls": [
+    {
+      "name": "Methods",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/host/player-fixtures/virtual-slot/Methods.dll",
+      "sha256": "1064960eec292fe3334851f7cd1d398ea00d28dc3284434656e177bb2d198251"
+    }
+  ],
+  "invokeAssembly": "Methods",
+  "noPatch": false,
+  "observeMethod": true,
+  "oldExecutionGuard": true,
+  "producerControl": true,
+  "roots": [
+    "Methods"
+  ],
+  "runId": "7da5b6577924425e95bd6aaaba0510a2",
+  "schemaVersion": 1,
+  "stable": [
+    "mscorlib"
+  ]
+}

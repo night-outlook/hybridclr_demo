@@ -1,0 +1,202 @@
+{
+  "kind": "R02UnityCommandCompletion",
+  "policy": "R02OwnedUnityRoslyn-v2",
+  "result": "Failed",
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-quit",
+    "-buildTarget",
+    "osx",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete",
+    "-executeMethod",
+    "AssemblyShadowDemo.Editor.R03CompletionBuild.Install",
+    "-shadowBaselineId",
+    "M07-Baseline-R03Completion-c579e75eadef",
+    "-shadowM07ResourceOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+    "-shadowValidationRoot",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/_temp/AssemblyShadow/M02Validation-b8be313fa372406f923e4ab1a783b6fa",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/resource-logs/install.log"
+  ],
+  "commandExitCode": 1,
+  "startedAtUnix": 1791002538.0115478,
+  "runtimeAcceptance": false,
+  "compilerBinding": {
+    "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "sha256": "02958dc1de32e0960dc8dc85e17f51a5755438a746c21d892f4ac726ddfcbd4a",
+    "sizeBytes": 240640
+  },
+  "completion": {
+    "policy": "R02OwnedUnityRoslyn-v2",
+    "group": 79908,
+    "compiler": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "termGraceSeconds": 5.0,
+    "killGraceSeconds": 3.0,
+    "clean": true,
+    "actions": [
+      {
+        "pid": 80084,
+        "signal": 15,
+        "identity": {
+          "pid": 80084,
+          "group": 79908,
+          "state": "S",
+          "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+          "kernel": {
+            "source": "DarwinProcBsdInfo",
+            "birth": [
+              1791002548,
+              332542
+            ],
+            "pid": 80084,
+            "group": 79908,
+            "uid": 501,
+            "parent": 1,
+            "status": 2,
+            "exiting": false,
+            "zombie": false
+          }
+        }
+      }
+    ],
+    "observations": [
+      {
+        "phase": "initial",
+        "atMonotonic": 924167.636330083,
+        "members": [
+          {
+            "pid": 80084,
+            "group": 79908,
+            "state": "S",
+            "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002548,
+                332542
+              ],
+              "pid": 80084,
+              "group": 79908,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": false,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "before-SIGTERM",
+        "atMonotonic": 924167.659284791,
+        "members": [
+          {
+            "pid": 80084,
+            "group": 79908,
+            "state": "S",
+            "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002548,
+                332542
+              ],
+              "pid": 80084,
+              "group": 79908,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": false,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "signal-identity-SIGTERM",
+        "atMonotonic": 924167.678130416,
+        "members": [
+          {
+            "pid": 80084,
+            "group": 79908,
+            "state": "S",
+            "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002548,
+                332542
+              ],
+              "pid": 80084,
+              "group": 79908,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": false,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "wait-SIGTERM",
+        "atMonotonic": 924167.698738333,
+        "members": [
+          {
+            "pid": 80084,
+            "group": 79908,
+            "state": "?E",
+            "command": "(dotnet)",
+            "kernel": {
+              "source": "DarwinProcBsdInfo",
+              "birth": [
+                1791002548,
+                332542
+              ],
+              "pid": 80084,
+              "group": 79908,
+              "uid": 501,
+              "parent": 1,
+              "status": 2,
+              "exiting": true,
+              "zombie": false
+            }
+          }
+        ]
+      },
+      {
+        "phase": "wait-SIGTERM",
+        "atMonotonic": 924167.776892166,
+        "members": []
+      }
+    ],
+    "after": [],
+    "before": [
+      {
+        "pid": 80084,
+        "group": 79908,
+        "state": "S",
+        "command": "dotnet exec /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll -pipename:cZ10uW0KSBprEkkjyBVQ+mgd9usRWPWVTtLljP+WdRE",
+        "kernel": {
+          "source": "DarwinProcBsdInfo",
+          "birth": [
+            1791002548,
+            332542
+          ],
+          "pid": 80084,
+          "group": 79908,
+          "uid": 501,
+          "parent": 1,
+          "status": 2,
+          "exiting": false,
+          "zombie": false
+        }
+      }
+    ]
+  },
+  "endedAtUnix": 1791002563.199651
+}

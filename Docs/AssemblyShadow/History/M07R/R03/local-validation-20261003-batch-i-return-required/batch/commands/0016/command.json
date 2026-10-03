@@ -1,0 +1,42 @@
+{
+  "childEnvironmentPolicy": {
+    "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+    "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+    "GIT_TERMINAL_PROMPT": "0",
+    "MSBUILDDISABLENODEREUSE": "1",
+    "MSBUILDUSESERVER": "0",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp"
+  },
+  "cleanupErrors": [],
+  "command": [
+    "dotnet",
+    "build",
+    "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/FixtureAudit/FixtureAudit.csproj",
+    "-c",
+    "Release",
+    "--output",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/bin/fixture-audit",
+    "-p:PackageRoot=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+    "-p:BaseIntermediateOutputPath=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/obj/fixture-audit/",
+    "--disable-build-servers",
+    "-p:UseSharedCompilation=false",
+    "-nodeReuse:false"
+  ],
+  "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+  "endedUtcEpoch": 1791002232.4389591,
+  "exitCode": 0,
+  "interrupted": false,
+  "lifetimePolicy": "R03OwnedCommandV1",
+  "pgid": 74501,
+  "pid": 74501,
+  "postCleanupGroupExists": false,
+  "processGroupBeforeCleanup": null,
+  "remainingProcessGroup": false,
+  "schemaVersion": 2,
+  "startError": null,
+  "startedUtcEpoch": 1791002231.4089699,
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutSha256": "8d822a400ffad5f30b0e84394a9dfb138dc117d09f3711b8d77aba1a7120e984",
+  "timeout": false
+}

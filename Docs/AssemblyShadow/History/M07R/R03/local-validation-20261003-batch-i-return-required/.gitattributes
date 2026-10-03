@@ -1,0 +1,8 @@
+# Preserve immutable sealed bytes, including generated native whitespace.
+*.dll binary
+*.dylib binary
+batch/evidence.tar.gz.parts/* binary
+batch/** -whitespace
+# Preserve only separately authenticated raw snapshot whitespace.
+preflight/diagnostic-source-snapshot/hybridclr/hybridclr/metadata/InterpreterImage.h -whitespace
+preflight/issue-resource-snapshot/ProjectSettings/AssemblyShadowSettings.asset -whitespace

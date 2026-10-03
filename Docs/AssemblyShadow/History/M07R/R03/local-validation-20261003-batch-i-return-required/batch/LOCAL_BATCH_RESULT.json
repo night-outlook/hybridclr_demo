@@ -1,0 +1,2553 @@
+{
+  "H2Passed": false,
+  "R03Accepted": false,
+  "cells": [
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "entry-authority",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "commandReceipt": {
+          "childEnvironmentPolicy": {
+            "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+            "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+            "GIT_TERMINAL_PROMPT": "0",
+            "MSBUILDDISABLENODEREUSE": "1",
+            "MSBUILDUSESERVER": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "TMPDIR": "/private/tmp"
+          },
+          "cleanupErrors": [],
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "endedUtcEpoch": 1791002223.777338,
+          "exitCode": 0,
+          "interrupted": false,
+          "lifetimePolicy": "R03OwnedCommandV1",
+          "pgid": 74431,
+          "pid": 74431,
+          "postCleanupGroupExists": false,
+          "processGroupBeforeCleanup": null,
+          "remainingProcessGroup": false,
+          "schemaVersion": 2,
+          "startError": null,
+          "startedUtcEpoch": 1791002221.710779,
+          "stderrSha256": "f5a681d1b80b5a1d459fdcf30543f9305ba2a6b652744d4e2c4cb0593d50a8c2",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        "scope": "Source/fixture/orchestration contracts; not Player evidence"
+      },
+      "id": "completion-tool-contracts",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "cases": 32,
+        "classification": "RealDllStaticAnalysis",
+        "expansionAuthorized": false,
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/qualification/results.json",
+        "runtimeProofExecuted": false,
+        "sha256": "c12e19d2bd939f2a92c9e4af9b80562cc89ce56045075d80bef84191fb07cbf6"
+      },
+      "id": "qualification",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "commandReceipt": {
+          "childEnvironmentPolicy": {
+            "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+            "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+            "GIT_TERMINAL_PROMPT": "0",
+            "MSBUILDDISABLENODEREUSE": "1",
+            "MSBUILDUSESERVER": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "TMPDIR": "/private/tmp"
+          },
+          "cleanupErrors": [],
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+          "endedUtcEpoch": 1791002226.077166,
+          "exitCode": 0,
+          "interrupted": false,
+          "lifetimePolicy": "R03OwnedCommandV1",
+          "pgid": 74437,
+          "pid": 74437,
+          "postCleanupGroupExists": false,
+          "processGroupBeforeCleanup": null,
+          "remainingProcessGroup": false,
+          "schemaVersion": 2,
+          "startError": null,
+          "startedUtcEpoch": 1791002225.4526331,
+          "stderrSha256": "67cf7943ea4f3e4249f05ea6fb6b1460bea9d98542d08692fdc2dc62d94e1bf1",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        "scope": "Synthetic verifier/filesystem contracts, not Player evidence"
+      },
+      "id": "verifier-contracts",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "authority": "Exact published ancestors of the verified candidate remote heads",
+        "commits": {
+          "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+          "hybridclr_unity": "b936a495ade1691ebb6f3bab8fdff3ef34f6f192",
+          "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+        },
+        "paths": {
+          "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr",
+          "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr_unity",
+          "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/il2cpp_plus"
+        },
+        "retained": true
+      },
+      "id": "reference-sources",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "reference-sources"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/host/baseline-graph/results.json",
+        "sha256": "147ed8dee4a27b41c2a4dc41bf4aa8ed6fa36798ca64569f864c88322016a7ca"
+      },
+      "id": "host-baseline-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/host/candidate-graph/results.json",
+        "sha256": "7c8f1f608204bc1bd6be5fda8d5423484458599a6aa28aaa1250b062f983a2ac"
+      },
+      "id": "host-candidate-graph",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority"
+      ],
+      "evidence": {
+        "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/host/admission/results.json",
+        "sha256": "1e14658102b6b62443c9ffeaf7fcd32dc4e9908170565f4acc15a328b2b04c51"
+      },
+      "id": "host-admission",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "host-admission"
+      ],
+      "evidence": {
+        "compilerConsumers": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/consumer-unity-2022.3.62f2/results.json",
+          "sha256": "93f24bca0ff25ca76234094d3f41a7359207c29bed35c72ee645e0032f39e701"
+        },
+        "completeBuildHelper": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/build-api/results.json",
+          "sha256": "aea53d365431d34b416de1e9dc9c655ca7bece8f6c8e9a70a7ad9c2a1cba4338"
+        },
+        "fixtureInventory": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/host/player-fixtures/inventory.json",
+          "sha256": "497bec14e96d6152eedf23df73aa5ce2deb513c3feb533f3e28657c0139d5d67"
+        },
+        "metadataAudit": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/fixture-audit/results.json",
+        "metadataAuditSha256": "98c3269d188cf6c6691d8ebfcfd77c2d261cf54bf8180f9c32f9157840880c68",
+        "unityLifecycle": {
+          "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/unity-lifecycle/results.json",
+          "sha256": "29fb3f0f4da6c39598c7f1df866566322e963783a514173d3745ec1ba7b2ff28"
+        }
+      },
+      "id": "player-fixtures",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/candidate-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-release"
+      },
+      "id": "prepare-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "b3d07e387c77649750780d166cf14a551bec8e94cd8d4d19189f095d08675e7d",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-release",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "c579e75eadef58ca484b35ffee03e435a925d781",
+            "hybridclr_unity": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+            "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "d65f8f0c8e5d3936fd1755f51cfe73773d2bd7f88b6eeced336a2887f8e2a7bb",
+          "verifiedNativeFiles": 971
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/candidate-release/build-receipt.json",
+        "sha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed"
+      },
+      "id": "build-candidate-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "reference-sources",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/reference-release/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/reference-release"
+      },
+      "id": "prepare-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-reference-release"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "2e9546e5037f880dd5338414a807ee5de569bf21ed9f1c972818019db3449f8a",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/reference-release/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/reference-release",
+          "repositories": {
+            "hybridclr": "1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad",
+            "hybridclr_demo": "c579e75eadef58ca484b35ffee03e435a925d781",
+            "hybridclr_unity": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+            "il2cpp_plus": "a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "d7313664d033e3cce7bac9bc9e9b94bd601081c9d24321ca5df35e287559745d",
+          "verifiedNativeFiles": 965
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/reference-release/build-receipt.json",
+        "sha256": "70c3941604f126cc8c8911cb49d1a96a3812dc6835f164717f294d97127f3b0b"
+      },
+      "id": "build-reference-release",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/candidate-debug/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-debug"
+      },
+      "id": "prepare-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-debug"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "b3d07e387c77649750780d166cf14a551bec8e94cd8d4d19189f095d08675e7d",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-debug/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-debug",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "c579e75eadef58ca484b35ffee03e435a925d781",
+            "hybridclr_unity": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+            "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "d65f8f0c8e5d3936fd1755f51cfe73773d2bd7f88b6eeced336a2887f8e2a7bb",
+          "verifiedNativeFiles": 971
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/candidate-debug/build-receipt.json",
+        "sha256": "f0c0bef0d34e8be0ceaccc253883f40ef29cd2b148f90414589219d095c7be4e"
+      },
+      "id": "build-candidate-debug",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "player-fixtures",
+        "entry-authority",
+        "verifier-contracts"
+      ],
+      "evidence": {
+        "config": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/candidate-off/config.json",
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-off"
+      },
+      "id": "prepare-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-off"
+      ],
+      "evidence": {
+        "nativeBinding": {
+          "installReceiptSha256": "b3d07e387c77649750780d166cf14a551bec8e94cd8d4d19189f095d08675e7d",
+          "installationReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp/assembly-shadow-install.json",
+          "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-off/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+          "kind": "R03InstalledNativeRootV1",
+          "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/candidate-off",
+          "repositories": {
+            "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "hybridclr_demo": "c579e75eadef58ca484b35ffee03e435a925d781",
+            "hybridclr_unity": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+            "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+          },
+          "runtimeAcceptance": false,
+          "schemaVersion": 1,
+          "sourcePinsSha256": "d65f8f0c8e5d3936fd1755f51cfe73773d2bd7f88b6eeced336a2887f8e2a7bb",
+          "verifiedNativeFiles": 971
+        },
+        "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/builds/candidate-off/build-receipt.json",
+        "sha256": "00c6099757920ddd458a41c9a4d560904b757fb48f3f978c9002dda83c7540a9"
+      },
+      "id": "build-candidate-off",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "prepare-candidate-release",
+        "host-admission"
+      ],
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/commands/0063/command.json",
+      "id": "editor-tests",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "launchPid": 79825,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "c8acc8fa6d74067a526721148b9dfd37d46529d7b6a85272daa8bfd447385e23",
+        "requestSha256": "9817a8a45205e37ab8679df8aa5beb6d5d53d30e4c431fb982a1441e60b70dc9",
+        "result": "Passed",
+        "runId": "1299be11a16a456eb460e1fd4f352b57"
+      },
+      "id": "C01-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "code": 16,
+        "launchPid": 79829,
+        "outcome": "admission-reject",
+        "rawSha256": "c82816d418ce16d0b7fbeefd9492e36f3f5ac53bd43f2cde3a741e47983db974",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "19c7d37c4d51122d3146cecfe902984a56ecbb05502fb191326c9b0ba658097d",
+            "19c7d37c4d51122d3146cecfe902984a56ecbb05502fb191326c9b0ba658097d"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 2,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "e7ca63250c974138611debdbb77180517b4c4843e558de710d17eaa1d1b50203",
+        "result": "Passed",
+        "runId": "f14200a867a64569bc11eaf3336399b1",
+        "state": 8
+      },
+      "id": "C02-private-reference",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "launchPid": 79831,
+        "outcome": "success",
+        "rawSha256": "0c1df6453c055c087c8538e83b98631998a5f6880268326ef8ad29921773dc7e",
+        "requestSha256": "5ea7b66fa236c0d6205cdc752202c4b437257e02642bae34e6977ec22329864d",
+        "result": "Passed",
+        "runId": "c68b18dd2e244153aafad847f289446f",
+        "state": 6,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 12541,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11ef55f60",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C03-moved-slot",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "launchPid": 79833,
+        "outcome": "success",
+        "rawSha256": "9499ede63389982c6fc0a063124c1f76075514b3eee157a6ab743982589101c9",
+        "requestSha256": "426d29f87bba624486f2222d9e8e7a74d8a98e8055dd92cc7e55723c8cac2b81",
+        "result": "Passed",
+        "runId": "98ad6d46f3c14ec49a82f1636a9e31ca",
+        "state": 9,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 13239,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x121255f60",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C04-old-AOT-guard",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "launchPid": 79835,
+        "outcome": "success",
+        "rawSha256": "c6b18a8546f3158026bc91b2f05e0aeb8ad76c41fe0450b0d6bbf407eb7aae11",
+        "requestSha256": "a2ae66340610e689833ecdcde9b7232ede6c59741f89b400ec7fa1a466182401",
+        "result": "Passed",
+        "runId": "de4762afed964426aa36765ed8aa7e8c",
+        "state": 6,
+        "value": 41,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 13560,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "B",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x1213572e0",
+            "typeKey": "type(1:b/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C05-direction-reversal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "code": 13,
+        "launchPid": 79837,
+        "outcome": "target-cycle",
+        "rawSha256": "1cb40f9eca1ff2c47aa6882eb27fd457dfc64a38bee75da8bb648f7b3a275bbb",
+        "requestSha256": "ab2a0d7877acde6d8748a197d6d5a6048340f432ecf7b009c127717a0815cc54",
+        "result": "Passed",
+        "runId": "feb27d3284dd411bbb3304d31fbd1d3c",
+        "state": 3
+      },
+      "id": "C06-actual-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "launchPid": 79839,
+        "outcome": "success",
+        "prepublicationLayout": {
+          "baseline": {
+            "assembly": "R03Contract",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cb55db0",
+            "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+          },
+          "baselineCctor": 0,
+          "baselineCctorAtRead": 0,
+          "baselineIdentityStatus": "Captured",
+          "baselineInitialized": false,
+          "baselineInitializedAtRead": false,
+          "baselineReady": true,
+          "baselineVtable": false,
+          "baselineVtableAtRead": false,
+          "error": 0,
+          "fieldsChanged": true,
+          "identityPolicy": "R03OwnedLayoutIdentityV1",
+          "physicalProof": true,
+          "sourceAttrs": [
+            1
+          ],
+          "sourceFieldCount": 1,
+          "sourceNativeSize": -1,
+          "sourceOffsets": [
+            16
+          ],
+          "sourcePending": false,
+          "sourceSize": 24,
+          "sourceSizeInited": false,
+          "target": {
+            "assembly": "R03Contract",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cb56080",
+            "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+          },
+          "targetAttrs": [
+            1,
+            1
+          ],
+          "targetCctor": 0,
+          "targetDefinitionReady": true,
+          "targetFieldCount": 2,
+          "targetIdentityStatus": "Captured",
+          "targetInitialized": false,
+          "targetNativeSize": -1,
+          "targetOffsets": [
+            16,
+            24
+          ],
+          "targetPending": false,
+          "targetReady": true,
+          "targetSize": 32,
+          "targetSizeInited": false,
+          "targetStorage": [
+            4,
+            8
+          ],
+          "targetVtable": false,
+          "truncated": false
+        },
+        "rawSha256": "fbe092e768f4fa34b35c130fef6c383ba1def6f471b8dbadcdda82c7bd5674f4",
+        "requestSha256": "74cef2f056d957265886afa6566c056ce6912dacb71d9c546abb24502c9a60c9",
+        "result": "Passed",
+        "runId": "e10cf11768e94f918488f0c24f559bdd",
+        "state": 6,
+        "value": 41,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 2,
+            "completed": 2,
+            "deferred": 1,
+            "deferredCompleted": 1,
+            "drained": true,
+            "elapsedMicros": 13372,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "R03Contract",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11cb56080",
+            "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "C07-private-primitive-append",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "code": 16,
+        "launchPid": 79841,
+        "outcome": "admission-reject",
+        "rawSha256": "aa0deadbae2814cf5f01b2cf640559928cdc49af1019715f6f2ef496dcc25af5",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "cc208added0d9dd7d612545883baadb1bfe3a0417f7e68e2464bd370eae488b6",
+            "cc208added0d9dd7d612545883baadb1bfe3a0417f7e68e2464bd370eae488b6"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 1,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "aa6f87d6ca70f0237481190934cb080a4bfc34575612a9db7d8585142bd42b6c",
+        "result": "Passed",
+        "runId": "9b172eb229b34ec59f9e4f4ff00382ff",
+        "state": 8
+      },
+      "id": "C08-interface-change",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "code": 16,
+        "launchPid": 79843,
+        "outcome": "admission-reject",
+        "rawSha256": "58633eadf3087bebe3e28931c300641c8d3d7ef69555cf28649b0892e36bab04",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "967fca190c1ca6a02f7056cef74092d01891dc1abfbbc73dd0535f9d0666d454",
+            "967fca190c1ca6a02f7056cef74092d01891dc1abfbbc73dd0535f9d0666d454"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 1,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "4e6effdff1cd818219174e431d0f37b0071d04d6edf610fc953020e26c505133",
+        "result": "Passed",
+        "runId": "7e7a0f89bb10409dbacfa4ffb48f8091",
+        "state": 8
+      },
+      "id": "C09-reference-to-value-kind",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+        "code": 16,
+        "launchPid": 79845,
+        "outcome": "admission-reject",
+        "rawSha256": "6a21044c5ac7140159e72474071364926067c0db2071a82b4b124e18f45ebf61",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "3ff7546637932e5b71d09da11ab1949bde11208b79fff46d6507d593d1cfc018",
+            "3ff7546637932e5b71d09da11ab1949bde11208b79fff46d6507d593d1cfc018"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 2,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "91adc03eb40617bd41bde90efb51269f061ad35d36440b28b38f9c30c58ef9c7",
+        "result": "Passed",
+        "runId": "bb127f2be41b4101b96e7db84f98fb1b",
+        "state": 8
+      },
+      "id": "C10-field-removal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "70c3941604f126cc8c8911cb49d1a96a3812dc6835f164717f294d97127f3b0b",
+        "launchPid": 79847,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "b58c14a84dfcefc48e22730a11840676b0579956b8fb8e42a1af90071c5edf8a",
+        "requestSha256": "08f5760d5f2f1483872a209a164b0ed2d83ed318340eb31d567fc272c600317d",
+        "result": "Passed",
+        "runId": "2994aea61488437d9b2636effc96c6c5"
+      },
+      "id": "R01-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "70c3941604f126cc8c8911cb49d1a96a3812dc6835f164717f294d97127f3b0b",
+        "code": 16,
+        "launchPid": 79849,
+        "outcome": "legacy-late-layout",
+        "rawSha256": "1679d0432437e30eef3afdafbf254a1877263532e299a5ea2cd65c818e848f7f",
+        "requestSha256": "54f8e3c1b962c759635b12257548b5c275a0a68c449dcc5a8008d7fb1df12488",
+        "result": "Passed",
+        "runId": "8328c49187984b5985a4654e68ba296b",
+        "state": 9
+      },
+      "id": "R02-original-late-layout",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "70c3941604f126cc8c8911cb49d1a96a3812dc6835f164717f294d97127f3b0b",
+        "launchPid": 79851,
+        "outcome": "legacy-slot",
+        "rawSha256": "eb0a48e6842953515058f4fb9d398b01e6a94e87cbbe415efe7a7cb7ec61e4a8",
+        "requestSha256": "85e3de197134c69b2569be39374bb6a7ee21a207540f3dba679392235e77edde",
+        "result": "Passed",
+        "runId": "32aa80be92cd4309bdad7da88e3ecfbf",
+        "state": 6,
+        "value": 42
+      },
+      "id": "R03-original-slot-lookup",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "70c3941604f126cc8c8911cb49d1a96a3812dc6835f164717f294d97127f3b0b",
+        "launchPid": 79853,
+        "outcome": "success",
+        "rawSha256": "cf2856b55f5809a3b70b04920fd7f9d4a5e14084a4a4bba0dcc73d653773badb",
+        "requestSha256": "0acec8e1f1bd6a843e211d12a65df63420a42ba9922114fcfb1ba8b069a57789",
+        "result": "Passed",
+        "runId": "832663763e6149ad88a58403a33e5cec",
+        "state": 6,
+        "value": 41
+      },
+      "id": "R04-direction-reversal",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-reference-release"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "70c3941604f126cc8c8911cb49d1a96a3812dc6835f164717f294d97127f3b0b",
+        "code": 13,
+        "launchPid": 79855,
+        "outcome": "target-cycle",
+        "rawSha256": "aafa377774d2162bb96e0525f2ac268c0fae4ffd5185b54d4d55de736c4a1e12",
+        "requestSha256": "f39e690b1cb350d7a8b851ad7cc91fe01f56a73f822b9814bc30052aba90965e",
+        "result": "Passed",
+        "runId": "c60920f7f62443179250f1e991b38150",
+        "state": 3
+      },
+      "id": "R05-actual-target-cycle",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "f0c0bef0d34e8be0ceaccc253883f40ef29cd2b148f90414589219d095c7be4e",
+        "code": 16,
+        "launchPid": 79857,
+        "outcome": "admission-reject",
+        "rawSha256": "a1024b2dfb5b44f0348d93714ed5c79442b15fffe7932c47cae9d50c060d6e55",
+        "rejectionObservation": {
+          "capacityControl": -2,
+          "captures": 4,
+          "failingRowIdentified": false,
+          "fullReadHashes": [
+            "ca9ad44955325089eb7010cd403ece4696de2e7f588c688f812ee874a3b9cc27",
+            "ca9ad44955325089eb7010cd403ece4696de2e7f588c688f812ee874a3b9cc27"
+          ],
+          "fullReads": 2,
+          "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+          "layoutRows": 2,
+          "policy": "R03RejectedProbeNonMutationV1",
+          "terminalFailureCode": 16,
+          "terminalUnchanged": true
+        },
+        "requestSha256": "461541ed019a20e707aad7d268a116a4a5859b568591d9c613e9d36644eb5e46",
+        "result": "Passed",
+        "runId": "c71082345f1b4cc7aefedf68589e0455",
+        "state": 8
+      },
+      "id": "D01-private-reference",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "f0c0bef0d34e8be0ceaccc253883f40ef29cd2b148f90414589219d095c7be4e",
+        "launchPid": 79859,
+        "outcome": "success",
+        "rawSha256": "8478a9867450d8fda105ee989191467a82028f5f08e8716e2e275c3c16d040e7",
+        "requestSha256": "ca7da6755a2a259f8d28e4928f94d23b07fcea8dac93c8c01704b993601b87f8",
+        "result": "Passed",
+        "runId": "7819644461954230ade386743cbfa864",
+        "state": 6,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 1,
+            "completed": 1,
+            "deferred": 0,
+            "deferredCompleted": 0,
+            "drained": true,
+            "elapsedMicros": 239902,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11d3858b0",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "D02-moved-slot",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-debug"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "f0c0bef0d34e8be0ceaccc253883f40ef29cd2b148f90414589219d095c7be4e",
+        "launchPid": 79861,
+        "outcome": "success",
+        "rawSha256": "4a492048a6d67f92af926da6319df4dcf13311a593b559dce5d35543d8840c3b",
+        "requestSha256": "3af6a0fef0601db51dca763e78a6f7f3772d5046f66cd6070f517d84f9166e34",
+        "result": "Passed",
+        "runId": "5fc203e7e44042dfbdafb23a6fa00bfb",
+        "state": 9,
+        "value": 42,
+        "warmWindow": {
+          "broadColdEvents": [],
+          "broadCounterDelta": {
+            "admissionCacheHits": 10000,
+            "admissionCacheMisses": 0,
+            "admissionEntries": 0,
+            "admissionProofAttempts": 0,
+            "admissionProofRejections": 0,
+            "admissionRetainedBytes": 0,
+            "admissionUnready": 0,
+            "baselineStateChecks": 10000,
+            "fieldWorkspaceBuilds": 0,
+            "genericContextChecks": 0,
+            "interfaceWorkspaceBuilds": 0,
+            "layoutCheckCalls": 0
+          },
+          "exactLoopProofDelta": 0,
+          "ownerThread": 1,
+          "policy": "R03ExactAllocationWindowV1",
+          "producerFence": {
+            "acquired": true,
+            "admitted": 1,
+            "completed": 1,
+            "deferred": 0,
+            "deferredCompleted": 0,
+            "drained": true,
+            "elapsedMicros": 246786,
+            "expired": false,
+            "invalid": false,
+            "leaseMs": 5000,
+            "ownerOsThread": 8294833536,
+            "policy": "R03ArrayPoolFinalizerFenceV1",
+            "released": true,
+            "requested": true
+          },
+          "runtimeAcceptance": false,
+          "target": {
+            "assembly": "Methods",
+            "name": "Node",
+            "namespace": "R03",
+            "physical": "0x11f9859d0",
+            "typeKey": "type(7:methods/3:R03/4:Node@0)"
+          }
+        }
+      },
+      "id": "D03-old-AOT-guard",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-off"
+      ],
+      "evidence": {
+        "buildReceiptSha256": "00c6099757920ddd458a41c9a4d560904b757fb48f3f978c9002dda83c7540a9",
+        "launchPid": 79863,
+        "nativeCalls": 0,
+        "outcome": "baseline",
+        "rawSha256": "720882f41739fa1ddfc8374b0a34ab63f5a6e3f4dda83b38f7822c39afbd65c7",
+        "requestSha256": "9463aa25add6f9cdc164882da9d0cef9b6ca28f121c141c1a0e0a5df7b5e9630",
+        "result": "Passed",
+        "runId": "8216a1cb3b074009b8e847ab52bdf213"
+      },
+      "id": "O01-feature-OFF-baseline",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "build-candidate-release"
+      ],
+      "evidence": {
+        "cases": [
+          {
+            "evidence": {
+              "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+              "launchPid": 79865,
+              "outcome": "success",
+              "rawSha256": "80baf94f28446da3c01b142eac2926f5cdf2c2420853f5bbf0b2c136d46dd251",
+              "requestSha256": "8c580f108a9d2586fe7058bf6a2d996893715979831783bf3e8d934caec19a47",
+              "result": "Passed",
+              "runId": "6eb95acf153b4fb1a49aac8584cda4a9",
+              "state": 6,
+              "value": 42,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11c81d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11c771ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6173782016,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11c8282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11c81d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11c771ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6173782016,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11c8282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11c81d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11c771ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6173782016,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11c8282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11c81d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11c771ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6173782016,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11c8282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C03-moved-slot",
+            "result": "Passed"
+          },
+          {
+            "evidence": {
+              "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+              "launchPid": 79867,
+              "outcome": "success",
+              "rawSha256": "de6dd56c331375b0d001ea626a863486c5b5c766d81afc09290aa83171322717",
+              "requestSha256": "1d16a286f312342d2636bc96fcd0fed1bb5cebae3bafaa6dab2a109bf760432d",
+              "result": "Passed",
+              "runId": "7da5b6577924425e95bd6aaaba0510a2",
+              "state": 9,
+              "value": 42,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6132297728,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6132297728,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6132297728,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x11ef1d8a8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x11ee71ae0",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6132297728,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x11ef282a8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C04-old-AOT-guard",
+            "result": "Passed"
+          },
+          {
+            "evidence": {
+              "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+              "launchPid": 79869,
+              "outcome": "success",
+              "rawSha256": "ff9e072e0962b71eed0ab31d641c637b057813561d5af90cb5438c2ed7f5d651",
+              "requestSha256": "e2a6db8ab8f6a3627ec969595f45bac05341e9b0548b1d80677266811b02a738",
+              "result": "Passed",
+              "runId": "9700a9bfff17451a9f4f19f0ffa6c336",
+              "state": 6,
+              "value": 41,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12091d958",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120871b90",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106296320,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120928358",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12091d958",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120871b90",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106296320,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120928358",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12091d958",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120871b90",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106296320,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120928358",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12091d958",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x120871b90",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6106296320,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x120928358",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C05-direction-reversal",
+            "result": "Passed"
+          },
+          {
+            "evidence": {
+              "buildReceiptSha256": "92b498d719efe407b530ee995521db73f1991cb3906f5bf7104d9c555bfc5eed",
+              "launchPid": 79871,
+              "outcome": "success",
+              "prepublicationLayout": {
+                "baseline": {
+                  "assembly": "R03Contract",
+                  "name": "Node",
+                  "namespace": "R03",
+                  "physical": "0x1211d5db0",
+                  "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+                },
+                "baselineCctor": 0,
+                "baselineCctorAtRead": 0,
+                "baselineIdentityStatus": "Captured",
+                "baselineInitialized": false,
+                "baselineInitializedAtRead": false,
+                "baselineReady": true,
+                "baselineVtable": false,
+                "baselineVtableAtRead": false,
+                "error": 0,
+                "fieldsChanged": true,
+                "identityPolicy": "R03OwnedLayoutIdentityV1",
+                "physicalProof": true,
+                "sourceAttrs": [
+                  1
+                ],
+                "sourceFieldCount": 1,
+                "sourceNativeSize": -1,
+                "sourceOffsets": [
+                  16
+                ],
+                "sourcePending": false,
+                "sourceSize": 24,
+                "sourceSizeInited": false,
+                "target": {
+                  "assembly": "R03Contract",
+                  "name": "Node",
+                  "namespace": "R03",
+                  "physical": "0x1211d6080",
+                  "typeKey": "type(11:r03contract/3:R03/4:Node@0)"
+                },
+                "targetAttrs": [
+                  1,
+                  1
+                ],
+                "targetCctor": 0,
+                "targetDefinitionReady": true,
+                "targetFieldCount": 2,
+                "targetIdentityStatus": "Captured",
+                "targetInitialized": false,
+                "targetNativeSize": -1,
+                "targetOffsets": [
+                  16,
+                  24
+                ],
+                "targetPending": false,
+                "targetReady": true,
+                "targetSize": 32,
+                "targetSizeInited": false,
+                "targetStorage": [
+                  4,
+                  8
+                ],
+                "targetVtable": false,
+                "truncated": false
+              },
+              "rawSha256": "c566427b32fb57776ba56fe7c592b36aa810595d60f0e0c2b27d79a985b543ef",
+              "requestSha256": "931c68c78c83a3cec2ac931aa416a44490369ad834b3c478080adc67e8c296db",
+              "result": "Passed",
+              "runId": "b138877ca42747999b4924021c63cb8c",
+              "state": 6,
+              "value": 41,
+              "warmWindow": {
+                "allColdEvents": [
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 0,
+                    "metric": "admissionCacheMisses",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12119d9c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1210f1c00",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6098989056,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1211a83c8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 1,
+                    "metric": "admissionProofAttempts",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12119d9c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1210f1c00",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6098989056,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1211a83c8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 1,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 2,
+                    "metric": "admissionEntries",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12119d9c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1210f1c00",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6098989056,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1211a83c8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  },
+                  {
+                    "amount": 80,
+                    "context": "0x0",
+                    "domain": 1,
+                    "generation": 1,
+                    "index": 3,
+                    "metric": "admissionRetainedBytes",
+                    "phase": 2,
+                    "producer": {
+                      "callback": {
+                        "declaringType": {
+                          "assembly": "mscorlib",
+                          "name": "TlsOverPerCoreLockedStacksArrayPool`1",
+                          "namespace": "System.Buffers",
+                          "physical": "0x12119d9c8",
+                          "typeKey": "generic(type(8:mscorlib/14:System.Buffers/37:TlsOverPerCoreLockedStacksArrayPool`1@1),34:type(8:mscorlib/6:System/4:Byte@0))"
+                        },
+                        "name": "Gen2GcCallbackFunc",
+                        "token": 100672638
+                      },
+                      "finalizerType": {
+                        "assembly": "mscorlib",
+                        "name": "Gen2GcCallback",
+                        "namespace": "System",
+                        "physical": "0x1210f1c00",
+                        "typeKey": "type(8:mscorlib/6:System/14:Gen2GcCallback@0)"
+                      },
+                      "osThread": 6098989056,
+                      "recognizedArrayPool": true
+                    },
+                    "site": "Object::NewAllocSpecific",
+                    "thread": 2,
+                    "type": {
+                      "assembly": "mscorlib",
+                      "name": "Enumerator",
+                      "namespace": "",
+                      "physical": "0x1211a83c8",
+                      "typeKey": "generic(type(8:mscorlib/31:System.Runtime.CompilerServices/22:ConditionalWeakTable`2@2/0:/10:Enumerator@2),52:szarray(szarray(type(8:mscorlib/6:System/4:Byte@0))),36:type(8:mscorlib/6:System/6:Object@0))"
+                    }
+                  }
+                ],
+                "exactLoopDelta": {
+                  "admissionCacheHits": 10000,
+                  "admissionCacheMisses": 1,
+                  "admissionEntries": 1,
+                  "admissionProofAttempts": 1,
+                  "admissionProofRejections": 0,
+                  "admissionRetainedBytes": 80,
+                  "admissionUnready": 0,
+                  "baselineStateChecks": 10000,
+                  "fieldWorkspaceBuilds": 0,
+                  "genericContextChecks": 5,
+                  "interfaceWorkspaceBuilds": 0,
+                  "layoutCheckCalls": 0
+                },
+                "identifiedLoopAdmissions": 1,
+                "observation": "ExpectedContaminationObserved",
+                "policy": "R03NaturalProducerControlV1",
+                "runtimeAcceptance": false,
+                "unisolatedWarmCertificate": "Failed"
+              }
+            },
+            "id": "PC-C07-private-primitive-append",
+            "result": "Passed"
+          }
+        ],
+        "identifiedLoopAdmissions": 4,
+        "kind": "R03NaturalProducerControls",
+        "result": "Passed",
+        "runtimeAcceptance": false
+      },
+      "id": "producer-controls",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "entry-authority",
+        "completion-tool-contracts"
+      ],
+      "evidence": {
+        "allowedConfigurationChanges": [],
+        "filesVerified": 525,
+        "frozenM01Files": 6,
+        "kind": "R03ResourceCompleteFixtureV1",
+        "newResourceBundlesRequired": true,
+        "runtimeAcceptance": false
+      },
+      "id": "resource-prepare",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-prepare"
+      ],
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/commands/0087/command.json",
+      "id": "resource-install",
+      "result": "Failed"
+    },
+    {
+      "dependencies": [
+        "resource-install"
+      ],
+      "id": "resource-compiler",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-compiler"
+      ],
+      "id": "resource-bundles",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-bundles"
+      ],
+      "id": "resource-player-on",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-bundles"
+      ],
+      "id": "resource-player-off",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-player-on",
+        "resource-player-off"
+      ],
+      "id": "resource-p05-prepare",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-p05-prepare"
+      ],
+      "id": "resource-p05-compile",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-prepare"
+      ],
+      "evidence": {
+        "cleanup": "NoRecordedMutation",
+        "restorationCoverage": "NotApplicable",
+        "sourceVerification": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "54dd57127d7a3865620396a597ac33d9c2ef9b3826cdc443cd38d20b68798afb",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 525,
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        }
+      },
+      "id": "resource-p05-restore",
+      "result": "Passed"
+    },
+    {
+      "dependencies": [
+        "resource-p05-compile",
+        "resource-p05-restore"
+      ],
+      "id": "resource-p05-finalize",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-install",
+        "resource-p05-restore",
+        "host-admission"
+      ],
+      "id": "resource-editor",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-p05-finalize"
+      ],
+      "id": "production-entry-integration",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-p05-finalize"
+      ],
+      "id": "resource-input-binding",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-01-Prefab-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-02-Nested-P02",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-03-FullClosure-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-04-UnityApis-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-05-Scriptable-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-06-SceneSingle-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-07-SceneAdditive-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-08-SerializeReference-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-09-Messages-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-10-Cache-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-11-DelayedCatalog-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-12-P04-NonSerialized",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-13-P05-Rebuilt",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "resource-T07-14-FeatureOff",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-T07-01-Prefab-P01",
+        "resource-T07-02-Nested-P02",
+        "resource-T07-03-FullClosure-P03",
+        "resource-T07-04-UnityApis-P01",
+        "resource-T07-05-Scriptable-P03",
+        "resource-T07-06-SceneSingle-P01",
+        "resource-T07-07-SceneAdditive-P03",
+        "resource-T07-08-SerializeReference-P03",
+        "resource-T07-09-Messages-P01",
+        "resource-T07-10-Cache-P03",
+        "resource-T07-11-DelayedCatalog-P03",
+        "resource-T07-12-P04-NonSerialized",
+        "resource-T07-13-P05-Rebuilt",
+        "resource-T07-14-FeatureOff"
+      ],
+      "id": "resource-contracts",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-NoPatch-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P01-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-ON-P03-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-0",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-1",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "measure-R00-OFF-NoPatch-2",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "measure-R00-ON-NoPatch-0",
+        "measure-R00-ON-NoPatch-1",
+        "measure-R00-ON-NoPatch-2",
+        "measure-R00-ON-P01-0",
+        "measure-R00-ON-P01-1",
+        "measure-R00-ON-P01-2",
+        "measure-R00-ON-P03-0",
+        "measure-R00-ON-P03-1",
+        "measure-R00-ON-P03-2",
+        "measure-R00-OFF-NoPatch-0",
+        "measure-R00-OFF-NoPatch-1",
+        "measure-R00-OFF-NoPatch-2"
+      ],
+      "id": "measurement-summary",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Control-P03",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Control-P01",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-OrdinaryFirst",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-OrdinaryAfterReserve",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Oversize",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Mismatch",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Type",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Object",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-Cctor",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [
+        "resource-input-binding"
+      ],
+      "id": "early-NativeScript",
+      "reason": "Required prerequisite did not pass; no substitute or retry.",
+      "result": "Blocked"
+    },
+    {
+      "dependencies": [],
+      "evidence": {
+        "repositories": [
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_demo"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/hybridclr_unity"
+          },
+          {
+            "branch": "codex/assembly-shadow-r01b-h1",
+            "commit": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remoteHeadVerified": true,
+            "repository": "night-outlook/il2cpp_plus"
+          }
+        ]
+      },
+      "id": "final-authority",
+      "result": "Passed"
+    }
+  ],
+  "completionPlanSha256": "b9119876ea246139d056866118a851833ddf2ec4487c19670d76130be0e18204",
+  "executionLedgerSha256": "ec080b7fd2992d679c8468f505258db871e69009f75bbaceafa5589eb4418da5",
+  "fullLegacyRegressionAcceptance": false,
+  "kind": "R03CompletionLocalBatch",
+  "matrixSha256": "0b42d543eb0fd7e496639d59f9ef3a1afc0e114eef97720d5fd1c5aa14f728e7",
+  "pureInterpreterExpansionEnabled": false,
+  "qualificationApproved": false,
+  "repositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "expansionAuthorized": false,
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "c579e75eadef58ca484b35ffee03e435a925d781",
+    "hybridclr_unity": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "result": "ReturnRequired",
+  "retainedReferenceWorktrees": {
+    "hybridclr": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr",
+    "hybridclr_unity": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr_unity",
+    "il2cpp_plus": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/il2cpp_plus"
+  },
+  "schemaVersion": 1,
+  "seal": {
+    "archiveSha256": "fe2f9d40b84e4a2d7dd3929b6399601ad3f9e4da29eb088e2a4371d49223c718",
+    "boundedEvidenceOnly": true,
+    "indexSha256": "1c58b065899650009c3e9e6a980f7ec17fcf7e1eb3e72f488c726d0d00311266",
+    "members": 2681,
+    "runtimeAcceptance": false
+  },
+  "sealStatus": "Passed"
+}

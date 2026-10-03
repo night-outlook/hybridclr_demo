@@ -1,0 +1,111 @@
+{
+  "kind": "ReadOnlyICompletionSemanticAudit",
+  "startUtc": "2026-10-03T04:47:23.125365+00:00",
+  "endUtc": "2026-10-03T04:47:23.131609+00:00",
+  "originalBatchResult": "ReturnRequired",
+  "originalCellCounts": {
+    "Passed": 40,
+    "Failed": 2,
+    "Blocked": 48
+  },
+  "checks": [
+    {
+      "id": "static-qualification",
+      "state": "Passed",
+      "evidence": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/qualification/results.json",
+        "sha256": "c12e19d2bd939f2a92c9e4af9b80562cc89ce56045075d80bef84191fb07cbf6",
+        "cases": 32,
+        "inventoryFiles": 136,
+        "runtimeProofExecuted": false,
+        "expansionAuthorized": false,
+        "classification": "Static real-DLL qualification input, not runtime/expansion authority"
+      }
+    },
+    {
+      "id": "focused-editor",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "editor-tests"
+      ]
+    },
+    {
+      "id": "resource-editor",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-editor"
+      ]
+    },
+    {
+      "id": "copied-resource-source-and-phase-bindings",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-install"
+      ]
+    },
+    {
+      "id": "original-P05-restoration",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-p05-compile"
+      ]
+    },
+    {
+      "id": "production-P01-P05-entry-qualification-agreement",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "production-entry-integration"
+      ]
+    },
+    {
+      "id": "resource-original-graph-and-sixth-build-bindings",
+      "state": "NotRun",
+      "reason": "Original resource-input-binding not Passed"
+    }
+  ],
+  "resourceBuilds": [],
+  "resourceMeasurementEarlyPlayers": [],
+  "actualDirectPlayerCommands": 23,
+  "actualDirectPlayerPids": [
+    79825,
+    79829,
+    79831,
+    79833,
+    79835,
+    79837,
+    79839,
+    79841,
+    79843,
+    79845,
+    79847,
+    79849,
+    79851,
+    79853,
+    79855,
+    79857,
+    79859,
+    79861,
+    79863,
+    79865,
+    79867,
+    79869,
+    79871
+  ],
+  "focusedVerificationReceipts": 23,
+  "replayedResourceMeasurementEarlyPlayers": 0,
+  "readOnlyAuditStates": {
+    "Passed": 1,
+    "NotRun": 6
+  },
+  "allPlannedPlayerEvidenceCovered": false,
+  "limits": "Existing source-bound sealed data only; no Editor/Player launch, source change, restored terminal state, qualification approval, performance SLA or historical state promotion. Failed/Blocked prerequisites remain original states.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

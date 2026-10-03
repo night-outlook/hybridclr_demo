@@ -1,0 +1,437 @@
+{
+  "kind": "ReadOnlyBatchIPrimaryIssueEvidence",
+  "utc": "2026-10-03T04:50:20.211543+00:00",
+  "executedRepositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "expansionAuthorized": false,
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "c579e75eadef58ca484b35ffee03e435a925d781",
+    "hybridclr_unity": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "issues": [
+    {
+      "id": "R03-LI-001",
+      "symptom": "Focused Editor 736 Passed, 18 Failed, zero skips; fixture constructor invocation fails before policy assertions",
+      "xmlAggregate": {
+        "id": "2",
+        "testcasecount": "754",
+        "result": "Failed(Child)",
+        "total": "754",
+        "passed": "736",
+        "failed": "18",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-03 04:41:03Z",
+        "end-time": "2026-10-03 04:41:42Z",
+        "duration": "38.9913988"
+      },
+      "failedCases": [
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.AcquisitionDelegatePointersCannotAvoidOperationEvidence",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.AcquisitionDelegatePointersCannotAvoidOperationEvidence () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:45 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:34 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:231 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse () [0x0002a] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:18 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:246 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:271 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:262 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate () [0x00022] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:213 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:125 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:113 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:74 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:57 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks () [0x00058] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:170 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition () [0x0002f] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:181 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls () [0x000a1] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:153 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:191 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.CreateSet (System.Byte[] consumer, System.Byte[] image) [0x00137] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:393 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests+Fixture.Create (System.String operation, System.Boolean getTypeAfterLoad) [0x00334] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:378 \n  at HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance () [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs:137 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        },
+        {
+          "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompiledReferenceModulesNeedNotBeSnapshotDescriptors",
+          "result": "Failed",
+          "label": "Error",
+          "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+          "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.DoInvoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00017] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.RuntimeConstructorInfo.Invoke (System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.Reflection.ConstructorInfo.Invoke (System.Object[] parameters) [0x00000] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompiledReferenceModulesNeedNotBeSnapshotDescriptors () [0x00086] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs:285 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <cac1dea318b4499fb9eaf77618617c23>:0 "
+        }
+      ],
+      "rootCause": "CompiledAssemblySet internal constructor now has five parameters including IEnumerable<CompiledAssemblySource>; two unchanged test fixture reflection sites pass four objects",
+      "impact": "17 ManagedAcquisitionPolicyTests and one PolicyTests case lack successful current-source runtime assertions; not evidence of native admission regression",
+      "limits": "No Local correction or test retry; further hidden consumers may need Primary audit",
+      "direction": "Update fixture construction through a checked shared helper with explicit byte/source binding; preserve production qualification requirements; real pinned Editor execution must verify the unchanged roster"
+    },
+    {
+      "id": "R03-LI-002",
+      "symptom": "resource-install fails SourcePinTarget before pinned installer; 48 dependent cells Blocked",
+      "generatedSourcePins": {
+        "demo": {
+          "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo",
+          "revision": "c579e75eadef58ca484b35ffee03e435a925d781",
+          "url": "https://github.com/night-outlook/hybridclr_demo.git"
+        },
+        "hybridclr": {
+          "localPath": "../../../../assembly_shadow_h1r/hybridclr",
+          "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+          "url": "https://github.com/night-outlook/hybridclr.git"
+        },
+        "hybridclrUnity": {
+          "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity",
+          "revision": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+          "url": "https://github.com/night-outlook/hybridclr_unity.git"
+        },
+        "il2cppPlus": {
+          "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus",
+          "revision": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+          "url": "https://github.com/night-outlook/il2cpp_plus.git"
+        },
+        "schemaVersion": 1,
+        "target": "StandaloneOSX",
+        "unityVersion": "2022.3.62f2"
+      },
+      "configuredArchitecture": "arm64",
+      "settingsSha256": "54dd57127d7a3865620396a597ac33d9c2ef9b3826cdc443cd38d20b68798afb",
+      "sourcePinsSha256": "d65f8f0c8e5d3936fd1755f51cfe73773d2bd7f88b6eeced336a2887f8e2a7bb",
+      "logExcerpts": [
+        {
+          "line": 10599,
+          "text": "ShadowBuildException: SourcePinTarget: Source pins do not match exact Unity version, target and architecture."
+        },
+        {
+          "line": 10600,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.ShadowHash.Require (System.Boolean condition, System.String code, System.String message) [0x0000b] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Model/ShadowConfiguration.cs:144 "
+        },
+        {
+          "line": 10601,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.ShadowSourcePins.Read (System.String path, UnityEditor.BuildTarget target, System.String architecture) [0x00037] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowSourcePins.cs:34 "
+        },
+        {
+          "line": 10602,
+          "text": "  at AssemblyShadowDemo.Editor.M07Build.Configure () [0x000ae] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/M07Build.cs:51 "
+        },
+        {
+          "line": 10603,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild+<>c.<Install>b__7_0 () [0x00000] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:108 "
+        },
+        {
+          "line": 10604,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild.Execute (System.String phase, System.Action action, System.String variant) [0x0005a] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:75 "
+        },
+        {
+          "line": 10605,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild.Install () [0x00000] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:108 "
+        },
+        {
+          "line": 10606,
+          "text": ""
+        },
+        {
+          "line": 10607,
+          "text": "(Filename: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Model/ShadowConfiguration.cs Line: 144)"
+        },
+        {
+          "line": 10608,
+          "text": ""
+        }
+      ],
+      "rootCause": "fixture_project.source_pins lines85-91 omit architecture; production ShadowSourcePins.Read lines29-35 requires equality with configured arm64. Python copied-project verifier agrees with its own incomplete generator and host compilation does not execute the serialized C# contract",
+      "impact": "Two resource builds, resource compiler/bundles/P01-P05/755-case M01 Editor/resource-runtime/measurements/early startup do not execute",
+      "cleanup": {
+        "cleanup": "NoRecordedMutation",
+        "restorationCoverage": "NotApplicable",
+        "sourceVerification": {
+          "allowedConfigurationChanges": [
+            {
+              "configuredSha256": "54dd57127d7a3865620396a597ac33d9c2ef9b3826cdc443cd38d20b68798afb",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "path": "ProjectSettings/AssemblyShadowSettings.asset"
+            }
+          ],
+          "filesVerified": 525,
+          "frozenM01Files": 6,
+          "kind": "R03ResourceCompleteFixtureV1",
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        }
+      },
+      "limits": "Downstream failures remain unknown; no installer or P05 mutation coverage inferred",
+      "direction": "Generate and bind the complete source-pin platform schema, including pinned arm64 architecture; add an actual consumer-contract prerequisite without waiving SourcePinTarget; rerun only in a newly authorized root/source tuple"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/results.xml",
+      "sha256": "59fce139a22d457dd49dee5465cd0b690855677bb11a583a6d09214987b789be"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/Editor.log",
+      "sha256": "0b8d549dcb5438852e8b35f860b2c7a6539587543b4cc60e67ebb9c50a7be437"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/scope.json",
+      "sha256": "af7615a34580a82c1367e7b8c71d4958cc36eda72f33f61e9325e357b41afcc7"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/focused-editor/verification.json",
+      "sha256": "9919d3c75feba7da8487ebb867806dbf9a3513f08b83d14d8a8108d40df155ef"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/resource-logs/install.log",
+      "sha256": "226affa7b57ded6c54dbedb1bab3142fe1bd8a6ce256577ab283f522e9321b49"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/cells/editor-tests.json",
+      "sha256": "4f39b378fef4f7c293f04a2a43470d5d60ea8aea1b8c2c07260f5947b3e85fbd"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/cells/resource-install.json",
+      "sha256": "cdc07ff09f929fb29db3c76abd0b62e25eccef55b0c5e8d910e5c25727855963"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/cells/resource-p05-restore.json",
+      "sha256": "74314297f96a99fb3a4383b280efe16643efb63c02b049b031be1aac8fe6a3cf"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/commands/0063/command.json",
+      "sha256": "cf6dd29f007c95d952ded87fd8ce33c374d5c387160b2d339e7308891864fce1"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/commands/0063/unity-completion.json",
+      "sha256": "0a28d2b7b7c3cf38ff991113a09ab48dd478de57d46fb63d787ebaba136b079c"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/commands/0087/command.json",
+      "sha256": "aee7f12a015615cc913002b65a0b8bb930d162a2b8a01aa7fcec6728acfca66b"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/commands/0087/unity-completion.json",
+      "sha256": "261d807b41eebc5ab86dc4379da6b817a66e8f6d7e7e229c7be6e10b3dc10505"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/resource-project.json",
+      "sha256": "429630d876081d64abdb6bd52a06c0543624ffe511f87c337e67d150d4fff961"
+    }
+  ],
+  "resourceSnapshots": [
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-resource-snapshot/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "d65f8f0c8e5d3936fd1755f51cfe73773d2bd7f88b6eeced336a2887f8e2a7bb"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/ProjectSettings/AssemblyShadowSettings.asset",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-resource-snapshot/ProjectSettings/AssemblyShadowSettings.asset",
+      "sha256": "54dd57127d7a3865620396a597ac33d9c2ef9b3826cdc443cd38d20b68798afb"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/.r03-completion-project",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-resource-snapshot/.r03-completion-project",
+      "sha256": "429630d876081d64abdb6bd52a06c0543624ffe511f87c337e67d150d4fff961"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/projects/resource-complete/Packages/manifest.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-resource-snapshot/Packages/manifest.json",
+      "sha256": "3d9be86a817fbdcb9eecdc9cc059da2b882ea0e3eb6a479e935d4f53524dbe9c"
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+      "relative": "Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs",
+      "sha256": "5aedea7f9048be64dcb8841d74cc4b07793525d3a59571e7a43c1d5b4a99edf1",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+      "relative": "Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs",
+      "sha256": "e0c1693a807bf0eab8145f6f623c74dba601c4164b6718b6adb602925c2ce5ba",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+      "relative": "Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs",
+      "sha256": "4ac411b48f74849962a927b3c75406481b10e2ad155f971e3eabc9386e293fa3",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+      "relative": "Tests/Editor/AssemblyShadow/PolicyTests.cs",
+      "sha256": "3b6784226419d0e50cf08d5b7166a525c5e4c91fdca8656349ce40275764632e",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "commit": "11a20efadd8f1ebc494d02ac80135e224dabd3e5",
+      "relative": "Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+      "sha256": "8fc2d9d848d8372a6fe0eebc9f1d9db52aa6db292e06bd3773d178ec97a9878d",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowSourcePins.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Tools/AssemblyShadow/R03Completion/fixture_project.py",
+      "sha256": "8afab2a2420ffcf1a20a236b255607bae9051cab2d3585eb6e407662b75887ba",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/fixture_project.py"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "sha256": "a19afc1ae96ede202dcad211d80d352279fdcf9f128719e2d05837e62f6cdc6c",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Tools/AssemblyShadow/R03Completion/editor_contract.py",
+      "sha256": "98dcf70b5a2cf6422c9b3b28bc8ea7be9e91ac4df8e42f0f7c307bbaf4a22d28",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/editor_contract.py"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Assets/AssemblyShadowDemo/Editor/M02Build.cs",
+      "sha256": "86e1a1e292c2f4c5d0b01e7352dc4d13f5d54255b61ce9900b1019a65d098fa5",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Assets/AssemblyShadowDemo/Editor/M07Build.cs",
+      "sha256": "10ab0b4c45e3a2ce12bc90116f1a0c2a2a260470b1a1bf5dc9cf6583083daa14",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+      "sha256": "617926e0ec86c95e952f819afcaa27e364f66f37d26bf911edc90d32edfbb581",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Assets/AssemblyShadowBaseline/Editor/BaselineBuild.cs",
+      "sha256": "ac142c90e7c7acc82999627af0ce3192c8715a243b04a2fa45da8d932800614b",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowBaseline/Editor/BaselineBuild.cs"
+    },
+    {
+      "repo": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "commit": "c579e75eadef58ca484b35ffee03e435a925d781",
+      "relative": "Tools/AssemblyShadow/R02/unity_session.py",
+      "sha256": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377",
+      "copy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003I-completion/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py"
+    }
+  ],
+  "noLocalSourceChanges": true,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false
+}

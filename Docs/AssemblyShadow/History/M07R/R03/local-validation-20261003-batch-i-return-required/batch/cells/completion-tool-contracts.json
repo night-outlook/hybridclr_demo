@@ -1,0 +1,50 @@
+{
+  "dependencies": [
+    "entry-authority"
+  ],
+  "evidence": {
+    "commandReceipt": {
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "endedUtcEpoch": 1791002223.777338,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 74431,
+      "pid": 74431,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1791002221.710779,
+      "stderrSha256": "f5a681d1b80b5a1d459fdcf30543f9305ba2a6b652744d4e2c4cb0593d50a8c2",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    "scope": "Source/fixture/orchestration contracts; not Player evidence"
+  },
+  "id": "completion-tool-contracts",
+  "result": "Passed"
+}

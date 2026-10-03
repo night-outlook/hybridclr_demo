@@ -1,0 +1,1000 @@
+# Local Validation report
+
+## Current run — R03 batch H, 2026-10-02: focused rejected-stage preservation Passed; return for Primary reconciliation
+
+**Result=EvidenceReadyForPrimaryReview; 37 cells: 37 Passed / 0 Failed / 0 Blocked; sealStatus=Passed; runner exit 0. Exit: Local Validation → Primary Implementation.** Exactly one fresh invocation, PID 60711, 2026-10-02 08:42:35–08:48:47 PDT; UTC 2026-10-02T15:42:35.301026+00:00–2026-10-02T15:48:47.419720+00:00. All four fresh native build roles, 754 selected actual Editor cases with zero skips, and all 23 fresh-process Players passed their defined contracts. The five strict negative cases retain error 16 through the 16-byte/-2 capacity control, two complete bounded native reads and final raw capture. All six strict main warm certificates, full positive C07 and producer-controls aggregate Passed. Contaminated natural controls' unisolated warm certificates remain Failed. No Local source fix, terminal restoration, counter/scope/pin/ownership/lease/warm-up/deadline change, retry or prior-app reuse occurred.
+
+### Executed authority and environment
+
+All owning repositories independently matched their absolute top-level paths, branch `codex/assembly-shadow-r01b-h1`, clean status, canonical origins `git@github.com:night-outlook/<repository>.git`, exact local HEAD and remote tip before and after execution. Demo safely fast-forwarded from G Local publication `0d8a19830ce454d22335c854978816a830997187`; IL2CPP advanced coherently to the H source pin. Source anchor `9d70494c97e4efc9597a3e071f63c1489c6ac396` is an ancestor and its delta to the executed demo is documentation-only. Original source pins, package file reference, fixture IDs, build roles, Editor filter and Player expectations are authenticated in [preflight](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight) and each isolated source/config receipt. Earlier owning/linked worktrees are preserved.
+
+| Owning repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `2007c5dbd3dcf535706688e6595700e3ba26a11e` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Fresh detached reference worktrees beneath `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees` remain clean at native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. The four role-specific `projects/` and `builds/` roots retain their own Library/HybridCLRData/install SDK/app outputs; no ordinary primary checkout, old app, prior cache or control sibling is mixed in. [RETAINED_LIVE_ROOTS.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/RETAINED_LIVE_ROOTS.json) records exact retained paths. Schema-2 build receipts and nativeBinding bind each installed root, non-generated core and full app inventory to source/config hashes. Build GUID remains explicitly Unavailable where the receipt reports it; no matching GUID is inferred.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0/macOS SDK 26.5. Unity executable `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, StandaloneOSX/arm64. SDK-only root `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; no Unity 6000 Editor execution. Pinned Unity 2022.3.62f2 `MonoBleedingEdge/lib/mono/unityaot-macos/mscorlib.dll` SHA-256 `d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83`. Scoped SDK PATH/DOTNET_ROOT/DOTNET_ROOT_ARM64, DOTNET_MULTILEVEL_LOOKUP=0, PYTHONDONTWRITEBYTECODE=1 and TMPDIR=/private/tmp are recorded in runner-invocation.json. No Unity Editor was running at preflight. Gate helper Off; no independent stage-review or Human Review Gate verdict claimed.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 2007c5dbd3dcf535706688e6595700e3ba26a11e
+```
+
+### Every required cell and supporting contracts
+
+All statuses below are fresh G-independent H results. Expected-negative compiler exit1 and expected Validate16 rejection are successful contracts, not successful product operations.
+
+| Cell | Original sealed state |
+| --- | --- |
+| `entry-authority` | Passed |
+| `verifier-contracts` | Passed |
+| `reference-sources` | Passed |
+| `host-baseline-graph` | Passed |
+| `host-candidate-graph` | Passed |
+| `host-admission` | Passed |
+| `player-fixtures` | Passed |
+| `prepare-candidate-release` | Passed |
+| `build-candidate-release` | Passed |
+| `prepare-reference-release` | Passed |
+| `build-reference-release` | Passed |
+| `prepare-candidate-debug` | Passed |
+| `build-candidate-debug` | Passed |
+| `prepare-candidate-off` | Passed |
+| `build-candidate-off` | Passed |
+| `editor-tests` | Passed |
+| `C01-baseline` | Passed |
+| `C02-private-reference` | Passed |
+| `C03-moved-slot` | Passed |
+| `C04-old-AOT-guard` | Passed |
+| `C05-direction-reversal` | Passed |
+| `C06-actual-target-cycle` | Passed |
+| `C07-private-primitive-append` | Passed |
+| `C08-interface-change` | Passed |
+| `C09-reference-to-value-kind` | Passed |
+| `C10-field-removal` | Passed |
+| `R01-baseline` | Passed |
+| `R02-original-late-layout` | Passed |
+| `R03-original-slot-lookup` | Passed |
+| `R04-direction-reversal` | Passed |
+| `R05-actual-target-cycle` | Passed |
+| `D01-private-reference` | Passed |
+| `D02-moved-slot` | Passed |
+| `D03-old-AOT-guard` | Passed |
+| `O01-feature-OFF-baseline` | Passed |
+| `producer-controls` | Passed |
+| `final-authority` | Passed |
+
+Supporting Passed checks: 183 verifier Python tests, both 9-case graph suites, 35 admission contracts, 15 real DLL fixtures, 33 unsigned-reference audits, 33 pinned-Unity consumers, valid/invalid Editor lifecycle probes, full package/helper API compilation (425 inputs/115 defines), four fresh IL2CPP/native arm64 builds and 754 selected Editor XML cases with zero skips. The 83 command receipts retain authenticated streams and clean process-group completion; 80 exit0, only named 0048/0050/0055 expected-negative controls exit1. The old C helper produces exactly two CS0266 errors, while current helper/product builds succeed. Seven birth-authenticated Unity completion receipts retain the original inner exits and bounded owned VBCSCompiler retirement; no global compiler kill or hidden survivor was used. Local did not separately rerun Primary's 90 native header processes or 35 syntax checks; their source-bound CI records are historical/host evidence, not extra Local Player coverage.
+
+All original 19 main Players and four PC controls executed with distinct PID/run nonce and bound request/raw/build-receipt hashes. All 23 Player command exits0 and source-defined semantic/diagnostic verifications Passed. Reference/off unavailable native probe states remain explicit; they do not acquire fabricated snapshot coverage. M01 remains **NoCoverage**, excluded because its frozen fixture is unavailable, not counted as an Editor skip/pass. Full-stage legacy/resource, broader generic/interface/delegate/stack-trace, startup/capacity/performance/memory, gated qualification and independent full R03 review are **NotRun in this focused batch and remain open**.
+
+### Five negative paths: non-mutating observation witnessed
+
+[REJECTION_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/REJECTION_RUNTIME_AUDIT.json) reconciles every original source-bound `verification.rejectionObservation` subcheck with the raw observation. Overall raw/runtimeProbe schemas3 and string-encoded `rejectionProbe` schema1/policy R03RejectedProbeNonMutationV1 are preserved. Each one-transaction process reaches Configure/Begin/Reserve/Stage success then Validate16/state 8/unpublished. Four captures (`before`, `afterSmall`, `afterFirst`, `afterSecond`) plus final ordinary raw diagnostics retain exact immutable transaction projection and the entire recovery document: lastError/terminalFailureCode16, failed state 8, generation0, no Commit/publication/module/business initialization, RestartRequired. No probe exception or error 15 occurs. Whole diagnostic strings remain retained; independent ordinary-class enumeration is not asserted invariant.
+
+| Case | Fresh PID | Capacity return | Full-read return bytes (first/second) | Retained rows | raw.json SHA-256 | verification.json SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `C02-private-reference` | 66221 | -2 | 2697 / 2697 | 2 | `d65ac46c97f9d057cb7235ecb170cb42ece328abd4165d161624c70d5b2ca261` | `8e0a2aa185fe9dba246a83c7c9414ea777891b2f1352b8e8899adacf1237ebb1` |
+| `C08-interface-change` | 66238 | -2 | 1664 / 1664 | 1 | `51f2b2f08182c60a0e941e052e594a442253714f1224f15e4e292a678febc73e` | `1cc13fd960b42867e2d231d6f77792efc7e50f80b758eb8853841b4f0555729b` |
+| `C09-reference-to-value-kind` | 66240 | -2 | 1664 / 1664 | 1 | `bf43ccb30aae7b5a5cade0dc50a68093e783ce8d196c0bc21b4bd983a69336e6` | `024a833d5e23f4b79231f89b7803a0549dabe357fdda61d517476cf42cda1f88` |
+| `C10-field-removal` | 66242 | -2 | 2730 / 2730 | 2 | `b17f5d19a4cb719c4c27436319b12de4c0bf3a8c24cb1785c12e8effb56a72c9` | `6067f1e849588951592add206638704b215e6c4cd743c01e8d7abbbb040a8576` |
+| `D01-private-reference` | 66254 | -2 | 2697 / 2697 | 2 | `9d04d99b7ccc2d03c99afd4ff6d3ed72b30e56e6c4e20bcc987c5cc804295933` | `1eca560d90274aa63840afc6c9afa82ab1f52f72203f23b0188f7f5936ef6c45` |
+
+Both native full reads return exactly their UTF-8 payload length below131072. C02/D01 retain two layout rows (`layout/<Module>` and `layout/R03.Node`); C08/C09 retain one prior `R03Contract/<Module>` row; C10 retains `R03Contract/<Module>` and `R03Contract/R03.Node`. Layout rows remain exactly equal across reads, identities have R03OwnedLayoutIdentityV1 and Captured baseline/target statuses with distinct opaque physical values and complete type keys. Each explicit captured transaction projection and entire recovery compare equal at all five boundaries. The second complete native JSON, complete diagnostics/recovery strings, their byte hashes and statuses are retained. An earlier retained row is not assumed to identify the actual failing type; failingRowIdentified=false remains explicit. These fresh H observations satisfy the focused LG-001 repair verification; G's five Failed cells and missing probes remain historical Failed/Unavailable without schema upgrade or retroactive closure.
+
+### Six strict main warm witnesses and four natural controls
+
+[PRODUCER_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/PRODUCER_RUNTIME_AUDIT.json) retains all ten raw probes, 50 adjacent native spans, exact counter/event reconciliation and source/DLL/build bindings. Each main exact loop has zero all-thread cold admission/proof/layout/workspace work and at least 10000 hits/baseline checks, unchanged eight preparation allocations and 10000 business allocations. Leases remain R03ArrayPoolFinalizerFenceV1/5000ms, acquired/released/drained=true, expired/invalid=false. All deferred matching callbacks complete.
+
+| Main witness | Fresh PID | Lease elapsed µs | Admitted/completed | Deferred/completed | Exact-loop cold work |
+| --- | --- | --- | --- | --- | --- |
+| `C03-moved-slot` | 66223 | 13467 | 2/2 | 1/1 | zero |
+| `C04-old-AOT-guard` | 66225 | 13173 | 2/2 | 1/1 | zero |
+| `C05-direction-reversal` | 66232 | 13154 | 2/2 | 1/1 | zero |
+| `C07-private-primitive-append` | 66236 | 13606 | 2/2 | 1/1 | zero |
+| `D02-moved-slot` | 66256 | 239393 | 1/1 | 0/0 | zero |
+| `D03-old-AOT-guard` | 66258 | 246388 | 1/1 | 0/0 | zero |
+
+| Natural control | Fresh PID | Unisolated warm certificate | Identified admissions | Miss/proof/entry/byte delta |
+| --- | --- | --- | --- | --- |
+| `PC-C03-moved-slot` | 66262 | Failed | 1 | 1/1/1/80 |
+| `PC-C04-old-AOT-guard` | 66264 | Failed | 1 | 1/1/1/80 |
+| `PC-C05-direction-reversal` | 66267 | Failed | 1 | 1/1/1/80 |
+| `PC-C07-private-primitive-append` | 66270 | Failed | 1 | 1/1/1/80 |
+
+Producer-controls aggregate Passed, with 4 identified in-loop admissions. All four controls observe an exact-loop Object::NewAllocSpecific admission on probe thread2 rather than owner1, type `System.Runtime.CompilerServices.ConditionalWeakTable<byte[][], object>.Enumerator`. Actual context identifies `mscorlib/System.Gen2GcCallback`, delegate `Gen2GcCallbackFunc`, token100672638, closed declaring type `System.Buffers.TlsOverPerCoreLockedStacksArrayPool<byte>`, recognizedArrayPool=true. Complete full keys, numeric native runtime thread identifiers and all four cold events per control remain in raw/audit evidence; no cross-process thread or pointer identity is inferred. Diagnostic success does not promote a contaminated control's Failed warm certificate. Pairing uses DLL/source/config/build hashes and distinct PID/run IDs, never pointer/thread equality across processes. Lease isolation remains diagnostic-only and may delay queued finalizers; it is not production GC/performance qualification. No H attribution is retroactively assigned to older E/F evidence.
+
+Full C07 main and the paired control retain sourceSize24/targetSize32, source offset[16]/target offsets[16,24], target storage[4,8], source/target attrs1, native sizes-1. baselineReady/targetReady/targetDefinitionReady/physicalProof=true, error0, pending/truncated=false; sourceSizeInited/targetSizeInited=false are preserved. Proof-time baseline/target business/vtable flags are false with cctor0; baseline flags remain false at final read. Both source-bound physical subchecks Passed, followed by main publication/reflection/delegate result41 and 10000 allocations. Their owned identity statuses are Captured; readiness comes from finalized staged definitions. Exact per-process physical values remain in the audit. The control's contaminated unisolated certificate remains Failed. Historical F positive physical subcheck/full-cell Failed and G full-cell Passed remain as originally sealed.
+
+### Custody, publication and exact exit state
+
+[POSTRUN_AUTHENTICATION.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/preflight/POSTRUN_AUTHENTICATION.json) authenticates 1901 indexed live files and 1902 exact safe unique archive members; result/ledger/37 individual cells agree. All 9000 earlier custody files are unchanged. No reused evidence is promoted to fresh H acceptance. Every important observation is preserved in raw receipts/reports; transient Unity Console is not the sole record.
+
+Live `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection` and all receipt-referenced project/install/build/app/reference roots remain intact. Immutable [H checkpoint](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/README.md) copies every indexed byte plus top-level result/index/seal and exact ordered archive parts. Original archive size 164177597 bytes, SHA-256 `dd7adb4de12aa7203c69f993e57ebbde49e4f223edfd1179a2945e3d55f6e5cd`; [ARCHIVE_TRANSPORT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/ARCHIVE_TRANSPORT.json) and [ARCHIVE_RECONSTRUCTION_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/ARCHIVE_RECONSTRUCTION_AUDIT.json) authenticate fresh separate reassembly without recompression. [MANIFEST.sha256](../History/M07R/R03/local-validation-20261002-batch-h-evidence-ready/MANIFEST.sha256) and publication checks bind checkpoint/staged bytes, JSON and local links. Exact captured generated/native whitespace is preserved with narrow raw/snapshot attributes; prior reports change only by prepending H and marking the previous G heading historical.
+
+| Original sealed artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `fe3eb7e1e767f54d58b0702d03890c2b5d46aff55be8adb67af1f749d06895a8` |
+| `BATCH_EXECUTION.json` | `81dabf1052f63da49ff8c017757e90b08e5504f445c60e1f553111a848b5fe80` |
+| `evidence-index.json` | `ef0e33ef8efa345bca758539646a8d81aefd2d16b5a1e0b139f78234332d1a28` |
+| `evidence.tar.gz` | `dd7adb4de12aa7203c69f993e57ebbde49e4f223edfd1179a2945e3d55f6e5cd` |
+| `seal-receipt.json` | `b47641a234507290872ca04c5bd07973bd017d2a60f9173aea394566b4cded43` |
+
+Only LOCAL_VALIDATION.md, RETURN_TO_WEB.md and the new H checkpoint are Local-owned publication changes; no runtime/source/pin change or local fix. Final pushed demo publication HEAD is distinct from executed source and is recorded after non-force push in `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002H-rejection/PUBLICATION_RECEIPT.json` and the final copyable handoff; all four clean canonical remote heads are verified. Native/package/IL2CPP heads remain the executed commits above. Focused outcome EvidenceReadyForPrimaryReview does not satisfy full-stage Human Review Gate requirements. **R03Accepted=false; H2Passed=false; pureInterpreterExpansionEnabled=false; fullLegacyRegressionAcceptance=false.** Exit exactly **Local Validation → Primary Implementation** for source/evidence reconciliation and remaining Primary-owned stage work; do not begin another batch, H2, implementation or qualification autonomously.
+
+## Historical run — R03 batch G, 2026-10-02: producer attribution and six warm witnesses pass; five rejection observations fail
+
+**Local Validation → Primary Implementation. Result=ReturnRequired; 37 cells: 32 Passed, 5 Failed, 0 Blocked; sealStatus=Passed; runner exit 1.** Exactly one invocation, runner PID 45229, UTC 2026-10-02T10:38:14.388652+00:00–2026-10-02T10:44:38.180250+00:00 (03:38:14–03:44:38 PDT). Four fresh native build roles and 754 selected EditMode cases with zero skips Passed. All 23 fresh-process Players executed: 14 of the original 19 main cases Passed, five Failed; four added controls diagnostic Passed with four unisolated warm certificates Failed. The producer-controls aggregate Passed with four identified loop admissions. All six strict isolated warm witnesses and the complete C07 positive physical-proof cell Passed. Five expected-negative cases fail because runtime-probe observation throws and replaces their terminal diagnostics. No Local source fix, retry, app reuse, counter relaxation, forced GC, extra warm-up, timeout/lifetime/lease change or acceptance promotion occurred.
+
+### Executed repository authority, pins and environment
+
+Each owning checkout independently matched its absolute top-level path, branch `codex/assembly-shadow-r01b-h1`, clean status, canonical origin `git@github.com:night-outlook/<repository>.git`, exact source HEAD and remote tip. Safe fast-forward synchronization preserved unrelated worktrees. Demo synchronized from F Local publication `7f27633d9fc761faa93733b07e1787831babe73e`. Executable source anchor `53e6e559165344cb98405a7261a988871157a864` is an ancestor and its delta to executed demo is documentation-only. Source/package/native/build/configuration pins and source-manifest hashes were authenticated before execution and again for all four isolated projects.
+
+| Repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `78767ea4d7ea064115daffcdbb2ce9435569814c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `9ab7a0000f02251e280901c6e23f6a7772344ca6` |
+
+Fresh clean detached reference worktrees remain beneath `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer`: native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Exact retained paths are in [RETAINED_LIVE_ROOTS.json](../History/M07R/R03/local-validation-20261002-batch-g-return-required/preflight/RETAINED_LIVE_ROOTS.json). No other checkout, Library, HybridCLRData, Builds, prior batch app or control sibling was used or changed. Four role-specific source/config/install-root/nativeBinding receipts and complete app inventories remain bound to G. Build GUID is explicitly Unavailable where the receipt reports it; no GUID was inferred.
+
+macOS 26.5 arm64; Python 3.14.6; .NET SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0/macOS SDK 26.5. Exact Unity executable `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, StandaloneOSX/arm64. SDK-only root `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; Unity APIs/BCL remain pinned to 2022.3.62f2. Pinned mscorlib SHA-256 `d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83`. Scoped DOTNET_ROOT/DOTNET_ROOT_ARM64, DOTNET_MULTILEVEL_LOOKUP=0, PYTHONDONTWRITEBYTECODE=1 and TMPDIR=/private/tmp are recorded in runner-invocation.json. Gate helper reports Off; no independent full-stage review claimed.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 78767ea4d7ea064115daffcdbb2ce9435569814c
+```
+
+### Fresh results and preserved evidence states
+
+| Validation | State | Evidence / scope |
+| --- | --- | --- |
+| Exact authority, source/pins/configuration and fresh roots | Passed | preflight, source-inputs/config/nativeBinding receipts |
+| Host runner regressions, admission and graph checks | Passed | 163 Python cases, 35 admission cases, 9/9 graph cases on each package pin; original cells/commands retained |
+| Real DLL inputs and Unity compiler consumers | Passed | 15 DLL fixtures, 33 fixture audits and 33 consumer cases |
+| Unity lifecycle probes / complete helper APIs | Passed | valid/invalid Editor probes; package/helper compile with 425 inputs and 115 defines |
+| Expected-negative compiler controls | Passed contract / compiler exit 1 | Only commands 0048/0050/0055 exit 1; old C helper reproduces its two CS0266 errors; distinct from product builds |
+| Four isolated native/IL2CPP Player builds | Passed | schema-2 receipts bind installation root, source pins and app inventory |
+| Selected actual EditMode suite | Passed | 754 cases, zero skips; XML/editor-scope/editor-verification retained |
+| Main Player cases | 14 Passed / 5 Failed | all original 19 fresh processes ran; no downstream cell suppressed |
+| Six strict warm witnesses | Passed | C03/C04/C05/C07/D02/D03; all exact-loop cold/layout/workspace deltas zero and hits/baseline checks at least 10000 |
+| Four unisolated producer controls | Diagnostic Passed / warm certificate Failed | PC-C03/PC-C04/PC-C05/PC-C07; natural contamination observed in each |
+| Producer-controls aggregate | Passed | four identified loop admissions; producer-controls.json and source-bound raw/verification receipts |
+| Full C07 cell / physical readiness on both paired apps | Passed | positive proof, Commit, reflection/delegate 41, 10000 allocations; details below |
+| Five expected-negative observations | Failed | C02/C08/C09/C10/D01; runtimeProbe Unavailable; exact production rejection verifier fails |
+| Batch sealing and custody audit | Passed | 1901 indexed files, 1902 safe unique archive members; all 37 cells agree; 6989 earlier custody files unchanged |
+| Process lifetime | Passed | all 83 command receipts clean, no timeout/survivor/cleanup error; seven birth-authenticated Unity completion receipts retained |
+| Excluded M01 asset test | NoCoverage | unavailable fixture; excluded case is not a skip or pass |
+| Full R03 legacy/resource/generalized runtime/performance/memory review and H2 | NotRun in focused G / remains open | focused batch is not full-stage acceptance |
+
+No reused or historical evidence was promoted to fresh G coverage. All 23 Player command exits are 0; verification states above remain authoritative. 80 of 83 commands exit 0; the three named expected-negative compiler exits retain their original code. Raw streams, response files, emitted DLLs, Editor logs/XML, all original verification receipts and pre-cleanup/lifetime evidence are included. Completed prerequisites permitted all Players; the failed observations do not justify rerunning or changing downstream expectations.
+
+### Actual producer and bounded isolation observations
+
+All four natural controls record one admission in the exact phase-2 loop: admissionCacheMisses +1, allocationProofChecks +1, cacheEntries +1, cacheBytes +80; hits/baseline checks +10000. Four cold events identify the same full nested generic type, `System.Runtime.CompilerServices.ConditionalWeakTable<byte[][], object>.Enumerator`, on probe thread 2 rather than loop owner 1, site Object::NewAllocSpecific, generation 1/domain 1/context 0x0. Actual producer context identifies finalizer `mscorlib/System.Gen2GcCallback`, delegate method `Gen2GcCallbackFunc`, token 100672638, closed declaring type `System.Buffers.TlsOverPerCoreLockedStacksArrayPool<byte>` and producerRecognizedArrayPool=true. Exact full type keys, samples, events, native runtime thread identifiers and counters are retained in [PRODUCER_RUNTIME_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-g-return-required/preflight/PRODUCER_RUNTIME_AUDIT.json) and each raw.runtimeProbe. This confirms the producer in G; it does not retroactively identify the historical F actor.
+
+| Case | Fresh PID | Native runtime producer thread identifier | Lease elapsed µs / admitted-completed / deferred-drained |
+| --- | --- | --- | --- |
+| PC-C03 | 50795 | 6163410944 | no lease / 2-2 / 0-0 |
+| PC-C04 | 50797 | 6164606976 | no lease / 2-2 / 0-0 |
+| PC-C05 | 50799 | 6108393472 | no lease / 2-2 / 0-0 |
+| PC-C07 | 50801 | 6129790976 | no lease / 2-2 / 0-0 |
+| C03 | retained receipt | process-local owner | 12502 / 2-2 / 1-1 |
+| C04 | retained receipt | process-local owner | 12586 / 2-2 / 1-1 |
+| C05 | retained receipt | process-local owner | 12760 / 2-2 / 1-1 |
+| C07 | retained receipt | process-local owner | 13757 / 2-2 / 1-1 |
+| D02 | retained receipt | process-local owner | 249991 / 1-1 / 0-0 |
+| D03 | retained receipt | process-local owner | 249522 / 1-1 / 0-0 |
+
+All six main leases use R03ArrayPoolFinalizerFenceV1, leaseMs=5000, acquired/released/drained=true and expired/invalid=false; all main cold events are zero. Four controls have requested/acquired/released/drained=false, leaseMs=0. Ten raw/verifier cases and all 50 native spans reconcile. Distinct PID/run nonce/source/config/fixture hashes bind each pair; no pointer or thread number is treated as a cross-process identity. Isolation is diagnostic-only, may delay queued finalizers, and is not production GC or performance qualification.
+
+Both C07 main and PC-C07 retain sourceSize=24/targetSize=32, source offset [16]/target offsets [16,24], target storage [4,8], baselineReady/targetReady/targetDefinitionReady/physicalProof=true, error=0, pending/truncated=false. sourceSizeInited/targetSizeInited=false are preserved: readiness comes from finalized staged definition. Proof-time business/vtable flags are false and cctor states 0; baseline flags remain false at final read. Main baseline/target pointers `0x11fe15cd0`/`0x11fe15fa0`; PC baseline/target `0x11f195c20`/`0x11f195ef0`; both node keys `type(11:r03contract/3:R03/4:Node@0)`. Main C07 full cell Passed; PC diagnostic Passed with unisolatedWarmCertificate=Failed. Historical F's physical-proof Passed/full-cell Failed remains unchanged.
+
+### New non-trivial issue and preserved uncertainty
+
+R03-LG-001: five expected-negative cases return Validate code 16/state 8 while unpublished, then probe read returns -3 with `RuntimeProbeFailure: System.InvalidOperationException: Runtime probe receipt failed: -3`. Subsequent terminal diagnostics/recovery show code 15, `ShadowAllocationDuringMetadataResolution Object::NewAllocSpecific`, RestartRequired. runtimeProbe is empty/Unavailable in these cases. The strict verifier reports `Exact production rejection code` and Failed. See [RETURN_TO_WEB.md](RETURN_TO_WEB.md) for the actionable source chain and limits and [REJECTION_OBSERVATION_ANALYSIS.json](../History/M07R/R03/local-validation-20261002-batch-g-return-required/preflight/REJECTION_OBSERVATION_ANALYSIS.json) for exact source/raw/command/verification bindings. Likely new full type-key rendering re-enters private metadata after validation scope ends and managed exception allocation changes terminal state; exact first failing layout row and inner native exception stack remain Unavailable. No Local source change was authorized or made.
+
+### Immutable checkpoint and exit
+
+Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer` is retained intact with all referenced build/project/reference/app roots. Immutable [G checkpoint](../History/M07R/R03/local-validation-20261002-batch-g-return-required/README.md) contains all indexed bytes plus batch result/index/seal and exact three-part archive transport. Archive size 163817752 bytes; reassembly uses a new destination and authenticates the original whole hash. [MANIFEST.sha256](../History/M07R/R03/local-validation-20261002-batch-g-return-required/MANIFEST.sha256), [ARCHIVE_TRANSPORT.json](../History/M07R/R03/local-validation-20261002-batch-g-return-required/ARCHIVE_TRANSPORT.json) and [ARCHIVE_RECONSTRUCTION_AUDIT.json](../History/M07R/R03/local-validation-20261002-batch-g-return-required/ARCHIVE_RECONSTRUCTION_AUDIT.json) cover transport; publication checks authenticate every staged byte and local link. Captured generated/native whitespace is preserved byte-for-byte, with attributes restricted to raw batch files and authenticated source snapshots. No acceptance flags or earlier receipts were rewritten.
+
+| Original artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `65ee4842a81e7ec9e7d14546dd95d40d995e807a528e4b89c56918860100f5f1` |
+| `BATCH_EXECUTION.json` | `78dd24c0bcd92ae2142efe2cacb4152e98505d8c63847ba5d0f748a4df5702f8` |
+| `evidence-index.json` | `24c18f78be4ed43d8f8600e2f114d2b5c717180cf171ab4e1cd11eb807e8aa25` |
+| `evidence.tar.gz` | `2a3e90a49eb9b13d035a3749b8012f1e96d4410343d76b7f11a00617d17aaf23` |
+| `seal-receipt.json` | `43128ea337f80cde69ea31a7d904668716022292f66ca80e72067bf26e2f450b` |
+
+Publication owns only this report, RETURN_TO_WEB.md and the new G checkpoint. The final demo publication HEAD is distinct from executed source and is recorded after non-force push in `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002G-producer/PUBLICATION_RECEIPT.json` and the final handoff, with all four clean canonical remote heads verified. Native/package/IL2CPP publication heads remain the executed commits above. The publication commit does not claim fresh executable validation. R03Accepted=false; H2Passed=false; PureInterpreter expansion disabled; full legacy acceptance false. Exit exactly **Local Validation → Primary Implementation** to repair LG-001; no next milestone or further Local batch begins.
+
+## Historical run — R03 batch F, 2026-10-02: attribution and positive staged proof observed; four exact-loop cells fail
+
+**Local Validation → Primary Implementation. Result=ReturnRequired; 36 cells: 32 Passed, 4 Failed, 0 Blocked; sealStatus=Passed; runner exit 1.** Exactly one invocation, 2026-10-02 01:26:18–01:32:39 PDT (UTC 2026-10-02T08:26:18.098066+00:00–2026-10-02T08:32:39.709297+00:00), runner PID 32186. All four fresh native build roles and all 754 selected Editor cases passed. All 19 fresh-process Players ran: 15 Passed, 4 Failed. Six warm witnesses produced complete native probes; both Debug witnesses Passed, four Release witnesses Failed. No Local source fix, retry, pin/scope/expectation/warm-up/deadline/lifetime change or acceptance promotion occurred.
+
+### Executed authority, environment and operations
+
+Each owning checkout independently matched its exact absolute top-level path, branch, clean status, canonical origin and remote tip before and after execution. All branches are `codex/assembly-shadow-r01b-h1`; origins are `git@github.com:night-outlook/<repository>.git`. Demo safely fast-forwarded from published E return `b97375d4b12357d0f987cf7738eaa422d4615081`. Tested executable source anchor `67e8c1df18f84dda4ec70edd45b1ed717bcea4e8` is an ancestor; its delta to the executed demo is documentation-only. The latest WEB_TO_LOCAL.md-touching commit matched prompt/local/remote HEAD. Pre-existing state was classified before synchronization and all checkouts remained clean throughout execution; unrelated worktrees were preserved.
+
+| Repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `8f86dda1aa0582a5b2d55aa650ea321f710cb49a` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `aae0ebb55b8761a7a905b410349d006d76fa748b` |
+
+Fresh detached, clean reference worktrees are retained under `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/`: HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. The native reference build uses its frozen core with the current package/harness. Four role source manifests, configs, isolated package references and installed pins bind exact cores, package, executed demo and fixture DLL inventories. Historical owning-project H1 pin files remain unchanged; the owning Unity project was not built. No primary-checkout or previous batch Library/HybridCLRData/Builds/app was used.
+
+Environment: macOS 26.5 arm64, Python 3.14.6, .NET SDK 8.0.318/runtime 8.0.21, PowerShell 7.6.3, Apple clang 21.0.0 and macOS SDK 26.5. Actual Unity is `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64. The .NET SDK at `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` supplies managed compilation only; Unity 6000 Editor was not launched. Exact tool/version, Git/worktree/submodule, source/package/config hashes, retained process observations and scoped environment are in checkpoint `preflight/`.
+
+Command from the owning candidate demo:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 8f86dda1aa0582a5b2d55aa650ea321f710cb49a
+```
+
+`preflight/runner-exit.json` binds absolute cwd, start/end, PID, environment, exit and batchInvocations=1. All 79 command receipts retain per-operation times/argv/PID/process group and stream paths/hashes. Outer Unity PIDs identify supervisors; direct Player PIDs bind exact requests/run IDs/raw evidence. Schema-2 build receipts bind installedNativeRoot/nativeBinding and complete native/managed/app inventories. Explicit Unity build GUID is Unavailable in these receipts; no GUID is inferred. Four distinct fresh role roots, source/config hashes, complete app inventories and 19 direct launch/run-ID bindings provide the recorded provenance.
+
+### Fresh validation and evidence states
+
+| Validation | State | Evidence and boundary |
+| --- | --- | --- |
+| Entry/final source authority and reference worktrees | Passed | Exact clean four-repository source tuple, origins/remotes and detached references. |
+| Verifier/input/API/lifetime/provenance/scope/probe contracts | Passed | 144 Python tests, command 0001; these do not substitute for real runtime coverage. |
+| Managed graph suites and admission | Passed | Reference 9/9, candidate 9/9, admission 35/35. |
+| Player fixtures / compiler input prerequisites | Passed | 15 DLLs, 33 metadata audits, 33 actual pinned Unity compiler consumers, invalid-key negative control and valid/invalid actual Editor probes. |
+| Complete helper/package API prerequisite | Passed | Real Runtime/CodeGen/Editor assemblies and helper, 425 input bindings/115 defines, commands 0051–0055. Old C helper negative control has exactly two CS0266 errors and no DLL. |
+| Four preparations and fresh native build cells | Passed | Candidate Release, reference Release, candidate Debug, feature-OFF; real installation/generation/IL2CPP/C++/link. All app inventories/ARM64/source/native bindings authenticated. |
+| Actual selected EditMode execution | Passed | Command 0060, exact 754 catalog identities, all Passed, zero skips/failures/inconclusive; all 35 mandatory R03 IDs and cycle case present. |
+| Excluded frozen M01 resource asset test | NoCoverage | Exact identity/missing assets/reason in editor-scope.json and editor-verification.json; fullLegacyRegressionAcceptance=false. |
+| Fresh-process Players | 15 Passed / 4 Failed | All 19 unique PID/run-ID requests ran once; each has source-bound Passed/Failed verification.json, original raw and cell state. |
+| Six warm probes: shape/boundary/cold-event reconciliation | Passed observation audit | Six complete probes, labels 0/10/1/2/11/3, no overflow/saturation/dropped threads; all 30 native spans reconcile. This does not waive exact-loop failures. |
+| Required warm certificates | 2 Passed / 4 Failed | Debug D02/D03 Passed; Release C03/C04/C05/C07 Failed for admissionCacheMisses during labels 1→2. |
+| C07 positive physical-layout subcheck | Passed subcheck; full cell Failed | Original raw.runtimeProbe passes the unchanged verify_primitive_layout function in a separate read-only audit. No Player rerun. |
+| Focused seal / separate custody authentication | Passed | 1,871 indexed files, 1,872 exact archive members, 36 cell/ledger matches, 5,027 earlier custody bindings unchanged. |
+
+All 79 outer command groups completed without survivor, timeout or cleanup error. Only 0048 (invalid compiler consumer), 0050 (invalid actual Editor probe), and 0055 (preserved C helper) retain expected exit 1; other 76 exits are 0. These negative controls are distinct from product build results. Seven birth-authenticated Unity completions preserved inner exits and clean owned compiler retirement. Exit 0 from each Player records its observation; it does not promote the four semantic failures.
+
+### Exact-loop attribution and remaining failure
+
+All four Release cells fail the unchanged `Repeated exact-loop proof work: admissionCacheMisses`. Each publishes, invokes reflection/delegate business work and executes 10,000 allocations. All six probes have ownerThread=1. Every Release extra entry is attributed to probe thread=2, site=`Object::NewAllocSpecific`, generation=1, domain=1, context=`0x0`, logical type assembly=`mscorlib`, namespace=`""`, name=`Enumerator`. These are process-local probe identities, not OS thread IDs. Full physical keys and results are:
+
+| Failed cell | Cold physical key | Reflection/delegate value | Final state |
+| --- | --- | --- | --- |
+| C03-moved-slot | `0x11cd280a8` | 42 | 6 |
+| C04-old-AOT-guard | `0x1207680a8` | 42 | 9 |
+| C05-direction-reversal | `0x1213680a8` | 41 | 6 |
+| C07-private-primitive-append | `0x120728118` | 41 | 6 |
+
+Only exact-loop span label 1→2 contains events: admissionCacheMisses +1, admissionProofAttempts +1, admissionEntries +1, admissionRetainedBytes +80, all phase 2 with the same complete key/site/thread. Hits and mandatory baseline checks each increase 10,000; genericContextChecks increases 5; field/interface workspace and layoutCheckCalls do not increase. All other native spans have no counter/event delta. Debug D02/D03 has the same required 10,000 hits/checks with zero cold events. F therefore establishes a different-thread BCL cold admission *inside* the exact loop, not in an observer-return span. The recorded cold key differs from each measured Node key. This does not establish which managed caller/subsystem or generic declaring owner allocated Enumerator, nor why Release and Debug scheduling differs.
+
+Source confirms global counters sum all thread slots and active probe Count accepts every thread. Mark authenticates its owner and phase boundary but does not constrain concurrent allocations. The unchanged verifier applies zero cold work to all-thread counters over labels 1→2. Thus unrelated observed BCL work invalidates this all-thread witness even while target hit/check deltas are present. No repeated target proof is evidenced by the retained cold events, but that cannot promote an all-thread Failed certificate. R03-LF-001 in RETURN_TO_WEB.md records this implementation/measurement-contract boundary and remaining actor uncertainty. E's class/site/thread/timing remains historically unknown; F identities are not assigned retroactively to E.
+
+### C07 staged physical readiness and business observations
+
+The unique R03Contract/R03.Node layout row binds baseline physical `0x120755b00` and target `0x120755dd0`: baselineReady=true, targetReady=true, targetDefinitionReady=true, physicalProof=true, error=0, truncated=false. Source/target pending flags are false. Both business initialized/vtable flags are false and cctor counts are zero at prepublication proof; baseline remains uninitialized/no vtable/cctor=0 at final read. sourceSizeInited=false/targetSizeInited=false are preserved, not rewritten; the finalized staged-layout readiness predicates and positive proof are the observed authority.
+
+Source size 24, target size 32; native sizes -1/-1. One retained field offset 16/attribute 1 is unchanged. Target has offsets [16,24], attributes [1,1], storage [4,8]; the private Int64 occupies proved tail storage 24–32. The additional `<Module>` row is retained separately and is not the required Node witness. Original C07 completes successful publication/state 6, reflection/delegate 41 and 10,000 allocations. `preflight/PHYSICAL_PROOF_AUDIT.json` records the strict unchanged primitive-layout verifier Passed independently because the full runner throws first on warm work. R03-LE-002's physical-readiness symptom is repaired in this F scope; C07's full cell remains Failed under R03-LF-001. E's original rejection/result is unchanged.
+
+C03/C04 raw MethodInfo identity/moved-slot and active/baseline guard observations remain sealed; C04 final state 9 follows the expected old-AOT guard. Those successful partial observations do not change Failed cells. The 15 Passed Players are C01/C02/C06/C08/C09/C10, R01–R05, D01–D03 and O01. They cover original reference late-layout/slot behavior, target-cycle and conservative rejection controls, Debug remapping/guard and feature-OFF baseline in the prescribed scope.
+
+### Evidence custody, publication and exit
+
+Immutable [batch-F checkpoint](../History/M07R/R03/local-validation-20261002-batch-f-return-required/README.md) contains all 1,871 indexed files individually, four complete apps, command streams, original result/ledger/index/seal, compiler/fixture/lifecycle/API evidence, exact Editor XML/scope/verdict, all 19 Player requests/raw/logs and Passed/Failed verification receipts, raw.runtimeProbe samples/events/layouts, source snapshots and separate read-only audits. Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime` and preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261002F-runtime` remain intact. RETAINED_LIVE_ROOTS.json inventories six isolated projects, three reference worktrees and excluded caches/native/generated/intermediate files. No previous raw/sealed bytes were modified.
+
+| Original artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `29e5796cb95571416ad8f7b6e6f9fcbf18bf5638e25295ae0ed5ecc1ff2b6946` |
+| BATCH_EXECUTION.json | `25b7d2b17d9efbf31cda6c11fd62ddb12b41a5c39150995c600d0d0e14d48ec3` |
+| evidence-index.json | `a5b84340e83c96cd1a38f185926e58b341eced53f7132b1b8c2f27fd1e6d208c` |
+| evidence.tar.gz | `f0c259e6ba4a479d3765477962b4d971b902c83ce84bdfa635d519d13fa9bdeb` |
+| seal-receipt.json | `0fa5b245afb075c2938c9401112fd678875072786eb489c6b9eb8ca9c9adb274` |
+
+Original live archive is 163,690,329 bytes. Three ordered exact byte parts in ARCHIVE_TRANSPORT.json reconstruct the unchanged archive; independent reconstruction verifies part/whole hashes at a new external path. This representation is separate from the focused seal: no recompression, member omission or raw rewrite. MANIFEST.sha256 binds checkpoint publication bytes. All prior A–E checkpoint/live custody and R02 I bindings are unchanged.
+
+Only these two Local reports and the new F checkpoint change; no bounded source fix. Full R03 legacy/resource, broader generic/delegate/interface/stack-trace, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review are NotRun in this focused batch. Gate-review mode is Off; no independent stage acceptance is claimed. R03Accepted=false; H2Passed=false; pureInterpreterExpansionEnabled=false; fullLegacyRegressionAcceptance=false. **Exit: Local Validation → Primary Implementation; stop.** Final clean latest pushed heads/remote verification belong to the outgoing prompt and external PUBLICATION_RECEIPT.json. The later documentation/evidence publication commit does not replace executed-source provenance. Future execution requires a new exact pushed Primary handoff and unused root.
+
+## Historical run — R03 batch E, 2026-10-01: provenance/scope repairs pass; four runtime cells fail
+
+**Local Validation → Primary Implementation. Result=ReturnRequired; 36 cells: 32 Passed, 4 Failed, 0 Blocked; sealStatus=Passed; runner exit 1.** Exactly one invocation, 2026-10-01 21:55:20–22:01:10 PDT (UTC 2026-10-02T04:55:20.807577+00:00–2026-10-02T05:01:10.032908+00:00), runner PID 21299. Four fresh native build roles and the scoped Editor run passed. All 19 fresh-process Players ran: 15 Passed, 4 Failed. No Local source fix, retry, pin/scope/expectation/deadline/cleanup change, or acceptance promotion occurred.
+
+### Executed authority and environment
+
+All four owning checkouts independently matched absolute top-level path, branch, clean status, canonical origin and exact current remote tips before and after execution. All branches are `codex/assembly-shadow-r01b-h1`; origins are `git@github.com:night-outlook/<repository>.git`. The candidate demo fast-forwarded cleanly from published D return `33d7b1fce2f3b8463dc4ac78061250ecc7df925d`. Tested source anchor `979abd80b673e690c5f82819ed194200f8d2e536` is an ancestor and its delta to the executed transport is documentation/evidence-only. Latest WEB_TO_LOCAL.md-touching commit equaled prompt/local/remote HEAD.
+
+| Repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `d51483dc1a11007fe1db2ee456a8b0444061389c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+Reference worktrees are fresh, clean and detached under `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/`: HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`; IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`; graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Native reference roles use that reference core and the current package/test harness; they do not substitute an old accepted Player. Role source manifests and install pins bind executed demo, package, native/IL2CPP sources and baseline fixture inventory. Historical owning-project H1 pin files remain unchanged and were not used to build the owning Unity project; the runner emitted isolated role configurations. No primary-checkout Library/HybridCLRData/Builds or previous batch app was used.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Exact Unity executable `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, target StandaloneOSX/arm64. SDK `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` was used as SDK only; Unity 6000 Editor was not launched. Recorded tool versions, command timestamps/status/worktree/ref checks, scope/config hashes and the one invocation are in checkpoint `preflight/`. An auxiliary broad process substring assertion matched pre-existing Unity Hub; the exact executable observation and unused isolated-project roots are retained in scope-and-config-pins.json. No process was terminated for that observation and no batch retry occurred.
+
+Actual command, from the owning demo checkout:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit d51483dc1a11007fe1db2ee456a8b0444061389c
+```
+
+`preflight/runner-exit.json` binds start/end, PID, cwd, environment, exit and batchInvocations=1. All 79 command receipts record per-operation timestamps, argv/PID/process group, stream paths/hashes, original exits and lifetime flags. Outer Unity command PIDs identify supervisors; direct Player PIDs bind request/run IDs and raw observations. Build GUIDs and native/managed/app inventories remain in each schema-2 build receipt and corresponding Editor.log.
+
+### Fresh validation and coverage states
+
+| Validation | State | Evidence and limit |
+| --- | --- | --- |
+| Entry/final Git authority and reference worktrees | Passed | Exact clean four-repository tuple and retained fresh detached references. |
+| Verifier/input/API/lifetime/provenance/scope contracts | Passed | 116 Python tests, command 0001. Synthetic contracts do not replace actual native/runtime evidence. |
+| Graph suites and admission | Passed | Reference 9/9, candidate 9/9 and admission 35/35. |
+| Player fixtures and input prerequisites | Passed | 15 DLLs, 33 metadata audits, 33 actual pinned Unity compiler consumers, invalid-key negative control, two actual Editor compiler-lifetime probes. |
+| Complete helper/package API prerequisite | Passed | Real package Runtime/CodeGen/Editor assemblies and full helper; 425 input bindings, 115 defines, five commands 0051–0055. Old C helper still yields exactly two expected CS0266 errors and no DLL. |
+| Four preparations and fresh native build cells | Passed | Candidate Release, reference Release, candidate Debug and feature-OFF; real installer/generation/IL2CPP/C++/link. Schema 2, exact installedNativeRoot, app inventory and ARM64 verified; nativeBinding emitted. |
+| Actual selected EditMode execution | Passed | Command 0060; exact 754 selected identities all Passed, zero failures/skips/inconclusive cases; all 35 mandatory R03 IDs and cycle case included. |
+| Excluded frozen M01 resource asset test | NoCoverage | Exact single excluded identity/reason/assets in editor-scope.json and editor-verification.json. Not counted as Passed; fullLegacyRegressionAcceptance=false. |
+| Fresh-process Players | 15 Passed / 4 Failed | All 19 unique PID/run-ID requests executed once; raw, logs, command receipts and original cell states preserved. |
+| Focused seal and separate custody audit | Passed | 1,867 indexed files / 1,868 exact archive members; cell/ledger equality and stream/tool/input bindings; 3,081 prior custody hashes unchanged. |
+
+All 79 command groups completed with no survivor, timeout or cleanup error. 76 command exits were 0; only 0048 (invalid compiler consumer), 0050 (invalid actual Editor probe), and 0055 (preserved C helper) were the named expected-negative exit-1 controls. Those are distinct from successful builds. Seven birth-authenticated Unity completions preserved inner exits and retired their owned compiler children cleanly. Player recording exit 0 is not semantic acceptance: four runtime cells failed their unchanged verifier.
+
+R03-LD-001 is verified repaired in E's executed scope: every producer-selected SDK root matches its schema-2 nativeBinding, exact source tuple and installedAfter inventory despite preserved generation receipt copies. Candidate installed counts are 965→966; reference counts 964→965; no fixed shared inventory count is imposed. R03-LD-002 is verified repaired for the focused scope: actual filtered XML matches all 754 catalog identities with zero skips. The actual frozen M01 fixture/resource obligation remains NoCoverage. D's Failed cells and ignored XML remain historical, not promoted.
+
+### Runtime failures and observations
+
+| Failed cell | Unchanged verifier error | Actual observation |
+| --- | --- | --- |
+| C03-moved-slot | Repeated warm proof work: admissionCacheMisses | Completed/published, reflection+delegate 42, 10,000 allocations; warm misses/proofs/entries +1, retained bytes +80; hits/baseline checks +10,000. |
+| C04-old-AOT-guard | Repeated warm proof work: admissionCacheMisses | Same warm delta; reflection+delegate 42; raw native probe observes active guard 1, baseline guard 0, final state 9 / restart code 21. |
+| C05-direction-reversal | Repeated warm proof work: admissionCacheMisses | Complete successful publication/reversed graph, reflection+delegate 41, 10,000 allocations; same extra cold proof delta. |
+| C07-private-primitive-append | Complete successful publication API chain | Validate returns 16/state 8 before Commit; NativeLayoutNeedsNativeProof / ChangedLayoutUnavailableBeforePublication; no invocation or warm loop. |
+
+Release C03/C04/C05 each also show +5 genericContextChecks. No field/interface workspace build or layoutCheckCalls increases during the warm interval; resolver remap/miss counters do not increase. Debug D02/D03 pass with 10,000 hits/baseline checks and zero new admission miss/proof. The process-wide admission counters cover every allocation class/thread after publication, so the single additional completed cache entry cannot be attributed to the business Node from current evidence. Most likely boundary: one cold allocation/cache construction in the broad measured/observer/harness interval; its exact class/site/thread and timing are unavailable. This does not prove a cache regression, justify waiving +1, or establish the failed Release warm certificate.
+
+C07's private Int64 append is Editor-screened as NeedsNativeProof, not guaranteed native compatibility. Native CheckStagedPair rejects changed fields if the physical baseline or target readiness predicate is false, before CheckLayout and publication. Raw diagnostics prove that readiness rejection, not an offset incompatibility; which side/readiness subcondition failed is unavailable. Return entries R03-LE-001/002 include exact reproduction, hashes, source excerpts, uncertainty, implementation direction and required new validation.
+
+The 15 Passed Player cells are C01/C02/C06/C08/C09/C10, R01–R05, D01–D03 and O01. This includes baseline controls, targeted conservative rejections, actual target-cycle rejection, original reference late-layout/slot behaviors, Debug MethodInfo remapping/old-AOT guard and feature-OFF baseline. C03/C04 raw real MethodInfo mappings show moved slots and stable identities, but these observations do not promote their Failed warm-certificate cells. All 19 raw observations are retained. Only the 15 passed cases have successful verification.json outputs; the four failed cases have Failed cell receipts and original raw evidence, with successful-verdict files Unavailable by design after the throw.
+
+### Evidence custody, publication and exit
+
+Immutable [batch-E checkpoint](../History/M07R/R03/local-validation-20261001-batch-e-return-required/README.md) stores all 1,867 indexed files individually, including four complete apps, command streams, original result/ledger/index/seal, fixture/compiler/lifecycle evidence, schema-2 receipts/nativeBinding, actual XML/scope/verdict, all Player requests/raw/logs/available verifications, executed source snapshots and separate read-only authentication/diagnosis. Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance` and preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001E-provenance` remain intact. Excluded Library/HybridCLRData/native/generated roots, six isolated projects, three references and compiled/intermediate files are inventoried in RETAINED_LIVE_ROOTS.json. No earlier raw or sealed bytes were edited.
+
+| Original artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `e57b15223de02b566c0e4157a6157487e0ed208b20700356e8378dab1d4bf95f` |
+| BATCH_EXECUTION.json | `be10f90cfb321aebee9233e8f5749429bcbad9cfdf9b478a15cfae728e1c9ace` |
+| evidence-index.json | `7bce6d321265f0c4fa4c0d1b1946e25d523e3c5351d6e4ac0310cc5a57d041a4` |
+| evidence.tar.gz | `e8bb7e85a6b3e030de30c800c1f8b18dff5d0ac7a80332d6b00c1b612de94c36` |
+| seal-receipt.json | `bc4074643b9220188616fa1a493594c822f587cf3b081af5a179e4d8db8abde0` |
+
+Original live evidence.tar.gz is 163,651,611 bytes and exceeds GitHub's single-blob limit. ARCHIVE_TRANSPORT.json binds three ordered exact byte parts; their concatenation reconstructs the unchanged original archive hash. The reconstruction audit verifies every part, size and whole hash at a new external destination. This publication representation is separate from the focused seal and does not replace/re-compress the live archive or omit an indexed member. MANIFEST.sha256 binds checkpoint publication bytes. All prior A–D checkpoints/live evidence and R02 I result/index/archive custody bindings are unchanged.
+
+Only two Local reports and this new checkpoint change; no bounded source fix is made. Full R03 legacy/resource, broader generic/delegate/interface/stack-trace, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain outside this focused batch and uncompleted. R03Accepted=false; H2Passed=false; pureInterpreterExpansionEnabled=false; fullLegacyRegressionAcceptance=false. **Exit: Local Validation → Primary Implementation; stop.** Final clean latest pushed heads and remote verification are recorded in the outgoing prompt and external PUBLICATION_RECEIPT.json; the later publication commit does not replace executed-source provenance. Any future validation requires a new exact pushed Primary handoff and unused root.
+
+## Historical run — R03 batch D, 2026-10-01: native artifacts produced; provenance and Editor scope gates fail
+
+**Local Validation → Primary Implementation: ReturnRequired; 36 cells: 12 Passed, 5 Failed, 19 Blocked; focused seal Passed; runner exit 1.** Exactly one fresh invocation, 2026-10-01 16:47:28.470800–16:53:21.060233 UTC (09:47:28–09:53:21 America/Los_Angeles), runner PID 6095. No Local fix, retry, manual blocked-case execution or expectation/timeout/cleanup relaxation occurred.
+
+### Executed authority, tooling and operations
+
+Four clean owning checkouts independently matched top-level path, branch, exact HEAD and current remote tips before/after execution. All use `codex/assembly-shadow-r01b-h1` and `git@github.com:night-outlook/<repository>.git`. Demo fast-forwarded from published C return `ed9afef29d17c64f15b281ea8b2176cb17d637b3`; three external pins unchanged. Tested source anchor `5931ada3c70958a7c6132219e059a42ee3cecbd0` is an ancestor; delta to execution HEAD is documentation/evidence-only. Latest handoff-touching commit matched local/remote HEAD at execution.
+
+| Exact owning path | Executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `faa351d6854e71982ca047b994fb8579475f542a` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+Detached reference worktrees under `<live root>/reference-worktrees/` retained clean: native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Four native-role source/install manifests bind exact candidate/reference cores, current package and executed demo; actual install receipts and native inventories are preserved in separate diagnosis. No source or cache from the ordinary checkout was used. Each role has its own project, configs, generated native root, app and logs; stripped-AOT generation copies are distinct from installed SDKs.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Exact actual Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64. Direct SDK path `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` used as SDK only; Unity 6000 Editor not launched. Full preflight tool/version/status/ref/worktree operations are in checkpoint `preflight/environment.json`, `preflight-before-sync.json`, `preflight-commands.json`.
+
+Exact command: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit faa351d6854e71982ca047b994fb8579475f542a`. `preflight/runner-exit.json` retains cwd, scoped environment, exact start/end/exit and invocation count1. Each of 60 command receipts has operation/timestamps/streams/hash bindings. Outer Unity PIDs identify supervisors; they are not relabeled as direct Player or inner Unity PIDs. Build logs retain conversion/compiler/linker/build events and build GUIDs at their original per-role paths.
+
+### Fresh results and evidence states
+
+| Validation | State | Result and boundary |
+| --- | --- | --- |
+| Entry/final authority and detached reference sources | Passed | Exact clean sources/remotes and three retained reference worktrees. |
+| Verifier/input/API/lifetime Python contracts | Passed | All 67 tests, command 0001. |
+| Reference/candidate graph and admission | Passed | Actual 9/9 each plus 35/35, commands 0005–0010. |
+| Player fixtures and extended subchecks | Passed | Fifteen DLLs,33 audits,33 actual Unity consumers, exact invalid-key control, two actual Editor probes and complete build-helper API checks. |
+| Full helper/package compilation | Passed subcheck | Three real package assemblies (15/14/173 sources), whole helper,425 input bindings/115 defines; commands 0051–0054 exit 0. Preserved C helper command 0055 expected exit 1/two CS0266/no output; not a product-build success. |
+| Four preparations | Passed | Bound source/config/package/native/fixture inputs; four isolated roots. |
+| Four native build validation cells | Failed | Commands 0056–0059 exit 0 and build-receipt.json reports Passed/errors 0/nonGeneratedCorePreserved=true with fresh ARM64 apps. Strict runner gate rejects two matching install receipts rather than one. Artifact build success is retained separately from failed provenance validation. |
+| Actual EditMode cell | Failed | Command 0060 exit 0; XML 755 cases, 754 Passed, 0 Failed, 1 Ignored; aggregate Skipped:Ignored rejected. All 35 mandatory R03 IDs and target-cycle Passed in read-only XML audit. Frozen M01 resource asset test is Skipped/NoCoverage. |
+| Nineteen Players | Blocked/NotRun | C01–C10,R01–R05,D01–D03,O01 not launched. No runtime/native MethodInfo/warm certificate acceptance evidence. |
+| Focused seal and separate custody audit | Passed | 1736 indexed live files/1737 exact archive members;36 ledger/individual cell matches;60 streams;1280 previous custody bindings unchanged. |
+
+All 60 outer command groups completed cleanly. Seven supervised Unity completions 0049/0050/0056–0060 preserved inner exits and exact compiler binding/birth identities; each retired one authenticated VBCSCompiler child, with clean completion. Only 0048 (invalid consumer),0050 (invalid Editor probe) and 0055 (old complete helper) retain expected nonzero exits. Other 57 commands exited0. No survivor/timeout/cleanup exception or negative-control override masked these failed cells. Fixture/lifetime/count/API repair observations passed in executed scope; C/A/B failure bytes and uncertainty remain historical.
+
+Native artifact outcomes are genuine fresh installer/generation/conversion/C++/link/build observations, but runner build cells remain Failed. Each role's receipt contains 22 Player files, 965 installedBefore and 966 installedAfter entries, 44 linked DLLs,errors 0/warnings 1 and feature/diagnostic/CPP configuration. Canonical SDK roots under `HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp` exactly match installedAfter. A second equal-hash receipt under `HybridCLRData/StrippedAOTDllsTempProj/StandaloneOSX/Il2CppOutputProject/IL2CPP/libil2cpp` was copied by generation; its native inventory differs in one generated file. `verify_build` searches all HybridCLRData recursively and requires one hash match, so legitimate copied receipts fail the locator guard. Player/app inventories and ARM64 architecture were read-only authenticated without launching Players. Exact paths/hashes/pin tuples/differences are in `preflight/DIAGNOSTIC_FINDINGS.json` and `preflight/native-receipts/`.
+
+The isolated project omits frozen M01 prefab/scene/data assets. Actual `ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles` therefore calls Assert.Ignore with reason `The frozen M01 demo assets are not present in this project.` The XML root becomes Skipped:Ignored; `editor_tests` demands Passed before checking mandatory IDs, producing `Nonzero real Editor test execution required` despite actual execution. No ignored result is relabeled Passed; this asset coverage remains NoCoverage. Returned issues R03-LD-001/002 require Primary-owned locator/test-scope correction under the current prohibition on Local source changes.
+
+### Custody, publication and exit
+
+Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api`; preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001D-build-api`. Immutable [batch-D checkpoint](../History/M07R/R03/local-validation-20261001-batch-d-return-required/README.md) retains all indexed evidence individually, including four full apps, XML, API inputs/results/compiler responses/package/helper DLLs, all 60 commands/streams, seven completion receipts, source snapshots, detailed diagnosis and separate authentication. Excluded Library/HybridCLRData and all live roots remain intact; 135 bin/obj files, six projects and three detached references are inventoried. No test XML, Player receipt or coverage was fabricated.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `1d24e6ccfce7cd9f8e77cd51ca0afc1d5eb3ce5a8f8af5fba60cfccf9e6d1844` |
+| BATCH_EXECUTION.json | `e855d99d0fa78cec0429021922daf5d9c2d02831805c9266464e52aa954ba3bc` |
+| evidence-index.json | `b7bbe6d66c3c398db0fb504679cf560226aad4e044fe8a3ef04ccff3fc01e08b` |
+| evidence.tar.gz | `989d7211e1772efc2b20f13b5354e533bc4760adf93fa4a45b1d5176ed17ff53` |
+| seal-receipt.json | `a56ed49525c8915d84ab8d15a9e3963ffa721c216392adf304f1d2b3d8333ce3` |
+
+The original 163272284-byte live evidence.tar.gz is unchanged. To fit GitHub's single-file limit, checkpoint `ARCHIVE_TRANSPORT.json` binds three exact ordered 64MiB-or-smaller parts; concatenation equals the original archive hash. The reconstruction helper writes only a new absolute destination and validates all hashes. Publication changes storage representation only, not any seal/index/member/result bytes. All 1736 original indexed files are also individually committed. Checkpoint manifest binds the complete published transport and evidence.
+
+No Local fix or source/pin/timeout/expectation/cleanup change. Only Local-owned reports/new checkpoint change; A/B/C checkpoint/raw files and R02 I result/index/archive reauthenticated unchanged, preserving earlier R02/H1 states. Full R03 legacy/resource, broader generic/delegate/interface/stack-trace, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain NotRun/outside this focused result. `R03Accepted=false`; `H2Passed=false`; `pureInterpreterExpansionEnabled=false`; `fullLegacyRegressionAcceptance=false`. **Exit: Local Validation → Primary Implementation; stop.** Latest pushed Local docs/evidence HEAD is recorded in the outgoing prompt; executed demo remains faa351d. New committed/pushed Primary handoff and unused root required before another batch.
+
+## Historical run — R03 batch C, 2026-10-01 UTC: repaired inputs/lifetime pass; Editor build source fails
+
+**Local Validation → Primary Implementation: ReturnRequired; 36 cells: 12 Passed, 5 Failed, 19 Blocked; focused seal Passed; runner exit 1.** Exactly one fresh invocation ran 2026-10-01 02:53:29.052545–02:55:02.642508 UTC (2026-09-30 19:53:29–19:55:02 America/Los_Angeles), runner PID 97655. No source fix, retry, blocked-cell invocation, expectation/timeout/cleanup change or acceptance promotion occurred.
+
+### Exact executed authority and environment
+
+All four canonical owning paths were clean, on `codex/assembly-shadow-r01b-h1`, with independent top-level/branch/HEAD/status/origin/worktree/submodule inspection and exact remote tips before and after execution. Demo fast-forwarded from Local return `ec463b6dfbd91603ec0c539378af6dbbe6b9e651`; external repositories were already pinned. Origins are `git@github.com:night-outlook/<repository>.git`. The tested source anchor `5c2932d5340728b16302b7cea8f20b64fcc9e7ce` is an ancestor, and delta to execution HEAD is Docs/AssemblyShadow-only. The latest commit touching the live handoff matched HEAD and remote at execution.
+
+| Owning repository path | Exact executed commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `fdefb4f7133812f3b0593ae2257057c1bc57195e` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+Reference detached worktrees under `<live root>/reference-worktrees/` remain clean at native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Four native-role isolated project manifests bind current package `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` and exact candidate/reference install/source pins and fixture hashes. Two additional compiler probes have independent project roots and empty package dependency manifests. No ordinary checkout or other batch Library/HybridCLRData/Builds was used. No native build receipt or build GUID exists because compilation failed before the build method ran.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; .NET SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Actual Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; target StandaloneOSX/arm64. Direct managed SDK `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` was used as SDK only; that Unity 6000 Editor was not launched. Scoped environment/tool checks and timestamped Git operations are in checkpoint `preflight/environment.json`, `preflight-commands.json` and `preflight-before-sync.json`.
+
+Exact invocation: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit fdefb4f7133812f3b0593ae2257057c1bc57195e`. Full cwd/environment/PID/start/end/exit are in `preflight/runner-exit.json`; all 55 commands preserve their own start/end epochs, streams and hashes. For supervised Unity commands, outer PID is the supervisor PID, not an asserted inner Unity PID.
+
+### Fresh results and classification
+
+| Validation | Status | Factual evidence boundary |
+| --- | --- | --- |
+| Entry/final authority and detached reference sources | Passed | Four exact owning source/remote tuples; three retained reference worktrees. |
+| Python verifier/lifetime/input contracts | Passed | All 57 tests in command 0001. |
+| Baseline and candidate graph | Passed | Actual 9/9 each, commands 0005–0008; native observations NotRun. |
+| Admission/method suite | Passed | Actual 35/35, commands 0009–0010. |
+| Player-fixtures cell | Passed | Fifteen generated DLLs,33 audited inputs,33 actual pinned-Unity compiler consumers, one exact invalid-key compiler control and two actual independent Editor probes. |
+| Four native-role preparations | Passed | candidate Release/reference Release/candidate Debug/candidate OFF source/config/package/native bindings preserved. |
+| Four native build cells | Failed | Actual supervised Unity commands 0051–0054 compile common Editor source and fail CS0266 at R03Build.cs:109. Build method/IL2CPP conversion/native compilation/Player builds NotRun. |
+| EditMode cell | Failed | Actual -runTests command 0055 hits the same compiler prerequisite. Editor assertions NotRun; test XML unavailable because Test Runner was never reached. |
+| Nineteen Player cells | Blocked/NotRun | C01–C10,R01–R05,D01–D03,O01 did not launch; no native MethodInfo/runtime/warm certificate evidence. |
+| Focused seal and separate read-only custody audit | Passed | 677 live indexed files, 678 exact archive members,36 aggregate/individual cell matches,55 command stream bindings and 542 prior custody bindings unchanged. |
+
+`fixture-audit/results.json` passed 33/33 (fifteen Player + eighteen shared corpus inputs). All provider references now have PublicKey flag clear and empty token; mscorlib has its eight-byte token. `consumer-unity-2022.3.62f2/results.json` passed 33/33 actual consumers with bound runtime/compiler/reference files and emitted DLL hashes. Command 0048 separately returned exit 1 with CS0009/Invalid public key and no emitted consumer; it is an expected-negative assertion, not a successful normal build.
+
+`unity-lifecycle/results.json` passed both actual Editor probes. Command 0049 compiled/invoked the valid marker and exited0. Command 0050 retained exit 1 and exact invalid-key diagnostic, with no marker. Both completed cleanly under the supervisor. All seven Unity completions 0049–0055 preserved original inner exits, authenticated one owned VBCSCompiler child each by kernel birth identity and retired it using SIGTERM; all outer receipts remainingProcessGroup=false/postCleanupGroupExists=false, timeout=false, no cleanup errors. All 55 command groups completed cleanly. Seven original exit 1 commands remain visible: two expected-negative controls 0048/0050 plus five genuine failed product invocations 0051–0055. B's original survivor identity is not retroactively inferred.
+
+R03-LB-001 fixture-reference repair and R03-LB-002 supervised compiler lifecycle are verified in the executed focused scope, including actual pinned compiler/Editor success and failure. This does not establish successful native-build/runtime lifecycle or full-stage acceptance. Next blocker: R03Build.cs fields errors/warnings are uint (lines50–51), but pinned Unity BuildSummary totalErrors/totalWarnings getters return System.Int32; assignments line109 fail CS0266. Read-only metadata inspection binds UnityEditor.CoreModule.dll SHA-256 `e22a829a8022d30c6b2b11fe764d12a2383cf882b63a954641e3cd41ea56af6e`. Compiler/API/source evidence and Primary direction are in RETURN_TO_WEB.md and checkpoint `preflight/DIAGNOSTIC_FINDINGS.json`/`unity-api-metadata.json`. The current handoff explicitly reserves source corrections for Primary; no bounded Local fix was made.
+
+### Custody and exit
+
+Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs`; preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261001C-inputs`. Immutable [batch-C checkpoint](../History/M07R/R03/local-validation-20261001-batch-c-return-required/README.md) contains unchanged result/ledger/index/archive/seal, all included cells/host/audit/consumer/build/Editor/project inputs, all 55 receipts/streams and seven unity-completion receipts, source snapshots and separate audit/metadata diagnostics. Excluded live roots remain retained; `preflight/RETAINED_LIVE_ROOTS.json` inventories 135 compiled/intermediate files, six isolated projects and three detached references. No missing Editor XML or Player/build receipt was manufactured.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `f1dae2e7925f155dcb3eb4d6eff51705846c68366560e89506d6cbde631f5c6d` |
+| BATCH_EXECUTION.json | `2c56cd3ab372b7647fbcd71c822d02984edb555810b0e5d40d2e364184972e0b` |
+| evidence-index.json | `477ad959a85db392a11fb0569fa313ee67ee4ad3e835a31821d37ebe2b790dec` |
+| evidence.tar.gz | `65537c0270229671214ae6c36633533d5f864484c00a2f6aa745e65399c20fe3` |
+| seal-receipt.json | `6c820a7065e28f92edd08e86a096073d42466aa93f1354eaae7033e4c738f252` |
+
+No Local source fix or external repository change. A/B checkpoints/raw output and prior R02 I result/index/archive were reauthenticated unchanged; earlier R02/H1 evidence and execution-time flags remain preserved. Only Local-owned reports and this new checkpoint change. Full R03 legacy/resource regressions, broader generic/delegate/interface/stack-trace coverage, startup/capacity/performance/memory, PureInterpreter qualification and independent full-stage review remain NotRun/outside this focused batch. `R03Accepted=false`; `H2Passed=false`; `pureInterpreterExpansionEnabled=false`; `fullLegacyRegressionAcceptance=false`. **Exit: Local Validation → Primary Implementation; stop.** The outgoing prompt records the latest pushed Local docs/evidence HEAD; execution provenance remains fdefb4f. A new exact committed/pushed Primary handoff and unused root are required for another batch.
+
+## Historical run — 2026-09-30, R03 batch B returned after Unity compilation
+
+**Local Validation → Primary Implementation: `ReturnRequired`; 36 cells: 12 Passed, 5 Failed, 19 Blocked; focused seal Passed; runner exit 1.** Exactly one fresh invocation ran 11:06:26–11:07:40 America/Los_Angeles (18:06:26–18:07:40 UTC) in `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime`. No retry or source/timeout/expectation change occurred. This is the factual focused result, not full R03 acceptance.
+
+### Executed authority, pins and environment
+
+All owning checkouts were clean, exact paths and origin identities verified independently, and current remote branch tips matched before and after execution. Demo fast-forwarded from the published A return `2a9fdec813592fd79db511d5db96a6dcf1dea620`; the other pins were already current. All four use branch `codex/assembly-shadow-r01b-h1` and `git@github.com:night-outlook/<repository>.git`.
+
+| Repository / absolute owning path | Exact executed commit |
+| --- | --- |
+| hybridclr_demo — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `a261bdf0db3f1432226a6b6b69f6f56fbbc47d34` |
+| hybridclr — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| hybridclr_unity — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| il2cpp_plus — `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+Demo source/CI anchor `7e2852fcd6c5bd9ebc82f2b3f97516742b772dc2`; delta to execution HEAD verified documentation-only. Reference sources remained detached, clean and retained at `<live root>/reference-worktrees/`: native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, graph-test package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. All four isolated projects use the candidate package file reference, recorded source-inputs/install pins and role build configs; no other worktree Library, Builds or HybridCLRData was used. No build receipt/GUID exists because Unity compilation failed before the build entry method.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; .NET SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Exact Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, target StandaloneOSX/arm64. SDK path `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk` was used only for managed builds; that Unity 6000 Editor was not run. The invocation used the handoff's Python and run_local.py with `--workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit a261bdf0db3f1432226a6b6b69f6f56fbbc47d34`. Full command, cwd, PID 92199, scoped environment, start/end and exit are in checkpoint `preflight/runner-exit.json`. Each actual operation has its command receipt with start/end epoch timestamps and stream hashes.
+
+### Fresh results and limits
+
+| Validation | Status | Evidence / factual boundary |
+| --- | --- | --- |
+| Entry/final authority, reference sources | Passed | Four owning source/remote checks and three detached reference worktrees. |
+| Verifier/lifetime contracts | Passed | 43 tests: original 29 plus 14 repair contracts, command 0001. |
+| Baseline / candidate graph | Passed | Actual 9/9 in each, commands 0005–0008; native observations remain NotRun. |
+| Admission and method contracts | Passed | Actual 35/35, commands 0009–0010. |
+| Player fixture generation | Passed | Actual 15 DLL inventory, commands 0011–0012; dnlib inventory success is not compiler/runtime validity. |
+| Four isolated preparations | Passed | Configs, source/package/native pins, per-project fixture hashes retained. |
+| Candidate Release, reference Release, candidate Debug, candidate OFF build cells | Failed | Four actual Unity launches (0013–0016) fail compilation: CS0009 Invalid public key in Assets/Fixtures/A.dll. Build entry methods, conversion/native compilation and Player builds NotRun. |
+| EditMode cell | Failed | Actual Unity -runTests invocation 0017 fails the same compiler prerequisite; Editor assertions NotRun; XML unavailable because execution never reached Test Runner. |
+| Nineteen Player cells | Blocked/NotRun | C01–C10, R01–R05, D01–D03, O01 never launched; no native MethodInfo, runtime or warm-certificate acceptance evidence. |
+| Focused seal / postrun custody | Passed | 407 live indexed files, 408 archive members, all 36 aggregate/individual cells and command streams authenticated; 90 prior custody bindings unchanged. |
+
+The repaired direct .NET build/run chain completed with exit 0 and no survivors for commands 0005–0012. All five Unity commands exited 1 with `remainingProcessGroup=true`; each preserved `process-group-before-cleanup.json` contains one `dotnet`, PPID 1, state S. Parent PGIDs 92325/92495/92666/92847/93004; child PIDs 92465/92655/92831/92984/93034. Receipts remain schemaVersion 2, lifetimePolicy R03OwnedCommandV1, timeout=false, cleanupErrors=[] and immediate postCleanupGroupExists=true. Later read-only ps found no members of those groups; it does not rewrite or excuse the original failures. Original A survivor identity remains unknown.
+
+Read-only DLL inspection found baseline A.dll SHA-256 `43518538821b13ac2271e2322aa47fb8ed076e755fd2cee6bd7fda85ae8f7281`: its B AssemblyRef has flags=1 / HasPublicKey=true / empty key bytes. Reversal B.dll and both true-cycle DLLs have the same malformed full-public-key reference pattern. The shared corpus uses AssemblyRefUser(name, version) without explicit unsigned-token normalization; fixture inventory and host graph analysis reopen through dnlib without testing pinned Unity Roslyn reference consumption. This explains the CS0009 prerequisite failure; correcting construction and adding consumer-validity coverage is Primary work. Unity logs separately show its bundled compiler launched with /shared; this is the likely surviving dotnet service, with exact role uncertain because captured comm lacks arguments. See RETURN_TO_WEB.md for actionable issues R03-LB-001/002.
+
+### Evidence custody and exit
+
+Immutable [batch-B checkpoint](../History/M07R/R03/local-validation-20260930-batch-b-return-required/README.md) contains unchanged runner outputs, all included files/receipts/DLLs/logs, executed-source snapshots and separate preflight/audit/metadata diagnostics. Live root and all bin/obj/reference-worktrees/project caches remain retained; `preflight/RETAINED_LIVE_ROOTS.json` binds 108 excluded compiled/intermediate files and root identities. No failed output was replaced or reused.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| LOCAL_BATCH_RESULT.json | `3c8646fa68556b987469467c473e7bff6b529abbd8df3b1693a0a49a20738870` |
+| BATCH_EXECUTION.json | `b07bbd2b005881cd34c73fe708aaa8d3adbe6bb9e480aa9354cdff547498a2a8` |
+| evidence-index.json | `ec1feae707274098acfbce3f83696a0ce1d2aa734318254bb84d54878cb63887` |
+| evidence.tar.gz | `a09d5480508a6d40bf619f925b76144693faf5ed637dbf7ac1c7fed5cec86ebd` |
+| seal-receipt.json | `662df37c5904f58df11310e351017a98ed7490c8762682e2993fe61442c31286` |
+
+Bounded Local fixes: none. Only Local-owned reports/new checkpoint change in this return; native/package/control pins and Primary handoff are untouched. Batch A checkpoint/raw outputs and R02 I result/index/archive reauthenticated unchanged; earlier A–I/H1 classifications remain preserved. Full legacy regressions, broader generic/delegate/interface/stack-trace coverage, startup/capacity/performance/memory, PureInterpreter qualification, independent full R03 stage review and H2 remain NotRun/outside this focused batch. `R03Accepted=false`; `H2Passed=false`; `pureInterpreterExpansionEnabled=false`; `fullLegacyRegressionAcceptance=false`. **Exit: Local Validation → Primary Implementation; stop.** Publication adds only docs/evidence; the final pushed Local commit is the demo HEAD in the outgoing prompt, not a new executed source. Any future validation needs a new committed/pushed Primary handoff and unused output root.
+
+## Historical run — 2026-09-30, R03 batch A returned at managed process lifetime
+
+**Local Validation → Primary Implementation: `ReturnRequired`; 36 cells: 4 Passed, 3 Failed, 29 Blocked.** Exactly one invocation ran in unused `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f`, 07:47:06–07:47:47 America/Los_Angeles (14:47:06–14:47:47 UTC), exit 1. The focused seal **Passed**. No retry, source/expectation/timeout repair or acceptance promotion occurred.
+
+| Repository | Exact owning path | Executed commit |
+| --- | --- | --- |
+| night-outlook/hybridclr_demo | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `25a7c5ada06c97574bf218e74cf38c811445d13c` |
+| night-outlook/hybridclr | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `041c0cbb42d3e64e54fe605673d99799b5d63893` |
+| night-outlook/hybridclr_unity | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `120bb01be680cec0375002a0823552d66d34b84c` |
+| night-outlook/il2cpp_plus | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1abb6bcaa85226f08c67f9da65edb3c58e8cb399` |
+
+All four used `codex/assembly-shadow-r01b-h1`, canonical night-outlook SSH identities, clean status and exact remote-head equality at entry/final authority. All checkouts fast-forwarded safely; no unrelated changes existed. The demo delta after host-CI anchor `f5f5712459fdf67e2b748ddeab8e6540bffd3d95` is eight documentation paths only. Source/package/native pins are copied in the checkpoint. The final Local publication commit carries these reports and evidence; it does not replace the executed demo identity.
+
+Environment: macOS 26.5 arm64; Python 3.14.6; .NET SDK 8.0.318/runtime 8.0.21; PowerShell 7.6.3; Apple clang 21.0.0; macOS SDK 26.5. Exact Unity `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity` and version were available; intended target StandaloneOSX/arm64. No Unity launch occurred. The existing .NET 8 SDK came from `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; that Unity Editor was not executed. PATH/DOTNET_ROOT settings, full command, actual PID, timestamps and tool checks are retained in `preflight/environment.json`, `runner-exit.json` and `preflight-commands.json`.
+
+| Validation | State | Evidence and boundary |
+| --- | --- | --- |
+| Entry/final four-source authority | Passed, fresh | Both cells contain exact clean published repository tuples. |
+| Python verifier/filesystem suite | Passed, fresh | Command 0001: 29 tests; synthetic tool contracts only. |
+| Reference sources | Passed, fresh checkout | Three retained detached worktrees at HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Historical reference source is not fresh runtime evidence. |
+| host-baseline-graph, host-candidate-graph, host-admission | Failed | Commands 0005/0006/0007: exitCode=0, zero warnings/errors, timeout=false, remainingProcessGroup=true. Cleanup killed the surviving owned groups. Each cell stopped before running its compiled assertion program; no graph/admission assertion verdict exists. |
+| player-fixtures | Blocked/NotRun | Admission prerequisite failed; no 15-DLL fixture inventory produced. |
+| Four isolated prepare/build pairs | Blocked/NotRun | No candidate Release, reference Release, candidate Debug or feature-OFF project/build created. |
+| Actual EditMode tests | Blocked/NotRun | No Editor invocation, XML or Editor log produced. |
+| All nineteen Player cells | Blocked/NotRun | C01–C10, R01–R05, D01–D03 and O01 did not launch. No runtime/native MethodInfo/warm-certificate evidence exists for R03 A. |
+| Focused seal and postrun custody | Passed | 58 indexed live files and 59 archive members individually authenticated; aggregate/individual 36-cell equality and ledger/command hashes checked. This is a custody audit of the failed run, not full R03 acceptance or independent stage review. |
+
+The live root and excluded `bin/`, `obj/` and three reference worktrees remain intact. The compiled binaries are successful compilation artifacts only. `preflight/RETAINED_LIVE_ROOTS.json` inventories their paths/hashes and reference identities. Missing host results, fixture inventory, builds, Player outputs and Editor XML are **NotRun**, not lost evidence. The exact per-cell statuses remain in `batch/LOCAL_BATCH_RESULT.json` and `batch/cells/`.
+
+Immutable checkpoint: [local-validation-20260930-batch-a-return-required](../History/M07R/R03/local-validation-20260930-batch-a-return-required/README.md). Result SHA-256 `a03a2b2cc2f493ca92f782eed0a2b03d040c45a826333581818c96200c4a9173`; execution ledger `0598bf960dbf9b4474b9075ab7cb24e3b1acb12941c86f8fd26dbf39bec314c5`; index `a14717414c030ac734fc2e9543118b507df4465b55cbbeb4a9af0bf5a0756181`; archive `13cf7407447d7952aae6429bbf8e5aae3fc11a030ae139651a09142324450c6c`; seal receipt `d92fde6945465e0df8ac109d6430da59b9c3be3694f382cc2f55d7bd6df4e84d`. Preflight material is separate from the original runner seal; the checkpoint manifest binds both without rewriting raw files.
+
+Most likely cause: R03's managed build command omits per-invocation build-server/shared-compilation/node-reuse controls while its command wrapper requires no surviving process group. The installed SDK defaults shared compilation to true, and the prior R02 helper already disables it. The original receipt proves group survival but captures no child identity; the exact survivor executable remains uncertain. This is a runner integration failure, not evidence of a failing product assertion. See `RETURN_TO_WEB.md` for an actionable Primary repair direction.
+
+Bounded Local fixes: none. Independent validations that could still run completed inside the one batch, including final authority and sealing. No downstream execution was forced. R03 full-stage review is NotEligible/NotRun. Full legacy, broader method/delegate/generic/interface/stack-trace, startup/capacity/performance/memory and PureInterpreter qualification remain outside this focused result. `R03Accepted=false`, `H2Passed=false`, `pureInterpreterExpansionEnabled=false`, `fullLegacyRegressionAcceptance=false`.
+
+Earlier A–I/H1 checkpoints and raw classifications were preserved; I result/index/archive hashes were reauthenticated unchanged. R02 is now accepted under its separately committed owner decision, with its historical execution-time false flags untouched. Only Local-owned reports/new checkpoint are changed in this return. **Exit: Local Validation → Primary Implementation. Stop; a new exact source handoff and unused output root are required before another batch.**
+
+## Historical run — 2026-09-29, batch I passed independent R02 stage review
+
+**Local Validation: `EvidenceReadyForStageReview`; 34/34 cells Passed.** One fresh `R02LocalBatch-v1` ran in the previously unused `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928I/` with `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1`. Candidate demo `19b0adcf0a1f376f16eaebf16558d0dcdfdafe6f` and matched control demo `21c689732cd8087f8ee8fdce4e52a8f2a655f722` matched pushed remote tips. Both use HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` and package `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`; candidate IL2CPP is `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`, control IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. All eight worktrees were clean at entry and postrun, and remote tips were rechecked. Source anchor `a81bb0d7b886fe941ba4b132296a30dcf4a319cc` differs by exactly nine metadata paths and zero non-metadata paths; candidate/control share 1,669 non-metadata demo blobs. See `SOURCE_PREFLIGHT.json` in the new checkpoint.
+
+The result SHA-256 is `5f6df653b7338a88ad010027f0f031eb824fb11a63e0955a353656cd177c2e69`. Eight sidecars passed, including unchanged P01/P03 warm 10,000-allocation assertions: each had 10,002 admission-cache hits, zero misses/proof attempts/unready decisions/workspace builds/layout checks, and 10,000 baseline-state checks. Four pilot and forty formal A/B pairs produced 88 timing processes, 44 pair receipts, and 96 distinct sample run IDs. The strict paired analysis Passed with `ComparabilityPassed`. Five exact Editor contracts passed within 1,119/1,119 EditMode tests. Actual host contract, fresh candidate/control controlled builds and M00, generated-native transaction, M07 and startup11 strict schema bridges, failure/recovery, count132 (132 distinct launch/raw/verification chains and IDs), diagnostic Player provenance, lazy/dense and ordinary/mixed capacity, and final authorities all Passed.
+
+The complete seal and independent reauthentication passed: 72,826 live locators and 20,111 unique archive members. Seal-index SHA-256 `16f031acecbf0b10b37cf9b38c2f2f3e4c0183449e6df00cec3a9cf10562d926` (32,975,584 bytes); archive SHA-256 `c94bbb2662e5506b0ed7da9b61a140430487114635b8946ef9b218753d073c1a` (736,137,574 bytes). The authenticated checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260929-batch-i-evidence-ready/`. All A/B/C/D/E/F/G/H and H1 evidence, live batch inputs, logs, Players and archive remain intact.
+
+**Performance and risk limit.** `ComparabilityPassed` is not performance acceptance. Candidate/control median ratios include P01/P03 repeat10,000 allocation about 0.083/0.086, but P01/P03 first allocation about 1.247/1.239 and ON-NoPatch repeat10,000 allocation about 1.159. Full CPU, RSS and managed-memory statistics are bound in `D1_D2_MEASUREMENT.json` and `batch/performance-analysis.json`; favorable and unfavorable measurements must reach the independent reviewer and human gate. D1/D2 are measured, with disposition required before H2. H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. Independent read-only `code-gate-reviewer` stage review of committed checkpoint `273f33a324c2262505863fb8a3594f913eb47ebc` returned **PASS with zero findings** after direct manifest, 72,826 live-locator, 20,111 archive-member, build, Player, regression, pair, and count-chain inspection. Its verbatim output and receipt are in the checkpoint. This means `ReadyForHumanReviewGate` only. Explicit human disposition of favorable and unfavorable D1/D2 results and R02 acceptance is still required; canonical `CURRENT_STATUS.md` remains a pre-validation Primary document. No source, pin, timeout or verifier expectation was changed locally; no Player was rerun as a workaround.
+
+## Historical run — 2026-09-28, batch H sealed return after functional and regression failures
+
+**Local Validation → Primary Implementation: ReturnRequired; independent R02 stage review NotEligible/NotRun.** One fresh 34-cell R02LocalBatch-v1 ran once at /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928H/ with TMPDIR=/private/tmp and PYTHONDONTWRITEBYTECODE=1. Entry and final source authority passed. Candidate HEAD bef8249922ce79623f5156cb20c5afc881d4d4c4 and matched control HEAD 2e8ae9f5e5fa30325a4b6225b34a602477d7aa0e matched their pushed remote tips; all eight owning checkouts were clean at entry, and the two demos were clean after the run. HybridCLR remained 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad, package b936a495ade1691ebb6f3bab8fdff3ef34f6f192, candidate IL2CPP 3981da12f2cd3ee878a04dda6f573d0ad3faeda5, and control IL2CPP 6be7f38bec2fa4677d24efc1a4a1294240789933. Common source anchor af9ba49127a7e852fed504a55c733c5f6ec5e54e has nine candidate metadata transport paths, zero post-anchor non-metadata paths, and 1,666 common candidate/control non-metadata demo blobs.
+
+The runner produced a complete LOCAL_BATCH_RESULT.json: **25 Passed, 5 Failed, 4 Blocked**. Result SHA-256 a1ca2bebd20f8ecf9d7d9328cb72495f4d6a7e5b8235ab26ae4f137811d2ed03. Its mandatory seal passed and was independently reauthenticated member by member, including every live locator: 63,237/63,237 live bindings and 19,346/19,346 archive members. Seal-index SHA-256 8e421d228508e6546f5161876577d867841fe4794f6da369072bd0d6a5b96574; archive SHA-256 c475828ef428b6f77c6fb0695031243cab2e59b5626f2cdec283ce2e58f82f98. The authenticated review checkpoint is Docs/AssemblyShadow/History/M07R/R02/local-validation-20260928-batch-h-return-required/. The full live root and 573,188,976-byte archive remain intact, as do A/B/C/D/E/F/G and H1 evidence.
+
+| Cell or group | Result | Evidence and limit |
+| --- | --- | --- |
+| Entry/final authority, common sources, host Primary, E forensics, candidate/control builds and frozen map | Passed | All nine Primary subcells passed. Actual macOS native writer/parser used the quoted project-header policy at diagnostics 0/1/2 with 1,310 checks and 12 native plus one legacy fixture. Fresh ON/OFF Unity graphs, M00 inputs, process completion and restoration passed on both roles. |
+| Four control sidecars, candidate OFF and candidate ON-NoPatch | Passed | Six functional sidecars have authenticated Player runs and semantic checks. |
+| Candidate ON-P01 and ON-P03 | **Failed** | Both raw Players exited successfully, but strict verification rejected the warm 10,000-allocation row. Each mode recorded 10,000 admission misses, proof attempts, unready decisions and baseline-state checks; 20,000 field and 20,000 interface workspace builds; 10,000 layout checks; only two cache hits. Metadata searches stayed at zero. The promised warm certificate reuse did not occur. |
+| Four pilot plus forty formal A/B pairs / 88 processes; D1/D2 | Blocked / NotMeasured | Functional P01/P03 failures prevented the paired performance cell. There is no new R02 CPU/RSS acceptance analysis or D1/D2 disposition. |
+| Editor, native regressions, generated-native inputs/transaction, negative fixtures and failure/recovery | Passed | EditMode passed 1,119/1,119, including all five exact R02 Editor contracts. Independent native and failure/recovery results passed. |
+| M07 | **Failed** | Fourteen Player launches completed; strict verify-m07-results.py rejected the first P01 raw type resolution because the new r02 member is unknown to its historical schema. |
+| Startup11 | **Failed** | Eleven launches completed, but the source-bound batch invoked absent Tools/AssemblyShadow/verify-r01-early-results.py. No strict aggregate startup verdict exists. |
+| Count132 | Passed | Fresh matrix passed 132/132 launch verifications and verify-h1-count-matrix.py exited 0. |
+| Diagnostic build and capacity | **Failed** / Blocked | The diagnostic receipt points to a batch-scoped _temp Player; the strict R01B input verifier requires a distinct Player under Builds/AssemblyShadow/R01B. Retained capacity inputs and overflow fixture passed; lazy/dense, ordinary capacity and mixed capacity were blocked. |
+| Seal and independent stage review | Passed / NotEligible | Complete seal and independent authentication passed. ReturnRequired prevents independent R02 stage review. |
+
+The direct warm-path failure is an incomplete admission certificate: pinned AssemblyShadowAllocationProof.h increments AdmissionUnready and returns without publication when certificate.complete is false. Pinned AssemblyShadowTypeResolver.cpp::CheckLayout marks the trace incomplete when a nonstructural source or target class has size_inited false. The evidence proves this path repeated 10,000 times in both modes; it does not identify the exact class or establish whether the workload or runtime readiness invariant needs correction. M07, startup11 and diagnostic-build are separate source/contract integration failures. No Local source, flag, pin, hash, timeout or verifier expectation was changed; no functional or performance Player was rerun as a workaround.
+
+H1 remains PassedWithExplicitDeferredRisk. R02Accepted=false; mayEnterR03=false. Primary must publish a bounded source/control repair and new exact handoff before another unused batch root. Preserve the H archive and earlier evidence; do not begin R03.
+
+## Historical run — 2026-09-28, sealed 34-cell R02LocalBatch-v1 returned at host contract compile
+
+**Local Validation → Primary Implementation: `ReturnRequired`; independent R02 stage review NotEligible/NotRun.** One fresh batch ran once in unused `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260928G/` with `TMPDIR=/private/tmp`, `PYTHONDONTWRITEBYTECODE=1`, Unity 2022.3.62f2, Python 3.14.6, PowerShell 7.6.3, .NET SDK 8.0.318 and macOS arm64 C++. Candidate and control demo worktrees fast-forwarded cleanly to exact pushed heads `d807b6e29ad22b15c2c425f78db8e61fbe197faf` and `028ad68fa25a531be07f11f1fdcc417842f98ab4`; both package worktrees already matched `b936a495ade1691ebb6f3bab8fdff3ef34f6f192`. Candidate/control HybridCLR remained `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, with candidate IL2CPP `3981da12f2cd3ee878a04dda6f573d0ad3faeda5` and control IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. Eight remote/HEAD/clean source authorities passed. Candidate transport from source anchor `1642392278a97bc9348195e35ec5d1b7fb6fa530` changed nine metadata paths and zero non-metadata paths; candidate/control shared 1,664 non-metadata demo blobs.
+
+`LOCAL_BATCH_RESULT.json` records **34 cells: 9 Passed, 1 Failed, 24 Blocked**, with SHA-256 `4df6eb37397291b10529b97a8e1ecfd14e8885ac1d7c258123acbfb480140772`. The mandatory seal **Passed**: index SHA-256 `8e349af00f80a208258c4fd1ec3e960608f93c8ffe5c31b4f08c1c034e494978`, archive SHA-256 `7356b7816409e142c9055334902551bc119ab08ca5d73485244bb6a3ba4c3678`. Independent member-by-member audit and all 9,031 live bindings passed for 8,662 unique archive blobs. The authenticated checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260928-batch-g-return-required/`; preserve the full G live root, its archive, and all A/B/C/D/E/F/H1 evidence.
+
+| Cell/group | Result | Evidence and limit |
+| --- | --- | --- |
+| Entry/final authority and common source | `Passed` | Exact eight repository heads/remotes/pins and clean checkouts at both boundaries; no executable-source delta after anchor |
+| Host Primary | **`Failed`** | Its source, native, revision, codec, 210/210 Python and managed Baseline/P01/P03 subcells passed. The actual native-writer/package-parser contract failed at `compile-0`: `/usr/bin/c++` with `-I il2cpp_plus/libil2cpp/vm` causes libc++ `<cstring>` to include the project's `vm/string.h`, which then cannot find `il2cpp-config.h`. Command exited 1 with clean process group. No producer/parser contract assertion ran. |
+| E DLL forensics | `Passed` | Both missing prior-E live DLLs were recovered only as authenticated exact members of E's Git-bound index/archive, copied to G before builds and included in G's complete seal. They remain historical input bytes, not fresh Player evidence. |
+| Independent native regressions, retained capacity input authentication, overflow fixture | `Passed` | These do not establish Unity build, capacity Player, or R02 acceptance. |
+| Candidate/control builds, fixed M00 materialization and frozen map | `Blocked/NotRun` | Host Primary failure is a required build prerequisite; no new Unity graph, M00 materialization or valid ON/OFF build was produced. |
+| Eight sidecars, four pilot plus forty formal A/B pairs / 88 timing processes | `Blocked/NotRun` | No candidate/control Player launches or CPU/RSS performance analysis; D1/D2 have no R02 measurement or disposition. |
+| Five required Editor contracts, M07/startup/failure/count132/diagnostic/lazy-dense/capacity, generated transaction | `Blocked/NotRun` | Actual Unity/IL2CPP and regression repairs are still untested at this final source. The seven host synthetic Editor-coverage tests passed within Python but cannot replace the five real Editor cases. |
+| Complete seal and independent stage review | `Passed` / `NotEligible` | Batch result binds a complete independently audited seal; result is `ReturnRequired`, not `EvidenceReadyForStageReview`, so no independent R02 review was commissioned. |
+
+The direct compile error is not evidence of a parser semantic failure; the contract test never produced a native fixture. The contract tool uses `-I` for a directory containing a project `string.h`; the macOS libc++ include chain reaches that file before the intended C header. Primary CI's selected macOS subset did not exercise this actual contract compile, leaving the platform-specific include collision undetected. Exact command, stderr and source bindings are in the checkpoint and `RETURN_TO_WEB.md`. No local source/flag/pin/hash/timeout/verifier change or semantic retry was made.
+
+H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. D1/D2 and independent review remain required before H2/R03.
+
+## Historical run — 2026-09-27, 34-cell R02LocalBatch-v1 returned after batch E
+
+**Local Validation → Primary Implementation: `ReturnRequired`; independent R02 stage review NotEligible/NotRun.** One fresh batch ran in `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927F/` with `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1`. Candidate exact pushed handoff was `3e9a842b11c7848692728376aa5ab1bf4b20bece`, control exact pushed head `5a931fe86795e8cc192d3df262cdee824b105963`. Candidate source/tool anchor `d4cfbe5da29482a3b307fbec3333821615288129` differs from handoff by nine metadata paths and zero non-metadata paths. Candidate sibling heads were HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and R02 IL2CPP `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`; control used the same HybridCLR/package pins and H1 IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. Source/remote authority and common source graph passed at entry.
+
+The runner recorded **34 cells: 22 Passed, 8 Failed, 4 Blocked**. Its full `LOCAL_BATCH_RESULT.json` was **not produced**, because the mandatory seal failed. `SEAL_FAILED.json` names a missing prior-E compiled DLL in the forensic retained-input list; the matching prior-E control compiled DLL is also absent. These historical paths are neither reconstructed nor silently excluded. The Local failure checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-batch-f-return-required/`. Its `LIVE_EVIDENCE_INVENTORY.json` hashes 1,984 existing batch and current external-root files, explicitly lists both missing E inputs, and is **not a substitute for the failed complete batch seal**. The live F batch and all A/B/C/D/E/H1 evidence remain preserved.
+
+| Cell/group | Result | Evidence and limit |
+| --- | --- | --- |
+| Primary, E DLL forensics, candidate/control builds, frozen map | `Passed` | Host Primary's eight cells passed. Both role-specific fixed M00 materializations authenticated the exact 4,608-byte historical SHA-256 `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`. Fresh controlled ON/OFF M07 graphs, Unity Roslyn completion and restoration passed; E forensic analysis passed. |
+| Eight functional sidecars | 5 Passed, 3 Failed | All four control and candidate OFF passed. Candidate ON-NoPatch, ON-P01 and ON-P03 produced Player raw `System.FormatException: Unknown type-resolution field: r02`. The pinned R02 native producer appends `r02`; the pinned managed type-resolution parser rejects unknown fields and requires 18 fields. This is a producer/parser schema integration failure. |
+| Pilot/formal performance, D1/D2 | `Blocked` | Failed candidate functional sidecars barred the four pilot and forty formal A/B pairs. There are no 88 fresh timing processes, CPU/RSS analysis, or R02 D1/D2 disposition. |
+| Editor, native, generated-input/transaction, negative fixtures, failure/recovery | `Passed` | Fresh Editor, independent native scripts, generated-native prerequisite and transaction path passed. Failure/recovery verifier passed. |
+| M07 | `Failed` | First T07-01-Prefab-P01 Player exited 1 with startup refusal and no raw result. The retained log does not identify the cause; this is a separate unresolved failure. |
+| Startup11 | `Failed` | Three expected-positive modes failed with the same `Unknown type-resolution field: r02` stack; eight expected-negative modes passed. |
+| Count132 | `Failed` | The parameter manifest/audit passed, then `run_local.py::counts` invoked `audit-h1-count-fixtures.py` on the nested manifest. It rejected the contract before any of 132 matrix Players ran. The source contains a separate `audit-h1-nested-fixtures.py`. |
+| Diagnostic build and capacity | `Failed` / `Blocked` | Diagnostic Unity changed tracked `Assets/HybridCLRGenerate/link.xml`; its cell failed clean-source authority. Final candidate authority also failed for that same generated change, and lazy/dense plus ordinary/mixed capacity were blocked. The changed bytes and diff are preserved in the checkpoint; after the process ended, the tracked file was restored byte-exact to HEAD. Final control authority passed. |
+| Complete seal and stage review | `Failed` / `NotEligible` | Seal stopped at a missing batch-E forensic retained-input path, so no runner result or seal-index/archive exists for F. Independent R02 stage review was not commissioned. |
+
+The checkout had no active Unity/batch process when the generated link was restored; its pre-restoration bytes are retained as `generated-link-after-diagnostic.xml`. The 1,984-file live inventory is a diagnostic preservation record, not an acceptance seal. No semantic retry, Player workaround, hash/pin change, M00 compiler helper, check relaxation, or non-trivial Local source repair occurred. The exact Primary return is in `RETURN_TO_WEB.md`.
+
+H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. R02 measurement and independent review must precede any H2/R03 decision.
+
+## Historical run — 2026-09-27, 33-cell R02LocalBatch-v1 returned at frozen M00 bytes
+
+**Local Validation → Primary Implementation: `ReturnRequired`; independent R02 stage review NotEligible/NotRun.** One fresh `R02LocalBatch-v1` ran in unused root `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927E/` with `TMPDIR=/private/tmp` and `PYTHONDONTWRITEBYTECODE=1`. Candidate pushed handoff was `6347b453169fec69a37963f9afc1a603a924cb28` on `codex/assembly-shadow-r01b-h1`; control was `a379f0b809a5d8af967df06fc83271d90fd84f4c` on `codex/r02-h1-runtime-control`. Common executable/tool source anchor `57a9470bf299af60f88112998c8326c4c013204a` differs from candidate handoff by nine metadata paths and zero non-metadata paths under `shadow_tools.metadata_only`. Candidate siblings were HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, R02 IL2CPP `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`; control used the same HybridCLR/package heads and H1 IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. Entry/final authority, correct remotes, common managed graph and all eight clean checkouts passed.
+
+`LOCAL_BATCH_RESULT.json` contains **33 cells: 9 Passed, 2 Failed, 22 Blocked**. Its SHA-256 is `f81095a7a2561faad6c69ececb8ec17f322c45ba92ae0cbaa633a1af3491d55a`. The bound seal-index SHA-256 is `be5d5dad20052a6244277ab372902274842d0200f86051ab7fe96d240e125cce`; archive SHA-256 is `5ee1e90e131e8a1c19b76b96e506d2be7e30e58888f6c1d3792b3594e0f0d6d2`. Independent member-by-member archive audit passed for 9,203 live locators and 8,763 unique blobs, including both failed compiled M00 DLLs and preparation receipts. The new authenticated checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-batch-e-m00-return-required/`. Preserve it, the complete E live batch and external ordinary-input roots, plus historical A/B/C/D and H1 evidence.
+
+| Cell/group | Result | Evidence and limit |
+| --- | --- | --- |
+| Candidate/control entry and final authority, common source graph, host Primary | `Passed` | Correct eight repository identities, clean workspaces and remote heads; source checks do not establish build acceptance |
+| Candidate/control Unity pinned installer completion | `Passed` within failed build cells | `commands/0004` and `0010` each had Unity exit 0, `R02OwnedUnityRoslyn-v2` completion `Passed`, `clean=true`, and outer process group clean. The batch-D installer completion rejection did not recur. |
+| Candidate ordinary M00 preparation | **`Failed`** | `commands/0007` Unity `R02OrdinaryInput.Prepare` compiled a 4,608-byte DLL, SHA-256 `9d05065f57806073919b551cb9b23e8f2ef86fab96bb3cb6d8da80f74b82ba99`, instead of frozen `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`. Unity exited 1; process completion was clean. Failed `preparation.json` and compiled bytes are retained. |
+| Control ordinary M00 preparation | **`Failed`** | `commands/0013` compiled a separate 4,608-byte DLL, SHA-256 `b6e8b232d1749ed67db7f7bda028522993c7e912a68192c05cad0fe8ef31f5e5`, differing from both frozen and candidate bytes. Unity exited 1; completion was clean. Its independent preparation and compiled bytes are retained. |
+| Four independent native regressions, retained capacity inputs, overflow fixture | `Passed` | Budget, recovery, index-runtime and type-cache scripts passed; retained capacity is input authentication only |
+| Native-generated prerequisite and transaction regression | `Blocked/NotRun` | Candidate build failed before a controlled graph existed. New dependency ordering worked; it did not yet validate real generated-native execution. |
+| Controlled ON/OFF graphs, build map, eight functional sidecars, four pilot plus forty formal A/B pairs/88 processes | `Blocked/NotRun` | Both build cells failed at ordinary input; no valid Player, paired CPU or RSS sample was produced |
+| Editor, M07, startup11, failure/recovery, count132, diagnostic, lazy/dense, ordinary/mixed capacity | `Blocked/NotRun` | Failed build and dependent prerequisites prevented these regressions |
+| D1/D2 R02 measurement and independent stage review | `Blocked/NotEligible` | No controlled paired series; `LOCAL_BATCH_RESULT.json` is `ReturnRequired`, not `EvidenceReadyForStageReview` |
+
+Both `preparation.json` receipts recorded the same two ordinary witness source-file hashes, but different source-pins hashes and different compiled DLL bytes. The candidate had an existing ignored M00 staged DLL with the frozen expected hash; the control had no staged DLL. Neither failed preparation staged or accepted its newly compiled output. The observed failure establishes a byte/provenance mismatch, not its precise compiler cause. Local did not copy the historical/candidate DLL into control, change the frozen hash or pins, relax a check, or retry semantic execution. Full command/log paths and Primary repair request are in `RETURN_TO_WEB.md`.
+
+H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. D1/D2 need fresh R02 measurement before H2, and R03 must not begin.
+
+## Historical run — 2026-09-27, repaired R02LocalBatch-v1 returned to Primary
+
+**Result: `ReturnRequired`.** The fresh, unused `R02LocalBatch-20260927D` root was executed once from candidate handoff `3bbc2c8dee125ba9db47dcd0584c4a6285abebf8` and matched control `6c950eaa98f995084750fe1ea8f80cfe4c59c61b`. Candidate executable source anchor `82d64ce415c062729f0082e81c1808eaac9602e4` differs from its handoff by ten metadata paths and zero non-metadata paths. Candidate sibling heads were HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and IL2CPP `3981da12f2cd3ee878a04dda6f573d0ad3faeda5`; the matched control used the same HybridCLR/package heads and H1 IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. Entry and final authority, remotes, clean worktrees, and common managed executable graph passed. All eight worktrees were clean after removing one local audit-generated Python cache file.
+
+The live batch is `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/_temp/AssemblyShadow/R02LocalBatch-20260927D/`; the authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-repaired-return-required/`. The batch has **31 cells: 8 Passed, 3 Failed, 20 Blocked**. `LOCAL_BATCH_RESULT.json` SHA-256 is `dc3185b3e0697894d19c99d581ab00a7d0f2533cdc8ca69a3b42425342a1b7f3`. Its bound `seal/seal-index.json` SHA-256 is `de3aae97aab1dcf86b6e92ad0e86cb31b83a27eec0726dece9fca431b91de602`; the archive SHA-256 is `5c6e082d58ca38f8a582eb2e746bc78ee565e2ead0b4b92e22b8e68637b106fb`. Independent member-by-member audit passed for 9,037 live locators and 8,657 unique archive blobs.
+
+| Cell | Result | Observed limit |
+| --- | --- | --- |
+| Candidate/control authority, common graph, host Primary, final authorities | `Passed` | Exact source, remote and clean-worktree checks; host checks do not imply runtime acceptance |
+| Candidate/control controlled builds | **`Failed`** | Unity `InstallRepeatability` logged success and exited 0 in both workspaces, but command-owned Roslyn completion returned `clean=false` after signalling `VBCSCompiler.dll`: `New or changed descendant during compiler completion`. The outer receipts `commands/0004` and `0007` correctly failed; neither build was accepted. |
+| Native regressions | **`Failed`** | Four of five scripts passed. `run-r01-transaction-native-tests.py` failed its dependency scan on missing `icalls/mscorlib/System/MonoType.h` and the `please run 'HybridCLR/Generate/All'` guard. This cell currently depends only on source authority and executed before a successful generated-header workflow. |
+| Retained capacity input authentication and overflow fixture | `Passed` | Inputs and fixture only; no capacity Player result was promoted |
+| Ordinary M00 input, frozen build map, eight functional sidecars, 44 A/B pairs / 88 formal processes | `Blocked/NotRun` | Both build cells failed before ordinary-input preparation; no fresh paired CPU or RSS analysis exists |
+| Editor, M07, startup11, failure/recovery, count132, diagnostic, lazy/dense, ordinary/mixed capacity | `Blocked/NotRun` | Build and dependent prerequisites failed; no affected regression Player was launched |
+| D1/D2 R02 measurement/disposition | `Blocked` | No controlled paired performance or memory series; H1's accepted deferred risks remain open for R02 review |
+| Independent R02 stage review | `NotEligible/NotRun` | Batch result is `ReturnRequired`, not `EvidenceReadyForStageReview` |
+
+The first Unity failure is a completion-identity failure, not a Unity install/compiler exit failure. The completion receipts retain the original owned compiler PID, start time, group, DLL hash, TERM action, and exact error, but do not retain the changed post-signal census; therefore the changed process cannot be classified more narrowly from this evidence. The native failure is a separate ordering/prerequisite issue. No source change, assertion relaxation, semantic retry, or relabeling was made locally. Preserve batch D, its archive, prior A/B/C evidence, and both installed-runtime workspace roots while Primary diagnoses and repairs the source-bound runner.
+
+H1 remains `PassedWithExplicitDeferredRisk`; `R02Accepted=false`; `mayEnterR03=false`. R02 stage review and H2 are not eligible. The exact return and proposed bounded Primary corrections are in `RETURN_TO_WEB.md`.
+
+## Historical run — 2026-09-26/27, R02LocalBatch-v1 returned to Primary
+
+### Exit
+
+**Local Validation → Primary Implementation: R02LocalBatch-v1 is `ReturnRequired`; R02 is not accepted and independent R02 stage review is NotEligible/NotRun.** H1 retains `PassedWithExplicitDeferredRisk` from the recorded human D1=A/D2=A decision. `R02Accepted=false`; `mayEnterR03=false`. The batch did not produce a valid candidate/control build map, functional Player result, or controlled D1/D2 performance series.
+
+The designated candidate checkout `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` was fast-forwarded cleanly to pushed handoff `5d163cbcb1b00b764ac0bc6e70a3ee0e1432a378` on `codex/assembly-shadow-r01b-h1`. Its executable source anchor is `06ba01e010c7eac3543dd6f23e083c2716941190`; the eight-path anchor-to-handoff delta contains zero non-metadata paths under `shadow_tools.metadata_only`. Candidate sibling heads matched `hybridclr=1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `hybridclr_unity=0ea633a2c5b936b5af69d944593c55bd2783fca9`, `il2cpp_plus=3981da12f2cd3ee878a04dda6f573d0ad3faeda5`. Four new registered control worktrees under `/Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/` matched demo `e6fdd32a6fd661a88ef108f7b055e4f7840e9e43`, HybridCLR `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, package `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and H1 IL2CPP `6be7f38bec2fa4677d24efc1a4a1294240789933`. Both four-repository authorities, their remotes, clean inputs, and the common managed executable graph passed at batch entry and final authority checks. All eight worktrees were clean after C.
+
+The authenticated Local checkpoint is `Docs/AssemblyShadow/History/M07R/R02/local-validation-20260927-return-required/`. Complete live attempts are candidate `_temp/AssemblyShadow/R02LocalBatch-20260926A/`, `R02LocalBatch-20260926B/`, and `R02LocalBatch-20260927C/`; the bounded Unity cleanup probe is `_temp/AssemblyShadow/R02UnityCleanupProbe-20260926C/`. None was overwritten or cleaned. Each batch produced `LOCAL_BATCH_RESULT.json`, command/cell receipts, a `Passed` content-addressed seal, and an archive. All three archives were independently reauthenticated member-by-member: A 8,646 unique members, B 8,655, C 8,664. Archive and index SHA-256 bindings are in the checkpoint.
+
+| Cell | Classification | Evidence and limit |
+| --- | --- | --- |
+| Candidate/control source authority and common graph | `Passed` | Exact eight repository heads, remotes, clean inputs, source pins, and identical non-metadata demo blobs |
+| Host Primary | `Passed` in B and C | Source reconstruction, native and revision matrices, codec storage, 115 Python tests, and managed Baseline/P01/P03 checks all passed; A Python had two macOS `/var` symlink test errors, corrected by `TMPDIR=/private/tmp` without source edits |
+| Candidate controlled graph | `Failed` in C | Internal M07 workflow completed and restored tracked inputs, but outer command `commands/0006` exited 0 with `processGroupClean=false`: owned `dotnet` / Unity `VBCSCompiler.dll` survived; strict batch rightly rejected its build evidence |
+| Control controlled graph | `Failed` in C | `commands/0011` exited 1 and also had a surviving owned `dotnet`; first compiler error was missing ignored `Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes` in the fresh control worktree |
+| Candidate native regressions | `Passed` in C | All five budget, recovery, transaction, index-runtime, and type-cache scripts passed after the candidate's internal build generated its local native header; B transaction test failed earlier with an empty generated Unity-version header |
+| Retained capacity input authentication and overflow fixture | `Passed` | Historical capacity bytes were authenticated as inputs only; no historical execution PASS was promoted |
+| Frozen build map, eight functional sidecars, 44 A/B pairs/88 timing processes | `Blocked/NotRun` | Both controlled graph prerequisites failed; zero valid paired samples and no CPU/RSS comparison |
+| Editor, M07, startup11, failure/recovery, count132, diagnostic, lazy/dense, ordinary/mixed capacity | `Blocked/NotRun` | Candidate build prerequisite failed; no affected regression Player was launched |
+| Source final checks and evidence seals | `Passed` | Candidate/control final authority passed; A/B/C `R02EvidenceSeal` archives passed independent full-member authentication, including failure outputs |
+| D1/D2 disposition | `Blocked` for R02 comparison | No cold/warm or RSS paired series. Host codec probe measured four unchanged profile-2 allocation requests totaling 29,884,384 bytes plus a 144-byte object on this local ABI; that is not Unity RSS, allocator overhead, or new R02 bytes |
+| Independent R02 stage review | `NotEligible/NotRun` | `LOCAL_BATCH_RESULT.json` is `ReturnRequired`, not `EvidenceReadyForStageReview`; H2 human review and R03 are closed |
+
+Attempt A used the default macOS Python temporary path under `/var`, which resolves through a symlink; strict tests rejected two linked-parent paths (115 leaves total). An isolated identical 115-test run with canonical `TMPDIR=/private/tmp` passed, and B then passed all host Primary checks. B's candidate and control Unity installer commands exited zero but failed owned-process cleanup due a surviving `dotnet` child. A bounded separate Unity install probe with `TMPDIR=/private/tmp`, `DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER=1`, `MSBUILDDISABLENODEREUSE=1`, and `DOTNET_CLI_USE_MSBUILD_SERVER=0` exited zero with `processGroupClean=true`, so C used those exact environment settings. C's longer M07 command still spawned Unity's `VBCSCompiler.dll`; its process outlived the outer PowerShell command. The C candidate workflow's own success line cannot override the failed process-group receipt. Control additionally needs canonical generation of its missing M00 hot-update input before compiler validation; copying the candidate's ignored output into control would break the matched-build provenance contract.
+
+Primary needs a source-bound runner/workflow correction that produces and authenticates the control M00 input from its own source, and that waits for or terminates only the command-owned Unity compiler server before declaring a clean process group. Preserve the existing strict no-survivor criterion, failed attempts, and generated-input restoration checks. After a pushed repair and a new exact handoff, Local can run a new batch root. The present run does not establish a D1/D2 performance improvement or memory budget; the user-accepted H1 deferred risks remain open for R02 measurement before H2.
+
+## Historical run — 2026-09-25, fresh source-038 count closure and independent M08 PASS
+
+### Exit
+
+**Local Validation → Primary Implementation: protocol `H1CountMatrixClosureSource038-v1` passed, the six-suite chain is supported, and genuinely independent read-only M08 returned MILESTONE PASS with no findings.** H1 is `ReadyForHumanReviewGate`; `M08Passed=true`, `humanGatePassed=false`, and `mayEnterR02=false`. R02 remains closed until explicit human H1 approval.
+
+The validation checkout `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` started at pushed handoff `df14afd618edd408356ee9559937ccf9080caef8` on `codex/assembly-shadow-r01b-h1`. Source anchor `0388479f7073289e3505b992956a7cbe78c302ce` had zero non-metadata changes through the handoff and final Local commits. The other three source heads remained `hybridclr=1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `hybridclr_unity=0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `il2cpp_plus=6be7f38bec2fa4677d24efc1a4a1294240789933`. The designated protected reproduction behavior and committed tooling were authenticated separately. Both committed candidate and reproduction preflights passed after execution; neither claimed build acceptance by itself.
+
+The authenticated checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-fresh-count-m08/`. Its frozen 82-entry `PRE_M08_MANIFEST.sha256` bound the exact C00–C09 evidence reviewed independently. `FINAL_STATUS.md`, C10 review output and receipt, and handoff snapshots are bound by the final `MANIFEST.sha256`. The complete live run is `_temp/AssemblyShadow/H1CountClosure038-20260925B/`, including seven sealed archives; four selected candidate build roots also remain live. Preserve those bytes through human review.
+
+| Cell | Result | Evidence and limit |
+| --- | --- | --- |
+| C00 source/handoff/reproduction authority | `Passed` | Four exact source heads, source-038 post-anchor metadata-only, both post-execution preflights Passed |
+| C01 fresh fixtures | `Passed` | Seed 20260925, 12 parameter and 10 nested cases, both independent audits Passed |
+| C02/C03 six builds and selection | `Passed` | Six distinct provenance-bound builds, native `Passed`, managed `SourceGraphBound`, exact restoration; four candidate ON/OFF × Debug/Release receipts selected by tuple |
+| C04/C05 fresh count matrix | `Passed / 132` | Timeout 120 seconds per launch; fresh 132-cell Player series and strict aggregate verification exit 0 |
+| C06 Launch/Raw audit | `Passed` | Exactly 132 verifier reports, 132 launch receipts, 132 semantic raw outcomes, 132 unique run IDs/PIDs; 118 ordinary Passed and 14 expected validation rejections |
+| C07 evidence seal | `Passed` | Seven archives: fixtures, matrix, build batch, four selected candidate build roots; every regular member matches its inventory and live file; zero AppleDouble |
+| C08 fresh count closure | `PassedFreshSource038CountMatrix` | Fresh source-038 count proof bound to fixtures, builds, 132-cell audit, and archives |
+| C09 whole chain closure v2 | `SixRequiredSuitesSupported` | Count=`FreshCurrentSourceExecution`; startup11, failure/publication/recovery, ordinary capacity, mixed capacity, M07/native=`AcceptedReusedAudited` |
+| C10 independent M08 | **`MILESTONE PASS`**, zero findings | Read-only `code-gate-reviewer` authenticated the committed checkpoint and live/archive evidence, revisited all three previous BLOCKED findings, and launched no Player |
+
+The first A build batch stopped before Unity because the candidate installed-runtime receipt still named demo pin `316894a`, not source 038. That failed attempt and its 957-file preinstall native-runtime archive were preserved. Local reran the pinned installer, verified the new installed receipt, regenerated both fixture families in separate B root, and completed the six-build batch. No source file or historical execution evidence was changed to make the preflight pass.
+
+The independent review ran from `2026-09-25T11:41:32Z` to `11:57:00Z`. It found no remaining M08 evidence gap. The former 12cf count matrix stays blocked in its historical record; only the new source-038 series supplies the current count Launch/Raw chain. The other five suites remain audited reuse, not fresh execution. Prior V04/V05 analysis and the source-27df formal 40/40 were not rerun. No performance/formal Player, capacity, startup11, failure, or M07/native rerun occurred.
+
+`ComparabilityPassed` establishes measurement validity, not performance acceptance. The full V04 analysis retains unfavorable ON-P01 and ON-P03 allocation, reflection, closed-generic, and RSS measurements for the human H1 gate. The next action is explicit human H1 review of the sealed evidence and measured performance; independent M08 PASS alone does not permit R02.
+
+## Historical run — 2026-09-25, M08 evidence closure re-review
+
+### Exit
+
+**Local Validation → Primary Implementation: the evidence-closure package authenticates its recovered origins and historical manifest successor claims, but the required count-chain suite is BLOCKED. The independent M08 re-review returned BLOCKED with one high-priority finding.** H1 remains `InProgress`; `M08Passed=false`, `humanGatePassed=false`, and `mayEnterR02=false`. R02 remains closed. No Player or formal runner was rerun.
+
+The clean validation worktree `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` was fast-forwarded to pushed handoff `384662d08482f804bfa9772c4acf38b834c57db1` on `codex/assembly-shadow-r01b-h1`. The source anchor remains `0388479f7073289e3505b992956a7cbe78c302ce`; its delta to the handoff HEAD has 79 metadata paths and zero non-metadata paths under the unchanged `shadow_tools.metadata_only` policy. The other three worktrees were clean and matched their pushed heads: `hybridclr=1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `hybridclr_unity=0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `il2cpp_plus=6be7f38bec2fa4677d24efc1a4a1294240789933`. Committed handoff preflight returned `SourceTargetVerifiedNotBuildAccepted`. The existing source-038 V05 SHA-256 `534eba62b817584f1a2d48c2fa1bcfccf498d447351c34f10a412993fff3d73f` and prior Local checkpoint manifest SHA-256 `71cbe155977a08fadacea92c641203c218d05db242ed301dd5d70bd249d31d10` were unchanged. In accordance with this metadata-only handoff, V01, V02, V04, and V05 were not rerun.
+
+The new authenticated Local checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260925-authority038-m08-re-review/`. It contains E00–E05 receipts, the initial and corrected E04 dispositions, the independent review verbatim, a machine receipt, and snapshots of this report and the Primary return. The Primary closure bundle remains at `Docs/AssemblyShadow/History/M07R/H1/current-primary/m08-evidence-closure-20260925/`; historical checkpoints and recovered JSON were not modified.
+
+| Cell | Result | Evidence and limit |
+| --- | --- | --- |
+| E00 source/handoff authority | `Passed` | Exact four pushed heads, zero source-038→HEAD non-metadata paths, committed preflight, existing V05/checkpoint hashes unchanged |
+| E01 recovered origins | `Authenticated` | All 11 prior-review/12cf copies byte-equal their immutable Git origins; reconstructed 925e Handoff bytes equal commit `075f8a25...` and expected SHA-256 `cb8f06d7...52a3d54` |
+| E02 historical checkpoint successor | `AuthenticatedWithExplicitHistoricalExclusion` | 925e effective 293/293 using the recovered external Handoff member; 6913 has 29 verified plus one unavailable/excluded prelaunch log absent at creation commit; original 6913 manifest is **not** claimed 30/30; source-27df superseding checkpoint 92/92, formal 40/40 |
+| E03 prior P1 successor mapping | Authenticated facts for re-review, not acceptance | COUNT 12cf summary says 132/132 and six provenance builds; startup11 has 11 distinct historical PIDs and `ReusedAuditedFrom925e` classification; eight UNFIXED-REPRO cells retain 6 `UnexpectedAccepted`, 2 Debug `AssertAbort`, and `candidateAcceptance=false` |
+| E04 whole-chain source/index audit | `Passed` within its measured scope | 925e→038 exact 70 Bootstrap, 16 Runtime, 42 H1 count, three failure-tool and three capacity-tool blobs unchanged; native/package/IL2CPP pins unchanged; all 884 indexed 925e artifacts plus raw archive and 3168 reuse bindings authenticate |
+| E04 per-suite disposition | **Five `AcceptedReusedAudited`, one `Blocked`** | Startup11, failure/publication/recovery, ordinary capacity, mixed capacity, and M07/native accepted as reused. Count-chain blocked because the selected 12cf 132/132 reports lack their launch/raw layer. |
+| E05 independent `MILESTONE` re-review | **`BLOCKED`**, one high-priority finding | Read-only `code-gate-reviewer` independently confirmed the count evidence gap and revisited all three previous BLOCKED findings. Review retained verbatim. |
+
+The initial E04 suite receipt recorded six accepted suites after checking the 12cf summary, six-build provenance record, and archive Git blob identity. It did **not** inspect the archive member set or resolve the per-cell launch/raw references before accepting count-chain. The initial receipt and its nine-entry pre-review manifest are retained as failed-attempt evidence. The subsequent `E04/count-chain-raw-availability.json` examines all 132 verifier reports in the immutable Git archive: its 133 business members are 132 `verification.json` files plus `result-index.json`; none of the referenced 132 launch receipts or 132 raw results is present in the archive or designated checkout. The archive also contains 133 AppleDouble metadata entries. The corrected E04 receipt classifies count-chain `Blocked`, leaves five suites `AcceptedReusedAudited`, and makes independent M08 eligibility false. E03 remains an authentication of historical summary/provenance facts; it does not promote the count Player execution to an accepted raw-evidence chain.
+
+The independent reviewer ran read-only from `2026-09-25T08:44:08Z` to `08:58:55Z` and returned `BLOCKED`. It confirmed the recovered prior-review provenance, the 925e effective 293/293 and 6913 29+1 dispositions, and the supportable reuse of five suites. It found that the 12cf candidate count archive cannot establish the canonical Launch and Raw semantics layers for the selected 132/132 claim; the later 925e six-build GUIDs differ and cannot replace the missing 12cf launch provenance. Its full reasoning and unfavorable performance observations remain verbatim in `E05/independent-review.md`. The independent review was commissioned from the initial E04 receipt; its finding prompted the corrected Local classification. This re-review does not confer `ReadyForHumanReviewGate`.
+
+Primary must recover and index the exact 132 historical count launch receipts and raw results, together with their referenced build/input bytes and per-cell semantic checks, or arrange a separately authorized new controlled count matrix with a frozen source/build. The current Local handoff does not authorize a Player rerun. After count-chain can genuinely be `AcceptedReusedAudited`, a new independent M08 review is required. `ComparabilityPassed` in the reused source-27df performance analysis remains measurement validity only; P01/P03 slowdowns and higher RSS remain human-review inputs, not accepted performance.
+
+## Historical run — 2026-09-24/25, source 038 V05 and independent M08
+
+### Exit
+
+**Local Validation → Primary Implementation: V00–V05 passed within the analysis-only handoff; genuinely independent M08 returned BLOCKED with three evidence gaps.** The 40/40 formal Player series was not rerun. H1 remains `InProgress`, `M08Passed=false`, `humanGatePassed=false`, and `mayEnterR02=false`; R02 remains closed.
+
+The validation checkout was `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, at pushed handoff HEAD `4b8e8617deee75dbc10241e120ec2e8a3b3cd366` before this metadata-only checkpoint/report commit, with source anchor `0388479f7073289e3505b992956a7cbe78c302ce`. The other clean, remotely verified worktrees matched `hybridclr=1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `hybridclr_unity=0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `il2cpp_plus=6be7f38bec2fa4677d24efc1a4a1294240789933`. `V00/source-authority.json` records exact paths, heads, remote refs, source/package pins, and worktree registrations. The original execution source remains `27df1a3d60811dc121f296ab561ae313a382b363`.
+
+The pre-V05 V04 closure checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-pre-v05-v04/`: all 22 manifest members verify; its manifest SHA-256 is `bd8a7e575503623a0c8bf98739a1a8da3c0cc3bebc44dbdd94075c74e7f92c28`. The final Local checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority038-v05-m08/`: all 28 manifest members verify; its manifest SHA-256 is `71cbe155977a08fadacea92c641203c218d05db242ed301dd5d70bd249d31d10`. The final checkpoint retains the independent review verbatim and a SHA-bound receipt. Command receipts retain the exact commands, cwd, UTC intervals, outputs, and exit codes.
+
+| Cell | Result | Evidence and limit |
+| --- | --- | --- |
+| V00 source authority and committed preflight | `Passed` | Exact four-repository pins and remote heads; source-anchor→handoff HEAD zero nonmetadata paths; preflight `SourceTargetVerifiedNotBuildAccepted` |
+| V01 bounded Primary | `Passed` | 387/387 Passed, zero Failed/Error/Skipped; six V05 leaves included |
+| V01 complete Python discovery | Required zero Failed/Error met; 28 environment skips | 1,071 leaves: 1,043 Passed, 28 Skipped; inventory CLI exit 2 reflects skip policy; full inventory/log and explicit skip reasons retained |
+| V01A source audits | `Passed` | Source-27df→038 exact seven analysis/test paths; retained-6913→038 exact 25 paths; d61→038 exact three paths |
+| V02 immutable historical reauthentication | `PassedHistoricalIntegrityOnly` | 92/92 source-27df manifest, four fixed live hashes, 33,792/33,792 sealed files totaling 1,606,993,133 bytes; zero missing/content/stable-stat mismatches; 33,981 direct bindings with zero unresolved semantic mismatches |
+| V04.AF split-checkout compatibility | `AuthenticatedAnalysisOnlySuccessor` | Current analysis checkout and original historical evidence root remain distinct; exact v2 source policy and live historical authority pass |
+| V04.AG strict historical analysis | `Passed` / `ComparabilityPassed` | Fresh analysis of immutable original bytes: 45 attempts, 44 valid, one preserved invalid ON-NoPatch pilot, 40/40 valid formal, ten formal pairs/startup observations per mode, chronology and non-overlap pass |
+| V04 closure | `Passed` | 22-entry pre-V05 manifest; full performance JSON, exact assertion receipt, and scoped no-Player command proof |
+| V05 successor binding | `SuccessorEvidenceBoundForIndependentM08` | `H1AnalysisOnlySuccessorEvidence-v1`; current tests Fresh, historical execution Reused, historical performance Reanalyzed; complete performance JSON SHA bound; no Player; performance acceptance `NotClaimedNoSLA`; M08/human/R02 flags false |
+| Independent M08 `MILESTONE` | **`BLOCKED`**, three findings | Read-only `code-gate-reviewer` examined the complete V05 package and H1 gate; review and machine receipt in `M08/` |
+
+V04.AG ran once and exited 0 after full strict verification. The full paired analysis SHA-256 is `c02c4ffd0ad93759ef4f2ffb3a7482b3c9d5ed96cf4c9a122f35135478323053`. The original failed `R00-ON-NoPatch-pilot-01` still records process-group cleanup failure and skipped B side. In the warm repeat-10,000 phase, median paired B/A ratios for allocation, reflection invoke, and closed generic are 1.133/1.266/1.204 for ON-P01 and 1.150/1.276/1.221 for ON-P03. B median RSS is higher than protected A in every mode at both snapshots; P01/P03 managed-memory medians move downward. `ComparabilityPassed` is measurement validity, not performance acceptance. The full timing, startup, memory, and variance statistics remain visible to M08.
+
+The first V05 invocation failed before analysis because its new output directory had not been created. Its failure receipt is preserved. After creating that empty directory, the identical package command exited 0 and produced V05 SHA-256 `534eba62b817584f1a2d48c2fa1bcfccf498d447351c34f10a412993fff3d73f`; no input or Player evidence changed for the retry. The final checkpoint retains both command receipts and all 15 Local V05 assertions.
+
+The independent M08 review ran read-only from `2026-09-25T06:35:25Z` to `06:48:23Z` and returned **BLOCKED**, not PASS. Its three findings are: (1) the original M08 review/finding-closure records referenced by `History/M07R/R01B/H1-handoff.md` are not available in the designated local paths for finding-by-finding closure; (2) older whole-H1 manifests verify only 292/293 and 29/30 members at their listed paths, respectively, although the reviewer did not infer corruption of the current 40/40 formal raw evidence; and (3) V05 does not provide the required selected suite-by-suite equivalence bridge for older capacity, failure, recovery, count, and startup claims. The complete reviewer wording, evidence paths, performance observations, and closure requests are preserved verbatim in `M08/independent-review.md`. These gaps require Primary evidence disposition and a new independent M08 review. Human H1 approval is still separate even if a future M08 returns PASS.
+
+No Unity Editor, native build, IL2CPP build, Player, profiler, or formal runner was invoked in this analysis-only cycle. `V04/no-player-proof.json` records Local command issuance with its stated scope limit. Historical Unity EditMode and runtime results remain historical/reused where separately supported; this run does not promote them to fresh current-source execution.
+
+## Historical run — 2026-09-24, split-checkout historical analysis
+
+### Exit
+
+**Local Validation → Primary Implementation: V04 closed; V05 is not eligible under the current handoff, so independent M08 was not run.** V04.AF authenticated the separate current analysis checkout and historical evidence root. V04.AG then returned `Passed` / `ComparabilityPassed` for the immutable source-27df 40/40 series. No Player was rerun.
+
+The validation checkout was `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, pushed handoff HEAD `0bed47e981e5b3b4ac8b9ed2b4c423e11aa88b31` before this metadata-only report/checkpoint commit, and source/tool anchor `d61bd9df15268f5b02b6ac7a0ad8a06f9fc54ece`. The other clean, remotely verified worktrees remained `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` at `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` at `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` at `6be7f38bec2fa4677d24efc1a4a1294240789933`. The source pins, package reference, remote heads, worktree registrations, and host versions are recorded in `V00/source-authority.json`.
+
+The authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd61-split-analysis/`. Its `MANIFEST.sha256` covers 24 evidence/README files, SHA-256 `04ca3e24a1f16f21cbbde7e62493070529ffce4720beebac2c1f1615ab3b3553`; all 24 verified independently. Command receipts retain exact commands, UTC start/end, cwd, exit codes, stdout/stderr and paths. V04.AG ran once from `2026-09-24T06:57:24Z` to `17:08:44Z` and exited 0. Python was 3.14.6 on macOS arm64. Unity 2022.3.62f2 / StandaloneOSX / arm64 is the pinned target, but Unity and Players were not invoked in this analysis-only cycle.
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| V00 four-repository authority and committed preflight | `Passed` | `V00/`; all four pushed worktrees clean at entry; `d61→0bed` zero non-metadata paths; preflight `SourceTargetVerifiedNotBuildAccepted` |
+| V01 bounded Primary | `Passed` | `V01/bounded-primary/`: 381/381 Passed, zero skips/failures/errors; four split-checkout regressions included |
+| V01 complete Python discovery | `CompletedWithNonPass` from explicit environment skips; required zero failures/errors met | `V01/python-inventory.json` and full log: 1,065 leaves, 1,037 Passed, 28 Skipped, zero Failed/Error; the inventory CLI exit 2 reflects its skip policy |
+| V01 exact source audits | `Passed` | `V00/source-authority.json`: source-27df→d61 exact v2 seven paths; retained-6913→d61 exact v2 25 paths; d239→d61 exact three paths |
+| V02 source-27df checkpoint and complete live reauthentication | `PassedHistoricalIntegrityOnly` | `V02/`: 92/92 prior checkpoint manifest; four fixed live hashes; 33,792/33,792 sealed files, 1,606,993,133 bytes, zero missing/content/stable-stat mismatches; 184 additional current-live bindings match and five historical Git-source/tool identities match pinned Git blobs, zero unresolved |
+| V04.AF split-checkout compatibility | `Passed` | `V04/historical-compatibility.json`: `AuthenticatedAnalysisOnlySuccessor`, analysis root is the designated worktree, historical root is the unchanged ordinary owner, exact v2 policy and source-27df bridge/seal/formal authority |
+| V04.AG strict historical analysis | `Passed` / `ComparabilityPassed` | `V04/historical-performance-analysis.json` and `analysis-validation.json`: 45 retained attempts, 44 valid, exactly one preserved invalid ON-NoPatch pilot, 40/40 valid formal, ten formal pairs and startup observations per mode, one valid pilot per mode, complete chronology and non-overlap |
+| V04.AH analysis-only closure | `Passed` | New 24-entry SHA-256 checkpoint manifest verified; full measured statistics, including unfavorable values, retained unchanged in analysis JSON |
+| V05 successor | `NotEligible / NotRun` | `V05/eligibility.json`: current handoff names V05 but provides no runnable analysis-only successor criteria; the historical series cannot be relabelled fresh current-source execution and Player reruns are forbidden in this handoff |
+| Genuinely independent M08 | `NotEligible / NotRun` | `M08/eligibility.json`; no successor package eligible for a whole-chain review, so historical independent M08 `FAIL` remains the only M08 result |
+
+The original failed `R00-ON-NoPatch-pilot-01` retains its process-group cleanup error and skipped B side. The 40 formal attempts were not replayed. V04.AG authenticated and reanalyzed existing bytes; it did not create current-source Player evidence or change the original live source-27df paths. `V04/no-player-proof.json` records Local command issuance and its scope limit. Earlier runtime evidence remains `ReusedAuditedFromFF3D`, and Unity EditMode 1,076/1,076 remains `ReusedAuditedFromD18`; neither is fresh current-source execution.
+
+`ComparabilityPassed` establishes that the paired measurements can be analyzed, not that they meet a performance target. In the `repeat10000` phase, the median paired B/A ratios for allocation, reflection invoke, and closed generic are respectively 1.133/1.266/1.204 for ON-P01 and 1.150/1.276/1.221 for ON-P03. The candidate B median current RSS exceeds protected A in every mode at both memory snapshots. The analysis JSON retains every measured value and statistic for independent review.
+
+Primary must state an exact V05 successor-evidence contract that is compatible with this analysis-only, no-Player boundary, or explicitly defer V05 to a separately authorized fresh-execution program. Only after an eligible V05 package should a genuinely independent M08 review be commissioned. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. R02 remains closed.
+
+## Historical run — 2026-09-24, v2 historical compatibility preflight
+
+### Exit
+
+**Local Validation → Primary Implementation: FAIL at V04.AF historical compatibility preflight.** The fail-closed preflight rejected the checkout selected for current analysis authority. Corrected historical analysis, V05, and independent M08 were not run. No Players were rerun.
+
+The validation checkout was `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, pushed HEAD `aedf3c58c3e3f8ab612552563a29c8906b82bea1` before this metadata-only report commit, with demo source/tool pin `d239d9d00784ea2df22133cb8c938ec25035f5a0`. The other clean, remotely verified validation worktrees were `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` at `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` at `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` at `6be7f38bec2fa4677d24efc1a4a1294240789933`. Native/package/IL2CPP source pins and the Unity package file reference resolve to these worktrees. `V00/source-authority.json` records exact paths, branches, commits, remote heads, worktree registrations, pins, and host versions before report edits.
+
+The authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authorityd239-compatibility-project-blocked/`. Its `MANIFEST.sha256` covers 17 evidence and README files; verification passes. Command receipts contain exact commands, UTC start/end, cwd, exit codes, and output paths. The run used Python 3.14.6 on macOS arm64. The handoff specifies Unity 2022.3.62f2 / StandaloneOSX / arm64; Unity and Players were not invoked. No local source or test fix was made.
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| V00 four-repository source/native/package authority | `Passed` | `V00/source-authority.json`; all four initial worktrees clean and at pushed commits; anchor `d239d9d0` → handoff HEAD has zero non-metadata paths |
+| V00 committed handoff preflight | `Passed` | `V00/handoff-preflight.json`: `SourceTargetVerifiedNotBuildAccepted`, not a build acceptance result |
+| V01 bounded Primary | `Passed` | `V01/bounded-primary/results.json` and `tests.log`: 377/377 Passed, zero skips/failures/errors |
+| V01 complete Python discovery | `CompletedWithNonPass` from explicit skips; handoff requirements met | `V01/python-inventory.json` and `python-tests.log`: 1,061 leaves, 1,033 Passed, 28 environment Skipped, zero Failed/Error; corrected positive paired-performance leaf Passed. Inventory CLI exit 2 reflects skip policy, not a test failure; 27 skips lack the canonical H1R coordination directory and one lacks real compiler/config paths. |
+| V01A exact source audits | `Passed` | `V00/source-authority.json`: `27df1a3d` → `d239d9d0` exact seven-path `H1HistoricalPerformanceReanalysis-v2`; `69130bbb` → `d239d9d0` exact 25-path `H1V04RetainedGraphToolOnlySuccessor-v2`; `27df` → handoff HEAD remains exact seven paths |
+| V02 source-27df checkpoint manifest and fixed live inputs | `PassedHistoricalIntegrityOnly` | `V02/historical-checkpoint-manifest.log`: 92/92; `V02/live-evidence-reauthentication.json`: original live bridge `c03665db...`, seal `bdc4062a...`, formal batch `97ddb6c8...`, final sample `a8e519c3...` all SHA-256 exact |
+| V02 complete live sealed graph | `PassedReadOnlyReauthentication` | 33,792/33,792 files, 1,606,993,133 bytes, zero missing/content/stable-stat mismatches. 184 additional current-live direct bindings match. The initial generic binding audit marked five historical Git-source/tool identities as live mismatches; `V02/direct-binding-semantics-audit.json` verifies their pinned Git blobs and reports zero unresolved mismatches. Both audit receipts are retained. This does not replace the V04 semantic proof. |
+| V04.AF v2 historical compatibility | `Failed` | `V04/historical-compatibility-v2.json`, command receipt and checkout-selection diagnosis: exact v2 policy says the two new test paths are missing from the source delta selected by the tool |
+| V04.AG corrected historical strict analysis | `Blocked / NotRun` | Requires V04.AF `AuthenticatedAnalysisOnlySuccessor` |
+| V04.AH analysis-only closure, V05, independent M08 | `Blocked / NotRun` | No authenticated compatibility/analysis result; historical M08 `FAIL` is unchanged |
+| Current Unity/native/IL2CPP builds, Players, profiler | `NotRun` | Analysis-only handoff; original source-27df 40/40 execution remains historical and unchanged |
+
+The preflight uses the original live source-27df bridge, seal, batch, and final sample paths as required. It checks `bridge.projectRoot` (`/Users/ah/GitHub/hybridclr/hybridclr_demo`) for **current** source pins. That ordinary owner checkout is detached at `d7854b16c09b02d4494d28c2b0ea015ba83f58a3` and pins demo source `7aa6f61994da354b04464e38ddfc8552cc5c3055`. The designated validation checkout pins `d239d9d0`; the audited v2 seven-path delta is there. Thus the preflight returns `H1HistoricalPerformanceReanalysisFailure` with `missing=[Tools/AssemblyShadow/h1_bee_primary_tests.py, Tools/AssemblyShadow/tests/test_h1_paired_performance.py]`. This is a checkout-selection defect in the compatibility tool, not a live evidence hash failure. `RETURN_TO_WEB.md` contains the exact reproduction and Primary implementation direction.
+
+The immutable source-27df execution checkpoint and 40/40 formal series remain historical. Earlier runtime evidence remains `ReusedAuditedFromFF3D`; Unity EditMode 1,076/1,076 remains `ReusedAuditedFromD18`. Neither is fresh current-source execution. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. After Primary publishes a source-authority-safe repair, Local must restart V00, V01, live reauthentication, V04.AF, V04.AG, checkpoint authentication, V05, and genuinely independent M08 in order. R02 remains closed.
+
+## Historical run — 2026-09-23/24, repaired analysis-source handoff
+
+### Exit
+
+**Local Validation → Primary Implementation: FAIL at complete Python discovery.**
+
+The final pushed Primary handoff was checked out cleanly at `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`, branch `codex/assembly-shadow-r01b-h1`, HEAD `dd3c8988e9136e0c3a8ca965f82067d6b7c83acd`. Its build-input/tool anchor remains `7aa6f61994da354b04464e38ddfc8552cc5c3055`. The other validation worktrees and matching pushed commits are `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` at `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad`, `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` at `0ea633a2c5b936b5af69d944593c55bd2783fca9`, and `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` at `6be7f38bec2fa4677d24efc1a4a1294240789933`. All use the expected branch. Native/package/IL2CPP pins and the Unity package file reference resolve to this validation workspace. Exact repository inventories are in the new checkpoint's `V00/v00r-source-authority.json`.
+
+V00.R passed: all nine restored `.agents`/`.codex` files are byte-identical to their `7aa6f619` Git blobs; the complete 7aa→HEAD non-metadata delta is empty. The 27df→HEAD non-metadata delta is exactly the fixed five analysis-only paths, and the retained 6913→7aa delta is exactly the 24-path allowlist. The committed V00 preflight returned `SourceTargetVerifiedNotBuildAccepted`. This authenticates source identity, not a new Player build or acceptance gate.
+
+Bounded Primary regression passed 376/376. Complete Python discovery then executed 1,061 leaves: 1,032 `Passed`, 28 explicit `Skipped`, and one `Failed`. The failure is `test_h1_paired_performance.H1PairedPerformanceTests.test_analyze_sample_index_complete_positive`. Its synthetic `raw()` fixture stores build GUID, baseline ID, and runtime ABI only inside `playerBuildReceipt`; the corrected analyzer requires those three values at raw-result top level and rejects all 44 synthetic pilot/formal attempts with `R00 raw top-level build field differs: buildGuid`. The focused committed test reproduced this. Adding those top-level fields from the expected receipt **in memory only** made the focused test return `ComparabilityPassed`; no repository test or production source was edited. The bounded suite does not contain this failing positive test.
+
+Changing the test file in this checkout would create a sixth non-metadata path after the fixed `7aa6f619` anchor and invalidate both current source preflight and the exact five-path historical compatibility rule. This is therefore a Primary source-authority decision, even though the test fixture defect itself is narrow. `RETURN_TO_WEB.md` gives the reproduction and corrective direction.
+
+### Results
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| Four-repository Git/native/package preflight | `Passed` | `V00/v00r-source-authority.json`; exact pushed commits and clean checkouts before report edits |
+| V00.R repaired source-authority audit | `Passed` | Nine restored bytes exact; 7aa→HEAD zero non-metadata; 27df→HEAD exact five; 6913→7aa exact 24 |
+| V00 committed handoff/source preflight | `Passed` | `V00/handoff-preflight.json`; `SourceTargetVerifiedNotBuildAccepted` |
+| V01 bounded Primary | `Passed` | 376/376, full inventory and log in `V01/bounded-primary/` |
+| V01 complete Python discovery | `Failed` | 1,032 Passed / 28 Skipped / 1 Failed; `V01/python-inventory.json` and `python-tests.log` |
+| V01 focused fixture diagnosis | `FailedAsCommitted`; `PassedWithInMemoryDiagnosticCorrection` | 44 invalid synthetic attempts as committed; no file edit or authoritative PASS claim |
+| V02 historical checkpoint and four fixed live hashes | `PassedHistoricalIntegrityOnly` | 92/92 manifest entries and four SHA-256 matches; full live graph not reauthenticated this cycle |
+| V04 historical compatibility preflight and corrected analysis | `Blocked / NotRun` | Complete Python prerequisite has one failure |
+| Analysis-only closure checkpoint / V05 / independent M08 | `Blocked / NotRun` | V04 remains incomplete |
+| Unity, IL2CPP, native builds, Players, profiler | `NotRun` | Current handoff is analysis-only; no new build GUID or execution evidence |
+
+The run used Python 3.14.6 on macOS arm64; command receipts in the checkpoint record UTC start/end, exact commands, logs, paths, and exit codes. The handoff specifies Unity 2022.3.62f2 / StandaloneOSX / arm64; Unity was not invoked. The authenticated return checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority7aa6-python-fixture-blocked/`, containing all fresh V00/V01 and independent integrity evidence plus `MANIFEST.sha256`. The immutable source-27df execution checkpoint and 40/40 formal series remain historical; no Player was rerun and no historical receipt was changed. Earlier runtime evidence remains `ReusedAuditedFromFF3D`, earlier Unity EditMode 1,076/1,076 remains `ReusedAuditedFromD18`, and source-27df formal execution remains historical. None is relabelled as fresh current-source execution.
+
+Primary must publish a coherent test-fixture correction and source/compatibility handoff. After it is pushed, Local must restart V00.R/V00, rerun the full Python suite, then perform complete live historical reauthentication, historical compatibility preflight, corrected analysis, checkpoint authentication, V05, and genuinely independent M08 in order. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. R02 is closed.
+
+## Historical run — 2026-09-23/24, source-pin mismatch
+
+### Exit
+
+**Local Validation → Primary Implementation: FAIL at V00 source authority.**
+
+The latest pushed handoff was read at demo checkout HEAD `d7854b16c09b02d4494d28c2b0ea015ba83f58a3`, branch `codex/assembly-shadow-r01b-h1`, path `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`. Its declared analysis source/tool anchor is `7aa6f61994da354b04464e38ddfc8552cc5c3055`. All four validation worktrees are on the handoff branch, clean, and match the pushed remote heads. Their exact paths, commits, remotes, worktree registrations, package references, source pins, submodule inventories, and host versions are in the new checkpoint's `V00/repository-preflight.json`.
+
+| Repository | Validation checkout | Pushed commit |
+| --- | --- | --- |
+| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `d7854b16c09b02d4494d28c2b0ea015ba83f58a3` before this report commit |
+| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` |
+| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `0ea633a2c5b936b5af69d944593c55bd2783fca9` |
+| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `6be7f38bec2fa4677d24efc1a4a1294240789933` |
+
+Native, package, and IL2CPP pins equal those three repository commits. `Packages/manifest.json` resolves the HybridCLR Unity package to this validation workspace. No new build GUID or Player artifact was generated. The completed formal evidence remains bound to execution source `27df1a3d60811dc121f296ab561ae313a382b363` and retained graph source `69130bbb3a6df516916dddb5ad263799a7c6e5e3`; its four fixed live evidence hashes are recorded in `V02/historical-live-four-hashes.json`.
+
+The current `h1_handoff_preflight.py --project <candidate> --role candidate --output <new V00 output>` returned exit 1: `Blocked: Demo HEAD contains build-input changes after the source pin`. The exact nine non-metadata changes from `7aa6f619` to `d7854b1` are the three `.agents/skills/agent-collaboration` files and six `.codex/agents` profiles. The source verifier compares the complete non-metadata Git tree at the pin to HEAD, so the migration commit `d7854b1` invalidated the pinned checkout. The source-to-source five-path analysis delta and 24-path retained-graph delta remain exact, but they do not authenticate this later HEAD.
+
+### Results
+
+| Cell | State | Evidence and limit |
+| --- | --- | --- |
+| V00 repository/branch/remote/native/package pins | `Passed` | `V00/repository-preflight.json`; clean worktrees and exact remote heads before report commit |
+| V00 current committed handoff/source preflight | `Failed` | `V00/preflight.json`; source pin rejected before output receipt |
+| V01 exact source-to-source audits | `PassedForAnchorsOnly` | `V01A/source-audits.json`: 27df→7aa exact five; 6913→7aa exact 24; 7aa→HEAD has nine non-metadata files |
+| V02 historical checkpoint manifest | `PassedHistoricalIntegrityOnly` | 92/92 manifest entries verified in `V02/historical-checkpoint-manifest.log` |
+| V02 four fixed live evidence hashes | `PassedHistoricalIntegrityOnly` | Bridge, seal, batch, and final sample hash-identical at original live paths; no full live graph reauthentication this cycle |
+| V00 bounded Primary / complete Python discovery | `Blocked / NotRun` | Source preflight prerequisite failed |
+| V04 historical compatibility and corrected analysis | `Blocked / NotRun` | Source-authority prerequisite failed; no analysis result claimed |
+| V04 new checkpoint / V05 / independent M08 | `Blocked / NotRun` | No authenticated current analysis checkout |
+| Unity, IL2CPP, native builds, Players, profiler | `NotRun` | Current handoff specifies analysis-only validation; no new execution evidence |
+
+The fresh run used Python 3.14.6, PowerShell 7.6.3, and Git 2.50.1 on macOS arm64. The handoff specifies Unity 2022.3.62f2 / StandaloneOSX / arm64; Unity was not invoked. The preflight command, UTC start/end, exit code, stdout/stderr, Git inventories, full path lists, hashes, and manifest log are in `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260924-authority7aa6-source-pin-blocked/`. That checkpoint is the evidence for this return and references the immutable 27df execution checkpoint. Historical runtime, EditMode, pilot, and formal results remain historical and are not promoted to current-source PASS.
+
+Primary must restore a coherent pushed handoff source identity while preserving the completed 40/40 formal series and the source verifier's fail-closed guarantee. `RETURN_TO_WEB.md` gives the reproduction and implementation boundary. After a new pushed handoff, Local must restart V00 and run V01, historical compatibility, corrected analysis, checkpoint, V05, and independent M08 in order. H1 remains `InProgress`; historical independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`. R02 is closed.
+
+## Historical run — 2026-09-23 authority `27df1a3d`
+
+### Exit
+
+**Local Validation → Primary Implementation: RETURN REQUIRED after 40/40 formal pairs**
+
+Fresh V00 authenticated candidate checkout `f5e34235641c212c715aef3405925ddd4cf28ee6` and exact source/tool anchor `27df1a3d60811dc121f296ab561ae313a382b363`. Candidate authority returned `SourceTargetVerifiedNotBuildAccepted`; reproduction tooling, the protected profile-1 family, and both installed runtimes passed. The candidate installed-runtime receipt was refreshed through the sanctioned `AssemblyShadowBaseline.Editor.BaselineBuild.InstallRepeatability` path, then passed strict verification.
+
+Fresh bounded Primary validation passed 368/368. The focused suite passed 126/126, both requested PowerShell recovery suites passed, and full Python discovery completed 1,053 leaves: 1,025 Passed, 28 explicit environment-bound Skipped, zero failures, and zero errors. The exact source audits passed: `91ac4db3... → 27df1a3d...` contains the required 3 non-metadata paths and `69130bbb... → 27df1a3d...` contains the required 22 paths, with no forbidden runtime or producer delta. Historical Unity 1,076/1,076 remains only `ReusedAuditedFromD18`, not fresh current-source execution.
+
+The retained V04 manifests, build map, protocol, schedule, pilot index, five pilot attempts, four selected pilots, and eight selected launch receipts reauthenticated. Independent hashing verified 33,792 bound files totaling 1,606,993,133 bytes with zero content mismatches.
+
+A new `H1GraphReuseBridge` passed as `AuthenticatedToolOnlySuccessor` with SHA-256 `c03665dbdba797f5024fa8f376e6ac6aa6edf165c76387ddbf01ee6d3611826c`. It binds the exact retained runner SHA-256 `afc0b649579ebd497be493be9fd39fcfe19e3ba3074d6d6679e009975d21a07c` and current runner SHA-256 `a8de4dc1052306923f7aef529442d4c2012cc959c5dea58da6f15785caacd280`.
+
+The retained-pilot admission preflight passed with five retained attempts, four selected pilots, exact historical runner bindings, and no deep reconstruction. Its SHA-256 is `cbfc6faf8512a214ff97fa939bc6335b05a36362d66b539ff22e954c61529ed1`.
+
+The new guard-v2 strict seal passed with `guardKind=CrossRemountStableStatGuard`, `guardVersion=2`, guard fields exactly `[inode, mode, size, mtimeNs, ctimeNs]`, no device field, `deepLaunchVerificationCount=8`, and 33,792 sealed files. Its SHA-256 is `bdc4062acfc6d208a9be50a142b897a07e7359e5df14ad3d3d8f2805c5179631`.
+
+A wholly new formal series started from the retained pilot index, without chaining either historical failed series. The batch runner automatically used path-hash namespace suffix `7cafb9c53434`, so pair 1 did not collide with preserved project-local outputs. Pair 1 proved protected A had no formal launch authority, while candidate B received and consumed a valid current `H1FormalSideLaunchAuthority`, passed retained graph preparation, launched the Player, and emitted an R00 receipt echoing the same authority, bridge, seal, and build map.
+
+All 40 formal pairs passed on their first protocol attempt: 10/10 OFF-NoPatch, 10/10 ON-NoPatch, 10/10 ON-P01, and 10/10 ON-P03. No whole-pair retry was required. The batch receipt is `PassedAllFormalPairs`, SHA-256 `97ddb6c8c90c3bc6ae15a39813a7fa55d75a0a9c4db089a44ff036018ffd3667`; the final cumulative index SHA-256 is `a8e519c355364e96fa2ed8d808ad54e8053d8479b11bc54c2f8dae603d8cd021`.
+
+The bridge-aware strict analyzer completed after reconstructing the cumulative chain, but returned `Incomplete` / `ComparabilityIncomplete`. Build-map comparability and chronology passed. Of 45 cumulative attempts, 44 were rejected by the same receipt-shape check:
+
+`R00 raw build field differs: baselineBuildId`
+
+The raw R00 top-level `baselineBuildId` and `runtimeAbiHash` are correct and match the frozen build. The nested raw `playerBuildReceipt` correctly binds its path, SHA-256, and build GUID, but omits `baselineBuildId` and `runtimeAbiHash`. The final analyzer requires those fields inside the nested receipt. The omission is identical across protected/candidate and the 44 otherwise analyzable pilot/formal attempts. The remaining cumulative attempt is the already-preserved historical `R00-ON-NoPatch-pilot-01` failure: its A-side runner process group could not be proven gone, so B was skipped. Local reproduced the receipt-shape failure through the analyzer's isolated build-binding check and retained a machine-readable diagnosis. This is a source/tool contract failure, not a formal pair failure; retrying current formal pairs would reproduce the same immutable receipt shape.
+
+Local did not modify the producer, analyzer, `WEB_TO_LOCAL.md`, or any source/tool contract; did not relabel the formal evidence; did not enter V05/M08; and did not begin R02.
+
+### Results
+
+| Cell | Result | Evidence / disposition |
+| --- | --- | --- |
+| V00 candidate authority | `Passed` | Checkout `f5e34235...`; exact `SourceTargetVerifiedNotBuildAccepted` for `27df1a3d...` |
+| V00 reproduction/protected refs | `Passed` | Reproduction tooling on its actual branch worktree; protected profile-1 family exact |
+| V00 installed runtimes | `PassedAfterCandidateReceiptRefresh` | Candidate receipt SHA `4d8afaea...`; protected receipt SHA `54bfe84c...` |
+| V01 bounded Primary | `Passed` | 368/368 |
+| V01 focused validation | `Passed` | 126/126 plus both PowerShell recovery suites |
+| V01 Python inventory | `CompletedWithExplainedEnvironmentSkips` | 1,053 total; 1,025 Passed; 28 environment Skipped; 0 failures/errors |
+| V01 Unity EditMode | `ReusedAuditedFromD18` | Historical 1,076/1,076 only after exact source audit; not fresh execution |
+| V01A source audits | `PassedExactSets` | Exact 3-path and 22-path non-metadata sets |
+| V02 retained evidence | `PassedRetainedEvidenceReauthentication` | 33,792 files / 1,606,993,133 bytes / zero mismatches |
+| V04 graph bridge | `Passed` | New bridge SHA `c03665db...`; retained runner SHA `afc0b649...` exact |
+| V04 retained-pilot admission | `Passed` | 5 attempts; 4 selected; exact historical runner; no deep reconstruction |
+| V04 guard-v2 pilot seal | `Passed` | Stable stat guard exact; no device; 8/8 deep sides; SHA `bdc4062a...` |
+| V04 formal pair 1 authority | `Passed` | A has no authority; current B authority consumed; real Player launch; receipt echo exact |
+| V04 formal series | `PassedAllFormalPairs` | 40/40 first-attempt passes; 10 per mode; zero retries |
+| V04 final analysis | `Incomplete` | `ComparabilityIncomplete`; 0 valid / 45 invalid: 44 nested-receipt schema mismatches plus 1 preserved historical pilot process-cleanup failure |
+| V05 / independent M08 | `Ineligible / NotRun` | Mandatory V04 final analysis did not pass |
+
+### Root cause and required Primary correction
+
+The Player-side R00 producer and strict final analyzer disagree about the nested raw build-receipt schema. The producer places `baselineBuildId` and `runtimeAbiHash` at R00 top level but not inside `playerBuildReceipt`; the analyzer requires the same values inside `playerBuildReceipt`. The design allowed the mismatch because launch-time and cached-admission verification authenticated path/hash/build-GUID and top-level authority, while the final analyzer applied a stricter nested-field contract only after the complete series.
+
+Primary must reconcile this contract and add fail-closed coverage. The durable choices are to make the producer echo both fields into the nested receipt, or to deliberately revise the analyzer to bind the authenticated top-level fields instead. Primary must also decide, based on the corrected contract and immutability rules, whether these 40/40 raw attempts may be reanalyzed or whether a new formal series is required. Local must not make that semantic decision.
+
+### Retention checkpoint
+
+The authenticated checkpoint is `Docs/AssemblyShadow/History/M07R/H1/local-validation-20260923-authority27df-formal-analysis-blocked/`. It contains current authority/tests/audits, retained evidence authentication, the new bridge/admission/guard-v2 seal, all 40 cumulative sample indexes, the batch receipt, strict analyzer output and logs, the contract-failure diagnosis, prior checkpoint manifest links, handoff snapshots, raw evidence, all referenced formal side evidence, and a SHA-256 manifest. The large side-evidence archive is split into ordered parts for Git transport; concatenating the parts reconstructs aggregate SHA-256 `fda8226ee124ecc7d6687e2bbbab30d2166c838fd5fc7225b9972d949982f75f`.
+
+H1 remains `InProgress`; the last independent M08 remains `FAIL`; `humanGatePassed=false`; `mayEnterR02=false`.
