@@ -1,0 +1,83 @@
+name: R03 resource-complete pinned API compilation
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-completion-api.yml'
+      - 'Tools/AssemblyShadow/R03Completion/**'
+      - 'Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs'
+      - 'Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs'
+permissions:
+  contents: read
+jobs:
+  api:
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Read exact candidate package revision
+        id: pins
+        shell: python
+        run: |
+          import json,os,re
+          p=json.load(open('hybridclr_demo/Tools/AssemblyShadow/R03Completion/source-pins.json'))
+          assert re.fullmatch('[0-9a-f]{40}',p['hybridclr_unity'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('package='+p['hybridclr_unity']+'\n')
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.pins.outputs.package }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: Unity-Technologies/Graphics
+          ref: 4694a5f37cb1c40e48058da90d3deab8f440dae6
+          path: graphics
+          persist-credentials: false
+          sparse-checkout: |
+            Packages/com.unity.render-pipelines.core/Runtime
+            Packages/com.unity.render-pipelines.core/package.json
+          sparse-checkout-cone-mode: false
+      - name: Extract exact official compiler and API profile without Editor launch
+        shell: bash
+        run: |
+          curl --fail --location --proto '=https' --max-time 900 https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg -o "$RUNNER_TEMP/unity.pkg"
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
+          find "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$RUNNER_TEMP/unity-paths.txt"
+          test "$(wc -l < "$RUNNER_TEMP/unity-paths.txt" | tr -d ' ')" = 1
+      - name: Compile full original resource project and all actual dependencies
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/unity-paths.txt")"
+          CONTENTS="$(dirname "$(dirname "$UNITY")")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03Completion/compile_fixture_api.py \
+            --workspace "$GITHUB_WORKSPACE" --contents "$CONTENTS" \
+            --core-source "$GITHUB_WORKSPACE/graphics/Packages/com.unity.render-pipelines.core" \
+            --runtime "$CONTENTS/NetCoreRuntime/dotnet" --compiler "$CONTENTS/DotNetSdkRoslyn/csc.dll" \
+            --output "$RUNNER_TEMP/r03-completion-api"
+      - name: Bind all preserved compiler evidence
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-completion-api';root.mkdir(exist_ok=True)
+          refs={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','graphics')}
+          files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':refs,'files':files,'unityRun':False,'playerRun':False,'upmByteEquivalenceClaimed':False},indent=2)+'\n')
+          for n in refs:assert not subprocess.check_output(['git','-C',n,'status','--porcelain'],text=True).strip()
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-completion-api-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-completion-api
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
