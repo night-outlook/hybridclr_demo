@@ -31,7 +31,7 @@ internal static class Program
         Test("Q08-generic-field", f => { f.Both(t=>t.Fields.Add(new FieldDefUser("generic",new FieldSig(new GenericInstSig(new ClassSig(Ref(t.Module,"System.Collections.Generic","List`1","mscorlib")),t.Module.CorLibTypes.Object)),FieldAttributes.Private))); Excluded(f.Analyze(),"FieldGenericPointer"); });
         Test("Q09-byref-method", f => { f.Both(t=>t.Methods.Single(m=>m.Name=="Read").MethodSig.Params.Add(new ByRefSig(t.Module.CorLibTypes.Int32))); Excluded(f.Analyze(),"MethodGenericPointer"); });
         Test("Q10-pinvoke", f => { f.Both(t=> {var m=t.Methods.Single(x=>x.Name=="Read");m.ImplMap=new ImplMapUser(new ModuleRefUser(t.Module,"native"),"Read",PInvokeAttributes.CallConvCdecl);}); Excluded(f.Analyze(),"NativeCallableMethod"); });
-        Test("Q11-sequential-layout", f => { f.Both(t=>t.IsSequentialLayout=true); Excluded(f.Analyze(),"ExplicitOrSequentialLayout"); });
+        Test("Q11-sequential-layout", f => { f.Both(t=>t.Attributes=(t.Attributes & ~TypeAttributes.LayoutMask)|TypeAttributes.SequentialLayout); Excluded(f.Analyze(),"ExplicitOrSequentialLayout"); });
         Test("Q12-unknown-resource", f => { f.resources.unknowns=new[]{"missing resource closure"}; Excluded(f.Analyze(),"ResourceUnknown"); });
         Test("Q13-reference-bytes-changed", f => f.Tamper("references/mscorlib.dll"));
         Test("Q14-baseline-bytes-changed", f => f.Tamper("baseline/Pure.dll"));
