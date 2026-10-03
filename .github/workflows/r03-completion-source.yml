@@ -1,0 +1,60 @@
+name: R03 completion immutable source capture
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-completion-source.yml']
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 120bb01be680cec0375002a0823552d66d34b84c
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr
+          ref: 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
+          path: hybridclr
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/il2cpp_plus
+          ref: 1cf87f8209790f9fb2ebec97487dc1990ccd56c5
+          path: il2cpp_plus
+          persist-credentials: false
+      - name: Capture tracked input bytes and exact source identities
+        shell: python
+        run: |
+          import hashlib,json,os,shutil,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-completion-sources';out.mkdir()
+          repos={};files=[]
+          for repo in ('hybridclr_demo','hybridclr_unity','hybridclr','il2cpp_plus'):
+              root=Path(repo)
+              repos[repo]=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
+              tracked=subprocess.check_output(['git','-C',repo,'ls-files','-z']).decode().split('\0')
+              for name in filter(None,tracked):
+                  if repo=='hybridclr_demo' and not (name.startswith(('Assets/AssemblyShadowDemo/','Assets/Editor/','Tools/','.github/','ProjectSettings/','Packages/','Docs/AssemblyShadow/Plan/')) or name in ('Assets/AssemblyShadowDemo.meta','Docs/AssemblyShadow/README.md','Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md','Docs/AssemblyShadow/History/M07R/R03/local-validation-20261001-batch-d-return-required/batch/editor-results.xml')):
+                      continue
+                  source=root/name
+                  if not source.is_file() or source.is_symlink(): continue
+                  dest=out/repo/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,dest)
+                  data=dest.read_bytes();files.append({'path':str(dest.relative_to(out)),'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'blob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'kind':'R03CompletionSourceCapture','sourceCommit':os.environ['GITHUB_SHA'],'repositories':repos,'files':files,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-completion-sources-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-completion-sources
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
