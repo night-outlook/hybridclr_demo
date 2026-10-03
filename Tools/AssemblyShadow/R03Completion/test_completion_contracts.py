@@ -335,6 +335,11 @@ class OrchestrationTests(unittest.TestCase):
         matrix['cases'][0] = matrix['cases'][1]
         with self.assertRaises(ContractError): runner.cell_plan(matrix)
 
+    def test_resource_pipeline_does_not_depend_on_static_qualification(self):
+        source = (HERE / 'run_completion.py').read_text()
+        self.assertIn("self.cell('resource-prepare', lambda: resources.prepare(self), ('entry-authority', 'completion-tool-contracts'))", source)
+        self.assertNotIn("self.cell('resource-prepare', lambda: resources.prepare(self), ('entry-authority', 'completion-tool-contracts', 'qualification'))", source)
+
     def test_resource_restore_and_editor_continue_after_compile_failure(self):
         with tempfile.TemporaryDirectory() as directory:
             batch = object.__new__(runner.CompletionBatch)

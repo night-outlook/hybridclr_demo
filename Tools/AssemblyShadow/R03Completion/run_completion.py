@@ -75,7 +75,7 @@ class CompletionBatch(FocusedBatch):
         for case in self.matrix['cases']:
             self.cell(case['id'], lambda c=case: self.player(c), ('build-' + case['role'],))
         self.cell('producer-controls', self.producer_controls, ('build-candidate-release',))
-        self.cell('resource-prepare', lambda: resources.prepare(self), ('entry-authority', 'completion-tool-contracts', 'qualification'))
+        self.cell('resource-prepare', lambda: resources.prepare(self), ('entry-authority', 'completion-tool-contracts'))
         self.cell('resource-install', lambda: resources.phase(self, 'install'), ('resource-prepare',))
         self.cell('resource-compiler', lambda: resources.phase(self, 'compiler'), ('resource-install',))
         self.cell('resource-bundles', lambda: resources.phase(self, 'resources'), ('resource-compiler',))
