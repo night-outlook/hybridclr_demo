@@ -2,7 +2,7 @@ name: R03 remaining completion contracts
 on:
   push:
     branches: [codex/assembly-shadow-r01b-h1]
-    paths: ['Tools/AssemblyShadow/R03Completion/**', '.github/workflows/r03-completion.yml']
+    paths: ['Tools/AssemblyShadow/R03Completion/**', '.github/workflows/r03-completion.yml', '.github/workflows/r03-completion-api.yml']
 permissions:
   contents: read
 jobs:

@@ -6,6 +6,7 @@ on:
       - '.github/workflows/r03-completion-api.yml'
       - 'Tools/AssemblyShadow/R03Completion/**'
       - 'Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs'
+      - 'Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs'
       - 'Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs'
 permissions:
   contents: read
@@ -91,7 +92,7 @@ jobs:
           binding=Path(os.environ['RUNNER_TEMP'])/'newtonsoft-binding.json'
           if binding.is_file():shutil.copyfile(binding,root/'newtonsoft-binding.json')
           refs={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','graphics')}
-          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata'):
+          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata'):
               p=Path(base)
               for source in ([p] if p.is_file() else p.rglob('*')):
                   if source.is_file() and source.suffix in ('.py','.cs','.csproj','.json'):
