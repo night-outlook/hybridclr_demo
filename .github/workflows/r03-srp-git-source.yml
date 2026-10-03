@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: Unity-Technologies/Graphics
-          ref: 03ca85dffdde4b7bc1d6870074e6f5ff9f0352a3
+          ref: 4694a5f37cb1c40e48058da90d3deab8f440dae6
           persist-credentials: false
           sparse-checkout: |
             Packages/com.unity.render-pipelines.core/Runtime
@@ -24,7 +24,7 @@ jobs:
         run: |
           import hashlib,json,os,shutil,subprocess
           from pathlib import Path
-          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();assert sha=='03ca85dffdde4b7bc1d6870074e6f5ff9f0352a3'
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();assert sha=='4694a5f37cb1c40e48058da90d3deab8f440dae6'
           base=Path('Packages/com.unity.render-pipelines.core');metadata=json.loads((base/'package.json').read_text())
           assert metadata['version']=='14.0.12' and metadata['name']=='com.unity.render-pipelines.core'
           out=Path(os.environ['RUNNER_TEMP'])/'r03-srp-git-source';out.mkdir();rows=[]
@@ -32,7 +32,7 @@ jobs:
               if not p.is_file() or p.suffix not in ('.cs','.asmdef','.asmref','.meta','.json'):continue
               target=out/p;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,target)
               data=p.read_bytes();rows.append({'path':str(p),'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'blob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
-          (out/'provenance.json').write_text(json.dumps({'kind':'PinnedOfficialCoreRpSource','repository':'Unity-Technologies/Graphics','revision':sha,'packageVersion':'14.0.12','files':rows,'use':'Compile-time dependency; actual Local UPM bytes remain independently bound by Player build receipts','upmArchiveByteEquivalenceClaimed':False,'unityRun':False,'playerRun':False},indent=2)+'\n')
+          (out/'provenance.json').write_text(json.dumps({'kind':'PinnedOfficialCoreRpSource','repository':'Unity-Technologies/Graphics','revision':sha,'packageVersion':'14.0.12','files':rows,'use':'Compile-time dependency before the later appliedViewportScale backport; actual Local UPM bytes remain independently bound by Player build receipts','upmArchiveByteEquivalenceClaimed':False,'unityRun':False,'playerRun':False},indent=2)+'\n')
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: r03-srp-git-source-${{ github.sha }}
