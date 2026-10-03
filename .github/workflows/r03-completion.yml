@@ -1,0 +1,75 @@
+name: R03 remaining completion contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['Tools/AssemblyShadow/R03Completion/**', '.github/workflows/r03-completion.yml']
+permissions:
+  contents: read
+jobs:
+  host:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - name: Resolve exact package
+        id: pins
+        shell: python
+        run: |
+          import json,os,re
+          p=json.load(open('hybridclr_demo/Tools/AssemblyShadow/R03Completion/source-pins.json'))
+          assert re.fullmatch('[0-9a-f]{40}',p['hybridclr_unity'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('package='+p['hybridclr_unity']+'\n')
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.pins.outputs.package }}
+          path: hybridclr_unity
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: b936a495ade1691ebb6f3bab8fdff3ef34f6f192
+          path: reference-package
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.318'
+      - name: Pin SDK outside owning sources
+        shell: bash
+        run: |
+          printf '%s\n' '{"sdk":{"version":"8.0.318","rollForward":"disable"}}' > global.json
+          test "$(dotnet --version)" = 8.0.318
+      - name: Actual package qualification and retained contracts
+        shell: bash
+        run: |
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_host.py \
+            --workspace "$GITHUB_WORKSPACE" --reference-package "$GITHUB_WORKSPACE/reference-package" \
+            --output "$RUNNER_TEMP/r03-completion"
+      - name: Preserve source-bound evidence
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-completion';root.mkdir(exist_ok=True)
+          repos={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','reference-package')}
+          files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':repos,'files':files,'playerRun':False},indent=2)+'\n')
+          for repo in repos: assert not subprocess.check_output(['git','-C',repo,'status','--porcelain'],text=True).strip()
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-completion-${{ runner.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-completion
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
