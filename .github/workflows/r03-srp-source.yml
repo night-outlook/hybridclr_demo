@@ -1,0 +1,55 @@
+name: R03 exact SRP compiler sources
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-srp-source.yml']
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Acquire exact declared package bytes without version substitution
+        shell: python
+        run: |
+          import hashlib,json,os,tarfile,urllib.request
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-srp-sources';root.mkdir()
+          pending=[('com.unity.render-pipelines.core','14.0.12')];seen={};rows=[]
+          while pending:
+              name,version=pending.pop(0)
+              if name.startswith('com.unity.modules.') or name=='com.unity.ugui':continue
+              if name in seen:
+                  if seen[name]!=version:raise ValueError('Conflicting exact package versions: '+name)
+                  continue
+              seen[name]=version
+              url='https://packages.unity.com/'+name+'/-/'+name+'-'+version+'.tgz'
+              request=urllib.request.Request(url,headers={'User-Agent':'UnityPackageManager/2022.3.62f2','X-Unity-Version':'2022.3.62f2'})
+              data=urllib.request.urlopen(request,timeout=180).read()
+              archive=root/(name+'-'+version+'.tgz');archive.write_bytes(data)
+              directory=root/'PackageSources'/name;directory.mkdir(parents=True)
+              with tarfile.open(archive) as tar:tar.extractall(directory,filter='data')
+              manifests=list(directory.rglob('package.json'));manifest=directory/'package/package.json'
+              assert manifest in manifests,(name,manifests)
+              doc=json.loads(manifest.read_text());assert doc['name']==name and doc['version']==version
+              rows.append({'name':name,'version':version,'url':url,'sha256':hashlib.sha256(data).hexdigest(),'size':len(data)})
+              (root/'package-sources.json').write_text(json.dumps({'kind':'ExactOfficialPackageSources','packages':rows,'substitutions':False,'unityRun':False},indent=2)+'\n')
+              for dep,ver in doc.get('dependencies',{}).items():pending.append((dep,ver))
+      - name: Index acquired bytes
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-srp-sources';root.mkdir(exist_ok=True)
+          rows=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'files':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-srp-sources-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-srp-sources
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
