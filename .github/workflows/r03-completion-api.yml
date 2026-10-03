@@ -52,6 +52,24 @@ jobs:
           pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/unity-expanded"
           find "$RUNNER_TEMP/unity-expanded" -path '*/Unity.app/Contents/MacOS/Unity' -type f > "$RUNNER_TEMP/unity-paths.txt"
           test "$(wc -l < "$RUNNER_TEMP/unity-paths.txt" | tr -d ' ')" = 1
+      - name: Acquire the original locked JSON parser package
+        shell: python
+        run: |
+          import hashlib,json,os,tarfile,urllib.request
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP']);name='com.unity.nuget.newtonsoft-json';version='3.2.1'
+          metadata=json.load(urllib.request.urlopen('https://packages.unity.com/'+name,timeout=120))
+          dist=metadata['versions'][version]['dist']
+          data=urllib.request.urlopen(dist['tarball'],timeout=180).read()
+          assert hashlib.sha1(data).hexdigest()==dist['shasum']
+          archive=root/'newtonsoft.tgz';archive.write_bytes(data)
+          dest=root/'newtonsoft';dest.mkdir()
+          with tarfile.open(archive) as tar:tar.extractall(dest,filter='data')
+          manifest=json.loads((dest/'package/package.json').read_text())
+          assert manifest['name']==name and manifest['version']==version
+          plugin=dest/'package/Runtime/Newtonsoft.Json.dll';assert plugin.is_file(),list(dest.rglob('*.dll'))
+          (root/'newtonsoft-path.txt').write_text(str(plugin))
+          (root/'newtonsoft-binding.json').write_text(json.dumps({'package':name,'version':version,'url':dist['tarball'],'archiveSha256':hashlib.sha256(data).hexdigest(),'registrySha1':dist['shasum'],'pluginSha256':hashlib.sha256(plugin.read_bytes()).hexdigest(),'pluginBytes':plugin.stat().st_size},indent=2)+'\n')
       - name: Compile full original resource project and all actual dependencies
         shell: bash
         run: |
@@ -61,15 +79,23 @@ jobs:
             --workspace "$GITHUB_WORKSPACE" --contents "$CONTENTS" \
             --core-source "$GITHUB_WORKSPACE/graphics/Packages/com.unity.render-pipelines.core" \
             --runtime "$CONTENTS/NetCoreRuntime/dotnet" --compiler "$CONTENTS/DotNetSdkRoslyn/csc.dll" \
+            --newtonsoft "$(cat "$RUNNER_TEMP/newtonsoft-path.txt")" \
             --output "$RUNNER_TEMP/r03-completion-api"
       - name: Bind all preserved compiler evidence
         if: always()
         shell: python
         run: |
-          import hashlib,json,os,subprocess
+          import hashlib,json,os,shutil,subprocess
           from pathlib import Path
           root=Path(os.environ['RUNNER_TEMP'])/'r03-completion-api';root.mkdir(exist_ok=True)
+          binding=Path(os.environ['RUNNER_TEMP'])/'newtonsoft-binding.json'
+          if binding.is_file():shutil.copyfile(binding,root/'newtonsoft-binding.json')
           refs={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','graphics')}
+          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata'):
+              p=Path(base)
+              for source in ([p] if p.is_file() else p.rglob('*')):
+                  if source.is_file() and source.suffix in ('.py','.cs','.csproj','.json'):
+                      target=root/'sources'/source;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target)
           files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
           (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':refs,'files':files,'unityRun':False,'playerRun':False,'upmByteEquivalenceClaimed':False},indent=2)+'\n')
           for n in refs:assert not subprocess.check_output(['git','-C',n,'status','--porcelain'],text=True).strip()

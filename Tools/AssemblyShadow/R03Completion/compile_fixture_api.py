@@ -34,7 +34,7 @@ def collect_definitions(root):
     return definitions
 
 
-def validate(workspace, contents, core_source, runtime, compiler, output):
+def validate(workspace, contents, core_source, runtime, compiler, output, newtonsoft):
     workspace, contents, core_source, runtime, compiler, root = map(lambda p: Path(p).resolve(),
                                                                  (workspace, contents, core_source, runtime, compiler, output))
     require(not root.exists(), 'Unused compilation evidence root')
@@ -60,7 +60,9 @@ def validate(workspace, contents, core_source, runtime, compiler, output):
         metadata = loads((core_source / 'package.json').read_text())
         require(metadata['name'] == 'com.unity.render-pipelines.core' and metadata['version'] == '14.0.12', 'Exact declared Core RP version')
         definitions.update(collect_definitions(core_source / 'Runtime'))
-        plugins = sorted((package / 'Plugins').rglob('*.dll'))
+        json_plugin = Path(newtonsoft).resolve()
+        require(json_plugin.is_file() and json_plugin.name == 'Newtonsoft.Json.dll', 'Actual pinned UPM JSON parser plugin required')
+        plugins = sorted((package / 'Plugins').rglob('*.dll')) + [json_plugin]
         guids = {}
         for name, (asm, _, _) in definitions.items():
             meta = asm.with_suffix(asm.suffix + '.meta')
@@ -128,6 +130,6 @@ def validate(workspace, contents, core_source, runtime, compiler, output):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
-    for flag in ('workspace', 'contents', 'core-source', 'runtime', 'compiler', 'output'): p.add_argument('--' + flag, required=True, type=Path)
+    for flag in ('workspace', 'contents', 'core-source', 'runtime', 'compiler', 'output', 'newtonsoft'): p.add_argument('--' + flag, required=True, type=Path)
     a = p.parse_args()
-    validate(a.workspace, a.contents, a.core_source, a.runtime, a.compiler, a.output)
+    validate(a.workspace, a.contents, a.core_source, a.runtime, a.compiler, a.output, a.newtonsoft)
