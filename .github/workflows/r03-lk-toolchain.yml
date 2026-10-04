@@ -1,0 +1,44 @@
+name: R03 LK pinned generator inputs
+on:
+  push:
+    branches: [codex/connector-smoke-r03-lk-20261004]
+    paths: ['.github/workflows/r03-lk-toolchain.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - name: Extract exact official SDK without Editor execution
+        shell: bash
+        run: |
+          curl --fail --location --proto '=https' --max-time 900 https://download.unity3d.com/download_unity/7670c08855a9/MacEditorInstallerArm64/Unity-2022.3.62f2.pkg -o "$RUNNER_TEMP/unity.pkg"
+          echo '5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05  '"$RUNNER_TEMP/unity.pkg" | shasum -a 256 -c
+          pkgutil --expand-full "$RUNNER_TEMP/unity.pkg" "$RUNNER_TEMP/expanded"
+      - name: Capture source generator and standard reference closure
+        shell: python
+        run: |
+          import hashlib,json,os,shutil
+          from pathlib import Path
+          base=Path(os.environ['RUNNER_TEMP']); editors=list((base/'expanded').rglob('Unity.app/Contents'))
+          assert len(editors)==1,editors
+          contents=editors[0];out=base/'lk-tools';out.mkdir()
+          gens=list(contents.rglob('*MonoScript*'));assert any(p.suffix=='.dll' for p in gens),gens
+          selected=set((contents/'NetStandard').rglob('*'))
+          for g in gens:
+              if g.is_file(): selected.update(g.parent.rglob('*'))
+          rows=[]
+          for p in sorted(selected):
+              if not p.is_file():continue
+              assert not p.is_symlink(),p
+              rel=p.relative_to(contents);data=p.read_bytes();d=out/'Contents'/rel;d.parent.mkdir(parents=True,exist_ok=True);d.write_bytes(data)
+              rows.append({'path':str(d.relative_to(out)),'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'kind':'PinnedUnityFixedImageProducerInputs','unity':'2022.3.62f2','sdkArchiveSha256':'5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05','workflowSource':os.environ['GITHUB_SHA'],'files':rows,'generators':[str(p.relative_to(contents)) for p in gens],'unityRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-lk-tools-${{ github.sha }}
+          path: ${{ runner.temp }}/lk-tools
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
