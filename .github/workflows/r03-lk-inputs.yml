@@ -1,0 +1,52 @@
+name: R03 LK immutable source capture
+on:
+  push:
+    branches: [codex/connector-smoke-r03-lk-20261004]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 4abd44f1fc6f81a75c76ae4975c28dd06a80b9f8
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: c86cbf665f5fcb2137e5adf2960541ce492467a4
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Capture exact tracked sources and bounded K issue evidence
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'lk-inputs';out.mkdir()
+          rows=[];repos={}
+          hist='Docs/AssemblyShadow/History/M07R/R03/'
+          k=hist+'local-validation-20261003-batch-k-return-required/'
+          prefixes=('Tools/','Assets/','Packages/','ProjectSettings/','.agents/','.github/','Docs/AssemblyShadow/Plan/','Docs/AssemblyShadow/Architecture/','Docs/AssemblyShadow/Handoff/')
+          for repo in ('hybridclr_demo','hybridclr_unity'):
+              repos[repo]=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
+              entries=subprocess.check_output(['git','-C',repo,'ls-files','-s','-z']).decode().split('\0')
+              for entry in filter(None,entries):
+                  header,path=entry.split('\t',1);mode,oid,stage=header.split()
+                  keep=repo=='hybridclr_unity' or path.startswith(prefixes) or path=='Docs/AssemblyShadow/README.md' or path.startswith(hist+'M_') or path.startswith(k+'preflight/issue-') or path.startswith(k+'preflight/ignored-historical-input/') or path in (k+'preflight/PRIMARY_ISSUES.json', k+'README.md', hist+'local-validation-20261001-batch-d-return-required/batch/builds/candidate-release/Editor.log', hist+'local-validation-20261001-batch-d-return-required/batch/editor-results.xml')
+                  if not keep: continue
+                  p=Path(repo)/path
+                  assert mode in ('100644','100755') and p.is_file() and not p.is_symlink(),path
+                  b=p.read_bytes();assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==oid,path
+                  name=repo+'/'+path;dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(b)
+                  rows.append({'path':name,'gitBlob':oid,'size':len(b),'sha256':hashlib.sha256(b).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'schemaVersion':1,'kind':'R03LKReadOnlySourceCapture','repositories':repos,'workflowSource':os.environ['GITHUB_SHA'],'files':rows,'ignoredHistoricalBytes':'Diagnostic-only; no producer provenance or execution authority','unityRun':False,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-lk-inputs-${{ github.sha }}
+          path: ${{ runner.temp }}/lk-inputs
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
