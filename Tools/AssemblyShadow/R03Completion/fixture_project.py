@@ -13,16 +13,18 @@ from batch_evidence import write
 from run_local import REPOS, git
 from source_pin_contract import validate_document
 from resource_capabilities import PROFILE, dependency_profile
+import fixed_image_inputs as fixed_images
 
 POLICY = 'R03ResourceCompleteFixtureV1'
 ROOTS = ('Assets/AssemblyShadowDemo', 'Assets/AssemblyShadowBaseline',
-         'Assets/AssemblyShadowR01BDiagnostics', 'Assets/AssemblyShadowH1Baselines',
-         'Assets/StreamingAssets/AssemblyShadow/M00')
+         'Assets/AssemblyShadowR01BDiagnostics', 'Assets/AssemblyShadowH1Baselines')
 SETTINGS = ('ProjectSettings/ProjectSettings.asset', 'ProjectSettings/ProjectVersion.txt',
             'ProjectSettings/HybridCLRSettings.asset', 'ProjectSettings/AssemblyShadowSettings.asset',
             'ProjectSettings/AssemblyShadowDependencies.json', 'ProjectSettings/AssemblyShadowExtensibilityWhitelist.json',
             'ProjectSettings/AssemblyShadowResourcesM07.json', 'ProjectSettings/AssemblyShadowResources.json',
             'ProjectSettings/AssemblyShadowReflectionBindings.json')
+# Required configuration inputs also include the original fixed-image authority.
+SETTINGS += tuple(fixed_images.FILES)
 FROZEN = {
  'Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab': '935501089fc7a6a1c61d1ac2e676340b429d3062',
  'Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab.meta': 'ac9a053cd5dcff06cfc511efba019f5a967dfa3b',
@@ -50,7 +52,7 @@ def regular(path):
 
 
 def select(name):
-    return name in SETTINGS or name in ('Assets/HybridCLRGenerate/link.xml', 'Assets/HybridCLRGenerate/link.xml.meta') or any(name == root + '.meta' or name.startswith(root + '/') for root in ROOTS)
+    return name in SETTINGS or name in fixed_images.FILES or name in ('Assets/HybridCLRGenerate/link.xml', 'Assets/HybridCLRGenerate/link.xml.meta') or any(name == root + '.meta' or name.startswith(root + '/') for root in ROOTS)
 
 
 def source_catalog(demo, expected_commit=None):
@@ -65,7 +67,10 @@ def source_catalog(demo, expected_commit=None):
         data = regular(Path(demo) / name).read_bytes()
         require(blob(data) == oid, 'Source differs from exact commit: ' + name)
         rows.append({'path': name, 'blob': oid, 'sha256': hashlib.sha256(data).hexdigest(), 'size': len(data)})
+    for path, expected in fixed_images.FILES.items():
+        require(any(r['path'] == path and r['blob'] == expected for r in rows), 'Pinned fixed-image source missing: ' + path)
     require(set(SETTINGS) <= {r['path'] for r in rows}, 'Required original project configuration missing')
+    fixed_images.source_contract(demo)
     for path, expected in FROZEN.items():
         require(any(r['path'] == path and r['blob'] == expected for r in rows), 'Original M01 asset changed: ' + path)
     require(any(r['path'].endswith('/R03CompletionBuild.cs') for r in rows), 'Complete Primary build adapter is required')
@@ -105,10 +110,11 @@ def provision(batch):
               'runPath': str(project / ('_temp/AssemblyShadow/M02Validation-' + uuid.uuid4().hex)),
               'receiptRoot': str(project / '_temp/AssemblyShadow/R03CompletionArtifacts'),
               'repositories': {n: batch.pins[n] for n in REPOS}, 'files': rows,
-              'capabilityProfile': PROFILE, 'resourceMapSha256': sha(project / 'ProjectSettings/AssemblyShadowResourcesM07.json'),
+              'fixedImageProfile': fixed_images.PROFILE, 'capabilityProfile': PROFILE, 'resourceMapSha256': sha(project / 'ProjectSettings/AssemblyShadowResourcesM07.json'),
               'sourcePinsSha256': sha(project / 'ProjectSettings/AssemblyShadowSourcePins.json'),
               'packagesManifestSha256': sha(project / 'Packages/manifest.json'),
               'R03Accepted': False, 'H2Passed': False, 'expansionAuthorized': False}
+    fixed_images.provision(project)
     write(project / '.r03-completion-project', config)
     (project / '.r03-isolated-project').write_text(POLICY + '\n')
     return project, config
@@ -126,5 +132,7 @@ def verify_sources(project, config, *, configured=False):
         require(blob(regular(project / path).read_bytes()) == oid, 'Frozen M01 bytes/GUID changed')
     require(sha(project / 'Packages/manifest.json') == config['packagesManifestSha256'] and
             sha(project / 'ProjectSettings/AssemblyShadowSourcePins.json') == config['sourcePinsSha256'], 'Immutable project pins')
-    return {'kind': POLICY, 'filesVerified': len(config['files']), 'allowedConfigurationChanges': changes,
+    require(config.get('fixedImageProfile') == fixed_images.PROFILE, 'Explicit fixed-image provisioning authority')
+    fixed = fixed_images.verify_materialization(project)
+    return {'fixedImage': fixed, 'kind': POLICY, 'filesVerified': len(config['files']), 'allowedConfigurationChanges': changes,
             'frozenM01Files': len(FROZEN), 'newResourceBundlesRequired': True, 'runtimeAcceptance': False}

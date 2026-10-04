@@ -14,18 +14,22 @@ from fixture_authority import authenticate_copy, verify_graph, verify_installati
 from source_pin_contract import verify_report as verify_pin_report
 from resource_capabilities import verify_report as verify_capability_report
 from editor_contract import source_scope, verify as verify_editor
+import fixed_image_inputs as fixed_images
 
-METHODS = {'capability-preflight': 'Verify', 'source-pin-preflight': 'Verify', 'install': 'Install', 'compiler': 'CompilerPreflight', 'resources': 'Resources',
+METHODS = {'fixed-image-preflight': 'Verify', 'capability-preflight': 'Verify', 'source-pin-preflight': 'Verify', 'install': 'Install', 'compiler': 'CompilerPreflight', 'resources': 'Resources',
            'player-on': 'PlayerOn', 'player-off': 'PlayerOff', 'prepare': 'StructuralPrepare',
            'compile': 'StructuralCompile', 'restore': 'StructuralRestore', 'finalize': 'FinalizeFixtures',
            'integration': 'VerifyProductionEntries'}
 
 
 def prepare(batch):
+    origin = fixed_images.authenticate_origin(batch)
     project, config = provision(batch)
     batch.resource_config = config
     write(batch.root / 'resource-project.json', config)
-    return verify_sources(project, config)
+    result = verify_sources(project, config)
+    result['fixedImageOrigin'] = origin
+    return result
 
 
 def command(batch, phase):
@@ -34,7 +38,7 @@ def command(batch, phase):
     log = batch.root / 'resource-logs' / (phase + '.log')
     log.parent.mkdir(parents=True, exist_ok=True)
     require(not log.exists(), 'Resource phase cannot be retried')
-    owner = {'source-pin-preflight': 'R03CompletionSourcePinContract', 'capability-preflight': 'R03CompletionInventoryContract'}.get(phase, 'R03CompletionBuild')
+    owner = {'fixed-image-preflight': 'R03CompletionFixedImageContract', 'source-pin-preflight': 'R03CompletionSourcePinContract', 'capability-preflight': 'R03CompletionInventoryContract'}.get(phase, 'R03CompletionBuild')
     return [batch.unity, '-batchmode', '-nographics', '-quit', '-buildTarget', 'osx', '-projectPath', project,
             '-executeMethod', 'AssemblyShadowDemo.Editor.' + owner + '.' + METHODS[phase],
             '-shadowBaselineId', config['baselineId'], '-shadowM07ResourceOutput', project / '_temp/AssemblyShadow/R03Resources',
@@ -65,6 +69,10 @@ def phase(batch, name):
         contract = verify_capability_report(Path(config['receiptRoot']) / 'capability-contract.json', batch, project)
         contract['command'] = proof
         write(batch.root / 'capability-contract-verification.json', contract)
+        fixed_proof = unity_command(batch, command(batch, 'fixed-image-preflight'), 3600)
+        fixed_contract = fixed_images.verify_report(Path(config['receiptRoot']) / 'fixed-image-contract.json', batch, project)
+        fixed_contract['command'] = fixed_proof
+        write(batch.root / 'fixed-image-contract-verification.json', fixed_contract)
     receipt = unity_command(batch, command(batch, name), 7200 if name in ('player-on', 'player-off') else 3600)
     after = verify_sources(project, config, configured=True)
     path = Path(config['receiptRoot']) / (name + '.json')

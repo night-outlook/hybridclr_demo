@@ -19,6 +19,7 @@ from input_validation import validate_inputs
 from run_host import qualification
 from resource_capabilities import host_contracts as capability_contracts
 from fixture_contracts import constructor_contracts, editor_preflight
+import fixed_image_inputs as fixed_images
 import resource_pipeline as resources
 import legacy_runtime as legacy
 
@@ -58,8 +59,9 @@ class CompletionBatch(FocusedBatch):
         receipt = self.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v'])
         capabilities = capability_contracts(self)
         constructor = constructor_contracts(self)
+        fixed = fixed_images.host_contracts(self)
         editor = editor_preflight(self)
-        return {'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
+        return {'fixedImageGuards': fixed, 'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
                 'scope': 'Host helper and eighteen real Editor regressions; full rosters still required'}
 
     def execute(self):

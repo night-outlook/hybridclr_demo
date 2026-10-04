@@ -7,7 +7,6 @@ import argparse
 from pathlib import Path
 import shutil
 import sys
-from types import SimpleNamespace
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'R03'))
@@ -53,7 +52,9 @@ def validate(workspace,contents,output):
         inputs=[binding(p) for p in tracked];write(root/'inputs.json',{'files':inputs,'frozen':fixed.source_contract(project)})
         clean_outer(run_owned_command([*args[:4],'@'+str(rsp)],root/'commands/0001',600),0)
         shutil.copyfile(package/'Plugins/dnlib.dll',root/'dnlib.dll')
-        clean_outer(run_owned_command([mono,target,project,root/'probe'],root/'commands/0002',120),0)
+        profile=contents/'MonoBleedingEdge/lib/mono/unityaot-macos'
+        mono_path=str(profile)+':'+str(profile/'Facades')
+        clean_outer(run_owned_command(['/usr/bin/env','MONO_PATH='+mono_path,mono,target,project,root/'probe'],root/'commands/0002',120),0)
         value=loads((root/'probe/observation.json').read_text())
         result['observation']=fixed.verify_observation(value,root/'probe/controls',pinned_semantics=True)
         result['imageSemanticHash']=value['imageSemanticHash']
