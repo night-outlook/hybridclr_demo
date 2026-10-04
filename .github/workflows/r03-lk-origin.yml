@@ -1,0 +1,26 @@
+name: R03 LK existing frozen origin authentication
+on:
+  push:
+    branches: [codex/connector-smoke-r03-lk-20261004]
+    paths: ['.github/workflows/r03-lk-origin.yml']
+permissions:
+  contents: read
+jobs:
+  origin:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 4abd44f1fc6f81a75c76ae4975c28dd06a80b9f8
+          persist-credentials: false
+      - name: Authenticate original archive and pre-existing compact fixture
+        run: python3 -B Tools/AssemblyShadow/R02/export_m00_fixture.py --project "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/lk-origin" --verify-committed
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-lk-origin-${{ github.sha }}
+          path: ${{ runner.temp }}/lk-origin
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
