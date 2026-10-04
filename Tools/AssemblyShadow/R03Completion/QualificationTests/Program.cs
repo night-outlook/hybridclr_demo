@@ -42,7 +42,7 @@ internal static class Program
         Test("Q19-dynamic-consumer-unproved", f => { f.DynamicConsumer(); Excluded(f.Analyze(),"DynamicConcreteConsumer"); });
         Test("Q20-delegate-domain", f => { f.Both(t=>t.BaseType=Ref(t.Module,"System","MulticastDelegate","mscorlib")); Excluded(f.Analyze(),"DelegateAbi"); });
         Test("Q21-resource-input-required", f => { f.resources=null; Code("EligibilityResourceInput",()=>f.Analyze()); });
-        Test("Q22-deterministic-source-binding", f => {var a=f.Analyze();var b=f.Analyze();Need(Json(a)==Json(b),"Deterministic unchanged input report");Need(a.inputBindings.Length==6,"Both input worlds and actual references");});
+        Test("Q22-deterministic-source-binding", f => f.VerifyDeterministicInputs());
         Test("Q23-no-business-initialization", f => { f.Both(t=> {var m=new MethodDefUser(".cctor",MethodSig.CreateStatic(t.Module.CorLibTypes.Void),MethodImplAttributes.IL,MethodAttributes.Static|MethodAttributes.Private|MethodAttributes.SpecialName|MethodAttributes.RTSpecialName);m.Body=new CilBody();m.Body.Instructions.Add(Instruction.Create(OpCodes.Ldnull));m.Body.Instructions.Add(Instruction.Create(OpCodes.Throw));t.Methods.Add(m);});Candidate(f.Analyze()); });
         Test("Q24-resource-duplicate-key", f => {var t=new ResourceAbiTypeDescriptor{typeKey="pure:Fixture:Node"};f.resources.types=new[]{t,t};Code("EligibilityResourceInput",()=>f.Analyze());});
         Test("Q25-unknown-resource-flag", f => {f.resources.types=new[]{new ResourceAbiTypeDescriptor{typeKey="other:Fixture:X",hasUnknown=true}};Excluded(f.Analyze(),"ResourceUnknown");});
@@ -120,11 +120,29 @@ internal static class Program
         }
         private void Save(ModuleDef module,string relative){string p=Path.Combine(path,relative);Directory.CreateDirectory(Path.GetDirectoryName(p));using(var s=new FileStream(p,FileMode.Create))module.Write(s);}
         private void Prepare(){Save(baseline,"baseline/Pure.dll");Save(target,"target/Pure.dll");foreach(var m in extras){Save(m,"baseline/"+m.Name);Save(m,"target/"+m.Name);}}
-        public PureInterpreterEligibilityReport Analyze()
+        public PureInterpreterEligibilityReport Analyze(bool prepare = true)
         {
-            Prepare();using(var a=DnlibAssemblyLoader.Load(Path.Combine(path,"baseline"),new[]{Path.Combine(path,"references")},caps,false))
+            if (prepare) Prepare();
+            using(var a=DnlibAssemblyLoader.Load(Path.Combine(path,"baseline"),new[]{Path.Combine(path,"references")},caps,false))
             using(var b=DnlibAssemblyLoader.Load(Path.Combine(path,"target"),new[]{Path.Combine(path,"references")},caps,false))
             {var result=PureInterpreterEligibility.Analyze(a,b,null,null,resources);File.WriteAllText(Path.Combine(path,"eligibility.json"),Json(result));return result;}
+        }
+        public void VerifyDeterministicInputs()
+        {
+            // Re-emitting a PE is a new byte input, even when its IL is unchanged.
+            // Prepare once, then independently load/analyze the exact same files.
+            Prepare();
+            var files = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories).OrderBy(p=>p,StringComparer.Ordinal).ToArray();
+            var before = files.Select(ShadowHash.File).ToArray();
+            var a = Analyze(false);
+            File.WriteAllText(Path.Combine(path,"determinism-first.json"),Json(a));
+            var b = Analyze(false);
+            File.WriteAllText(Path.Combine(path,"determinism-second.json"),Json(b));
+            var after = files.Select(ShadowHash.File).ToArray();
+            File.WriteAllText(Path.Combine(path,"determinism-inputs.json"),Json(new {files,before,after}));
+            Need(before.SequenceEqual(after),"Determinism inputs must remain byte-identical");
+            Need(Json(a)==Json(b),"Deterministic unchanged input report");
+            Need(a.inputBindings.Length==6,"Both input worlds and actual references");
         }
         public void Tamper(string relative)
         {
