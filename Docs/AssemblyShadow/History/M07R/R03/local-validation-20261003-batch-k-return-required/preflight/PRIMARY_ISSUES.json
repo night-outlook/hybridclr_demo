@@ -1,0 +1,426 @@
+{
+  "kind": "KPrimaryImplementationReturnEvidence",
+  "utc": "2026-10-04T01:55:34.517612+00:00",
+  "executedRepositories": {
+    "branch": "codex/assembly-shadow-r01b-h1",
+    "expansionAuthorized": false,
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_demo": "1704c0393dd0c7717502e336232a0d951422e767",
+    "hybridclr_unity": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "runtimeAcceptance": false,
+    "schemaVersion": 1
+  },
+  "failedCells": [
+    {
+      "dependencies": [
+        "resource-install"
+      ],
+      "error": "Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/commands/0095/command.json",
+      "id": "resource-compiler",
+      "result": "Failed"
+    }
+  ],
+  "issues": [
+    {
+      "id": "R03-LK-001",
+      "symptom": "Actual resource CompilePlayerScripts fails in ReflectionBindingsILPostProcessor due to absent pinned M00 fixed image, then CompileFailed: No Player assemblies emitted",
+      "actualFailedCell": "resource-compiler",
+      "command": "0095",
+      "actualUnityExit": 1,
+      "outerExit": 1,
+      "supervisorClean": true,
+      "logExcerpts": [
+        {
+          "line": 724,
+          "text": "      HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor: (0,0): error AssemblyShadow reflection binding failed: System.IO.DirectoryNotFoundException: Could not find a part of the path '/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes'."
+        },
+        {
+          "line": 725,
+          "text": "         at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirectory, Func`2 errorRewriter)"
+        },
+        {
+          "line": 726,
+          "text": "         at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode)"
+        },
+        {
+          "line": 727,
+          "text": "         at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)"
+        },
+        {
+          "line": 728,
+          "text": "         at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)"
+        },
+        {
+          "line": 729,
+          "text": "         at System.IO.Strategies.FileStreamHelpers.ChooseStrategy(FileStream fileStream, String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)"
+        },
+        {
+          "line": 730,
+          "text": "         at System.IO.File.ReadAllBytes(String path)"
+        },
+        {
+          "line": 731,
+          "text": "         at HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor.ProcessAssembly(String assemblyName, IEnumerable`1 defines, Byte[] pe, Byte[] pdb, String projectRoot, IEnumerable`1 compilerReferences, Boolean normalizeResolvedEnums)"
+        },
+        {
+          "line": 732,
+          "text": "         at HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor.Process(ICompiledAssembly assembly)"
+        },
+        {
+          "line": 1523,
+          "text": "ShadowBuildException: CompileFailed: No Player assemblies emitted."
+        },
+        {
+          "line": 1524,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.ShadowHash.Require (System.Boolean condition, System.String code, System.String message) [0x0000b] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Model/ShadowConfiguration.cs:144 "
+        },
+        {
+          "line": 1525,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.CompileCore (System.String root, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, HybridCLR.Editor.AssemblyShadow.ShadowPolicyConfiguration policy, System.String[] defines, System.Boolean developmentBuild, System.Boolean captureMode) [0x0009c] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:246 "
+        },
+        {
+          "line": 1526,
+          "text": "  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.CompileWithOptions (System.String root, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, HybridCLR.Editor.AssemblyShadow.ShadowPolicyConfiguration policy, System.String[] defines, System.Boolean developmentBuild) [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:229 "
+        },
+        {
+          "line": 1527,
+          "text": "  at AssemblyShadowDemo.Editor.M07Build.ValidateCompilerInputs () [0x0002b] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/M07Build.cs:101 "
+        },
+        {
+          "line": 1528,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild.Execute (System.String phase, System.Action action, System.String variant) [0x00062] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:81 "
+        },
+        {
+          "line": 1529,
+          "text": "  at AssemblyShadowDemo.Editor.R03CompletionBuild.CompilerPreflight () [0x00000] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:115 "
+        },
+        {
+          "line": 1530,
+          "text": ""
+        }
+      ],
+      "sourceChain": [
+        "fixture_project.source_catalog selects only git ls-tree HEAD entries; M00 ROOT has no tracked files",
+        "provision copies that catalog; no fresh fixed-image generation/import prerequisite before compiler",
+        "AssemblySnapshot.CompileCore adds hash-bound reflection defines then CompilePlayerScripts",
+        "ReflectionBindingsILPostProcessor.ProcessAssembly reads every FixedAssemblyBytes site for each targeted assembly",
+        "Both fixed sites require absent M00 image before hash/provider/semantic checks; DirectoryNotFoundException is preserved",
+        "ILPP diagnostic fails Player compilation; AssemblySnapshot rejects no emitted assemblies"
+      ],
+      "mostLikelyRootCause": "Fresh source-only resource provisioning omits a required generated fixed-image input referenced by the unchanged reflection contract. ROOT selection does not guarantee required generated file presence. Actual target policy inventory checks only compiler assembly/reference inputs and cannot prove this ancillary image closure.",
+      "affectedScope": "Resource compiler/bundles/two native builds/P05 structural transaction/production P01-P05 and36 resource-measurement-early Players are blocked. Four focused builds/23 Players, independent755 Editor, source-pin/native install and actual policy/inventory preflight Passed.",
+      "recommendedDirection": "Primary must establish an explicit immutable source/build-bound fixed-image provision/generation prerequisite before any reflection-enabled Player compilation; audit all FixedAssemblyBytes sites and referenced generated artifacts. Verify bytes against exact pinned hash, provider identity and compiler-mode semantic contracts. Use a reviewed reproducible producer or authoritative committed/published fixture with provenance; do not copy an unpinned local/historical cache blindly, remove sites, disable ILPP/reflection controls, change pinned hashes to accept arbitrary bytes, or run the old full M00 Player as an implicit bootstrap.",
+      "remainingUncertainty": "Existing ignored owning image matches the configured hash but its generation provenance is not authoritative from this Git handoff and it was never used in K. Exact fresh reproducibility of that image and subsequent reflection/graph/native/runtime paths are unvalidated. Failed compiler output is not a valid snapshot; no compiler.json or snapshot.json receipt was emitted.",
+      "validationAfterFix": "New authorized tuple/root, unchanged ten inventory/source-pin controls and constructor/Editor checks, fixed-image positive and absent/mutated/identity/mode negative preflights, successful original compiler snapshot, all90 cells/six native builds/59 Players, 754+755 zero-skip Editors, P01-P05 exact restoration/production integration/observations/seal; preserve K and all prior evidence."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/cells/resource-compiler.json",
+      "sha256": "28530c74d93efa6291a6a8ea35253766c09fe3c3a40dce8a5d414d0e450d628b"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/resource-logs/capability-preflight.log",
+      "sha256": "cc9142259b8b44b95ee11ba1e2a2d2239c609efa2a45012639d7160335f0e8e9"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/resource-logs/compiler.log",
+      "sha256": "c6506e7e23250b2daa380d828747dad038cb4ff649cdf476ac7d339da3174c64"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/resource-logs/install.log",
+      "sha256": "ea44dcd98c339ae2291022bbca48dc927e4eae49b1061775e54c3d4905ddd93d"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/resource-logs/source-pin-preflight.log",
+      "sha256": "6fd2f581a4ea16e55b054059adc10f2b6f324f6f2e9ff98ede84af4224dbb385"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/commands/0095/command.json",
+      "sha256": "a7cb87797c3098f37bd9d72c16dcc18411c3ab0c3e5ab10a8b3818d0a841924a"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/commands/0095/unity-completion.json",
+      "sha256": "c19b5228b11ab0dafe55def4bab91b7453400c88af405b475363be876ef939c0"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/commands/0095/stdout.log",
+      "sha256": "5891b2cec84bbf7b45a7392934b47e6908d3f6012a84b60feb3eb5ef7f068292"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/commands/0095/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/ProjectSettings/AssemblyShadowReflectionBindings.json",
+      "sha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/capability-contract-verification.json",
+      "sha256": "307d10f77b4ffc460ea9597115d43f3215889c195a8bff14866b4874267f7f29"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-contract.json",
+      "sha256": "3435d7d1519121c2356dfe841508ec40ca1720489a6b606e345147e60c9481fd"
+    }
+  ],
+  "sourceSnapshots": [
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/M02Build.cs",
+      "sha256": "b30080165b5dac77e6521e825bd2bc7db6223431cdd3b5d1f8a4726eb2df18dd",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/M07Build.cs",
+      "sha256": "10ab0b4c45e3a2ce12bc90116f1a0c2a2a260470b1a1bf5dc9cf6583083daa14",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+      "sha256": "ae03943b08f46852e479532a660e67a3fdf6795616378053c72390e50b4332ff",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs",
+      "sha256": "28cc1cec37a8e9eb38a24393daf26a10e159d9c9aa5d44e5ac4538659f5811fc",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs",
+      "sha256": "485d7a27397f7e85778f2e21362cadd5bb4dc96a666487802cdd4561e1c94ec0",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs",
+      "sha256": "6b18c8ca0224f326c95b47303bfa4ef977ae902ebc85b6bc9a59501931d8ec2c",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Tools/AssemblyShadow/R03Completion/fixture_project.py",
+      "sha256": "311a225ae8f029f8c7bae265ddfef65b76cf42817cee52ec4807ee7f6b810199",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/fixture_project.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "sha256": "108b3b9a46c63e6c0cae9c4b21a90ea8b7f4a3c308846ace9b524693620bde9a",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Tools/AssemblyShadow/R03Completion/resource_capabilities.py",
+      "sha256": "20f45e0a96fe0f497ef8f51de6f880048e7b8039f16392cb5870e919d500a8b3",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_capabilities.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Tools/AssemblyShadow/R03Completion/source_pin_contract.py",
+      "sha256": "d5affacba8bb2789e4566b3d5a769ce3684cb8a6d52e96c09d13bb1d43ebe18d",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Tools/AssemblyShadow/R03Completion/source_pin_contract.py",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Packages/manifest.json",
+      "sha256": "ed0105ff7c113a79e36c787e5aa52cf8e3b020f6ff1c6f9dd215efb147ff321c",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Packages/manifest.json",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Packages/packages-lock.json",
+      "sha256": "0152179eaa8db6a4e1eae0d9746f28abffce3e9b6c21e5931ba5d207f6aee0fe",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Packages/packages-lock.json",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs",
+      "sha256": "03becf0d0a7d9bf314d2f80105eedf4bfe304bd0738c7195a9f6ed6b9056d7b4",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettingsUtil.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Settings/AssemblyShadowSettings.cs",
+      "sha256": "08cc0e506c5fd3f8b3c2d9e29388e83e7174a5b647479310f18a5004b4d038b2",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Settings/AssemblyShadowSettings.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+      "sha256": "8fc2d9d848d8372a6fe0eebc9f1d9db52aa6db292e06bd3773d178ec97a9878d",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowSourcePins.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowBaseline/Editor/BaselineBuild.cs",
+      "sha256": "ac142c90e7c7acc82999627af0ce3192c8715a243b04a2fa45da8d932800614b",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowBaseline/Editor/BaselineBuild.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "ProjectSettings/AssemblyShadowReflectionBindings.json",
+      "sha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/ProjectSettings/AssemblyShadowReflectionBindings.json",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": "Assets/AssemblyShadowDemo/Editor/M02ReflectionBindingValidation.cs",
+      "sha256": "564450f2c88be354799eed3f58008a13370a07c1ebed45815e99a0edc2cfa959",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02ReflectionBindingValidation.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_demo",
+      "commit": "1704c0393dd0c7717502e336232a0d951422e767",
+      "path": ".gitignore",
+      "sha256": "c822e8d5938bf12edddb9bea235c92349493efae3a382c949a79c57e335f1ffe",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_demo/.gitignore",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow.CodeGen/ReflectionBindingsILPostProcessor.cs",
+      "sha256": "9730713b0030657b8e873c0edee9110c78be9b304b65b79b0383eab98bb94ede",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingsILPostProcessor.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow.CodeGen/ReflectionBindingConfiguration.cs",
+      "sha256": "476b279dd31ab309413a4583de2b0a34b36ddec9e98d6e18e6b2b49fa2293ab5",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow.CodeGen/ReflectionBindingConfiguration.cs",
+      "exactGitBlobAuthenticated": true
+    },
+    {
+      "repository": "hybridclr_unity",
+      "commit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "path": "Editor/AssemblyShadow/Build/AssemblySnapshot.cs",
+      "sha256": "fee7817d122c8746308ce14ce48d253aae390ecc2b6a2c71c83b684dd2012c0f",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-source-snapshot/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs",
+      "exactGitBlobAuthenticated": true
+    }
+  ],
+  "resourceSnapshots": [
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Packages/manifest.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-resource-snapshot/Packages/manifest.json",
+      "sha256": "d0659e52ad5ca3a566f6dc4771c4358ac3855a36adba94d00e17f53ad8d368db"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Packages/packages-lock.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-resource-snapshot/Packages/packages-lock.json",
+      "sha256": "43bc4da18015715d0dd13c23dbc8c8454c3c858fef5fc3a3434ba4325fabc1d6"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-resource-snapshot/ProjectSettings/AssemblyShadowSourcePins.json",
+      "sha256": "443b1897529c8086871bef9b3fdbac9d63704e4b5c43fa11783e233305126a9a"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/ProjectSettings/AssemblyShadowSettings.asset",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-resource-snapshot/ProjectSettings/AssemblyShadowSettings.asset",
+      "sha256": "7cf06ccdd0b3a6b3a699281906022710a91390b0abc086392d9bf1b8c0c424f8"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/ProjectSettings/ProjectSettings.asset",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-resource-snapshot/ProjectSettings/ProjectSettings.asset",
+      "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26"
+    },
+    {
+      "live": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/.r03-completion-project",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/issue-resource-snapshot/.r03-completion-project",
+      "sha256": "d97f1434a9d91cfe868013ec1eef05ea90df2dc3457550c6c25b896e35e679f6"
+    }
+  ],
+  "availableResourceReceipts": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-contract.json",
+      "sha256": "3435d7d1519121c2356dfe841508ec40ca1720489a6b606e345147e60c9481fd",
+      "kind": "R03ActualTargetCapabilityContract",
+      "result": "Passed"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/install.json",
+      "sha256": "a147bd5273712eef8296aa7dee45291857b5e3b2e13c9155658bfd51ba2b5686",
+      "kind": "R03OriginalResourceBuildAdapter",
+      "result": null
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract.json",
+      "sha256": "f5cfa3f900d1a6fd4702344657af5331167658026ec4a42bb7418c2690c5ee42",
+      "kind": "R03ProductionSourcePinContract",
+      "result": "Passed"
+    }
+  ],
+  "noLocalSourceChanges": true,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "interpretation": "No Local source fix. Actual inventory preflight Passed; original J failure unchanged. LK-001 needs Primary provisioning/design boundary repair.",
+  "missingImageObservation": {
+    "isolatedPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+    "state": "Unavailable",
+    "requiredSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "policySites": [
+      "m00-normal-hot-update-image",
+      "h1-count-ordinary-witness-image"
+    ],
+    "owningIgnoredHistoricalPath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+    "owningSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "size": 4608,
+    "readOnlySnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261003K-capabilities/ignored-historical-input/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+    "gitTrackedM00Entries": 0,
+    "ignoreRule": ".gitignore:104:/Assets/StreamingAssets/AssemblyShadow/\tAssets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+    "usedDuringBatch": false,
+    "authoritativeGenerationProvenance": "Unavailable; matching historical bytes are not fresh provenance or permission to reuse",
+    "policySha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a"
+  },
+  "unavailablePhaseReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler.json",
+    "state": "Unavailable",
+    "reason": "Actual compile failed before success receipt emission"
+  }
+}

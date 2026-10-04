@@ -1,6 +1,61 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch J: contract repairs Passed; resource capability profile requires Primary
+## Current return — R03 batch K: LJ capability repair Passed; fixed-image provisioning needs Primary
+
+**ReturnRequired;43 Passed/1 Failed/46 Blocked;seal Passed;one invocation PID7463, 2026-10-03 18:45:29–18:54:03 PDT.** Four focused builds/23 Players,18-method early and754/755 full Editor rosters with zero skips,12 constructor/20 actual-helper host checks, ten production source-pin controls and ten actual target policy controls Passed. The two resource builds and36 downstream Players were Blocked after the actual resource compiler failed. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [K checkpoint](../History/M07R/R03/local-validation-20261003-batch-k-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/PRIMARY_ISSUES.json) and [CAPABILITY_CONTRACT_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/CAPABILITY_CONTRACT_AUDIT.json). J's original failure/custody remain unchanged; LJ-001 has fresh passing K preflight evidence.
+
+### R03-LK-001 — Git-only fresh fixture omits pinned M00 image required by reflection ILPP
+
+**Exact reproduction already performed.** Use the four executed commits/branch/paths recorded in LOCAL_VALIDATION.md, Unity2022.3.62f2/SDK8.0.318. The prescribed one invocation below is complete; do not retry K or reuse its root/apps:
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 1704c0393dd0c7717502e336232a0d951422e767
+```
+
+Actual source-pin consumer0092, native Install0093 and capability consumer0094 Passed. Command0095 invokes `AssemblyShadowDemo.Editor.R03CompletionBuild.CompilerPreflight` against `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/projects/resource-complete`. Actual Unity/outer exits1; supervised completion clean; no survivor/timeout. Raw `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/resource-logs/compiler.log`, first ILPP error line724 and terminal line1523:
+
+```text
+ReflectionBindingsILPostProcessor: error AssemblyShadow reflection binding failed:
+System.IO.DirectoryNotFoundException: Could not find a part of the path
+.../projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes
+System.IO.File.ReadAllBytes
+ReflectionBindingsILPostProcessor.ProcessAssembly
+ShadowBuildException: CompileFailed: No Player assemblies emitted.
+AssemblySnapshot.CompileCore ... AssemblySnapshot.cs:246
+M07Build.ValidateCompilerInputs ... M07Build.cs:101
+R03CompletionBuild.CompilerPreflight ... R03CompletionBuild.cs:115
+```
+
+**Direct cause, root cause and why preflights missed it.** `fixture_project.py` names M00 in ROOTS, but source_catalog copies only Git HEAD ls-tree entries. The candidate HEAD has zero tracked M00 entries; `.gitignore:104` excludes `/Assets/StreamingAssets/AssemblyShadow/`. The required image does exist as an ignored4608-byte owning artifact with SHA-256 `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27`; it is absent in the fresh isolated project and was not used by K. Merely selecting a directory does not validate its required generated-input closure.
+
+The unchanged six-site `ProjectSettings/AssemblyShadowReflectionBindings.json` has two FixedAssemblyBytes sites (`m00-normal-hot-update-image` and `h1-count-ordinary-witness-image`) pointing to that same pinned image/hash/provider/Development+Release semantic contracts. `AssemblySnapshot.CompileCore:239–246` adds the raw-config hash define then calls actual CompilePlayerScripts. `ReflectionBindingsILPostProcessor.ProcessAssembly:58–60` reads every fixed-image site for each targeted assembly before ValidateImageEvidence; absent input causes the observed DirectoryNotFoundException and ILPP error. Unity emits no successful Player assembly set, so the production snapshot guard reports CompileFailed. Editor compilation skips this Player-only ILPP path; successful Editor/API/inventory checks do not exercise its ancillary image bytes. `BaselineBuild.Build:89–98` normally produces/copies the M00 hot DLL after PrebuildCommand.GenerateAll; the completion fixture has no corresponding authenticated prerequisite before CompilerPreflight. That historical full Player producer is not permission for Local to run an extra batch/build.
+
+**Available evidence and impact.** Actual capability receipt/control verification Passed:22+21 compiler array rows,214 reconstructed inventory rows,192 DLL reference hashes, full guarded policy/all five dispositions/ten exact controls with unchanged configured inputs. The compiler failure is a separate generated-input problem. Resource bundles, two native builds, P05 mutation/compile/restoration/finalization, production P01–P05/input graph and36 resource/R00/early processes remain unverified. Independent755-case resource Editor including M01 source-asset/GUID Passed; resource/runtime remains NoCoverage. P05 restore is cleanup-only NoRecordedMutation/NotApplicable. No successful compiler.json or snapshot.json was emitted; partial compile output is not promoted. Settings/bootstrap configuration changed only within authorized isolated scope.
+
+[PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/PRIMARY_ISSUES.json) authenticates22 source/six resource snapshots plus the raw exception/command/cell. [issue-source-snapshot](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/issue-source-snapshot) and [issue-resource-snapshot](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/issue-resource-snapshot) retain exact bytes. [Ignored historical input snapshot](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/ignored-historical-input/AssemblyShadowBaseline.HotUpdate.dll.bytes) is diagnostic only, with no authoritative producer/source/build receipt and never used in K. Preserve this provenance limitation; no parent/worktree/cache search is an execution fallback.
+
+**Concrete Primary direction.** Add an explicit source/build-bound immutable fixed-image provision or generation prerequisite before reflection-enabled compilation. Audit every FixedAssemblyBytes site and referenced generated artifact; require exact configured hash, provider identity and compiler-mode semantic proof. Use a reviewed reproducible producer or committed/published authoritative fixture with complete provenance. Do not blindly copy ignored historical cache bytes, remove reflection sites, disable ILPP/binding controls, change pinned hashes to accept arbitrary bytes or make image inputs optional. Add actual absent/mutated/provider/mode controls and successful Unity compiler consumption. This crosses fixture provisioning and generated-input authority; no non-trivial Local repair is authorized.
+
+**Remaining uncertainty/required validation.** Fresh reproducibility of the pinned4608-byte image is unknown; subsequent reflection/graph/native/runtime defects remain untested. After Primary repair and host/compiler checks, authorize a new exact tuple/root: all90 cells/six builds/59 Players,754+755 zero-skip rosters, unchanged constructor/source-pin/capability controls and runtime warm/producer/C07/rejection expectations, M01/P01–P05 structural byte restoration/production-entry integration/unfenced observations/M06/early and complete seal. Preserve K/J/all earlier evidence and all contaminated controls' Failed unisolated certificates.
+
+| Evidence relative to live K root where applicable | SHA-256 |
+| --- | --- |
+| `cells/resource-compiler.json` | `28530c74d93efa6291a6a8ea35253766c09fe3c3a40dce8a5d414d0e450d628b` |
+| `resource-logs/capability-preflight.log` | `cc9142259b8b44b95ee11ba1e2a2d2239c609efa2a45012639d7160335f0e8e9` |
+| `resource-logs/compiler.log` | `c6506e7e23250b2daa380d828747dad038cb4ff649cdf476ac7d339da3174c64` |
+| `resource-logs/install.log` | `ea44dcd98c339ae2291022bbca48dc927e4eae49b1061775e54c3d4905ddd93d` |
+| `resource-logs/source-pin-preflight.log` | `6fd2f581a4ea16e55b054059adc10f2b6f324f6f2e9ff98ede84af4224dbb385` |
+| `commands/0095/command.json` | `a7cb87797c3098f37bd9d72c16dcc18411c3ab0c3e5ab10a8b3818d0a841924a` |
+| `commands/0095/unity-completion.json` | `c19b5228b11ab0dafe55def4bab91b7453400c88af405b475363be876ef939c0` |
+| `commands/0095/stdout.log` | `5891b2cec84bbf7b45a7392934b47e6908d3f6012a84b60feb3eb5ef7f068292` |
+| `commands/0095/stderr.log` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` |
+| `projects/resource-complete/ProjectSettings/AssemblyShadowReflectionBindings.json` | `26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a` |
+| `capability-contract-verification.json` | `307d10f77b4ffc460ea9597115d43f3215889c195a8bff14866b4874267f7f29` |
+| `projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-contract.json` | `3435d7d1519121c2356dfe841508ec40ca1720489a6b606e345147e60c9481fd` |
+
+All22181 prior custody bindings and2817 indexed K files authenticate. No Local fix or further validation authorized by this finished run. R03Accepted=false;H2Passed=false;qualificationApproved=false;PureInterpreter expansion disabled;full-stage independent review remains open;no performance SLA. Exit **Local Validation → Primary Implementation**.
+
+## Historical return — R03 batch J: contract repairs Passed; resource capability profile requires Primary
 
 **ReturnRequired;43 Passed/1 Failed/46 Blocked;seal Passed;one invocation PID89851, 2026-10-03 06:05:33–06:14:16 PDT.** Four focused builds/23 Player contracts,18-method preflight, both754/755 Editor rosters with zero skips, ten actual source-pin consumer cases and native installation Passed. The resource compiler prerequisite failed before producing a target snapshot. Two resource builds and36 downstream Players were Blocked. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [J checkpoint](../History/M07R/R03/local-validation-20261003-batch-j-return-required/README.md), [LI_CONTRACT_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/LI_CONTRACT_AUDIT.json) and [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-j-return-required/preflight/PRIMARY_ISSUES.json).
 

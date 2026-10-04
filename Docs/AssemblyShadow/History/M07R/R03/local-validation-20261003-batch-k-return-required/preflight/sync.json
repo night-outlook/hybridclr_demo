@@ -1,0 +1,160 @@
+[
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "before": "71bddefd86a3b718d9d36b3edc2d88cd21db1e92",
+    "after": "1704c0393dd0c7717502e336232a0d951422e767",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   71bddefd..1704c039  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "1704c0393dd0c7717502e336232a0d951422e767\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "71bddefd86a3b718d9d36b3edc2d88cd21db1e92",
+          "1704c0393dd0c7717502e336232a0d951422e767"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge",
+          "--ff-only",
+          "1704c0393dd0c7717502e336232a0d951422e767"
+        ],
+        "exit": 0,
+        "stdout": "Updating 71bddefd..1704c039\nFast-forward\n .github/workflows/r03-completion-api.yml           |   5 +-\n Assets/AssemblyShadowDemo/Editor/M02Build.cs       |  23 ++-\n .../Editor/R03CompletionBuild.cs                   |  16 +-\n .../Editor/R03CompletionInventoryContract.cs       | 174 ++++++++++++++++++\n .../Editor/R03CompletionInventoryContract.cs.meta  |   2 +\n .../Editor/R03ResourceCapabilityProfile.cs         |  57 ++++++\n .../Editor/R03ResourceCapabilityProfile.cs.meta    |   2 +\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  72 ++++----\n .../History/M07R/R03/M_CAPABILITY_REPAIR.md        |  69 +++++++\n .../History/M07R/R03/M_HOST_EVIDENCE.json          | 204 +++++++++++++++++++++\n .../History/M07R/R03/M_VALIDATION_MATRIX.md        |  53 ++++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  50 +++--\n Docs/AssemblyShadow/README.md                      |  20 +-\n .../CapabilityProfileTests.csproj                  |  11 ++\n .../CapabilityProfileTests/Program.cs              |  43 +++++\n .../R03Completion/fixture_project.py               |   9 +-\n .../R03Completion/resource_capabilities.py         | 136 ++++++++++++++\n .../R03Completion/resource_pipeline.py             |  11 +-\n .../AssemblyShadow/R03Completion/run_completion.py |   4 +-\n Tools/AssemblyShadow/R03Completion/run_host.py     |   2 +\n .../R03Completion/test_lj_contracts.py             | 105 +++++++++++\n .../R03Completion/test_lj_module_closure.py        |  70 +++++++\n 22 files changed, 1041 insertions(+), 97 deletions(-)\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs.meta\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs.meta\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/M_CAPABILITY_REPAIR.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/M_HOST_EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/M_VALIDATION_MATRIX.md\n create mode 100644 Tools/AssemblyShadow/R03Completion/CapabilityProfileTests/CapabilityProfileTests.csproj\n create mode 100644 Tools/AssemblyShadow/R03Completion/CapabilityProfileTests/Program.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/resource_capabilities.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_lj_contracts.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_lj_module_closure.py\n",
+        "stderr": ""
+      }
+    ]
+  },
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+    "before": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "after": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+          "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+    "before": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "after": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "c86cbf665f5fcb2137e5adf2960541ce492467a4\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+          "c86cbf665f5fcb2137e5adf2960541ce492467a4"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+    "before": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "after": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+          "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  }
+]
