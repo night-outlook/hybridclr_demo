@@ -6,17 +6,13 @@ from command_lifetime import run_owned_command
 from unity_command import clean_outer
 base=Path(os.environ['RUNNER_TEMP']);contents=next((base/'expanded').rglob('Unity.app/Contents'))
 out=base/'lk-tools';out.mkdir();generators=sorted(contents.rglob('*SourceGenerator*.dll'))
-print('GENERATORS',generators,flush=True)
 selected=set((contents/'NetStandard').rglob('*'))
 for g in generators:selected.update(g.parent.rglob('*'))
-rows=[]
 for p in sorted(selected):
     if not p.is_file():continue
-    rel=p.relative_to(contents);b=p.read_bytes();dst=out/'Contents'/rel;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(b)
-    rows.append({'path':str(dst.relative_to(out)),'size':len(b),'sha256':hashlib.sha256(b).hexdigest(),'originalSymlink':p.is_symlink()})
-report={'kind':'PinnedUnityFixedImageInvestigation','workflowSource':os.environ['GITHUB_SHA'],'unity':'2022.3.62f2','sdkArchiveSha256':'5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05','generators':[str(p.relative_to(contents)) for p in generators],'unityRun':False,'playerRun':False,'diagnosticOnly':True,'commands':[],'files':rows}
-count=0
-runtime=contents/'NetCoreRuntime/dotnet';csc=contents/'DotNetSdkRoslyn/csc.dll'
+    rel=p.relative_to(contents);dst=out/'Contents'/rel;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(p.read_bytes())
+report={'kind':'PinnedUnityFixedImageInvestigation','workflowSource':os.environ['GITHUB_SHA'],'unity':'2022.3.62f2','sdkArchiveSha256':'5d2575c1b10a2a9f1f89bf40631a6b9bec3628fe16ca5f2203720af7943a3f05','unityRun':False,'playerRun':False,'diagnosticOnly':True,'commands':[]}
+count=0;runtime=contents/'NetCoreRuntime/dotnet';csc=contents/'DotNetSdkRoslyn/csc.dll'
 def command(args,cwd):
     global count
     count+=1;previous=Path.cwd()
@@ -26,13 +22,15 @@ def command(args,cwd):
     finally:os.chdir(previous)
 try:
     refs=sorted((contents/'NetStandard/ref/2.1.0').glob('*.dll'));assert refs
-    analyzers=[p for p in generators if p.name=='Unity.SourceGenerators.dll'];assert len(analyzers)==1,analyzers
+    analyzer=contents/'Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll'
+    assert hashlib.sha256(analyzer.read_bytes()).hexdigest()=='9fe0035b735b968c517eefbfe418a1a9a5f951e3c119265af789d1ea24b964d4'
     images=[]
     for mode in ('Development','Release'):
         for repeat in ('first','second'):
             root=out/(mode+'-'+repeat);root.mkdir();src=root/'Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs';src.parent.mkdir(parents=True)
             shutil.copyfile(demo/'Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs',src);(root/'out').mkdir();(root/'generated').mkdir()
-            args=[runtime,csc,'/noconfig','/nologo','/nostdlib+','/target:library','/langversion:9.0','/deterministic+','/debug:portable','/optimize'+('+' if mode=='Release' else '-'),'/out:out/AssemblyShadowBaseline.HotUpdate.dll','/generatedfilesout:generated','/pathmap:'+str(root)+'=/_/r03-m00','/analyzer:'+str(analyzers[0])]+['/r:'+str(p) for p in refs]+['Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs']
+            (root/'source.UnityAdditionalFile.txt').write_text(str(root))
+            args=[runtime,csc,'/noconfig','/nologo','/nostdlib+','/target:library','/langversion:9.0','/deterministic+','/debug:portable','/optimize'+('+' if mode=='Release' else '-'),'/additionalfile:source.UnityAdditionalFile.txt','/out:out/AssemblyShadowBaseline.HotUpdate.dll','/generatedfilesout:generated','/pathmap:'+str(root)+'=/_/r03-m00,'+str(contents)+'=/_/unity','/analyzer:'+str(analyzer)]+['/r:'+str(p) for p in refs]+['Assets/AssemblyShadowBaseline/HotUpdate/Entry.cs']
             command(args,root);image=root/'out/AssemblyShadowBaseline.HotUpdate.dll';images.append(image)
             print('IMAGE',mode,repeat,len(image.read_bytes()),hashlib.sha256(image.read_bytes()).hexdigest(),flush=True)
     tool=out/'semantics';tool.mkdir();shutil.copyfile(package/'Plugins/dnlib.dll',tool/'dnlib.dll')
