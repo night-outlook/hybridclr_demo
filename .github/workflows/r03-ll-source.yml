@@ -1,0 +1,53 @@
+name: R03 LL source and compiler evidence
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-ll-source.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 4df1ef8de7ffb4a585e1d3ddfd1b16c024e1bc60
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: c86cbf665f5fcb2137e5adf2960541ce492467a4
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Export exact tracked source and bounded L artifacts without executing historical evidence
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-ll-inputs';out.mkdir()
+          history='Docs/AssemblyShadow/History/M07R/R03/'
+          checkpoint=history+'local-validation-20261004-batch-l-return-required/'
+          rows=[];repos={}
+          for repo in ('hybridclr_demo','hybridclr_unity'):
+              repos[repo]=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
+              entries=subprocess.check_output(['git','-C',repo,'ls-files','-s','-z']).decode().split('\0')
+              for entry in filter(None,entries):
+                  header,path=entry.split('\t',1);mode,blob,stage=header.split()
+                  selected=repo=='hybridclr_unity' or path.startswith(('Tools/','Assets/','Packages/','ProjectSettings/','.github/','Docs/AssemblyShadow/Plan/','Docs/AssemblyShadow/Architecture/','Docs/AssemblyShadow/Handoff/')) or path=='Docs/AssemblyShadow/README.md' or path.startswith(history+'N_') or (path.startswith(checkpoint) and ('M07CompilerPreflight-' in path or '/preflight/issue-' in path or path.endswith(('COMPILER_POLICY_AUDIT.json','PRIMARY_ISSUES.json','evidence-index.json','seal-receipt.json','MANIFEST.sha256','README.md'))))
+                  if not selected:continue
+                  source=Path(repo)/path
+                  assert mode in ('100644','100755') and source.is_file() and not source.is_symlink(),(repo,path,mode)
+                  data=source.read_bytes()
+                  assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob,(repo,path)
+                  relative=repo+'/'+path;target=out/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+                  rows.append({'path':relative,'gitBlob':blob,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'kind':'R03LLExactInputs','workflowSource':os.environ['GITHUB_SHA'],'repositories':repos,'files':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-ll-inputs-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-ll-inputs
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
