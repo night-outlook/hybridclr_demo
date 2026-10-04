@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageRoot Condition="'$(PackageRoot)' == ''">$(MSBuildThisFileDirectory)../../../../../hybridclr_unity</PackageRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dnlib"><HintPath>$(PackageRoot)/Plugins/dnlib.dll</HintPath></Reference>
+    <Compile Include="Program.cs"/><Compile Include="SemanticDiagnostics.cs"/><Compile Include="EnvironmentBoundaries.cs"/>
+    <Compile Include="../../../../Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs"/>
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow/Model/ShadowConfiguration.cs"/>
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow/Metadata/AssemblyIdentityUtil.cs"/>
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow/Hashing/*.cs"/>
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow.CodeGen/ReflectionBindingConfiguration.cs"/>
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow.CodeGen/RawTypeAdmissionConfiguration.cs"/>
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow.CodeGen/RawTypeAdmissionJson.cs"/>
+  </ItemGroup>
+</Project>

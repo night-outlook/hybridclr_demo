@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "aDllSha256": "a15d5c4b20d9d609a74070ed349e4948faf69f598dacb5b90a9c631bb370b4e0",
+      "expectation": "CompiledAndInvoked",
+      "id": "valid",
+      "logSha256": "350766a12e47d51a1a8b24f41422994d4dffcde554e7c1206e668ede49123b06",
+      "receipt": {
+        "clean": true,
+        "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/commands/0059/unity-completion.json",
+        "completionSha256": "aa765fe961056dde8da84e3b0fa9838edaae9f41d052f3286ee983204bf2d765",
+        "originalExitCode": 0,
+        "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/commands/0059/command.json",
+        "outerSha256": "f52deadb2bc147b9ce103d947baac7b00e74e1e67b746fd12e771f9558f48c30",
+        "supportSources": {
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+        }
+      },
+      "result": "Passed"
+    },
+    {
+      "aDllSha256": "56848f35f65c5d0a443d19deab2496a4fc7df75ace967fb7b8320d163a0fee2d",
+      "expectation": "CS0009",
+      "id": "invalid-key",
+      "logSha256": "38afad700804e3cba4aaa451eb15dd90437e7f6f71fbe744be841b172e23da4d",
+      "receipt": {
+        "clean": true,
+        "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/commands/0060/unity-completion.json",
+        "completionSha256": "743f1f29cd16c9ca17be134d6176cf2d0d07aef2e1dc917e70c781678e91f1f2",
+        "originalExitCode": 1,
+        "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/commands/0060/command.json",
+        "outerSha256": "5d7a5f7e2380a243ae3991ff226d705ba0cec0bd3686e00c84e4b60ec2e2723d",
+        "supportSources": {
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+        }
+      },
+      "result": "Passed"
+    }
+  ],
+  "kind": "R03UnityCompilerLifecycle",
+  "nativeExecution": false,
+  "result": "Passed",
+  "runtimeAcceptance": false,
+  "schemaVersion": 1,
+  "unityEditorRun": true
+}

@@ -1,0 +1,160 @@
+[
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "before": "4abd44f1fc6f81a75c76ae4975c28dd06a80b9f8",
+    "after": "96eaa341d8eea476aec72506bac1a2d0456e24d7",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   4abd44f1..96eaa341  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "96eaa341d8eea476aec72506bac1a2d0456e24d7\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "4abd44f1fc6f81a75c76ae4975c28dd06a80b9f8",
+          "96eaa341d8eea476aec72506bac1a2d0456e24d7"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge",
+          "--ff-only",
+          "96eaa341d8eea476aec72506bac1a2d0456e24d7"
+        ],
+        "exit": 0,
+        "stdout": "Updating 4abd44f1..96eaa341\nFast-forward\n .github/workflows/r03-completion-api.yml           |  15 +-\n .../Editor/R03CompletionFixedImageContract.cs      |  79 ++++++++\n .../Editor/R03CompletionFixedImageContract.cs.meta |   2 +\n .../Editor/R03FixedImageChecks.cs                  | 112 ++++++++++++\n .../Editor/R03FixedImageChecks.cs.meta             |   2 +\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  77 ++++----\n .../History/M07R/R03/N_FIXED_IMAGE_REPAIR.md       |  69 +++++++\n .../History/M07R/R03/N_HOST_EVIDENCE.json          | 143 +++++++++++++++\n .../History/M07R/R03/N_VALIDATION_MATRIX.md        |  51 ++++++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  42 ++---\n Docs/AssemblyShadow/README.md                      |  21 +--\n .../FixedImageTests/EnvironmentBoundaries.cs       |  12 ++\n .../FixedImageTests/FixedImageTests.csproj         |  18 ++\n .../R03Completion/FixedImageTests/MonoProbe.cs     |  21 +++\n .../R03Completion/FixedImageTests/Program.cs       |  32 ++++\n .../FixedImageTests/SemanticDiagnostics.cs         |  18 ++\n .../R03Completion/compile_fixed_image.py           |  72 ++++++++\n .../R03Completion/fixed_image_inputs.py            | 193 ++++++++++++++++++++\n .../R03Completion/fixture_project.py               |  18 +-\n .../R03Completion/resource_pipeline.py             |  14 +-\n .../AssemblyShadow/R03Completion/run_completion.py |   4 +-\n Tools/AssemblyShadow/R03Completion/run_host.py     |   3 +\n .../R03Completion/test_lk_contracts.py             | 200 +++++++++++++++++++++\n .../R03Completion/test_lk_reports.py               |  68 +++++++\n 24 files changed, 1203 insertions(+), 83 deletions(-)\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03CompletionFixedImageContract.cs\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03CompletionFixedImageContract.cs.meta\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs\n create mode 100644 Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs.meta\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/N_FIXED_IMAGE_REPAIR.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/N_HOST_EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/N_VALIDATION_MATRIX.md\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixedImageTests/EnvironmentBoundaries.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixedImageTests/FixedImageTests.csproj\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixedImageTests/MonoProbe.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixedImageTests/Program.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/FixedImageTests/SemanticDiagnostics.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/compile_fixed_image.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/fixed_image_inputs.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_lk_contracts.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_lk_reports.py\n",
+        "stderr": ""
+      }
+    ]
+  },
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+    "before": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "after": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/hybridclr\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+          "4b2774b066cfc6afd77a8c8aded6bda7ea574f55"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+    "before": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "after": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "c86cbf665f5fcb2137e5adf2960541ce492467a4\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+          "c86cbf665f5fcb2137e5adf2960541ce492467a4"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  {
+    "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+    "before": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "after": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+    "commands": [
+      {
+        "args": [
+          "fetch",
+          "origin",
+          "codex/assembly-shadow-r01b-h1"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": "From github.com:night-outlook/il2cpp_plus\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n"
+      },
+      {
+        "args": [
+          "rev-parse",
+          "FETCH_HEAD"
+        ],
+        "exit": 0,
+        "stdout": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "merge-base",
+          "--is-ancestor",
+          "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+          "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  }
+]

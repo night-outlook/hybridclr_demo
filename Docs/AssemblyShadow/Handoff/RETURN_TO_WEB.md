@@ -1,6 +1,58 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch K: LJ capability repair Passed; fixed-image provisioning needs Primary
+## Current return — R03 batch L: fixed-image controls Passed; two compiler-policy integration defects require Primary
+
+**ReturnRequired; 90 cells: 43 Passed / 1 Failed / 46 Blocked; seal Passed; one invocation PID24279, 2026-10-04 06:07:50–06:17:15 PDT.** Four focused native builds, 23 fresh Players, early 18 Editor cases and full 754/755 Editor rosters (zero skips) Passed. Frozen-image authentication/materialization and all ten actual guarded consumer controls Passed. Final resource compiler policy Failed; two resource builds and 36 downstream Players Blocked. No Local source fix or retry. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [L checkpoint](../History/M07R/R03/local-validation-20261004-batch-l-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261004-batch-l-return-required/preflight/PRIMARY_ISSUES.json) and [COMPILER_POLICY_AUDIT.json](../History/M07R/R03/local-validation-20261004-batch-l-return-required/preflight/COMPILER_POLICY_AUDIT.json). K and earlier evidence states remain unchanged.
+
+### Exact reproduction already performed
+
+Use the four repository paths/branches/source commits in LOCAL_VALIDATION.md with Unity 2022.3.62f2 and SDK 8.0.318. The prescribed invocation below is complete. Inspect command 0099 / resource-compiler cell; do not rerun L or mutate its retained root. A Primary repair needs a newly authorized source-bound batch.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 96eaa341d8eea476aec72506bac1a2d0456e24d7
+```
+
+Failure log `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/resource-logs/compiler.log`, SHA-256 `11d535227dcd55fd6bde7e94ca08f54960751620c7aeaefcc60adeccc2b632fc`; command receipt `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/commands/0099/command.json`, SHA-256 `a136b2349c74fae6d592cd8297de151e72fe8f6e1989f79424b249fbea387b8e`. Snapshot and reflection artifacts are Available with exact hashes in the policy audit, but final compiled policy Failed. Adapter compiler.json is Unavailable; no resource app was built. The strict guards correctly exposed these input/consumer integration defects.
+
+### R03-LL-001 — 25 UnboundedManagedAcquisition and 25 associated M05 BootstrapReflection errors reject the original resource compiler snapshot.
+
+**Evidence.** ShadowBuildException: PolicyValidation: UnboundedManagedAcquisition: AssemblyShadowDemo.Bootstrap Assembly.GetTypes at System.Type[] AssemblyShadowDemo.M05BoundTypeQueries::GetTypes(System.String) operation 28 [beb82269d29899c0e076ec70afb4492b43e7f52c8786f6ffd67d20ecd889c669] calls System.Type[] System.Reflection.Assembly::GetTypes(); method-level prose cannot authorize this operation.
+
+Exact diagnostic line(s): `[1331, 1380]` in the log above. The policy audit records all 51 diagnostics, missing-file checks, exact method/operation matches, copied dependencies, captured compiler mode and 302 DLL/PDB hashes. Git-authenticated source snapshots are retained at [issue-source-snapshot](../History/M07R/R03/local-validation-20261004-batch-l-return-required/preflight/issue-source-snapshot); owning source pins are explicit in each snapshot record.
+
+**Most likely root cause / why the integration allowed it.** fixture_project.SETTINGS/select omit tracked AssemblyShadowRawTypeAdmissions.json while copying M05BoundTypeQueries. The isolated project has no configuration; compilation emits no raw-type define/captured proof, so production operation-level guards correctly reject the 25 raw queries. All 25 diagnostic Development operation indices, method hashes and signatures match the owning declaration.
+
+**Affected scope.** Original resource compiler prerequisite; both additional resource builds, 36 completion Players, production P01-P05 and resource/measurement acceptance remain Blocked. The focused builds/Players and independent Editor roster retain their recorded results.
+
+**Concrete Primary direction.** Provision and authenticate the complete immutable compiler-policy input closure, including the owning raw-type admission declaration. Add positive and missing/mutated configuration controls and require actual captured raw-type proof and provider/role/linked checks. Preserve strict production guards and exact method/operation identity; do not substitute a prose or blanket allowance.
+
+**Remaining uncertainty.** Matching declarations do not establish that all later semantic/role/linked checks pass. R03-LL-002 is independently present, and downstream resource/runtime integration has not executed.
+
+**Required validation after repair.** Pinned real Unity current-provider ILPP/snapshot validation with raw-type proof, exact configuration controls, then fresh full resource builds, both Editor rosters, all intended Players, production integration/restoration and unchanged warm/producer/rejection/C07 expectations.
+
+### R03-LL-002 — BootstrapReflection rejects R03CompletionExecution::OnQuit acquiring M06ExecutionWitness.
+
+**Evidence.** BootstrapReflection: Bootstrap reflection reference is not an approved entrypoint: AssemblyShadowDemo.Bootstrap -> AssemblyShadowDemo.R03CompletionExecution::OnQuit|AssemblyA.Implementation.Internal.M06ExecutionWitness, AssemblyA.Implementation.Internal
+
+Exact diagnostic line(s): `1381` in the log above. The policy audit records all 51 diagnostics, missing-file checks, exact method/operation matches, copied dependencies, captured compiler mode and 302 DLL/PDB hashes. Git-authenticated source snapshots are retained at [issue-source-snapshot](../History/M07R/R03/local-validation-20261004-batch-l-return-required/preflight/issue-source-snapshot); owning source pins are explicit in each snapshot record.
+
+**Most likely root cause / why the integration allowed it.** The new supplement calls Type.GetType with a literal M06ExecutionWitness target from OnQuit, but the exact call site has no bootstrapEntrypoints declaration. Existing same-target entries name other methods; BootstrapIsolationRule deliberately requires exact call-site/provider/type agreement.
+
+**Affected scope.** New supplemental original-resource runtime consumer and the same compiler-policy prerequisite; statics/delegates/exceptions and measurement behavior are still unexecuted, not proven runtime failures.
+
+**Concrete Primary direction.** Review and declare the exact finite supplemental bootstrap entrypoint/provider/type and lifecycle, or use a scope-preserving approved consumer design. Add positive and wrong-callsite/provider/type negative controls. Do not weaken isolation or treat another method’s same-target declaration as authority.
+
+**Remaining uncertainty.** No supplemental Player ran, so actual OnQuit ordering, business-state preservation and broader execution results remain unknown. LL-001 must also be repaired.
+
+**Required validation after repair.** Actual pinned Unity compiler policy success plus exact entrypoint controls, then fresh original-resource builds/Players and supplemental/statics/delegates/exceptions/measurement records; preserve production guards and acceptance=false.
+
+R03-LL-001 call chain: fixture_project.SETTINGS/select → absent configuration → ShadowRawTypeAdmissionEvidence.CompilationDefines/Capture/ReadAndVerify → no verified raw admissions → ShadowAssemblyPolicyValidator.ValidateReflection. R03-LL-002 call chain: R03CompletionExecution.OnQuit literal Type.GetType → compiler reference → BootstrapIsolationRule.IsApprovedReflection exact call-site check. Both fail in M07Build.ValidateCompilerInputs line 106 after compiler snapshot emission. Repair input/consumer closure; preserve existing finite policy and strict guards. Do not hide errors by removing preserved consumers, weakening policy, copying caches or treating declarations as acceptance.
+
+Frozen image reuse is authenticated input only. Current-provider ILPP emitted files; final policy success, resource bundles/Players, production P01–P05, M06 measurements and supplemental runtime behavior remain unestablished. Cleanup Passed means NoRecordedMutation / restoration NotApplicable; transaction restoration remains NotRun. Contaminated producer certificates remain Failed despite passing diagnostic attribution. Qualification and acceptance remain false.
+
+Only the two Local reports/new immutable checkpoint are committed/pushed. Exact later publication heads are recorded in the final four-repository handoff/external publication receipt; no validation is attributed to that documentation commit. **Exit A: Local Validation → Primary Implementation. R03Accepted=false; H2Passed=false; qualificationApproved=false; PureInterpreter expansion disabled. Stop; no further Local batch.**
+
+## Historical return — R03 batch K: LJ capability repair Passed; fixed-image provisioning needs Primary
 
 **ReturnRequired;43 Passed/1 Failed/46 Blocked;seal Passed;one invocation PID7463, 2026-10-03 18:45:29–18:54:03 PDT.** Four focused builds/23 Players,18-method early and754/755 full Editor rosters with zero skips,12 constructor/20 actual-helper host checks, ten production source-pin controls and ten actual target policy controls Passed. The two resource builds and36 downstream Players were Blocked after the actual resource compiler failed. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [K checkpoint](../History/M07R/R03/local-validation-20261003-batch-k-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/PRIMARY_ISSUES.json) and [CAPABILITY_CONTRACT_AUDIT.json](../History/M07R/R03/local-validation-20261003-batch-k-return-required/preflight/CAPABILITY_CONTRACT_AUDIT.json). J's original failure/custody remain unchanged; LJ-001 has fresh passing K preflight evidence.
 

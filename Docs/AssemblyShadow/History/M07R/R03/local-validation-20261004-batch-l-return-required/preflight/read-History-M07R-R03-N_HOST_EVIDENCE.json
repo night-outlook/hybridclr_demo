@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LKPrimaryFixedImageEvidence",
+  "date": "2026-10-04",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAnchor": "78ce9f81968a330b2801a93d4a426ffab7565b5f",
+  "implementationCommits": ["e7a46219de7230ba5dfea065b88695d2bd5421ad", "78ce9f81968a330b2801a93d4a426ffab7565b5f"],
+  "repositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "preservedLocalPublication": "4abd44f1fc6f81a75c76ae4975c28dd06a80b9f8",
+  "preservedLocalResult": {
+    "batch": "K", "executedDemo": "1704c0393dd0c7717502e336232a0d951422e767",
+    "result": "ReturnRequired", "passed": 43, "failed": 1, "blocked": 46, "sealStatus": "Passed",
+    "M01SourceAssetEditor": "Passed", "M01ResourceRuntime": "Unavailable",
+    "custodyNote": "Complete K/earlier custody authentication remains attributed to Local; no new live-root or complete K archive authentication is claimed."
+  },
+  "hostWorkflow": {
+    "runId": 37188867823,
+    "conclusion": "success",
+    "platforms": ["ubuntu-24.04", "macos-15"],
+    "completionPythonContractsPerHost": 148,
+    "newLKPythonContractsPerHost": 41,
+    "retainedR03PythonContractsPerHost": 183,
+    "fixedImageGuardCasesPerHost": 10,
+    "capabilityProfileCasesPerHost": 20,
+    "constructorCasesPerHost": 12,
+    "qualificationCasesPerHost": 32,
+    "baselineGraphCasesPerHost": 9,
+    "candidateGraphCasesPerHost": 9,
+    "admissionCasesPerHost": 35,
+    "ownedCommandsPerHost": 17,
+    "allCommandsClean": true,
+    "originalArchiveOriginCheckPerHost": "FrozenFixtureOriginVerified",
+    "unityEditorRun": false,
+    "playerRun": false,
+    "pinnedMonoSemanticsClaimedByDotNetHost": false,
+    "artifacts": [
+      {
+        "artifactId": 11297644694, "platform": "Linux",
+        "sha256": "0774eaf79a98fa1cc15585deffd67c151664f70880260cc04d0e8a57c91fd033",
+        "bytes": 4451960, "indexedFiles": 541, "zipFiles": 542,
+        "provenanceSha256": "55a7220de227282fe99727604a2af5374562b30e37a3d07ac690397f8585778e",
+        "resultSha256": "f344dff5ad3a12fb26b3d3d7f7469fe8d04be8df7a35e61a8223d4e815aa4bb8",
+        "authenticated": true, "result": "Passed"
+      },
+      {
+        "artifactId": 11297904290, "platform": "macOS",
+        "sha256": "33a39ad47093a30fc9db1cdc835d1837df3db7b9e1af7f09cc0792a31ec8377f",
+        "bytes": 4417084, "indexedFiles": 541, "zipFiles": 542,
+        "provenanceSha256": "d6201f26dd29bf55f8d49e56fb024adb4366fb6643c0273cdc0246d6e6601507",
+        "resultSha256": "d16628f39e9e491cea4e4d38c1b9ea15c2b8a4d45c33f66823655ba04dbeab62",
+        "authenticated": true, "result": "Passed"
+      }
+    ]
+  },
+  "pinnedUnityApiWorkflow": {
+    "runId": 37188867837,
+    "conclusion": "success",
+    "unityVersion": "2022.3.62f2",
+    "resourceAssembliesCompiled": 16,
+    "resourceSourceFilesCompiled": 654,
+    "resourceCompilerCommands": 16,
+    "additionalProbeCompilerCommands": 1,
+    "pinnedMonoProbeExecutions": 1,
+    "ownedCommands": 18,
+    "allCommandsClean": true,
+    "compilerWarnings": 927,
+    "warningsSuppressed": false,
+    "actualFixedImageConsumerSourceCompiled": true,
+    "monoGuardCases": 10,
+    "pinnedMonoImageSemanticHash": "7af4cf568c2c6bccebd58e780846f22826472629ca972e5abfcd02a8ba636369",
+    "pinnedMonoVariant": "OriginalDevelopment",
+    "runtimeProfile": "Unity MonoBleedingEdge with unityaot-macos and Facades",
+    "unityEditorRun": false,
+    "playerRun": false,
+    "reflectionPlayerIlppExecuted": false,
+    "freshImageCompilation": false,
+    "upmByteEquivalenceClaimed": false,
+    "coreRpSourceRevision": "4694a5f37cb1c40e48058da90d3deab8f440dae6",
+    "hostBoundary": "Unused model/Bootstrap policy dependencies are explicit; actual image guards, JSON parsing and hashing sources are compiled. No simulated Unity inventory or acquisition-policy acceptance.",
+    "artifact": {
+      "artifactId": 11297999187,
+      "sha256": "cf7c96776ab945e0cbcc7c4560d08731cac8ee0a983f8a860e9c59af79543c12",
+      "bytes": 2112445, "indexedFiles": 172, "zipFiles": 173,
+      "provenanceSha256": "e82a1dacc731d5b3690ccaa28692aa5b406e0b49878cde14811e75225865f758",
+      "resultSha256": "d8f6c2b6455284a0a4ca9521a2399ba58a5fe6b01c3f651c3d4261ca0099162c",
+      "authenticated": true, "result": "Passed"
+    }
+  },
+  "immutableInputAuthority": {
+    "fixtureGitBlob": "9803eb472c0ef6eaf713a38a59d3fe07aa93830e",
+    "originGitBlob": "245d7b56ffeccc16c897dfc8ef40bfb4f73fe098",
+    "archive": "Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/raw-evidence.tar.gz",
+    "archiveSha256": "2ecb3d04cdd093c469717d4c2959ec416ec8d0745c51c2a4ba37c82f9bc253e8",
+    "archiveRepositoryCommit": "1d7dc134003206ada8a92b50763ca2da7dc9530d",
+    "extractionCommit": "74e41cdc0173379b424014de151ae5413fd1c9a3",
+    "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "imageSizeBytes": 4608,
+    "provider": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+    "reflectionConfigurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+    "fixedSites": ["h1-count-ordinary-witness-image", "m00-normal-hot-update-image"],
+    "archiveVerificationLocation": "Both source-bound host CI executions; Primary authenticated their indexed reports and extracted image",
+    "ignoredHistoricalCacheUsed": false,
+    "historicalPlayerExecutionReused": false,
+    "freshCscExecutionClaimed": false
+  },
+  "artifactAudit": {
+    "performedInCurrentEnvironment": true,
+    "checks": ["GitHub ZIP digest", "unique safe archive membership", "exact index membership", "every indexed size and SHA-256", "source anchor and package tuple", "all command exit/lifetime flags", "all command stdout/stderr hashes", "Passed result/ledger consistency"],
+    "completeHistoricalLocalArchiveReauthenticated": false
+  },
+  "localPrimaryChecks": {
+    "sourceBasis": "Authenticated source extracts; source-slice tests, not an owning Local Git checkout",
+    "completionPythonContracts": "148/148 Passed",
+    "retainedPythonContracts": "183/183 Passed",
+    "completionPythonSyntaxModules": 20,
+    "completionStderrSha256": "bf07d6216a8d4130e51c0d5d997d8eab043b8fe426b456f0f473a049e559455c",
+    "retainedStderrSha256": "fc78a272a1cacabd53831dcaeb8d57b53cb4b35996e312573ff7d12aa77409a2",
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/connector-smoke-r03-lk-20261004-0950",
+    "commit": "5b6dc6f5fd470fac13dd46c2c9d31891ac77a166",
+    "base": "78ce9f81968a330b2801a93d4a426ffab7565b5f",
+    "headReadback": "Passed", "fileReadback": "Passed",
+    "cleanup": "Delete-ref unavailable; retained disposable non-authoritative branch",
+    "siblingRepositories": "Read bootstrap passed; unchanged, no write required"
+  },
+  "interpretation": {
+    "runtimeAcceptance": false,
+    "qualificationApproved": false,
+    "expansionAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false,
+    "pending": ["Actual Unity fixed-image preflight", "Successful current target ILPP/snapshot/provider-mode proof", "Fresh complete batch L including previously blocked resource/runtime paths"],
+    "historicalEvidence": "K remains 43 Passed / 1 Failed / 46 Blocked, seal Passed. Input authentication is not runtime acceptance."
+  }
+}

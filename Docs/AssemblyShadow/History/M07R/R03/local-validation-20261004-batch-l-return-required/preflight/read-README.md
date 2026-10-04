@@ -1,0 +1,15 @@
+# HybridCLR Assembly Shadow
+
+Canonical documentation: `Plan/` for design/stages/gates, `Handoff/` for current assignments, `Architecture/` for decisions and `History/` for immutable evidence.
+
+**Completion batch K remains ReturnRequired. Its actual capability controls Passed; the missing fixed-image input has a source repair and batch L is prepared. Full R03 and H2 remain open.**
+
+K executed demo `1704c0393dd0c7717502e336232a0d951422e767`; Local published `4abd44f1fc6f81a75c76ae4975c28dd06a80b9f8`. Preserve 43 Passed / 1 Failed / 46 Blocked, seal Passed. Four focused builds/23 Players, early 18-method and full 754/755 zero-skip Editor runs and all source-pin/capability controls Passed. Two resource builds and 36 downstream Players were Blocked by missing M00 bytes during reflection ILPP. M01 source-asset/GUID Editor coverage is not resource/bundle/runtime acceptance.
+
+Read [CURRENT_STATUS](Plan/CURRENT_STATUS.md), [N_FIXED_IMAGE_REPAIR](History/M07R/R03/N_FIXED_IMAGE_REPAIR.md), [N_HOST_EVIDENCE](History/M07R/R03/N_HOST_EVIDENCE.json), [N_VALIDATION_MATRIX](History/M07R/R03/N_VALIDATION_MATRIX.md), then the unchanged [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md). [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) is the only newly authorized execution. The [remaining R03 plan](Plan/stages/R03-remaining-completion.md), [qualification boundary](Architecture/ADR/ADR-0002-pure-interpreter-qualification-boundary.md) and [Human Review Gates](Plan/HUMAN_REVIEW_GATES.md) remain in force.
+
+The repair authenticates the existing frozen R02 input against its original immutable archive, requires its tracked authority, and materializes exact bytes before resource-project Unity execution. It never copies the ignored owning cache. A new actual Unity fixed-image preflight checks ten guard controls before the original compiler/ILPP/policy path. Original hashes, both fixed sites, six-site configuration and current-provider requirements are unchanged. Historical INPUT reuse is not a fresh M00 compilation or historical runtime-result reuse.
+
+Branch in all repositories: `codex/assembly-shadow-r01b-h1`. Source/CI anchor: demo `78ce9f81968a330b2801a93d4a426ffab7565b5f`; package `c86cbf665f5fcb2137e5adf2960541ce492467a4`; HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; IL2CPP `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. The final docs-only transport must match Primary's exact prompt and local/remote heads. Matching host workflow `37188867823` and pinned-API/Mono workflow `37188867837` Passed; all three artifacts were authenticated. No new integrated Unity/Player execution is claimed.
+
+L retains 90 cells, six fresh builds, 59 fresh Players, the 18-method Editor preflight and both 754/755 full rosters. New fixed-image prerequisites do not reduce scope. R03Accepted=false; H2Passed=false; qualificationApproved=false; PureInterpreter expansion disabled. Historical evidence, failed unisolated warm certificates, R02 CPU and H1 RSS risks remain visible. Primary owns remaining full-stage reconciliation/review; no automatic milestone or gate approval.

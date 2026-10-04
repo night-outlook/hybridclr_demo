@@ -1,0 +1,78 @@
+{
+  "dependencies": [
+    "resource-prepare"
+  ],
+  "evidence": {
+    "cleanup": "NoRecordedMutation",
+    "restorationCoverage": "NotApplicable",
+    "sourceVerification": {
+      "allowedConfigurationChanges": [
+        {
+          "configuredSha256": "80a2341cda0d500056489d8be8de5a4fc1d5fee6841c6a266cd642eb5866230e",
+          "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+          "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity"
+        },
+        {
+          "configuredSha256": "9586061a2e3dec49171ea81b4fae6d89ff50692839f7b58bc67e64f32d267f3b",
+          "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+          "path": "ProjectSettings/AssemblyShadowSettings.asset"
+        }
+      ],
+      "filesVerified": 537,
+      "fixedImage": {
+        "classification": "FrozenHistoricalInputMaterialization",
+        "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+        "identity": {
+          "culture": "",
+          "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+          "name": "AssemblyShadowBaseline.HotUpdate",
+          "publicKeyToken": "",
+          "referenceIdentities": [
+            {
+              "culture": "",
+              "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+              "name": "netstandard",
+              "publicKeyToken": "cc7b13ffcd2ddd51",
+              "referenceIndex": 0,
+              "version": "2.1.0.0"
+            }
+          ],
+          "version": "0.0.0.0"
+        },
+        "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+        "materialization": {
+          "classification": "FrozenHistoricalInputMaterialization",
+          "freshCscExecutionClaimed": false,
+          "kind": "R02OrdinaryInputAuthentication",
+          "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/projects/resource-complete",
+          "receipt": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+            "sha256": "ce909423ece3c8d9409856e0fc8a1b7bbac6492eebac5a2ae57babca3907b590",
+            "sizeBytes": 2653
+          },
+          "result": "Passed",
+          "runtimeAcceptance": false,
+          "staged": {
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+            "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "sizeBytes": 4608
+          }
+        },
+        "profile": "R03FrozenFixedImageV1",
+        "runtimeAcceptance": false,
+        "siteIds": [
+          "h1-count-ordinary-witness-image",
+          "m00-normal-hot-update-image"
+        ],
+        "sizeBytes": 4608
+      },
+      "frozenM01Files": 6,
+      "kind": "R03ResourceCompleteFixtureV1",
+      "newResourceBundlesRequired": true,
+      "runtimeAcceptance": false
+    }
+  },
+  "id": "resource-p05-restore",
+  "result": "Passed"
+}

@@ -1,0 +1,37 @@
+{
+  "baselineId": "R03-Isolated-reference-release",
+  "candidates": [
+    "A",
+    "B",
+    "Layout",
+    "Methods",
+    "R03Contract"
+  ],
+  "caseId": "R04-direction-reversal",
+  "dlls": [
+    {
+      "name": "A",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/host/player-fixtures/reversal/A.dll",
+      "sha256": "5499f3121575b6f45806097087e0b6406cdfc04781727d73248049a23dfc4016"
+    },
+    {
+      "name": "B",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/host/player-fixtures/reversal/B.dll",
+      "sha256": "5698fb1e93cbd9a85836abbc5bd7eb33ba93dd133aa6d8daf93d0b8b84046a0f"
+    }
+  ],
+  "invokeAssembly": "B",
+  "noPatch": false,
+  "observeMethod": false,
+  "oldExecutionGuard": false,
+  "producerControl": false,
+  "roots": [
+    "A",
+    "B"
+  ],
+  "runId": "f7083d678aba4e14a21c7dee1f8f2edc",
+  "schemaVersion": 1,
+  "stable": [
+    "mscorlib"
+  ]
+}

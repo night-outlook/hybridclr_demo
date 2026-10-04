@@ -1,0 +1,60 @@
+{
+  "kind": "R02UnityCommandCompletion",
+  "policy": "R02OwnedUnityRoslyn-v2",
+  "result": "Passed",
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-buildTarget",
+    "osx",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/projects/fixture-constructor-editor",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "^(?:HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.AcquisitionDelegatePointersCannotAvoidOperationEvidence|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ManagedAcquisitionPolicyTests\\.RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance|HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.PolicyTests\\.CompiledReferenceModulesNeedNotBeSnapshotDescriptors)$",
+    "-testResults",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/fixture-constructor-editor/results.xml",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/fixture-constructor-editor/Editor.log"
+  ],
+  "commandExitCode": 0,
+  "startedAtUnix": 1791119300.304055,
+  "runtimeAcceptance": false,
+  "compilerBinding": {
+    "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "sha256": "02958dc1de32e0960dc8dc85e17f51a5755438a746c21d892f4ac726ddfcbd4a",
+    "sizeBytes": 240640
+  },
+  "completion": {
+    "policy": "R02OwnedUnityRoslyn-v2",
+    "group": 24337,
+    "compiler": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "termGraceSeconds": 5.0,
+    "killGraceSeconds": 3.0,
+    "clean": true,
+    "actions": [],
+    "observations": [
+      {
+        "phase": "initial",
+        "atMonotonic": 1040918.812661041,
+        "members": []
+      },
+      {
+        "phase": "before-SIGTERM",
+        "atMonotonic": 1040918.829809958,
+        "members": []
+      },
+      {
+        "phase": "wait-SIGTERM",
+        "atMonotonic": 1040918.846634583,
+        "members": []
+      }
+    ],
+    "after": [],
+    "before": []
+  },
+  "endedAtUnix": 1791119314.865611
+}
