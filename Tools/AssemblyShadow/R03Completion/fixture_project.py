@@ -14,6 +14,7 @@ from run_local import REPOS, git
 from source_pin_contract import validate_document
 from resource_capabilities import PROFILE, dependency_profile
 import fixed_image_inputs as fixed_images
+import compiler_policy_inputs as compiler_policy
 
 POLICY = 'R03ResourceCompleteFixtureV1'
 ROOTS = ('Assets/AssemblyShadowDemo', 'Assets/AssemblyShadowBaseline',
@@ -22,7 +23,8 @@ SETTINGS = ('ProjectSettings/ProjectSettings.asset', 'ProjectSettings/ProjectVer
             'ProjectSettings/HybridCLRSettings.asset', 'ProjectSettings/AssemblyShadowSettings.asset',
             'ProjectSettings/AssemblyShadowDependencies.json', 'ProjectSettings/AssemblyShadowExtensibilityWhitelist.json',
             'ProjectSettings/AssemblyShadowResourcesM07.json', 'ProjectSettings/AssemblyShadowResources.json',
-            'ProjectSettings/AssemblyShadowReflectionBindings.json')
+            'ProjectSettings/AssemblyShadowReflectionBindings.json',
+            compiler_policy.RAW)
 # Required configuration inputs also include the original fixed-image authority.
 SETTINGS += tuple(fixed_images.FILES)
 FROZEN = {
@@ -59,8 +61,11 @@ def source_catalog(demo, expected_commit=None):
     if expected_commit:
         require(git(demo, 'rev-parse', 'HEAD') == expected_commit, 'Copied-source commit changed')
     rows = []
+    policy_paths = []
     for line in git(demo, 'ls-tree', '-r', '--full-tree', 'HEAD').splitlines():
         mode, kind, rest = line.split(' ', 2); oid, name = rest.split('\t', 1)
+        if name.startswith("ProjectSettings/AssemblyShadow") and name.endswith(".json"):
+            policy_paths.append(name)
         if not select(name):
             continue
         require(mode == '100644' and kind == 'blob', 'Unsupported resource source entry: ' + name)
@@ -70,6 +75,8 @@ def source_catalog(demo, expected_commit=None):
     for path, expected in fixed_images.FILES.items():
         require(any(r['path'] == path and r['blob'] == expected for r in rows), 'Pinned fixed-image source missing: ' + path)
     require(set(SETTINGS) <= {r['path'] for r in rows}, 'Required original project configuration missing')
+    require(set(policy_paths) == set(compiler_policy.CONFIGS) | {compiler_policy.PINS}, 'Unreviewed compiler-policy input closure')
+    compiler_policy.validate_inputs(demo)
     fixed_images.source_contract(demo)
     for path, expected in FROZEN.items():
         require(any(r['path'] == path and r['blob'] == expected for r in rows), 'Original M01 asset changed: ' + path)
@@ -110,6 +117,7 @@ def provision(batch):
               'runPath': str(project / ('_temp/AssemblyShadow/M02Validation-' + uuid.uuid4().hex)),
               'receiptRoot': str(project / '_temp/AssemblyShadow/R03CompletionArtifacts'),
               'repositories': {n: batch.pins[n] for n in REPOS}, 'files': rows,
+              'compilerPolicyInputs': compiler_policy.validate_inputs(project),
               'fixedImageProfile': fixed_images.PROFILE, 'capabilityProfile': PROFILE, 'resourceMapSha256': sha(project / 'ProjectSettings/AssemblyShadowResourcesM07.json'),
               'sourcePinsSha256': sha(project / 'ProjectSettings/AssemblyShadowSourcePins.json'),
               'packagesManifestSha256': sha(project / 'Packages/manifest.json'),
@@ -133,6 +141,7 @@ def verify_sources(project, config, *, configured=False):
     require(sha(project / 'Packages/manifest.json') == config['packagesManifestSha256'] and
             sha(project / 'ProjectSettings/AssemblyShadowSourcePins.json') == config['sourcePinsSha256'], 'Immutable project pins')
     require(config.get('fixedImageProfile') == fixed_images.PROFILE, 'Explicit fixed-image provisioning authority')
+    require(config.get('compilerPolicyInputs') == compiler_policy.validate_inputs(project), 'Immutable compiler policy input changed')
     fixed = fixed_images.verify_materialization(project)
     return {'fixedImage': fixed, 'kind': POLICY, 'filesVerified': len(config['files']), 'allowedConfigurationChanges': changes,
             'frozenM01Files': len(FROZEN), 'newResourceBundlesRequired': True, 'runtimeAcceptance': False}

@@ -112,7 +112,7 @@ namespace AssemblyShadowDemo.Editor
                 .Select(path => Path.Combine(path, "m07-player-build.json")).Where(File.Exists).Select(Path.GetFullPath).ToArray();
         }
         public static void Install() { Execute("install", () => { M07Build.Configure(); PinnedSourceInstaller.Install(); M07SourceAssets.ValidateExisting(false); }); }
-        public static void CompilerPreflight() { Execute("compiler", M07Build.ValidateCompilerInputs); }
+        public static void CompilerPreflight() { Execute("compiler", () => R03CompletionCompilerPolicyContract.Verify(M07Build.ValidateCompilerInputsWithSnapshot())); }
         public static void Resources() { Execute("resources", M07Build.BuildBaselineResources); }
         public static void PlayerOn() { Execute("player-on", M07Build.BuildPlayerBaseline, "NativeOn"); }
         public static void PlayerOff() { Execute("player-off", M07Build.BuildFeatureDisabledPlayer, "NativeOff"); }

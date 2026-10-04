@@ -54,6 +54,9 @@ class SourceFixtureTests(unittest.TestCase):
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(source.read_bytes())
             self.rows.append('100644 blob ' + fixture.blob(source.read_bytes()) + '\t' + relative)
+        # SourcePins is tracked in Git but deliberately regenerated, not copied.
+        pin_source = self.real / 'ProjectSettings/AssemblyShadowSourcePins.json'
+        self.rows.append('100644 blob ' + fixture.blob(pin_source.read_bytes()) + '\tProjectSettings/AssemblyShadowSourcePins.json')
         (self.demo / 'Packages').mkdir(parents=True)
         shutil.copyfile(self.real / 'Packages/manifest.json', self.demo / 'Packages/manifest.json')
         shutil.copyfile(self.real / 'Packages/packages-lock.json', self.demo / 'Packages/packages-lock.json')

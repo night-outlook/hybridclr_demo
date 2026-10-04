@@ -15,6 +15,7 @@ from source_pin_contract import verify_report as verify_pin_report
 from resource_capabilities import verify_report as verify_capability_report
 from editor_contract import source_scope, verify as verify_editor
 import fixed_image_inputs as fixed_images
+import compiler_policy_inputs as compiler_policy
 
 METHODS = {'fixed-image-preflight': 'Verify', 'capability-preflight': 'Verify', 'source-pin-preflight': 'Verify', 'install': 'Install', 'compiler': 'CompilerPreflight', 'resources': 'Resources',
            'player-on': 'PlayerOn', 'player-off': 'PlayerOff', 'prepare': 'StructuralPrepare',
@@ -82,6 +83,9 @@ def phase(batch, name):
             result.get('unityVersion') == '2022.3.62f2' and result.get('target') == 'StandaloneOSX', 'Source-bound phase receipt')
     require(result.get('sourcePinsSha256') == sha(project / 'ProjectSettings/AssemblyShadowSourcePins.json') and
             all(result.get(k) is False for k in ('expansionAuthorized', 'R03Accepted', 'H2Passed')), 'Phase must not authorize expansion or change sources')
+    if name == 'compiler':
+        contract = compiler_policy.verify_report(Path(config['receiptRoot']) / 'compiler-policy-contract.json', batch, project)
+        write(batch.root / 'compiler-policy-verification.json', contract)
     if name in ('player-on', 'player-off'):
         player = regular(result['playerReceipt'])
         require(player.is_relative_to(project / '_temp/AssemblyShadow') and sha(player) == result['playerReceiptSha256'], 'Exact newly produced Player receipt')

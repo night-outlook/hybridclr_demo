@@ -6,6 +6,11 @@ on:
       - '.github/workflows/r03-completion-api.yml'
       - 'Tools/AssemblyShadow/R03Completion/**'
       - 'Assets/AssemblyShadowDemo/Editor/M02Build.cs'
+      - 'Assets/AssemblyShadowDemo/Editor/M07Build.cs'
+      - 'Assets/AssemblyShadowDemo/Editor/R03CompilerPolicyChecks.cs'
+      - 'Assets/AssemblyShadowDemo/Editor/R03CompletionCompilerPolicyContract.cs'
+      - 'ProjectSettings/AssemblyShadowDependencies.json'
+      - 'ProjectSettings/AssemblyShadowRawTypeAdmissions.json'
       - 'Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs'
       - 'Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs'
       - 'Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs'
@@ -98,6 +103,16 @@ jobs:
           python3 -B hybridclr_demo/Tools/AssemblyShadow/R03Completion/compile_fixed_image.py \
             --workspace "$GITHUB_WORKSPACE" --contents "$CONTENTS" \
             --output "$RUNNER_TEMP/r03-completion-api/fixed-image-mono"
+      - name: Replay exact L compiler bytes through actual raw and bootstrap guards
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/unity-paths.txt")"
+          CONTENTS="$(dirname "$(dirname "$UNITY")")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03Completion/compile_policy_checks.py \
+            --workspace "$GITHUB_WORKSPACE" --contents "$CONTENTS" \
+            --api-output "$RUNNER_TEMP/r03-completion-api" \
+            --newtonsoft "$(cat "$RUNNER_TEMP/newtonsoft-path.txt")" \
+            --output "$RUNNER_TEMP/r03-completion-api/compiler-policy-mono"
       - name: Bind all preserved compiler evidence
         if: always()
         shell: python
@@ -108,7 +123,7 @@ jobs:
           binding=Path(os.environ['RUNNER_TEMP'])/'newtonsoft-binding.json'
           if binding.is_file():shutil.copyfile(binding,root/'newtonsoft-binding.json')
           refs={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','graphics')}
-          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionFixedImageContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata'):
+          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompilerPolicyChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionCompilerPolicyContract.cs','hybridclr_demo/ProjectSettings/AssemblyShadowDependencies.json','hybridclr_demo/ProjectSettings/AssemblyShadowRawTypeAdmissions.json','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionFixedImageContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata'):
               p=Path(base)
               for source in ([p] if p.is_file() else p.rglob('*')):
                   if source.is_file() and source.suffix in ('.py','.cs','.csproj','.json'):

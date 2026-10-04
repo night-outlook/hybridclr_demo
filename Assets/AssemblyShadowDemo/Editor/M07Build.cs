@@ -91,7 +91,10 @@ namespace AssemblyShadowDemo.Editor
             Debug.Log("[AssemblyShadow M07] Frozen seven-bundle resource baseline: " + frozen);
         }
 
-        public static void ValidateCompilerInputs()
+        public static void ValidateCompilerInputs() { ValidateCompilerInputsWithSnapshot(); }
+
+        // Return only the exact snapshot that passed the original complete gate.
+        public static string ValidateCompilerInputsWithSnapshot()
         {
             Configure();
             var settings = AssemblyShadowSettings.Instance;
@@ -105,6 +108,7 @@ namespace AssemblyShadowDemo.Editor
             using (CompiledAssemblySet set = ShadowFixtureProof.Load(snapshot, receipt, policy))
                 ShadowReflectionBindingEvidence.ValidateCompilerSnapshot(set, policy, snapshot, receipt).ThrowIfInvalid();
             Debug.Log("[AssemblyShadow M07] Fresh baseline-domain target compiler snapshot and connected policy graph verified: " + snapshot);
+            return snapshot;
         }
 
         public static void BuildPlayerBaseline()
