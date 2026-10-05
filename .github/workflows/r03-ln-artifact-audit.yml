@@ -1,0 +1,93 @@
+name: R03 LN exact artifact audit
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - '.github/workflows/r03-ln-artifact-audit.yml'
+      - 'Docs/AssemblyShadow/History/M07R/R03/Q_ARTIFACT_AUDIT_INPUT.json'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Authenticate exact final artifacts without executing their contents
+        shell: python
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          import base64,hashlib,io,json,os,pathlib,re,runpy,urllib.error,urllib.request,zipfile
+          api='https://api.github.com/repos/night-outlook/hybridclr_demo'
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])/'r03-ln-audit';root.mkdir()
+          def get(url):
+              return json.load(urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=60))
+          def content(path,ref):
+              obj=get(api+'/contents/'+path+'?ref='+ref);data=base64.b64decode(obj['content'])
+              assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==obj['sha']
+              return data
+          try:
+              request_bytes=content('Docs/AssemblyShadow/History/M07R/R03/Q_ARTIFACT_AUDIT_INPUT.json',os.environ['GITHUB_SHA'])
+          except urllib.error.HTTPError as error:
+              if error.code!=404:raise
+              (root/'summary.json').write_text(json.dumps({'result':'NotRequested','workflowSource':os.environ['GITHUB_SHA']}))
+          else:
+              request=json.loads(request_bytes);source=request['sourceCommit'];package=request['packageCommit']
+              assert request['kind']=='R03LNArtifactAudit' and request['schemaVersion']==1
+              assert re.fullmatch('[0-9a-f]{40}',source) and re.fullmatch('[0-9a-f]{40}',package)
+              assert len(request['artifacts'])==3 and len({x['artifactId'] for x in request['artifacts']})==3
+              tool=root/'auditor-source.py';tool.write_bytes(content('Tools/AssemblyShadow/R03Completion/ci_artifact_audit.py',source))
+              auditor=runpy.run_path(str(tool));authenticate=auditor['authenticate'];decode=auditor['decode_json']
+              class NoRedirect(urllib.request.HTTPRedirectHandler):
+                  def redirect_request(self,req,fp,code,msg,hdrs,url):return None
+              output={'kind':'R03LNArtifactAudit','result':'Failed','sourceCommit':source,'packageCommit':package,
+                      'workflowSource':os.environ['GITHUB_SHA'],'requestSha256':hashlib.sha256(request_bytes).hexdigest(),
+                      'artifacts':[],'unityEditorRun':False,'playerRun':False}
+              try:
+                  for spec in request['artifacts']:
+                      number=spec['artifactId'];meta=get(api+'/actions/artifacts/'+str(number))
+                      assert not meta['expired'] and meta['workflow_run']['head_sha']==source
+                      assert meta['digest']=='sha256:'+spec['sha256'] and meta['size_in_bytes']<100000000
+                      try:
+                          urllib.request.build_opener(NoRedirect).open(urllib.request.Request(api+'/actions/artifacts/'+str(number)+'/zip',headers=headers),timeout=60)
+                      except urllib.error.HTTPError as error:
+                          assert error.code==302;url=error.headers['Location']
+                      else:raise ValueError('Expected artifact redirect')
+                      assert url.startswith('https://')
+                      raw=urllib.request.urlopen(url,timeout=180).read();assert len(raw)==meta['size_in_bytes']
+                      summary,details=authenticate(raw,spec['sha256'],source,package)
+                      by_path={r['path']:r for r in summary['summaries']}
+                      for path,count in spec['requiredCaseCounts'].items():
+                          assert by_path[path]['result']=='Passed' and by_path[path]['caseCount']==count,(path,by_path.get(path))
+                      folder=root/str(number);folder.mkdir();(folder/'artifact.zip').write_bytes(raw)
+                      summary['artifactId']=number;summary['label']=spec['label'];extra={}
+                      with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+                          for name in archive.namelist():
+                              if name.endswith('reference-context-diagnosis.json'):
+                                  value=decode(archive.read(name))
+                                  assert value['isolated']['semanticHash']!=value['closed']['semanticHash'] and value['differences']
+                                  assert value['oldUncontextualizedComparison']=='Rejected' and value['repairedClosedComparison']=='Passed'
+                                  assert value['runtimeAcceptance'] is False
+                                  extra[name]=value
+                              if name.endswith('captured-sidecar-replay.json') or name=='editor-source-scope/results.json':
+                                  value=decode(archive.read(name));assert value['result']=='Passed';extra[name]=value
+                          assert any(n.endswith('reference-context-diagnosis.json') for n in extra),'Missing actual context diagnosis'
+                      summary['diagnostics']=extra
+                      (folder/'audit.json').write_text(json.dumps(summary,indent=2)+'\n')
+                      output['artifacts'].append(summary)
+                      print('AUDIT_SUMMARY '+json.dumps({k:v for k,v in summary.items() if k not in ('sourceFiles','diagnostics','commands','summaries')}))
+                      print('CASE_SUMMARY '+json.dumps(summary['summaries']))
+                      print('DIAGNOSIS '+json.dumps(extra))
+                  output['result']='Passed'
+              finally:
+                  (root/'summary.json').write_text(json.dumps(output,indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-ln-audit-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-ln-audit
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

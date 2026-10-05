@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pinned-Mono execution of actual nominal-identity rules, not a Unity Player run."""
+"""Pinned-Mono reference-binding checks; no Unity Editor or Player execution."""
 import argparse
 import os
 from pathlib import Path
@@ -15,6 +15,12 @@ from input_validation import binding
 import reference_binding as replay
 
 
+def replay_arguments(paths, mono, target, inputs, output):
+    """Match the actual managed probe's strict --input/--output contract."""
+    return ['/usr/bin/env', 'MONO_PATH=' + os.pathsep.join(map(str, paths)), mono, target,
+            '--input', inputs, '--output', output]
+
+
 def validate(workspace, contents, api_output, newtonsoft, output):
     workspace, contents, api, root = map(lambda p: Path(p).resolve(), (workspace, contents, api_output, output))
     require(not root.exists(), 'Unused reference replay output'); root.mkdir(parents=True)
@@ -22,7 +28,8 @@ def validate(workspace, contents, api_output, newtonsoft, output):
     runtime, compiler = contents / 'NetCoreRuntime/dotnet', contents / 'DotNetSdkRoslyn/csc.dll'
     mono = contents / 'MonoBleedingEdge/bin/mono'
     result = {'schemaVersion': 1, 'kind': 'R03PinnedMonoReferenceBinding', 'result': 'Failed',
-              'basis': 'ReusedAuditedLocalNCompilerInputs', 'historicalFinalPolicy': 'Failed',
+              'basis': 'ReusedAuditedLocalNCompilerInputs', 'historicalQualification': 'Failed',
+              'historicalCompilerPolicy': 'Passed',
               'currentCompilerSnapshotProduced': False, 'nativeProofExecuted': False, 'runtimeAcceptance': False,
               'unityEditorRun': False, 'playerRun': False, 'expansionAuthorized': False}
     try:
@@ -49,8 +56,8 @@ def validate(workspace, contents, api_output, newtonsoft, output):
         clean_outer(run_owned_command([*args[:4], '@' + str(rsp)], root / 'commands/0001', 600), 0)
         paths = [p.parent for p in assemblies] + [package / 'Plugins', Path(newtonsoft).resolve().parent,
                     contents / 'Managed', contents / 'Managed/UnityEngine', profile, profile / 'Facades']
-        clean_outer(run_owned_command(['/usr/bin/env', 'MONO_PATH=' + os.pathsep.join(map(str, paths)), mono, target,
-                    '--output', root / 'contracts', '--input', root / 'replay-inputs.json'], root / 'commands/0002', 600), 0)
+        command = replay_arguments(paths, mono, target, root / 'replay-inputs.json', root / 'contracts')
+        clean_outer(run_owned_command(command, root / 'commands/0002', 600), 0)
         result['checks'] = replay.verify_results(root / 'contracts', inputs)
         require(before == [binding(p) for p in tracked], 'Sources or consumer references changed')
         result['result'] = 'Passed'
