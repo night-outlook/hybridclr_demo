@@ -1,0 +1,1092 @@
+{
+  "kind": "ReadOnlyMNativeLayoutInputDiagnosis",
+  "utc": "2026-10-05T01:54:53.940623+00:00",
+  "status": "Passed",
+  "interpretation": "Metadata diagnosis only, not dnlib/native layout verification or forwarder equivalence approval. Original structural compile remains Failed.",
+  "baselineManifest": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-301493290706/baseline-manifest.json",
+    "sha256": "481799624eb4cefa4d99ea8488c1adbcb02e73884b85130953c58f6c63aa67bd"
+  },
+  "baselineSnapshot": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-301493290706/PlayerInputs/assembly-snapshot.json",
+    "sha256": "7a992755d30c79c3f267123b8c1de95d48e06ab568411718a767a44cfd356f4c",
+    "snapshotHash": "4363642a2cd878531cb32986f480c3459478861a0f7984b7632cea75d72668cb",
+    "buildGuid": "6bc3305d9e3a44e3a1ed80f1f32fa309",
+    "nativeLibrarySha256": "82bc82efbcfccbb60b45b0cd7c16f484e19b188ee524e7c24464ff7d73b9c180"
+  },
+  "targetSnapshot": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/P05-compile/Snapshot/assembly-snapshot.json",
+    "sha256": "2a5b9c3f1076c5593c35ebf81c38309761c7d4a76b192106e38b776a2cc6a97a",
+    "snapshotHash": "35ce2142322d02404f3779f22c66a36a446d3b7d3864198b476e985f3b069f28"
+  },
+  "linkedBaselineDll": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-301493290706/PlayerInputs/LinkedPlayer/Assemblies/assemblya.implementation.internal.dll",
+    "sha256": "9f1dc0886284dd1b559da345b991a1943be4b7e9697b413af4d917e6bd7f3484",
+    "identity": {
+      "name": "AssemblyA.Implementation.Internal",
+      "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "version": "0.0.0.0",
+      "culture": "",
+      "publicKeyToken": "",
+      "mvid": "e7354fbc-fa7c-473a-b923-cfe9360f7607",
+      "referenceIdentities": [
+        {
+          "referenceIndex": 0,
+          "name": "AssemblyA.Contracts",
+          "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 1,
+          "name": "AssemblyA.Implementation.Extensibility",
+          "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 2,
+          "name": "UnityEngine.CoreModule",
+          "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 3,
+          "name": "UnityEngine.JSONSerializeModule",
+          "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 4,
+          "name": "mscorlib",
+          "fullName": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "version": "4.0.0.0",
+          "culture": "",
+          "publicKeyToken": "b77a5c561934e089"
+        },
+        {
+          "referenceIndex": 5,
+          "name": "System",
+          "fullName": "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "version": "4.0.0.0",
+          "culture": "",
+          "publicKeyToken": "7cec85d7bea7798e"
+        },
+        {
+          "referenceIndex": 6,
+          "name": "System.Core",
+          "fullName": "System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "version": "4.0.0.0",
+          "culture": "",
+          "publicKeyToken": "7cec85d7bea7798e"
+        }
+      ],
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-301493290706/PlayerInputs/LinkedPlayer/Assemblies/assemblya.implementation.internal.dll",
+      "sha256": "9f1dc0886284dd1b559da345b991a1943be4b7e9697b413af4d917e6bd7f3484"
+    }
+  },
+  "targetDll": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/P05-compile/Snapshot/Assemblies/AssemblyA.Implementation.Internal.dll",
+    "sha256": "b5bdab58ef5ff32a194115c9e4be5b55d9d8546f798a974b0e5b42f2931fad87",
+    "identity": {
+      "name": "AssemblyA.Implementation.Internal",
+      "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "version": "0.0.0.0",
+      "culture": "",
+      "publicKeyToken": "",
+      "mvid": "ea15b7a7-734f-4002-830d-394e1e60881e",
+      "referenceIdentities": [
+        {
+          "referenceIndex": 0,
+          "name": "netstandard",
+          "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+          "version": "2.1.0.0",
+          "culture": "",
+          "publicKeyToken": "cc7b13ffcd2ddd51"
+        },
+        {
+          "referenceIndex": 1,
+          "name": "AssemblyA.Contracts",
+          "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 2,
+          "name": "AssemblyA.Implementation.Extensibility",
+          "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 3,
+          "name": "UnityEngine.CoreModule",
+          "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        },
+        {
+          "referenceIndex": 4,
+          "name": "UnityEngine.JSONSerializeModule",
+          "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "version": "0.0.0.0",
+          "culture": "",
+          "publicKeyToken": ""
+        }
+      ],
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/P05-compile/Snapshot/Assemblies/AssemblyA.Implementation.Internal.dll",
+      "sha256": "b5bdab58ef5ff32a194115c9e4be5b55d9d8546f798a974b0e5b42f2931fad87"
+    }
+  },
+  "rawDeclaredBaseDifferences": [
+    {
+      "type": "<PrivateImplementationDetails>",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "<PrivateImplementationDetails>/__StaticArrayInitTypeSize=1011",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.ValueType"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.ValueType"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "<PrivateImplementationDetails>/__StaticArrayInitTypeSize=2397",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.ValueType"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.ValueType"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.InternalEntry",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<>c__DisplayClass24_0",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<>c__DisplayClass27_0",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<CancelledAsync>d__36",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<Iterate>d__38",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunCoroutine>d__20",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<ThrowAsync>d__37",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/BeforeFieldInitState`1",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/ExplicitStaticState",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/GenericState`1",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/Pair`1",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/SmallStruct",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.ValueType"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.ValueType"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M07NestedPayload",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M07NodeA",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M07NodeB",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M07UnityPathProbe",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M07UnityPathProbe/Result",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R00PerformancePayload",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R00PerformanceWitness",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/Box`1",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M0",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M1",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M2",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M3",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M4",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M5",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M6",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M7",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M8",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/M9",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/Payload",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/Triple`3",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.R02AllocationWitness/ValuePayload",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.ValueType"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.ValueType"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent/<>c",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.VersionedScriptableObject/<>c",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.Object"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.Object"
+      },
+      "sameQualifiedTypeName": true
+    },
+    {
+      "type": "UnitySourceGeneratedAssemblyMonoScriptTypes_v1/MonoScriptData",
+      "linkedBaseline": {
+        "assembly": "mscorlib",
+        "type": "System.ValueType"
+      },
+      "compilerTarget": {
+        "assembly": "netstandard",
+        "type": "System.ValueType"
+      },
+      "sameQualifiedTypeName": true
+    }
+  ],
+  "declaredFieldScopeDifferences": [
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<CancelledAsync>d__36",
+      "field": "<>t__builder",
+      "linkedBaseline": {
+        "elementType": 17,
+        "signatureHex": "061180c1",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 17,
+        "signatureHex": "06118099",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<CancelledAsync>d__36",
+      "field": "<>u__1",
+      "linkedBaseline": {
+        "elementType": 17,
+        "signatureHex": "061180e5",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Runtime.CompilerServices.TaskAwaiter"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 17,
+        "signatureHex": "06118095",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Runtime.CompilerServices.TaskAwaiter"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<CancelledAsync>d__36",
+      "field": "token",
+      "linkedBaseline": {
+        "elementType": 17,
+        "signatureHex": "061180c9",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Threading.CancellationToken"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 17,
+        "signatureHex": "061179",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Threading.CancellationToken"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<Iterate>d__38",
+      "field": "<>3__trace",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "06151269010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.List`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151245010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.List`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<Iterate>d__38",
+      "field": "trace",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "06151269010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.List`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151245010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.List`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<>t__builder",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "06151155011d0e",
+        "genericKind": 17,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151180b1011d0e",
+        "genericKind": 17,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<>u__1",
+      "linkedBaseline": {
+        "elementType": 17,
+        "signatureHex": "061180e5",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Runtime.CompilerServices.TaskAwaiter"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 17,
+        "signatureHex": "06118095",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Runtime.CompilerServices.TaskAwaiter"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<cancellation>5__3",
+      "linkedBaseline": {
+        "elementType": 18,
+        "signatureHex": "06128101",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Threading.CancellationTokenSource"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 18,
+        "signatureHex": "061280b5",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Threading.CancellationTokenSource"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<e>5__4",
+      "linkedBaseline": {
+        "elementType": 18,
+        "signatureHex": "06128105",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.OperationCanceledException"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 18,
+        "signatureHex": "061280ad",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.OperationCanceledException"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<e>5__5",
+      "linkedBaseline": {
+        "elementType": 18,
+        "signatureHex": "061280ad",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.InvalidOperationException"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 18,
+        "signatureHex": "06126d",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.InvalidOperationException"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<iterator>5__2",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "06151280f10108",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.IEnumerator`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151280a50108",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.IEnumerator`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunAsync>d__19",
+      "field": "<output>5__1",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "06151269010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.List`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151245010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.List`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<RunCoroutine>d__20",
+      "field": "observations",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "06151269010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.List`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151245010e",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.List`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<ThrowAsync>d__37",
+      "field": "<>t__builder",
+      "linkedBaseline": {
+        "elementType": 17,
+        "signatureHex": "061180c1",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 17,
+        "signatureHex": "06118099",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Runtime.CompilerServices.AsyncTaskMethodBuilder"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/<ThrowAsync>d__37",
+      "field": "<>u__1",
+      "linkedBaseline": {
+        "elementType": 17,
+        "signatureHex": "0611810d",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Runtime.CompilerServices.YieldAwaitable/YieldAwaiter"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 17,
+        "signatureHex": "061180bd",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Runtime.CompilerServices.YieldAwaitable/YieldAwaiter"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.M06ExecutionWitness/M06InternalNode",
+      "field": "Changed",
+      "linkedBaseline": {
+        "elementType": 18,
+        "signatureHex": "061275",
+        "declaredType": {
+          "assembly": "mscorlib",
+          "type": "System.Action"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 18,
+        "signatureHex": "061251",
+        "declaredType": {
+          "assembly": "netstandard",
+          "type": "System.Action"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.VersionedPrefabComponent",
+      "field": "m07InlineValues",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "061512690112815d",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.List`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151245011280f9",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.List`1"
+        }
+      }
+    },
+    {
+      "type": "AssemblyA.Implementation.Internal.VersionedScriptableObject",
+      "field": "m07InlineValues",
+      "linkedBaseline": {
+        "elementType": 21,
+        "signatureHex": "061512690112815d",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "mscorlib",
+          "type": "System.Collections.Generic.List`1"
+        }
+      },
+      "compilerTarget": {
+        "elementType": 21,
+        "signatureHex": "06151245011280f9",
+        "genericKind": 18,
+        "genericDefinition": {
+          "assembly": "netstandard",
+          "type": "System.Collections.Generic.List`1"
+        }
+      }
+    }
+  ],
+  "copies": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/P05-compile/Snapshot/assembly-snapshot.json",
+      "sha256": "2a5b9c3f1076c5593c35ebf81c38309761c7d4a76b192106e38b776a2cc6a97a",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/P05-compile/Snapshot/assembly-snapshot.json"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/P05-compile/Snapshot/Assemblies/AssemblyA.Implementation.Internal.dll",
+      "sha256": "b5bdab58ef5ff32a194115c9e4be5b55d9d8546f798a974b0e5b42f2931fad87",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/P05-compile/Snapshot/Assemblies/AssemblyA.Implementation.Internal.dll"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/p05-compile-receipt.json",
+      "sha256": "80c5100e49d4976ee7da42e42fa127d2526cb0821ec4ea687d7ef5672ce6bfe5",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/p05-compile-receipt.json"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/p05-define-state.json",
+      "sha256": "b4c66d4913b39c26f0450d452b7f82365a58f793d8069929adb290b110fb6090",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/p05-define-state.json"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/p05-restored.json",
+      "sha256": "113a4abde329b2df6b1c61816fe97badbf30a8532c5349372b0dca72a6c4f316",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/p05-restored.json"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/p05-settings-restored.json",
+      "sha256": "02dc46f6b115c05388ebe8da425eceb71772df935599b69015b1da682d698a91",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/p05-settings-restored.json"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/p05-project-settings.original",
+      "sha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/p05-project-settings.original"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1/p05-unity-restored.bytes",
+      "sha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/target-and-state/p05-unity-restored.bytes"
+    }
+  ],
+  "baselineSnapshotCopy": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/layout-inputs/baseline-PlayerInputs",
+  "scopeLimit": "No type-forwarder chain resolver, native allocation/offset check, signature bypass, source fix or new compiler invocation. Representative scope mismatch is independently observed; complete compatibility remains unproven.",
+  "R03Accepted": false,
+  "H2Passed": false
+}

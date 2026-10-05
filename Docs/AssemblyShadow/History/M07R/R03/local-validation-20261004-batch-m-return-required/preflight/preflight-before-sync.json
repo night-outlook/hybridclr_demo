@@ -1,0 +1,561 @@
+{
+  "utc": "2026-10-05T01:32:04.469621+00:00",
+  "repositories": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "expected": "301493290706e81437db1ac6a31977e9930d9fc6",
+      "headBeforeSync": "4df1ef8de7ffb4a585e1d3ddfd1b16c024e1bc60",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "startUtc": "2026-10-05T01:32:00.010697+00:00",
+          "endUtc": "2026-10-05T01:32:00.027344+00:00",
+          "exitCode": 0,
+          "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "branch",
+            "--show-current"
+          ],
+          "startUtc": "2026-10-05T01:32:00.027373+00:00",
+          "endUtc": "2026-10-05T01:32:00.040080+00:00",
+          "exitCode": 0,
+          "stdout": "codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "rev-parse",
+            "HEAD"
+          ],
+          "startUtc": "2026-10-05T01:32:00.040108+00:00",
+          "endUtc": "2026-10-05T01:32:00.050329+00:00",
+          "exitCode": 0,
+          "stdout": "4df1ef8de7ffb4a585e1d3ddfd1b16c024e1bc60\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "status",
+            "--short"
+          ],
+          "startUtc": "2026-10-05T01:32:00.050359+00:00",
+          "endUtc": "2026-10-05T01:32:00.438082+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "startUtc": "2026-10-05T01:32:00.438105+00:00",
+          "endUtc": "2026-10-05T01:32:00.566629+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "remote",
+            "-v"
+          ],
+          "startUtc": "2026-10-05T01:32:00.566652+00:00",
+          "endUtc": "2026-10-05T01:32:00.575417+00:00",
+          "exitCode": 0,
+          "stdout": "origin\tgit@github.com:night-outlook/hybridclr_demo.git (fetch)\norigin\tgit@github.com:night-outlook/hybridclr_demo.git (push)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "startUtc": "2026-10-05T01:32:00.575441+00:00",
+          "endUtc": "2026-10-05T01:32:00.587221+00:00",
+          "exitCode": 0,
+          "stdout": "worktree /Users/ah/GitHub/hybridclr/hybridclr_demo\nHEAD c2d7334ee6fa0d2b20f73ed35970f16d97f92571\nbranch refs/heads/codex/gpt61-sol-agents\n\nworktree /Users/ah/.codex/worktrees/af52/hybridclr_demo\nHEAD 73d95b4064ee23143e0722f6eae127fe61df6c9d\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo\nHEAD 4df1ef8de7ffb4a585e1d3ddfd1b16c024e1bc60\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/reproduction_tooling\nHEAD ba8fee33753a5ebc215b7a98739e343d8e05572e\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo\nHEAD 88508b59b7c4ef8c5023cbbe655d43ebfcf5304c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo\nHEAD ba8fee33753a5ebc215b7a98739e343d8e05572e\nbranch refs/heads/codex/assembly-shadow-h1-count-repro-tooling\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo\nHEAD 21c689732cd8087f8ee8fdce4e52a8f2a655f722\nbranch refs/heads/codex/r02-h1-runtime-control\n\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "submodule",
+            "status",
+            "--recursive"
+          ],
+          "startUtc": "2026-10-05T01:32:00.587242+00:00",
+          "endUtc": "2026-10-05T01:32:00.643197+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+            "ls-remote",
+            "origin",
+            "refs/heads/codex/assembly-shadow-r01b-h1"
+          ],
+          "startUtc": "2026-10-05T01:32:00.643219+00:00",
+          "endUtc": "2026-10-05T01:32:04.439636+00:00",
+          "exitCode": 0,
+          "stdout": "301493290706e81437db1ac6a31977e9930d9fc6\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        }
+      ],
+      "ancestorInstructions": [],
+      "trackedInstructions": []
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "expected": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "headBeforeSync": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "startUtc": "2026-10-05T01:32:00.011198+00:00",
+          "endUtc": "2026-10-05T01:32:00.030617+00:00",
+          "exitCode": 0,
+          "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "branch",
+            "--show-current"
+          ],
+          "startUtc": "2026-10-05T01:32:00.030638+00:00",
+          "endUtc": "2026-10-05T01:32:00.042311+00:00",
+          "exitCode": 0,
+          "stdout": "codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "rev-parse",
+            "HEAD"
+          ],
+          "startUtc": "2026-10-05T01:32:00.042340+00:00",
+          "endUtc": "2026-10-05T01:32:00.051513+00:00",
+          "exitCode": 0,
+          "stdout": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "status",
+            "--short"
+          ],
+          "startUtc": "2026-10-05T01:32:00.051524+00:00",
+          "endUtc": "2026-10-05T01:32:00.067708+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "startUtc": "2026-10-05T01:32:00.067743+00:00",
+          "endUtc": "2026-10-05T01:32:00.092256+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "remote",
+            "-v"
+          ],
+          "startUtc": "2026-10-05T01:32:00.092288+00:00",
+          "endUtc": "2026-10-05T01:32:00.110442+00:00",
+          "exitCode": 0,
+          "stdout": "origin\tgit@github.com:night-outlook/hybridclr.git (fetch)\norigin\tgit@github.com:night-outlook/hybridclr.git (push)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "startUtc": "2026-10-05T01:32:00.110469+00:00",
+          "endUtc": "2026-10-05T01:32:00.130772+00:00",
+          "exitCode": 0,
+          "stdout": "worktree /Users/ah/GitHub/hybridclr/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr\nHEAD 4b2774b066cfc6afd77a8c8aded6bda7ea574f55\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr\nHEAD b22fa3d92223645c32663e4a2157eaadf8ea495e\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr\nHEAD 99cdb1b67e4ed07b70732a2148cb69e079ca41cf\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "submodule",
+            "status",
+            "--recursive"
+          ],
+          "startUtc": "2026-10-05T01:32:00.130801+00:00",
+          "endUtc": "2026-10-05T01:32:00.212752+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+            "ls-remote",
+            "origin",
+            "refs/heads/codex/assembly-shadow-r01b-h1"
+          ],
+          "startUtc": "2026-10-05T01:32:00.212777+00:00",
+          "endUtc": "2026-10-05T01:32:03.803181+00:00",
+          "exitCode": 0,
+          "stdout": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        }
+      ],
+      "ancestorInstructions": [],
+      "trackedInstructions": []
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "expected": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "headBeforeSync": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "startUtc": "2026-10-05T01:32:00.013027+00:00",
+          "endUtc": "2026-10-05T01:32:00.028612+00:00",
+          "exitCode": 0,
+          "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "branch",
+            "--show-current"
+          ],
+          "startUtc": "2026-10-05T01:32:00.028646+00:00",
+          "endUtc": "2026-10-05T01:32:00.040158+00:00",
+          "exitCode": 0,
+          "stdout": "codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "rev-parse",
+            "HEAD"
+          ],
+          "startUtc": "2026-10-05T01:32:00.040165+00:00",
+          "endUtc": "2026-10-05T01:32:00.051383+00:00",
+          "exitCode": 0,
+          "stdout": "c86cbf665f5fcb2137e5adf2960541ce492467a4\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "status",
+            "--short"
+          ],
+          "startUtc": "2026-10-05T01:32:00.051401+00:00",
+          "endUtc": "2026-10-05T01:32:00.076944+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "startUtc": "2026-10-05T01:32:00.076997+00:00",
+          "endUtc": "2026-10-05T01:32:00.103799+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "remote",
+            "-v"
+          ],
+          "startUtc": "2026-10-05T01:32:00.103878+00:00",
+          "endUtc": "2026-10-05T01:32:00.115991+00:00",
+          "exitCode": 0,
+          "stdout": "origin\tgit@github.com:night-outlook/hybridclr_unity.git (fetch)\norigin\tgit@github.com:night-outlook/hybridclr_unity.git (push)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "startUtc": "2026-10-05T01:32:00.116017+00:00",
+          "endUtc": "2026-10-05T01:32:00.136617+00:00",
+          "exitCode": 0,
+          "stdout": "worktree /Users/ah/GitHub/hybridclr/hybridclr_unity\nHEAD 0ea633a2c5b936b5af69d944593c55bd2783fca9\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity\nHEAD c86cbf665f5fcb2137e5adf2960541ce492467a4\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_unity\nHEAD b649c499385ea68490a0f652a98b732e060aeb89\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_unity\nHEAD 0ea633a2c5b936b5af69d944593c55bd2783fca9\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "submodule",
+            "status",
+            "--recursive"
+          ],
+          "startUtc": "2026-10-05T01:32:00.136641+00:00",
+          "endUtc": "2026-10-05T01:32:00.212851+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+            "ls-remote",
+            "origin",
+            "refs/heads/codex/assembly-shadow-r01b-h1"
+          ],
+          "startUtc": "2026-10-05T01:32:00.212857+00:00",
+          "endUtc": "2026-10-05T01:32:03.818477+00:00",
+          "exitCode": 0,
+          "stdout": "c86cbf665f5fcb2137e5adf2960541ce492467a4\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        }
+      ],
+      "ancestorInstructions": [],
+      "trackedInstructions": []
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "expected": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+      "headBeforeSync": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "rev-parse",
+            "--show-toplevel"
+          ],
+          "startUtc": "2026-10-05T01:32:00.016726+00:00",
+          "endUtc": "2026-10-05T01:32:00.030718+00:00",
+          "exitCode": 0,
+          "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "branch",
+            "--show-current"
+          ],
+          "startUtc": "2026-10-05T01:32:00.030726+00:00",
+          "endUtc": "2026-10-05T01:32:00.042370+00:00",
+          "exitCode": 0,
+          "stdout": "codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "rev-parse",
+            "HEAD"
+          ],
+          "startUtc": "2026-10-05T01:32:00.042374+00:00",
+          "endUtc": "2026-10-05T01:32:00.052547+00:00",
+          "exitCode": 0,
+          "stdout": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "status",
+            "--short"
+          ],
+          "startUtc": "2026-10-05T01:32:00.052565+00:00",
+          "endUtc": "2026-10-05T01:32:00.098699+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all"
+          ],
+          "startUtc": "2026-10-05T01:32:00.098769+00:00",
+          "endUtc": "2026-10-05T01:32:00.118123+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "remote",
+            "-v"
+          ],
+          "startUtc": "2026-10-05T01:32:00.118143+00:00",
+          "endUtc": "2026-10-05T01:32:00.125570+00:00",
+          "exitCode": 0,
+          "stdout": "origin\tgit@github.com:night-outlook/il2cpp_plus.git (fetch)\norigin\tgit@github.com:night-outlook/il2cpp_plus.git (push)\nupstream\thttps://github.com/focus-creative-games/il2cpp_plus.git (fetch)\nupstream\thttps://github.com/focus-creative-games/il2cpp_plus.git (push)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "startUtc": "2026-10-05T01:32:00.125607+00:00",
+          "endUtc": "2026-10-05T01:32:00.157515+00:00",
+          "exitCode": 0,
+          "stdout": "worktree /Users/ah/GitHub/hybridclr/il2cpp_plus\nHEAD 6be7f38bec2fa4677d24efc1a4a1294240789933\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus\nHEAD 1cf87f8209790f9fb2ebec97487dc1990ccd56c5\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/il2cpp_plus\nHEAD 7967b8c7043904fcae130b294defd5ce7aa897c4\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/il2cpp_plus\nHEAD 6be7f38bec2fa4677d24efc1a4a1294240789933\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/il2cpp_plus\nHEAD 6be7f38bec2fa4677d24efc1a4a1294240789933\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "submodule",
+            "status",
+            "--recursive"
+          ],
+          "startUtc": "2026-10-05T01:32:00.157544+00:00",
+          "endUtc": "2026-10-05T01:32:00.222793+00:00",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+            "ls-remote",
+            "origin",
+            "refs/heads/codex/assembly-shadow-r01b-h1"
+          ],
+          "startUtc": "2026-10-05T01:32:00.222816+00:00",
+          "endUtc": "2026-10-05T01:32:04.011914+00:00",
+          "exitCode": 0,
+          "stdout": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+          "stderr": ""
+        }
+      ],
+      "ancestorInstructions": [],
+      "trackedInstructions": []
+    }
+  ]
+}

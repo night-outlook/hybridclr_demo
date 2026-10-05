@@ -1,0 +1,147 @@
+{
+  "kind": "ReadOnlyMCapabilityContractAudit",
+  "startUtc": "2026-10-05T01:53:14.549476+00:00",
+  "hostCases": 20,
+  "hostSha256": "96da5d182a9259622b2b2c61bf8b468613ab2c91eb4e6e1d22350c8e68431608",
+  "scope": "Actual target preflight only; compiler/build/Player states separate",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false,
+  "reportPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-contract.json",
+  "reportSha256": "3344eb3f8562bb89ed2b6ed371f7d052284b439b60e7b6d61fe660b9fce76812",
+  "originalReceiptResult": "Passed",
+  "status": "Passed",
+  "inventoryRows": 214,
+  "referenceFiles": 192,
+  "compilerAssembliesByMode": {
+    "Player": 22,
+    "PlayerWithoutTestAssemblies": 21
+  },
+  "declarations": [
+    {
+      "name": "Newtonsoft.Json",
+      "included": true,
+      "present": true,
+      "isShadowCapable": false
+    },
+    {
+      "name": "Unity.Burst.Unsafe",
+      "included": true,
+      "present": true,
+      "isShadowCapable": false
+    },
+    {
+      "name": "Unity.Collections.LowLevel.ILSupport",
+      "included": false,
+      "present": false,
+      "isShadowCapable": false
+    },
+    {
+      "name": "nunit.framework",
+      "included": true,
+      "present": true,
+      "isShadowCapable": false
+    },
+    {
+      "name": "Unity.VisualScripting.Antlr3.Runtime",
+      "included": false,
+      "present": false,
+      "isShadowCapable": false
+    }
+  ],
+  "cases": [
+    {
+      "id": "scoped-policy",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/scoped-policy.json",
+      "sha256": "456ff9f7190dbbe5ae82d2195bde0e3af75e7e1844297715fb77a199a8f2142e",
+      "expectedCode": "Success",
+      "observedCode": "Success",
+      "result": "Passed"
+    },
+    {
+      "id": "original-inherited",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/original-inherited.json",
+      "sha256": "782a35ecb403f9995173a557a9ac254b32e1f9af20083647c700f1062e157358",
+      "expectedCode": "UnknownPrecompiledCapability",
+      "observedCode": "UnknownPrecompiledCapability",
+      "result": "Passed"
+    },
+    {
+      "id": "excluded-collections",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/excluded-collections.json",
+      "sha256": "ce27c995211a4770d1759bc146e315dbffc61522312f4799090ffac1ac6b8417",
+      "expectedCode": "UnknownPrecompiledCapability",
+      "observedCode": "UnknownPrecompiledCapability",
+      "result": "Passed"
+    },
+    {
+      "id": "excluded-antlr",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/excluded-antlr.json",
+      "sha256": "6e39d1aab2c4c1d0d6102255d84d9bc0f7d1152130f01ef9603a84c4af83a401",
+      "expectedCode": "UnknownPrecompiledCapability",
+      "observedCode": "UnknownPrecompiledCapability",
+      "result": "Passed"
+    },
+    {
+      "id": "unknown-plugin",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/unknown-plugin.json",
+      "sha256": "b05e22cc4c9be8905db7b4dac53886ea2528a4ab25844ed156084896da6cd46f",
+      "expectedCode": "UnknownPrecompiledCapability",
+      "observedCode": "UnknownPrecompiledCapability",
+      "result": "Passed"
+    },
+    {
+      "id": "source-as-plugin",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/source-as-plugin.json",
+      "sha256": "06bb686846c94b62938b3cc51da23e66fbe2540d21c09d389676854b5be582f3",
+      "expectedCode": "InvalidPrecompiledCapability",
+      "observedCode": "InvalidPrecompiledCapability",
+      "result": "Passed"
+    },
+    {
+      "id": "framework-as-plugin",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/framework-as-plugin.json",
+      "sha256": "94fe50fd18ebf84be62b51ab0ed91b713173f7a217787112cdba5ed98f82e9ec",
+      "expectedCode": "InvalidPrecompiledCapability",
+      "observedCode": "InvalidPrecompiledCapability",
+      "result": "Passed"
+    },
+    {
+      "id": "nonruntime-plugin",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/nonruntime-plugin.json",
+      "sha256": "f9bfb1a284d2645d644669e1564fc010c20dd0db791f829928f8ce174393b7b0",
+      "expectedCode": "InvalidCapabilityClassification",
+      "observedCode": "InvalidCapabilityClassification",
+      "result": "Passed"
+    },
+    {
+      "id": "ordinary-fixed-plugin",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/ordinary-fixed-plugin.json",
+      "sha256": "fbcf0a86b10c37b1aa50f8049646d7695055d52adbac322cfd5cfe80908a4f5e",
+      "expectedCode": "Success",
+      "observedCode": "Success",
+      "result": "Passed"
+    },
+    {
+      "id": "ordinary-shadow-plugin",
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-inputs/ordinary-shadow-plugin.json",
+      "sha256": "2d83d91c6eb4d10554cffe79ab021efbbac396307fa5a1410bde8a9a741df9c5",
+      "expectedCode": "InvalidCapabilityClassification",
+      "observedCode": "InvalidCapabilityClassification",
+      "result": "Passed"
+    }
+  ],
+  "unchangedConfiguredInputs": true,
+  "policySha256": "a2659f2007af6c92ea0d274bbcbb27a1a70380c0854a19d474ee8e04214c39f8",
+  "verificationSha256": "83762bb7d686d7d97193db723bf6279d588a1b188e8ad69aaa951dc273f3c46d",
+  "verdict": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/capability-contract.json",
+    "sha256": "3344eb3f8562bb89ed2b6ed371f7d052284b439b60e7b6d61fe660b9fce76812",
+    "cases": 10,
+    "inventory": 214,
+    "declarationsAudited": 5,
+    "runtimeAcceptance": false
+  },
+  "endUtc": "2026-10-05T01:53:14.610286+00:00"
+}

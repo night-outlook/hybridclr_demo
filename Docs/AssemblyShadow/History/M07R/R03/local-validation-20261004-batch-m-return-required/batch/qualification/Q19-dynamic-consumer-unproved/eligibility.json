@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PureInterpreterEligibilityV1",
+  "qualificationGate": "R03-PureInterpreter-Qualification",
+  "sourceInventoryHash": "80ee8ba1dc8016dfefad20e0d3fc6f7bbd028c256e416780c9cefa4bc0c6d90a",
+  "resourceDescriptorHash": "sha256:93036f89c60e52f934df3592ad837e6af0ec6ed3abed8628e7c6a7b05341edd7",
+  "analysisBindingHash": "b6ed265a8e4fff269e3cacefbaddcf3943121b7153996ce4e25e2f8ce7d07bdb",
+  "changedRoots": [
+    "Pure"
+  ],
+  "closure": [
+    "Pure"
+  ],
+  "targetLoadOrder": [
+    "Pure"
+  ],
+  "inputBindings": [
+    "baseline|Consumer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|ee3bedbda6946696bebe97e33c1d9afb60466cd8febc178ee35242b1b069a33e|Runtime|shadow=False|bootstrap=False",
+    "baseline|Pure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|b3ef2179ab28762f76cefd5d30cbb2d867857297ac008934f886215de2e415a0|Runtime|shadow=True|bootstrap=False",
+    "baseline|reference|mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|9da95e104a85652693d658bad9b75c9ddcffd2ad2ac3c295d4db8c42c6386b96",
+    "baseline|reference|UnityEngine.CoreModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|b06e84af22588b7e0fb9bc0f3d190a2c4dc3626517997007bc27d69ffde6ae37",
+    "target|Consumer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|ee3bedbda6946696bebe97e33c1d9afb60466cd8febc178ee35242b1b069a33e|Runtime|shadow=False|bootstrap=False",
+    "target|Pure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|5fff092663016e35ebd4432732bfc63a3e7b1ad61ce3b7c37dda7e4e4cd1556e|Runtime|shadow=True|bootstrap=False",
+    "target|reference|mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|9da95e104a85652693d658bad9b75c9ddcffd2ad2ac3c295d4db8c42c6386b96",
+    "target|reference|UnityEngine.CoreModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|b06e84af22588b7e0fb9bc0f3d190a2c4dc3626517997007bc27d69ffde6ae37"
+  ],
+  "types": [
+    {
+      "typeKey": "pure:Fixture:Node",
+      "declarationKey": "4:pure;7:Fixture;4:Node;1:0;",
+      "assembly": "pure",
+      "baselineDllSha256": "b3ef2179ab28762f76cefd5d30cbb2d867857297ac008934f886215de2e415a0",
+      "targetDllSha256": "5fff092663016e35ebd4432732bfc63a3e7b1ad61ce3b7c37dda7e4e4cd1556e",
+      "decision": "ExcludedOrNeedsProof",
+      "domains": [
+        "PureInterpreterCandidate"
+      ],
+      "staticReasons": [
+        "DynamicConcreteConsumerNeedsProof:baseline:Consumer:Acquire",
+        "DynamicConcreteConsumerNeedsProof:target:Consumer:Acquire"
+      ],
+      "requiredProofs": [
+        "CompleteInstalledAndTargetRuntimeInventory",
+        "NoExistingBaselineObjectsOrUses",
+        "NoUnprovedReflectionOrNativeConcreteConsumer",
+        "ResourceAndUnityBindingClosure",
+        "PrepublicationOwnerAndFailureState",
+        "ConcreteGenericAndInteropCapability",
+        "IndependentQualificationReview",
+        "ExplicitOwnerQualificationApproval",
+        "SeparateExperimentalPlayerEvidenceBeforeSupportClaim"
+      ],
+      "nativeV1Decision": "NeedsNativeProof",
+      "authorizesExpansion": false
+    }
+  ],
+  "runtimeProofExecuted": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false
+}

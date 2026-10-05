@@ -1,0 +1,70 @@
+{
+  "cases": 10,
+  "command": {
+    "clean": true,
+    "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/commands/0098/unity-completion.json",
+    "completionSha256": "0fd6938784575189918cb8b868e345662cd06644756db6068607b8e11920f700",
+    "originalExitCode": 0,
+    "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/commands/0098/command.json",
+    "outerSha256": "c62ae966231f2e95b46039fe7c58c25a75cf777fc7bb92762e23b7164e18b023",
+    "supportSources": {
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+    }
+  },
+  "kind": "R03ActualFixedImageContract",
+  "materialization": {
+    "classification": "FrozenHistoricalInputMaterialization",
+    "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+    "identity": {
+      "culture": "",
+      "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+      "name": "AssemblyShadowBaseline.HotUpdate",
+      "publicKeyToken": "",
+      "referenceIdentities": [
+        {
+          "culture": "",
+          "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+          "name": "netstandard",
+          "publicKeyToken": "cc7b13ffcd2ddd51",
+          "referenceIndex": 0,
+          "version": "2.1.0.0"
+        }
+      ],
+      "version": "0.0.0.0"
+    },
+    "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "materialization": {
+      "classification": "FrozenHistoricalInputMaterialization",
+      "freshCscExecutionClaimed": false,
+      "kind": "R02OrdinaryInputAuthentication",
+      "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+        "sha256": "5f46fd7b6438a181f2865df86b2bafbf26e29058ce19d40381451097bb6bd3f7",
+        "sizeBytes": 2623
+      },
+      "result": "Passed",
+      "runtimeAcceptance": false,
+      "staged": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+        "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+        "sizeBytes": 4608
+      }
+    },
+    "profile": "R03FrozenFixedImageV1",
+    "runtimeAcceptance": false,
+    "siteIds": [
+      "h1-count-ordinary-witness-image",
+      "m00-normal-hot-update-image"
+    ],
+    "sizeBytes": 4608
+  },
+  "pinnedSemanticsVerified": true,
+  "receipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-contract.json",
+  "result": "Passed",
+  "runtimeAcceptance": false,
+  "sha256": "20c7aa836268de402650df97a8b1c8fd2eaf864c9b718d58d91af3194b005550"
+}

@@ -1,0 +1,62 @@
+{
+  "kind": "R02UnityCommandCompletion",
+  "policy": "R02OwnedUnityRoslyn-v2",
+  "result": "Passed",
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-quit",
+    "-buildTarget",
+    "osx",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete",
+    "-executeMethod",
+    "AssemblyShadowDemo.Editor.R03CompletionFixedImageContract.Verify",
+    "-shadowBaselineId",
+    "M07-Baseline-R03Completion-301493290706",
+    "-shadowM07ResourceOutput",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+    "-shadowValidationRoot",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M02Validation-d795bcc36de649e9b25ac66b73f03cf1",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/resource-logs/fixed-image-preflight.log"
+  ],
+  "commandExitCode": 0,
+  "startedAtUnix": 1791164456.9551349,
+  "runtimeAcceptance": false,
+  "compilerBinding": {
+    "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "sha256": "02958dc1de32e0960dc8dc85e17f51a5755438a746c21d892f4ac726ddfcbd4a",
+    "sizeBytes": 240640
+  },
+  "completion": {
+    "policy": "R02OwnedUnityRoslyn-v2",
+    "group": 48840,
+    "compiler": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "termGraceSeconds": 5.0,
+    "killGraceSeconds": 3.0,
+    "clean": true,
+    "actions": [],
+    "observations": [
+      {
+        "phase": "initial",
+        "atMonotonic": 1086065.043011666,
+        "members": []
+      },
+      {
+        "phase": "before-SIGTERM",
+        "atMonotonic": 1086065.062207666,
+        "members": []
+      },
+      {
+        "phase": "wait-SIGTERM",
+        "atMonotonic": 1086065.079884916,
+        "members": []
+      }
+    ],
+    "after": [],
+    "before": []
+  },
+  "endedAtUnix": 1791164461.230504
+}

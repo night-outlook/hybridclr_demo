@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LLCompilerPolicyRepairEvidence",
+  "date": "2026-10-04 UTC",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAnchor": "bb4bb31132ab1aaafa0a6c38cd3b5120142ff6b7",
+  "repositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "preservedLocal": {
+    "publication": "4df1ef8de7ffb4a585e1d3ddfd1b16c024e1bc60",
+    "executedDemo": "96eaa341d8eea476aec72506bac1a2d0456e24d7",
+    "batch": "L", "result": "ReturnRequired", "passed": 43, "failed": 1, "blocked": 46,
+    "sealStatus": "Passed", "emittedCompilerArtifacts": "Available", "finalCompilerPolicy": "Failed",
+    "resourceRuntime": "Unavailable", "historicalLocalReportsModified": false,
+    "entireEarlierCustodyReauthenticatedHere": false
+  },
+  "hostWorkflow": {
+    "runId": 37237474866, "conclusion": "success", "platforms": ["ubuntu-24.04", "macos-15"], "sdk": "8.0.318",
+    "completionPythonContractsPerHost": 172, "newLLContracts": 24, "retainedR03PythonContractsPerHost": 183,
+    "qualificationCases": 32, "fixtureConstructorCases": 12, "capabilityProfileCases": 20,
+    "fixedImageCases": 10, "baselineGraphCases": 9, "candidateGraphCases": 9, "admissionCases": 35,
+    "ownedCommandsPerHost": 17, "unityEditorRun": false, "playerRun": false,
+    "artifacts": [
+      {
+        "artifactId": 11315884138, "file": "r03-ll-linux-bb4bb31.zip",
+        "sha256": "744edfd102c6b5b282927c9e2b0f9d3f37b252882394b53ce19c335d3161e63f",
+        "bytes": 4457242, "indexedFiles": 544, "zipFiles": 545, "commandCount": 17,
+        "sourceCommit": "bb4bb31132ab1aaafa0a6c38cd3b5120142ff6b7",
+        "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+        "provenanceSha256": "96963590fb08f33120254f2a01697098762eb0f645bdb23a6cae54ce91eb3c78",
+        "resultSha256": "476c82597c1d607852c4ce1097e35377f200d51c411dbd0ff47ce51f17e63239",
+        "result": "Passed", "authenticated": true, "commandLifetime": "Passed",
+        "pythonCounts": [172,183],
+        "managedCounts": {"fixture-constructor-host":12,"capability-profile-host":20,"fixed-image-host":10,"qualification":32,"host/baseline-graph":9,"host/candidate-graph":9,"host/admission":35},
+        "determinismInputHashes": [
+          "08a2e8fddc375bf38c05e80772d38f94cb0e29afb59fd0eeee835cb4df0772fb",
+          "6cbeec69410b90cd8b5a83bf825a67c8cba8f1693906ae5027d8f8ceb761d423",
+          "b71786b8c1532561d4d939cf77119c8f23e97e4dcfc55680fce8b1c66523422f",
+          "8facd5eda552901c3be36171db287ea3bb0715b0d574039eb90411835c50fcec"
+        ],
+        "determinismReportSha256": "e78f536c5d9f6c548a4c0395d0ee5bd8f533a4edcb688bc2ba11a8667f601292"
+      },
+      {
+        "artifactId": 11316446973, "file": "r03-ll-macos-bb4bb31.zip",
+        "sha256": "284c2292f66a7f8aceae11763cb00fd2b96e687285c313310cc1645dad113898",
+        "bytes": 4422565, "indexedFiles": 544, "zipFiles": 545, "commandCount": 17,
+        "sourceCommit": "bb4bb31132ab1aaafa0a6c38cd3b5120142ff6b7",
+        "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+        "provenanceSha256": "8913fb62d806ed58d775d2bb67743c2f158654deecef5fe0bf907bdcd063c19a",
+        "resultSha256": "9bcc94bb6b4a00df16c6e05837f26745509d658535104fbfa47fe4a508da6752",
+        "result": "Passed", "authenticated": true, "commandLifetime": "Passed",
+        "pythonCounts": [172,183],
+        "managedCounts": {"fixture-constructor-host":12,"capability-profile-host":20,"fixed-image-host":10,"qualification":32,"host/baseline-graph":9,"host/candidate-graph":9,"host/admission":35},
+        "determinismInputHashes": [
+          "1ce7c97d079be88dd6e3eccc2d69e4a12df83ad0de30ff48d6314f7ca4149c47",
+          "eb3344f72744aff764d09fae22495f7be05cabd94f9d105a63ce3d32559086cf",
+          "e57344ecb26a18088b5c49e0d2e5a875ddb2f30d10b37ea7a9f51a8a57e82d24",
+          "0ba678a856993b9614bfceef5c5762b218db9b54e32963611c691e491570772e"
+        ],
+        "determinismReportSha256": "0e244ca2e622f17bf3bfa73dc466678694ae011b5919ef75ae85f9dd4a0043a2"
+      }
+    ]
+  },
+  "pinnedUnityWorkflow": {
+    "runId": 37237474879, "conclusion": "success", "unityVersion": "2022.3.62f2",
+    "resourceAssembliesCompiled": 16, "resourceSourceFiles": 656, "ownedCommands": 20,
+    "compilerWarnings": 932, "warningsSuppressed": false, "fixedImageMonoCases": 10,
+    "compilerPolicyRawSites": 25, "compilerPolicyGuardControls": 16,
+    "actualReportSerializationControl": "Passed", "actualRawAndBootstrapRulesUsed": true, "ruleStubsUsed": false,
+    "coreRpSourceRevision": "4694a5f37cb1c40e48058da90d3deab8f440dae6",
+    "upmByteEquivalenceClaimed": false, "unityEditorRun": false, "playerRun": false,
+    "artifact": {
+      "artifactId": 11316462421, "file": "r03-ll-api-bb4bb31.zip",
+      "sha256": "784a83616a2caebc965a99fd9769008152924bda6f3a5e8f1349ea8c37bedf99",
+      "bytes": 2248480, "indexedFiles": 209, "zipFiles": 210, "commandCount": 20,
+      "sourceCommit": "bb4bb31132ab1aaafa0a6c38cd3b5120142ff6b7",
+      "packageCommit": "c86cbf665f5fcb2137e5adf2960541ce492467a4",
+      "provenanceSha256": "1ec818e4ac6e33279a16173352879c97cd6c6ebda1c7aa89b90f0d40234a789e",
+      "resultSha256": "e52d6780d69b339b8a14c83d672bcb32a4df95428c6455f605b6a75bde2b5c98",
+      "result": "Passed", "authenticated": true, "commandLifetime": "Passed",
+      "replaySha256": "5f4b3a33168a177b48be3c92f1fce052cc33325a2a0f934319c44cbbd03deac3",
+      "observationSha256": "f1ee1bdc962baf3f3cd140d362f7f4402160913e60bb96531b4dd08be870e969"
+    }
+  },
+  "compilerReplay": {
+    "basis": "ReusedAuditedLocalLCompilerInputs",
+    "snapshotReceiptSha256": "fc3c1a83ba6c22e632cbf9ee5e90dbc7c89f4d1343287d478c88a631648c06f2",
+    "dllFiles": 213, "pdbFiles": 89, "beforeAfterVerified": true,
+    "originalRawConfigurationSha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c",
+    "newDependencySha256": "f0f0b9fe51afaaaa5879bf5cb70f8f7116f5d60ee2164c8e3f3cb5be5af3d36d",
+    "originalOtherDeclarationsCanonicalSha256": "0bd51c8fd2868b9ae77e6f61f028ea50bb55a7ee6f80a85a1bd9e02c315caac9",
+    "onQuitMethodHash": "d67475081d7ab1ddc535c5bb20ab8334345403cd21547f6dbb3e1c4abd62a200",
+    "rawSites": 25, "controls": 16, "result": "Passed", "historicalFinalPolicy": "Failed",
+    "historicalEvidenceModified": false, "currentCompilerSnapshotProduced": false,
+    "linkedProofExecuted": false, "runtimeAcceptance": false
+  },
+  "additionalTestRepair": {
+    "initialSource": "a76c3b2203184bab5a9a9ce0a0ed980a089026d5", "initialHostRun": 37236729792,
+    "failedLinuxArtifactId": 11315474735,
+    "failedArtifactSha256": "1038287631bba651a556bb5dd97fc7d43e2ae4c999e44a6007bb7808f61d8200",
+    "failedArtifactAuthenticated": true, "case": "Q22-deterministic-source-binding",
+    "command": "commands/0010/command.json", "exitCode": 1, "completionClean": true,
+    "finding": "Fixture re-emitted DLLs between allegedly unchanged-input analyses. The first report was not retained; exact changed byte is not claimed identified.",
+    "correction": "Prepare once, independently reload/analyze twice, retain complete reports and before/after hashes. Exact equality and production source binding remain unchanged.",
+    "caseRemoved": false, "finalBothHosts": "Passed", "sameSourceRetryUsed": false
+  },
+  "sourceAndArtifactAudit": {
+    "exactIntendedSourceFilesMatchedFinalApiArtifact": 50,
+    "zipMembershipAndIndexedHashes": "Passed for all three final archives",
+    "sourcePackageIdentity": "Passed", "commandExitLifetimeAndStreamHashes": "Passed",
+    "temporaryStagingRemovedFromFinalTree": true, "newMetaGuidsUniqueInCapturedAssetSource": true,
+    "allAuthoritativeCommitAndRefWrites": "GitHub Connector"
+  },
+  "localPrimaryChecks": {
+    "completionPython": "172/172 Passed", "retainedPython": "183/183 Passed", "parsedCompletionPythonModules": 23,
+    "completionStderrSha256": "71a0244da5dc7a70b149c30063a5fb2a41c81e21cd0e722b7645ace4227ade6a",
+    "retainedStderrSha256": "cef2799d6283a92817bd66a84e4043a80d5c496c941fb87786bdff32d19bfb72",
+    "scope": "Authenticated source-slice checks; no owning Local checkout, Unity Editor or Player execution claimed."
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo", "base": "5f2d626b08985dac8f4833bb8ca0988b90e538c7",
+    "branch": "codex/connector-smoke-r03-ll-20261004-2105", "commit": "47c3588c1bfc5dde0fbf84f451e83741dc5f3ce7",
+    "headAndFileReadback": "Passed", "cleanup": "Delete-ref unavailable; retained non-authoritative disposable branch.",
+    "siblingWrites": "None; all three source pins unchanged."
+  },
+  "interpretation": {
+    "LLIntegratedClosure": "Pending batch M", "currentCompilerCapturedProofExecuted": false,
+    "newLinkedPlayerProofExecuted": false, "runtimeAcceptance": false, "R03Accepted": false,
+    "H2Passed": false, "qualificationApproved": false, "expansionAuthorized": false,
+    "pending": ["Current Unity compiler gate, captured25-site proof and16 controls", "Fresh six builds,90 cells,59 Players and all Editor/preflight scopes", "Full-stage reconciliation and independent review"]
+  }
+}

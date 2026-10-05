@@ -1,0 +1,1720 @@
+{
+    "settingsJson": "{\"enableAssemblyShadow\":true,\"shadowAssemblyDefinitions\":[],\"shadowAssemblyNames\":[\"AssemblyA.Contracts\",\"AssemblyA.Implementation.Extensibility\",\"AssemblyA.Implementation.Internal\",\"AssemblyShadowDemo.ContractsConsumer\",\"AssemblyShadowDemo.ExtensibilityConsumer\"],\"bootstrapAssemblyDefinitions\":[],\"bootstrapAssemblyNames\":[\"AssemblyShadowDemo.Bootstrap\"],\"startupBootstrapAssembly\":\"AssemblyShadowDemo.Bootstrap\",\"startupBootstrapNamespace\":\"AssemblyShadowDemo\",\"startupBootstrapType\":\"R01EarlyStartup\",\"startupBootstrapMethod\":\"Run\",\"patchOutputRoot\":\"HybridCLRData/AssemblyShadow/Patches\",\"baselineOutputRoot\":\"HybridCLRData/AssemblyShadow/Baselines\",\"baselineManifestPath\":\"\",\"buildId\":\"M07-Baseline-R03Completion-301493290706\",\"currentCompileOutput\":\"\",\"playerInputSnapshot\":\"\",\"resourceBuildMapPath\":\"ProjectSettings/AssemblyShadowResourcesM07.json\",\"resourceBaselinePath\":\"\",\"patchId\":\"P01\",\"targetReferenceDirectories\":[],\"architecture\":\"arm64\",\"sourcePinFile\":\"ProjectSettings/AssemblyShadowSourcePins.json\",\"precompiledAssemblyNames\":[],\"precompiledAssemblyCapabilities\":[{\"name\":\"Newtonsoft.Json\",\"classification\":0,\"isShadowCapable\":false,\"isBootstrap\":false,\"isPrecompiled\":false,\"capabilityDeclared\":false},{\"name\":\"Unity.Burst.Unsafe\",\"classification\":0,\"isShadowCapable\":false,\"isBootstrap\":false,\"isPrecompiled\":false,\"capabilityDeclared\":false},{\"name\":\"nunit.framework\",\"classification\":0,\"isShadowCapable\":false,\"isBootstrap\":false,\"isPrecompiled\":false,\"capabilityDeclared\":false},{\"name\":\"Unity.Collections.LowLevel.ILSupport\",\"classification\":0,\"isShadowCapable\":false,\"isBootstrap\":false,\"isPrecompiled\":false,\"capabilityDeclared\":false}],\"explicitDependencyConfig\":{\"instanceID\":0},\"extensibilityWhitelist\":{\"instanceID\":0},\"explicitDependencyConfigPath\":\"ProjectSettings/AssemblyShadowDependencies.json\",\"extensibilityWhitelistPath\":\"ProjectSettings/AssemblyShadowExtensibilityWhitelist.json\",\"allowedInternalEditorAssemblies\":[\"AssemblyShadowDemo.Editor\",\"AssemblyShadowDemo.EditorTests\"],\"enforceResourceAbi\":true,\"rejectUnknownReflectionDependencies\":true,\"includePdbInDevelopmentPatch\":true}",
+    "inventory": [
+        {
+            "name": "AssemblyA.Contracts",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyA.Implementation.Extensibility",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyA.Implementation.Internal",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowBaseline.Aot",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowBaseline.HotUpdate",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowDemo.Bootstrap",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowDemo.ContractsConsumer",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "AssemblyShadowDemo.M06RuntimeTests",
+            "classification": 2,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "HybridCLR.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Microsoft.Win32.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Newtonsoft.Json",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": true,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.AppContext",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Buffers",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections.Concurrent",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections.NonGeneric",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Collections.Specialized",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.Composition",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.EventBasedAsync",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ComponentModel.TypeConverter",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Console",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Core",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Data",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Data.Common",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Contracts",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Debug",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.FileVersionInfo",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Process",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.StackTrace",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.TextWriterTraceListener",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Tools",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.TraceSource",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Diagnostics.Tracing",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Drawing",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Drawing.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Dynamic.Runtime",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Globalization",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Globalization.Calendars",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Globalization.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Compression",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Compression.FileSystem",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Compression.ZipFile",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem.DriveInfo",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.FileSystem.Watcher",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.IsolatedStorage",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.MemoryMappedFiles",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.Pipes",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.IO.UnmanagedMemoryStream",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq.Expressions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq.Parallel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Linq.Queryable",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Memory",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Http",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.NameResolution",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.NetworkInformation",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Ping",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Requests",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Security",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.Sockets",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.WebHeaderCollection",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.WebSockets",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Net.WebSockets.Client",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Numerics",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Numerics.Vectors",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ObjectModel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.DispatchProxy",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Emit",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Emit.ILGeneration",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Emit.Lightweight",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Reflection.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Resources.Reader",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Resources.ResourceManager",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Resources.Writer",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.CompilerServices.VisualC",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Handles",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.InteropServices",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.InteropServices.RuntimeInformation",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.InteropServices.WindowsRuntime",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Numerics",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Formatters",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Json",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Runtime.Serialization.Xml",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Claims",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Algorithms",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Csp",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Encoding",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.Primitives",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Cryptography.X509Certificates",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.Principal",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Security.SecureString",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ServiceModel.Web",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Text.Encoding",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Text.Encoding.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Text.RegularExpressions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Overlapped",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Tasks",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Tasks.Extensions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Tasks.Parallel",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Thread",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.ThreadPool",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Threading.Timer",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Transactions",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.ValueTuple",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Web",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Windows",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.Linq",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.ReaderWriter",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.Serialization",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XDocument",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XPath",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XPath.XDocument",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XmlDocument",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "System.Xml.XmlSerializer",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.Burst",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.Burst.Unsafe",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": true,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.Mathematics",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipeline.Universal.ShaderLibrary",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Core.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Core.ShaderLibrary",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.2D.Internal",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Config.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Runtime",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "Unity.RenderPipelines.Universal.Shaders",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ARModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AccessibilityModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AndroidJNIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AnimationModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AssetBundleModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.AudioModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ClothModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ClusterInputModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ClusterRendererModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ContentLoadModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.CoreModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.CrashReportingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.DSPGraphModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.DirectorModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.GIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.GameCenterModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.GridModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.HotReloadModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.IMGUIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ImageConversionModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.InputLegacyModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.InputModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.JSONSerializeModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.LocalizationModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ParticleSystemModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.PerformanceReportingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.Physics2DModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.PhysicsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ProfilerModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.PropertiesModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.ScreenCaptureModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SharedInternalsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SpriteMaskModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SpriteShapeModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.StreamingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SubstanceModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.SubsystemsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TLSModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TerrainModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TerrainPhysicsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TestRunner",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TextCoreFontEngineModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TextCoreTextEngineModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TextRenderingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.TilemapModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UI",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UIElementsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UIModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UmbraModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityAnalyticsCommonModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityAnalyticsModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityConnectModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityCurlModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityTestProtocolModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestAssetBundleModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestAudioModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestTextureModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.UnityWebRequestWWWModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VFXModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VRModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VehiclesModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VideoModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.VirtualTexturingModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.WindModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "UnityEngine.XRModule",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "mscorlib",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "netstandard",
+            "classification": 3,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": false,
+            "capabilityDeclared": false
+        },
+        {
+            "name": "nunit.framework",
+            "classification": 0,
+            "isShadowCapable": false,
+            "isBootstrap": false,
+            "isPrecompiled": true,
+            "capabilityDeclared": false
+        }
+    ],
+    "normalHotUpdates": [
+        "AssemblyShadowBaseline.HotUpdate"
+    ]
+}

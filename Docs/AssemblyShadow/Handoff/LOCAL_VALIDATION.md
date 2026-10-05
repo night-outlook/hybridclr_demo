@@ -1,6 +1,196 @@
 # Local Validation report
 
-## Current run — R03 completion batch L, 2026-10-04 PDT: fixed-image preflight Passed; compiler-policy integration returns to Primary
+## Current run — R03 completion batch M, 2026-10-04 PDT: compiler-policy/linked repairs Passed; P05 layout comparison returns to Primary
+
+**ReturnRequired; 90 cells: 48 Passed / 1 Failed / 41 Blocked; sealStatus=Passed; runner exit 1. Exit A: Local Validation → Primary Implementation.** Exactly one fresh invocation PID 42349, 2026-10-04 18:34:04 PDT → 2026-10-04 18:52:35 PDT; UTC 2026-10-05T01:34:04.246872+00:00 → 2026-10-05T01:52:35.344250+00:00. No retry, source fix, pin/scope/expectation/timeout/cleanup/lease changes or earlier app reuse.
+
+The fresh original compiler gate Passed with current captured 25-site proof and all 16 guard controls. Both resource Player builds and their subsequent linked 25-site proofs Passed. All six build roles, 23 focused fresh Players, early 18-method Editor preflight and complete 754/755 Editor rosters Passed with zero skips/inconclusive. P05 later failed `NativeLayoutIncompatible` when comparing linked baseline against compiler target; fixture finalization and the 36 resource/measurement/early-startup processes were Blocked. Scoped settings restoration independently verified exact original bytes. New defect R03-LM-001 requires Primary; passing compile/link evidence does not establish complete R03 acceptance.
+
+### Source authority and environment
+
+Each repository independently matched expected path, branch `codex/assembly-shadow-r01b-h1`, clean status, canonical `git@github.com:night-outlook/<repo>.git` identity and exact remote tip before/after execution. Demo safely fast-forwarded from `4df1ef8de7ffb4a585e1d3ddfd1b16c024e1bc60`; three siblings were unchanged. Executable/CI anchor `bb4bb31132ab1aaafa0a6c38cd3b5120142ff6b7` is an ancestor and the final delta is documentation-only. Mandatory Git checks, worktree/submodule/package/native/generated-file pins and operations are retained in [preflight](../History/M07R/R03/local-validation-20261004-batch-m-return-required/preflight). All 34561 earlier custody bindings authenticated before/after M; L and earlier bytes/states remain unchanged.
+
+| Actual repository path | Exact executed source commit |
+| --- | --- |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | `301493290706e81437db1ac6a31977e9930d9fc6` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `c86cbf665f5fcb2137e5adf2960541ce492467a4` |
+| `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+
+Unity 2022.3.62f2 / StandaloneOSX arm64 at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`; macOS 26.5.2 (25F84) arm64; SDK 8.0.318/runtime 8.0.21; Python 3.14.6; PowerShell 7.6.3; Apple clang 21/macOS SDK 26.5. SDK-only root `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`; no Unity6000 Editor launched. Pinned mscorlib SHA-256 `d89d5124cafb873b34c2eac68d2ece41d14fec10999baf0e4620276dff54ab83`. Exact versions/argv/environment/start/end/PID/exit/output/hash records are in environment.json, runner receipts and each command.json. No existing Editor at entry; gate helper Off; effective host model unexposed, no guessed identity or independent full-stage gate claim. Ordinary primary/control checkouts unused and unchanged.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 301493290706e81437db1ac6a31977e9930d9fc6
+```
+
+### Validation states and limits
+
+| Scope | Factual result |
+| --- | --- |
+| Host contracts | Passed 172 completion Python, 183 retained verifier, 32 qualification, 12 constructor, 20 capability and 10 fixed-image host cases; graphs 9+9/admission 35 |
+| Q22 | Passed two byte-identical complete reports from the same four prepared DLLs; unchanged before/after hashes. [Current audit](../History/M07R/R03/local-validation-20261004-batch-m-return-required/preflight/COMPILER_POLICY_AUDIT.json) binds input/report hashes; qualificationApproved=false |
+| Fixture/compiler lifecycle/API prerequisites | Passed 33 fixture/33 pinned compiler-consumer checks, valid/invalid actual Editor probes, full helper/API compilation; expected negative exits remain distinct |
+| Focused builds and Players | Passed four isolated native roles and 23 unique fresh Player PIDs (19 cases + four producer diagnostics) |
+| Warm/C07/rejection | Passed six unchanged strict warm witnesses, positive C07 physical proof and five non-mutating rejected-stage observations preserving terminal error 16 |
+| Producer controls | Passing diagnostic attribution observes actual ArrayPool Gen2 admissions in four controls; every contaminated unisolatedWarmCertificate=Failed remains Failed |
+| Original resource prerequisites | Passed preparation, ten actual source-pin controls, native install, ten actual capability controls/five declaration decisions, fixed-image authentication/materialization/ten actual image controls |
+| Current compiler policy | Passed original full gate, current 25-site captured/recomputed proof, 16 exact controls and unchanged eight immutable inputs; compile-only linkedProofExecuted/runtimeAcceptance/expansion flags false |
+| Original linked builds | Passed both feature-ON/OFF roles; actual current linked raw proofs each 25 sites independently verified with snapshot/reflection/native metadata and installed inventory |
+| P05 public compiler | Emitted successful p05-compile-receipt/snapshot; Available. Whole resource-p05-compile cell Failed later during NativeLayoutAdmissionSnapshot / atomic fixture construction |
+| P05 recovery | Passed exact original settings byte restoration after recorded mutation; original/reserialized bytes and production/wrapper receipts retained |
+| P05 finalization/full fixture graph/production integration | Blocked; no successful atomic P05 manifest, full graph or runtime receipt inferred |
+| 36 completion Players / performance / early-startup | Blocked; zero resource/R00/early processes launched; no performance SLA, capacity/startup or broad M06 runtime acceptance |
+| Seal/custody and audits | Passed 10259 indexed files / 10260 unique archive members; all original states preserved. Read-only completion aggregate separately records four Passed/three NotRun; independent linked/recovery audit Passed |
+
+| Actual Editor roster | Result | XML SHA-256 |
+| --- | --- | --- |
+| focused-editor | 754/754; zero skips | `923cb084a1381023f1c0ce15ea3adba8d466ae41108c70f3dea2657d3fbfcc79` |
+| resource-editor | 755/755; zero skips | `dc40d85e25d6bdd4b9ce226553d76d177188b3e544df26fe097c0c0039e9ec4b` |
+
+Focused M01 exclusion remains NoCoverage in that roster. Resource 755 roster includes original M01 asset/GUID coverage; Editor success is not bundle/Player acceptance. Command receipts 0001–0106 retain clocks/streams and cleanup: expected negative exits at 0058 (invalid-key consumer), 0060 (invalid-key Editor), 0065 (old-helper CS0266); actual product failure at 0104. No timeout or survivor on the failing command. Recorded Unity inner exits and cleanup actions are unchanged; no historical A/B survivor identity inferred.
+
+### Fresh build and input provenance
+
+Focused receipts `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/builds/<role>/build-receipt.json` bind project/output/native roots, before/after installed source, schema-2 nativeBinding and linked DLL/Player hashes. Build GUID is unavailable for these four receipts; no GUID equivalence claim.
+
+| Focused role | Receipt SHA-256 | Source-pin SHA-256 | Verified native files |
+| --- | --- | --- | --- |
+| candidate-release | `a7da1e7df1577f0b0c6acd0a9d151445a1205e7689ea6a584f904711e9efa308` | `1fc6a1b4699deb5e1f9d20a5ce491e23e9d5cf132c8e7b52d80f7dabbedff1cd` | 971 |
+| reference-release | `4150a43cb0fd71ec50351dabb3513bfc6719a92a186f19c7a6dcae6ac4c28e57` | `9fab4efd059559d95bd9dec1da0fcf63a63c69f20e169c4d8419b4f48d3f9b01` | 965 |
+| candidate-debug | `fc8f8489c2a042a4070c497477fd550cbeadd2a29ac5b2605cb9e33204d7a41f` | `1fc6a1b4699deb5e1f9d20a5ce491e23e9d5cf132c8e7b52d80f7dabbedff1cd` | 971 |
+| candidate-off | `83833d8c2f923071fb9d329c7a8fecf518733a975776915407616ec9a9433e0e` | `1fc6a1b4699deb5e1f9d20a5ce491e23e9d5cf132c8e7b52d80f7dabbedff1cd` | 971 |
+
+Candidate source/native pins are the four owning commits above. Reference Release deliberately uses verified historical native `1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad` / IL2CPP `a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c`; current overlay/package is separately bound. Exact detached reference source worktrees and all live roots are retained in [RETAINED_LIVE_ROOTS.json](../History/M07R/R03/local-validation-20261004-batch-m-return-required/preflight/RETAINED_LIVE_ROOTS.json). This is source reuse, not historical build/runtime-result reuse.
+
+| Original resource role | Player receipt SHA-256 | Build GUID | Native library SHA-256 |
+| --- | --- | --- | --- |
+| resource-player-on | `63d88b45dde09e14eec6c528a416f9bee94aedaf0ecd3c71aab28021b133fce9` | `6bc3305d9e3a44e3a1ed80f1f32fa309` | `82bc82efbcfccbb60b45b0cd7c16f484e19b188ee524e7c24464ff7d73b9c180` |
+| resource-player-off | `9180a579c27797d4929aa3a3e2f3b089b9831ec32383c7880323dc7ee3d0a498` | `5d11550faee544b5b9b19d8a167c687b` | `a9c3027dd07910292085377d26b1e886bf86e2e9ba32594445f99a452235abb3` |
+
+[RESOURCE_BUILD_RECOVERY_AUDIT.json](../History/M07R/R03/local-validation-20261004-batch-m-return-required/preflight/RESOURCE_BUILD_RECOVERY_AUDIT.json) records exact paths, input snapshot/native metadata hashes, actual ON/OFF arguments, linked proof hashes, installed native binding and restoration. Resource builds use no R03 probe/producer lease. Settings final SHA-256 `2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26` equals the backed-up original; preserved Unity serialization SHA-256 `b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d` is separately bound. Original defines/state/production/wrapper receipt hashes remain distinct.
+
+### Compiler-policy repair and new failure
+
+All six policy configurations are immutable and recorded in resource-project.json/compilerPolicyInputs. Original raw file SHA-256 `0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c` and exact dependency SHA-256 `f0f0b9fe51afaaaa5879bf5cb70f8f7116f5d60ee2164c8e3f3cb5be5af3d36d` were preserved through phases. Compiler contract `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-contract.json` SHA-256 `7a94616f5b12b2de9399eb453d26cc11ff3c70e73ac24ca5607d10d689b2b2b2`; current snapshot `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/projects/resource-complete/_temp/AssemblyShadow/M07CompilerPreflight-4d293bcc93a34371aa38b9d1a0ba2f7e/Snapshot/assembly-snapshot.json` SHA-256 `8c9276a90a2c9c065ac0f0fb879eb06c76cb22b3041bc4a3c3e630220abecdf5`; captured compiled proof `b21e869d466bb6e4328e04c526012d871fe2c87dcae49670c53ae4ef64f6266f`. All 213 compiler modules, mode/proof and 16 control mutations/outcomes authenticate. Subsequent actual linked proofs were verified independently; this is fresh M evidence, not Primary's historical L-byte replay or reclassification of L.
+
+Frozen M00 image `9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27` (4608 bytes) is reused-audited input authenticated against its pinned original archive/member and materialized before resource Unity. Provider/MVID/mode/configuration/semantic hashes are unchanged. [FIXED_IMAGE_AUDIT.json](../History/M07R/R03/local-validation-20261004-batch-m-return-required/preflight/FIXED_IMAGE_AUDIT.json) distinguishes host encoder semantics from actual pinned-Unity semantics. No new M00 compilation or historical runtime-result reuse is claimed.
+
+R03-LM-001: conservative admission compares linked baseline DLL `9f1dc0886284dd1b559da345b991a1943be4b7e9697b413af4d917e6bd7f3484` against compiler target `b5bdab58ef5ff32a194115c9e4be5b55d9d8546f798a974b0e5b42f2931fad87`. Read-only CLI metadata shows all 43 differing bases keep the same qualified names but change scope mscorlib → netstandard; 18 analogous declared field-scope differences are retained. Examples: InternalEntry System.Object parent, M06InternalNode.Changed System.Action, m07InlineValues List<T>. EvolutionSignature/TypeKey use raw assembly qualifiers without a verified cross-input forwarding context. This is the most likely cause of the widespread ParentChanged/signature errors. The audit does not prove forwarding equivalence, all type compatibility or native allocation/offset safety. No guard bypass or Local source fix. [RETURN_TO_WEB.md](RETURN_TO_WEB.md) provides reproduction, source chain, exact evidence and Primary repair direction.
+
+### Custody, publication and exit
+
+Live root `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy` and preflight `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy` remain retained, including projects/Library/HybridCLRData/reference sources and all evidence-referenced inputs. [Immutable M checkpoint](../History/M07R/R03/local-validation-20261004-batch-m-return-required/README.md) contains exact indexed bytes, source snapshots, policy/Q22/linked/recovery/diagnosis audits and additional authenticated baseline PlayerInputs needed for the failure. These added custody copies are not new compilation or test execution. All earlier 34561 bindings and full report histories are preserved.
+
+| Original artifact | SHA-256 |
+| --- | --- |
+| `LOCAL_BATCH_RESULT.json` | `0ca109256b66da8e89ef9a703cbb392e2e5d43ae05afcf7eee028532352a05d7` |
+| `BATCH_EXECUTION.json` | `bfe8d093d41ae6fd15612ff6f8cbec421eeb5d710b44d13ac5fabad65d787fcd` |
+| `evidence-index.json` | `b0590b28d791677711aa80f575b37c1f6d9c1dcff6b5284ff0d0b61983e183ae` |
+| `evidence.tar.gz` | `d0fea76988345440bbe30acc5d630e08847b32913c8ee3d9e9e00d2126181d7d` |
+| `seal-receipt.json` | `b5bbdff3cd7e4d12ee420c64a69ee1574cbffeb314cf82aa9835ad435511de7b` |
+
+The original 432417457-byte archive is unchanged, transported in exact ordered byte parts and reconstructed at a new external path. Manifest/JSON/links/staged bytes/source provenance and whitespace checks precede commit. Only the two Local reports/new M checkpoint are owned changes. The source pin is the executed commit, distinct from the later Local publication HEAD. Final clean status/remote tips/latest pushed heads for all four repos are externally verified in `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261004M-policy/PUBLICATION_RECEIPT.json` and the final short handoff, avoiding self-referential commit hashes.
+
+**R03Accepted=false; H2Passed=false; qualificationApproved=false; fullLegacyRegressionAcceptance=false; PureInterpreter expansion disabled. No SLA or Human Review Gate readiness.** Independent meaningful checks completed; Failed/Blocked/NotRun/Unavailable/NoCoverage/reused-audited states remain distinct. **Exit A: Local Validation → Primary Implementation. Stop; no further batch or non-trivial Local implementation.**
+
+### All 90 original cells
+
+Receipts `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/cells/<id>.json`, mirrored in checkpoint batch/cells, bind operation/dependencies/command clock/output/hashes via BATCH_EXECUTION.json.
+
+| Cell | Original state |
+| --- | --- |
+| `entry-authority` | Passed |
+| `completion-tool-contracts` | Passed |
+| `qualification` | Passed |
+| `verifier-contracts` | Passed |
+| `reference-sources` | Passed |
+| `host-baseline-graph` | Passed |
+| `host-candidate-graph` | Passed |
+| `host-admission` | Passed |
+| `player-fixtures` | Passed |
+| `prepare-candidate-release` | Passed |
+| `build-candidate-release` | Passed |
+| `prepare-reference-release` | Passed |
+| `build-reference-release` | Passed |
+| `prepare-candidate-debug` | Passed |
+| `build-candidate-debug` | Passed |
+| `prepare-candidate-off` | Passed |
+| `build-candidate-off` | Passed |
+| `editor-tests` | Passed |
+| `C01-baseline` | Passed |
+| `C02-private-reference` | Passed |
+| `C03-moved-slot` | Passed |
+| `C04-old-AOT-guard` | Passed |
+| `C05-direction-reversal` | Passed |
+| `C06-actual-target-cycle` | Passed |
+| `C07-private-primitive-append` | Passed |
+| `C08-interface-change` | Passed |
+| `C09-reference-to-value-kind` | Passed |
+| `C10-field-removal` | Passed |
+| `R01-baseline` | Passed |
+| `R02-original-late-layout` | Passed |
+| `R03-original-slot-lookup` | Passed |
+| `R04-direction-reversal` | Passed |
+| `R05-actual-target-cycle` | Passed |
+| `D01-private-reference` | Passed |
+| `D02-moved-slot` | Passed |
+| `D03-old-AOT-guard` | Passed |
+| `O01-feature-OFF-baseline` | Passed |
+| `producer-controls` | Passed |
+| `resource-prepare` | Passed |
+| `resource-install` | Passed |
+| `resource-compiler` | Passed |
+| `resource-bundles` | Passed |
+| `resource-player-on` | Passed |
+| `resource-player-off` | Passed |
+| `resource-p05-prepare` | Passed |
+| `resource-p05-compile` | Failed |
+| `resource-p05-restore` | Passed |
+| `resource-p05-finalize` | Blocked |
+| `resource-editor` | Passed |
+| `production-entry-integration` | Blocked |
+| `resource-input-binding` | Blocked |
+| `resource-T07-01-Prefab-P01` | Blocked |
+| `resource-T07-02-Nested-P02` | Blocked |
+| `resource-T07-03-FullClosure-P03` | Blocked |
+| `resource-T07-04-UnityApis-P01` | Blocked |
+| `resource-T07-05-Scriptable-P03` | Blocked |
+| `resource-T07-06-SceneSingle-P01` | Blocked |
+| `resource-T07-07-SceneAdditive-P03` | Blocked |
+| `resource-T07-08-SerializeReference-P03` | Blocked |
+| `resource-T07-09-Messages-P01` | Blocked |
+| `resource-T07-10-Cache-P03` | Blocked |
+| `resource-T07-11-DelayedCatalog-P03` | Blocked |
+| `resource-T07-12-P04-NonSerialized` | Blocked |
+| `resource-T07-13-P05-Rebuilt` | Blocked |
+| `resource-T07-14-FeatureOff` | Blocked |
+| `resource-contracts` | Blocked |
+| `measure-R00-ON-NoPatch-0` | Blocked |
+| `measure-R00-ON-NoPatch-1` | Blocked |
+| `measure-R00-ON-NoPatch-2` | Blocked |
+| `measure-R00-ON-P01-0` | Blocked |
+| `measure-R00-ON-P01-1` | Blocked |
+| `measure-R00-ON-P01-2` | Blocked |
+| `measure-R00-ON-P03-0` | Blocked |
+| `measure-R00-ON-P03-1` | Blocked |
+| `measure-R00-ON-P03-2` | Blocked |
+| `measure-R00-OFF-NoPatch-0` | Blocked |
+| `measure-R00-OFF-NoPatch-1` | Blocked |
+| `measure-R00-OFF-NoPatch-2` | Blocked |
+| `measurement-summary` | Blocked |
+| `early-Control-P03` | Blocked |
+| `early-Control-P01` | Blocked |
+| `early-OrdinaryFirst` | Blocked |
+| `early-OrdinaryAfterReserve` | Blocked |
+| `early-Oversize` | Blocked |
+| `early-Mismatch` | Blocked |
+| `early-Type` | Blocked |
+| `early-Object` | Blocked |
+| `early-Cctor` | Blocked |
+| `early-NativeScript` | Blocked |
+| `final-authority` | Passed |
+
+## Historical run — R03 completion batch L, 2026-10-04 PDT: fixed-image preflight Passed; compiler-policy integration returns to Primary
 
 **Result=ReturnRequired; 90 cells: 43 Passed / 1 Failed / 46 Blocked; sealStatus=Passed; runner exit 1. Exit Local Validation → Primary Implementation.** Exactly one fresh invocation, PID 24279, UTC 2026-10-04T13:07:50.112177+00:00 → 2026-10-04T13:17:15.877728+00:00 (06:07:50–06:17:15 PDT). No retry, manual blocked-stage continuation, source fix, source/pin/expectation/scope/deadline/lease change or historical app reuse.
 

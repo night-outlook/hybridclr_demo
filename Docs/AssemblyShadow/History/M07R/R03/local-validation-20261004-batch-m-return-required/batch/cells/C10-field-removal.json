@@ -1,0 +1,33 @@
+{
+  "dependencies": [
+    "build-candidate-release"
+  ],
+  "evidence": {
+    "buildReceiptSha256": "a7da1e7df1577f0b0c6acd0a9d151445a1205e7689ea6a584f904711e9efa308",
+    "code": 16,
+    "launchPid": 48120,
+    "outcome": "admission-reject",
+    "rawSha256": "791ad94e4a7f9f349c50dd20438c5537dbf3b28f33ad60c1f85a885ef2883ef7",
+    "rejectionObservation": {
+      "capacityControl": -2,
+      "captures": 4,
+      "failingRowIdentified": false,
+      "fullReadHashes": [
+        "c5b4049bbb1ef16bd8c0acd6a56f07d73c20e3ff2d0e46518abd286121eeaa59",
+        "c5b4049bbb1ef16bd8c0acd6a56f07d73c20e3ff2d0e46518abd286121eeaa59"
+      ],
+      "fullReads": 2,
+      "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+      "layoutRows": 2,
+      "policy": "R03RejectedProbeNonMutationV1",
+      "terminalFailureCode": 16,
+      "terminalUnchanged": true
+    },
+    "requestSha256": "2b42a8854078ed1c11edd146a697444821a7688ce6660ddb9bca21ac6b7c8f4a",
+    "result": "Passed",
+    "runId": "e3b00f4906544cca944ae7d6460df6fc",
+    "state": 8
+  },
+  "id": "C10-field-removal",
+  "result": "Passed"
+}
