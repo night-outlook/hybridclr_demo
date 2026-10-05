@@ -28,6 +28,29 @@ def declaration_name(text):
     return (values[0]+'.' if values[0] else '') + '/'.join(values[2:])
 
 
+
+def assembly_key(name):
+    # Case-insensitive simple identity only. Never trim paths/qualifiers into names.
+    require(type(name) is str and name and name == name.strip() and
+            not any(ch in name for ch in '/\\,:\x00') and not name.lower().endswith('.dll'),
+            'Expected an exact simple assembly name')
+    return name.lower()
+
+
+def unique_files(rows, *, linked):
+    result = {}
+    for row in rows:
+        if linked:
+            file = Path(row['path']).name
+            require(file.lower().endswith('.dll'), 'Linked DLL name required')
+            name = file[:-4]
+        else:
+            name = row['name']
+        key = assembly_key(name)
+        require(key not in result, 'Case-colliding assembly inventory')
+        result[key] = row['sha256']
+    return result
+
 def verify_value(value, baseline, target, linked, compiler, proof, proof_hash, facade_hash, order):
     require(value['schemaVersion'] == 2 and value['profile'] == 'NativeLayoutAdmissionV1' and value['inputBasis'] == 'LinkedPlayer', 'New captured-identity sidecar schema')
     require(value['nativeProofExecuted'] is False and value['runtimeMustRevalidate'] is True and
@@ -35,7 +58,7 @@ def verify_value(value, baseline, target, linked, compiler, proof, proof_hash, f
     for key, expected in [('baselineSnapshotHash', baseline['snapshotHash']), ('linkedPlayerReceiptHash', baseline['linkedPlayerReceiptHash']),
                           ('baselineNativeLibrarySha256', baseline['nativeLibrarySha256']), ('targetSnapshotHash', target['snapshotHash'])]:
         require(value[key] == expected, 'Sidecar source binding: ' + key)
-    require(value['targetLoadOrder'] == order and len(order) == len(set(order)), 'Exact target-only load order')
+    require(value['targetLoadOrder'] == order and len(order) == len({assembly_key(n) for n in order}), 'Exact target-only load order')
     evidence = value['identityEvidence']
     require(evidence['profile'] == identity.PROFILE and evidence['linkedRetargetingEvidenceHash'] == proof_hash ==
             baseline['linkedPlayerReceipt']['reflectionBindingEvidenceHash'], 'Captured retargeting proof binding')
@@ -63,12 +86,14 @@ def verify_value(value, baseline, target, linked, compiler, proof, proof_hash, f
             require(pivot+1 < len(r['forwardingPath']) and name in forwarders and
                     r['forwardingPath'][pivot+1].rsplit(' | sha256=', 1)[0] == forwarders[name], 'Resolution must follow this declaration\'s actual captured export')
     assemblies = value['assemblies']; require(len(assemblies) == len(order), 'One assembly result per closure input')
-    b_files = {Path(r['path']).name.lower(): r['sha256'] for r in linked}
-    t_files = {r['name'].lower(): r['sha256'] for r in target['assemblies']}
+    b_files = unique_files(linked, linked=True)
+    t_files = unique_files(target['assemblies'], linked=False)
     for name, report in zip(order, assemblies):
-        require(report['schemaVersion'] == 2 and report['profile'] == 'NativeLayoutAdmissionV1' and report['assembly'].lower() == name,
+        key = assembly_key(name)
+        require(key in b_files and key in t_files, 'Compared assembly outside authenticated inventories')
+        require(report['schemaVersion'] == 2 and report['profile'] == 'NativeLayoutAdmissionV1' and assembly_key(report['assembly']) == key,
                 'Source-bound assembly report')
-        require(report['baselineDllSha256'] == b_files[name+'.dll'] and report['targetDllSha256'] == t_files[name], 'Exact compared DLLs')
+        require(report['baselineDllSha256'] == b_files[key] and report['targetDllSha256'] == t_files[key], 'Exact compared DLLs')
         require(report['editorAccepted'] is True and report['nativeProofExecuted'] is False and report['allocationProofStillRequired'] is True and
                 report['pureInterpreterExpansionEnabled'] is False, 'Conservative assembly admission')
         rows = report['types']; require(rows and len({r['typeKey'] for r in rows}) == len(rows), 'Unique full type rows')

@@ -81,7 +81,7 @@ def m07_case(batch, mode):
         command, binding = launch(batch, args, folder)
         raw = loads(result.read_text()); require(raw['processId'] == command['pid'], 'Direct M07 launch PID')
         original = m07.verify_case(result, context['manifest'], context['baseline'], context['fixtures'],
-                                   batch.resource_context['baselineResources'], context['on'], context['off'])
+                                   batch.resource_context['baselineResources'], context['on'], context['off'], source_context=batch.resource_context['codecContext'])
         if cap:
             observation = early.verify_early_receipt(early_result, cap, 'Control', command['pid'], batch.resource_context['profile'])
             early.verify_imported_snapshots(observation, raw)
@@ -98,7 +98,8 @@ def m07_case(batch, mode):
 
 def m07_summary(batch):
     verdict = m07.verify_suite(batch.resource_manifest, batch.root / 'm07-results', batch.resource_on,
-                              batch.resource_off, allow_incomplete=False, replay_receipt=batch.resource_replay)
+                              batch.resource_off, allow_incomplete=False, replay_receipt=batch.resource_replay,
+                              source_context=batch.resource_context['codecContext'])
     require(verdict['resultPassed'] is True and len(verdict['modes']) == 14, 'Complete original M07 contract')
     write(batch.root / 'resource-contracts.json', {'kind': 'R03FreshM07Contracts', 'result': 'Passed',
           'originalVerifierOutput': verdict, 'profile': 'UnfencedDevelopmentBuild',

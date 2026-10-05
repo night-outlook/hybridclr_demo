@@ -15,6 +15,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE.parent / 'R03'))
 import m07_results as m07
+from native_codec_source import CodecSourceContext, read_codec
 import r01_failure_results as failure_contract
 import r01_early_results as early
 import shadow_tools as original
@@ -120,7 +121,16 @@ def verify_installation(batch, config):
 def verify_graph(batch, config, fixture_path, on_path, off_path, replay_path):
     installed = verify_installation(batch, config)
     project = Path(config['projectPath']); pins = loads((project / original.PINS).read_text())
-    manifest, baseline, fixtures, rejected, resources = m07.verify_inputs(fixture_path)
+    codec_context = CodecSourceContext(project, batch.workspace / 'hybridclr', batch.pins['hybridclr'])
+    graph = loads(Path(fixture_path).read_text())
+    baseline_path = Path(graph['baselineManifestPath'])
+    require(baseline_path.is_relative_to(project) and sha(baseline_path) == graph['baselineManifestSha256'], 'Current baseline codec authority')
+    baseline_value = loads(baseline_path.read_text())
+    profile = baseline_value['metadataEncodingProfile2']
+    _, codec_receipt = read_codec(baseline_value['sourcePins']['hybridclr'], profile['nativeSourceRevision'],
+                                 profile['nativeCodecHeaderSha256'], codec_context)
+    write(batch.root / 'native-codec-source-verification.json', codec_receipt)
+    manifest, baseline, fixtures, rejected, resources = m07.verify_inputs(fixture_path, source_context=codec_context)
     m07.exact(baseline['sourcePins'], pins, 'R03 resource baseline current tuple')
     m07.prepare_fixture_resources(manifest, baseline, fixtures, resources)
     on = m07.verify_player(on_path, manifest, baseline, resources, 'NativeOn')
@@ -143,5 +153,5 @@ def verify_graph(batch, config, fixture_path, on_path, off_path, replay_path):
     runner = early._load_runner()
     inventory = runner.collect_inputs(fixture_path, replay_path, (on_path, off_path))
     inventory.update({project / '.r03-completion-project', project / original.PINS})
-    return {'context': context, 'profile': profile, 'runner': runner, 'inventory': inventory,
+    return {'codecContext': codec_context, 'context': context, 'profile': profile, 'runner': runner, 'inventory': inventory,
             'failures': None, 'baselineResources': resources, 'rejected': rejected}

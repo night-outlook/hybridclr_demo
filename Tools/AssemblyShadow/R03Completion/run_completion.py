@@ -21,6 +21,9 @@ from resource_capabilities import host_contracts as capability_contracts
 from fixture_contracts import constructor_contracts, editor_preflight
 import fixed_image_inputs as fixed_images
 import layout_identity
+import editor_contract
+import reference_binding
+import sidecar_replay
 import layout_evidence
 import resource_pipeline as resources
 import legacy_runtime as legacy
@@ -59,12 +62,15 @@ class CompletionBatch(FocusedBatch):
 
     def completion_tests(self):
         receipt = self.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v'])
+        scopes = editor_contract.preflight(self.workspace / 'hybridclr_demo', self.workspace / 'hybridclr_unity', self.pins['hybridclr_unity'], self.root / 'editor-source-scope')
+        sidecars = sidecar_replay.verify(self.workspace / 'hybridclr_demo', self.root / 'captured-sidecar-replay.json')
+        references = reference_binding.host_contracts(self)
         identity = layout_identity.host_contracts(self)
         capabilities = capability_contracts(self)
         constructor = constructor_contracts(self)
         fixed = fixed_images.host_contracts(self)
         editor = editor_preflight(self)
-        return {'layoutIdentity': identity, 'fixedImageGuards': fixed, 'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
+        return {'editorSourceScope': scopes, 'referenceBinding': references, 'capturedSidecarReplay': sidecars, 'layoutIdentity': identity, 'fixedImageGuards': fixed, 'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
                 'scope': 'Host helper and eighteen real Editor regressions; full rosters still required'}
 
     def resource_graph(self):

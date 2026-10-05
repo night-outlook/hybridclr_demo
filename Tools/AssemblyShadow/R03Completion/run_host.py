@@ -15,6 +15,9 @@ from resource_capabilities import host_contracts as capability_contracts
 from fixture_contracts import constructor_contracts
 import fixed_image_inputs as fixed_images
 import layout_identity
+import editor_contract
+import reference_binding
+import sidecar_replay
 
 
 def qualification(batch):
@@ -53,11 +56,14 @@ def main():
     batch.workspace, batch.root, batch.command_count = workspace, root, 0
     batch.cells, batch.outputs, batch.failed = [], {}, False
     batch.cell('completion-tool-contracts', lambda: {'commandReceipt': batch.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v']), 'scope': 'Synthetic tooling contracts, not Player evidence'})
+    batch.cell('editor-source-scope', lambda: editor_contract.preflight(workspace / 'hybridclr_demo', workspace / 'hybridclr_unity', pins['hybridclr_unity'], root / 'editor-source-scope'))
     batch.cell('fixture-constructor-contracts', lambda: constructor_contracts(batch))
     batch.cell('capability-profile-contracts', lambda: capability_contracts(batch))
     batch.cell('fixed-image-origin', lambda: fixed_images.authenticate_origin(batch))
     batch.cell('fixed-image-guards', lambda: fixed_images.host_contracts(batch))
     batch.cell('layout-identity', lambda: layout_identity.host_contracts(batch))
+    batch.cell('captured-sidecars', lambda: sidecar_replay.verify(workspace / 'hybridclr_demo', root / 'captured-sidecar-replay.json'))
+    batch.cell('reference-binding', lambda: reference_binding.host_contracts(batch))
     batch.cell('qualification', lambda: qualification(batch))
     batch.cell('original-verifier-contracts', batch.python_tests)
     batch.cell('original-baseline-graph', lambda: batch.managed('HostTests', 'baseline-graph', args.reference_package.resolve(), 'baseline'))

@@ -419,7 +419,7 @@ def verify_resource_baseline(root, expected_abi, manifest, expected_defines):
                 abi=abi, index=index_value)
 
 
-def verify_baseline(manifest, manifest_path):
+def verify_baseline(manifest, manifest_path, source_context=None):
     baseline_path = bound(manifest["baselineManifestPath"], manifest["baselineManifestSha256"],
                           manifest_path, "baselineManifestPath")
     baseline = prior._obj(baseline_path)
@@ -446,7 +446,7 @@ def verify_baseline(manifest, manifest_path):
     frozen_root = canonical(str(baseline_path.parent / baseline["playerInputSnapshot"]), baseline_path,
                             "frozen Player snapshot", True)
     raw_admissions.verify_snapshot(frozen_root, frozen, require_linked=True)
-    verify_baseline_metadata(baseline, frozen, frozen_root, baseline_path)
+    verify_baseline_metadata(baseline, frozen, frozen_root, baseline_path, source_context=source_context)
 
     snapshot_root = canonical(manifest["baselineInputSnapshot"], manifest_path, "baselineInputSnapshot", True)
     snapshot = prior._verify_snapshot(snapshot_root, manifest["baselineBuildId"], manifest["runtimeAbiHash"],
@@ -551,7 +551,7 @@ def patch_schema(value, path):
     return True
 
 
-def verify_profile2(manifest, path):
+def verify_profile2(manifest, path, source_context=None):
     _profile2_extensions(manifest, path)
     exact(manifest.get("nativeBudgetCapabilityVersion"), 2, f"{path}.nativeBudgetCapabilityVersion")
     profile = fields(manifest.get("metadataEncodingProfile2"), R01B_PROFILE_FIELDS, f"{path}.profile2")
@@ -561,19 +561,16 @@ def verify_profile2(manifest, path):
     pin = manifest["sourcePins"]["hybridclr"]
     exact(revision, pin["revision"], f"{path}: profile/source revision")
     hash64(profile["nativeCodecHeaderSha256"], f"{path}.nativeCodecHeaderSha256")
-    repository = Path(pin.get("localPath", Path(__file__).resolve().parents[3] / "hybridclr"))
-    header = "hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+    from native_codec_source import read_codec
     try:
-        content = subprocess.run(["git", "-C", str(repository), "show", revision + ":" + header],
-                                 check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout
-    except (OSError, subprocess.CalledProcessError) as error:
-        raise VerificationError(f"{path}: cannot read pinned native codec {revision}:{header}") from error
-    exact(hashlib.sha256(content).hexdigest(), profile["nativeCodecHeaderSha256"], f"{path}: pinned native codec hash")
+        read_codec(pin, revision, profile["nativeCodecHeaderSha256"], source_context)
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        raise VerificationError(f"{path}: cannot authenticate pinned native codec {revision}: {error}") from error
     return profile
 
 
-def verify_profile2_report(manifest, inputs, before, path):
-    profile = verify_profile2(manifest, path)
+def verify_profile2_report(manifest, inputs, before, path, source_context=None):
+    profile = verify_profile2(manifest, path, source_context=source_context)
     report = fields(manifest.get("metadataCapacityReport2"), R01B_REPORT_FIELDS, f"{path}.capacity2")
     for key, expected in R01B_REPORT_CONSTANTS.items(): exact(report[key], expected, f"{path}.capacity2.{key}")
     for key in ("nativeSourceRevision", "nativeCodecHeaderSha256"):
@@ -597,8 +594,8 @@ def verify_profile2_report(manifest, inputs, before, path):
     return report
 
 
-def verify_baseline_metadata(baseline, snapshot, root, path):
-    diagnostic_abi(baseline, path)
+def verify_baseline_metadata(baseline, snapshot, root, path, source_context=None):
+    diagnostic_abi(baseline, path, source_context=source_context)
     if baseline.get("nativeBudgetCapabilityVersion") == 2:
         inventory = {row["name"]: row for section in ("assemblies", "filteredAssemblies", "references")
                      for row in snapshot[section]}
@@ -608,14 +605,14 @@ def verify_baseline_metadata(baseline, snapshot, root, path):
             row = inventory[name]
             dll = prior._rel(root, row["path"], path, "ordinary capacity DLL")
             inputs.append(dict(name=name, dllSize=dll.stat().st_size, sha256=digest(dll)))
-        verify_profile2_report(baseline, inputs, 0, path)
+        verify_profile2_report(baseline, inputs, 0, path, source_context=source_context)
 
 
-def diagnostic_abi(baseline, path):
+def diagnostic_abi(baseline, path, source_context=None):
     capability = baseline.get("nativeBudgetCapabilityVersion", 0)
     require(type(capability) is int and capability in (0, 1, 2), f"{path}: unsupported metadata capability")
     if capability == 2:
-        verify_profile2(baseline, path)
+        verify_profile2(baseline, path, source_context=source_context)
         return 2
     require(not any(k in baseline for k in ("metadataEncodingProfile2", "metadataCapacityReport2")),
             f"{path}: mixed profile2 metadata")
@@ -633,7 +630,7 @@ def _uint_array(value, path):
     return [_uint(item, f"{path}[{index}]") for index, item in enumerate(value)]
 
 
-def _verify_r01_patch_metadata(patch, closure, patch_root, load_order, path):
+def _verify_r01_patch_metadata(patch, closure, patch_root, load_order, path, source_context=None):
     # Public callers use Path objects; labels are text, filesystem roots stay Paths.
     path = str(path)
     if patch.get("nativeBudgetCapabilityVersion") == 2:
@@ -645,7 +642,7 @@ def _verify_r01_patch_metadata(patch, closure, patch_root, load_order, path):
             exact(row["dllSize"], dll.stat().st_size, f"{path}.{name}.dllSize")
             exact(row["sha256"], digest(dll), f"{path}.{name}.sha256")
             inputs.append({key: row[key] for key in ("name", "dllSize", "sha256")})
-        verify_profile2_report(patch, inputs, patch["metadataCapacityReport2"]["reservedImageCountBefore"], path)
+        verify_profile2_report(patch, inputs, patch["metadataCapacityReport2"]["reservedImageCountBefore"], path, source_context=source_context)
         return
     profile = fields(patch["metadataEncodingProfile"], R01_PROFILE_FIELDS, path + ".metadataEncodingProfile")
     capacity = fields(patch["metadataCapacityReport"], R01_CAPACITY_FIELDS, path + ".metadataCapacityReport")
@@ -725,7 +722,7 @@ def _verify_r01_patch_metadata(patch, closure, patch_root, load_order, path):
         exact(row["dllSize"], dll.stat().st_size, path + "." + row["name"] + ".dllSize")
 
 
-def verify_budget_binding(patch, baseline, path):
+def verify_budget_binding(patch, baseline, path, source_context=None):
     """Bind negotiated patch estimates to the baseline that supplied the cursors."""
     capability = patch.get("nativeBudgetCapabilityVersion", 0)
     exact(capability, baseline.get("nativeBudgetCapabilityVersion", 0), f"{path}: patch/baseline capability")
@@ -735,11 +732,11 @@ def verify_budget_binding(patch, baseline, path):
                 f"{path}: legacy baseline has partial budget capability")
         return
     if capability == 2:
-        verify_profile2(patch, path)
-        verify_profile2(baseline, path)
+        verify_profile2(patch, path, source_context=source_context)
+        verify_profile2(baseline, path, source_context=source_context)
         exact(patch["metadataEncodingProfile2"], baseline["metadataEncodingProfile2"], f"{path}: patch/baseline profile2")
         report = baseline["metadataCapacityReport2"]
-        verify_profile2_report(baseline, report["inputs"], 0, path)
+        verify_profile2_report(baseline, report["inputs"], 0, path, source_context=source_context)
         exact(patch["metadataCapacityReport2"]["reservedImageCountBefore"], report["reservedImageCountAfter"],
               f"{path}: baseline/patch image reservation")
         return
@@ -761,7 +758,7 @@ def verify_budget_binding(patch, baseline, path):
         exact(capacity[key], report[key], f"{path}: baseline/patch {key}")
 
 
-def verify_patch(fixture, manifest, baseline, manifest_path):
+def verify_patch(fixture, manifest, baseline, manifest_path, source_context=None):
     patch_id = fixture["patchId"]
     defines, roots, dll_only = fixture_policy(patch_id)
     exact(sorted(fixture["defines"]), sorted(defines), f"{manifest_path}.{patch_id}.defines")
@@ -852,8 +849,8 @@ def verify_patch(fixture, manifest, baseline, manifest_path):
     reflected = prior._reflection_snapshot(compile_root, compiled, patch_path)
     prior._reflection_manifest(patch, reflected, patch_path)
     if capability:
-        _verify_r01_patch_metadata(patch, closure, patch_root, expected_order, patch_path)
-    verify_budget_binding(patch, baseline, patch_path)
+        _verify_r01_patch_metadata(patch, closure, patch_root, expected_order, patch_path, source_context=source_context)
+    verify_budget_binding(patch, baseline, patch_path, source_context=source_context)
     return dict(fixture=fixture, patch=patch, root=patch_root, path=patch_path,
                 compile_root=compile_root, compiled=compiled, identities=identities,
                 r01Capability=capability)
@@ -875,7 +872,7 @@ def verify_rejected(row, manifest, baseline, manifest_path):
     return dict(row=row, compile_root=compile_root, compiled=compiled)
 
 
-def verify_inputs(path):
+def verify_inputs(path, source_context=None):
     path = canonical(str(path), path, "fixtureManifest")
     manifest = prior._obj(path, MANIFEST_FIELDS)
     exact(manifest["schemaVersion"], 1, f"{path}.schemaVersion")
@@ -887,17 +884,17 @@ def verify_inputs(path):
     hash64(manifest["runtimeAbiHash"], f"{path}.runtimeAbiHash")
     exact(manifest["candidateNames"], list(CANDIDATES), f"{path}.candidateNames")
     exact(manifest["bundleNames"], list(BUNDLES), f"{path}.bundleNames")
-    baseline, baseline_path, snapshot, snapshot_root, resources = verify_baseline(manifest, path)
+    baseline, baseline_path, snapshot, snapshot_root, resources = verify_baseline(manifest, path, source_context=source_context)
     rows = array(manifest["fixtures"], f"{path}.fixtures")
     exact([row.get("patchId") for row in rows], ["P01", "P02", "P03", "P04", "P05"], f"{path}.fixtures")
     fixtures = {}
     for row in rows:
         fields(row, FIXTURE_FIELDS, path)
-        fixtures[row["patchId"]] = verify_patch(row, manifest, baseline, path)
+        fixtures[row["patchId"]] = verify_patch(row, manifest, baseline, path, source_context=source_context)
     capabilities = {item["r01Capability"] for item in fixtures.values()}
     require(len(capabilities) == 1, f"{path}: fixture patches mix legacy and R01 capability schemas")
     manifest["_r01Capability"] = capabilities.pop()
-    manifest["_diagnosticAbi"] = diagnostic_abi(baseline, path)
+    manifest["_diagnosticAbi"] = diagnostic_abi(baseline, path, source_context=source_context)
     rejected_rows = array(manifest["rejectedFixtures"], f"{path}.rejectedFixtures")
     exact([row.get("patchId") for row in rejected_rows],
           ["P05-DllOnly", "P14-ClassRename", "P15-SerializeReferenceRename"], f"{path}.rejectedFixtures")
@@ -1102,10 +1099,10 @@ def verify_result_header(path, manifest, baseline, build):
     return path, result
 
 
-def verify_transaction(result, path, manifest, patch_item):
+def verify_transaction(result, path, manifest, patch_item, source_context=None):
     expected_abi = manifest.get("_diagnosticAbi", 1)
     if patch_item is not None:
-        expected_abi = diagnostic_abi(patch_item["patch"], path)
+        expected_abi = diagnostic_abi(patch_item["patch"], path, source_context=source_context)
     feature_off = patch_item is None
     checks = []
     seen = set()
@@ -1398,7 +1395,7 @@ def verify_resource_observations(result, path, selected, patch_id, closure, feat
             f"{path}: active ScriptableObject data marker evidence differs")
 
 
-def verify_case(path, manifest, baseline, fixtures, baseline_resources, on_build, off_build):
+def verify_case(path, manifest, baseline, fixtures, baseline_resources, on_build, off_build, source_context=None):
     mode = Path(path).stem[4:]
     build = off_build if mode == "T07-14-FeatureOff" else on_build
     path, result = verify_result_header(path, manifest, baseline, build)
@@ -1417,7 +1414,7 @@ def verify_case(path, manifest, baseline, fixtures, baseline_resources, on_build
         exact(result["patchManifestSha256"], digest(patch_item["path"]), f"{path}.patchManifestSha256")
         closure = patch_item["fixture"]["closureLoadOrder"]
         selected = patch_item.get("resources", baseline_resources)
-    verify_transaction(result, path, manifest, patch_item)
+    verify_transaction(result, path, manifest, patch_item, source_context=source_context)
     verify_resource_observations(result, path, selected, patch_id, closure, feature_off)
     return dict(mode=result["mode"], processId=result["processId"], passed=True, resultSha256=digest(path),
                 patchId=patch_id or "", resourceAbiHash=result["selectedResourceAbiHash"])
@@ -1447,7 +1444,7 @@ def prepare_fixture_resources(manifest, baseline, fixtures, baseline_resources):
 
 
 def verify_results(result_dir, manifest, baseline, fixtures, baseline_resources, on_build, off_build,
-                   allow_incomplete=False):
+                   allow_incomplete=False, source_context=None):
     root = canonical(str(result_dir), result_dir, "resultDir", True)
     paths = [path for path in root.glob("m07-*.json") if not path.name.endswith("-diagnostics.json")]
     expected_files = {"m07-" + mode + ".json" for mode in MODES}
@@ -1456,7 +1453,7 @@ def verify_results(result_dir, manifest, baseline, fixtures, baseline_resources,
     missing = sorted(expected_files - actual_files)
     require(not missing or allow_incomplete, f"{root}: incomplete M07 process coverage: {missing}")
     require(paths, f"{root}: no M07 process results")
-    results = [verify_case(path, manifest, baseline, fixtures, baseline_resources, on_build, off_build)
+    results = [verify_case(path, manifest, baseline, fixtures, baseline_resources, on_build, off_build, source_context=source_context)
                for path in sorted(paths)]
     require(len({row["processId"] for row in results}) == len(results),
             f"{root}: every M07 mode requires a fresh process")
@@ -1473,8 +1470,8 @@ def verify_results(result_dir, manifest, baseline, fixtures, baseline_resources,
 
 
 def verify_suite(fixture_manifest, result_dir, on_build_path, off_build_path, allow_incomplete=False,
-                 replay_receipt=None):
-    manifest, baseline, fixtures, rejected, baseline_resources = verify_inputs(fixture_manifest)
+                 replay_receipt=None, source_context=None):
+    manifest, baseline, fixtures, rejected, baseline_resources = verify_inputs(fixture_manifest, source_context=source_context)
     prepare_fixture_resources(manifest, baseline, fixtures, baseline_resources)
     on_build = verify_player(on_build_path, manifest, baseline, baseline_resources, "NativeOn")
     off_build = verify_player(off_build_path, manifest, baseline, baseline_resources, "NativeOff")
@@ -1493,7 +1490,7 @@ def verify_suite(fixture_manifest, result_dir, on_build_path, off_build_path, al
     replay_path = Path(replay_receipt) if replay_receipt else Path(manifest["_path"]).with_name("m07-editor-replay.json")
     verify_replay(replay_path, manifest, baseline, fixtures, rejected, on_build, baseline_resources)
     return verify_results(result_dir, manifest, baseline, fixtures, baseline_resources, on_build, off_build,
-                          allow_incomplete)
+                          allow_incomplete, source_context=source_context)
 
 
 def main(argv=None):

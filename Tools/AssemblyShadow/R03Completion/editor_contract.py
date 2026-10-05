@@ -21,7 +21,12 @@ REVIEWED_PACKAGE_FILES = frozenset((
  'Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs',
  'Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs.meta',
  'Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs',
- 'Tests/Editor/AssemblyShadow/PolicyTests.cs'))
+ 'Tests/Editor/AssemblyShadow/PolicyTests.cs',
+ 'Editor/AssemblyShadow/Build/NativeLayoutAdmissionSnapshot.cs',
+ 'Editor/AssemblyShadow/Metadata/EvolutionSignature.cs',
+ 'Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs',
+ 'Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs',
+ 'Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs.meta'))
 PACKAGE_FILTER = '^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.'
 
 
@@ -62,3 +67,29 @@ def verify(tree, scope):
     return {'kind': scope['kind'], 'result': 'Passed', 'cases': 755, 'skipped': 0,
             'm01Case': prior.EXCLUDED, 'm01SourceAssetContract': 'Passed',
             'fullLegacyRegressionAcceptance': False, 'R03Accepted': False, 'H2Passed': False}
+
+
+def preflight(demo, package, revision, output):
+    """Actual pinned Git delta and authenticated catalog, never an XML verdict."""
+    import hashlib
+    import re
+    from batch_evidence import write
+    output = Path(output)
+    require(not output.exists(), 'Unused Editor source-scope preflight directory')
+    raw = (Path(demo) / prior.REFERENCE).read_bytes()
+    require(hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == prior.REFERENCE_BLOB,
+            'Original catalog bytes must authenticate before enumeration')
+    names = prior.case_map(ET.fromstring(raw))
+    ids = sorted(n[len(prior.PREFIX)+2:-2] for n in names if n.startswith(prior.PREFIX + '("'))
+    require(len(ids) == 35 and all(re.fullmatch('[LM][0-9]{2}-[a-z0-9-]+', i) for i in ids), 'Exact catalog R03 IDs')
+    scopes = [source_scope(demo, package, revision, ids, resource_complete=full) for full in (False, True)]
+    require([s['expectedCount'] for s in scopes] == [754, 755], 'Retain both reviewed rosters')
+    output.mkdir(parents=True)
+    (output / 'name-catalog.xml').write_bytes(raw)
+    for scope, name in zip(scopes, ('focused', 'resource')): write(output / (name + '-scope.json'), scope)
+    report = {'kind': 'R03ActualEditorSourceScope', 'result': 'Passed', 'packageRevision': revision,
+              'referenceBlob': prior.REFERENCE_BLOB, 'reviewedPackageDelta': sorted(REVIEWED_PACKAGE_FILES),
+              'counts': [754,755], 'requiredIds': ids, 'editorExecution': 'NotRun', 'catalogUse': 'NamesOnly',
+              'R03Accepted': False, 'H2Passed': False}
+    write(output / 'results.json', report)
+    return report
