@@ -1,0 +1,53 @@
+name: R03 LN authenticated source inputs
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-ln-source.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: f4b36ead2413e5a87b7149c4f6699960ff46008b
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Export exact tracked source and bounded N metadata without executing evidence
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-ln-inputs';out.mkdir()
+          checkpoint='Docs/AssemblyShadow/History/M07R/R03/local-validation-20261005-batch-n-return-required/'
+          rows=[];repos={}
+          for repo in ('hybridclr_demo','hybridclr_unity'):
+              repos[repo]=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
+              entries=subprocess.check_output(['git','-C',repo,'ls-files','-s','-z']).decode().split('\0')
+              for entry in filter(None,entries):
+                  header,path=entry.split('\t',1);mode,blob,stage=header.split()
+                  source_path=path.startswith(('Tools/','Assets/','Packages/','ProjectSettings/','.github/','Docs/AssemblyShadow/Plan/','Docs/AssemblyShadow/Architecture/','Docs/AssemblyShadow/Handoff/')) or path=='Docs/AssemblyShadow/README.md'
+                  evidence=path.startswith(checkpoint) and (path.startswith(checkpoint+'preflight/') or Path(path).suffix in ('.json','.xml','.py','.md','.log') or ('/Snapshot/' in path and Path(path).suffix in ('.dll','.pdb')) or ('M07PlayerInputs-' in path and Path(path).suffix in ('.dll','.pdb')))
+                  if not (repo=='hybridclr_unity' or source_path or evidence):continue
+                  source=Path(repo)/path
+                  assert mode in ('100644','100755') and source.is_file() and not source.is_symlink(),(repo,path,mode)
+                  data=source.read_bytes()
+                  assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob,(repo,path)
+                  relative=repo+'/'+path;target=out/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+                  rows.append({'path':relative,'gitBlob':blob,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (out/'provenance.json').write_text(json.dumps({'kind':'R03LNExactInputs','workflowSource':os.environ['GITHUB_SHA'],'repositories':repos,'files':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-ln-inputs-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-ln-inputs
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
