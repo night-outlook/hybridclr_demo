@@ -1,0 +1,87 @@
+name: R03 LM artifact read-only audit
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-lm-artifact-audit.yml']
+permissions:
+  actions: read
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Authenticate exact immutable compiler artifact without running its contents
+        shell: python
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          import hashlib,io,json,os,re,stat,urllib.request,urllib.error,zipfile
+          from pathlib import Path,PurePosixPath
+          root=Path(os.environ['RUNNER_TEMP'])/'r03-lm-audit';root.mkdir()
+          cases=[(11326732775,'b64e88f36fc369dd87024155102c8b8b1fc1101a','16f221fb0c6e348d29903639c8a6d2e5e011411dea1464094611eba30db33d75')]
+          api='https://api.github.com/repos/night-outlook/hybridclr_demo'
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,hdrs,newurl):return None
+          opener=urllib.request.build_opener(NoRedirect)
+          reports=[]
+          for artifact,source,expected in cases:
+              metadata=json.load(urllib.request.urlopen(urllib.request.Request(api+'/actions/artifacts/'+str(artifact),headers=headers),timeout=60))
+              assert metadata['workflow_run']['head_sha']==source and metadata['digest']=='sha256:'+expected and not metadata['expired']
+              try:
+                  response=opener.open(urllib.request.Request(api+'/actions/artifacts/'+str(artifact)+'/zip',headers=headers),timeout=60)
+              except urllib.error.HTTPError as e:
+                  assert e.code==302
+                  url=e.headers['Location']
+              else:
+                  raise AssertionError('Expected signed artifact redirect')
+              assert url.startswith('https://')
+              # Deliberately create a fresh unauthenticated request for the signed blob URL.
+              raw=urllib.request.urlopen(urllib.request.Request(url),timeout=180).read()
+              assert hashlib.sha256(raw).hexdigest()==expected and len(raw)==metadata['size_in_bytes']
+              folder=root/str(artifact);folder.mkdir();(folder/'artifact.zip').write_bytes(raw)
+              with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+                  members=[x for x in archive.infolist() if not x.is_dir()]
+                  names=[x.filename for x in members]
+                  assert len(names)==len(set(names))
+                  for member in members:
+                      p=PurePosixPath(member.filename)
+                      assert not p.is_absolute() and '..' not in p.parts and '\\' not in member.filename
+                      assert not stat.S_ISLNK(member.external_attr>>16)
+                  provenance=json.loads(archive.read('provenance.json'))
+                  assert provenance['sourceCommit']==source
+                  entries=provenance['files'];assert len(entries)==len({x['path'] for x in entries})
+                  assert set(names)=={x['path'] for x in entries}|{'provenance.json'}
+                  for row in entries:
+                      data=archive.read(row['path']);assert len(data)==row['size'] and hashlib.sha256(data).hexdigest()==row['sha256'],row['path']
+                  summary={'artifactId':artifact,'sourceCommit':source,'sha256':expected,'bytes':len(raw),'indexedFiles':len(entries),'zipFiles':len(names),'repositories':provenance.get('repositories'),'commands':[],'results':[],'auditOnly':True,'unityRun':False,'playerRun':False}
+                  for name in names:
+                      if name.endswith('/command.json'):
+                          receipt=json.loads(archive.read(name));parent=str(PurePosixPath(name).parent)
+                          for stream in ('stdout','stderr'):
+                              path=parent+'/'+stream+'.log'
+                              assert hashlib.sha256(archive.read(path)).hexdigest()==receipt[stream+'Sha256'],path
+                          entry={'path':name,'exitCode':receipt['exitCode'],'remainingProcessGroup':receipt['remainingProcessGroup'],'timeout':receipt['timeout'],'startError':receipt.get('startError'),'cleanupErrors':receipt.get('cleanupErrors')}
+                          summary['commands'].append(entry)
+                          if receipt['exitCode']!=0:
+                              print('NONZERO_COMMAND '+json.dumps(entry))
+                              for stream in ('stdout','stderr'):
+                                  text=archive.read(parent+'/'+stream+'.log').decode('utf-8',errors='replace')
+                                  print('DIAGNOSTIC '+stream+' '+text[-14000:])
+                      elif name.endswith('results.json') or name in ('HOST_RESULT.json','results.json','BATCH_EXECUTION.json'):
+                          value=json.loads(archive.read(name));small={'path':name,'result':value.get('result'),'failures':value.get('failures'),'caseCount':len(value.get('cases',[])) if isinstance(value.get('cases'),list) else value.get('cases')}
+                          summary['results'].append(small)
+                  (folder/'audit.json').write_text(json.dumps(summary,indent=2)+'\n')
+                  print('ARTIFACT_AUDIT '+json.dumps(summary))
+                  print('TOP_LEVEL '+json.dumps([n for n in names if '/' not in n]))
+                  reports.append(summary)
+          (root/'summary.json').write_text(json.dumps({'kind':'R03LMArtifactAudit','workflowSource':os.environ['GITHUB_SHA'],'artifacts':reports},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-lm-audit-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-lm-audit
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
