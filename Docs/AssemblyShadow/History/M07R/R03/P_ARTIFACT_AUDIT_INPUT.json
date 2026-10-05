@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LMFinalArtifactAudit",
+  "sourceCommit": "7e1060ff5723efe365c60bc052bbbcb117d62dfa",
+  "packageCommit": "ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba",
+  "artifacts": [
+    {
+      "artifactId": 11329565548,
+      "sha256": "8b2d82aa4edc2e4c8a5c526a4277b8fcbdf8befe7120606e44c81856f6fad2ad",
+      "label": "Linux completion",
+      "requiredCaseCounts": {
+        "layout-identity/results.json": 33,
+        "fixture-constructor-host/results.json": 12,
+        "capability-profile-host/results.json": 20,
+        "fixed-image-host/results.json": 10,
+        "qualification/results.json": 32,
+        "host/baseline-graph/results.json": 9,
+        "host/candidate-graph/results.json": 9,
+        "host/admission/results.json": 35
+      }
+    },
+    {
+      "artifactId": 11329286282,
+      "sha256": "7dbc6662302e6d2ec17b23557e7e9279a8e7ab2b0d295689304ff2f3eb8cd67c",
+      "label": "macOS completion",
+      "requiredCaseCounts": {
+        "layout-identity/results.json": 33,
+        "fixture-constructor-host/results.json": 12,
+        "capability-profile-host/results.json": 20,
+        "fixed-image-host/results.json": 10,
+        "qualification/results.json": 32,
+        "host/baseline-graph/results.json": 9,
+        "host/candidate-graph/results.json": 9,
+        "host/admission/results.json": 35
+      }
+    },
+    {
+      "artifactId": 11328599933,
+      "sha256": "5f3a0d5c66d7cbcecbec090937817e5f64e21b8f05b29d7f9f5aa8dec0467cbf",
+      "label": "Pinned Unity API and Mono",
+      "requiredCaseCounts": {
+        "layout-identity-mono/contracts/results.json": 33
+      }
+    }
+  ],
+  "basis": "Read-only artifact authentication; no Unity Editor or Player execution",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false
+}
