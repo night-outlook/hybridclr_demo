@@ -93,7 +93,7 @@ def validate_inventory(rows, expected):
     require({r['sha256'] for r in rows} == {r['sha256'] for r in expected}, 'Resolved inventory must bind exact images')
     names = [r['assemblyIdentity'] for r in rows]
     require(names == sorted(names) and len(names) == len(set(names)), 'Unambiguous sorted assembly identities')
-    require(all(re.fullmatch(r'[0-9a-f]{64}', r['sha256']) and re.fullmatch(r'[0-9a-f-]{36}', r['mvid']) for r in rows), 'Full image evidence')
+    require(all(re.fullmatch(r'[0-9a-f]{64}', r['sha256']) and re.fullmatch(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}', r['mvid']) for r in rows), 'Full image evidence')
     return {r['assemblyIdentity']: r['sha256'] for r in rows}
 
 
@@ -102,11 +102,13 @@ def validate_resolutions(rows, own, runtime, facade):
     seen = set(); mapped = 0
     for r in rows:
         declaration, origin, destination = r['declaration'], r['declaredAssemblyIdentity'], r['definitionAssemblyIdentity']
+        require(type(r['runtimeFacadeUsed']) is bool, 'Boolean facade claim required')
         pair = (origin, declaration); require(pair not in seen, 'Duplicate resolution'); seen.add(pair)
         require(own.get(origin) == r['declaredModuleSha256'], 'Declared provider is outside inventory')
         require(r['canonicalKey'] == key_token(destination) + key_token(declaration), 'Canonical identity must keep assembly and declaration')
         path = r['forwardingPath']; require(isinstance(path, list) and path and len(path) <= 258, 'Bounded nonempty forwarding path')
         require(path[0] == origin + ' | sha256=' + r['declaredModuleSha256'] and path[-1] == destination + ' | sha256=' + r['definitionModuleSha256'], 'Path endpoints')
+        require(len(path) == len(set(path)), 'No repeated forwarding path segment')
         mapped += int(r['runtimeFacadeUsed'] is True)
         at_runtime = False
         for segment in path:

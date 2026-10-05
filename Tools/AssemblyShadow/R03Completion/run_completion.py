@@ -20,6 +20,8 @@ from run_host import qualification
 from resource_capabilities import host_contracts as capability_contracts
 from fixture_contracts import constructor_contracts, editor_preflight
 import fixed_image_inputs as fixed_images
+import layout_identity
+import layout_evidence
 import resource_pipeline as resources
 import legacy_runtime as legacy
 
@@ -57,12 +59,18 @@ class CompletionBatch(FocusedBatch):
 
     def completion_tests(self):
         receipt = self.command([sys.executable, '-B', '-m', 'unittest', 'discover', '-s', HERE, '-p', 'test_*.py', '-v'])
+        identity = layout_identity.host_contracts(self)
         capabilities = capability_contracts(self)
         constructor = constructor_contracts(self)
         fixed = fixed_images.host_contracts(self)
         editor = editor_preflight(self)
-        return {'fixedImageGuards': fixed, 'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
+        return {'layoutIdentity': identity, 'fixedImageGuards': fixed, 'commandReceipt': receipt, 'constructorContracts': constructor, 'capabilityProfileContracts': capabilities, 'earlyEditorFixtures': editor,
                 'scope': 'Host helper and eighteen real Editor regressions; full rosters still required'}
+
+    def resource_graph(self):
+        result = resources.graph(self)
+        result['layoutIdentity'] = layout_evidence.verify_graph(self)
+        return result
 
     def execute(self):
         self.cell('entry-authority', self.authority)
@@ -97,7 +105,7 @@ class CompletionBatch(FocusedBatch):
         self.cell('resource-p05-finalize', lambda: resources.phase(self, 'finalize'), ('resource-p05-compile', 'resource-p05-restore'))
         self.cell('resource-editor', lambda: resources.editor(self, complete=True), ('resource-install', 'resource-p05-restore', 'host-admission'))
         self.cell('production-entry-integration', lambda: resources.integration(self), ('resource-p05-finalize',))
-        self.cell('resource-input-binding', lambda: resources.graph(self), ('resource-p05-finalize',))
+        self.cell('resource-input-binding', self.resource_graph, ('resource-p05-finalize',))
         for mode in sorted(legacy.m07.MODES):
             self.cell('resource-' + mode, lambda m=mode: legacy.m07_case(self, m), ('resource-input-binding',))
         self.cell('resource-contracts', lambda: legacy.m07_summary(self), tuple('resource-' + mode for mode in sorted(legacy.m07.MODES)))

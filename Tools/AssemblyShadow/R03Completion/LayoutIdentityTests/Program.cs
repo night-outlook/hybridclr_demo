@@ -67,7 +67,7 @@ internal static class Program
         new AssemblyDefUser(name, version ?? new Version(1, 0, 0, 0)).Modules.Add(m); return m;
     }
     static byte[] Bytes(ModuleDef m) { using (var s = new MemoryStream()) { m.Write(s); return s.ToArray(); } }
-    static AssemblyRef Ref(string name, Version version = null) { return new AssemblyRefUser(name, version ?? new Version(1, 0, 0, 0)); }
+    static AssemblyRef Ref(string name, Version version = null) { return new AssemblyRefUser(name, version ?? new Version(1, 0, 0, 0), new PublicKeyToken()) { HasPublicKey = false }; }
     static TypeRef T(ModuleDef m, string scope, string name) { return new TypeRefUser(m, "Shape", name, Ref(scope)); }
     static void Field(TypeDef t, string name, TypeSig sig) { t.Fields.Add(new FieldDefUser(name, new FieldSig(sig), FieldAttributes.Private)); }
     static byte[] Provider(string assembly = "Provider", bool duplicate = false)

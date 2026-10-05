@@ -113,6 +113,16 @@ jobs:
             --api-output "$RUNNER_TEMP/r03-completion-api" \
             --newtonsoft "$(cat "$RUNNER_TEMP/newtonsoft-path.txt")" \
             --output "$RUNNER_TEMP/r03-completion-api/compiler-policy-mono"
+      - name: Replay captured M layouts through actual forwarding identity rules
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/unity-paths.txt")"
+          CONTENTS="$(dirname "$(dirname "$UNITY")")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03Completion/compile_layout_checks.py \
+            --workspace "$GITHUB_WORKSPACE" --contents "$CONTENTS" \
+            --api-output "$RUNNER_TEMP/r03-completion-api" \
+            --newtonsoft "$(cat "$RUNNER_TEMP/newtonsoft-path.txt")" \
+            --output "$RUNNER_TEMP/r03-completion-api/layout-identity-mono"
       - name: Bind all preserved compiler evidence
         if: always()
         shell: python
@@ -123,11 +133,19 @@ jobs:
           binding=Path(os.environ['RUNNER_TEMP'])/'newtonsoft-binding.json'
           if binding.is_file():shutil.copyfile(binding,root/'newtonsoft-binding.json')
           refs={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity','graphics')}
-          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompilerPolicyChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionCompilerPolicyContract.cs','hybridclr_demo/ProjectSettings/AssemblyShadowDependencies.json','hybridclr_demo/ProjectSettings/AssemblyShadowRawTypeAdmissions.json','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionFixedImageContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata'):
+          for base in ('hybridclr_demo/Tools/AssemblyShadow/R03Completion','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M02Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/M07Build.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompilerPolicyChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionCompilerPolicyContract.cs','hybridclr_demo/ProjectSettings/AssemblyShadowDependencies.json','hybridclr_demo/ProjectSettings/AssemblyShadowRawTypeAdmissions.json','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionInventoryContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionSourcePinContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03FixedImageChecks.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionFixedImageContract.cs','hybridclr_demo/Assets/AssemblyShadowDemo/Bootstrap/R03CompletionExecution.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs','hybridclr_unity/Tests/Editor/AssemblyShadow/PolicyTests.cs','hybridclr_unity/Editor/AssemblyShadow/Metadata','hybridclr_unity/Editor/AssemblyShadow/Build/NativeLayoutAdmissionSnapshot.cs'):
               p=Path(base)
               for source in ([p] if p.is_file() else p.rglob('*')):
                   if source.is_file() and source.suffix in ('.py','.cs','.csproj','.json'):
                       target=root/'sources'/source;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target)
+          # Retain the exact historical fixtures consumed by tooling tests so
+          # a source-slice audit can run without recreating historical evidence.
+          for relative in (
+              'local-validation-20261001-batch-d-return-required/batch/editor-results.xml',
+              'local-validation-20261003-batch-i-return-required/batch/focused-editor/results.xml',
+              'local-validation-20261003-batch-i-return-required/preflight/issue-resource-snapshot/ProjectSettings/AssemblyShadowSourcePins.json'):
+              source=Path('hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03')/relative
+              target=root/'sources'/source;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target)
           files=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
           (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'repositories':refs,'files':files,'unityRun':False,'playerRun':False,'upmByteEquivalenceClaimed':False},indent=2)+'\n')
           for n in refs:assert not subprocess.check_output(['git','-C',n,'status','--porcelain'],text=True).strip()
