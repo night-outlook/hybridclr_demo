@@ -1,0 +1,58 @@
+name: R03 LN candidate failure inspection
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-ln-failure-audit.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Authenticate failed candidate archive and expose bounded diagnostics
+        shell: python
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          import hashlib,io,json,os,pathlib,stat,urllib.request,urllib.error,zipfile
+          api='https://api.github.com/repos/night-outlook/hybridclr_demo'
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
+          artifact=11376202296;expected='d4c67d2dd59561d5314e34bf336ea8844963b7a94b1832b0ad0a8e8289bd34fc'
+          meta=json.load(urllib.request.urlopen(urllib.request.Request(api+'/actions/artifacts/'+str(artifact),headers=headers),timeout=60))
+          assert meta['workflow_run']['head_sha']=='2c5eaa7485fd368d84fb20a65e1b921c48774bb7' and meta['digest']=='sha256:'+expected
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,hdrs,url):return None
+          try: urllib.request.build_opener(NoRedirect).open(urllib.request.Request(api+'/actions/artifacts/'+str(artifact)+'/zip',headers=headers),timeout=60)
+          except urllib.error.HTTPError as error:
+              assert error.code==302;url=error.headers['Location']
+          else:raise ValueError('Missing redirect')
+          assert url.startswith('https://')
+          raw=urllib.request.urlopen(url,timeout=120).read();assert hashlib.sha256(raw).hexdigest()==expected
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'ln-failure';out.mkdir()
+          result={'kind':'R03LNCandidateFailureInspection','artifactId':artifact,'sha256':expected,'files':[],'diagnostics':{},'runtimeAcceptance':False}
+          with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+              names=archive.namelist();assert len(names)==len(set(names))
+              for m in archive.infolist():
+                  p=pathlib.PurePosixPath(m.filename);assert not p.is_absolute() and '..' not in p.parts and not stat.S_ISLNK(m.external_attr>>16)
+              provenance=json.loads(archive.read('provenance.json'));assert provenance['sourceCommit']==meta['workflow_run']['head_sha']
+              assert set(names)=={r['path'] for r in provenance['files']}|{'provenance.json'}
+              for row in provenance['files']:
+                  data=archive.read(row['path']);assert len(data)==row['size'] and hashlib.sha256(data).hexdigest()==row['sha256']
+              for name in names:
+                  if name.startswith('reference-binding/') and not name.startswith('reference-binding/disk-control/'):
+                      result['files'].append({'path':name,'bytes':len(archive.read(name))})
+              for name in ('commands/0003/command.json','commands/0003/stdout.log','commands/0003/stderr.log','fixture-constructor-host/results.json','commands/0012/command.json','commands/0012/stdout.log','commands/0012/stderr.log','reference-binding/results.json'):
+                  if name in names:
+                      text=archive.read(name).decode('utf-8',errors='replace');result['diagnostics'][name]=text[:24000]
+                      print('DIAGNOSTIC '+name+'\n'+text[:24000])
+              print('REFERENCE_OUTPUT_FILES '+json.dumps(result['files']))
+          (out/'inspection.json').write_text(json.dumps(result,indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-ln-failure-${{ github.sha }}
+          path: ${{ runner.temp }}/ln-failure
+          if-no-files-found: error
+          retention-days: 14
