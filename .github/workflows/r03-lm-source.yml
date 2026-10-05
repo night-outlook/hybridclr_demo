@@ -1,0 +1,61 @@
+name: R03 LM source and layout inputs
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-lm-source.yml']
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: d6d3a3c05ef45890fb25fca3b762289450c69c5f
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: |
+            Tools
+            Assets
+            ProjectSettings
+            Packages
+            .github
+            Docs/AssemblyShadow/Plan
+            Docs/AssemblyShadow/Architecture
+            Docs/AssemblyShadow/Handoff
+            Docs/AssemblyShadow/History/M07R/R03/local-validation-20261004-batch-m-return-required
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: c86cbf665f5fcb2137e5adf2960541ce492467a4
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Export exact tracked source and bounded historical M layout evidence
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'lm-inputs';root.mkdir()
+          checkpoint='Docs/AssemblyShadow/History/M07R/R03/local-validation-20261004-batch-m-return-required/'
+          rows=[];repos={}
+          for repo in ('hybridclr_demo','hybridclr_unity'):
+              repos[repo]=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip()
+              for entry in filter(None,subprocess.check_output(['git','-C',repo,'ls-files','-s','-z']).decode().split('\0')):
+                  header,path=entry.split('\t',1);mode,blob,stage=header.split()
+                  selected=repo=='hybridclr_unity' or path.startswith(('Tools/','Assets/','Packages/','ProjectSettings/','.github/','Docs/AssemblyShadow/Plan/','Docs/AssemblyShadow/Architecture/','Docs/AssemblyShadow/Handoff/')) or path=='Docs/AssemblyShadow/README.md' or (path.startswith(checkpoint) and ('/layout-inputs/' in path or '/P05-compile/' in path or '/preflight/issue-' in path or path.endswith(('NATIVE_LAYOUT_DIAGNOSIS.json','PRIMARY_ISSUES.json','evidence-index.json','seal-receipt.json','README.md'))))
+                  if not selected:continue
+                  source=Path(repo)/path
+                  assert mode in ('100644','100755') and source.is_file() and not source.is_symlink(),(repo,path,mode)
+                  data=source.read_bytes();assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==blob
+                  relative=repo+'/'+path;dest=root/relative;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+                  rows.append({'path':relative,'gitBlob':blob,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+          (root/'provenance.json').write_text(json.dumps({'kind':'R03LMExactInputs','workflowSource':os.environ['GITHUB_SHA'],'repositories':repos,'files':rows,'unityRun':False,'playerRun':False},indent=2)+'\n')
+          print(json.dumps({'exportedFiles':len(rows),'repositories':repos}))
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-lm-inputs-${{ github.sha }}
+          path: ${{ runner.temp }}/lm-inputs
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
