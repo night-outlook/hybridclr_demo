@@ -190,7 +190,8 @@ def early_case(batch, case, mode, patch):
             raw = loads(result_m07.read_text()); require(raw['processId'] == command['pid'], 'M07 and early PID pairing')
             early.verify_imported_snapshots(observed, raw)
             c = batch.resource_context['context']
-            m07.verify_case(result_m07, c['manifest'], c['baseline'], c['fixtures'], batch.resource_context['baselineResources'], c['on'], c['off'])
+            m07.verify_case(result_m07, c['manifest'], c['baseline'], c['fixtures'], batch.resource_context['baselineResources'], c['on'], c['off'],
+                            source_context=batch.resource_context['codecContext'])
         else: require(not result_m07.exists(), 'Rejected early startup must not execute business resource handoff')
         require(inventory(batch) == before, 'Early inputs changed during process')
         verdict = dict(binding, result='Passed', case=case, mode=mode, patch=patch, launchPid=command['pid'],
