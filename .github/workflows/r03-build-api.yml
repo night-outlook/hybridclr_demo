@@ -18,13 +18,7 @@ jobs:
         with:
           path: hybridclr_demo
           persist-credentials: false
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          repository: night-outlook/hybridclr_unity
-          ref: 120bb01be680cec0375002a0823552d66d34b84c
-          path: hybridclr_unity
-          persist-credentials: false
-      - name: Resolve native source pins
+      - name: Resolve exact package and native source pins
         id: pins
         shell: bash
         run: |
@@ -33,10 +27,16 @@ jobs:
           from pathlib import Path
           pins=json.loads(Path('hybridclr_demo/Tools/AssemblyShadow/R03/source-pins.json').read_text())
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
-              for repo in ('hybridclr','il2cpp_plus'):
+              for repo in ('hybridclr','hybridclr_unity','il2cpp_plus'):
                   assert re.fullmatch('[0-9a-f]{40}',pins[repo])
                   output.write(repo+'='+pins[repo]+'\n')
           PYCODE
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: ${{ steps.pins.outputs.hybridclr_unity }}
+          path: hybridclr_unity
+          persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: night-outlook/hybridclr
