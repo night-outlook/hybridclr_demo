@@ -11,16 +11,17 @@ using System.Text.Json;
 using Newtonsoft.Json;
 #endif
 
-// Uses actual loader, hasher and eligibility code. Captured reference catalog
-// below is a DIAGNOSTIC replay policy, never a minted live Unity authority.
+// Actual loader/hasher/eligibility checks. The captured catalog is a diagnostic
+// replay policy, not newly minted live Unity authority. One explicit case runs
+// per fresh supervised process; the Python aggregate requires all fifteen.
 internal static class Program
 {
     [Serializable] public sealed class FileRow { public string path, sha256, name; public long size; public bool referenceOnly, framework; }
     [Serializable] public sealed class World { public string name, root, receiptSha256; public FileRow[] files; }
     [Serializable] public sealed class Inputs { public string kind, basis; public World[] worlds; }
-    [Serializable] public sealed class Case { public string id, result, error; }
+    [Serializable] public sealed class Case { public string id, result, error; public long elapsedMilliseconds; }
     [Serializable] public sealed class Report {
-        public string kind="R03ReferenceBindingContracts",result="Failed",basis="ReusedAuditedLocalNCompilerInputs";
+        public string kind="R03ReferenceBindingContracts",result="Failed",basis="ReusedAuditedLocalNCompilerInputs",selection;
         public int schemaVersion=1,failures; public List<Case> cases=new List<Case>();
         public bool runtimeAcceptance,qualificationApproved,expansionAuthorized,unityEditorRun,playerRun;
     }
@@ -41,7 +42,13 @@ internal static class Program
 #endif
     }
     static void Save(string path,object value) { File.WriteAllText(Path.Combine(output,path),Json(value)+"\n"); }
-    static void Test(string id,Action action) {try{action();report.cases.Add(new Case{id=id,result="Passed"});}catch(Exception e){report.failures++;report.cases.Add(new Case{id=id,result="Failed",error=e.ToString()});Console.Error.WriteLine(id+" "+e);}}
+    static void Test(string id,Action action) {
+        if(report.selection!=id)return;
+        Console.WriteLine("CASE_START "+id);var timer=System.Diagnostics.Stopwatch.StartNew();
+        var row=new Case{id=id,result="Failed"};
+        try {action();row.result="Passed";}catch(Exception e){report.failures++;row.error=e.ToString();Console.Error.WriteLine(id+" "+e);}
+        finally {row.elapsedMilliseconds=timer.ElapsedMilliseconds;report.cases.Add(row);Save("case-result.json",row);Console.WriteLine("CASE_END "+id+" "+row.result+" "+row.elapsedMilliseconds);}
+    }
     static void Reject(Action action) {try{action();}catch(ShadowBuildException e){Need(e.Code=="EligibilityInputChanged",e.ToString());return;}throw new Exception("Mutation was accepted");}
     static void Authenticate(World w) {
         Need(w.files.Length>100 && w.files.Select(f=>f.name.ToLowerInvariant()).Distinct().Count()==w.files.Length,"Exact complete domain");
@@ -71,8 +78,9 @@ internal static class Program
         }return rows;
     }
     static int Main(string[] args) {
-        Need(args.Length==4&&args[0]=="--input"&&args[2]=="--output","Explicit input and new output");
+        Need(args.Length==6&&args[0]=="--input"&&args[2]=="--output"&&args[4]=="--case","Explicit input, unused output and exact case");
         output=Path.GetFullPath(args[3]);Need(!Directory.Exists(output)&&!File.Exists(output),"Unused output");Directory.CreateDirectory(output);
+        report.selection=args[5];
         var inputs=Read<Inputs>(args[1]);Need(inputs.kind=="R03NReferenceInputs"&&inputs.basis=="ReusedAuditedLocalNCompilerInputs"&&inputs.worlds.Length==6,"Exact six captured input worlds");
         foreach(var w in inputs.worlds) Test("N-"+w.name+"-unchanged-closed-domain",()=>{using(var s=Load(w)){var a=Analyze(s);var b=Analyze(s);Need(Json(a)==Json(b)&&!a.qualificationApproved&&!a.expansionAuthorized,"Identical closed replay without authority");Save(w.name+"-unchanged.json",a);}Authenticate(w);});
         var first=inputs.worlds[0];
@@ -91,13 +99,16 @@ internal static class Program
         Test("N-primary-and-descriptor-mutation",()=>{using(var s=Load(first)){var d=s.Assemblies.Values.First();var m=s.GetModule(d.name);m.Types.First(t=>!t.IsGlobalModuleType).Name+="Changed";d.semanticHash=AssemblySemanticHasher.Compute(m).semanticHash;Reject(()=>Analyze(s));}});
         Test("N-reference-assembly-identity-mutation",()=>{using(var s=Load(first)){s.GetModule("UnityEngine.AnimationModule").Assembly.Version=new Version(9,9,9,9);Reject(()=>Analyze(s));}});
         Test("N-disposed-domain",()=>{var s=Load(first);s.Dispose();try{Analyze(s);}catch(ObjectDisposedException){return;}throw new Exception("Disposed set accepted");});
-        // Disk mutation occurs only in a fresh test-owned copy. Original N never changes.
-        string copy=Path.Combine(output,"disk-control");Directory.CreateDirectory(copy);
-        var files=first.files.Select(f=>{string rel=Path.GetFullPath(f.path).Substring(Path.GetFullPath(first.root).Length+1);string p=Path.Combine(copy,rel);Directory.CreateDirectory(Path.GetDirectoryName(p));File.Copy(f.path,p);return new FileRow{path=p,name=f.name,sha256=f.sha256,size=f.size,referenceOnly=f.referenceOnly,framework=f.framework};}).ToArray();
-        var copied=new World{name="owned-negative",root=copy,receiptSha256=first.receiptSha256,files=files};
-        Test("N-reference-disk-mutation",()=>{using(var s=Load(copied)){var f=files.Single(f=>f.name.Equals("UnityEngine.AnimationModule",StringComparison.OrdinalIgnoreCase));var original=File.ReadAllBytes(f.path);try{var changed=(byte[])original.Clone();changed[changed.Length-1]^=1;File.WriteAllBytes(f.path,changed);Reject(()=>Analyze(s));}finally{File.WriteAllBytes(f.path,original);}}});
-        Test("N-reference-disappeared",()=>{using(var s=Load(copied)){var f=files.Single(f=>f.name.Equals("UnityEngine.AnimationModule",StringComparison.OrdinalIgnoreCase));var original=File.ReadAllBytes(f.path);try{File.Delete(f.path);try{Analyze(s);}catch(IOException){return;}throw new Exception("Missing reference accepted");}finally{File.WriteAllBytes(f.path,original);}}});
-        Authenticate(first);Authenticate(copied);
+        // Only these two cases create a new owned disk copy. Original N never changes.
+        if(report.selection=="N-reference-disk-mutation"||report.selection=="N-reference-disappeared") {
+            string copy=Path.Combine(output,"disk-control");Directory.CreateDirectory(copy);
+            var files=first.files.Select(f=>{string rel=Path.GetFullPath(f.path).Substring(Path.GetFullPath(first.root).Length+1);string p=Path.Combine(copy,rel);Directory.CreateDirectory(Path.GetDirectoryName(p));File.Copy(f.path,p);return new FileRow{path=p,name=f.name,sha256=f.sha256,size=f.size,referenceOnly=f.referenceOnly,framework=f.framework};}).ToArray();
+            var copied=new World{name="owned-negative",root=copy,receiptSha256=first.receiptSha256,files=files};
+            Test("N-reference-disk-mutation",()=>{using(var s=Load(copied)){var f=files.Single(f=>f.name.Equals("UnityEngine.AnimationModule",StringComparison.OrdinalIgnoreCase));var original=File.ReadAllBytes(f.path);try{var changed=(byte[])original.Clone();changed[changed.Length-1]^=1;File.WriteAllBytes(f.path,changed);Reject(()=>Analyze(s));}finally{File.WriteAllBytes(f.path,original);}}});
+            Test("N-reference-disappeared",()=>{using(var s=Load(copied)){var f=files.Single(f=>f.name.Equals("UnityEngine.AnimationModule",StringComparison.OrdinalIgnoreCase));var original=File.ReadAllBytes(f.path);try{File.Delete(f.path);try{Analyze(s);}catch(IOException){return;}throw new Exception("Missing reference accepted");}finally{File.WriteAllBytes(f.path,original);}}});
+            Authenticate(copied);
+        }
+        Authenticate(first);Need(report.cases.Count==1,"One exact recognized case must execute");
         report.result=report.failures==0?"Passed":"Failed";Save("results.json",report);return report.failures==0?0:1;
     }
 }

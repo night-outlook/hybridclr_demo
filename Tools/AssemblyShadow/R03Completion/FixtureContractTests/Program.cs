@@ -18,6 +18,11 @@ internal static class Program
         try { action(); Results.Add(new { id, result = "Passed" }); }
         catch (Exception ex) { failures++; Results.Add(new { id, result = "Failed", error = ex.ToString() }); }
     }
+    private static readonly Type[] SyntheticSignature = {
+        typeof(Dictionary<string, AssemblyDescriptor>), typeof(Dictionary<string, ModuleDefMD>),
+        typeof(IResolver), typeof(IEnumerable<string>), typeof(IEnumerable<CompiledAssemblySource>) };
+    private static ConstructorInfo ExactConstructor(Type[] signature) => typeof(CompiledAssemblySet).GetConstructor(
+        BindingFlags.Instance | BindingFlags.NonPublic, null, signature, null);
     private static Dictionary<string, AssemblyDescriptor> Descriptors() => new Dictionary<string, AssemblyDescriptor> {
         { "Consumer", new AssemblyDescriptor { name = "Consumer", classification = AssemblyClassification.EditorOnly,
             references = new [] { "mscorlib" } } } };
@@ -32,9 +37,10 @@ internal static class Program
         if (args.Length != 2 || args[0] != "--output" || Directory.Exists(args[1])) throw new ArgumentException("Unused --output directory required");
         Directory.CreateDirectory(args[1]);
         Check("FC01-exact-constructor-signature", () => {
-            var c = typeof(CompiledAssemblySet).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
-            Require(c.Length == 1 && c[0].GetParameters().Length == 5 &&
-                c[0].GetParameters()[4].ParameterType == typeof(IEnumerable<CompiledAssemblySource>), "Reviewed constructor changed"); });
+            var all = typeof(CompiledAssemblySet).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
+            var production = SyntheticSignature.Concat(new[] { typeof(VerifiedTargetFrameworkReferences) }).ToArray();
+            Require(all.Length == 2 && ExactConstructor(SyntheticSignature) != null && ExactConstructor(production) != null,
+                "Require exactly the unchanged synthetic five-argument and reviewed production six-argument constructors"); });
         Check("FC02-reference-only-module-without-descriptor", () => {
             using (var set = Make()) Require(set.GetModule("mscorlib") != null && !set.Assemblies.ContainsKey("mscorlib") && set.Assemblies.ContainsKey("Consumer"), "Original PolicyTests construction invariant"); });
         Check("FC03-empty-synthetic-source-authority", () => { using (var set = Make()) Require(set.Sources.Count == 0, "Synthetic sources must stay empty"); });
@@ -42,11 +48,11 @@ internal static class Program
             using (var set = Make()) {
                 try { PureInterpreterEligibility.Analyze(set, set, Array.Empty<string>(), new ShadowDependencyConfiguration(),
                     new ResourceAbiDescriptor { schemaVersion = 2 }); throw new Exception("Synthetic provenance accepted"); }
-                catch (InvalidOperationException ex) { Require(ex.Message.Contains("no matching element", StringComparison.OrdinalIgnoreCase), "Expected missing loaded source evidence"); }
+                catch (ShadowBuildException ex) { Require(ex.Code == "EligibilityInputChanged", "Exact closed-domain source-membership guard required"); }
             } });
         Check("FC05-original-four-argument-negative", () => {
             var modules = Modules(); try {
-                var c = typeof(CompiledAssemblySet).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic).Single();
+                var c = ExactConstructor(SyntheticSignature); Require(c != null, "Exact synthetic constructor required");
                 try { c.Invoke(new object[] { Descriptors(), modules, Resolver(), Array.Empty<string>() }); throw new Exception("Obsolete call accepted"); }
                 catch (TargetParameterCountException) { }
             } finally { foreach (var m in modules.Values) m.Dispose(); } });

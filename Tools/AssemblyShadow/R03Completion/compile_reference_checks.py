@@ -15,10 +15,10 @@ from input_validation import binding
 import reference_binding as replay
 
 
-def replay_arguments(paths, mono, target, inputs, output):
-    """Match the actual managed probe's strict --input/--output contract."""
+def replay_arguments(paths, mono, target, inputs, output, case):
+    """Match the actual managed probe's strict input/output/case contract."""
     return ['/usr/bin/env', 'MONO_PATH=' + os.pathsep.join(map(str, paths)), mono, target,
-            '--input', inputs, '--output', output]
+            *replay.case_arguments(inputs, output, case)]
 
 
 def validate(workspace, contents, api_output, newtonsoft, output):
@@ -35,8 +35,6 @@ def validate(workspace, contents, api_output, newtonsoft, output):
     try:
         require(sha(contents / 'Managed/UnityEngine/UnityEditor.CoreModule.dll') == CORE_SHA, 'Pinned Unity API bytes')
         inputs = replay.inputs(demo, root / 'replay-inputs.json')
-        # Independently corroborate each diagnostic framework-provider byte against
-        # the extracted pinned distribution; no live Editor/catalog claim.
         for world in inputs['worlds']:
             for file in world['files']:
                 if file['framework']:
@@ -56,8 +54,12 @@ def validate(workspace, contents, api_output, newtonsoft, output):
         clean_outer(run_owned_command([*args[:4], '@' + str(rsp)], root / 'commands/0001', 600), 0)
         paths = [p.parent for p in assemblies] + [package / 'Plugins', Path(newtonsoft).resolve().parent,
                     contents / 'Managed', contents / 'Managed/UnityEngine', profile, profile / 'Facades']
-        command = replay_arguments(paths, mono, target, root / 'replay-inputs.json', root / 'contracts')
-        clean_outer(run_owned_command(command, root / 'commands/0002', 600), 0)
+        ordinal = [1]
+        def run_case(case, output):
+            ordinal[0] += 1
+            command = replay_arguments(paths, mono, target, root / 'replay-inputs.json', output, case)
+            clean_outer(run_owned_command(command, root / ('commands/%04d' % ordinal[0]), 600), 0)
+        replay.run_cases(root / 'contracts', inputs, run_case)
         result['checks'] = replay.verify_results(root / 'contracts', inputs)
         require(before == [binding(p) for p in tracked], 'Sources or consumer references changed')
         result['result'] = 'Passed'
