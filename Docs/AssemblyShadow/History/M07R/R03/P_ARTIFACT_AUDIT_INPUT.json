@@ -12,7 +12,6 @@
         "layout-identity/results.json": 33,
         "fixture-constructor-host/results.json": 12,
         "capability-profile-host/results.json": 20,
-        "fixed-image-host/results.json": 10,
         "qualification/results.json": 32,
         "host/baseline-graph/results.json": 9,
         "host/candidate-graph/results.json": 9,
@@ -27,7 +26,6 @@
         "layout-identity/results.json": 33,
         "fixture-constructor-host/results.json": 12,
         "capability-profile-host/results.json": 20,
-        "fixed-image-host/results.json": 10,
         "qualification/results.json": 32,
         "host/baseline-graph/results.json": 9,
         "host/candidate-graph/results.json": 9,
@@ -43,6 +41,7 @@
       }
     }
   ],
+  "requestCorrection": "The previous request incorrectly assumed fixed-image-host/results.json had a top-level cases collection. Its actual schema nests controls in observation; the unchanged producer verifies them. This request checks only genuine top-level case collections. Full archive bytes, fixed-image Passed result and command streams remain authenticated; no test or artifact changes.",
   "basis": "Read-only artifact authentication; no Unity Editor or Player execution",
   "R03Accepted": false,
   "H2Passed": false,
