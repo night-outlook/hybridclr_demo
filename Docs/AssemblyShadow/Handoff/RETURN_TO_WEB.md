@@ -1,6 +1,194 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch M: LL repair Passed; P05 framework identity comparison requires Primary
+## Current return — R03 batch N: four actionable Primary issues
+
+**ReturnRequired;90 cells:48 Passed, 4 Failed, 38 Blocked;seal Passed;one invocation PID80867,2026-10-05 07:03:54 PDT → 2026-10-05 07:34:45 PDT.** Six fresh build roles/23 focused Players Passed. Fresh P05 compile/restore/finalize and five schema-2 report results are recorded in LOCAL_VALIDATION.md. Actual direct Player processes=23; full754/755 rosters did not execute because source-scope admission Failed; early18 actual methods Passed. Preserve M and all earlier states unchanged.
+
+Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [N checkpoint](../History/M07R/R03/local-validation-20261005-batch-n-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261005-batch-n-return-required/preflight/PRIMARY_ISSUES.json), [EDITOR_SCOPE_DIAGNOSIS.json](../History/M07R/R03/local-validation-20261005-batch-n-return-required/preflight/EDITOR_SCOPE_DIAGNOSIS.json) and [LAYOUT_IDENTITY_AUDIT.json](../History/M07R/R03/local-validation-20261005-batch-n-return-required/preflight/LAYOUT_IDENTITY_AUDIT.json).
+
+### R03-LN-001 — package-delta guard omits five identity production files
+
+**Symptom.** Exact package-delta scope guard rejects both full Editor rosters before creating scope/XML or invoking Test Runner. This is a source-scope failure, not failing NUnit cases.
+
+**Exact reproduction already performed.** Use the four executed source heads/paths in LOCAL_VALIDATION.md, pinned Unity2022.3.62f2/SDK8.0.318. The single prescribed invocation is complete; inspect the two failing cells below and the Git-authenticated source snapshots in the diagnosis. Do not retry N or mutate its retained root. `CompletionBatch.execute → resource_pipeline.editor:175–188 → editor_contract.source_scope:28–31` rejects before scope-folder creation or `unity_command`.
+
+```text
+/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit 15f6c2c9a5e070e631fdcda9a2bb022f4b61a733
+```
+
+**Evidence/excerpt.** `editor_contract.py:30–31` computes the actual diff from package120bb01be680cec0375002a0823552d66d34b84c toef6c70f30248c4b7c41e9e85d81e08f5709dc4ba and requires equality with REVIEWED_PACKAGE_FILES. It raises exactly `Review any additional package change before selecting Editor tests`. Actual13 versus reviewed8;0 missing reviewed files. Additional files:
+
+- `Editor/AssemblyShadow/Build/NativeLayoutAdmissionSnapshot.cs`
+- `Editor/AssemblyShadow/Metadata/EvolutionSignature.cs`
+- `Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs`
+- `Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs`
+- `Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs.meta`
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/cells/editor-tests.json`, SHA-256 `f43d040c57be045d0e18c67d767353ebde2a9826b5000ca9abf4b23ee42b0981`; execution=NotRun, XML=Unavailable
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/cells/resource-editor.json`, SHA-256 `21b0465e355eeed5257d9639c519118de36e1e7a391dad7f96e37fc325172d99`; execution=NotRun, XML=Unavailable
+
+Diagnosis SHA-256 `e072c18a90a332aa814023ca4c8191fe2e763d3a4c3ce2aaff12b23707695079`. No full-roster scope/XML/Editor log or associated Test Runner command exists; only the separate early18-method Test Runner invocation executed. Current expected names come from the authenticated catalog, not reused XML results.
+
+**Direct cause/root cause/why permitted.** N changes the pinned production package by five authenticated identity files, but editor_contract.REVIEWED_PACKAGE_FILES still encodes only the eight earlier reviewed files. The exact-delta guard correctly refuses the unencoded review; package pins and host/API compilation do not authorize full Editor selection. test_completion_contracts.py:169-171 mocks git diff by returning REVIEWED_PACKAGE_FILES itself rather than the actual pinned package delta; its extra-file negative uses the same mocked base at217-220. Those tests do not establish real source_scope admissibility for ef6c70f.
+
+**Impact.** Both full Editor cells Failed;1509 intended cases are NotRun, with XML Unavailable. The separate18 methods and independently completed N build/identity/native/Player checks retain their recorded states. Full-stage coverage remains incomplete; no acceptance or Human Gate inference. Focused M01 NoCoverage and resource M01 Editor non-execution remain distinct from any actual resource runtime evidence.
+
+**Concrete Primary direction.** Primary must review and encode the exact additional five source/meta files for the current package pin while retaining fail-closed exact-delta checking and the unchanged754/755 named rosters, zero-skip policy and focused M01 NoCoverage boundary. Add a host preflight against real pinned Git diff and the authenticated name catalog for both scopes; retain extra/unreviewed-change rejection. Do not remove the guard or update the old name catalog merely to admit production-only files.
+
+**Remaining uncertainty.** Neither full roster executed, so current-package full Editor compilation/test behavior and resource M01 Editor coverage remain unvalidated despite the separate18-method preflight and other independent N results.
+
+**Validation after repair.** A newly authorized source-bound batch must execute both actual754/755 full Editor rosters with zero skips/inconclusive, all90cells/sixbuilds/59Players and unchanged identity/provenance/native/runtime/producer/rejection/measurement expectations. N and all earlier Failed/Blocked/NoCoverage/unisolated-certificate states remain unchanged.
+
+### R03-LN-002 — production qualification rejects an authenticated unchanged Unity reference
+
+**Symptom.** EligibilityInputChanged: Loaded reference metadata changed: unityengine.animationmodule
+
+**Exact reproduction already performed.**
+
+1. Inspect the completed production-entry-integration cell and command0108; the one prescribed N invocation is complete. Do not rerun it.
+2. Read resource-logs/integration.log397–402: VerifyProductionEntriesCore -> PureInterpreterEligibility.Analyze -> Bind rejects unityengine.animationmodule.
+3. Compare the six retained baseline/P01–P05 UnityEngine.AnimationModule.dll files with their authenticated snapshot receipts; all exact SHA-256 values agree. Follow ShadowFixtureProof.Load -> DnlibAssemblyLoader.Load and reference revalidation in PureInterpreterEligibility.Bind.
+
+**Evidence and excerpt.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/cells/production-entry-integration.json`, SHA-256 `e3cf56f32e4d1d1ae2e92b18449d22f023e6a13e058aaf2b99015df2ef21caf5`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/commands/0108/command.json`, SHA-256 `01d36fa3d984a098d67d8e4905b97a3791f2cf5d6736f410baaf582c705785a7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/resource-logs/integration.log`, SHA-256 `94890303b0585e57261fa0214cc4e344ee49e759834b2e2c8cfe42f7e5555ec2`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/QUALIFICATION_INPUT_DIAGNOSIS.json`, SHA-256 `7438cb1f7335554b72ae3ece069db3d1746aa7672fa7115225371222b88a604d`
+
+ShadowBuildException: EligibilityInputChanged: Loaded reference metadata changed: unityengine.animationmodule; PureInterpreterEligibility.Bind:159 -> Analyze:53 -> R03CompletionBuild.VerifyProductionEntriesCore:165 -> VerifyProductionEntries:126. Command0108 exits1, with no timeout or survivor.
+
+**Most likely root cause.** PureInterpreterEligibility.Bind reopens ReferenceOnly files with ModuleDefMD.Load(bytes) without the closed ModuleContext used by DnlibAssemblyLoader. AssemblySemanticHasher encodes decoded/custom attribute/raw-blob representations, so parsing/resolver context can change semantic representation for identical DLL bytes. This is the leading source-supported hypothesis; actual in-memory mutation/which semantic section differs is not proven.
+
+**Why the design allowed it.** Production compares semantic hashes of separately loaded metadata domains. The source set has a captured closed resolver context, but ReferenceOnly replay uses ModuleDefMD.Load(bytes) without that context. Synthetic host determinism controls do not establish equivalence of real Unity custom-attribute decoding. This mechanism is a hypothesis; the receipts do not expose the differing semantic section.
+
+**Affected scope.**
+
+```json
+{
+  "failedCells": [
+    "production-entry-integration"
+  ],
+  "qualificationReports": "Unavailable; partial folders are not completed qualification",
+  "dependentValidation": "Original downstream cell states retained; qualification/runtime approval not established",
+  "actualDiskReferenceHashes": "All six files match current authenticated snapshots",
+  "inMemorySemanticDump": "Unavailable"
+}
+```
+
+**Recommended Primary direction.** Diagnose both semantic sections and loading contexts using these exact authenticated bytes; make reference revalidation compare an equivalent closed metadata domain or deterministic immutable binding while preserving mutation detection and source checks. Add unchanged real Unity-reference and true in-memory/on-disk mutation controls; no guard removal, framework exclusion or qualification authority.
+
+**Remaining uncertainty.** Which world/semantic section/custom attribute differs is not emitted; in-memory mutation or lazy metadata materialization cannot be excluded from current receipts. No additional compiler/Editor/managed replay was run.
+
+**Validation after repair.** A newly authorized source-bound batch must execute both actual754/755 full Editor rosters with zero skips/inconclusive, all90cells/sixbuilds/59Players and unchanged identity/provenance/native/runtime/producer/rejection/measurement expectations. N and all earlier Failed/Blocked/NoCoverage/unisolated-certificate states remain unchanged.
+
+**Local changes.** None; non-trivial source changes/new execution require Primary and a new handoff.
+
+
+### R03-LN-003 — native-codec verifier interprets a project-relative pin under demo cwd
+
+**Symptom.** /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json: cannot read pinned native codec 4b2774b066cfc6afd77a8c8aded6bda7ea574f55:hybridclr/metadata/InterpreterMetadataIndexCodec.h
+
+**Exact reproduction already performed.**
+
+1. Inspect the completed resource-input-binding cell and baseline manifest path in CODEC_PATH_DIAGNOSIS.json.
+2. The manifest native pin is ../../../../assembly_shadow_h1r/hybridclr, relative to the isolated Unity project. m07_results.verify_profile2 passes this relative path to git-C under the runner demo cwd.
+3. The preserved read-only Git source-authority reproduction under demo cwd exits128; the explicitly identified owning native checkout at the same commit yields the exact pinned codec header SHA. No graph rerun, cwd override, manifest/pin change or fallback repository was used.
+
+**Evidence and excerpt.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/cells/resource-input-binding.json`, SHA-256 `b888f9ea005abe4f66413078ba9f495c1679452f0b0035979384f60384ef386a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json`, SHA-256 `693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/CODEC_PATH_DIAGNOSIS.json`, SHA-256 `2f74bc9bcbccd244cd96101b27b7e9a2960562a091b6c44c9c36b26bd5fdf883`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/codec-source/hybridclr/metadata/InterpreterMetadataIndexCodec.h`, SHA-256 `a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e`
+
+m07_results.py:555–571 passes Path(pin.localPath) to git-C without an authenticated base; fatal: cannot change to '../../../../assembly_shadow_h1r/hybridclr': No such file or directory. Exact owning blob SHA a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e matches the manifest.
+
+**Most likely root cause.** The manifest path is correctly project-relative, but the Python verifier treats it as process-relative. The resulting path is /Users/ah/assembly_shadow_h1r/hybridclr instead of the pinned owning checkout.
+
+**Why the design allowed it.** The verifier accepts a relative path without encoding its base or checking repository authority first. Isolated-project configuration and Python process cwd are different provenance domains.
+
+**Affected scope.**
+
+```json
+{
+  "failedCells": [
+    "resource-input-binding"
+  ],
+  "layoutIdentityVerification": "Unavailable; graph fails before layout_evidence.verify_graph",
+  "remainingResourcePlayers": "Blocked/NotRun; no runtime acceptance",
+  "nativePinAndHeader": "Correct at exact owning path and commit"
+}
+```
+
+**Recommended Primary direction.** Primary should pass an authenticated absolute owning repository context, or resolve the recorded pin against an explicit captured project base. Verify top-level/commit/header hash before use. Preserve all authority guards and reject foreign repositories/wrong commit/hash. Add multi-cwd/relative-base tests; do not rewrite pins, rely on ambient cwd or select fallback checkouts.
+
+**Remaining uncertainty.** The sidecar verifier and full resource contracts were not reached by the original runner. Read-only correct-header authentication does not repair or pass resource-input-binding.
+
+**Validation after repair.** A newly authorized source-bound batch must execute both actual754/755 full Editor rosters with zero skips/inconclusive, all90cells/sixbuilds/59Players and unchanged identity/provenance/native/runtime/producer/rejection/measurement expectations. N and all earlier Failed/Blocked/NoCoverage/unisolated-certificate states remain unchanged.
+
+**Local changes.** None; non-trivial source changes/new execution require Primary and a new handoff.
+
+
+### R03-LN-004 — fresh schema-2 sidecar verifier mixes canonical and original assembly-name casing
+
+**Symptom.** Independent read-only full verification of all five current native-layout sidecars fails ContractError: Source-bound assembly report. Original batch layout-identity-verification remains Unavailable because LN-003 failed first.
+
+**Exact reproduction already performed.**
+
+1. Read CURRENT_SIDECAR_AUDIT.json and LAYOUT_IDENTITY_AUDIT.json, then use the five authenticated current P01–P05 reports and finalized manifest paths recorded there; do not rerun Unity or change artifacts.
+2. The retained audit-current-sidecars.py invokes the unchanged production layout_evidence.verify_value on current report bytes. All five raise Source-bound assembly report.
+3. For P01, targetLoadOrder and report.assembly are both AssemblyA.Implementation.Internal. layout_evidence.py:69 lowercases only the report name before comparing it to the original mixed-case load-order name.
+4. Following lines71–72 also index lowercase-keyed file dictionaries using that mixed-case name. The actual first comparison failure is reproduced; the subsequent lookup defect is source-supported and not reached. Host test_lm_identity.py uses lowercase load order app and therefore misses the real fixture casing.
+
+**Evidence and excerpt.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/CURRENT_SIDECAR_AUDIT.json`, SHA-256 `a63a48adf592d1876918a31ee7ec9dfbf9f90f7c99b618f226b48d0ef7aea012`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/LAYOUT_IDENTITY_AUDIT.json`, SHA-256 `01c187411410a9a84e2209542eb623409997e8dfea3e40c3d6c89da69541d74c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/audit-current-sidecars.py`, SHA-256 `e921afd1d4e9ecac27551c2c072147977304bed6b4f1670802d4a0f04c357776`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P01-patch/native-layout-admission-v1.json`, SHA-256 `0b2ddc01c63170c41561cc3cebbb1d245f1a5adb9ef889160a0c2bd32756db11`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P02-patch/native-layout-admission-v1.json`, SHA-256 `8abfa4c1de883488db844abc2c26728f3a4bbad0b010e6d181517b0265a5ee46`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P03-patch/native-layout-admission-v1.json`, SHA-256 `201819f6306c368e66e3ba08dd9bdb3e809021138865bc95b017e1ab3e960722`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P04-patch/native-layout-admission-v1.json`, SHA-256 `0e23b6ecf8fcfc9cc4f9eee1a01142e503bad7df4ec1b98143a5f2a74dc688a4`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P05-patch/native-layout-admission-v1.json`, SHA-256 `ba4533d653c0793070ce7a2644c501518b698dc72cbb89c3c31e82603d3b8174`
+
+layout_evidence.py:69 compares report['assembly'].lower() == name, with name='AssemblyA.Implementation.Internal'; false. Lowercase canonical dictionary keys exist while mixed-case lookups do not. All five actual reports fail the first check.
+
+**Most likely root cause.** The verifier treats original targetLoadOrder strings as canonical simple-name keys, while report names and file inventories are normalized differently. The schema-2 producer emits valid original casing; the consumer comparison is inconsistent.
+
+**Why the design allowed it.** The host positive control uses targetLoadOrder=[app] with report assembly App, so it validates only already-canonical input ordering rather than the actual five production fixtures.
+
+**Affected scope.**
+
+```json
+{
+  "originalBatchCell": "Not reached; production verification Unavailable",
+  "independentReadOnlyState": "Failed for all five reports",
+  "rawMappedDeclarationCounts": [
+    18,
+    18,
+    19,
+    18,
+    18
+  ],
+  "nativeProofExecuted": false,
+  "runtimeMustRevalidate": true,
+  "scope": "Nominal sidecar verification; no native/runtime acceptance inferred"
+}
+```
+
+**Recommended Primary direction.** Primary should use the documented canonical simple assembly name consistently for provider comparisons/lookups while retaining the exact original load-order binding, full type/assembly identities, complete inventory and source-hash checks. Add positives with these five actual sidecars plus casing/duplicate/order/foreign-hash negative controls. Do not introduce same-name aliases, qualifier stripping, empty inventory or a weakened guard.
+
+**Remaining uncertainty.** LN-003 prevents the original batch from reaching this verifier. All five current sidecars are Available and source-authenticated, but complete verification is Failed independently; later identity/native/runtime checks remain unproven.
+
+**Validation after repair.** A newly authorized source-bound batch must execute both actual754/755 full Editor rosters with zero skips/inconclusive, all90cells/sixbuilds/59Players and unchanged identity/provenance/native/runtime/producer/rejection/measurement expectations. N and all earlier Failed/Blocked/NoCoverage/unisolated-certificate states remain unchanged.
+
+**Local changes.** None; non-trivial source changes/new execution require Primary and a new handoff.
+
+
+No Local source/scope change or runtime retry. All4 contaminated unisolated warm certificates remain Failed despite passing diagnostic attribution. R03Accepted=false;H2Passed=false;qualificationApproved=false;PureInterpreter expansion disabled. Source/runtime evidence belongs to executed15f6c2c9a5e070e631fdcda9a2bb022f4b61a733; later publication HEAD is listed only as transport authority in the final handoff/external receipt. **Exit A: Local Validation → Primary Implementation.**
+
+## Historical return — R03 batch M: LL repair Passed; P05 framework identity comparison requires Primary
 
 **ReturnRequired; 48 Passed / 1 Failed / 41 Blocked; 90 cells; seal Passed.** One invocation PID42349, 2026-10-04 18:34:04 PDT → 2026-10-04 18:52:35 PDT. Six fresh build roles, 23 focused Players, early 18-method Editor preflight and full 754/755 zero-skip rosters Passed. Current compiler 25-site proof/16 controls and both subsequent linked proofs Passed. P05 failed native-layout admission; scoped settings recovery Passed. The 36 downstream Players did not execute. Preserve all L/earlier states unchanged.
 

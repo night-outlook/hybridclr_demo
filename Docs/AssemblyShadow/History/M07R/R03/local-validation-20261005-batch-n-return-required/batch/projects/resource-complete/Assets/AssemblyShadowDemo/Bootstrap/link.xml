@@ -1,0 +1,43 @@
+<linker>
+  <!-- M03 module initializers are compiled only into external patch DLLs.
+       Keep their exact stable AOT logging target in the baseline Player. -->
+  <assembly fullname="mscorlib">
+    <type fullname="System.Console">
+      <method signature="System.Void WriteLine(System.String)" />
+    </type>
+    <!-- M04 executing-assembly witnesses live only in patch DLLs. Preserve
+         their exact AOT API without retaining unrelated reflection surfaces. -->
+    <type fullname="System.Reflection.Assembly">
+      <method signature="System.Reflection.Assembly GetExecutingAssembly()" />
+      <method signature="System.Type InternalGetType(System.Reflection.Module,System.String,System.Boolean,System.Boolean)" />
+    </type>
+    <!-- M05 verifies these exact pinned Module wrappers and native entries
+         from actual linked IL. RuntimeModule is created at a native boundary,
+         so make their retention explicit without preserving all reflection. -->
+    <type fullname="System.Reflection.RuntimeModule">
+      <method signature="System.Type GetType(System.String,System.Boolean,System.Boolean)" />
+      <method signature="System.Type[] GetTypes()" />
+      <method signature="System.Reflection.Assembly get_Assembly()" />
+      <method signature="System.Type[] InternalGetTypes(System.IntPtr)" />
+    </type>
+    <type fullname="System.Reflection.RuntimeAssembly">
+      <method signature="System.Reflection.Module GetManifestModuleInternal()" />
+    </type>
+  </assembly>
+  <!-- Keep the exact framework call sites available for linked IL verification
+       and the real Player probe. No business candidate or guard is exempted. -->
+  <assembly fullname="Unity.RenderPipelines.Core.Runtime">
+    <type fullname="UnityEngine.Rendering.UI.DebugUIHandlerCanvas" preserve="all" />
+    <type fullname="UnityEngine.Rendering.SerializableEnum" preserve="all" />
+    <type fullname="UnityEngine.Rendering.CoreUtils" preserve="all" />
+    <type fullname="UnityEngine.Rendering.CoreUtils/&lt;&gt;c" preserve="all" />
+  </assembly>
+  <assembly fullname="AssemblyShadowBaseline.Aot">
+    <type fullname="AssemblyShadowBaseline.BaselineBootstrap" preserve="all" />
+  </assembly>
+  <!-- Keep the profile-2 parser API identical in production and the separately
+       built R01B diagnostic Player, where it validates native capacity JSON. -->
+  <assembly fullname="HybridCLR.Runtime">
+    <type fullname="HybridCLR.AssemblyShadowMetadataCapacityProfile2" preserve="all" />
+  </assembly>
+</linker>

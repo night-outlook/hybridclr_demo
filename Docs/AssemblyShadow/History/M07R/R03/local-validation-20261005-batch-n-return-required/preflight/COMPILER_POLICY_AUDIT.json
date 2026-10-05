@@ -1,0 +1,334 @@
+{
+  "kind": "ReadOnlyNCurrentCompilerPolicyAudit",
+  "startUtc": "2026-10-05T14:35:44.324895+00:00",
+  "Q22": {
+    "state": "Passed",
+    "inputFiles": 4,
+    "beforeAfterEqual": true,
+    "reportsByteIdentical": true,
+    "inputs": {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/qualification/Q22-deterministic-source-binding/determinism-inputs.json",
+      "sha256": "499b87d072e1c166c168d7593219f02b99607847ddf68e1181fa5b28f53d5aae",
+      "sealedIndexAuthenticated": true
+    },
+    "first": {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/qualification/Q22-deterministic-source-binding/determinism-first.json",
+      "sha256": "cdfed0e46d82ee6e554c3a54eae82b70ff36c22f6f13f42284fa666b5e52f7df",
+      "sealedIndexAuthenticated": true
+    },
+    "second": {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/qualification/Q22-deterministic-source-binding/determinism-second.json",
+      "sha256": "cdfed0e46d82ee6e554c3a54eae82b70ff36c22f6f13f42284fa666b5e52f7df",
+      "sealedIndexAuthenticated": true
+    },
+    "qualificationApproved": false
+  },
+  "compilerPolicyInputs": [
+    {
+      "path": "ProjectSettings/AssemblyShadowRawTypeAdmissions.json",
+      "sha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowDependencies.json",
+      "sha256": "f0f0b9fe51afaaaa5879bf5cb70f8f7116f5d60ee2164c8e3f3cb5be5af3d36d"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowExtensibilityWhitelist.json",
+      "sha256": "1606753e209c98f20fa029c7fa46f64d2c182c501cb71b2a107a59ed83f15588"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowReflectionBindings.json",
+      "sha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowResources.json",
+      "sha256": "6a81e661fafcec573e66ae645f1b7fc5a38eae7b675f7a0974c8babb651e343c"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowResourcesM07.json",
+      "sha256": "c26781a073a9c5a92e8e61ba4db7afe2ae41951e856000dd09e960855d2d2914"
+    }
+  ],
+  "currentImmutablePolicyFiles": [
+    {
+      "path": "ProjectSettings/AssemblyShadowRawTypeAdmissions.json",
+      "sha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowDependencies.json",
+      "sha256": "f0f0b9fe51afaaaa5879bf5cb70f8f7116f5d60ee2164c8e3f3cb5be5af3d36d"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowExtensibilityWhitelist.json",
+      "sha256": "1606753e209c98f20fa029c7fa46f64d2c182c501cb71b2a107a59ed83f15588"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowReflectionBindings.json",
+      "sha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowResources.json",
+      "sha256": "6a81e661fafcec573e66ae645f1b7fc5a38eae7b675f7a0974c8babb651e343c"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowResourcesM07.json",
+      "sha256": "c26781a073a9c5a92e8e61ba4db7afe2ae41951e856000dd09e960855d2d2914"
+    }
+  ],
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "interpretation": "Original result states preserved; current compile-only guard evidence is distinct from linked proof and runtime. Historical M compiler bytes are not inputs to this audit.",
+  "originalCompilerCellState": "Passed",
+  "contract": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-contract.json",
+    "sha256": "d49285235623475fcca3062dcb63391fa79cee57aeb82081ceeb4ec6a9e4e066",
+    "sealedIndexAuthenticated": true
+  },
+  "originalContractResult": "Passed",
+  "state": "Passed",
+  "guardControls": 16,
+  "rawSites": 25,
+  "compilerSnapshot": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07CompilerPreflight-78b2913bedce445ca96f0b273f5f85c0/Snapshot/assembly-snapshot.json",
+    "sha256": "b4ec9cab7703a6408a73ec92fa155ef2ab59c1517dbdea80f9f9f71672792ccf",
+    "sealedIndexAuthenticated": true
+  },
+  "compilerMode": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07CompilerPreflight-78b2913bedce445ca96f0b273f5f85c0/Snapshot/compiler-mode.json",
+    "sha256": "dbda62a37974b09cdd91c4aafc54da3cb790813410623238c02c01d2e43ea43b",
+    "sealedIndexAuthenticated": true
+  },
+  "capturedConfiguration": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07CompilerPreflight-78b2913bedce445ca96f0b273f5f85c0/Snapshot/RawTypeAdmissions/configuration.json",
+    "sha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c",
+    "sealedIndexAuthenticated": true
+  },
+  "capturedCompiledProof": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07CompilerPreflight-78b2913bedce445ca96f0b273f5f85c0/Snapshot/RawTypeAdmissions/compiled-evidence.json",
+    "sha256": "4d8feeed0b2fd43ded0a81be9900ff74b8092d3305d426ed58ead52c7348e503",
+    "sealedIndexAuthenticated": true
+  },
+  "observation": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/observation.json",
+    "sha256": "16598df4436c2f6697f12061d0ec484a372018ee87938f6896084c6a04bd5b98",
+    "sealedIndexAuthenticated": true
+  },
+  "verification": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/compiler-policy-verification.json",
+    "sha256": "ff1e7da0cf560819c1360b2f0b58008bfd84fcf5e3b3aa1eed4a94c5b16a80b7",
+    "sealedIndexAuthenticated": true
+  },
+  "moduleFiles": 213,
+  "originalCompilerPolicyPassed": true,
+  "capturedRawProofVerified": true,
+  "linkedProofExecuted": false,
+  "controls": [
+    {
+      "id": "R01",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R01.json",
+      "configurationSha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c",
+      "expected": "Success",
+      "actual": "Success",
+      "result": "Passed"
+    },
+    {
+      "id": "R02",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R02.json",
+      "configurationSha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "expected": "MissingRawAdmissionEvidence",
+      "actual": "MissingRawAdmissionEvidence",
+      "result": "Passed"
+    },
+    {
+      "id": "R03",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R03.json",
+      "configurationSha256": "958d48d27bcfb15faa0536ab902d51b6cfb69e316dd428c1ddb6cf710e52cd04",
+      "expected": "RawAdmissionMethodHashMismatch",
+      "actual": "RawAdmissionMethodHashMismatch",
+      "result": "Passed"
+    },
+    {
+      "id": "R04",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R04.json",
+      "configurationSha256": "66ba47a766dbb73f746c47f4b27d42e85270fce0d31b739abcee80bc7ca15b89",
+      "expected": "RawAdmissionOperationMismatch",
+      "actual": "RawAdmissionOperationMismatch",
+      "result": "Passed"
+    },
+    {
+      "id": "R05",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R05.json",
+      "configurationSha256": "61090c89e7b53cb173ed130789a7f218388ebc426a83ae51dcf1e9ba28cc27da",
+      "expected": "RawAdmissionProviderIdentityMismatch",
+      "actual": "RawAdmissionProviderIdentityMismatch",
+      "result": "Passed"
+    },
+    {
+      "id": "R06",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R06.json",
+      "configurationSha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c",
+      "expected": "RawAdmissionCompilerModeMissing",
+      "actual": "RawAdmissionCompilerModeMissing",
+      "result": "Passed"
+    },
+    {
+      "id": "R07",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": "AssemblyShadowDemo.Bootstrap",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R07.json",
+      "configurationSha256": "0958d5c98ee7cdfa3662f9942687926343de95523398451c423ee5de38aa5a4c",
+      "expected": "RawAdmissionConsumerMissing",
+      "actual": "RawAdmissionConsumerMissing",
+      "result": "Passed"
+    },
+    {
+      "id": "R08",
+      "operation": "RawTypeAdmissionVerifier.Verify",
+      "mode": "Development",
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/R08.json",
+      "configurationSha256": "e2737a35bf39aaa5f2b6b9b5660d1da4d33fd75e503a4f425f0d55637d23682b",
+      "expected": "InvalidRawAdmissionMethodVariants",
+      "actual": "InvalidRawAdmissionMethodVariants",
+      "result": "Passed"
+    },
+    {
+      "id": "B01",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B01.json",
+      "configurationSha256": "cf6768ea31b55a0df424c7d71fa9a85b75788a1ba63fdcc05cb991157a7721cb",
+      "expected": "Approved",
+      "actual": "Approved",
+      "result": "Passed"
+    },
+    {
+      "id": "B02",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B02.json",
+      "configurationSha256": "eaf63fb33db07c4394e8a4321915b9969ad18a2a631badfeb719ebf3b2ccb3e2",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "B03",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B03.json",
+      "configurationSha256": "5a714e3e7314aa3003e9b8d782e27939045c5327c971aa00745ec61b5e7863b1",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "B04",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B04.json",
+      "configurationSha256": "a31ff1dbdb25daa1eedecc7e3dd1eb8ebe192486b49f8f171e87e86279f08fb4",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "B05",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B05.json",
+      "configurationSha256": "73cb8b764a2ac49397dee603ce33f06c2f00e89e5f70c80a4ea80c3afbe8a9e8",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "B06",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B06.json",
+      "configurationSha256": "36a176a22fb96534082f69c6a9e73f2033a0d5d03b3eec2f3a48579a663df740",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "B07",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B07.json",
+      "configurationSha256": "e5d314d21de4d5e0c4cda5e5888c24aa4d7b2221d5dad7662c08616bbd35d43f",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    },
+    {
+      "id": "B08",
+      "operation": "BootstrapIsolationRule.IsApprovedReflection",
+      "mode": null,
+      "omittedModule": null,
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-controls/B08.json",
+      "configurationSha256": "c08473c012f218441fd2327ad213481099d77ed0fa66ec3ac22264515e9f6f11",
+      "expected": "Rejected",
+      "actual": "Rejected",
+      "result": "Passed"
+    }
+  ],
+  "onQuitMethodHash": "d67475081d7ab1ddc535c5bb20ab8334345403cd21547f6dbb3e1c4abd62a200",
+  "availableLinkedProofReceipts": [
+    {
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-977d7463ad8d409691cd72b04e16130a/RawTypeAdmissions/linked-evidence.json",
+        "sha256": "1558ca1715fc771e14a6b8ab5f5a63f33a016f7f0e9d89fa4772009a5b47c4f7",
+        "sealedIndexAuthenticated": true
+      },
+      "siteCount": 25,
+      "buildGuid": "1ccaf21079fd4e4285fce7215a8685ab",
+      "snapshotRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-977d7463ad8d409691cd72b04e16130a",
+      "phase": "Linked",
+      "limitation": "File authentication; full build/linked inventory verdict is separately recorded by original production receipts and completion audit"
+    },
+    {
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-f614fb45310943ae8707b42f01a4a02e/RawTypeAdmissions/linked-evidence.json",
+        "sha256": "27cd9db23ba4be0e3a9dc15a04294d401871fe57494dd7bb188a33ab5f97f7d6",
+        "sealedIndexAuthenticated": true
+      },
+      "siteCount": 25,
+      "buildGuid": "17278e3b5c6a4b6fb02b7c6563e36761",
+      "snapshotRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-f614fb45310943ae8707b42f01a4a02e",
+      "phase": "Linked",
+      "limitation": "File authentication; full build/linked inventory verdict is separately recorded by original production receipts and completion audit"
+    }
+  ],
+  "linkedProofCoverage": "Available",
+  "endUtc": "2026-10-05T14:35:44.415433+00:00"
+}

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><LangVersion>9.0</LangVersion><EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageRoot Condition="'$(PackageRoot)' == ''">$(MSBuildThisFileDirectory)../../../../../hybridclr_unity</PackageRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="../../R03/HostTests/EnvironmentBoundaries.cs" />
+    <Compile Include="../../../../Assets/AssemblyShadowDemo/Editor/R03ResourceCapabilityProfile.cs" />
+    <Compile Include="$(PackageRoot)/Editor/AssemblyShadow/Model/ShadowConfiguration.cs" />
+  </ItemGroup>
+</Project>

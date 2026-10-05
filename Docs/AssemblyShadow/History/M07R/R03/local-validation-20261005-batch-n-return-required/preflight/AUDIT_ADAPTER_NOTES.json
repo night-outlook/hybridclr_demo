@@ -1,0 +1,18 @@
+{
+  "kind": "ExternalReadOnlyAuditAdapterNotes",
+  "productSourceModified": false,
+  "productBatchRetried": false,
+  "sealedEvidenceChanged": false,
+  "earlyAuditState": "Unavailable until final ledger existed; original records preserved in audit-not-ready.json",
+  "adapters": [
+    {
+      "script": "audit-layout-identity.py",
+      "initialFailure": "External script syntax error; original script/stderr preserved; corrected adapter only, subsequent authentication completed."
+    },
+    {
+      "script": "audit-li-contracts.py",
+      "initialFailure": "External adapter compared an intentionally transformed fixture manifest to original source bytes; original script/stderr preserved. Adapter now compares only byte-preserved settings, with fixture manifest authority checked through existing receipt bindings."
+    }
+  ],
+  "resultScope": "Read-only evidence authentication; no new compiler/Unity/Player product execution or historical reclassification."
+}

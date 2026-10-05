@@ -1,0 +1,39 @@
+{
+  "kind": "ReadOnlyNLIContractAudit",
+  "startUtc": "2026-10-05T14:37:03.118752+00:00",
+  "endUtc": "2026-10-05T14:37:27.763062+00:00",
+  "status": "Passed",
+  "hostConstructorCases": 12,
+  "earlyActualEditorCases": 18,
+  "hostResultSha256": "6b39426ac78985689145c8c665afd87d93b926ebbc1ed2fbaea963751c14a984",
+  "earlyXmlSha256": "8b7b6efe00b639603d9faaa61154b7d143f24abd627f51c357a829b9fd5467b1",
+  "earlyVerificationSha256": "301a85a61d6a33b77665e57ab162ce43af856e0363132167cabc02a75b5941fe",
+  "actualConsumerCases": 10,
+  "consumerReportPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract.json",
+  "consumerReportSha256": "54fad9705936e67962cc4cb8df4ea261327b7ed67a7baa3398224beef45fa08b",
+  "fullEditors": [
+    {
+      "folder": "focused-editor",
+      "expectedCount": 754,
+      "count": 0,
+      "state": "Failed",
+      "execution": "NotRun",
+      "xmlState": "Unavailable",
+      "error": "Review any additional package change before selecting Editor tests"
+    },
+    {
+      "folder": "resource-editor",
+      "expectedCount": 755,
+      "count": 0,
+      "state": "Failed",
+      "execution": "NotRun",
+      "xmlState": "Unavailable",
+      "error": "Review any additional package change before selecting Editor tests"
+    }
+  ],
+  "interpretation": "Fresh N constructor/source-pin regression; downstream states recorded separately. Native installation is not a Player build.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

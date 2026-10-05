@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PureInterpreterEligibilityV1",
+  "qualificationGate": "R03-PureInterpreter-Qualification",
+  "sourceInventoryHash": "108930649b07f8a7de6680c2c4782eb1579b8c9a4e308fbba6cce0664bd3ca85",
+  "resourceDescriptorHash": "sha256:93036f89c60e52f934df3592ad837e6af0ec6ed3abed8628e7c6a7b05341edd7",
+  "analysisBindingHash": "b2c2b84aad7e73964444814d3818808f20487c58a405195bc8752c858a7e3770",
+  "changedRoots": [
+    "Pure"
+  ],
+  "closure": [
+    "Pure"
+  ],
+  "targetLoadOrder": [
+    "Pure"
+  ],
+  "inputBindings": [
+    "baseline|Pure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|d447aa288d37e1dc3faa5cbf2c79a6170cf4cb0aed2995e7024bbc7ce2a0d9a6|Runtime|shadow=True|bootstrap=False",
+    "baseline|reference|mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|957207f10ad0c99efa43ae59601b0c7d1b83332db01ccfaee5d0b69c03ddd5b7",
+    "baseline|reference|UnityEngine.CoreModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|a9d8a8e18fc3390b987c799ad24ed1b6be5f482f818a0a1a3801df7d83703c57",
+    "target|Pure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|69d175eb7a7a858713c2c7f5806cb2091e13bb9f813cf7b01d1fe46166a48f14|Runtime|shadow=True|bootstrap=False",
+    "target|reference|mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|957207f10ad0c99efa43ae59601b0c7d1b83332db01ccfaee5d0b69c03ddd5b7",
+    "target|reference|UnityEngine.CoreModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|a9d8a8e18fc3390b987c799ad24ed1b6be5f482f818a0a1a3801df7d83703c57"
+  ],
+  "types": [
+    {
+      "typeKey": "pure:Fixture:Node",
+      "declarationKey": "4:pure;7:Fixture;4:Node;1:0;",
+      "assembly": "pure",
+      "baselineDllSha256": "d447aa288d37e1dc3faa5cbf2c79a6170cf4cb0aed2995e7024bbc7ce2a0d9a6",
+      "targetDllSha256": "69d175eb7a7a858713c2c7f5806cb2091e13bb9f813cf7b01d1fe46166a48f14",
+      "decision": "ExcludedOrNeedsProof",
+      "domains": [
+        "AotInteropExposed",
+        "PureInterpreterCandidate"
+      ],
+      "staticReasons": [
+        "DelegateAbi:baseline",
+        "DelegateAbi:target"
+      ],
+      "requiredProofs": [
+        "CompleteInstalledAndTargetRuntimeInventory",
+        "NoExistingBaselineObjectsOrUses",
+        "NoUnprovedReflectionOrNativeConcreteConsumer",
+        "ResourceAndUnityBindingClosure",
+        "PrepublicationOwnerAndFailureState",
+        "ConcreteGenericAndInteropCapability",
+        "IndependentQualificationReview",
+        "ExplicitOwnerQualificationApproval",
+        "SeparateExperimentalPlayerEvidenceBeforeSupportClaim"
+      ],
+      "nativeV1Decision": "NeedsNativeProof",
+      "authorizesExpansion": false
+    }
+  ],
+  "runtimeProofExecuted": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false
+}

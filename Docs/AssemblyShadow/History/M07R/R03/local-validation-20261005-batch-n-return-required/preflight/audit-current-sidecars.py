@@ -1,0 +1,17 @@
+"""Read-only nominal artifact audit while original finalization remains in progress."""
+import pathlib,json,datetime,sys,hashlib
+W=pathlib.Path('/Users/ah/GitHub/hybridclr/assembly_shadow_h1r');D=W/'hybridclr_demo';P=W.parent/'r03-local-validation/Preflight-R03LocalBatch-20261005N-identity';R=P.parent/'R03LocalBatch-20261005N-identity';sys.path[:0]=[str(D/'Tools/AssemblyShadow/R03Completion'),str(D/'Tools/AssemblyShadow/R03')]
+import layout_identity as li,layout_evidence as le
+load=lambda p:json.loads(pathlib.Path(p).read_text());sha=lambda p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+cfg=load(R/'resource-project.json');project=pathlib.Path(cfg['projectPath']);run=pathlib.Path(cfg['runPath']);path=run/'m07-fixtures.json';manifest=load(path);base=pathlib.Path(manifest['baselineInputSnapshot']);baseline,linked=li.snapshot(base,True);proof=li.child(base,li.PROOF);facade=li.child(base,li.FACADE);rows=[];start=datetime.datetime.now(datetime.timezone.utc).isoformat()
+assert [f['patchId'] for f in manifest['fixtures']]==['P01','P02','P03','P04','P05'] and path.is_relative_to(project)
+for f in manifest['fixtures']:
+ root=pathlib.Path(f['compileSnapshot']);patch=pathlib.Path(f['patchDirectory']);assert root.is_relative_to(project) and patch.is_relative_to(project);target,compiler=li.snapshot(root,False);report=li.child(patch,li.REPORT);value=load(report)
+ try:check=le.verify_value(value,baseline,target,linked,compiler,load(proof),sha(proof),sha(facade),f['closureLoadOrder']);state='Passed';error=None
+ except Exception as exc:check=None;state='Failed';error=type(exc).__name__+': '+str(exc)
+ bfiles={pathlib.Path(row['path']).name.lower():row['sha256'] for row in linked};tfiles={row['name'].lower():row['sha256'] for row in target['assemblies']}
+ names=[{'loadOrderName':name,'reportAssembly':assembly['assembly'],'verifierComparison':assembly['assembly'].lower()==name,'baselineMixedCaseLookupExists':name+'.dll' in bfiles,'targetMixedCaseLookupExists':name in tfiles,'canonicalBaselineLookupExists':name.lower()+'.dll' in bfiles,'canonicalTargetLookupExists':name.lower() in tfiles} for name,assembly in zip(f['closureLoadOrder'],value['assemblies'])]
+ rows.append({'patchId':f['patchId'],'sidecar':str(report),'sha256':sha(report),'checks':check,'state':state,'error':error,'assemblyNameEvidence':names,'rawSchemaVersion':value['schemaVersion'],'rawNativeProofExecuted':value['nativeProofExecuted'],'runtimeMustRevalidate':value['runtimeMustRevalidate'],'rawMappedDeclarations':sum(row['runtimeFacadeUsed'] for row in value['identityEvidence']['compilerResolutions'])})
+assert rows[-1]['rawMappedDeclarations']>0
+record={'kind':'CurrentNIndependentNominalArtifactAudit','startUtc':start,'endUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'Passed' if all(row['state']=='Passed' for row in rows) else 'Failed','manifest':str(path),'manifestSha256':sha(path),'fixtures':rows,'phaseFinalizationAtAudit':'Pending original runner receipt; not inferred from file presence','scope':'Existing current nominal bytes only; no Unity/compiler/Player launch, no sealed data write. Final sealed audit still required.','nativeProofExecuted':False,'runtimeAcceptance':False,'R03Accepted':False,'H2Passed':False,'qualificationApproved':False}
+(P/'CURRENT_SIDECAR_AUDIT.json').write_text(json.dumps(record,indent=2)+'\n');print([(f['patchId'],f['state'],f['error'],f['rawMappedDeclarations']) for f in rows])

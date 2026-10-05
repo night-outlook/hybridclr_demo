@@ -1,0 +1,20 @@
+# Preserve immutable sealed bytes, including generated native whitespace.
+*.dll binary
+*.dylib binary
+batch/evidence.tar.gz.parts/* binary
+batch/** -whitespace
+# Preserve separately authenticated raw snapshot whitespace only.
+preflight/codec-source/hybridclr/metadata/InterpreterMetadataIndexCodec.h -whitespace
+preflight/pre-install-source-settings/ProjectSettings/AssemblyShadowSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/AudioManager.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/EditorSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/HybridCLRSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/InputManager.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/NavMeshAreas.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/PackageManagerSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/ProjectSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/ShaderGraphSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/TagManager.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/URPProjectSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/UnityConnectSettings.asset -whitespace
+preflight/pre-install-source-settings/ProjectSettings/VFXManager.asset -whitespace

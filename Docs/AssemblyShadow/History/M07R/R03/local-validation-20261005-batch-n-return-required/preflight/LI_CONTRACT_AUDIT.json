@@ -1,0 +1,128 @@
+{
+  "kind": "ReadOnlyNLIContractAudit",
+  "startUtc": "2026-10-05T14:37:03.118752+00:00",
+  "endUtc": "2026-10-05T14:37:27.763062+00:00",
+  "status": "Passed",
+  "hostConstructorCases": 12,
+  "earlyActualEditorCases": 18,
+  "hostResultSha256": "6b39426ac78985689145c8c665afd87d93b926ebbc1ed2fbaea963751c14a984",
+  "earlyXmlSha256": "8b7b6efe00b639603d9faaa61154b7d143f24abd627f51c357a829b9fd5467b1",
+  "earlyVerificationSha256": "301a85a61d6a33b77665e57ab162ce43af856e0363132167cabc02a75b5941fe",
+  "actualConsumerCases": 10,
+  "consumerReportPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract.json",
+  "consumerReportSha256": "54fad9705936e67962cc4cb8df4ea261327b7ed67a7baa3398224beef45fa08b",
+  "consumerCodes": {
+    "generated": "Success",
+    "roundtrip": "Success",
+    "missing-architecture": "SourcePinTarget",
+    "wrong-architecture": "SourcePinTarget",
+    "wrong-target": "SourcePinTarget",
+    "wrong-unity": "SourcePinTarget",
+    "wrong-schema": "SourcePinSchema",
+    "bad-revision": "InvalidSourcePin",
+    "missing-repository": "InvalidSourcePin",
+    "wrong-build-source": "BuildSourceProvenanceMismatch"
+  },
+  "unchangedPreflightInputs": [
+    {
+      "path": "ProjectSettings/AssemblyShadowSourcePins.json",
+      "preflightBeforeAfterSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+      "originalBytesBinding": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+      "currentPostInstallSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+      "changedLaterByAuthorizedConfigure": false,
+      "limitation": "Later configured bytes do not retroactively change preflight input hashes"
+    },
+    {
+      "path": "ProjectSettings/AssemblyShadowSettings.asset",
+      "preflightBeforeAfterSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+      "originalBytesBinding": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/pre-install-source-settings/ProjectSettings/AssemblyShadowSettings.asset",
+      "currentPostInstallSha256": "6710a22e845fa82a312fbaa15ac584f9f808bc0831eef917d04b8528e8a57b17",
+      "changedLaterByAuthorizedConfigure": true,
+      "limitation": "Later configured bytes do not retroactively change preflight input hashes"
+    },
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "preflightBeforeAfterSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+      "originalBytesBinding": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/pre-install-source-settings/ProjectSettings/ProjectSettings.asset",
+      "currentPostInstallSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+      "changedLaterByAuthorizedConfigure": false,
+      "limitation": "Later configured bytes do not retroactively change preflight input hashes"
+    },
+    {
+      "path": ".r03-completion-project",
+      "preflightBeforeAfterSha256": "6babfc0815aa365fa6d74fa3062c2d84081da2e244292c4d9ff766772b3e494b",
+      "originalBytesBinding": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/.r03-completion-project",
+      "currentPostInstallSha256": "6babfc0815aa365fa6d74fa3062c2d84081da2e244292c4d9ff766772b3e494b",
+      "changedLaterByAuthorizedConfigure": false,
+      "limitation": "Later configured bytes do not retroactively change preflight input hashes"
+    }
+  ],
+  "installedResourceNativeBinding": {
+    "kind": "R03ResourceInstalledSourceBinding",
+    "policy": "R03ResourceCompleteFixtureV1",
+    "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+    "receiptSha256": "281da60772cfb9c18d2cd946bdff9d2b0c5257e86bc0b8cb8b28181c69b9d0b5",
+    "sourceFiles": 968,
+    "installedFiles": 970,
+    "generatedHashes": {
+      "hybridclr/generated/AssemblyManifest.cpp": "5412e86587584590bf08a7a182940d363b3776c1525ac2afca81bc9849cd5a7e",
+      "hybridclr/generated/MethodBridge.cpp": "e6d5444a489eca7d7087bd7a3d227a298fa720870365a24fd3ed4e25ed9a8663",
+      "hybridclr/generated/UnityVersion.h": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff",
+      "hybridclr/generated/libil2cpp-version.txt": "21ff4a6aabf9e962c439c0508dd64f3a6c1a42337c79e872eb02f46b6f89160a"
+    },
+    "sourcePins": {
+      "architecture": "arm64",
+      "demo": {
+        "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo",
+        "revision": "15f6c2c9a5e070e631fdcda9a2bb022f4b61a733",
+        "url": "https://github.com/night-outlook/hybridclr_demo.git"
+      },
+      "hybridclr": {
+        "localPath": "../../../../assembly_shadow_h1r/hybridclr",
+        "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "url": "https://github.com/night-outlook/hybridclr.git"
+      },
+      "hybridclrUnity": {
+        "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity",
+        "revision": "ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba",
+        "url": "https://github.com/night-outlook/hybridclr_unity.git"
+      },
+      "il2cppPlus": {
+        "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus",
+        "revision": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+        "url": "https://github.com/night-outlook/il2cpp_plus.git"
+      },
+      "schemaVersion": 1,
+      "target": "StandaloneOSX",
+      "unityVersion": "2022.3.62f2"
+    },
+    "probeEnabled": false,
+    "expansionAuthorized": false,
+    "projectAuthoritySha256": "6babfc0815aa365fa6d74fa3062c2d84081da2e244292c4d9ff766772b3e494b"
+  },
+  "fullEditors": [
+    {
+      "folder": "focused-editor",
+      "expectedCount": 754,
+      "count": 0,
+      "state": "Failed",
+      "execution": "NotRun",
+      "xmlState": "Unavailable",
+      "error": "Review any additional package change before selecting Editor tests"
+    },
+    {
+      "folder": "resource-editor",
+      "expectedCount": 755,
+      "count": 0,
+      "state": "Failed",
+      "execution": "NotRun",
+      "xmlState": "Unavailable",
+      "error": "Review any additional package change before selecting Editor tests"
+    }
+  ],
+  "interpretation": "Fresh N constructor/source-pin regression; downstream states recorded separately. Native installation is not a Player build.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

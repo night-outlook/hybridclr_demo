@@ -1,0 +1,443 @@
+{
+  "kind": "ReadOnlyNCompletionSemanticAudit",
+  "startUtc": "2026-10-05T14:35:44.400437+00:00",
+  "endUtc": "2026-10-05T14:36:05.579859+00:00",
+  "originalBatchResult": "ReturnRequired",
+  "originalCellCounts": {
+    "Passed": 48,
+    "Failed": 4,
+    "Blocked": 38
+  },
+  "checks": [
+    {
+      "id": "static-qualification",
+      "state": "Passed",
+      "evidence": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/qualification/results.json",
+        "sha256": "11542a9bd2d8b4dd5a3c7539aaba021c2587c6aa90fe8ee3144d4c590cfa5aab",
+        "cases": 32,
+        "inventoryFiles": 136,
+        "runtimeProofExecuted": false,
+        "expansionAuthorized": false,
+        "classification": "Static real-DLL qualification input, not runtime/expansion authority"
+      }
+    },
+    {
+      "id": "focused-editor",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "editor-tests"
+      ]
+    },
+    {
+      "id": "resource-editor",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "resource-editor"
+      ]
+    },
+    {
+      "id": "copied-resource-source-and-phase-bindings",
+      "state": "Passed",
+      "evidence": {
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+        "sourceVerification": {
+          "fixedImage": {
+            "profile": "R03FrozenFixedImageV1",
+            "siteIds": [
+              "h1-count-ordinary-witness-image",
+              "m00-normal-hot-update-image"
+            ],
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "sizeBytes": 4608,
+            "identity": {
+              "name": "AssemblyShadowBaseline.HotUpdate",
+              "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "version": "0.0.0.0",
+              "culture": "",
+              "publicKeyToken": "",
+              "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+              "referenceIdentities": [
+                {
+                  "referenceIndex": 0,
+                  "name": "netstandard",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "version": "2.1.0.0",
+                  "culture": "",
+                  "publicKeyToken": "cc7b13ffcd2ddd51"
+                }
+              ]
+            },
+            "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+            "classification": "FrozenHistoricalInputMaterialization",
+            "runtimeAcceptance": false,
+            "materialization": {
+              "kind": "R02OrdinaryInputAuthentication",
+              "result": "Passed",
+              "classification": "FrozenHistoricalInputMaterialization",
+              "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "receipt": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+                "sha256": "e9874b697df99997b95ce5f29f402e91c41321e79541ab2191a2cca93a13b55c",
+                "sizeBytes": 2635
+              },
+              "staged": {
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+                "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+                "sizeBytes": 4608
+              },
+              "runtimeAcceptance": false,
+              "freshCscExecutionClaimed": false
+            }
+          },
+          "kind": "R03ResourceCompleteFixtureV1",
+          "filesVerified": 542,
+          "allowedConfigurationChanges": [
+            {
+              "path": "Assets/AssemblyShadowDemo/Scenes/M07Bootstrap.unity",
+              "originalSha256": "b12decaf4d221537ac06f901afc212e39be92304b1aeed02136658e30d3c1a35",
+              "configuredSha256": "1476fc15783ddef9d83ad396ccc5cfcfd6618a405fd31e5a6f5ea095d0ed36f2"
+            },
+            {
+              "path": "Assets/HybridCLRGenerate/link.xml",
+              "originalSha256": "071b4b661f53114305cd30b780769a464432b5cde52c801eac4389f639f10b31",
+              "configuredSha256": "498ac63d316d26890b7bf5c911d674d6bb1bc45428f5e3e78d25a6126e5d40d9"
+            },
+            {
+              "path": "ProjectSettings/AssemblyShadowSettings.asset",
+              "originalSha256": "4d83bbffa0e8724913dc5e39f5b0fc9a98ba1e8ace68829c97f1192e46827b67",
+              "configuredSha256": "6710a22e845fa82a312fbaa15ac584f9f808bc0831eef917d04b8528e8a57b17"
+            }
+          ],
+          "frozenM01Files": 6,
+          "newResourceBundlesRequired": true,
+          "runtimeAcceptance": false
+        },
+        "receipts": [
+          {
+            "phase": "install",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/install.json",
+            "sha256": "eaebfb4897d124d2f09dc83540311ec4b9a9f0db7772cf715efa5f50cac4641f",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "install",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "",
+              "baselineManifest": "",
+              "baselineManifestSha256": "",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "compiler",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler.json",
+            "sha256": "78236206d926deb66136b225907257a28f95a027d7dcb1df2b51a9e93bf3dffe",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "compiler",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "",
+              "baselineManifest": "",
+              "baselineManifestSha256": "",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "resources",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/resources.json",
+            "sha256": "59ae98ae8b2383f7c524b09e67c588b54c0b0319d756f8a2b0c25fa0eda221bd",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "resources",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "",
+              "baselineManifestSha256": "",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "player-on",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/player-on.json",
+            "sha256": "4fd2451e598e9fec548381ac4c2c19b8416733e3cf4bd8dbfe7fa2979040bf8b",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "player-on",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+              "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+              "playerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-977d7463ad8d409691cd72b04e16130a/m07-player-build.json",
+              "playerReceiptSha256": "11c81410cb82b71eb3a0de33fef5f5673557c14083c0a8c589ac3717f1c1793b",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "player-off",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/player-off.json",
+            "sha256": "a74ab21897e3f42587a892860edfecaba8d67408991503157b4a822cd7bdc12d",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "player-off",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+              "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+              "playerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-f614fb45310943ae8707b42f01a4a02e/m07-player-build.json",
+              "playerReceiptSha256": "27a37f56844a65e9255419bf2ee1eda6eff73d95192dbf2dbce87cd9057996fa",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "prepare",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/prepare.json",
+            "sha256": "311dfda29d399bb22e41954bb2b317c76bb9d6c2d666a89aea0942274bbb7b87",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "prepare",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+              "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "compile",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compile.json",
+            "sha256": "7580044e9c38c36b6d8d530be444a25e89e703cf8e6f81e3f16cf2c62e70273b",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "compile",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+              "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "restore",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/restore.json",
+            "sha256": "fef52c880a2fd88760e098fcac2d3c684a30b76f3eddbf27c1bbb51ab69363d2",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "restore",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+              "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "",
+              "fixtureManifestSha256": "",
+              "replayReceipt": "",
+              "replayReceiptSha256": "",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          },
+          {
+            "phase": "finalize",
+            "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/finalize.json",
+            "sha256": "db804b357bdf3d058e6a6a3e347d3f900af7e2e979fc1a75fb41ddb0ba8549bf",
+            "receipt": {
+              "schemaVersion": 1,
+              "kind": "R03OriginalResourceBuildAdapter",
+              "phase": "finalize",
+              "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete",
+              "baselineId": "M07-Baseline-R03Completion-15f6c2c9a5e0",
+              "unityVersion": "2022.3.62f2",
+              "target": "StandaloneOSX",
+              "sourcePinsPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/ProjectSettings/AssemblyShadowSourcePins.json",
+              "sourcePinsSha256": "098b2d1ee99c74eb5421e86c5c639ca5d6a279d23bea1876689590300a4084c0",
+              "resourceRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03Resources",
+              "baselineManifest": "HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+              "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+              "playerReceipt": "",
+              "playerReceiptSha256": "",
+              "fixtureManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/m07-fixtures.json",
+              "fixtureManifestSha256": "3af9230d145cd02b5883a44bb6d6de184ee9ac30c4ddc208b1260d621e2e0c50",
+              "replayReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/m07-editor-replay.json",
+              "replayReceiptSha256": "12e13b870e2fb7910e21149e680675e5c13ba09249aa8bc9e97e3a6218e0bce4",
+              "expansionAuthorized": false,
+              "R03Accepted": false,
+              "H2Passed": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "original-P05-restoration",
+      "state": "Passed",
+      "evidence": {
+        "status": "ExactOriginalBytesRestored",
+        "originalSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+        "finalProjectSettingsSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+        "preservedUnityReserializedBytesSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d",
+        "productionReceiptSha256": "b09bc33d5d2d6b1bdfcf6ee2a9713e2897078968b767ac54676f346e506bc4c5",
+        "wrapperReceiptSha256": "38c57b471acef6b6e7c7306ffd3fdc3244131fdf5bd4e263cd3f254e7d2160af",
+        "stateSha256": "74c75782dd82df9e31c0484493e1673babb6c3198a77fc05c737f857985e825c",
+        "originalDefines": "",
+        "noReceiptRewrite": true
+      }
+    },
+    {
+      "id": "production-P01-P05-entry-qualification-agreement",
+      "state": "NotRun",
+      "reason": "Original prerequisite not Passed",
+      "dependencies": [
+        "production-entry-integration"
+      ]
+    },
+    {
+      "id": "resource-original-graph-and-sixth-build-bindings",
+      "state": "NotRun",
+      "reason": "Original resource-input-binding not Passed"
+    }
+  ],
+  "resourceBuilds": [],
+  "resourceMeasurementEarlyPlayers": [],
+  "actualDirectPlayerCommands": 23,
+  "actualDirectPlayerPids": [
+    86462,
+    86464,
+    86466,
+    86468,
+    86470,
+    86472,
+    86476,
+    86481,
+    86483,
+    86485,
+    86487,
+    86489,
+    86491,
+    86493,
+    86495,
+    86497,
+    86499,
+    86501,
+    86503,
+    86505,
+    86507,
+    86509,
+    86511
+  ],
+  "focusedVerificationReceipts": 23,
+  "replayedResourceMeasurementEarlyPlayers": 0,
+  "readOnlyAuditStates": {
+    "Passed": 3,
+    "NotRun": 4
+  },
+  "allPlannedPlayerEvidenceCovered": false,
+  "limits": "Existing source-bound sealed data only; no Editor/Player launch, source change, restored terminal state, qualification approval, performance SLA or historical state promotion. Failed/Blocked prerequisites remain original states.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

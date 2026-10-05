@@ -1,0 +1,110 @@
+{
+  "kind": "ReadOnlyNResourceBuildAndRecoveryAudit",
+  "startUtc": "2026-10-05T14:35:44.389386+00:00",
+  "endUtc": "2026-10-05T14:36:29.682990+00:00",
+  "state": "Passed",
+  "builds": [
+    {
+      "role": "resource-player-on",
+      "state": "Passed",
+      "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/player-on.json",
+      "phaseReceiptSha256": "4fd2451e598e9fec548381ac4c2c19b8416733e3cf4bd8dbfe7fa2979040bf8b",
+      "playerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-977d7463ad8d409691cd72b04e16130a/m07-player-build.json",
+      "playerReceiptSha256": "11c81410cb82b71eb3a0de33fef5f5673557c14083c0a8c589ac3717f1c1793b",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-977d7463ad8d409691cd72b04e16130a/assembly-snapshot.json",
+      "snapshotSha256": "0a22c39fc7663629ebbbb2d2f8d41242e1e0746b7929767a2df1c281df8b1366",
+      "inputSnapshotHash": "fff8bead403882635b5cef97825d1ce004c1c38a0c58f338e123b85b3625f3b4",
+      "buildGuid": "1ccaf21079fd4e4285fce7215a8685ab",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-15f6c2c9a5e0.app/Contents/Frameworks/GameAssembly.dylib",
+      "nativeLibrarySha256": "72d63766af4fa0fc27f7128141b2a994fdcdf7af75697bb9c61685b05ace43f1",
+      "nativeMetadataSha256": "449bce7399ff73278b01c9cff887d8fd70e1a59d353f5f040108afdff49bc3e0",
+      "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=1\"",
+      "output": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-15f6c2c9a5e0.app",
+      "linkedProof": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-977d7463ad8d409691cd72b04e16130a/RawTypeAdmissions/linked-evidence.json",
+      "linkedProofSha256": "1558ca1715fc771e14a6b8ab5f5a63f33a016f7f0e9d89fa4772009a5b47c4f7",
+      "linkedSites": 25,
+      "runtimeExecuted": false,
+      "meaning": "Receipt-only audit; actual Player execution is audited separately"
+    },
+    {
+      "role": "resource-player-off",
+      "state": "Passed",
+      "phaseReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/player-off.json",
+      "phaseReceiptSha256": "a74ab21897e3f42587a892860edfecaba8d67408991503157b4a822cd7bdc12d",
+      "playerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-f614fb45310943ae8707b42f01a4a02e/m07-player-build.json",
+      "playerReceiptSha256": "27a37f56844a65e9255419bf2ee1eda6eff73d95192dbf2dbce87cd9057996fa",
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-f614fb45310943ae8707b42f01a4a02e/assembly-snapshot.json",
+      "snapshotSha256": "c4a20a857b7c50e135fd426b8836f2afc78366f6eb6bfa37fd0fc30792a54017",
+      "inputSnapshotHash": "6335641939d8cf96f0f453fc458e6ceb1a7cb226113aa3c23bab35347327c349",
+      "buildGuid": "17278e3b5c6a4b6fb02b7c6563e36761",
+      "nativeLibraryPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-15f6c2c9a5e0-NativeOff.app/Contents/Frameworks/GameAssembly.dylib",
+      "nativeLibrarySha256": "b023a578b5cf256de1fc155aa08166a778879daa729c62dd4eaf9b31335e9689",
+      "nativeMetadataSha256": "449bce7399ff73278b01c9cff887d8fd70e1a59d353f5f040108afdff49bc3e0",
+      "nativeArguments": "--compiler-flags=\"-DHYBRIDCLR_ENABLE_ASSEMBLY_SHADOW=0\"",
+      "output": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-15f6c2c9a5e0-NativeOff.app",
+      "linkedProof": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-f614fb45310943ae8707b42f01a4a02e/RawTypeAdmissions/linked-evidence.json",
+      "linkedProofSha256": "27cd9db23ba4be0e3a9dc15a04294d401871fe57494dd7bb188a33ab5f97f7d6",
+      "linkedSites": 25,
+      "runtimeExecuted": false,
+      "meaning": "Receipt-only audit; actual Player execution is audited separately"
+    }
+  ],
+  "installedBinding": {
+    "kind": "R03ResourceInstalledSourceBinding",
+    "policy": "R03ResourceCompleteFixtureV1",
+    "installedNativeRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/HybridCLRData/LocalIl2CppData-OSXEditor/il2cpp/libil2cpp",
+    "receiptSha256": "281da60772cfb9c18d2cd946bdff9d2b0c5257e86bc0b8cb8b28181c69b9d0b5",
+    "sourceFiles": 968,
+    "installedFiles": 970,
+    "generatedHashes": {
+      "hybridclr/generated/AssemblyManifest.cpp": "5412e86587584590bf08a7a182940d363b3776c1525ac2afca81bc9849cd5a7e",
+      "hybridclr/generated/MethodBridge.cpp": "e6d5444a489eca7d7087bd7a3d227a298fa720870365a24fd3ed4e25ed9a8663",
+      "hybridclr/generated/UnityVersion.h": "99832a07b756d2d73c89868d9b040dde7397b6ba1b5b189c744db440ccd0a2ff",
+      "hybridclr/generated/libil2cpp-version.txt": "21ff4a6aabf9e962c439c0508dd64f3a6c1a42337c79e872eb02f46b6f89160a"
+    },
+    "sourcePins": {
+      "architecture": "arm64",
+      "demo": {
+        "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo",
+        "revision": "15f6c2c9a5e070e631fdcda9a2bb022f4b61a733",
+        "url": "https://github.com/night-outlook/hybridclr_demo.git"
+      },
+      "hybridclr": {
+        "localPath": "../../../../assembly_shadow_h1r/hybridclr",
+        "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "url": "https://github.com/night-outlook/hybridclr.git"
+      },
+      "hybridclrUnity": {
+        "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity",
+        "revision": "ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba",
+        "url": "https://github.com/night-outlook/hybridclr_unity.git"
+      },
+      "il2cppPlus": {
+        "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus",
+        "revision": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+        "url": "https://github.com/night-outlook/il2cpp_plus.git"
+      },
+      "schemaVersion": 1,
+      "target": "StandaloneOSX",
+      "unityVersion": "2022.3.62f2"
+    },
+    "probeEnabled": false,
+    "expansionAuthorized": false,
+    "projectAuthoritySha256": "6babfc0815aa365fa6d74fa3062c2d84081da2e244292c4d9ff766772b3e494b"
+  },
+  "restoration": {
+    "state": "Passed",
+    "coverage": "ExactOriginalBytesRestoredAfterRecordedMutation",
+    "originalSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+    "finalSettingsSha256": "2ff53cd79e303df0aadaf95aeb436938d55281246b63ade13464775b66504c26",
+    "unityReserializedBytesSha256": "b1b2b79ccd3d4d61cb3e1b7466385358225047493ca95c2e5d1f159984a6ae3d",
+    "stateSha256": "74c75782dd82df9e31c0484493e1673babb6c3198a77fc05c737f857985e825c",
+    "productionReceiptSha256": "b09bc33d5d2d6b1bdfcf6ee2a9713e2897078968b767ac54676f346e506bc4c5",
+    "wrapperReceiptSha256": "38c57b471acef6b6e7c7306ffd3fdc3244131fdf5bd4e263cd3f254e7d2160af",
+    "originalDefines": ""
+  },
+  "limits": "Six build roles and restoration independently authenticated; full fixture graph and downstream Player states are recorded separately. This independent linked/recovery audit does not manufacture a fixture manifest or runtime result.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false
+}

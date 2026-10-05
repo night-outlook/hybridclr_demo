@@ -1,0 +1,44 @@
+{
+  "kind": "ReadOnlyNLayoutIdentityAudit",
+  "startUtc": "2026-10-05T14:37:04.274156+00:00",
+  "host": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/layout-identity/results.json",
+    "sha256": "5c39459496627d4ebf913ad499ef470bbc57d958f043d0e97b6498a937026e86",
+    "cases": 33,
+    "basis": "ReusedAuditedLocalMLayoutInputs",
+    "runtimeAcceptance": false,
+    "nativeProofExecuted": false
+  },
+  "inputReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/layout-identity-inputs.json",
+    "sha256": "1a87816473fc9bcf5d401d3da91bb8a96e22af9c59a779e12bdfec74f9bde001",
+    "size": 118020
+  },
+  "comparisonReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/layout-identity/comparison.json",
+    "sha256": "d87977ad8830b732009757395a59f8a27c64a97dc7872cd9cd45c3f463807fb4",
+    "size": 181161
+  },
+  "historicalReplay": {
+    "basis": "ReusedAuditedLocalMLayoutInputs",
+    "linkedImages": 56,
+    "compilerImages": 214,
+    "rawParentChangedRows": 43,
+    "resolvedRows": 53,
+    "rejectedRows": 0,
+    "mappedDeclarations": 18,
+    "nativeProofExecuted": false,
+    "runtimeAcceptance": false
+  },
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "freshFiveReportAuditState": "Failed",
+  "productionVerificationState": "Unavailable",
+  "verificationReceipt": null,
+  "endUtc": "2026-10-05T14:37:04.782058+00:00",
+  "status": "Passed",
+  "interpretation": "Authentication audit only; original cell states preserved. Historical replay is reused-audited input. Nominal sidecars are not native offset/allocation or runtime authority."
+}
+Fresh reports [('P01', {'assemblies': 1, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False, 'basis': 'Captured counts only; complete verifier failed'}), ('P02', {'assemblies': 3, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False, 'basis': 'Captured counts only; complete verifier failed'}), ('P03', {'assemblies': 5, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 19, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False, 'basis': 'Captured counts only; complete verifier failed'}), ('P04', {'assemblies': 1, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False, 'basis': 'Captured counts only; complete verifier failed'}), ('P05', {'assemblies': 1, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False, 'basis': 'Captured counts only; complete verifier failed'})]

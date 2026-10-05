@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LMPrimaryLayoutIdentityEvidence",
+  "date": "2026-10-05 UTC",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAnchor": "7e1060ff5723efe365c60bc052bbbcb117d62dfa",
+  "preFinalizationDocumentationHead": "e6f88b070384349709ee670dd3eb87d8ee75eb10",
+  "repositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "preservedLocal": {
+    "publication": "d6d3a3c05ef45890fb25fca3b762289450c69c5f",
+    "executedDemo": "301493290706e81437db1ac6a31977e9930d9fc6",
+    "batch": "M", "result": "ReturnRequired", "passed": 48, "failed": 1, "blocked": 41,
+    "sealStatus": "Passed", "freshBuildsPassed": 6, "focusedPlayersPassed": 23,
+    "currentRawSites": 25, "currentCompilerControls": 16, "bothLinkedProofs": "Passed",
+    "settingsRestoration": "Passed", "downstreamPlayersNotRun": 36,
+    "historicalReportsModified": false, "entireEarlierCustodyReauthenticatedHere": false
+  },
+  "hostWorkflow": {
+    "runId": 37272466923, "conclusion": "success", "platforms": ["ubuntu-24.04", "macos-15"], "sdk": "8.0.318",
+    "completionPythonContractsPerHost": 229, "retainedR03PythonContractsPerHost": 183,
+    "layoutIdentityCasesPerHost": 33, "fixtureConstructorCasesPerHost": 12, "capabilityProfileCasesPerHost": 20,
+    "fixedImageCasesPerHost": 10, "fixedImageCaseLocation": "observation.cases",
+    "qualificationCasesPerHost": 32, "baselineGraphCasesPerHost": 9, "candidateGraphCasesPerHost": 9,
+    "admissionCasesPerHost": 35, "ownedCommandsPerHost": 19, "allCommandsClean": true,
+    "unityEditorRun": false, "playerRun": false,
+    "artifacts": [
+      {
+        "artifactId": 11329565548, "platform": "Linux", "result": "Passed", "authenticated": true,
+        "sha256": "8b2d82aa4edc2e4c8a5c526a4277b8fcbdf8befe7120606e44c81856f6fad2ad",
+        "bytes": 5190025, "indexedFiles": 585, "zipFiles": 586, "commandCount": 19,
+        "provenanceSha256": "75cb3fd1db4be606df6e2f616e8f2b1483d6f7b102ba4b64eb10092d9ad8f433",
+        "resultSha256": "c75b6f676db0a8833f005ea386c4874fa0107cba6239d1b71ccbb64747855642"
+      },
+      {
+        "artifactId": 11329286282, "platform": "macOS", "result": "Passed", "authenticated": true,
+        "sha256": "7dbc6662302e6d2ec17b23557e7e9279a8e7ab2b0d295689304ff2f3eb8cd67c",
+        "bytes": 5150083, "indexedFiles": 585, "zipFiles": 586, "commandCount": 19,
+        "provenanceSha256": "bad3c2a0f38ef9f11023d9bb627178e5607d8f2da63a26cbc8ef48b6976e1be6",
+        "resultSha256": "70f25820aa52446d5e6b35c120270e3f62498e635c53818ea6a5a7bec736f6a0"
+      }
+    ]
+  },
+  "pinnedUnityWorkflow": {
+    "runId": 37272466984, "conclusion": "success", "unityVersion": "2022.3.62f2",
+    "resourceAssembliesCompiled": 16, "resourceSourceFiles": 657, "ownedCommands": 22, "allCommandsClean": true,
+    "compilerWarningOccurrences": 951, "warningsSuppressed": false,
+    "layoutIdentityMonoCases": 33, "compilerPolicyRawSites": 25, "compilerPolicyGuardControls": 16, "fixedImageMonoCases": 10,
+    "coreRpSourceRevision": "4694a5f37cb1c40e48058da90d3deab8f440dae6", "upmByteEquivalenceClaimed": false,
+    "unityEditorRun": false, "playerRun": false,
+    "artifact": {
+      "artifactId": 11328599933, "result": "Passed", "authenticated": true,
+      "sha256": "5f3a0d5c66d7cbcecbec090937817e5f64e21b8f05b29d7f9f5aa8dec0467cbf",
+      "bytes": 2448282, "indexedFiles": 240, "zipFiles": 241, "commandCount": 22,
+      "provenanceSha256": "36efb38f02004766bf1b91d72d09958183f4b392a8e2a5d67f9558d6d518807b",
+      "resultSha256": "81d52274cd1c702c783a8afd2304dd95896db4e8c438327494ca08e28fa841bf"
+    }
+  },
+  "layoutReplay": {
+    "basis": "ReusedAuditedLocalMLayoutInputs", "linkedImages": 56, "compilerImages": 214,
+    "baselineSnapshotReceiptSha256": "7a992755d30c79c3f267123b8c1de95d48e06ab568411718a767a44cfd356f4c",
+    "targetSnapshotReceiptSha256": "2a5b9c3f1076c5593c35ebf81c38309761c7d4a76b192106e38b776a2cc6a97a",
+    "linkedRetargetingProofSha256": "241729b0125ec6bc48abc332955c71557e3f4a0b72cc0daaf3e1452005291fc7",
+    "runtimeFacadeSha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+    "compilerFacadeSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+    "baselineInternalSha256": "9f1dc0886284dd1b559da345b991a1943be4b7e9697b413af4d917e6bd7f3484",
+    "targetInternalSha256": "b5bdab58ef5ff32a194115c9e4be5b55d9d8546f798a974b0e5b42f2931fad87",
+    "originalParentChangedRows": 43, "resolvedNeedsNativeProofRows": 53, "resolvedRejectedRows": 0,
+    "linkedResolutionRows": 35, "compilerResolutionRows": 35, "runtimeFacadeMappedDeclarations": 18,
+    "originalUnboundRejectionRetained": true, "changedRealParentRejected": true,
+    "currentCompilerSnapshotProduced": false, "nativeProofExecuted": false, "runtimeAcceptance": false,
+    "historicalMResult": "ReturnRequired", "historicalEvidenceModified": false
+  },
+  "artifactAudit": {
+    "ciRunId": 37273508600, "ciSource": "e6f88b070384349709ee670dd3eb87d8ee75eb10", "ciConclusion": "success",
+    "request": "Docs/AssemblyShadow/History/M07R/R03/P_ARTIFACT_AUDIT_INPUT.json",
+    "currentEnvironmentAuthentication": "All three downloaded exact-source ZIPs, safe unique membership, every indexed size/hash, source tuple, successful owned-command exits/lifetime and stdout/stderr hashes authenticated.",
+    "fixedImageNestedControlsAdditionallyInspected": 10,
+    "requestCorrection": "Fixed-image cases are nested in observation.cases, not a top-level collection. The request correction changes no artifact, producer, test or runtime expectation.",
+    "newUnityOrPlayerExecution": false
+  },
+  "localPrimaryChecks": {
+    "basis": "Authenticated source slices, not an owning Local checkout",
+    "lmVerifierAndAuditorTests": "52/52 Passed", "retainedPythonTests": "183/183 Passed",
+    "lmStderrSha256": "a22fe27141b39f84dfd4b54c3392c750042f5130c256b648fa6da1cd23b51707",
+    "retainedStderrSha256": "4f87d337eae83afe93270929a26abcc3954d22b258efbad9172814473658a2be",
+    "localManagedReplayRun": false, "unityEditorRun": false, "playerRun": false
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo", "base": "e6f88b070384349709ee670dd3eb87d8ee75eb10",
+    "branch": "codex/connector-smoke-r03-lm-20261005-final", "commit": "45d4f3041bc0f2bf8ab82bb97f5f27d73f9b3483",
+    "headAndFileReadback": "Passed", "cleanup": "Delete-ref unavailable; retained disposable non-authoritative branch.",
+    "finalizationWrites": "Demo documentation only; all four source heads independently read through Connector."
+  },
+  "interpretation": {
+    "LMIntegratedClosure": "Pending batch N", "freshP05FixtureFinalization": false,
+    "runtimeAcceptance": false, "R03Accepted": false, "H2Passed": false, "qualificationApproved": false,
+    "expansionAuthorized": false,
+    "pending": ["Fresh conservative P05 construction and all P01-P05 schema-2 sidecars", "Six builds, 90 cells, 59 fresh Players, all Editor/preflight scopes and linked/native revalidation", "Full-stage reconciliation and independent review"]
+  }
+}

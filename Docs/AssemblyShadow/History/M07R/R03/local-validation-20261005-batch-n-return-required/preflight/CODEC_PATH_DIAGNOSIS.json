@@ -1,0 +1,69 @@
+{
+  "kind": "ReadOnlyNativeCodecPathDiagnosis",
+  "utc": "2026-10-05T14:38:24.560234+00:00",
+  "baselineManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-15f6c2c9a5e0/baseline-manifest.json",
+  "baselineManifestSha256": "693ffa00d72959edadc7f6de9a31371cb6ceeff09d7a7049c80083fef2899818",
+  "sourcePin": {
+    "url": "https://github.com/night-outlook/hybridclr.git",
+    "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+  },
+  "expectedHeaderSha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e",
+  "records": [
+    {
+      "label": "actual-implicit-cwd",
+      "command": [
+        "git",
+        "-C",
+        "../../../../assembly_shadow_h1r/hybridclr",
+        "show",
+        "4b2774b066cfc6afd77a8c8aded6bda7ea574f55:hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "resolvedRepository": "/Users/ah/assembly_shadow_h1r/hybridclr",
+      "exitCode": 128,
+      "stderr": "fatal: cannot change to '../../../../assembly_shadow_h1r/hybridclr': No such file or directory\n",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "matchesPinnedHeaderHash": false
+    },
+    {
+      "label": "project-relative-interpretation",
+      "command": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+        "show",
+        "4b2774b066cfc6afd77a8c8aded6bda7ea574f55:hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "resolvedRepository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "exitCode": 0,
+      "stderr": "",
+      "stdoutSha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e",
+      "size": 32362,
+      "matchesPinnedHeaderHash": true
+    },
+    {
+      "label": "explicit-owning-native",
+      "command": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+        "show",
+        "4b2774b066cfc6afd77a8c8aded6bda7ea574f55:hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "resolvedRepository": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "exitCode": 0,
+      "stderr": "",
+      "stdoutSha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e",
+      "size": 32362,
+      "matchesPinnedHeaderHash": true,
+      "snapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005N-identity/codec-source/hybridclr/metadata/InterpreterMetadataIndexCodec.h"
+    }
+  ],
+  "batchInputBindingResultUnchanged": "Failed",
+  "testRerun": false,
+  "interpretation": "Direct source-authority reads only; relative pin is project-relative but verifier passes it to git-C under demo cwd. No cwd/source/pin fix or validation rerun."
+}

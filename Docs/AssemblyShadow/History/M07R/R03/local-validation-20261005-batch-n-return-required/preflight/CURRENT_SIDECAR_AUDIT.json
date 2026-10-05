@@ -1,0 +1,186 @@
+{
+  "kind": "CurrentNIndependentNominalArtifactAudit",
+  "startUtc": "2026-10-05T14:31:11.764909+00:00",
+  "endUtc": "2026-10-05T14:31:12.158291+00:00",
+  "status": "Failed",
+  "manifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/m07-fixtures.json",
+  "manifestSha256": "3af9230d145cd02b5883a44bb6d6de184ee9ac30c4ddc208b1260d621e2e0c50",
+  "fixtures": [
+    {
+      "patchId": "P01",
+      "sidecar": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P01-patch/native-layout-admission-v1.json",
+      "sha256": "0b2ddc01c63170c41561cc3cebbb1d245f1a5adb9ef889160a0c2bd32756db11",
+      "checks": null,
+      "state": "Failed",
+      "error": "ContractError: Source-bound assembly report",
+      "assemblyNameEvidence": [
+        {
+          "loadOrderName": "AssemblyA.Implementation.Internal",
+          "reportAssembly": "AssemblyA.Implementation.Internal",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        }
+      ],
+      "rawSchemaVersion": 2,
+      "rawNativeProofExecuted": false,
+      "runtimeMustRevalidate": true,
+      "rawMappedDeclarations": 18
+    },
+    {
+      "patchId": "P02",
+      "sidecar": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P02-patch/native-layout-admission-v1.json",
+      "sha256": "8abfa4c1de883488db844abc2c26728f3a4bbad0b010e6d181517b0265a5ee46",
+      "checks": null,
+      "state": "Failed",
+      "error": "ContractError: Source-bound assembly report",
+      "assemblyNameEvidence": [
+        {
+          "loadOrderName": "AssemblyA.Implementation.Extensibility",
+          "reportAssembly": "AssemblyA.Implementation.Extensibility",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        },
+        {
+          "loadOrderName": "AssemblyA.Implementation.Internal",
+          "reportAssembly": "AssemblyA.Implementation.Internal",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        },
+        {
+          "loadOrderName": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "reportAssembly": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        }
+      ],
+      "rawSchemaVersion": 2,
+      "rawNativeProofExecuted": false,
+      "runtimeMustRevalidate": true,
+      "rawMappedDeclarations": 18
+    },
+    {
+      "patchId": "P03",
+      "sidecar": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P03-patch/native-layout-admission-v1.json",
+      "sha256": "201819f6306c368e66e3ba08dd9bdb3e809021138865bc95b017e1ab3e960722",
+      "checks": null,
+      "state": "Failed",
+      "error": "ContractError: Source-bound assembly report",
+      "assemblyNameEvidence": [
+        {
+          "loadOrderName": "AssemblyA.Contracts",
+          "reportAssembly": "AssemblyA.Contracts",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        },
+        {
+          "loadOrderName": "AssemblyA.Implementation.Extensibility",
+          "reportAssembly": "AssemblyA.Implementation.Extensibility",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        },
+        {
+          "loadOrderName": "AssemblyA.Implementation.Internal",
+          "reportAssembly": "AssemblyA.Implementation.Internal",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        },
+        {
+          "loadOrderName": "AssemblyShadowDemo.ContractsConsumer",
+          "reportAssembly": "AssemblyShadowDemo.ContractsConsumer",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        },
+        {
+          "loadOrderName": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "reportAssembly": "AssemblyShadowDemo.ExtensibilityConsumer",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        }
+      ],
+      "rawSchemaVersion": 2,
+      "rawNativeProofExecuted": false,
+      "runtimeMustRevalidate": true,
+      "rawMappedDeclarations": 19
+    },
+    {
+      "patchId": "P04",
+      "sidecar": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P04-patch/native-layout-admission-v1.json",
+      "sha256": "0e23b6ecf8fcfc9cc4f9eee1a01142e503bad7df4ec1b98143a5f2a74dc688a4",
+      "checks": null,
+      "state": "Failed",
+      "error": "ContractError: Source-bound assembly report",
+      "assemblyNameEvidence": [
+        {
+          "loadOrderName": "AssemblyA.Implementation.Internal",
+          "reportAssembly": "AssemblyA.Implementation.Internal",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        }
+      ],
+      "rawSchemaVersion": 2,
+      "rawNativeProofExecuted": false,
+      "runtimeMustRevalidate": true,
+      "rawMappedDeclarations": 18
+    },
+    {
+      "patchId": "P05",
+      "sidecar": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/projects/resource-complete/_temp/AssemblyShadow/M02Validation-52f59c83f3834852adb899fa9da4d874/P05-patch/native-layout-admission-v1.json",
+      "sha256": "ba4533d653c0793070ce7a2644c501518b698dc72cbb89c3c31e82603d3b8174",
+      "checks": null,
+      "state": "Failed",
+      "error": "ContractError: Source-bound assembly report",
+      "assemblyNameEvidence": [
+        {
+          "loadOrderName": "AssemblyA.Implementation.Internal",
+          "reportAssembly": "AssemblyA.Implementation.Internal",
+          "verifierComparison": false,
+          "baselineMixedCaseLookupExists": false,
+          "targetMixedCaseLookupExists": false,
+          "canonicalBaselineLookupExists": true,
+          "canonicalTargetLookupExists": true
+        }
+      ],
+      "rawSchemaVersion": 2,
+      "rawNativeProofExecuted": false,
+      "runtimeMustRevalidate": true,
+      "rawMappedDeclarations": 18
+    }
+  ],
+  "phaseFinalizationAtAudit": "Pending original runner receipt; not inferred from file presence",
+  "scope": "Existing current nominal bytes only; no Unity/compiler/Player launch, no sealed data write. Final sealed audit still required.",
+  "nativeProofExecuted": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false
+}
