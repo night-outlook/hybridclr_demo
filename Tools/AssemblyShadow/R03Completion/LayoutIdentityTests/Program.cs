@@ -93,7 +93,7 @@ internal static class Program
                 var e = new ExportedTypeUser(m, 0, "Shape", n, TypeAttributes.Public | (mode == "not-forwarder" ? 0 : TypeAttributes.Forwarder), Ref(destination));
                 m.ExportedTypes.Add(e);
                 if (n == "G`1") m.ExportedTypes.Add(new ExportedTypeUser(m, 0, "", "Nested", TypeAttributes.NestedPublic, e));
-                if (mode == "duplicate" && n == "Base") m.ExportedTypes.Add(new ExportedTypeUser(m, 0, "Shape", n, e.Attributes, Ref(destination)));
+                if (mode == "duplicate" && n == "Base") m.ExportedTypes.Add(new ExportedTypeUser(m, 0, "Shape", n, e.Attributes, Ref("ConflictingProvider")));
             }
             if (mode == "definition-and-forward") m.Types.Add(new TypeDefUser("Shape", "Base", null));
             return Bytes(m);
