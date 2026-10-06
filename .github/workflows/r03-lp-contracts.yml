@@ -1,0 +1,50 @@
+name: R03 LP orchestration and consumer contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - 'Tools/AssemblyShadow/R03Completion/**'
+      - 'Tools/AssemblyShadow/R02/type_resolution_schema.py'
+      - '.github/workflows/r03-lp-contracts.yml'
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Run all Completion Python contracts without Unity or Player launch
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/lp-contracts"
+          python3 -B -m unittest discover -s Tools/AssemblyShadow/R03Completion -p 'test_*.py' -v > "$RUNNER_TEMP/lp-contracts/unittest.log" 2>&1
+          python3 -B Tools/AssemblyShadow/R03Completion/lp_replay.py --project "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/lp-contracts/p-replay.json"
+      - name: Bind command outputs and immutable source identities
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'lp-contracts';root.mkdir(exist_ok=True)
+          paths=subprocess.check_output(['git','ls-files','Tools/AssemblyShadow','Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','.github/workflows/r03-lp-contracts.yml'],text=True).splitlines()
+          sources=[{'path':p,'sha256':hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in paths if Path(p).is_file()]
+          outputs=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in root.rglob('*') if p.is_file()]
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==os.environ['GITHUB_SHA']
+          assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'sources':sources,'files':outputs,'unityRun':False,'playerRun':False,'historicalPResult':'ReturnRequired','runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-lp-contracts-${{ runner.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/lp-contracts
+          if-no-files-found: error
+          retention-days: 14

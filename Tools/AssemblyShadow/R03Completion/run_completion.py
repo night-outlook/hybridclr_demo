@@ -37,7 +37,7 @@ def cell_plan(matrix):
     names += ['editor-tests'] + [case['id'] for case in matrix['cases']] + ['producer-controls']
     names += ['resource-prepare', 'resource-install', 'resource-compiler', 'resource-bundles', 'resource-player-on',
               'resource-player-off', 'resource-p05-prepare', 'resource-p05-compile', 'resource-p05-restore',
-              'resource-p05-finalize', 'resource-editor', 'production-entry-integration', 'resource-input-binding']
+              'resource-p05-finalize', 'resource-editor', 'resource-input-binding', 'production-entry-integration']
     names += ['resource-' + mode for mode in sorted(legacy.m07.MODES)] + ['resource-contracts']
     names += ['measure-' + mode + '-' + str(rep) for mode in legacy.r00.MODES for rep in range(3)] + ['measurement-summary']
     names += ['early-' + label for label, _, _ in legacy.EARLY_CASES] + ['final-authority']
@@ -110,8 +110,10 @@ class CompletionBatch(FocusedBatch):
         self.cell('resource-p05-restore', lambda: resources.restore(self), ('resource-prepare',))
         self.cell('resource-p05-finalize', lambda: resources.phase(self, 'finalize'), ('resource-p05-compile', 'resource-p05-restore'))
         self.cell('resource-editor', lambda: resources.editor(self, complete=True), ('resource-install', 'resource-p05-restore', 'host-admission'))
-        self.cell('production-entry-integration', lambda: resources.integration(self), ('resource-p05-finalize',))
+        # Integration consumes the authenticated ON snapshot from resource_context.
+        # A partial context left by a failed graph/layout check is not authority.
         self.cell('resource-input-binding', self.resource_graph, ('resource-p05-finalize',))
+        self.cell('production-entry-integration', lambda: resources.integration(self), ('resource-input-binding',))
         for mode in sorted(legacy.m07.MODES):
             self.cell('resource-' + mode, lambda m=mode: legacy.m07_case(self, m), ('resource-input-binding',))
         self.cell('resource-contracts', lambda: legacy.m07_summary(self), tuple('resource-' + mode for mode in sorted(legacy.m07.MODES)))

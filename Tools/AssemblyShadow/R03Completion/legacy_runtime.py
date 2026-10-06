@@ -12,6 +12,7 @@ import uuid
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE.parent / 'R03'))
+sys.path.insert(0, str(HERE.parent / 'R02'))
 import m07_results as m07
 import r00_results as r00
 import r01_early_results as early
@@ -20,6 +21,7 @@ from batch_evidence import write
 from unity_command import clean_outer
 from fixture_authority import authenticate_copy
 from execution_contract import verify as verify_execution
+from type_resolution_schema import current_m07_schema
 
 EARLY_CASES = (('Control-P03', 'Control', 'P03'), ('Control-P01', 'Control', 'P01'),
                ('OrdinaryFirst', 'OrdinaryFirst', 'P03'), ('OrdinaryAfterReserve', 'OrdinaryAfterReserve', 'P03'),
@@ -80,14 +82,19 @@ def m07_case(batch, mode):
     try:
         command, binding = launch(batch, args, folder)
         raw = loads(result.read_text()); require(raw['processId'] == command['pid'], 'Direct M07 launch PID')
-        original = m07.verify_case(result, context['manifest'], context['baseline'], context['fixtures'],
-                                   batch.resource_context['baselineResources'], context['on'], context['off'], source_context=batch.resource_context['codecContext'])
+        # Synchronous scope: validate the exact current extension, then delegate
+        # unchanged legacy semantics using an in-memory projection only.
+        with current_m07_schema() as bridge:
+            original = m07.verify_case(result, context['manifest'], context['baseline'], context['fixtures'],
+                                       batch.resource_context['baselineResources'], context['on'], context['off'], source_context=batch.resource_context['codecContext'])
+        require(bridge['verifiedTypeInfoObjects'] > 0 if patch else bridge['verifiedTypeInfoObjects'] == 0,
+                'Expected current ON type-info or unchanged OFF contract')
         if cap:
             observation = early.verify_early_receipt(early_result, cap, 'Control', command['pid'], batch.resource_context['profile'])
             early.verify_imported_snapshots(observation, raw)
             early.verify_startup_logs('Control', log, Path(binding['console']))
         require(inventory(batch) == before, 'M07 inputs changed during process')
-        verdict = dict(binding, result='Passed', originalContract=original, launchPid=command['pid'],
+        verdict = dict(binding, result='Passed', originalContract=original, typeInfoBridge=bridge, launchPid=command['pid'],
                        sourceInputHashes=before, rawPath=str(result), rawSha256=sha(result),
                        earlyReceiptSha256=sha(early_result) if cap else '', fresh=True, R03Accepted=False)
         return verdict
@@ -97,12 +104,14 @@ def m07_case(batch, mode):
 
 
 def m07_summary(batch):
-    verdict = m07.verify_suite(batch.resource_manifest, batch.root / 'm07-results', batch.resource_on,
-                              batch.resource_off, allow_incomplete=False, replay_receipt=batch.resource_replay,
-                              source_context=batch.resource_context['codecContext'])
+    with current_m07_schema() as bridge:
+        verdict = m07.verify_suite(batch.resource_manifest, batch.root / 'm07-results', batch.resource_on,
+                                  batch.resource_off, allow_incomplete=False, replay_receipt=batch.resource_replay,
+                                  source_context=batch.resource_context['codecContext'])
+    require(bridge['verifiedTypeInfoObjects'] > 0, 'Aggregate must verify current R02 type-info')
     require(verdict['resultPassed'] is True and len(verdict['modes']) == 14, 'Complete original M07 contract')
     write(batch.root / 'resource-contracts.json', {'kind': 'R03FreshM07Contracts', 'result': 'Passed',
-          'originalVerifierOutput': verdict, 'profile': 'UnfencedDevelopmentBuild',
+          'originalVerifierOutput': verdict, 'typeInfoBridge': bridge, 'profile': 'UnfencedDevelopmentBuild',
           'originalGateLabelIsNotNewHumanApproval': True, 'R03Accepted': False, 'H2Passed': False})
     return {'path': str(batch.root / 'resource-contracts.json'), 'sha256': sha(batch.root / 'resource-contracts.json'), 'modes': 14}
 
@@ -181,6 +190,7 @@ def early_case(batch, case, mode, patch):
     args = early.command_for(batch.resource_context, mode, batch.resource_manifest, batch.resource_on, cap, result, result_m07, log, m07_mode)
     expected_exit = 0 if mode in early.POSITIVE_MODES else 1
     before = inventory(batch); verdict = {'result': 'Failed', 'case': case, 'mode': mode}
+    bridge = None  # Rejected startup must not consume business-resource type info.
     try:
         command, binding = launch(batch, args, folder, expected_exit)
         observed = early.verify_early_receipt(result, cap, mode, command['pid'], batch.resource_context['profile'])
@@ -190,13 +200,15 @@ def early_case(batch, case, mode, patch):
             raw = loads(result_m07.read_text()); require(raw['processId'] == command['pid'], 'M07 and early PID pairing')
             early.verify_imported_snapshots(observed, raw)
             c = batch.resource_context['context']
-            m07.verify_case(result_m07, c['manifest'], c['baseline'], c['fixtures'], batch.resource_context['baselineResources'], c['on'], c['off'],
-                            source_context=batch.resource_context['codecContext'])
+            with current_m07_schema() as bridge:
+                m07.verify_case(result_m07, c['manifest'], c['baseline'], c['fixtures'], batch.resource_context['baselineResources'], c['on'], c['off'],
+                                source_context=batch.resource_context['codecContext'])
+            require(bridge['verifiedTypeInfoObjects'] > 0, 'Positive startup must verify current R02 type-info')
         else: require(not result_m07.exists(), 'Rejected early startup must not execute business resource handoff')
         require(inventory(batch) == before, 'Early inputs changed during process')
         verdict = dict(binding, result='Passed', case=case, mode=mode, patch=patch, launchPid=command['pid'],
                        originalExit=expected_exit, rawSha256=sha(result), capsuleSha256=sha(cap),
-                       sourceInputHashes=before, profile=2, expectedRejection=expected_exit == 1, R03Accepted=False)
+                       sourceInputHashes=before, typeInfoBridge=bridge, profile=2, expectedRejection=expected_exit == 1, R03Accepted=False)
         return verdict
     except Exception as error:
         verdict['error'] = str(error); raise
