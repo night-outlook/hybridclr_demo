@@ -114,6 +114,16 @@ jobs:
             --api-output "$RUNNER_TEMP/r03-completion-api" \
             --newtonsoft "$(cat "$RUNNER_TEMP/newtonsoft-path.txt")" \
             --output "$RUNNER_TEMP/r03-completion-api/compiler-policy-mono"
+      - name: Check compiler versus linked-Player domains with exact O compiler references
+        shell: bash
+        run: |
+          UNITY="$(cat "$RUNNER_TEMP/unity-paths.txt")"
+          CONTENTS="$(dirname "$(dirname "$UNITY")")"
+          python3 -B hybridclr_demo/Tools/AssemblyShadow/R03Completion/compile_lo_policy_checks.py \
+            --workspace "$GITHUB_WORKSPACE" --contents "$CONTENTS" \
+            --api-output "$RUNNER_TEMP/r03-completion-api" \
+            --newtonsoft "$(cat "$RUNNER_TEMP/newtonsoft-path.txt")" \
+            --output "$RUNNER_TEMP/r03-completion-api/lo-policy-domain"
       - name: Replay captured M layouts through actual forwarding identity rules
         shell: bash
         run: |

@@ -10,19 +10,34 @@ from batch_contract import loads, require, sha
 
 
 def selected_image(context, mode):
+    """Materialize the M06 image-record contract from the selected physical bytes.
+
+    Receipt names are canonical lookup keys only. The parsed assembly identity,
+    MVID, IL and portable symbols remain bound to the authenticated file hashes.
+    Linked AOT symbols are intentionally not claimed as portable patch evidence.
+    """
+    require(mode in ('R00-ON-NoPatch', 'R00-OFF-NoPatch', 'R00-ON-P01', 'R00-ON-P03'),
+            'Unknown execution supplement mode')
     if mode in ('R00-ON-P01', 'R00-ON-P03'):
         patch = context['fixtures']['P01' if mode.endswith('P01') else 'P03']
-        matches = [r for r in patch['patch']['closure'] if r['name'] == m06.INTERNAL]
-        require(len(matches) == 1, 'Selected physical patch DLL')
-        row = matches[0]; dll, pdb = patch['root'] / row['dll'], patch['root'] / row['pdb']
+        row = m06.named(patch['patch']['closure'], m06.INTERNAL, 'Selected physical patch DLL')
+        dll = m06.prior._rel(patch['root'], row['dll'], 'Selected physical patch DLL', 'dll')
+        pdb = m06.prior._rel(patch['root'], row['pdb'], 'Selected physical patch PDB', 'pdb')
         require(sha(dll) == row['sha256'] and sha(pdb) == row['pdbSha256'], 'Selected patch bytes/symbols changed')
     else:
         build = context['off' if mode == 'R00-OFF-NoPatch' else 'on']
-        matches = [r for r in build['snapshot']['linkedPlayerReceipt']['assemblies'] if r['name'] == m06.INTERNAL]
-        require(len(matches) == 1, 'Actual linked baseline DLL')
-        row = matches[0]; dll = build['root'] / 'LinkedPlayer' / row['path']; pdb = None
+        row = m06.named(build['snapshot']['linkedPlayerReceipt']['assemblies'], m06.INTERNAL, 'Actual linked baseline DLL')
+        dll = m06.prior._rel(build['root'] / 'LinkedPlayer', row['path'], 'Actual linked baseline DLL', 'path')
+        pdb = None
         require(sha(dll) == row['sha256'], 'Linked DLL bytes changed')
-    return metadata.read_methods(dll, pdb)
+    identity = m06.prior.read_identity(dll)
+    require(identity['name'] == m06.INTERNAL and identity['mvid'] == row['mvid'] and
+            identity['sha256'] == row['sha256'], 'Selected physical assembly identity/MVID/hash differs')
+    image = {'identity': identity, 'methods': metadata.read_methods(dll, pdb), 'pdbAvailable': pdb is not None}
+    # Parsing and all returned observations must describe the same immutable bytes.
+    require(sha(dll) == row['sha256'] and (pdb is None or sha(pdb) == row['pdbSha256']),
+            'Selected image changed while reading metadata')
+    return image
 
 
 def verify(request, extra, original, request_hash, original_hash, pid, context):

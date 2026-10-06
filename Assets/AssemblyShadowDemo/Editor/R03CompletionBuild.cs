@@ -134,9 +134,13 @@ namespace AssemblyShadowDemo.Editor
             var baseline = M07Build.ReadBaseline(manifest.baselineManifestPath);
             var baselineReceipt = AssemblySnapshot.ReadAndVerify(manifest.baselineInputSnapshot, true);
             var settings = AssemblyShadowSettings.Instance;
-            var policy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(EditorUserBuildSettings.activeBuildTarget);
+            // Compiler inventory and linked Player inventory are different domains.
+            // ApplyPatch deep-clones its input; retain the pristine source policy
+            // for the restored-domain compilation, never a BuildFiltered policy.
+            var sourcePolicy = AssemblyShadowSettingsUtil.CreatePolicyConfiguration(EditorUserBuildSettings.activeBuildTarget);
+            string sourcePolicyJson = JsonUtility.ToJson(sourcePolicy);
             var rows = new List<GenerationRow>();
-            policy = ShadowFilteredInputPolicy.ApplyPatch(policy, baselineReceipt, baseline.shadowCandidates, baseline.bootstrapAssemblies);
+            var policy = ShadowFilteredInputPolicy.ApplyPatch(sourcePolicy, baselineReceipt, baseline.shadowCandidates, baseline.bootstrapAssemblies);
             var resourceAbi = JsonUtility.FromJson<ResourceAbiDescriptor>(File.ReadAllText(Path.Combine(Path.GetDirectoryName(manifest.baselineManifestPath), "resource-abi.json")));
             Require(ResourceAbiHasher.Compute(resourceAbi) == baseline.resourceAbiHash, "Frozen resource descriptor differs.");
             using (var installed = ShadowFixtureProof.Load(manifest.baselineInputSnapshot, baselineReceipt, policy))
@@ -173,9 +177,11 @@ namespace AssemblyShadowDemo.Editor
                 }
                 // This fresh restored-domain compiler snapshot is the complete
                 // target baseline, not an empty incremental download.
+                Require(JsonUtility.ToJson(sourcePolicy) == sourcePolicyJson,
+                    "Source compiler policy was mutated by linked-Player analysis.");
                 string restored = AssemblySnapshot.CompileWithOptions(Path.Combine(context.receiptRoot, "return-baseline"),
                     EditorUserBuildSettings.activeBuildTarget, settings.architecture,
-                    ShadowSourcePins.Read(settings.sourcePinFile, EditorUserBuildSettings.activeBuildTarget, settings.architecture), policy, new string[0], true);
+                    ShadowSourcePins.Read(settings.sourcePinFile, EditorUserBuildSettings.activeBuildTarget, settings.architecture), sourcePolicy, new string[0], true);
                 var currentReceipt = AssemblySnapshot.ReadAndVerify(restored, false);
                 using (var target = ShadowFixtureProof.Load(restored, currentReceipt, policy))
                 {

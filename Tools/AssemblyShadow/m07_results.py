@@ -1180,7 +1180,7 @@ def verify_transaction(result, path, manifest, patch_item, source_context=None):
         exact("metadataBudgetCapabilityVersion" in diagnostic, capability, rp + ".capability")
         reservations = [event for event in diagnostic["events"] if event["kind"] == "metadata-budget-reserved"]
         exact(reservations, [dict(sequence=3, kind="metadata-budget-reserved", name="", generation=0, stagedCount=0)] if capability else [], rp + ".reservationEvent")
-        prior._verify_diag_invariants(diagnostic, order, manifest["stableAotNames"], rp, patch=patch)
+        prior._verify_diag_invariants(diagnostic, order, manifest["stableAotNames"], rp, patch=patch, source_context=source_context)
         exact(diagnostic["baselineBuildId"], manifest["baselineBuildId"], rp + ".baselineBuildId")
         exact(diagnostic["patchId"], patch["patchId"], rp + ".patchId")
         previous_uses = verify_allowed_baseline_uses(diagnostic["baselineUses"], previous_uses, order,

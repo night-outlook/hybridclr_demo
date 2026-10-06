@@ -406,11 +406,11 @@ def _diag(value, path, expected_abi=1):
     return value
 
 
-def _verify_diag_invariants(diagnostics, expected, stable, path, final=False, patch=None):
+def _verify_diag_invariants(diagnostics, expected, stable, path, final=False, patch=None, source_context=None):
     expected_abi = 1
     if patch is not None and patch.get("nativeBudgetCapabilityVersion") == 2:
         from m07_results import diagnostic_abi
-        expected_abi = diagnostic_abi(patch, path)
+        expected_abi = diagnostic_abi(patch, path, source_context=source_context)
     d = _diag(diagnostics, path, expected_abi)
     require(d.get("enabled") is True, f"{path}: native ON diagnostic is disabled")
     require(type(d.get("lastError")) is int and 0 <= d["lastError"] <= 20, f"{path}: native lastError code is invalid")
