@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LPPrimaryEvidenceIndex",
+  "observedAtUtc": "2026-10-06T19:38:46.866666+00:00",
+  "productCommit": "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+  "sourceCiAnchor": "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "unchangedPins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "historicalInput": {
+    "publicationCommit": "d9ef449e8e8aef885539e4b981243a868f8d0ba6",
+    "executedDemoCommit": "d8884646659f7b6ae0f6ceda746fd271c96c8d61",
+    "PResult": "ReturnRequired",
+    "cells": {"Passed": 71, "Failed": 18, "Blocked": 1},
+    "historicalEvidenceModified": false
+  },
+  "completeCompletionPythonCi": [
+    {
+      "platform": "Linux",
+      "workflowRun": 37518987943,
+      "jobId": 112459145527,
+      "state": "Passed",
+      "sourceCommit": "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+      "artifactId": 11439590716,
+      "artifactZipSha256": "e9b00ec2588480b10f3db9407057304e65727948dcd0fd3d1b1ca287469fadb4",
+      "artifactZipBytes": 29687,
+      "provenanceSha256": "e0f0d262e4787ecad95b62f457c4dffbf63438575e4cfedac4c4df0a060bb7f6",
+      "indexedFilesAuthenticated": 3,
+      "sourceHashesAuthenticated": 417,
+      "testsPassed": 360,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "outputs": [
+        {"path": "temp-root.txt", "size": 5, "sha256": "1785cbdfcace2004c0d21cbc262071adf07ca0cd61f14fe5c66e737103025f3f"},
+        {"path": "unittest.log", "size": 46196, "sha256": "63e2791ff903788675b02398164faa34e1aa9fcb6b1d5bd8d453d4dbaeff108a"},
+        {"path": "p-replay.json", "size": 13480, "sha256": "2caf36a4148ce5d6d28e0b5663d2df211a693ab7649d75a64ab8ee02b530fb36"}
+      ],
+      "historicalReplayCases": 18,
+      "historicalReplayTypeInfoObjects": 289,
+      "unityRun": false,
+      "playerRun": false,
+      "runtimeAcceptance": false
+    },
+    {
+      "platform": "macOS",
+      "workflowRun": 37518987943,
+      "jobId": 112459145922,
+      "state": "Passed",
+      "sourceCommit": "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+      "artifactId": 11439246293,
+      "artifactZipSha256": "3233bf0538852222f3681dd9610b969a4901f6174805a2b3e212096c045398ee",
+      "artifactZipBytes": 29738,
+      "provenanceSha256": "bcaff792f60409ca3bad7d49ea2b6ae023ed2b55266d3c87b336ea7261b1743d",
+      "indexedFilesAuthenticated": 3,
+      "sourceHashesAuthenticated": 417,
+      "testsPassed": 360,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "outputs": [
+        {"path": "temp-root.txt", "size": 57, "sha256": "7fc2d54ef1091789ed6bd19857bbd84d5976b505731c9b6359ce2cc036cf89a3"},
+        {"path": "p-replay.json", "size": 13480, "sha256": "2caf36a4148ce5d6d28e0b5663d2df211a693ab7649d75a64ab8ee02b530fb36"},
+        {"path": "unittest.log", "size": 46196, "sha256": "8bec30dd20c69fdf7f8bd24cb1d4ac6f03cbb1446568dcac6f2e4e1910522f8f"}
+      ],
+      "historicalReplayCases": 18,
+      "historicalReplayTypeInfoObjects": 289,
+      "unityRun": false,
+      "playerRun": false,
+      "runtimeAcceptance": false
+    }
+  ],
+  "otherCiObserved": [
+    {
+      "runId": 37517447247,
+      "sourceCommit": "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+      "name": "R03 remaining completion contracts",
+      "Linux": "Passed",
+      "macOS": "InProgress",
+      "statusBasis": "Connector job metadata; no final aggregate pass or artifact-content claim"
+    },
+    {
+      "runId": 37517447149,
+      "sourceCommit": "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+      "name": "Pinned API compilation",
+      "state": "InProgress",
+      "passedStepNumbers": [6, 7, 8, 9, 10, 11, 12],
+      "currentStep": "N reference replay",
+      "statusBasis": "Connector step metadata; no full-run pass claim"
+    }
+  ],
+  "preservedIntermediateLimitations": [
+    {
+      "scope": "Local bounded source export",
+      "executedPassed": 352,
+      "setupErrors": 1,
+      "notRunMethods": 8,
+      "cause": "N sidecar corpus absent from bounded export; complete-checkout CI later ran all 360",
+      "fullSuitePassed": false
+    },
+    {
+      "runId": 37517447236,
+      "sourceCommit": "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+      "issue": "Initial standalone workflow lacked sibling pinned package required by retained source tests",
+      "fix": "f58ef3781043df217354192d91898ca3f4d83171",
+      "aggregateState": "NotReclassified"
+    },
+    {
+      "runId": 37517761421,
+      "sourceCommit": "f58ef3781043df217354192d91898ca3f4d83171",
+      "platform": "macOS",
+      "state": "Failed",
+      "executed": 360,
+      "passed": 356,
+      "errors": 4,
+      "issue": "Retained custody tests reject symlinked temp parent",
+      "fix": "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+      "sameSourceControlledReproduction": {"symlinkParentErrors": 4, "canonicalParentPassed": 4},
+      "artifactId": 11438167627,
+      "artifactZipSha256": "bf9b6a714593b7e5a5b67fc18ddc9da554747b1292b425b7efdb92b678130e38"
+    }
+  ],
+  "localChecks": {
+    "newTestsPassed": 21,
+    "retainedR02SchemaTestsPassed": 9,
+    "completionPythonSyntaxFiles": 47,
+    "handoffShellSyntax": "Passed bash -n; Mac commands not executed here"
+  },
+  "boundedPReplay": {
+    "manifestPath": "Tools/AssemblyShadow/R03Completion/lp-inputs.json",
+    "manifestSha256": "706b99f91820a1a1d689cb4d118d1c38bfdc44eba6c97e54d75a9518f95739e7",
+    "authenticatedFiles": 40,
+    "originalProcessWitnesses": 18,
+    "originalSchemaFailuresReproduced": 17,
+    "resourceObservationChecksPassed": 18,
+    "onTypeInfoObjects": 289,
+    "offBridgedObjects": 0,
+    "scope": "Complete original resource-observation branch, not full M07/build/codec/Player acceptance",
+    "receiptIoRelocation": "One SHA-identical preserved resource receipt per witness; all other reads rejected"
+  },
+  "boundedCapture": {
+    "runId": 37514312847,
+    "artifactId": 11436133078,
+    "sourceCommit": "d9ef449e8e8aef885539e4b981243a868f8d0ba6",
+    "zipSha256": "2bb7c167b25fc231a8d6b7b601f477c81454e292e3e6a81ee061279710fe3726",
+    "indexedFilesAuthenticated": 2819,
+    "omittedLargeAggregates": 4,
+    "completeCustodyReaudit": false
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/connector-smoke-20261006-lp-a21f",
+    "base": "d9ef449e8e8aef885539e4b981243a868f8d0ba6",
+    "createdAndReadBackCommit": "64d2860e84e3827476f6b1ac1084b7d9f91c1708",
+    "state": "Passed",
+    "transport": "Connector Git-data tree/commit/expected-head ref update",
+    "cleanup": "Unavailable: no branch-delete action; branch retained",
+    "unchangedRepositories": "Fresh reads/pins; retained initial four-repository smoke, no new product writes"
+  },
+  "retention": "CI artifacts are configured for 14 days (through 2026-10-20); source, P fixtures and this index are committed; use exact artifact IDs/digests, not an unpinned latest run",
+  "unityRun": false,
+  "playerRun": false,
+  "runtimeAcceptance": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "Pending"
+}

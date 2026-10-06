@@ -1,162 +1,108 @@
-# Primary Implementation → Local Validation: R03 completion batch P
+# Primary Implementation → Local Validation: R03 completion batch Q
 
-## Objective
+## Objective and preserved state
 
-Run **exactly one fresh batch P** to validate the four batch-O returns together on the published repair candidate, including the new live source-versus-linked policy-domain evidence. Do not retry or reclassify batch O. No non-trivial implementation is assigned to Local Validation.
+Run **exactly one fresh batch Q** to validate R03-LP-001 and R03-LP-002 together with all retained completion requirements. No non-trivial implementation is assigned to Local. Do not retry or reclassify P.
 
-Batch O remains authoritative historical evidence: **90 cells, 58 Passed / 30 Failed / 2 Blocked; seal Passed**. Preserve O, N and all earlier results/custody unchanged.
+P remains ReturnRequired: **90 cells, 71 Passed / 18 Failed / 1 Blocked**; six builds and 18+754+755 Editor cases Passed with zero skips/inconclusive; all 59 Players executed, 42 verification Passed / 17 Failed. Its live-policy/restored-baseline subproofs and seal/custody Passed. Preserve P, O, N and all earlier evidence/result states unchanged.
 
 ## Read first
 
 1. `Docs/AssemblyShadow/README.md`
 2. `Docs/AssemblyShadow/Plan/CURRENT_STATUS.md`
-3. `Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md`
-4. `Docs/AssemblyShadow/Handoff/RETURN_TO_WEB.md`
-5. `Docs/AssemblyShadow/History/M07R/R03/local-validation-20261005-batch-o-return-required/README.md`
-6. `Docs/AssemblyShadow/History/M07R/R03/LO_Continuation_2026-10-06/PRIMARY_REVIEW.md`
+3. Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`
+4. `History/M07R/R03/LP_Repair_2026-10-06/PRIMARY_REVIEW.md`
+5. `History/M07R/R03/LP_Repair_2026-10-06/EVIDENCE.json`
+6. This complete assignment.
 
-## Exact source
+## Source and transport authority
 
-All branches: `codex/assembly-shadow-r01b-h1`.
+All branches are `codex/assembly-shadow-r01b-h1`.
 
-| Repository | Path | Required source |
+| Repository | Required Local checkout | Source/commit authority |
 | --- | --- | --- |
-| `night-outlook/hybridclr_demo` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo` | executable source `9c4b76a540e74c045cabaf9e700051512a75cead`; CI-only timeout commit `8db761455dfd73ef01eac7d48eb39c69ca253cf8`; latest pushed handoff transport SHA is supplied in Primary's final prompt |
-| `night-outlook/hybridclr` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr` | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
-| `night-outlook/hybridclr_unity` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity` | `948c0e3b4f8891481301770115e8ba4945eea6de` |
-| `night-outlook/il2cpp_plus` | `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus` | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | Product/consumer anchor `b42cbe1134a56e675b8a98e275a45ae5a012e17d`; CI workspace/temp-path anchor `0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5`; execute the final Docs-only transport containing this handoff, whose exact 40-character SHA is supplied in Primary's final prompt |
+| night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
+| night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
+| night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-For the demo repository, require the final prompt SHA to equal both local HEAD after fast-forward and remote branch HEAD. Require `9c4b76a…` to be an ancestor and require no non-documentation diff after it:
+Both `Tools/AssemblyShadow/{R03,R03Completion}/source-pins.json` remain unchanged. Package/native/IL2CPP revisions, C# helpers, platform/profile, native build pins and original reference-build sources remain exactly those enforced by the runner. No package or installed native substitution is allowed. Changes between the product anchor and `0a0974c9...` are confined to the standalone LP CI workspace and canonical test-temp-path configuration; every later difference must be under `Docs/AssemblyShadow/**`.
 
-```bash
-git -C "$DEMO" merge-base --is-ancestor 9c4b76a540e74c045cabaf9e700051512a75cead "$DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 9c4b76a540e74c045cabaf9e700051512a75cead "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow' ':!.github/workflows/r03-completion-api.yml'
-git -C "$DEMO" diff --exit-code 8db761455dfd73ef01eac7d48eb39c69ca253cf8 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
-```
+Smoke branches `codex/connector-smoke-20261006-primary-r03` (prior four-repository smoke) and `codex/connector-smoke-20261006-lp-a21f` (new demo Git-data smoke) are disposable transport evidence, never product sources or merge targets. Connector branch deletion is unavailable.
 
-The only non-Docs change after executable anchor `9c4b76a…` is `.github/workflows/r03-completion-api.yml`, changing the CI timeout from 60 to 120 minutes; it does not alter the Unity/Player implementation.
+## Implemented repairs and required fresh checks
 
-The disposable Connector smoke branch is not product source and must never be merged: `codex/connector-smoke-20261006-primary-r03`.
+**LP-001:** `resource-input-binding` now runs before `production-entry-integration`, and integration depends explicitly on that cell. A graph/layout failure blocks integration even if the failed action left a partial `resource_context`. The existing integration consumer and live-policy baseline-hash check are unchanged. Verify the actual ledger dependency/order, current ON snapshot binding, P01–P05 eligibility/generation, all three wrong-domain filtered-reference diagnostics, policy byte stability and fresh restored-baseline zero roots/closure. An integration failure must not block otherwise independent resource/measurement/startup checks whose own prerequisites passed.
 
-## Repairs under validation
+**LP-002:** the existing `R02/type_resolution_schema.current_m07_schema` is scoped around all three Completion M07 entry points: per-resource case, aggregate suite and positive early-startup case. The bridge validates the exact current 33-field R02 extension, typed UInt64 range, version/profile/coverage and unchanged legacy semantics before in-memory projection. It restores the legacy callback on both success and error. Codec owner/project authority still passes explicitly. Neither the default legacy checker nor the bridge implementation changed.
 
-### R03-LO-001 — policy-domain separation
+Retain `typeInfoBridge` receipts: each of the 13 ON resource and four positive-startup checks must actually verify current type information (the current fixture has 17 objects each); aggregate M07 must recheck the 14 modes (221 ON objects in the current fixture). OFF must use the unchanged disabled contract with zero bridged objects. Six expected-rejection startup cases must not execute business resource verification and retain `typeInfoBridge=null`. Keep every original raw file/string/hash; do not edit JSON, remove `r02`, accept arbitrary unknown fields, or infer success from the bridge alone. New tests exercise every entry point and all these rejection/custody boundaries; historical P replay remains explicitly non-acceptance evidence.
 
-The production integration keeps the original source/compiler policy immutable, derives a separate linked-Player policy, and uses the source policy for restored-baseline compilation. Before that compile, the fresh Unity project now emits `compiler-policy-domains.json` plus source/linked policy bytes. Required facts:
+## Environment, limits and unused root
 
-- the real live Unity source inventory validates with the source policy;
-- the linked-Player policy is rejected against that source inventory;
-- the three original guards remain present for `Unity.Burst.Unsafe`, `Unity.RenderPipelines.Universal.2D.Internal`, and `Unity.RenderPipelines.Universal.Config.Runtime`;
-- source and linked policy inputs remain byte-stable during validation;
-- P01–P05 analysis still succeeds;
-- restored-baseline compilation completes and final comparison has zero changed roots and zero closure.
+- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`, StandaloneOSX arm64.
+- Python: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`.
+- SDK-only DOTNET_ROOT: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, SDK `8.0.318`. Do not launch Unity 6000.
+- New batch root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair`.
+- Separate publication/preflight root: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair`.
 
-### R03-LO-002 — codec context
-
-All resource and positive early-startup consumers must retain the authenticated owner/project context used to resolve the relative codec pin. No ambient working-directory or fallback checkout is acceptable. Revalidate all 13 ON resource cases and all four positive early-startup cases, retaining the existing negative controls.
-
-### R03-LO-003 — linked-DLL identity lookup
-
-ON/OFF NoPatch measurement cells must locate linked images by canonical simple assembly name while retaining original load order and independently checking physical DLL metadata, identity, hash/MVID, duplicates and order.
-
-### R03-LO-004 — image-record consumer contract
-
-P01/P03 measurement cells must pass the complete image record to the methods/PDB consumer. Revalidate all measurement method, symbol, business, exception and aggregate outputs; do not substitute a synthetic methods list.
-
-## Environment and fresh root
-
-- Unity: `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`
-- Python: `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`
-- SDK-only `DOTNET_ROOT`: `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, expected SDK `8.0.318`; do not launch Unity 6000.
-- New root: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair`
-
-An existing output root, dirty/wrong checkout, unexpected branch/head, missing tool, wrong version, or source mismatch is a blocker. Do not delete prior evidence or substitute versions.
+Wrong/dirty checkout, mismatched origin/head/pin/tool, unavailable prerequisites or an existing output root are blockers. Do not remove evidence, reset/stash unrelated work, reuse apps or alter timeouts, warm-up, leases, cleanup semantics or evidence guards. The Primary host environment did not inspect these Mac working trees; Local must perform and retain its own clean-tree/source checks.
 
 ## Execute once
 
-Fast-forward only. Do not reset, stash, force-checkout, merge unrelated work, edit source, weaken guards, substitute packages, rebind hashes, or reuse old apps/results.
+Set `EXPECTED_DEMO_COMMIT` to the **exact final published demo SHA in Primary's handoff prompt**, not the product anchor, a smoke commit or an inferred latest HEAD. Verify canonical origins without logging embedded credentials. Fast-forward only. The following block does not retry any phase:
 
 ```bash
 set -euo pipefail
+: "${EXPECTED_DEMO_COMMIT:?Set the exact 40-character demo transport SHA from the Primary handoff}"
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 BRANCH=codex/assembly-shadow-r01b-h1
 DEMO="$WORKSPACE/hybridclr_demo"
-BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair
+BATCH=/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
 export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
 export PATH="$DOTNET_ROOT:$PATH"
-export DOTNET_MULTILEVEL_LOOKUP=0
-export PYTHONDONTWRITEBYTECODE=1
-export TMPDIR=/private/tmp
-
+export DOTNET_MULTILEVEL_LOOKUP=0 PYTHONDONTWRITEBYTECODE=1 TMPDIR=/private/tmp
+[[ "$EXPECTED_DEMO_COMMIT" =~ ^[0-9a-f]{40}$ ]]
 for REPO in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
-  test -z "$(git -C "$WORKSPACE/$REPO" status --porcelain=v1 --untracked-files=all)"
-  test "$(git -C "$WORKSPACE/$REPO" branch --show-current)" = "$BRANCH"
-  git -C "$WORKSPACE/$REPO" fetch origin "$BRANCH"
-  git -C "$WORKSPACE/$REPO" merge --ff-only FETCH_HEAD
+  DIR="$WORKSPACE/$REPO"
+  test -z "$(git -C "$DIR" status --porcelain=v1 --untracked-files=all)"
+  test "$(git -C "$DIR" branch --show-current)" = "$BRANCH"
+  ORIGIN="$(git -C "$DIR" remote get-url origin)"
+  case "$ORIGIN" in
+    "https://github.com/night-outlook/$REPO"|"https://github.com/night-outlook/$REPO.git"|"git@github.com:night-outlook/$REPO.git"|"ssh://git@github.com/night-outlook/$REPO.git") ;;
+    *) echo "Unexpected origin for $REPO" >&2; exit 1 ;;
+  esac
+  case "$REPO" in
+    hybridclr_demo) EXPECTED="$EXPECTED_DEMO_COMMIT" ;;
+    hybridclr) EXPECTED=4b2774b066cfc6afd77a8c8aded6bda7ea574f55 ;;
+    hybridclr_unity) EXPECTED=948c0e3b4f8891481301770115e8ba4945eea6de ;;
+    il2cpp_plus) EXPECTED=1cf87f8209790f9fb2ebec97487dc1990ccd56c5 ;;
+  esac
+  test "$(git -C "$DIR" ls-remote origin "refs/heads/$BRANCH" | awk '{print $1}')" = "$EXPECTED"
+  git -C "$DIR" fetch origin "$BRANCH"
+  test "$(git -C "$DIR" rev-parse FETCH_HEAD)" = "$EXPECTED"
+  git -C "$DIR" merge --ff-only FETCH_HEAD
+  test "$(git -C "$DIR" rev-parse HEAD)" = "$EXPECTED"
+  test -z "$(git -C "$DIR" status --porcelain=v1 --untracked-files=all)"
 done
-
-DEMO_COMMIT="$(git -C "$DEMO" rev-parse HEAD)"
-test "$DEMO_COMMIT" = "$(git -C "$DEMO" ls-remote origin "refs/heads/$BRANCH" | awk '{print $1}')"
-git -C "$DEMO" merge-base --is-ancestor 9c4b76a540e74c045cabaf9e700051512a75cead "$DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 9c4b76a540e74c045cabaf9e700051512a75cead "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow' ':!.github/workflows/r03-completion-api.yml'
-git -C "$DEMO" diff --exit-code 8db761455dfd73ef01eac7d48eb39c69ca253cf8 "$DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
-test "$(git -C "$WORKSPACE/hybridclr" rev-parse HEAD)" = 4b2774b066cfc6afd77a8c8aded6bda7ea574f55
-test "$(git -C "$WORKSPACE/hybridclr_unity" rev-parse HEAD)" = 948c0e3b4f8891481301770115e8ba4945eea6de
-test "$(git -C "$WORKSPACE/il2cpp_plus" rev-parse HEAD)" = 1cf87f8209790f9fb2ebec97487dc1990ccd56c5
+git -C "$DEMO" merge-base --is-ancestor 0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5 "$EXPECTED_DEMO_COMMIT"
+git -C "$DEMO" diff --exit-code 0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5 "$EXPECTED_DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
 test "$(dotnet --version)" = 8.0.318
 test -x "$UNITY" && test -x "$PYTHON" && test ! -e "$BATCH"
-
 "$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Completion/run_completion.py" \
-  --workspace "$WORKSPACE" --output "$BATCH" --unity "$UNITY" --demo-commit "$DEMO_COMMIT"
+  --workspace "$WORKSPACE" --output "$BATCH" --unity "$UNITY" --demo-commit "$EXPECTED_DEMO_COMMIT"
 ```
 
-Invoke once. Independent cells continue under the runner when permitted; dependent cells remain Blocked after a failed prerequisite. Do not manually retry a phase.
+## Evidence, verdict and stopping point
 
-## Required complete scope
+Retain **all 90 cells, six fresh builds, 59 fresh Players, the 18-method Editor preflight and both 754/755 exact zero-skip/inconclusive rosters**. Only binding/integration order and its explicit dependency changed; no coverage was removed. Retain all prior measurement, producer, rejection, resource, startup and current-source checks and the complete ledger/result/index/archive/seal/final-authority records. The four contaminated unisolated warm certificates remain Failed and are not repaired by attribution. Missing evidence remains Unavailable/NotRun; blocked prerequisites remain Blocked.
 
-Retain the existing completion matrix unchanged:
+In addition retain the binding and integration cell receipts, original policy reports/bytes/three guards, restored compile and zero-root/closure receipt, each `typeInfoBridge`, raw JSON hashes before/after verification, codec authority and full resource aggregate output. On failure include exact Python traceback, failed cell/dependencies, raw/result/command paths and hashes, tool argv/exit/PID and all independently passing subproofs without promoting the cell verdict.
 
-- 90 cells;
-- six fresh builds;
-- 59 fresh Player processes;
-- early 18-method Editor preflight;
-- full 754 and 755 Editor rosters with exact names and zero skips/inconclusive;
-- production-entry integration and restored-baseline compilation;
-- all resource, measurement, startup, producer/rejection and custody evidence;
-- complete ledger/result/index/archive/seal and final authority.
+Only mechanically obvious local environment/harness corrections with independent verification and no source/design/pin/guard/scope/acceptance change are permitted. Do not repair non-trivial issues, edit the schema bridge, manually retry phases, reduce scope or rebind evidence. Return them to Primary.
 
-Additionally retain and authenticate:
+All 90 cells and the seal must Pass for `EvidenceReadyForPrimaryReview`; otherwise return `ReturnRequired`. Even when green, `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, PureInterpreter expansion disabled and full independent stage review pending. No performance SLA, deferred R02 CPU or H1 RSS acceptance is granted.
 
-- `compiler-policy-domains.json`;
-- its bound `compiler-policy-domains/source-policy.json` and `linked-policy.json` files;
-- baseline snapshot hash, project path, Unity version and target;
-- live source-policy and linked-policy diagnostics;
-- all three filtered-reference guard messages;
-- P01–P05 eligibility/generation reports and restored-baseline zero-root/zero-closure receipt;
-- codec owner/project/source bindings through every affected resource/startup call;
-- linked DLL canonical lookup plus physical identity/hash/MVID evidence;
-- complete image-record, methods and PDB evidence for measurement consumers.
-
-Missing or unemitted evidence is `Unavailable`/`NotRun`, never inferred success.
-
-## Permitted Local fixes
-
-Only trivial, mechanically obvious environment or harness corrections that do not change architecture, acceptance semantics, guards, matrix scope, source pins or production behavior. Any non-trivial issue returns to Primary Implementation without source repair.
-
-## Verdict and return
-
-All 90 cells **and** the seal must Pass for `EvidenceReadyForPrimaryReview`. Any Failed or Blocked cell returns `ReturnRequired` with exact evidence and a concise `RETURN_TO_WEB.md` issue report.
-
-Even if batch P is green:
-
-- `R03Accepted=false`;
-- `H2Passed=false`;
-- `qualificationApproved=false`;
-- `ReadyForHumanReviewGate=false`;
-- PureInterpreter expansion remains disabled.
-
-A green batch P returns to Primary for reconciliation and the required independent full-stage design → plan → implementation → evidence review. Do not start a later milestone or declare Human Review Gate approval.
-
-After the single invocation, update Local-owned `LOCAL_VALIDATION.md` and `RETURN_TO_WEB.md` factually, create an immutable batch-P checkpoint, commit/push only Local-owned evidence/docs, verify remote HEAD, and stop.
+After the one invocation, update only Local-owned `LOCAL_VALIDATION.md`, `RETURN_TO_WEB.md` and an immutable `History/M07R/R03/local-validation-20261006-batch-q-...` checkpoint with factual provenance. Commit/push, verify all final heads and cleanliness, then return to Primary and stop. Do not enter the next milestone or declare human approval.
