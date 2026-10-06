@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 
 // Runs the real package implementation against immutable O receipts and DLLs.
 // The source-policy fixture is reconstructed from captured original role stamps;
-// this is not a new Unity compiler run or permission to accept historical O.
+// source edges come from the authenticated Local O preflight diagnostic fixture.
+// DLL AssemblyRefs are recorded separately; neither input is a fresh Unity run.
 internal static class PolicyDomainProbe
 {
     private static readonly string[] Providers = {
@@ -29,8 +30,8 @@ internal static class PolicyDomainProbe
 
     private static int Main(string[] args)
     {
-        if (args.Length != 4) throw new ArgumentException("captured-policy player-receipt compiler-snapshot unused-result");
-        Check(!File.Exists(args[3]), "Unused result required");
+        if (args.Length != 5) throw new ArgumentException("captured-policy player-receipt compiler-snapshot source-graph unused-result");
+        Check(!File.Exists(args[4]), "Unused result required");
         var captured = JsonConvert.DeserializeObject<ShadowPolicyConfiguration>(File.ReadAllText(args[0]));
         var player = JsonConvert.DeserializeObject<AssemblySnapshotReceipt>(File.ReadAllText(args[1]));
         var compiler = JsonConvert.DeserializeObject<AssemblySnapshotReceipt>(File.ReadAllText(Path.Combine(args[2], "assembly-snapshot.json")));
@@ -45,7 +46,14 @@ internal static class PolicyDomainProbe
         Check(AssemblySnapshot.ComputeHash(player) == player.snapshotHash && AssemblySnapshot.ComputeHash(compiler) == compiler.snapshotHash,
             "Immutable O source receipt hashes");
         var names = new HashSet<string>(Consumers.Concat(Providers), StringComparer.OrdinalIgnoreCase);
-        var refs = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
+        var fixture = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(args[3]));
+        Check((string)fixture["kind"] == "R03LOReportedSourceGraphFixture" &&
+            (string)fixture["basis"] == "AuthenticatedLocalOReportedPreflightEdges" &&
+            (bool)fixture["freshSourceGraphCapture"] == false &&
+            (bool)fixture["compilerAssemblyRefsUsedAsSourceGraph"] == false, "Explicit reported source-graph basis");
+        var refs = fixture["references"].ToObject<Dictionary<string, string[]>>();
+        Check(new HashSet<string>(refs.Keys, StringComparer.OrdinalIgnoreCase).SetEquals(names), "Exact source-graph node inventory");
+        var physicalRefs = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
         var dllBindings = new List<object>();
         foreach (string name in Consumers.Concat(Providers))
         {
@@ -55,12 +63,15 @@ internal static class PolicyDomainProbe
             using (var module = ModuleDefMD.Load(path))
             {
                 Check(module.Assembly.Name.String == name, "Physical compiler assembly identity");
-                refs[name] = module.GetAssemblyRefs().Select(row => row.Name.String).Where(names.Contains).ToArray();
-                dllBindings.Add(new { name, file.sha256, identity = module.Assembly.FullName, references = refs[name] });
+                physicalRefs[name] = module.GetAssemblyRefs().Select(row => row.Name.String).Where(names.Contains).ToArray();
+                dllBindings.Add(new { name, file.sha256, identity = module.Assembly.FullName, references = physicalRefs[name] });
             }
         }
-        Check(refs[Consumers[0]].SequenceEqual(new[] { Providers[0] }), "Original Burst compiler edge");
-        Check(Providers.Skip(1).All(name => refs[Consumers[1]].Contains(name, StringComparer.OrdinalIgnoreCase)), "Original two URP compiler edges");
+        Check(physicalRefs[Consumers[0]].SequenceEqual(new[] { Providers[0] }), "Original Burst compiler edge");
+        Check(refs[Consumers[0]].SequenceEqual(new[] { Providers[0] }) &&
+            Providers.All(name => refs[name].Length == 0), "Exact reported Burst/provider source edges");
+        Check(new HashSet<string>(refs[Consumers[1]], StringComparer.OrdinalIgnoreCase).SetEquals(Providers.Skip(1)) &&
+            refs[Consumers[1]].Length == 2, "Exact reported URP source edges");
         var cases = new List<object>(); int failures = 0;
         Action<string, Action> test = (id, action) => {
             string error = null; try { action(); } catch (Exception e) { error = e.ToString(); failures++; }
@@ -98,11 +109,13 @@ internal static class PolicyDomainProbe
         test("LO001-08-filtered-bootstrap-promotion", () => { var changed = Clone(source); Find(changed, Providers[0]).isBootstrap = true; Reject(() => Derive(changed, player), "FilteredCandidatePromotion"); });
         test("LO001-09-original-role-mutation", () => { var changed = Clone(source); Find(changed, Providers[0]).isPrecompiled = !Find(changed, Providers[0]).isPrecompiled; Reject(() => Derive(changed, player), "FilteredRoleChanged"); });
         test("LO001-10-source-still-valid-after-analysis", () => { Derive(source, player); validate(source).ThrowIfInvalid(); });
-        using (var file = new FileStream(args[3], FileMode.CreateNew))
+        using (var file = new FileStream(args[4], FileMode.CreateNew))
         using (var writer = new StreamWriter(file, new System.Text.UTF8Encoding(false)))
             writer.Write(JsonConvert.SerializeObject(new {
                 kind = "R03LOPolicyDomainRegression", result = failures == 0 ? "Passed" : "Failed", failures, cases, dllBindings,
-                basis = "CapturedOriginalRolesAndCompilerAssemblyRefs", graphScope = "TwoConsumersThreeProviders",
+                basis = "CapturedOriginalRolesAndReportedSourcePreflightEdges", graphScope = "TwoConsumersThreeProviders",
+                sourceGraph = fixture, sourceGraphSha256 = ShadowHash.File(args[3]),
+                compilerAssemblyRefsUsedAsSourceGraph = false, freshSourceGraphCapture = false,
                 unityEditorRun = false, playerRun = false, freshCompilerSnapshot = false, runtimeAcceptance = false,
                 historicalOResult = "Failed", historicalEvidenceModified = false, R03Accepted = false, H2Passed = false
             }, Formatting.Indented));
