@@ -1,0 +1,72 @@
+{
+  "dependencies": [
+    "prepare-candidate-release",
+    "host-admission"
+  ],
+  "evidence": {
+    "H2Passed": false,
+    "R03Accepted": false,
+    "cases": 754,
+    "excludedCoverage": [
+      {
+        "coverage": "NoCoverage",
+        "fullname": "HybridCLR.Editor.AssemblyShadow.Tests.ResourceAbiTests.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles",
+        "missingAssets": [
+          "Assets/AssemblyShadowDemo/ResourcesSource/VersionedPrefab.prefab",
+          "Assets/AssemblyShadowDemo/Scenes/Business.unity",
+          "Assets/AssemblyShadowDemo/ResourcesSource/VersionedData.asset"
+        ],
+        "reason": "The frozen M01 demo assets are not present in this project."
+      }
+    ],
+    "fullLegacyRegressionAcceptance": false,
+    "kind": "R03ScopedEditorVerification",
+    "passed": 754,
+    "r03RequiredIds": [
+      "L01-private-reference-append",
+      "L02-private-string-append",
+      "L03-private-primitive-append-needs-native",
+      "L04-public-primitive-append",
+      "L05-value-type-growth",
+      "L06-generic-definition-growth",
+      "L07-instance-field-removal",
+      "L08-instance-field-type-change",
+      "L09-instance-field-order-change",
+      "L10-static-field-is-not-instance-layout",
+      "L11-existing-field-visibility-is-not-storage",
+      "L12-interface-addition",
+      "L13-explicit-offset-change",
+      "L14-packing-needs-native",
+      "L15-class-size-needs-native",
+      "L16-layout-kind-change",
+      "L17-type-constraint-change",
+      "L18-method-only-change-needs-allocation-proof",
+      "L19-new-type-no-baseline-proof",
+      "L20-analysis-does-not-load-assembly-or-cctor",
+      "M01-token-and-virtual-order-not-identity",
+      "M02-no-inline-not-identity-or-contract",
+      "M03-visibility-separate-compatibility",
+      "M04-dispatch-separate-compatibility",
+      "M05-static-calling-shape",
+      "M06-byref-signature",
+      "M07-required-modifier-identity",
+      "M08-method-constraint-separate-compatibility",
+      "M09-parameter-name-not-contract",
+      "M10-parameter-attribute-separate-compatibility",
+      "M11-generic-composite-local-numbering",
+      "M12-return-type-is-signature",
+      "M13-missing-method-rejected",
+      "M14-declaring-type-constraints",
+      "M15-optimization-hints-independent"
+    ],
+    "result": "Passed",
+    "schemaVersion": 1,
+    "scopeSha256": "5884f5db149f44815eac864639f6c883e9198fea2122624a451164c635ef1b2c",
+    "skipped": 0,
+    "testFilter": "!^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.ResourceAbiTests\\.FrozenDemoResourcesUseActualScriptGuidsAndOnlyAffectedBundles$",
+    "xml": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/focused-editor/results.xml",
+    "xmlSha256": "94a678d9a2b6488ebacb8c3dcec10fa9fd5635a40002e0187e876fdb3c16e2a1"
+  },
+  "id": "editor-tests",
+  "result": "Passed"
+}

@@ -1,0 +1,231 @@
+{
+  "kind": "ReadOnlyPFixedImageEvidenceAudit",
+  "startUtc": "2026-10-06T17:09:44.051767+00:00",
+  "originReceiptSha256": "84d3ee41ff6dd809633b9f81a421bdfb97761a2e52497927773ec747fe889874",
+  "archivePath": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/H1/local-validation-20260919-authority925e/raw-evidence.tar.gz",
+  "archiveSha256": "2ecb3d04cdd093c469717d4c2959ec416ec8d0745c51c2a4ba37c82f9bc253e8",
+  "frozenImageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+  "frozenSizeBytes": 4608,
+  "historicalInputAuthentication": "Passed",
+  "freshCscExecutionClaimed": false,
+  "historicalPlayerExecutionReused": false,
+  "hostGuardCases": 10,
+  "hostReceiptSha256": "b684fb7528b07751af2d26e3898e8913af2249eac77d35862a305cc356915f58",
+  "hostEncoderSemanticObservation": "23342d2a88e2eff9e8179522609398e9899e404e58518d1291a73335cea48177",
+  "hostPinnedMonoSemanticsClaimed": false,
+  "resourceMaterialization": {
+    "profile": "R03FrozenFixedImageV1",
+    "siteIds": [
+      "h1-count-ordinary-witness-image",
+      "m00-normal-hot-update-image"
+    ],
+    "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+    "sizeBytes": 4608,
+    "identity": {
+      "name": "AssemblyShadowBaseline.HotUpdate",
+      "fullName": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "version": "0.0.0.0",
+      "culture": "",
+      "publicKeyToken": "",
+      "mvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+      "referenceIdentities": [
+        {
+          "referenceIndex": 0,
+          "name": "netstandard",
+          "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+          "version": "2.1.0.0",
+          "culture": "",
+          "publicKeyToken": "cc7b13ffcd2ddd51"
+        }
+      ]
+    },
+    "configurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+    "classification": "FrozenHistoricalInputMaterialization",
+    "runtimeAcceptance": false,
+    "materialization": {
+      "kind": "R02OrdinaryInputAuthentication",
+      "result": "Passed",
+      "classification": "FrozenHistoricalInputMaterialization",
+      "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete",
+      "receipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+        "sha256": "eaad73878d0aaed3fae8569986e1b071ccdc9f77d6e7268a757f525546e3670b",
+        "sizeBytes": 2641
+      },
+      "staged": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+        "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+        "sizeBytes": 4608
+      },
+      "runtimeAcceptance": false,
+      "freshCscExecutionClaimed": false
+    }
+  },
+  "materializationBeforeResourceUnity": true,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "runtimeAcceptance": false,
+  "firstResourceCommand": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0113/command.json",
+  "materializationReceiptMtime": 1791301345.2028296,
+  "firstResourceStartUtcEpoch": 1791301368.435425,
+  "timeBindingScope": "receipt filesystem timestamp retained plus source-bound command ordering; not a new result clock",
+  "actualReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-contract.json",
+  "actualReceiptSha256": "9ac360c4a66838e223001229fae9d7cb56df029b984d46f8c3aed56d5934de30",
+  "originalActualResult": "Passed",
+  "status": "Passed",
+  "actualGuardCases": 10,
+  "actualPinnedSemanticHash": "7af4cf568c2c6bccebd58e780846f22826472629ca972e5abfcd02a8ba636369",
+  "actualProvider": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "actualMvid": "e7f5b1ac-eca4-4034-8da4-69e25ca9fe3b",
+  "actualProjectImageValidator": true,
+  "configuredInputsUnchanged": true,
+  "verificationSha256": "8af28c1f0440cdf7c3f7e02e1983ffa958a59878d33c4df02012c1ce54e9e885",
+  "actualCommand": {
+    "clean": true,
+    "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0116/unity-completion.json",
+    "completionSha256": "d0d87e45b5edb32fddc14a577db1782fdd7fc58c254b316d974835544dd3214e",
+    "originalExitCode": 0,
+    "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0116/command.json",
+    "outerSha256": "4cda4a689e321c6584f969a2d43b344601e9917fca5e659818cc804e82e7c2ca",
+    "supportSources": {
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+    }
+  },
+  "cases": [
+    {
+      "id": "F01-exact-image",
+      "operation": "ValidateImageEvidence",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F01-exact-image.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F01-exact-image.dll.bytes",
+      "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "expectedCode": "Success",
+      "observedCode": "Success",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F02-missing-image",
+      "operation": "ValidateImageEvidence",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F02-missing-image.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "FixedImageEvidenceMissing",
+      "observedCode": "FixedImageEvidenceMissing",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F03-mutated-image",
+      "operation": "ValidateImageEvidence",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F03-mutated-image.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F03-mutated-image.dll.bytes",
+      "imageSha256": "b92b578e996594dc0062e2e99b85b9e645bb8811351f6f3856bc7ad23222471e",
+      "expectedCode": "FixedImageHashMismatch",
+      "observedCode": "FixedImageHashMismatch",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F04-provider-identity",
+      "operation": "ValidateImageEvidence",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F04-provider-identity.json",
+      "configurationSha256": "09f4cbc4073f53550010c408292972c95cdcef8d0f9b10242b197d352bbed8f2",
+      "imagePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F04-provider-identity.dll.bytes",
+      "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+      "expectedCode": "FixedImageIdentityMismatch",
+      "observedCode": "FixedImageIdentityMismatch",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F05-development",
+      "operation": "ProviderSemanticHash",
+      "mode": "Development",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F05-development.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "Success",
+      "observedCode": "Success",
+      "selectedSemanticHash": "7af4cf568c2c6bccebd58e780846f22826472629ca972e5abfcd02a8ba636369",
+      "result": "Passed"
+    },
+    {
+      "id": "F06-release",
+      "operation": "ProviderSemanticHash",
+      "mode": "Release",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F06-release.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "Success",
+      "observedCode": "Success",
+      "selectedSemanticHash": "e34d8fe97ff909d878e91a081565fd7afaee5d1672da091eb58aadbb0289d022",
+      "result": "Passed"
+    },
+    {
+      "id": "F07-missing-mode",
+      "operation": "ProviderSemanticHash",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F07-missing-mode.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "ProviderSemanticCompilerModeMissing",
+      "observedCode": "ProviderSemanticCompilerModeMissing",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F08-unknown-mode",
+      "operation": "ProviderSemanticHash",
+      "mode": "Unknown",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F08-unknown-mode.json",
+      "configurationSha256": "059a9d2f9be7e08e6e910746df941651ce4fe557dc772b5a54aa9e665047948b",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "ProviderSemanticCompilerModeMissing",
+      "observedCode": "ProviderSemanticCompilerModeMissing",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F09-omitted-variant",
+      "operation": "Parse",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F09-omitted-variant.json",
+      "configurationSha256": "b59b5cb561e0f04bdb69dd514c14a43826269bd77821b8af5ba68b73668fb501",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "InvalidProviderSemanticVariants",
+      "observedCode": "InvalidProviderSemanticVariants",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    },
+    {
+      "id": "F10-image-path",
+      "operation": "Parse",
+      "mode": "",
+      "configurationPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/fixed-image-controls/F10-image-path.json",
+      "configurationSha256": "2dff112b9b9773b9f11b6f0c1c688c9d8be00cc960c5f59893759c978fdde497",
+      "imagePath": "",
+      "imageSha256": "",
+      "expectedCode": "InvalidFixedImage",
+      "observedCode": "InvalidFixedImage",
+      "selectedSemanticHash": "",
+      "result": "Passed"
+    }
+  ],
+  "currentProviderCompilerEvidence": "Separate original resource-compiler cell; preflight selects declared modes but does not prove newly compiled provider",
+  "endUtc": "2026-10-06T17:09:44.238447+00:00"
+}

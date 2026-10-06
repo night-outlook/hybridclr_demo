@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-06T17:11:13.392144+00:00",
+  "notes": [
+    {
+      "adapter": "audit-producer-runtime.py",
+      "previousAdapterSha256": "a99ce9328cf0e495dada2283e245ad4be867ddacfbfe46648cf9d66c482a8179",
+      "correctedAdapterSha256": "9e5f33e156d442591dabc36e9f86fb89672c3fac92d11818b77e70cb15549ffc",
+      "result": "PRODUCER_RUNTIME_AUDIT.json",
+      "scope": "Local-only audit metadata/stage labeling; no product source, sealed result, raw/index/archive/seal byte or expectation changes"
+    },
+    {
+      "adapter": "audit-rejection-observation.py",
+      "previousAdapterSha256": "4a447c97fbed2cdc37aeda45276ebf8872c0ea33d5d4bd4705dd18681863a379",
+      "correctedAdapterSha256": "a4dd275f0ab8ab409681de58592e120b502d0eaa1485a9a3cd6b7b8a336a1885",
+      "result": "REJECTION_RUNTIME_AUDIT.json",
+      "scope": "Local-only audit metadata/stage labeling; no product source, sealed result, raw/index/archive/seal byte or expectation changes"
+    },
+    {
+      "adapter": "audit-li-contracts.py",
+      "previousAdapterSha256": "f2ab68930f3136f5ebcf68e43c374ceb4a691bcc32f9c841d066cc76d5b3b7b3",
+      "correctedAdapterSha256": "f2ab68930f3136f5ebcf68e43c374ceb4a691bcc32f9c841d066cc76d5b3b7b3",
+      "result": "LI_CONTRACT_AUDIT.json",
+      "scope": "Local-only audit metadata/stage labeling; no product source, sealed result, raw/index/archive/seal byte or expectation changes"
+    },
+    {
+      "adapter": "audit-ln-repairs.py",
+      "previousAdapterSha256": "0c8d82fbcd219c2a0a1dff14f416d64f0426af4648e2d45a691f2ce12a0702b0",
+      "correctedAdapterSha256": "1234d52feff1cb2c3638efd33c8a8340f9fa8d19ddb91407522b58435f89a09e",
+      "result": "LN_REPAIR_AUDIT.json",
+      "scope": "Local-only audit metadata/stage labeling; no product source, sealed result, raw/index/archive/seal byte or expectation changes"
+    }
+  ],
+  "changes": [
+    "Inherited producer/rejection adapters contained a stale N sourceCommit literal. Current P output now binds to the executed source from the sealed result; original attempt receipts/outputs are retained.",
+    "Clarified the codec-context absence-of-error stage label so it cannot promote a later Failed M07 schema check; corrected constructor label to P."
+  ],
+  "historicalEvidence": "O and earlier artifacts/labels are preserved unchanged; current P authority is established independently by exact repository pins, original source-input manifests, native bindings and sealed receipts.",
+  "noProductRerun": true,
+  "historicalLabelDiscrepancies": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/PRODUCER_RUNTIME_AUDIT.json",
+      "sha256": "446024aa051eca5e633a1b4ec60872fa83e1f764b77e975ca1b7747746511766",
+      "auditSourceCommitLabel": "15f6c2c9a5e070e631fdcda9a2bb022f4b61a733",
+      "actualExecutedOCommit": "25a9dbce977247d83ef1b1c0411a663d8dda4456",
+      "disposition": "Preserved unchanged; read original sealed result/source-input/native-binding authority instead of this stale standalone audit label. Current P audit metadata is corrected independently."
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/REJECTION_RUNTIME_AUDIT.json",
+      "sha256": "3f5218c4e302ee9e3c6ae814d35ed03f9347dd60ea7b18d583dcda17cb17d83b",
+      "auditSourceCommitLabel": "15f6c2c9a5e070e631fdcda9a2bb022f4b61a733",
+      "actualExecutedOCommit": "25a9dbce977247d83ef1b1c0411a663d8dda4456",
+      "disposition": "Preserved unchanged; read original sealed result/source-input/native-binding authority instead of this stale standalone audit label. Current P audit metadata is corrected independently."
+    }
+  ]
+}

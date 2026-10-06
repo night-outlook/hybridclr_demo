@@ -1,0 +1,652 @@
+{
+  "H1RssRiskAcceptedHere": false,
+  "H2Passed": false,
+  "R02DeferredCpuRiskAcceptedHere": false,
+  "R03Accepted": false,
+  "kind": "R03UnfencedCurrentProfileObservations",
+  "memoryEvidence": [
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-NoPatch/0/R00-ON-NoPatch.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-NoPatch/1/R00-ON-NoPatch.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-NoPatch/2/R00-ON-NoPatch.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-P01/0/R00-ON-P01.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-P01/1/R00-ON-P01.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-P01/2/R00-ON-P01.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-P03/0/R00-ON-P03.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-P03/1/R00-ON-P03.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-ON-P03/2/R00-ON-P03.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-OFF-NoPatch/0/R00-OFF-NoPatch.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-OFF-NoPatch/1/R00-OFF-NoPatch.json",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/measurements/R00-OFF-NoPatch/2/R00-OFF-NoPatch.json"
+  ],
+  "noiseOrOverheadThresholdClaimed": false,
+  "processes": 12,
+  "profile": "OriginalDevelopmentIL2CPPBuildNoR03ProbeOrLease",
+  "releasePerformanceAcceptance": false,
+  "result": "Passed",
+  "statistics": [
+    {
+      "max": 34900.0,
+      "median": 33900.0,
+      "min": 24400.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "allocation",
+      "phase": "first",
+      "samples": [
+        33900.0,
+        24400.0,
+        34900.0
+      ]
+    },
+    {
+      "max": 961.0,
+      "median": 752.0,
+      "min": 744.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "allocation",
+      "phase": "warmup",
+      "samples": [
+        744.0,
+        752.0,
+        961.0
+      ]
+    },
+    {
+      "max": 2940.0,
+      "median": 2660.0,
+      "min": 2580.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "allocation",
+      "phase": "repeat10",
+      "samples": [
+        2580.0,
+        2660.0,
+        2940.0
+      ]
+    },
+    {
+      "max": 604.94,
+      "median": 577.44,
+      "min": 566.45,
+      "mode": "R00-ON-NoPatch",
+      "operation": "allocation",
+      "phase": "repeat10000",
+      "samples": [
+        577.44,
+        566.45,
+        604.94
+      ]
+    },
+    {
+      "max": 27800.0,
+      "median": 27500.0,
+      "min": 20800.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "first",
+      "samples": [
+        27500.0,
+        20800.0,
+        27800.0
+      ]
+    },
+    {
+      "max": 18174.0,
+      "median": 17649.0,
+      "min": 17448.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "warmup",
+      "samples": [
+        17448.0,
+        18174.0,
+        17649.0
+      ]
+    },
+    {
+      "max": 18470.0,
+      "median": 17460.0,
+      "min": 17440.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10",
+      "samples": [
+        17440.0,
+        18470.0,
+        17460.0
+      ]
+    },
+    {
+      "max": 18314.06,
+      "median": 17643.85,
+      "min": 17625.57,
+      "mode": "R00-ON-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10000",
+      "samples": [
+        17643.85,
+        18314.06,
+        17625.57
+      ]
+    },
+    {
+      "max": 48500.0,
+      "median": 38100.0,
+      "min": 31500.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "first",
+      "samples": [
+        48500.0,
+        31500.0,
+        38100.0
+      ]
+    },
+    {
+      "max": 25141.0,
+      "median": 24385.0,
+      "min": 24350.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "warmup",
+      "samples": [
+        24350.0,
+        25141.0,
+        24385.0
+      ]
+    },
+    {
+      "max": 25150.0,
+      "median": 24380.0,
+      "min": 24360.0,
+      "mode": "R00-ON-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "repeat10",
+      "samples": [
+        24360.0,
+        25150.0,
+        24380.0
+      ]
+    },
+    {
+      "max": 25636.83,
+      "median": 24732.17,
+      "min": 24646.03,
+      "mode": "R00-ON-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "repeat10000",
+      "samples": [
+        24646.03,
+        25636.83,
+        24732.17
+      ]
+    },
+    {
+      "max": 550300.0,
+      "median": 508900.0,
+      "min": 408700.0,
+      "mode": "R00-ON-P01",
+      "operation": "allocation",
+      "phase": "first",
+      "samples": [
+        408700.0,
+        550300.0,
+        508900.0
+      ]
+    },
+    {
+      "max": 8777.0,
+      "median": 8759.0,
+      "min": 8545.0,
+      "mode": "R00-ON-P01",
+      "operation": "allocation",
+      "phase": "warmup",
+      "samples": [
+        8759.0,
+        8777.0,
+        8545.0
+      ]
+    },
+    {
+      "max": 11810.0,
+      "median": 11700.0,
+      "min": 11540.0,
+      "mode": "R00-ON-P01",
+      "operation": "allocation",
+      "phase": "repeat10",
+      "samples": [
+        11700.0,
+        11810.0,
+        11540.0
+      ]
+    },
+    {
+      "max": 8472.11,
+      "median": 8428.8,
+      "min": 8249.64,
+      "mode": "R00-ON-P01",
+      "operation": "allocation",
+      "phase": "repeat10000",
+      "samples": [
+        8428.8,
+        8472.11,
+        8249.64
+      ]
+    },
+    {
+      "max": 43300.0,
+      "median": 43100.0,
+      "min": 43000.0,
+      "mode": "R00-ON-P01",
+      "operation": "reflectionInvoke",
+      "phase": "first",
+      "samples": [
+        43300.0,
+        43100.0,
+        43000.0
+      ]
+    },
+    {
+      "max": 30035.0,
+      "median": 29306.0,
+      "min": 28703.0,
+      "mode": "R00-ON-P01",
+      "operation": "reflectionInvoke",
+      "phase": "warmup",
+      "samples": [
+        29306.0,
+        30035.0,
+        28703.0
+      ]
+    },
+    {
+      "max": 29830.0,
+      "median": 29250.0,
+      "min": 28420.0,
+      "mode": "R00-ON-P01",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10",
+      "samples": [
+        29250.0,
+        29830.0,
+        28420.0
+      ]
+    },
+    {
+      "max": 29683.71,
+      "median": 29473.21,
+      "min": 28540.21,
+      "mode": "R00-ON-P01",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10000",
+      "samples": [
+        29473.21,
+        29683.71,
+        28540.21
+      ]
+    },
+    {
+      "max": 81600.0,
+      "median": 80100.0,
+      "min": 71200.0,
+      "mode": "R00-ON-P01",
+      "operation": "closedGeneric",
+      "phase": "first",
+      "samples": [
+        80100.0,
+        71200.0,
+        81600.0
+      ]
+    },
+    {
+      "max": 39208.0,
+      "median": 38965.0,
+      "min": 37777.0,
+      "mode": "R00-ON-P01",
+      "operation": "closedGeneric",
+      "phase": "warmup",
+      "samples": [
+        38965.0,
+        39208.0,
+        37777.0
+      ]
+    },
+    {
+      "max": 39850.0,
+      "median": 39010.0,
+      "min": 37570.0,
+      "mode": "R00-ON-P01",
+      "operation": "closedGeneric",
+      "phase": "repeat10",
+      "samples": [
+        39850.0,
+        39010.0,
+        37570.0
+      ]
+    },
+    {
+      "max": 39139.75,
+      "median": 38920.68,
+      "min": 38000.2,
+      "mode": "R00-ON-P01",
+      "operation": "closedGeneric",
+      "phase": "repeat10000",
+      "samples": [
+        39139.75,
+        38920.68,
+        38000.2
+      ]
+    },
+    {
+      "max": 362900.0,
+      "median": 359400.0,
+      "min": 355000.0,
+      "mode": "R00-ON-P03",
+      "operation": "allocation",
+      "phase": "first",
+      "samples": [
+        362900.0,
+        355000.0,
+        359400.0
+      ]
+    },
+    {
+      "max": 9326.0,
+      "median": 9231.0,
+      "min": 9089.0,
+      "mode": "R00-ON-P03",
+      "operation": "allocation",
+      "phase": "warmup",
+      "samples": [
+        9089.0,
+        9231.0,
+        9326.0
+      ]
+    },
+    {
+      "max": 12690.0,
+      "median": 12260.0,
+      "min": 12220.0,
+      "mode": "R00-ON-P03",
+      "operation": "allocation",
+      "phase": "repeat10",
+      "samples": [
+        12220.0,
+        12260.0,
+        12690.0
+      ]
+    },
+    {
+      "max": 8948.49,
+      "median": 8905.89,
+      "min": 8730.05,
+      "mode": "R00-ON-P03",
+      "operation": "allocation",
+      "phase": "repeat10000",
+      "samples": [
+        8730.05,
+        8905.89,
+        8948.49
+      ]
+    },
+    {
+      "max": 45900.0,
+      "median": 43100.0,
+      "min": 42300.0,
+      "mode": "R00-ON-P03",
+      "operation": "reflectionInvoke",
+      "phase": "first",
+      "samples": [
+        43100.0,
+        42300.0,
+        45900.0
+      ]
+    },
+    {
+      "max": 31588.0,
+      "median": 30633.0,
+      "min": 30111.0,
+      "mode": "R00-ON-P03",
+      "operation": "reflectionInvoke",
+      "phase": "warmup",
+      "samples": [
+        30633.0,
+        30111.0,
+        31588.0
+      ]
+    },
+    {
+      "max": 31630.0,
+      "median": 30310.0,
+      "min": 30150.0,
+      "mode": "R00-ON-P03",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10",
+      "samples": [
+        30150.0,
+        30310.0,
+        31630.0
+      ]
+    },
+    {
+      "max": 31722.94,
+      "median": 30386.73,
+      "min": 30329.01,
+      "mode": "R00-ON-P03",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10000",
+      "samples": [
+        30386.73,
+        30329.01,
+        31722.94
+      ]
+    },
+    {
+      "max": 100200.0,
+      "median": 96400.0,
+      "min": 78600.0,
+      "mode": "R00-ON-P03",
+      "operation": "closedGeneric",
+      "phase": "first",
+      "samples": [
+        78600.0,
+        100200.0,
+        96400.0
+      ]
+    },
+    {
+      "max": 41959.0,
+      "median": 40043.0,
+      "min": 40003.0,
+      "mode": "R00-ON-P03",
+      "operation": "closedGeneric",
+      "phase": "warmup",
+      "samples": [
+        40003.0,
+        40043.0,
+        41959.0
+      ]
+    },
+    {
+      "max": 41680.0,
+      "median": 39970.0,
+      "min": 39940.0,
+      "mode": "R00-ON-P03",
+      "operation": "closedGeneric",
+      "phase": "repeat10",
+      "samples": [
+        39970.0,
+        39940.0,
+        41680.0
+      ]
+    },
+    {
+      "max": 42057.77,
+      "median": 40131.97,
+      "min": 40059.6,
+      "mode": "R00-ON-P03",
+      "operation": "closedGeneric",
+      "phase": "repeat10000",
+      "samples": [
+        40131.97,
+        40059.6,
+        42057.77
+      ]
+    },
+    {
+      "max": 12900.0,
+      "median": 5300.0,
+      "min": 4700.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "allocation",
+      "phase": "first",
+      "samples": [
+        12900.0,
+        5300.0,
+        4700.0
+      ]
+    },
+    {
+      "max": 77.0,
+      "median": 74.0,
+      "min": 68.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "allocation",
+      "phase": "warmup",
+      "samples": [
+        74.0,
+        77.0,
+        68.0
+      ]
+    },
+    {
+      "max": 310.0,
+      "median": 300.0,
+      "min": 250.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "allocation",
+      "phase": "repeat10",
+      "samples": [
+        300.0,
+        310.0,
+        250.0
+      ]
+    },
+    {
+      "max": 85.14,
+      "median": 74.98,
+      "min": 74.14,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "allocation",
+      "phase": "repeat10000",
+      "samples": [
+        74.98,
+        74.14,
+        85.14
+      ]
+    },
+    {
+      "max": 11500.0,
+      "median": 3600.0,
+      "min": 3500.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "first",
+      "samples": [
+        11500.0,
+        3600.0,
+        3500.0
+      ]
+    },
+    {
+      "max": 3055.0,
+      "median": 1600.0,
+      "min": 1595.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "warmup",
+      "samples": [
+        1595.0,
+        1600.0,
+        3055.0
+      ]
+    },
+    {
+      "max": 1600.0,
+      "median": 1550.0,
+      "min": 1550.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10",
+      "samples": [
+        1550.0,
+        1550.0,
+        1600.0
+      ]
+    },
+    {
+      "max": 1825.51,
+      "median": 1610.85,
+      "min": 1579.77,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "reflectionInvoke",
+      "phase": "repeat10000",
+      "samples": [
+        1610.85,
+        1579.77,
+        1825.51
+      ]
+    },
+    {
+      "max": 13700.0,
+      "median": 6200.0,
+      "min": 6100.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "first",
+      "samples": [
+        13700.0,
+        6100.0,
+        6200.0
+      ]
+    },
+    {
+      "max": 2041.0,
+      "median": 2036.0,
+      "min": 2032.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "warmup",
+      "samples": [
+        2036.0,
+        2041.0,
+        2032.0
+      ]
+    },
+    {
+      "max": 2040.0,
+      "median": 2030.0,
+      "min": 2000.0,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "repeat10",
+      "samples": [
+        2030.0,
+        2000.0,
+        2040.0
+      ]
+    },
+    {
+      "max": 2339.06,
+      "median": 2116.67,
+      "min": 2091.66,
+      "mode": "R00-OFF-NoPatch",
+      "operation": "closedGeneric",
+      "phase": "repeat10000",
+      "samples": [
+        2116.67,
+        2091.66,
+        2339.06
+      ]
+    }
+  ]
+}

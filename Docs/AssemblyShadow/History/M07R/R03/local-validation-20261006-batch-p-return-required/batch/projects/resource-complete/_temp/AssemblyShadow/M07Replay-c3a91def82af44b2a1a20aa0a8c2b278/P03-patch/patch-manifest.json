@@ -1,0 +1,651 @@
+{
+    "schemaVersion": 1,
+    "semanticHashSchema": 1,
+    "patchId": "P03",
+    "baselineBuildId": "M07-Baseline-R03Completion-d8884646659f",
+    "baselineManifestSha256": "c04fe7e844a76cb7bf724582bb3a8331dfbb018a9c1eff32bf878cf55c2f3969",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "sourcePins": {
+        "schemaVersion": 1,
+        "unityVersion": "2022.3.62f2",
+        "target": "StandaloneOSX",
+        "architecture": "arm64",
+        "hybridclr": {
+            "url": "https://github.com/night-outlook/hybridclr.git",
+            "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr"
+        },
+        "hybridclrUnity": {
+            "url": "https://github.com/night-outlook/hybridclr_unity.git",
+            "revision": "948c0e3b4f8891481301770115e8ba4945eea6de",
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr_unity"
+        },
+        "il2cppPlus": {
+            "url": "https://github.com/night-outlook/il2cpp_plus.git",
+            "revision": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5",
+            "localPath": "../../../../assembly_shadow_h1r/il2cpp_plus"
+        },
+        "demo": {
+            "url": "https://github.com/night-outlook/hybridclr_demo.git",
+            "revision": "d8884646659f7b6ae0f6ceda746fd271c96c8d61",
+            "localPath": "../../../../assembly_shadow_h1r/hybridclr_demo"
+        }
+    },
+    "runtimeAbiHash": "b0b61f2ac7db37f98e674efcde83ac9678151e700f25aeb859c66677ee0f0b12",
+    "compileSnapshotHash": "3b5d2d4061640d035aaef9350c31424b7596361853a21ca0ba54515992808375",
+    "reflectionBindingConfigurationSha256": "26837a5f710abae42a69a85ea2edf66939eff9afa6f6e8ce5b8e2cafc44f564a",
+    "reflectionBindingConfigurationHash": "006d40f90c9efb4656f2a2e5a150c204aa2c9348b6f9d2b5a55eb6a9eea7ee51",
+    "reflectionBindings": [
+        {
+            "id": "h1-count-ordinary-witness-image",
+            "consumer": "AssemblyShadowDemo.Bootstrap",
+            "typeName": "AssemblyShadowDemo.H1CountEarlyStartup",
+            "methodSignature": "AssemblyShadowDemo.H1CountEarlyStartup/WitnessReceipt AssemblyShadowDemo.H1CountEarlyStartup::LoadOrdinaryWitness()",
+            "originalMethodHash": "fde200bf65fac1e9287bf38eebd22cef98ea72b0f348c1a93350d2ffc945cb5e",
+            "operationIndex": 25,
+            "allowedTypes": [],
+            "providers": [
+                "assemblyshadowbaseline.hotupdate"
+            ],
+            "reason": "The H1 early-startup witness may load only the exact M00 ordinary image before count operations. Clone and SHA-256-check bytes before Assembly.Load; preserve the pinned provider identity and M00-HOTUPDATE-OK semantics. This site does not authorize candidate images or general byte loads.",
+            "kind": "FixedAssemblyBytes",
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+        },
+        {
+            "id": "m00-normal-hot-update-image",
+            "consumer": "AssemblyShadowBaseline.Aot",
+            "typeName": "AssemblyShadowBaseline.BaselineBootstrap",
+            "methodSignature": "System.Void AssemblyShadowBaseline.BaselineBootstrap::Start()",
+            "originalMethodHash": "5f6005b4130594f1c951bd8aba50f784b27976027977e8108ff6662170b87c22",
+            "operationIndex": 28,
+            "allowedTypes": [],
+            "providers": [
+                "assemblyshadowbaseline.hotupdate"
+            ],
+            "reason": "The M00 ordinary hot-update loader may load only this exact image. Clone and SHA-256-check bytes before Assembly.Load. Capture immutable image bytes and prove current NormalHotUpdate semantics; this is not a Shadow candidate or a general byte-load waiver.",
+            "kind": "FixedAssemblyBytes",
+            "imageSha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+            "providerAssemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "imagePath": "Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes"
+        },
+        {
+            "id": "urp-debug-ui-prefab-types",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.UI.DebugUIHandlerCanvas",
+            "methodSignature": "System.Void UnityEngine.Rendering.UI.DebugUIHandlerCanvas::Rebuild()",
+            "originalMethodHash": "be097bb7538ab7754fee35637f7b3f1f83452213f7869063a1a927701655ec13",
+            "operationIndex": 17,
+            "allowedTypes": [
+                "UnityEngine.Rendering.DebugUI+BitField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+BoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Button, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ColorField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Container, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+EnumField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+FloatField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Foldout, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+HBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+HistoryBoolField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+HistoryEnumField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+IntField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+MessageBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ObjectField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ObjectListField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ObjectPopupField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ProgressBarValue, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Table+Row, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Table, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+UIntField, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+VBox, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Value, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+ValueTuple, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Vector2Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Vector3Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.DebugUI+Vector4Field, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            ],
+            "providers": [
+                "unity.renderpipelines.core.runtime"
+            ],
+            "reason": "Player-only finite contract for the 26 exact widget AQNs serialized in com.unity.render-pipelines.core 14.0.12 DebugUICanvas.prefab. Undeclared or mutated targets are rejected before type resolution. Editor compilation is unchanged.",
+            "kind": "TypeGetType",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        },
+        {
+            "id": "urp-serializable-enum-player",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.SerializableEnum",
+            "methodSignature": "System.Enum UnityEngine.Rendering.SerializableEnum::get_value()",
+            "originalMethodHash": "4e44328803498342f7a5ab60f066275a4d085f5ea25cbdf350a619f88f3449ff",
+            "operationIndex": 6,
+            "allowedTypes": [],
+            "providers": [],
+            "reason": "Explicit deny-all Player contract: resolving SerializableEnum.value from a nonempty serialized type name is unsupported in this baseline. The guard rejects before resolution; this is not an unreachability claim. Editor DebugStateFlags behavior is unchanged.",
+            "kind": "TypeGetType",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        },
+        {
+            "id": "urp-volume-assembly-domain",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.CoreUtils",
+            "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils::GetAllAssemblyTypes()",
+            "originalMethodHash": "67cc363bbe7d6b87a08f5d10fa9113f7a92cf3e31a5163fe7073ba9ec7656a16",
+            "operationIndex": 9,
+            "allowedTypes": [
+                "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            ],
+            "providers": [
+                "unity.renderpipelines.universal.runtime"
+            ],
+            "reason": "Pinned Player discovery contract: construct only the physical assemblies containing these approved noncandidate volume types. Do not enumerate AppDomain assemblies before filtering. Editor discovery is unchanged.",
+            "kind": "FiniteAssemblyList",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        },
+        {
+            "id": "urp-volume-type-domain",
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "typeName": "UnityEngine.Rendering.CoreUtils/<>c",
+            "methodSignature": "System.Collections.Generic.IEnumerable`1<System.Type> UnityEngine.Rendering.CoreUtils/<>c::<GetAllAssemblyTypes>b__87_0(System.Reflection.Assembly)",
+            "originalMethodHash": "d5ac6c4b0327643de25a14fc498ffd65c1bca8e7c52644a938f7e93eb95a9d8a",
+            "operationIndex": 6,
+            "allowedTypes": [
+                "UnityEngine.Rendering.Universal.Bloom, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChannelMixer, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ChromaticAberration, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorAdjustments, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorCurves, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ColorLookup, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.DepthOfField, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.FilmGrain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LensDistortion, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.LiftGammaGain, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.MotionBlur, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.PaniniProjection, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.SplitToning, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Tonemapping, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.Vignette, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "UnityEngine.Rendering.Universal.WhiteBalance, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+            ],
+            "providers": [
+                "unity.renderpipelines.universal.runtime"
+            ],
+            "reason": "Pinned Player discovery contract: accept only the approved physical assembly receiver and return the exact 17 noncandidate volume types without calling Assembly.GetTypes. Unknown receivers fail before enumeration.",
+            "kind": "FiniteAssemblyTypes",
+            "imageSha256": "",
+            "providerAssemblyIdentity": "",
+            "imagePath": ""
+        }
+    ],
+    "bootstrapAbiHash": "b1a8822acac65abc67cbf0d2fa2f27e7ccff0f413cf6956ccb7e4103a254f82e",
+    "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+    "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+    "resourceChangeLevel": "CodeOnly",
+    "dllOnly": true,
+    "resourceBundlesRequired": [],
+    "resourceChangeReasons": [],
+    "changedRoots": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "loadOrder": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "closure": [
+        {
+            "name": "AssemblyA.Contracts",
+            "dll": "DLLs/AssemblyA.Contracts.dll",
+            "sha256": "eeb018582644a718a50622092dc5c35d5ab1cec9114f0be537f85f57925243d9",
+            "semanticHash": "392e9c40e0172198d24d8d1876c3bbda7cb234994ee75dd8eca0810df1bae786",
+            "mvid": "a540fe4a-7dea-4924-98a8-00f030c5209b",
+            "baselineMvid": "fb6ff9f8-912d-4583-b16d-068ccd8c56ac",
+            "dllSize": 25088,
+            "pdb": "DLLs/AssemblyA.Contracts.pdb",
+            "pdbSha256": "c20065857cb2c12868095e2e0164750489eda1f72507d509208c73c0e5c51517",
+            "references": [
+                "netstandard"
+            ]
+        },
+        {
+            "name": "AssemblyA.Implementation.Extensibility",
+            "dll": "DLLs/AssemblyA.Implementation.Extensibility.dll",
+            "sha256": "5c3391677733d16f07704810621b80cd43b8b0a3f2532f6820808296c133af4a",
+            "semanticHash": "4c70e44cbab8a9e165a971ee929e01064cd360595e55475cac4040c4f224c20c",
+            "mvid": "71ab3f98-b2cd-4c17-ae30-e95c3672d171",
+            "baselineMvid": "0b0dafa5-01d7-4737-8284-862974d15acd",
+            "dllSize": 25600,
+            "pdb": "DLLs/AssemblyA.Implementation.Extensibility.pdb",
+            "pdbSha256": "fc359cea19c95c0c7fa6b7f5ac46b1180ba65778e0d0741904eb86ed1d7f913e",
+            "references": [
+                "assemblya.contracts",
+                "netstandard",
+                "unityengine.coremodule"
+            ]
+        },
+        {
+            "name": "AssemblyA.Implementation.Internal",
+            "dll": "DLLs/AssemblyA.Implementation.Internal.dll",
+            "sha256": "11f7256544221e1b7350d0e66d7938b32416ad1a5b9837c3294c7db308a97188",
+            "semanticHash": "ae6f08e89a790256f69a740e3a0f4dc279444d66819b55802c47ec4cccc91bee",
+            "mvid": "7b4737a4-cd04-4799-8dfb-8d8aa42d9ab8",
+            "baselineMvid": "e7b9425f-b797-4162-a6fb-ef5c5ec86461",
+            "dllSize": 42496,
+            "pdb": "DLLs/AssemblyA.Implementation.Internal.pdb",
+            "pdbSha256": "85813ff0d9bdb684e8037358bcd4269f4caade6597d6af9f40a32523d23ac818",
+            "references": [
+                "assemblya.contracts",
+                "assemblya.implementation.extensibility",
+                "netstandard",
+                "unityengine.coremodule",
+                "unityengine.jsonserializemodule"
+            ]
+        },
+        {
+            "name": "AssemblyShadowDemo.ContractsConsumer",
+            "dll": "DLLs/AssemblyShadowDemo.ContractsConsumer.dll",
+            "sha256": "cc8b509452ab10f60d7ac4f99075d6a1637239e37fb953142b65a98f9747d231",
+            "semanticHash": "62d1002a6ad13319ed0bcbfb3ee15e14abf08199eb4ab1caf9c81bf57a295326",
+            "mvid": "60085c14-6af1-426e-b963-0fcff226a106",
+            "baselineMvid": "82149cc0-dcba-4fb2-b7ae-c57bf46c4fc0",
+            "dllSize": 24064,
+            "pdb": "DLLs/AssemblyShadowDemo.ContractsConsumer.pdb",
+            "pdbSha256": "c759aa77d427d2aac629d3c8cdb6b67d927fd45a8c44364ab03825c0d6863cc7",
+            "references": [
+                "assemblya.contracts",
+                "netstandard"
+            ]
+        },
+        {
+            "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+            "dll": "DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+            "sha256": "5d46ef754e791309e3e2973a2e68306c3cf7a13dd7ba039ce9f9a5b7ab61bc4c",
+            "semanticHash": "6b94be2397c4b4ee39b591aa2e100ac7024f3b2cca28348969ad3783e9ed28f8",
+            "mvid": "770e9fed-f9ba-4811-9c69-911a651b3856",
+            "baselineMvid": "bd976532-fc35-477a-a009-6acbc99e74f6",
+            "dllSize": 25600,
+            "pdb": "DLLs/AssemblyShadowDemo.ExtensibilityConsumer.pdb",
+            "pdbSha256": "d6ca1e3f867206753c8f057e5074938f749eaf76d63adc07fada50b58b63d96b",
+            "references": [
+                "assemblya.contracts",
+                "assemblya.implementation.extensibility",
+                "netstandard",
+                "unityengine.coremodule"
+            ]
+        }
+    ],
+    "dependencyGraph": [
+        {
+            "consumer": "AssemblyA.Implementation.Extensibility",
+            "provider": "AssemblyA.Contracts",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyA.Implementation.Internal",
+            "provider": "AssemblyA.Contracts",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyA.Implementation.Internal",
+            "provider": "AssemblyA.Implementation.Extensibility",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowBaseline.Aot",
+            "provider": "AssemblyShadowBaseline.HotUpdate",
+            "kind": "ReflectionString",
+            "evidence": "The M00 regression invokes AssemblyShadowBaseline.HotUpdate.Entry after its exact configured byte-image guard verifies SHA-256 before Assembly.Load. This edge declares the entry dependency; it does not authorize an unguarded byte load."
+        },
+        {
+            "consumer": "AssemblyShadowBaseline.Aot",
+            "provider": "HybridCLR.Runtime",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowDemo.Bootstrap",
+            "provider": "AssemblyShadowBaseline.Aot",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowDemo.Bootstrap",
+            "provider": "AssemblyShadowBaseline.HotUpdate",
+            "kind": "ReflectionString",
+            "evidence": "The M02 guard probe resolves the literal ordinary-hot-update entry only after the verified fixed-image guard loads the declared image, and checks physical assembly identity before invoking Run."
+        },
+        {
+            "consumer": "AssemblyShadowDemo.Bootstrap",
+            "provider": "HybridCLR.Runtime",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowDemo.Bootstrap",
+            "provider": "Unity.RenderPipelines.Core.Runtime",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowDemo.ContractsConsumer",
+            "provider": "AssemblyA.Contracts",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowDemo.ExtensibilityConsumer",
+            "provider": "AssemblyA.Contracts",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "AssemblyShadowDemo.ExtensibilityConsumer",
+            "provider": "AssemblyA.Implementation.Extensibility",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipeline.Universal.ShaderLibrary",
+            "provider": "Unity.RenderPipelines.Core.Runtime",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "provider": "Unity.RenderPipelines.Universal.Runtime",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipelines.Core.Runtime",
+            "provider": "UnityEngine.UI",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipelines.Universal.Runtime",
+            "provider": "Unity.Burst",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipelines.Universal.Runtime",
+            "provider": "Unity.Mathematics",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipelines.Universal.Runtime",
+            "provider": "Unity.RenderPipeline.Universal.ShaderLibrary",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        },
+        {
+            "consumer": "Unity.RenderPipelines.Universal.Runtime",
+            "provider": "Unity.RenderPipelines.Core.Runtime",
+            "kind": "AssemblyRef",
+            "evidence": "Compiled target assembly reference"
+        }
+    ],
+    "deferredFacadeReferences": [
+        "mscorlib -> microsoft.win32.registry,version=4.1.0.0,culture=,token=sD9ffxHVCjo=,attributes=None,hash=",
+        "mscorlib -> system.security.accesscontrol,version=4.1.0.0,culture=,token=sD9ffxHVCjo=,attributes=None,hash=",
+        "mscorlib -> system.security.principal.windows,version=4.1.0.0,culture=,token=sD9ffxHVCjo=,attributes=None,hash=",
+        "system -> system.codedom,version=4.0.0.0,culture=,token=zHsT/80t3VE=,attributes=None,hash="
+    ],
+    "unsigned": true,
+    "signatureAlgorithm": "None",
+    "nativeBudgetCapabilityVersion": 2,
+    "metadataEncodingProfile": {
+        "profileVersion": 1,
+        "metadataIndexBits": 22,
+        "metadataKindBits": 2,
+        "extraShiftBits": [
+            6,
+            4,
+            2,
+            0
+        ],
+        "kindStrides": [
+            64,
+            16,
+            4,
+            1
+        ],
+        "indexMasks": [
+            268435455,
+            67108863,
+            16777215,
+            4194303
+        ],
+        "initialCursors": [
+            64,
+            0,
+            0,
+            0
+        ],
+        "kindLimits": [
+            256,
+            256,
+            256,
+            255
+        ],
+        "sizeMultiplier": 4,
+        "nativeSourceRevision": "",
+        "nativeHelperSha256": "",
+        "nativeBudgetCapabilityVersion": 1
+    },
+    "metadataCapacityReport": {
+        "schemaVersion": 1,
+        "profileVersion": 1,
+        "metadataIndexBits": 22,
+        "metadataKindBits": 2,
+        "nativeSourceRevision": "",
+        "nativeHelperSha256": "",
+        "nativeBudgetCapabilityVersion": 1,
+        "inputs": [],
+        "allocations": [],
+        "cursorsBefore": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "cursorsAfter": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "remainingSlotsBefore": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "remainingSlotsAfter": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "requiredImages": 0,
+        "acceptedImages": 0,
+        "availableImages": 0,
+        "availableImagesAtFailure": 0,
+        "fits": false,
+        "firstFailingIndex": -1,
+        "firstFailingAssembly": "",
+        "firstFailingBytes": 0,
+        "firstFailingSize": 0,
+        "failureReason": "None",
+        "firstFailingReason": "None",
+        "ordinaryAssemblyCount": 0,
+        "aotCandidateAssemblyCount": 0,
+        "actualRemainingRuntime": "NotKnown",
+        "runtimeCursorSource": "BaselineOrdinaryPlan",
+        "ordinaryConsumptionIsEstimate": true,
+        "runtimeReserveMetadataBudget": false
+    },
+    "metadataEncodingProfile2": {
+        "schemaVersion": 2,
+        "profileVersion": 2,
+        "nativeBudgetCapabilityVersion": 2,
+        "codecId": "SparseSignedInt32",
+        "codecBits": 32,
+        "invalidIndexSentinel": -1,
+        "aotMaxIndex": 2147483647,
+        "minImageId": 1,
+        "maximumImageCount": 8192,
+        "pageValues": 4096,
+        "usablePageCapacity": 524287,
+        "chargedPageCeiling": 393215,
+        "minimumFreePageMargin": 131072,
+        "maximumDllBytes": 33554432,
+        "aggregateDllEnvelopeBytes": 536870912,
+        "nativeSourceRevision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "nativeCodecHeaderSha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e"
+    },
+    "metadataCapacityReport2": {
+        "schemaVersion": 2,
+        "profileVersion": 2,
+        "budgetCapabilityVersion": 2,
+        "nativeBudgetCapabilityVersion": 2,
+        "nativeSourceRevision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "nativeCodecHeaderSha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e",
+        "codecId": "SparseSignedInt32",
+        "codecBits": 32,
+        "invalidIndexSentinel": -1,
+        "aotMaxIndex": 2147483647,
+        "minImageId": 1,
+        "maxImages": 8192,
+        "pageValues": 4096,
+        "usablePages": 524287,
+        "maxChargedPages": 393215,
+        "maxDllBytes": 33554432,
+        "aggregateDllEnvelopeBytes": 536870912,
+        "maximumImageCount": 8192,
+        "maximumDllBytes": 33554432,
+        "usablePageCapacity": 524287,
+        "chargedPageCeiling": 393215,
+        "minimumFreePageMargin": 131072,
+        "currentReservedImageCount": 1,
+        "reservedImageCountBefore": 1,
+        "reservedImageCountAfter": 6,
+        "requestedImageCount": 5,
+        "requiredImages": 5,
+        "aggregateDllBytes": 142848,
+        "aggregateInputDllBytes": 142848,
+        "aggregateInputDllBytesInformational": true,
+        "reservedPages": 0,
+        "mappedPages": 0,
+        "lifetimeReservedImageCount": 6,
+        "remainingImageCount": 8186,
+        "inputs": [
+            {
+                "name": "AssemblyA.Contracts",
+                "dllSize": 25088,
+                "sha256": "eeb018582644a718a50622092dc5c35d5ab1cec9114f0be537f85f57925243d9"
+            },
+            {
+                "name": "AssemblyA.Implementation.Extensibility",
+                "dllSize": 25600,
+                "sha256": "5c3391677733d16f07704810621b80cd43b8b0a3f2532f6820808296c133af4a"
+            },
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "dllSize": 42496,
+                "sha256": "11f7256544221e1b7350d0e66d7938b32416ad1a5b9837c3294c7db308a97188"
+            },
+            {
+                "name": "AssemblyShadowDemo.ContractsConsumer",
+                "dllSize": 24064,
+                "sha256": "cc8b509452ab10f60d7ac4f99075d6a1637239e37fb953142b65a98f9747d231"
+            },
+            {
+                "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "dllSize": 25600,
+                "sha256": "5d46ef754e791309e3e2973a2e68306c3cf7a13dd7ba039ce9f9a5b7ab61bc4c"
+            }
+        ],
+        "allocations": [
+            {
+                "name": "AssemblyA.Contracts",
+                "dllSize": 25088,
+                "sha256": "eeb018582644a718a50622092dc5c35d5ab1cec9114f0be537f85f57925243d9",
+                "imageId": 2
+            },
+            {
+                "name": "AssemblyA.Implementation.Extensibility",
+                "dllSize": 25600,
+                "sha256": "5c3391677733d16f07704810621b80cd43b8b0a3f2532f6820808296c133af4a",
+                "imageId": 3
+            },
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "dllSize": 42496,
+                "sha256": "11f7256544221e1b7350d0e66d7938b32416ad1a5b9837c3294c7db308a97188",
+                "imageId": 4
+            },
+            {
+                "name": "AssemblyShadowDemo.ContractsConsumer",
+                "dllSize": 24064,
+                "sha256": "cc8b509452ab10f60d7ac4f99075d6a1637239e37fb953142b65a98f9747d231",
+                "imageId": 5
+            },
+            {
+                "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                "dllSize": 25600,
+                "sha256": "5d46ef754e791309e3e2973a2e68306c3cf7a13dd7ba039ce9f9a5b7ab61bc4c",
+                "imageId": 6
+            }
+        ],
+        "acceptedImages": 5,
+        "fitsImageCount": true,
+        "aggregateDllEnvelopeFits": true,
+        "aggregateDllEnvelopeExceeded": false,
+        "inputCountWasBounded": false,
+        "admissionAccepted": true,
+        "fitsPreliminary": true,
+        "finalPageFitKnown": false,
+        "runtimeFinalizationRequired": true,
+        "admissionKind": "Preliminary",
+        "firstFailingIndex": -1,
+        "firstFailingAssembly": "",
+        "failureReason": "None"
+    }
+}

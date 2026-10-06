@@ -1,0 +1,26 @@
+{
+  "kind": "ReadOnlyPCompletionSemanticAudit",
+  "startUtc": "2026-10-06T17:08:48.068109+00:00",
+  "endUtc": "2026-10-06T17:11:35.842041+00:00",
+  "originalBatchResult": "ReturnRequired",
+  "originalCellCounts": {
+    "Passed": 71,
+    "Failed": 18,
+    "Blocked": 1
+  },
+  "actualDirectPlayerCommands": 59,
+  "focusedVerificationReceipts": 23,
+  "replayedResourceMeasurementEarlyPlayers": 19,
+  "readOnlyAuditStates": {
+    "Passed": 26,
+    "NotRun": 18
+  },
+  "allPlannedPlayerEvidenceCovered": false,
+  "limits": "Existing source-bound sealed data only; no Editor/Player launch, source change, restored terminal state, qualification approval, performance SLA or historical state promotion. Failed/Blocked prerequisites remain original states.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}
+Audit failures []
+Original runtime failures reproduced offline: 17

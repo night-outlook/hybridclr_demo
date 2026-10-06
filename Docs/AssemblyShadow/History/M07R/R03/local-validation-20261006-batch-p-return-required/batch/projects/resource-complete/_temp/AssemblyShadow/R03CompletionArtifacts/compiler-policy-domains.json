@@ -1,0 +1,46 @@
+{
+    "schemaVersion": 1,
+    "kind": "R03LiveSourcePolicyDomains",
+    "result": "Passed",
+    "projectPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "baselineSnapshotHash": "f6d96c05dc201a19f23ae41efa08cc81e89b46e3b2abf86dcd29c60f24621c6b",
+    "sourcePolicyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/source-policy.json",
+    "sourcePolicySha256": "0d6cccf91b2a3d6de46aee3bc4cccafef16b0ddb3a0077437fd4f0ef587cb017",
+    "linkedPolicyPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/linked-policy.json",
+    "linkedPolicySha256": "24820fc32489afa9cdf7013f8b2d8791c7f87f0f624d2451b06b4d19362b03e2",
+    "guardProviders": [
+        "Unity.Burst.Unsafe",
+        "Unity.RenderPipelines.Universal.2D.Internal",
+        "Unity.RenderPipelines.Universal.Config.Runtime"
+    ],
+    "sourceDiagnostics": [],
+    "linkedPolicyDiagnostics": [
+        {
+            "code": "InvalidRuntimeReference",
+            "message": "Unity.Burst references a non-Player assembly Unity.Burst.Unsafe."
+        },
+        {
+            "code": "RuntimeReferencesFilteredAssembly",
+            "message": "Unity.Burst references an assembly removed from the captured Player build: Unity.Burst.Unsafe."
+        },
+        {
+            "code": "RuntimeReferencesFilteredAssembly",
+            "message": "Unity.RenderPipelines.Universal.Runtime references an assembly removed from the captured Player build: Unity.RenderPipelines.Universal.2D.Internal."
+        },
+        {
+            "code": "RuntimeReferencesFilteredAssembly",
+            "message": "Unity.RenderPipelines.Universal.Runtime references an assembly removed from the captured Player build: Unity.RenderPipelines.Universal.Config.Runtime."
+        }
+    ],
+    "sourceInventoryValidationPassed": true,
+    "linkedPolicyRejectedForSource": true,
+    "sourcePolicyUnchanged": true,
+    "freshUnityInventory": true,
+    "runtimeAcceptance": false,
+    "qualificationApproved": false,
+    "expansionAuthorized": false,
+    "R03Accepted": false,
+    "H2Passed": false
+}

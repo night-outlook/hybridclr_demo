@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Passed" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.8596395">
+  <test-suite type="TestSuite" id="1817" name="fixture-constructor-editor" fullname="fixture-constructor-editor" runstate="Runnable" testcasecount="755" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.859640" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="2547" name="HybridCLR.AssemblyShadow.Editor.Tests.dll" fullname="/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/fixture-constructor-editor/Library/ScriptAssemblies/HybridCLR.AssemblyShadow.Editor.Tests.dll" runstate="Runnable" testcasecount="684" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.810784" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="93398" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <test-suite type="TestSuite" id="2548" name="HybridCLR" fullname="HybridCLR" runstate="Runnable" testcasecount="684" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.775079" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2549" name="Editor" fullname="HybridCLR.Editor" runstate="Runnable" testcasecount="684" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.741566" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2550" name="AssemblyShadow" fullname="HybridCLR.Editor.AssemblyShadow" runstate="Runnable" testcasecount="684" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.706542" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2551" name="Tests" fullname="HybridCLR.Editor.AssemblyShadow.Tests" runstate="Runnable" testcasecount="684" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.671211" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="2183" name="ManagedAcquisitionPolicyTests" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.553865" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="2186" name="AcquisitionDelegatePointersCannotAvoidOperationEvidence" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.AcquisitionDelegatePointersCannotAvoidOperationEvidence" methodname="AcquisitionDelegatePointersCannotAvoidOperationEvidence" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1485309315" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.094309" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2185" name="BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety" methodname="BareAssemblyHandlesAreRecordedWithoutClaimingNativeOrTypeSafety" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="2124843199" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.004328" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2197" name="ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence" methodname="ByteGuardTamperingAndConfigurationMismatchDoNotProduceVerifiedEvidence" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1736285815" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.035697" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2184" name="ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse" methodname="ByteLoadsAndBothTypeEnumeratorsCannotBeApprovedByMethodProse" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1180391546" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.010391" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2198" name="CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation" methodname="CompilerSnapshotDefersOnlyDisconnectedRuntimeAcquisitionsUntilStrictPlayerValidation" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="589407353" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.006408" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2200" name="CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages" methodname="CompilerSnapshotDoesNotCrossSharedDependenciesIntoSiblingRuntimePackages" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="159084215" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.004248" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2199" name="CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning" methodname="CompilerSnapshotWithoutAnyPolicyAnchorFallsBackToStrictReflectionScanning" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1309793041" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.002569" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2196" name="FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate" methodname="FiniteAnchorsRequirePhysicalIdentityAndCannotIncludeCandidatesBootstrapOrHotUpdate" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1058688199" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.069316" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2190" name="FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver" methodname="FixedGuardProvenanceResolvesFollowingAssemblyGetTypeWithoutAProseWaiver" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1940976824" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.015009" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2189" name="FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate" methodname="FixedImageCannotPromoteShadowOrRuntimeProvidersToOrdinaryHotUpdate" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="498960841" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.025972" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2188" name="FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode" methodname="FixedImageProviderSemanticsAreBoundToTheCapturedCompilerMode" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="669883336" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.016633" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2187" name="FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics" methodname="FixedImageRequiresBoundBytesAndCurrentOrdinaryHotUpdateSemantics" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="2096651286" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.014848" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2193" name="ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks" methodname="ModuleHandleTokenResolversCannotBypassModuleAcquisitionChecks" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="488673218" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.040202" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2194" name="ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition" methodname="ModuleIdentityAndRawMetadataQueriesDoNotClaimTypeAcquisition" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="185883259" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.013444" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2192" name="ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls" methodname="ModuleTypeAndTokenAcquisitionsRejectDirectAndIndirectCalls" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="182585839" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:40Z" duration="0.093168" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2195" name="RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition" methodname="RealLoaderAssemblyToModuleEnumerationChainFailsAtTypeAcquisition" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="374877863" result="Passed" start-time="2026-10-06 15:37:40Z" end-time="2026-10-06 15:37:41Z" duration="0.051213" asserts="0">
+                  <properties />
+                </test-case>
+                <test-case id="2191" name="RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance" fullname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests.RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance" methodname="RealLoaderCanonicalKeysRetainVerifiedFixedGuardAndReceiverProvenance" classname="HybridCLR.Editor.AssemblyShadow.Tests.ManagedAcquisitionPolicyTests" runstate="Runnable" seed="1565290958" result="Passed" start-time="2026-10-06 15:37:41Z" end-time="2026-10-06 15:37:41Z" duration="0.047539" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="2244" name="PolicyTests" fullname="HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests" classname="HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-10-06 15:37:41Z" end-time="2026-10-06 15:37:41Z" duration="0.037997" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="2263" name="CompiledReferenceModulesNeedNotBeSnapshotDescriptors" fullname="HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests.CompiledReferenceModulesNeedNotBeSnapshotDescriptors" methodname="CompiledReferenceModulesNeedNotBeSnapshotDescriptors" classname="HybridCLR.Editor.AssemblyShadow.Tests.PolicyTests" runstate="Runnable" seed="1657976814" result="Passed" start-time="2026-10-06 15:37:41Z" end-time="2026-10-06 15:37:41Z" duration="0.003321" asserts="0">
+                  <properties />
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

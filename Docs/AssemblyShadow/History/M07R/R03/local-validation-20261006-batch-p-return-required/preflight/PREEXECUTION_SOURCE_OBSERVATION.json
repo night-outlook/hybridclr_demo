@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-06T15:27:42.082145+00:00",
+  "classification": "Unconfirmed static integration-order concern, not a new validation result",
+  "observation": "CompletionBatch.execute schedules production-entry-integration before resource-input-binding; resource_pipeline.integration reads batch.resource_context while its only assignment is in resource_pipeline.graph called by resource-input-binding. No assignment is present in CompletionBatch initialization or earlier resource phases.",
+  "requiredConfirmation": "The single prescribed fresh batch runtime receipt; no Local source edits, phase retries or synthetic product execution. If Unity integration succeeds but consumer fails, retain original Failed cell distinctly from valid fresh Unity subproofs.",
+  "sources": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py",
+      "sha256": "60ca9a163aec7dcda2abf860e99cc485085ace1c0f2e0aa1c6d7c3d0c886db12",
+      "sourceCommit": "d8884646659f7b6ae0f6ceda746fd271c96c8d61"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+      "sha256": "3638bced8023d97e0964ebba8318820396dcb79941e8c8cfaf8e7751f47b80f6",
+      "sourceCommit": "d8884646659f7b6ae0f6ceda746fd271c96c8d61"
+    }
+  ]
+}

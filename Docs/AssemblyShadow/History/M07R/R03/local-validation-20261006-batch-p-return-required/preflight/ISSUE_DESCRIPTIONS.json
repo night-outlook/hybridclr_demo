@@ -1,0 +1,145 @@
+[
+  {
+    "id": "R03-LP-001",
+    "title": "Integration consumer reads resource context before its initialization cell",
+    "affectedCells": [
+      "production-entry-integration"
+    ],
+    "symptom": "The production-entry-integration cell Failed with AttributeError after its actual Unity command exited0 and emitted all five P01\u2013P05 reports, valid live policy-domain evidence and integration.json with zero changed roots/closure.",
+    "reproduction": [
+      "Use the exact four executed source commits and single prescribed batch-P argv in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/runner-exit.json. Do not retry this root.",
+      "The exact Unity integration argv is retained in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0126/command.json. Unity succeeds, emits compiler-policy-domains.json and integration.json, and passes all three linked-policy guards plus restored-baseline zero-root/zero-closure proof.",
+      "CompletionBatch.execute invokes resource_pipeline.integration before resource-input-binding. The Python consumer then evaluates batch.resource_context at resource_pipeline.py:165; that attribute is initialized only by graph(), which the next cell invokes. The original cell therefore records the exact AttributeError while later resource-input-binding passes."
+    ],
+    "relevantExcerpt": "```text\n'CompletionBatch' object has no attribute 'resource_context'\nUnity integration exitCode=0; remainingProcessGroup=false\nintegration.json: returnChangedRoots=[]; returnClosure=[]\n```",
+    "rootCause": "The new live-policy consumer binds its baseline hash through batch.resource_context, but the only assignment to that attribute occurs in resource_pipeline.graph. The execution plan schedules production-entry-integration before that graph cell. Earlier resource phases and CompletionBatch initialization never create the attribute.",
+    "whyDesignAllowedIt": "The consumer gained a new implicit data dependency without updating the orchestrator lifecycle or declaring an authenticated prerequisite. Host/compiler checks cover the policy verifier and Unity helper but not the complete Python cell-order/dataflow contract.",
+    "affectedScope": "One integration ledger verdict and therefore the batch result. Valid fresh Unity subproofs, six builds, both Editor rosters, graph bindings and independent Player results retain separate factual states.",
+    "recommendedDirection": "Make resource context availability an explicit authenticated prerequisite for the integration consumer, or bind the report directly to the already-authenticated current ON build/snapshot receipt. Preserve all source/linked policy, current-project/source pin and baseline-hash checks; do not bypass the missing dependency or relabel P.",
+    "remainingUncertainty": "Primary owns the precise dataflow choice. The Unity implementation completed successfully in P; a repaired Python orchestration path has not been executed against a fresh source-bound batch.",
+    "validationAfterRepair": "Add a full orchestration-order regression that follows actual CompletionBatch initialization/cell execution without pre-populating resource_context. Revalidate the original integration consumer, five eligibility reports, policy byte stability/all three guards and restored-baseline zero roots/closure in a new unused source-bound complete batch; preserve P unchanged.",
+    "sourceFiles": [
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/R03Completion/run_completion.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/R03Completion/resource_pipeline.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/R03Completion/policy_domains.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs"
+      ]
+    ],
+    "evidencePaths": [
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0126/command.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0126/unity-completion.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/resource-logs/integration.log",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/source-policy.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/linked-policy.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-input-binding.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/LO_REPAIR_AUDIT.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/PREEXECUTION_SOURCE_OBSERVATION.json"
+    ]
+  },
+  {
+    "id": "R03-LP-002",
+    "title": "Completion runtime omits the strict current-R02 type-info bridge",
+    "affectedCells": [
+      "resource-T07-01-Prefab-P01",
+      "resource-T07-02-Nested-P02",
+      "resource-T07-03-FullClosure-P03",
+      "resource-T07-04-UnityApis-P01",
+      "resource-T07-05-Scriptable-P03",
+      "resource-T07-06-SceneSingle-P01",
+      "resource-T07-07-SceneAdditive-P03",
+      "resource-T07-08-SerializeReference-P03",
+      "resource-T07-09-Messages-P01",
+      "resource-T07-10-Cache-P03",
+      "resource-T07-11-DelayedCatalog-P03",
+      "resource-T07-12-P04-NonSerialized",
+      "resource-T07-13-P05-Rebuilt",
+      "early-Control-P03",
+      "early-Control-P01",
+      "early-OrdinaryFirst",
+      "early-OrdinaryAfterReserve"
+    ],
+    "symptom": "17 original resource/positive-startup verifications Failed at typeResolutions[0].rawJson with missing=[], unknown=[r02]. Raw native type-info includes the known versioned R02 extension; the OFF resource and negative startup controls have distinct results.",
+    "reproduction": [
+      "Use the exact source tuple and one original batch-P invocation retained in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/runner-exit.json. It has already executed; do not retry P or use an old app.",
+      "Read the raw files and exact fresh Player command receipts listed in FAILED_CONTRACT_REPRODUCTION.json. m07_results.verify_case reaches verify_type_resolutions, which calls m05_results.verify_type_info directly on the original native rawJson.",
+      "The legacy checker accepts exactly18 fields, so the current19th r02 object raises the preserved unknown-member error. The original strict verifier reproduces each failure offline; R02_SCHEMA_DRIFT_DIAGNOSIS separately validates known33-field extension/legacy18-field types without callback substitution or raw/result rewrites."
+    ],
+    "relevantExcerpt": "```text\n.typeResolutions[0].rawJson: missing/unknown members: missing=[], unknown=['r02']\nm07_results.verify_type_resolutions -> m05_results.verify_type_info\nTYPE_INFO_FIELDS: original18 fields; native AppendDiagnostics emits optional r02\nR02/type_resolution_schema.py: current_m07_schema validates exact33-field extension before in-memory legacy projection\n```",
+    "rootCause": "legacy_runtime invokes the unchanged M07 verifier directly for current native ON resource cases and positive startup witnesses. It does not enter the existing current_m07_schema bridge already used by R02/verify_regressions.py. Current native AssemblyShadowTypeResolver appends the known R02 object, and the managed parser supports it, but the original strict legacy Python schema deliberately rejects that extra field.",
+    "whyDesignAllowedIt": "Completion copied legacy verifier entry points without the current-provider schema adapter. Earlier codec-context errors stopped these paths before type-info checks, so prior failures masked the unintegrated extension boundary.",
+    "affectedScope": "All13 ON resource cases and four positive startup cases; resource-contracts is Blocked by these failures. Source/codec binding, Player execution/raw output and earlier checks are not promoted to complete M07 acceptance. Measurements and expected-negative controls retain their original independent verdicts.",
+    "recommendedDirection": "Wire the existing strict current-R02 bridge (or an equivalent explicit versioned consumer) into every affected completion M07/resource and positive-startup path. Validate exact33-field schema/types/UInt64/profile/coverage, then delegate unchanged legacy semantics using an in-memory projection. Retain raw strings/files/hashes, duplicate/unknown/missing-field rejection, profile2 requirements and default legacy behavior; do not merely allow arbitrary extra fields or rewrite evidence.",
+    "remainingUncertainty": "The complete M07 verifier stops at the first type-info boundary. Later resource assertions have not passed in this batch and may reveal further problems after Primary integrates the bridge; the limited schema diagnosis cannot establish full runtime acceptance.",
+    "validationAfterRepair": "Add current-native raw-JSON integration tests covering all affected call paths plus missing/duplicate/unknown/mistyped extension members, UInt64 limits, profile/coverage errors, OFF behavior and raw byte custody. Run a new unused source-bound complete batch covering all13 ON resources/four positive startup witnesses and existing negative controls. Do not reclassify P.",
+    "sourceFiles": [
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/R03Completion/legacy_runtime.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/m07_results.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/m05_results.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/R02/type_resolution_schema.py"
+      ],
+      [
+        "hybridclr_demo",
+        "Tools/AssemblyShadow/R02/verify_regressions.py"
+      ],
+      [
+        "hybridclr_unity",
+        "Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs"
+      ],
+      [
+        "il2cpp_plus",
+        "libil2cpp/vm/AssemblyShadowTypeResolver.cpp"
+      ],
+      [
+        "il2cpp_plus",
+        "libil2cpp/vm/AssemblyShadowR02Diagnostics.h"
+      ]
+    ],
+    "evidencePaths": [
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/FAILED_CONTRACT_REPRODUCTION.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/R02_SCHEMA_DRIFT_DIAGNOSIS.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/native-codec-source-verification.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-contracts.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-01-Prefab-P01.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-02-Nested-P02.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-03-FullClosure-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-04-UnityApis-P01.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-05-Scriptable-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-06-SceneSingle-P01.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-07-SceneAdditive-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-08-SerializeReference-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-09-Messages-P01.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-10-Cache-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-11-DelayedCatalog-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-12-P04-NonSerialized.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-13-P05-Rebuilt.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/Control-P03/m07-T07-03-FullClosure-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/Control-P01/m07-T07-01-Prefab-P01.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/OrdinaryFirst/m07-T07-03-FullClosure-P03.json",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json"
+    ]
+  }
+]

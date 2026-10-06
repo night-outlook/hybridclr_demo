@@ -1,0 +1,249 @@
+{
+  "kind": "ReadOnlyPLayoutIdentityAudit",
+  "startUtc": "2026-10-06T17:08:57.764687+00:00",
+  "host": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/layout-identity/results.json",
+    "sha256": "8b67955651e254a0b3fa8924e32bb85482be12f6ed0ca18ca10f4c77c26a49d0",
+    "cases": 33,
+    "basis": "ReusedAuditedLocalMLayoutInputs",
+    "runtimeAcceptance": false,
+    "nativeProofExecuted": false
+  },
+  "inputReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/layout-identity-inputs.json",
+    "sha256": "1a87816473fc9bcf5d401d3da91bb8a96e22af9c59a779e12bdfec74f9bde001",
+    "size": 118020
+  },
+  "comparisonReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/layout-identity/comparison.json",
+    "sha256": "d87977ad8830b732009757395a59f8a27c64a97dc7872cd9cd45c3f463807fb4",
+    "size": 181161
+  },
+  "historicalReplay": {
+    "basis": "ReusedAuditedLocalMLayoutInputs",
+    "linkedImages": 56,
+    "compilerImages": 214,
+    "rawParentChangedRows": 43,
+    "resolvedRows": 53,
+    "rejectedRows": 0,
+    "mappedDeclarations": 18,
+    "nativeProofExecuted": false,
+    "runtimeAcceptance": false
+  },
+  "freshReports": [
+    {
+      "patchId": "P01",
+      "sidecar": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P01-patch/native-layout-admission-v1.json",
+        "sha256": "4f0c6deb55f8817e5cd119ccd919d8eaff12468323d4db76bdda6f8fe627df45",
+        "size": 191361
+      },
+      "baselineReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/assembly-snapshot.json",
+        "sha256": "13ae35aa94bb83bf08d0956b1cc65fc9441e7b370ad89bea120986d606318d6c",
+        "size": 140464
+      },
+      "targetReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P01-compile/Snapshot/assembly-snapshot.json",
+        "sha256": "9feae2caed0d716b490aca9f763128fa4b6b4ed3133c3445ab6ce85ceee4acc3",
+        "size": 111473
+      },
+      "linkedProof": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/evidence.json",
+        "sha256": "e1be1e3e8f2a7a4a1dfb6e6ae7cad0115ac2363d4c175824101e51fcf35f3066",
+        "size": 590058
+      },
+      "runtimeFacade": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes",
+        "sha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+        "size": 90112
+      },
+      "checks": {
+        "assemblies": 1,
+        "linkedImages": 56,
+        "compilerImages": 214,
+        "mappedDeclarations": 18,
+        "nativeProofExecuted": false,
+        "runtimeMustRevalidate": true,
+        "expansionAuthorized": false
+      },
+      "fullVerifierState": "Passed",
+      "fullVerifierError": null,
+      "rejectedTypes": 0
+    },
+    {
+      "patchId": "P02",
+      "sidecar": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P02-patch/native-layout-admission-v1.json",
+        "sha256": "5f9e01cccd7a2acdcb9c291d50c302ecfcf6b736142563297f24391e3a333b2e",
+        "size": 221344
+      },
+      "baselineReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/assembly-snapshot.json",
+        "sha256": "13ae35aa94bb83bf08d0956b1cc65fc9441e7b370ad89bea120986d606318d6c",
+        "size": 140464
+      },
+      "targetReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P02-compile/Snapshot/assembly-snapshot.json",
+        "sha256": "84a3dbf5b826112a20f0daca576425d8e6a94a19690e1fc033a95c24d59fb8d6",
+        "size": 111473
+      },
+      "linkedProof": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/evidence.json",
+        "sha256": "e1be1e3e8f2a7a4a1dfb6e6ae7cad0115ac2363d4c175824101e51fcf35f3066",
+        "size": 590058
+      },
+      "runtimeFacade": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes",
+        "sha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+        "size": 90112
+      },
+      "checks": {
+        "assemblies": 3,
+        "linkedImages": 56,
+        "compilerImages": 214,
+        "mappedDeclarations": 18,
+        "nativeProofExecuted": false,
+        "runtimeMustRevalidate": true,
+        "expansionAuthorized": false
+      },
+      "fullVerifierState": "Passed",
+      "fullVerifierError": null,
+      "rejectedTypes": 0
+    },
+    {
+      "patchId": "P03",
+      "sidecar": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P03-patch/native-layout-admission-v1.json",
+        "sha256": "bd36385b8502f526edc7f0552f2479d515c93238de597d0df495e6f2b6367581",
+        "size": 254524
+      },
+      "baselineReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/assembly-snapshot.json",
+        "sha256": "13ae35aa94bb83bf08d0956b1cc65fc9441e7b370ad89bea120986d606318d6c",
+        "size": 140464
+      },
+      "targetReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P03-compile/Snapshot/assembly-snapshot.json",
+        "sha256": "cf8e47b0e6bb859a11c77b0bfeb8e43aea86f5a687b4fcb8b3ab41d963395ffc",
+        "size": 111504
+      },
+      "linkedProof": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/evidence.json",
+        "sha256": "e1be1e3e8f2a7a4a1dfb6e6ae7cad0115ac2363d4c175824101e51fcf35f3066",
+        "size": 590058
+      },
+      "runtimeFacade": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes",
+        "sha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+        "size": 90112
+      },
+      "checks": {
+        "assemblies": 5,
+        "linkedImages": 56,
+        "compilerImages": 214,
+        "mappedDeclarations": 19,
+        "nativeProofExecuted": false,
+        "runtimeMustRevalidate": true,
+        "expansionAuthorized": false
+      },
+      "fullVerifierState": "Passed",
+      "fullVerifierError": null,
+      "rejectedTypes": 0
+    },
+    {
+      "patchId": "P04",
+      "sidecar": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P04-patch/native-layout-admission-v1.json",
+        "sha256": "4600ec3a324b5ea4c9da4c44096a362456c039c3d7e443ac866701dce80f0949",
+        "size": 191361
+      },
+      "baselineReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/assembly-snapshot.json",
+        "sha256": "13ae35aa94bb83bf08d0956b1cc65fc9441e7b370ad89bea120986d606318d6c",
+        "size": 140464
+      },
+      "targetReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P04-compile/Snapshot/assembly-snapshot.json",
+        "sha256": "53fdbf0c16ec05cac6a538e0cafa394d3fe07b6c372eb7a946f91e312f87c6ce",
+        "size": 111508
+      },
+      "linkedProof": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/evidence.json",
+        "sha256": "e1be1e3e8f2a7a4a1dfb6e6ae7cad0115ac2363d4c175824101e51fcf35f3066",
+        "size": 590058
+      },
+      "runtimeFacade": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes",
+        "sha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+        "size": 90112
+      },
+      "checks": {
+        "assemblies": 1,
+        "linkedImages": 56,
+        "compilerImages": 214,
+        "mappedDeclarations": 18,
+        "nativeProofExecuted": false,
+        "runtimeMustRevalidate": true,
+        "expansionAuthorized": false
+      },
+      "fullVerifierState": "Passed",
+      "fullVerifierError": null,
+      "rejectedTypes": 0
+    },
+    {
+      "patchId": "P05",
+      "sidecar": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P05-patch/native-layout-admission-v1.json",
+        "sha256": "216f575c767735f5dcb4294461c76d61683967e6eb69328d177e7f5824833220",
+        "size": 190285
+      },
+      "baselineReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/assembly-snapshot.json",
+        "sha256": "13ae35aa94bb83bf08d0956b1cc65fc9441e7b370ad89bea120986d606318d6c",
+        "size": 140464
+      },
+      "targetReceipt": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P05-compile/Snapshot/assembly-snapshot.json",
+        "sha256": "d9ffec63f4424ae7f0a68ced8453222cef4de94a6379f5573ffc6b01f884184e",
+        "size": 111473
+      },
+      "linkedProof": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/evidence.json",
+        "sha256": "e1be1e3e8f2a7a4a1dfb6e6ae7cad0115ac2363d4c175824101e51fcf35f3066",
+        "size": 590058
+      },
+      "runtimeFacade": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/ReflectionBindings/LinkedRetargeting/netstandard.dll.bytes",
+        "sha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+        "size": 90112
+      },
+      "checks": {
+        "assemblies": 1,
+        "linkedImages": 56,
+        "compilerImages": 214,
+        "mappedDeclarations": 18,
+        "nativeProofExecuted": false,
+        "runtimeMustRevalidate": true,
+        "expansionAuthorized": false
+      },
+      "fullVerifierState": "Passed",
+      "fullVerifierError": null,
+      "rejectedTypes": 0
+    }
+  ],
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "freshFiveReportAuditState": "Passed",
+  "productionVerificationState": "Passed",
+  "verificationReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/layout-identity-verification.json",
+    "sha256": "b4b0c668e9944c7b7d641a13ce26ad4bf1a3a8296c2c309e58900590528d2e45",
+    "size": 3284
+  },
+  "endUtc": "2026-10-06T17:08:58.586350+00:00",
+  "status": "Passed",
+  "interpretation": "Authentication audit only; original cell states preserved. Historical replay is reused-audited input. Nominal sidecars are not native offset/allocation or runtime authority."
+}

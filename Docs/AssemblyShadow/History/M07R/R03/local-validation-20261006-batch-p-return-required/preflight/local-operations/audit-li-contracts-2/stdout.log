@@ -1,0 +1,33 @@
+{
+  "kind": "ReadOnlyPLIContractAudit",
+  "startUtc": "2026-10-06T17:11:13.576639+00:00",
+  "endUtc": "2026-10-06T17:11:32.142646+00:00",
+  "status": "Passed",
+  "hostConstructorCases": 12,
+  "earlyActualEditorCases": 18,
+  "hostResultSha256": "6b39426ac78985689145c8c665afd87d93b926ebbc1ed2fbaea963751c14a984",
+  "earlyXmlSha256": "aedf492f341c10055ce7ae5cb0f7992acc0260f962ffcca6180bf1bb86d4ec06",
+  "earlyVerificationSha256": "7b7bd6b58f44be84e0e744f8ee4f45c51ddb6c021c83f4c825e6e0ed7fd8d3fa",
+  "actualConsumerCases": 10,
+  "consumerReportPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract.json",
+  "consumerReportSha256": "68044eaa699121fdb1ac3d04349dd50a8d4722de72e0f9edbafc4d2f7d5b6918",
+  "fullEditors": [
+    {
+      "folder": "focused-editor",
+      "count": 754,
+      "allEighteenAffectedMethodsPassed": true,
+      "xmlSha256": "94a678d9a2b6488ebacb8c3dcec10fa9fd5635a40002e0187e876fdb3c16e2a1"
+    },
+    {
+      "folder": "resource-editor",
+      "count": 755,
+      "allEighteenAffectedMethodsPassed": true,
+      "xmlSha256": "8e109475c6f440a555c1ec99c514f4ec5b484df4b9bb3365b68521becaabd45f"
+    }
+  ],
+  "interpretation": "Fresh P constructor/source-pin regression; downstream states recorded separately. Native installation is not a Player build.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

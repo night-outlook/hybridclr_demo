@@ -1,0 +1,455 @@
+{
+  "kind": "R03PPrimaryImplementationIssues",
+  "utc": "2026-10-06T17:12:22.022615+00:00",
+  "issues": [
+    {
+      "id": "R03-LP-001",
+      "title": "Integration consumer reads resource context before its initialization cell",
+      "affectedCells": [
+        "production-entry-integration"
+      ],
+      "symptom": "The production-entry-integration cell Failed with AttributeError after its actual Unity command exited0 and emitted all five P01\u2013P05 reports, valid live policy-domain evidence and integration.json with zero changed roots/closure.",
+      "reproduction": [
+        "Use the exact four executed source commits and single prescribed batch-P argv in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/runner-exit.json. Do not retry this root.",
+        "The exact Unity integration argv is retained in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0126/command.json. Unity succeeds, emits compiler-policy-domains.json and integration.json, and passes all three linked-policy guards plus restored-baseline zero-root/zero-closure proof.",
+        "CompletionBatch.execute invokes resource_pipeline.integration before resource-input-binding. The Python consumer then evaluates batch.resource_context at resource_pipeline.py:165; that attribute is initialized only by graph(), which the next cell invokes. The original cell therefore records the exact AttributeError while later resource-input-binding passes."
+      ],
+      "relevantExcerpt": "```text\n'CompletionBatch' object has no attribute 'resource_context'\nUnity integration exitCode=0; remainingProcessGroup=false\nintegration.json: returnChangedRoots=[]; returnClosure=[]\n```",
+      "rootCause": "The new live-policy consumer binds its baseline hash through batch.resource_context, but the only assignment to that attribute occurs in resource_pipeline.graph. The execution plan schedules production-entry-integration before that graph cell. Earlier resource phases and CompletionBatch initialization never create the attribute.",
+      "whyDesignAllowedIt": "The consumer gained a new implicit data dependency without updating the orchestrator lifecycle or declaring an authenticated prerequisite. Host/compiler checks cover the policy verifier and Unity helper but not the complete Python cell-order/dataflow contract.",
+      "affectedScope": "One integration ledger verdict and therefore the batch result. Valid fresh Unity subproofs, six builds, both Editor rosters, graph bindings and independent Player results retain separate factual states.",
+      "recommendedDirection": "Make resource context availability an explicit authenticated prerequisite for the integration consumer, or bind the report directly to the already-authenticated current ON build/snapshot receipt. Preserve all source/linked policy, current-project/source pin and baseline-hash checks; do not bypass the missing dependency or relabel P.",
+      "remainingUncertainty": "Primary owns the precise dataflow choice. The Unity implementation completed successfully in P; a repaired Python orchestration path has not been executed against a fresh source-bound batch.",
+      "validationAfterRepair": "Add a full orchestration-order regression that follows actual CompletionBatch initialization/cell execution without pre-populating resource_context. Revalidate the original integration consumer, five eligibility reports, policy byte stability/all three guards and restored-baseline zero roots/closure in a new unused source-bound complete batch; preserve P unchanged.",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/production-entry-integration.json",
+          "sha256": "8adb1e9fd090bd8bdf9971ea60c01c910d54dec0a7cddca5a2e55f50c4e45ca8",
+          "size": 193
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0126/command.json",
+          "sha256": "35e89f6930d80556c791d9107be183854f604692bc40e6f39629b59dc2afc8a1",
+          "size": 2367
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/commands/0126/unity-completion.json",
+          "sha256": "a5fb4529be6ae602c22c20d127b5fc4b26c6b9662659b0feee08b1b0c42a5c62",
+          "size": 6399
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/resource-logs/integration.log",
+          "sha256": "3deae7ac19a7fc5862b79bd0e2b9e81a9798e601da6c2602fb253ddb598b82f8",
+          "size": 144003
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration.json",
+          "sha256": "0070475c55d7f819ced2dbfb722c5561e4d3817c6f4b1f3afcf06cd28c601348",
+          "size": 10852
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json",
+          "sha256": "260d016ddaedf0e7aab2481fad165f2a74a1dfb93dcf4a1524ea752b36cfa62c",
+          "size": 2428
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/source-policy.json",
+          "sha256": "0d6cccf91b2a3d6de46aee3bc4cccafef16b0ddb3a0077437fd4f0ef587cb017",
+          "size": 132004
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/linked-policy.json",
+          "sha256": "24820fc32489afa9cdf7013f8b2d8791c7f87f0f624d2451b06b4d19362b03e2",
+          "size": 132004
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-input-binding.json",
+          "sha256": "fb0be080f8ed30f8e5f4491ff238ac36e123921dd9a6380985b9b1a835b657de",
+          "size": 6727
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/LO_REPAIR_AUDIT.json",
+          "sha256": "f4777a576c0b5b86552730284a15f1deac1b6a09eca49f468b0a8d58090c8325",
+          "size": 24426
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/PREEXECUTION_SOURCE_OBSERVATION.json",
+          "sha256": "52e501a0de79daf71cd8bfd58bc13035706f54f4d4ecb5262c60571cc15d85db",
+          "size": 1377
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py",
+          "sha256": "60ca9a163aec7dcda2abf860e99cc485085ace1c0f2e0aa1c6d7c3d0c886db12",
+          "size": 10374
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py",
+          "sha256": "60ca9a163aec7dcda2abf860e99cc485085ace1c0f2e0aa1c6d7c3d0c886db12",
+          "size": 10374
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+          "sha256": "3638bced8023d97e0964ebba8318820396dcb79941e8c8cfaf8e7751f47b80f6",
+          "size": 13633
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+          "sha256": "3638bced8023d97e0964ebba8318820396dcb79941e8c8cfaf8e7751f47b80f6",
+          "size": 13633
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/policy_domains.py",
+          "sha256": "8607cc8e6c69a97106489e53a63b7be32d1991a5ebda3a9f52d339dc699c54a4",
+          "size": 4178
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/policy_domains.py",
+          "sha256": "8607cc8e6c69a97106489e53a63b7be32d1991a5ebda3a9f52d339dc699c54a4",
+          "size": 4178
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+          "sha256": "9af911687bac751fb089057e77cee3a7db0771d882cbc357d326fa47a84cbc86",
+          "size": 21020
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+          "sha256": "9af911687bac751fb089057e77cee3a7db0771d882cbc357d326fa47a84cbc86",
+          "size": 21020
+        }
+      ]
+    },
+    {
+      "id": "R03-LP-002",
+      "title": "Completion runtime omits the strict current-R02 type-info bridge",
+      "affectedCells": [
+        "resource-T07-01-Prefab-P01",
+        "resource-T07-02-Nested-P02",
+        "resource-T07-03-FullClosure-P03",
+        "resource-T07-04-UnityApis-P01",
+        "resource-T07-05-Scriptable-P03",
+        "resource-T07-06-SceneSingle-P01",
+        "resource-T07-07-SceneAdditive-P03",
+        "resource-T07-08-SerializeReference-P03",
+        "resource-T07-09-Messages-P01",
+        "resource-T07-10-Cache-P03",
+        "resource-T07-11-DelayedCatalog-P03",
+        "resource-T07-12-P04-NonSerialized",
+        "resource-T07-13-P05-Rebuilt",
+        "early-Control-P03",
+        "early-Control-P01",
+        "early-OrdinaryFirst",
+        "early-OrdinaryAfterReserve"
+      ],
+      "symptom": "17 original resource/positive-startup verifications Failed at typeResolutions[0].rawJson with missing=[], unknown=[r02]. Raw native type-info includes the known versioned R02 extension; the OFF resource and negative startup controls have distinct results.",
+      "reproduction": [
+        "Use the exact source tuple and one original batch-P invocation retained in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/runner-exit.json. It has already executed; do not retry P or use an old app.",
+        "Read the raw files and exact fresh Player command receipts listed in FAILED_CONTRACT_REPRODUCTION.json. m07_results.verify_case reaches verify_type_resolutions, which calls m05_results.verify_type_info directly on the original native rawJson.",
+        "The legacy checker accepts exactly18 fields, so the current19th r02 object raises the preserved unknown-member error. The original strict verifier reproduces each failure offline; R02_SCHEMA_DRIFT_DIAGNOSIS separately validates known33-field extension/legacy18-field types without callback substitution or raw/result rewrites."
+      ],
+      "relevantExcerpt": "```text\n.typeResolutions[0].rawJson: missing/unknown members: missing=[], unknown=['r02']\nm07_results.verify_type_resolutions -> m05_results.verify_type_info\nTYPE_INFO_FIELDS: original18 fields; native AppendDiagnostics emits optional r02\nR02/type_resolution_schema.py: current_m07_schema validates exact33-field extension before in-memory legacy projection\n```",
+      "rootCause": "legacy_runtime invokes the unchanged M07 verifier directly for current native ON resource cases and positive startup witnesses. It does not enter the existing current_m07_schema bridge already used by R02/verify_regressions.py. Current native AssemblyShadowTypeResolver appends the known R02 object, and the managed parser supports it, but the original strict legacy Python schema deliberately rejects that extra field.",
+      "whyDesignAllowedIt": "Completion copied legacy verifier entry points without the current-provider schema adapter. Earlier codec-context errors stopped these paths before type-info checks, so prior failures masked the unintegrated extension boundary.",
+      "affectedScope": "All13 ON resource cases and four positive startup cases; resource-contracts is Blocked by these failures. Source/codec binding, Player execution/raw output and earlier checks are not promoted to complete M07 acceptance. Measurements and expected-negative controls retain their original independent verdicts.",
+      "recommendedDirection": "Wire the existing strict current-R02 bridge (or an equivalent explicit versioned consumer) into every affected completion M07/resource and positive-startup path. Validate exact33-field schema/types/UInt64/profile/coverage, then delegate unchanged legacy semantics using an in-memory projection. Retain raw strings/files/hashes, duplicate/unknown/missing-field rejection, profile2 requirements and default legacy behavior; do not merely allow arbitrary extra fields or rewrite evidence.",
+      "remainingUncertainty": "The complete M07 verifier stops at the first type-info boundary. Later resource assertions have not passed in this batch and may reveal further problems after Primary integrates the bridge; the limited schema diagnosis cannot establish full runtime acceptance.",
+      "validationAfterRepair": "Add current-native raw-JSON integration tests covering all affected call paths plus missing/duplicate/unknown/mistyped extension members, UInt64 limits, profile/coverage errors, OFF behavior and raw byte custody. Run a new unused source-bound complete batch covering all13 ON resources/four positive startup witnesses and existing negative controls. Do not reclassify P.",
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-01-Prefab-P01.json",
+          "sha256": "44e2d5c7afbb6183cb1f39ef41a7054dac6f0fdb3849c1ad9c89859eab95e5f1",
+          "size": 333
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-02-Nested-P02.json",
+          "sha256": "59d1665edd517928bd055c78ed0da983482050809677c9a7a7e83dcff8e7c149",
+          "size": 333
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-03-FullClosure-P03.json",
+          "sha256": "8e0accc8c4a8b3f4b8a3abf9507f0d1bea8ab798b4cd16fc3935945867c6afd4",
+          "size": 343
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-04-UnityApis-P01.json",
+          "sha256": "82537aaf741c19c06af3bfd26e03c528c6d0664e19bde24648a814b5ec033cec",
+          "size": 339
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-05-Scriptable-P03.json",
+          "sha256": "242375254c647c28fb49a474f25cfa45929772ce7f0813a56f056b0724dd7a09",
+          "size": 341
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-06-SceneSingle-P01.json",
+          "sha256": "0452cf04c147b6f56ce1bfe15a29fb40eb6acd912f040151c1cd9a3ef5bf28b0",
+          "size": 343
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-07-SceneAdditive-P03.json",
+          "sha256": "1147edb643a7343b01acd616a2c63189b00ef0fa5610626971192639fbcc8b6b",
+          "size": 347
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-08-SerializeReference-P03.json",
+          "sha256": "54cc386b3491e164ca899688b049d8a9787c94378aafc180c9301a154095f5a1",
+          "size": 357
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-09-Messages-P01.json",
+          "sha256": "c42a86e1d4523bbbac4da9a01886be90566427906ad29bde123d153a562eb8d2",
+          "size": 337
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-10-Cache-P03.json",
+          "sha256": "aaedfe6fcd1a3aca322145044aa84cbf5d599adaf52459b8723a8409ef8d4e9a",
+          "size": 331
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-11-DelayedCatalog-P03.json",
+          "sha256": "a3b58f599a73b3926285ade823e4f25bdb62a9963a5b95664dcf2bd2a502bd90",
+          "size": 349
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-12-P04-NonSerialized.json",
+          "sha256": "958a422d1a70efb79023fdd11a7a8838dea322489096bb28fb710a2f65786ae4",
+          "size": 347
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-T07-13-P05-Rebuilt.json",
+          "sha256": "d23bc7e2a535d959a8fc0f14f4519d6cdaa48e3e52d69e121419ee9fb03cdcea",
+          "size": 335
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/early-Control-P03.json",
+          "sha256": "f63b74434c3f3c0133f773e8c7ae4aa36d3ef12286105fad8a226c6548ef6c3b",
+          "size": 335
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/early-Control-P01.json",
+          "sha256": "a977dee948d5ae4d6f026c1718b839b0b1a49be84e8a7e9b5182038e6844e1a5",
+          "size": 330
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/early-OrdinaryFirst.json",
+          "sha256": "02491c4efd89def56f2fdd97fced7fc001c542e1445b26182713cded909cbfd6",
+          "size": 339
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/early-OrdinaryAfterReserve.json",
+          "sha256": "c9323655a168f3c5c9949e9abca0f01115001abed2b0a9fc50217fe96602f6b9",
+          "size": 353
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/FAILED_CONTRACT_REPRODUCTION.json",
+          "sha256": "f1c52529b84123d4cac70d4070c5c8ed719ef89d4de28bed95b3c1de048c0e1b",
+          "size": 65010
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/R02_SCHEMA_DRIFT_DIAGNOSIS.json",
+          "sha256": "526ed8e13e678b5a5feba0b023e98f3ae459368e04f3e0e443350b7d880e944a",
+          "size": 145092
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/native-codec-source-verification.json",
+          "sha256": "e67040dc05537e4a544a70a8ee3e72e6ffc69dfb32bbad59368ae0f58189345c",
+          "size": 630
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/cells/resource-contracts.json",
+          "sha256": "e09b8b13896f300ef59a3f8ee1eaadc0b6ef87b9b5aa46c75ea7e09107c3f2b3",
+          "size": 684
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-01-Prefab-P01.json",
+          "sha256": "4fa308b85dbd68283a1ce185dba7b7acf936fbd2699d7f90920cffa57ead09a8",
+          "size": 5563670
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-02-Nested-P02.json",
+          "sha256": "498a759f1d8eb9843b717a20da37d0f9672435bf38573bcb2367f497f946ce3b",
+          "size": 5577881
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-03-FullClosure-P03.json",
+          "sha256": "c7a38c02bb8d02e36b5369478a1435777f39468a309ab46705fed034dce7167d",
+          "size": 5591016
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-04-UnityApis-P01.json",
+          "sha256": "7954461361b4c4d44b9416fc0a2d130da851488013e190deba3de68032642714",
+          "size": 5563675
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-05-Scriptable-P03.json",
+          "sha256": "557fe10ae57961664452e91e6d34de1bec19cc05209ffb67c7da5d007dc4fdb0",
+          "size": 5591014
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-06-SceneSingle-P01.json",
+          "sha256": "ce1aa61e46e1b79e4d61e2cf116d95a155a2fa603870cc45c318b9bd3bd4ee49",
+          "size": 5563681
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-07-SceneAdditive-P03.json",
+          "sha256": "048a6161ea5c60b2be961ccbaa5949fc0b832864e63a2b42574b571f24a8e6d0",
+          "size": 5591020
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-08-SerializeReference-P03.json",
+          "sha256": "5a212bd09ca287bc2029cc856e9eb9a6a48735e6eaf55a2c0490a3a9957c8863",
+          "size": 5591030
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-09-Messages-P01.json",
+          "sha256": "403903333c83bc97fa8b44c2e6acd17acde0229b78c6e1db4f8056f413a82f0f",
+          "size": 5563673
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-10-Cache-P03.json",
+          "sha256": "34953ba37de4251842766a089a4b7c7fbf4fe7253638ca13f3d25c1656099948",
+          "size": 5591004
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-11-DelayedCatalog-P03.json",
+          "sha256": "01f32934d197ec84e4e86adf359cd0ac90ea1a319ac4871d484b2c5f2d15d990",
+          "size": 5591222
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-12-P04-NonSerialized.json",
+          "sha256": "d20c9b5401dd1360b0a9d32e4bd69b91f07729aba8e7d0f07cc4556bad2fbfe0",
+          "size": 5563691
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/m07-results/m07-T07-13-P05-Rebuilt.json",
+          "sha256": "73859043ee218bd672643d709362be5902ce728c66503c156ff537edd98e677a",
+          "size": 5593051
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/Control-P03/m07-T07-03-FullClosure-P03.json",
+          "sha256": "1cd925d3f71ae5d1545cd2ffdc7557c5c7ac350e2f15a1d3f8ae95d71da1535e",
+          "size": 5591023
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/Control-P01/m07-T07-01-Prefab-P01.json",
+          "sha256": "552f8a451ba03bf6e05bdad8546b0dbb896d90ff623a7547e9c1e5e353b184a4",
+          "size": 5563677
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/OrdinaryFirst/m07-T07-03-FullClosure-P03.json",
+          "sha256": "d0cd3628737f5342f5ba32e19790f7863f586b19d05b8fe69deedc7c5bfab369",
+          "size": 5581362
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/early/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json",
+          "sha256": "5335b1f55873ef78500e2eea9b5d06e5da0bb6dff36f849896abfe7070b35980",
+          "size": 5581369
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/legacy_runtime.py",
+          "sha256": "5c8a36b15b0ee736d62c541c208e2bdc938ed33e9c18122f3f1f40d35358ffc5",
+          "size": 13483
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/legacy_runtime.py",
+          "sha256": "5c8a36b15b0ee736d62c541c208e2bdc938ed33e9c18122f3f1f40d35358ffc5",
+          "size": 13483
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py",
+          "sha256": "7a61a2d2082df7e0287d841a9bcdb75507f1392f904004687602cfd8ac0c3d23",
+          "size": 104647
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/m07_results.py",
+          "sha256": "7a61a2d2082df7e0287d841a9bcdb75507f1392f904004687602cfd8ac0c3d23",
+          "size": 104647
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m05_results.py",
+          "sha256": "7e83a6faebbd8c9e4f561dac1ce25f9b36c73345348f71db838a0b549c487c12",
+          "size": 77356
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/m05_results.py",
+          "sha256": "7e83a6faebbd8c9e4f561dac1ce25f9b36c73345348f71db838a0b549c487c12",
+          "size": 77356
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/type_resolution_schema.py",
+          "sha256": "856afcc82133d9239f8da37880dbdef928c4fe64e62cb823a8b9fc217a03b737",
+          "size": 5009
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/R02/type_resolution_schema.py",
+          "sha256": "856afcc82133d9239f8da37880dbdef928c4fe64e62cb823a8b9fc217a03b737",
+          "size": 5009
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/verify_regressions.py",
+          "sha256": "3131b04cd752b450c6d6c03b054d836e9bdeabdd344d3c5b18ab0738cd5ebec4",
+          "size": 3214
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_demo/Tools/AssemblyShadow/R02/verify_regressions.py",
+          "sha256": "3131b04cd752b450c6d6c03b054d836e9bdeabdd344d3c5b18ab0738cd5ebec4",
+          "size": 3214
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs",
+          "sha256": "5a68b5a4e70991901f5836128d5899d6e9502e138b993907bfea9bf138217f78",
+          "size": 21726
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/hybridclr_unity/Runtime/AssemblyShadow/AssemblyShadowTypeResolutionInfo.cs",
+          "sha256": "5a68b5a4e70991901f5836128d5899d6e9502e138b993907bfea9bf138217f78",
+          "size": 21726
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+          "sha256": "825755a0379df3f83b6e7386adabc68538ac8c7b83912c2d4596812bd479284f",
+          "size": 54794
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/il2cpp_plus/libil2cpp/vm/AssemblyShadowTypeResolver.cpp",
+          "sha256": "825755a0379df3f83b6e7386adabc68538ac8c7b83912c2d4596812bd479284f",
+          "size": 54794
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+          "sha256": "ea8d663bfec351be07aa39e129352d66a96813b85b07782f50cd3cd3fa2e9633",
+          "size": 3138
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006P-lo-repair/additional-issue-source/il2cpp_plus/libil2cpp/vm/AssemblyShadowR02Diagnostics.h",
+          "sha256": "ea8d663bfec351be07aa39e129352d66a96813b85b07782f50cd3cd3fa2e9633",
+          "size": 3138
+        }
+      ]
+    }
+  ],
+  "allFailedCellsCovered": [
+    "early-Control-P01",
+    "early-Control-P03",
+    "early-OrdinaryAfterReserve",
+    "early-OrdinaryFirst",
+    "production-entry-integration",
+    "resource-T07-01-Prefab-P01",
+    "resource-T07-02-Nested-P02",
+    "resource-T07-03-FullClosure-P03",
+    "resource-T07-04-UnityApis-P01",
+    "resource-T07-05-Scriptable-P03",
+    "resource-T07-06-SceneSingle-P01",
+    "resource-T07-07-SceneAdditive-P03",
+    "resource-T07-08-SerializeReference-P03",
+    "resource-T07-09-Messages-P01",
+    "resource-T07-10-Cache-P03",
+    "resource-T07-11-DelayedCatalog-P03",
+    "resource-T07-12-P04-NonSerialized",
+    "resource-T07-13-P05-Rebuilt"
+  ],
+  "scope": "Observed non-trivial current-source failures requiring Primary only; no Local source fixes",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false
+}

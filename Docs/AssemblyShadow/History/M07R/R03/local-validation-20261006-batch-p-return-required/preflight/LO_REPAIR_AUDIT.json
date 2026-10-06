@@ -1,0 +1,506 @@
+{
+  "kind": "ReadOnlyPLORepairAudit",
+  "startedUtc": "2026-10-06T17:08:48.163811+00:00",
+  "checks": [
+    {
+      "id": "LO-001-live-policy-domains",
+      "subproofState": "Passed",
+      "evidence": {
+        "originalVerifier": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json",
+          "sha256": "260d016ddaedf0e7aab2481fad165f2a74a1dfb93dcf4a1524ea752b36cfa62c",
+          "sourceInventoryValidationPassed": true,
+          "filteredReferenceGuards": 3,
+          "freshUnityInventory": true,
+          "runtimeAcceptance": false
+        },
+        "report": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json",
+          "sha256": "260d016ddaedf0e7aab2481fad165f2a74a1dfb93dcf4a1524ea752b36cfa62c",
+          "size": 2428
+        },
+        "sourcePolicy": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/source-policy.json",
+          "sha256": "0d6cccf91b2a3d6de46aee3bc4cccafef16b0ddb3a0077437fd4f0ef587cb017",
+          "size": 132004
+        },
+        "linkedPolicy": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains/linked-policy.json",
+          "sha256": "24820fc32489afa9cdf7013f8b2d8791c7f87f0f624d2451b06b4d19362b03e2",
+          "size": 132004
+        },
+        "linkedPolicyDiagnostics": [
+          {
+            "code": "InvalidRuntimeReference",
+            "message": "Unity.Burst references a non-Player assembly Unity.Burst.Unsafe."
+          },
+          {
+            "code": "RuntimeReferencesFilteredAssembly",
+            "message": "Unity.Burst references an assembly removed from the captured Player build: Unity.Burst.Unsafe."
+          },
+          {
+            "code": "RuntimeReferencesFilteredAssembly",
+            "message": "Unity.RenderPipelines.Universal.Runtime references an assembly removed from the captured Player build: Unity.RenderPipelines.Universal.2D.Internal."
+          },
+          {
+            "code": "RuntimeReferencesFilteredAssembly",
+            "message": "Unity.RenderPipelines.Universal.Runtime references an assembly removed from the captured Player build: Unity.RenderPipelines.Universal.Config.Runtime."
+          }
+        ],
+        "sourceDiagnostics": [],
+        "guardProviders": [
+          "Unity.Burst.Unsafe",
+          "Unity.RenderPipelines.Universal.2D.Internal",
+          "Unity.RenderPipelines.Universal.Config.Runtime"
+        ],
+        "project": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete",
+        "baselineSnapshotHash": "f6d96c05dc201a19f23ae41efa08cc81e89b46e3b2abf86dcd29c60f24621c6b"
+      },
+      "originalCells": {
+        "production-entry-integration": "Failed"
+      }
+    },
+    {
+      "id": "LO-001-restored-baseline-integration",
+      "subproofState": "Passed",
+      "evidence": {
+        "integration": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration.json",
+          "sha256": "0070475c55d7f819ced2dbfb722c5561e4d3817c6f4b1f3afcf06cd28c601348",
+          "size": 10852
+        },
+        "patches": [
+          {
+            "patchId": "P01",
+            "manifest": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P01-patch/patch-manifest.json",
+              "sha256": "2ab413236f4daadcd7cfeede51e8e32aa7bf64b5e11265a3d2aa9c858b062f9c",
+              "size": 29922
+            },
+            "qualification": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P01/eligibility.json",
+              "sha256": "88a7b183188b8cc780d821dde930badcd4c3a118312ccf3e458ee7821b451070",
+              "size": 3975112
+            }
+          },
+          {
+            "patchId": "P02",
+            "manifest": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P02-patch/patch-manifest.json",
+              "sha256": "0d200add64e1dbb25f17a1f1c5ecea3d811e0ebcdb4e81cff34c1fd5085861cc",
+              "size": 32671
+            },
+            "qualification": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P02/eligibility.json",
+              "sha256": "31267705d585fe1c5adab7ab0042f1374ea2c06e75fa7c123dac8d8a2a7786bd",
+              "size": 6672192
+            }
+          },
+          {
+            "patchId": "P03",
+            "manifest": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P03-patch/patch-manifest.json",
+              "sha256": "1b4c3b6a91256ed55a04c9e5ff1946cd57005009246506b0ce5d81b99038ff0b",
+              "size": 35274
+            },
+            "qualification": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P03/eligibility.json",
+              "sha256": "9c09dde6ce9946380426c005ce879dc6498034aa003124d1463c68a6f0f6ca3a",
+              "size": 9697800
+            }
+          },
+          {
+            "patchId": "P04",
+            "manifest": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P04-patch/patch-manifest.json",
+              "sha256": "16ed8268d1641e3c9449996f3809859619ab70795cd4b3e985961b8497a510b5",
+              "size": 29922
+            },
+            "qualification": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P04/eligibility.json",
+              "sha256": "bfbe6cbfcb0ba0cf9014d718782286098dd4847d7cd6d1ba9388b96a6714a0de",
+              "size": 3975112
+            }
+          },
+          {
+            "patchId": "P05",
+            "manifest": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P05-patch/patch-manifest.json",
+              "sha256": "592bcb68c33bbcd5fae5ce12425485871b5079415789509429a6f11f1eb8bcc6",
+              "size": 30247
+            },
+            "qualification": {
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P05/eligibility.json",
+              "sha256": "5b84188e901c199a98bf93f0d0dad320e7cbc4f11a101173b45a9febf065f0bd",
+              "size": 3901767
+            }
+          }
+        ],
+        "returnChangedRoots": [],
+        "returnClosure": [],
+        "subproofDoesNotPromoteFailedOrchestration": true
+      },
+      "originalCells": {
+        "production-entry-integration": "Failed"
+      }
+    },
+    {
+      "id": "LO-002-end-to-end-codec-consumers",
+      "subproofState": "Failed",
+      "originalCells": {
+        "resource-T07-01-Prefab-P01": "Failed",
+        "resource-T07-02-Nested-P02": "Failed",
+        "resource-T07-03-FullClosure-P03": "Failed",
+        "resource-T07-04-UnityApis-P01": "Failed",
+        "resource-T07-05-Scriptable-P03": "Failed",
+        "resource-T07-06-SceneSingle-P01": "Failed",
+        "resource-T07-07-SceneAdditive-P03": "Failed",
+        "resource-T07-08-SerializeReference-P03": "Failed",
+        "resource-T07-09-Messages-P01": "Failed",
+        "resource-T07-10-Cache-P03": "Failed",
+        "resource-T07-11-DelayedCatalog-P03": "Failed",
+        "resource-T07-12-P04-NonSerialized": "Failed",
+        "resource-T07-13-P05-Rebuilt": "Failed",
+        "resource-T07-14-FeatureOff": "Passed",
+        "early-Control-P03": "Failed",
+        "early-Control-P01": "Failed",
+        "early-OrdinaryFirst": "Failed",
+        "early-OrdinaryAfterReserve": "Failed"
+      },
+      "authenticatedCodecContext": {
+        "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/native-codec-source-verification.json",
+        "sha256": "e67040dc05537e4a544a70a8ee3e72e6ffc69dfb32bbad59368ae0f58189345c",
+        "size": 630
+      },
+      "context": {
+        "header": "hybridclr/metadata/InterpreterMetadataIndexCodec.h",
+        "kind": "R03ExplicitCodecSource",
+        "origin": "git@github.com:night-outlook/hybridclr.git",
+        "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete",
+        "recordedLocalPath": "../../../../assembly_shadow_h1r/hybridclr",
+        "repositoryRoot": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+        "result": "Passed",
+        "revision": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+        "runtimeAcceptance": false,
+        "sha256": "a1a7067c88503509c9ef4fd902f46c9edc3d8b867307fcc849a1d733829c144e"
+      },
+      "independentOriginalVerifiers": "COMPLETION_RUNTIME_AUDIT.json"
+    },
+    {
+      "id": "LO-003-linked-baseline-lookup",
+      "subproofState": "Passed",
+      "evidence": {
+        "images": [
+          {
+            "mode": "R00-ON-NoPatch",
+            "physicalIdentity": {
+              "name": "AssemblyA.Implementation.Internal",
+              "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "version": "0.0.0.0",
+              "culture": "",
+              "publicKeyToken": "",
+              "mvid": "e7354fbc-fa7c-473a-b923-cfe9360f7607",
+              "referenceIdentities": [
+                {
+                  "referenceIndex": 0,
+                  "name": "AssemblyA.Contracts",
+                  "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 1,
+                  "name": "AssemblyA.Implementation.Extensibility",
+                  "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 2,
+                  "name": "UnityEngine.CoreModule",
+                  "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 3,
+                  "name": "UnityEngine.JSONSerializeModule",
+                  "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 4,
+                  "name": "mscorlib",
+                  "fullName": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                  "version": "4.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": "b77a5c561934e089"
+                },
+                {
+                  "referenceIndex": 5,
+                  "name": "System",
+                  "fullName": "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                  "version": "4.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": "7cec85d7bea7798e"
+                },
+                {
+                  "referenceIndex": 6,
+                  "name": "System.Core",
+                  "fullName": "System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                  "version": "4.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": "7cec85d7bea7798e"
+                }
+              ],
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-8abccb8ce6f949409844a5b8e69e3161/LinkedPlayer/Assemblies/assemblya.implementation.internal.dll",
+              "sha256": "e3126447e6216460987980a05e0b267d33e2dd95da48a8478a818c9af214e2e9"
+            },
+            "methodCount": 193,
+            "pdbAvailable": false,
+            "consumerSchema": "Complete image record"
+          },
+          {
+            "mode": "R00-OFF-NoPatch",
+            "physicalIdentity": {
+              "name": "AssemblyA.Implementation.Internal",
+              "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "version": "0.0.0.0",
+              "culture": "",
+              "publicKeyToken": "",
+              "mvid": "e7354fbc-fa7c-473a-b923-cfe9360f7607",
+              "referenceIdentities": [
+                {
+                  "referenceIndex": 0,
+                  "name": "AssemblyA.Contracts",
+                  "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 1,
+                  "name": "AssemblyA.Implementation.Extensibility",
+                  "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 2,
+                  "name": "UnityEngine.CoreModule",
+                  "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 3,
+                  "name": "UnityEngine.JSONSerializeModule",
+                  "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 4,
+                  "name": "mscorlib",
+                  "fullName": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                  "version": "4.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": "b77a5c561934e089"
+                },
+                {
+                  "referenceIndex": 5,
+                  "name": "System",
+                  "fullName": "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                  "version": "4.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": "7cec85d7bea7798e"
+                },
+                {
+                  "referenceIndex": 6,
+                  "name": "System.Core",
+                  "fullName": "System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                  "version": "4.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": "7cec85d7bea7798e"
+                }
+              ],
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-952e316488f5443286425045b814cfed/LinkedPlayer/Assemblies/assemblya.implementation.internal.dll",
+              "sha256": "e3126447e6216460987980a05e0b267d33e2dd95da48a8478a818c9af214e2e9"
+            },
+            "methodCount": 193,
+            "pdbAvailable": false,
+            "consumerSchema": "Complete image record"
+          }
+        ],
+        "actualMeasurementCells": 6,
+        "originalConsumerRules": "Unchanged original M06 business/exception/PDB rules",
+        "independentOriginalVerifiers": "COMPLETION_RUNTIME_AUDIT.json"
+      },
+      "originalCells": {
+        "measure-R00-ON-NoPatch-0": "Passed",
+        "measure-R00-ON-NoPatch-1": "Passed",
+        "measure-R00-ON-NoPatch-2": "Passed",
+        "measure-R00-OFF-NoPatch-0": "Passed",
+        "measure-R00-OFF-NoPatch-1": "Passed",
+        "measure-R00-OFF-NoPatch-2": "Passed"
+      }
+    },
+    {
+      "id": "LO-004-image-record-consumer",
+      "subproofState": "Passed",
+      "evidence": {
+        "images": [
+          {
+            "mode": "R00-ON-P01",
+            "physicalIdentity": {
+              "name": "AssemblyA.Implementation.Internal",
+              "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "version": "0.0.0.0",
+              "culture": "",
+              "publicKeyToken": "",
+              "mvid": "822192a2-4692-4470-9763-2b689b8e9088",
+              "referenceIdentities": [
+                {
+                  "referenceIndex": 0,
+                  "name": "netstandard",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "version": "2.1.0.0",
+                  "culture": "",
+                  "publicKeyToken": "cc7b13ffcd2ddd51"
+                },
+                {
+                  "referenceIndex": 1,
+                  "name": "AssemblyA.Contracts",
+                  "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 2,
+                  "name": "AssemblyA.Implementation.Extensibility",
+                  "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 3,
+                  "name": "UnityEngine.CoreModule",
+                  "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 4,
+                  "name": "UnityEngine.JSONSerializeModule",
+                  "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                }
+              ],
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P01-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+              "sha256": "a8d2abe2607bce0cb5e27f9adfad41bdb6fec8269c52358e099541990c732c0b"
+            },
+            "methodCount": 194,
+            "pdbAvailable": true,
+            "consumerSchema": "Complete image record"
+          },
+          {
+            "mode": "R00-ON-P03",
+            "physicalIdentity": {
+              "name": "AssemblyA.Implementation.Internal",
+              "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "version": "0.0.0.0",
+              "culture": "",
+              "publicKeyToken": "",
+              "mvid": "7b4737a4-cd04-4799-8dfb-8d8aa42d9ab8",
+              "referenceIdentities": [
+                {
+                  "referenceIndex": 0,
+                  "name": "netstandard",
+                  "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                  "version": "2.1.0.0",
+                  "culture": "",
+                  "publicKeyToken": "cc7b13ffcd2ddd51"
+                },
+                {
+                  "referenceIndex": 1,
+                  "name": "AssemblyA.Contracts",
+                  "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 2,
+                  "name": "AssemblyA.Implementation.Extensibility",
+                  "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 3,
+                  "name": "UnityEngine.CoreModule",
+                  "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                },
+                {
+                  "referenceIndex": 4,
+                  "name": "UnityEngine.JSONSerializeModule",
+                  "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                  "version": "0.0.0.0",
+                  "culture": "",
+                  "publicKeyToken": ""
+                }
+              ],
+              "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-ce01deb21c2d455b9739374ab3ffb544/P03-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+              "sha256": "11f7256544221e1b7350d0e66d7938b32416ad1a5b9837c3294c7db308a97188"
+            },
+            "methodCount": 194,
+            "pdbAvailable": true,
+            "consumerSchema": "Complete image record"
+          }
+        ],
+        "actualMeasurementCells": 6,
+        "originalConsumerRules": "Unchanged original M06 business/exception/PDB rules",
+        "independentOriginalVerifiers": "COMPLETION_RUNTIME_AUDIT.json"
+      },
+      "originalCells": {
+        "measure-R00-ON-P01-0": "Passed",
+        "measure-R00-ON-P01-1": "Passed",
+        "measure-R00-ON-P01-2": "Passed",
+        "measure-R00-ON-P03-0": "Passed",
+        "measure-R00-ON-P03-1": "Passed",
+        "measure-R00-ON-P03-2": "Passed"
+      }
+    }
+  ],
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "productReexecution": false,
+  "endedUtc": "2026-10-06T17:11:08.170604+00:00",
+  "originalProductionCell": {
+    "dependencies": [
+      "resource-p05-finalize"
+    ],
+    "error": "'CompletionBatch' object has no attribute 'resource_context'",
+    "id": "production-entry-integration",
+    "result": "Failed"
+  }
+}
