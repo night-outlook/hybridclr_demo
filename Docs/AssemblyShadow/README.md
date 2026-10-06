@@ -2,16 +2,21 @@
 
 Canonical documentation: Plan for design/stages/gates, Handoff for current assignments, Architecture for decisions and History for immutable evidence.
 
-**Completion N remains ReturnRequired. LN-001–LN-004 now have source repairs and source-matched host/compiler evidence; batch O is prepared. Full R03 and H2 remain open.**
+**R03 completion batch O remains ReturnRequired. Primary Implementation has published repairs for R03-LO-001–004 plus an integrated live source-versus-linked policy-domain guard. The next owner is Local Validation for exactly one fresh completion batch after reading `Handoff/WEB_TO_LOCAL.md`. Full R03 acceptance and the Human Review Gate remain open.**
 
-N executed demo `15f6c2c9a5e070e631fdcda9a2bb022f4b61a733`; Local published `f4b36ead2413e5a87b7149c4f6699960ff46008b`. Preserve 48 Passed / 4 Failed / 38 Blocked and the passed seal. Six builds, 23 focused Players, the early 18-method Editor preflight and P05 compile/restoration/finalization Passed. Full 754/755 Editor rosters were NotRun and 36 downstream Players were Blocked.
+Batch O was published at demo `7025f1026fd61f101a81fbafafb999095aa8604e`: 90 cells, 58 Passed / 30 Failed / 2 Blocked; six fresh builds Passed; the 18-method preflight and full 754/755 Editor rosters Passed with zero skips/inconclusive; all 59 Players executed with 30 verifications Passed and 29 Failed; seal and final custody Passed. Preserve O, N and every earlier result/evidence state unchanged.
 
-Read [CURRENT_STATUS](Plan/CURRENT_STATUS.md), [Q_INTEGRATION_REPAIR](History/M07R/R03/Q_INTEGRATION_REPAIR.md), [Q_HOST_EVIDENCE](History/M07R/R03/Q_HOST_EVIDENCE.json), [Q_VALIDATION_MATRIX](History/M07R/R03/Q_VALIDATION_MATRIX.md), then unchanged [LOCAL_VALIDATION](Handoff/LOCAL_VALIDATION.md) and [RETURN_TO_WEB](Handoff/RETURN_TO_WEB.md). [WEB_TO_LOCAL](Handoff/WEB_TO_LOCAL.md) is the only new Local assignment.
+Primary repair sequence on `codex/assembly-shadow-r01b-h1`:
 
-LN-001 now checks the real 13-file package delta against the unchanged 754/755 catalogs. LN-002 revalidates metadata in an equivalent captured closed resolver domain while retaining disk/source and semantic mutation guards. LN-003 resolves native-codec authority through an explicit authenticated project/repository context and forwards it through all completion call paths. LN-004 canonicalizes simple assembly names only for sidecar lookup/comparison while retaining original load-order binding and duplicate/order/hash guards.
+- `ed615c91303ebee0078da00e01208c02b255cb61`: separates source/compiler and linked-Player policy domains; restores codec context; canonicalizes linked-DLL lookup; restores the methods/image-record consumer contract.
+- `7b148aa8cace4af4cb1d7a4219c4f79fe0182394`: corrects the LO-001 regression fixture so authenticated reported source edges are not inferred from emitted DLL `AssemblyRef` metadata.
+- `9c4b76a540e74c045cabaf9e700051512a75cead`: adds fresh integrated Unity source-policy validation plus the guarded linked-policy negative control and binds that evidence into production-entry integration.
+- `8db761455dfd73ef01eac7d48eb39c69ca253cf8`: CI-only change raising the pinned-API job budget from 60 to 120 minutes after a source-matched run exhausted the old budget during the unchanged N reference replay.
 
-All branches: `codex/assembly-shadow-r01b-h1`. Executable/CI anchor: demo `fefe846b1209d18a96c432ed0ca2222f16cda976`; HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; package `948c0e3b4f8891481301770115e8ba4945eea6de`; IL2CPP `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`. The final documentation-only transport must match Primary's prompt and Local/remote HEAD.
+Other source pins are unchanged: HybridCLR `4b2774b066cfc6afd77a8c8aded6bda7ea574f55`; HybridCLR Unity package `948c0e3b4f8891481301770115e8ba4945eea6de`; IL2CPP+ `1cf87f8209790f9fb2ebec97487dc1990ccd56c5`.
 
-Host workflow 37404395804 and pinned-Unity workflow 37404395811 Passed at the anchor. Exact artifacts authenticate: Linux 1130 indexed/1131 ZIP files, macOS 1130/1131, API 763/764. These are host/compiler/reused-input checks, not fresh integrated Editor/Player acceptance.
+Primary pre-handoff checks: the bounded selected Python suite passed 102 tests with zero failures/errors/skips; the published `7b148aa…` host and pinned-API workflows Passed; source-matched `9c4b76a…`/`8db76145…` workflow evidence is recorded in `History/M07R/R03/LO_Continuation_2026-10-06/PRIMARY_REVIEW.md`. The mandatory GitHub Connector write/readback smoke test Passed in all four repositories. Connector branch deletion is unavailable, so the disposable smoke branch `codex/connector-smoke-20261006-primary-r03` remains recorded rather than silently treated as cleaned up.
 
-O retains 90 cells, six fresh builds, 59 fresh Players, early 18 and full 754/755 zero-skip Editor rosters. R03Accepted=false; H2Passed=false; qualificationApproved=false; PureInterpreter expansion disabled. Historical results/custody, failed unisolated warm certificates, R02 CPU and H1 RSS risks remain visible.
+Read `Plan/CURRENT_STATUS.md`, `Handoff/LOCAL_VALIDATION.md`, `Handoff/RETURN_TO_WEB.md`, `History/M07R/R03/LO_Continuation_2026-10-06/PRIMARY_REVIEW.md`, then the new assignment in `Handoff/WEB_TO_LOCAL.md`.
+
+`R03Accepted=false`; `H2Passed=false`; `qualificationApproved=false`; `ReadyForHumanReviewGate=false`; PureInterpreter expansion remains disabled. A green next Local batch is evidence for Primary review, not automatic stage or Human Review Gate approval.
