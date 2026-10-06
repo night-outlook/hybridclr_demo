@@ -17,22 +17,26 @@ jobs:
       - name: Capture unchanged historical JSON and selected-image bytes
         shell: python
         run: |
-          import hashlib,json,os,shutil,subprocess
+          import hashlib,json,os,subprocess
           from pathlib import Path
           checkpoint=Path('Docs/AssemblyShadow/History/M07R/R03/local-validation-20261005-batch-o-return-required')
           out=Path(os.environ['RUNNER_TEMP'])/'r03-lo-inputs';out.mkdir()
-          files=[]
+          files=[];omitted=[]
           for source in sorted(checkpoint.rglob('*')):
               if not source.is_file() or source.is_symlink(): continue
               if not (source.suffix=='.json' or source.name.lower() in ('assemblya.implementation.internal.dll','assemblya.implementation.internal.pdb')): continue
               data=source.read_bytes()
-              assert len(data)<16*1024*1024,source
+              row={'path':str(source),'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'blob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()}
+              if len(data)>=16*1024*1024:
+                  assert source.suffix=='.json',source
+                  omitted.append(dict(row,reason='Outside bounded adapter-input export; original Git evidence retained'))
+                  continue
               dest=out/source;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
-              files.append({'path':str(source),'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'blob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()})
+              files.append(row)
           assert files and sum(f['size'] for f in files)<512*1024*1024
           assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()=='7025f1026fd61f101a81fbafafb999095aa8604e'
           assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
-          (out/'provenance.json').write_text(json.dumps({'kind':'R03LOHistoricalInputCapture','sourceCommit':'7025f1026fd61f101a81fbafafb999095aa8604e','workflowCommit':os.environ['GITHUB_SHA'],'files':files,'historicalOResult':'Failed','historicalEvidenceModified':False,'unityRun':False,'playerRun':False,'runtimeAcceptance':False},indent=2)+'\n')
+          (out/'provenance.json').write_text(json.dumps({'kind':'R03LOHistoricalInputCapture','sourceCommit':'7025f1026fd61f101a81fbafafb999095aa8604e','workflowCommit':os.environ['GITHUB_SHA'],'files':files,'omitted':omitted,'completeBatchCapture':False,'historicalOResult':'Failed','historicalEvidenceModified':False,'unityRun':False,'playerRun':False,'runtimeAcceptance':False},indent=2)+'\n')
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: r03-lo-inputs-${{ github.sha }}
