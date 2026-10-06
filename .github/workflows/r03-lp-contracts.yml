@@ -21,26 +21,38 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
           persist-credentials: false
       - name: Run all Completion Python contracts without Unity or Player launch
+        working-directory: hybridclr_demo
         shell: bash
         run: |
           mkdir -p "$RUNNER_TEMP/lp-contracts"
           python3 -B -m unittest discover -s Tools/AssemblyShadow/R03Completion -p 'test_*.py' -v > "$RUNNER_TEMP/lp-contracts/unittest.log" 2>&1
-          python3 -B Tools/AssemblyShadow/R03Completion/lp_replay.py --project "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/lp-contracts/p-replay.json"
+          python3 -B Tools/AssemblyShadow/R03Completion/lp_replay.py --project "$GITHUB_WORKSPACE/hybridclr_demo" --output "$RUNNER_TEMP/lp-contracts/p-replay.json"
       - name: Bind command outputs and immutable source identities
         if: always()
+        working-directory: hybridclr_demo
         shell: python
         run: |
           import hashlib,json,os,subprocess
           from pathlib import Path
           root=Path(os.environ['RUNNER_TEMP'])/'lp-contracts';root.mkdir(exist_ok=True)
           paths=subprocess.check_output(['git','ls-files','Tools/AssemblyShadow','Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs','.github/workflows/r03-lp-contracts.yml'],text=True).splitlines()
+          package=subprocess.check_output(['git','-C','../hybridclr_unity','rev-parse','HEAD'],text=True).strip()
+          assert package=='948c0e3b4f8891481301770115e8ba4945eea6de'
+          assert not subprocess.check_output(['git','-C','../hybridclr_unity','status','--porcelain'],text=True).strip()
           sources=[{'path':p,'sha256':hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in paths if Path(p).is_file()]
           outputs=[{'path':str(p.relative_to(root)),'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in root.rglob('*') if p.is_file()]
           assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==os.environ['GITHUB_SHA']
           assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
-          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'sources':sources,'files':outputs,'unityRun':False,'playerRun':False,'historicalPResult':'ReturnRequired','runtimeAcceptance':False},indent=2)+'\n')
+          (root/'provenance.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'runId':os.environ['GITHUB_RUN_ID'],'hybridclr_unity':package,'sources':sources,'files':outputs,'unityRun':False,'playerRun':False,'historicalPResult':'ReturnRequired','runtimeAcceptance':False},indent=2)+'\n')
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
