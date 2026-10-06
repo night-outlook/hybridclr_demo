@@ -1,0 +1,44 @@
+name: R03 LP immutable source and input capture
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['.github/workflows/r03-lp-inputs.yml']
+permissions:
+  contents: read
+jobs:
+  inputs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: d9ef449e8e8aef885539e4b981243a868f8d0ba6
+          persist-credentials: false
+      - name: Export unchanged sources and bounded historical inputs
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-lp-inputs';out.mkdir()
+          checkpoint=Path('Docs/AssemblyShadow/History/M07R/R03/local-validation-20261006-batch-p-return-required')
+          sources=('Tools/AssemblyShadow','Assets/AssemblyShadowDemo','ProjectSettings','Packages','Docs/AssemblyShadow/Handoff','Docs/AssemblyShadow/Plan')
+          selected={Path(p) for p in subprocess.check_output(['git','ls-files',*sources,'Docs/AssemblyShadow/README.md'],text=True).splitlines()}
+          selected.update(p for p in checkpoint.rglob('*') if p.suffix=='.json' or p.name.lower() in ('assemblya.implementation.internal.dll','assemblya.implementation.internal.pdb'))
+          files=[];omitted=[]
+          for p in sorted(selected):
+              if not p.is_file() or p.is_symlink(): continue
+              data=p.read_bytes();row={'path':str(p),'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'blob':hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()}
+              if len(data)>=16*1024*1024:
+                  omitted.append(dict(row,reason='Outside bounded source/consumer export; original Git evidence retained'));continue
+              dest=out/p;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data);files.append(row)
+          assert files and sum(f['size'] for f in files)<768*1024*1024
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()=='d9ef449e8e8aef885539e4b981243a868f8d0ba6'
+          assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+          (out/'provenance.json').write_text(json.dumps({'kind':'R03LPSourceAndHistoricalInputCapture','sourceCommit':'d9ef449e8e8aef885539e4b981243a868f8d0ba6','workflowCommit':os.environ['GITHUB_SHA'],'files':files,'omitted':omitted,'completeBatchCapture':False,'historicalPResult':'ReturnRequired','historicalEvidenceModified':False,'unityRun':False,'playerRun':False,'runtimeAcceptance':False},indent=2)+'\n')
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r03-lp-inputs-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-lp-inputs
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
