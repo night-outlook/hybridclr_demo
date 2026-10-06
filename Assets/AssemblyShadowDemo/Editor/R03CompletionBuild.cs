@@ -44,8 +44,66 @@ namespace AssemblyShadowDemo.Editor
             public string kind = "R03ProductionEntryIntegration", baselineManifest, baselineManifestSha256;
             public GenerationRow[] patches;
             public string returnToBaselineSnapshot, returnToBaselineSnapshotHash, returnGenerationRoot, returnGenerationHash;
+            public string policyDomainsPath, policyDomainsSha256;
             public string[] returnChangedRoots, returnClosure;
             public bool runtimeProofExecuted, expansionAuthorized, R03Accepted, H2Passed;
+        }
+
+        [Serializable] private sealed class PolicyDomainReport
+        {
+            public int schemaVersion = 1;
+            public string kind = "R03LiveSourcePolicyDomains", result = "Failed";
+            public string projectPath, unityVersion, target, baselineSnapshotHash;
+            public string sourcePolicyPath, sourcePolicySha256, linkedPolicyPath, linkedPolicySha256;
+            public string[] guardProviders;
+            public ShadowPolicyDiagnostic[] sourceDiagnostics, linkedPolicyDiagnostics;
+            public bool sourceInventoryValidationPassed, linkedPolicyRejectedForSource, sourcePolicyUnchanged, freshUnityInventory;
+            public bool runtimeAcceptance, qualificationApproved, expansionAuthorized, R03Accepted, H2Passed;
+        }
+
+        // This check uses Unity's live source/asmdef inventory, not AssemblyRef
+        // rows reconstructed from already-emitted compiler DLLs. The negative
+        // control proves all three original LO-001 guards remain enabled.
+        private static string VerifyPolicyDomains(Context context, ShadowPolicyConfiguration source,
+            string pristineSourceJson, ShadowPolicyConfiguration linked, AssemblySnapshotReceipt baseline)
+        {
+            string path = Path.Combine(context.receiptRoot, "compiler-policy-domains.json");
+            var report = new PolicyDomainReport {
+                projectPath = context.projectPath, unityVersion = Application.unityVersion,
+                target = EditorUserBuildSettings.activeBuildTarget.ToString(), baselineSnapshotHash = baseline.snapshotHash,
+                sourcePolicyPath = Path.Combine(context.receiptRoot, "compiler-policy-domains", "source-policy.json"),
+                linkedPolicyPath = Path.Combine(context.receiptRoot, "compiler-policy-domains", "linked-policy.json"),
+                guardProviders = new[] { "Unity.Burst.Unsafe", "Unity.RenderPipelines.Universal.2D.Internal", "Unity.RenderPipelines.Universal.Config.Runtime" }
+            };
+            string linkedJson = JsonUtility.ToJson(linked);
+            Write(report.sourcePolicyPath, source); Write(report.linkedPolicyPath, linked);
+            report.sourcePolicySha256 = ShadowHash.File(report.sourcePolicyPath);
+            report.linkedPolicySha256 = ShadowHash.File(report.linkedPolicyPath);
+            try
+            {
+                var good = ShadowAssemblyPolicyValidator.ValidateBeforeCompile(source, EditorUserBuildSettings.activeBuildTarget);
+                var wrongDomain = ShadowAssemblyPolicyValidator.ValidateBeforeCompile(linked, EditorUserBuildSettings.activeBuildTarget);
+                report.sourceDiagnostics = good.Diagnostics.ToArray();
+                report.linkedPolicyDiagnostics = wrongDomain.Diagnostics.ToArray();
+                report.freshUnityInventory = true;
+                report.sourceInventoryValidationPassed = good.IsValid;
+                report.linkedPolicyRejectedForSource = !wrongDomain.IsValid;
+                report.sourcePolicyUnchanged = JsonUtility.ToJson(source) == pristineSourceJson;
+                Require(report.sourcePolicyUnchanged && JsonUtility.ToJson(linked) == linkedJson,
+                    "Policy validation mutated an input domain.");
+                good.ThrowIfInvalid();
+                Require(!wrongDomain.IsValid, "Linked Player policy must not validate the source inventory.");
+                for (int index = 0; index < report.guardProviders.Length; index++)
+                {
+                    string consumer = index == 0 ? "Unity.Burst" : "Unity.RenderPipelines.Universal.Runtime";
+                    string expected = consumer + " references an assembly removed from the captured Player build: " + report.guardProviders[index] + ".";
+                    Require(wrongDomain.Diagnostics.Any(d => d.code == "RuntimeReferencesFilteredAssembly" && d.message == expected),
+                        "Missing live source-domain guard: " + report.guardProviders[index]);
+                }
+                report.result = "Passed";
+            }
+            finally { Write(path, report); }
+            return path;
         }
 
         private static Context ReadContext()
@@ -179,6 +237,7 @@ namespace AssemblyShadowDemo.Editor
                 // target baseline, not an empty incremental download.
                 Require(JsonUtility.ToJson(sourcePolicy) == sourcePolicyJson,
                     "Source compiler policy was mutated by linked-Player analysis.");
+                string policyDomains = VerifyPolicyDomains(context, sourcePolicy, sourcePolicyJson, policy, baselineReceipt);
                 string restored = AssemblySnapshot.CompileWithOptions(Path.Combine(context.receiptRoot, "return-baseline"),
                     EditorUserBuildSettings.activeBuildTarget, settings.architecture,
                     ShadowSourcePins.Read(settings.sourcePinFile, EditorUserBuildSettings.activeBuildTarget, settings.architecture), sourcePolicy, new string[0], true);
@@ -192,6 +251,7 @@ namespace AssemblyShadowDemo.Editor
                     Require(plan.Closure.Count == 0, "Return-to-baseline compile generation must have an empty Shadow closure.");
                     Write(Path.Combine(context.receiptRoot, "integration.json"), new IntegrationReport { baselineManifest = manifest.baselineManifestPath,
                         baselineManifestSha256 = ShadowHash.File(manifest.baselineManifestPath), patches = rows.ToArray(),
+                        policyDomainsPath = policyDomains, policyDomainsSha256 = ShadowHash.File(policyDomains),
                         returnToBaselineSnapshot = restored, returnToBaselineSnapshotHash = currentReceipt.snapshotHash,
                         returnChangedRoots = roots, returnClosure = plan.Closure.ToArray(), returnGenerationRoot = plan.Root, returnGenerationHash = plan.PlanHash });
                 }

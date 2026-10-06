@@ -16,6 +16,7 @@ from resource_capabilities import verify_report as verify_capability_report
 from editor_contract import source_scope, verify as verify_editor
 import fixed_image_inputs as fixed_images
 import compiler_policy_inputs as compiler_policy
+import policy_domains
 
 METHODS = {'fixed-image-preflight': 'Verify', 'capability-preflight': 'Verify', 'source-pin-preflight': 'Verify', 'install': 'Install', 'compiler': 'CompilerPreflight', 'resources': 'Resources',
            'player-on': 'PlayerOn', 'player-off': 'PlayerOff', 'prepare': 'StructuralPrepare',
@@ -158,6 +159,10 @@ def integration(batch):
             all(value[k] is False for k in ('runtimeProofExecuted', 'expansionAuthorized', 'R03Accepted', 'H2Passed')), 'Qualification/generation evidence is not runtime authorization')
     require([row['patchId'] for row in value['patches']] == ['P01', 'P02', 'P03', 'P04', 'P05'], 'All original complete-target fixtures')
     require(value['returnChangedRoots'] == [] and value['returnClosure'] == [], 'Complete restored target compared with installation baseline')
+    domains = regular(value['policyDomainsPath'])
+    require(sha(domains) == value['policyDomainsSha256'], 'Live policy-domain report binding')
+    policy_check = policy_domains.verify_live(domains, project, batch.resource_config['receiptRoot'],
+        batch.resource_context['context']['on']['snapshot']['snapshotHash'])
     for row in value['patches']:
         require(row['expansionAuthorized'] is False, 'No eligibility permission')
         for field, hash_field in (('patchManifest', 'patchManifestSha256'), ('eligibilityPath', 'eligibilitySha256')):
@@ -168,7 +173,7 @@ def integration(batch):
                 'Static qualification must remain explicitly non-authorizing')
         require(report['closure'] == row['closure'] and report['targetLoadOrder'] == row['loadOrder'], 'Qualification and production graph agreement')
     return {'path': str(path), 'sha256': sha(path), 'unity': unity, 'patches': 5,
-            'returnToBaselineRoots': 0, 'qualificationGate': 'PendingIndependentReviewAndOwnerApproval',
+            'returnToBaselineRoots': 0, 'policyDomains': policy_check, 'qualificationGate': 'PendingIndependentReviewAndOwnerApproval',
             'sourceVerification': verify_sources(project, batch.resource_config, configured=True)}
 
 
