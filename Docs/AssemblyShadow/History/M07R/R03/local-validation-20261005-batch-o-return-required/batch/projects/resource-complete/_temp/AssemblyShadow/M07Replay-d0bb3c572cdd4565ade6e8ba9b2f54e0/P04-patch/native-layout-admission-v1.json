@@ -1,0 +1,2766 @@
+{
+    "schemaVersion": 2,
+    "profile": "NativeLayoutAdmissionV1",
+    "inputBasis": "LinkedPlayer",
+    "baselineSnapshotHash": "01fef6a93d50422a4bcef8f81a55833da797f03c5ea174731e57cca389c83ff7",
+    "linkedPlayerReceiptHash": "b7cb841ff5d48f0fe1c1c343ef46ec64f4fb50ad35cfd35d70ff3dfae8746f46",
+    "baselineNativeLibrarySha256": "738b7c00c1c8ca0f7c94842f0f7fbcd34afd1443e0711caab0ba972cac83d02f",
+    "targetSnapshotHash": "6ae2b726a04baa3ec0a5fac58aa463733e778716cbe5d9d4d673d85ee1150d91",
+    "targetLoadOrder": [
+        "AssemblyA.Implementation.Internal"
+    ],
+    "assemblies": [
+        {
+            "schemaVersion": 2,
+            "profile": "NativeLayoutAdmissionV1",
+            "assembly": "AssemblyA.Implementation.Internal",
+            "baselineDllSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+            "targetDllSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+            "editorAccepted": true,
+            "nativeProofExecuted": false,
+            "allocationProofStillRequired": true,
+            "pureInterpreterExpansionEnabled": false,
+            "types": [
+                {
+                    "typeKey": "assemblya.implementation.internal::<Module>",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal::<PrivateImplementationDetails>",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal::<PrivateImplementationDetails>/__StaticArrayInitTypeSize=1011",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal::<PrivateImplementationDetails>/__StaticArrayInitTypeSize=2469",
+                    "decision": "NoBaselineCounterpart",
+                    "metadataChanged": true,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "Added type in an existing assembly; native capability, resources and allocation guards still apply."
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal::UnitySourceGeneratedAssemblyMonoScriptTypes_v1",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal::UnitySourceGeneratedAssemblyMonoScriptTypes_v1/MonoScriptData",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:InternalEntry",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<>c__DisplayClass24_0",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<>c__DisplayClass27_0",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<CancelledAsync>d__36",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<Iterate>d__38",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<RunAsync>d__19",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<RunCoroutine>d__20",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/<ThrowAsync>d__37",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/BeforeFieldInitState`1",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/ExplicitStaticState",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/GenericState`1",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/M06InternalNode",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/Pair`1",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/SealedNode",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M06ExecutionWitness/SmallStruct",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NestedPayload",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeB",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponent",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07SceneOnlyComponent",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07UnityPathProbe",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07UnityPathProbe/Result",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R00PerformancePayload",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R00PerformanceWitness",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/AddedPayload",
+                    "decision": "NoBaselineCounterpart",
+                    "metadataChanged": true,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "Added type in an existing assembly; native capability, resources and allocation guards still apply."
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/Box`1",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/DerivedPayload",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/IValue",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M0",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M1",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M2",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M3",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M4",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M5",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M6",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M7",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M8",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/M9",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/Payload",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/Triple`3",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:R02AllocationWitness/ValuePayload",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": true,
+                    "prePublicationNativeProofRequired": true,
+                    "reasons": [
+                        "AppendMustStartAfterBaselineInstanceSizeAndFitTargetInstanceSize"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent/<>c",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedScriptableObject/<>c",
+                    "decision": "NeedsNativeProof",
+                    "metadataChanged": false,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "ActualPlatformOffsetsAndAllocationCertificateRemainNativeOwned"
+                    ]
+                },
+                {
+                    "typeKey": "assemblya.implementation.internal::<PrivateImplementationDetails>/__StaticArrayInitTypeSize=2397",
+                    "decision": "NoActiveCounterpart",
+                    "metadataChanged": true,
+                    "prePublicationNativeProofRequired": false,
+                    "reasons": [
+                        "Old type lookup/execution must reject; this is not assembly Remove support or resource compatibility."
+                    ]
+                }
+            ]
+        }
+    ],
+    "identityEvidence": {
+        "profile": "CapturedNativeLayoutIdentityV1",
+        "targetFrameworkProvenanceHash": "256b1c7b997cf569f035a3a2e5bf528dc754cdf11d9a2a986960213984371af3",
+        "linkedRetargetingEvidenceHash": "d5b960f459a1e886d18468ef256ff7faa8e7cf74f6a6e97fed957bc89481a609",
+        "runtimeFacadeSha256": "6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+        "compilerFacadeSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+        "linkedInventory": [
+            {
+                "assemblyIdentity": "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a186f3a9cd5911468e9db795b26e231e2efc668dc674c8f58c8f46eafb2b0d83",
+                "mvid": "c6938810-730c-4787-a818-bc75ee26f887"
+            },
+            {
+                "assemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "mvid": "e6a13411-8f51-4f24-a807-ca1790b86c00"
+            },
+            {
+                "assemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9",
+                "mvid": "c16b2123-cb9f-43df-b250-4a8c3fa6f747"
+            },
+            {
+                "assemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "mvid": "e7354fbc-fa7c-473a-b923-cfe9360f7607"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowBaseline.Aot, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "3c7fec606a3e8713e68eb6cee2c1e6e19767d2096d85f527ed25d47d9926ef6c",
+                "mvid": "0625d8ee-e00f-4aac-b6ce-f4c956fc142f"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowDemo.Bootstrap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "b7cb5b80d603fd5b36e89aff7f3a8a7da027757b6fa764f525510613e96b066d",
+                "mvid": "b253ee61-dfab-4787-a201-78b7f391dc4f"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowDemo.ContractsConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "53b4462b06d681387faea13bef2e16030879c3f656c9c08306c05a437df87741",
+                "mvid": "8e27f3a4-279a-4ee4-a9e8-108ddee0c1b4"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "43dc5d8e5195ddf724b70428d4f546009c6626597ca2dc7e657d0914713560b9",
+                "mvid": "61a9bbba-8321-4b17-855b-d38c155b8c89"
+            },
+            {
+                "assemblyIdentity": "HybridCLR.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "b0f650c9c26697542ee6389b16e8a8d76876884ef2969b5f6511462e7fcbc3bf",
+                "mvid": "b6c7604b-48ef-408e-90ca-839d46869a60"
+            },
+            {
+                "assemblyIdentity": "Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756",
+                "sha256": "05a3c6be1fde3442ce73a83d606eb3048d6cef950a98a2b59b43842c42cd7be9",
+                "mvid": "de9d3327-5ce7-4cec-871e-34600ea1d090"
+            },
+            {
+                "assemblyIdentity": "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "sha256": "c6de4362edeeede7d2344def91b445cacf05dc63f4821e5fd6ff3ef71c414246",
+                "mvid": "639c375e-9076-456f-b7a3-1a0f316a6c49"
+            },
+            {
+                "assemblyIdentity": "System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "1fad17d31f84875654f93367745e7798103430bc5ba42b1de2e1c5d865f01b5e",
+                "mvid": "9450099f-5fee-49d7-a7df-16930a066f69"
+            },
+            {
+                "assemblyIdentity": "System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "sha256": "f21bb3c4fed630a2d3cd73597ea9665a8055b7c582dbb3b1d03c55b5f2f319ef",
+                "mvid": "859a4501-e7ae-4dbe-a302-58dec59dfaaf"
+            },
+            {
+                "assemblyIdentity": "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+                "sha256": "e2a51f59ce935b7624a297eb229af288a974327f573cb739c396ba049a257bae",
+                "mvid": "d6c049f6-44db-47a1-be7f-1d00ded4e23f"
+            },
+            {
+                "assemblyIdentity": "Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "4e1cd07b30c06bf05c473220b992b4256a9bc6dc984129af9d9134e814c85f5d",
+                "mvid": "fd4e1c8c-8365-49f5-b7a8-def718215de4"
+            },
+            {
+                "assemblyIdentity": "Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "1ad88789270aae48a316571c0d762a4217bc260cecf6da4bacff932fae6740a7",
+                "mvid": "403f7d85-7b47-4f96-b7d6-37cbfa68537a"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipeline.Universal.ShaderLibrary, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "7bd0848586afc3942bde6a755951fe00bfc0ff378b280b8da2db792ecadf33c9",
+                "mvid": "25649fdc-90a3-4460-8f19-d23556503a1d"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8bb0fa5cf16a638d92e8ae94d853ede635b1f396d2e184d17c08de4f5c5f8632",
+                "mvid": "85ae88f9-5d9a-4427-82ef-9b1a5b9288b6"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "f0941fdd725214f4c9b6f931e189cd787fc8d694dc5f51c557c2994d7b884c45",
+                "mvid": "a31807b8-a403-456e-8274-cd86597b769f"
+            },
+            {
+                "assemblyIdentity": "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6dcb79d8e3903ccbbc06218dd5495734658454eb52cfd41c1db9168db74ddf1a",
+                "mvid": "d799b781-2afa-44bb-84f4-95768a23a078"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2ad7de3cd48280a3f9d4c4b3ad6ba5c3681f3345c887af1238040f057730e460",
+                "mvid": "a142d7b8-ab01-44d3-ae59-b86d8e139abf"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AndroidJNIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "dbddf3b983bc4a84835f9698807096360103b3ecd9d858af6917e6d4ac87b7eb",
+                "mvid": "58f2ed35-a596-4cd6-91c5-aa6f295fda12"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "0958fec873136b9c8cbec85b041a0c7a39902c2b03d3bf4ed3daf0c21b436b89",
+                "mvid": "01f5673d-c0dd-4b22-9e6f-6c9ec316594f"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ffb9e0b553c7fe7759309078a02d58d909a776b0eddaea02c3d7853f74c97db1",
+                "mvid": "5efc68b6-730b-4a26-909c-e08e2fc73d73"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "64bfb6343a6a98a6ad46c5a5609f75a09758d14d35d251d4ceb5c1f8f4ed728f",
+                "mvid": "13290278-7b8e-4bbc-93b5-4f6c411804ed"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "mvid": "992a581c-8abb-4a58-a9ff-488f80933d16"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.DirectorModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2d6115c5e5f603d1af81298fceff2114597af071fc9506bb1809471bf8c61c5e",
+                "mvid": "c7c3c671-95e8-4bb1-9edf-d2aaa656caec"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.GameCenterModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "3b49ea42411826f76359810dd45330a39336462dc420334a5f660448ca3b5f7f",
+                "mvid": "de121446-032b-42d8-8fc0-a78da1fc4221"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9ea01b96151251386acd86ce54bcdb38057e2696370473b388bde4a6fbaff6b3",
+                "mvid": "513bd5db-ae96-48a4-8061-ecab2d677129"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8bc61ca321cafd3f4757e8365b9c6b050d16c18a5df05ed5c768fbf307bdd92f",
+                "mvid": "b2332a6a-eee7-492d-a141-6634991648cc"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "b836000db648c8e9445c7c69e00f6b16263a03c3f235ce3ad92bc00512a8cd98",
+                "mvid": "766a432d-da1e-439a-aac2-fb69d82e1dc0"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "c1e8e3c0fbaa8b3bbec976ee334ff6ebfaeeb58f5ee4e32320c68cc6f44a037d",
+                "mvid": "24562f20-d536-4e88-ba26-c3df4de4c301"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "de6545c1c5f2ebd8d4e8fc29f0b0213048a92bce427f2ed217aaf2f04785591d",
+                "mvid": "428712a7-9e3d-4335-a3f8-88a5b153866a"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9db7ef1aa73bc64b57d140d411caa51284bfe02064b9622786632a6cca250929",
+                "mvid": "b62991ea-42b3-4d76-ae17-04cfd24bcd79"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6cf9c5a9878cccde7d9dd3633d07203260722b56db8d5c39462454e8f6d981e8",
+                "mvid": "3a744392-2438-44cf-b2ff-9c9e90f25b8b"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ab305b13a18464ad52f92811ee2d30e1f0c233eadd9f360bd5ada125f5a65920",
+                "mvid": "6870d11f-f392-487c-97cf-1c859d27021d"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.PropertiesModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8e7db9310d373cedbe7ed3ca056940c00281148a93d2f21579f913199284bd86",
+                "mvid": "d1ab5f77-7bff-45e9-82da-220cdb7ce4bc"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "1debb9ca204271ab3cddd6504767e498b812e69e846515c2991b20cd3520a3e4",
+                "mvid": "0e5529d1-d560-41e1-8d80-432d58012646"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SpriteMaskModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "61d6c823c3894a99dc318e64aa2e7629ef2cc86ab3619495d386e4e295a0c75d",
+                "mvid": "0d663ed4-fed9-40f5-bcaa-1286f138e010"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SpriteShapeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9194a78d8998393fbd4e7fe815dcc2fd9b82f5cf61d143b55a766c5dcf73ba7d",
+                "mvid": "a49c26c9-8da5-429d-8f0a-bd8de21b37c8"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SubsystemsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "b601c4181e9cf0ed60799c226778ef6a0ae4f5fb029cde882858b58222f33b34",
+                "mvid": "26d9b17d-980a-4edf-a96a-7c5832684c04"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a3cc51b14ddf95e2147e5a33b720647eb89d4740a1b7b61e8bde5f99f3c83dac",
+                "mvid": "6a1557ba-f8cd-431d-b1ec-f952f305c778"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TextCoreFontEngineModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "d5d4d778f8c513a848aab4565c4518e8cd6f33230fb52b32ec0e7003248a8ead",
+                "mvid": "10e3d8e7-09c4-4536-95e5-906397c43d3a"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TextCoreTextEngineModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a03e6c2fd36cf8a35c180916bc5bbb53340366f2d9e18caae110589119dd242f",
+                "mvid": "b06b4ef3-b3f8-482d-a998-0dfba1aece12"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "165d1cf7e1d22eae97e8b97d94c3d8c0f4920669ecdc4c7cf250dfda90bdfcf2",
+                "mvid": "ce46c32b-8f7e-409b-803a-ccaad31a0011"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "07060a29351356196823d2907e764771245966c56feebf58d43afcd4238548a2",
+                "mvid": "1e8f89e8-7112-4a16-a712-dc0f87ebcdc1"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8fb8ce38851e57c37375eefc16de50a7c324040ee8d5e80898c481afdf90d07d",
+                "mvid": "58d750ed-2035-4372-a922-e669b75b28c8"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "f850ec6f257d279b120e0d39478b32c61de6554624424ea1b5a7c4f883b3146c",
+                "mvid": "165b232a-c18b-4fae-8a97-ca460f437a7c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "70d9e7dc355792092057d6b9acfcd0fe5d2b5bbcc9d0ade0da96934f698f648a",
+                "mvid": "495f3a58-2beb-4a3a-9318-17434f1405d7"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityAnalyticsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "0ec4ab8690230a5a15f1a7bac96f2bedf26592c3ea611ab79d01347664a5ec22",
+                "mvid": "8ff2464c-9c4f-4972-b6b4-b80286931ea8"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityWebRequestModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "14f8b3e6149b4fbd119f4ccb79991463e35ace016f7c86bbc53267dd721fdb09",
+                "mvid": "afca0039-e85d-4741-9c8a-9b7953884937"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VFXModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "0624d5e5601c7a556c661391be1bb6f5503f9248ee6b3f0a52bda64a9563dfe3",
+                "mvid": "508cc274-59d3-4143-b4aa-eb9509e33bda"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ff294d0098f0a7d2eb388c25ae5893c51dbd93dec6f6a62f035a2d208807cff0",
+                "mvid": "e077fdd1-b771-403d-80a0-048bfd273cf2"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VideoModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "1c6ff9c5bfc62ab16f50270c09d015f8639add0cfd923860449c35db4aefa645",
+                "mvid": "696149b4-e383-4d31-ac98-01cca23b7f6c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "eff8dd5ffa9071cd3defcfee087e16fb08c2a820a4a8f11bcb74421dd0134f20",
+                "mvid": "03bffdc8-e176-4a87-a892-6ac629bb9106"
+            },
+            {
+                "assemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "mvid": "1e5b6897-4e30-4e6c-aee3-9b1ae5fc4889"
+            }
+        ],
+        "compilerInventory": [
+            {
+                "assemblyIdentity": "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "05a68705b09b88306abd5a070bc627638fb1736407303ed9894b7cd570122c23",
+                "mvid": "41f19205-82cc-4b8b-aa07-2334a8f88997"
+            },
+            {
+                "assemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "mvid": "6f863fe7-26f9-4604-b8a9-2708c69ae25f"
+            },
+            {
+                "assemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97",
+                "mvid": "a983f2cd-1c14-4746-ad82-4441a3d4c902"
+            },
+            {
+                "assemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "mvid": "c0a38f7a-7856-453a-b696-c7e66fc60219"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowBaseline.Aot, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8599b65d332c0f02da7b37273c643606149995863dc7dbde9bc8ea0ef333e73c",
+                "mvid": "a11e285f-f0d1-48fd-92d3-106090bbbfe2"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowBaseline.HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "c6beea162b57aa4ba7dedf9515e04cc23bccce3baabba8f27ff472a46dc58cdf",
+                "mvid": "a87d55b3-67fa-40ba-87b6-e7676084773b"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowDemo.Bootstrap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2da268432d97351a90e5a29252ced242bc198c15c60eec77bcffc2f41658ae3c",
+                "mvid": "4ed35673-4a6e-402e-a87b-b7ae96b0b2ad"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowDemo.ContractsConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "68e4c8139a99a61aef0e406e2c1cb125cdc1f16ab50a78258a5a4406ccbcd64d",
+                "mvid": "1e94abcd-8917-4ef9-8870-0b79a2f26525"
+            },
+            {
+                "assemblyIdentity": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8fa38482d7358bc167b1a156e7f1e7fff43fcbd13b8363c0d9bf8af06caf5931",
+                "mvid": "427a0634-6792-4cfc-88ae-d596d77a3cfc"
+            },
+            {
+                "assemblyIdentity": "HybridCLR.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8f82b5caabb93af29fb28ca026b33fcac022bfd399d028925b3a65f787457a36",
+                "mvid": "6b012416-0b12-4c3c-8e2a-af1b4da65742"
+            },
+            {
+                "assemblyIdentity": "Microsoft.Win32.Primitives, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "2522cb85ef5379a4f716a035e11549b6814f4d426e758649250738358a71c85f",
+                "mvid": "2549a876-ec23-47a3-9567-e2830a9258c9"
+            },
+            {
+                "assemblyIdentity": "Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed",
+                "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f",
+                "mvid": "29e3dfd7-379d-434c-a988-1f8263fe42fe"
+            },
+            {
+                "assemblyIdentity": "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "2886c15559ef9f2f2c06389d204176ef86f74344416e680d450ac210d40656aa",
+                "mvid": "10445de1-1a1e-4066-92f1-13352fff551d"
+            },
+            {
+                "assemblyIdentity": "System.AppContext, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "643ec79d998df16995c4270bf2dc8ba881796179c03fa55d343ee9c43ba074d7",
+                "mvid": "f2ab5c6c-059d-426a-b55c-8da4f448e4c6"
+            },
+            {
+                "assemblyIdentity": "System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "sha256": "d0648fc3d820c8b225fe991d55d506f3210b698cc02beaf8aa31d990cd990772",
+                "mvid": "78879aeb-902a-4dd1-8849-610481cc0070"
+            },
+            {
+                "assemblyIdentity": "System.Collections, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "969da19309c9d0aa44d4ab9c03ad9f85a614fe0c285eaa68ee0bb5dc4dc6e47a",
+                "mvid": "6a4f5d0e-31b4-47de-8056-ffd1b9d59632"
+            },
+            {
+                "assemblyIdentity": "System.Collections.Concurrent, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "c882ff60ae9e26a23d149a11aa8bcc546652e1bd2b58656a7c3b11a8f5e227a7",
+                "mvid": "d2521282-5df5-458f-a4af-95c6518fe119"
+            },
+            {
+                "assemblyIdentity": "System.Collections.NonGeneric, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "17221b8767355654f5c97b53a4fd8dd413f95e2faf36dd2d28ea863ca7536f4a",
+                "mvid": "8f179a06-dda1-47fa-9b85-69ca4c5b7344"
+            },
+            {
+                "assemblyIdentity": "System.Collections.Specialized, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "9572743bf2fa4fd7a5c5e8d2c8a9b44424f38ff67042c833789282dbe241cb88",
+                "mvid": "f9218c26-eca7-4526-b8be-836bf18aab56"
+            },
+            {
+                "assemblyIdentity": "System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a488ab63c97df6d45f8dc01ecdd56c4ece383fc88231869caca1a74c29ee1c12",
+                "mvid": "44f45d2a-71b3-470c-a2c1-98eed29e666b"
+            },
+            {
+                "assemblyIdentity": "System.ComponentModel.Composition, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "3d9e953036e19ba57ee12c1148a35e067442063c86ad9d40ff393fb289421914",
+                "mvid": "5c511f74-3543-4d17-8d84-190527776550"
+            },
+            {
+                "assemblyIdentity": "System.ComponentModel.EventBasedAsync, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "04a7ea907580d9d41ca1d8d67abfe81d61af8fc59125e1383a9502bfd4f9134f",
+                "mvid": "b9479bcd-039f-446f-8b84-8285bc95a1e2"
+            },
+            {
+                "assemblyIdentity": "System.ComponentModel.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "6522dfefdddfbf58ccc4f3ba6f41121e16ee5b20dd8f325c6983b4ac8c3befd8",
+                "mvid": "5579f754-cc6e-4d5d-b16b-5b77c6f719a1"
+            },
+            {
+                "assemblyIdentity": "System.ComponentModel.TypeConverter, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "399642afed43a9c150650eeb37cd407c2d14ab005e58d6f2784b726e0be72f53",
+                "mvid": "0e467b89-5c5a-4693-8143-3ffcdc4d44cb"
+            },
+            {
+                "assemblyIdentity": "System.Console, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "98b2c46fda1c10418cddd36e3950058a7d188a48c482074ec77c3daca1dbad04",
+                "mvid": "79fce38f-a2b8-4410-9740-0eae7af6ff3a"
+            },
+            {
+                "assemblyIdentity": "System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "83c8c06c5e59955aad7ef4acc13b63d702764f5b4e20cefb3a431cb2f75a12ed",
+                "mvid": "47243bb6-ee7c-42a6-b6e3-97af43b94e5a"
+            },
+            {
+                "assemblyIdentity": "System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "722b754ca36e903c69519e8906ebc0f96f14525d847f73f3b5f2ac765499715b",
+                "mvid": "2ac7ffba-5fb2-4da1-8d37-250593124350"
+            },
+            {
+                "assemblyIdentity": "System.Data.Common, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "cfbbe345a3af5c2820492779ce4c9e1d9c7e4c9e714f222a15ab524cf827af52",
+                "mvid": "bd4870a4-9f40-4ed4-afa7-24a7378a44a5"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.Contracts, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "250ba880b970a355cf626e7ad60f736aab379c7ba06f68ffdebb6f2b852c25cb",
+                "mvid": "17e59d05-7a1a-46f5-b5c6-203b3864f806"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.Debug, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "3964a2da6b23e89d076faf6a91cf8b2fe6d196d4dea2f954e0c5e1f570ef85b1",
+                "mvid": "713fc753-50f7-439c-9b7a-a67b8cbef063"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.FileVersionInfo, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "3f6ce9c7991ab252c5c704ff91e1c99d21b5fe99937d27132b3b56f8b981a045",
+                "mvid": "11659000-0e7c-4f24-894a-71036ac89f57"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.Process, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "29f7e89a609dcbcec72a4adf094a458718b23940721cebae0440ad7a0f522921",
+                "mvid": "2f0ac209-b44b-41e9-bc9d-4886614e141f"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.StackTrace, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "2b91c8a72755071086c0fe4ab8019480eeabf9ae5243cbf58942761abd1013a5",
+                "mvid": "9fbc2b58-d8ac-4617-9c73-91fb7fad382f"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.TextWriterTraceListener, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "d85c7a6c1d9e848b69aa5a8ffb4a9755e8d84fc957ae9c455ead30fd8b688869",
+                "mvid": "0c0d077f-85e1-4a1d-aa8e-0c9b63c64d46"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.Tools, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "25d1dec703daa1e68dea27c6f85f4a0c55d24a56d1c597388c6c596e0ff9f856",
+                "mvid": "86cc4163-710d-4c90-b497-cae076347f3e"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.TraceSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "10ae31d5bdd373bbca96dc83cad65a32d1e788d8f95fb1555b371026025b2643",
+                "mvid": "93dbeef9-3b10-4983-8119-bb66e28b895f"
+            },
+            {
+                "assemblyIdentity": "System.Diagnostics.Tracing, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "469d5ab04348ab7db62f71d757586e46692695b5c4604a26a01899baceb4b47d",
+                "mvid": "703e3532-f993-4b28-97e2-7d78ccd84401"
+            },
+            {
+                "assemblyIdentity": "System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "c9a3ea4bcb020c63a986fd72a31ce997e62a5f8d04460a32548e6fa31ae8f910",
+                "mvid": "67b862c3-0b3b-4cc3-83a8-7bae9148d2fd"
+            },
+            {
+                "assemblyIdentity": "System.Drawing.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "da2afcd4237dc4f8e14f66bd9d2983143881e97c3f3c1738620438df94d030e4",
+                "mvid": "9248ed3d-02df-4d90-a90a-6bbf6536d5f2"
+            },
+            {
+                "assemblyIdentity": "System.Dynamic.Runtime, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "f34cb31b138244d902cc4220500a60a7ffe6e5cf0874f48678145aa2f42318ea",
+                "mvid": "851fca66-5359-4d31-813a-360ce450d9f9"
+            },
+            {
+                "assemblyIdentity": "System.Globalization, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a8bb8be1079c4220b202bc873b7ffe39a2e306cd5280843ad5c1aed8376db2d3",
+                "mvid": "33efaea0-5731-47a6-abf0-31b9f7d0252a"
+            },
+            {
+                "assemblyIdentity": "System.Globalization.Calendars, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "03d14391a91d831f15050cd6255cd1097f546760b46f9fd2c0479069735d264b",
+                "mvid": "25b71afc-d54e-4a69-9836-9ba97f3d3a75"
+            },
+            {
+                "assemblyIdentity": "System.Globalization.Extensions, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "744c044a966cde69a0362d7f7eadba7f4b89e28c95cb47ab6022740d381969c0",
+                "mvid": "85a3bfcc-46a0-45a1-8c49-1d0af1a647b8"
+            },
+            {
+                "assemblyIdentity": "System.IO, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "855c8b76c1dd99ecd97f079b073eff83292b1ff90b9c5426cbe36b76c39a34d1",
+                "mvid": "3f9b7ece-301d-485e-a360-eb7cce287c68"
+            },
+            {
+                "assemblyIdentity": "System.IO.Compression, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "dd36080142c15c7cf005e78e3237cd85a6d9e241b979072c0b82e0a40f6848b3",
+                "mvid": "c2670a39-0e9f-4596-a0bc-e955d8782756"
+            },
+            {
+                "assemblyIdentity": "System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "2511e6d2df543140d45bf45d8df2cb34b8590db5193157e970021136c20173d6",
+                "mvid": "86d8fd3e-e713-4b78-821c-889d6c8610bf"
+            },
+            {
+                "assemblyIdentity": "System.IO.Compression.ZipFile, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "f721f7c90e0e1a8b04a62ce570eb7f7c238db9136ac213a6c04970e94a737e82",
+                "mvid": "9a262bbd-de74-45dd-b41a-3b8fc6516c38"
+            },
+            {
+                "assemblyIdentity": "System.IO.FileSystem, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "3e6b283d0ad07f2d3e33eb1588e0279f52e684d638fe3dcfa6441deefe799c13",
+                "mvid": "b4e203c1-4134-4849-8790-587e44ef80e0"
+            },
+            {
+                "assemblyIdentity": "System.IO.FileSystem.DriveInfo, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "25e4ed8748fdbd9cf2fd77014d087ed9ed24dbde2e694e966a68a9d72371f51d",
+                "mvid": "59eb2465-cdd8-4045-bf6f-e5e0b4f6b693"
+            },
+            {
+                "assemblyIdentity": "System.IO.FileSystem.Primitives, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "4e96df37c5713fb21e30c767aa216e1f10878f30e4a89c6d7657b86637a62647",
+                "mvid": "f3dc2f71-3ca3-400e-9b9e-c4dc30310587"
+            },
+            {
+                "assemblyIdentity": "System.IO.FileSystem.Watcher, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "c75a0339b10aedcddff7c3acc85f23bfc95c63244abc7edbaec8606b426a6556",
+                "mvid": "8257700a-2c54-446c-a540-c750b85c233f"
+            },
+            {
+                "assemblyIdentity": "System.IO.IsolatedStorage, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "7b514b9dfd4ad5b514b54aa9a12f4a9cd02de97a724b21ecaefdd97c2f94b31f",
+                "mvid": "cab39c3d-2858-4ffe-aad0-30456ad160f4"
+            },
+            {
+                "assemblyIdentity": "System.IO.MemoryMappedFiles, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a7bcea398169e5f8b7bf01ce75d23065590db0d1a62e67df6a5b0894236e46b1",
+                "mvid": "d26308ca-ba7c-4b0c-b6e5-2ba66e670b41"
+            },
+            {
+                "assemblyIdentity": "System.IO.Pipes, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "c988c381f5ed6e2e8ff84a85f71e859f47c19ac149c8ee8230dc3c315100cad4",
+                "mvid": "0bd82d09-a380-46da-8f62-c5d7b6fe77e8"
+            },
+            {
+                "assemblyIdentity": "System.IO.UnmanagedMemoryStream, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "52df0618cf4bc35ac97150c1a999220b5e6107b7272042cdd49e2adbc41e8adf",
+                "mvid": "9f7545fc-ffc3-4587-af02-9c67bfbfe832"
+            },
+            {
+                "assemblyIdentity": "System.Linq, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "0f94f7b2e726b32509e628a8514c6ce5ae903d07c99f99a61933289f13756ca4",
+                "mvid": "d6ca4848-22f6-4fbb-a6db-97dab3e47930"
+            },
+            {
+                "assemblyIdentity": "System.Linq.Expressions, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "1a9d4766cc13b2e27d6295d707c3af5d57f11d63f4cb4a9ffd47d9917edacd7c",
+                "mvid": "450ad800-9785-4737-b574-3bad887f6ea0"
+            },
+            {
+                "assemblyIdentity": "System.Linq.Parallel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "f6d2eba7f641721e3a41ee29000430659f0f987ec1b33fc467f715c9d186e58c",
+                "mvid": "02d87ea1-5927-4f4e-b36c-5a19acfa2ab3"
+            },
+            {
+                "assemblyIdentity": "System.Linq.Queryable, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "6c5b11651156aedfbacacadfbe4a388062cbae74a2a43004b590990a0b941a26",
+                "mvid": "de8c2e2b-f0aa-4391-95af-dc25650e86e1"
+            },
+            {
+                "assemblyIdentity": "System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "sha256": "34abf197fbf191fb83e983571a6f3a6fc460fa80f32038c94d54e96966678f88",
+                "mvid": "7febf6cd-e7d6-47e1-b881-02ae151b14e9"
+            },
+            {
+                "assemblyIdentity": "System.Net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "b99d8f30be2f3ef351b7e00b6cd6b4c09826dfc3ba334999cfbc2899d87204e8",
+                "mvid": "fb3defeb-5a8b-4b12-8b50-64929ad6d0db"
+            },
+            {
+                "assemblyIdentity": "System.Net.Http, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "bba894cb713ef6a2f48776240ee55122c38839af88c72742294b4583f8d2a66e",
+                "mvid": "06359ecb-ecf9-4b3b-ba36-e09e381c93f5"
+            },
+            {
+                "assemblyIdentity": "System.Net.NameResolution, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "2308c9e1f674c3b854320507d41ba633802c8db7d10ec8dbb3ef9d86acca44fe",
+                "mvid": "537efcf1-4b87-46e6-a470-2050b6a9c58a"
+            },
+            {
+                "assemblyIdentity": "System.Net.NetworkInformation, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "8fb1051323d2fc34c59f8aeaa3f17cd37907eeaf7d0c274323b12b14aa7027e9",
+                "mvid": "fa7b66ac-6e42-4a9a-9b5c-6cbc8dd6929c"
+            },
+            {
+                "assemblyIdentity": "System.Net.Ping, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a17b78f469c6622970d1eb6ee5105220235c70d2908c856de6742797c7d82c32",
+                "mvid": "08c13bbd-2078-41dc-9c19-cc4776102b90"
+            },
+            {
+                "assemblyIdentity": "System.Net.Primitives, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "0a3b1ad27d640a56a55ca750861768271edd211ca1c494ae36b5184ab8e26780",
+                "mvid": "4eca17bc-cd0e-468c-b71b-2a5c3d10c35e"
+            },
+            {
+                "assemblyIdentity": "System.Net.Requests, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "5f2a63d0ec2fd4ccc45ca2ba3dcfd7a4cf72931e97fd41bd36f00ca2f18dab06",
+                "mvid": "4c27fd5e-e5e0-410c-bfa9-0bd4896ea514"
+            },
+            {
+                "assemblyIdentity": "System.Net.Security, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "ca922585b98ea8bc9b2c684dc11cf0a0946211cecec6b3f59c9c9b784a41ba56",
+                "mvid": "1cde5bda-d051-4b48-a7bf-2007ec49661b"
+            },
+            {
+                "assemblyIdentity": "System.Net.Sockets, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "cb5996625a8ae3b82a2e06d8b27b00e6a4ad480b6dde96492e1a245583275d68",
+                "mvid": "5139b925-0ba1-4a91-8cac-d0db5eb3ec4b"
+            },
+            {
+                "assemblyIdentity": "System.Net.WebHeaderCollection, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "edfc6c63a5f6374134bc9b25349978acbc4c2b02ae7de2fe7935e898044e6ff7",
+                "mvid": "bece4def-baf7-4d3d-a366-0687838adb59"
+            },
+            {
+                "assemblyIdentity": "System.Net.WebSockets, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "538827c5993417c9aba603171200b0f6f096f399e6e7178cf2028735f1b909d7",
+                "mvid": "0c188411-2035-488d-8521-50534b0747c1"
+            },
+            {
+                "assemblyIdentity": "System.Net.WebSockets.Client, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "c212a3431d18b2c678daeb0d1c0a839ea0eb02fb2029ecda32b09e00aed00aa5",
+                "mvid": "385de4f0-b810-49fa-9b17-9a72e8e29b90"
+            },
+            {
+                "assemblyIdentity": "System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "ff69f92af7abae62302e0b29e7562d3f7392bc11d95d75e587b4ca6f1ceb8cbe",
+                "mvid": "81ed041f-35c2-4df5-9f2a-63f62343e868"
+            },
+            {
+                "assemblyIdentity": "System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "4c6ba8896ea9d26ff732d5afaccb3b13ffa4097799b10b3260bf7f64bc8b09c1",
+                "mvid": "68851ed1-0d4d-4f2c-9a8e-c48c44c0fee9"
+            },
+            {
+                "assemblyIdentity": "System.ObjectModel, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a5d377dbf15d2abe6b00a65ae81766b237354738b275c7a0e2d9466f093cbc20",
+                "mvid": "3b9bd7f8-1eb4-4bca-ba19-9742c5a39136"
+            },
+            {
+                "assemblyIdentity": "System.Reflection, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "00d69622de91ce2e2aeee6c1215debaa721a120d8f59b08e7f4a70796ecf9b3f",
+                "mvid": "9df3ad60-aec7-4396-9f82-03a6ba3b1044"
+            },
+            {
+                "assemblyIdentity": "System.Reflection.DispatchProxy, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "69833afb991f90cf22590b9de9aa95ac3aae9bed2b186321ff73fa5790efe08f",
+                "mvid": "050f646c-741c-4960-8df7-0a16da8dba95"
+            },
+            {
+                "assemblyIdentity": "System.Reflection.Emit, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "b42bfcd22d815a9ab3d2b2e8a425ecc91e50a6e2aa7e3c5cfa2d5b9b9e127c92",
+                "mvid": "c9588978-9e8f-4080-a7a8-129f693a5b0b"
+            },
+            {
+                "assemblyIdentity": "System.Reflection.Emit.ILGeneration, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "125c6aaab34dec8c7799fc99074ab01a42f67e549187f50cad9da2184bd35d32",
+                "mvid": "0b5608ce-a8f3-4aef-b269-22e453136265"
+            },
+            {
+                "assemblyIdentity": "System.Reflection.Emit.Lightweight, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "5e24ed2d22416fca721f54243e4cbc693e6f293904660947067ba1c0288e79fe",
+                "mvid": "1468457c-637b-4402-ad73-b82d5ba9a2c7"
+            },
+            {
+                "assemblyIdentity": "System.Reflection.Extensions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "59ec997a2dd047441fbf886691dffe2fe9eff0e549dd5d6241400aa2241c7c23",
+                "mvid": "423f26be-9c9d-42a9-b846-43dfe37847c9"
+            },
+            {
+                "assemblyIdentity": "System.Reflection.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "ebfd6f084c8741e359358711ae6da4b0a06db2369be8c9defb4d6eb17bc8ee14",
+                "mvid": "6a91c7bf-658b-4156-98db-c675f0e35d8c"
+            },
+            {
+                "assemblyIdentity": "System.Resources.Reader, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "f73fa653ba6ceb7e7c1d5eeb82d09c77d4101424422ec74f7313a7845cc882c6",
+                "mvid": "742d0d72-d717-49ab-882f-1eaf230f3f6a"
+            },
+            {
+                "assemblyIdentity": "System.Resources.ResourceManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "99ed45baff87bd6723ef8dac8d04d21075627141f7525a1ace95ba1dcba9a964",
+                "mvid": "1672cd08-d682-4d0f-8830-1dc4aa4b0e49"
+            },
+            {
+                "assemblyIdentity": "System.Resources.Writer, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "49e3aaa0b5e6d87c3f1d038877063582811f78ae4fb6d6a8f2cb8920f3782d26",
+                "mvid": "17a0da4c-2ac1-4857-a9f0-08cab2a0377b"
+            },
+            {
+                "assemblyIdentity": "System.Runtime, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "81be9e3c2938390b15445969128e65e5ff14b80193fc531bce4e9e28a368273a",
+                "mvid": "f512e10a-81a6-4e51-adc2-b6f3e25df20a"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.CompilerServices.VisualC, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a75c6fa50f10ad888663ab694ca2cb45b8379070065e9d558d4c19086be9f28b",
+                "mvid": "132094af-a008-4a5c-bb78-4dfa821d3b12"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Extensions, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "3cb31bf3acb245a0e409b2e6160e8dfbbe7c26fbd9eeabcc8bf2bb81535cbab9",
+                "mvid": "a6513389-3ded-4adf-a711-743a1a0720c1"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Handles, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "aa5fc7ca286d170bfe32dd15663d508bb94e297a52797984a9aa7d8ffddf5ec5",
+                "mvid": "aabc2945-31ff-4618-9140-29cf80e94a64"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.InteropServices, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "7e97622025bcbda146408eecbb750345bd373ab9454fb118f11377f215f56400",
+                "mvid": "cb1c8c3c-1038-4a4d-946a-5cd22578d18e"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.InteropServices.RuntimeInformation, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "1ae138913f54d55cea0f40807ee363fdd1ceaf2037f4a029c1d2aca445146183",
+                "mvid": "39130736-8674-4f94-bc54-762ed5caaf90"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.InteropServices.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "7019a99db764398275bdeb788af79e2904c7ce024539113ce92d0c77f928bbce",
+                "mvid": "5f6ec049-882b-4e9c-8de3-2b26fd93d3cd"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Numerics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "e0727d00a0dda8280716df9a2019d4e53cf3da0b6339b1ad4d407ba2dd3396fd",
+                "mvid": "00a2880e-f2fc-49df-afc3-9e274eb4ad4b"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "618f378d908436c7e143ec0ffe95ea791431a728a29815eaa1618ec5906aa05f",
+                "mvid": "edf606b6-b8d7-4aa6-90e7-48b923041104"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Serialization.Formatters, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "54c2621c4476473fe95be77a8c91a153c63d6d0cf4912683f6dbc98aae0db85a",
+                "mvid": "041aced2-49a4-4a20-ac2e-19e1135113ca"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Serialization.Json, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "8c50999e83e5ef46a479498e2010425283b04eb674cf6e9a691f6e1ea39e3b47",
+                "mvid": "10a238a1-03da-4729-ae8b-5e533b9a7650"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Serialization.Primitives, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "f35293ebdd0b318f02341da4bc7bb236cf0c8e14e1c7ec8e3cba9cc4db2d2aee",
+                "mvid": "cec29e3d-e793-443c-9804-5be3edaded52"
+            },
+            {
+                "assemblyIdentity": "System.Runtime.Serialization.Xml, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "baac69344e578e064dcc277d93bbe1082a72e5d0c21f04b137a3c343c75ef405",
+                "mvid": "99ea69f8-0cf6-4b4e-96b6-ac71ef3627f2"
+            },
+            {
+                "assemblyIdentity": "System.Security.Claims, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "ea04a2840cede1e5ee2281442540f5df410c562cf5943277ab938abf30b386e8",
+                "mvid": "3faf2fea-bd3d-4b66-8741-190fe98b9ff0"
+            },
+            {
+                "assemblyIdentity": "System.Security.Cryptography.Algorithms, Version=4.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "39bd261f8befb2334ab3e720c312ead1d584408c29717f8b439371491d0946ae",
+                "mvid": "858de27f-3587-42d7-b25b-c19a4fe82608"
+            },
+            {
+                "assemblyIdentity": "System.Security.Cryptography.Csp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "30f289b46935daa1770373812ac97fe2a3d14806051ba28f900cd305967a0ef9",
+                "mvid": "64fc2c08-cbb4-405b-965d-51f5a4e0efbb"
+            },
+            {
+                "assemblyIdentity": "System.Security.Cryptography.Encoding, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "2327c771b6f00d194816c7e142ba054b8ee120018295c2d61289dfbf822fbbf7",
+                "mvid": "d9fe0d1c-3c9f-4252-b06d-42c4bb4568fb"
+            },
+            {
+                "assemblyIdentity": "System.Security.Cryptography.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "4ce2892fa454e46f7d99411caab18db1595bb3650f8fcbe303851731d889f4cd",
+                "mvid": "ebc764a5-f881-445f-80fe-0b624920cf28"
+            },
+            {
+                "assemblyIdentity": "System.Security.Cryptography.X509Certificates, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "af66cdf9b9e2ee26174a56aae0bee557edd9a7a61b27a4b99509b338cf68c4b4",
+                "mvid": "32c17234-d4bc-4b09-9efe-ad2aa875b16c"
+            },
+            {
+                "assemblyIdentity": "System.Security.Principal, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "f7edd00a5f69766356638b9c8692fa7d8ad2465239c5aeb14d9f071f3832a64b",
+                "mvid": "720d5a32-5558-42ae-bfcd-82c79fec1813"
+            },
+            {
+                "assemblyIdentity": "System.Security.SecureString, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "fd85a43436a9ed3667df457c6a92721052c29405eba2232b867d3797ca72cb8b",
+                "mvid": "95539f73-17a3-4fdd-87c3-4f6e1b350e31"
+            },
+            {
+                "assemblyIdentity": "System.ServiceModel.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+                "sha256": "ef71e6e462f783e8a9ae8d019c7c737256b3d1593659e9831583af4c1b3747e9",
+                "mvid": "d66255fb-b00a-4b08-aa5b-b409ba1a7006"
+            },
+            {
+                "assemblyIdentity": "System.Text.Encoding, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "968665d2b5b1d7a2786b8e35d9df599ac40d45aedc86b3a2ea21ad35bf02f071",
+                "mvid": "52631679-541b-4f20-b4f3-6a56463164aa"
+            },
+            {
+                "assemblyIdentity": "System.Text.Encoding.Extensions, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "7d88331223deb5e7226b56fe02a2967c8770b7120d3f23a043192a2396d207d3",
+                "mvid": "c443db18-a805-4115-a45c-f377e7cf6510"
+            },
+            {
+                "assemblyIdentity": "System.Text.RegularExpressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "d8839d80664bcaffafada263aded6bda805885fc8c1af0a38eb784f8786a3d2e",
+                "mvid": "9ee547f1-2f9b-4101-bb46-52b3777f45fd"
+            },
+            {
+                "assemblyIdentity": "System.Threading, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "23c49cba7193aa07fea9c840254433461601ad3b7e9d77d97c889a8b671dee62",
+                "mvid": "fa8138d9-eb97-463f-8cf9-22d9dc3047c9"
+            },
+            {
+                "assemblyIdentity": "System.Threading.Overlapped, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "fb48baf7cb0693c44e907b89a8c792cb4b90de258cd9735bef67d9b4dd85e2f1",
+                "mvid": "a3f7ca17-1acc-44f1-9725-004611370d8a"
+            },
+            {
+                "assemblyIdentity": "System.Threading.Tasks, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "30984a07e22928be7fbea6fc3518ef0171537652402d5622497f8dd5afcb16f4",
+                "mvid": "d93ec6fc-d505-4cd3-9872-d0c8e3e9be52"
+            },
+            {
+                "assemblyIdentity": "System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "sha256": "a159ada6a533b86727178129915d53c9c7554b0e55e117fce27b8661f8366f62",
+                "mvid": "bf423844-bb9b-4f67-8505-6154dd8dc5d3"
+            },
+            {
+                "assemblyIdentity": "System.Threading.Tasks.Parallel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "69efa79ae26cc823964170b3a23f69c8c2346206f3c2670d8d07f60cd4c19a94",
+                "mvid": "dcc0a59a-0780-42e0-93ca-de6afd2af0bc"
+            },
+            {
+                "assemblyIdentity": "System.Threading.Thread, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "6822f2724465e7c973ae1f2d5a2e7a5755a816b6847498a855fe9c8d0ed69a0b",
+                "mvid": "5a6716da-bb5d-4522-87fe-1b3ed998192f"
+            },
+            {
+                "assemblyIdentity": "System.Threading.ThreadPool, Version=4.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "cdb2e88636ec5e827305d93e008e69cd205675fed0e19115a03288624769e853",
+                "mvid": "b2e0f9e0-9470-4d40-a3bf-114fe1d1b66a"
+            },
+            {
+                "assemblyIdentity": "System.Threading.Timer, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "e9aa691cef3ec721b26e7d0efc1a960ec7fc5661eb1921e06a0ff0afb52f41b9",
+                "mvid": "aca500af-eefa-489d-8079-86c473663923"
+            },
+            {
+                "assemblyIdentity": "System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "a518484c7988530007547406cc8d14b1cde92fc26f373d49ea155cab472a6131",
+                "mvid": "31996035-b577-434a-80b0-347b7f29ad15"
+            },
+            {
+                "assemblyIdentity": "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "sha256": "1b0ee8e45405c0b4917327b1e44454ffffc63750b7df479a7f6ffbda2a1f92a2",
+                "mvid": "7b0c994b-8c16-462e-a98f-5f4ce093d151"
+            },
+            {
+                "assemblyIdentity": "System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "2c1b3298574d95c3232a45a073d39dae0908e89dacfbfb42e4f44ebf06368fe4",
+                "mvid": "ffabc55b-d55c-41d9-a345-46c8e211a93f"
+            },
+            {
+                "assemblyIdentity": "System.Windows, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "a1bc4b5483e459783cde59c72f9213d13136695ebbba1b9e6093d50d675d741d",
+                "mvid": "08d3b533-9656-4b26-9a79-54c3fb52fca1"
+            },
+            {
+                "assemblyIdentity": "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "1191d6b547783fb32061de561a9379fbe7c788518510cc22c71d3c4646dd65f5",
+                "mvid": "0fbd000e-070b-48c9-88cb-598fe6722637"
+            },
+            {
+                "assemblyIdentity": "System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "9649dcf62b2882648a5b5de48b931b8c7080da8e8a96fc853e87801fae8d892d",
+                "mvid": "14611aed-b5f8-43f8-8c08-9b57d19eb44b"
+            },
+            {
+                "assemblyIdentity": "System.Xml.ReaderWriter, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "ae8db24c60c075fc0cd7c30e9aecc7f7de52fa05048d1d09e3ee35653f4c54d5",
+                "mvid": "7233ed48-d35a-437a-9560-b6c4ab30132d"
+            },
+            {
+                "assemblyIdentity": "System.Xml.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "41738a9f79bbe5dfcf9b5d75960caa091d5b4a7cd276e7176c9d03df260737e7",
+                "mvid": "29ecaec5-0b7f-4d24-92d5-3009b1f36270"
+            },
+            {
+                "assemblyIdentity": "System.Xml.XDocument, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "729c42931e8812e1a993727a0f32c832ebfc3abac2223a5a30c2a8ac1cc9964d",
+                "mvid": "76e02d80-6909-4839-bb59-0767549374d0"
+            },
+            {
+                "assemblyIdentity": "System.Xml.XPath, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "ddcb1eb78a567a323b47dc18a9dd63c066000e3cdbb90a4559607dae69ab4be0",
+                "mvid": "808a2cc4-0f01-43ce-a44c-5599c59e274a"
+            },
+            {
+                "assemblyIdentity": "System.Xml.XPath.XDocument, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "857621dc44cff6ac7388d828a5a083d99f149901f2bec74993d87ef3cd541b35",
+                "mvid": "530dcb03-cade-4e7e-b029-6866b3bc72e1"
+            },
+            {
+                "assemblyIdentity": "System.Xml.XmlDocument, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "e683ff6c95f117954a616d304f3b89cb273e8b00b42efef7fe99a48713800645",
+                "mvid": "277ab3a7-4b60-4d78-a7eb-f46b605f46ad"
+            },
+            {
+                "assemblyIdentity": "System.Xml.XmlSerializer, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+                "sha256": "6650b822e73bc40af1f242a6d96c2f25397189b8fa778d22ac6a8c5fa2ea58f7",
+                "mvid": "51e8bc57-eedd-4992-9ebb-627b17356847"
+            },
+            {
+                "assemblyIdentity": "Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "fb024613a095d097eafcc5a19e8c0ae2454f5fc936b8c4cdd878276a8ae7ac9f",
+                "mvid": "50094d9e-8cee-4f21-ac20-5130ae0a1e4f"
+            },
+            {
+                "assemblyIdentity": "Unity.Burst.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2",
+                "mvid": "9eaa2e25-81d1-45ae-9c55-5d2492ea3922"
+            },
+            {
+                "assemblyIdentity": "Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "84fb95ad01d291e698fccc20b2edd283ad5f063b6cfa2460608557422837d745",
+                "mvid": "4f18c722-385d-4602-ad06-72797aa7fb67"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipeline.Universal.ShaderLibrary, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8d62b2028dbb7689427c9e663a5c26bee754cc131212d5bf05039f9c37f32181",
+                "mvid": "a45938b5-04b8-499b-9a07-ec9c537ad958"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "483db72128e0af16fccfcd12a7ba4b3001f8f837783806cfb216c89c1505265e",
+                "mvid": "f982d53a-5970-4477-8670-9fe980479520"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Core.ShaderLibrary, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ce1338c245afb393ae7d6ed08743da59cb6d980e5a4dc9000f92dce6cd5afce7",
+                "mvid": "b34c964d-0b7b-45cb-b103-9db0b7ca4047"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9d10c901fd59a0b9ab525f84e94eedf7a6e637cce0591bb4a880274758233e5b",
+                "mvid": "9e4fcebf-de86-4139-b99a-fdb0a9f21daf"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Universal.2D.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "f744aa98f805dcdfbdf193a541d7590c5ee39d03edd1a7ffd014d629ee943a36",
+                "mvid": "896cd82b-3a39-4cab-8377-6976fdd17b88"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Universal.Config.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "363fab42879d40099e63cd53ceac0d9ecdaaa6a5024776173911fdd75d95e948",
+                "mvid": "22325e12-1ba9-4779-84f0-77e7c4ebdf34"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "5e887c41786b26cee82fc782912e71afe511aa5043b2bcad05ca4cd4da86f86c",
+                "mvid": "dfaa7df7-6ed5-4ee1-9013-8c487d69ae9f"
+            },
+            {
+                "assemblyIdentity": "Unity.RenderPipelines.Universal.Shaders, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "3ea3f8632bea647a8dc2c71d940ef6e3169b4dacc5e1f7719f0ca8d7c42497b6",
+                "mvid": "4edf3595-dae3-4c44-9206-5e9b7e5b5ed6"
+            },
+            {
+                "assemblyIdentity": "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "963165524a5925a090d0e6a124fd496675765eee5b326551a88387b80940fdc1",
+                "mvid": "1c6e0ca8-f0f4-4997-bb8a-37401c58c57b"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "3b13f71904318cd58e3cb4ecbf98df203298713a5f531ff5ea4b4e431ca49fb8",
+                "mvid": "0f309467-3048-453c-a8e1-9302909e2a53"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ARModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "f7e9d876645e782da29b61b76801289667945ed690f29650571c6463052e0820",
+                "mvid": "9ac2eb58-8252-44c7-9deb-33f1c78f4473"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AccessibilityModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "36ecb21f6480ec9c0d0dc2879e4640334d40b39e531988e5562950aa2a35870f",
+                "mvid": "fa6f5f06-4cc9-4a83-80ce-c72ae220ad1d"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AndroidJNIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a81285e4cf475a47e40224cb7cc80547692b66dd17225ab54df47ebf77bae7c4",
+                "mvid": "0384014e-a4a1-49a6-8154-5e0793f45a26"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "7f329fc53ba65594d97bea0b60feb9a061ad2b6310c20f948db0461321aeda2d",
+                "mvid": "e4f16326-14a6-4458-a922-d54649a87bea"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ea8e19198b8c1ebc8cd133ee87eff3b6f68978935810465ed1942722d1eb88bf",
+                "mvid": "1b7a744c-aa7c-4d52-a987-b4f75e7c457b"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "07991eb3b16f9712c2effa30dc289780df2e460468213a83d735469c9d8c61c0",
+                "mvid": "a369c327-19fd-4524-bc30-6e70df9ec765"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ClothModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2800f87e6b2928c1ab86ec1e315c014347cb2058cb90ffb6e3a422ee26eb6f77",
+                "mvid": "de15c311-d390-43f6-a3f9-da5f3bc6018a"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ClusterInputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6298e92b8e32cf1de32ad8630bf6cf6395bd18eee5f52cea1984b170fde87ade",
+                "mvid": "75e14520-fe90-4e64-ab25-6d9b722463d8"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ClusterRendererModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "5d915ebbd47c7cdcfbb8ba9cd6f4ff269b920fbf93ee176fe3d79ee52f5eb44e",
+                "mvid": "e5ad5c4a-f432-4492-ab35-ea77a029f9a6"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ContentLoadModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a13cb69f6d0fbd3dd5d3c2655b96f5d4f33e2a3a0abf89d453f7064664e91b05",
+                "mvid": "b0e55ade-098d-4d08-8de5-991d4c7ba28f"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "mvid": "2bfe85a7-2c04-48c2-8fd2-4c4fcb79544c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.CrashReportingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "cd28e278e77705b2b9c29fa6c92e32de52fd2598c7a8c61dd343b97403ae651a",
+                "mvid": "0e1cd0d3-ca4d-4c2d-9b7a-cd5a2d421d0a"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.DSPGraphModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9b1c3130177aa103bf23e9d37c58142ec14f626d2aeffa4aa7f474d1a3a324b0",
+                "mvid": "68d0346c-7276-4fb0-88de-85e89f188942"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.DirectorModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "61737964cd210b02a39c9862ac460b32f3d08614e36944a99f4a447b4efa51cc",
+                "mvid": "afe70909-047f-4126-a18f-3b4c06b7e800"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.GIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "0370668eda9c0f289cc3452e33336c7fcc23287f9554a81c66e94561b0dba83f",
+                "mvid": "ac9582e2-3e6b-4afb-a76c-3b1be1b7ed70"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.GameCenterModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9cc4d1aded1fb76f92870a9566eec035ab85b6d537301c0e5fd97e0d69f85711",
+                "mvid": "29965ae3-5bf1-4937-9b0f-08cb31ba43fd"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "99f466e6be73809b96556d47fbdc5be45dd520c71f6ca32e43786596ed7a2d3f",
+                "mvid": "e10b4e1b-da8d-4c97-a8d8-39699d49ca45"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.HotReloadModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "c75636f3feed34c53675e2fe62e9acc71fc1455eef94528f9682803853d419b1",
+                "mvid": "f5050a18-b83b-45c8-ac40-7b8a21525f44"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "48e43536b2d0686233279535808327d4d41712242428f32a0d15fff70cdc9aae",
+                "mvid": "6a18fb17-7145-4878-8212-62a5048c54f3"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "46f3e81f2b81c9da1a6e76508382e51c6c3b488dc8919c7b93738b9b42221ead",
+                "mvid": "0707a991-2a16-4abc-ad0a-d3dde7d13fcb"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "c47bff57650504b74813461ada0933a39ae37fa2b4b41d75debebdd2a61dd2bb",
+                "mvid": "1bed1473-c68b-40d1-912c-fcb6ba66e7d3"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "316bc8833bd53bd0b8d7dc3d0bbb53a6dfe6e9b145fc51ca64d626fc4a38c39b",
+                "mvid": "e6f13cb3-feca-4967-b002-4a608509394d"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "5ba82c29099e4165f7f99ac868469135c5d3a8a0b0be6b245ab413e019a69b0f",
+                "mvid": "16b8b3f7-a629-4b10-834a-577d7a6c0869"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.LocalizationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "d297fa26a9aab23872208cc122e35bd242109cdc1626b2d7d0fa7bec4f214439",
+                "mvid": "1974b884-acfb-4d7a-a74b-c0624a953f01"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ef6ff7ffd849fabf572d8106a808a53e40cf5a5b54ad7d525ab0f450e8046213",
+                "mvid": "c3ef0f76-53bf-4eee-82b3-9ad83d974b77"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.PerformanceReportingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8cf850c8970fbc879ea7a16b6a136d90e8fa9207a9ec031d1027a88d1557bc3f",
+                "mvid": "2dc431fe-4257-4c97-94ba-38dd4ebe74b6"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6784b7db9aac81c4cbf3b2183d87dc1f9e4af285e8697c937c33cc19f7656fa2",
+                "mvid": "e960500f-e55a-4ef1-b15f-9e89b1976e8c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "71785542a58fd311700c1c7a8f0674cdf48a4a68b757f9773d053a75dd16a331",
+                "mvid": "b760f54f-d38b-4c56-9dc8-74892fd8d57c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ProfilerModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a59bba0d44854b231308777c5f03054a934a626da7d0de2d7dfd80a8d9fd4e54",
+                "mvid": "8a48206b-5c0e-4147-80ed-486742d76093"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.PropertiesModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "20dae9713ba130147b01bd1b95ba37087ea94ef6925659097ba8598973149ebc",
+                "mvid": "5dacfc65-1a5d-4af9-809b-184414b7c03f"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "f53983e826cd20be42285e3d5e7ba56b1b10672d084bc796ba6e6886bd6f35e6",
+                "mvid": "8c4ca187-93f8-415d-ad1f-a792d0829ee0"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.ScreenCaptureModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "337768a4dc45b9a809d6b83b04ffe9cae44cdb4ffba59dd10d4e35dfd6e3a0d9",
+                "mvid": "fe257797-0af7-42d2-9f52-fae4582ef795"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "51271e3212d963bd331d3185b3f2ee5c556ba83495fd4db30e439ed74e8a9986",
+                "mvid": "64455ad4-8f8a-463b-b207-19488dd05728"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SpriteMaskModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2db181751c5fc5de1f4ed9cbc90d4698d91c5a05c5fed4165f74443824bb031a",
+                "mvid": "f440d075-ec41-4362-87ad-892a13178e65"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SpriteShapeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "498d04a05997c9f1df642786ff3212bde7d2d93372e442393e4add3e718f1e40",
+                "mvid": "f6310d0d-615b-42d1-a7bf-52df7d3fb5c2"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.StreamingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "f21512875fa5ab06e6ed4085fe71ec596686434de9d9672a5923877eee1bbafc",
+                "mvid": "a9457397-86d7-4eb3-8b7e-6d6ad72815bf"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SubstanceModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "4c2bca7d93ce343d70764e0944bf7cf8ed234a8ada92c83c415c7f4b4c65dced",
+                "mvid": "4944abcf-e48d-4c87-823e-2edf459320db"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.SubsystemsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "a66dd6fe2e2cc01818b880b6488748ce65dd836e982b708d9e9cdcdee2bc3386",
+                "mvid": "1773dca4-c9c2-4f70-9f4a-113731602b70"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TLSModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "063efd22dae9e008e7cc9136195ed71fd7e068322a9357d92a96311eddabe0f1",
+                "mvid": "ed050b0a-bb2f-46f1-9625-bbc8d2b23469"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "38542ea5752dd5476f3c43065378a6dfc4354919170f3f8b4c98b230357e1de7",
+                "mvid": "f8f0ad4a-1dfd-4683-8e69-f25c51cfd230"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TerrainPhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "20f07c2dd98d46a1edecf82dff144fed57614769f5055f42679aacfe23674e9b",
+                "mvid": "b50d52b5-e795-452c-99e6-d882213797dd"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TestRunner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "88a27430eb0503a383df935796a2d60db82e4f496787c9228849ba7ecc7f0b62",
+                "mvid": "c73b7298-19cf-457a-9ae3-46e1b0b1b369"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TextCoreFontEngineModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9a61c9f14f4150209f84605e3387c2864455d75f289db383689e9575efa66934",
+                "mvid": "a75b9ee8-a01b-4764-aec7-74e2be3acff8"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TextCoreTextEngineModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "59d5dda33d76e4dd3f3908691c5adf85cbb0da926f96a18f523b2d77a1ee197f",
+                "mvid": "01880003-7d80-4c42-8b34-632171c1fa0c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "28af9c53bdf1e2306a660eb4af0709c0d18e3623f24c1c224777ceaaa9bffbdb",
+                "mvid": "6b1f871d-dc63-429c-8eb6-cd4e55a0eff3"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "8605f1b287eac4cb3afb245a6542407356f6d7991d84bce8b85f8970e8a7da38",
+                "mvid": "a50cdd2e-580d-400f-a17f-095fe09caea9"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ae0219623c341ed74c48ca8e85b8861ac31e85acfb64a5de677d98639e4b4f94",
+                "mvid": "477e3d74-e219-41b4-b210-c4faff24fb70"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2f39252006ef45d0ed6f08e6b50f58c2b86b0dc0b3518e7ab4826f11dc71cdbb",
+                "mvid": "2e5ca65f-5c09-403c-bfca-899a02f87831"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "7a5394fb9c047b0f492ba592dd9b3441e604d59fb8e9c1fe3e10ea1a6fa6d116",
+                "mvid": "d82c1346-014e-4c73-abac-60a812e23a9c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UmbraModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "42a720632de41182b9b18f57f51c269b90acfd8c5d08aa7b84001f93e1a4465b",
+                "mvid": "6af20df5-9c77-4f4f-b333-e5d0856488f4"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityAnalyticsCommonModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "5dfb28aad35a3dc6f85c10c1754a39e7d9c7fcdeb6eec3156a3bbf9a90315131",
+                "mvid": "0913cf85-229a-4cb4-88cd-398a996b21d9"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityAnalyticsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "651c2799d3dd263cd47c5d38169ac3b5f0c8e3efed5dda8cfc19795a74d7d0da",
+                "mvid": "f04ed0c3-7889-46a9-8c05-88637378620b"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityConnectModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "09529ea3716686a9b5bf866a4b87ee5e05b0c38e9f02e24ee3ae29c9fec0baa5",
+                "mvid": "f09dceea-9140-4dbe-851b-2084cb2ffe08"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityCurlModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "ab3d86c9694ad593a90eae3e6da9190ae110f0f2bab54e1aa37b24a21a44065d",
+                "mvid": "a9a9b21e-c911-440c-b8af-0cde95efb321"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityTestProtocolModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "316148f948a4dca3b6af2eea3a6f5c4b6ace8fc49f53ebce2bd36138b0835024",
+                "mvid": "6582e221-4187-4706-8c03-64c4e720f65c"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityWebRequestAssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6d16005ca5da241390aeaf7ef89fccaaff1abfd6606239934ce811e8a6e8cefe",
+                "mvid": "e7cb0953-7b32-4ef5-9529-ee3ca4976ea6"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityWebRequestAudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "2e6f76020b501de1764ab2b586d5940ae3bceee6bf17400dd9784b024e3a6849",
+                "mvid": "e42f9820-dc33-4a3a-b24e-c0f0036c1550"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityWebRequestModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "7905002653bcd7188628afd7f5c3460087772fbde428599f7c78349ab419a979",
+                "mvid": "1ab7818f-a139-43fd-993b-a5bc687875e9"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityWebRequestTextureModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "06d88f9b3041d7e763dcb562038bcb82fb05f039c2a4459adefc6d31a40fbadc",
+                "mvid": "27bb0137-4e72-473b-a1cc-794c338d6a03"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "3dcb326d4a9ca8453a48169cbe64cb43e418dca4a53f3b176d97067c36745b84",
+                "mvid": "ece41ff5-dc79-4e6b-985c-0e74a0e647c6"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VFXModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "821492e4a83fcacfedd494abb2993ef2d14f8611beac6e9d717b29a4f8bd6ba2",
+                "mvid": "c93c1b9a-47bf-481c-84d9-5f606f574a93"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "177adc59863720c82b88ae604edfdd28317f11bd0bebc8843652249546355783",
+                "mvid": "b7c130b5-b02a-4368-8dcc-9b291ac421f3"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VehiclesModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "99cc491d16dc927fb0b0d088f5bb8bcd15a0ac6ff95b5298e7214997a368fb95",
+                "mvid": "48bdb03d-7111-4a37-9bbe-dcdb48b1e8cc"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VideoModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "9146be477e890ab9c438b9a1f2cf6c13a03358a224ec104eb92e6f245b4bce77",
+                "mvid": "853aaa65-7273-44f8-9f77-fa7b145c1fd2"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.VirtualTexturingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "6ca32254fb788e3c2f119a6e9cc48ef3b6ea7d7aa473121ef1d4206ab57f7da0",
+                "mvid": "6c3eca54-ca1d-40d7-9009-83af53356deb"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.WindModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "64f6bcfaddc613e16e2788be617dd2ec3890428a2d28cd9ad3ac1909c908f0e5",
+                "mvid": "635d9f08-b0c2-4d41-971b-81e04a1e1418"
+            },
+            {
+                "assemblyIdentity": "UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "sha256": "d4fdd0597386aff9f88a0c64776cb82b6749eec3f2502412d0a37bfedd7e5e71",
+                "mvid": "dd349fb9-5bde-462c-9f0b-129c4ff91b31"
+            },
+            {
+                "assemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "sha256": "fb7ac3d0534282d14c3256e66f8d273ea016055ea1307c0f70021e7a236d6c33",
+                "mvid": "9142350e-27fd-4abb-8254-52765b93bad4"
+            },
+            {
+                "assemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "sha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "mvid": "5a41d6b7-1898-42ec-a409-fd0b1c3e3dcf"
+            },
+            {
+                "assemblyIdentity": "nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb",
+                "sha256": "e388e140954de12970384331d1730e95b4613ef53c3326b6f8fa0fffdbc9314f",
+                "mvid": "10b6135e-6343-4fdb-a4fc-6c109928ab3b"
+            }
+        ],
+        "linkedResolutions": [
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;9:DemoValue;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "definitionModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;39:19:AssemblyA.Contracts;1:1;9:DemoValue;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;14:M07InlineValue;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "definitionModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;45:19:AssemblyA.Contracts;1:1;14:M07InlineValue;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;15:IM07ManagedNode;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "definitionModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;46:19:AssemblyA.Contracts;1:1;15:IM07ManagedNode;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;20:IVersionTextProvider;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "definitionModuleSha256": "9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;51:19:AssemblyA.Contracts;1:1;20:IVersionTextProvider;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9c582e6d63dfc281b23536576a00896a7c3f8028e2fb95bc77088b3927524ab0"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "6:System;1:1;6:Action;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;22:6:System;1:1;6:Action;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "6:System;1:1;6:Object;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;22:6:System;1:1;6:Object;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "6:System;1:1;9:ValueType;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;25:6:System;1:1;9:ValueType;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "6:System;1:1;11:IDisposable;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;28:6:System;1:1;11:IDisposable;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "18:System.Collections;1:1;11:IEnumerable;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;41:18:System.Collections;1:1;11:IEnumerable;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "18:System.Collections;1:1;11:IEnumerator;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;41:18:System.Collections;1:1;11:IEnumerator;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "6:System;1:1;25:InvalidOperationException;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;42:6:System;1:1;25:InvalidOperationException;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "26:System.Collections.Generic;1:1;6:List`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;43:26:System.Collections.Generic;1:1;6:List`1;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "6:System;1:1;26:OperationCanceledException;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;43:6:System;1:1;26:OperationCanceledException;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "16:System.Threading;1:1;17:CancellationToken;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;45:16:System.Threading;1:1;17:CancellationToken;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "16:System.Threading;1:1;23:CancellationTokenSource;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;51:16:System.Threading;1:1;23:CancellationTokenSource;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "26:System.Collections.Generic;1:1;13:IEnumerable`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;51:26:System.Collections.Generic;1:1;13:IEnumerable`1;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "26:System.Collections.Generic;1:1;13:IEnumerator`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;51:26:System.Collections.Generic;1:1;13:IEnumerator`1;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;11:TaskAwaiter;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;54:31:System.Runtime.CompilerServices;1:1;11:TaskAwaiter;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;18:IAsyncStateMachine;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;61:31:System.Runtime.CompilerServices;1:1;18:IAsyncStateMachine;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;22:AsyncTaskMethodBuilder;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;65:31:System.Runtime.CompilerServices;1:1;22:AsyncTaskMethodBuilder;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;24:AsyncTaskMethodBuilder`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;67:31:System.Runtime.CompilerServices;1:1;24:AsyncTaskMethodBuilder`1;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaration": "31:System.Runtime.CompilerServices;1:2;14:YieldAwaitable;12:YieldAwaiter;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;73:31:System.Runtime.CompilerServices;1:2;14:YieldAwaitable;12:YieldAwaiter;;",
+                "forwardingPath": [
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;6:Object;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "definitionModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;28:11:UnityEngine;1:1;6:Object;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;13:MonoBehaviour;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "definitionModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;36:11:UnityEngine;1:1;13:MonoBehaviour;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;16:ScriptableObject;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "definitionModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;39:11:UnityEngine;1:1;16:ScriptableObject;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "18:UnityEngine.Events;1:1;10:UnityEvent;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "definitionModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;40:18:UnityEngine.Events;1:1;10:UnityEvent;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;30:ISerializationCallbackReceiver;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "definitionModuleSha256": "1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;53:11:UnityEngine;1:1;30:ISerializationCallbackReceiver;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=1d8c0d2fd69a1220b57a9d349bd0e46ef9f5839acfe37e8fff9d5f42bd198ff4"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:1;16:M07NestedPayload;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "definitionModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;61:33:AssemblyA.Implementation.Internal;1:1;16:M07NestedPayload;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:1;20:M07ManagedGraphAsset;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "definitionModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;65:33:AssemblyA.Implementation.Internal;1:1;20:M07ManagedGraphAsset;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:1;25:VersionedScriptableObject;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "definitionModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;70:33:AssemblyA.Implementation.Internal;1:1;25:VersionedScriptableObject;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;6:IValue;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "definitionModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;74:33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;6:IValue;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;7:Payload;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "definitionModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;75:33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;7:Payload;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:2;19:M06ExecutionWitness;15:M06InternalNode;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "definitionModuleSha256": "c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;83:33:AssemblyA.Implementation.Internal;1:2;19:M06ExecutionWitness;15:M06InternalNode;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=c1fa41b5e12a58d3a2e26d8bf570d8d98886d2e618022e73cccbf5c337123e68"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "38:AssemblyA.Implementation.Extensibility;1:1;16:M06ExecutionBase;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9",
+                "definitionModuleSha256": "6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9",
+                "canonicalKey": "93:AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;66:38:AssemblyA.Implementation.Extensibility;1:1;16:M06ExecutionBase;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "38:AssemblyA.Implementation.Extensibility;1:1;22:VersionedComponentBase;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9",
+                "definitionModuleSha256": "6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9",
+                "canonicalKey": "93:AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;72:38:AssemblyA.Implementation.Extensibility;1:1;22:VersionedComponentBase;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=6f06a185fb7460272656b6d4113ccd4f50750382ef341e68f16b30cef1da82e9"
+                ],
+                "runtimeFacadeUsed": false
+            }
+        ],
+        "compilerResolutions": [
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;9:DemoValue;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "definitionModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;39:19:AssemblyA.Contracts;1:1;9:DemoValue;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;14:M07InlineValue;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "definitionModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;45:19:AssemblyA.Contracts;1:1;14:M07InlineValue;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;15:IM07ManagedNode;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "definitionModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;46:19:AssemblyA.Contracts;1:1;15:IM07ManagedNode;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "19:AssemblyA.Contracts;1:1;20:IVersionTextProvider;",
+                "definitionAssemblyIdentity": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "definitionModuleSha256": "9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6",
+                "canonicalKey": "74:AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;51:19:AssemblyA.Contracts;1:1;20:IVersionTextProvider;;",
+                "forwardingPath": [
+                    "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=9ea9aa3cea1e0af2dbd7b5fd3ee8cf2ab66b08f72643b4bf83f87417d669ecc6"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;6:Object;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "definitionModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;28:11:UnityEngine;1:1;6:Object;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;13:MonoBehaviour;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "definitionModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;36:11:UnityEngine;1:1;13:MonoBehaviour;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;16:ScriptableObject;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "definitionModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;39:11:UnityEngine;1:1;16:ScriptableObject;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "18:UnityEngine.Events;1:1;10:UnityEvent;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "definitionModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;40:18:UnityEngine.Events;1:1;10:UnityEvent;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "11:UnityEngine;1:1;30:ISerializationCallbackReceiver;",
+                "definitionAssemblyIdentity": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "definitionModuleSha256": "ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8",
+                "canonicalKey": "77:UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;53:11:UnityEngine;1:1;30:ISerializationCallbackReceiver;;",
+                "forwardingPath": [
+                    "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=ef5502c4ebd5b8855f43f67d121396ba0fa64642254fa6e81e8216f67c3c19d8"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "6:System;1:1;6:Action;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;22:6:System;1:1;6:Action;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "6:System;1:1;6:Object;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;22:6:System;1:1;6:Object;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "6:System;1:1;9:ValueType;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;25:6:System;1:1;9:ValueType;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "6:System;1:1;11:IDisposable;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;28:6:System;1:1;11:IDisposable;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "18:System.Collections;1:1;11:IEnumerable;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;41:18:System.Collections;1:1;11:IEnumerable;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "18:System.Collections;1:1;11:IEnumerator;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;41:18:System.Collections;1:1;11:IEnumerator;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "6:System;1:1;25:InvalidOperationException;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;42:6:System;1:1;25:InvalidOperationException;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "26:System.Collections.Generic;1:1;6:List`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;43:26:System.Collections.Generic;1:1;6:List`1;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "6:System;1:1;26:OperationCanceledException;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;43:6:System;1:1;26:OperationCanceledException;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "16:System.Threading;1:1;17:CancellationToken;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;45:16:System.Threading;1:1;17:CancellationToken;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "16:System.Threading;1:1;23:CancellationTokenSource;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;51:16:System.Threading;1:1;23:CancellationTokenSource;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "26:System.Collections.Generic;1:1;13:IEnumerable`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;51:26:System.Collections.Generic;1:1;13:IEnumerable`1;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "26:System.Collections.Generic;1:1;13:IEnumerator`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;51:26:System.Collections.Generic;1:1;13:IEnumerator`1;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;11:TaskAwaiter;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;54:31:System.Runtime.CompilerServices;1:1;11:TaskAwaiter;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;18:IAsyncStateMachine;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;61:31:System.Runtime.CompilerServices;1:1;18:IAsyncStateMachine;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;22:AsyncTaskMethodBuilder;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;65:31:System.Runtime.CompilerServices;1:1;22:AsyncTaskMethodBuilder;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "31:System.Runtime.CompilerServices;1:1;24:AsyncTaskMethodBuilder`1;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;67:31:System.Runtime.CompilerServices;1:1;24:AsyncTaskMethodBuilder`1;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                "declaration": "31:System.Runtime.CompilerServices;1:2;14:YieldAwaitable;12:YieldAwaiter;",
+                "definitionAssemblyIdentity": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "declaredModuleSha256": "79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                "definitionModuleSha256": "5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d",
+                "canonicalKey": "75:mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;73:31:System.Runtime.CompilerServices;1:2;14:YieldAwaitable;12:YieldAwaiter;;",
+                "forwardingPath": [
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | sha256=79a49049c360a3ff282e747c311fcd567834efde564a96689872564164756e84",
+                    "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 | runtime-facade=6c69dfd6ea1fbcb40490ea04a53291a5d9fce292b12ac306622592a284f8c811",
+                    "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 | sha256=5a69c09497341d8f2d50978edb354aa380ec9f891c5d64145ebdde50ba0fb57d"
+                ],
+                "runtimeFacadeUsed": true
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:1;16:M07NestedPayload;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "definitionModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;61:33:AssemblyA.Implementation.Internal;1:1;16:M07NestedPayload;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:1;20:M07ManagedGraphAsset;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "definitionModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;65:33:AssemblyA.Implementation.Internal;1:1;20:M07ManagedGraphAsset;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:1;25:VersionedScriptableObject;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "definitionModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;70:33:AssemblyA.Implementation.Internal;1:1;25:VersionedScriptableObject;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;6:IValue;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "definitionModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;74:33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;6:IValue;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;7:Payload;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "definitionModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;75:33:AssemblyA.Implementation.Internal;1:2;20:R02AllocationWitness;7:Payload;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "33:AssemblyA.Implementation.Internal;1:2;19:M06ExecutionWitness;15:M06InternalNode;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "definitionModuleSha256": "e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c",
+                "canonicalKey": "88:AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;83:33:AssemblyA.Implementation.Internal;1:2;19:M06ExecutionWitness;15:M06InternalNode;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=e1abe855f82c6029b97be18d528a5049c5c0d98ac8fa0bce9a13a4a7deba075c"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "38:AssemblyA.Implementation.Extensibility;1:1;16:M06ExecutionBase;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97",
+                "definitionModuleSha256": "0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97",
+                "canonicalKey": "93:AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;66:38:AssemblyA.Implementation.Extensibility;1:1;16:M06ExecutionBase;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97"
+                ],
+                "runtimeFacadeUsed": false
+            },
+            {
+                "declaredAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaration": "38:AssemblyA.Implementation.Extensibility;1:1;22:VersionedComponentBase;",
+                "definitionAssemblyIdentity": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "declaredModuleSha256": "0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97",
+                "definitionModuleSha256": "0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97",
+                "canonicalKey": "93:AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;72:38:AssemblyA.Implementation.Extensibility;1:1;22:VersionedComponentBase;;",
+                "forwardingPath": [
+                    "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null | sha256=0e8c6c876203d942f9ba665491a803285adb95425eb7708be935866ac0fc7d97"
+                ],
+                "runtimeFacadeUsed": false
+            }
+        ]
+    },
+    "nativeProofExecuted": false,
+    "runtimeMustRevalidate": true,
+    "pureInterpreterExpansionEnabled": false
+}

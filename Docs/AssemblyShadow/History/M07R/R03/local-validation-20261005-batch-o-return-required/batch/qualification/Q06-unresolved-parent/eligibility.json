@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03PureInterpreterEligibilityV1",
+  "qualificationGate": "R03-PureInterpreter-Qualification",
+  "sourceInventoryHash": "75bd189602706798d2e50eb9dca569a81a33b55a43bf777c347a1234eb83ad71",
+  "resourceDescriptorHash": "sha256:93036f89c60e52f934df3592ad837e6af0ec6ed3abed8628e7c6a7b05341edd7",
+  "analysisBindingHash": "f4e5b895db72baa108d6c6369d7e63a556ff5191d5bb131da15f4ddd20e6ca67",
+  "changedRoots": [
+    "Pure"
+  ],
+  "closure": [
+    "Pure"
+  ],
+  "targetLoadOrder": [
+    "Pure"
+  ],
+  "inputBindings": [
+    "baseline|Pure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|69eaf4d81f12eac49a6493eeb3270cb5b1d76b6e4898d4fcc4a62a442ef4d243|Runtime|shadow=True|bootstrap=False",
+    "baseline|reference|mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|0549754738f6380e7d1b8b4e3c6109d5da874c13a439cacb8ee3b021c57cc672",
+    "baseline|reference|UnityEngine.CoreModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|3bce03b2f165ba7fb5198f8ed5626f2c7061768076dbcb8f05bd460630844778",
+    "target|Pure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|36230c00eb239b37dba31becfe4b92a29bf4c5b683cfe9c5c7966da758f7b06d|Runtime|shadow=True|bootstrap=False",
+    "target|reference|mscorlib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|0549754738f6380e7d1b8b4e3c6109d5da874c13a439cacb8ee3b021c57cc672",
+    "target|reference|UnityEngine.CoreModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|3bce03b2f165ba7fb5198f8ed5626f2c7061768076dbcb8f05bd460630844778"
+  ],
+  "types": [
+    {
+      "typeKey": "pure:Fixture:Node",
+      "declarationKey": "4:pure;7:Fixture;4:Node;1:0;",
+      "assembly": "pure",
+      "baselineDllSha256": "69eaf4d81f12eac49a6493eeb3270cb5b1d76b6e4898d4fcc4a62a442ef4d243",
+      "targetDllSha256": "36230c00eb239b37dba31becfe4b92a29bf4c5b683cfe9c5c7966da758f7b06d",
+      "decision": "ExcludedOrNeedsProof",
+      "domains": [
+        "PureInterpreterCandidate"
+      ],
+      "staticReasons": [
+        "UnresolvedBase:baseline:mscorlib:Absent:Base",
+        "UnresolvedBase:target:mscorlib:Absent:Base",
+        "UnresolvedType:baseline:Pure:mscorlib:Absent:Base",
+        "UnresolvedType:target:Pure:mscorlib:Absent:Base"
+      ],
+      "requiredProofs": [
+        "CompleteInstalledAndTargetRuntimeInventory",
+        "NoExistingBaselineObjectsOrUses",
+        "NoUnprovedReflectionOrNativeConcreteConsumer",
+        "ResourceAndUnityBindingClosure",
+        "PrepublicationOwnerAndFailureState",
+        "ConcreteGenericAndInteropCapability",
+        "IndependentQualificationReview",
+        "ExplicitOwnerQualificationApproval",
+        "SeparateExperimentalPlayerEvidenceBeforeSupportClaim"
+      ],
+      "nativeV1Decision": "NeedsNativeProof",
+      "authorizesExpansion": false
+    }
+  ],
+  "runtimeProofExecuted": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false
+}

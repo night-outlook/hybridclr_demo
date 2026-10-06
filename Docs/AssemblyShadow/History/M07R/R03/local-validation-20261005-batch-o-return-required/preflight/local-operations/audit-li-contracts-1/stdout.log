@@ -1,0 +1,33 @@
+{
+  "kind": "ReadOnlyOLIContractAudit",
+  "startUtc": "2026-10-06T05:28:22.940537+00:00",
+  "endUtc": "2026-10-06T05:28:42.754589+00:00",
+  "status": "Passed",
+  "hostConstructorCases": 12,
+  "earlyActualEditorCases": 18,
+  "hostResultSha256": "6b39426ac78985689145c8c665afd87d93b926ebbc1ed2fbaea963751c14a984",
+  "earlyXmlSha256": "ffffc5d513157fcf300b06ccebe393e0cf3c5e0d0ce7053740076166fd8f4fbd",
+  "earlyVerificationSha256": "60f0113611f25b7bf160241479121723c92c71bea66847cd6cf23b91984562f1",
+  "actualConsumerCases": 10,
+  "consumerReportPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/source-pin-contract.json",
+  "consumerReportSha256": "69e41ebc5e858f1e1de7b8d11ec8be959b8eb262682131aceb17e10fdcfc9dc5",
+  "fullEditors": [
+    {
+      "folder": "focused-editor",
+      "count": 754,
+      "allEighteenAffectedMethodsPassed": true,
+      "xmlSha256": "da3a1bbd4902441a5261a3ef383ade6e295cf2026995aa3667640eb53f6dbf77"
+    },
+    {
+      "folder": "resource-editor",
+      "count": 755,
+      "allEighteenAffectedMethodsPassed": true,
+      "xmlSha256": "5f20b5ea39888d3e784b93e4a3360086d4fd33bc87ec22ea219799eb02978eb6"
+    }
+  ],
+  "interpretation": "Fresh O constructor/source-pin regression; downstream states recorded separately. Native installation is not a Player build.",
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "pureInterpreterExpansionEnabled": false
+}

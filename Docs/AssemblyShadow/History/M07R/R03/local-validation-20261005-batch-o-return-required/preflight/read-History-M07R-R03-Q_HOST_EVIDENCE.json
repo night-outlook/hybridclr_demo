@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LNIntegrationRepairEvidence",
+  "date": "2026-10-05",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "sourceAnchor": "fefe846b1209d18a96c432ed0ca2222f16cda976",
+  "repositories": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "preservedLocal": {
+    "batch": "N",
+    "publication": "f4b36ead2413e5a87b7149c4f6699960ff46008b",
+    "executedDemo": "15f6c2c9a5e070e631fdcda9a2bb022f4b61a733",
+    "result": "ReturnRequired",
+    "passed": 48,
+    "failed": 4,
+    "blocked": 38,
+    "sealStatus": "Passed",
+    "historicalEvidenceModified": false
+  },
+  "hostWorkflow": {
+    "runId": 37404395804,
+    "conclusion": "success",
+    "platforms": [
+      "ubuntu-24.04",
+      "macos-15"
+    ],
+    "completionPython": 281,
+    "retainedPython": 183,
+    "referenceCases": 15,
+    "editorCatalogCounts": [
+      754,
+      755
+    ],
+    "reviewedPackageFiles": 13,
+    "fixtureConstructorCases": 12,
+    "qualificationCases": 32,
+    "artifacts": [
+      {
+        "artifactId": 11387297225,
+        "platform": "Linux",
+        "sha256": "e1a2e43054ba98005d975384c32d0704f71dbac081ca53d6b1d9761a323a070c",
+        "indexedFiles": 1130,
+        "zipFiles": 1131,
+        "authenticated": true
+      },
+      {
+        "artifactId": 11387162857,
+        "platform": "macOS",
+        "sha256": "08e485622d94f624c59078025e29acf389d75ca4e348efac8acc460ecb8e03e0",
+        "indexedFiles": 1130,
+        "zipFiles": 1131,
+        "authenticated": true
+      }
+    ]
+  },
+  "pinnedUnityWorkflow": {
+    "runId": 37404395811,
+    "conclusion": "success",
+    "referenceCases": 15,
+    "artifact": {
+      "artifactId": 11388046020,
+      "sha256": "88b340a2c0519d2166ca52de684b77510d5e0687c88d25afef5c84c7c5b68324",
+      "indexedFiles": 763,
+      "zipFiles": 764,
+      "authenticated": true
+    },
+    "unityEditorRun": false,
+    "playerRun": false
+  },
+  "interpretation": {
+    "integratedClosure": "Pending batch O",
+    "R03Accepted": false,
+    "H2Passed": false,
+    "qualificationApproved": false,
+    "expansionAuthorized": false
+  }
+}

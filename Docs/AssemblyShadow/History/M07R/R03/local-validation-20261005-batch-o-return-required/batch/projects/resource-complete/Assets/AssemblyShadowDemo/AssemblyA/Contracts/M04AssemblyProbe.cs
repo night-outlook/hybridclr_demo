@@ -1,0 +1,15 @@
+#if ASSEMBLY_SHADOW_M04_P03
+using System.Reflection;
+
+namespace AssemblyA.Contracts
+{
+    /// <summary>Patch-only executing-assembly witness for M04.</summary>
+    public static partial class AssemblyAContractVersion
+    {
+        public static object GetExecutingAssemblyObject()
+        {
+            return Assembly.GetExecutingAssembly();
+        }
+    }
+}
+#endif

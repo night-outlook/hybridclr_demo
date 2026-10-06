@@ -1,0 +1,58 @@
+{
+  "kind": "R02UnityCommandCompletion",
+  "policy": "R02OwnedUnityRoslyn-v2",
+  "result": "Passed",
+  "command": [
+    "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+    "-batchmode",
+    "-nographics",
+    "-projectPath",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete",
+    "-runTests",
+    "-testPlatform",
+    "EditMode",
+    "-testFilter",
+    "^HybridCLR\\.Editor\\.AssemblyShadow\\.Tests\\.",
+    "-testResults",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-editor/results.xml",
+    "-logFile",
+    "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-editor/Editor.log"
+  ],
+  "commandExitCode": 0,
+  "startedAtUnix": 1791260797.290059,
+  "runtimeAcceptance": false,
+  "compilerBinding": {
+    "path": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "sha256": "02958dc1de32e0960dc8dc85e17f51a5755438a746c21d892f4ac726ddfcbd4a",
+    "sizeBytes": 240640
+  },
+  "completion": {
+    "policy": "R02OwnedUnityRoslyn-v2",
+    "group": 37520,
+    "compiler": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/DotNetSdkRoslyn/VBCSCompiler.dll",
+    "termGraceSeconds": 5.0,
+    "killGraceSeconds": 3.0,
+    "clean": true,
+    "actions": [],
+    "observations": [
+      {
+        "phase": "initial",
+        "atMonotonic": 1182446.267641583,
+        "members": []
+      },
+      {
+        "phase": "before-SIGTERM",
+        "atMonotonic": 1182446.285374708,
+        "members": []
+      },
+      {
+        "phase": "wait-SIGTERM",
+        "atMonotonic": 1182446.3021465,
+        "members": []
+      }
+    ],
+    "after": [],
+    "before": []
+  },
+  "endedAtUnix": 1791260842.726618
+}

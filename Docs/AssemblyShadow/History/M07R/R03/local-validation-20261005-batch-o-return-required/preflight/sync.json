@@ -1,0 +1,94 @@
+[
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "startUtc": "2026-10-06T03:43:15.248107+00:00",
+    "endUtc": "2026-10-06T03:43:19.830436+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_demo\n * branch              codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   f4b36ead..25a9dbce  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "f4b36ead2413e5a87b7149c4f6699960ff46008b",
+      "25a9dbce977247d83ef1b1c0411a663d8dda4456"
+    ],
+    "startUtc": "2026-10-06T03:43:19.830645+00:00",
+    "endUtc": "2026-10-06T03:43:19.839655+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge",
+      "--ff-only",
+      "25a9dbce977247d83ef1b1c0411a663d8dda4456"
+    ],
+    "startUtc": "2026-10-06T03:43:19.839821+00:00",
+    "endUtc": "2026-10-06T03:43:19.947164+00:00",
+    "exitCode": 0,
+    "stdout": "Updating f4b36ead..25a9dbce\nFast-forward\n .github/workflows/r03-completion-api.yml           |  13 +-\n .github/workflows/r03-completion.yml               |   2 +\n .github/workflows/r03-ln-artifact-audit.yml        |  93 ++++++++++++\n .github/workflows/r03-ln-failure-audit.yml         |  58 ++++++++\n .github/workflows/r03-ln-source.yml                |  53 +++++++\n Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md        |  96 +++++++------\n .../History/M07R/R03/Q_HOST_EVIDENCE.json          |  80 +++++++++++\n .../History/M07R/R03/Q_INTEGRATION_REPAIR.md       |  50 +++++++\n .../History/M07R/R03/Q_VALIDATION_MATRIX.md        |  11 ++\n Docs/AssemblyShadow/Plan/CURRENT_STATUS.md         |  31 ++--\n Docs/AssemblyShadow/README.md                      |  14 +-\n Tools/AssemblyShadow/R03/source-pins.json          |   2 +-\n .../R03Completion/FixtureContractTests/Program.cs  |  16 ++-\n .../R03Completion/ReferenceBindingTests/Program.cs | 114 +++++++++++++++\n .../ReferenceBindingTests.csproj                   |  17 +++\n .../R03Completion/compile_reference_checks.py      |  77 ++++++++++\n .../R03Completion/editor_contract.py               |  33 ++++-\n .../R03Completion/fixture_authority.py             |  14 +-\n .../R03Completion/layout_evidence.py               |  35 ++++-\n .../AssemblyShadow/R03Completion/legacy_runtime.py |   8 +-\n .../R03Completion/reference_binding.py             | 132 +++++++++++++++++\n .../AssemblyShadow/R03Completion/run_completion.py |   8 +-\n Tools/AssemblyShadow/R03Completion/run_host.py     |   6 +\n .../AssemblyShadow/R03Completion/sidecar_replay.py |  52 +++++++\n .../AssemblyShadow/R03Completion/source-pins.json  |   2 +-\n .../R03Completion/test_ln_call_paths.py            |  73 ++++++++++\n .../R03Completion/test_ln_contracts.py             | 159 +++++++++++++++++++++\n .../R03Completion/test_ln_probe_arguments.py       |  49 +++++++\n .../R03Completion/test_ln_reference_shards.py      |  84 +++++++++++\n Tools/AssemblyShadow/m07_results.py                |  75 +++++-----\n Tools/AssemblyShadow/native_codec_source.py        |  75 ++++++++++\n 31 files changed, 1406 insertions(+), 126 deletions(-)\n create mode 100644 .github/workflows/r03-ln-artifact-audit.yml\n create mode 100644 .github/workflows/r03-ln-failure-audit.yml\n create mode 100644 .github/workflows/r03-ln-source.yml\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/Q_HOST_EVIDENCE.json\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/Q_INTEGRATION_REPAIR.md\n create mode 100644 Docs/AssemblyShadow/History/M07R/R03/Q_VALIDATION_MATRIX.md\n create mode 100644 Tools/AssemblyShadow/R03Completion/ReferenceBindingTests/Program.cs\n create mode 100644 Tools/AssemblyShadow/R03Completion/ReferenceBindingTests/ReferenceBindingTests.csproj\n create mode 100644 Tools/AssemblyShadow/R03Completion/compile_reference_checks.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/reference_binding.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/sidecar_replay.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_ln_call_paths.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_ln_contracts.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_ln_probe_arguments.py\n create mode 100644 Tools/AssemblyShadow/R03Completion/test_ln_reference_shards.py\n create mode 100644 Tools/AssemblyShadow/native_codec_source.py\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "fetch",
+      "origin",
+      "codex/assembly-shadow-r01b-h1"
+    ],
+    "startUtc": "2026-10-06T03:43:19.947392+00:00",
+    "endUtc": "2026-10-06T03:43:24.042929+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "From github.com:night-outlook/hybridclr_unity\n * branch            codex/assembly-shadow-r01b-h1 -> FETCH_HEAD\n   ef6c70f..948c0e3  codex/assembly-shadow-r01b-h1 -> origin/codex/assembly-shadow-r01b-h1\n"
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge-base",
+      "--is-ancestor",
+      "ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "startUtc": "2026-10-06T03:43:24.043453+00:00",
+    "endUtc": "2026-10-06T03:43:24.057585+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "merge",
+      "--ff-only",
+      "948c0e3b4f8891481301770115e8ba4945eea6de"
+    ],
+    "startUtc": "2026-10-06T03:43:24.057907+00:00",
+    "endUtc": "2026-10-06T03:43:24.077815+00:00",
+    "exitCode": 0,
+    "stdout": "Updating ef6c70f..948c0e3\nFast-forward\n .../AssemblyShadow/Metadata/CompiledAssemblySet.cs | 16 ++++++\n .../AssemblyShadow/Metadata/DnlibAssemblyLoader.cs | 49 +++++++++++++++-\n .../Metadata/PureInterpreterEligibility.cs         | 65 +++++++++++++++-------\n 3 files changed, 109 insertions(+), 21 deletions(-)\n",
+    "stderr": ""
+  }
+]

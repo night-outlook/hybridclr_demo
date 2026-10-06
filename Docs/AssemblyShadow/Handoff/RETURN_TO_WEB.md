@@ -1,6 +1,439 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch N: four actionable Primary issues
+## Current return — R03 completion batch O
+
+**ReturnRequired; 90 cells: 58 Passed, 30 Failed, 2 Blocked; seal Passed; one invocation PID 24774, 2026-10-05 20:45:24 PDT → 2026-10-05 22:27:15 PDT.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [O checkpoint](../History/M07R/R03/local-validation-20261005-batch-o-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261005-batch-o-return-required/preflight/PRIMARY_ISSUES.json), [LN repairs](../History/M07R/R03/local-validation-20261005-batch-o-return-required/preflight/LN_REPAIR_AUDIT.json) and [completion audit](../History/M07R/R03/local-validation-20261005-batch-o-return-required/preflight/COMPLETION_RUNTIME_AUDIT.json). Preserve N and all earlier evidence/results unchanged.
+
+Exact source paths/commits/tools and command are recorded in LOCAL_VALIDATION.md. Actual direct Players=59; full Editor and production/runtime verdicts retain their own states. No historical replay or focused test is full-stage acceptance. No new non-trivial defect is manufactured merely to acknowledge synchronization or a passing focused result.
+
+### R03-LO-001 — Player-derived policy reused for return-to-baseline source compilation
+
+**Symptom.** production-entry-integration Failed with Unity exit 1 after all five fresh P01–P05 eligibility reports were emitted; the fresh restored-domain compiler snapshot and final integration receipt were not produced.
+
+**Exact reproduction already performed.**
+
+1. Use the four exact executed repository commits recorded in LOCAL_VALIDATION; the source-bound prescribed batch O command is retained in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/runner-exit.json. It has already been executed once; do not retry this root.
+2. The runner built six fresh apps, finalized/restored P05, and invoked the exact Unity argv in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0126/command.json using Unity2022.3.62f2.
+3. VerifyProductionEntries emits all five integration/*/eligibility.json files, then calls CompileWithOptions on receiptRoot/return-baseline. ValidateBeforeCompile throws the four policy errors; Unity exits1 without timeout/survivors and no integration.json is emitted.
+
+**Evidence and excerpts.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/production-entry-integration.json`, SHA-256 `5a27c2b0c686e0ff97a055d8b1f596811717cf971bf6820b64525022c084d88e`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs`, SHA-256 `a71431436761ac2d5bcd277c509814f6dbe7ec60b7af3af7cf9fa5bee99233dc`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowFilteredInputPolicy.cs`, SHA-256 `d78d5d6fbd7b6f2ebc48cb10a75e13170c3212e6a08fbc593135651d22bce822`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs`, SHA-256 `fee7817d122c8746308ce14ce48d253aae390ecc2b6a2c71c83b684dd2012c0f`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Validation/ShadowAssemblyPolicyValidator.cs`, SHA-256 `7a857c6134a2d2d61159bbdda5c252348f53e18e6db198f008e77de371856c0a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0126/command.json`, SHA-256 `9b6a14b9c70c19d3ce90beec1ad63f12f342be7750fad0bdcb92ee4dce5f3abb`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0126/unity-completion.json`, SHA-256 `9367e0ea45f6c84af897393de5eac01098658956743faa458abcf83ee2a1c141`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-logs/integration.log`, SHA-256 `9a17c04f61cb83b8c01bf1a4540ce2e6055e6a40d290ec2298351a07d94f29e0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P01/eligibility.json`, SHA-256 `ba7bf80ed00f468cddaa431b084694b0748dd5336281fad75f41880287d13cbf`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P02/eligibility.json`, SHA-256 `20103ff0bb02d506aec664f481540f82e49eede12969372efefc1617dc2772d8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P03/eligibility.json`, SHA-256 `5e56b57a942c364ff8a7737889e787f4019dcea3d349467a871d9c433c75a460`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P04/eligibility.json`, SHA-256 `03ca255d04a576807cca058c998807e02abc761b6bf562491ec3a0fd3090a366`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration/P05/eligibility.json`, SHA-256 `79574bee8a1653cdcc4425121f4f9a787804292459f0c6ee103fd0dbfebb3c31`
+
+```text
+ShadowBuildException: PolicyValidation: InvalidRuntimeReference: Unity.Burst references a non-Player assembly Unity.Burst.Unsafe.
+RuntimeReferencesFilteredAssembly: Unity.Burst references an assembly removed from the captured Player build: Unity.Burst.Unsafe.
+RuntimeReferencesFilteredAssembly: Unity.RenderPipelines.Universal.Runtime references an assembly removed from the captured Player build: Unity.RenderPipelines.Universal.2D.Internal.
+RuntimeReferencesFilteredAssembly: Unity.RenderPipelines.Universal.Runtime references an assembly removed from the captured Player build: Unity.RenderPipelines.Universal.Config.Runtime.
+R03CompletionBuild.VerifyProductionEntriesCore:176
+```
+
+**Most likely root cause.** R03CompletionBuild.VerifyProductionEntriesCore replaces the source policy with ShadowFilteredInputPolicy.ApplyPatch(policy, baselineReceipt, ...) at line 140, then reuses that Player-derived policy in AssemblySnapshot.CompileWithOptions at line 176. ValidateBeforeCompile reads the source asmdef graph but sees Player-derived BuildFiltered roles for Unity.Burst.Unsafe and the two URP providers, producing InvalidRuntimeReference and RuntimeReferencesFilteredAssembly before compilation.
+
+**Why permitted / affected scope.** A single policy variable spans source compilation and linked-Player analysis, although these are different inventory domains. Current host/compiler coverage did not execute this final integrated restored-baseline compile. The production-entry integration cell and fresh return-to-baseline generation/qualification agreement. The five emitted patch reports are fresh but the complete integration remains Failed; resource graphs/builds/Editor tests and independent Player cases retain their own states.
+
+**Recommended Primary direction.** Keep an immutable source/compiler policy for restored-domain CompileWithOptions. Derive a separate authenticated Player-analysis policy from the captured installation baseline for analysis, generation and closure validation. Re-authenticate each domain and prove the restored target against the original installed baseline. Preserve all filtered-reference, candidate/bootstrap and hash guards; do not waive the reported references.
+
+**Remaining uncertainty.** The exact policy lifecycle implementation is Primary-owned. The restored compiler invocation did not reach compilation, so its complete snapshot, generation and empty-root assertions remain unvalidated. Passing patch reports do not establish qualification approval.
+
+**Validation after repair.** Add a real source-inventory versus linked-filter policy regression for Burst.Unsafe and both URP providers; run the original production entry through all P01–P05 reports and a freshly compiled restored baseline with zero changed roots/closure, then a new source-bound complete batch. Do not retry or reclassify O.
+
+No Local source fix or phase/batch retry.
+
+### R03-LO-002 — Authenticated codec context lost in the shared diagnostic bridge
+
+**Symptom.** All 13 ON resource cases and four positive early-startup cases Failed at snapshots[0] with Relative codec pin requires explicit authenticated project/owner context, despite successful authenticated source-blob and resource-graph binding.
+
+**Exact reproduction already performed.**
+
+1. Execute only the already-performed original batch O source tuple and command retained in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/runner-exit.json; no retry of O or its apps is authorized.
+2. The runner launches a fresh process with the exact argv retained in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0127/command.json; raw output is /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-01-Prefab-P01.json. All affected cells and exact receipts are listed in this issue.
+3. Read-only original verifier replay against the same immutable context/input bytes reproduces every affected error exactly. Tracebacks, PID/hash bindings and separately passing prerequisite checks are in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/FAILED_CONTRACT_REPRODUCTION.json. No guard bypass or product reexecution was used.
+
+**Evidence and excerpts.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-01-Prefab-P01.json`, SHA-256 `32aa0778797122467acc3d2b2edeb643ea986be94af9ee6494172d80dfbc67c7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-02-Nested-P02.json`, SHA-256 `bd9dc4421803c53be8d8dd4e01dff62a92c1c67255f37feeb8216785f698d486`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-03-FullClosure-P03.json`, SHA-256 `5c303e7f7f2c3f56dec52bb3974f5ddf16b0bf4316c35cb3d51371b153497a7e`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-04-UnityApis-P01.json`, SHA-256 `c2069ee11855c1caa1174463d16992081eed4e77de8870299b8c2f820c175b48`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-05-Scriptable-P03.json`, SHA-256 `87a2bfe6c5131b09333d3df238fee0a2b0182a5836d6a74fc66c3b9b0ec98e61`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-06-SceneSingle-P01.json`, SHA-256 `1ce7d803bf32b8eb846d08e339e532a8e6aa11a5fa4d8d73ca594b7b0c0d2bfd`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-07-SceneAdditive-P03.json`, SHA-256 `1f6fede748c3978b165551470de7178f1a20e95afc80bfe73ffe5f8d6c5231e7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-08-SerializeReference-P03.json`, SHA-256 `65854b44d3b66adcb4506901c0c5e579e47942eedbe2d9014245887ff9e01c07`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-09-Messages-P01.json`, SHA-256 `10394fc59edb040ed07f49b5db2bc02817ccdd1942d03cd1fdb1d2410fb9ddfc`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-10-Cache-P03.json`, SHA-256 `6816e4c9d7950df824401a43c342c8bcaa4ec74efe161b3aa8bb67e669188296`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-11-DelayedCatalog-P03.json`, SHA-256 `aa1d16036b26d68d64ebc6dc03fd117c41a0428154b4e8ff97d9d3de9013502a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-12-P04-NonSerialized.json`, SHA-256 `7fcd537fc54d369aeb13ccfa27d754ee7d15cb6a617b664086673cdf4e5afcbc`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/resource-T07-13-P05-Rebuilt.json`, SHA-256 `a5fd8c84c90e14eca98acf5799314463b3ffc73dc1411cf2c807c4a1c5c779a2`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/early-Control-P03.json`, SHA-256 `cef209876c2b8a91a4e9900b89c1b48d271c24edbf08bd5565e5c6a1dad2bc99`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/early-Control-P01.json`, SHA-256 `69331faf6b915e0d67a0ef7662df02c66bd17c148b55566b19abdd04b2982979`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/early-OrdinaryFirst.json`, SHA-256 `bb8d3ca7665ec8bea7b17c3384ee6b0b2e02bfa1a7888ee7c9ab8730a74875fa`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/early-OrdinaryAfterReserve.json`, SHA-256 `629841327b92e43a9f027bb2cdfbb3f133bb71808dd5cb6c8e9f0ea4bdc710f7`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/legacy_runtime.py`, SHA-256 `5c8a36b15b0ee736d62c541c208e2bdc938ed33e9c18122f3f1f40d35358ffc5`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py`, SHA-256 `e204e3f83b70a89160d9e6a2b1cf4a0f0c98c3daea147f20e4c804aa0e37e751`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m04_results.py`, SHA-256 `bf19d10c6bacda53153a39a405d72a687df837a6af18c982dc064074b22b157c`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m03_results.py`, SHA-256 `749f04410acb853c7a0f757b1cb9f60d94d33783bed3a6e3f7d35d915c07314d`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/native_codec_source.py`, SHA-256 `e5cc215f27a388f6abe2fc196a01371bfec3edf7be782f1742496df0d06a16ce`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/FAILED_CONTRACT_REPRODUCTION.json`, SHA-256 `fa7d1e618c7a8077cdb25957cd343d2d4a2a5a733335584de77daa897751153c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-01-Prefab-P01.json`, SHA-256 `193da5a0dde3129b151fa7f3da777b3e90ec7d48e1d5a059508765b21f0327ff`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0127/command.json`, SHA-256 `72c2843aeaefc8dac847e7d0f17c287ed9c5a855c1b2701e8d28a7ef99905833`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-01-Prefab-P01/verification.json`, SHA-256 `bc7f093a72c1649acff9aab4099c8995b293583f2270cf7c540b1ed14abf0c63`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-01-Prefab-P01/early.json`, SHA-256 `2d09caab8c6b415288bbe3b1d1c30d214099b513afd1dc5bc6a3c52de52aa470`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-01-Prefab-P01/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-02-Nested-P02.json`, SHA-256 `973d710a454c87c8c4024aa33a3e44cdeef8e3923f90538a0cc4d5c294dd15d7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0128/command.json`, SHA-256 `a16764bbce9652d884cbb85ef6eb1fa6dbc73017a0d60198233051e14562b9b1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-02-Nested-P02/verification.json`, SHA-256 `ad79088635c09d4cd635d26449a30e1560a919500925d7a3bbfe0fbd91da5f7d`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-02-Nested-P02/early.json`, SHA-256 `7785a3239d9b87240357da2131962cf9f822371add5daf358ea7335bea9897df`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-02-Nested-P02/early.capsule`, SHA-256 `b37ce60960f0bce19db50b6d6b3bb603d94fb09e6c735368b152bfcb67ecd280`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-03-FullClosure-P03.json`, SHA-256 `39613461ea32f4bbcb79976888e0f14419c65332ea553fb88d584685457d3e8b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0129/command.json`, SHA-256 `151c13db649630e616bf8fbc960cdef1414587f70971623a7957a6c89a807937`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-03-FullClosure-P03/verification.json`, SHA-256 `0a7fb58f6427f1d4801901afe2f95eb0901c213cfc3c6c29aecec9ee1aa330be`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-03-FullClosure-P03/early.json`, SHA-256 `946ea37efa2b332b6801c53fbb82e25becb4655dd0509a5955cb47594fb7dde9`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-03-FullClosure-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-04-UnityApis-P01.json`, SHA-256 `5640f129c16ddc51c6946c60a8a656812d8ef2b832ba9d74432acf298d61fc39`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0130/command.json`, SHA-256 `67f10313b569b473061a66e58b1422cbf1b82ccaecc93eec3c0c20123e96054f`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-04-UnityApis-P01/verification.json`, SHA-256 `5c543441bcba5bbe16ff693b557652a4f4da911d1fa9950c3ccbee748c0cbc4a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-04-UnityApis-P01/early.json`, SHA-256 `8308a424476bea36f902e59323378c6a48dbe46ed40c3b6f436608154047d464`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-04-UnityApis-P01/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-05-Scriptable-P03.json`, SHA-256 `289c5c831a5602a8070fead59e3dc3319d185a4a1b715bb7befb5a52299c03e7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0131/command.json`, SHA-256 `8457d3f63c46af00b9e53c61920f0b902300cb7a626bbb419761261a5153f322`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-05-Scriptable-P03/verification.json`, SHA-256 `2d92b41c0c9306e5366413aa65ad73f2578bdb70949e63937c6b1aee9026be62`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-05-Scriptable-P03/early.json`, SHA-256 `f6d4e935f3ce00e6b0ef12a90316e010e0d35125a41e3fa27a159c4a4855b2ac`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-05-Scriptable-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-06-SceneSingle-P01.json`, SHA-256 `33eb12ea08bcaecf554ffc85a3283edd48b980c6f09a8db3a516240727fdcbf0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0132/command.json`, SHA-256 `bd7b0eabf10f20f70464b676ac7d4228e96e9ac08c0f7be300d0a72870541cb0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-06-SceneSingle-P01/verification.json`, SHA-256 `fabb54e1f249f42124e0d4895d77e13fd5e4b9d491868ea54e1fb86b02ecac84`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-06-SceneSingle-P01/early.json`, SHA-256 `326f1996208f3248546c78cfc12a38fb13af75a869b030d9c9c07147fe91f161`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-06-SceneSingle-P01/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-07-SceneAdditive-P03.json`, SHA-256 `db2086f22f4a368f07584aada8dbcf0658e58c82b2c7e38c75c5259ed0f6592b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0133/command.json`, SHA-256 `2caa61c85c1969f43aabde14315342cc295892dee74890a563e324bf98b64235`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-07-SceneAdditive-P03/verification.json`, SHA-256 `a1892c35b1e20371fe1b4877ef1ec0c034ee13a7430f22fff28811da72013bb0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-07-SceneAdditive-P03/early.json`, SHA-256 `7d09e765f67094966fab3841936b7e279236f20068d0c5dd6d7b64ffa62f0d6c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-07-SceneAdditive-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-08-SerializeReference-P03.json`, SHA-256 `de340b7b5f908071e4bc8c673746c7fdf6a366408ce24d09154eb3b63bcf16e1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0134/command.json`, SHA-256 `5e5e133d7fa221d1aa90c0282b5f147b8c00dbdd77d712df408d378ce4523957`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-08-SerializeReference-P03/verification.json`, SHA-256 `3150e6e57dd28e1c03617bf919438f1295c738f242e732987f09ed1bdb8d92d1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-08-SerializeReference-P03/early.json`, SHA-256 `c8fbcf7ba0f98db320fc0c07f774b292cbf95820b97cdf915a3810db7f266a94`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-08-SerializeReference-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-09-Messages-P01.json`, SHA-256 `3b4b72863a70d9961bd7aeef5957c882715359e7046c1903c291cf1e80332aab`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0135/command.json`, SHA-256 `c122f4a9d9fc1416af9e6ab98e6836a15d3a63f162ff120904dd19077f83d44a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-09-Messages-P01/verification.json`, SHA-256 `54ca5a9d138d0b2bf777f857a34e88f84068391e21ac51b54682160caa8865b6`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-09-Messages-P01/early.json`, SHA-256 `d0d1f8e831b3343133081dffc97f202b8838bfbbd3f796474ee1fed3a22521ae`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-09-Messages-P01/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-10-Cache-P03.json`, SHA-256 `6d5dc18a60a2a850737b5950d75f6c57260a4708fbf44272e626f55d42febcbd`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0136/command.json`, SHA-256 `c482f6e301ee5890f0e589628ff08bf7cdb248632152269fafd987bd125c9111`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-10-Cache-P03/verification.json`, SHA-256 `2176158200f3cc51146747a93471a2c5797796afb75e06fe54b1e725dfccb903`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-10-Cache-P03/early.json`, SHA-256 `5470a3cf1dc624b7f1eb159106b57e2b3e77825ca00bc705e86363b7e1b6097c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-10-Cache-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-11-DelayedCatalog-P03.json`, SHA-256 `ec2ded5927d5d54781eaff0d9a8ce73c03ae797fdf1bf50ad3b61f11b311a051`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0137/command.json`, SHA-256 `0dbf727d09cca43ab88dff082030fa36deb9e5b3776d0911361f7aaff13d1031`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-11-DelayedCatalog-P03/verification.json`, SHA-256 `96e4abd8698978dde358ee89e123ac670843d269d184c733001404ddaadbd5d1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-11-DelayedCatalog-P03/early.json`, SHA-256 `bce4d9fb7fd17de421cff3b3a711486ec0d6a75a1e7e7333d1fec5924a733e67`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-11-DelayedCatalog-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-12-P04-NonSerialized.json`, SHA-256 `a6d5633727475f8532d9fc25b3ee85cd0fef9b17344d507c549f780283040c52`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0138/command.json`, SHA-256 `b1c6ca4b012dff75132104c787c0988bb084dcbb7fc628709be5254e3e5af6ac`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-12-P04-NonSerialized/verification.json`, SHA-256 `e7dbb778638e6d39215831fab10424c7b16909ee92acd36873aa5c0bc1fe5d8c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-12-P04-NonSerialized/early.json`, SHA-256 `70b9bf081a2c0c7cd5275e595e1b300f80a53ed9e8dbb8abb9703ecb50f360fa`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-12-P04-NonSerialized/early.capsule`, SHA-256 `5dc97bbc2c7b198ccedee7bd2d498b00e7fb4614459e322e5f7fd28e94a3c009`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-13-P05-Rebuilt.json`, SHA-256 `5aa440765afb1b591c25069de7575910a14a02596cbed2ef42d80a0e1179eae5`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0139/command.json`, SHA-256 `462010f8cf71df0f1aa193f1e7bfff0289d14f750e9ad63f9a20ee682c2e43fd`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-13-P05-Rebuilt/verification.json`, SHA-256 `8c23e502edc284201ca45477243ccd4ee2aa6715c041aefdff53971bb6ae47c3`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-13-P05-Rebuilt/early.json`, SHA-256 `80787728f332f15af437347c50070d7c6d6d1aa47c7e6e4236c6f893993079f0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/resource-players/T07-13-P05-Rebuilt/early.capsule`, SHA-256 `673a1c211802103126ff4c1fff75da17492807db287495911119f3a37bd9f237`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P03/m07-T07-03-FullClosure-P03.json`, SHA-256 `62d7381f9be6050d6593442f5f0dbc203e47fe537f44443cee91cfab31bd8e98`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0153/command.json`, SHA-256 `23cefe59b62e66131abb9bb416ea1afb79e9ca3cd672252244e8630c39b52942`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P03/verification.json`, SHA-256 `c6b6c11db178316df8d87c57c387d0809d90476bdd5e442f7935c2358cb6abaa`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P03/early.json`, SHA-256 `7718747ade425a30fa23891c136c3293294dd1f53dd9dd9be9f643cad1dcea51`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P03/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P01/m07-T07-01-Prefab-P01.json`, SHA-256 `e18af8757f1983ebc1ad4df7bf353734e9a1d8ccf4e70be72a09b1f65a3d1b12`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0154/command.json`, SHA-256 `4b926704183646eab12da52599d4661c570c1f136b725c17b5c064f3f9ec84b4`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P01/verification.json`, SHA-256 `e0f4bd6014a53267730ae1203087f55fb305ad119996fd41f3484bcfa1d4de1b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P01/early.json`, SHA-256 `788080e28ac4a4cfec7dee683a1fbd5654c0d9ed66cdd1d7ffded90868d3db8a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/Control-P01/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryFirst/m07-T07-03-FullClosure-P03.json`, SHA-256 `adbbd5b2a9ef1f826b7c23771e325e31a20c8a146a13ab33a8dac374bb8a62f2`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0155/command.json`, SHA-256 `1233d2bd7cd7c560756da8362f331d99a576374bb44b35ee1c65aeb42de1df22`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryFirst/verification.json`, SHA-256 `959c6e4a3dcd5d67c187679ab78e6de7d6a9e20555453ae5bbe11b1d4ed6eac1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryFirst/early.json`, SHA-256 `c514e3b0ce21f9a2c90be1194d02a124f25aaf8175dfa412afc329d8db07c21e`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryFirst/early.capsule`, SHA-256 `520ef6004e2b4320a7203024691ef2d620dbdf0fd70fe77c2f9f378022d6f5f9`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryAfterReserve/m07-T07-03-FullClosure-P03.json`, SHA-256 `388eb64ec01e6d6561389f9d727eabb474fedb55aa128ddcf2e0c947c380ee4e`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0156/command.json`, SHA-256 `4b568ad8aa54b8445a5d449e7e988104924d9924f131f64396e54dfaf32bb7f3`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryAfterReserve/verification.json`, SHA-256 `a0faa7b4cd50cc00c66c687cb9d063067c95a5daf37b7005d27260e3ae4a83f8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryAfterReserve/early.json`, SHA-256 `f70debe4ed3473ccf2f759975bc6aa7e725fa7a340059af6604fbd9e1f618436`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/early/OrdinaryAfterReserve/early.capsule`, SHA-256 `9726261e66ff8b08d81ef4afbc4d0fc499fc7de2e5eea6a944ff4511b7202eae`
+
+```text
+...snapshots[0]: cannot authenticate pinned native codec 4b2774b066cfc6afd77a8c8aded6bda7ea574f55: Relative codec pin requires explicit authenticated project/owner context
+m07_results.verify_transaction -> m04_results._verify_diag_invariants (imported from m03_results)
+m03_results.py:413: expected_abi = diagnostic_abi(patch, path)
+```
+
+```text
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py", line 566, in verify_profile2
+    read_codec(pin, revision, profile["nativeCodecHeaderSha256"], source_context)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/native_codec_source.py", line 52, in read_codec
+    _require(relative.is_absolute(), 'Relative codec pin requires explicit authenticated project/owner context')
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/native_codec_source.py", line 27, in _require
+    raise ValueError(message)
+ValueError: Relative codec pin requires explicit authenticated project/owner context
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/audit-completion.py", line 131, in failed_call
+    try:fn(cmd)
+        ~~^^^^^
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/audit-completion.py", line 141, in <lambda>
+    failed_call(cell_id,rawpath,lambda cmd,p=rawpath:m07.verify_case(p,context['manifest'],context['baseline'],context['fixtures'],full['baselineResources'],context['on'],context['off'],source_context=full['codecContext']))
+                                                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py", line 1417, in verify_case
+    verify_transaction(result, path, manifest, patch_item, source_context=source_context)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py", line 1183, in verify_transaction
+    prior._verify_diag_invariants(diagnostic, order, manifest["stableAotNames"], rp, patch=patch)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m03_results.py", line 413, in _verify_diag_invariants
+    expected_abi = diagnostic_abi(patch, path)
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py", line 615, in diagnostic_abi
+    verify_profile2(baseline, path, source_context=source_context)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m07_results.py", line 568, in verify_profile2
+    raise VerificationError(f"{path}: cannot authenticate pinned native codec {revision}: {error}") from error
+shadow_tools.VerificationError: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/m07-results/m07-T07-01-Prefab-P01.json.snapshots[0]: cannot authenticate pinned native codec 4b2774b066cfc6afd77a8c8aded6bda7ea574f55: Relative codec pin requires explicit authenticated project/owner context
+```
+
+**Most likely root cause.** legacy_runtime passes codecContext into m07_results.verify_case and verify_transaction. The latter invokes prior._verify_diag_invariants at m07_results.py:1188. That symbol is imported by m04_results from m03_results. m03_results._verify_diag_invariants has no source-context parameter and calls diagnostic_abi(patch, path) at line 413 without context, losing the authenticated owner/project tuple before native_codec_source.read_codec.
+
+**Why permitted / affected scope.** The LN-003 repair propagated context through newer M07 entry points but missed the shared M03/M04 diagnostic bridge used by actual successful transaction snapshots. Host tests proved the explicit codec primitive, not this complete successful Player call chain. 17 original Failed cells: resource T07-01 through T07-13 plus early Control-P03, Control-P01, OrdinaryFirst and OrdinaryAfterReserve. Resource-contracts aggregate is Blocked. Source-blob authentication and graph binding Passed; six early negative controls and the OFF resource case retain their own Passed verdicts.
+
+**Recommended Primary direction.** Thread the immutable authenticated CodecSourceContext through every bridge that can call diagnostic_abi/verify_profile2, including the shared invariant verifier. Authenticate the same project/owner/revision/blob and retain all metadata/runtime/state checks. Do not add cwd fallback, rebind pins, strip codec verification or treat a source-only receipt as runtime acceptance.
+
+**Remaining uncertainty.** These are verifier failures after fresh Player execution. Raw reports exist, but full successful transaction invariants and business/resource acceptance were not closed. Later checks may expose additional defects once propagation is corrected; no runtime success is inferred from raw result labels.
+
+**Validation after repair.** Reproduce the entire verify_case/verify_transaction/shared-invariants chain using a relative pin and explicit authenticated context outside the repository cwd, with wrong owner/revision/hash negative controls. Then execute all 13 ON resource and four positive startup cases plus the original OFF/negative controls and aggregates in a new source-bound batch; preserve O as Failed.
+
+No Local source fix or phase/batch retry.
+
+### R03-LO-003 — Case-sensitive baseline DLL lookup rejects the actual linked identity
+
+**Symptom.** All six ON/OFF NoPatch measurement cells Failed in the execution supplement with Actual linked baseline DLL. The actual linked DLL and raw execution reports are present.
+
+**Exact reproduction already performed.**
+
+1. Execute only the already-performed original batch O source tuple and command retained in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/runner-exit.json; no retry of O or its apps is authorized.
+2. The runner launches a fresh process with the exact argv retained in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0141/command.json; raw output is /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/R00-ON-NoPatch.json. All affected cells and exact receipts are listed in this issue.
+3. Read-only original verifier replay against the same immutable context/input bytes reproduces every affected error exactly. Tracebacks, PID/hash bindings and separately passing prerequisite checks are in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/FAILED_CONTRACT_REPRODUCTION.json. No guard bypass or product reexecution was used.
+
+**Evidence and excerpts.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-NoPatch-0.json`, SHA-256 `24cb65100bd793aeeee5cace9f795eb0e2256d9eb84ae9fdb558da00262db029`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-NoPatch-1.json`, SHA-256 `598ea55c7646ae207735dc4dd369c9216eac6312cf12d8451f37b8b0c877bbd8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-NoPatch-2.json`, SHA-256 `f3457b2ccf841d1bcec8ac9bea2c5aced7939bdf9844d87cad13bbe629236637`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-OFF-NoPatch-0.json`, SHA-256 `5456a3ce2a90c4444155da57528fbc65ba3f133b953bbd48faeedc5939d63cf8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-OFF-NoPatch-1.json`, SHA-256 `beda293939a51167700c2811b5a5bed8eade42ec17a959aab02ca9529a3ed24b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-OFF-NoPatch-2.json`, SHA-256 `4287106148723dd912b2fb19f03fec4d310f3cc7df42d966ec362b6bfee8bad8`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/execution_contract.py`, SHA-256 `cc72cd63328d96c03180ddb4d8f433672720ccbc90ac746ed5dd60b3dec3523b`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m06_results.py`, SHA-256 `5d44fdbc0c7ab35404c02ccb830039f47e64597306a443f01d39567877a41362`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/FAILED_CONTRACT_REPRODUCTION.json`, SHA-256 `fa7d1e618c7a8077cdb25957cd343d2d4a2a5a733335584de77daa897751153c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/R00-ON-NoPatch.json`, SHA-256 `3969ee0932add376466d3913c26ca4169c2523629ea36b3dee131f31de8d2de1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0141/command.json`, SHA-256 `75d7c7e8368eddcaba4d33c74e54e7d3887cd0b2824cb1ec54608261ae44fc12`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/verification.json`, SHA-256 `dbe9d52e80daf708c9798f9565637f3aec140d0d1ce03e0a6c37365de33fff29`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/request.json`, SHA-256 `79edc9497ebd7f99ede17909f93714f0f956e726fff42397366757ca012a7934`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/execution.json`, SHA-256 `37a5a9b25a3c2afebe9e581d1033d99a877b2e5e69a3ecc9f397e45b986b2cea`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/early.json`, SHA-256 `29c4f3b8d0899df0882f357e906ea2dc307f773681b587e5775f0722232e66e9`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/0/early.capsule`, SHA-256 `a5e09736ccd36879b6cbf66c6e02d97966cb1231541b15238886df60fe20fba6`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/1/R00-ON-NoPatch.json`, SHA-256 `ad483fe8df08a28b10ea1fa30a47f83cf1676e091ab016001b58f8ca600f8cac`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0142/command.json`, SHA-256 `600752270923a326af2c022ed1a8e1da9c18b56ddbd5400a59388c49f4a927df`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/1/verification.json`, SHA-256 `287cc61958eccd8d6a09c5622fa4246d6d4712789f43d0da96440d92128304cf`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/1/request.json`, SHA-256 `ce78ba05fc43e1eb1e0ab40df71676d00ec1973affd16194de8b208e7d9c490b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/1/execution.json`, SHA-256 `ba01ac020bf8fd911b17f2a8fe01106ee7a4cde6d06ab8eb3822daccb29f5702`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/1/early.json`, SHA-256 `c049ee3c95c40e54b9d08619c78f5f75c40e6f815807fd250f93ffe08868468b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/1/early.capsule`, SHA-256 `a5e09736ccd36879b6cbf66c6e02d97966cb1231541b15238886df60fe20fba6`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/2/R00-ON-NoPatch.json`, SHA-256 `b59864597e6ff6e35e813f44689f28896e7defec689c9c93090a81181949c199`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0143/command.json`, SHA-256 `d9bc944f4cabd7b03f334903950b5dac78777b3d900df921603a0d223a28c4c4`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/2/verification.json`, SHA-256 `415e2555ad5ccd209016c8626a29ae82e2c0d17247738668483f78214ef8e902`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/2/request.json`, SHA-256 `c6daf8e2dacdec4ea8dce3b9b0daea075839b2b8cba74dedb31ddc0b36a41026`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/2/execution.json`, SHA-256 `db6f5292e55df27800cd634352e5898412c9d86b7761b11d61ca470b2b6f160f`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/2/early.json`, SHA-256 `2641bb24a033a9583209fb466d4e65657e5e5393b37661db26d111da58f9c563`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-NoPatch/2/early.capsule`, SHA-256 `a5e09736ccd36879b6cbf66c6e02d97966cb1231541b15238886df60fe20fba6`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/0/R00-OFF-NoPatch.json`, SHA-256 `f7c7bc7c54d7c371e0c5aa8ddce3edd11997c5c58f94a8636ee7684fc879e0a8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0150/command.json`, SHA-256 `bdf470c35ad85530bf9043482118ba2dc3b09d1dda6327fe91eda4562051a806`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/0/verification.json`, SHA-256 `80ef6b74571676e5b2f4fa27d5793d1c60feaeff273126e9765e657ddf558d68`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/0/request.json`, SHA-256 `9a8dc826e6da09d011b12dffa57e06e7c36f723ff128beb421c48505bb3444c7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/0/execution.json`, SHA-256 `e81665d8d033fa9f375b1a5380cc4ec974c3cbe0f20e935a48d9b4801b8ef4fc`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/1/R00-OFF-NoPatch.json`, SHA-256 `7db40aa0432dea2004d250c7b27659cedaad5643c8c05a44c5a0a673372eabde`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0151/command.json`, SHA-256 `9d7c776b0f62ccbca7085a6e264a40a50901331968c521b5ca8c4ecaee2a3f33`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/1/verification.json`, SHA-256 `78f43e66f18e88fb83e52e6bb1dc79ce5e4d579ba3eba28594e1ece2af152c72`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/1/request.json`, SHA-256 `a9011df8c0260cce02ead43fb1d7df0f6797bd115f0cbe1fe7c6d517d354532d`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/1/execution.json`, SHA-256 `3c1a7a098f0f0e1c0df5e7decf324edc1bda256a9c104507d33c37eeda99cf2f`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/2/R00-OFF-NoPatch.json`, SHA-256 `ce8adbec34559e8dc2c0cf32b9554882b1df809d3ac6581530a22790038102f1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0152/command.json`, SHA-256 `6cc6783f97e3731cf0d465600607103f95540cc51190d2a9dcaeebfb2265d70a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/2/verification.json`, SHA-256 `df4b7856facd677a72f19d6c5a3b455cba7324be9cc3016b135b3da814c4b744`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/2/request.json`, SHA-256 `47c4b9e9368a684551623f270e8a74ffe20e6da10efd2be84e9fc1b1db2f6732`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-OFF-NoPatch/2/execution.json`, SHA-256 `c3bf44103b56f7855661bb43a663e38254ada1484e5b856dcc3ffbc6be43330a`
+
+```text
+execution_contract.py:21: matches = [r for r in ...assemblies if r["name"] == m06.INTERNAL]
+Actual linked row name: assemblya.implementation.internal
+Expected m06.INTERNAL: AssemblyA.Implementation.Internal
+Error: Actual linked baseline DLL
+```
+
+```text
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/audit-completion.py", line 131, in failed_call
+    try:fn(cmd)
+        ~~^^^^^
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/audit-completion.py", line 150, in <lambda>
+    failed_call(cell_id,rawpath,lambda cmd,f=folder,p=rawpath,v=raw:verify_execution(load(f/'request.json'),load(f/'execution.json'),v,sha(f/'request.json'),sha(p),cmd['pid'],context),precheck)
+                                                                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/execution_contract.py", line 44, in verify
+    image = selected_image(context, original['mode']); first = {}
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/execution_contract.py", line 22, in selected_image
+    require(len(matches) == 1, 'Actual linked baseline DLL')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03/batch_contract.py", line 13, in require
+    raise ContractError(message)
+batch_contract.ContractError: Actual linked baseline DLL
+```
+
+**Most likely root cause.** execution_contract.selected_image line 21 compares the linked receipt name directly with m06.INTERNAL. Captured linked rows use the canonical lowercase simple name assemblya.implementation.internal, while m06.INTERNAL is AssemblyA.Implementation.Internal, yielding zero matches before selected DLL metadata verification.
+
+**Why permitted / affected scope.** The supplementary adapter implemented its own exact text comparison rather than the existing canonical assembly-key contract used by receipts. Host shape checks did not exercise actual linked ON/OFF rows through this selected-image path. measure-R00-ON-NoPatch-0/1/2 and measure-R00-OFF-NoPatch-0/1/2; the measurement aggregate is Blocked. DLL input, linked full identity, MVID and hash are still bound by the source/artifact graph. This does not establish that all supplement checks would pass after lookup repair.
+
+**Recommended Primary direction.** Use the existing canonical simple-name key for unique row lookup, then authenticate the actual selected DLL full identity, MVID/hash and linked provenance. Reject duplicate canonical keys, mismatched qualified identities and altered bytes. Keep selection based on the actual ON/OFF linked snapshot; do not substitute patch/compiler/baseline files.
+
+**Remaining uncertainty.** The original linked-row lookup fails before metadata parsing and all M06 business/exception checks. The list-versus-image defect in R03-LO-004 also needs repair before baseline cases can close. Runtime content beyond already validated original R00 checks remains unaccepted.
+
+**Validation after repair.** Add actual lowercase ON/OFF linked-receipt controls with duplicate/full-identity/hash negatives. Revalidate all six NoPatch supplements using their actual linked DLLs, all patched supplements, all 12 fresh measurement Players and the aggregate in a new source-bound batch. Preserve O raw and Failed states.
+
+No Local source fix or phase/batch retry.
+
+### R03-LO-004 — Method-list producer passed to the M06 image-record consumer
+
+**Symptom.** All six P01/P03 measurement cells Failed in the execution supplement with TypeError: list indices must be integers or slices, not str.
+
+**Exact reproduction already performed.**
+
+1. Execute only the already-performed original batch O source tuple and command retained in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/runner-exit.json; no retry of O or its apps is authorized.
+2. The runner launches a fresh process with the exact argv retained in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0144/command.json; raw output is /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/R00-ON-P01.json. All affected cells and exact receipts are listed in this issue.
+3. Read-only original verifier replay against the same immutable context/input bytes reproduces every affected error exactly. Tracebacks, PID/hash bindings and separately passing prerequisite checks are in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/FAILED_CONTRACT_REPRODUCTION.json. No guard bypass or product reexecution was used.
+
+**Evidence and excerpts.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-P01-0.json`, SHA-256 `e7f1279976bedc8f5f64b634281bd7c2cdbf4254f3b9e471f4c85bd8deed0eef`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-P01-1.json`, SHA-256 `4d06be0b3612f6d4f2fbd2b8bff8e3777e818b90943e152e571cafae69f30865`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-P01-2.json`, SHA-256 `421c0ba46bcdc1ec9d639c828f3cb9f474b9c61b74d1b5de2945ca534c0c5395`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-P03-0.json`, SHA-256 `0f8292c1c96800a84619081a3021b05034e30acf1bc9bd8f966803c81c0a1b7d`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-P03-1.json`, SHA-256 `aaa16c7f81df9ec6ebe419e1b97440d2ba5c5253b467a0abb0f83b696b74b066`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/cells/measure-R00-ON-P03-2.json`, SHA-256 `be6f0865bd67386d084055934089730a2c4dfeab32bde2df399bec4b2e3766ab`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/execution_contract.py`, SHA-256 `cc72cd63328d96c03180ddb4d8f433672720ccbc90ac746ed5dd60b3dec3523b`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m06_execution_metadata.py`, SHA-256 `2d2e095df766ce5d398521be47600a6e9366cbcc0471edd1755244edbb67ce32`
+- `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m06_results.py`, SHA-256 `5d44fdbc0c7ab35404c02ccb830039f47e64597306a443f01d39567877a41362`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/FAILED_CONTRACT_REPRODUCTION.json`, SHA-256 `fa7d1e618c7a8077cdb25957cd343d2d4a2a5a733335584de77daa897751153c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/R00-ON-P01.json`, SHA-256 `c153bf8e7d4b7afb9556960b52743c48cc6718124de0c98bf901b2d77950c977`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0144/command.json`, SHA-256 `dd577e98df55eefe41aab2dcdd8cbbf89271aef286ca8d44c628112904c8c925`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/verification.json`, SHA-256 `16e6b61b193925522c3e75d6021f403c84a93b2d7b7dc4cadba86c0429cb2f34`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/request.json`, SHA-256 `949d1c44fb7a7110abaf4f506417bc871c5ace642e48db229c16d096ed88221c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/execution.json`, SHA-256 `b92fc3b40ef5f3a2e0fbd68afc1c7597a43e0f0a830560340f64c963a33ce330`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/early.json`, SHA-256 `a3ca748b4142a6adb5fa8af42b0ea459cce2650cb60c91a75b45252698282f59`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/0/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/1/R00-ON-P01.json`, SHA-256 `547c6eabb3d420b285ff63bad6cf2fda342e9fe7e6976f6c271b4145490696e1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0145/command.json`, SHA-256 `f95ee37256a1c9bceecda6ba593b3e3c65d696a36162e6b5a85e1332d8c0cd45`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/1/verification.json`, SHA-256 `9d2ad00c129181f5de0970a4af71e515966389394b2b3e6e4d08bb585b9ac7c3`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/1/request.json`, SHA-256 `3572a2cf1b7dfb704d456d062a9466fcbc48a0d8a9c71c75e7521fca6e0d5c43`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/1/execution.json`, SHA-256 `3229472a0270636dd8595c67c23f4f5bd91575c37b665ac1ca704744a073520c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/1/early.json`, SHA-256 `d0233ae19e142fe04321169fb8f08fcd1ac83050276a451b90637489e80c2d4a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/1/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/2/R00-ON-P01.json`, SHA-256 `45c8758ce1cbe147514c066cfd64d597fcad7b30d0a482ba3dd7923c8a9c2e32`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0146/command.json`, SHA-256 `b5567fa65225bf0f02bd1c0f5d34b19d0f15f91a5b956392f6f852a4e5c86a42`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/2/verification.json`, SHA-256 `cf2bc6f83e5cf16b6e29a74b59e3b271101831ee175b744e4f91b5a34913ac15`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/2/request.json`, SHA-256 `fd4015d5e347164125f594bd19c2c87a9d34c6ab5896d83d9093b1aa495a38bb`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/2/execution.json`, SHA-256 `621545a4a5f34ef34e97ac6f9386ba01721db5e83eef0a643edc32961a5c78e8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/2/early.json`, SHA-256 `22f9a8c855d95e0954206608f13390f362a16bca065a28f29e4a11ddedf3080d`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P01/2/early.capsule`, SHA-256 `aba854a21479ba2deef891cdfb3d3992bb39f31eed43d42bb45c50247c4a8a74`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/0/R00-ON-P03.json`, SHA-256 `316567831a08249eb943e26699b951adb5e4aeb95d2763767d37a4e3f4a2cadc`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0147/command.json`, SHA-256 `499d8964483c9e105159147a2b52491d4b855c89ba84d767ff63c5a6c6c92004`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/0/verification.json`, SHA-256 `3d35bef3f6aeb8cce202fd73e3835c976ff50ae02ae1308089a3551fe47f89e5`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/0/request.json`, SHA-256 `49f77da82a16972d9121221cf1a728e7068b7888df4f2354b4a49f0acd00792c`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/0/execution.json`, SHA-256 `dd5f149aaa5d61b721c75cb180e71a4dfd282caa9fcefe8369db1779220828a3`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/0/early.json`, SHA-256 `e49d777b8b36d38299a1e01a2b0a39dc88a6732a69fd1b5fad74c1aa212a55c7`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/0/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/1/R00-ON-P03.json`, SHA-256 `b8b23c0883844d66ce9f3c121853d7194197b4f69da029bc551c3b529ed3d5fe`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0148/command.json`, SHA-256 `50cd24b79db6d09efa084b68149d5cd9bb68eff9400413e5477f22c4cbd9d28d`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/1/verification.json`, SHA-256 `ec6272993734001070ef927f69b0514d030050000d2bcb44ea29dc0ad5873ed1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/1/request.json`, SHA-256 `5c9eb60928e981ddb7f31b8cdc80bed5f01c9b73cfeb0344350028df299cbad3`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/1/execution.json`, SHA-256 `6f15162681f5268f65ef8459a14829fe34c4e4f7a4d5eadddb365c675bcd71c8`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/1/early.json`, SHA-256 `435df73f084ba0ccf6bf12838d1de60f6ca8623c5034c2c2ca4f0f46f3536fa0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/1/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/2/R00-ON-P03.json`, SHA-256 `eaefbb3a97145960bf0c0fb818d3fb973eb5b1a214f84a3b1f4811d54f492f13`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/commands/0149/command.json`, SHA-256 `f257078667baa0af2efcb6008cfe49c9339eccadbd419f979e60dd00dcd7cdc9`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/2/verification.json`, SHA-256 `99fd5a4d7820550c90eee934193f5d0dc6fc0fad2ac855a9815c3b89984d2731`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/2/request.json`, SHA-256 `ff99965621da8c0db6fba8adec98bb1fbc9079bdf0fe68b01dec3ebe595f7951`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/2/execution.json`, SHA-256 `71004a794e51bb680babeee76524474a34eecef74c72b2abb81a0c38e4354bab`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/2/early.json`, SHA-256 `e0f42ba088f22bcdda622dbf9f4426f73e94ad51fb0fcf2d978596adb8b237c0`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/measurements/R00-ON-P03/2/early.capsule`, SHA-256 `33a48448daf8e7b7d907796294c8f8a7bedecb06c21faa1955e57fbba215fe5a`
+
+```text
+execution_contract.py:25: return metadata.read_methods(dll, pdb)
+m06_execution_metadata.read_methods -> module.methods(symbols)  # list
+m06_results.physical_marker -> image["methods"]  # expects image record
+TypeError: list indices must be integers or slices, not str
+```
+
+```text
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/audit-completion.py", line 131, in failed_call
+    try:fn(cmd)
+        ~~^^^^^
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261005O-ln-closure/audit-completion.py", line 150, in <lambda>
+    failed_call(cell_id,rawpath,lambda cmd,f=folder,p=rawpath,v=raw:verify_execution(load(f/'request.json'),load(f/'execution.json'),v,sha(f/'request.json'),sha(p),cmd['pid'],context),precheck)
+                                                                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion/execution_contract.py", line 50, in verify
+    m06.verify_business(values, m06.INTERNAL, phase, image, 'R03 supplement', rep, first.get(phase))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m06_results.py", line 728, in verify_business
+    observed=values_map(values,path);marker,generation=physical_marker(image,path)
+                                                       ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m06_results.py", line 715, in physical_marker
+    markers={s.removeprefix('marker=') for s in literal_values(image,'NewObservations') if s.startswith('marker=M06-')}
+                                                ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/m06_results.py", line 707, in literal_values
+    for method in image['methods']:
+                  ~~~~~^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+```
+
+**Most likely root cause.** execution_contract.selected_image returns metadata.read_methods(dll, pdb) at line 25. That API returns a methods list. verify_business/physical_marker and verify_exception require the original M06 image record containing methods, identity and pdbAvailable, and the supplement final receipt also indexes image["identity"] and image["pdbAvailable"].
+
+**Why permitted / affected scope.** The adapter reused original M06 assertions but did not construct their established input record. Syntax/compilation and metadata-reader tests did not verify the actual producer-consumer contract through six complete phases on a selected patch DLL/PDB. measure-R00-ON-P01-0/1/2 and measure-R00-ON-P03-0/1/2. The same shape mismatch is latent behind NoPatch lookup failure LO-003. Measurement aggregation remains Blocked and no broader execution/performance acceptance is granted.
+
+**Recommended Primary direction.** Build the established immutable M06 image record from the actual uniquely selected physical DLL and its authenticated PDB: verified full identity/MVID/hash, parsed methods/tokens and actual pdbAvailable. Pass that record to all original business/exception rules. Preserve six phase/repetition observations, physical marker, token, symbol/source and selected-world guards; do not wrap unverified claim fields or weaken the original assertions.
+
+**Remaining uncertainty.** The original supplement fails during the first business phase before later delegate/exception checks and final image receipt. Additional business, method token or PDB problems may surface after the contract is corrected. Existing raw reports are observations, not completed M06 matrix or performance acceptance.
+
+**Validation after repair.** Add a direct selected-image -> original verify_business/verify_exception producer-consumer regression against real baseline and P01/P03 DLL/PDB inputs, including shape, identity, marker/token and missing/altered symbol negatives. Then rerun all 12 fresh supplements and the measurement aggregate in a new source-bound batch without changing source/runtime expectations.
+
+No Local source fix or phase/batch retry.
+
+
+R03Accepted=false; H2Passed=false; qualificationApproved=false; PureInterpreter expansion disabled. Four contaminated unisolated warm certificates remain Failed. Executed source `25a9dbce977247d83ef1b1c0411a663d8dda4456`; publication HEAD is transport authority only and is recorded externally/in the final handoff. **Local Validation → Primary Implementation. Stop.**
+
+## Historical return — R03 batch N: four actionable Primary issues
 
 **ReturnRequired;90 cells:48 Passed, 4 Failed, 38 Blocked;seal Passed;one invocation PID80867,2026-10-05 07:03:54 PDT → 2026-10-05 07:34:45 PDT.** Six fresh build roles/23 focused Players Passed. Fresh P05 compile/restore/finalize and five schema-2 report results are recorded in LOCAL_VALIDATION.md. Actual direct Player processes=23; full754/755 rosters did not execute because source-scope admission Failed; early18 actual methods Passed. Preserve M and all earlier states unchanged.
 

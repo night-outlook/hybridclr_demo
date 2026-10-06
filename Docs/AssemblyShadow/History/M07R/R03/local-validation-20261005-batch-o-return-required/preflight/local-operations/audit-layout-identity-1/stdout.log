@@ -1,0 +1,48 @@
+{
+  "kind": "ReadOnlyOLayoutIdentityAudit",
+  "startUtc": "2026-10-06T05:28:22.894438+00:00",
+  "host": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/layout-identity/results.json",
+    "sha256": "4a38de37703ed72c9de9fb04b1ab3395db5e3617236f959cc4212fad38b71e2d",
+    "cases": 33,
+    "basis": "ReusedAuditedLocalMLayoutInputs",
+    "runtimeAcceptance": false,
+    "nativeProofExecuted": false
+  },
+  "inputReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/layout-identity-inputs.json",
+    "sha256": "1a87816473fc9bcf5d401d3da91bb8a96e22af9c59a779e12bdfec74f9bde001",
+    "size": 118020
+  },
+  "comparisonReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/layout-identity/comparison.json",
+    "sha256": "d87977ad8830b732009757395a59f8a27c64a97dc7872cd9cd45c3f463807fb4",
+    "size": 181161
+  },
+  "historicalReplay": {
+    "basis": "ReusedAuditedLocalMLayoutInputs",
+    "linkedImages": 56,
+    "compilerImages": 214,
+    "rawParentChangedRows": 43,
+    "resolvedRows": 53,
+    "rejectedRows": 0,
+    "mappedDeclarations": 18,
+    "nativeProofExecuted": false,
+    "runtimeAcceptance": false
+  },
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "expansionAuthorized": false,
+  "freshFiveReportAuditState": "Passed",
+  "productionVerificationState": "Passed",
+  "verificationReceipt": {
+    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/layout-identity-verification.json",
+    "sha256": "9e44c78e8239bc3fd7d0a11eb6900f6a711e22ab68bae930aea26ad5de3abd31",
+    "size": 3289
+  },
+  "endUtc": "2026-10-06T05:28:23.617517+00:00",
+  "status": "Passed",
+  "interpretation": "Authentication audit only; original cell states preserved. Historical replay is reused-audited input. Nominal sidecars are not native offset/allocation or runtime authority."
+}
+Fresh reports [('P01', {'assemblies': 1, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False}), ('P02', {'assemblies': 3, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False}), ('P03', {'assemblies': 5, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 19, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False}), ('P04', {'assemblies': 1, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False}), ('P05', {'assemblies': 1, 'linkedImages': 56, 'compilerImages': 214, 'mappedDeclarations': 18, 'nativeProofExecuted': False, 'runtimeMustRevalidate': True, 'expansionAuthorized': False})]

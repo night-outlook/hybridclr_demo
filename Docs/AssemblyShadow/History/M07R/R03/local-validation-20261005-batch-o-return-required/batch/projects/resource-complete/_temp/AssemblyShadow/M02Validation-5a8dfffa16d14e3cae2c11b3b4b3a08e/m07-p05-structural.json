@@ -1,0 +1,102 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M07",
+    "baselineBuildId": "M07-Baseline-R03Completion-25a9dbce9772",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-25a9dbce9772/baseline-manifest.json",
+    "baselineManifestSha256": "20d78fa8be1231e7515828737940916993e947bf1e90ec239cc2e14951c36554",
+    "p05DllOnlyCompileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-DllOnly-compile/Snapshot",
+    "fixture": {
+        "patchId": "P05",
+        "defines": [
+            "ASSEMBLY_SHADOW_P05"
+        ],
+        "changedRoots": [
+            "AssemblyA.Implementation.Internal"
+        ],
+        "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-compile/Snapshot",
+        "compileSnapshotHash": "2908bc06be36a5044e685d8b7ccbb3de47a9eced3141e3226b1429b071a09e64",
+        "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-patch",
+        "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-patch/patch-manifest.json",
+        "patchManifestSha256": "b8002f258561edb5fa55632fcd55549b91abb0e183c8f736b2d0651868cb9c7d",
+        "closureLoadOrder": [
+            "AssemblyA.Implementation.Internal"
+        ],
+        "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+        "resourceAbiHash": "sha256:f99cbb1f42858874f1a1ff96cc10c7b4d273861ca7608cb83a5d667f23a96360",
+        "resourceChangeLevel": "ResourceRebuildRequired",
+        "dllOnly": false,
+        "resourceBundlesRequired": [
+            "additive-scene.bundle",
+            "business-scene.bundle",
+            "mixed-assets.bundle",
+            "nested-prefab.bundle",
+            "versioned-prefab.bundle"
+        ],
+        "assemblyIdentities": [
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "version": "0.0.0.0",
+                "culture": "",
+                "publicKeyToken": "",
+                "mvid": "7229b73b-2fd9-43c7-95b1-e563c630535d",
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                "sha256": "a21d837fb9ac5da7ac5ac910775310b3c3511c19bff5d626b5f8db53e02c22ba",
+                "referenceIdentities": [
+                    {
+                        "referenceIndex": 0,
+                        "name": "netstandard",
+                        "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                        "version": "2.1.0.0",
+                        "culture": "",
+                        "publicKeyToken": "cc7b13ffcd2ddd51"
+                    },
+                    {
+                        "referenceIndex": 1,
+                        "name": "AssemblyA.Contracts",
+                        "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 2,
+                        "name": "AssemblyA.Implementation.Extensibility",
+                        "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 3,
+                        "name": "UnityEngine.CoreModule",
+                        "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 4,
+                        "name": "UnityEngine.JSONSerializeModule",
+                        "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    }
+                ]
+            }
+        ],
+        "replacementResourcePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-Resources",
+        "replacementResourceReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/projects/resource-complete/_temp/AssemblyShadow/M02Validation-5a8dfffa16d14e3cae2c11b3b4b3a08e/P05-Resources/resource-build-receipt.json",
+        "replacementResourceReceiptSha256": "ded1e75a6be312f68d055c264e243b375b8b371dbaa8bca528b7d605693ebf1d",
+        "replacementBundleNames": [
+            "additive-scene.bundle",
+            "business-scene.bundle",
+            "mixed-assets.bundle",
+            "nested-prefab.bundle",
+            "scriptable-object.bundle",
+            "serialize-reference.bundle",
+            "versioned-prefab.bundle"
+        ]
+    }
+}

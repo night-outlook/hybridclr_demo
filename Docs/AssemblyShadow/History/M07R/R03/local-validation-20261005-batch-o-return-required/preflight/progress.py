@@ -1,0 +1,4 @@
+import pathlib,json,collections,datetime
+P=pathlib.Path(__file__).resolve().parent;R=P.parent/'R03LocalBatch-20261005O-ln-closure';rows=[json.loads(p.read_text()) for p in (R/'cells').glob('*.json')];dirs=sorted((R/'commands').glob('*'));record={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'cells':len(rows),'states':dict(collections.Counter(c['result'] for c in rows)),'failures':[{'id':c['id'],'error':c.get('error')} for c in rows if c['result']=='Failed'],'commandsCompleted':len(list((R/'commands').glob('*/command.json'))),'latestCommandDirectory':dirs[-1].name if dirs else None,'builds':[p.parent.name for p in (R/'builds').glob('*/build-receipt.json')],'freshFocusedPlayerVerifications':len(list((R/'players').glob('*/verification.json'))),'finalResultExists':(R/'LOCAL_BATCH_RESULT.json').exists()}
+with (P/'progress.jsonl').open('a') as f:f.write(json.dumps(record)+'\n')
+print(json.dumps(record,indent=2))
