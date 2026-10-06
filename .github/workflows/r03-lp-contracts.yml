@@ -34,6 +34,9 @@ jobs:
         shell: bash
         run: |
           mkdir -p "$RUNNER_TEMP/lp-contracts"
+          # Retained path-custody tests require a real parent, not the macOS /var alias.
+          export TMPDIR="$(python3 -c 'from pathlib import Path; import tempfile; print(Path(tempfile.gettempdir()).resolve())')"
+          printf '%s\n' "$TMPDIR" > "$RUNNER_TEMP/lp-contracts/temp-root.txt"
           python3 -B -m unittest discover -s Tools/AssemblyShadow/R03Completion -p 'test_*.py' -v > "$RUNNER_TEMP/lp-contracts/unittest.log" 2>&1
           python3 -B Tools/AssemblyShadow/R03Completion/lp_replay.py --project "$GITHUB_WORKSPACE/hybridclr_demo" --output "$RUNNER_TEMP/lp-contracts/p-replay.json"
       - name: Bind command outputs and immutable source identities
