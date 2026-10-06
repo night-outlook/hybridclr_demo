@@ -23,7 +23,8 @@ permissions:
 jobs:
   api:
     runs-on: macos-15
-    timeout-minutes: 30
+    # Reference replay plus official Unity extraction can exceed 30 minutes on hosted macOS.
+    timeout-minutes: 60
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:

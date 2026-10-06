@@ -12,6 +12,7 @@ jobs:
       matrix:
         os: [ubuntu-24.04, macos-15]
     runs-on: ${{ matrix.os }}
+    # Re-run the source-matched host suite when the pinned API execution envelope changes.
     timeout-minutes: 30
     env:
       PYTHONDONTWRITEBYTECODE: '1'
