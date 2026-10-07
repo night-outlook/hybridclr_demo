@@ -29,9 +29,14 @@ function Get-GitRepositoryRoot {
     param([Parameter(Mandatory = $true)][string]$StartPath)
 
     $resolvedStartPath = [System.IO.Path]::GetFullPath($StartPath)
-    $gitRoot = (& git -C $resolvedStartPath rev-parse --show-toplevel 2>$null | Select-Object -First 1)
-    if ($LASTEXITCODE -eq 0 -and -not [string]::IsNullOrWhiteSpace($gitRoot)) {
-        return $gitRoot.Trim()
+    # Collect output after Git exits; Select-Object -First can stop the native
+    # pipeline before LASTEXITCODE is set in a fresh PowerShell process.
+    $gitOutput = @(& git -C $resolvedStartPath rev-parse --show-toplevel 2>$null)
+    if ($LASTEXITCODE -eq 0 -and $gitOutput.Count -gt 0) {
+        $gitRoot = [string]$gitOutput[0]
+        if (-not [string]::IsNullOrWhiteSpace($gitRoot)) {
+            return $gitRoot.Trim()
+        }
     }
 
     return $resolvedStartPath
@@ -40,20 +45,15 @@ function Get-GitRepositoryRoot {
 function Get-ValidatedMainAgentModelFamily {
     param([AllowNull()][object]$Model)
 
-    $matchedFamilies = @()
     if ($Model -is [string] -and -not [string]::IsNullOrWhiteSpace($Model)) {
-        $matchedFamilies = @(
-            [regex]::Matches($Model, "(?i)(?<![a-z])(luna|terra|sol)(?![a-z])") |
-                ForEach-Object { $_.Groups[1].Value.ToLowerInvariant() } |
-                Select-Object -Unique
-        )
+        $normalizedModel = $Model.Trim().ToLowerInvariant()
+        # Keep GPT-6 Sol for older main-agent hosts; only Sol has a supported 6.1 ID.
+        if ($normalizedModel -match '^(?:(?:gpt-6-)?(?:luna|sol|astra)|gpt-6\.1-sol)$') {
+            return ($normalizedModel -split '-')[-1]
+        }
     }
 
-    if ($matchedFamilies.Count -ne 1) {
-        Write-Error -Message "Expected exactly one Luna, Terra, or Sol family; verify the effective main-agent model and retry once." -ErrorId "InvalidMainAgentModel" -Category InvalidArgument -TargetObject $Model -ErrorAction Stop
-    }
-
-    return $matchedFamilies[0]
+    Write-Error -Message "Expected gpt-6.1-sol, a GPT-6 Astra/Sol/Luna ID, or a bare family name (Astra, Sol, Luna); verify the effective main-agent model and retry once." -ErrorId "InvalidMainAgentModel" -Category InvalidArgument -TargetObject $Model -ErrorAction Stop
 }
 
 try {

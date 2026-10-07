@@ -24,22 +24,26 @@ Apply this versioned team contract subject to higher-priority user, host, and li
 
 ## Identity And Routing
 
-- Use the host `task_name` as the canonical identity. Keep the semantic prefix stable and format the full name as `<domain>_<responsibility>_<model>_<effort>_<index>` using only lowercase letters, digits, and underscores, for example `git_audit_gpt56terra_low_1`.
-- Normalize the effective model slug by removing punctuation (`gpt-5.6-terra` -> `gpt56terra`) and use the exact reasoning tag (`none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`, or `ultra`). If exact inherited values are not observable, use `inherit` rather than inventing metadata.
+- Use the host `task_name` as the canonical identity. Keep the semantic prefix stable and format the full name as `<domain>_<responsibility>_<model>_<effort>_<index>` using only lowercase letters, digits, and underscores, for example `git_audit_gpt61sol_high_1`.
+- Normalize the effective model slug by removing punctuation (`gpt-6.1-sol` -> `gpt61sol`) and use the exact supported reasoning tag. GPT-6.1 Sol supports `low`, `medium`, `high`, `xhigh`, and `max`; it does not support `none` or `minimal`. GPT-6 Astra does not support `none`. Use a host-specific tag such as `ultra` only when explicitly supported for that model by the live host; do not infer API support from it. If exact inherited values are not observable, use `inherit` rather than inventing metadata.
 - The name's model and effort tags must match the effective spawn configuration or fixed custom-agent profile. Host-generated nicknames are presentation-only and never replace the canonical task name.
-- Choose the project-scoped custom agent from the routing table. Use built-in `default`, `explorer`, or `worker` only when the matching custom profile is unavailable.
-- Custom profiles pin their own model and reasoning; do not duplicate those settings as spawn overrides.
+- Choose the project-scoped custom agent from the routing table. Use built-in `default`, `explorer`, or `worker` only when the matching custom profile is unavailable or exposes different fixed settings.
+- Custom profiles pin their own model and reasoning; do not duplicate those settings as spawn overrides. Check exposed fixed settings against the table before spawning. A profile still exposing GPT-6 Sol after this migration is stale; use the explicit built-in fallback when available, or execute an ordinary route directly until the host reloads the profiles. Never label an old-model spawn as GPT-6.1 Sol.
 - For a built-in fallback, always pass the table's explicit fallback `model` and `reasoning_effort`; omitted inheritance is noncompliant.
 - Use the smallest sufficient context and follow the live host's context-fork, lifecycle, waiting, and concurrency rules.
 
 | Work | Preferred custom agent | Fixed routing / access | Built-in fallback |
 |---|---|---|---|
-| Search, cataloging, log triage, simple code inspection, symbol lookup, implementation explanation, dependency tracing | `code-explorer` | `gpt-5.6-luna` / `medium` / read-only | `explorer`, `gpt-5.6-luna` / `medium` |
-| Routine implementation | `code-worker` | `gpt-5.6-luna` / `high` / inherited permissions | `worker`, `gpt-5.6-luna` / `high` |
-| Bounded general analysis, planning, coordination support, or scoped architecture investigation | `code-general` | `gpt-5.6-luna` / `max` / inherited permissions | `default`, `gpt-5.6-luna` / `max` |
-| Cross-system or high-risk debugging | `code-debugger` | `gpt-5.6-sol` / `high` / inherited permissions | `default`, `gpt-5.6-sol` / `high` |
-| Explicit high-stakes security, regression, release, or final correctness gate | `code-reviewer` | `gpt-5.6-sol` / `high` / read-only | `default`, `gpt-5.6-sol` / `high` |
-| Configured independent milestone and final acceptance gate for a large, long-running, or complex task | `code-gate-reviewer` | `gpt-5.6-sol` / `max` / read-only | `default`, `gpt-5.6-sol` / `max` |
+| Search, cataloging, log triage, simple code inspection, symbol lookup, implementation explanation, dependency tracing | `code-explorer` | `gpt-6-luna` / `medium` / read-only | `explorer`, `gpt-6-luna` / `medium` |
+| Routine implementation | `code-worker` | `gpt-6-luna` / `high` / inherited permissions | `worker`, `gpt-6-luna` / `high` |
+| Bounded general analysis, planning, coordination support, or scoped architecture investigation | `code-general` | `gpt-6-luna` / `max` / inherited permissions | `default`, `gpt-6-luna` / `max` |
+| Cross-system or high-risk debugging | `code-debugger` | `gpt-6.1-sol` / `high` / inherited permissions | `default`, `gpt-6.1-sol` / `high` |
+| Explicit high-stakes security, regression, release, or final correctness gate | `code-reviewer` | `gpt-6.1-sol` / `high` / read-only | `default`, `gpt-6.1-sol` / `high` |
+| Configured independent milestone and final acceptance gate for a large, long-running, or complex task | `code-gate-reviewer` | `gpt-6.1-sol` / `xhigh` / read-only | `default`, `gpt-6.1-sol` / `xhigh` |
+
+Keep Luna for focused work and GPT-6.1 Sol for demanding debugging and review. Preserve the configured reasoning levels as the migration baseline; tune them only with representative task evidence. Compare Astra on the same workload when Sol leaves a material quality gap and the user's scope permits that comparison.
+
+Official guidance checked on 2026-09-29: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 migration](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra#gpt-6-astra-gpt-61-sol), and [model selection](https://developers.openai.com/api/docs/guides/model-selection#when-to-consider-gpt-61-sol). For an API-backed harness, GPT-6.1 Sol requires Responses for tool calling; Chat Completions supports requests without tools. These API constraints do not add settings to Codex agent TOML files; the live host controls transport and available reasoning levels.
 
 The live host schema is authoritative. For an ordinary route, execute directly when neither the custom profile nor its built-in fallback is exposed instead of silently selecting a mismatched agent. A mandatory `code-gate-reviewer` gate is different: if no independent custom or built-in agent can be spawned, the verdict is `BLOCKED`; the main agent cannot replace the independent reviewer or claim `PASS`.
 
@@ -47,17 +51,19 @@ Route by purpose and risk, not by verbs in the request. A request to "review," "
 
 ## Gate Review Configuration
 
-At task classification, read the current main agent's exact effective model once from authoritative live host metadata and reuse it unless the host reports a model switch. If the host exposes only a family name, use that; never infer the value from task names, repository config, environment variables, or agent profiles, and never pass `inherit` or a guess. Run `scripts/Get-GateReviewMode.ps1` at classification and before each gate with that cached value as `-EffectiveMainAgentModel`; `-MainAgentModel` remains a compatibility alias. Matching is case-insensitive, full identifiers are allowed, and the value must resolve to exactly one `Luna`, `Terra`, or `Sol` family.
+At task classification, read the current main agent's exact effective model once from authoritative live host metadata and reuse it unless the host reports a model switch. If the host exposes only a family name, use that; never infer the value from task names, repository config, environment variables, or agent profiles, and never pass `inherit` or a guess. Run `scripts/Get-GateReviewMode.ps1` at classification and before each gate with that cached value as `-EffectiveMainAgentModel`; `-MainAgentModel` remains a compatibility alias. Matching is case-insensitive and accepts `gpt-6.1-sol`, the existing GPT-6 Astra/Sol/Luna IDs, and bare family names `Astra`, `Sol`, or `Luna`. GPT-6 Sol remains accepted only to classify main agents on older hosts; new Sol delegation uses GPT-6.1 Sol. Unsupported versions and mixed-family identities are rejected.
 
 The helper normally returns exactly `Off`, `Final`, `FinalAndMilestones`, or `RequiredFinalAndMilestones`; generic invocation failure or any other returned value means `Off`. `InvalidMainAgentModel` instead means re-read the authoritative host value and retry once. If that retry repeats the error, stop and report unresolved model identity; never guess or reinterpret it as `Off`.
 
-When Boolean `require_sol_main_agent_for_gate_review` is `true`, `Luna` or `Terra` returns `Off` before every gate setting, while `Sol` continues. Pass `-FightHeroSkillDevelopment` only when authorized implementation using `fight-dev-ability`, `fight-dev-breakthrough-passive`, or `fight-dev-new-hero` changes Fight hero combat behavior or its production inputs/outputs. Boolean `require_fight_hero_skill_development_full_gate_review` is only for Fight hero skill development, never other tasks, and has higher priority than both `enable_gate_reviewer` and `review_committed_major_milestones`; when enabled, return `RequiredFinalAndMilestones`. Otherwise, only Boolean `enable_gate_reviewer = true` enables an ordinary gate, and Boolean `review_committed_major_milestones = true` adds milestone gates.
+When Boolean `require_sol_main_agent_for_gate_review` is `true`, only `Sol` (including GPT-6.1 Sol) continues; `Luna` and `Astra` return `Off` before every gate setting. Pass `-FightHeroSkillDevelopment` only when authorized implementation using `fight-dev-ability`, `fight-dev-breakthrough-passive`, or `fight-dev-new-hero` changes Fight hero combat behavior or its production inputs/outputs. Boolean `require_fight_hero_skill_development_full_gate_review` is only for Fight hero skill development, never other tasks, and has higher priority than both `enable_gate_reviewer` and `review_committed_major_milestones`; when enabled, return `RequiredFinalAndMilestones`. Otherwise, only Boolean `enable_gate_reviewer = true` enables an ordinary gate, and Boolean `review_committed_major_milestones = true` adds milestone gates.
 
 For `Final` or `FinalAndMilestones`, classify a task as gate-qualified when the user calls it large, long-running, or complex, or when it has multiple implementation or commit phases, crosses multiple modules or systems, is expected to span sessions or context windows, or carries material integration or correctness risk. Record that classification before implementation. For a stepwise-commit task, declare the major milestones and their acceptance criteria before their commits; ordinary work, cleanup, and corrective commits are not separate milestones.
 
 ## Delegation Contract
 
 Before spawning, verify that the canonical name matches the selected role, effective model, and reasoning. The task message states: objective; already-known facts and relevant files, paths, or symbols; role and access mode; exact read scope or write ownership; supplied inputs; forbidden areas; relevant validation command when known; expected output or acceptance evidence; and known uncertainty. Pass known facts forward instead of making the child rediscover them.
+
+Infer routine implementation details from the task context and complete authorized work before asking for a decision. Ask only when missing information would materially change the result. Keep validation proportional to the change and avoid repeating broad checks after focused evidence is sufficient.
 
 For code-changing workers, explicitly state: **You are not alone in the codebase. Do not revert others' edits; inspect current files and adapt your implementation to concurrent changes.** Require a verification command only when a command is the appropriate evidence.
 
@@ -67,7 +73,7 @@ Ask subagents to return concise conclusions, changed files or file/line evidence
 
 - Never assign multiple agents to the same file, generated-output area, or tightly coupled business logic. Main-agent integration follows all parallel writes.
 - Start with the smallest task-relevant source of truth. Exclude broad cache/build/version-control searches by default, but inspect a targeted excluded area when it is the relevant evidence.
-- For Unity asset, serialization, reference, Timeline, Animator, or missing-meta questions, inspect the targeted asset files directly. Use `unity-asset-safety` for deep inspection or mutation.
+- For Unity asset, serialization, reference, Timeline, Animator, or missing-meta questions, inspect the targeted asset files directly. Use `unity-asset-safety` for deep inspection or mutation when available; otherwise use targeted asset checks and `unity-debug` when Editor evidence is needed.
 
 ## Independent Gate Review
 

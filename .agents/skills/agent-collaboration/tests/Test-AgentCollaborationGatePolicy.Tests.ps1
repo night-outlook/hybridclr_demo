@@ -63,8 +63,55 @@ if (Test-Path -LiteralPath $rootModeScriptPath -PathType Leaf) {
 
         It "reads gate settings from the repository config" {
             Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $true -FightFullReview $false
-            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "GPT-5.6-Sol"
+            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6.1-sol"
             $mode | Should Be "FinalAndMilestones"
+        }
+
+        It "classifies GPT-6.1 Sol and older host identities as the Sol family" {
+            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
+            foreach ($model in @("gpt-6.1-sol", " GPT-6.1-SOL ", "Sol", "gpt-6-sol")) {
+                (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel $model) | Should Be "Final"
+            }
+        }
+
+        It "reads the gate in a fresh PowerShell process without a prior native exit code" {
+            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $true -FightFullReview $false
+            $powerShellPath = (Get-Process -Id $PID).Path
+            $mode = & $powerShellPath -NoProfile -File $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6.1-sol"
+            $LASTEXITCODE | Should Be 0
+            $mode | Should Be "FinalAndMilestones"
+        }
+
+        It "keeps a Sol-only gate off for GPT-6 Astra and Luna" {
+            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
+            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-astra") | Should Be "Off"
+            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-luna") | Should Be "Off"
+        }
+
+        It "rejects malformed model identities instead of inferring a Sol gate" {
+            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
+            { & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "unrecognized-sol-model" } | Should Throw
+            { & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-sol-astra" } | Should Throw
+            { & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-5.6-sol" } | Should Throw
+            foreach ($model in @("gpt-6.1-astra", "gpt-6.1-luna", "gpt-6.2-sol", "gpt-6x1-sol", "gpt-6.1-sol-astra", "gpt-6.1-sol-extra", "gpt-6.1", "inherit", "")) {
+                $caughtError = $null
+                try {
+                    & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel $model | Out-Null
+                }
+                catch {
+                    $caughtError = $_
+                }
+                $caughtError | Should Not Be $null
+                $caughtError.FullyQualifiedErrorId | Should Match '^InvalidMainAgentModel'
+            }
+        }
+
+        It "preserves gate modes and Fight precedence for GPT-6.1 Sol" {
+            Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $false -ReviewMilestones $true -FightFullReview $true
+            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6.1-sol") | Should Be "Off"
+            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6.1-sol" -FightHeroSkillDevelopment) | Should Be "RequiredFinalAndMilestones"
+            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-astra" -FightHeroSkillDevelopment) | Should Be "Off"
+            (& $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -EffectiveMainAgentModel "gpt-6-luna" -FightHeroSkillDevelopment) | Should Be "Off"
         }
 
         It "does not require an account-specific config file" {
@@ -89,7 +136,7 @@ if (Test-Path -LiteralPath $rootModeScriptPath -PathType Leaf) {
 
         It "keeps MainAgentModel as a compatibility alias" {
             Set-TestConfig -RequireSolMainAgent $true -EnableGateReviewer $true -ReviewMilestones $false -FightFullReview $false
-            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -MainAgentModel "GPT-5.6-Sol"
+            $mode = & $rootModeScriptPath -RepositoryRoot $testRepositoryRoot -MainAgentModel "GPT-6.1-Sol"
             $mode | Should Be "Final"
         }
     }
