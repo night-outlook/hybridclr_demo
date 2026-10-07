@@ -1,38 +1,36 @@
-# Current Status — LP source repairs; batch Q assignment
+# Current Status — Q reconciled; storage prerequisite before batch R
 
-## Authoritative Local state
+## Authoritative Local result
 
-P remains **ReturnRequired**, published at demo `d9ef449e8e8aef885539e4b981243a868f8d0ba6` and executed from `d8884646659f7b6ae0f6ceda746fd271c96c8d61`: 90 cells = 71 Passed / 18 Failed / 1 Blocked. All six fresh builds and 18+754+755 Editor cases Passed; all 59 Players ran, with 42 passing and 17 failing verifications. Live-policy/restored-baseline zero-root/zero-closure subproofs and seal/final custody Passed. The failed integration and blocked resource aggregate retain their original verdicts. Preserve all P/O/N and earlier evidence.
+Q remains **ReturnRequired**, published at demo `69af19f63ec20b900d28b3fab27c646d47264736` after one invocation from `8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0`. All 90 cells are recorded: **89 Passed / 1 Failed / 0 Blocked**. Six fresh builds, all 59 Player checks and 18/754/755 Editor cases Passed with zero skips/inconclusive. Resource binding order, strict R02 bridge, aggregate and live policy evidence passed their checks. Seal Passed. Integration failed with ENOSPC while creating restored-baseline raw-admission evidence; final zero-root/zero-closure proof is **Unavailable**, not replaced by P's earlier proof.
 
-R02 remains PassedWithExplicitDeferredRisk; focused H remains reconciled Passed. `R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`, `fullLegacyRegressionAcceptance=false`; PureInterpreter structural expansion disabled. Independent full-stage review remains pending.
+**R03-LQ-001 is an environmental allocation failure; no product-source defect is established.** Entry df showed 22 GiB available; the later APFS observation showed 14,847,991,808 unallocated container bytes. Neither establishes capacity at the exact failure instant or a quota/metadata/competing-writer cause. Current Mac headroom and remediation are **NotRun / unverified by Primary**. Preserve Q/P/O/N and all older results/evidence unchanged.
 
-## Published source tuple
+## Published source and ownership
 
-All branches: `codex/assembly-shadow-r01b-h1`. Exact Local paths are under `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/`, with one nested checkout per repository as specified in WEB_TO_LOCAL.md.
+All branches: `codex/assembly-shadow-r01b-h1`. Exact Local checkout paths are the four `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/<repo>` directories in WEB_TO_LOCAL.md.
 
 | Repository | Bound source |
-| --- | --- |
-| night-outlook/hybridclr_demo | Product repair `b42cbe1134a56e675b8a98e275a45ae5a012e17d`; complete CI/source anchor `0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5`; final Docs-only transport is the exact latest pushed SHA in Primary's handoff prompt |
+|---|---|
+| night-outlook/hybridclr_demo | Storage source/CI anchor `357a9024865561362cd2c42fa8f793f56aac1763`; execute the final Docs-only transport SHA supplied in Primary's final prompt |
 | night-outlook/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | night-outlook/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | night-outlook/il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-Both R03 source-pin manifests are unchanged and agree. No C#, package, native, IL2CPP, build profile, fixture or Editor roster changed. The only runtime orchestration/consumer edits are `R03Completion/run_completion.py` and `legacy_runtime.py`; other changes are regression tests, bounded replay/input manifest, read-only CI and Primary-owned documentation.
+The only additions are the R03Storage entry point, guard, two tests and read-only CI workflow. Existing Completion/R03/R02 implementation, C#, source pins, package/native/IL2CPP, fixtures, Editor rosters, profiles, command timeouts, leases and cleanup remain unchanged. The new wrapper uses the actual ninety-cell scheduler rather than a parallel plan. Primary owns the code/design; Local owns measurement, execution, custody and its return reports. Physical capacity provisioning needs operator-approved action, not speculative Local source edits or deletion of prior evidence.
 
-## Repair and evidence status
+## Validation and conditional authorization
 
-**LP-001:** the actual plan/execute order is resource-input-binding → production-entry-integration, with the binding cell as integration's explicit prerequisite. Failed graph/layout authentication blocks integration even if a partial context exists. Independent Player checks and P05 cleanup keep their original prerequisites.
+Exact-source run **37563039265 Passed on Linux and macOS**, each with **62 selected tests: 48 storage, 5 retained LP orchestration, 9 retained R02 strict schema**, zero failures/errors/skips. Both artifact digests, all four indexed outputs and 419 source hashes per artifact were authenticated. The same suites passed on the Primary host. Four new Python files passed syntax checks; three handoff Bash blocks passed syntax validation. No fresh Unity/Player execution or actual Local capacity admission is claimed.
 
-**LP-002:** resource cases, aggregate M07 verification and positive startup use the existing strict R02 bridge. It validates the current extension before in-memory projection to unchanged legacy semantics. Codec context remains explicit; raw evidence is not modified; OFF remains unprojected and negative startup does not run business-resource verification. Actual bridge counts are retained in receipts.
+The supplied gate requires `max(64 GiB, 2*retained-Q planning bytes + 20 GiB)` available at each filesystem location and bounded allocation probes before construction. It observes a 20 GiB floor and filesystem identity during execution, latches deficiencies, preserves P05 cleanup/final authority and leaves in-flight command semantics unchanged. Storage sidecar results remain outside the core seal. The policy is not a reservation or a guarantee of future allocation. See `History/M07R/R03/LQ_Storage_2026-10-07/{DESIGN.md,PRIMARY_REVIEW.md,EVIDENCE.json}`.
 
-Complete-checkout CI run **37518987943 Passed on Linux and macOS**, with **360 tests Passed and zero failures/errors/skips per platform**, plus the separate 18-witness P replay. Both artifact ZIPs, three output files and 417 source hashes per platform were authenticated.
+Next owner: **Local Validation for storage diagnosis; batch R only after fresh admission passes**. Use the new unused R, storage sidecar and preflight paths in WEB_TO_LOCAL.md. If capacity or a known filesystem constraint is unresolved, return **CapacityBlocked; batch NotRun**. No arbitrary history/cache/Git/snapshot deletion, quota change, threshold weakening or external mount substitution is authorized. If admitted, execute once; no phase/batch retry or non-trivial Local fix.
 
-21 new unit/replay tests and nine unchanged R02 schema tests Passed locally. 47 Completion Python modules passed syntax parsing. Read-only P replay authenticates 40 source inputs, reproduces the 17 original schema failures and passes the complete resource-observation branch for those witnesses plus the OFF control, validating 289 type-info objects without reclassifying P. The broader source-slice run's eight unavailable N-sidecar methods and all CI setup failures remain explicit in the review/evidence index, not counted as successes. Exact complete-checkout CI results are recorded in `History/M07R/R03/LP_Repair_2026-10-06/EVIDENCE.json`.
+An admitted R must retain all ninety cells, six builds, 59 fresh Player checks, 18/754/755 zero-skip Editor cases, restored-baseline zero roots/closure, every retained LP/LO proof and all storage/custody evidence. All core cells/seal plus storage admission/session, wrapper exit and final custody must pass before EvidenceReadyForPrimaryReview. Publication must also pass the supplied headroom recheck; insufficient publication space is a blocker, not permission to delete history.
 
-Connector Git-data smoke Passed for demo in this cycle at `64d2860e84e3827476f6b1ac1084b7d9f91c1708`, branch `codex/connector-smoke-20261006-lp-a21f`. All four heads/read access were reverified; unchanged repositories retain their prior initial smoke evidence. Branch deletion is unavailable. Do not merge any smoke branch.
+## Gates and transport
 
-## Next owner and stopping point
+`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`; PureInterpreter expansion disabled. Independent full-stage review and human approval remain pending. R02's explicit deferred CPU risk, H1 RSS risk and Failed contaminated/unisolated warm certificates remain visible.
 
-**Next owner: Local Validation, for exactly one fresh batch Q in `Handoff/WEB_TO_LOCAL.md`.** Verify the exact final transport and unchanged three pins, require an unused root, and run the full 90 cells, six builds, 59 Players, 18-method preflight and both 754/755 zero-skip/inconclusive rosters. Collect new binding/integration and strict-bridge evidence as well as all retained matrix requirements.
-
-Every cell and the seal must Pass for `EvidenceReadyForPrimaryReview`; otherwise return `ReturnRequired`. Do not retry phases or delegate non-trivial source fixes to Local. A green Q still requires Primary reconciliation and independent full-stage design → plan → implementation → evidence review before the user-defined Human Review Gate. No performance SLA, deferred CPU/RSS acceptance or structural-expansion approval follows automatically.
+Fresh demo Git-data write/readback smoke Passed at `3dd66a5580c1ef80568ca788732581c5d815129d` on `codex/connector-smoke-lq-storage-69af19f6`, based on Q publication. All four feature refs were reverified; unchanged repositories retain their previously recorded initial smoke evidence. Connector branch deletion is unavailable. Never merge or execute from disposable smoke branches.

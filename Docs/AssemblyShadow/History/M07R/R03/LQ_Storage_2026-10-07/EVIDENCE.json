@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "kind": "R03LQStoragePrimaryEvidence",
+  "sourceCommit": "357a9024865561362cd2c42fa8f793f56aac1763",
+  "branch": "codex/assembly-shadow-r01b-h1",
+  "recordedUtc": "2026-10-07T02:50:11.113620+00:00",
+  "q": {
+    "publicationCommit": "69af19f63ec20b900d28b3fab27c646d47264736",
+    "executedCommit": "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0",
+    "result": "ReturnRequired",
+    "cells": {
+      "Passed": 89,
+      "Failed": 1,
+      "Blocked": 0
+    },
+    "buildsPassed": 6,
+    "playerChecksPassed": 59,
+    "editorCasesPassed": [18, 754, 755],
+    "seal": "Passed",
+    "restoredBaselineZeroRootZeroClosure": "Unavailable",
+    "productSourceDefectEstablished": false,
+    "preserved": true,
+    "failedCellSha256": "b529089f337d7f3db9ce13069bccb229df08eaabf336f1cff5440e47d45d2a4f",
+    "filesystemObservationPath": "Docs/AssemblyShadow/History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/FILESYSTEM_FAILURE_OBSERVATION.json",
+    "filesystemObservationSha256": "9d74308e2cfca5b313acf4e71a20d2d47ffc62021def32c5a38e0409602d7813",
+    "entryDfAvailableGiB": 22,
+    "postFailureApfsUnallocatedBytes": 14847991808,
+    "failureInstantCapacity": "Unavailable",
+    "quotaOrCompetingWriterCause": "NotEstablished"
+  },
+  "unchangedPins": {
+    "hybridclr": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55",
+    "hybridclr_unity": "948c0e3b4f8891481301770115e8ba4945eea6de",
+    "il2cpp_plus": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5"
+  },
+  "sourceFiles": [
+    {
+      "path": "Tools/AssemblyShadow/R03Storage/run_storage_checked.py",
+      "bytes": 8900,
+      "sha256": "34da0b47a5b3be862ecfddf36d5fbbf06547055484008a9fe5a857ce9f131135",
+      "gitBlob": "b9c8199069bf5e600b59345f6a93d616c37e2c4e"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Storage/storage_guard.py",
+      "bytes": 15618,
+      "sha256": "0e87b83ab1bdee884d96306c555f4ead5bcfbf81ab307f3d07517f130da836d2",
+      "gitBlob": "f1eab4328570d0110e5ab929d80c9a19ec01d66a"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Storage/test_storage_dispatch.py",
+      "bytes": 8659,
+      "sha256": "e3cc8130403490610c91831abc9741d998832f35a83d336e7d9304fdeab2a98c",
+      "gitBlob": "2dd2645a5b2b19dab35032b3ceab55d71c3b6a30"
+    },
+    {
+      "path": "Tools/AssemblyShadow/R03Storage/test_storage_guard.py",
+      "bytes": 13016,
+      "sha256": "85a0e78e1434466fbcc1d2671cc1ed168196e4528341fef27f7a7a63be72e221",
+      "gitBlob": "d282f1d1cecee18ef4481e1afe8987b86980bc15"
+    }
+  ],
+  "workflowPath": ".github/workflows/r03-storage.yml",
+  "workflowBlob": "f178ff49d044fcd21baefaf122be354163ac0575",
+  "ci": [
+    {
+      "platform": "Linux",
+      "artifactId": 11456509984,
+      "zipSha256": "5c34904b3c5fa19f3b16d809e4894715f94c30809148ff01cbae2fb105d2e0d5",
+      "zipBytes": 23310,
+      "sourceCommit": "357a9024865561362cd2c42fa8f793f56aac1763",
+      "workflowRun": 37563039265,
+      "testCounts": [48, 5, 9],
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "indexedOutputFilesVerified": 4,
+      "availableSourceFilesVerified": 419,
+      "sourceFilesUnavailableInBoundedExport": 0,
+      "outputs": [
+        {"path": "orchestration.log", "size": 963, "sha256": "1ca351fa0be95c13de56a3cf98a0fb7d54b0dcc7c665c17cc4514d0b48a03f42"},
+        {"path": "storage.log", "size": 6521, "sha256": "678e78d51606acc66822d1efb9c1b18da523e79cf2957d970b16c20c0ffcc36b"},
+        {"path": "results.json", "size": 1103, "sha256": "7341858c25320a2a5117a18ff9b9ebeb2d9ba6e80f9d56a69b3724b288160dc0"},
+        {"path": "schema.log", "size": 1469, "sha256": "fe54d61ad30952215740848342fd36cb07535be9a5951bb6a6e88e0812a10c69"}
+      ],
+      "provenanceSha256": "6b5a81c7f9ae9ec44b370870a3492e142b47ada031bb8f780c4dc3a5ec8ad065",
+      "unityRun": false,
+      "playerRun": false,
+      "actualLocalCapacityProved": false
+    },
+    {
+      "platform": "macOS",
+      "artifactId": 11458010105,
+      "zipSha256": "513ba0115001cb38e5008ed911d48f709ac9bedfd4025736e6de039f3f5bb106",
+      "zipBytes": 23341,
+      "sourceCommit": "357a9024865561362cd2c42fa8f793f56aac1763",
+      "workflowRun": 37563039265,
+      "testCounts": [48, 5, 9],
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "indexedOutputFilesVerified": 4,
+      "availableSourceFilesVerified": 419,
+      "sourceFilesUnavailableInBoundedExport": 0,
+      "outputs": [
+        {"path": "schema.log", "size": 1469, "sha256": "4437bf053a6967304fca1f69e724b805e22bc40bf96b61bcbd40955b526daf06"},
+        {"path": "orchestration.log", "size": 963, "sha256": "e298e8b05dbc9305d73a04e283f3358ba4838ccb2b69ee7c29080cb4e0010062"},
+        {"path": "results.json", "size": 1242, "sha256": "825ed53696b949c95e6ab3e04a90bfa0ea6889a45c047cdfe48ff1d712543d04"},
+        {"path": "storage.log", "size": 6521, "sha256": "6ac75d5f5a9ac7ad85624d75e989babd9cca3befd57dd67c2f1b062a6b5a919c"}
+      ],
+      "provenanceSha256": "2515c4b1312b7434feb8b36aac2fed6d6f9b3815cb388ca0adba48328460e1d9",
+      "unityRun": false,
+      "playerRun": false,
+      "actualLocalCapacityProved": false
+    }
+  ],
+  "localChecks": {
+    "storagePassed": 48,
+    "retainedLpOrchestrationPassed": 5,
+    "retainedR02StrictSchemaPassed": 9,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "newPythonFilesSyntaxPassed": 4,
+    "handoffBashBlocksSyntaxPassed": 3,
+    "macCommandsExecuted": false
+  },
+  "capacityPolicy": {
+    "id": "R03StorageAdmissionV1",
+    "startFloorBytes": 68719476736,
+    "initialRequiredFormula": "max(64 GiB, 2 * retained-Q planning bytes + 20 GiB)",
+    "operatingFloorBytes": 21474836480,
+    "publicationFormula": "max(20 GiB, new-live-root planning bytes + 20 GiB)",
+    "sampleIntervalSeconds": 5,
+    "allocationProbeBytes": 1048576,
+    "probeReservation": false,
+    "thresholdIsMeasuredPeak": false,
+    "periodicSamplesAreInstantaneousHighWater": false
+  },
+  "sourceMaterialization": {
+    "transport": "GitHub Connector artifacts",
+    "localMacCheckoutsInspected": false,
+    "boundedLpSourceArtifact": {"id": 11436133078, "zipSha256": "2bb7c167b25fc231a8d6b7b601f477c81454e292e3e6a81ee061279710fe3726", "indexedFilesAuthenticated": 2819},
+    "b42ApiSourceArtifact": {"id": 11441581912, "zipSha256": "784a9875a3db17e50ae4544a64a279ffac35d2cb4caf13c816a2fe23aa958bea", "indexedFilesAuthenticated": 788},
+    "reusedArtifactsNotNewProductExecution": true
+  },
+  "connectorSmoke": {
+    "repository": "night-outlook/hybridclr_demo",
+    "branch": "codex/connector-smoke-lq-storage-69af19f6",
+    "base": "69af19f63ec20b900d28b3fab27c646d47264736",
+    "createdAndReadBackCommit": "3dd66a5580c1ef80568ca788732581c5d815129d",
+    "result": "Passed",
+    "cleanup": "Unavailable: branch deletion not exposed; retained disposable",
+    "unchangedRepos": "Fresh feature-ref reads; retained initial four-repository smoke; no writes this cycle"
+  },
+  "artifactRetention": "CI configured 14 days, through 2026-10-21; committed workflow/tests/index retain exact artifact IDs and digests.",
+  "localStorageAdmission": "NotRun",
+  "physicalCapacityRemediation": "ExternalPrerequisiteNotVerified",
+  "nextBatch": "R03LocalBatch-20261007R-lq-storage",
+  "nextInvocationAuthorization": "ConditionalOnFreshStorageAdmission",
+  "unityRun": false,
+  "playerRun": false,
+  "runtimeAcceptance": false,
+  "historicalEvidenceModified": false,
+  "R03Accepted": false,
+  "H2Passed": false,
+  "qualificationApproved": false,
+  "ReadyForHumanReviewGate": false,
+  "pureInterpreterExpansionEnabled": false,
+  "independentFullStageReview": "Pending"
+}
