@@ -10,7 +10,7 @@ from batch_contract import loads, require, sha
 from batch_evidence import write
 from unity_command import unity_command
 from fixture_project import provision, regular, verify_sources
-from fixture_authority import authenticate_copy, verify_graph, verify_installation
+from fixture_authority import authenticate_copy, authenticate_cleanup_copy, verify_graph, verify_installation
 from source_pin_contract import verify_report as verify_pin_report
 from resource_capabilities import verify_report as verify_capability_report
 from editor_contract import source_scope, verify as verify_editor
@@ -48,8 +48,14 @@ def command(batch, phase):
 
 
 def phase(batch, name):
+    project, pins = authenticate_copy(batch, batch.resource_config)
+    return _verified_phase(batch, name, project, pins)
+
+
+def _verified_phase(batch, name, project, pins):
+    # Private body: normal phases enter through phase(); P05 cleanup enters
+    # through restore() after equivalent local, non-network source checks.
     config = batch.resource_config
-    project, pins = authenticate_copy(batch, config)
     if name == 'prepare':
         run = Path(config['runPath'])
         require(not run.exists(), 'P05 transaction run must be unused')
@@ -129,16 +135,64 @@ def restore_bytes(project, run):
 
 
 def restore(batch):
+    """Recover the owned transaction before requiring fresh remote acceptance.
+
+    No retry, cached remote success or arbitrary project is admitted. The exact
+    original C# recovery and byte-restore checks still run. A failed post-cleanup
+    remote check leaves this cell Failed and dependents Blocked, but preserves a
+    separate factual record of whether the settings were actually restored.
+    """
     config = batch.resource_config
-    project, _ = authenticate_copy(batch, config)
-    state = Path(config['runPath']) / 'p05-define-state.json'
-    if not state.exists():
-        # No state means Prepare never recorded authority to mutate defines.
-        # This is cleanup only; failed/blocked compilation cells remain so.
-        return {'cleanup': 'NoRecordedMutation', 'restorationCoverage': 'NotApplicable', 'sourceVerification': verify_sources(project, config, configured=True)}
-    value = phase(batch, 'restore')
-    value['byteRestoration'] = restore_bytes(project, Path(config['runPath']))
-    return value
+    evidence = batch.root / 'transaction-recovery'
+    evidence.mkdir()  # Exclusive: this transaction must not be retried.
+    report = {'kind': 'R03P05RecoveryThenAuthority', 'schemaVersion': 1,
+              'cleanupResult': 'NotRun', 'remoteAuthority': 'NotRun', 'stage': 'LocalAuthentication',
+              'runtimeAcceptance': False, 'R03Accepted': False, 'H2Passed': False}
+    try:
+        project, pins = authenticate_cleanup_copy(batch, config)
+        report['localSourceAuthority'] = {'repositories': dict(batch.pins),
+            'project': str(project), 'markerSha256': sha(project / '.r03-completion-project'),
+            'sourcePins': pins, 'remoteVerified': False}
+        run = Path(config['runPath'])
+        state_path = run / 'p05-define-state.json'
+        if not state_path.exists():
+            value = {'cleanup': 'NoRecordedMutation', 'restorationCoverage': 'NotApplicable',
+                     'sourceVerification': verify_sources(project, config, configured=True)}
+            report['cleanupResult'] = 'NoRecordedMutation'
+        else:
+            require(run.parent == project / '_temp/AssemblyShadow' and run.name.startswith('M02Validation-'), 'Owned P05 recovery run')
+            state = loads(regular(state_path).read_text())
+            settings = regular(project / 'ProjectSettings/ProjectSettings.asset')
+            original = regular(run / 'p05-project-settings.original')
+            require(state['schemaVersion'] == 2 and state['projectDirectory'] == str(project) and
+                    state['runDirectory'] == str(run) and sha(original) == state['originalSettingsSha256'],
+                    'Captured P05 transaction ownership/backup')
+            report['stateSha256'], report['originalSettingsSha256'] = sha(state_path), sha(original)
+            report['beforeSettingsSha256'] = sha(settings)
+            # Preserve pre-recovery bytes separately; never rewrite raw state.
+            with (evidence / 'settings-before.bytes').open('xb') as stream: stream.write(settings.read_bytes())
+            write(evidence / 'local-authority.json', report)
+            report['stage'] = 'ProductionRestore'
+            value = _verified_phase(batch, 'restore', project, pins)
+            report['stage'] = 'ExactByteRestoration'
+            value['byteRestoration'] = restore_bytes(project, run)
+            report['cleanupResult'] = 'ExactOriginalBytesRestored'
+            report['afterSettingsSha256'] = sha(settings)
+            report['byteRestoration'] = value['byteRestoration']
+        report['stage'] = 'FreshRemoteAcceptance'
+        # A local recovery proof is NEVER a substitute for remote authority.
+        authenticate_copy(batch, config)
+        report['remoteAuthority'] = 'Passed'
+        report['stage'] = 'Complete'
+        value['recoveryVerification'] = str(evidence / 'verification.json')
+        return value
+    except Exception as error:
+        report['error'] = {'type': type(error).__name__, 'message': str(error)}
+        if report['stage'] == 'FreshRemoteAcceptance': report['remoteAuthority'] = 'Failed'
+        else: report['cleanupResult'] = 'Failed'
+        raise
+    finally:
+        write(evidence / 'verification.json', report)
 
 
 def graph(batch):

@@ -1,0 +1,80 @@
+name: R03 Git diagnostics and transaction recovery contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths:
+      - 'Tools/AssemblyShadow/R03/git_diagnostics.py'
+      - 'Tools/AssemblyShadow/R03/run_local.py'
+      - 'Tools/AssemblyShadow/R03Completion/**'
+      - 'Tools/AssemblyShadow/R03Storage/**'
+      - '.github/workflows/r03-lr-contracts.yml'
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: night-outlook/hybridclr_unity
+          ref: 948c0e3b4f8891481301770115e8ba4945eea6de
+          path: hybridclr_unity
+          persist-credentials: false
+      - name: Run complete Completion, storage and retained schema suites
+        shell: python
+        run: |
+          import json,os,re,subprocess,sys,tempfile
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'lr-contracts';root.mkdir()
+          demo=Path('hybridclr_demo').resolve();tools=demo/'Tools/AssemblyShadow'
+          env=dict(os.environ,TMPDIR=str(Path(tempfile.gettempdir()).resolve()))
+          env['PYTHONPATH']=os.pathsep.join(str(tools/p) for p in ('','R02','R02/tests'))
+          jobs=[('completion',405,['discover','-s',str(tools/'R03Completion'),'-p','test_*.py','-v']),
+                ('storage',48,['discover','-s',str(tools/'R03Storage'),'-p','test_*.py','-v']),
+                ('schema',9,['test_h_regressions.StrictSchema','-v'])]
+          rows=[]
+          for name,count,args in jobs:
+              command=[sys.executable,'-B','-m','unittest',*args]
+              with (root/(name+'.log')).open('wb') as log:
+                  r=subprocess.run(command,cwd=demo,env=env,stdout=log,stderr=subprocess.STDOUT)
+              text=(root/(name+'.log')).read_text(errors='replace')
+              matches=re.findall(r'Ran (\d+) tests? in',text)
+              observed=int(matches[-1]) if matches else None
+              passed=r.returncode==0 and observed==count and not re.search(r'^OK \(skipped=',text,re.M)
+              rows.append({'suite':name,'expected':count,'observed':observed,'exitCode':r.returncode,'passed':passed,'command':command})
+          (root/'results.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'suites':rows,'unityRun':False,'playerRun':False,'runtimeAcceptance':False},indent=2)+'\n')
+          assert all(row['passed'] for row in rows),rows
+      - name: Bind evidence and source trees
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])/'lr-contracts';root.mkdir(exist_ok=True)
+          repos={n:subprocess.check_output(['git','-C',n,'rev-parse','HEAD'],text=True).strip() for n in ('hybridclr_demo','hybridclr_unity')}
+          files=[{'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.glob('*')) if p.is_file()]
+          sources=[]
+          for name in subprocess.check_output(['git','-C','hybridclr_demo','ls-files','Tools/AssemblyShadow','.github/workflows/r03-lr-contracts.yml'],text=True).splitlines():
+              p=Path('hybridclr_demo')/name
+              if p.is_file():sources.append({'path':name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          (root/'provenance.json').write_text(json.dumps({'runId':os.environ['GITHUB_RUN_ID'],'repositories':repos,'files':files,'sources':sources,'unityRun':False,'playerRun':False},indent=2)+'\n')
+          for repo in repos:assert not subprocess.check_output(['git','-C',repo,'status','--porcelain'],text=True).strip()
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-lr-${{ runner.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/lr-contracts
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

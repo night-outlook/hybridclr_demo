@@ -29,6 +29,20 @@ DIR_NAMES = ('hybridclr_demo', 'hybridclr', 'hybridclr_unity', 'il2cpp_plus')
 
 
 def authenticate_copy(batch, config):
+    """Normal acceptance path: fresh local AND remote source authority."""
+    return _authenticate_copy(batch, config, fresh_remote=True)
+
+
+def authenticate_cleanup_copy(batch, config):
+    """Recovery only: exact local tuple/catalog/pins; never runtime acceptance.
+
+    Only P05 restoration uses this path. A separate fresh remote check MUST
+    succeed after cleanup before its cell can pass or any dependent work runs.
+    """
+    return _authenticate_copy(batch, config, fresh_remote=False)
+
+
+def _authenticate_copy(batch, config, *, fresh_remote):
     project = Path(config['projectPath'])
     require(project == batch.root / 'projects/resource-complete' and project == project.resolve(strict=True), 'Exact batch-owned resource project')
     require(config['kind'] == POLICY and config['schemaVersion'] == 1 and config['owningDemoCommit'] == batch.pins['hybridclr_demo'], 'Copy authority source revision')
@@ -46,7 +60,10 @@ def authenticate_copy(batch, config):
         remote = git(root, 'config', '--get', 'remote.origin.url')
         full = 'night-outlook/' + name
         require(remote in ('git@github.com:' + full + '.git', 'https://github.com/' + full, 'https://github.com/' + full + '.git'), 'Canonical origin required')
-        require(git(root, 'ls-remote', 'origin', 'refs/heads/' + batch.pins['branch']).split()[0] == batch.pins[name], 'Owning remote authority changed')
+        if fresh_remote:
+            ref = 'refs/heads/' + batch.pins['branch']
+            require(git(root, 'ls-remote', 'origin', ref).split() == [batch.pins[name], ref],
+                    'Owning remote authority changed or reply malformed: ' + name)
     verify_sources(project, config, configured=True)
     # Ignored compiled-source injection must not evade Git status or copying.
     allowed = {r['path'] for r in config['files']}

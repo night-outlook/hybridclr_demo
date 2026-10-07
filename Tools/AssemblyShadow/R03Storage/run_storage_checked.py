@@ -15,6 +15,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / 'R03Completion'))
 from run_completion import CompletionBatch
 from run_local import identity, git, REPOS
+from git_diagnostics import capture_git
 from batch_contract import loads
 import storage_guard as storage
 
@@ -73,10 +74,15 @@ def source_authority(workspace, demo_commit):
     storage.require(HERE == workspace / 'hybridclr_demo/Tools/AssemblyShadow/R03Storage', 'Run storage tools from the owning checkout')
     pins = loads((HERE.parent / 'R03Completion/source-pins.json').read_text())
     pins = dict(pins, hybridclr_demo=demo_commit)
-    records = [identity(workspace / name, pins[name]) for name in REPOS]
+    # No sidecar exists yet. Failures embed bounded diagnostics and requested
+    # pins in the caller error; no output directory is claimed prematurely.
+    with capture_git(None, pins, 'storage-entry-authority'):
+        records = [identity(workspace / name, pins[name]) for name in REPOS]
     files = [HERE / 'storage_guard.py', Path(__file__).resolve(), HERE.parent / 'R03Completion/run_completion.py',
              HERE.parent / 'R03Completion/legacy_runtime.py', HERE.parent / 'R03/run_local.py',
-             HERE.parent / 'R03/source-pins.json', HERE.parent / 'R03Completion/source-pins.json']
+             HERE.parent / 'R03/source-pins.json', HERE.parent / 'R03Completion/source-pins.json',
+             HERE.parent / 'R03/git_diagnostics.py', HERE.parent / 'R03Completion/fixture_authority.py',
+             HERE.parent / 'R03Completion/resource_pipeline.py']
     return {'repositories': records, 'files': [{'path': str(p), 'sha256': storage.digest(p)} for p in files]}
 
 

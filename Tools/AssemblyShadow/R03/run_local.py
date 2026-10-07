@@ -12,6 +12,7 @@ import uuid
 import xml.etree.ElementTree as ET
 
 from batch_contract import loads, require, sha, verify_raw
+from git_diagnostics import run_git, capture_git
 from batch_evidence import finalize, write
 from command_lifetime import build_arguments, run_owned_command
 from input_validation import validate_inputs
@@ -26,10 +27,7 @@ REFERENCE_PACKAGE = 'b936a495ade1691ebb6f3bab8fdff3ef34f6f192'
 
 
 def git(repo, *args):
-    result = subprocess.run(['git', '-C', str(repo), *args], capture_output=True, text=True,
-                            env=dict(os.environ, GIT_TERMINAL_PROMPT='0'), timeout=120)
-    require(result.returncode == 0, 'Git command failed: ' + ' '.join(args[:2]))
-    return result.stdout.strip()
+    return run_git(repo, *args)
 
 
 def identity(repo, expected):
@@ -73,7 +71,8 @@ class Batch:
         row = {'id': name, 'result': 'Blocked', 'dependencies': list(dependencies)}
         if all(self.outputs.get(d, False) for d in dependencies):
             try:
-                row['evidence'] = action()
+                with capture_git(self.root / 'git-observations', getattr(self, 'pins', {}), name):
+                    row['evidence'] = action()
                 row['result'] = 'Passed'
             except Exception as error:
                 row['result'], row['error'] = 'Failed', str(error)
