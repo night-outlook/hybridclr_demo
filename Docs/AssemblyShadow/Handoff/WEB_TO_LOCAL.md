@@ -1,69 +1,72 @@
-# Primary Implementation → Local Validation: storage prerequisite, then batch R
+# Primary Implementation → Local Validation: LR recovery, fresh batch S
 
-## Conditional objective
+## Assignment and preserved state
 
-Reconcile **R03-LQ-001** as an environmental allocation failure. Establish measured storage headroom with the supplied tools, then execute **exactly one unused complete batch R only if admission passes**. No non-trivial code/design change is assigned to Local. If capacity cannot be established safely, return CapacityBlocked with **batch NotRun**; do not launch Unity or retry Q.
+First audit retained R read-only, verify transport readiness and fresh storage admission. Only then execute exactly one new complete batch S. No non-trivial code/design changes, phase retries or old-root recovery are assigned to Local.
 
-Q remains ReturnRequired: 89 Passed / 1 Failed / 0 Blocked, 90 cells; six fresh builds, all 59 Player checks and 18/754/755 Editor cases Passed, zero skips/inconclusive; seal Passed. The integration cell Failed and its restored-baseline zero-root/zero-closure proof is Unavailable. Preserve Q/P/O/N, contaminated controls' Failed unisolated warm certificates and all historical evidence unchanged.
+R remains ReturnRequired: 90 cells = 47 Passed / 1 Failed / 42 Blocked; six builds, 18/754 Editor cases and 23 focused Players completed. The 755 resource roster and remaining 36 Players are NotRun. Storage/seal Passed. Its failed restore and staged settings are immutable forensic evidence; do not run Unity against, restore, finalize, move or delete that retained project. Preserve Q/P/O/N, the earlier capacity-blocked R record and all historical certificates/results unchanged.
 
-## Read first
+## Read and source authority
 
-Read `Docs/AssemblyShadow/README.md`, `Plan/CURRENT_STATUS.md`, Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`, then `History/M07R/R03/LQ_Storage_2026-10-07/{DESIGN.md,PRIMARY_REVIEW.md,EVIDENCE.json}` and this complete assignment.
+Read `README.md`, `Plan/CURRENT_STATUS.md`, Local-owned `Handoff/LOCAL_VALIDATION.md` and `Handoff/RETURN_TO_WEB.md`, then `History/M07R/R03/LR_Recovery_2026-10-07/{DESIGN.md, PRIMARY_REVIEW.md, EVIDENCE.json}` and this assignment. Paths in this paragraph are relative to `Docs/AssemblyShadow/`.
 
-## Exact sources and paths
+All branches are `codex/assembly-shadow-r01b-h1`.
 
-All branches: `codex/assembly-shadow-r01b-h1`.
-
-| Repository | Exact Local checkout | Commit authority |
+| Repository | Exact Local checkout | Required authority |
 |---|---|---|
-| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | Storage source/CI anchor `357a9024865561362cd2c42fa8f793f56aac1763`; execute the final Docs-only descendant with the exact 40-character SHA supplied in Primary's final prompt |
+| night-outlook/hybridclr_demo | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo | Source/CI anchor `9f27feb647bbf2d2bc82483700fe4f78e5ea60be`; execute the final Docs-only descendant whose exact 40-character SHA is supplied in Primary's final prompt |
 | night-outlook/hybridclr | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr | `4b2774b066cfc6afd77a8c8aded6bda7ea574f55` |
 | night-outlook/hybridclr_unity | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity | `948c0e3b4f8891481301770115e8ba4945eea6de` |
 | night-outlook/il2cpp_plus | /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus | `1cf87f8209790f9fb2ebec97487dc1990ccd56c5` |
 
-Both R03 source-pin manifests, the existing Completion/R03/R02 code, C# helpers, native code, package, fixtures, reference-build pins, build profiles, timeouts, warm-up and leases are unchanged from Q. New files are confined to `Tools/AssemblyShadow/R03Storage/` (entry, guard and two tests), `.github/workflows/r03-storage.yml`, and Primary docs. Later changes after `357a9024...` must be Docs-only. Never execute from or merge a disposable Connector smoke branch, including `codex/connector-smoke-lq-storage-69af19f6`.
+The prior user-authorized agent configuration is retained in the new base; this assignment does not alter agent profiles, gate settings or require an invented effective model identity. Any unresolved ancillary gate observation remains explicit and distinct from runtime validation; do not label it Passed/Off or claim independent review. Both source-pin manifests, all C#/native/package code, fixtures, runtime expectations, timeouts, warm-up, leases and storage thresholds are unchanged. No smoke branch, including `codex/connector-smoke-lr-1fb504b2`, is product authority.
 
-## Storage conditions and limits
+## Required repair checks
 
-Admission requires `max(64 GiB, 2*B + 20 GiB)` available at **each** batch/workspace/temp/Git/sidecar location, where `B` is the measured retained Q live-root planning size. The 64 GiB floor and formula are conservative policy choices, not a proven peak or a universal Unity requirement. Small allocation/fsync/readback probes and current filesystem identity must pass. The script does not reserve space and cannot rule out later quota, competing-writer or metadata failures.
+The new restore path performs all exact local source/project checks, authenticates captured state/backup, uses the unchanged Unity restore and exact-byte restoration, and only then checks fresh remote authority. The remote check is not bypassed for acceptance. If it fails after successful cleanup, `resource-p05-restore` remains Failed and dependents remain Blocked. Retain both facts, not an invented pass or staged-state inference.
 
-Q's 22 GiB entry and about 14 GiB later observations are insufficient for this policy. Review the captured APFS/quota information; do not ignore a known quota/container discrepancy. Unsupported diagnostic commands remain Unavailable, not evidence of no quota. The same-container `/Volumes/Data` is not an independent free-space pool. Do not delete/move Q/P/O/N, `.git`, Libraries or other user data to make the gate pass. Operator-approved capacity remediation is an external prerequisite; report the actual deficit when it is missing. No new external mount/path is implicitly authorized.
+Require `transaction-recovery/verification.json` with `cleanupResult=ExactOriginalBytesRestored`, `remoteAuthority=Passed`, stage Complete, exact before/original/after hashes and unchanged production restore receipts for a fully passing S. Retain `settings-before.bytes` and `local-authority.json`. Wrong local source, unsafe paths, changed backup/settings or malformed production receipts must still fail closed. No missing-state branch can substitute for required P05 coverage.
 
-During execution, a 20 GiB floor, filesystem change or observation failure is latched. Future nonessential actions are prevented; existing in-flight command handling is unchanged. P05 restore/final authority remain callable and sealing remains the original implementation. A separate probe runs before integration. Retain samples and full Python failure tracebacks; do not weaken the guard or manually retry a phase.
+`git-observations/` records successful remote observations and Git failures with repo/argv/clocks, actual exit or timeout/spawn distinction, requested pins, hashes and bounded redacted excerpts. Do not enable raw Git credential tracing, republish secrets, or claim an unavailable original R transport cause was recovered. Local runtime results, cleanup state and fresh source authority are separate.
 
 ## Environment and unused locations
 
-Unity 2022.3.62f2, StandaloneOSX arm64, at `/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity`. Python at `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`. SDK-only DOTNET_ROOT `/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk`, SDK 8.0.318; never launch Unity 6000. Child TMPDIR remains `/private/tmp`.
+Keep Unity 2022.3.62f2, StandaloneOSX arm64, Python and SDK-only paths below; never launch Unity 6000. All new locations are under `/Users/ah/GitHub/hybridclr/r03-local-validation/`:
 
-- New batch: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage`
-- Local preflight/publication: `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage`
-- Diagnostic-only check: `/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage`
-- Executing storage sidecar: `/Users/ah/GitHub/hybridclr/r03-local-validation/Storage-R03LocalBatch-20261007R-lq-storage`
-- Preserved Q live input: `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair`
+- `R03LocalBatch-20261007S-lr-recovery` — new core batch.
+- `Preflight-R03LocalBatch-20261007S-lr-recovery` — command/publication evidence.
+- `RetainedR-R03LocalBatch-20261007S-lr-recovery` — read-only retained-R audit.
+- `Transport-R03LocalBatch-20261007S-lr-recovery` — four-owner readiness.
+- `StorageCheck-R03LocalBatch-20261007S-lr-recovery` and `Storage-R03LocalBatch-20261007S-lr-recovery` — separate diagnostic/executing storage evidence.
 
-The October 7 name is a new run identifier, not a reinterpretation of Q's October 6 PDT clocks. Missing/dirty/wrong paths, unexpected origin/head, an existing output, or unavailable admission input is a blocker. No reset/stash/force-checkout/cleanup is authorized.
+No reuse of an existing output, reset/stash, unrelated merge, source/pin/protocol substitution, credential repair or capacity reclamation is authorized. A failed prerequisite returns PrerequisiteBlocked/TransportBlocked/CapacityBlocked with batch NotRun, rather than fabricating ninety runtime cells. A new attempt after operator remediation needs separate authorization and unused paths.
 
-## Prepare and diagnose (no Unity/Player launch)
+## Prepare, authenticate and diagnose
 
-Set `EXPECTED_DEMO_COMMIT` to the exact latest pushed demo commit in Primary's final prompt; never infer it from HEAD. Retain command output in the new preflight directory. The preparation block verifies origins and exact expected commits before fast-forwarding.
+Set EXPECTED_DEMO_COMMIT to the exact final pushed SHA in Primary's prompt, not an inferred latest HEAD or the source anchor. Retain exact command/exit/clocks/streams in the new preflight directory. Never log origin credentials; require the canonical origin before network commands.
 
 ```bash
 set -euo pipefail
-: "${EXPECTED_DEMO_COMMIT:?Set the exact final SHA from the Primary handoff prompt}"
+: "${EXPECTED_DEMO_COMMIT:?Set the exact final SHA from Primary handoff}"
 WORKSPACE=/Users/ah/GitHub/hybridclr/assembly_shadow_h1r
 BRANCH=codex/assembly-shadow-r01b-h1
 export DEMO="$WORKSPACE/hybridclr_demo"
 BASE=/Users/ah/GitHub/hybridclr/r03-local-validation
-export BATCH="$BASE/R03LocalBatch-20261007R-lq-storage"
-export PREFLIGHT="$BASE/Preflight-R03LocalBatch-20261007R-lq-storage"
-CHECK="$BASE/StorageCheck-R03LocalBatch-20261007R-lq-storage"
-STORAGE="$BASE/Storage-R03LocalBatch-20261007R-lq-storage"
+export BATCH="$BASE/R03LocalBatch-20261007S-lr-recovery"
+export PREFLIGHT="$BASE/Preflight-R03LocalBatch-20261007S-lr-recovery"
+AUDIT="$BASE/RetainedR-R03LocalBatch-20261007S-lr-recovery"
+TRANSPORT="$BASE/Transport-R03LocalBatch-20261007S-lr-recovery"
+CHECK="$BASE/StorageCheck-R03LocalBatch-20261007S-lr-recovery"
+STORAGE="$BASE/Storage-R03LocalBatch-20261007S-lr-recovery"
+R="$BASE/R03LocalBatch-20261007R-lq-storage"
 Q="$BASE/R03LocalBatch-20261006Q-lp-repair"
 UNITY=/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
 PYTHON=/Library/Frameworks/Python.framework/Versions/3.14/bin/python3
 export DOTNET_ROOT=/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk
 export PATH="$DOTNET_ROOT:$PATH" DOTNET_MULTILEVEL_LOOKUP=0 PYTHONDONTWRITEBYTECODE=1 TMPDIR=/private/tmp
-for PATH_TO_CREATE in "$BATCH" "$PREFLIGHT" "$CHECK" "$STORAGE"; do test ! -e "$PATH_TO_CREATE"; done
+for DEST in "$BATCH" "$PREFLIGHT" "$AUDIT" "$TRANSPORT" "$CHECK" "$STORAGE"; do
+  test ! -e "$DEST" && test ! -L "$DEST"
+done
 mkdir "$PREFLIGHT"
 for REPO in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
   ROOT="$WORKSPACE/$REPO"
@@ -72,7 +75,7 @@ for REPO in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
   test "$(git -C "$ROOT" branch --show-current)" = "$BRANCH"
   URL="$(git -C "$ROOT" remote get-url origin)"
   case "$URL" in
-    "https://github.com/night-outlook/$REPO.git"|"https://github.com/night-outlook/$REPO"|"git@github.com:night-outlook/$REPO.git"|"ssh://git@github.com/night-outlook/$REPO.git") ;;
+    "https://github.com/night-outlook/$REPO.git"|"https://github.com/night-outlook/$REPO"|"git@github.com:night-outlook/$REPO.git") ;;
     *) echo "Noncanonical origin: $REPO" >&2; exit 2 ;;
   esac
   case "$REPO" in
@@ -86,21 +89,24 @@ for REPO in hybridclr_demo hybridclr hybridclr_unity il2cpp_plus; do
   git -C "$ROOT" merge --ff-only FETCH_HEAD
   test "$(git -C "$ROOT" rev-parse HEAD)" = "$EXPECTED"
 done
-git -C "$DEMO" merge-base --is-ancestor 357a9024865561362cd2c42fa8f793f56aac1763 "$EXPECTED_DEMO_COMMIT"
-git -C "$DEMO" diff --exit-code 357a9024865561362cd2c42fa8f793f56aac1763 "$EXPECTED_DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
+git -C "$DEMO" merge-base --is-ancestor 9f27feb647bbf2d2bc82483700fe4f78e5ea60be "$EXPECTED_DEMO_COMMIT"
+git -C "$DEMO" diff --exit-code 9f27feb647bbf2d2bc82483700fe4f78e5ea60be "$EXPECTED_DEMO_COMMIT" -- . ':!Docs/AssemblyShadow'
 test "$(dotnet --version)" = 8.0.318
 test -x "$UNITY" && test -x "$PYTHON"
+"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Completion/retained_transaction.py" --retained-r "$R" --output "$AUDIT"
+"$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Completion/transport_preflight.py" --workspace "$WORKSPACE" --demo-commit "$EXPECTED_DEMO_COMMIT" --output "$TRANSPORT"
+"$PYTHON" -B -m unittest discover -s "$DEMO/Tools/AssemblyShadow/R03Completion" -p 'test_lr_*.py' -v > "$PREFLIGHT/lr-tests.log" 2>&1
 "$PYTHON" -B -m unittest discover -s "$DEMO/Tools/AssemblyShadow/R03Storage" -p 'test_*.py' -v > "$PREFLIGHT/storage-tests.log" 2>&1
 "$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Storage/run_storage_checked.py" \
   --workspace "$WORKSPACE" --output "$BATCH" --unity "$UNITY" \
   --demo-commit "$EXPECTED_DEMO_COMMIT" --retained-q "$Q" --storage-evidence "$CHECK"
 ```
 
-Require the 48 storage tests to pass, with zero failures/errors/skips. Read `CHECK/admission.json`, its sizing formula, probes and filesystem/quota observations. If Blocked, stop before the execution block. Do not reclaim unspecified user data. After separately approved capacity remediation, diagnostics may run again only into a newly numbered unused CHECK directory; these are not batch retries and must remain preserved. If no safe capacity solution is available, return CapacityBlocked with the measured deficit and unresolved condition; no R invocation is authorized.
+Require retained audit Passed/read-only/still staged, all four transport rows Passed, 45 LR and 48 storage tests Passed with zero skips/errors/failures, and diagnostic admission Admitted/session Passed. Retain Local's full historical custody map separately; six-file audit is not the full map. Capacity remains `max(64 GiB, 2*B+20 GiB)` per relevant location, operating floor20 GiB; no shared APFS capacity summing. Known unresolved filesystem/transport constraints must be addressed through operator authorization, not ignored because a probe passed. These are point-in-time observations, not a reservation or durable remote lease.
 
-## Execute the admitted batch once
+## Single executing invocation
 
-Only after the diagnostic prerequisite is satisfied and unresolved known filesystem constraints are addressed, run the following **once**. The wrapper independently repeats admission and immediately rechecks the full budget; it never consumes an old diagnostic pass as launch authority. An executing storage root is never reused. Do not fall back to calling `run_completion.py` directly.
+Only after all prerequisites pass, invoke once. The storage wrapper independently rechecks exact source authority and fresh capacity/probes immediately before construction. Do not call the unguarded Completion entry directly.
 
 ```bash
 "$PYTHON" -B "$DEMO/Tools/AssemblyShadow/R03Storage/run_storage_checked.py" \
@@ -108,39 +114,34 @@ Only after the diagnostic prerequisite is satisfied and unresolved known filesys
   --demo-commit "$EXPECTED_DEMO_COMMIT" --retained-q "$Q" --storage-evidence "$STORAGE" --execute
 ```
 
-A blocked preconstruction admission has `batchStarted=false`, no new batch root and no new runtime result. Once construction/execution starts, do not rerun R, even if an early action fails. Preserve the original cell/command results and any partial outputs. All in-flight Unity/Player deadlines and process-lifetime rules remain the existing ones. Local may diagnose filesystem state, not change code, guards, thresholds, scope, timeout, warm-up, lease, quota or archive semantics.
+Any failed started S is retained without phase/batch retry, even if cleanup succeeded. A failed local recovery check does not authorize copying a backup by hand. Original R remains unused. No non-trivial Local source edit is permitted.
 
-## Required complete scope and evidence
+## Complete evidence, publication and return
 
-When admitted, retain all **90 cells, six fresh builds, 59 fresh Player checks, 18-method preflight and 754/755 exact Editor rosters with zero skips/inconclusive**. Revalidate binding-before-integration, strict R02 bridge counts/raw custody, resource aggregate, codec context, physical measurement image/method/PDB checks, all five P01–P05 eligibility reports, live source/linked policy guards, and the fresh restored-baseline **zero changed roots/zero closure** proof. A previous Q/P subproof cannot substitute.
+Retain all 90 cells, six fresh builds, all 59 Player checks, 18-method preflight and 754/755 exact zero-skip/inconclusive rosters. Required P05 coverage includes preparation/compile, local authenticated restore, unchanged production receipts, exact original byte restoration, fresh remote success and finalization. Require graph-before-integration, all five P01-P05 reports, live source/linked-policy guards, restored-baseline zero-root/zero-closure proof, strict R02 bridge counts/raw custody, resource aggregate, codec owner context and complete physical image/method/PDB measurement evidence. Prior focused or historical subproofs never replace missing S results.
 
-Keep the original ledger/result/index/archive/seal. Retain the entire storage sidecar separately: source-authority, admission/sizing/probes, capacity.jsonl, launch-intent, integration-allocation-probe, any failure files, session and dispatch. Preserve original stdout/stderr/Unity logs, the command 0126 equivalent, actual paths/devices, clocks and errno. The sampled minimum is not proof of the exact instantaneous peak. Telemetry overhead does not approve a performance SLA. Failed contaminated/unisolated warm certificates remain Failed.
+Preserve the core ledger/result/index/archive/seal, new transaction-recovery and git-observations, full separate storage sidecar and preflight outputs. If evidence storage fails, record what is actually available, not a fabricated receipt. Keep cleanup and remote verdicts separate. Retain redacted diagnostics, not raw credentials; record the original transport failure as Unavailable where it remains so. The new tools add metadata/I/O overhead; no zero-cost or production-performance SLA is claimed.
 
-Before making the publication copy, run the following read-only size/free-space check, retaining its new receipt. This does not alter the sealed core or storage-session results. If inadequate, do not start copying/packing; preserve the live evidence and return a small factual publication-capacity blocker rather than delete history.
+Before copying/packing publication, require the unchanged footprint-plus20 GiB budget at checkout, live batch and actual Git common directory. This read-only check does not alter sealed verdicts:
 
 ```bash
 PYTHONPATH="$DEMO/Tools/AssemblyShadow/R03Storage" "$PYTHON" -B - <<'PY'
-import os
+import os, subprocess
 from pathlib import Path
 import storage_guard as s
-size = s.footprint(Path(os.environ['BATCH']))
-required = max(s.FLOOR, size['planningBytes'] + s.MARGIN)
-observation = s.sample({'publicationCheckout': Path(os.environ['DEMO']), 'retainedBatch': Path(os.environ['BATCH'])})
-record = {'kind': 'R03StoragePublicationCheck', 'requiredBytes': required, 'size': size, 'observation': observation, 'state': 'Blocked'}
+batch=Path(os.environ['BATCH']);demo=Path(os.environ['DEMO'])
+common=Path(subprocess.check_output(['git','-C',str(demo),'rev-parse','--git-common-dir'],text=True).strip())
+common=(demo/common).resolve() if not common.is_absolute() else common.resolve()
+size=s.footprint(batch);required=max(s.FLOOR,size['planningBytes']+s.MARGIN)
+observation=s.sample({'publicationCheckout':demo,'retainedBatch':batch,'gitCommon':common})
+record={'kind':'R03StoragePublicationCheck','requiredBytes':required,'size':size,'observation':observation,'state':'Blocked'}
 try:
-    s.capacity_ok(observation, required)
-    record['state'] = 'Passed'
+    s.capacity_ok(observation,required);record['state']='Passed'
 finally:
-    s.write_new(Path(os.environ['PREFLIGHT']) / 'storage-publication-check.json', record)
+    s.write_new(Path(os.environ['PREFLIGHT'])/'storage-publication-check.json',record)
 PY
 ```
 
-Also check the actual Git common directory when it is on another filesystem; the executing admission records its canonical path. Do not add available space from APFS sibling volumes. The initial budget includes publication headroom but is not a guarantee against other writers or a larger R footprint.
+Insufficient publication capacity means preserve live evidence and report the blocker; no historical deletion is authorized. Reauthenticate retained R's six files/read-only state and the full historical custody map after S without rerunning or overwriting the initial audit output. All original90 cells and seal, storage admission/session, wrapper exit and final four-source/custody checks must Pass for EvidenceReadyForPrimaryReview. Otherwise ReturnRequired; before construction use the truthful batch-NotRun prerequisite result. Never promote original R or contaminated Failed unisolated warm certificates.
 
-## Verdict, publication and stop
-
-Every original cell and seal must Pass; storage admission must be Admitted, storage session Passed, wrapper exit zero, and final source/custody checks Passed for **EvidenceReadyForPrimaryReview**. Otherwise return **ReturnRequired**, or **CapacityBlocked / batch NotRun** if construction never started. Do not rewrite core results to reflect the sidecar. Bind the sidecar hashes and command/source identities in the new Local publication receipt.
-
-Update only Local-owned `LOCAL_VALIDATION.md`, `RETURN_TO_WEB.md` and a new immutable `local-validation-20261007-batch-r-*` checkpoint, including the complete storage sidecar/preflight evidence. Preserve all older checkpoints/reports. Commit/push through Local's normal transport, verify final four-repository heads/cleanliness, return to Primary and stop.
-
-`R03Accepted=false`, `H2Passed=false`, `qualificationApproved=false`, `ReadyForHumanReviewGate=false`; PureInterpreter expansion disabled. Independent full-stage review and human approval remain separate pending stages. R02 CPU, H1 RSS and contaminated warm-certificate risks remain visible.
+Update only Local-owned LOCAL_VALIDATION.md, RETURN_TO_WEB.md and a new immutable `local-validation-20261007-batch-s-*` checkpoint. Include exact commands, partial/failure diagnostics, original source versus publication commits and all sidecar bindings. Commit/push, verify four remote heads/cleanliness, return to Primary and stop. No later milestone, acceptance, quota change or independent-review claim is authorized. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Independent full-stage review and human approval, deferred R02 CPU/H1 RSS risks and production performance decisions remain pending.
