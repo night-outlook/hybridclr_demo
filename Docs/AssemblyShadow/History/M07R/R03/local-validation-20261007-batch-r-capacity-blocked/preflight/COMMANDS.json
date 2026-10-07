@@ -1,0 +1,131 @@
+[
+  {
+    "label": "dotnet-version",
+    "command": [
+      "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+      "--version"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:25.924281+00:00",
+    "endUtc": "2026-10-07T03:29:26.056415+00:00",
+    "exitCode": 0,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/dotnet-version/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/dotnet-version/stderr.log",
+    "stdoutSha256": "87d140235528e1e5177051f45163d287ac03dfbbd88f70b34d9dfbe33c7f4682",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "python-version",
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "--version"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:26.056843+00:00",
+    "endUtc": "2026-10-07T03:29:26.064146+00:00",
+    "exitCode": 0,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/python-version/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/python-version/stderr.log",
+    "stdoutSha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "macos-version",
+    "command": [
+      "sw_vers"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:26.064500+00:00",
+    "endUtc": "2026-10-07T03:29:26.071131+00:00",
+    "exitCode": 0,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/macos-version/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/macos-version/stderr.log",
+    "stdoutSha256": "9a27ea4f1e11f7b9a4f7573d8729db037a10ce2e457f97cb73f646a96a550b16",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "architecture",
+    "command": [
+      "uname",
+      "-m"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:26.071494+00:00",
+    "endUtc": "2026-10-07T03:29:26.073377+00:00",
+    "exitCode": 0,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/architecture/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/architecture/stderr.log",
+    "stdoutSha256": "c1669e1d8edca98769c37d494b76442a1d6e5ffffd7b4da1fb63aef8ebaf6f01",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "gate-mode",
+    "command": [
+      "pwsh",
+      "-NoProfile",
+      "-File",
+      "/Users/ah/.codex/worktrees/af52/hybridclr_demo/.agents/skills/agent-collaboration/scripts/Get-GateReviewMode.ps1",
+      "-RepositoryRoot",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:26.073677+00:00",
+    "endUtc": "2026-10-07T03:29:26.207486+00:00",
+    "exitCode": 0,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/gate-mode/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/gate-mode/stderr.log",
+    "stdoutSha256": "e830e614b256474df0ebcf956be14f497630aa47fb244ce67e9ff95bd823b961",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "storage-tests",
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:26.248108+00:00",
+    "endUtc": "2026-10-07T03:29:26.742996+00:00",
+    "exitCode": 0,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/storage-tests/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/storage-tests/stderr.log",
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "afc46e0b20d2517ec1f67f65b6eccf19c61cbfe1a37d2bfb738aae957c514180"
+  },
+  {
+    "label": "storage-diagnostic",
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "-B",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py",
+      "--workspace",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r",
+      "--output",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage",
+      "--unity",
+      "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity",
+      "--demo-commit",
+      "cbf80474ebdee125e1d162d9c32a1734ee541720",
+      "--retained-q",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair",
+      "--storage-evidence",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage"
+    ],
+    "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+    "startUtc": "2026-10-07T03:29:26.743618+00:00",
+    "endUtc": "2026-10-07T03:29:46.985570+00:00",
+    "exitCode": 2,
+    "stdoutPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/storage-diagnostic/stdout.log",
+    "stderrPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage/commands/storage-diagnostic/stderr.log",
+    "stdoutSha256": "ab5369b3d185aed85a346d53d64925f1c5c2de881f2ddda5ff576bfbb0f0e5b7",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,55 +1,6 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 batch R storage admission, 2026-10-06 PDT / 2026-10-07 UTC
-
-**CapacityBlocked; batch NotRun. Admission Blocked; original diagnostic session Failed; diagnostic exit2. Local Validation → Primary Implementation.** No Unity, IL2CPP, build, Editor or Player was launched for R. Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [R prerequisite checkpoint](../History/M07R/R03/local-validation-20261007-batch-r-capacity-blocked/README.md) and [LOCAL_STORAGE_RESULT.json](../History/M07R/R03/local-validation-20261007-batch-r-capacity-blocked/LOCAL_STORAGE_RESULT.json). All prior Q/P/O/N outcomes and evidence remain unchanged. No product-source repair is inferred.
-
-### R03-LR-001 — Actual validation storage falls53.78GiB below required admission
-
-**Symptom.** The exact source-bound diagnostic returned exit2 and `storageAdmission=Blocked`, `batchStarted=false`. Batch R and executing-storage roots are absent. Current Data pool has about10.22GiB available while admission requires64GiB at each validation role. The session independently latched Failed below20GiB. No90-cell runtime result or seal exists for R.
-
-**Exact reproduction already performed once.** Use four source pins/paths in LOCAL_VALIDATION.md, demo `cbf80474ebdee125e1d162d9c32a1734ee541720`, branch `codex/assembly-shadow-r01b-h1`, EXPECTED_DEMO_COMMIT exact, Python3.14.6, SDK8.0.318 and verified Unity2022.3.62f2 path. The command below ran only diagnostics; do not execute it again into the existing CHECK root or call the core directly:
-
-```text
-/Library/Frameworks/Python.framework/Versions/3.14/bin/python3 -B /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Storage/run_storage_checked.py --workspace /Users/ah/GitHub/hybridclr/assembly_shadow_h1r --output /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261007R-lq-storage --unity /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity --demo-commit cbf80474ebdee125e1d162d9c32a1734ee541720 --retained-q /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair --storage-evidence /Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage
-```
-
-Cwd `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo`; start `2026-10-07T03:29:26.743618+00:00`, end `2026-10-07T03:29:46.985570+00:00`, original exit2. Read admission and both capacity rows, then session and dispatch. No `--execute` invocation occurred.48 storage +5 orchestration +9 strict-schema independent host cases Passed; these do not remedy capacity or imply fresh product validation.
-
-**Raw evidence and exact excerpts.** Live sidecar `/Users/ah/GitHub/hybridclr/r03-local-validation/StorageCheck-R03LocalBatch-20261007R-lq-storage`; identical copy `/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Docs/AssemblyShadow/History/M07R/R03/local-validation-20261007-batch-r-capacity-blocked/storage-check`. Command receipts and resolved-device/APFS/quota observations `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261007R-lq-storage`; corresponding immutable preflight copy inside checkpoint. Each raw sidecar hash appears below; [custody audit](../History/M07R/R03/local-validation-20261007-batch-r-capacity-blocked/preflight/PRESERVED_EVIDENCE_AUDIT.json) preserves prior evidence. [Source bindings](../History/M07R/R03/local-validation-20261007-batch-r-capacity-blocked/SOURCE_BINDINGS.json) binds guard/entry/test/core/pin inputs; all four exact source repositories are in LOCAL_VALIDATION.md.
-
-| Raw file | SHA-256 |
-| --- | --- |
-| `admission.json` | `2457b4602c346ad0b4bb94bbb3e1fb7b103eb6a460fe0939e407234b91fc074d` |
-| `capacity.jsonl` | `c5769003b18141d2b9042383f6f56290462a54b96c2994592dda459e80f4cce0` |
-| `dispatch.json` | `e1391682056476e56fe854dcfb76ab32c625c6bc6c9079b2cfb7a6c146b1aa5d` |
-| `session.json` | `693ab28120c74829478e6b5977da689b0318473b0d32e01afb1a5f5684eed9b5` |
-| `source-authority.json` | `f09f97282c92429ee8a93f5fdad6c61513bcea635c39464b4195323cb23538c1` |
-
-```text
-storage_guard.admit:275 -> capacity_ok:147 -> require:35
-StorageBlocked: batch: available 10977431552 < required 68719476736 bytes
-admission.state=Blocked; capacityReserved=false; probes not reached
-session.state=Failed; samples=2
-StorageBlocked: batch: available 10977374208 < required 21474836480 bytes
-dispatch.batchStarted=false; batchExitCode=null; coreResultPath=null
-```
-
-Q sizing B=`14164955136` bytes (allocated unique inode; live caches retained);2B+20GiB=49,804,746,752;64GiBfloor governs. Admission deficit `57742045184` bytes=53.777GiB. All10 roles use device/fsid16777230, `/dev/disk3s1` `/System/Volumes/Data`, containerdisk3. Supplemental actual-device/APFS commands Captured; container free10,964,729,856/494,384,795,648 bytes, volume quota/reserve values0, userquota`none`. Original ordinary-directory diskutil calls remain Unavailable/exit1, eight per diagnostic capture. No current OS ENOSPC was triggered: errno/filename null, observed failure is the explicit policy comparison.
-
-**Most likely root cause / why permitted.** Actual shared APFS pool lacks the unchanged conservative admission headroom. The new guard correctly blocked before allocation probes, batch construction or Unity. The policy is not a proven peak/reservation; diagnostic mocked tests and prior source/compiler CI cannot create storage or establish future allocation availability. No product-source defect is established. No safe approved data/history deletion, evidence relocation or new mount/path is supplied.
-
-**Affected scope.** All fresh R90 cells/six builds/59 Players/18+754+755 Editor cases/restored-baseline proof/strict bridge/resource/runtime/qualification/seal remain NotRun. They are not90 fabricated Blocked verdicts. Q still has89 Passed/1 Failed and sealPassed; Q's zero-root/zero-closure proof remains Unavailable. Earlier historical states and all contaminated Failed unisolated warm certificates are unchanged. Small factual blocker publication is separate from nonexistent full-batch packing.
-
-**Recommended Primary direction.** Reconcile this environmental prerequisite and coordinate an operator-approved capacity/retention plan with genuine sufficient headroom at every required location. Preserve all original evidence/caches/Git history; no threshold reduction, arbitrary deletion, source fix or path substitution is justified. Once remediation is specifically authorized, issue a fresh explicit source-bound Local handoff using unused numbered diagnostic and execution locations. Re-measure Q, actual locations/quotas, run real allocation probes and require fresh admission. Only then use the storage-checked executing wrapper once; do not bypass admission or retry Q/P/O/N. R never started, but its current diagnostic root is immutable and cannot be reused.
-
-**Remaining uncertainty / diagnostic limit.** Future competing writers, metadata limits and actual build high-water are unknown; no reservation was taken. Point-in-time quota/reserve0 observations do not retrospectively identify Q's allocation boundary. Eight ordinary-directory `diskutil info` errors per capture were resolved with a separate read-only device lookup; raw failures remain Unavailable. Any future harness improvement to resolve mount/device arguments belongs to Primary and should preserve unsupported states; no Local implementation change is assigned. Complete storage admission and integrated runtime acceptance remain unvalidated.
-
-**Validation after capacity remediation.** In a separately authorized unused source-bound run require admissionAdmitted with all real probes, storageSessionPassed, unchanged complete90-cell matrix, six fresh builds,59 fresh Players, exact18/754/755 zero-skip/inconclusive Editor scopes, binding-before-integration, live policy/three guards, five source-bound sidecars/P05 restoration, restored-baseline zero roots/closure, strict bridge/resource aggregate/codec proofs, raw custody/seal and final authority. Preserve Q/P/O/N unchanged; a green focused completion still requires Primary reconciliation/independent full-stage review and explicit acceptance.
-
-No Local product-source change, capacity remediation, retry or new acceptance. R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. **Local Validation → Primary Implementation. Stop.**
-
-## Historical return — R03 completion batch Q
+## Current return — R03 completion batch Q
 
 **ReturnRequired; 90 cells: 89 Passed, 1 Failed, 0 Blocked; seal Passed; one invocation PID 50660, 2026-10-06 16:26:57 PDT → 2026-10-06 18:12:51 PDT.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [Q checkpoint](../History/M07R/R03/local-validation-20261006-batch-q-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/PRIMARY_ISSUES.json), [LP repairs](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/LP_REPAIR_AUDIT.json), [LO repairs](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/LO_REPAIR_AUDIT.json) and [completion audit](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/COMPLETION_RUNTIME_AUDIT.json). Preserve P, O, N and all earlier evidence/results unchanged.
 

@@ -1,0 +1,66 @@
+name: R03 storage admission and scheduler contracts
+on:
+  push:
+    branches: [codex/assembly-shadow-r01b-h1]
+    paths: ['Tools/AssemblyShadow/R03Storage/**', '.github/workflows/r03-storage.yml']
+permissions:
+  contents: read
+jobs:
+  storage:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: hybridclr_demo
+          persist-credentials: false
+          sparse-checkout: Tools/AssemblyShadow
+      - name: Test storage controls and retained Python contracts without Unity
+        shell: python
+        run: |
+          import hashlib,json,os,re,subprocess,sys,tempfile
+          from pathlib import Path
+          repo=Path('hybridclr_demo').resolve(); tools=repo/'Tools/AssemblyShadow'
+          out=Path(os.environ['RUNNER_TEMP'])/'r03-storage';out.mkdir()
+          env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(Path(tempfile.gettempdir()).resolve()))
+          suites=[('storage',48,['discover','-s',str(tools/'R03Storage'),'-p','test_*.py','-v'],[tools/'R03Storage']),
+            ('orchestration',5,['test_lp_orchestration','-v'],[tools/'R03Completion']),
+            ('schema',9,['test_h_regressions.StrictSchema','-v'],[tools,tools/'R02',tools/'R02/tests'])]
+          rows=[]
+          for name,count,args,paths in suites:
+            e=dict(env,PYTHONPATH=os.pathsep.join(map(str,paths)))
+            command=[sys.executable,'-B','-m','unittest',*args]
+            with (out/(name+'.log')).open('xb') as log:
+              code=subprocess.run(command,cwd=repo,env=e,stdout=log,stderr=subprocess.STDOUT,timeout=300).returncode
+            text=(out/(name+'.log')).read_text()
+            passed=code==0 and re.search(r'Ran '+str(count)+r' tests? in ',text) is not None and text.rstrip().endswith('OK')
+            rows.append({'suite':name,'expectedTests':count,'exitCode':code,'Passed':passed,'argv':command})
+          (out/'results.json').write_text(json.dumps({'sourceCommit':os.environ['GITHUB_SHA'],'suites':rows,'result':'Passed' if all(r['Passed'] for r in rows) else 'Failed','unityRun':False,'playerRun':False,'actualLocalCapacityProved':False},indent=2)+'\n')
+          assert all(r['Passed'] for r in rows),rows
+      - name: Preserve exact source and output bindings
+        if: always()
+        shell: python
+        run: |
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          repo=Path('hybridclr_demo').resolve();out=Path(os.environ['RUNNER_TEMP'])/'r03-storage';out.mkdir(exist_ok=True)
+          head=subprocess.check_output(['git','-C',repo,'rev-parse','HEAD'],text=True).strip();assert head==os.environ['GITHUB_SHA']
+          names=subprocess.check_output(['git','-C',repo,'ls-files','-z','Tools/AssemblyShadow'],text=True).split('\0')
+          sources=[{'path':n,'sha256':hashlib.sha256((repo/n).read_bytes()).hexdigest()} for n in names if n and (repo/n).is_file()]
+          files=[{'path':p.name,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in out.iterdir() if p.is_file()]
+          (out/'provenance.json').write_text(json.dumps({'sourceCommit':head,'runId':os.environ['GITHUB_RUN_ID'],'files':files,'sources':sources,'unityRun':False,'playerRun':False},indent=2)+'\n')
+          assert not subprocess.check_output(['git','-C',repo,'status','--porcelain'],text=True).strip()
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: r03-storage-${{ runner.os }}-${{ github.sha }}
+          path: ${{ runner.temp }}/r03-storage
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
