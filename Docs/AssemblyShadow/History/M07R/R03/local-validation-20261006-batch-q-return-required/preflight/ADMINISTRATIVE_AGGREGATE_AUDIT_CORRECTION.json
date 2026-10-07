@@ -1,0 +1,11 @@
+{
+  "kind": "LocalReadOnlyAggregateAuditCorrection",
+  "utc": "2026-10-07T01:17:09.462828+00:00",
+  "script": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/audit-lp-repairs.py",
+  "beforeSha256": "250a80cc6f6e6a65e8d45bf13ff7a0a89de63c4435acf20e27f7578186c958e8",
+  "afterSha256": "543794526a782bc6b59563c7f8dd434945c73fa7e499ce425675e65af9ff8d64",
+  "initialAudit": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/LP_REPAIR_AUDIT.initial-administrative-failure.json",
+  "initialAuditSha256": "a229a05df40b21b407c9c95aa97ec962174329b2d6fd373c71f8e4648293d15a",
+  "directCause": "Administrative glob counted the 14 diagnostic companion JSON files as additional mode-result files; asserted count14 against28 total JSON files before invoking aggregate verifier.",
+  "correction": "Require exact authoritative14 result names plus14 companion diagnostic names; authenticate and compare all28 hashes before/after unchanged original strict-bridge full-suite verifier. No product launch, expectation/source change, sealed evidence mutation or result reclassification."
+}

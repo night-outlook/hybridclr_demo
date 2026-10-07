@@ -1,0 +1,10 @@
+import pathlib,json,collections,datetime
+P=pathlib.Path(__file__).resolve().parent;R=P.parent/'R03LocalBatch-20261006Q-lp-repair';rows=[json.loads(p.read_text()) for p in (R/'cells').glob('*.json')];dirs=sorted((R/'commands').glob('*'));record={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'cells':len(rows),'states':dict(collections.Counter(c['result'] for c in rows)),'failures':[{'id':c['id'],'error':c.get('error')} for c in rows if c['result']=='Failed'],'commandsCompleted':len(list((R/'commands').glob('*/command.json'))),'latestCommandDirectory':dirs[-1].name if dirs else None,'builds':[p.parent.name for p in (R/'builds').glob('*/build-receipt.json')],'freshFocusedPlayerVerifications':len(list((R/'players').glob('*/verification.json'))),'finalResultExists':(R/'LOCAL_BATCH_RESULT.json').exists()}
+if (R/'resource-project.json').exists():
+ cfg=json.loads((R/'resource-project.json').read_text());root=pathlib.Path(cfg['receiptRoot']);record.update(productionEligibilityReports=len(list((root/'integration').glob('*/eligibility.json'))),livePolicyDomainReportExists=(root/'compiler-policy-domains.json').exists(),productionIntegrationReceiptExists=(root/'integration.json').exists())
+completed=sorted((R/'commands').glob('*/command.json'))
+if completed:
+ last=json.loads(completed[-1].read_text());args=last['command'];label=args[args.index('--case')+1] if '--case' in args else args[args.index('-executeMethod')+1] if '-executeMethod' in args else ('unittest' if 'unittest' in args else pathlib.Path(args[0]).name)
+ record['lastCompletedCommand']={'id':completed[-1].parent.name,'label':label,'exitCode':last['exitCode'],'remainingProcessGroup':last['remainingProcessGroup']}
+with (P/'progress.jsonl').open('a') as f:f.write(json.dumps(record)+'\n')
+print(json.dumps({k:record[k] for k in ['utc','cells','states','commandsCompleted','latestCommandDirectory','freshFocusedPlayerVerifications','finalResultExists','productionEligibilityReports','livePolicyDomainReportExists','productionIntegrationReceiptExists','lastCompletedCommand'] if k in record}))

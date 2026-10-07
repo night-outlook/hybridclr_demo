@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/check-publication.py", line 40, in <module>
+    assert checkpoint_copy_sha(row['originalPath'])==row['originalSha256']==sha(row['liveOriginalPath'])
+                                                                            ~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/check-publication.py", line 3, in sha
+    def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+                                     ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'read_bytes'

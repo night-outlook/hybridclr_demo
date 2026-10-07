@@ -1,0 +1,58 @@
+{
+  "kind": "QIntegrationFilesystemFailureObservation",
+  "observedUtc": "2026-10-07T00:45:16.497080+00:00",
+  "executedDemoCommit": "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0",
+  "originalCellState": "Failed",
+  "symptom": "IOException: No space left on device",
+  "excerpt": "IOException: No space left on device\n  at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in <cac1dea318b4499fb9eaf77618617c23>:0 \n  at HybridCLR.Editor.AssemblyShadow.ShadowRawTypeAdmissionEvidence.Capture (System.String root, HybridCLR.Editor.AssemblyShadow.AssemblySnapshotReceipt snapshot, System.Nullable`1[T] developmentBuild) [0x000ae] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs:86 \n  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.Capture (System.String root, System.Collections.Generic.IEnumerable`1[T] assemblyPaths, System.Collections.Generic.IEnumerable`1[T] referencePaths, System.String kind, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, System.Collections.Generic.IEnumerable`1[T] defines, System.Collections.Generic.IEnumerable`1[T] filteredAssemblyPaths, System.Nullable`1[T] rawAdmissionDevelopmentBuild) [0x000eb] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:148 \n  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.CompileCore (System.String root, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, HybridCLR.Editor.AssemblyShadow.ShadowPolicyConfiguration policy, System.String[] defines, System.Boolean developmentBuild, System.Boolean captureMode) [0x00192] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:256 \n  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.CompileWithOptions (System.String root, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, HybridCLR.Editor.AssemblyShadow.ShadowPolicyConfiguration policy, System.String[] defines, System.Boolean developmentBuild) [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:229 \n  at AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntriesCore () [0x005eb] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:241 \n  at AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntries () [0x00006] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:184 \n\n(Filename: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs Line: 86)\n\nexecuteMethod method AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntries threw exception.\n[Package Manager] Server::Kill -- Server was shutdown\n\u001b[40m\u001b[32minfo\u001b[39m\u001b[22m\u001b[49m: Microsoft.Hosting.Lifetime[0]\n      Application is shutting down...\n\u001b[40m\u001b[32minfo\u001b[39m\u001b[22m\u001b[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]\n      ALC ILPP context 3 is unloading\n",
+  "evidence": [
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/cells/production-entry-integration.json",
+      "sha256": "b529089f337d7f3db9ce13069bccb229df08eaabf336f1cff5440e47d45d2a4f"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json",
+      "sha256": "2ba13da6808c8b511aba17cce0e8d7de371b865e117042f282a5c08957705d53"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/unity-completion.json",
+      "sha256": "67c9db37d879b9fbb6219fd220e8c1fbd76b196abc7dddc8824cbbbc61951727"
+    },
+    {
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/resource-logs/integration.log",
+      "sha256": "219b5fadc128274f693d28cc0f19a05006b7c0deabfbcecccf744c44bc42d4d1"
+    }
+  ],
+  "postFailureStorageCommands": [
+    {
+      "command": [
+        "df",
+        "-h",
+        "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair",
+        "/private/tmp",
+        "/Volumes"
+      ],
+      "startUtc": "2026-10-07T00:45:16.371930+00:00",
+      "endUtc": "2026-10-07T00:45:16.374313+00:00",
+      "exitCode": 0,
+      "stdout": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s1   460Gi   420Gi    14Gi    97%    4.8M  145M    3%   /System/Volumes/Data\n/dev/disk3s1   460Gi   420Gi    14Gi    97%    4.8M  145M    3%   /System/Volumes/Data\n/dev/disk3s1   460Gi   420Gi    14Gi    97%    4.8M  145M    3%   /System/Volumes/Data\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "diskutil",
+        "apfs",
+        "list"
+      ],
+      "startUtc": "2026-10-07T00:45:16.374327+00:00",
+      "endUtc": "2026-10-07T00:45:16.496636+00:00",
+      "exitCode": 0,
+      "stdout": "APFS Containers (3 found)\n|\n+-- Container disk3 492BF008-C4BF-4F9A-8D04-50AF6324530B\n    ====================================================\n    APFS Container Reference:     disk3\n    Size (Capacity Ceiling):      494384795648 B (494.4 GB)\n    Capacity In Use By Volumes:   479536803840 B (479.5 GB) (97.0% used)\n    Capacity Not Allocated:       14847991808 B (14.8 GB) (3.0% free)\n    |\n    +-< Physical Store disk0s2 BDC4CA3C-B5FB-45C4-B735-4559061684EC\n    |   -----------------------------------------------------------\n    |   APFS Physical Store Disk:   disk0s2\n    |   Size:                       494384795648 B (494.4 GB)\n    |\n    +-> Volume disk3s1 4041BC34-CC69-4012-A9B1-5677E0F61CDC\n    |   ---------------------------------------------------\n    |   APFS Volume Disk (Role):   disk3s1 (Data)\n    |   Name:                      Macintosh HD - Data (Case-insensitive)\n    |   Mount Point:               /System/Volumes/Data\n    |   Capacity Consumed:         451141197824 B (451.1 GB)\n    |   Sealed:                    No\n    |   FileVault:                 Yes (Unlocked)\n    |\n    +-> Volume disk3s2 4FDD5643-23A6-4104-AA08-7E898DD8B7BF\n    |   ---------------------------------------------------\n    |   APFS Volume Disk (Role):   disk3s2 (Preboot)\n    |   Name:                      Preboot (Case-insensitive)\n    |   Mount Point:               /System/Volumes/Preboot\n    |   Capacity Consumed:         9009053696 B (9.0 GB)\n    |   Sealed:                    No\n    |   FileVault:                 No\n    |\n    +-> Volume disk3s3 A504A830-E500-41FA-9F5A-03C92696905E\n    |   ---------------------------------------------------\n    |   APFS Volume Disk (Role):   disk3s3 (Recovery)\n    |   Name:                      Recovery (Case-insensitive)\n    |   Mount Point:               Not Mounted\n    |   Capacity Consumed:         1284915200 B (1.3 GB)\n    |   Sealed:                    No\n    |   FileVault:                 No\n    |\n    +-> Volume disk3s5 52CB49E2-DE58-4E92-BEC8-18AF40197A00\n    |   ---------------------------------------------------\n    |   APFS Volume Disk (Role):   disk3s5 (No specific role)\n    |   Name:                      Data (Case-insensitive)\n    |   Mount Point:               /Volumes/Data\n    |   Capacity Consumed:         892928 B (892.9 KB)\n    |   Sealed:                    No\n    |   FileVault:                 No (Encrypted at rest)\n    |\n    +-> Volume disk3s6 AC03FCA4-5CE7-4925-A7C6-5B2704C18B8C\n    |   ---------------------------------------------------\n    |   APFS Volume Disk (Role):   disk3s6 (VM)\n    |   Name:                      VM (Case-insensitive)\n    |   Mount Point:               /System/Volumes/VM\n    |   Capacity Consumed:         5369380864 B (5.4 GB)\n    |   Sealed:                    No\n    |   FileVault:                 No\n    |\n    +-> Volume disk3s7 89DF6CC6-0B03-4065-9855-D01C80B030A6\n        ---------------------------------------------------\n        APFS Volume Disk (Role):   disk3s7 (System)\n        Name:                      Macintosh HD (Case-insensitive)\n        Mount Point:               Not Mounted\n        Capacity Consumed:         12564090880 B (12.6 GB)\n        Sealed:                    Yes\n        FileVault:                 Yes (Unlocked)\n        Encrypted:                 No\n        |\n        Snapshot:                  78D47ADE-1510-4BA7-9A10-065E0881C01B\n        Snapshot Disk:             disk3s7s1\n        Snapshot Mount Point:      /\n        Snapshot Sealed:           Yes\n",
+      "stderr": ""
+    }
+  ],
+  "entryDiskObservation": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s1   460Gi   414Gi    22Gi    96%    4.7M  228M    2%   /System/Volumes/Data",
+  "limitations": "Post-failure available capacity does not prove capacity at failure; no contemporaneous high-water measurement, quota or competing-writer cause is established. No source defect inferred from ENOSPC.",
+  "noCleanupOrRetry": true,
+  "independentValidationContinues": true
+}

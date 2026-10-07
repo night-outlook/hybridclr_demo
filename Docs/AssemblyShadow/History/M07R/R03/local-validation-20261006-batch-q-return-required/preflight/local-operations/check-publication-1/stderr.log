@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/check-publication.py", line 35, in <module>
+    assert max(p.stat().st_size for p in C.rglob('*') if p.is_file())<100*1024*1024
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

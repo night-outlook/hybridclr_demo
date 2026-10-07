@@ -1,0 +1,279 @@
+{
+  "dependencies": [
+    "entry-authority"
+  ],
+  "evidence": {
+    "capabilityProfileContracts": {
+      "cases": 20,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/capability-profile-host/results.json",
+      "sha256": "96da5d182a9259622b2b2c61bf8b468613ab2c91eb4e6e1d22350c8e68431608"
+    },
+    "capturedSidecarReplay": {
+      "basis": "ReusedAuditedLocalNJsonInputs",
+      "fixtures": [
+        {
+          "checks": {
+            "assemblies": 1,
+            "compilerImages": 214,
+            "expansionAuthorized": false,
+            "linkedImages": 56,
+            "mappedDeclarations": 18,
+            "nativeProofExecuted": false,
+            "runtimeMustRevalidate": true
+          },
+          "patchId": "P01"
+        },
+        {
+          "checks": {
+            "assemblies": 3,
+            "compilerImages": 214,
+            "expansionAuthorized": false,
+            "linkedImages": 56,
+            "mappedDeclarations": 18,
+            "nativeProofExecuted": false,
+            "runtimeMustRevalidate": true
+          },
+          "patchId": "P02"
+        },
+        {
+          "checks": {
+            "assemblies": 5,
+            "compilerImages": 214,
+            "expansionAuthorized": false,
+            "linkedImages": 56,
+            "mappedDeclarations": 19,
+            "nativeProofExecuted": false,
+            "runtimeMustRevalidate": true
+          },
+          "patchId": "P03"
+        },
+        {
+          "checks": {
+            "assemblies": 1,
+            "compilerImages": 214,
+            "expansionAuthorized": false,
+            "linkedImages": 56,
+            "mappedDeclarations": 18,
+            "nativeProofExecuted": false,
+            "runtimeMustRevalidate": true
+          },
+          "patchId": "P04"
+        },
+        {
+          "checks": {
+            "assemblies": 1,
+            "compilerImages": 214,
+            "expansionAuthorized": false,
+            "linkedImages": 56,
+            "mappedDeclarations": 18,
+            "nativeProofExecuted": false,
+            "runtimeMustRevalidate": true
+          },
+          "patchId": "P05"
+        }
+      ],
+      "historicalNVerification": "Failed",
+      "kind": "R03NReadOnlySidecarReplay",
+      "nativeProofExecuted": false,
+      "result": "Passed",
+      "runtimeAcceptance": false
+    },
+    "commandReceipt": {
+      "childEnvironmentPolicy": {
+        "DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER": "1",
+        "DOTNET_CLI_USE_MSBUILD_SERVER": "0",
+        "GIT_TERMINAL_PROMPT": "0",
+        "MSBUILDDISABLENODEREUSE": "1",
+        "MSBUILDUSESERVER": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "TMPDIR": "/private/tmp"
+      },
+      "cleanupErrors": [],
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R03Completion",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "endedUtcEpoch": 1791329248.556562,
+      "exitCode": 0,
+      "interrupted": false,
+      "lifetimePolicy": "R03OwnedCommandV1",
+      "pgid": 50691,
+      "pid": 50691,
+      "postCleanupGroupExists": false,
+      "processGroupBeforeCleanup": null,
+      "remainingProcessGroup": false,
+      "schemaVersion": 2,
+      "startError": null,
+      "startedUtcEpoch": 1791329233.9024692,
+      "stderrSha256": "35eb23ed321cda7a7b28f03324d5af9d6922f04f0fe72e084f06d62b88714355",
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timeout": false
+    },
+    "constructorContracts": {
+      "cases": 12,
+      "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/fixture-constructor-host/results.json",
+      "sha256": "6b39426ac78985689145c8c665afd87d93b926ebbc1ed2fbaea963751c14a984",
+      "unityEditorRun": false
+    },
+    "earlyEditorFixtures": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "cases": 18,
+      "command": {
+        "clean": true,
+        "completion": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0026/unity-completion.json",
+        "completionSha256": "5cb62e8bc6a09e3c339ddc37d860f9fe34932d3a79ea2491d7dab2c74d71c845",
+        "originalExitCode": 0,
+        "outerReceipt": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0026/command.json",
+        "outerSha256": "83da48e3153171a2d6e273d4ec2f1a5633c9baa863af7fa17dfe1324ae529d61",
+        "supportSources": {
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/evidence.py": "fed0ffc33c92125290eb8a290242204c1377d477d8cd6269cdc8d2868a0ce199",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/process_identity.py": "a7fb997cc0653786c650fea30cbf0a6761a749afd6e6a89568b36255f88de89b",
+          "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo/Tools/AssemblyShadow/R02/unity_session.py": "cb81586594abf3cf6216e098b4ceda5b90e3975d2026f34f46fabbefd192e377"
+        }
+      },
+      "fullEditorRosterReplaced": false,
+      "kind": "R03LIEarlyEditorFixtures",
+      "result": "Passed",
+      "scopeSha256": "e0e48763a7fbbd3ec7e48106a81352d53b1e576b35ff2f16056de857e839313c",
+      "unityEditorRun": true,
+      "xmlSha256": "864ae63d94bcec9bd5a631c3472fb4ecbbb0a3375dae6bba8f24760fcd11f1f8"
+    },
+    "editorSourceScope": {
+      "H2Passed": false,
+      "R03Accepted": false,
+      "catalogUse": "NamesOnly",
+      "counts": [
+        754,
+        755
+      ],
+      "editorExecution": "NotRun",
+      "kind": "R03ActualEditorSourceScope",
+      "packageRevision": "948c0e3b4f8891481301770115e8ba4945eea6de",
+      "referenceBlob": "74da7de9e99e79aae01365f2c3dea5e49f812ef5",
+      "requiredIds": [
+        "L01-private-reference-append",
+        "L02-private-string-append",
+        "L03-private-primitive-append-needs-native",
+        "L04-public-primitive-append",
+        "L05-value-type-growth",
+        "L06-generic-definition-growth",
+        "L07-instance-field-removal",
+        "L08-instance-field-type-change",
+        "L09-instance-field-order-change",
+        "L10-static-field-is-not-instance-layout",
+        "L11-existing-field-visibility-is-not-storage",
+        "L12-interface-addition",
+        "L13-explicit-offset-change",
+        "L14-packing-needs-native",
+        "L15-class-size-needs-native",
+        "L16-layout-kind-change",
+        "L17-type-constraint-change",
+        "L18-method-only-change-needs-allocation-proof",
+        "L19-new-type-no-baseline-proof",
+        "L20-analysis-does-not-load-assembly-or-cctor",
+        "M01-token-and-virtual-order-not-identity",
+        "M02-no-inline-not-identity-or-contract",
+        "M03-visibility-separate-compatibility",
+        "M04-dispatch-separate-compatibility",
+        "M05-static-calling-shape",
+        "M06-byref-signature",
+        "M07-required-modifier-identity",
+        "M08-method-constraint-separate-compatibility",
+        "M09-parameter-name-not-contract",
+        "M10-parameter-attribute-separate-compatibility",
+        "M11-generic-composite-local-numbering",
+        "M12-return-type-is-signature",
+        "M13-missing-method-rejected",
+        "M14-declaring-type-constraints",
+        "M15-optimization-hints-independent"
+      ],
+      "result": "Passed",
+      "reviewedPackageDelta": [
+        "Editor/AssemblyShadow/Build/NativeLayoutAdmissionSnapshot.cs",
+        "Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs",
+        "Editor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs",
+        "Editor/AssemblyShadow/Metadata/EvolutionSignature.cs",
+        "Editor/AssemblyShadow/Metadata/NativeLayoutAdmissionValidator.cs",
+        "Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs",
+        "Editor/AssemblyShadow/Metadata/NativeLayoutIdentityContext.cs.meta",
+        "Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs",
+        "Editor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs.meta",
+        "Tests/Editor/AssemblyShadow/ManagedAcquisitionPolicyTests.cs",
+        "Tests/Editor/AssemblyShadow/PolicyTests.cs",
+        "Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs",
+        "Tests/Editor/AssemblyShadow/SyntheticCompiledAssemblySet.cs.meta"
+      ]
+    },
+    "fixedImageGuards": {
+      "cases": 10,
+      "materialization": {
+        "classification": "FrozenHistoricalInputMaterialization",
+        "freshCscExecutionClaimed": false,
+        "kind": "R02OrdinaryInputAuthentication",
+        "projectRoot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/fixed-image-host-project",
+        "receipt": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/fixed-image-host-project/_temp/AssemblyShadow/R03CompletionFixedImage/preparation.json",
+          "sha256": "ff0078b13ac0b8ab64b9932afd0ecc7f196b0c09635b24b40d0e77868bba33b7",
+          "sizeBytes": 2629
+        },
+        "result": "Passed",
+        "runtimeAcceptance": false,
+        "staged": {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/fixed-image-host-project/Assets/StreamingAssets/AssemblyShadow/M00/AssemblyShadowBaseline.HotUpdate.dll.bytes",
+          "sha256": "9108a2396fd1a292a1446a96b6e61ac19108fd930d8d2b70edb4c3af72780e27",
+          "sizeBytes": 4608
+        }
+      },
+      "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/fixed-image-host/results.json",
+      "runtimeAcceptance": false,
+      "sha256": "e09f2f2154db7d2fc044e2521ab5fc66fb83813829d32d19374c7e1116d5665c",
+      "unityEditorRun": false
+    },
+    "layoutIdentity": {
+      "basis": "ReusedAuditedLocalMLayoutInputs",
+      "cases": 33,
+      "nativeProofExecuted": false,
+      "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/layout-identity/results.json",
+      "runtimeAcceptance": false,
+      "sha256": "60191415ae1b449c3b7e8b9048797afbc2888c413f90a57a2037d6ee13e301f1"
+    },
+    "referenceBinding": {
+      "basis": "ReusedAuditedLocalNCompilerInputs",
+      "cases": 15,
+      "contextDifferences": [
+        {
+          "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+          "closedLength": 506150,
+          "firstDifferentCharacter": 114570,
+          "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+          "isolatedLength": 506142,
+          "section": "types"
+        },
+        {
+          "closedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1230:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;332:named:property:CodegenOptions:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:142:9:ValueType;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+          "closedLength": 522845,
+          "firstDifferentCharacter": 244795,
+          "isolatedExcerpt": "re=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;58:string:Modules/Animation/Constraints/Constraint.bindings.h;;;\n1222:attribute:130:UnityEngine.Bindings.NativeTypeAttribute, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;122:HasThis:0:4:Void;91:System.Void, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;::varargs:;324:named:property:CodegenOptions:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;:138:5:Class;125:UnityEngine.Bindings.CodegenOptions, UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;;5:value;1:1;;307:named:property:Header:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;;5:value;55:string:Modules/Animation/Constraints/ConstraintSource.h;;304:named:property:IntermediateScriptingStructName:6:String;93:System.String, netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51;:106:6:",
+          "isolatedLength": 522837,
+          "section": "attributes"
+        }
+      ],
+      "result": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/reference-binding/results.json",
+      "runtimeAcceptance": false,
+      "sha256": "db07a362bfdf04fa0ac20c8a4fe033739cacd272d46cce1eef9505438bbe4ed8"
+    },
+    "scope": "Host helper and eighteen real Editor regressions; full rosters still required"
+  },
+  "id": "completion-tool-contracts",
+  "result": "Passed"
+}

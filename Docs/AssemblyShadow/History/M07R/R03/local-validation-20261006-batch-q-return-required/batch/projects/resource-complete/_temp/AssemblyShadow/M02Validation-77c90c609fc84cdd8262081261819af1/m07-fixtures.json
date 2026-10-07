@@ -1,0 +1,755 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M07",
+    "unityVersion": "2022.3.62f2",
+    "target": "StandaloneOSX",
+    "architecture": "arm64",
+    "baselineBuildId": "M07-Baseline-R03Completion-8f7c245a68bf",
+    "runtimeAbiHash": "b0b61f2ac7db37f98e674efcde83ac9678151e700f25aeb859c66677ee0f0b12",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-8f7c245a68bf/baseline-manifest.json",
+    "baselineManifestSha256": "70c8d4b12de3d5fd05e50fffeeb5d87e2c5a460ef4a9d6fae620696666c76a15",
+    "baselineInputSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-7821e2c26e8043259a51ccd244b0f028",
+    "baselineInputSnapshotHash": "37f207646293b181cd0e1a140fa869488fb65c4efe1cd8aed3ba0a65af3fc1ac",
+    "playerBuildReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M07PlayerInputs-7821e2c26e8043259a51ccd244b0f028/m07-player-build.json",
+    "playerBuildReceiptSha256": "47e1d01d5c789878686220e1ce79635acceb406a8cf021d802b5868f3bcc03e7",
+    "candidateNames": [
+        "AssemblyA.Contracts",
+        "AssemblyA.Implementation.Extensibility",
+        "AssemblyA.Implementation.Internal",
+        "AssemblyShadowDemo.ContractsConsumer",
+        "AssemblyShadowDemo.ExtensibilityConsumer"
+    ],
+    "bundleNames": [
+        "additive-scene.bundle",
+        "business-scene.bundle",
+        "mixed-assets.bundle",
+        "nested-prefab.bundle",
+        "scriptable-object.bundle",
+        "serialize-reference.bundle",
+        "versioned-prefab.bundle"
+    ],
+    "stableAotNames": [
+        "assemblyshadowdemo.bootstrap",
+        "mscorlib",
+        "system",
+        "system.core",
+        "system.xml",
+        "unityengine",
+        "unityengine.aimodule",
+        "unityengine.androidjnimodule",
+        "unityengine.animationmodule",
+        "unityengine.assetbundlemodule",
+        "unityengine.audiomodule",
+        "unityengine.coremodule",
+        "unityengine.directormodule",
+        "unityengine.gamecentermodule",
+        "unityengine.gridmodule",
+        "unityengine.imguimodule",
+        "unityengine.inputlegacymodule",
+        "unityengine.inputmodule",
+        "unityengine.jsonserializemodule",
+        "unityengine.particlesystemmodule",
+        "unityengine.physics2dmodule",
+        "unityengine.physicsmodule",
+        "unityengine.propertiesmodule",
+        "unityengine.sharedinternalsmodule",
+        "unityengine.spritemaskmodule",
+        "unityengine.spriteshapemodule",
+        "unityengine.subsystemsmodule",
+        "unityengine.terrainmodule",
+        "unityengine.textcorefontenginemodule",
+        "unityengine.textcoretextenginemodule",
+        "unityengine.textrenderingmodule",
+        "unityengine.tilemapmodule",
+        "unityengine.uielementsmodule",
+        "unityengine.uimodule",
+        "unityengine.unityanalyticsmodule",
+        "unityengine.unitywebrequestmodule",
+        "unityengine.vfxmodule",
+        "unityengine.videomodule",
+        "unityengine.vrmodule",
+        "unityengine.xrmodule"
+    ],
+    "stableAotProvenance": "framework=7147df6ffb7dc0da86c8297052bf664efc809a174412d61417833b71b75a4a8a\ncompiler-libraries=0c53fb0122f986615fd9e24373aa255167d7bd3ef9bbdb0ce50e1b4266ec6a48\nlinked-player=062e65ebc0d70047e6bc6f2a6c2a5326d874ead8a52a31bbb78245731782e72d\nbootstrap-policy=assemblyshadowdemo.bootstrap\nphysical=assemblyshadowdemo.bootstrap,mscorlib,system,system.core,system.xml,unityengine,unityengine.aimodule,unityengine.androidjnimodule,unityengine.animationmodule,unityengine.assetbundlemodule,unityengine.audiomodule,unityengine.coremodule,unityengine.directormodule,unityengine.gamecentermodule,unityengine.gridmodule,unityengine.imguimodule,unityengine.inputlegacymodule,unityengine.inputmodule,unityengine.jsonserializemodule,unityengine.particlesystemmodule,unityengine.physics2dmodule,unityengine.physicsmodule,unityengine.propertiesmodule,unityengine.sharedinternalsmodule,unityengine.spritemaskmodule,unityengine.spriteshapemodule,unityengine.subsystemsmodule,unityengine.terrainmodule,unityengine.textcorefontenginemodule,unityengine.textcoretextenginemodule,unityengine.textrenderingmodule,unityengine.tilemapmodule,unityengine.uielementsmodule,unityengine.uimodule,unityengine.unityanalyticsmodule,unityengine.unitywebrequestmodule,unityengine.vfxmodule,unityengine.videomodule,unityengine.vrmodule,unityengine.xrmodule",
+    "stableAotProvenanceHash": "356b5a987e31a05d0a5a40673dcda3aa5910d9224819df4bf8f2077c4b72b11c",
+    "fixtures": [
+        {
+            "patchId": "P01",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P01-compile/Snapshot",
+            "compileSnapshotHash": "c03e293dc5d25c600f0dcef8f8e2221a81682f28baae747ba684ff09da60ba7a",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P01-patch",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P01-patch/patch-manifest.json",
+            "patchManifestSha256": "45f60a04c6381c0d8f05b2ce09b5c34e45d475ed25f8de0a8af1b8facd86f374",
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceChangeLevel": "CodeOnly",
+            "dllOnly": true,
+            "resourceBundlesRequired": [],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "c6f02abf-fe88-4ffe-8404-0d5446dc41d0",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P01-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "5973c01158224fc8537437853e33e4c86d3629e6331fea3913c76526ba5bffd5",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 4,
+                            "name": "UnityEngine.JSONSerializeModule",
+                            "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "replacementResourcePath": "",
+            "replacementResourceReceiptPath": "",
+            "replacementResourceReceiptSha256": "",
+            "replacementBundleNames": []
+        },
+        {
+            "patchId": "P02",
+            "defines": [
+                "ASSEMBLY_SHADOW_P02"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Extensibility"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P02-compile/Snapshot",
+            "compileSnapshotHash": "938fb334f7b16f0899d14548c8d6236a5bb97cbf05f6052b26f34ce00ba7a954",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P02-patch",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P02-patch/patch-manifest.json",
+            "patchManifestSha256": "0a0562af8c1760a8171525d388f6bc5d6e3a97baa6d5ebede2ffb063f74c51e3",
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceChangeLevel": "CodeOnly",
+            "dllOnly": true,
+            "resourceBundlesRequired": [],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Extensibility",
+                    "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "4e245471-b76b-41cf-8d92-e56efff77bc4",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P02-patch/DLLs/AssemblyA.Implementation.Extensibility.dll",
+                    "sha256": "8792aacf2fbc58d61fd91f5fa523127a20a76cc35a635b319e855f2fb3301f3a",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "2432a8ee-4aeb-4e12-9ee4-d76d1a5c031c",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P02-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "fbe5c66ebd415fc75c6780eb2eb61fddf8cb57d0af2ec0e2849589e222551e7d",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 4,
+                            "name": "UnityEngine.JSONSerializeModule",
+                            "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "fullName": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "1f5709b5-4a3d-4aa9-9ac3-4021e0cd61d7",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P02-patch/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+                    "sha256": "81f09b23af199866391059549d816ddf72148514d46e1eac9ef6310c78991205",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "replacementResourcePath": "",
+            "replacementResourceReceiptPath": "",
+            "replacementResourceReceiptSha256": "",
+            "replacementBundleNames": []
+        },
+        {
+            "patchId": "P03",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_P03"
+            ],
+            "changedRoots": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-compile/Snapshot",
+            "compileSnapshotHash": "80765bcab08e4b9f06238bb44ff906ec5b361716513828754e458680621da4b3",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch/patch-manifest.json",
+            "patchManifestSha256": "926e1b292c153ec51c5d6bd7a9fb7899c555a3340b413d22adc30447010d0757",
+            "closureLoadOrder": [
+                "AssemblyA.Contracts",
+                "AssemblyA.Implementation.Extensibility",
+                "AssemblyA.Implementation.Internal",
+                "AssemblyShadowDemo.ContractsConsumer",
+                "AssemblyShadowDemo.ExtensibilityConsumer"
+            ],
+            "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceChangeLevel": "CodeOnly",
+            "dllOnly": true,
+            "resourceBundlesRequired": [],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Contracts",
+                    "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "9a4c0868-ec2e-4f49-be8c-f2f90f5d9288",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch/DLLs/AssemblyA.Contracts.dll",
+                    "sha256": "5af7bedeb74557dc51bc8831866f5c998e4ca6079b74b11f0200a641b879e11d",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Extensibility",
+                    "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "53eab5d6-6c0c-4d51-8652-679b1504bb80",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch/DLLs/AssemblyA.Implementation.Extensibility.dll",
+                    "sha256": "541e2799cc54e68aed970c7f790436d3594568b563a6b40b29d4121fef7a93ed",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "46aafd87-4762-4e56-9a76-dab48a757ba9",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "9195743b0ec525a4ac7c39fceafbb38cb2811e0b2f8a9ae0eba755401f900d32",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 4,
+                            "name": "UnityEngine.JSONSerializeModule",
+                            "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ContractsConsumer",
+                    "fullName": "AssemblyShadowDemo.ContractsConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "8d1f7e8d-2dda-424e-a923-a2a941c1afa7",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch/DLLs/AssemblyShadowDemo.ContractsConsumer.dll",
+                    "sha256": "27c1dad706567f3cbaffc55f4cda95447eead1b43b03530266e382b81968c32e",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "AssemblyShadowDemo.ExtensibilityConsumer",
+                    "fullName": "AssemblyShadowDemo.ExtensibilityConsumer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "fb50115c-c686-441b-aa56-d1ba427eab7b",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P03-patch/DLLs/AssemblyShadowDemo.ExtensibilityConsumer.dll",
+                    "sha256": "07669e19b96536dc93ec14c3fbfcb45ada56945bef1303b5a6001746129e6195",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "replacementResourcePath": "",
+            "replacementResourceReceiptPath": "",
+            "replacementResourceReceiptSha256": "",
+            "replacementBundleNames": []
+        },
+        {
+            "patchId": "P04",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M07_P04"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P04-compile/Snapshot",
+            "compileSnapshotHash": "f5729f4e27efb21488531f3a550fb0439abce12e837764405996dfbcbaa6292a",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P04-patch",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P04-patch/patch-manifest.json",
+            "patchManifestSha256": "201cf9e9ea18085d6a27f030b0cf87e9fbc8d7f6ffbad6a52f9ed987e061b901",
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceChangeLevel": "CodeOnly",
+            "dllOnly": true,
+            "resourceBundlesRequired": [],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "3613414d-23e5-4498-9cba-c90d808cdeaf",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P04-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "c83244c8cc2b1ea881a6d0b5d55937e3f096da68a2347bed364f704efd4cc5c9",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 4,
+                            "name": "UnityEngine.JSONSerializeModule",
+                            "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "replacementResourcePath": "",
+            "replacementResourceReceiptPath": "",
+            "replacementResourceReceiptSha256": "",
+            "replacementBundleNames": []
+        },
+        {
+            "patchId": "P05",
+            "defines": [
+                "ASSEMBLY_SHADOW_P05"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-compile/Snapshot",
+            "compileSnapshotHash": "01f148d41c972bb84728a89259211ff33b6bbd5b110fc16490065a6b007aaa31",
+            "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-patch",
+            "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-patch/patch-manifest.json",
+            "patchManifestSha256": "a81226a2e6c1b7dbe19e8442ab44921a59afbfe9a85336b3d14c264b3785c4db",
+            "closureLoadOrder": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+            "resourceAbiHash": "sha256:f99cbb1f42858874f1a1ff96cc10c7b4d273861ca7608cb83a5d667f23a96360",
+            "resourceChangeLevel": "ResourceRebuildRequired",
+            "dllOnly": false,
+            "resourceBundlesRequired": [
+                "additive-scene.bundle",
+                "business-scene.bundle",
+                "mixed-assets.bundle",
+                "nested-prefab.bundle",
+                "versioned-prefab.bundle"
+            ],
+            "assemblyIdentities": [
+                {
+                    "name": "AssemblyA.Implementation.Internal",
+                    "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "version": "0.0.0.0",
+                    "culture": "",
+                    "publicKeyToken": "",
+                    "mvid": "975097b7-faa5-48d8-a117-8ccf09f5d08f",
+                    "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                    "sha256": "b4c1867cdc7f3dc66f3aa8306f45bb43968921450f2ac809eb05faa10e607879",
+                    "referenceIdentities": [
+                        {
+                            "referenceIndex": 0,
+                            "name": "netstandard",
+                            "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                            "version": "2.1.0.0",
+                            "culture": "",
+                            "publicKeyToken": "cc7b13ffcd2ddd51"
+                        },
+                        {
+                            "referenceIndex": 1,
+                            "name": "AssemblyA.Contracts",
+                            "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 2,
+                            "name": "AssemblyA.Implementation.Extensibility",
+                            "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 3,
+                            "name": "UnityEngine.CoreModule",
+                            "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        },
+                        {
+                            "referenceIndex": 4,
+                            "name": "UnityEngine.JSONSerializeModule",
+                            "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                            "version": "0.0.0.0",
+                            "culture": "",
+                            "publicKeyToken": ""
+                        }
+                    ]
+                }
+            ],
+            "replacementResourcePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-Resources",
+            "replacementResourceReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-Resources/resource-build-receipt.json",
+            "replacementResourceReceiptSha256": "15713fce746971fd63c3f13a088bcbe9a98b994e53a61df275879e69493a657c",
+            "replacementBundleNames": [
+                "additive-scene.bundle",
+                "business-scene.bundle",
+                "mixed-assets.bundle",
+                "nested-prefab.bundle",
+                "scriptable-object.bundle",
+                "serialize-reference.bundle",
+                "versioned-prefab.bundle"
+            ]
+        }
+    ],
+    "rejectedFixtures": [
+        {
+            "patchId": "P05-DllOnly",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_P05"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-DllOnly-compile/Snapshot",
+            "compileSnapshotHash": "9a22b4857e53ff9f35aaf81c55a3db148076ba0ce5f737c03776a1d0ff6e19da",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: additive-scene.bundle, business-scene.bundle, mixed-assets.bundle, nested-prefab.bundle, versioned-prefab.bundle. serialized field layout changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:VersionedPrefabComponent"
+        },
+        {
+            "patchId": "P14-ClassRename",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M07_P14"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P14-ClassRename-compile/Snapshot",
+            "compileSnapshotHash": "0648cd72b898aa1423532828cdd1bbdc279a863ad608a7ae45ca18d2dc6376b6",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: additive-scene.bundle, business-scene.bundle, mixed-assets.bundle, nested-prefab.bundle, scriptable-object.bundle, serialize-reference.bundle, versioned-prefab.bundle. resource type added: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponentRenamed; resource type removed or renamed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07RenameProbeComponent"
+        },
+        {
+            "patchId": "P15-SerializeReferenceRename",
+            "defines": [
+                "ASSEMBLY_SHADOW_P01",
+                "ASSEMBLY_SHADOW_M07_P15"
+            ],
+            "changedRoots": [
+                "AssemblyA.Implementation.Internal"
+            ],
+            "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P15-SerializeReferenceRename-compile/Snapshot",
+            "compileSnapshotHash": "b21dc9d20aaead890bc2d235d7b788ee78c1b4f8528180cec1fafc7812f1dc60",
+            "errorCode": "ResourceRebuildRequired",
+            "errorMessage": "ResourceRebuildRequired: DLL-only rejected. Affected bundles: additive-scene.bundle, business-scene.bundle, mixed-assets.bundle, nested-prefab.bundle, scriptable-object.bundle, serialize-reference.bundle, versioned-prefab.bundle. SerializeReference concrete type set changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset; resource type added: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeARenamed; resource type removed or renamed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07NodeA; serialized dependency graph changed: assemblya.implementation.internal:AssemblyA.Implementation.Internal:M07ManagedGraphAsset"
+        }
+    ]
+}

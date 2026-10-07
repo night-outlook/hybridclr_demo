@@ -1,0 +1,707 @@
+[
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "startUtc": "2026-10-06T23:25:18.526411+00:00",
+    "endUtc": "2026-10-06T23:25:18.534325+00:00",
+    "exitCode": 0,
+    "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "branch",
+      "--show-current"
+    ],
+    "startUtc": "2026-10-06T23:25:18.534351+00:00",
+    "endUtc": "2026-10-06T23:25:18.541519+00:00",
+    "exitCode": 0,
+    "stdout": "codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "rev-parse",
+      "HEAD"
+    ],
+    "startUtc": "2026-10-06T23:25:18.541544+00:00",
+    "endUtc": "2026-10-06T23:25:18.548002+00:00",
+    "exitCode": 0,
+    "stdout": "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "startUtc": "2026-10-06T23:25:18.548032+00:00",
+    "endUtc": "2026-10-06T23:25:18.890502+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "remote",
+      "-v"
+    ],
+    "startUtc": "2026-10-06T23:25:18.890545+00:00",
+    "endUtc": "2026-10-06T23:25:18.898426+00:00",
+    "exitCode": 0,
+    "stdout": "origin\tgit@github.com:night-outlook/hybridclr_demo.git (fetch)\norigin\tgit@github.com:night-outlook/hybridclr_demo.git (push)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "startUtc": "2026-10-06T23:25:18.898456+00:00",
+    "endUtc": "2026-10-06T23:25:18.905627+00:00",
+    "exitCode": 0,
+    "stdout": "worktree /Users/ah/GitHub/hybridclr/hybridclr_demo\nHEAD c2d7334ee6fa0d2b20f73ed35970f16d97f92571\nbranch refs/heads/codex/gpt61-sol-agents\n\nworktree /Users/ah/.codex/worktrees/af52/hybridclr_demo\nHEAD 73d95b4064ee23143e0722f6eae127fe61df6c9d\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo\nHEAD 8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/reproduction_tooling\nHEAD ba8fee33753a5ebc215b7a98739e343d8e05572e\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_demo\nHEAD 88508b59b7c4ef8c5023cbbe655d43ebfcf5304c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_demo\nHEAD ba8fee33753a5ebc215b7a98739e343d8e05572e\nbranch refs/heads/codex/assembly-shadow-h1-count-repro-tooling\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_demo\nHEAD 21c689732cd8087f8ee8fdce4e52a8f2a655f722\nbranch refs/heads/codex/r02-h1-runtime-control\n\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "startUtc": "2026-10-06T23:25:18.905654+00:00",
+    "endUtc": "2026-10-06T23:25:18.958189+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "startUtc": "2026-10-06T23:25:18.958223+00:00",
+    "endUtc": "2026-10-06T23:25:22.878158+00:00",
+    "exitCode": 0,
+    "stdout": "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "startUtc": "2026-10-06T23:25:22.878566+00:00",
+    "endUtc": "2026-10-06T23:25:22.902761+00:00",
+    "exitCode": 0,
+    "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "branch",
+      "--show-current"
+    ],
+    "startUtc": "2026-10-06T23:25:22.902868+00:00",
+    "endUtc": "2026-10-06T23:25:22.917048+00:00",
+    "exitCode": 0,
+    "stdout": "codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "rev-parse",
+      "HEAD"
+    ],
+    "startUtc": "2026-10-06T23:25:22.917114+00:00",
+    "endUtc": "2026-10-06T23:25:22.927343+00:00",
+    "exitCode": 0,
+    "stdout": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "startUtc": "2026-10-06T23:25:22.927388+00:00",
+    "endUtc": "2026-10-06T23:25:22.937477+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "remote",
+      "-v"
+    ],
+    "startUtc": "2026-10-06T23:25:22.937512+00:00",
+    "endUtc": "2026-10-06T23:25:22.945127+00:00",
+    "exitCode": 0,
+    "stdout": "origin\tgit@github.com:night-outlook/hybridclr.git (fetch)\norigin\tgit@github.com:night-outlook/hybridclr.git (push)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "startUtc": "2026-10-06T23:25:22.945162+00:00",
+    "endUtc": "2026-10-06T23:25:22.954741+00:00",
+    "exitCode": 0,
+    "stdout": "worktree /Users/ah/GitHub/hybridclr/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr\nHEAD 4b2774b066cfc6afd77a8c8aded6bda7ea574f55\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr\nHEAD b22fa3d92223645c32663e4a2157eaadf8ea495e\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr\nHEAD 99cdb1b67e4ed07b70732a2148cb69e079ca41cf\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/reference-worktrees/hybridclr\nHEAD 1d2df7c36a3f9eb99ca8242f6c2bd4a5e054f0ad\ndetached\n\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "startUtc": "2026-10-06T23:25:22.954763+00:00",
+    "endUtc": "2026-10-06T23:25:23.002431+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "startUtc": "2026-10-06T23:25:23.002461+00:00",
+    "endUtc": "2026-10-06T23:25:26.655171+00:00",
+    "exitCode": 0,
+    "stdout": "4b2774b066cfc6afd77a8c8aded6bda7ea574f55\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "startUtc": "2026-10-06T23:25:26.655498+00:00",
+    "endUtc": "2026-10-06T23:25:26.672614+00:00",
+    "exitCode": 0,
+    "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "branch",
+      "--show-current"
+    ],
+    "startUtc": "2026-10-06T23:25:26.672698+00:00",
+    "endUtc": "2026-10-06T23:25:26.683555+00:00",
+    "exitCode": 0,
+    "stdout": "codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "rev-parse",
+      "HEAD"
+    ],
+    "startUtc": "2026-10-06T23:25:26.683583+00:00",
+    "endUtc": "2026-10-06T23:25:26.691810+00:00",
+    "exitCode": 0,
+    "stdout": "948c0e3b4f8891481301770115e8ba4945eea6de\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "startUtc": "2026-10-06T23:25:26.691843+00:00",
+    "endUtc": "2026-10-06T23:25:26.702764+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "remote",
+      "-v"
+    ],
+    "startUtc": "2026-10-06T23:25:26.702786+00:00",
+    "endUtc": "2026-10-06T23:25:26.709788+00:00",
+    "exitCode": 0,
+    "stdout": "origin\tgit@github.com:night-outlook/hybridclr_unity.git (fetch)\norigin\tgit@github.com:night-outlook/hybridclr_unity.git (push)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "startUtc": "2026-10-06T23:25:26.709818+00:00",
+    "endUtc": "2026-10-06T23:25:26.718432+00:00",
+    "exitCode": 0,
+    "stdout": "worktree /Users/ah/GitHub/hybridclr/hybridclr_unity\nHEAD 0ea633a2c5b936b5af69d944593c55bd2783fca9\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity\nHEAD 948c0e3b4f8891481301770115e8ba4945eea6de\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/hybridclr_unity\nHEAD b649c499385ea68490a0f652a98b732e060aeb89\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/hybridclr_unity\nHEAD 0ea633a2c5b936b5af69d944593c55bd2783fca9\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/reference-worktrees/hybridclr_unity\nHEAD b936a495ade1691ebb6f3bab8fdff3ef34f6f192\ndetached\n\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "startUtc": "2026-10-06T23:25:26.718449+00:00",
+    "endUtc": "2026-10-06T23:25:26.765517+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "startUtc": "2026-10-06T23:25:26.765547+00:00",
+    "endUtc": "2026-10-06T23:25:30.579590+00:00",
+    "exitCode": 0,
+    "stdout": "948c0e3b4f8891481301770115e8ba4945eea6de\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "startUtc": "2026-10-06T23:25:30.579965+00:00",
+    "endUtc": "2026-10-06T23:25:30.597837+00:00",
+    "exitCode": 0,
+    "stdout": "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "branch",
+      "--show-current"
+    ],
+    "startUtc": "2026-10-06T23:25:30.597897+00:00",
+    "endUtc": "2026-10-06T23:25:30.608838+00:00",
+    "exitCode": 0,
+    "stdout": "codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "rev-parse",
+      "HEAD"
+    ],
+    "startUtc": "2026-10-06T23:25:30.608889+00:00",
+    "endUtc": "2026-10-06T23:25:30.617196+00:00",
+    "exitCode": 0,
+    "stdout": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "startUtc": "2026-10-06T23:25:30.617225+00:00",
+    "endUtc": "2026-10-06T23:25:30.629385+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "remote",
+      "-v"
+    ],
+    "startUtc": "2026-10-06T23:25:30.629418+00:00",
+    "endUtc": "2026-10-06T23:25:30.636292+00:00",
+    "exitCode": 0,
+    "stdout": "origin\tgit@github.com:night-outlook/il2cpp_plus.git (fetch)\norigin\tgit@github.com:night-outlook/il2cpp_plus.git (push)\nupstream\thttps://github.com/focus-creative-games/il2cpp_plus.git (fetch)\nupstream\thttps://github.com/focus-creative-games/il2cpp_plus.git (push)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "startUtc": "2026-10-06T23:25:30.636320+00:00",
+    "endUtc": "2026-10-06T23:25:30.645111+00:00",
+    "exitCode": 0,
+    "stdout": "worktree /Users/ah/GitHub/hybridclr/il2cpp_plus\nHEAD 6be7f38bec2fa4677d24efc1a4a1294240789933\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus\nHEAD 1cf87f8209790f9fb2ebec97487dc1990ccd56c5\nbranch refs/heads/codex/assembly-shadow-r01b-h1\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_ref4fff/il2cpp_plus\nHEAD 7967b8c7043904fcae130b294defd5ce7aa897c4\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_h1r_repro/il2cpp_plus\nHEAD 6be7f38bec2fa4677d24efc1a4a1294240789933\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/assembly_shadow_r02_control/il2cpp_plus\nHEAD 6be7f38bec2fa4677d24efc1a4a1294240789933\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930A-a898f/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20260930B-lifetime/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001C-inputs/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001D-build-api/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261001E-provenance/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002F-runtime/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002G-producer/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261002H-rejection/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003I-completion/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003J-contracts/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261003K-capabilities/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004L-fixed-image/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261004M-policy/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005N-identity/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261005O-ln-closure/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\nworktree /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006P-lo-repair/reference-worktrees/il2cpp_plus\nHEAD a6e0b39c58c1c41bec1baa0a716c6bc6d77e3e4c\ndetached\n\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "startUtc": "2026-10-06T23:25:30.645142+00:00",
+    "endUtc": "2026-10-06T23:25:30.692117+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/il2cpp_plus",
+      "ls-remote",
+      "origin",
+      "refs/heads/codex/assembly-shadow-r01b-h1"
+    ],
+    "startUtc": "2026-10-06T23:25:30.692153+00:00",
+    "endUtc": "2026-10-06T23:25:34.601331+00:00",
+    "exitCode": 0,
+    "stdout": "1cf87f8209790f9fb2ebec97487dc1990ccd56c5\trefs/heads/codex/assembly-shadow-r01b-h1\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "log",
+      "-1",
+      "--format=%H",
+      "--",
+      "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md"
+    ],
+    "startUtc": "2026-10-06T23:25:34.601636+00:00",
+    "endUtc": "2026-10-06T23:25:34.623481+00:00",
+    "exitCode": 0,
+    "stdout": "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "merge-base",
+      "--is-ancestor",
+      "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+      "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0"
+    ],
+    "startUtc": "2026-10-06T23:25:34.623558+00:00",
+    "endUtc": "2026-10-06T23:25:34.635837+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "diff",
+      "--exit-code",
+      "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+      "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0",
+      "--",
+      ".",
+      ":!Docs/AssemblyShadow"
+    ],
+    "startUtc": "2026-10-06T23:25:34.635880+00:00",
+    "endUtc": "2026-10-06T23:25:34.645325+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "diff",
+      "--name-only",
+      "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+      "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0"
+    ],
+    "startUtc": "2026-10-06T23:25:34.645354+00:00",
+    "endUtc": "2026-10-06T23:25:34.654105+00:00",
+    "exitCode": 0,
+    "stdout": "Docs/AssemblyShadow/Handoff/WEB_TO_LOCAL.md\nDocs/AssemblyShadow/History/M07R/R03/LP_Repair_2026-10-06/EVIDENCE.json\nDocs/AssemblyShadow/History/M07R/R03/LP_Repair_2026-10-06/PRIMARY_REVIEW.md\nDocs/AssemblyShadow/Plan/CURRENT_STATUS.md\nDocs/AssemblyShadow/README.md\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+      "diff",
+      "--exit-code",
+      "d9ef449e8e8aef885539e4b981243a868f8d0ba6",
+      "HEAD",
+      "--",
+      "Docs/AssemblyShadow/Handoff/LOCAL_VALIDATION.md",
+      "Docs/AssemblyShadow/Handoff/RETURN_TO_WEB.md"
+    ],
+    "startUtc": "2026-10-06T23:25:34.654183+00:00",
+    "endUtc": "2026-10-06T23:25:34.662378+00:00",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity",
+      "diff",
+      "--name-only",
+      "ef6c70f30248c4b7c41e9e85d81e08f5709dc4ba",
+      "HEAD"
+    ],
+    "startUtc": "2026-10-06T23:25:34.662421+00:00",
+    "endUtc": "2026-10-06T23:25:34.672218+00:00",
+    "exitCode": 0,
+    "stdout": "Editor/AssemblyShadow/Metadata/CompiledAssemblySet.cs\nEditor/AssemblyShadow/Metadata/DnlibAssemblyLoader.cs\nEditor/AssemblyShadow/Metadata/PureInterpreterEligibility.cs\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+      "--version"
+    ],
+    "startUtc": "2026-10-06T23:25:34.676285+00:00",
+    "endUtc": "2026-10-06T23:25:34.815463+00:00",
+    "exitCode": 0,
+    "stdout": "8.0.318\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/dotnet",
+      "--info"
+    ],
+    "startUtc": "2026-10-06T23:25:34.815502+00:00",
+    "endUtc": "2026-10-06T23:25:34.905167+00:00",
+    "exitCode": 0,
+    "stdout": ".NET SDK:\n Version:           8.0.318\n Commit:            e7c684c866\n Workload version:  8.0.300-manifests.c414f008\n MSBuild version:   17.10.46+aa888d321\n\nRuntime Environment:\n OS Name:     Mac OS X\n OS Version:  26.5\n OS Platform: Darwin\n RID:         osx-arm64\n Base Path:   /Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk/8.0.318/\n\n.NET workloads installed:\nThere are no installed workloads to display.\n\nHost:\n  Version:      8.0.21\n  Architecture: arm64\n  Commit:       362ab6669d\n\n.NET SDKs installed:\n  8.0.318 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 8.0.21 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk/shared/Microsoft.NETCore.App]\n\nOther architectures found:\n  None\n\nEnvironment variables:\n  DOTNET_ROOT       [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk]\n  DOTNET_ROOT_ARM64 [/Applications/Unity/Hub/Editor/6000.5.3f1/Unity.app/Contents/Resources/Scripting/DotNetSdk]\n\nglobal.json file:\n  Not found\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "sw_vers"
+    ],
+    "startUtc": "2026-10-06T23:25:34.906249+00:00",
+    "endUtc": "2026-10-06T23:25:34.913474+00:00",
+    "exitCode": 0,
+    "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t26.5.2\nBuildVersion:\t\t25F84\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "uname",
+      "-m"
+    ],
+    "startUtc": "2026-10-06T23:25:34.913494+00:00",
+    "endUtc": "2026-10-06T23:25:34.915311+00:00",
+    "exitCode": 0,
+    "stdout": "arm64\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+      "--version"
+    ],
+    "startUtc": "2026-10-06T23:25:34.915334+00:00",
+    "endUtc": "2026-10-06T23:25:34.921693+00:00",
+    "exitCode": 0,
+    "stdout": "Python 3.14.6\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "clang",
+      "--version"
+    ],
+    "startUtc": "2026-10-06T23:25:34.921715+00:00",
+    "endUtc": "2026-10-06T23:25:35.049274+00:00",
+    "exitCode": 0,
+    "stdout": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "xcrun",
+      "--sdk",
+      "macosx",
+      "--show-sdk-version"
+    ],
+    "startUtc": "2026-10-06T23:25:35.049310+00:00",
+    "endUtc": "2026-10-06T23:25:35.056420+00:00",
+    "exitCode": 0,
+    "stdout": "26.5\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pwsh",
+      "-NoProfile",
+      "-Command",
+      "$PSVersionTable.PSVersion.ToString()"
+    ],
+    "startUtc": "2026-10-06T23:25:35.056442+00:00",
+    "endUtc": "2026-10-06T23:25:35.364102+00:00",
+    "exitCode": 0,
+    "stdout": "7.6.3\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "df",
+      "-h",
+      "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair"
+    ],
+    "startUtc": "2026-10-06T23:25:35.364155+00:00",
+    "endUtc": "2026-10-06T23:25:35.366944+00:00",
+    "exitCode": 0,
+    "stdout": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s1   460Gi   414Gi    22Gi    96%    4.7M  228M    2%   /System/Volumes/Data\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "vm_stat"
+    ],
+    "startUtc": "2026-10-06T23:25:35.366977+00:00",
+    "endUtc": "2026-10-06T23:25:35.369071+00:00",
+    "exitCode": 0,
+    "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                    78233.\nPages active:                                 403910.\nPages inactive:                               397944.\nPages speculative:                              5066.\nPages throttled:                                   0.\nPages wired down:                             105992.\nPages purgeable:                               14985.\n\"Translation faults\":                     3020102232.\nPages copy-on-write:                       109433258.\nPages zero filled:                        2883074698.\nPages reactivated:                         156620737.\nPages purged:                                7372526.\nFile-backed pages:                            225437.\nAnonymous pages:                              581483.\nPages stored in compressor:                   284384.\nPages occupied by compressor:                  22164.\nDecompressions:                            393166504.\nCompressions:                              424601942.\nPageins:                                    97388683.\nPageouts:                                     278878.\nSwapins:                                     6615975.\nSwapouts:                                    8461999.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "ps",
+      "-axo",
+      "pid=,ppid=,comm="
+    ],
+    "startUtc": "2026-10-06T23:25:35.369093+00:00",
+    "endUtc": "2026-10-06T23:25:35.383037+00:00",
+    "exitCode": 0,
+    "stdout": "    1     0 /sbin/launchd\n  586     1 /usr/libexec/logd\n  587     1 /usr/libexec/smd\n  588     1 /usr/libexec/UserEventAgent\n  590     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd\n  591     1 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoted\n  594     1 /usr/sbin/systemstats\n  598     1 /usr/libexec/configd\n  600     1 /System/Library/CoreServices/powerd.bundle/powerd\n  601     1 /usr/libexec/IOMFB_bics_daemon\n  605     1 /usr/libexec/remoted\n  607     1 /usr/libexec/keybagd\n  609     1 /System/Library/PrivateFrameworks/CoreSpeech.framework/corespeechd_system\n  611     1 /usr/libexec/watchdogd\n  615     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds\n  617     1 /usr/libexec/kernelmanagerd\n  618     1 /usr/libexec/diskarbitrationd\n  621     1 /usr/libexec/coreduetd\n  622     1 /usr/sbin/syslogd\n  624     1 /usr/libexec/thermalmonitord\n  625     1 /System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/contextstored\n  626     1 /usr/libexec/xprotectd\n  627     1 /usr/libexec/opendirectoryd\n  628     1 /System/Library/PrivateFrameworks/ApplePushService.framework/apsd\n  629     1 /System/Library/CoreServices/launchservicesd\n  630     1 /usr/libexec/timed\n  631     1 /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/usbmuxd\n  632     1 /usr/sbin/securityd\n  634     1 /usr/libexec/locationd\n  637     1 autofsd\n  638     1 /usr/libexec/dasd\n  639     1 /usr/libexec/corerepaird\n  641     1 /usr/sbin/distnoted\n  645     1 /System/Library/CoreServices/logind\n  646     1 /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/Support/revisiond\n  647     1 /usr/sbin/KernelEventAgent\n  649     1 /usr/libexec/usermanagerd\n  651     1 /usr/sbin/bluetoothd\n  652     1 /usr/sbin/notifyd\n  654     1 /usr/libexec/corebrightnessd\n  655     1 /usr/libexec/AirPlayXPCHelper\n  656     1 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/com.apple.cmio.registerassistantservice\n  659     1 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer\n  660     1 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd\n  661     1 /usr/sbin/cfprefsd\n  662     1 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow\n  665     1 /System/Library/CoreServices/coreservicesd\n  666     1 /usr/libexec/runningboardd\n  667     1 /usr/libexec/trustd\n  669     1 /usr/sbin/coreaudiod\n  670     1 /usr/libexec/lsd\n  671     1 /usr/libexec/airportd\n  673     1 /usr/sbin/mDNSResponder\n  675     1 /usr/libexec/nsurlsessiond\n  678     1 /usr/libexec/nehelper\n  679     1 /usr/libexec/apfsd\n  681     1 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd\n  684     1 /usr/sbin/distnoted\n  686     1 /usr/libexec/mobileassetd\n  692     1 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/authd.xpc/Contents/MacOS/authd\n  694     1 /usr/libexec/symptomsd\n  695     1 /usr/sbin/distnoted\n  701     1 /usr/libexec/eligibilityd\n  704     1 /usr/libexec/syspolicyd\n  707     1 /usr/sbin/distnoted\n  717     1 Core Audio Driver (ParrotAudioPlugin.driver)\n  720     1 /usr/libexec/corercd\n  731     1 /usr/libexec/audiomxd\n  759     1 /usr/libexec/aned\n  763     1 /usr/libexec/ApplicationFirewall/socketfilterfw\n  769     1 /System/Library/CoreServices/TimeMachine/backupd-helper\n  771     1 /System/Library/PrivateFrameworks/BiomeStreams.framework/Support/biomed\n  773     1 /usr/sbin/mDNSResponderHelper\n  775     1 /usr/libexec/audioclocksyncd\n  778     1 /usr/libexec/securityd_system\n  781     1 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper\n  782     1 /usr/sbin/WirelessRadioManagerd\n  785     1 /System/Library/CoreServices/TimeMachine/backupd\n  786     1 /usr/sbin/distnoted\n  788     1 /usr/libexec/mobileactivationd\n  790     1 /usr/libexec/com.apple.cmio.videodriverkithostextension.systemextension/Contents/MacOS/com.apple.cmio.videodriverkithostextension\n  792     1 /usr/libexec/cameracaptured\n  793     1 /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/Resources/UVCAssistant.systemextension/Contents/MacOS/UVCAssistant\n  796     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores\n  800     1 /usr/libexec/triald_system\n  802     1 /usr/libexec/ospredictiond\n  803     1 /usr/libexec/rtcreportingd\n  805     1 /usr/sbin/distnoted\n  807     1 /usr/libexec/audioanalyticsd\n  814     1 /usr/sbin/distnoted\n  816     1 /usr/sbin/distnoted\n  817     1 /System/Library/CoreServices/appleeventsd\n  830     1 /usr/sbin/distnoted\n  835     1 /usr/libexec/searchpartyd\n  838     1 /usr/libexec/gamepolicyd\n  842     1 /usr/sbin/distnoted\n  843     1 /Applications/UURemote.app/Contents/MacOS/UURemoteDaemon\n  845     1 /usr/sbin/distnoted\n  848     1 /System/Library/CoreServices/Software Update.app/Contents/Resources/suhelperd\n  852     1 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN\n  853     1 /System/Library/DriverExtensions/com.apple.DriverKit-IOUserDockChannelSerial.dext/com.apple.DriverKit-IOUserDockChannelSerial\n  855     1 /System/Library/DriverExtensions/com.apple.AppleUserHIDDrivers.dext/com.apple.AppleUserHIDDrivers\n  861     1 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod\n  862     1 /usr/sbin/distnoted\n  874     1 /usr/libexec/sysmond\n  878   594 /usr/sbin/systemstats\n  879     1 /System/Library/Frameworks/LocalAuthentication.framework/Support/coreauthd\n  883     1 /usr/libexec/secd\n  885     1 /usr/sbin/cfprefsd\n  888     1 /usr/libexec/UserEventAgent\n  891     1 /System/Library/Frameworks/Accounts.framework/Versions/A/Support/accountsd\n  894     1 /usr/libexec/knowledge-agent\n  895     1 /usr/libexec/ContinuityCaptureAgent\n  898     1 /usr/sbin/universalaccessd\n  899     1 /usr/libexec/pboard\n  900     1 /usr/libexec/containermanagerd\n  901     1 /System/Library/CoreServices/WindowManager.app/Contents/MacOS/WindowManager\n  902     1 /System/Library/PrivateFrameworks/BiomeStreams.framework/Support/BiomeAgent\n  903     1 /usr/libexec/lsd\n  904     1 /usr/libexec/linkd\n  907     1 /System/Library/PrivateFrameworks/TCC.framework/Support/tccd\n  908     1 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd\n  909     1 /usr/libexec/trustd\n  910     1 /usr/libexec/nsurlsessiond\n  911     1 /usr/sbin/distnoted\n  916     1 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/callservicesd\n  917     1 /usr/libexec/wifip2pd\n  919     1 /usr/sbin/distnoted\n  920     1 /usr/libexec/rapportd\n  921     1 /usr/libexec/nearbyd\n  924     1 /Applications/Zed.app/Contents/MacOS/zed\n  925     1 /System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd\n  927     1 /usr/libexec/sharingd\n  928     1 /System/Library/PrivateFrameworks/IMCore.framework/imagent.app/Contents/MacOS/imagent\n  929     1 /System/Library/PrivateFrameworks/SyncedDefaults.framework/Support/syncdefaultsd\n  931     1 /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal\n  932     1 /Applications/Unity Hub.app/Contents/MacOS/Unity Hub\n  933     1 /System/Library/CoreServices/CoreLocationAgent.app/Contents/MacOS/CoreLocationAgent\n  934     1 /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock\n  935     1 /System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter\n  936     1 /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer\n  937     1 /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder\n  939     1 /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/Support/donotdisturbd\n  942     1 /System/Library/PrivateFrameworks/ScreenTimeCore.framework/Versions/A/ScreenTimeAgent\n  943     1 /System/Library/CoreServices/AccessibilityUIServer.app/Contents/MacOS/AccessibilityUIServer\n  945     1 /usr/libexec/secinitd\n  949     1 /System/Library/CoreServices/WallpaperAgent.app/Contents/MacOS/WallpaperAgent\n  950     1 /usr/sbin/filecoordinationd\n  951     1 /System/Library/PrivateFrameworks/VoiceShortcuts.framework/Versions/A/Support/siriactionsd\n  952     1 /System/Library/Frameworks/CryptoTokenKit.framework/ctkd\n  953     1 /System/Library/PrivateFrameworks/iCloudDriveCore.framework/Versions/A/Support/bird\n  955     1 /System/Library/PrivateFrameworks/CoreSuggestions.framework/Versions/A/Support/suggestd\n  957     1 automountd\n  958     1 /System/Library/PrivateFrameworks/CalendarDaemon.framework/Support/calaccessd\n  959     1 /System/Library/CoreServices/sharedfilelistd\n  960     1 /System/Library/Frameworks/LocalAuthentication.framework/Support/coreauthd\n  961     1 /System/Library/Frameworks/CryptoTokenKit.framework/ctkd\n  964     1 /usr/libexec/pkd\n  967     1 /System/Library/PrivateFrameworks/FileProvider.framework/Support/fileproviderd\n  968     1 /System/Library/PrivateFrameworks/AMPDevices.framework/Versions/A/Support/AMPDeviceDiscoveryAgent\n  969     1 /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary\n  970     1 /System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Support/fontd\n  971     1 /usr/libexec/intelligentroutingd\n  972     1 /System/Library/CoreServices/audioaccessoryd\n  973     1 /System/Library/PrivateFrameworks/UserNotificationsCore.framework/Support/usernotificationsd\n  974     1 /System/Library/PrivateFrameworks/CacheDelete.framework/deleted\n  976     1 /usr/libexec/replayd\n  977     1 /System/Library/PrivateFrameworks/ChronoCore.framework/Support/chronod\n  980     1 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Support/fontworker\n  983     1 /System/Library/ExtensionKit/Extensions/WallpaperGradientExtension.appex/Contents/MacOS/WallpaperGradientExtension\n  984     1 /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CMFSyncAgent\n  985     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/corespotlightd\n  987     1 /usr/sbin/usernoted\n  989     1 /System/Library/PrivateFrameworks/UserActivity.framework/Agents/useractivityd\n  990     1 /System/Library/CoreServices/Dock.app/Contents/XPCServices/com.apple.dock.extra.xpc/Contents/MacOS/com.apple.dock.extra\n  994     1 /System/Library/CoreServices/NotificationCenter.app/Contents/MacOS/NotificationCenter\n  995     1 /System/Library/PrivateFrameworks/iCloudDriveService.framework/XPCServices/ContainerMetadataExtractor.xpc/Contents/MacOS/ContainerMetadataExtractor\n  996     1 /System/Library/PrivateFrameworks/FamilyCircle.framework/Versions/A/Resources/familycircled\n  999     1 /System/Library/PrivateFrameworks/CloudDocs.framework/PlugIns/com.apple.CloudDocs.iCloudDriveFileProvider.appex/Contents/MacOS/com.apple.CloudDocs.iCloudDriveFileProvider\n 1004     1 /System/Library/Frameworks/ExtensionFoundation.framework/Versions/A/XPCServices/extensionkitservice.xpc/Contents/MacOS/extensionkitservice\n 1005     1 /System/Applications/Weather.app/Contents/PlugIns/WeatherWidget.appex/Contents/MacOS/WeatherWidget\n 1006     1 /System/Applications/Photos.app/Contents/PlugIns/PhotosReliveWidget.appex/Contents/MacOS/PhotosReliveWidget\n 1008     1 /usr/libexec/duetexpertd\n 1009     1 /usr/libexec/neagent\n 1010     1 /System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotlight\n 1011     1 /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent\n 1012     1 /System/Library/PrivateFrameworks/StatusKit.framework/StatusKitAgent\n 1014     1 /System/Library/CoreServices/lockoutagent\n 1017     1 /System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/ContextStoreAgent\n 1018     1 /usr/libexec/spotlightknowledged.updater\n 1019     1 /System/Library/PrivateFrameworks/TextInputUIMacHelper.framework/Versions/A/XPCServices/CursorUIViewService.xpc/Contents/MacOS/CursorUIViewService\n 1020     1 /usr/libexec/findmylocateagent\n 1023     1 /System/Library/Frameworks/Contacts.framework/Support/contactsd\n 1024     1 /System/Library/CoreServices/UIKitSystem.app/Contents/MacOS/UIKitSystem\n 1029     1 /System/Applications/Calendar.app/Contents/PlugIns/CalendarWidgetExtension.appex/Contents/MacOS/CalendarWidgetExtension\n 1030     1 /System/Library/PrivateFrameworks/CacheDelete.framework/deleted_helper\n 1031     1 /usr/libexec/networkserviceproxy\n 1034     1 /usr/sbin/distnoted\n 1037     1 /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd\n 1043     1 /System/Library/PrivateFrameworks/AppleMediaServices.framework/Resources/amsaccountsd\n 1046     1 /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Support/homed\n 1048   924 /Applications/Zed.app/Contents/MacOS/zed\n 1053     1 /System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd\n 1055     1 /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Versions/A/Support/photoanalysisd\n 1058     1 /System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd\n 1060     1 /System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService\n 1062     1 /System/Library/PrivateFrameworks/CoreADI.framework/adid\n 1064     1 /usr/sbin/spindump\n 1066     1 /System/Library/CoreServices/SubmitDiagInfo\n 1074     1 /System/Library/PrivateFrameworks/MediaRemote.framework/Support/mediaremoteagent\n 1075     1 /usr/libexec/avconferenced\n 1077     1 /System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar\n 1082     1 /System/Library/PrivateFrameworks/CloudTelemetry.framework/Versions/A/XPCServices/CloudTelemetryService.xpc/Contents/MacOS/CloudTelemetryService\n 1083     1 /usr/libexec/rosetta/oahd\n 1088     1 /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/CVMServer\n 1099     1 /usr/libexec/searchpartyuseragent\n 1110     1 /System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/com.apple.Safari.SafeBrowsing.Service\n 1112     1 /System/Library/PrivateFrameworks/AssistantServices.framework/Versions/A/Support/assistantd\n 1115     1 /usr/libexec/siriknowledged\n 1116     1 /usr/libexec/wifianalyticsd\n 1134     1 /System/Library/PrivateFrameworks/AmbientDisplay.framework/Versions/A/XPCServices/com.apple.AmbientDisplayAgent.xpc/Contents/MacOS/com.apple.AmbientDisplayAgent\n 1153   932 /Applications/Unity Hub.app/Contents/Frameworks/Unity Hub Helper.app/Contents/MacOS/Unity Hub Helper\n 1154   932 /Applications/Unity Hub.app/Contents/Frameworks/Unity Hub Helper.app/Contents/MacOS/Unity Hub Helper\n 1155   932 /Applications/Unity Hub.app/Contents/Frameworks/Unity Hub Helper (Renderer).app/Contents/MacOS/Unity Hub Helper (Renderer)\n 1162     1 /System/Library/PrivateFrameworks/CascadeSets.framework/Versions/A/XPCServices/SetStoreUpdateService.xpc/Contents/MacOS/SetStoreUpdateService\n 1182   932 /Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client\n 1189     1 /System/Library/PrivateFrameworks/HearingCore.framework/heard\n 1190     1 /System/Library/PrivateFrameworks/CoreSpeech.framework/corespeechd\n 1192     1 /opt/homebrew/opt/mongodb-community@7.0/bin/mongod\n 1194     1 /System/Library/Frameworks/InputMethodKit.framework/Resources/imklaunchagent\n 1196     1 /System/Library/Image Capture/Support/icdd\n 1199     1 /Applications/UURemote.app/Contents/MacOS/UURemoteService\n 1201     1 /System/Library/CoreServices/AirPlayUIAgent.app/Contents/MacOS/AirPlayUIAgent\n 1202     1 /System/Library/CoreServices/diagnostics_agent\n 1203     1 /System/Library/CoreServices/TextInputMenuAgent.app/Contents/MacOS/TextInputMenuAgent\n 1207     1 /System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundle/Contents/MacOS/ctkahp\n 1210     1 /Applications/UURemote.app/Contents/MacOS/UURemote\n 1212     1 /System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundle/Contents/MacOS/ctkahp\n 1214     1 /System/Library/DriverExtensions/IOUserBluetoothSerialDriver.dext/IOUserBluetoothSerialDriver\n 1223  1199 /Applications/UURemote.app/Contents/Helpers/UURemoteServer\n 1235     1 /usr/sbin/netbiosd\n 1238     1 /System/Library/PrivateFrameworks/UsageTracking.framework/Versions/A/UsageTrackingAgent\n 1239     1 /usr/sbin/distnoted\n 1240     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdbulkimport\n 1292     1 /usr/sbin/distnoted\n 1307     1 /System/Library/PrivateFrameworks/CoreFP.framework/Versions/A/fairplayd\n 1308     1 /System/Library/CoreServices/CrashReporterSupportHelper\n 1353     1 /System/Applications/Calendar.app/Contents/Extensions/CalendarIntentsExtension.appex/Contents/MacOS/CalendarIntentsExtension\n 1354     1 /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/Contents/Extensions/SafariLinkExtension.appex/Contents/MacOS/SafariLinkExtension\n 1355     1 /System/Applications/Messages.app/Contents/Extensions/MessagesActionExtension.appex/Contents/MacOS/MessagesActionExtension\n 1358     1 /System/Cryptexes/App/usr/libexec/SafariBookmarksSyncAgent\n 1363     1 /usr/libexec/tipsd\n 1426     1 /System/Library/Frameworks/CoreSpotlight.framework/spotlightknowledged\n 1497     1 /System/Library/PrivateFrameworks/DeviceCheckInternal.framework/devicecheckd\n 1504     1 /usr/sbin/cfprefsd\n 1518     1 /usr/sbin/distnoted\n 1749     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdwrite\n 1813     1 /usr/libexec/mlhostd\n 1819     1 /System/Library/Frameworks/ExtensionFoundation.framework/Versions/A/XPCServices/extensionkitservice.xpc/Contents/MacOS/extensionkitservice\n 1866     1 /System/Library/PrivateFrameworks/KerberosHelper/Helpers/DiskUnmountWatcher\n 3942     1 /Applications/ChatGPT.app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate\n 3943     1 /Users/ah/Library/Caches/com.openai.codex/org.sparkle-project.Sparkle/Launcher/5rI3O3n84/Updater.app/Contents/MacOS/Updater\n 4384     1 /usr/libexec/PowerUIAgent\n 5251     1 /usr/bin/ssh-agent\n 5367     1 /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/com.apple.appkit.xpc.openAndSavePanelService.xpc/Contents/MacOS/com.apple.appkit.xpc.openAndSavePanelService\n 5429     1 /usr/libexec/wifivelocityd\n 6003     1 /usr/libexec/taskgated\n 6118     1 /usr/libexec/assessmentagent\n 6119     1 /usr/libexec/feedbackd\n 6138     1 /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/commerce\n 6140     1 /System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsagent\n 6191     1 /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Resources/backgroundtaskmanagementd\n 6221     1 /System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstoreagent\n 6223     1 /usr/libexec/storagekitd\n 6224     1 /System/Library/PrivateFrameworks/InstallCoordination.framework/Support/installcoordinationd\n 6226     1 /System/Library/PrivateFrameworks/AppStoreDaemon.framework/Versions/A/XPCServices/com.apple.AppStoreDaemon.StorePrivilegedODRService.xpc/Contents/MacOS/com.apple.AppStoreDaemon.StorePrivilegedODRService\n 6228     1 /System/Library/PrivateFrameworks/AppleMediaServicesUI.framework/amsengagementd\n 6229     1 /usr/libexec/promotedcontentd\n 6230     1 /System/Library/PrivateFrameworks/OnDeviceStorage.framework/Support/amsondevicestoraged\n 6231     1 /usr/libexec/fairplaydeviceidentityd\n 6232     1 /usr/libexec/sandboxd\n 6310     1 /System/Cryptexes/App/usr/libexec/SafariLaunchAgent\n 6319     1 /usr/libexec/seserviced\n 6388     1 /System/Library/Frameworks/ManagedSettings.framework/Versions/A/ManagedSettingsAgent\n 6531     1 /usr/libexec/MTLAssetUpgraderD\n 6532     1 /usr/libexec/adprivacyd\n 6537     1 /System/Library/PrivateFrameworks/StorageManagement.framework/Resources/diskspaced\n 6572     1 /System/Library/Frameworks/CoreTelephony.framework/Support/CommCenter\n 6573     1 /System/Library/CoreServices/Keychain Circle Notification.app/Contents/MacOS/Keychain Circle Notification\n 6574     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/managedcorespotlightd\n 6575 59875 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n 6679     1 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtect\n 6680     1 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtect\n 6681     1 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/XPCServices/XProtectPluginService.xpc/Contents/MacOS/XProtectPluginService\n 6682     1 /Library/Apple/System/Library/CoreServices/XProtect.app/Contents/XPCServices/XProtectPluginService.xpc/Contents/MacOS/XProtectPluginService\n 6818     1 /System/Library/PrivateFrameworks/XprotectFramework.framework/Versions/A/XPCServices/XprotectService.xpc/Contents/MacOS/XprotectService\n 6819     1 /System/Library/CoreServices/ReportCrash\n 6821     1 /System/Library/PrivateFrameworks/CoreSymbolication.framework/coresymbolicationd\n 6822     1 /usr/libexec/GamePolicyAgent\n 6823     1 /System/Library/Frameworks/NetFS.framework/Versions/A/XPCServices/PlugInLibraryService.xpc/Contents/MacOS/PlugInLibraryService\n 6824     1 /usr/libexec/nesessionmanager\n 6825     1 /System/Library/Frameworks/SystemExtensions.framework/Versions/A/Helpers/sysextd\n 7428     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds_stores\n 7430     1 /System/Library/PrivateFrameworks/SessionCore.framework/Support/liveactivitiesd\n 7431     1 /System/Library/PrivateFrameworks/ReplicatorCore.framework/Support/replicatord\n 7458     1 /System/Library/CoreServices/CoreServicesUIAgent.app/Contents/MacOS/CoreServicesUIAgent\n 7651     1 /usr/libexec/proactiveeventtrackerd\n 7661     1 /System/Library/CoreServices/osanalyticshelper\n 7675     1 /System/Library/PrivateFrameworks/CoreFollowUp.framework/Versions/A/Support/followupd\n 7682     1 /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/TrustedPeersHelper.xpc/Contents/MacOS/TrustedPeersHelper\n 7689     1 /System/Library/PrivateFrameworks/CloudServices.framework/Helpers/com.apple.sbd\n 7699     1 /System/Library/PrivateFrameworks/CoreCDP.framework/Versions/A/Resources/cdpd\n 7787     1 /System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated\n 7788     1 /System/Library/PrivateFrameworks/MobileAssetDaemon.framework/Versions/A/XPCServices/com.apple.MobileAsset.DownloadService.Builtin.xpc/Contents/MacOS/com.apple.MobileAsset.DownloadService.Builtin\n 7789     1 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Support/softwareupdated\n 7790     1 /System/Library/PrivateFrameworks/MobileSoftwareUpdate.framework/Versions/A/XPCServices/com.apple.MobileSoftwareUpdate.CleanupPreparePathService.xpc/Contents/MacOS/com.apple.MobileSoftwareUpdate.CleanupPreparePathService\n 7794     1 /System/Library/Frameworks/NetFS.framework/Versions/A/XPCServices/PlugInLibraryService.xpc/Contents/MacOS/PlugInLibraryService\n 7811     1 /System/Library/PrivateFrameworks/Install.framework/Frameworks/DistributionKit.framework/Versions/A/XPCServices/DistributionHelper.xpc/Contents/MacOS/DistributionHelper\n 7819     1 /System/Library/PrivateFrameworks/SoftwareUpdate.framework/Resources/SoftwareUpdateNotificationManager.app/Contents/MacOS/SoftwareUpdateNotificationManager\n 7892     1 /System/Library/PrivateFrameworks/IASUtilities.framework/Versions/A/Resources/installerauthagent\n 7893     1 /usr/libexec/NRDUpdated\n 7894     1 /System/Library/AssetsV2/com_apple_MobileAsset_RecoveryOSUpdateBrain/28f9b40aedc0bda53bdc29e31682c998de89e5cb.asset/AssetData/com.apple.NRD.UpdateBrainService.xpc/Contents/MacOS/com.apple.NRD.UpdateBrainService\n 7902     1 /System/Library/PrivateFrameworks/AssetCacheServices.framework/Versions/A/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService\n 7903     1 /System/Library/PrivateFrameworks/iCloudNotification.framework/iCloudNotificationAgent\n 7904     1 /usr/libexec/appleaccountd\n 7905     1 /System/Library/PrivateFrameworks/StreamingZip.framework/Versions/A/XPCServices/com.apple.StreamingUnzipService.privileged.xpc/Contents/MacOS/com.apple.StreamingUnzipService.privileged\n 7913     1 /System/Library/PrivateFrameworks/UIFoundation.framework/Versions/A/XPCServices/nsattributedstringagent.xpc/Contents/MacOS/nsattributedstringagent\n 7914     1 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice\n 7919     1 /System/Library/Frameworks/MediaAccessibility.framework/Versions/A/XPCServices/com.apple.accessibility.mediaaccessibilityd.xpc/Contents/MacOS/com.apple.accessibility.mediaaccessibilityd\n 7920     1 /System/Library/PrivateFrameworks/UIFoundation.framework/Versions/A/XPCServices/nsattributedstringagent.xpc/Contents/MacOS/nsattributedstringagent\n 7921     1 /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice\n 7925     1 /System/Library/Frameworks/MediaAccessibility.framework/Versions/A/XPCServices/com.apple.accessibility.mediaaccessibilityd.xpc/Contents/MacOS/com.apple.accessibility.mediaaccessibilityd\n 8008     1 /usr/libexec/routined\n 8011     1 /System/Library/PrivateFrameworks/CoreRecents.framework/Versions/A/Support/recentsd\n 8028     1 /System/Library/PrivateFrameworks/IMDPersistence.framework/XPCServices/IMDPersistenceAgent.xpc/Contents/MacOS/IMDPersistenceAgent\n 8342     1 /System/Library/PrivateFrameworks/AppleNeuralEngine.framework/XPCServices/ANECompilerService.xpc/Contents/MacOS/ANECompilerService\n 8343     1 /System/Library/PrivateFrameworks/PowerLog.framework/Versions/A/XPCServices/PerfPowerTelemetryClientRegistrationService.xpc/Contents/MacOS/PerfPowerTelemetryClientRegistrationService\n 9640     1 /System/Library/Frameworks/AudioToolbox.framework/AudioComponentRegistrar\n10415     1 /usr/libexec/powerexperienced\n10458     1 /System/Library/CoreServices/Setup Assistant.app/Contents/Resources/mbuseragent\n10587     1 /System/Library/PrivateFrameworks/IMDPersistence.framework/IMAutomaticHistoryDeletionAgent.app/Contents/MacOS/IMAutomaticHistoryDeletionAgent\n10598     1 /usr/sbin/distnoted\n22693 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n22694 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n22712 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n24136     1 /usr/libexec/diskimagesiod\n24212     1 /Applications/Clash Verge.app/Contents/MacOS/clash-verge\n24214     1 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.GPU.xpc/Contents/MacOS/com.apple.WebKit.GPU\n24215     1 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.Networking.xpc/Contents/MacOS/com.apple.WebKit.Networking\n24216     1 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent\n24230 24212 /Applications/Clash Verge.app/Contents/MacOS/verge-mihomo\n25071     1 /System/Library/CoreServices/iconservicesagent\n25072     1 /usr/libexec/logd_helper\n30478     1 /System/Library/PrivateFrameworks/IntelligencePlatformCore.framework/Versions/A/intelligenceplatformd\n30484     1 /System/Library/PrivateFrameworks/WorkflowKit.framework/XPCServices/ShortcutsViewService.xpc/Contents/MacOS/ShortcutsViewService\n30528     1 /System/Library/PrivateFrameworks/IntelligencePlatformCompute.framework/Versions/A/XPCServices/IntelligencePlatformComputeService.xpc/Contents/MacOS/IntelligencePlatformComputeService\n30539     1 /System/Library/CoreServices/ScopedBookmarkAgent\n32979     1 /System/Library/CoreServices/ReportCrash\n35379     1 /System/Library/CoreServices/UserNotificationCenter.app/Contents/MacOS/UserNotificationCenter\n37112 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n38032     1 /usr/libexec/online-auth-agent\n38273     1 /usr/sbin/cfprefsd\n38274     1 /usr/sbin/cfprefsd\n38276     1 /usr/sbin/cfprefsd\n38279     1 /usr/sbin/cfprefsd\n38280     1 /usr/sbin/cfprefsd\n38281     1 /usr/sbin/cfprefsd\n38282     1 /usr/sbin/cfprefsd\n38283     1 /usr/sbin/cfprefsd\n38299     1 /usr/sbin/cfprefsd\n38300     1 /usr/libexec/seputil\n38303     1 /usr/sbin/cfprefsd\n38342     1 /usr/libexec/amfid\n38350     1 /usr/libexec/dmd\n38351     1 /usr/libexec/aneuserd\n38377     1 /System/Library/PrivateFrameworks/AXAssetLoader.framework/Support/axassetsd\n38378     1 /System/Library/CoreServices/pbs\n38381     1 /System/iOSSupport/System/Library/ExtensionKit/Extensions/MauiAUSP.appex/Contents/MacOS/MauiAUSP\n38382     1 /System/iOSSupport/System/Library/ExtensionKit/Extensions/KonaSynthesizer.appex/Contents/MacOS/KonaSynthesizer\n38383     1 /System/Library/PrivateFrameworks/MacinTalk.framework/PlugIns/MacinTalkAUSP.appex/Contents/MacOS/MacinTalkAUSP\n38384     1 /System/Library/PrivateFrameworks/MacinTalk.framework/PlugIns/WardaSynthesizer.appex/Contents/MacOS/WardaSynthesizer\n38385     1 /System/iOSSupport/System/Library/ExtensionKit/Extensions/SiriAUSP.appex/Contents/MacOS/SiriAUSP\n38476     1 /System/Library/PrivateFrameworks/MobileTimer.framework/Executables/mobiletimerd\n38655     1 /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod\n39517     1 /System/Library/PrivateFrameworks/MediaAnalysisAccess.framework/Versions/A/XPCServices/mediaanalysisd-access.xpc/Contents/MacOS/mediaanalysisd-access\n40547     1 /usr/libexec/swcd\n40548     1 /System/Library/Frameworks/MediaExtension.framework/Versions/A/Helpers/MENotificationAgent\n40549     1 /System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Support/BackgroundTaskManagementAgent.app/Contents/MacOS/BackgroundTaskManagementAgent\n40674     1 /System/Library/CoreServices/iconservicesd\n41130     1 /usr/libexec/PerfPowerServices\n41133     1 /usr/libexec/symptomsd-diag\n41134     1 /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd\n42155     1 /System/Cryptexes/App/usr/libexec/PasswordBreachAgent\n44772     1 /Applications/Firefox.app/Contents/MacOS/firefox\n44774     1 /Applications/Firefox.app/Contents/MacOS/crashhelper\n44775 44772 /Applications/Firefox.app/Contents/MacOS/gpu-helper.app/Contents/MacOS/Firefox GPU Helper\n44776 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44777 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44778 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44781 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44782     1 /System/Library/PrivateFrameworks/SafariPlatformSupport.framework/Versions/A/XPCServices/com.apple.SafariPlatformSupport.Helper.xpc/Contents/MacOS/com.apple.SafariPlatformSupport.Helper\n44783 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44785 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44787 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n44791 44772 /Applications/Firefox.app/Contents/MacOS/plugin-container.app/Contents/MacOS/plugin-container\n47266     1 /System/Library/Frameworks/ManagedAppDistribution.framework/Support/managedappdistributionagent\n47267     1 /System/Library/Frameworks/ManagedAppDistribution.framework/Support/managedappdistributiond\n47268     1 /usr/libexec/containermanagerd_system\n47414     1 /usr/libexec/trustd\n47415     1 /usr/libexec/trustdFileHelper\n47416     1 /usr/libexec/countryd\n47508     1 /System/Library/PrivateFrameworks/GeoAnalytics.framework/geoanalyticsd\n47509     1 /System/Library/PrivateFrameworks/PrivateCloudCompute.framework/privatecloudcomputed.app/Contents/MacOS/privatecloudcomputed\n47521     1 /usr/libexec/dprivacyd\n47556     1 /System/Library/PrivateFrameworks/SystemStatusServer.framework/Support/systemstatusd\n47557     1 /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPCServices/VTEncoderXPCService.xpc/Contents/MacOS/VTEncoderXPCService\n47561     1 /usr/libexec/milod\n47565     1 /usr/libexec/findmydeviced\n47566     1 /usr/libexec/findmydevice-user-agent\n47567     1 /usr/libexec/applekeystored\n47568     1 /System/Cryptexes/App/usr/libexec/AuthenticationServicesAgent\n47569     1 /System/Library/PrivateFrameworks/IntlPreferences.framework/Support/localizationswitcherd\n47570     1 /System/Library/PrivateFrameworks/AppleCredentialManager.framework/AppleCredentialManagerDaemon\n47572     1 /System/Library/PrivateFrameworks/Synapse.framework/Support/contentlinkingd\n47573     1 /usr/libexec/proactived\n47575     1 /usr/libexec/keychainsharingmessagingd\n47578     1 /usr/libexec/transparencyd\n47579     1 /usr/libexec/filevaultd\n47580     1 /System/Library/PrivateFrameworks/iTunesCloud.framework/Support/itunescloudd\n47581     1 /System/Library/PrivateFrameworks/ProtectedCloudStorage.framework/Helpers/ProtectedCloudKeySyncing\n47588     1 /System/Library/CoreServices/talagentd\n47655     1 /usr/libexec/inputanalyticsd\n47672     1 /usr/libexec/mmaintenanced\n47915     1 /System/iOSSupport/System/Library/PrivateFrameworks/HomeEnergyDaemon.framework/Support/homeenergyd\n47931     1 /System/Library/PrivateFrameworks/GenerativeExperiencesRuntime.framework/Versions/A/generativeexperiencesd\n47936     1 /System/Library/PrivateFrameworks/ModelCatalogRuntime.framework/Versions/A/ModelCatalogAgent\n48156     1 cloudphotod\n48196     1 /usr/libexec/dprivacyd\n48278     1 /System/Library/PrivateFrameworks/DataAccess.framework/Support/dataaccessd\n48279     1 /System/Library/PrivateFrameworks/People.framework/peopled\n48286     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/RemoteManagementAgent\n48292     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/remotemanagementd\n48293     1 /System/Library/PrivateFrameworks/SafariFoundation.framework/Versions/A/XPCServices/SafariConfigurationSubscriber.xpc/Contents/MacOS/SafariConfigurationSubscriber\n48294     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/SecuritySubscriber.xpc/Contents/MacOS/SecuritySubscriber\n48295     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/SecuritySubscriber.xpc/Contents/MacOS/SecuritySubscriber\n48296     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/InteractiveLegacyProfilesSubscriber.xpc/Contents/MacOS/InteractiveLegacyProfilesSubscriber\n48297     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/InteractiveLegacyProfilesSubscriber.xpc/Contents/MacOS/InteractiveLegacyProfilesSubscriber\n48298     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ScreenSharingSubscriber.xpc/Contents/MacOS/ScreenSharingSubscriber\n48299     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ScreenSharingSubscriber.xpc/Contents/MacOS/ScreenSharingSubscriber\n48303     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/LegacyProfilesSubscriber.xpc/Contents/MacOS/LegacyProfilesSubscriber\n48304     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/LegacyProfilesSubscriber.xpc/Contents/MacOS/LegacyProfilesSubscriber\n48305     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/PasscodeSettingsSubscriber.xpc/Contents/MacOS/PasscodeSettingsSubscriber\n48306     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/PasscodeSettingsSubscriber.xpc/Contents/MacOS/PasscodeSettingsSubscriber\n48307     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/DiskManagementSubscriber.xpc/Contents/MacOS/DiskManagementSubscriber\n48308     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/AccountSubscriber.xpc/Contents/MacOS/AccountSubscriber\n48309     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagedPreferencesSubscriber.xpc/Contents/MacOS/ManagedPreferencesSubscriber\n48310     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagedAppsSubscriber.xpc/Contents/MacOS/ManagedAppsSubscriber\n48311     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/SoftwareUpdateSubscriber.xpc/Contents/MacOS/SoftwareUpdateSubscriber\n48312     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagementTestSubscriber.xpc/Contents/MacOS/ManagementTestSubscriber\n48313     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/MigrationSubscriber.xpc/Contents/MacOS/MigrationSubscriber\n48314     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ASConfigurationSubscriber.xpc/Contents/MacOS/ASConfigurationSubscriber\n48315     1 /System/Library/PrivateFrameworks/SystemMigration.framework/Resources/systemmigrationd\n48316     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagedSettingsSubscriber.xpc/Contents/MacOS/ManagedSettingsSubscriber\n48317     1 /System/Library/CoreServices/iconservicesagent\n48318     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagedAppsSubscriber.xpc/Contents/MacOS/ManagedAppsSubscriber\n48319     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagementTestSubscriber.xpc/Contents/MacOS/ManagementTestSubscriber\n48320     1 /System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/ManagedConfigurationFilesSubscriber.xpc/Contents/MacOS/ManagedConfigurationFilesSubscriber\n48384     1 /usr/libexec/swtransparencyd\n48385     1 /System/Library/PrivateFrameworks/TextToSpeechVoiceBankingSupport.framework/Support/voicebankingd\n48386     1 /usr/libexec/modelmanagerd\n48387     1 /System/Library/PrivateFrameworks/ModelCatalogRuntime.framework/Versions/A/modelcatalogd\n48395     1 /System/Library/PrivateFrameworks/HomeKitEvents.framework/Support/homeeventsd\n48396     1 /System/Library/PrivateFrameworks/CloudSubscriptionFeatures.framework/FeatureAccessAgent\n48397     1 /System/Library/PrivateFrameworks/AppleIntelligenceReportingProcessing.framework/Versions/A/XPCServices/AppleIntelligenceReportingProcessingService.xpc/Contents/MacOS/AppleIntelligenceReportingProcessingService\n48399     1 /System/Library/PrivateFrameworks/CloudTelemetry.framework/Versions/A/XPCServices/CloudTelemetryService.xpc/Contents/MacOS/CloudTelemetryService\n48400     1 /System/Library/PrivateFrameworks/MapsSync.framework/mapssyncd\n48610     1 /System/Library/PrivateFrameworks/BusinessChatService.framework/businessservicesd\n48611     1 /System/Library/PrivateFrameworks/MessagesBlastDoorSupport.framework/Versions/A/XPCServices/MessagesBlastDoorService.xpc/Contents/MacOS/MessagesBlastDoorService\n48642     1 /usr/libexec/ciphermld\n48914     1 /System/Library/PrivateFrameworks/CloudTelemetry.framework/Versions/A/XPCServices/CloudTelemetryService.xpc/Contents/MacOS/CloudTelemetryService\n49022     1 /System/Library/PrivateFrameworks/TrialServer.framework/Versions/A/XPCServices/TrialArchivingService.xpc/Contents/MacOS/TrialArchivingService\n49031     1 /System/Library/PrivateFrameworks/Noticeboard.framework/Versions/A/Resources/nbagent.app/Contents/MacOS/nbagent\n49032     1 /System/Library/PrivateFrameworks/Noticeboard.framework/Versions/A/Resources/nbstated\n49043     1 /System/Library/PrivateFrameworks/ContinuousDialogManagerService.framework/assistant_cdmd\n49173 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node\n49174 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node\n49175 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl\n49176 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node\n49224 49173 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl\n49359 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node\n49360 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node\n49361 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node\n49362 59897 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl\n49363 49361 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl\n49619     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49620     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49622     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49623     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49624     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49625     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49626     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49627     1 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mdworker_shared\n49631 59897 /Library/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python\n49632 49631 /Library/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python\n49817 49632 ps\n57631     1 /System/Library/CoreServices/UniversalControl.app/Contents/MacOS/UniversalControl\n59875     1 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT\n59877     1 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/browser_crashpad_handler\n59879     1 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/browser_crashpad_handler\n59886 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n59887 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n59888 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n59892 59875 /Applications/ChatGPT.app/Contents/Resources/native/bare-modifier-monitor\n59895 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n59896 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n59897 59875 /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex\n59933 59875 /Users/ah/.codex/computer-use/Codex Computer Use.app/Contents/MacOS/SkyComputerUseService\n59942 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n59971 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n59979 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n59992     1 /System/Library/PrivateFrameworks/SafariPlatformSupport.framework/Versions/A/XPCServices/com.apple.SafariPlatformSupport.Helper.xpc/Contents/MacOS/com.apple.SafariPlatformSupport.Helper\n60017 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)\n60031 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n60276 59897 /Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex-code-mode-host\n60382 59875 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/154.0.8037.93/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)\n62517     1 /usr/libexec/studentd\n77364     1 /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/com.apple.appkit.xpc.openAndSavePanelService.xpc/Contents/MacOS/com.apple.appkit.xpc.openAndSavePanelService\n83511     1 /System/Library/CoreServices/Dock.app/Contents/XPCServices/com.apple.dock.external.extra.arm64.xpc/Contents/MacOS/com.apple.dock.external.extra.arm64\n86576     1 /System/Library/PrivateFrameworks/SafariPlatformSupport.framework/Versions/A/XPCServices/com.apple.SafariPlatformSupport.Helper.xpc/Contents/MacOS/com.apple.SafariPlatformSupport.Helper\n87409     1 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.GPU.xpc/Contents/MacOS/com.apple.WebKit.GPU\n87410     1 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.Networking.xpc/Contents/MacOS/com.apple.WebKit.Networking\n87411     1 /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent\n89508     1 /usr/libexec/biometrickitd\n89515     1 /usr/libexec/fskitd\n89618     1 /System/Library/PrivateFrameworks/Ecosystem.framework/Support/ecosystemd\n89975     1 /System/Library/PrivateFrameworks/CoreParsec.framework/parsecd\n89976     1 /usr/libexec/triald\n90935     1 /usr/libexec/AssetCache/AssetCache\n91009     1 /Applications/Unity Hub.app/Contents/Frameworks/Squirrel.framework/Resources/ShipIt\n91073     1 /System/Library/Frameworks/QuickLookThumbnailing.framework/Support/com.apple.quicklook.ThumbnailsAgent\n91081     1 /System/Library/PrivateFrameworks/PackageKit.framework/Resources/installd\n91082     1 /System/Library/PrivateFrameworks/GeoServices.framework/geodMachServiceBridge\n91083     1 /System/Library/PrivateFrameworks/PackageKit.framework/Resources/system_installd\n93400     1 /System/Library/PrivateFrameworks/EcosystemAnalytics.framework/Support/ecosystemanalyticsd\n 1118   931 login\n 1121  1118 -zsh\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "pwsh",
+      "-NoProfile",
+      "-File",
+      "/Users/ah/.codex/worktrees/af52/hybridclr_demo/.agents/skills/agent-collaboration/scripts/Get-GateReviewMode.ps1"
+    ],
+    "startUtc": "2026-10-06T23:25:35.383395+00:00",
+    "endUtc": "2026-10-06T23:25:35.566730+00:00",
+    "exitCode": 0,
+    "stdout": "Off\n",
+    "stderr": ""
+  }
+]

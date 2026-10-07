@@ -1,0 +1,102 @@
+{
+    "schemaVersion": 1,
+    "milestone": "M07",
+    "baselineBuildId": "M07-Baseline-R03Completion-8f7c245a68bf",
+    "baselineManifestPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/HybridCLRData/AssemblyShadow/Baselines/StandaloneOSX/M07-Baseline-R03Completion-8f7c245a68bf/baseline-manifest.json",
+    "baselineManifestSha256": "70c8d4b12de3d5fd05e50fffeeb5d87e2c5a460ef4a9d6fae620696666c76a15",
+    "p05DllOnlyCompileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-DllOnly-compile/Snapshot",
+    "fixture": {
+        "patchId": "P05",
+        "defines": [
+            "ASSEMBLY_SHADOW_P05"
+        ],
+        "changedRoots": [
+            "AssemblyA.Implementation.Internal"
+        ],
+        "compileSnapshot": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-compile/Snapshot",
+        "compileSnapshotHash": "01f148d41c972bb84728a89259211ff33b6bbd5b110fc16490065a6b007aaa31",
+        "patchDirectory": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-patch",
+        "patchManifest": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-patch/patch-manifest.json",
+        "patchManifestSha256": "a81226a2e6c1b7dbe19e8442ab44921a59afbfe9a85336b3d14c264b3785c4db",
+        "closureLoadOrder": [
+            "AssemblyA.Implementation.Internal"
+        ],
+        "baselineResourceAbiHash": "sha256:bd3ae1cc1adc603cd1553dc22f0d9b06fc4c8889b7f333d4234828ae04a33751",
+        "resourceAbiHash": "sha256:f99cbb1f42858874f1a1ff96cc10c7b4d273861ca7608cb83a5d667f23a96360",
+        "resourceChangeLevel": "ResourceRebuildRequired",
+        "dllOnly": false,
+        "resourceBundlesRequired": [
+            "additive-scene.bundle",
+            "business-scene.bundle",
+            "mixed-assets.bundle",
+            "nested-prefab.bundle",
+            "versioned-prefab.bundle"
+        ],
+        "assemblyIdentities": [
+            {
+                "name": "AssemblyA.Implementation.Internal",
+                "fullName": "AssemblyA.Implementation.Internal, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "version": "0.0.0.0",
+                "culture": "",
+                "publicKeyToken": "",
+                "mvid": "975097b7-faa5-48d8-a117-8ccf09f5d08f",
+                "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-patch/DLLs/AssemblyA.Implementation.Internal.dll",
+                "sha256": "b4c1867cdc7f3dc66f3aa8306f45bb43968921450f2ac809eb05faa10e607879",
+                "referenceIdentities": [
+                    {
+                        "referenceIndex": 0,
+                        "name": "netstandard",
+                        "fullName": "netstandard, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+                        "version": "2.1.0.0",
+                        "culture": "",
+                        "publicKeyToken": "cc7b13ffcd2ddd51"
+                    },
+                    {
+                        "referenceIndex": 1,
+                        "name": "AssemblyA.Contracts",
+                        "fullName": "AssemblyA.Contracts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 2,
+                        "name": "AssemblyA.Implementation.Extensibility",
+                        "fullName": "AssemblyA.Implementation.Extensibility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 3,
+                        "name": "UnityEngine.CoreModule",
+                        "fullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    },
+                    {
+                        "referenceIndex": 4,
+                        "name": "UnityEngine.JSONSerializeModule",
+                        "fullName": "UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                        "version": "0.0.0.0",
+                        "culture": "",
+                        "publicKeyToken": ""
+                    }
+                ]
+            }
+        ],
+        "replacementResourcePath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-Resources",
+        "replacementResourceReceiptPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P05-Resources/resource-build-receipt.json",
+        "replacementResourceReceiptSha256": "15713fce746971fd63c3f13a088bcbe9a98b994e53a61df275879e69493a657c",
+        "replacementBundleNames": [
+            "additive-scene.bundle",
+            "business-scene.bundle",
+            "mixed-assets.bundle",
+            "nested-prefab.bundle",
+            "scriptable-object.bundle",
+            "serialize-reference.bundle",
+            "versioned-prefab.bundle"
+        ]
+    }
+}

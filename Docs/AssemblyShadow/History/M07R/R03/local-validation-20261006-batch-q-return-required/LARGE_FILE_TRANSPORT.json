@@ -1,0 +1,71 @@
+{
+  "kind": "LosslessLargeCheckpointFileTransport",
+  "startedUtc": "2026-10-07T01:24:40.740150+00:00",
+  "partSizeBytes": 67108864,
+  "files": [
+    {
+      "originalPath": "batch/LOCAL_BATCH_RESULT.json",
+      "liveOriginalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/LOCAL_BATCH_RESULT.json",
+      "originalSha256": "f3aaec73d5e7f6e3607808f194d903cdd0b7406a18b95016571641ca39b8245b",
+      "originalSize": 117831838,
+      "parts": [
+        {
+          "path": "batch/LOCAL_BATCH_RESULT.json.parts/part-000.part",
+          "sha256": "09da9743dff786af5f2fe884f75190b9606ed5cd4da8e1b08139706a15ca1943",
+          "size": 67108864
+        },
+        {
+          "path": "batch/LOCAL_BATCH_RESULT.json.parts/part-001.part",
+          "sha256": "baadd9b7811547ee8a2ebb8295185093f18782c86cf32cd3324b57a1c2031f12",
+          "size": 50722974
+        }
+      ],
+      "reassembledSha256": "f3aaec73d5e7f6e3607808f194d903cdd0b7406a18b95016571641ca39b8245b",
+      "removalScope": "Only newly created uncommitted owned checkpoint copy; exact original remains live and reconstructable"
+    },
+    {
+      "originalPath": "batch/BATCH_EXECUTION.json",
+      "liveOriginalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/BATCH_EXECUTION.json",
+      "originalSha256": "f3bc6e5acc523f63c1f8faf9e90801dbd24c2fc2468f41d029ac42b0c12e0e72",
+      "originalSize": 117831438,
+      "parts": [
+        {
+          "path": "batch/BATCH_EXECUTION.json.parts/part-000.part",
+          "sha256": "09da9743dff786af5f2fe884f75190b9606ed5cd4da8e1b08139706a15ca1943",
+          "size": 67108864
+        },
+        {
+          "path": "batch/BATCH_EXECUTION.json.parts/part-001.part",
+          "sha256": "c6262a269c6e08ad390b15d21632f7ab5ca15153a24c1b765ece2382527331f5",
+          "size": 50722574
+        }
+      ],
+      "reassembledSha256": "f3bc6e5acc523f63c1f8faf9e90801dbd24c2fc2468f41d029ac42b0c12e0e72",
+      "removalScope": "Only newly created uncommitted owned checkpoint copy; exact original remains live and reconstructable"
+    },
+    {
+      "originalPath": "preflight/runner-stdout.log",
+      "liveOriginalPath": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/runner-stdout.log",
+      "originalSha256": "9a32bd91658dceb573d0b5cdb4ff7be0d9ab948e9e5812229ec8020e42992014",
+      "originalSize": 114277739,
+      "parts": [
+        {
+          "path": "preflight/runner-stdout.log.parts/part-000.part",
+          "sha256": "e4288ccdb7e2240da04e35b2d81fdb18b52e212bd252cac815eb795bc234abd3",
+          "size": 67108864
+        },
+        {
+          "path": "preflight/runner-stdout.log.parts/part-001.part",
+          "sha256": "7d3c14e8a3a70bf9b24df9b5ebdbced357f7eacd9022c015feba8c11666d1baa",
+          "size": 47168875
+        }
+      ],
+      "reassembledSha256": "9a32bd91658dceb573d0b5cdb4ff7be0d9ab948e9e5812229ec8020e42992014",
+      "removalScope": "Only newly created uncommitted owned checkpoint copy; exact original remains live and reconstructable"
+    }
+  ],
+  "liveOriginalsUnchanged": true,
+  "productReexecution": false,
+  "reason": "Publication file-size guard rejected three exact raw checkpoint copies; preserve original bytes through ordered parts.",
+  "endedUtc": "2026-10-07T01:24:41.756839+00:00"
+}

@@ -1,6 +1,69 @@
 # Local Validation → Primary Implementation
 
-## Current return — R03 completion batch P
+## Current return — R03 completion batch Q
+
+**ReturnRequired; 90 cells: 89 Passed, 1 Failed, 0 Blocked; seal Passed; one invocation PID 50660, 2026-10-06 16:26:57 PDT → 2026-10-06 18:12:51 PDT.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [Q checkpoint](../History/M07R/R03/local-validation-20261006-batch-q-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/PRIMARY_ISSUES.json), [LP repairs](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/LP_REPAIR_AUDIT.json), [LO repairs](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/LO_REPAIR_AUDIT.json) and [completion audit](../History/M07R/R03/local-validation-20261006-batch-q-return-required/preflight/COMPLETION_RUNTIME_AUDIT.json). Preserve P, O, N and all earlier evidence/results unchanged.
+
+Exact source paths/commits/tools and command are recorded in LOCAL_VALIDATION.md. Actual direct Players=59; full Editor and production/runtime verdicts retain their own states. No historical replay or focused test is full-stage acceptance. No new non-trivial defect is manufactured merely to acknowledge synchronization or a passing focused result.
+
+### R03-LQ-001 — Restored-baseline snapshot capture failed with filesystem ENOSPC
+
+**Symptom.** production-entry-integration Failed after five fresh P01-P05 eligibility reports and the live policy-domain report were emitted. Unity exited1 while ShadowRawTypeAdmissionEvidence.Capture created its output directory. The final integration.json and zero-root/zero-closure proof are Unavailable.
+
+**Exact reproduction already performed.**
+
+1. Use the exact four executed commits and single Q argv in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/runner-exit.json. This invocation is already complete; do not retry Q.
+2. The Passed resource-input-binding cell runs before integration and is its explicit prerequisite. ExecuteMethod/argv/PID/clock for the original actual failure are preserved in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json.
+3. Read /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/resource-logs/integration.log: the five fixture loop completed, the live source/linked policy report was emitted, and restored-baseline CompileWithOptions reached snapshot/raw-admission capture before Directory.CreateDirectory raised IOException: No space left on device.
+4. Inspect the retained incomplete return-baseline output under /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline and the missing /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration.json. Independent cells continued under their own Passed binding prerequisite; their final states are recorded separately.
+
+**Evidence and excerpts.**
+
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/cells/production-entry-integration.json`, SHA-256 `b529089f337d7f3db9ce13069bccb229df08eaabf336f1cff5440e47d45d2a4f`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/cells/resource-input-binding.json`, SHA-256 `13b39f1757c4e6ea030bc0729d9570b28f98571c01eaf3f7301e3861b84be2cb`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json`, SHA-256 `2ba13da6808c8b511aba17cce0e8d7de371b865e117042f282a5c08957705d53`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/unity-completion.json`, SHA-256 `67c9db37d879b9fbb6219fd220e8c1fbd76b196abc7dddc8824cbbbc61951727`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/stdout.log`, SHA-256 `fef5c1ff7f95fe0f20fad20e4410d7201b00c258a8eef5b0e47e44db3ea14f02`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/stderr.log`, SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/resource-logs/integration.log`, SHA-256 `219b5fadc128274f693d28cc0f19a05006b7c0deabfbcecccf744c44bc42d4d1`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json`, SHA-256 `7c8b4bfac54819dd0f9c5dc15e04e77bbd8dd466c4039f1ca3b610f45038d23e`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/FILESYSTEM_FAILURE_OBSERVATION.json`, SHA-256 `9d74308e2cfca5b313acf4e71a20d2d47ffc62021def32c5a38e0409602d7813`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/LP_REPAIR_AUDIT.json`, SHA-256 `617fe404d158d67d7de3402f63018b380133dcd1d4eb9e08c5d76723a0bb2055`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/LO_REPAIR_AUDIT.json`, SHA-256 `35bd2f9bdcadcfdebce0c787970b384c0ca910bb92556f7ded9f32c689731fec`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/INTEGRATION_ISSUE_SOURCE_BINDINGS.json`, SHA-256 `a9d272787dcc03e1b5bab609b59cf7ce5ddaa28cf5c6514ee7f2eb8c503fa48b`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs`, SHA-256 `9af911687bac751fb089057e77cee3a7db0771d882cbc357d326fa47a84cbc86`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py`, SHA-256 `3638bced8023d97e0964ebba8318820396dcb79941e8c8cfaf8e7751f47b80f6`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py`, SHA-256 `f43fdf1c9a638d2947e11ae1c6d30868d154f450a6c43fc95319d3e66c5f4693`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs`, SHA-256 `c29698ccacf854777cd91f1604b129c7150ec5f97b637da42c7962f83090d9e3`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs`, SHA-256 `fee7817d122c8746308ce14ce48d253aae390ecc2b6a2c71c83b684dd2012c0f`
+- `/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py`, SHA-256 `a8e84fab8489249d8a9ddcc5164cfb68220c361fd1a92de9de030d5873d67d12`
+
+```text
+Command failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json
+IOException: No space left on device
+at ShadowRawTypeAdmissionEvidence.Capture(...): ShadowRawTypeAdmissionEvidence.cs:86
+at AssemblySnapshot.Capture(...): AssemblySnapshot.cs:148
+at AssemblySnapshot.CompileCore(...): AssemblySnapshot.cs:256
+at R03CompletionBuild.VerifyProductionEntriesCore(): R03CompletionBuild.cs:241
+Unity inner exit=1; outer exit=1; timeout=false; remainingProcessGroup=false
+```
+
+**Most likely root cause.** The direct cause is an ENOSPC filesystem exception during restored-baseline raw-admission output-directory creation. A transient storage/metadata allocation limit is the most likely environmental cause. Entry df showed22GiB available and post-failure df/APFS showed approximately14GiB free; neither observation establishes capacity at the failure instant, a quota, competing writer, or exact high-water. No product-source cause is established.
+
+**Why permitted / affected scope.** The batch authenticates source/tool/output ownership and preserves failed receipts, but it does not reserve storage or observe capacity throughout snapshot capture. Post-failure free space cannot reconstruct the failed allocation boundary. One original integration cell and the full batch verdict. The five emitted qualification reports and live policy-domain proof retain their independently authenticated subproof states. Restored-baseline compiler output is partial; the final snapshot and zero-root/zero-closure contract cannot be inferred. All builds, Editor, resource, measurement and startup verdicts remain separate.
+
+**Recommended Primary direction.** Primary should reconcile this environmental blocker and establish adequate measured filesystem capacity/headroom and safe evidence-retention storage before authorizing a new unused source-bound complete batch. No product repair, source/pin/guard change, cleanup of prior evidence, missing-proof fabrication, or retrospective Q promotion is justified by this exception. If it repeats with proven headroom, diagnose the actual failed allocation path/filesystem limit before proposing a source or harness fix.
+
+**Remaining uncertainty.** Exact capacity/quota/metadata condition and competing filesystem activity at the failure instant are unobserved. The original scheduler retains only str(error), so a dynamic Python traceback is Unavailable; the exact actual Unity/C# stack, command, source and process receipts are retained. Restored-baseline zero roots/closure and a green complete Q result remain unvalidated.
+
+**Validation after repair.** Use a new unused batch root under a separately authorized handoff after the environmental prerequisite is satisfied. Revalidate the complete90 cells, six fresh builds,18+754+755 Editor cases,59 fresh Players, binding-before-integration dependency, live policy/three guards, five reports, fresh restored-baseline zero roots/closure, strict bridge counts/raw custody, and seal. Preserve Q/P/O/N and all earlier states unchanged.
+
+No Local source fix or phase/batch retry.
+
+
+R03Accepted=false; H2Passed=false; qualificationApproved=false; ReadyForHumanReviewGate=false; PureInterpreter expansion disabled. Four contaminated unisolated warm certificates remain Failed. Executed source `8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0`; publication HEAD is transport authority only and is recorded externally/in the final handoff. **Local Validation → Primary Implementation. Stop.**
+
+## Historical return — R03 completion batch P
 
 **ReturnRequired; 90 cells: 71 Passed, 18 Failed, 1 Blocked; seal Passed; one invocation PID 92768, 2026-10-06 08:21:51 PDT → 2026-10-06 10:08:06 PDT.** Read [LOCAL_VALIDATION.md](LOCAL_VALIDATION.md), [P checkpoint](../History/M07R/R03/local-validation-20261006-batch-p-return-required/README.md), [PRIMARY_ISSUES.json](../History/M07R/R03/local-validation-20261006-batch-p-return-required/preflight/PRIMARY_ISSUES.json), [LO repairs](../History/M07R/R03/local-validation-20261006-batch-p-return-required/preflight/LO_REPAIR_AUDIT.json) and [completion audit](../History/M07R/R03/local-validation-20261006-batch-p-return-required/preflight/COMPLETION_RUNTIME_AUDIT.json). Preserve O, N and all earlier evidence/results unchanged.
 

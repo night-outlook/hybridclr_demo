@@ -1,0 +1,1091 @@
+Unity Editor version:    2022.3.62f2 (7670c08855a9)
+Branch:                  2022.3/respin/2022.3.62f2-4af31df585-v2
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 26.5.2 (Build 25F84)
+Darwin version:          25.5.0
+Architecture:            arm64
+Running under Rosetta:   NO
+Available memory:        16384 MB
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-ah" at "2026-10-07T00:12:08.637504Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 1182, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.4+4293ba1
+  Session Id:              93f61c7fef45452b8796ffe46b038fab
+  Correlation Id:          60214da958ec9bab1a2319957ac99ed2
+  External correlation Id: 4695706250340896368
+  Machine Id:              QTbwZpmVHn8IER/kXaS7sHTplvE=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-ah" (connect: 0.00s, validation: 0.01s, handshake: 0.16s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-ah-notifications" at "2026-10-07T00:12:08.806367Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully updated license
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "1375968193622-UnityPersXXXX"
+Pro License: NO
+[Licensing::Client] Successfully resolved entitlement details
+Launching external process: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Resources/PackageManager/Server/UnityPackageManager
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity
+-batchmode
+-nographics
+-quit
+-buildTarget
+osx
+-projectPath
+/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+-executeMethod
+AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntries
+-shadowBaselineId
+M07-Baseline-R03Completion-8f7c245a68bf
+-shadowM07ResourceOutput
+/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03Resources
+-shadowValidationRoot
+/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1
+-logFile
+/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/resource-logs/integration.log
+Successfully changed project path to: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [8294833536]  Target information:
+
+Player connection [8294833536]  * "[IP] 192.168.1.78 [Port] 55504 [Flags] 2 [Guid] 2344141700 [EditorId] 2344141700 [Version] 1048832 [Id] OSXEditor(0,Mac) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [8294833536] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [8294833536] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.
+[Package Manager] UpmClient::Connect -- Connected to IPC stream "Upm-63787" after 0.3 seconds.
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 44 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.burst@1.8.21 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.burst@1.8.21)
+    com.unity.ext.nunit@1.0.6 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.ext.nunit@1.0.6)
+    com.unity.mathematics@1.2.6 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.mathematics@1.2.6)
+    com.unity.nuget.newtonsoft-json@3.2.1 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1)
+    com.unity.searcher@4.9.2 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.searcher@4.9.2)
+    com.unity.test-framework@1.1.33 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.test-framework@1.1.33)
+  Built-in packages:
+    com.unity.modules.ai@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.ai@1.0.0)
+    com.unity.modules.androidjni@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.androidjni@1.0.0)
+    com.unity.modules.animation@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.animation@1.0.0)
+    com.unity.modules.assetbundle@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.assetbundle@1.0.0)
+    com.unity.modules.audio@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.audio@1.0.0)
+    com.unity.modules.cloth@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.cloth@1.0.0)
+    com.unity.modules.director@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.director@1.0.0)
+    com.unity.modules.imageconversion@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.imageconversion@1.0.0)
+    com.unity.modules.imgui@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.imgui@1.0.0)
+    com.unity.modules.jsonserialize@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.jsonserialize@1.0.0)
+    com.unity.modules.particlesystem@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.particlesystem@1.0.0)
+    com.unity.modules.physics@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.physics@1.0.0)
+    com.unity.modules.physics2d@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.physics2d@1.0.0)
+    com.unity.modules.screencapture@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.screencapture@1.0.0)
+    com.unity.modules.subsystems@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.subsystems@1.0.0)
+    com.unity.modules.terrain@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.terrain@1.0.0)
+    com.unity.modules.terrainphysics@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.terrainphysics@1.0.0)
+    com.unity.modules.tilemap@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.tilemap@1.0.0)
+    com.unity.modules.ui@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.ui@1.0.0)
+    com.unity.modules.uielements@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.uielements@1.0.0)
+    com.unity.modules.umbra@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.umbra@1.0.0)
+    com.unity.modules.unityanalytics@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.unityanalytics@1.0.0)
+    com.unity.modules.unitywebrequest@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.unitywebrequest@1.0.0)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.unitywebrequestassetbundle@1.0.0)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.unitywebrequestaudio@1.0.0)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.unitywebrequesttexture@1.0.0)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.unitywebrequestwww@1.0.0)
+    com.unity.modules.vehicles@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.vehicles@1.0.0)
+    com.unity.modules.video@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.video@1.0.0)
+    com.unity.modules.vr@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.vr@1.0.0)
+    com.unity.modules.wind@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.wind@1.0.0)
+    com.unity.modules.xr@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.modules.xr@1.0.0)
+    com.unity.render-pipelines.core@14.0.12 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.render-pipelines.core@14.0.12)
+    com.unity.render-pipelines.universal@14.0.12 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.render-pipelines.universal@14.0.12)
+    com.unity.render-pipelines.universal-config@14.0.10 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.render-pipelines.universal-config@14.0.10)
+    com.unity.shadergraph@14.0.12 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.shadergraph@14.0.12)
+    com.unity.ugui@1.0.0 (location: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Library/PackageCache/com.unity.ugui@1.0.0)
+  Local packages:
+    com.code-philosophy.hybridclr@file:/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity (location: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity)
+[Subsystems] No new subsystems found in resolved package list.
+Package Manager log level set to [2]
+[Package Manager] Done registering packages in 0.09 seconds
+Targeting platform: osx
+Refreshing native plugins compatible for Editor in 1.10 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.62f2 (7670c08855a9)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; threaded=0; jobified=0
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+[Licensing::Client] Successfully resolved entitlement details
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56787
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: /Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: /Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Registered in 0.023210 seconds.
+- Loaded All Assemblies, in  0.138 seconds
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+[usbmuxd] Send listen message
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 151 ms
+Native extension for OSXStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.289 seconds
+Domain Reload Profiling: 427ms
+	BeginReloadAssembly (24ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (13ms)
+	RebuildNativeTypeToScriptingClass (5ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (56ms)
+		LoadAssemblies (24ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (55ms)
+			TypeCache.Refresh (54ms)
+				TypeCache.ScanAssembly (49ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (289ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (271ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (206ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (46ms)
+			ProcessInitializeOnLoadMethodAttributes (15ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://unix:/tmp/ilpp.sock-08e26551544cf8ef69d0b896c2074e81
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 16.4508ms
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/200b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+DisplayProgressbar: Compiling Scripts
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly unityeditor.ios.extensions.xcode has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.iOS.Extensions.Xcode.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved dnlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=50e96378b6e77999 with /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Plugins/dnlib.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst@1.8.21/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 10.3965ms
+ExitCode: 0 Duration: 0s148ms
+[395/516    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.14 seconds), 1 items updated, 516 evaluated
+AssetDatabase: script compilation time: 0.413689s
+Begin MonoManager ReloadAssembly
+Total cache size 267799296
+Total cache size after purge 267799296
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.159 seconds
+Refreshing native plugins compatible for Editor in 0.50 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for OSXStandalone target not found
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/pthread
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.258 seconds
+Domain Reload Profiling: 417ms
+	BeginReloadAssembly (40ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (2ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (9ms)
+	RebuildCommonClasses (13ms)
+	RebuildNativeTypeToScriptingClass (5ms)
+	initialDomainReloadingComplete (8ms)
+	LoadAllAssembliesAndSetupDomain (93ms)
+		LoadAssemblies (65ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (47ms)
+			TypeCache.Refresh (39ms)
+				TypeCache.ScanAssembly (34ms)
+			ScanForSourceGeneratedMonoScriptInfo (5ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (258ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (199ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (1ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (18ms)
+			ProcessInitializeOnLoadAttributes (147ms)
+			ProcessInitializeOnLoadMethodAttributes (21ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (1ms)
+Asset Pipeline Refresh (id=3b257ae4847a247dd8cae69b55baca6d): Total: 1.174 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=314 ms
+		Asset DB Callback time: managed=4 ms, native=0 ms
+		Scripting: domain reloads=1, domain reload time=430 ms, compile time=414 ms, other=9 ms
+		Project Asset Count: scripts=3343, non-scripts=1015
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 1
+	InvokeBeforeRefreshCallbacks: 0.130ms
+	ApplyChangesToAssetFolders: 0.028ms
+	Scan: 108.273ms
+	OnSourceAssetsModified: 0.001ms
+	GetAllGuidsForCategorization: 0.122ms
+	CategorizeAssets: 37.602ms
+	ImportOutOfDateAssets: 265.965ms (-153.550ms without children)
+		CompileScripts: 414.462ms
+		ReloadNativeAssets: 0.000ms
+		UnloadImportedAssets: 4.234ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.549ms
+		InitializingProgressBar: 0.000ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.000ms
+		OnDemandSchedulerStart: 0.269ms
+	PostProcessAllAssets: 4.576ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.001ms
+	UnloadStreamsBegin: 0.102ms
+	PersistCurrentRevisions: 0.079ms
+	UnloadStreamsEnd: 0.005ms
+	GenerateScriptTypeHashes: 0.666ms
+	Untracked: 756.742ms
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
+Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 0.162ms
+Initializing Unity extensions:
+[Licensing::Client] Successfully resolved entitlement details
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-AssemblyShadowBaseline
+[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.
+ProgressiveSceneManager::Cancel()
+-- Listing OpenCL platforms(s) --
+ * OpenCL platform 0
+	PROFILE = FULL_PROFILE
+	VERSION = OpenCL 1.2 (Apr 18 2026 19:20:04)
+	NAME = Apple
+	VENDOR = Apple
+-- Listing OpenCL device(s) --
+ * OpenCL platform 0, device 0 
+	DEVICE_TYPE = 4
+	DEVICE_NAME = Apple M4
+	DEVICE_VENDOR = Apple
+	DEVICE_VERSION = OpenCL 1.2 
+	DRIVER_VERSION = 1.2 1.0
+	DEVICE_MAX_COMPUTE_UNITS = 10
+	DEVICE_MAX_CLOCK_FREQUENCY = 1000
+	CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE = 1073741824
+	CL_DEVICE_HOST_UNIFIED_MEMORY = true
+	CL_DEVICE_MAX_MEM_ALLOC_SIZE = 2383708160
+	DEVICE_GLOBAL_MEM_SIZE = 12713115648
+-- GPU Progressive lightmapper will use OpenCL device 'Apple M4' from 'Apple'--
+   use -OpenCL-PlatformAndDeviceIndices <platformIdx> <deviceIdx> as command line arguments if you want to select a specific adapter for OpenCL.
+Unloading 85 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 146 unused Assets / (5.7 MB). Loaded Objects now: 3202.
+Memory consumption went from 138.6 MB to 132.9 MB.
+Total: 2.674084 ms (FindLiveObjects: 0.068250 ms CreateObjectMapping: 0.022834 ms MarkObjects: 1.524625 ms  DeleteObjects: 1.058209 ms)
+
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/kernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.dylib
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.so
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32.bundle
+Fallback handler could not load library /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Frameworks/MonoBleedingEdge/lib/libkernel32
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[ScriptCompilation] Requested script compilation because: Recompiling all scripts before compiling player scripts because Auto Refresh is disabled.
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 32.3556ms
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/200b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Current configuration matches the requested one, skipping
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 5.5039ms
+ExitCode: 0 Duration: 0s371ms
+[395/516    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.17 seconds), 1 items updated, 516 evaluated
+[ScriptCompilation] Requested script compilation because: Compiling scripts for player
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 0.1398ms
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2000e0PDevDbg.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+Total cache size 267799296
+Total cache size after purge 267799296
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Tools/netcorerun/netcorerun "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Tools/BuildPipeline/ScriptCompilationBuildProgram.exe" "Library/Bee/2000e0PDevDbg.dag.json" "Library/Bee/2000e0PDevDbg-inputdata.json" "Library/Bee/buildprogram0.traceevents"
+WorkingDir: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+ExitCode: 4 Duration: 0s227ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/2000e0PDevDbg-inputdata.json
+*** Tundra requires additional run (0.03 seconds), 0 items updated, 3 evaluated
+ExitCode: 0 Duration: 0s439ms
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2000e0PDevDbg.dag" --continue-on-failure --dagfilejson="Library/Bee/2000e0PDevDbg.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 1 is unloading
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly unityeditor.ios.extensions.xcode has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.iOS.Extensions.Xcode.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved dnlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=50e96378b6e77999 with /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Plugins/dnlib.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst@1.8.21/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 24.7203ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.ShaderLibrary.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Config.Runtime.dll, with 115 defines and 192 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.dll, with 115 defines and 123 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Burst.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Mathematics.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Contracts.dll, with 115 defines and 123 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Assembly-CSharp.dll, with 115 defines and 202 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 107.1566ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 101.2004ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 95.5089ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 94.4497ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 91.7198ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ContractsConsumer.dll, with 115 defines and 124 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 10.5380ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 15.7777ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil.Rocks, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst@1.8.21/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 88.0501ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipeline.Universal.ShaderLibrary.dll, with 115 defines and 192 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 4.2851ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.2D.Internal.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 3.4486ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Extensibility.dll, with 115 defines and 192 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 4.5517ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Runtime.dll, with 120 defines and 197 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ExtensibilityConsumer.dll, with 115 defines and 193 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Internal.dll, with 115 defines and 193 references
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 15.3730ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.Runtime.dll, with 117 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/HybridCLR.Runtime.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 35.1182ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Shaders.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 7.4281ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll, with 115 defines and 191 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 8.6436ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 8.6477ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.UI.dll, with 120 defines and 190 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 20.6635ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.Aot.dll, with 115 defines and 192 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 98.1168ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.Bootstrap.dll, with 115 defines and 194 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 483.2433ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 775.2147ms
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 1683.4132ms
+ExitCode: 0 Duration: 3s312ms
+Finished compiling graph: 427 nodes, 3652 flattened edges (3068 ToBuild, 58 ToUse), maximum node priority 203
+[           0s] Delete 57 artifact files that are no longer in use. (like /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/M02Validation-77c90c609fc84cdd8262081261819af1/P15-SerializeReferenceRename-compile/CompilerOutput/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll)
+[253/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipeline.Universal.ShaderLibrary.rsp
+[254/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Mathematics.rsp
+[255/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Config.Runtime.rsp
+[256/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.Runtime.rsp
+[257/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/HybridCLR.Runtime.rsp
+[266/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Burst.rsp
+[267/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Contracts.rsp
+[269/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.UI.rsp
+[270/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.2D.Internal.rsp
+[277/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.ShaderLibrary.rsp
+[278/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.Aot.rsp
+[291/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Shaders.rsp
+[292/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Runtime.rsp
+[298/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.rsp
+[299/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ExtensibilityConsumer.rsp
+[301/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Extensibility.rsp
+[302/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/Assembly-CSharp.rsp
+[303/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.Bootstrap.rsp
+[304/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Internal.rsp
+[305/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.rsp
+[306/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.TestRunner.rsp
+[307/426    0s] WriteText Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ContractsConsumer.rsp
+[307/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.UI.dll (+2 others) [CacheHit 6c78f6afdb8017a795e1c4c285d7429000000000000000000000000000000003]
+[308/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.UI.dll (+2 others)
+[317/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.TestRunner.dll (+2 others) [CacheHit c24f51cdb6ef3c07c80928441aeae19500000000000000000000000000000003]
+[319/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.TestRunner.dll (+2 others)
+[318/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/HybridCLR.Runtime.dll (+2 others) [CacheHit 679c5684b7e1e81ef2df94b5bc81ce5c00000000000000000000000000000003]
+[321/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/HybridCLR.Runtime.dll (+2 others)
+[319/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Burst.dll (+2 others) [CacheHit 85b5f81625e043cb5db3c82448d3157f00000000000000000000000000000003]
+[323/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Burst.dll (+2 others)
+[320/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.Runtime.dll (+2 others) [CacheHit 70ea271ba050b2a0b0f87067fa76866100000000000000000000000000000003]
+[325/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.Runtime.dll (+2 others)
+[321/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll (+2 others) [CacheHit 99a758d938f014ff1e201b8955c8309300000000000000000000000000000003]
+[328/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll (+2 others)
+[328/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Mathematics.dll (+2 others) [CacheHit 29e23ef66c068d264a043419ffa2251800000000000000000000000000000003]
+[328/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.2D.Internal.dll (+2 others) [CacheHit 2de8280dba9ad59aa48fee29f0732e1d00000000000000000000000000000003]
+[335/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Mathematics.dll (+2 others)
+[337/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.2D.Internal.dll (+2 others)
+[343/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/UnityEngine.TestRunner.dll
+[344/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/UnityEngine.TestRunner.pdb
+[338/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Shaders.dll (+2 others) [CacheHit d4300d6b40fd7867c30f8f47cc3b2de400000000000000000000000000000003]
+[347/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Shaders.dll (+2 others)
+[340/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.ShaderLibrary.dll (+2 others) [CacheHit 6a69f79a5ba8c5612e1e210d6db0c60100000000000000000000000000000003]
+[350/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.ShaderLibrary.dll (+2 others)
+[342/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipeline.Universal.ShaderLibrary.dll (+2 others) [CacheHit 7d2fde43e0cbc20b317bf31ae89c644900000000000000000000000000000003]
+[342/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Config.Runtime.dll (+2 others) [CacheHit f43355d735ae69a020c89bff51df934e00000000000000000000000000000003]
+[353/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipeline.Universal.ShaderLibrary.dll (+2 others)
+[355/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Config.Runtime.dll (+2 others)
+[347/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Runtime.dll (+2 others) [CacheHit fb7c0ec83f145cd3b6d85aee0ebb1c1b00000000000000000000000000000003]
+[360/426   1791333743s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Runtime.dll (+2 others)
+[364/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/Assembly-CSharp.dll (+2 others)
+[365/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.dll (+2 others)
+[366/426    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[367/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Contracts.dll (+2 others)
+[368/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ContractsConsumer.dll (+2 others)
+[369/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyShadowBaseline.HotUpdate.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.HotUpdate.dll, with 115 defines and 123 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[370/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Core.ShaderLibrary.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.ShaderLibrary.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[371/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyA.Contracts.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Contracts.dll, with 115 defines and 123 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[372/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyShadowDemo.ContractsConsumer.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ContractsConsumer.dll, with 115 defines and 124 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[373/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Extensibility.dll (+2 others)
+[374/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.Burst.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Burst.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[375/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.Mathematics.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.Mathematics.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[376/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Universal.Config.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Config.Runtime.dll, with 115 defines and 192 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[377/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Assembly-CSharp.dll, with 115 defines and 202 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[378/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipeline.Universal.ShaderLibrary.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipeline.Universal.ShaderLibrary.dll, with 115 defines and 192 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[379/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Universal.2D.Internal.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.2D.Internal.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[380/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyA.Implementation.Extensibility.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Extensibility.dll, with 115 defines and 192 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[381/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ExtensibilityConsumer.dll (+2 others)
+[382/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Internal.dll (+2 others)
+[383/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.2D.Internal.dll
+[384/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyA.Implementation.Extensibility.dll
+[385/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipeline.Universal.ShaderLibrary.dll
+[386/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Assembly-CSharp.dll
+[387/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.Config.Runtime.dll
+[388/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.Mathematics.dll
+[389/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.Burst.dll
+[390/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowDemo.ContractsConsumer.dll
+[391/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyA.Contracts.dll
+[392/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Core.ShaderLibrary.dll
+[393/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowBaseline.HotUpdate.dll
+[394/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.2D.Internal.pdb
+[395/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyA.Implementation.Extensibility.pdb
+[396/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipeline.Universal.ShaderLibrary.pdb
+[397/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Assembly-CSharp.pdb
+[398/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.Config.Runtime.pdb
+[399/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.Mathematics.pdb
+[400/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.Burst.pdb
+[401/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowDemo.ContractsConsumer.pdb
+[402/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyA.Contracts.pdb
+[403/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Core.ShaderLibrary.pdb
+[404/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowBaseline.HotUpdate.pdb
+[405/426    1s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.Aot.dll (+2 others)
+[406/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyShadowDemo.ExtensibilityConsumer.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.ExtensibilityConsumer.dll, with 115 defines and 193 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[407/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowDemo.ExtensibilityConsumer.dll
+[408/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowDemo.ExtensibilityConsumer.pdb
+[409/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyA.Implementation.Internal.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyA.Implementation.Internal.dll, with 115 defines and 193 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[410/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyA.Implementation.Internal.pdb
+[411/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyA.Implementation.Internal.dll
+[412/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/HybridCLR.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/HybridCLR.Runtime.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[413/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/UnityEngine.UI.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/UnityEngine.UI.dll, with 120 defines and 190 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[414/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Universal.Shaders.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Shaders.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[415/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/HybridCLR.Runtime.dll
+[416/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/HybridCLR.Runtime.pdb
+[417/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/UnityEngine.UI.pdb
+[418/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/UnityEngine.UI.dll
+[419/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.Shaders.pdb
+[420/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.Shaders.dll
+[421/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Universal.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Universal.Runtime.dll, with 120 defines and 197 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[422/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.Runtime.pdb
+[423/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Universal.Runtime.dll
+[424/426    0s] Csc Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.Bootstrap.dll (+2 others)
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(59,31): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(92,61): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+[425/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyShadowBaseline.Aot.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowBaseline.Aot.dll, with 115 defines and 192 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[426/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowBaseline.Aot.dll
+[427/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowBaseline.Aot.pdb
+[428/426    1s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll, with 115 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[429/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+[430/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb
+[431/426    0s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/AssemblyShadowDemo.Bootstrap.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/AssemblyShadowDemo.Bootstrap.dll, with 115 defines and 194 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[432/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowDemo.Bootstrap.pdb
+[433/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/AssemblyShadowDemo.Bootstrap.dll
+[434/426    1s] ILPostProcess Library/Bee/artifacts/2000e0PDevDbg.dag/post-processed/Unity.RenderPipelines.Core.Runtime.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000e0PDevDbg.dag/Unity.RenderPipelines.Core.Runtime.dll, with 117 defines and 191 references
+processors: HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running HybridCLR.AssemblyShadow.CodeGen.ReflectionBindingsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[435/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Core.Runtime.pdb
+[436/426    0s] CopyFiles /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline/CompilerOutput/Unity.RenderPipelines.Core.Runtime.dll
+[438/426    0s] BuildPlayerDataGenerator Library/BuildPlayerData/Player/RuntimeInitializeOnLoads.json (+1 other)
+*** Tundra build success (3.18 seconds), 98 items updated, 426 evaluated
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(59,31): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(92,61): warning CS0618: 'RuntimeApi.GetAssemblyShadowPrototypeDiagnostics()' is obsolete: 'Assembly Shadow Prototype was retired; use GetDiagnosticsJson.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(133,35): warning CS0618: 'RuntimeApi.LoadAssemblyShadowPrototype(byte[], byte[])' is obsolete: 'Assembly Shadow Prototype was retired; use ConfigureCandidates/BeginTransaction/StageAssembly.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(137,25): warning CS0618: 'RuntimeApi.ActivateAssemblyShadowPrototype(string)' is obsolete: 'Assembly Shadow Prototype was retired; use CommitTransaction.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(290,51): warning CS0618: 'RuntimeApi.SetAssemblyShadowPrototypePhase(string)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(291,108): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeObject(object)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Assets/AssemblyShadowDemo/Bootstrap/ShadowBootstrap.cs(292,114): warning CS0618: 'RuntimeApi.InspectAssemblyShadowPrototypeAssembly(Assembly)' is obsolete: 'Assembly Shadow Prototype was retired; use generalized diagnostics.'
+Total cache size 267799296
+Total cache size after purge 267799296
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 0.1200ms
+Starting: /Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/200b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 2 is unloading
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly unityeditor.ios.extensions.xcode has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.iOS.Extensions.Xcode.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved dnlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=50e96378b6e77999 with /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Plugins/dnlib.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst@1.8.21/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 4.8595ms
+ExitCode: 0 Duration: 0s328ms
+[395/518    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.13 seconds), 1 items updated, 518 evaluated
+Total cache size 267799296
+Total cache size after purge 267799296
+IOException: No space left on device
+  at System.IO.FileSystem.CreateDirectory (System.String fullPath) [0x00191] in <cac1dea318b4499fb9eaf77618617c23>:0 
+  at System.IO.Directory.CreateDirectory (System.String path) [0x0002c] in <cac1dea318b4499fb9eaf77618617c23>:0 
+  at HybridCLR.Editor.AssemblyShadow.ShadowRawTypeAdmissionEvidence.Capture (System.String root, HybridCLR.Editor.AssemblyShadow.AssemblySnapshotReceipt snapshot, System.Nullable`1[T] developmentBuild) [0x000ae] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs:86 
+  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.Capture (System.String root, System.Collections.Generic.IEnumerable`1[T] assemblyPaths, System.Collections.Generic.IEnumerable`1[T] referencePaths, System.String kind, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, System.Collections.Generic.IEnumerable`1[T] defines, System.Collections.Generic.IEnumerable`1[T] filteredAssemblyPaths, System.Nullable`1[T] rawAdmissionDevelopmentBuild) [0x000eb] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:148 
+  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.CompileCore (System.String root, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, HybridCLR.Editor.AssemblyShadow.ShadowPolicyConfiguration policy, System.String[] defines, System.Boolean developmentBuild, System.Boolean captureMode) [0x00192] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:256 
+  at HybridCLR.Editor.AssemblyShadow.AssemblySnapshot.CompileWithOptions (System.String root, UnityEditor.BuildTarget target, System.String architecture, HybridCLR.Editor.AssemblyShadow.ShadowSourcePins pins, HybridCLR.Editor.AssemblyShadow.ShadowPolicyConfiguration policy, System.String[] defines, System.Boolean developmentBuild) [0x00000] in /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs:229 
+  at AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntriesCore () [0x005eb] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:241 
+  at AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntries () [0x00006] in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs:184 
+
+(Filename: /Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs Line: 86)
+
+executeMethod method AssemblyShadowDemo.Editor.R03CompletionBuild.VerifyProductionEntries threw exception.
+[Package Manager] Server::Kill -- Server was shutdown
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 3 is unloading

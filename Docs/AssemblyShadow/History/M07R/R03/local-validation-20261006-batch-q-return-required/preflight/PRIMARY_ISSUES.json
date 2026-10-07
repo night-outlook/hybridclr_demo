@@ -1,0 +1,106 @@
+{
+  "kind": "QPrimaryReturnIssues",
+  "observedUtc": "2026-10-07T01:21:21.941276+00:00",
+  "originalBatchResult": "ReturnRequired",
+  "issues": [
+    {
+      "id": "R03-LQ-001",
+      "classification": "Environmental integration blocker; no product-source defect established",
+      "title": "Restored-baseline snapshot capture failed with filesystem ENOSPC",
+      "symptom": "production-entry-integration Failed after five fresh P01-P05 eligibility reports and the live policy-domain report were emitted. Unity exited1 while ShadowRawTypeAdmissionEvidence.Capture created its output directory. The final integration.json and zero-root/zero-closure proof are Unavailable.",
+      "reproduction": [
+        "Use the exact four executed commits and single Q argv in /Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/runner-exit.json. This invocation is already complete; do not retry Q.",
+        "The Passed resource-input-binding cell runs before integration and is its explicit prerequisite. ExecuteMethod/argv/PID/clock for the original actual failure are preserved in /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json.",
+        "Read /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/resource-logs/integration.log: the five fixture loop completed, the live source/linked policy report was emitted, and restored-baseline CompileWithOptions reached snapshot/raw-admission capture before Directory.CreateDirectory raised IOException: No space left on device.",
+        "Inspect the retained incomplete return-baseline output under /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/return-baseline and the missing /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/integration.json. Independent cells continued under their own Passed binding prerequisite; their final states are recorded separately."
+      ],
+      "evidence": [
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/cells/production-entry-integration.json",
+          "sha256": "b529089f337d7f3db9ce13069bccb229df08eaabf336f1cff5440e47d45d2a4f"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/cells/resource-input-binding.json",
+          "sha256": "13b39f1757c4e6ea030bc0729d9570b28f98571c01eaf3f7301e3861b84be2cb"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json",
+          "sha256": "2ba13da6808c8b511aba17cce0e8d7de371b865e117042f282a5c08957705d53"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/unity-completion.json",
+          "sha256": "67c9db37d879b9fbb6219fd220e8c1fbd76b196abc7dddc8824cbbbc61951727"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/stdout.log",
+          "sha256": "fef5c1ff7f95fe0f20fad20e4410d7201b00c258a8eef5b0e47e44db3ea14f02"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/resource-logs/integration.log",
+          "sha256": "219b5fadc128274f693d28cc0f19a05006b7c0deabfbcecccf744c44bc42d4d1"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/_temp/AssemblyShadow/R03CompletionArtifacts/compiler-policy-domains.json",
+          "sha256": "7c8b4bfac54819dd0f9c5dc15e04e77bbd8dd466c4039f1ca3b610f45038d23e"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/FILESYSTEM_FAILURE_OBSERVATION.json",
+          "sha256": "9d74308e2cfca5b313acf4e71a20d2d47ffc62021def32c5a38e0409602d7813"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/LP_REPAIR_AUDIT.json",
+          "sha256": "617fe404d158d67d7de3402f63018b380133dcd1d4eb9e08c5d76723a0bb2055"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/LO_REPAIR_AUDIT.json",
+          "sha256": "35bd2f9bdcadcfdebce0c787970b384c0ca910bb92556f7ded9f32c689731fec"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/INTEGRATION_ISSUE_SOURCE_BINDINGS.json",
+          "sha256": "a9d272787dcc03e1b5bab609b59cf7ce5ddaa28cf5c6514ee7f2eb8c503fa48b"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Assets/AssemblyShadowDemo/Editor/R03CompletionBuild.cs",
+          "sha256": "9af911687bac751fb089057e77cee3a7db0771d882cbc357d326fa47a84cbc86"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/resource_pipeline.py",
+          "sha256": "3638bced8023d97e0964ebba8318820396dcb79941e8c8cfaf8e7751f47b80f6"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03Completion/run_completion.py",
+          "sha256": "f43fdf1c9a638d2947e11ae1c6d30868d154f450a6c43fc95319d3e66c5f4693"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_unity/Editor/AssemblyShadow/Build/ShadowRawTypeAdmissionEvidence.cs",
+          "sha256": "c29698ccacf854777cd91f1604b129c7150ec5f97b637da42c7962f83090d9e3"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_unity/Editor/AssemblyShadow/Build/AssemblySnapshot.cs",
+          "sha256": "fee7817d122c8746308ce14ce48d253aae390ecc2b6a2c71c83b684dd2012c0f"
+        },
+        {
+          "path": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/integration-issue-source/hybridclr_demo/Tools/AssemblyShadow/R03/run_local.py",
+          "sha256": "a8e84fab8489249d8a9ddcc5164cfb68220c361fd1a92de9de030d5873d67d12"
+        }
+      ],
+      "relevantExcerpt": "```text\nCommand failed; preserved receipt: /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/commands/0126/command.json\nIOException: No space left on device\nat ShadowRawTypeAdmissionEvidence.Capture(...): ShadowRawTypeAdmissionEvidence.cs:86\nat AssemblySnapshot.Capture(...): AssemblySnapshot.cs:148\nat AssemblySnapshot.CompileCore(...): AssemblySnapshot.cs:256\nat R03CompletionBuild.VerifyProductionEntriesCore(): R03CompletionBuild.cs:241\nUnity inner exit=1; outer exit=1; timeout=false; remainingProcessGroup=false\n```",
+      "rootCause": "The direct cause is an ENOSPC filesystem exception during restored-baseline raw-admission output-directory creation. A transient storage/metadata allocation limit is the most likely environmental cause. Entry df showed22GiB available and post-failure df/APFS showed approximately14GiB free; neither observation establishes capacity at the failure instant, a quota, competing writer, or exact high-water. No product-source cause is established.",
+      "whyDesignAllowedIt": "The batch authenticates source/tool/output ownership and preserves failed receipts, but it does not reserve storage or observe capacity throughout snapshot capture. Post-failure free space cannot reconstruct the failed allocation boundary.",
+      "affectedScope": "One original integration cell and the full batch verdict. The five emitted qualification reports and live policy-domain proof retain their independently authenticated subproof states. Restored-baseline compiler output is partial; the final snapshot and zero-root/zero-closure contract cannot be inferred. All builds, Editor, resource, measurement and startup verdicts remain separate.",
+      "recommendedDirection": "Primary should reconcile this environmental blocker and establish adequate measured filesystem capacity/headroom and safe evidence-retention storage before authorizing a new unused source-bound complete batch. No product repair, source/pin/guard change, cleanup of prior evidence, missing-proof fabrication, or retrospective Q promotion is justified by this exception. If it repeats with proven headroom, diagnose the actual failed allocation path/filesystem limit before proposing a source or harness fix.",
+      "remainingUncertainty": "Exact capacity/quota/metadata condition and competing filesystem activity at the failure instant are unobserved. The original scheduler retains only str(error), so a dynamic Python traceback is Unavailable; the exact actual Unity/C# stack, command, source and process receipts are retained. Restored-baseline zero roots/closure and a green complete Q result remain unvalidated.",
+      "validationAfterRepair": "Use a new unused batch root under a separately authorized handoff after the environmental prerequisite is satisfied. Revalidate the complete90 cells, six fresh builds,18+754+755 Editor cases,59 fresh Players, binding-before-integration dependency, live policy/three guards, five reports, fresh restored-baseline zero roots/closure, strict bridge counts/raw custody, and seal. Preserve Q/P/O/N and all earlier states unchanged."
+    }
+  ],
+  "allFailedCellsCovered": [
+    "production-entry-integration"
+  ],
+  "productSourceDefectEstablished": false,
+  "boundedLocalSourceFixes": [],
+  "noRetryOrCleanup": true
+}

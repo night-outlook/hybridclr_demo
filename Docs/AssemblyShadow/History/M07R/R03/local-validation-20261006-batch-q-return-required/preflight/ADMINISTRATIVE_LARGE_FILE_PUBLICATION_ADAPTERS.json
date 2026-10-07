@@ -1,0 +1,27 @@
+{
+  "kind": "LocalLargeEvidencePublicationAdapters",
+  "utc": "2026-10-07T01:25:30.450692+00:00",
+  "files": [
+    {
+      "script": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/check-publication.py",
+      "beforeSha256": "d5993ccf9e7d10ffede03fbada29b46ce31f67361f72007b3af50e8cf6bfa1da",
+      "afterSha256": "e14eaceb333e029c98d51a505723c6c0038867999c234b025e38d0aa7dd72426",
+      "changes": "Authenticate exact reconstructed original hashes and sizes from ordered parts; retain original index/seal, source/pin/remote, clean-state, Git-byte and100MiB checks."
+    },
+    {
+      "script": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/final-publication-audit.py",
+      "beforeSha256": "4387cb3522b4173e9609db1b04fca474984b76a23b7bc2861529e38a0dca50f2",
+      "afterSha256": "c081a711233aa32dacd318409afec771a4a818bfc92ec0b138188a0b26f605f3",
+      "changes": "Authenticate exact reconstructed original hashes and sizes from ordered parts; retain original index/seal, source/pin/remote, clean-state, Git-byte and100MiB checks."
+    },
+    {
+      "script": "/Users/ah/GitHub/hybridclr/r03-local-validation/Preflight-R03LocalBatch-20261006Q-lp-repair/prepare-o-publication.py",
+      "beforeSha256": "a2117e6edea71110c67eedf7c2d8eacc89d1cca6c875f4e7ab7d2802d72cfd55",
+      "afterSha256": "f974ee8a83bacc55a6dda195fc13b5c71a3aa96ff33c792e153c04603dbe09d5",
+      "changes": "Opaque transported parts independently hash-authenticated and marked binary; separately source-authenticated whitespace exceptions unchanged. Copy current Local transport/authentication scripts and completed receipts."
+    }
+  ],
+  "productSourceChanges": [],
+  "productReexecution": false,
+  "originalVerdictsUnchanged": true
+}

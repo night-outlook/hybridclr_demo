@@ -1,0 +1,33 @@
+{
+  "dependencies": [
+    "build-candidate-release"
+  ],
+  "evidence": {
+    "buildReceiptSha256": "8b8fcc5d7a57a190208923ac7bad2be33ca93d0a27b069a28e1fecc9c283a5a0",
+    "code": 16,
+    "launchPid": 56842,
+    "outcome": "admission-reject",
+    "rawSha256": "c107d5afe7f363f671d030e9c33c10d551e99a99519efac5a1c4d639e1e6be0a",
+    "rejectionObservation": {
+      "capacityControl": -2,
+      "captures": 4,
+      "failingRowIdentified": false,
+      "fullReadHashes": [
+        "7d8107cb78d03e0abf5f51cebff486282e8c01c2b9c2853a77a6850e6a5461ba",
+        "7d8107cb78d03e0abf5f51cebff486282e8c01c2b9c2853a77a6850e6a5461ba"
+      ],
+      "fullReads": 2,
+      "layoutIdentityPolicy": "R03OwnedLayoutIdentityV1",
+      "layoutRows": 1,
+      "policy": "R03RejectedProbeNonMutationV1",
+      "terminalFailureCode": 16,
+      "terminalUnchanged": true
+    },
+    "requestSha256": "77e850cee43796d85ffcfc1f9046b036312e30a00000520942bf2e4823363726",
+    "result": "Passed",
+    "runId": "5ead9bf836e14fda8949964373f8944a",
+    "state": 8
+  },
+  "id": "C08-interface-change",
+  "result": "Passed"
+}

@@ -1,0 +1,68 @@
+{
+  "kind": "ReadOnlyActiveRunnerProcessObservation",
+  "startUtc": "2026-10-07T00:03:47.644592+00:00",
+  "endUtc": "2026-10-07T00:03:47.661616+00:00",
+  "command": [
+    "ps",
+    "-axo",
+    "pid=,ppid=,pgid=,etime=,%cpu=,rss=,comm="
+  ],
+  "runnerPid": 50660,
+  "processes": [
+    {
+      "pid": 50660,
+      "ppid": 50633,
+      "pgid": 50633,
+      "elapsed": "36:50",
+      "cpuPercent": "0.0",
+      "rssKiB": "88064",
+      "executable": "/Library/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 62827,
+      "ppid": 50660,
+      "pgid": 62827,
+      "elapsed": "06:18",
+      "cpuPercent": "0.0",
+      "rssKiB": "29184",
+      "executable": "/Library/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 62828,
+      "ppid": 62827,
+      "pgid": 62827,
+      "elapsed": "06:18",
+      "cpuPercent": "100.0",
+      "rssKiB": "1523776",
+      "executable": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/MacOS/Unity"
+    },
+    {
+      "pid": 62829,
+      "ppid": 62828,
+      "pgid": 62829,
+      "elapsed": "06:16",
+      "cpuPercent": "0.0",
+      "rssKiB": "68220",
+      "executable": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Resources/PackageManager/Server/UnityPackageManager"
+    },
+    {
+      "pid": 62832,
+      "ppid": 62828,
+      "pgid": 62832,
+      "elapsed": "06:15",
+      "cpuPercent": "0.0",
+      "rssKiB": "323536",
+      "executable": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Tools/ilpp/Unity.ILPP.Runner/Unity.ILPP.Runner"
+    },
+    {
+      "pid": 62833,
+      "ppid": 62828,
+      "pgid": 62833,
+      "elapsed": "06:15",
+      "cpuPercent": "0.0",
+      "rssKiB": "1360",
+      "executable": "/Applications/Unity/Hub/Editor/2022.3.62f2/Unity.app/Contents/Tools/UnityAutoQuitter"
+    }
+  ],
+  "scope": "Activity observation only; no process termination or validation verdict"
+}

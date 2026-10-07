@@ -1,0 +1,378 @@
+[R03NativeLayoutAdmissionV1] sample=0 assembly=AssemblyA.Implementation.Internal baselineRows=53 targetRows=54 paired=52 changedProofs=0 added=2
+Found 1 interfaces on host : 0) 192.168.1.78
+Player connection [8294833536]  Target information:
+
+Player connection [8294833536]  * "[IP] 192.168.1.78 [Port] 55000 [Flags] 2 [Guid] 713764805 [EditorId] 1061334324 [Version] 1048832 [Id] OSXPlayer(1,Mac) [Debug] 0 [PackageName] OSXPlayer [ProjectName] AssemblyShadowBaseline" 
+
+Player connection [8294833536] Started UDP target info broadcast (1) on [225.0.0.222:54997].
+
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.
+Initialize engine version: 2022.3.62f2 (7670c08855a9)
+[Subsystems] Discovering subsystems at path /Users/ah/GitHub/hybridclr/r03-local-validation/R03LocalBatch-20261006Q-lp-repair/projects/resource-complete/Builds/AssemblyShadow/M07/M07-Baseline-R03Completion-8f7c245a68bf.app/Contents/Resources/Data/UnitySubsystems
+Forcing GfxDevice: Null
+GfxDevice: creating device client; threaded=0; jobified=0
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+ERROR: Shader Sprites/Default shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Sprites/Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+[PhysX] Initialized MultithreadedTaskDispatcher with 10 workers.
+UnloadTime: 0.204542 ms
+[R02LayoutReadiness] sample=0 source=0x1190aaa90 target=0x1190ade30 sourceToken=33554461 targetToken=33554445 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=40 targetSize=40 sourceReady=1 site=Object::NewAllocSpecific
+[R02LayoutReadiness] sample=1 source=0x118fef560 target=0x1190af110 sourceToken=33554445 targetToken=33554458 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=24 targetSize=24 sourceReady=1 site=Object::NewAllocSpecific
+[R02LayoutReadiness] sample=2 source=0x118ff0ce0 target=0x1190ae5d0 sourceToken=33554438 targetToken=33554451 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=64 targetSize=64 sourceReady=1 site=Object::NewAllocSpecific
+[R02LayoutReadiness] sample=3 source=0x118ff0ec0 target=0x1190ae7b0 sourceToken=33554439 targetToken=33554452 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=64 targetSize=64 sourceReady=1 site=Object::NewAllocSpecific
+[R02LayoutReadiness] sample=4 source=0x118ff0ce0 target=0x1190ae5d0 sourceToken=33554438 targetToken=33554451 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=64 targetSize=64 sourceReady=1 site=Object::NewAllocSpecific
+[R02LayoutReadiness] sample=5 source=0x118ff10a0 target=0x1190aeb10 sourceToken=33554441 targetToken=33554454 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=20 targetSize=20 sourceReady=1 site=Object::Box
+[AssemblyShadow M07] Completed probe references released; two pre-quit collection cycles completed.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+AssemblyShadowDemo.<Start>d__3:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[R02LayoutReadiness] sample=6 source=0x118fef6e0 target=0x1190af290 sourceToken=33554446 targetToken=33554459 sourceImage=0x1184184e8 targetImage=0x118fe8fe0 sourceSizeInited=0 targetSizeInited=1 sourcePending=0 targetPending=0 sourceGeneric=0 targetGeneric=0 sourceRank=0 targetRank=0 sourceSize=32 targetSize=32 sourceReady=1 site=Object::NewAllocSpecific
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+PlayerConnection::CleanupMemory Statistics:
+[ALLOC_TEMP_TLS] TLS Allocator
+  StackAllocators : 
+    [ALLOC_TEMP_MAIN]
+      Peak usage frame count: [4.0 KB-8.0 KB]: 1 frames, [4.0 MB-8.0 MB]: 2 frames
+      Initial Block Size 4.0 MB
+      Current Block Size 8.0 MB
+      Peak Allocated Bytes 7.1 MB
+      Overflow Count 2657
+    [ALLOC_TEMP_Background Job.Worker 8]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 10]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 4]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 6]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 1]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_OSX HID Input]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 11]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 3]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_BatchDeleteObjects]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_AUDIO_FMOD stream thread]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 2]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 7]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 8]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 1]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 199 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 15]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.PreloadManager]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 4.0 KB
+      Overflow Count 4
+    [ALLOC_TEMP_Profiler.Dispatcher]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 136 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 3]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 12]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetGarbageCollectorHelper] x 9
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 5]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 13]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 2]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 0]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_AUDIO_Audio Mixer Thread]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 4]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 0]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 5]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 14]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 6]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_EnlightenWorker] x 5
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 9]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 7]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.AsyncRead]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 234 B
+      Overflow Count 0
+[ALLOC_MEMORYPROFILER]
+  Peak usage frame count: [4.0 KB-8.0 KB]: 3 frames
+  Requested Block Size 1.0 MB
+  Peak Block count 1
+  Peak Allocated memory 5.5 KB
+  Peak Large allocation bytes 0 B
+[ALLOC_DEFAULT] Dual Thread Allocator
+  Peak main deferred allocation count 25
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 2.3 MB
+      Failed Allocations. Bucket layout:
+        16B: 7 Subsections = 2389 buckets. Failed count: 0
+        32B: 30 Subsections = 7680 buckets. Failed count: 0
+        48B: 63 Subsections = 12902 buckets. Failed count: 0
+        64B: 114 Subsections = 19456 buckets. Failed count: 0
+        80B: 30 Subsections = 4388 buckets. Failed count: 9
+        96B: 7 Subsections = 896 buckets. Failed count: 0
+        112B: 3 Subsections = 341 buckets. Failed count: 0
+        128B: 2 Subsections = 204 buckets. Failed count: 0
+    [ALLOC_DEFAULT_MAIN]
+      Peak usage frame count: [64.0 MB-128.0 MB]: 3 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 3
+      Peak Allocated memory 76.7 MB
+      Peak Large allocation bytes 40.0 MB
+    [ALLOC_DEFAULT_THREAD]
+      Peak usage frame count: [0.5 MB-1.0 MB]: 3 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 0.6 MB
+      Peak Large allocation bytes 0 B
+[ALLOC_TEMP_JOB_1_FRAME]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_2_FRAMES]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_4_FRAMES (JobTemp)]
+  Initial Block Size 2.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_ASYNC (Background)]
+  Initial Block Size 1.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_GFX] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 2.3 MB
+      Failed Allocations. Bucket layout:
+        16B: 7 Subsections = 2389 buckets. Failed count: 0
+        32B: 30 Subsections = 7680 buckets. Failed count: 0
+        48B: 63 Subsections = 12902 buckets. Failed count: 0
+        64B: 114 Subsections = 19456 buckets. Failed count: 0
+        80B: 30 Subsections = 4388 buckets. Failed count: 9
+        96B: 7 Subsections = 896 buckets. Failed count: 0
+        112B: 3 Subsections = 341 buckets. Failed count: 0
+        128B: 2 Subsections = 204 buckets. Failed count: 0
+    [ALLOC_GFX_MAIN]
+      Peak usage frame count: [32.0 KB-64.0 KB]: 2 frames, [64.0 KB-128.0 KB]: 1 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 66.8 KB
+      Peak Large allocation bytes 0 B
+    [ALLOC_GFX_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 3 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B
+[ALLOC_CACHEOBJECTS] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 2.3 MB
+      Failed Allocations. Bucket layout:
+        16B: 7 Subsections = 2389 buckets. Failed count: 0
+        32B: 30 Subsections = 7680 buckets. Failed count: 0
+        48B: 63 Subsections = 12902 buckets. Failed count: 0
+        64B: 114 Subsections = 19456 buckets. Failed count: 0
+        80B: 30 Subsections = 4388 buckets. Failed count: 9
+        96B: 7 Subsections = 896 buckets. Failed count: 0
+        112B: 3 Subsections = 341 buckets. Failed count: 0
+        128B: 2 Subsections = 204 buckets. Failed count: 0
+    [ALLOC_CACHEOBJECTS_MAIN]
+      Peak usage frame count: [0.5 MB-1.0 MB]: 3 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 1
+      Peak Allocated memory 0.7 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_CACHEOBJECTS_THREAD]
+      Peak usage frame count: [2.0 KB-4.0 KB]: 2 frames, [32.0 KB-64.0 KB]: 1 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 1
+      Peak Allocated memory 49.7 KB
+      Peak Large allocation bytes 0 B
+[ALLOC_TYPETREE] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 2.3 MB
+      Failed Allocations. Bucket layout:
+        16B: 7 Subsections = 2389 buckets. Failed count: 0
+        32B: 30 Subsections = 7680 buckets. Failed count: 0
+        48B: 63 Subsections = 12902 buckets. Failed count: 0
+        64B: 114 Subsections = 19456 buckets. Failed count: 0
+        80B: 30 Subsections = 4388 buckets. Failed count: 9
+        96B: 7 Subsections = 896 buckets. Failed count: 0
+        112B: 3 Subsections = 341 buckets. Failed count: 0
+        128B: 2 Subsections = 204 buckets. Failed count: 0
+    [ALLOC_TYPETREE_MAIN]
+      Peak usage frame count: [16.0 KB-32.0 KB]: 3 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 1
+      Peak Allocated memory 34.4 KB
+      Peak Large allocation bytes 0 B
+    [ALLOC_TYPETREE_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 3 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B
+[ALLOC_PROFILER]
+  Peak usage frame count: [32.0 KB-64.0 KB]: 3 frames
+  Requested Block Size 16.0 MB
+  Peak Block count 1
+  Peak Allocated memory 35.1 KB
+  Peak Large allocation bytes 0 B
+    [ALLOC_PROFILER_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 0.6 KB
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791334773407,"processId":66520,"allocatedMemory":37835498,"memoryLabels":[{"Default":18881},{"Permanent":1392},{"NewDelete":33300143},{"Thread":34620},{"Manager":16180},{"VertexData":12},{"Geometry":280},{"Texture":16},{"Shader":67873},{"Material":24},{"GfxDevice":37408},{"Animation":296},{"Audio":3904},{"FontEngine":288},{"Physics":512},{"Serialization":220},{"Input":9248},{"JobScheduler":33016},{"Mono":40},{"ScriptingNativeRuntime":2228416},{"BaseObject":1617324},{"Resource":456},{"Renderer":2312},{"Transform":24},{"File":728},{"WebCam":40},{"Culling":40},{"Terrain":953},{"Wind":24},{"String":3505},{"DynamicArray":29936},{"HashMap":7680},{"Utility":282940},{"PoolAlloc":1128},{"TypeTree":4688},{"ScriptManager":80},{"RuntimeInitializeOnLoadManager":80},{"SpriteAtlas":128},{"GI":3448},{"Director":7848},{"WebRequest":816},{"VR":45497},{"SceneManager":424},{"Video":1056},{"LazyScriptCache":40},{"NativeArray":12},{"Camera":25},{"Secure":1},{"SerializationCache":1576},{"APIUpdating":11856},{"Subsystems":392},{"VirtualTexturing":57504},{"CoreBusinessMetrics":128},{"AssetReference":40}]}
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed
+IL2CPP Free after allocator was destroyed

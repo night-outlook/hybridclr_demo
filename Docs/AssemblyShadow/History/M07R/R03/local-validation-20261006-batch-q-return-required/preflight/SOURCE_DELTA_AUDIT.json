@@ -1,0 +1,91 @@
+{
+  "kind": "QSourceDeltaAudit",
+  "status": "Passed",
+  "utc": "2026-10-06T23:33:14.182065+00:00",
+  "productAnchor": "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+  "ciAnchor": "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+  "executedTransport": "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0",
+  "productToCiChanges": [
+    ".github/workflows/r03-lp-contracts.yml"
+  ],
+  "ciToTransportDocsOnly": true,
+  "bridgeLegacyCheckersCSharpPinsFixturesUnchangedFromP": true,
+  "commands": [
+    {
+      "command": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "merge-base",
+        "--is-ancestor",
+        "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+        "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5"
+      ],
+      "startUtc": "2026-10-06T23:33:14.139634+00:00",
+      "endUtc": "2026-10-06T23:33:14.152320+00:00",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--name-only",
+        "b42cbe1134a56e675b8a98e275a45ae5a012e17d",
+        "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5"
+      ],
+      "startUtc": "2026-10-06T23:33:14.152345+00:00",
+      "endUtc": "2026-10-06T23:33:14.162552+00:00",
+      "exitCode": 0,
+      "stdout": ".github/workflows/r03-lp-contracts.yml\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--exit-code",
+        "0a0974c95ad4eab2cfdaf9b9ff7e0609be67abf5",
+        "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0",
+        "--",
+        ".",
+        ":!Docs/AssemblyShadow"
+      ],
+      "startUtc": "2026-10-06T23:33:14.162583+00:00",
+      "endUtc": "2026-10-06T23:33:14.172105+00:00",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/Users/ah/GitHub/hybridclr/assembly_shadow_h1r/hybridclr_demo",
+        "diff",
+        "--exit-code",
+        "d9ef449e8e8aef885539e4b981243a868f8d0ba6",
+        "8f7c245a68bffc1db3ad2fcba829bcc8e71b22c0",
+        "--",
+        "Tools/AssemblyShadow/R02/type_resolution_schema.py",
+        "Tools/AssemblyShadow/m05_results.py",
+        "Tools/AssemblyShadow/m07_results.py",
+        "Tools/AssemblyShadow/R03/source-pins.json",
+        "Tools/AssemblyShadow/R03Completion/source-pins.json",
+        "Assets",
+        "ProjectSettings",
+        "Packages"
+      ],
+      "startUtc": "2026-10-06T23:33:14.172135+00:00",
+      "endUtc": "2026-10-06T23:33:14.182027+00:00",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
